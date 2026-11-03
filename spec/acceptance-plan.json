@@ -639,6 +639,39 @@
       "AC-SOC-463",
       "AC-SOC-464",
       "AC-SOC-465"
+    ],
+    "tests/information-interfaces.test.js": [
+      "AC-SOC-466",
+      "AC-SOC-467",
+      "AC-SOC-468",
+      "AC-SOC-469",
+      "AC-SOC-470"
+    ],
+    "tests/information-interfaces-integration.test.js": [
+      "AC-SOC-471",
+      "AC-SOC-472",
+      "AC-SOC-473",
+      "AC-SOC-474",
+      "AC-SOC-475",
+      "AC-SOC-476",
+      "AC-SOC-477",
+      "AC-SOC-478",
+      "AC-SOC-479",
+      "AC-SOC-480",
+      "AC-SOC-481"
+    ],
+    "tests/information-interfaces-ui.test.js": [
+      "AC-SOC-482",
+      "AC-SOC-483",
+      "AC-SOC-484",
+      "AC-SOC-485",
+      "AC-SOC-486"
+    ],
+    "tests/upstream-keyboard-help.test.js": [
+      "AC-SOC-487",
+      "AC-SOC-488",
+      "AC-SOC-489",
+      "AC-SOC-490"
     ]
   },
   "inputs": [
@@ -1062,6 +1095,12 @@
     "tests/workforce-bpo.test.js",
     "tests/workforce-operations.test.js",
     "scripts/aggregate-browser-campaigns.js",
-    "tests/browser-sharding.test.js"
+    "tests/browser-sharding.test.js",
+    "tests/information-interfaces.test.js",
+    "tests/information-interfaces-integration.test.js",
+    "tests/information-interfaces-ui.test.js",
+    "tests/upstream-keyboard-help.test.js",
+    "tests/lib/information-interface-fixture.js",
+    "src/game/93-ui/82-keys.js"
   ]
 }

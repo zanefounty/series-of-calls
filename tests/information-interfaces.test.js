@@ -43,7 +43,7 @@ function captured(s){
 const interfaceCommand=(admin=false)=>({action:'interface',id:'scenario-interface',policyId:admin?'defence-admin-to-training-v1':'defence-restricted-handover-v1',sourceResource:'archive',destinationResource:'handover-archive'});
 const transfer=(s,recordId=s.records[0].id)=>info(s,{action:'transfer',interfaceId:'scenario-interface',recordId,role:'supervisor'});
 
-test('fictional defence interface policies are immutable, explicit, directional and bounded',()=>{
+test('AC-SOC-466 fictional defence interface policies are immutable, explicit, directional and bounded',()=>{
  const policies=SOC.information.interfacePolicies;
  assert.deepEqual(Object.keys(policies).sort(),['defence-admin-to-training-v1','defence-restricted-handover-v1']);
  assert.equal(Object.isFrozen(policies),true);
@@ -52,7 +52,7 @@ test('fictional defence interface policies are immutable, explicit, directional 
  assert.equal(policies['defence-restricted-handover-v1'].distinctEnvironment,true);
 });
 
-test('restricted copy retains capture classification and destination storage; failed attempts change neither records nor config fingerprint',()=>{
+test('AC-SOC-467 restricted copy retains capture classification and destination storage; failed attempts change neither records nor config fingerprint',()=>{
  let s=captured(fixture());
  s=info(s,interfaceCommand());
  const fingerprint=SOC.information.fingerprint(s),before=structuredClone(s.records);
@@ -73,7 +73,7 @@ test('restricted copy retains capture classification and destination storage; fa
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('restricted capture cannot use the lower-class admin-to-training interface or be relabelled on save',()=>{
+test('AC-SOC-468 restricted capture cannot use the lower-class admin-to-training interface or be relabelled on save',()=>{
  let s=captured(fixture({administration:true}));
  assert.equal(s.records[0].classification,'restricted');
  s=tick(info(s,interfaceCommand(true)));
@@ -88,7 +88,7 @@ test('restricted capture cannot use the lower-class admin-to-training interface 
  assert.throws(()=>SOC.restore(JSON.stringify(downgraded)),/INVALID_INFORMATION_/);
 });
 
-test('explicitly internal administration records can pass only through the permitted one-way training interface',()=>{
+test('AC-SOC-469 explicitly internal administration records can pass only through the permitted one-way training interface',()=>{
  let s=captured(fixture({administration:true,restrictedCapture:false}));
  assert.equal(s.records[0].origin.workload,'administration');assert.equal(s.records[0].classification,'internal');
  s=info(s,interfaceCommand(true));s=tick(s);const result=transfer(s);
@@ -99,7 +99,7 @@ test('explicitly internal administration records can pass only through the permi
  assert.deepEqual(SOC.restore(JSON.stringify(result)),result);
 });
 
-test('legacy record without captured origin remains loadable but cannot transfer; worker result matches main command',()=>{
+test('AC-SOC-470 legacy record without captured origin remains loadable but cannot transfer; worker result matches main command',()=>{
  let s=captured(fixture());s=info(s,interfaceCommand());s=tick(s);
  const legacy=structuredClone(s);delete legacy.records[0].origin;delete legacy.records[0].classification;delete legacy.records[0].storage;legacy.information.originReceipts=[];
  assert.deepEqual(SOC.restore(JSON.stringify(legacy)),legacy);

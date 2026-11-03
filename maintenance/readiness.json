@@ -2,7 +2,7 @@
   "independentPublicRepository": true,
   "completeUpstreamHistory": true,
   "lockedDependencyBaseline": true,
-  "fullBrowserAcceptance": true,
+  "fullBrowserAcceptance": false,
   "branchProtection": true,
   "enforcedApiBudget": false,
   "enabledMaintenance": false,

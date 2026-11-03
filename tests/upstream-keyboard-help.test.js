@@ -14,7 +14,7 @@ function key(win,key,extra={}){
  (target||win).dispatchEvent(event);return event;
 }
 
-test('the Help shortcut reference opens from title, closes with its button, and does not start or mutate a network',()=>{
+test('AC-SOC-487 the Help shortcut reference opens from title, closes with its button, and does not start or mutate a network',()=>{
  const {dom,ev,errors}=load();const win=dom.window;
  ev('showTitle()');assert.equal(ev('S'),null);assert.equal(Boolean(ev('UI.started')),false);
  const before=ev('JSON.stringify({started:UI.started,save:localStorage.getItem("soc-sp-save-v1")})');
@@ -33,7 +33,7 @@ test('the Help shortcut reference opens from title, closes with its button, and 
  assert.deepEqual(errors,[]);
 });
 
-test('? closes the shortcut reference to title without creating a network',()=>{
+test('AC-SOC-488 ? closes the shortcut reference to title without creating a network',()=>{
  const {dom,ev,errors}=load();const win=dom.window;
  ev('showTitle()');
  win.document.querySelector('#modalCard [data-act="help"]').click();
@@ -47,7 +47,7 @@ test('? closes the shortcut reference to title without creating a network',()=>{
  assert.deepEqual(errors,[]);
 });
 
-test('the shortcut key ignores repeat, modifiers, editable controls and other modals',()=>{
+test('AC-SOC-489 the shortcut key ignores repeat, modifiers, editable controls and other modals',()=>{
  const {dom,ev,errors}=load();const win=dom.window;
  ev('showTitle()');
  win.document.querySelector('#modalCard [data-act="help"]').click();
@@ -68,7 +68,7 @@ test('the shortcut key ignores repeat, modifiers, editable controls and other mo
  assert.deepEqual(errors,[]);
 });
 
-test('the MCP keys action is a read-only view and helpClose returns to the game',()=>{
+test('AC-SOC-490 the MCP keys action is a read-only view and helpClose returns to the game',()=>{
  const session=createSession();const call=mcpTools(session);
  const before=call('state');
  const opened=call('act',{action:'keys'});

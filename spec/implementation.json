@@ -6517,6 +6517,69 @@
       ],
       "status": "partial",
       "scope": "Imported minute samples reject contradictory aggregate readiness, missing required resource bits and non-boolean observations while preserving historical failures after repair."
+    },
+    {
+      "id": "BEH-SOC-376",
+      "sources": [
+        "DESIGN-4786b87876e5ef42",
+        "DESIGN-f7c8685b7c9246f4"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js",
+        "src/game/95-information-ui.js",
+        "src/game/86-domain-admin-ui.js",
+        "scripts/calls-mcp.js",
+        "scripts/mcp-smoke.py"
+      ],
+      "testIds": [
+        "AC-SOC-466",
+        "AC-SOC-467",
+        "AC-SOC-468",
+        "AC-SOC-469",
+        "AC-SOC-470",
+        "AC-SOC-471",
+        "AC-SOC-472",
+        "AC-SOC-473",
+        "AC-SOC-474",
+        "AC-SOC-475",
+        "AC-SOC-476",
+        "AC-SOC-477",
+        "AC-SOC-478",
+        "AC-SOC-479",
+        "AC-SOC-480",
+        "AC-SOC-481",
+        "AC-SOC-482",
+        "AC-SOC-483",
+        "AC-SOC-484",
+        "AC-SOC-485",
+        "AC-SOC-486"
+      ],
+      "status": "partial",
+      "scope": "Two explicit fictional defence archive-interface policies preserve captured classification, independent effective boundary contracts, custody and access roles. Real meeting capture, delayed provisioning, revocation, blocked attempts, repair, pure inspection, worker execution and imported-save consistency are tested. These bounded same-jurisdiction interfaces do not complete every restricted environment, legal approval or source-specific defence workflow."
+    },
+    {
+      "id": "BEH-SOC-377",
+      "sources": [
+        "UPSTREAM-COMMIT:48ba0048dab7c1e11ded28daf3526a32109ab69f",
+        "UPSTREAM-FILE:src/game/96-map/95-clicks.js@85479d9867858d2db08a9f370857d963175984e6",
+        "UPSTREAM-FILE:src/game/93-ui/82-keys.js@c10975662971d1e2237262ee039fc15d82f80ea3"
+      ],
+      "implementation": [
+        "src/game/93-ui/82-keys.js",
+        "src/game/95-modals/60-help.js",
+        "src/game/90-actions/10-interface.js",
+        "src/game/96-map/95-clicks.js",
+        "scripts/lib/mcp-commands.js"
+      ],
+      "testIds": [
+        "AC-SOC-487",
+        "AC-SOC-488",
+        "AC-SOC-489",
+        "AC-SOC-490"
+      ],
+      "status": "partial",
+      "scope": "Adapts the upstream keyboard-help title allowlist and helpClose return behavior to the optional network simulation. The visible reference lists only supported shortcuts; keyboard guards and MCP view classification prevent unintended simulation mutation. Other obligations in the upstream commit and later file versions remain pending."
     }
   ]
 }

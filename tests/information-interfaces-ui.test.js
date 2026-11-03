@@ -8,7 +8,7 @@ function boot(s){
  h.ev("SCT.state=window.__state;SCT.locked=true;SCT.slot='interface-test';window.__commands=[];window.__originalApply=socApply;socApply=command=>{window.__commands.push(JSON.parse(JSON.stringify(command)));return window.__originalApply(command)};socStore=()=>{};socRender();");
  return {...h,w,state:()=>h.ev('SCT.state'),commands:()=>plain(w.__commands),submit:(id)=>w.document.getElementById(id).dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true})),set:(id,key,value)=>{w.document.getElementById(id).elements.namedItem(key).value=value;}};
 }
-test('fresh defence console deploys a typed archive before boundary/interface provisioning and locks its creation form read-only',()=>{
+test('AC-SOC-482 fresh defence console deploys a typed archive before boundary/interface provisioning and locks its creation form read-only',()=>{
  const h=boot(info(SOC.create({scenario:'defence'}),{action:'start'}));try{
   const apply=command=>{h.w.__nextCommand=command;h.ev('socApply(window.__nextCommand)');};
   assert.equal(h.state().resources['handover-archive'],undefined);
@@ -30,7 +30,7 @@ test('fresh defence console deploys a typed archive before boundary/interface pr
   h.set('soc-information-archive','id','read-only-archive');h.submit('soc-information-archive');assert.equal(JSON.stringify(h.state()),before);assert.equal(h.state().resources['read-only-archive'],undefined);assert.match(h.ev('SCT.error'),/read.only/i);assert.equal(h.errors.length,0);
  }finally{h.dom.window.close();}
 });
-test('actual information console provisions a typed archive interface, transfers a real meeting record and revokes it',()=>{
+test('AC-SOC-483 actual information console provisions a typed archive interface, transfers a real meeting record and revokes it',()=>{
  const h=boot(record(ready()));try{
   const panel=h.w.document.querySelector('#soc-information-interfaces');assert.ok(panel);assert.match(panel.textContent,/scenario|fictional|synthetic/i);
   h.set('soc-information-interface','id','ui-handover');h.set('soc-information-interface','policyId','defence-restricted-handover-v1');h.set('soc-information-interface','destinationResource','handover-archive');h.submit('soc-information-interface');
@@ -41,7 +41,7 @@ test('actual information console provisions a typed archive interface, transfers
   h.submit('soc-information-transfer');assert.equal(h.state().information.transfers.at(-1).reason,'INTERFACE_REVOKED');assert.equal(h.errors.length,0);
  }finally{h.dom.window.close();}
 });
-test('read-only information controls cannot mutate through click or programmatic form submission',()=>{
+test('AC-SOC-484 read-only information controls cannot mutate through click or programmatic form submission',()=>{
  const h=boot(tick(info(record(ready()),interfaceCommand())));try{
   h.ev('SCT.locked=false;socRender()');const before=JSON.stringify(h.state());
   const section=h.w.document.querySelector('#soc-information-interfaces');assert.ok([...section.querySelectorAll('button,input,select')].every(x=>x.disabled));
@@ -49,7 +49,7 @@ test('read-only information controls cannot mutate through click or programmatic
   assert.equal(JSON.stringify(h.state()),before);assert.equal(h.state().information.transfers.length,0);assert.match(h.ev('SCT.error'),/read.only/i);
  }finally{h.dom.window.close();}
 });
-test('interface display and transfer history escape untrusted text without presenting it as executable markup',()=>{
+test('AC-SOC-485 interface display and transfer history escape untrusted text without presenting it as executable markup',()=>{
  const h=boot(tick(info(record(ready()),interfaceCommand())));try{
   // Rendering-only hostile data: deliberately not dispatched or represented as a valid save.
   const display=structuredClone(plain(h.state())),hostile='<img src=x onerror="window.__interfaceXss=1">';
@@ -60,7 +60,7 @@ test('interface display and transfer history escape untrusted text without prese
   assert.equal(section.querySelector('[data-info="revoke-interface"]').dataset.id,hostile);
  }finally{h.dom.window.close();}
 });
-test('boundary flow editor removes only draft rows, retains one and respects read-only ownership',()=>{
+test('AC-SOC-486 boundary flow editor removes only draft rows, retains one and respects read-only ownership',()=>{
  const h=boot(ready());try{
   const form=()=>h.w.document.querySelector('[data-domain-form="contract"]'),rows=()=>[...form().querySelectorAll('[data-domain-flow-row]')],before=JSON.stringify(h.state());
   assert.equal(rows().length,4);while(rows().length>1)rows().at(-1).querySelector('[data-domain-remove-flow]').click();assert.equal(rows().length,1);

@@ -3,7 +3,7 @@
 // Style: informal "du"; networking terms stay English (Peering, Transit, Dark Fiber, Wave, Port, POP, IX…), but
 // plain "fiber" is "Glasfaser" and "fiber pair" is "Faserpaar". The add-strings skill has the full style notes.
 (window.I18N=window.I18N||{}).de={
-"action_helpers.light_fiber_pair_n_price":"Faserpaar {n} beleuchten <small>{price}</small>",
+"action_helpers.light_fiber_pair_n_price":"Faserpaar beleuchten <small>{price}</small>",
 "action_helpers.light_fiber_pair_n_price_mo":"Faserpaar {n} beleuchten <small>{price} + {mo}/Monat</small>",
 "action_helpers.n_fiber_pairs_lit_the_trench":"{n} Faserpaare beleuchtet, der Graben ist voll",
 "action_helpers.needs_a_roadmaster_9000_line_system":"Braucht ein ROADMaster-9000-Line-System.",

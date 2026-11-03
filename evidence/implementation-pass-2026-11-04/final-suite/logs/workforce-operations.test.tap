@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: AC-SOC-053 skill and language must belong to one available person
+ok 1 - AC-SOC-053 skill and language must belong to one available person
+  ---
+  duration_ms: 2.927919
+  type: 'test'
+  ...
+# Subtest: AC-SOC-054 one person cannot take concurrent voice or wrap work; digital concurrency is per person
+ok 2 - AC-SOC-054 one person cannot take concurrent voice or wrap work; digital concurrency is per person
+  ---
+  duration_ms: 0.938475
+  type: 'test'
+  ...
+# Subtest: AC-SOC-055 customer rosters are externally controlled; BPO needs scoped delegation
+ok 3 - AC-SOC-055 customer rosters are externally controlled; BPO needs scoped delegation
+  ---
+  duration_ms: 0.680133
+  type: 'test'
+  ...
+# Subtest: AC-SOC-056 desired roster provisions one minute later and does not erase active assignments
+ok 4 - AC-SOC-056 desired roster provisions one minute later and does not erase active assignments
+  ---
+  duration_ms: 0.605658
+  type: 'test'
+  ...
+# Subtest: AC-SOC-057 forecasts snapshot history and coaching costs time before adding skill
+ok 5 - AC-SOC-057 forecasts snapshot history and coaching costs time before adding skill
+  ---
+  duration_ms: 0.629125
+  type: 'test'
+  ...
+# Subtest: AC-SOC-058 save validation, deterministic worker source and repeated inspection are stable
+ok 6 - AC-SOC-058 save validation, deterministic worker source and repeated inspection are stable
+  ---
+  duration_ms: 3.158784
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38.528636

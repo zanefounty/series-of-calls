@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: a plug-in optic that is too short for a subsea cable is not sent to upgrades that cannot stretch it (\#253)
+ok 1 - a plug-in optic that is too short for a subsea cable is not sent to upgrades that cannot stretch it (\#253)
+  ---
+  duration_ms: 927.719538
+  type: 'test'
+  ...
+# Subtest: an optic the upgrades can stretch still gets the advice to consider them, and the advice stops once they are in
+ok 2 - an optic the upgrades can stretch still gets the advice to consider them, and the advice stops once they are in
+  ---
+  duration_ms: 511.109574
+  type: 'test'
+  ...
+# Subtest: a consortium seat and a leased line keep their own message
+ok 3 - a consortium seat and a leased line keep their own message
+  ---
+  duration_ms: 493.982734
+  type: 'test'
+  ...
+# Subtest: the optics list on the cable shows the new hint under the plug-in and none under the transponder
+ok 4 - the optics list on the cable shows the new hint under the plug-in and none under the transponder
+  ---
+  duration_ms: 531.637698
+  type: 'test'
+  ...
+# Subtest: the hint reads right in every language
+ok 5 - the hint reads right in every language
+  ---
+  duration_ms: 4897.096813
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12579.096748

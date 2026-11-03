@@ -1,0 +1,16 @@
+✔ AC-SOC-015 organisation roles and delegated authority control configuration (5.597236ms)
+✔ AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness (3.050101ms)
+✔ AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once (9.827234ms)
+✔ AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries (3.732046ms)
+✔ AC-SOC-019 engineers, support staff and skilled contact-centre people are independent (2.562239ms)
+✔ AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit (1.225155ms)
+✔ AC-SOC-021 renewal, cancellation commitments and market events retain contract history (9.620493ms)
+✔ AC-SOC-022 all business tracks require their services and run identically in worker and replay (134.699609ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.901267

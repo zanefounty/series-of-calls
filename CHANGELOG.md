@@ -1,3 +1,34 @@
+# Series of Calls changelog
+
+The entries above the upstream-history heading describe this adaptation only. They do not replace, rewrite, or claim the releases recorded below.
+
+## Unreleased Series of Calls changes
+
+- Add scheduled workforce breaks and separate actual attendance from rostered availability, preserving customer control boundaries.
+- Add scoped shared usage allowances, delayed boundary amendments, actual resource-bound voice/message/processor billing and pure legacy-save migration.
+- Add deployment-scoped local speech model installation and synthetic integration testing, with processing gates and failure/recovery diagnostics.
+- Add six new illustrated operations scenes, responsive artwork and install/social assets; fix the first training-button entry path before starting the optional SP game.
+- Add a complete delivery assignment index and browser exercise-matrix runner. Browser MCP and served-browser acceptance remain outstanding; passing DOM or driver-contract tests do not substitute for them.
+
+- Validate both local MCP request boundaries, reject id-less mutations, and preserve state on rejected commands/imports. Add real stdio exercise, save and replay checks.
+- Report the SP game's initial customer level consistently before and after save restoration.
+- Keep inherited CLI and MCP assertions executable in restricted environments using file-backed standard I/O and bounded child-process waits.
+- Reject destructive build output paths and symlink aliases before cleanup. Extend the browser smoke preparation to the newer administration consoles; real-browser acceptance remains pending.
+- Refresh architecture, MCP and publishing documentation; add repository-local development agents, a reusable skill and a 75-candidate archive intake crosswalk.
+
+## [0.1.0-preview.1] - 2026-11-03
+
+- Add synthetic configuration training foundation exercises and an interaction inspector. Full ecosystem conversion remains incomplete.
+- Preserve the research source pack and generate complete mapping appendices.
+- Isolate save and cache identities and prepare project-path hosting.
+- Add shared-line pickup/parking, supplier-timed number ports, sustained customer market qualifications and independent product sale/renewal/support evidence.
+- Include licence and attribution notices in builds and provide a dependency-free project-path preview server.
+- Reconcile the optional network expansion against upstream v2.6.0 and subsequent pinned main changes; validation and adoption status remain in the maintenance register.
+
+## Upstream Series of Tubes history — preserved source changelog
+
+The following changelog is retained from the upstream Series of Tubes snapshot. Its releases, issue numbers, hosting links, and statements describe that project, not Series of Calls.
+
 # Changelog
 
 All notable changes to this project are documented here. The project follows

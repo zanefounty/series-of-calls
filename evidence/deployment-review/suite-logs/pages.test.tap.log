@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: pages: the build is plain static files within GitHub Pages limits
+ok 1 - pages: the build is plain static files within GitHub Pages limits
+  ---
+  duration_ms: 1.223934
+  type: 'test'
+  ...
+# Subtest: pages: the repository has no hosting configuration for anywhere else
+ok 2 - pages: the repository has no hosting configuration for anywhere else
+  ---
+  duration_ms: 0.310981
+  type: 'test'
+  ...
+# Subtest: pages: every local file the site refers to is in the build
+ok 3 - pages: every local file the site refers to is in the build
+  ---
+  duration_ms: 9.299633
+  type: 'test'
+  ...
+# Subtest: pages: only the release workflow deploys, and only with the GitHub Pages actions
+ok 4 - pages: only the release workflow deploys, and only with the GitHub Pages actions
+  ---
+  duration_ms: 0.613493
+  type: 'test'
+  ...
+# Subtest: pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things
+ok 5 - pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things
+  ---
+  duration_ms: 1865.52246
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10433.410996

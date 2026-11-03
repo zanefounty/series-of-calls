@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { load } = require('./harness');
 
-const ISSUES = 'https://github.com/fjaeckel/seriesoftubes/issues/new/choose';
+const ISSUES = 'https://github.com/zanefounty/series-of-calls/issues/new/choose';
 
 test('bugs and ideas point to GitHub from the menu and How to play, and the chat no longer asks for bug reports', () => {
   for (const lang of ['en', 'it', 'pt', 'fr', 'es', 'de']) {
@@ -25,6 +25,6 @@ test('the GitHub link fits a phone: a small link next to the chat link in the me
   ev("ACT.start({});window.innerWidth=360;ACT.menu()");
   assert.ok(ev('isPhone()'));
   assert.ok(ev(`!!document.querySelector('#modal .menu-plugs a.mplug[href="${ISSUES}"]')`), 'bug link in the menu');
-  assert.ok(ev(`!!document.querySelector('#modal .menu-plugs a.mplug[href="'+SIGNAL+'"]')`), 'chat link beside it');
+  assert.ok(ev(`!!document.querySelector('#modal .menu-plugs a.mplug[href="'+COMMUNITY_URL+'"]')`), 'chat link beside it');
   assert.deepEqual(errors, []);
 });

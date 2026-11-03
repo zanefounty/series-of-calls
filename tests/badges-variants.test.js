@@ -6,12 +6,12 @@ const { load } = require('./harness');
 
 // The preset is read from S.rules.preset until the ruleset feature lands with rulePreset().
 const start = (ev, preset) => {
-  ev("localStorage.removeItem('sot-badges');ACT.start({});if(UI.pendGame)ACT.pitchSkip();S.cash=1e8;for(const g of GOALS)S.done[g.id]=0;ACT.launchBB({city:'fra'})");
+  ev("localStorage.removeItem('soc-sp-badges');ACT.start({});if(UI.pendGame)ACT.pitchSkip();S.cash=1e8;for(const g of GOALS)S.done[g.id]=0;ACT.launchBB({city:'fra'})");
   if (preset) ev(`S.rules={preset:'${preset}'}`);
   ev("S.ach={};S.achP={};compute()");
 };
 const earnHello = (ev) => ev("S.pni.push({id:'x',net:'nfx',city:'fra',tier:0});compute();checkBadges()");
-const hof = (ev) => JSON.parse(ev("localStorage.getItem('sot-badges')||'{}'"));
+const hof = (ev) => JSON.parse(ev("localStorage.getItem('soc-sp-badges')||'{}'"));
 
 test('every save without a preset plays On-call and earns the standard badge', () => {
   const { ev, errors } = load();
@@ -101,7 +101,7 @@ test('old saves and old halls of fame keep loading, as standard badges', () => {
   const { ev, errors } = load();
   start(ev);
   // a 1.x save: S.ach holds days, no S.achP; a 1.x hall of fame: {d, n} per badge
-  ev("localStorage.setItem('sot-badges',JSON.stringify({hello:{d:'2025-01-02',n:'Old'},t1:{d:'2025-03-04',n:'Old'},junk:5}))");
+  ev("localStorage.setItem('soc-sp-badges',JSON.stringify({hello:{d:'2025-01-02',n:'Old'},t1:{d:'2025-03-04',n:'Old'},junk:5}))");
   ev("const o=JSON.parse(JSON.stringify(S));o.ach={hello:12,t1:'400'};delete o.achP;S=migrate(o)");
   assert.equal(ev('S.achP.hello'), 'oncall');
   assert.equal(ev('S.ach.t1'), 400, 'days are numbers');
@@ -114,7 +114,7 @@ test('old saves and old halls of fame keep loading, as standard badges', () => {
   ev("const o=JSON.parse(JSON.stringify(S));o.achP={hello:'lava',t1:'bgp'};S=migrate(o)");
   assert.equal(ev('S.achP.hello'), 'oncall');
   assert.equal(ev('S.achP.t1'), 'bgp');
-  ev("localStorage.setItem('sot-badges','[1,2]')");
+  ev("localStorage.setItem('soc-sp-badges','[1,2]')");
   assert.equal(ev('JSON.stringify(hof())'), '{}');
   ev("UI.left='goals';UI.leftOpen=true;renderLeft()");
   // new games start with an empty variant map
@@ -155,13 +155,13 @@ test('"Badge upgraded" means the collection on this device got a better variant'
   const spy = () => ev("window.__t=[];if(!window.__sp){window.__sp=1;const _t=toast;toast=(h,...a)=>{window.__t.push(h);return _t(h,...a);};}");
   // a new game, but this device already holds the frosted badge: the standard one upgrades it
   start(ev, 'oncall');
-  ev("localStorage.setItem('sot-badges',JSON.stringify({hello:{d:'2026-01-01',n:'Old',vs:{freeze:'2026-01-01'}}}))");
+  ev("localStorage.setItem('soc-sp-badges',JSON.stringify({hello:{d:'2026-01-01',n:'Old',vs:{freeze:'2026-01-01'}}}))");
   spy(); earnHello(ev);
   assert.match(ev("window.__t.join(' ')"), /Badge upgraded/);
   assert.equal(hof(ev).hello.v, 'oncall');
   // another new game, the device already holds the fiery one: earning the frosted one is a plain unlock
   start(ev, 'freeze');
-  ev("localStorage.setItem('sot-badges',JSON.stringify({hello:{d:'2026-01-01',n:'Old',vs:{bgp:'2026-01-01'}}}))");
+  ev("localStorage.setItem('soc-sp-badges',JSON.stringify({hello:{d:'2026-01-01',n:'Old',vs:{bgp:'2026-01-01'}}}))");
   spy(); earnHello(ev);
   const t = ev("window.__t.join(' ')");
   assert.match(t, /Badge unlocked/);

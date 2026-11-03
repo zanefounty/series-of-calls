@@ -41,7 +41,7 @@ const install = (ev) => { if (!ev('!!window.__wsBot')) ev(BOT); };
 // run out. Returns the day the goal was first met (or null), what the goal measure read each day, and the end state.
 function play(ev, file, plan, { days, stop = true, measure = 'wsMeasure()' } = {}) {
   install(ev);
-  ev(`localStorage.removeItem('sot-wkscn');wsBegin(${JSON.stringify(file)},'Ref');if(UI.pendGame)ACT.pitchSkip();UI.speed=0;closeModal()`);
+  ev(`localStorage.removeItem('soc-sp-wkscn');wsBegin(${JSON.stringify(file)},'Ref');if(UI.pendGame)ACT.pitchSkip();UI.speed=0;closeModal()`);
   if (ev('!!(S.scn&&S.scn.wk)') !== true) throw new Error('the game would not start this scenario');
   ev(`__wsBot.start(${JSON.stringify(plan)})`);
   const won0 = ev('wsOk()'), n = days || ev('S.scn.days');

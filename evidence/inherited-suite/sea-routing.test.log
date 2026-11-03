@@ -1,0 +1,14 @@
+✔ surveyed designs avoid land, use real path lengths and improve latency (5781.465749ms)
+✔ grid edges and smoothing cannot jump across a thin island (277.389584ms)
+✔ orders, previews, saved paths and map geometry agree; legacy cables retain their values (574.248807ms)
+✔ failed surveys refuse construction instead of falling back to a line through land (258.998126ms)
+✔ background surveys deduplicate requests and do not replace a later dialog (262.045136ms)
+✔ the fastest design is as fast as the fastest cable, and the Red Sea Crisis closes Suez (1182.674652ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8674.976292

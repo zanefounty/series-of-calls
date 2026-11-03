@@ -1,0 +1,214 @@
+{
+  "pack": "soc-business-1",
+  "offers": {
+    "managed-operations": {
+      "name": "Orchard Managed Change Service",
+      "vendor": "twig-integrations",
+      "unit": "managed-operation",
+      "usageUnit": null,
+      "retail": 0,
+      "wholesale": 0,
+      "setup": 0,
+      "allowance": 0,
+      "overage": 50,
+      "minimum": 1,
+      "kinds": [],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "access": {
+      "name": "Level Tree Purchased Access",
+      "vendor": "level-tree",
+      "unit": "Mbps",
+      "usageUnit": null,
+      "retail": 60,
+      "wholesale": 30,
+      "setup": 300,
+      "allowance": 0,
+      "overage": 0,
+      "minimum": 10,
+      "kinds": [
+        "connectivity"
+      ],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "workplace": {
+      "name": "Grove Named Calling",
+      "vendor": "grove-vendor",
+      "unit": "seat",
+      "usageUnit": "minute",
+      "retail": 900,
+      "wholesale": 500,
+      "setup": 400,
+      "allowance": 20,
+      "overage": 8,
+      "minimum": 2,
+      "kinds": [
+        "uc"
+      ],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government"
+      ]
+    },
+    "dedicated": {
+      "name": "Disco Dedicated Calling",
+      "vendor": "disco-vendor",
+      "unit": "seat",
+      "usageUnit": "minute",
+      "retail": 1200,
+      "wholesale": 750,
+      "setup": 600,
+      "allowance": 30,
+      "overage": 7,
+      "minimum": 2,
+      "kinds": [
+        "dedicated"
+      ],
+      "sectors": [
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "sessions": {
+      "name": "Bellwether Concurrent Interconnect",
+      "vendor": "level-tree",
+      "unit": "session",
+      "usageUnit": null,
+      "retail": 600,
+      "wholesale": 350,
+      "setup": 300,
+      "allowance": 0,
+      "overage": 0,
+      "minimum": 1,
+      "kinds": [
+        "trunk"
+      ],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "contact": {
+      "name": "Disco Agent Entitlements",
+      "vendor": "disco-vendor",
+      "unit": "agent",
+      "usageUnit": null,
+      "retail": 1600,
+      "wholesale": 900,
+      "setup": 400,
+      "allowance": 0,
+      "overage": 0,
+      "minimum": 1,
+      "kinds": [
+        "queue",
+        "workforce"
+      ],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "messaging": {
+      "name": "Disco Digital Service",
+      "vendor": "disco-vendor",
+      "unit": "message",
+      "usageUnit": "message",
+      "retail": 10,
+      "wholesale": 5,
+      "setup": 250,
+      "allowance": 1,
+      "overage": 12,
+      "minimum": 100,
+      "kinds": [
+        "channel",
+        "workflow",
+        "crm"
+      ],
+      "sectors": [
+        "smb",
+        "enterprise",
+        "government"
+      ]
+    },
+    "rooms": {
+      "name": "Disco Room Service",
+      "vendor": "disco-vendor",
+      "unit": "room",
+      "usageUnit": null,
+      "retail": 1000,
+      "wholesale": 650,
+      "setup": 400,
+      "allowance": 0,
+      "overage": 0,
+      "minimum": 1,
+      "kinds": [
+        "room"
+      ],
+      "sectors": [
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "archive": {
+      "name": "Echo Evidence Storage",
+      "vendor": "disco-vendor",
+      "unit": "GB",
+      "usageUnit": null,
+      "retail": 100,
+      "wholesale": 50,
+      "setup": 300,
+      "allowance": 0,
+      "overage": 0,
+      "minimum": 10,
+      "kinds": [
+        "archive",
+        "recorder"
+      ],
+      "sectors": [
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    },
+    "processing": {
+      "name": "Speech Orchard Processing",
+      "vendor": "disco-vendor",
+      "unit": "processor-minute",
+      "usageUnit": "processor-minute",
+      "retail": 30,
+      "wholesale": 15,
+      "setup": 250,
+      "allowance": 1,
+      "overage": 40,
+      "minimum": 20,
+      "kinds": [
+        "processor"
+      ],
+      "sectors": [
+        "enterprise",
+        "government",
+        "defence"
+      ]
+    }
+  },
+  "sourceIds": [
+    "uc-new:domain:pricing"
+  ]
+}

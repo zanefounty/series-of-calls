@@ -1,0 +1,34 @@
+✔ page boots to the title screen without errors (559.875091ms)
+✔ every city sits on its landmass (259.627537ms)
+✔ every cable lands at two known cities and has a length (242.527728ms)
+✔ a year of scripted play stays healthy (851.778261ms)
+✔ every incident and event type fires and clears cleanly (650.838793ms)
+✔ every panel, tab and the dashboard render (429.383391ms)
+✔ saves never resurrect a bankrupt game (246.975016ms)
+✔ LAGs add members, capacity and cost to transit, IX ports and PNIs (301.253108ms)
+✔ goal rewards are paid once, even for goals finished on day 0 (266.099415ms)
+✔ Stuttgart has only the Spätzle-IX: no transit, no PNIs (246.011975ms)
+✔ bank: offers arrive, loans pay out, cost money monthly and get paid off (442.253407ms)
+✔ bank: broke players get emergency offers, broken conditions cost a penalty (262.575343ms)
+✔ bank: the venture vultures take a share of revenue instead of payments (334.590034ms)
+✔ old saves load, and a stale flat DDoS object is repaired away (248.587869ms)
+✔ DDoS goal and badges unlock from the right state (351.231223ms)
+✔ #52 loan offers stop once you have half a billion in the bank, and come back if you lose it (252.806426ms)
+✔ loans: good terms need good credit, big loans want revenue, and the weird lenders do weird things (430.15165ms)
+✔ notifications: the NOC keeps the last ten minutes, folds repeats and opens what each is about (336.151466ms)
+✔ the broadband panel shows what homes in that city really pay, not the base rate (258.621324ms)
+✔ a custom multiplier routes exactly like the matching preset (311.14676ms)
+✔ an absolute custom cost steers the path, and switching modes keeps the cost (314.414459ms)
+✔ custom metric input is validated and clamped (312.185825ms)
+✔ custom metrics survive a save, and broken ones are repaired (318.933593ms)
+✔ preset buttons stay plain, and Custom explains the numbers, also on phones (321.238621ms)
+✔ a custom metric belongs to the city pair, like the presets, and a standby link keeps it (326.964834ms)
+✔ overlapping DDoS saves round trip and legacy attacks migrate safely (262.667442ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15406.132095

@@ -1,0 +1,342 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - 'heading "Series of Calls: synthetic communications training" [level=1] [ref=e3]'
+    - paragraph [ref=e4]: Learn to configure fictional calling, messaging, contact centres, rooms and information services. Diagnose synthetic failures and manage customer communications, with an optional physical-network expansion. This preview does not yet implement the full design.
+  - generic "World map of your network" [ref=e5]
+  - banner:
+    - 'button "Network menu: save, load or start over" [ref=e6] [cursor=pointer]':
+      - generic [ref=e11]:
+        - generic [ref=e12]: Series of Calls
+        - generic [ref=e13]: AS —
+      - generic [aria-hidden] [ref=e14]: ▾
+    - button "Cash and bank" [ref=e15] [cursor=pointer]:
+      - generic [ref=e16]: Cash · Bank
+      - generic [ref=e17]: $0
+      - generic [ref=e18]: —
+    - generic [ref=e19]:
+      - generic [ref=e20]: Traffic served
+      - generic [ref=e21]: "0"
+    - generic [ref=e23]:
+      - generic [ref=e24]: Reach
+      - generic [ref=e25]: 0%
+    - generic [ref=e26]:
+      - generic [ref=e27]: Rank
+      - generic [ref=e28]: Tier 3
+    - button "NOC All quiet" [ref=e29] [cursor=pointer]:
+      - generic [ref=e30]: NOC
+      - generic [ref=e31]: All quiet
+    - generic [ref=e33]:
+      - generic [ref=e34]: Date
+      - generic [ref=e35]: Y1 · Jan 1
+    - button "Find a city" [ref=e36] [cursor=pointer]:
+      - generic [aria-hidden] [ref=e37]: 🔍
+    - group "Game speed" [ref=e38]:
+      - button "Pause" [ref=e39] [cursor=pointer]: ❚❚
+      - button "Half speed" [ref=e40] [cursor=pointer]: ½×
+      - button "1×" [ref=e41] [cursor=pointer]
+      - button "2×" [ref=e42] [cursor=pointer]
+      - button "4×" [ref=e43] [cursor=pointer]
+      - button "8×" [ref=e44] [cursor=pointer]
+      - button "NOC dashboard" [ref=e45] [cursor=pointer]
+      - button "How to play" [ref=e48] [cursor=pointer]: "?"
+      - button "Toggle sound" [ref=e49] [cursor=pointer]: ♪
+  - text: 🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘
+  - dialog [ref=e51]:
+    - generic [ref=e52]:
+      - generic [ref=e53]: Language
+      - combobox "Language" [ref=e54] [cursor=pointer]:
+        - option "English" [selected]
+        - option "Italiano"
+        - option "Português"
+        - option "Français"
+        - option "Español"
+        - option "Deutsch"
+    - figure [ref=e55]:
+      - img "Engineers investigate a communications network with a cable taking the scenic route." [ref=e56]
+    - heading "Series of Calls" [level=1] [ref=e64]: Seriesof Calls
+    - button "Open communications training" [ref=e66] [cursor=pointer]
+    - paragraph [ref=e67]: The original network game is retained below as an optional SP expansion.
+    - figure [ref=e68]:
+      - img "Engineers discover that two network routes share the same bridge." [ref=e69]
+    - paragraph [ref=e70]: Build an internet. Lay fiber between cities, buy transit, peer at exchanges, sign up businesses, and keep the eyeballs happy while backhoes, sharks and route leaks do their best to stop you.
+    - generic [ref=e71]: Name your network
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - textbox "Name your network" [ref=e74]: Loss Leaders
+        - button "Another one" [ref=e75] [cursor=pointer]: ↻
+      - generic [ref=e76]:
+        - generic [aria-hidden] [ref=e77]: AS
+        - textbox "AS number" [ref=e78]:
+          - /placeholder: "207777"
+    - generic [ref=e79]: Pick a door
+    - generic [ref=e80]:
+      - button "Puzzles One network, one knot to untie. No clock. New this Sunday!" [ref=e81] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e82]: 🧩
+        - generic [ref=e83]: Puzzles
+        - generic [ref=e84]: One network, one knot to untie. No clock.
+        - emphasis [ref=e85]: New this Sunday!
+      - button "Sandbox A billion dollars and every toy in the shop." [ref=e86] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e87]: 🏖️
+        - generic [ref=e88]: Sandbox
+        - generic [ref=e89]: A billion dollars and every toy in the shop.
+      - 'button "Normal The real game: climb from Tier 3 to Tier 1. ✓" [ref=e90] [cursor=pointer]':
+        - generic [aria-hidden] [ref=e91]: 📟
+        - generic [ref=e92]: Normal
+        - generic [ref=e93]: "The real game: climb from Tier 3 to Tier 1."
+        - text: ✓
+      - button "Scenarios & weekly Hand-built crises, and one world for everyone each week. New this Sunday!" [ref=e94] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e95]: 🏆
+        - generic [ref=e96]: Scenarios & weekly
+        - generic [ref=e97]: Hand-built crises, and one world for everyone each week.
+        - emphasis [ref=e98]: New this Sunday!
+    - generic [ref=e99]:
+      - generic [ref=e100]: How much trouble?
+      - generic [ref=e101]:
+        - button "Best Effort" [ref=e102] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e103]: ☕
+        - button "Change Freeze" [ref=e105] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e106]: 🧊
+        - button "On-call" [pressed] [ref=e108] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e109]: 📟
+        - button "BGP at 3 a.m." [ref=e111] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e112]: 🔥
+      - paragraph [ref=e114]: The real thing. Your pager has opinions. Real lead times, real outages, a real market. The classic game.
+    - text: ✓
+    - paragraph [ref=e115]: 🔒 The rules are picked once and locked for this network. No changing the deal mid-game.
+    - generic [ref=e116]: Pick your home city
+    - combobox "Pick your home city" [ref=e117] [cursor=pointer]:
+      - option "Frankfurt" [selected]
+      - option "New York"
+      - option "Singapore"
+      - option "São Paulo"
+      - option "Sydney"
+      - option "Anchorage"
+      - option "Ashburn"
+      - option "Atlanta"
+      - option "Bermuda"
+      - option "Boston"
+      - option "Bridgetown"
+      - option "Calgary"
+      - option "Chicago"
+      - option "Dallas"
+      - option "Denver"
+      - option "Fort-de-France"
+      - option "Guadalajara"
+      - option "Guatemala City"
+      - option "Halifax"
+      - option "Havana"
+      - option "Houston"
+      - option "Juneau"
+      - option "Kansas City"
+      - option "Kingston"
+      - option "Los Angeles"
+      - option "Mexico City"
+      - option "Miami"
+      - option "Monterrey"
+      - option "Montreal"
+      - option "Nassau"
+      - option "Nome"
+      - option "Ottawa"
+      - option "Panama City"
+      - option "Phoenix"
+      - option "Port of Spain"
+      - option "Querétaro"
+      - option "Salt Lake City"
+      - option "San Jose"
+      - option "San José"
+      - option "San Juan"
+      - option "Santo Domingo"
+      - option "Seattle"
+      - option "Toronto"
+      - option "Unalaska"
+      - option "Utqiaġvik"
+      - option "Vancouver"
+      - option "Willemstad"
+      - option "Asunción"
+      - option "Belém"
+      - option "Belo Horizonte"
+      - option "Boa Vista"
+      - option "Bogotá"
+      - option "Brasília"
+      - option "Buenos Aires"
+      - option "Campinas"
+      - option "Campo Grande"
+      - option "Caracas"
+      - option "Córdoba"
+      - option "Cuiabá"
+      - option "Curitiba"
+      - option "Fortaleza"
+      - option "Goiânia"
+      - option "La Paz"
+      - option "Lima"
+      - option "Londrina"
+      - option "Macapá"
+      - option "Manaus"
+      - option "Medellín"
+      - option "Montevideo"
+      - option "Natal"
+      - option "Palmas"
+      - option "Porto Alegre"
+      - option "Porto Velho"
+      - option "Quito"
+      - option "Recife"
+      - option "Rio Branco"
+      - option "Rio de Janeiro"
+      - option "Salvador"
+      - option "Santiago"
+      - option "São Luís"
+      - option "Teresina"
+      - option "Vitória"
+      - option "Amsterdam"
+      - option "Athens"
+      - option "Barcelona"
+      - option "Belgrade"
+      - option "Berlin"
+      - option "Bettembourg"
+      - option "Brussels"
+      - option "Bucharest"
+      - option "Budapest"
+      - option "Bude"
+      - option "Copenhagen"
+      - option "Dublin"
+      - option "Düsseldorf"
+      - option "Edinburgh"
+      - option "Esbjerg"
+      - option "Hamburg"
+      - option "Helsinki"
+      - option "Istanbul"
+      - option "Kristiansand"
+      - option "Kyiv"
+      - option "Lisbon"
+      - option "London"
+      - option "Madrid"
+      - option "Manchester"
+      - option "Marseille"
+      - option "Milan"
+      - option "Moscow"
+      - option "Munich"
+      - option "Murmansk"
+      - option "Oostkamp"
+      - option "Oslo"
+      - option "Palermo"
+      - option "Paris"
+      - option "Ponta Delgada"
+      - option "Prague"
+      - option "Reykjavik"
+      - option "Riga"
+      - option "Rome"
+      - option "Sofia"
+      - option "Stavanger"
+      - option "Stockholm"
+      - option "Tallinn"
+      - option "Tenerife"
+      - option "Vienna"
+      - option "Warsaw"
+      - option "Zurich"
+      - option "Abidjan"
+      - option "Accra"
+      - option "Addis Ababa"
+      - option "Algiers"
+      - option "Antananarivo"
+      - option "Cairo"
+      - option "Cape Town"
+      - option "Casablanca"
+      - option "Dakar"
+      - option "Dar es Salaam"
+      - option "Djibouti"
+      - option "Douala"
+      - option "Durban"
+      - option "Gaborone"
+      - option "Harare"
+      - option "Johannesburg"
+      - option "Kampala"
+      - option "Kigali"
+      - option "Kinshasa"
+      - option "Lagos"
+      - option "Luanda"
+      - option "Lusaka"
+      - option "Maputo"
+      - option "Mombasa"
+      - option "Nairobi"
+      - option "Port Louis"
+      - option "Praia"
+      - option "Saint-Denis"
+      - option "St Helena"
+      - option "Tunis"
+      - option "Victoria"
+      - option "Windhoek"
+      - option "Abu Dhabi"
+      - option "Anadyr"
+      - option "Bangkok"
+      - option "Bengaluru"
+      - option "Cebu"
+      - option "Chennai"
+      - option "Colombo"
+      - option "Davao"
+      - option "Delhi"
+      - option "Dhaka"
+      - option "Dikson"
+      - option "Doha"
+      - option "Dubai"
+      - option "Fujairah"
+      - option "Fukuoka"
+      - option "Ho Chi Minh City"
+      - option "Hong Kong"
+      - option "Hyderabad"
+      - option "Jakarta"
+      - option "Jeddah"
+      - option "Karachi"
+      - option "Kuala Lumpur"
+      - option "Magadan"
+      - option "Malé"
+      - option "Manila"
+      - option "Mumbai"
+      - option "Muscat"
+      - option "Osaka"
+      - option "Petropavlovsk"
+      - option "Pevek"
+      - option "Riyadh"
+      - option "Seoul"
+      - option "Taipei"
+      - option "Tiksi"
+      - option "Tokyo"
+      - option "Vladivostok"
+      - option "Yuzhno-Sakhalinsk"
+      - option "Adelaide"
+      - option "Alice Springs"
+      - option "Apia"
+      - option "Auckland"
+      - option "Brisbane"
+      - option "Canberra"
+      - option "Christchurch"
+      - option "Darwin"
+      - option "Guam"
+      - option "Hobart"
+      - option "Honiara"
+      - option "Honolulu"
+      - option "Koror"
+      - option "Majuro"
+      - option "Melbourne"
+      - option "Nouméa"
+      - option "Nuku’alofa"
+      - option "Pago Pago"
+      - option "Papeete"
+      - option "Perth"
+      - option "Port Hedland"
+      - option "Port Moresby"
+      - option "Suva"
+      - option "Townsville"
+    - paragraph [ref=e118]: Crossroads of Europe. DE-KICKS IX, cheap transit.
+    - generic [ref=e119]:
+      - button "Start building" [ref=e120] [cursor=pointer]
+      - button "How to play" [ref=e121] [cursor=pointer]
+      - button "Import a save" [ref=e122] [cursor=pointer]
+      - button "Settings" [ref=e123] [cursor=pointer]
+    - paragraph [ref=e124]:
+      - text: v0.1.0-preview.1 ·
+      - link "Source on GitHub" [ref=e125] [cursor=pointer]:
+        - /url: https://github.com/zanefounty/series-of-calls
+      - text: ·
+      - link "Project feedback" [ref=e126] [cursor=pointer]:
+        - /url: https://github.com/zanefounty/series-of-calls/issues
+      - text: · Cookieless stats, no tracking

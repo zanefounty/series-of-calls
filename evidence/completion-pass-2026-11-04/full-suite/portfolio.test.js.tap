@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-161 five geographic markets keep geography distinct from jurisdiction
+ok 1 - AC-SOC-161 five geographic markets keep geography distinct from jurisdiction
+  ---
+  duration_ms: 3.952084
+  type: 'test'
+  ...
+# Subtest: AC-SOC-162 two real child journeys and accepted contracts stay isolated by customer
+ok 2 - AC-SOC-162 two real child journeys and accepted contracts stay isolated by customer
+  ---
+  duration_ms: 20.245804
+  type: 'test'
+  ...
+# Subtest: AC-SOC-163 every active child ticks once independent of selected view; inactive roots pause
+ok 3 - AC-SOC-163 every active child ticks once independent of selected view; inactive roots pause
+  ---
+  duration_ms: 2.886423
+  type: 'test'
+  ...
+# Subtest: AC-SOC-164 deactivation respects live contracts and obligations
+ok 4 - AC-SOC-164 deactivation respects live contracts and obligations
+  ---
+  duration_ms: 3.590854
+  type: 'test'
+  ...
+# Subtest: AC-SOC-165 portfolio finance aggregates actual child ledger and excludes internal cash/profit
+ok 5 - AC-SOC-165 portfolio finance aggregates actual child ledger and excludes internal cash/profit
+  ---
+  duration_ms: 51.231819
+  type: 'test'
+  ...
+# Subtest: AC-SOC-166 forwarding is strict and rejects nested packs, child time changes and cross-customer swaps
+ok 6 - AC-SOC-166 forwarding is strict and rejects nested packs, child time changes and cross-customer swaps
+  ---
+  duration_ms: 0.853276
+  type: 'test'
+  ...
+# Subtest: AC-SOC-167 customer identity, market, root, and customer bounds are save-validated
+ok 7 - AC-SOC-167 customer identity, market, root, and customer bounds are save-validated
+  ---
+  duration_ms: 4.497608
+  type: 'test'
+  ...
+# Subtest: AC-SOC-168 inspect and calculate are pure and deterministic through worker source serialization
+ok 8 - AC-SOC-168 inspect and calculate are pure and deterministic through worker source serialization
+  ---
+  duration_ms: 4.258951
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 120.061382

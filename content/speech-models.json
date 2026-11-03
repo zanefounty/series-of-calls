@@ -1,0 +1,18 @@
+{
+  "pack": "soc-speech-models-1",
+  "sourceIds": ["uc-new:family:cisco:local-speech"],
+  "scope": "Synthetic training profiles; they do not describe real Disco, Cisco, AI POD, language model, license, integration, or provider support.",
+  "models": [
+    {
+      "id": "scenario-local-speech",
+      "name": "Scenario Local Speech Model",
+      "versionPattern": "scenario-MAJOR.MINOR.PATCH",
+      "languages": ["en", "ja", "fr", "de"],
+      "stages": ["transcription", "diarisation", "translation"],
+      "localInference": true,
+      "offlineSupported": true,
+      "licensing": ["connected", "cached-offline"],
+      "notice": "Supported features, versions, region, licensing, and disconnected operation are accepted as synthetic scenario evidence only."
+    }
+  ]
+}

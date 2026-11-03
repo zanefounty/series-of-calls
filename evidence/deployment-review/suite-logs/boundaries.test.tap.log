@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-119 contract staging keeps desired, effective, provisioning, and observed state independent
+ok 1 - AC-SOC-119 contract staging keeps desired, effective, provisioning, and observed state independent
+  ---
+  duration_ms: 3.149496
+  type: 'test'
+  ...
+# Subtest: AC-SOC-120 four fictional profiles have distinct explicit runtime rules and useful valid examples
+ok 2 - AC-SOC-120 four fictional profiles have distinct explicit runtime rules and useful valid examples
+  ---
+  duration_ms: 1.327719
+  type: 'test'
+  ...
+# Subtest: AC-SOC-121 US offering, customer, and agency authorization, and JP service and AI decisions, remain separate
+ok 3 - AC-SOC-121 US offering, customer, and agency authorization, and JP service and AI decisions, remain separate
+  ---
+  duration_ms: 0.441481
+  type: 'test'
+  ...
+# Subtest: AC-SOC-122 information flows bind declared classifications, locations, roles, and resource generations
+ok 4 - AC-SOC-122 information flows bind declared classifications, locations, roles, and resource generations
+  ---
+  duration_ms: 0.280763
+  type: 'test'
+  ...
+# Subtest: AC-SOC-123 key custody and administration are independently checked; EU transfer paths need declared parties and mechanism
+ok 5 - AC-SOC-123 key custody and administration are independently checked; EU transfer paths need declared parties and mechanism
+  ---
+  duration_ms: 0.414019
+  type: 'test'
+  ...
+# Subtest: AC-SOC-124 disconnected local continuity requires local services, keys, unexpired local grace, and an admin path
+ok 6 - AC-SOC-124 disconnected local continuity requires local services, keys, unexpired local grace, and an admin path
+  ---
+  duration_ms: 0.279425
+  type: 'test'
+  ...
+# Subtest: AC-SOC-125 evaluation reports all blockers with precise paths and reads do not mutate state
+ok 7 - AC-SOC-125 evaluation reports all blockers with precise paths and reads do not mutate state
+  ---
+  duration_ms: 0.378108
+  type: 'test'
+  ...
+# Subtest: AC-SOC-126 saves validate, fingerprints track staged and observed policy, content matches source, and worker source is reproducible
+ok 8 - AC-SOC-126 saves validate, fingerprints track staged and observed policy, content matches source, and worker source is reproducible
+  ---
+  duration_ms: 3.88788
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24.458465

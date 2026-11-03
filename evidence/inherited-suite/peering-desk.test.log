@@ -1,0 +1,12 @@
+✔ peering requests are answered by policy: Open accepts all, Selective the worthwhile ones, Closed none (614.434705ms)
+✔ once a week the NOC log gets one folded peering desk line (336.44096ms)
+✔ old saves with inbox, max-prefix and Large Peering Model state load and play (327.20297ms)
+✔ max-prefix incidents can no longer fire (366.396938ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10350.278213

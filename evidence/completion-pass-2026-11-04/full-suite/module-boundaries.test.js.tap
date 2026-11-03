@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: tampered JML source lineage is rejected on restore validation
+ok 1 - tampered JML source lineage is rejected on restore validation
+  ---
+  duration_ms: 1.836597
+  type: 'test'
+  ...
+# Subtest: inventory identity cannot be linked to a resource of a different estate kind
+ok 2 - inventory identity cannot be linked to a resource of a different estate kind
+  ---
+  duration_ms: 0.154059
+  type: 'test'
+  ...
+# Subtest: repeated discovery preserves the reviewed canonical resource link
+ok 3 - repeated discovery preserves the reviewed canonical resource link
+  ---
+  duration_ms: 0.287108
+  type: 'test'
+  ...
+# Subtest: authority revoked after submit blocks background work without aborting simulation advance
+ok 4 - authority revoked after submit blocks background work without aborting simulation advance
+  ---
+  duration_ms: 0.379648
+  type: 'test'
+  ...
+# Subtest: connector fault is independent of desired and effective configuration and recover flags
+ok 5 - connector fault is independent of desired and effective configuration and recover flags
+  ---
+  duration_ms: 0.483736
+  type: 'test'
+  ...
+# Subtest: retry rechecks connector resource-kind scope captured by a pending job
+ok 6 - retry rechecks connector resource-kind scope captured by a pending job
+  ---
+  duration_ms: 0.297334
+  type: 'test'
+  ...
+# Subtest: failed connector provisioning keeps prior effective capabilities in place
+ok 7 - failed connector provisioning keeps prior effective capabilities in place
+  ---
+  duration_ms: 0.958382
+  type: 'test'
+  ...
+# Subtest: estate fingerprint ignores job and transfer progress but tracks control and inventory changes
+ok 8 - estate fingerprint ignores job and transfer progress but tracks control and inventory changes
+  ---
+  duration_ms: 0.427325
+  type: 'test'
+  ...
+# Subtest: JML desired configuration may be pending while the old effective configuration stays active
+ok 9 - JML desired configuration may be pending while the old effective configuration stays active
+  ---
+  duration_ms: 0.245688
+  type: 'test'
+  ...
+# Subtest: firmware cannot claim native meeting compatibility without an explicit compatibility hook
+ok 10 - firmware cannot claim native meeting compatibility without an explicit compatibility hook
+  ---
+  duration_ms: 0.323152
+  type: 'test'
+  ...
+# Subtest: transfer save validation binds lineage and access metadata to the captured policy
+ok 11 - transfer save validation binds lineage and access metadata to the captured policy
+  ---
+  duration_ms: 0.307861
+  type: 'test'
+  ...
+# Subtest: restored workforce assignment cannot invent a person and entitlement snapshot
+ok 12 - restored workforce assignment cannot invent a person and entitlement snapshot
+  ---
+  duration_ms: 0.632805
+  type: 'test'
+  ...
+# Subtest: restored assignments cannot exceed one person’s voice or digital concurrency
+ok 13 - restored assignments cannot exceed one person’s voice or digital concurrency
+  ---
+  duration_ms: 0.256086
+  type: 'test'
+  ...
+# Subtest: calling save validation rejects mailbox-message owner and tenant mismatches
+ok 14 - calling save validation rejects mailbox-message owner and tenant mismatches
+  ---
+  duration_ms: 0.500915
+  type: 'test'
+  ...
+# Subtest: calling provisioning keeps prior effective policy until the new generation is ready
+ok 15 - calling provisioning keeps prior effective policy until the new generation is ready
+  ---
+  duration_ms: 0.486665
+  type: 'test'
+  ...
+# Subtest: calling fingerprint tracks policy generations but ignores voicemail and event progress
+ok 16 - calling fingerprint tracks policy generations but ignores voicemail and event progress
+  ---
+  duration_ms: 0.210878
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23.204084

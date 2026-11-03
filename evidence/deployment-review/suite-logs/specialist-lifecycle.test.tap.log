@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-227 sale, renewal and support evidence axes remain independent
+ok 1 - AC-SOC-227 sale, renewal and support evidence axes remain independent
+  ---
+  duration_ms: 2.283803
+  type: 'test'
+  ...
+# Subtest: AC-SOC-228 lifecycle evidence provisions after a tick and failed replacement preserves prior effective evidence
+ok 2 - AC-SOC-228 lifecycle evidence provisions after a tick and failed replacement preserves prior effective evidence
+  ---
+  duration_ms: 0.568601
+  type: 'test'
+  ...
+# Subtest: AC-SOC-229 version, feature and generation changes stale a previously ready record
+ok 3 - AC-SOC-229 version, feature and generation changes stale a previously ready record
+  ---
+  duration_ms: 0.247595
+  type: 'test'
+  ...
+# Subtest: AC-SOC-230 support-owner authority is checked again at provisioning and at current status
+ok 4 - AC-SOC-230 support-owner authority is checked again at provisioning and at current status
+  ---
+  duration_ms: 0.408629
+  type: 'test'
+  ...
+# Subtest: AC-SOC-231 missing effective products, dependencies or owner hooks fail closed
+ok 5 - AC-SOC-231 missing effective products, dependencies or owner hooks fail closed
+  ---
+  duration_ms: 1.281997
+  type: 'test'
+  ...
+# Subtest: AC-SOC-232 renewal checks create an audit receipt without mutating a financial contract
+ok 6 - AC-SOC-232 renewal checks create an audit receipt without mutating a financial contract
+  ---
+  duration_ms: 0.371243
+  type: 'test'
+  ...
+# Subtest: AC-SOC-233 lifecycle inspections are pure and saved receipts round trip exactly
+ok 7 - AC-SOC-233 lifecycle inspections are pure and saved receipts round trip exactly
+  ---
+  duration_ms: 0.718887
+  type: 'test'
+  ...
+# Subtest: AC-SOC-234 worker source factory matches main-thread transitions and rejects bad evidence dates
+ok 8 - AC-SOC-234 worker source factory matches main-thread transitions and rejects bad evidence dates
+  ---
+  duration_ms: 1.935278
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21.197103

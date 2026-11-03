@@ -1,0 +1,116 @@
+# Governance changes require owner review. Branch rules must enforce this remotely.
+/.github/ @zanefounty
+/maintenance/ @zanefounty
+/research/ @zanefounty
+/spec/ @zanefounty
+/scripts/verify.py @zanefounty
+/scripts/*agent* @zanefounty
+/scripts/*evidence* @zanefounty
+/scripts/generate-spec.py @zanefounty
+/tests/gates_test.py @zanefounty
+/tests/agent_patch_test.py @zanefounty
+/tests/communications.test.js @zanefounty
+/tests/business.test.js @zanefounty
+/tests/service-operations.test.js @zanefounty
+/tests/information.test.js @zanefounty
+/tests/contact.test.js @zanefounty
+/scripts/verify-foundation.py @zanefounty
+/scripts/accept-observation.py @zanefounty
+/tests/observations_test.py @zanefounty
+
+# New reviewed contracts, narrative provenance and acceptance cases
+/scripts/audit-mapping.py @zanefounty
+/scripts/generate-narrative.py @zanefounty
+/content/narrative.json @zanefounty
+/tests/calling-policy.test.js @zanefounty
+/tests/workforce-operations.test.js @zanefounty
+/tests/estate-operations.test.js @zanefounty
+/tests/packs-integration.test.js @zanefounty
+/tests/module-boundaries.test.js @zanefounty
+/tests/assessment-packs.test.js @zanefounty
+/tests/narrative.test.js @zanefounty
+/tests/service-admin-ui.test.js @zanefounty
+
+# Optional pack contracts and bounded cross-pack regressions
+/src/game/45-products.js @zanefounty
+/src/game/46-outcomes.js @zanefounty
+/src/game/47-channels.js @zanefounty
+/src/game/90-service-admin-ui.js @zanefounty
+/tests/products.test.js @zanefounty
+/tests/outcomes.test.js @zanefounty
+/tests/channels.test.js @zanefounty
+/tests/product-integration.test.js @zanefounty
+/tests/advanced-boundaries.test.js @zanefounty
+
+# Advanced admin controls and integration journey acceptance
+/src/game/87-advanced-admin-ui.js @zanefounty
+/tests/advanced-admin-ui.test.js @zanefounty
+/tests/journey-integration.test.js @zanefounty
+/src/game/42-transport.js @zanefounty
+/src/game/43-boundaries.js @zanefounty
+/src/game/44-campaign.js @zanefounty
+/content/campaign.json @zanefounty
+/src/game/48-estate.js @zanefounty
+/tests/transport.test.js @zanefounty
+/tests/transport-boundaries.test.js @zanefounty
+/tests/boundaries.test.js @zanefounty
+/tests/estate-lifecycle-integration.test.js @zanefounty
+/tests/campaign.test.js @zanefounty
+/tests/domain-admin-ui.test.js @zanefounty
+/src/game/86-domain-admin-ui.js @zanefounty
+/tests/domain-integration.test.js @zanefounty
+/tests/campaign-integration.test.js @zanefounty
+/src/game/40-issue-exercises.js @zanefounty
+/content/issue-exercises.json @zanefounty
+/tests/issue-exercises.test.js @zanefounty
+/spec/work-packages/WP-ISSUE-EXERCISES.md @zanefounty
+/src/game/41-progression.js @zanefounty
+/content/progression.json @zanefounty
+/tests/progression.test.js @zanefounty
+/src/game/85-learning-extensions-ui.js @zanefounty
+/tests/learning-integration.test.js @zanefounty
+/spec/implementation.json @zanefounty
+/spec/acceptance-plan.json @zanefounty
+/scripts/validate-agent-patch.py @zanefounty
+/package.json @zanefounty
+
+/tests/portfolio.test.js @zanefounty
+/tests/admission-security.test.js @zanefounty
+/tests/service-observation.test.js @zanefounty
+/tests/portfolio-integration.test.js @zanefounty
+/tests/portfolio-ui.test.js @zanefounty
+/tests/progression-observation.test.js @zanefounty
+/tests/observation-ui.test.js @zanefounty
+/src/game/37-portfolio.js @zanefounty
+/src/game/38-admission-security.js @zanefounty
+/src/game/39-service-observation.js @zanefounty
+/content/portfolio.json @zanefounty
+/content/admission-security.json @zanefounty
+/content/service-observation.json @zanefounty
+/tests/admission-security-integration.test.js @zanefounty
+/tests/security-ui.test.js @zanefounty
+
+# Source fidelity and new pack acceptance remain owner reviewed.
+/tests/shared-services.test.js @zanefounty
+/tests/shared-services-ui.test.js @zanefounty
+/tests/shared-services-integration.test.js @zanefounty
+/tests/market-qualification.test.js @zanefounty
+/tests/market-ui.test.js @zanefounty
+/tests/specialist-lifecycle.test.js @zanefounty
+/tests/specialist-lifecycle-ui.test.js @zanefounty
+/tests/specialist-lifecycle-integration.test.js @zanefounty
+/src/game/34-specialist-lifecycle.js @zanefounty
+/src/game/35-shared-services.js @zanefounty
+/src/game/36-market-qualification.js @zanefounty
+/content/shared-services.json @zanefounty
+/content/market-qualification.json @zanefounty
+/content/specialist-lifecycle.json @zanefounty
+
+/tests/market-integration.test.js @zanefounty
+/tests/helpers/market-fixture.js @zanefounty
+
+/tests/number-porting.test.js @zanefounty
+/tests/number-porting-ui.test.js @zanefounty
+/tests/number-porting-integration.test.js @zanefounty
+
+/tests/progression-market.test.js @zanefounty

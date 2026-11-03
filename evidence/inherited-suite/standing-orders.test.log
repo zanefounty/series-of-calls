@@ -1,0 +1,47 @@
+✔ a new game has no intern and every order off; nothing runs and no random numbers are drawn (678.785195ms)
+✔ the intern is hired from customer level 2 (or with gates open), costs a monthly salary, and can be let go (357.241338ms)
+✔ transit headroom adds a LAG member, exactly as the + member button would (595.34517ms)
+✔ transit headroom buys a new port from a chosen provider and stops at the multiple (567.800823ms)
+✔ routers: add one above the load level, as Add router would (631.911875ms)
+✔ routers: swap generation only where a second router carries the traffic (310.587233ms)
+✔ caches: free boxes only once the network sends enough traffic locally (324.612962ms)
+✔ IX: weekly route servers and every willing peer, the same as the #192 batch (677.679102ms)
+✔ PNI: weekly, big enough networks only, paid peering left out by default, at each network's own size and lead time (322.545905ms)
+✔ sales: decline offers below the minimum, sign the ready ones with #185's trial (314.294687ms)
+✔ repairs: rush what has a price, as the Rush repair button would (625.740852ms)
+✔ optics: light hot fiber with the optic already in it, at the #177 batch price (639.851638ms)
+✔ decommission: smaller parallel waves go once the bigger link has room, never one a customer needs (303.106435ms)
+✔ the monthly budget cap and the cash floor stop the intern; a new month resets the budget (310.578505ms)
+✔ pause: an order switched off does nothing, and per-POP switches leave a city alone (405.12239ms)
+✔ the shift runs inside dayTick, respects a stopped clock, batches its work and recomputes once (298.588884ms)
+✔ the NOC gets one notice a week, the shift report; the daily lines stay in the Ops sheet (323.362367ms)
+✔ the Ops sheet opens with the intern's mood and the weekly shift report, at 360 px, in every language (1852.523556ms)
+✔ the mood follows the week, with no dice (297.196669ms)
+✔ fat fingers: never under Change Freeze, rare and harmless in On-call and BGP at 3 a.m. (296.893175ms)
+✔ a new POP from the template costs exactly the clicks it replaces (677.182447ms)
+✔ saves: old saves load with no intern and everything off, settings survive a reload, junk is repaired (318.049797ms)
+✔ the Ops sheet works at 360 px in every language, from the NOC tab and the phone tab bar (1988.79319ms)
+✔ sales trial at most one offer a shift, and an offer that did not fit waits a week (287.70062ms)
+✔ re-hiring in a later month starts on a fresh budget, not last month's spending (325.539462ms)
+✔ transit never comes from a provider that breaks a promise: no-Cogentle customers, bank covenants, the Spat (432.150123ms)
+✔ decommission keeps its spare in another trench than the big link (320.52968ms)
+✔ decommission sees the traffic of a customer signed earlier in the same shift (328.604415ms)
+✔ no recompute on a shift that only declined offers or stopped at a budget (299.298442ms)
+✔ per-POP exceptions go with the POP: on decommission, and in a save that lost it (337.570856ms)
+✔ one order that throws is paused and noted; the rest of the shift and the day still run (310.56237ms)
+✔ the fat-fingered LAG member respects a paused transit order and per-POP exceptions (318.278177ms)
+✔ caches: the cash floor and a running-cost budget hold; the panel and the log show what a month costs (288.915566ms)
+✔ transit: the log line and budget line show the monthly cost a top-up adds (294.520395ms)
+✔ #226 the shift report's Open button in the NOC opens the Ops sheet, and survives a reload (306.020302ms)
+✔ #228 the intern names the exchanges it peered at, even one that shares its city's id (277.122331ms)
+✔ #227 transit "Already connected" grows the providers you have, the smallest first, and never signs a new one (328.706696ms)
+✔ #244 the PNI order counts the traffic the PNI list shows at that POP, not what cache boxes there already serve (318.870588ms)
+✔ #249 a city without a POP opens while the transit order is set to Already connected (282.98868ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18509.240474

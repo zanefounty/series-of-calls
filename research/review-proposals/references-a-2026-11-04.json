@@ -1,0 +1,1266 @@
+{
+  "schemaVersion": 1,
+  "title": "Reference source review proposals — batch A (references 0–29)",
+  "checkedAt": "2026-11-04",
+  "scope": {
+    "input": "research/generated/references.json entries [0:30] and exact linked claims in research/generated/claims.json",
+    "count": 30,
+    "method": "Opened each referenced URL and only cited primary-source dependencies needed for compound claims; did not crawl whole sites.",
+    "disposition": "Owner-review proposal only; does not alter accepted reviews, requirements, source records, or gameplay."
+  },
+  "records": [
+    {
+      "referenceId": "REF-ac194430f67b3832",
+      "labels": [
+        "Teams service description"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04; no archived 2026-10-29 snapshot."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-25a0d3acbe089fe8"
+      ],
+      "requirementIDs": [
+        "REQ-34149e5830194956"
+      ],
+      "currentFindings": "Microsoft Teams service description lists plan-specific feature families/cloud differences and directs Teams Phone to separate license/PSTN requirements; PSTN, Rooms licensing and meetings/events pages were also reviewed.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-25a0d3acbe089fe8",
+          "requirementId": "REQ-34149e5830194956",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "currentFinding": "Microsoft Teams service description lists plan-specific feature families/cloud differences and directs Teams Phone to separate license/PSTN requirements; PSTN, Rooms licensing and meetings/events pages were also reviewed.",
+          "uncertainty": "Repeated four-source composite; feature tables can change and should not be treated as timeless.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Repeated four-source composite; feature tables can change and should not be treated as timeless.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-5300ce44d82bd40f",
+      "labels": [
+        "PSTN connectivity documentation"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04; no fixed version shown."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-e6b06b7d4759516b"
+      ],
+      "requirementIDs": [
+        "REQ-34149e5830194956"
+      ],
+      "currentFindings": "PSTN page distinguishes Calling Plans, Operator Connect, Teams Phone Mobile and Direct Routing by provider responsibilities, requirements, number types and support; allows mixed models.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-e6b06b7d4759516b",
+          "requirementId": "REQ-34149e5830194956",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "currentFinding": "PSTN page distinguishes Calling Plans, Operator Connect, Teams Phone Mobile and Direct Routing by provider responsibilities, requirements, number types and support; allows mixed models.",
+          "uncertainty": "Country availability and certification are scoped and changeable.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Country availability and certification are scoped and changeable.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-7cec333be41fbfc9",
+      "labels": [
+        "Rooms licensing"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-92d312ca4625b869"
+      ],
+      "requirementIDs": [
+        "REQ-34149e5830194956"
+      ],
+      "currentFindings": "Rooms licensing page differentiates Basic and Pro capabilities and limits (Basic up to 25 systems; Pro unlimited), supporting a separate room licensing dimension.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-92d312ca4625b869",
+          "requirementId": "REQ-34149e5830194956",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "currentFinding": "Rooms licensing page differentiates Basic and Pro capabilities and limits (Basic up to 25 systems; Pro unlimited), supporting a separate room licensing dimension.",
+          "uncertainty": "Entitlements may change; current snapshot only.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Entitlements may change; current snapshot only.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-a8dbb077dacacede",
+      "labels": [
+        "meetings and events documentation"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Page references 2026-04-01 licensing update; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-a200581db0f56c8d"
+      ],
+      "requirementIDs": [
+        "REQ-34149e5830194956"
+      ],
+      "currentFindings": "Meetings/events page distinguishes interactive meetings and role-structured events; notes Teams Premium/Enterprise licensing changed 2026-04-01.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-a200581db0f56c8d",
+          "requirementId": "REQ-34149e5830194956",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "currentFinding": "Meetings/events page distinguishes interactive meetings and role-structured events; notes Teams Premium/Enterprise licensing changed 2026-04-01.",
+          "uncertainty": "Limits and licenses are time-sensitive; do not hard-code as timeless.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Limits and licenses are time-sensitive; do not hard-code as timeless.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-b8049813b772603e",
+      "labels": [
+        "Dynamics 365 Contact Center"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Last updated 2026-05-08; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-17b469523e0fccdd"
+      ],
+      "requirementIDs": [
+        "REQ-fcfe870dbabdbb62"
+      ],
+      "currentFindings": "D365 Contact Center overview describes cloud omnichannel routing, IVR, AI agents, transcription/translation, analytics and Teams collaboration.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-17b469523e0fccdd",
+          "requirementId": "REQ-fcfe870dbabdbb62",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.",
+          "currentFinding": "D365 Contact Center overview describes cloud omnichannel routing, IVR, AI agents, transcription/translation, analytics and Teams collaboration.",
+          "uncertainty": "Overview is product positioning, not edition, region, license, residency or interop evidence.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Overview is product positioning, not edition, region, license, residency or interop evidence.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-6041cb9b4e29d0a7",
+      "labels": [
+        "Teams contact-centre integration documentation",
+        "Microsoft's contact-centre catalogue"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Retrieved 2026-11-04; no dated revision visible."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-ee1c8618006f345a",
+        "CLAIM-b1a7b056aaada840"
+      ],
+      "requirementIDs": [
+        "REQ-fc1aa0b29d83cf38",
+        "REQ-fcfe870dbabdbb62"
+      ],
+      "currentFindings": "Teams contact-center page distinguishes Unify, Extend and Connect, basic call queues from CCaaS, and lists participating providers; linked SBC, Rooms and recording sources reviewed separately.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-ee1c8618006f345a",
+          "requirementId": "REQ-fcfe870dbabdbb62",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.",
+          "currentFinding": "Teams contact-center page distinguishes Unify, Extend and Connect, basic call queues from CCaaS, and lists participating providers; linked SBC, Rooms and recording sources reviewed separately.",
+          "uncertainty": "Provider/certification list is a current snapshot; listing does not prove every feature/cloud case.",
+          "recommendation": "accept"
+        },
+        {
+          "claimId": "CLAIM-b1a7b056aaada840",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "currentFinding": "Teams contact-center page distinguishes Unify, Extend and Connect, basic call queues from CCaaS, and lists participating providers; linked SBC, Rooms and recording sources reviewed separately.",
+          "uncertainty": "Provider/certification list is a current snapshot; listing does not prove every feature/cloud case.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Provider/certification list is a current snapshot; listing does not prove every feature/cloud case.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-0ab35ad448a8e152",
+      "labels": [
+        "Microsoft 365 Local"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Last updated 2026-04-26; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-47c428cb682fd198"
+      ],
+      "requirementIDs": [
+        "REQ-4a8f2bbb4079765f"
+      ],
+      "currentFindings": "Microsoft 365 Local page documents Exchange, SharePoint and Skype for Business Server on customer-owned Azure Local, including hybrid/disconnected modes; it does not list Teams.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-47c428cb682fd198",
+          "requirementId": "REQ-4a8f2bbb4079765f",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Microsoft 365 Local](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview) runs Exchange Server, SharePoint Server and Skype for Business Server on customer-owned Azure Local infrastructure, with hybrid and disconnected deployment options. It should have its own product profile; it does not provide an on-premises Teams edition.",
+          "currentFinding": "Microsoft 365 Local page documents Exchange, SharePoint and Skype for Business Server on customer-owned Azure Local, including hybrid/disconnected modes; it does not list Teams.",
+          "uncertainty": "No on-prem Teams is inferred from documented scope, not an explicit exhaustive exclusion on this page.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "No on-prem Teams is inferred from documented scope, not an explicit exhaustive exclusion on this page.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-ce4086e425fc31ca",
+      "labels": [
+        "GCC High and DoD service description"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Last updated 2026-08-03; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-38f6afe889658335"
+      ],
+      "requirementIDs": [
+        "REQ-91713cf90631b52d"
+      ],
+      "currentFindings": "GCC High/DoD service description requires eligibility validation and distinguishes DoD-only purchase from qualifying GCC High access; lists environment differences.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-38f6afe889658335",
+          "requirementId": "REQ-91713cf90631b52d",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [GCC High and DoD service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod) is specific to defined US environments and eligibility. Country packs must establish their own requirements.",
+          "currentFinding": "GCC High/DoD service description requires eligibility validation and distinguishes DoD-only purchase from qualifying GCC High access; lists environment differences.",
+          "uncertainty": "Only these US environments; not requirements in other jurisdictions.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Only these US environments; not requirements in other jurisdictions.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-994b72cced26fabb",
+      "labels": [
+        "ACS retirement and breaking-changes guide"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Announcement 2026-09-23; onboarding change 2026-10-23; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-a1def7797ff16712"
+      ],
+      "requirementIDs": [
+        "REQ-d39d0f417f9016b0"
+      ],
+      "currentFindings": "ACS guide sets 2028-09-30 for standalone retirement, separates retired from breaking-change services, and notes onboarding restrictions for retiring offers since 2026-10-23.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-a1def7797ff16712",
+          "requirementId": "REQ-d39d0f417f9016b0",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [ACS retirement and breaking-changes guide](https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide) sets **30 September 2028** as the transition date for standalone ACS retirement and related SDK changes. Some services retire; certain calling and automation capabilities continue in supported Teams-aligned scenarios with changes. The game should distinguish retiring offers, supported existing deployments and permitted successor architectures.",
+          "currentFinding": "ACS guide sets 2028-09-30 for standalone retirement, separates retired from breaking-change services, and notes onboarding restrictions for retiring offers since 2026-10-23.",
+          "uncertainty": "“Transition date” obscures different service categories. Preserve restrictions and supported Teams-aligned scenarios.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "“Transition date” obscures different service categories. Preserve restrictions and supported Teams-aligned scenarios.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-c6673929705ff2bf",
+      "labels": [
+        "Copilot in Teams documentation"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-21c67d1cbd6c351b"
+      ],
+      "requirementIDs": [
+        "REQ-0dcd866e94553617"
+      ],
+      "currentFindings": "Copilot meeting/event page separates during-only temporary speech-to-text from transcription-backed during-and-after and excludes E2EE meetings; includes cloud/retention caveats.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-21c67d1cbd6c351b",
+          "requirementId": "REQ-0dcd866e94553617",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Copilot in Teams documentation](https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription) distinguishes temporary speech processing from saved transcription and states that Copilot is unavailable in end-to-end encrypted meetings. Model that conflict for the relevant profile. Do not make it a universal rule covering every vendor or future version.",
+          "currentFinding": "Copilot meeting/event page separates during-only temporary speech-to-text from transcription-backed during-and-after and excludes E2EE meetings; includes cloud/retention caveats.",
+          "uncertainty": "Specify meeting/event mode; GCC High and Purview caveats mean not universal across Teams AI.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Specify meeting/event mode; GCC High and Purview caveats mean not universal across Teams AI.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-80094745cafb63d6",
+      "labels": [
+        "Teams Rooms Pro integration with ServiceNow"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Retrieved 2026-11-04; no update date visible."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-5e832c5a7d8c0fed"
+      ],
+      "requirementIDs": [
+        "REQ-fe62fc25439ee2d0"
+      ],
+      "currentFindings": "Rooms Pro Management ServiceNow guide says Commercial Cloud only; lists prerequisites and requires test before enabling.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-5e832c5a7d8c0fed",
+          "requirementId": "REQ-fe62fc25439ee2d0",
+          "assertedDate": "2026-10-29",
+          "claimText": "The documented [Teams Rooms Pro integration with ServiceNow](https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow) is Commercial-cloud-only. This is an example of an operational integration whose availability differs from that of the underlying room device.",
+          "currentFinding": "Rooms Pro Management ServiceNow guide says Commercial Cloud only; lists prerequisites and requires test before enabling.",
+          "uncertainty": "Specific to this ServiceNow incident integration, not all Rooms or ITSM integrations.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Specific to this ServiceNow incident integration, not all Rooms or ITSM integrations.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-cbb04f2d2c34bccb",
+      "labels": [
+        "Webex Suite"
+      ],
+      "sourceURL": "https://www.webex.com/us/en/products/suite.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Suite page no visible version date; supporting data sheet dated 2026-06-18."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-561d8817ca1026f1"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70"
+      ],
+      "currentFindings": "Webex Suite page lists calling, meetings, messaging, events/webinars, polling, whiteboarding and AI; linked Flex, Dedicated Instance, CC, Connect, interoperability and wholesale materials reviewed.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-561d8817ca1026f1",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Webex Suite page lists calling, meetings, messaging, events/webinars, polling, whiteboarding and AI; linked Flex, Dedicated Instance, CC, Connect, interoperability and wholesale materials reviewed.",
+          "uncertainty": "Split composite into product/offer/deployment/partner claims; suite marketing alone is not detailed entitlement.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Split composite into product/offer/deployment/partner claims; suite marketing alone is not detailed entitlement.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-f17dabc322d17a54",
+      "labels": [
+        "Flex and Suite offers"
+      ],
+      "sourceURL": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Updated 2026-06-18; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-a6276d9047a1da7e"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70"
+      ],
+      "currentFindings": "Flex Plan 3.0 data sheet distinguishes Suite/Essentials, EA/NU/AU buying, combinations and deployment options.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-a6276d9047a1da7e",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Flex Plan 3.0 data sheet distinguishes Suite/Essentials, EA/NU/AU buying, combinations and deployment options.",
+          "uncertainty": "Minimums, add-ons, allowances and entitlements vary by offer and change.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Minimums, add-ons, allowances and entitlements vary by offer and change.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-c9e920ec01b6f78b",
+      "labels": [
+        "Dedicated Instance"
+      ],
+      "sourceURL": "https://help.webex.com/article/dk3o5r",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Cisco Help article dated 2026-10-16; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-4d9e35e3a246ec7a"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70"
+      ],
+      "currentFindings": "Dedicated Instance docs describe a Webex Calling add-on on UCM architecture, applications/clusters and availability.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-4d9e35e3a246ec7a",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Dedicated Instance docs describe a Webex Calling add-on on UCM architecture, applications/clusters and availability.",
+          "uncertainty": "Promotional “same features” text is not exhaustive parity; check version/region/add-on.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Promotional “same features” text is not exhaustive parity; check version/region/add-on.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-e40e11d43985a98d",
+      "labels": [
+        "contact-centre product families"
+      ],
+      "sourceURL": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Updated 2026-06-11; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-9224111c6bb17412"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70"
+      ],
+      "currentFindings": "Contact Center 3.0 sheet distinguishes cloud/on-prem platforms, transitions, named/concurrent agents, agent types and platform-specific options.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-9224111c6bb17412",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Contact Center 3.0 sheet distinguishes cloud/on-prem platforms, transitions, named/concurrent agents, agent types and platform-specific options.",
+          "uncertainty": "Entitlements depend on platform and agent type; avoid generalizing across product families.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Entitlements depend on platform and agent type; avoid generalizing across product families.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-ecd8d4f64aad9f35",
+      "labels": [
+        "Webex Connect",
+        "Webex Connect"
+      ],
+      "sourceURL": "https://help.webexconnect.io/docs/welcome",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6",
+        "https://whatsappbusiness.com/products/platform-pricing/"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Connect no visible version; pricing retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-68a0886f7e4eefc5",
+        "CLAIM-fbf813cd7e1b1387"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70",
+        "REQ-7993072717d54c9d"
+      ],
+      "currentFindings": "Webex Connect docs describe CPaaS APIs/flows and channels including WhatsApp/Messenger; WhatsApp page says delivered-message charges vary by category/market with stated exceptions.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-68a0886f7e4eefc5",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Webex Connect docs describe CPaaS APIs/flows and channels including WhatsApp/Messenger; WhatsApp page says delivered-message charges vary by category/market with stated exceptions.",
+          "uncertainty": "Separate platform integration from channel economics; prices/policies change. Pricing URL redirected to whatsappbusiness.com.",
+          "recommendation": "revise"
+        },
+        {
+          "claimId": "CLAIM-fbf813cd7e1b1387",
+          "requirementId": "REQ-7993072717d54c9d",
+          "assertedDate": "2026-10-29",
+          "claimText": "[WhatsApp's pricing documentation](https://business.whatsapp.com/products/platform-pricing) distinguishes delivered-message categories and free service responses within its customer-service rules. The game should account for the relevant channel economics rather than assuming every message has the same cost. [Webex Connect](https://help.webexconnect.io/docs/welcome) demonstrates that WhatsApp and Messenger can also be components of a commercial engagement platform.",
+          "currentFinding": "Webex Connect docs describe CPaaS APIs/flows and channels including WhatsApp/Messenger; WhatsApp page says delivered-message charges vary by category/market with stated exceptions.",
+          "uncertainty": "Separate platform integration from channel economics; prices/policies change. Pricing URL redirected to whatsappbusiness.com.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Separate platform integration from channel economics; prices/policies change. Pricing URL redirected to whatsappbusiness.com.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-932dc1c63a5b9e08",
+      "labels": [
+        "device interoperability"
+      ],
+      "sourceURL": "https://www.webex.com/us/en/solutions/interoperability.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "No visible date; “NEW” Google Meet experience; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-8a04710ea80247ed"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70"
+      ],
+      "currentFindings": "Cisco interoperability page describes joining Webex, Teams, Zoom and Google Meet using native room experiences, CVI and guest join.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-8a04710ea80247ed",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Cisco interoperability page describes joining Webex, Teams, Zoom and Google Meet using native room experiences, CVI and guest join.",
+          "uncertainty": "Marketing does not prove device/firmware/license/region or feature parity; keep integration modes distinct.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Marketing does not prove device/firmware/license/region or feature parity; keep integration modes distinct.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-fb9dd3e3bcdca8c9",
+      "labels": [
+        "Wholesale Route to Market",
+        "wholesale guide"
+      ],
+      "sourceURL": "https://help.webex.com/article/nwwg3w6",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://help.webex.com/article/nwwg3w6",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Article dated 2026-08-06; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-daf37ddd127fbfb7",
+        "CLAIM-54d47b9d61f1bb8a"
+      ],
+      "requirementIDs": [
+        "REQ-51f946a444240d70",
+        "REQ-6d734411a6b79933"
+      ],
+      "currentFindings": "Wholesale guide describes customer provisioning, partner administration, provider billing and subpartner capability.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-daf37ddd127fbfb7",
+          "requirementId": "REQ-51f946a444240d70",
+          "assertedDate": "2026-10-29",
+          "claimText": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "currentFinding": "Wholesale guide describes customer provisioning, partner administration, provider billing and subpartner capability.",
+          "uncertainty": "Specific to Webex Wholesale RTM; no other qualification or approval implied.",
+          "recommendation": "accept"
+        },
+        {
+          "claimId": "CLAIM-54d47b9d61f1bb8a",
+          "requirementId": "REQ-6d734411a6b79933",
+          "assertedDate": "2026-10-29",
+          "claimText": "Partner qualifications unlock defined offers or responsibilities. A qualification does not confer every integration or government approval. Cisco's [wholesale guide](https://help.webex.com/article/nwwg3w6) provides a concrete example of parent partners, subpartners, customer onboarding and billing responsibilities.",
+          "currentFinding": "Wholesale guide describes customer provisioning, partner administration, provider billing and subpartner capability.",
+          "uncertainty": "Specific to Webex Wholesale RTM; no other qualification or approval implied.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Specific to Webex Wholesale RTM; no other qualification or approval implied.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-5feedded0d34a197",
+      "labels": [
+        "AI PODs datasheet",
+        "Cisco AI PODs licensing qualification"
+      ],
+      "sourceURL": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Updated 2026-06-16; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-4565d8fb254271df",
+        "CLAIM-def72d7bacfbf033"
+      ],
+      "requirementIDs": [
+        "REQ-7732d48ed43ebe41",
+        "REQ-81e353eb84bbff84"
+      ],
+      "currentFindings": "AI PODs datasheet describes local transcription/isolated deployment, explicitly excepts licensing from zero external connectivity, and has version-specific integrations/Smart Licensing.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-4565d8fb254271df",
+          "requirementId": "REQ-81e353eb84bbff84",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [AI PODs datasheet](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) describes local transcription, but qualifies isolated operation with a licensing exception and documents direct Smart Licensing. Its integration table is version-specific. Treat local processing, disconnected licensing and supported application integrations as independent attributes.",
+          "currentFinding": "AI PODs datasheet describes local transcription/isolated deployment, explicitly excepts licensing from zero external connectivity, and has version-specific integrations/Smart Licensing.",
+          "uncertainty": "Supports independent attributes; do not generalize air-gap or integration claims to all workloads.",
+          "recommendation": "revise"
+        },
+        {
+          "claimId": "CLAIM-def72d7bacfbf033",
+          "requirementId": "REQ-7732d48ed43ebe41",
+          "assertedDate": "2026-10-29",
+          "claimText": "Local media, local storage, local AI and disconnected operation are distinct properties. A platform may satisfy one and fail another. The [Cisco AI PODs licensing qualification](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) is a useful example of why the entire service chain must be checked.",
+          "currentFinding": "AI PODs datasheet describes local transcription/isolated deployment, explicitly excepts licensing from zero external connectivity, and has version-specific integrations/Smart Licensing.",
+          "uncertainty": "Supports independent attributes; do not generalize air-gap or integration claims to all workloads.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Supports independent attributes; do not generalize air-gap or integration claims to all workloads.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-0ddcf6e8a0d3d60c",
+      "labels": [
+        "UCM Cloud for Government lifecycle notice"
+      ],
+      "sourceURL": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Updated/announced 2026-10-14; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-cbc7eb75caccf472"
+      ],
+      "requirementIDs": [
+        "REQ-516e0364542ccd19"
+      ],
+      "currentFindings": "Cisco EOL15972 confirms order cutoff 2027-01-06, renew/change and support through 2028-01-31, with listed transition options.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-cbc7eb75caccf472",
+          "requirementId": "REQ-516e0364542ccd19",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [UCM Cloud for Government lifecycle notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html) gives **6 January 2027** as end of sale and **31 January 2028** as last support. Its transition options include Webex for Government Calling and on-premises UCM.",
+          "currentFinding": "Cisco EOL15972 confirms order cutoff 2027-01-06, renew/change and support through 2028-01-31, with listed transition options.",
+          "uncertainty": "Only named UCM Cloud for Government SKUs; Cisco FedRAMP positioning is not customer authorization proof.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Only named UCM Cloud for Government SKUs; Cisco FedRAMP positioning is not customer authorization proof.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-fcdabdb913c10b05",
+      "labels": [
+        "Webex WFO notice"
+      ],
+      "sourceURL": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Updated 2026-06-30; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-3dd28041126d988b"
+      ],
+      "requirementIDs": [
+        "REQ-a685e7e2c9bb589d"
+      ],
+      "currentFindings": "Cisco EOL15916 confirms affected WFO SKUs, sale 2026-07-25, renewal/change 2027-07-30, support 2031-07-31.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-3dd28041126d988b",
+          "requirementId": "REQ-a685e7e2c9bb589d",
+          "assertedDate": "2026-10-29",
+          "claimText": "The [Webex WFO notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html) applies to specific offers with end of sale in July 2026. Preserve separate dates for sale, renewal and support; an offer retirement does not delete the entire workforce-management capability family.",
+          "currentFinding": "Cisco EOL15916 confirms affected WFO SKUs, sale 2026-07-25, renewal/change 2027-07-30, support 2031-07-31.",
+          "uncertainty": "Applies to listed offers, not the full WFM capability family; keep dates separate.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Applies to listed offers, not the full WFM capability family; keep dates separate.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-5fb1edff716b861d",
+      "labels": [
+        "SBC certification"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04; version varies by model."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-d637c8d10c7a946a"
+      ],
+      "requirementIDs": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "currentFindings": "Direct Routing page lists SBC products/firmware and says certification is version-specific; related contact-center, room and recording programs were checked separately.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-d637c8d10c7a946a",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "currentFinding": "Direct Routing page lists SBC products/firmware and says certification is version-specific; related contact-center, room and recording programs were checked separately.",
+          "uncertainty": "Mutable list; SBC certification is not feature/cloud coverage or another certification.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Mutable list; SBC certification is not feature/cloud coverage or another certification.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-bf74910ae207c4ce",
+      "labels": [
+        "Rooms hardware certification"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-d1c0f36090a41105"
+      ],
+      "requirementIDs": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "currentFindings": "Microsoft explicitly says Rooms certification evaluates hardware design/performance, not feature-level or cloud environment support.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-d1c0f36090a41105",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "currentFinding": "Microsoft explicitly says Rooms certification evaluates hardware design/performance, not feature-level or cloud environment support.",
+          "uncertainty": "Device certification cannot prove service features, cloud support or compliance; list changes.",
+          "recommendation": "accept"
+        }
+      ],
+      "uncertainty": "Device certification cannot prove service features, cloud support or compliance; list changes.",
+      "recommendation": "accept"
+    },
+    {
+      "referenceId": "REF-13aa74b705a9e357",
+      "labels": [
+        "compliance recording"
+      ],
+      "sourceURL": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Live page retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-a7275b68d7f5c42f"
+      ],
+      "requirementIDs": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "currentFindings": "Microsoft describes policy-based recording using certified third-party solutions, a cloud matrix and explicit exclusions/limits.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-a7275b68d7f5c42f",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "currentFinding": "Microsoft describes policy-based recording using certified third-party solutions, a cloud matrix and explicit exclusions/limits.",
+          "uncertainty": "Not automatic from Teams or hardware certification; varies by cloud, policy, license, direction and queue.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Not automatic from Teams or hardware certification; varies by cloud, policy, license, direction and queue.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-097413172db36986",
+      "labels": [
+        "Webex App Hub"
+      ],
+      "sourceURL": "https://apphub.webex.com/partner-solutions",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://apphub.webex.com/partner-solutions",
+        "https://apphub.webex.com/applications/imagicle-uc-suite",
+        "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+        "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Catalogue retrieved 2026-11-04; mutable."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-80529de1efd098db"
+      ],
+      "requirementIDs": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "currentFindings": "Webex App Hub lists partner apps/categories; Imagicle, Theta Lake and TTEC listing pages were also reviewed.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-80529de1efd098db",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "currentFinding": "Webex App Hub lists partner apps/categories; Imagicle, Theta Lake and TTEC listing pages were also reviewed.",
+          "uncertainty": "Catalogue presence is not certification, operability, endorsement, region support or feature parity; third-party disclaimer applies.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Catalogue presence is not certification, operability, endorsement, region support or feature parity; third-party disclaimer applies.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-6ee11627b4e96799",
+      "labels": [
+        "Imagicle"
+      ],
+      "sourceURL": "https://apphub.webex.com/applications/imagicle-uc-suite",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://apphub.webex.com/applications/imagicle-uc-suite",
+        "https://apphub.webex.com/partner-solutions",
+        "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+        "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Listing retrieved 2026-11-04; no version date."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-d8e3a548360f0008"
+      ],
+      "requirementIDs": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "currentFindings": "Imagicle listing declares attendant console, recording, fax, analytics and integrations with Webex Calling/UCM/HCS/BroadWorks.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-d8e3a548360f0008",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "currentFinding": "Imagicle listing declares attendant console, recording, fax, analytics and integrations with Webex Calling/UCM/HCS/BroadWorks.",
+          "uncertainty": "Partner description is not independent validation; verify versions, regions, subscription and prerequisites.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Partner description is not independent validation; verify versions, regions, subscription and prerequisites.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-d91db49dd1296a40",
+      "labels": [
+        "Theta Lake"
+      ],
+      "sourceURL": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+        "https://apphub.webex.com/partner-solutions",
+        "https://apphub.webex.com/applications/imagicle-uc-suite",
+        "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Listing retrieved 2026-11-04; no version date."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-5c942c4cb21a78d8"
+      ],
+      "requirementIDs": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "currentFindings": "Theta Lake listing declares archiving/eDiscovery/supervision for Webex calls, recordings, SMS/CDRs and requires Webex Calling plus subscription.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-5c942c4cb21a78d8",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "currentFinding": "Theta Lake listing declares archiving/eDiscovery/supervision for Webex calls, recordings, SMS/CDRs and requires Webex Calling plus subscription.",
+          "uncertainty": "Listing is not legal/compliance validation or a retention guarantee.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Listing is not legal/compliance validation or a retention guarantee.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-81f2bd205e0f66f7",
+      "labels": [
+        "TTEC Digital WFM adapter"
+      ],
+      "sourceURL": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+        "https://apphub.webex.com/partner-solutions",
+        "https://apphub.webex.com/applications/imagicle-uc-suite",
+        "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Listing retrieved 2026-11-04; no version date."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-1d52fdfbe385dd4a"
+      ],
+      "requirementIDs": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "currentFindings": "TTEC listing declares real-time adherence and historical reports from Webex CC to named WFM products; requires paid Webex CC/TTEC account.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-1d52fdfbe385dd4a",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "assertedDate": "2026-10-29",
+          "claimText": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "currentFinding": "TTEC listing declares real-time adherence and historical reports from Webex CC to named WFM products; requires paid Webex CC/TTEC account.",
+          "uncertainty": "Does not verify forecasting feature scope, regions, data handling, versions or commercial terms.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Does not verify forecasting feature scope, regions, data handling, versions or commercial terms.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-a5f898a484d055da",
+      "labels": [
+        "Kurmi"
+      ],
+      "sourceURL": "https://kurmi-software.com/",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://kurmi-software.com/",
+        "https://www.voss-solutions.com/tech-solutions/cisco/",
+        "https://www.akkadianlabs.com/akkadian-platform/",
+        "https://www.vqcomms.com/products/vq-conference-manager/",
+        "https://docs.mividas.com/docs/documentation/mividas-core/",
+        "https://www.pexip.com/products/connect/microsoft-interoperability",
+        "https://www.synergysky.com/service-description",
+        "https://www.ir.com/products/collaborate"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "No visible date; retrieved 2026-11-04; cited dependencies vary."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-616b56d32c938b78"
+      ],
+      "requirementIDs": [
+        "REQ-090ca18180d23749"
+      ],
+      "currentFindings": "Kurmi Flow homepage describes UC provisioning/deprovisioning, MACD, delegated access, migration and multi-platform connectors; linked lifecycle/conferencing/assurance vendor sources were reviewed.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-616b56d32c938b78",
+          "requirementId": "REQ-090ca18180d23749",
+          "assertedDate": "2026-10-29",
+          "claimText": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+          "currentFinding": "Kurmi Flow homepage describes UC provisioning/deprovisioning, MACD, delegated access, migration and multi-platform connectors; linked lifecycle/conferencing/assurance vendor sources were reviewed.",
+          "uncertainty": "Homepage supports category example, not whole composite. Keep each vendor/product feature on its own evidence; no equivalence inferred.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Homepage supports category example, not whole composite. Keep each vendor/product feature on its own evidence; no equivalence inferred.",
+      "recommendation": "revise"
+    },
+    {
+      "referenceId": "REF-004474965260c809",
+      "labels": [
+        "VOSS"
+      ],
+      "sourceURL": "https://www.voss-solutions.com/tech-solutions/cisco/",
+      "checkedAt": "2026-11-04",
+      "retrievalStatus": "retrieved",
+      "actualURLsRetrieved": [
+        "https://www.voss-solutions.com/tech-solutions/cisco/",
+        "https://kurmi-software.com/",
+        "https://www.akkadianlabs.com/akkadian-platform/",
+        "https://www.vqcomms.com/products/vq-conference-manager/",
+        "https://docs.mividas.com/docs/documentation/mividas-core/",
+        "https://www.pexip.com/products/connect/microsoft-interoperability",
+        "https://www.synergysky.com/service-description",
+        "https://www.ir.com/products/collaborate"
+      ],
+      "claimedHistoricalApplicability": {
+        "assertedDate": "2026-10-29",
+        "scope": "This is the original claim asserted-as-of date, not an archived page snapshot. This review records the cited content visible 2026-11-04. Explicit source dates are noted below; otherwise 2026-10-29 applicability is unproven.",
+        "pageVersionContext": "Embedded timestamp 2026-08-27; retrieved 2026-11-04."
+      },
+      "checkedClaimIDs": [
+        "CLAIM-f45542864ca1ee00"
+      ],
+      "requirementIDs": [
+        "REQ-090ca18180d23749"
+      ],
+      "currentFindings": "VOSS Cisco page describes migration, provisioning, management, monitoring and analytics across UCM/Webex estate; cited vendor examples were reviewed.",
+      "claimReviews": [
+        {
+          "claimId": "CLAIM-f45542864ca1ee00",
+          "requirementId": "REQ-090ca18180d23749",
+          "assertedDate": "2026-10-29",
+          "claimText": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+          "currentFinding": "VOSS Cisco page describes migration, provisioning, management, monitoring and analytics across UCM/Webex estate; cited vendor examples were reviewed.",
+          "uncertainty": "Supplier marketing supports broad category, not version/SLA/deployment/parity. Split claim by product/vendor.",
+          "recommendation": "revise"
+        }
+      ],
+      "uncertainty": "Supplier marketing supports broad category, not version/SLA/deployment/parity. Split claim by product/vendor.",
+      "recommendation": "revise"
+    }
+  ]
+}

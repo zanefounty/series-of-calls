@@ -5,7 +5,7 @@ const { load, seed } = require('./harness');
 test('page boots to the title screen without errors', () => {
   const { ev, errors } = load();
   assert.equal(ev("document.getElementById('modal').hidden"), false);
-  assert.match(ev("document.getElementById('modalCard').textContent"), /Series\s*of\s*Tubes/);
+  assert.match(ev("document.getElementById('modalCard').textContent"), /Series\s*of\s*Calls/);
   assert.deepEqual(errors, []);
 });
 

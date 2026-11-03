@@ -1,0 +1,27 @@
+{
+  "contentVersion": 1,
+  "description": "Synthetic inter-site bandwidth and path profiles; bandwidth units are never seats.",
+  "runtime": {
+    "PACK": "soc-transport-1",
+    "profiles": {
+      "message": {
+        "kbps": 8,
+        "directions": 1,
+        "description": "Synthetic 1 KB message transfer per second; availability probe only"
+      },
+      "voice": {
+        "kbps": 160,
+        "directions": 2,
+        "description": "Synthetic voice including media overhead, both directions"
+      },
+      "meeting": {
+        "kbps": 5000,
+        "directions": 2,
+        "description": "Synthetic two-party room media, both directions"
+      }
+    }
+  },
+  "sourceIds": [
+    "DESIGN-5fd1c25706b12388"
+  ]
+}

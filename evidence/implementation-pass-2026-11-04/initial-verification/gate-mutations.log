@@ -1,0 +1,45 @@
+...................F..............F................F...................
+======================================================================
+FAIL: test_deleted_evidence (gates_test.Gates.test_deleted_evidence)
+----------------------------------------------------------------------
+verify.GateError: Evidence input changed or deleted: artwork/generated/defence.png
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 85, in test_deleted_evidence
+    with self.assertRaisesRegex(V.GateError,'Missing or failing'):V.evidence(self.root)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Missing or failing" does not match "Evidence input changed or deleted: artwork/generated/defence.png"
+
+======================================================================
+FAIL: test_narrative_false_source (gates_test.Gates.test_narrative_false_source)
+----------------------------------------------------------------------
+verify.GateError: Mapping audit omitted or changed a source obligation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 112, in test_narrative_false_source
+    with self.assertRaisesRegex(V.GateError,'Narrative source hash'):V.mapping(self.root)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Narrative source hash" does not match "Mapping audit omitted or changed a source obligation"
+
+======================================================================
+FAIL: test_unresolved_behaviour_source (gates_test.Gates.test_unresolved_behaviour_source)
+----------------------------------------------------------------------
+verify.GateError: Evidence input changed or deleted: artwork/generated/defence.png
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 139, in test_unresolved_behaviour_source
+    with self.assertRaisesRegex(V.GateError,'lost provenance'):V.evidence(self.root)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "lost provenance" does not match "Evidence input changed or deleted: artwork/generated/defence.png"
+
+----------------------------------------------------------------------
+Ran 71 tests in 27.305s
+
+FAILED (failures=3)
+{"mappingRecords": 3454, "originalRecords": 3360, "additions": 94, "fileRecords": 217, "distinctReferences": 91, "sourceCitationOccurrences": 72, "additionalResearchItems": 28, "upstreamCommits": 349, "upstreamFileVersions": 426, "sourceItems": 4787, "requirements": 4787}

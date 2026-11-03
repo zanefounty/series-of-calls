@@ -8,8 +8,13 @@ body:
     attributes:
       label: Language
       options:
+        - English
+        - Deutsch
+        - Español
+        - Français
         - Italiano
-        - A new language (say which below)
+        - Português
+        - Other (say which below)
     validations:
       required: true
   - type: textarea

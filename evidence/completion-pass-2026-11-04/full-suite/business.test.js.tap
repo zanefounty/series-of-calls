@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: AC-SOC-015 organisation roles and delegated authority control configuration
+ok 1 - AC-SOC-015 organisation roles and delegated authority control configuration
+  ---
+  duration_ms: 6.565941
+  type: 'test'
+  ...
+# Subtest: AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness
+ok 2 - AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness
+  ---
+  duration_ms: 3.687351
+  type: 'test'
+  ...
+# Subtest: AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once
+ok 3 - AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once
+  ---
+  duration_ms: 8.360952
+  type: 'test'
+  ...
+# Subtest: AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries
+ok 4 - AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries
+  ---
+  duration_ms: 5.350854
+  type: 'test'
+  ...
+# Subtest: AC-SOC-019 engineers, support staff and skilled contact-centre people are independent
+ok 5 - AC-SOC-019 engineers, support staff and skilled contact-centre people are independent
+  ---
+  duration_ms: 2.361198
+  type: 'test'
+  ...
+# Subtest: AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit
+ok 6 - AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit
+  ---
+  duration_ms: 1.846731
+  type: 'test'
+  ...
+# Subtest: AC-SOC-021 renewal, cancellation commitments and market events retain contract history
+ok 7 - AC-SOC-021 renewal, cancellation commitments and market events retain contract history
+  ---
+  duration_ms: 10.310952
+  type: 'test'
+  ...
+# Subtest: AC-SOC-038 imported commercial authority and financial obligations retain validated relationships
+ok 8 - AC-SOC-038 imported commercial authority and financial obligations retain validated relationships
+  ---
+  duration_ms: 1.515137
+  type: 'test'
+  ...
+# Subtest: AC-SOC-022 all business tracks require their services and run identically in worker and replay
+ok 9 - AC-SOC-022 all business tracks require their services and run identically in worker and replay
+  ---
+  duration_ms: 165.726392
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 237.246091

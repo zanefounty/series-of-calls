@@ -18,9 +18,9 @@ function vpDebug(){let el=document.getElementById('vpdbg');if(!el){el=document.c
     const pr=document.createElement('div');pr.id='vpprobe';pr.style.cssText='position:fixed;visibility:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)';document.body.appendChild(pr);}
   const pr=document.getElementById('vpprobe'),cs=getComputedStyle(pr),vv=window.visualViewport,de=document.documentElement,tb=document.getElementById('tabbar').getBoundingClientRect();
   el.textContent=`inner ${innerWidth}×${innerHeight} · screen ${screen.width}×${screen.height}\nvv ${vv?Math.round(vv.width)+'×'+Math.round(vv.height)+' top '+Math.round(vv.offsetTop):'-'} · client ${de.clientHeight}\nsafe top ${cs.paddingTop} bottom ${cs.paddingBottom}\nstandalone ${navigator.standalone===true||!!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)} · iosfix ${de.classList.contains('iosfix')} · CH ${CH}\nbody ${Math.round(document.body.getBoundingClientRect().height)} · tabbar ${Math.round(tb.top)}–${Math.round(tb.bottom)}`;}
-let VP_T=null;const vpOn=on=>{clearInterval(VP_T);VP_T=null;const el=document.getElementById('vpdbg');if(el)el.remove();if(on){VP_T=setInterval(vpDebug,500);vpDebug();}try{on?localStorage.setItem('sot-vp','1'):localStorage.removeItem('sot-vp');}catch(e){}};
+let VP_T=null;const vpOn=on=>{clearInterval(VP_T);VP_T=null;const el=document.getElementById('vpdbg');if(el)el.remove();if(on){VP_T=setInterval(vpDebug,500);vpDebug();}try{on?localStorage.setItem('soc-sp-vp','1'):localStorage.removeItem('soc-sp-vp');}catch(e){}};
 if(/[?&]vp\b/.test(location.search))vpOn(true);else if(/[?&]novp\b/.test(location.search))vpOn(false);
-try{if(localStorage.getItem('sot-vp')==='1')vpOn(true);}catch(e){}
+try{if(localStorage.getItem('soc-sp-vp')==='1')vpOn(true);}catch(e){}
 // Inside an installed app there is no address bar: five quick taps on the date toggle the readout.
 {let taps=[];document.getElementById('hDate').closest('.chip,div').addEventListener('click',()=>{const t=performance.now();taps=taps.filter(x=>t-x<1500).concat(t);if(taps.length>=5){taps=[];vpOn(!VP_T);}});}
 // iOS settles the standalone viewport a moment after launch and after rotating.

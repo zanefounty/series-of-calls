@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: page boots to the title screen without errors
+ok 1 - page boots to the title screen without errors
+  ---
+  duration_ms: 720.291411
+  type: 'test'
+  ...
+# Subtest: every city sits on its landmass
+ok 2 - every city sits on its landmass
+  ---
+  duration_ms: 351.044018
+  type: 'test'
+  ...
+# Subtest: every cable lands at two known cities and has a length
+ok 3 - every cable lands at two known cities and has a length
+  ---
+  duration_ms: 361.458827
+  type: 'test'
+  ...
+# Subtest: a year of scripted play stays healthy
+ok 4 - a year of scripted play stays healthy
+  ---
+  duration_ms: 1006.216016
+  type: 'test'
+  ...
+# Subtest: every incident and event type fires and clears cleanly
+ok 5 - every incident and event type fires and clears cleanly
+  ---
+  duration_ms: 686.609718
+  type: 'test'
+  ...
+# Subtest: every panel, tab and the dashboard render
+ok 6 - every panel, tab and the dashboard render
+  ---
+  duration_ms: 476.117272
+  type: 'test'
+  ...
+# Subtest: saves never resurrect a bankrupt game
+ok 7 - saves never resurrect a bankrupt game
+  ---
+  duration_ms: 347.522563
+  type: 'test'
+  ...
+# Subtest: LAGs add members, capacity and cost to transit, IX ports and PNIs
+ok 8 - LAGs add members, capacity and cost to transit, IX ports and PNIs
+  ---
+  duration_ms: 388.018294
+  type: 'test'
+  ...
+# Subtest: goal rewards are paid once, even for goals finished on day 0
+ok 9 - goal rewards are paid once, even for goals finished on day 0
+  ---
+  duration_ms: 368.784964
+  type: 'test'
+  ...
+# Subtest: Stuttgart has only the Spätzle-IX: no transit, no PNIs
+ok 10 - Stuttgart has only the Spätzle-IX: no transit, no PNIs
+  ---
+  duration_ms: 371.168433
+  type: 'test'
+  ...
+# Subtest: bank: offers arrive, loans pay out, cost money monthly and get paid off
+ok 11 - bank: offers arrive, loans pay out, cost money monthly and get paid off
+  ---
+  duration_ms: 712.094762
+  type: 'test'
+  ...
+# Subtest: bank: broke players get emergency offers, broken conditions cost a penalty
+ok 12 - bank: broke players get emergency offers, broken conditions cost a penalty
+  ---
+  duration_ms: 430.092656
+  type: 'test'
+  ...
+# Subtest: bank: the venture vultures take a share of revenue instead of payments
+ok 13 - bank: the venture vultures take a share of revenue instead of payments
+  ---
+  duration_ms: 427.792611
+  type: 'test'
+  ...
+# Subtest: old saves load, and a stale flat DDoS object is repaired away
+ok 14 - old saves load, and a stale flat DDoS object is repaired away
+  ---
+  duration_ms: 351.83767
+  type: 'test'
+  ...
+# Subtest: DDoS goal and badges unlock from the right state
+ok 15 - DDoS goal and badges unlock from the right state
+  ---
+  duration_ms: 344.399964
+  type: 'test'
+  ...
+# Subtest: \#52 loan offers stop once you have half a billion in the bank, and come back if you lose it
+ok 16 - \#52 loan offers stop once you have half a billion in the bank, and come back if you lose it
+  ---
+  duration_ms: 337.752885
+  type: 'test'
+  ...
+# Subtest: loans: good terms need good credit, big loans want revenue, and the weird lenders do weird things
+ok 17 - loans: good terms need good credit, big loans want revenue, and the weird lenders do weird things
+  ---
+  duration_ms: 495.975058
+  type: 'test'
+  ...
+# Subtest: notifications: the NOC keeps the last ten minutes, folds repeats and opens what each is about
+ok 18 - notifications: the NOC keeps the last ten minutes, folds repeats and opens what each is about
+  ---
+  duration_ms: 430.97102
+  type: 'test'
+  ...
+# Subtest: the broadband panel shows what homes in that city really pay, not the base rate
+ok 19 - the broadband panel shows what homes in that city really pay, not the base rate
+  ---
+  duration_ms: 389.767116
+  type: 'test'
+  ...
+# Subtest: a custom multiplier routes exactly like the matching preset
+ok 20 - a custom multiplier routes exactly like the matching preset
+  ---
+  duration_ms: 453.866055
+  type: 'test'
+  ...
+# Subtest: an absolute custom cost steers the path, and switching modes keeps the cost
+ok 21 - an absolute custom cost steers the path, and switching modes keeps the cost
+  ---
+  duration_ms: 448.929242
+  type: 'test'
+  ...
+# Subtest: custom metric input is validated and clamped
+ok 22 - custom metric input is validated and clamped
+  ---
+  duration_ms: 450.818452
+  type: 'test'
+  ...
+# Subtest: custom metrics survive a save, and broken ones are repaired
+ok 23 - custom metrics survive a save, and broken ones are repaired
+  ---
+  duration_ms: 456.791271
+  type: 'test'
+  ...
+# Subtest: preset buttons stay plain, and Custom explains the numbers, also on phones
+ok 24 - preset buttons stay plain, and Custom explains the numbers, also on phones
+  ---
+  duration_ms: 469.618271
+  type: 'test'
+  ...
+# Subtest: a custom metric belongs to the city pair, like the presets, and a standby link keeps it
+ok 25 - a custom metric belongs to the city pair, like the presets, and a standby link keeps it
+  ---
+  duration_ms: 631.498858
+  type: 'test'
+  ...
+# Subtest: overlapping DDoS saves round trip and legacy attacks migrate safely
+ok 26 - overlapping DDoS saves round trip and legacy attacks migrate safely
+  ---
+  duration_ms: 680.415963
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17792.769999

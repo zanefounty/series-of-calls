@@ -1,0 +1,130 @@
+{
+  "id": "JURISDICTION-RESEARCH-REVIEW-2026-11-04",
+  "kind": "consolidated-review-proposal",
+  "checkedAt": "2026-11-04",
+  "status": "independent-review-proposal-pending-owner-acceptance",
+  "purpose": "Recheck all five jurisdiction observation references against official primary sources. This proposal neither changes research/reviews.json nor accepts claims, activates gameplay, or establishes legal or certification approval.",
+  "preserves": {
+    "priorReview": "research/jurisdiction-review-2026-11-03.md",
+    "priorCheckDate": "2026-11-03",
+    "sourcePack": "research/source/",
+    "note": "Older evidence remains unchanged; this dated check supplements it."
+  },
+  "references": [
+    {
+      "sourceId": "RES-AU-CLOUD-001",
+      "referenceId": "REF-01234d0db452b257",
+      "claimId": "CLAIM-4abda4d004716da6",
+      "requirementId": "REQ-4abda4d004716da6",
+      "acceptanceId": "AC-4abda4d004716da6",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "Cloud consumers assess their systems and shared responsibilities; assessment evidence informs an authorising officer and is not unconditional approval of every customer configuration.",
+      "historicalSourceDate": "Original page published 2020-07-27; last reviewed 2024-01-18. Claim first checked 2026-11-03.",
+      "currentFinding": "The source page remains available and calls for assessment against consumer requirements/risk tolerance, documented shared responsibilities, review of reports before authorisation, and ongoing monitoring. The current IRAP Consumer Guide page was last reviewed 2026-06-17; it requires defined assessment scope/deliverables and says the report informs a risk-based system decision. The official IRAP resources page lists 2026 program materials.",
+      "checkedSources": [
+        {"url":"https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation","title":"Cloud assessment and authorisation","date":"2020-07-27; reviewed 2024-01-18","supports":"Consumer assessment, shared responsibility, assessment reports and ongoing monitoring."},
+        {"url":"https://www.cyber.gov.au/irap/irap-consumer-guide","title":"IRAP consumer guide","date":"Reviewed 2026-06-17","supports":"Defined assessment scope and risk-based decision for a system."},
+        {"url":"https://www.cyber.gov.au/irap/irap-resources","title":"IRAP resources","date":"Retrieved 2026-11-04; lists 2026 guidance","supports":"Current program material is newer than the original linked page."},
+        {"url":"https://www.cyber.gov.au/sites/default/files/2026-05/IRAP%20Policy%20%26%20Procedures%202026.pdf","title":"IRAP Policy and Procedures 2026","date":"May 2026","supports":"Current program policy context."}
+      ],
+      "jurisdictionAndScope": "Australia; Australian government cloud-assessment and IRAP consumer guidance, not universal accreditation.",
+      "uncertainty": ["Specific PSPF/ISM controls, classification, entity policy, service scope, residual risk and authorising decision remain deployment-specific.","No legal eligibility or platform-wide approval is inferred."],
+      "recommendation": "revise",
+      "proposedClaim": "For an Australian government system, use assessment evidence for its stated service and scope, document shared responsibilities and consumer controls, and make and monitor a separate risk-based authorisation decision for the deployed system. IRAP evidence is not blanket approval of every configuration or customer system.",
+      "linkedRequirement": "Represent assessment scope, consumer controls, residual risks, conditional authorisation and ongoing changes separately; do not treat IRAP assessment as blanket platform approval.",
+      "linkedAcceptance": {"status":"partial","testIds":["AC-SOC-119","AC-SOC-120","AC-SOC-122","AC-SOC-124"]}
+    },
+    {
+      "sourceId": "RES-US-CLOUD-001",
+      "referenceId": "REF-d8e8c2b149f9b9ab",
+      "claimId": "CLAIM-2314f315d795c6a6",
+      "requirementId": "REQ-2314f315d795c6a6",
+      "acceptanceId": "AC-2314f315d795c6a6",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "FedRAMP evidence can be reused while an agency authorises its own system, configuration and integrations, with agency responsibilities and mission risk.",
+      "historicalSourceDate": "2026 Consolidated Rules page; first checked 2026-11-03.",
+      "currentFinding": "The agency-use page says certification is reusable evidence but each agency authorizes its own federal information system and accepts risk for its information, configuration, integrations, and agency-operated controls. The separate scope page says only an agency can decide whether its use is in scope. On 2026-11-04 optional early adoption has begun; mandatory adoption is scheduled for 2027-01-01, subject to area-specific applicability/effective dates.",
+      "checkedSources": [
+        {"url":"https://www.fedramp.gov/2026/agencies/use/","title":"Using a FedRAMP Certified Cloud Service","date":"2026 rules page; retrieved 2026-11-04","supports":"Reusable evidence and agency system authorization, configuration, integration and ongoing responsibilities."},
+        {"url":"https://www.fedramp.gov/2026/scope/","title":"Scope of FedRAMP","date":"2026 rules page; retrieved 2026-11-04","supports":"Use-case specific agency scope determination; not every internet service is in scope."},
+        {"url":"https://www.fedramp.gov/2026/timeline/","title":"Important Dates for the Consolidated Rules for 2026","date":"Retrieved 2026-11-04","supports":"Optional adoption from 2026-07-04; mandatory date 2027-01-01, with area-specific qualifications."}
+      ],
+      "jurisdictionAndScope": "US federal systems/use cases within FedRAMP scope. Does not establish DoD, classified, national-security-system or other defense eligibility.",
+      "uncertainty": ["Agency determines scope and applicable certification class/version for the actual use.","The 2027-01-01 mandatory transition is future-dated at this check; individual rule areas have separate applicability.","Do not apply FedRAMP to every agency internet service or infer defense approval."],
+      "recommendation": "revise",
+      "proposedClaim": "For a federal use within FedRAMP scope, reuse applicable offering evidence but authorize the agency system and assess its information, certified offering version, configuration, integrations and agency-operated controls. The agency decides scope. Apply the rules effective for the decision date; do not infer defense eligibility.",
+      "linkedRequirement": "Separate a fictional cloud offering’s assessment/certification from an agency system authorisation; preserve version-specific terminology and do not infer defence eligibility from civilian evidence.",
+      "linkedAcceptance": {"status":"partial","testIds":["AC-SOC-119","AC-SOC-120","AC-SOC-121"]}
+    },
+    {
+      "sourceId": "RES-JP-CLOUD-001",
+      "referenceId": "REF-6d84d6a737cf7adf",
+      "claimId": "CLAIM-7a874cbe68218153",
+      "requirementId": "REQ-7a874cbe68218153",
+      "acceptanceId": "AC-7a874cbe68218153",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "ISMAP evaluates and registers services for government procurement, distinguishes the main program and low-impact SaaS, and describes procurement from lists as the principle.",
+      "historicalSourceDate": "Official ISMAP page retrieved 2026-11-03.",
+      "currentFinding": "The official Japanese overview remains available, describes service-level review/list registration, ISMAP-LIU for SaaS processing lower-risk business/information, and procurement from applicable lists in principle. It links a March 2026 program review and 2025 ISMAP-LIU material. The overview does not establish that any named offering, integration or deployment qualifies.",
+      "checkedSources": [
+        {"url":"https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005","title":"ISMAP overview (Japanese)","date":"Retrieved 2026-11-04; links March 2026 program review","supports":"Program purpose, service-level registration, LIU scope, and procurement principle."},
+        {"url":"https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010301","title":"ISMAP Overview (English)","date":"Retrieved 2026-11-04","supports":"English corroboration of procurement from registered service list in principle."}
+      ],
+      "jurisdictionAndScope": "Japan government information-system cloud procurement under ISMAP/ISMAP-LIU; service-list scope, not supplier-wide approval.",
+      "uncertainty": ["Check current exact service entry, version, scope and list status.","Check procuring body, workload, integrations, information type and procurement instructions.","ISMAP-LIU is lower-impact SaaS eligibility, not a general substitute for ISMAP."],
+      "recommendation": "revise",
+      "proposedClaim": "Japan's ISMAP program evaluates and registers cloud services on the applicable ISMAP or ISMAP-LIU list; official guidance describes list-based procurement as the general principle. Verify the exact service entry, scope, low-impact eligibility and procurement instructions. A supplier listing does not approve every offering or deployment.",
+      "linkedRequirement": "Model exact service registration scope and distinct low-impact eligibility. Registration is not universal approval of every integration or information type.",
+      "linkedAcceptance": {"status":"partial","testIds":["AC-SOC-119","AC-SOC-120","AC-SOC-121","AC-SOC-123"]}
+    },
+    {
+      "sourceId": "RES-JP-AI-001",
+      "referenceId": "REF-807e645f0a490d75",
+      "claimId": "CLAIM-ed81e9aa7bb61a3d",
+      "requirementId": "REQ-ed81e9aa7bb61a3d",
+      "acceptanceId": "AC-ed81e9aa7bb61a3d",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "ISMAP registration does not remove the need for government bodies to address generative-AI-specific risks.",
+      "historicalSourceDate": "Official ISMAP notice includes update 2026-01-09; first checked 2026-11-03.",
+      "currentFinding": "The ISMAP notice remains available. It calls for separate handling of generative-AI risk; says a generative AI SaaS generally needs its own applicable registration, including external integrations; and says underlying registered IaaS/PaaS does not confer registration on an unregistered AI service. It describes a narrower registered AI development-platform case that still requires AI-specific measures. The Digital Agency published government generative-AI procurement/use guideline version 2.0 on 2026-06-12, after the ISMAP notice.",
+      "checkedSources": [
+        {"url":"https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070","title":"Notice concerning generative AI services","date":"Includes 2026-01-09 update","supports":"AI risk treatment, SaaS registration, no automatic inheritance from IaaS/PaaS, narrower development-platform case."},
+        {"url":"https://www.digital.go.jp/news/decb64eb-f26e-41cb-8d37-f3dd173108b8","title":"Digital Agency publishes guideline version 2.0","date":"Published 2026-06-12","supports":"A newer government AI procurement/use guideline supersedes the 2025 edition; announcement checked, not all operative clauses."}
+      ],
+      "jurisdictionAndScope": "Japanese government procurement/use of generative AI and ISMAP service scopes; not a blanket rule for every Japanese organisation.",
+      "uncertainty": ["Check current exact service-list scope for the AI SaaS, external model or development platform.","Review the full 2026 Digital Agency guideline/checklist before a specific scenario; this check used the official announcement only.","No named model or deployment is approved."],
+      "recommendation": "revise",
+      "proposedClaim": "For Japanese government use, ISMAP registration does not remove separate handling of generative-AI risks. Determine whether the AI service is itself in scope; underlying registered IaaS/PaaS alone does not confer AI-service registration. The ISMAP notice describes a narrower registered AI development-platform case and still requires AI-specific measures. Apply current Digital Agency guidance to a specific use.",
+      "linkedRequirement": "Require a separate fictional AI-use risk decision even when an underlying cloud service has eligible registration; processing changes can reopen review.",
+      "linkedAcceptance": {"status":"pending","testIds":[]}
+    },
+    {
+      "sourceId": "RES-EU-TRANSFER-001",
+      "referenceId": "REF-9ad9e2087bdedc1b",
+      "claimId": "CLAIM-ef7e6982b2ab8356",
+      "requirementId": "REQ-ef7e6982b2ab8356",
+      "acceptanceId": "AC-ef7e6982b2ab8356",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "The EDPB guide distinguishes adequacy, safeguards and derogations for transfers outside the EEA; parties and protection mechanisms matter beyond storage location.",
+      "historicalSourceDate": "EDPB guide retrieved 2026-11-03; page shows no publication/last-review date.",
+      "currentFinding": "The EDPB page remains available and sets three cumulative transfer indicators: a GDPR-subject controller/processor, personal data made available to another organisation, and a recipient outside the EEA or an international organisation. Chapter V conditions apply in addition to ordinary GDPR duties. The Commission overview frames rules across the EEA and lists adequacy, safeguards and derogations among other tools. GDPR Articles 44-49 provide the legal framework.",
+      "checkedSources": [
+        {"url":"https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en","title":"International data transfers","date":"Retrieved 2026-11-04; no page date displayed","supports":"Three-part EDPB transfer test and transfer mechanisms."},
+        {"url":"https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en","title":"Rules on international data transfers","date":"Retrieved 2026-11-04; no page date displayed","supports":"EEA scope and transfer-tool categories."},
+        {"url":"https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/","title":"Regulation (EU) 2016/679, English (GDPR)","date":"Regulation adopted 2016-04-27; Article 44-49 text indexed by EUR-Lex and checked 2026-11-04","supports":"Legal Chapter V framework. Direct HTML open presented automated verification; official EUR-Lex indexed legal text was accessible."}
+      ],
+      "jurisdictionAndScope": "GDPR personal-data transfers across the EEA to third countries or international organisations; not universal residency, member-state procurement or defense accreditation.",
+      "uncertainty": ["Determine GDPR applicability and exact parties, disclosure, recipient and onward flows.","Check current mechanism and safeguards for the specific transfer; adequacy can be limited and may change.","The EDPB SME page is explanatory; the regulation and current Commission decisions govern a concrete case."],
+      "recommendation": "revise",
+      "proposedClaim": "Where GDPR applies, determine whether a subject controller or processor makes personal data available to another organisation outside the EEA or to an international organisation. If so, apply Chapter V as well as ordinary GDPR duties, using the applicable adequacy decision, safeguard or limited derogation. Residency alone does not resolve parties, access, recipient or onward transfer.",
+      "linkedRequirement": "Represent information flows, parties and transfer mechanisms independently of residency; do not grant member-state procurement or defence approval from an EU-wide profile.",
+      "linkedAcceptance": {"status":"partial","testIds":["AC-SOC-119","AC-SOC-120","AC-SOC-122","AC-SOC-123"]}
+    }
+  ],
+  "limitations": [
+    "All five original references were accessible on 2026-11-04; per-source checked URLs and page dates are recorded above.",
+    "These recommendations are not owner acceptance, gameplay activation, a legal opinion, or certification.",
+    "Fictional AU/US/JP/EU profiles do not establish every jurisdiction, subnational/member-state rule, procurement outcome, or legal eligibility.",
+    "The 2026-11-03 review and original source pack remain preserved unchanged."
+  ]
+}

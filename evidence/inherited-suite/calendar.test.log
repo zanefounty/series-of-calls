@@ -1,0 +1,12 @@
+✔ #257 the calendar has real months and leap years (573.674274ms)
+✔ #257 a calendar month costs its monthly price, whatever its length (255.503749ms)
+✔ #257 loan statements and the intern budget follow calendar months (248.090157ms)
+✔ #257 conferences fall on the 10th of their month (252.057023ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1650.462318

@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "createdAt": "2026-11-03T19:19:45.241Z",
+  "tool": "image_gen.imagegen",
+  "modelIdentity": "not supplied by tool",
+  "style": "Witty illustrated operations; dark teal, mint, cream, amber and muted violet",
+  "scope": "New fictional Series of Calls artwork, not recovered upstream binaries",
+  "promptRecord": "artwork/BRIEFS.md records the art direction and authored scene briefs; full tool prompts remain in the authoring session.",
+  "derivation": "Sharp resize/WebP export; icons derived deterministically from existing favicon.svg, maskable inner art at 60% canvas; ICO contains PNG sizes16/32/48",
+  "assets": [
+    {
+      "id": "launch",
+      "brief": "Communications operations studio with a deliberately circuitous cable",
+      "source": "artwork/generated/launch.png",
+      "sourceSha256": "c67018abf8c0ab660e68871fcf800eddb0d88ed2a878f9a8b2ff9866108e6580",
+      "width": 1672,
+      "height": 941,
+      "outputs": [
+        {
+          "path": "site/images/launch-640.webp",
+          "sha256": "104d1dbd7310108eed6c0efff4eabaacfb7dc49f5c44932ac95b843d35ae7274",
+          "bytes": 49354
+        },
+        {
+          "path": "site/images/launch-1280.webp",
+          "sha256": "97a433d330e22dc7ce4509fbe542695f4422389c2148842761c67ed3d120a88b",
+          "bytes": 129594
+        }
+      ]
+    },
+    {
+      "id": "smb",
+      "brief": "Small repair business handling calls and appointments",
+      "source": "artwork/generated/smb.png",
+      "sourceSha256": "06e3171e9fbe0fcdbbc2a70f19099b4b99f520420de20a727d82c031f73fb7ce",
+      "width": 1672,
+      "height": 941,
+      "outputs": [
+        {
+          "path": "site/images/smb-640.webp",
+          "sha256": "dfe711a38b3c15dcf3c77395cd97311bc8af6340b28efa29a358c78eb67e9375",
+          "bytes": 73682
+        },
+        {
+          "path": "site/images/smb-1280.webp",
+          "sha256": "2a8a06ca4449dc94ac52c6cd3fdc699708d1bbbe6a9c6767de4f28f4f056d198",
+          "bytes": 239228
+        }
+      ]
+    },
+    {
+      "id": "enterprise",
+      "brief": "Mixed phone systems and staged meeting-room migration",
+      "source": "artwork/generated/enterprise.png",
+      "sourceSha256": "925d6a49d09befe6e55197a3912fb08da5200c32ba3900e97318d1371b65552a",
+      "width": 1672,
+      "height": 941,
+      "outputs": [
+        {
+          "path": "site/images/enterprise-640.webp",
+          "sha256": "0793ae81453f1ae83e4515b72b7c4b8fa0db2734db3212a154caca69ad327d65",
+          "bytes": 68882
+        },
+        {
+          "path": "site/images/enterprise-1280.webp",
+          "sha256": "4af15bc934cea02bb4bf0ba1c8bb592ba9da1d902f8e4377e3b6a09bd3512004",
+          "bytes": 202954
+        }
+      ]
+    },
+    {
+      "id": "government",
+      "brief": "Accessible civic service and controlled records processing",
+      "source": "artwork/generated/government.png",
+      "sourceSha256": "c0e927242c2149afcb60575984a73bab6478b8e7be9375bf4c3ccc12bc3e9f5f",
+      "width": 1752,
+      "height": 897,
+      "outputs": [
+        {
+          "path": "site/images/government-640.webp",
+          "sha256": "a01ce66a3f219bd5a8b8af36585b2fdf4ede73ca8c58092a4acb283757fbf153",
+          "bytes": 68256
+        },
+        {
+          "path": "site/images/government-1280.webp",
+          "sha256": "d3e30c2b19821ba7e57c7f2dcf64c4374f07ef51baab6b75f43ce0e31e2b789e",
+          "bytes": 209480
+        }
+      ]
+    },
+    {
+      "id": "defence",
+      "brief": "Remote administrative office maintaining local service while disconnected",
+      "source": "artwork/generated/defence.png",
+      "sourceSha256": "c67efd5282491fb1d5146b93f854b01cc8d8f31223b54d7b9e78d6d4118b7980",
+      "width": 1752,
+      "height": 897,
+      "outputs": [
+        {
+          "path": "site/images/defence-640.webp",
+          "sha256": "69dc0b5b6573dbcf8405be006be10b49b46a7c06afa436e7043065ea9e1fd21d",
+          "bytes": 62032
+        },
+        {
+          "path": "site/images/defence-1280.webp",
+          "sha256": "71f59ca091fcd55d45acc35c2f290501f398d58223e6530b034e761e19f58c76",
+          "bytes": 175760
+        }
+      ]
+    },
+    {
+      "id": "sp",
+      "brief": "Physical network paths sharing the same bridge failure domain",
+      "source": "artwork/generated/sp.png",
+      "sourceSha256": "e43ff46e084dc1fe594a8b29790836028826b1b4b5e309c9e194be13e058898e",
+      "width": 1672,
+      "height": 941,
+      "outputs": [
+        {
+          "path": "site/images/sp-640.webp",
+          "sha256": "2d3f76f85b88d70db7bfd738e73c7b65582710db7b9ab67cea118fbc8e7ef495",
+          "bytes": 82518
+        },
+        {
+          "path": "site/images/sp-1280.webp",
+          "sha256": "3a9f3c5506d10a9514eaa0634d31c58b139b06d4656971920137c14bc63cdf60",
+          "bytes": 234054
+        }
+      ]
+    }
+  ],
+  "derived": [
+    {
+      "path": "site/images/og-image.png",
+      "sha256": "482d7d0dc42e8fc9dc61e84db80baa26d6e5462d30f1bc134cbe0beb43e050fd",
+      "bytes": 1546994
+    },
+    {
+      "path": "site/apple-touch-icon.png",
+      "sha256": "0697abc0fd2a995514e087f5d533a3016484ff96224c12c4d14dabbea415d765",
+      "bytes": 4454
+    },
+    {
+      "path": "site/icon-192.png",
+      "sha256": "5e91fc5edfa37296d1cc5b5156103d7e1feb26ab49e56db85b32f32d49a1df6b",
+      "bytes": 4392
+    },
+    {
+      "path": "site/icon-512.png",
+      "sha256": "1df1803f9268b0af3a6ecf1a59d68cba87ef8986db4600d22f0ba95d4a5497ff",
+      "bytes": 16168
+    },
+    {
+      "path": "site/icon-maskable-512.png",
+      "sha256": "31d24de352f62bd638095b58d1500954ad00060f0677895f6e27b8f6dbed368b",
+      "bytes": 12455
+    },
+    {
+      "path": "site/favicon.ico",
+      "sha256": "7168ed7a42a7ef20006955edb5a5816b00de55415b32991e3ae5a77bbd09afa1",
+      "bytes": 2371
+    }
+  ]
+}

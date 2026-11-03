@@ -1,0 +1,4690 @@
+{
+  "startedAt": "2026-11-03T19:45:18.084307+00:00",
+  "finishedAt": "2026-11-03T19:50:40.394158+00:00",
+  "scope": "Complete tests/*.test.js inventory, each file in an isolated Node process with per-case TAP; dependency override, not locked release acceptance",
+  "dependencyOverride": "/home/zane-fountylabs/workspace/fountry/node_modules",
+  "node": "v24.22.2",
+  "testFiles": 187,
+  "tests": 1277,
+  "passedFiles": 187,
+  "failedFiles": 0,
+  "changedInputs": [],
+  "status": "diagnostic-passed",
+  "results": [
+    {
+      "file": "tests/admission-security-integration.test.js",
+      "fileSha256": "54e958108625044360895d8a7034256b4529e9e0a73511fa49f301c606213518",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/admission-security-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.116,
+      "log": "logs/admission-security-integration.test.tap",
+      "logSha256": "425569b8560e9f6184a4d39e8716d656ce1add669603b32bbd8ae36e7a0ceb97"
+    },
+    {
+      "file": "tests/admission-security.test.js",
+      "fileSha256": "ff095178fcc6e14191786826cfe72c6b86fc0ab0f9ec8b6efc2ce8479e586f25",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/admission-security.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.066,
+      "log": "logs/admission-security.test.tap",
+      "logSha256": "847a2488d9100ea218171668ec55a13f5480da5105b394f76b7c68170194390c"
+    },
+    {
+      "file": "tests/advanced-admin-ui.test.js",
+      "fileSha256": "70fdcad7dde83d49d42df2a3b24f0776c5dd006c35bf521588d17aba12753eec",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/advanced-admin-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.403,
+      "log": "logs/advanced-admin-ui.test.tap",
+      "logSha256": "dbb983e39487dd72a58f4809fc0a76e411c314e0260d84ce8534190f2fa141bd"
+    },
+    {
+      "file": "tests/advanced-boundaries.test.js",
+      "fileSha256": "993234ba656acf2b33c672fe1ee5ab1d8a31dc23c9ef304156a595bf101e7a2e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.066,
+      "log": "logs/advanced-boundaries.test.tap",
+      "logSha256": "5dcdba65d5578d3792d57f91b65ea7e70127693acc3fe2d34868b939f22debdc"
+    },
+    {
+      "file": "tests/any-home-city.test.js",
+      "fileSha256": "eb69c47f653c7861187400c1485933d15dc1ed1df16672b5b4d1c1e28878e0b9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/any-home-city.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.956,
+      "log": "logs/any-home-city.test.tap",
+      "logSha256": "6cc4074c9a2f0392e894d0cd84aaf72462a4288bfde1eb8bffed008b2ea65b53"
+    },
+    {
+      "file": "tests/architect.test.js",
+      "fileSha256": "45017f1a1f7adb57d95dc914c67d00eda9573cde05a12556f3bc70969d667d6d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/architect.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.665,
+      "log": "logs/architect.test.tap",
+      "logSha256": "5f2adba2c665f8f74e72277e3df15c43ecd91067d6630d69b56c64a0dc420d22"
+    },
+    {
+      "file": "tests/artwork-entry.test.js",
+      "fileSha256": "72bbe08591e3233c3023f7e814629ae3bbeb37aab5a8401dd7eaa01444149e29",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/artwork-entry.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.272,
+      "log": "logs/artwork-entry.test.tap",
+      "logSha256": "0429c3439e41dd6b84dcd136add5da61010b84377ea3b460153ae1ce5053eb28"
+    },
+    {
+      "file": "tests/assessment-packs.test.js",
+      "fileSha256": "859a5d27de6d3bbfd859af692975ada1542a555cd57b1f5fa134703f8532412d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/assessment-packs.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.116,
+      "log": "logs/assessment-packs.test.tap",
+      "logSha256": "f0ef88de31f83aefce61d15684bee254e6599c97b0a6ed201d69fd2038e65ccd"
+    },
+    {
+      "file": "tests/au-north.test.js",
+      "fileSha256": "c94da12b230495cec811db488657e9cd1ea886f887f6568e2b259cd2d82b9b1c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/au-north.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.914,
+      "log": "logs/au-north.test.tap",
+      "logSha256": "644a29f13e4d3d1de89588ca5698ea7f5cbb107c70498ea4851630d4eaf5480a"
+    },
+    {
+      "file": "tests/automation.test.js",
+      "fileSha256": "ac952c86f9cf328c8a63a078849d3c83e4508399277ecfb26033ec437478a616",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/automation.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 5.05,
+      "log": "logs/automation.test.tap",
+      "logSha256": "5d5031365bc8620bc88c0922a6c42c3c72d97a89b716c17791881a3a0c53c69f"
+    },
+    {
+      "file": "tests/backbone-core.test.js",
+      "fileSha256": "f668bf1c3ebc8899bef1af1cdbc77c8f7aa32d956cf53c40dde0bb7a215a72f7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/backbone-core.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 13,
+        "suites": 0,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 15.349,
+      "log": "logs/backbone-core.test.tap",
+      "logSha256": "bc816a1f8d7024a03f63f8b185c9d19a26959b12f92b2b1cdb594afde895a194"
+    },
+    {
+      "file": "tests/badges-variants.test.js",
+      "fileSha256": "56ced1b0ed5a49bf3e7dee125bf0a889dc64dcea70b7de89d3d290a44f79f51d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/badges-variants.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.266,
+      "log": "logs/badges-variants.test.tap",
+      "logSha256": "39042449036f22c6a6cb13696fde979159495ceffe329739b44cb122a6d187bd"
+    },
+    {
+      "file": "tests/best-effort.test.js",
+      "fileSha256": "45659bd88114ad63bc69300ff68dfeca41737b574cc88169592dbaaafb1f7c10",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/best-effort.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 12.15,
+      "log": "logs/best-effort.test.tap",
+      "logSha256": "c59ba9f297c3a4065b429251c83744722e039f7e2bb3279d823b1dba76477849"
+    },
+    {
+      "file": "tests/boundaries.test.js",
+      "fileSha256": "09c294161066d98daaec34dc838e430d82f666bea3a5a4b3bea4173ac8b79261",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/boundaries.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/boundaries.test.tap",
+      "logSha256": "e6b141638b1e9e420b3b7023d20a1b1c3ac70cafcad7299c6d10822a6e90c0ec"
+    },
+    {
+      "file": "tests/browser-campaigns-contract.test.js",
+      "fileSha256": "c200529173c40e770ff3d83ba03ae8fef22d8b7fcbd91b9ee8bf5064cca05ad7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/browser-campaigns-contract.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.321,
+      "log": "logs/browser-campaigns-contract.test.tap",
+      "logSha256": "b0a587225ba7590a6e2d4475ac46b4764dd4149cef38b46474209ea4d1e6c1e5"
+    },
+    {
+      "file": "tests/build.test.js",
+      "fileSha256": "3803c57b4300cf565314ef16954d4a5ca8b8280f9148a2dfdf4bcb92bcd61886",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/build.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.517,
+      "log": "logs/build.test.tap",
+      "logSha256": "d858d7b63a019431e8b68b1c7b56dafb0ffa35129676e1c8445a2411d98e6c06"
+    },
+    {
+      "file": "tests/business-metering-integration.test.js",
+      "fileSha256": "e0a3d3141ba2aa7d65c8ec1ac7c4869f262dcd797f88b99e664fe83f422040ab",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/business-metering-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/business-metering-integration.test.tap",
+      "logSha256": "4bfe228b516067d1d942de575a73ac950b1e6b222b366312084c29a8ba06773c"
+    },
+    {
+      "file": "tests/business-pool-integration.test.js",
+      "fileSha256": "5a25c72fac9b0250d57c464d3d8bd4b02396efb68973a60e85c999b1ad7c70a2",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/business-pool-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/business-pool-integration.test.tap",
+      "logSha256": "d4ffdbbfd10f10a773c4188e06b873660053dc9d83df3b43559aa736a4dd3e5f"
+    },
+    {
+      "file": "tests/business-pool-ui.test.js",
+      "fileSha256": "b1bd351bc7a513dbf9bfd59cb63167e17e3cad98f53688e0fe1fcb667c08eebb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/business-pool-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.33,
+      "log": "logs/business-pool-ui.test.tap",
+      "logSha256": "86d04a00889a4d1530235e0c165bfee773aa8687ca00001e8da989d753c4b0b8"
+    },
+    {
+      "file": "tests/business-shared-allowances.test.js",
+      "fileSha256": "05270addd642fb4f931cbdf7e16ded4330f08d37d082e0f5fb34e6edd4a7aeec",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/business-shared-allowances.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/business-shared-allowances.test.tap",
+      "logSha256": "0dfb6825c517bae17b2fdff5d8247af34b531228e332d95e74f208cd9c902d55"
+    },
+    {
+      "file": "tests/business.test.js",
+      "fileSha256": "ca583d0178ab57c42e2aaf12e71708e1ba61d6cbf3e441cd28ebb085d7faebb4",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/business.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.315,
+      "log": "logs/business.test.tap",
+      "logSha256": "30f585a5594f7be1c33b888c97191e75ccbdb565d09ce06ddf7b597696a81042"
+    },
+    {
+      "file": "tests/cable-labels.test.js",
+      "fileSha256": "0caa9666ca9022e65859bdd20c4a72f4fa77519de048fc18c2fae036814891a2",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/cable-labels.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.321,
+      "log": "logs/cable-labels.test.tap",
+      "logSha256": "68f8828c53f02f21477293ca8c28a4d77a18a3db5cc5d796447295dee289f2b2"
+    },
+    {
+      "file": "tests/cable-ships.test.js",
+      "fileSha256": "65d4104131b69c8652c8244c650318089c07c2e9b2d97eb05156897b9922b4a9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/cable-ships.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.357,
+      "log": "logs/cable-ships.test.tap",
+      "logSha256": "e7d8561c03df6296b46d7d5b68468f0243d364bdae13537d30045fee0d43dbb3"
+    },
+    {
+      "file": "tests/cache-ports.test.js",
+      "fileSha256": "7827333d91cd180fac42b969cde7f118a0fe28cc9a966468952a40b2f4de1a04",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/cache-ports.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.371,
+      "log": "logs/cache-ports.test.tap",
+      "logSha256": "83b9b253461125cad14bcae6cb214a761e889193e2b5972c54bb5327a4074a6d"
+    },
+    {
+      "file": "tests/calendar.test.js",
+      "fileSha256": "f4cc8555fff5a22dd281b726a9b7697092b5f1df0485cd8c39c05a19337e1b3b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/calendar.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.276,
+      "log": "logs/calendar.test.tap",
+      "logSha256": "e201b3eb5df22b47d3f97de7a640d9bdd7776e6795d94a2c1519056bf12126d1"
+    },
+    {
+      "file": "tests/calling-achievements.test.js",
+      "fileSha256": "96b84aa41389703686f23f3cb3467495ae1fc4da1d10864e247ae01f1434eee0",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/calling-achievements.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.323,
+      "log": "logs/calling-achievements.test.tap",
+      "logSha256": "f5e2d240dad56ece85d9e5d0824bb860c7f86307f861c6c3135860b88a31c1cc"
+    },
+    {
+      "file": "tests/calling-policy.test.js",
+      "fileSha256": "fbb19f61d4545bf07a44274f3a4bc4c62029376156695b53a76f56a2fb414bfc",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/calling-policy.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/calling-policy.test.tap",
+      "logSha256": "a0fbc9211a560d6287099a69a83c88d5721bda6f7dd2a60ae9a295632e73b8b9"
+    },
+    {
+      "file": "tests/calls-mcp.test.js",
+      "fileSha256": "4db3dd9a038e0f2780e8e3e3591b3c03517c71f9fcf2319668e8622db6a2842b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/calls-mcp.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/calls-mcp.test.tap",
+      "logSha256": "0cbb4dc04576c2d6863a659738534ba27b222e71888d748727962a59779a08e0"
+    },
+    {
+      "file": "tests/calls-offline.test.js",
+      "fileSha256": "63af0ac2291d680b16fa8d209fa5e1b17328bd43d8610236aed9353bbb4b1172",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/calls-offline.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/calls-offline.test.tap",
+      "logSha256": "917a7c18b930148150798e57bf0944e8835b15e1aacb07cc140d6c9e97960250"
+    },
+    {
+      "file": "tests/campaign-integration.test.js",
+      "fileSha256": "bd2b1fcab5f3ed6883deef2f1f39ec3fde9d86a0ca0b163d1bc58eb627fa2465",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/campaign-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 4.645,
+      "log": "logs/campaign-integration.test.tap",
+      "logSha256": "ee245fc321b4797f5e53dbc7b97aa4a29b5f164072659eb8328e0ce4525c300a"
+    },
+    {
+      "file": "tests/campaign.test.js",
+      "fileSha256": "2f2f1e71884bffc632e79204b02b46f58cba80f026b62af78295fd6573fb795b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/campaign.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.417,
+      "log": "logs/campaign.test.tap",
+      "logSha256": "9570e52b99e4d313033eec0265ae63c159e5858b608cfe373783bffaad103cee"
+    },
+    {
+      "file": "tests/capability-progression.test.js",
+      "fileSha256": "fa9a6e14df6bc8a4476f419ad993ae16f9f0b8be15ef26e0f88531175a966c13",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/capability-progression.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 36.133,
+      "log": "logs/capability-progression.test.tap",
+      "logSha256": "8dc9e9f222cf268d9a7c9a897ead644b16dc4d7071caacbb8a4928341c168c2b"
+    },
+    {
+      "file": "tests/capacity-deals.test.js",
+      "fileSha256": "99518585711911bcf1e6f6e30d7c51203fc55db57c0c519862978fe6a85063e7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/capacity-deals.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.123,
+      "log": "logs/capacity-deals.test.tap",
+      "logSha256": "1b98843fdf283b0495f10262b64a1d15c64bb22bc4d1469b89c9313737092851"
+    },
+    {
+      "file": "tests/channels.test.js",
+      "fileSha256": "f6af0794808b851033b49d7bdfbc176ad34e7477b90b2699e2fba15604c19588",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/channels.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/channels.test.tap",
+      "logSha256": "42ac2b446d872134546eefc1b25bc1a03eb1315a200026c23a53b713458f9dbc"
+    },
+    {
+      "file": "tests/chaos-monkey.test.js",
+      "fileSha256": "5a0305bce8bf952690d752fe8325aa7888f4b805a92ac85a880af57b01e51e70",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/chaos-monkey.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 15.7,
+      "log": "logs/chaos-monkey.test.tap",
+      "logSha256": "50e874278ce6605f21026aac505b3a1d2d43bef715ccab812b6885da8f85af67"
+    },
+    {
+      "file": "tests/city-size.test.js",
+      "fileSha256": "f7f7b5b4c81688189967da0eff27b826b28b7b7fee78624e503af6b936f23037",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/city-size.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.131,
+      "log": "logs/city-size.test.tap",
+      "logSha256": "a790625122fbb96c67fe88b29bc20da0ea2a968a5404dc4cc3ccf3446bfc3d79"
+    },
+    {
+      "file": "tests/cli-capture.test.js",
+      "fileSha256": "382a34a85b190572393ee9ee805fb7c12f945d5d14ea6e7ba4dbe00b706953e7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/cli-capture.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.125,
+      "log": "logs/cli-capture.test.tap",
+      "logSha256": "57b6ed783f89fb54318ab33006f672f294b609f41fe87a97ba6420bcdc2e3871"
+    },
+    {
+      "file": "tests/communications.test.js",
+      "fileSha256": "93e52e02979c822ef4cd2366f5cbb8fd2c7391e9c498ac9224a4c8806d18590e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/communications.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 14,
+        "suites": 0,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/communications.test.tap",
+      "logSha256": "5abcd87302a2f94f9ae5ba019569b5ae03e8436ff68ff1daf0f87c1c39baa67f"
+    },
+    {
+      "file": "tests/compute-idempotent.test.js",
+      "fileSha256": "54c18f0bdee250b7062f504411e1ed5c4a02c50c4858b8e9c20300b230bac8d4",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/compute-idempotent.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.146,
+      "log": "logs/compute-idempotent.test.tap",
+      "logSha256": "bac6074e5ad61d59d6309466ac2e2b51c3d93e4e9252f202aa4abcddaaa005f1"
+    },
+    {
+      "file": "tests/contact.test.js",
+      "fileSha256": "14e1811929410b1a28040bc3a60dcf66086a55613f5dadfb8b90df747352176c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/contact.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/contact.test.tap",
+      "logSha256": "f1065e5d2e2f50a7fc7b7705a20ce61415c1a16068d8d00c2c37946f175a4837"
+    },
+    {
+      "file": "tests/ddos-floods.test.js",
+      "fileSha256": "4329f0b9e1990252e32bd082a5d9a43a67dd884577b3c7c699dec1a8a64dd9a8",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/ddos-floods.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 12.932,
+      "log": "logs/ddos-floods.test.tap",
+      "logSha256": "5672b5716bf67e13b8ca052f0622bf2011102db3a65acea766ab30b3cf670a51"
+    },
+    {
+      "file": "tests/ddos-model.test.js",
+      "fileSha256": "399163578e7ab446486306736cb4e2bcd09496e0e214059b79e2f041a0a86182",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/ddos-model.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 15.353,
+      "log": "logs/ddos-model.test.tap",
+      "logSha256": "c5e769fa232777d4f44947ee11570247ebcc49ea2a8f992e1c85ac5d92e69e21"
+    },
+    {
+      "file": "tests/direct-egress.test.js",
+      "fileSha256": "75486ea370ff0ebe3e698e5c4e3c47c5b2459ead8f0309059cd58831739e888a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/direct-egress.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 14.474,
+      "log": "logs/direct-egress.test.tap",
+      "logSha256": "5126db9ea7a908270635359dea196f52b24c23bce0f3238e585f9670098fd890"
+    },
+    {
+      "file": "tests/domain-admin-ui.test.js",
+      "fileSha256": "f3fc09c0bc11bf577a504ef673dca1c762d16cfc7a2bc0e2bb1a1fe096812072",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/domain-admin-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.882,
+      "log": "logs/domain-admin-ui.test.tap",
+      "logSha256": "ce5e017d6dcf991fcf297fe3c144a67395c7f85a794d02a4c475e1b04772d634"
+    },
+    {
+      "file": "tests/domain-integration.test.js",
+      "fileSha256": "b34a55b53dde0b8aabcb88813311f96b8eacab171ccd9699f09ae3aaebc0065a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/domain-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/domain-integration.test.tap",
+      "logSha256": "3b30bbfe34c4364c7a6836fb026d07b096dc389eb6b5c76a9ad7aa1ec122ee99"
+    },
+    {
+      "file": "tests/estate-lifecycle-integration.test.js",
+      "fileSha256": "25b9dc486f02b1671459a244430ff2e8749324d2eb4c135aa0d07925469e511f",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/estate-lifecycle-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.166,
+      "log": "logs/estate-lifecycle-integration.test.tap",
+      "logSha256": "f5e3eb0f0c046dc89006be2884bac303a5316713cccc6fc75a88ca627d142711"
+    },
+    {
+      "file": "tests/estate-operations.test.js",
+      "fileSha256": "1ca70a26172abee3359647aa717b863c073aeff6b760623122fc719ffb335ed1",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/estate-operations.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.064,
+      "log": "logs/estate-operations.test.tap",
+      "logSha256": "29576bff9e8e7ba6821ab6c704cc86dbaca580cad2e64f59cf3765c187ac32d8"
+    },
+    {
+      "file": "tests/eyeballs.test.js",
+      "fileSha256": "69354793a1bd48026abbeb33d539458a4a528074e50463b228dad5cd088f5a5a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/eyeballs.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.397,
+      "log": "logs/eyeballs.test.tap",
+      "logSha256": "aaa30ce1d3980b586e91e6a62c5a06b1b55deaafdfeb28b3059fbf84c9e07dd4"
+    },
+    {
+      "file": "tests/fiber-broker.test.js",
+      "fileSha256": "dfaa81756a5dbb42baf50d0570090465a38845909d6c38992588b91d1b4acc3b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/fiber-broker.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.602,
+      "log": "logs/fiber-broker.test.tap",
+      "logSha256": "880ebe6b63839b51d1b7e6119bf49b52d048acfb4fd952a23b15a39ddade265d"
+    },
+    {
+      "file": "tests/find-city.test.js",
+      "fileSha256": "ef0a833ac0fee5491ccc54e4d2bb03741c263daf00b1c26f438c2f5dadd07eb5",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/find-city.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.897,
+      "log": "logs/find-city.test.tap",
+      "logSha256": "00c1028b03d3c9737776a529688fb2d7a48eee3d7717927f2d81105a137ba647"
+    },
+    {
+      "file": "tests/focus-link.test.js",
+      "fileSha256": "13062191da677a167d581ef72da833f5308018949c9a5b8284ae2524f8ec8701",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/focus-link.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.874,
+      "log": "logs/focus-link.test.tap",
+      "logSha256": "383cb955564d52403c6e8d402411335f7dd2bec2abbb9b0bc602d161f3c4f8f9"
+    },
+    {
+      "file": "tests/game.test.js",
+      "fileSha256": "9bd936f49df9c22de9d9025a42838f07f0e3ca05138774ff1baa11ec818babe6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/game.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 26,
+        "suites": 0,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 17.717,
+      "log": "logs/game.test.tap",
+      "logSha256": "de4e7f11558ba6659e063a8f94eb1444bdd9617752af854b60c19a405d72c503"
+    },
+    {
+      "file": "tests/gameplay-rules.test.js",
+      "fileSha256": "f4a6f931d080fea217e6bcde0ef34f6bb62aebb88476bc25c5d14e009f9d87d4",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/gameplay-rules.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 30,
+        "suites": 0,
+        "pass": 30,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 19.536,
+      "log": "logs/gameplay-rules.test.tap",
+      "logSha256": "f71d1faed90cb8af412ff8d5473e650396cf9d8d659666d84793d755c3006a4f"
+    },
+    {
+      "file": "tests/gangnam.test.js",
+      "fileSha256": "55fd98582dd5d253572df0576ebd46d4a07950ec767a502e718df888f8a13f24",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/gangnam.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.729,
+      "log": "logs/gangnam.test.tap",
+      "logSha256": "a26525321e4337b7d42b13674c943cc638e73e25ed455b410a970e3dd2fbce13"
+    },
+    {
+      "file": "tests/glowball-sakura-lager.test.js",
+      "fileSha256": "0e92027316d3960959c11afa4385319d58825d5ec683ea8404efa6ff914b6ce8",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/glowball-sakura-lager.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 12.591,
+      "log": "logs/glowball-sakura-lager.test.tap",
+      "logSha256": "65cfaf76a8cfb0cbb57b62fded01856f1b6911118a56b95d4e5903bdb772974b"
+    },
+    {
+      "file": "tests/i18n.test.js",
+      "fileSha256": "7c447e2dcffd005b304c53072921b908ffe880f22a2010e4b11c1c1444ac4fc7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/i18n.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 25.354,
+      "log": "logs/i18n.test.tap",
+      "logSha256": "cd69e2abece74bd8f95ffdb279699fd80c839d8d4464745cd4663d1c93020ab5"
+    },
+    {
+      "file": "tests/inbound-calling.test.js",
+      "fileSha256": "4e7e81be92b984ab4f5b1901834cdf64e3f2018fef4792e89115af193f5d4c80",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/inbound-calling.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/inbound-calling.test.tap",
+      "logSha256": "8029e7ec49038a0ef350d5cf0c33efec47f4a8038edff2949d8d5683b09486b8"
+    },
+    {
+      "file": "tests/information.test.js",
+      "fileSha256": "0a487fe6b7401bc1e2a38d6115935fbb67e30b5787d7e117b3b9786971cb1b56",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/information.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.809,
+      "log": "logs/information.test.tap",
+      "logSha256": "032c4f7a6655067d397874203ef052c7fccb2905f5631568ddb6a16c44beef04"
+    },
+    {
+      "file": "tests/interaction-ui.test.js",
+      "fileSha256": "359082c4aa100c17d6db36a5026f24ed9341c71f5b2d56d346e54ba8a23dc50d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/interaction-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.32,
+      "log": "logs/interaction-ui.test.tap",
+      "logSha256": "24395f56dc1ff1ef9554a811350648b6231eaafdbf9f39a362019d3f6c3d0124"
+    },
+    {
+      "file": "tests/intern-optics.test.js",
+      "fileSha256": "59e2e6ddf9ee7c32b8d3801c09baa36a626eabbb71fa745c99563e18f2c2e33e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/intern-optics.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.184,
+      "log": "logs/intern-optics.test.tap",
+      "logSha256": "c417308727537406d1db0cdd578e9a0d882222924d03674d6c0d0495d6446ebc"
+    },
+    {
+      "file": "tests/islands-and-arctic.test.js",
+      "fileSha256": "72cfd9abc37f0afcbcb3ee3cfeff4c53df186304c31740cb17ab601955ce06e9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/islands-and-arctic.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 8.247,
+      "log": "logs/islands-and-arctic.test.tap",
+      "logSha256": "31223db498c04dad9693cd4a8f67c7d94d47eab8e287535e1c30670c9c251327"
+    },
+    {
+      "file": "tests/issue-exercises.test.js",
+      "fileSha256": "caee775f2d4feceb1f62d817522e3d7e333d9b5341524110ead0fb2e211acb82",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/issue-exercises.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/issue-exercises.test.tap",
+      "logSha256": "dc6e1c3ed6b61b743af98803a88bb7f007090d9e6039c155a8a625010c0b638e"
+    },
+    {
+      "file": "tests/issues.test.js",
+      "fileSha256": "02c4e099a377294cb2b0342723233921e29ca9dd3f49961fc98f792ff7e214c2",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/issues.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 70,
+        "suites": 0,
+        "pass": 70,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 42.541,
+      "log": "logs/issues.test.tap",
+      "logSha256": "6c8bc8f239fe3c3618048d43c366e6299c7a9c470c2240ae3b0dd4e24c4953f7"
+    },
+    {
+      "file": "tests/journey-integration.test.js",
+      "fileSha256": "3d3261345f84e2b9eee97d02c9f475ba29f361156f1ee5ca7967b994993f0670",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/journey-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.166,
+      "log": "logs/journey-integration.test.tap",
+      "logSha256": "d0b4d2e4deccbb1d36fcb9a41a5481e6f4878a2d755619d2b1e6b35af8c7c31e"
+    },
+    {
+      "file": "tests/language-picker.test.js",
+      "fileSha256": "ebf7cc0b8c34bef1f09c0a0605adffa26c2c2c937185f4e96c32874108414459",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/language-picker.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 8.412,
+      "log": "logs/language-picker.test.tap",
+      "logSha256": "92563b5f236aed2cb4f707dea73bfb0e931f7704cf039b6cd4cdec539def5f47"
+    },
+    {
+      "file": "tests/latency.test.js",
+      "fileSha256": "59e198a34f36dc76bbdd08ddc1208899cf93e2ccab08b92f9bdd8f16c02c964e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/latency.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.814,
+      "log": "logs/latency.test.tap",
+      "logSha256": "699b47243d43542d5af04d2bca74bbec60c1bbcf2a525c3d1df87fe26204a133"
+    },
+    {
+      "file": "tests/learning-integration.test.js",
+      "fileSha256": "7894068fe1aa8622f4c50ecf9f8d83a3ed5865031687398ff46f5365dcf7212b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/learning-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.578,
+      "log": "logs/learning-integration.test.tap",
+      "logSha256": "8a6b9c1d6cc433d974cf7811e1392459ebcd8d1364658e2f8d3db44397b4b7dc"
+    },
+    {
+      "file": "tests/levels.test.js",
+      "fileSha256": "00ab32e95aee5d8aebfe7420431a4bf5294290a8faa1ab8b4b49f4a9215dad1d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/levels.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.49,
+      "log": "logs/levels.test.tap",
+      "logSha256": "a1008601415368615a4029522f57daa27ff071b14ad3c65774255817b22aea1b"
+    },
+    {
+      "file": "tests/link-metrics.test.js",
+      "fileSha256": "24b3f9644384758580a4467b9389ebee32a8ad48f049ad61f90d5819fa0fba36",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/link-metrics.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.382,
+      "log": "logs/link-metrics.test.tap",
+      "logSha256": "f449ece4096d3d97870e696c2b69c3b0fc8fed88912b68c56cd2e149df1e0e8c"
+    },
+    {
+      "file": "tests/link-trial.test.js",
+      "fileSha256": "1b68ce7ffdbe9f16cd08c8770b54b930da19404efe3854705d59c07e0279f8bb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/link-trial.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.567,
+      "log": "logs/link-trial.test.tap",
+      "logSha256": "1a411682ecae006e3136fbb13cac85be859e828261d502b501960eef3bcbb7b4"
+    },
+    {
+      "file": "tests/load-time.test.js",
+      "fileSha256": "28dc997ef5771e56c0a6afc577083af197d8daf882127a883eff024c2bd5d96a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/load-time.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 26.398,
+      "log": "logs/load-time.test.tap",
+      "logSha256": "93118044e3c0332f02aa3a11779f574555700547ef794604769832937dd30a9b"
+    },
+    {
+      "file": "tests/managed-integration.test.js",
+      "fileSha256": "6320b68f64d193e5b690aa8813d19225ca2b9a7793afa583613eb37aa52cdb46",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/managed-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.266,
+      "log": "logs/managed-integration.test.tap",
+      "logSha256": "3359d1ae5eab0e998155f2d193e5f2cf9b3805b75a1a337138fbe21474d6cf13"
+    },
+    {
+      "file": "tests/managed-operations-ui.test.js",
+      "fileSha256": "89cd84ada9c2a84c0f67fd10b60ec44093f9406ff7817b19cec3f68e5fddd3cb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/managed-operations-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.426,
+      "log": "logs/managed-operations-ui.test.tap",
+      "logSha256": "23229d47bd35a223ee26fd4b1a1a739883e199c63a7279e3fa0761aeba95a235"
+    },
+    {
+      "file": "tests/managed-operations.test.js",
+      "fileSha256": "c1947d806a0db860834714f980be17be36187f1725090cf47d9fba9f2e343cb0",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/managed-operations.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/managed-operations.test.tap",
+      "logSha256": "368741310bb6716e2835d6a5dbf2412ef709bf8b952db6db838bd43260ee21e1"
+    },
+    {
+      "file": "tests/market-integration.test.js",
+      "fileSha256": "c95fb8b77b3c13fa2a99c686b7fa0f38ccb260d7c6e8eb9bdbb1802abac4a56a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/market-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.325,
+      "log": "logs/market-integration.test.tap",
+      "logSha256": "6786974b17d0c3028d602634eff251120cd69ec38ed44095bb4b7b503ea3ba2c"
+    },
+    {
+      "file": "tests/market-qualification.test.js",
+      "fileSha256": "3607511d09776d00e6d1acd13cb82e1c9204201b75fdbc66335a4a8e04cbdecf",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/market-qualification.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.46,
+      "log": "logs/market-qualification.test.tap",
+      "logSha256": "f0012164519d585a6ddcd9faa8017fa5d8c44de73fff0e2b469b213df100159e"
+    },
+    {
+      "file": "tests/market-ui.test.js",
+      "fileSha256": "6101e739311a05d46afc43ef281216118c4b5d86c7263bf49632aedca2d68bfb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/market-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.471,
+      "log": "logs/market-ui.test.tap",
+      "logSha256": "d9b2a6f702e342edef9fc8a530dfe0dfad36e0ad00f88ed3632cb598351f9c1d"
+    },
+    {
+      "file": "tests/mcp-commands.test.js",
+      "fileSha256": "4140c9c9c711c97f0332189273ab5d235599a0495f4a60a08dfb3bcdbf8d3018",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/mcp-commands.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 18.744,
+      "log": "logs/mcp-commands.test.tap",
+      "logSha256": "dc1a6b81b76f3747abeab20f11d7c67406c211e55ea6d27c5cddb00a0d28b5bc"
+    },
+    {
+      "file": "tests/mcp-state-roundtrip.test.js",
+      "fileSha256": "d337d78056e571f7fbc1d0956d60bee6f415c6338fe879eb268fca3789bf7679",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/mcp-state-roundtrip.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.716,
+      "log": "logs/mcp-state-roundtrip.test.tap",
+      "logSha256": "d4bb0f3db4f52898aac50fcc3153929bfc0b33d97b173427e171f98b9d17a9de"
+    },
+    {
+      "file": "tests/mcp.test.js",
+      "fileSha256": "72d9f5817770fc0b2b3443e5b92285dede348107fc5836b035d01d59e9b2c08c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/mcp.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.325,
+      "log": "logs/mcp.test.tap",
+      "logSha256": "46912e9224edafca60ec8b1aa5135c2b335dce8d4e71d67dc0942925105f30b8"
+    },
+    {
+      "file": "tests/media-integration.test.js",
+      "fileSha256": "ea8989318fe5bc153121827cd5c9691fe729a51757b9a0df7b5386b4e60082d2",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/media-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.166,
+      "log": "logs/media-integration.test.tap",
+      "logSha256": "e9160636ad287730b171b15d513bfc73f71109a10c9405767cd18f4e8791be73"
+    },
+    {
+      "file": "tests/media-negotiation.test.js",
+      "fileSha256": "895f4fd73bf4a25a7a37f9c63f3312b6906bc0efebd02d3155c5dac37bd282c1",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/media-negotiation.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/media-negotiation.test.tap",
+      "logSha256": "927b74b133e96d50be4c79d51f791051f499690c5d20621d53d92855b0605369"
+    },
+    {
+      "file": "tests/media-ui.test.js",
+      "fileSha256": "b84a674a2c643be1fedca588ef550b1fe780b5835e014f3b0e0ea02c1dbc2a63",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/media-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.126,
+      "log": "logs/media-ui.test.tap",
+      "logSha256": "8fb409e8209d4616fded74b32f91fc00069ff6b7582facf3e6d1d83332da2ec9"
+    },
+    {
+      "file": "tests/metric-panel.test.js",
+      "fileSha256": "fa6c7d0cdb60412e8b855d900d41b539872fd5b7cec59ee4664deb521bbe678b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/metric-panel.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.475,
+      "log": "logs/metric-panel.test.tap",
+      "logSha256": "2dd1e915e240a79b16fdf21d8c033577647a5929b5c5e9a8d493fc0c98dfb2ee"
+    },
+    {
+      "file": "tests/modes.test.js",
+      "fileSha256": "97b1f58a0bb67091e99e7786a371a542ed165b1ffca317395b59179e409d29ec",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/modes.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 24,
+        "suites": 0,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 20.105,
+      "log": "logs/modes.test.tap",
+      "logSha256": "588c9c16df00e0489e1abfb2fb416d3edfb6a1f6db4faa5a51383d13d2820cd0"
+    },
+    {
+      "file": "tests/module-boundaries.test.js",
+      "fileSha256": "282cf0565bfd15fcfe4f762c2bea1bea173c548ccaed6d1c9300295403322f47",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/module-boundaries.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 16,
+        "suites": 0,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/module-boundaries.test.tap",
+      "logSha256": "c1c190cf50d010467dee778716372a5140989b5a3d954e0306c91c7023559d8d"
+    },
+    {
+      "file": "tests/more-cables.test.js",
+      "fileSha256": "25d344c6b213ef9cf28ee91548082d05361f7778a4e8ff3520a14e37e751ff5d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/more-cables.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.677,
+      "log": "logs/more-cables.test.tap",
+      "logSha256": "f0946cecadf97ee32c4cd768afc35dd1f851f572e142712aa1126af25c57ee11"
+    },
+    {
+      "file": "tests/moscow-premium.test.js",
+      "fileSha256": "fc66493d3bc2e107788d77f20acccbac99d9bbc5f059fff592d86232be1bc97c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/moscow-premium.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 8.109,
+      "log": "logs/moscow-premium.test.tap",
+      "logSha256": "7d91736b302ef77427a018f5d636d05bd16ddafd462a1d87ec0636e6d5513318"
+    },
+    {
+      "file": "tests/narrative.test.js",
+      "fileSha256": "5d227a6f4480d515a30d2162a712889f5d1431f48a3ac9e9887a62a70b02451b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/narrative.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.335,
+      "log": "logs/narrative.test.tap",
+      "logSha256": "a8ae1e99ca039c8caad508d80a665d07cf1ce1c80abfaee2c69dee4277b974ce"
+    },
+    {
+      "file": "tests/networks-list.test.js",
+      "fileSha256": "5ec500743e130c304a2a73b07835f872cf53c64334cb1f08b53634d3f710b61b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/networks-list.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.052,
+      "log": "logs/networks-list.test.tap",
+      "logSha256": "3d72460a5b72c3932e04fa133966149c806dfd1237cb0c4c57b69200da477d26"
+    },
+    {
+      "file": "tests/new-game-speed.test.js",
+      "fileSha256": "186a7d1bfcf89c301e3b4f3fe6e886b902b7b668ee096e900793ee289572fdcc",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/new-game-speed.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.157,
+      "log": "logs/new-game-speed.test.tap",
+      "logSha256": "38afd67940ffbbd59495e7496ee241234367337f429fa503f89c6097efbb17ec"
+    },
+    {
+      "file": "tests/number-porting-integration.test.js",
+      "fileSha256": "5cd8d49925360e9f0a07a536585271a732d07e57d0fb77a7283fcc0e55823e7b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/number-porting-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/number-porting-integration.test.tap",
+      "logSha256": "534836ca9c64f3e20396bf44cf65de25b2d928693b99210b89387fdddc5c1c2a"
+    },
+    {
+      "file": "tests/number-porting-ui.test.js",
+      "fileSha256": "dee8b24decfee03ad52467c2708692e10d4fa76b679761d50d218886a60214b4",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/number-porting-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.875,
+      "log": "logs/number-porting-ui.test.tap",
+      "logSha256": "1f8b9ace297d16f62ca701eacff10565d6826c0d349b5cf64a11e6a6b39eaad5"
+    },
+    {
+      "file": "tests/number-porting.test.js",
+      "fileSha256": "76333dde3cd3b7954701282073b438080348d386766a292c971d471dd57ba2f7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/number-porting.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.266,
+      "log": "logs/number-porting.test.tap",
+      "logSha256": "d6ba7383ae3bcd91dcadcffcf638cfe169e9eb8a2175f265ac7b12daa1da77a9"
+    },
+    {
+      "file": "tests/observation-ui.test.js",
+      "fileSha256": "e54e0c566a84e4c2caa00f257e648a8034a35c609b3163c19c0e4812f5f625e8",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/observation-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.03,
+      "log": "logs/observation-ui.test.tap",
+      "logSha256": "d9ace2a571c0829a7a3f3a9ef0289aa1b25a0840e3ec69c7a3b9282daebaf6e9"
+    },
+    {
+      "file": "tests/optic-counts.test.js",
+      "fileSha256": "db15775cdbb42daa398c8b03924e7abff7e67b98ab86149e62fea7e89e0de45e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/optic-counts.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 4.09,
+      "log": "logs/optic-counts.test.tap",
+      "logSha256": "ab49ec0ea0349db9ee438d2822d7d69ea4aba240470c950db2d9592435e63977"
+    },
+    {
+      "file": "tests/optic-ports.test.js",
+      "fileSha256": "f26abfff66f67c8bedca74e410e93555c3eb451234656c1c076c2b95541fe133",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/optic-ports.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.58,
+      "log": "logs/optic-ports.test.tap",
+      "logSha256": "d3467e6ca65b2f2d0752e0ed2c47ccb55abf744fd4b06e140d811f2c5c9e9d04"
+    },
+    {
+      "file": "tests/outcomes.test.js",
+      "fileSha256": "f32193c5f2a0ecbe549c215e005ff6f3b6415641e34fd25b1639f202ebb61afe",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/outcomes.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/outcomes.test.tap",
+      "logSha256": "b928f23f68b5ec0312f58a3f948872914b3f51014747f01d642fa58df6072717"
+    },
+    {
+      "file": "tests/own-asn.test.js",
+      "fileSha256": "6540a3c9090182ba1d074836aa974bd79f39a5cd1304bfa0a92ae9d7f87ff915",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/own-asn.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.404,
+      "log": "logs/own-asn.test.tap",
+      "logSha256": "0343cf20701068f2fd12c591b686fd6ec6ca87223358fcecbb633545cbe963a0"
+    },
+    {
+      "file": "tests/packs-integration.test.js",
+      "fileSha256": "385d1abbb743c958b1c8971d7bb268516b80b599cce3d5eade3c0a0ba489dcf5",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/packs-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.166,
+      "log": "logs/packs-integration.test.tap",
+      "logSha256": "d2fedab264e21e8804cafe229c225871b31341cce6943bc342d0bcda47b94559"
+    },
+    {
+      "file": "tests/pages.test.js",
+      "fileSha256": "47d9b91feff9365633aa06ad3e4fce7b3223c326ee20f64532d8a3be092a316b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pages.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.466,
+      "log": "logs/pages.test.tap",
+      "logSha256": "d17882ce4892fbd535e39533d92759fd28adfeee6116e363720ea1144ac81818"
+    },
+    {
+      "file": "tests/peering-desk.test.js",
+      "fileSha256": "ba354db30094700dabce90f819368b156c0c433d7eab09da4d3d0fd3c72468c9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/peering-desk.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 11.16,
+      "log": "logs/peering-desk.test.tap",
+      "logSha256": "eed2f382045c826a9b6d42e0e9c6307730322b2674bbb929a99a15ba93040e90"
+    },
+    {
+      "file": "tests/peering.test.js",
+      "fileSha256": "8b364fff86299b256cc986f604230cbdfa970bfc2f99560b14523a8c1f2923be",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/peering.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.0,
+      "log": "logs/peering.test.tap",
+      "logSha256": "5f8175d1d4ddaf234b6d3f5f3e5a03a742b4c6ff3bda0ccee5eb2ff01d4876b8"
+    },
+    {
+      "file": "tests/perf.test.js",
+      "fileSha256": "e6478cf274b9171dc754c649e1158c7a0e2e4ced3b9aff4edf7b4c960bb2a66c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/perf.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.961,
+      "log": "logs/perf.test.tap",
+      "logSha256": "234dbfcfaf9141acf269fe3da20cfd384758b56ff0eee1c44ac798b4ddb82c2d"
+    },
+    {
+      "file": "tests/persist.test.js",
+      "fileSha256": "ea9b59bb87f06f330c93e8b63125d3184a04a8be189c9730467d67f8ad173732",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/persist.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 11.473,
+      "log": "logs/persist.test.tap",
+      "logSha256": "600db1d4c44d367b780b7b7b33b5284c405279be8e7bad3e3818c625e0981d93"
+    },
+    {
+      "file": "tests/philippines.test.js",
+      "fileSha256": "d3f87aa9aa6366ced768a8ef7a3c7520fe6b2aa82489e2b5666d3b6c28bd13e6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/philippines.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.664,
+      "log": "logs/philippines.test.tap",
+      "logSha256": "c945a52b6c87a5885442cae25b5ed57122d19d0627722ce288db7528acb1bb64"
+    },
+    {
+      "file": "tests/pni-all.test.js",
+      "fileSha256": "ea0a5cd05499b5ae136a79f8dc34704876f98e213d2b9fb175f13d5f27578070",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pni-all.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 5.191,
+      "log": "logs/pni-all.test.tap",
+      "logSha256": "ea2782b7d8905fcf74e09c86ba958e967bd0704aa156e7d197354eec987a8375"
+    },
+    {
+      "file": "tests/pni-global.test.js",
+      "fileSha256": "f1b6cf17212ab451fafad459e20a39f43b14972853bb84850567f50005ea5d78",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pni-global.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.399,
+      "log": "logs/pni-global.test.tap",
+      "logSha256": "98f10b95e2559c196b8f1ee5e88e7ebea85b99874af4da7c8bb0357c35832732"
+    },
+    {
+      "file": "tests/pni-list.test.js",
+      "fileSha256": "6288af2a3a070643c96358fcb866d65eb85a283510e75e8185e7bc6207413a7d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pni-list.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.619,
+      "log": "logs/pni-list.test.tap",
+      "logSha256": "ba17c920417e58c200826989a5cff673d4319701664ce20871da87b9438f6df9"
+    },
+    {
+      "file": "tests/pnis-and-sold-out.test.js",
+      "fileSha256": "9b8fdb7502273df7707b55f899694e6572509b9100f29460df141dc1bf5a026d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pnis-and-sold-out.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.203,
+      "log": "logs/pnis-and-sold-out.test.tap",
+      "logSha256": "bd9d16d06194f88b3642ba3640f530af13ae97e2cbd088f404cacb3aacb712c5"
+    },
+    {
+      "file": "tests/pop-standard.test.js",
+      "fileSha256": "7e39f20dcccd892c475e256bfcebdc49a1a750fe7a9ab88ca0d17d2c7b9afe4d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/pop-standard.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.35,
+      "log": "logs/pop-standard.test.tap",
+      "logSha256": "e74dc2a57e1e43d6fb57bd7b186b4bc88c1a6ff3884ac964ac4ff2230ef5cab9"
+    },
+    {
+      "file": "tests/portfolio-integration.test.js",
+      "fileSha256": "a1a6a16916a951067934f879104dc415824e209af18b82d68ebc1a43148ff6ae",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/portfolio-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/portfolio-integration.test.tap",
+      "logSha256": "407e3d8541ac6572ae4a0e8101257b57083ebb1849ac425941fea37e51f98d69"
+    },
+    {
+      "file": "tests/portfolio-ui.test.js",
+      "fileSha256": "83d3b474bf12bfb7ada283fb25fa71c76ceacfe2932c8f5188e6fc19abd5289e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/portfolio-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.032,
+      "log": "logs/portfolio-ui.test.tap",
+      "logSha256": "1486e7e515b4ac09cf931160470af337f642413b33786fce4153b2c3b34a87f9"
+    },
+    {
+      "file": "tests/portfolio.test.js",
+      "fileSha256": "f6cd4ece4d4995f363a8c03b83449c63d6622492958a966d72d3f4d12d8c37e3",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/portfolio.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/portfolio.test.tap",
+      "logSha256": "ac44b6b7c4e0b356ede3dea664dd68078248ead33cfbb8afc737e8683043324c"
+    },
+    {
+      "file": "tests/preview-server.test.js",
+      "fileSha256": "12516bf7b3056255d7b9fbc05364a1541714e4eeb7443063f7794a50823f1143",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/preview-server.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/preview-server.test.tap",
+      "logSha256": "af4048407e8690326d1d36bb291ae693b5c12032302ec415660f4b608b3f88c7"
+    },
+    {
+      "file": "tests/product-evidence-integration.test.js",
+      "fileSha256": "d154b639c947790a720f64099df568b2d823ec3f72c5784797fae7706758bf83",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/product-evidence-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.467,
+      "log": "logs/product-evidence-integration.test.tap",
+      "logSha256": "2c3de075b2e30055f5d0ceffe31c90960687bbdbd4d4d6d3f2d651498ef508bd"
+    },
+    {
+      "file": "tests/product-evidence-ui.test.js",
+      "fileSha256": "e5aa67a4e8ca2556e1bc7f02e589ba50a4ea0016970fc25107b81c86956c0bf7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/product-evidence-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.893,
+      "log": "logs/product-evidence-ui.test.tap",
+      "logSha256": "61ad25b1752d12d88ff2d10c82b07ed6ec59152b0d93888a929955bcd7e395d0"
+    },
+    {
+      "file": "tests/product-evidence.test.js",
+      "fileSha256": "931a9e33b536033559346d7df507d0c597acccf1f11463c67f2deda20340075a",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/product-evidence.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/product-evidence.test.tap",
+      "logSha256": "3d998f78daff56b4e1ac19faf4e20d69b0ae356afd5021d3d18dd8ce34c15a43"
+    },
+    {
+      "file": "tests/product-integration.test.js",
+      "fileSha256": "afc23ca8a269f9113cd332fc733d04b007e4ea068da9b3f51e3e461bd3b09d91",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/product-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/product-integration.test.tap",
+      "logSha256": "e14100fcb6815900a1afe97c711641be7589140f1f9d6844482d49cf9e9259cd"
+    },
+    {
+      "file": "tests/product-rebase.test.js",
+      "fileSha256": "3be1085da62ccb55246101b50c54d69c73aacce64d1cddd0d492543e4bcf5f94",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/product-rebase.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.271,
+      "log": "logs/product-rebase.test.tap",
+      "logSha256": "b40b75db91a6a00d0c92180dc00f265a17fea285d42383f4784d8380564995b5"
+    },
+    {
+      "file": "tests/products.test.js",
+      "fileSha256": "e6e81e7a49f126dbaaefd3017c02be2108573f4fb05df091273ae2ab3928e4c2",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/products.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/products.test.tap",
+      "logSha256": "b44874f28347cb76b90303e4e7a15c43519cd2aa1a26185801a75b8b9912ef3c"
+    },
+    {
+      "file": "tests/progression-calling.test.js",
+      "fileSha256": "95c848621f4d06bff2bbdc7cbff4fa5d1833100e388cdd5dfacba6d2acc013ee",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/progression-calling.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.467,
+      "log": "logs/progression-calling.test.tap",
+      "logSha256": "539cafa2b73f1f5bcb97c17f287914e9471f660d6f15177ec5fce5ff503fb281"
+    },
+    {
+      "file": "tests/progression-market.test.js",
+      "fileSha256": "da5d488ea4c1e26240794c1ad3045e996068116dd1c41f49c4d5f7b0e7c16d24",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/progression-market.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 25.378,
+      "log": "logs/progression-market.test.tap",
+      "logSha256": "b6ad3b7d5fc2d772c1b188b2070f40986eba0a214cb4ea6534a1b0f64d75ce83"
+    },
+    {
+      "file": "tests/progression-observation.test.js",
+      "fileSha256": "4fd8fc27be441b63f9c84d7039b3ecd279e06b01128a6987529e9049eef00a63",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/progression-observation.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.472,
+      "log": "logs/progression-observation.test.tap",
+      "logSha256": "f40fac0a84277be43ce4f848e1d79e9a429b0550f02eb169674b0e022208ebbf"
+    },
+    {
+      "file": "tests/progression.test.js",
+      "fileSha256": "dab1d6902e12140d2936ace3464268c6dabdfdc7070a14b2e82e58b8f20677c9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/progression.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.87,
+      "log": "logs/progression.test.tap",
+      "logSha256": "16d6cbc45c39d959b767ba9fcc85778fc8312145e6b9e82b03172ce8c27e2dad"
+    },
+    {
+      "file": "tests/puzzle-monkey.test.js",
+      "fileSha256": "71571c96c21e9b1f11a0e774f06b123de6fb953245a67cb6b6b684bc7640ddef",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/puzzle-monkey.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.521,
+      "log": "logs/puzzle-monkey.test.tap",
+      "logSha256": "20d2b88f72c103277c152b7983a3b54055001d188ce419ca7e75f60e6e73ce5a"
+    },
+    {
+      "file": "tests/puzzles.test.js",
+      "fileSha256": "d675eac5285217ac38998eff59dcd4996a9ae0a69d4d4d6a806ca4279872209c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/puzzles.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 21,
+        "suites": 0,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 24.658,
+      "log": "logs/puzzles.test.tap",
+      "logSha256": "cd347fca55c04bb2589db5ba50987fc21923b3bcd2cfa933087c8fbb8d98898b"
+    },
+    {
+      "file": "tests/regions.test.js",
+      "fileSha256": "7d5bf3b2ffae9654db4ef343e6eaae3fa00d869d7eea3b1ec32a1455b8e62d11",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/regions.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 54,
+        "suites": 0,
+        "pass": 54,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 33.155,
+      "log": "logs/regions.test.tap",
+      "logSha256": "4c6728dec938873f4a39cb70fc0d31a5af5ea3429f6d6c8401b3cf6f2c54616b"
+    },
+    {
+      "file": "tests/release-story.test.js",
+      "fileSha256": "18273802cced28b70cd70d70e10fca6dffc6f3594f819da3c4c3cf9b7eb8f365",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/release-story.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.23,
+      "log": "logs/release-story.test.tap",
+      "logSha256": "56076b1e32d3649e40a7ba8ecaf9e1117006987b06b95a2cf6b0ba61433eefb1"
+    },
+    {
+      "file": "tests/report-link.test.js",
+      "fileSha256": "1411643d6d26566eeb8c132827df1733bae9f3951e1706622029b72e74446b31",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/report-link.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 8.625,
+      "log": "logs/report-link.test.tap",
+      "logSha256": "aef0bd5bc863127b7b5042e26f8b615527da74de802cd12586edaa5d45d6f500"
+    },
+    {
+      "file": "tests/route-cache.test.js",
+      "fileSha256": "73d7cb8bd9d385db2c14ac8df56422f37bc92b5d9406a9273f688b5367e15a82",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/route-cache.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.898,
+      "log": "logs/route-cache.test.tap",
+      "logSha256": "a8c71bcc9579b799765ba2a8f7bbbad094dddf10ec9e7cb68190b3ac9b70fb1a"
+    },
+    {
+      "file": "tests/route-fuzz.test.js",
+      "fileSha256": "817b08050eed870e44e9835ecaa948604d5decb3c6a17a238ed46269c13a5763",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/route-fuzz.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.711,
+      "log": "logs/route-fuzz.test.tap",
+      "logSha256": "ee72e11a24426a8d4b0ad8569ff8a655c75fbe426684eca1f85cd677079947fd"
+    },
+    {
+      "file": "tests/route-server-peers.test.js",
+      "fileSha256": "e4f4fa7f36ae771b5d80966686c138b7ebef367bb320538e953aa436c4dab0d7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/route-server-peers.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.149,
+      "log": "logs/route-server-peers.test.tap",
+      "logSha256": "e5c6141b7b32d64a92299a24a04cbbf4c9174c2b06d4bfd97bb3a800b9ff6008"
+    },
+    {
+      "file": "tests/route-skip.test.js",
+      "fileSha256": "0743864b6790a3cfe2bb0841d8cc4a76d08bf3a4119ef5d76739f157b03ac0b9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/route-skip.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 4.336,
+      "log": "logs/route-skip.test.tap",
+      "logSha256": "9e84cc96af2f4037b6c0ec57f7ef2c6dcd8cce1ea4934c5b10471a15cfa2357c"
+    },
+    {
+      "file": "tests/route-worker.test.js",
+      "fileSha256": "87b45f7f453e73aed0bf38a4b49e8e5dae93dec4a3cfecc90808e0fbebd3d3c1",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/route-worker.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.029,
+      "log": "logs/route-worker.test.tap",
+      "logSha256": "af5ceae99914ee870b53d67e095baa4752d33c4aa0845f90e4cb8e146733c0bc"
+    },
+    {
+      "file": "tests/router-art.test.js",
+      "fileSha256": "6c40a22a0560d1a2f067b98af1956d69e83ca891ae01bdd83c074e7599701f64",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/router-art.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.448,
+      "log": "logs/router-art.test.tap",
+      "logSha256": "6ba1c53738ea0d2d832e1a6c4cd00640c7dc50b548f5602a3fa2c7823c995f47"
+    },
+    {
+      "file": "tests/routers-per-pop.test.js",
+      "fileSha256": "5613ad76efe219feee72222d58690441d6e097d049a687f04437b56c21bfbece",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/routers-per-pop.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.5,
+      "log": "logs/routers-per-pop.test.tap",
+      "logSha256": "5df73be18b0ccc5e7b2d0c5d1c313df315b13a2b9332cb0cd1e6031c2fd9cc5f"
+    },
+    {
+      "file": "tests/routing-modal.test.js",
+      "fileSha256": "d093cf06f5ebab049a777f9b907a2e5a54c8a842f45550b18419f244dfc6bbf4",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/routing-modal.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.474,
+      "log": "logs/routing-modal.test.tap",
+      "logSha256": "c975108a3662c2a0c79ff1dc61da5ff3f427e3469366b5d9f289888c9d0548b0"
+    },
+    {
+      "file": "tests/routing-reference.test.js",
+      "fileSha256": "43ca7d32697b2a6f724fe38012d940ec41e82b737757d78311982861133ed56f",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/routing-reference.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 5.093,
+      "log": "logs/routing-reference.test.tap",
+      "logSha256": "efbf1584b2779f6f1932d06d931a07ce6ce38dd9fbf41bfac669e08ba33c0832"
+    },
+    {
+      "file": "tests/rules-locked.test.js",
+      "fileSha256": "973f10ed6d641af0075ee310f506e5a75a3f60d8864578688498b9e730516a6f",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/rules-locked.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.505,
+      "log": "logs/rules-locked.test.tap",
+      "logSha256": "5c414379910dfb95e2581bed60ad09b2930a0047e09e44d4d1d3f96a0da050b0"
+    },
+    {
+      "file": "tests/rules.test.js",
+      "fileSha256": "cc8d2642bbbc27586121b6cb06c47ceb4c65ff81c3157c42521e364624caffc6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/rules.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 14.476,
+      "log": "logs/rules.test.tap",
+      "logSha256": "9f812353e6c8406b3d1ea91c83551902ec26132af77a2e78f051e0b8a333176c"
+    },
+    {
+      "file": "tests/sales-trial.test.js",
+      "fileSha256": "8b0bd6cee41eb49e74cfa03e40b122c8e5372b8a43ca49abd440506d15e9a22d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/sales-trial.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 4.749,
+      "log": "logs/sales-trial.test.tap",
+      "logSha256": "04b44c3daad0f9124a60635ee340095151ce638f966289796b70ab9dc1e02e00"
+    },
+    {
+      "file": "tests/save-size.test.js",
+      "fileSha256": "7deb6207479c695e5dd1953941cb71d869e381e0fcd808a278614c688c30efc6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/save-size.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.022,
+      "log": "logs/save-size.test.tap",
+      "logSha256": "1886d6fb4d4c1472afe4e450da98f393f75cf17a70ec230ac474e02eb71e1ecc"
+    },
+    {
+      "file": "tests/save-slots.test.js",
+      "fileSha256": "93cf892d2ce2fc09eb514d0fb7c472b90f1271d7e325a44a8571190aa3084b53",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/save-slots.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 21,
+        "suites": 0,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 21.969,
+      "log": "logs/save-slots.test.tap",
+      "logSha256": "6ab50dca90c3330edfdf9d580290290e692e9d67c0e3e9f48719eee9598cb110"
+    },
+    {
+      "file": "tests/scenarios-playtest.test.js",
+      "fileSha256": "32a9a7755cc4e465c000e8a5cabacfb74f0ac564980ddda16099477864427fc3",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/scenarios-playtest.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 35.023,
+      "log": "logs/scenarios-playtest.test.tap",
+      "logSha256": "15bab2c420c9791f03162d6ec3ec7d28da44b5e687ed5a830eee8e1edb095e39"
+    },
+    {
+      "file": "tests/sea-optic-hint.test.js",
+      "fileSha256": "c4d5e4cde624ffbfac4c8bede4fe0bf3bb37826713fbbbd84b77ba26abcd7cba",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/sea-optic-hint.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 13.595,
+      "log": "logs/sea-optic-hint.test.tap",
+      "logSha256": "54e0ca196749d2e460554fb5204f4893223377139175c23ee3bbc285babd5b7d"
+    },
+    {
+      "file": "tests/sea-routing.test.js",
+      "fileSha256": "319d4811999079e3d2fdd0567410d2a1dfe752839358b155c3826978f3967eb7",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/sea-routing.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.388,
+      "log": "logs/sea-routing.test.tap",
+      "logSha256": "1ba6a09a22cc634c8a461b4922a0cc26836761e0cb40ffc60920a887f9aee716"
+    },
+    {
+      "file": "tests/sea-rush.test.js",
+      "fileSha256": "8107edbdfc563a41b382dc995d27ea359fd096f83e29cb0bb6d5ac724c08c05f",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/sea-rush.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.501,
+      "log": "logs/sea-rush.test.tap",
+      "logSha256": "419e7ba60a086314310a6cadc89838670934a101d50e54df6dda94de4e02d6ba"
+    },
+    {
+      "file": "tests/security-ui.test.js",
+      "fileSha256": "0a824b5214e63493e44ab2fce25aa8f377926e3c52833beed166c657690d3e83",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/security-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.633,
+      "log": "logs/security-ui.test.tap",
+      "logSha256": "e121c2a8796b42e7a392f205daf11de5fb177119a6584f01b505664442893e1d"
+    },
+    {
+      "file": "tests/service-admin-ui.test.js",
+      "fileSha256": "f1f268c73701df3d852d2de5ebe409293fa5b8e1174f56f83fc2b58833d1db03",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/service-admin-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 2.528,
+      "log": "logs/service-admin-ui.test.tap",
+      "logSha256": "865456f8cc607962d51e81d724730425de3ba5528a3fde6c8e682b67afd0ed93"
+    },
+    {
+      "file": "tests/service-observation.test.js",
+      "fileSha256": "e239b96cc218b366e78650e3def4bce4ba71344b8b6db25c58e2d879c4d2308c",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/service-observation.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.719,
+      "log": "logs/service-observation.test.tap",
+      "logSha256": "14a53f4f741d94cf2bede0962f9db65b7ac71140593bccf207ef4d70943043eb"
+    },
+    {
+      "file": "tests/service-operations.test.js",
+      "fileSha256": "31d155689e59e226ce01f4b55023d4413c6421d4a64d65d5f6563018bfe8f2ca",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/service-operations.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/service-operations.test.tap",
+      "logSha256": "7a4a8b657013a120ece1b46b0da950e21b6ba2a874a354f9457c665da5c6dbb8"
+    },
+    {
+      "file": "tests/services.test.js",
+      "fileSha256": "a103d5939895b50ac066ce8d72f26f0f893e697c0b4f5017ea09457e3dd6d0aa",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/services.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.773,
+      "log": "logs/services.test.tap",
+      "logSha256": "836c92b8de0be5665957c89994030f88ddb3ef9ec5b143abb5e84be11b82ed98"
+    },
+    {
+      "file": "tests/shared-services-integration.test.js",
+      "fileSha256": "480b62348896f080af6e65243be119bdffda4475ae4c06ced33761b254d2dad9",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/shared-services-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/shared-services-integration.test.tap",
+      "logSha256": "c190a68aca24ecbadc674f3923f5d54d801d6a97b737c3a2125aa0f12f9993ba"
+    },
+    {
+      "file": "tests/shared-services-ui.test.js",
+      "fileSha256": "4f2254b4eb9cd96b0cf9a4efff4510d56b92e6ec621a6b0659f4cfc327030cfc",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/shared-services-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.676,
+      "log": "logs/shared-services-ui.test.tap",
+      "logSha256": "3b37e0f4f30b9ddec4d9256bad16d3d947dc4c9f924dc6934712b59fd145619f"
+    },
+    {
+      "file": "tests/shared-services.test.js",
+      "fileSha256": "6a8349191c9ac866d56ac335e434623b5a3aa8ea4177c1e043d395f54e28e4d1",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/shared-services.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.066,
+      "log": "logs/shared-services.test.tap",
+      "logSha256": "e0f4de7c77e708751fb33102b6ef26607f2d0841243306aede66da5bdbd07228"
+    },
+    {
+      "file": "tests/site-integration.test.js",
+      "fileSha256": "26b73444e02f930fa8e24709a85f26ad37292f5becde358225536db344b46c9e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/site-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.778,
+      "log": "logs/site-integration.test.tap",
+      "logSha256": "d395f14b08a5786fab7a0737efab54fe4c025a1fd812a29b7f54a7ddeecee98d"
+    },
+    {
+      "file": "tests/site-operations.test.js",
+      "fileSha256": "98023ea289ef068abe170efc78312261c8fe7d1ca635df666e917ea68c1deca5",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/site-operations.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 13,
+        "suites": 0,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.777,
+      "log": "logs/site-operations.test.tap",
+      "logSha256": "36dedacac648679ac26f79540b479ec186fec12a5ee6930bea9810a3c1b9b313"
+    },
+    {
+      "file": "tests/site-ui.test.js",
+      "fileSha256": "3ccbf5b33f21b28362c28cfb6bd31acb58b5df7a22aa17dfa1f8621c03eecb83",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/site-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.624,
+      "log": "logs/site-ui.test.tap",
+      "logSha256": "5d9011d6fb1a815aeab6b7a2d46f9cb054e9773a7bc394816d26d2d3343ef61c"
+    },
+    {
+      "file": "tests/sp-mcp-protocol.test.js",
+      "fileSha256": "b3bb8698ad9d8f7812115b3de274ac2d07e4043125b55246ac10830218710f5b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/sp-mcp-protocol.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.046,
+      "log": "logs/sp-mcp-protocol.test.tap",
+      "logSha256": "6a8366c00f6c4707a335fab45f3290e36c1d37d2e1cfad9a5ff46d4c7aa2d3b9"
+    },
+    {
+      "file": "tests/specialist-lifecycle-integration.test.js",
+      "fileSha256": "30973dc6f07efbb4d85a2be2aac8a1b779b7c91f9a9c507e03340b96233de368",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/specialist-lifecycle-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/specialist-lifecycle-integration.test.tap",
+      "logSha256": "f42dec07319fbf2c2c6645e2c9666152c00265f8ed3723333b112c8665efa239"
+    },
+    {
+      "file": "tests/specialist-lifecycle-ui.test.js",
+      "fileSha256": "69bce83de8d9d5f5ee60e4f9b798a0ad28e1258eb91ac60be0f32ba5832b5c90",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/specialist-lifecycle-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.522,
+      "log": "logs/specialist-lifecycle-ui.test.tap",
+      "logSha256": "f78425e5a0fbcec6d88fe9998550270ada1eb07b7d4f292777618b6bed0dc061"
+    },
+    {
+      "file": "tests/specialist-lifecycle.test.js",
+      "fileSha256": "e7fd78c32211679bb31ba9575823006cded72a961aa86d1fbc637893eda4a9ce",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/specialist-lifecycle.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/specialist-lifecycle.test.tap",
+      "logSha256": "6fd4102c874c0a03b80e36b6ffa0fcc2d740739c68ef915ea7875006d7d7e136"
+    },
+    {
+      "file": "tests/specialist.test.js",
+      "fileSha256": "3af2b38138744866b62a74616f88499cc30b3a01912ce78dc2835cf56bf96772",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/specialist.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.736,
+      "log": "logs/specialist.test.tap",
+      "logSha256": "64b9323a4a18bf66e9c2e3eb5bac97a4938855f4f4554ef975798eeb2a29d720"
+    },
+    {
+      "file": "tests/speech-models-integration.test.js",
+      "fileSha256": "8606d1cfea52ac421be7fefcbd5c0008778e81c4acd720d896bed268f4f9afba",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/speech-models-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.165,
+      "log": "logs/speech-models-integration.test.tap",
+      "logSha256": "8161598a9659d99747b5d16d2de6fbef94d481ecb49c0e21c7879ca87a4ff468"
+    },
+    {
+      "file": "tests/speech-models-ui.test.js",
+      "fileSha256": "97e00b76cf012185f21b8067525cbdb1696a6f365be9b3146fc80cd786b04277",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/speech-models-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.874,
+      "log": "logs/speech-models-ui.test.tap",
+      "logSha256": "363f1934d5689cff0a19700be4b77ff0c91c3ea35a0fdffeb343ec0a305bb3ba"
+    },
+    {
+      "file": "tests/speech-models.test.js",
+      "fileSha256": "6d456f91d8a93de8e24f0a8a749e0b7e114dfa0e96614e26d9558bccc9388e1b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/speech-models.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/speech-models.test.tap",
+      "logSha256": "1f74afa9747d7d2fc33ca0979fb279c42401a7cb3d01b2d399a3c0112ffd8d21"
+    },
+    {
+      "file": "tests/speed.test.js",
+      "fileSha256": "742f09f6d239bd1d2cc8bb189d634a91dafa319e24569eb192c0c10368f80a02",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/speed.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 16,
+        "suites": 0,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 30.571,
+      "log": "logs/speed.test.tap",
+      "logSha256": "0ae5cf7c605ae24494e9877335ae9d18668729be09c2cdc0c0c3fabdafd3f3fa"
+    },
+    {
+      "file": "tests/standing-orders.test.js",
+      "fileSha256": "02cd7b6594e82978f48cc8635c4c59da9f77492da3eafd4d41efc300a256a429",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/standing-orders.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 39,
+        "suites": 0,
+        "pass": 39,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 24.72,
+      "log": "logs/standing-orders.test.tap",
+      "logSha256": "b7c52b9792502c7fbed37527b274f577413c70ddcce5cce35ced8c62f976e488"
+    },
+    {
+      "file": "tests/subsea-upgrade-timing.test.js",
+      "fileSha256": "de5a7156e0f42ffffe4886fec7bc27cab468fc257b74fcfc29ec7a3bdce306fb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/subsea-upgrade-timing.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 5.142,
+      "log": "logs/subsea-upgrade-timing.test.tap",
+      "logSha256": "af2c6755a90b86c2114636285a6480dea7ed313da83f7af40ac7323b193959b9"
+    },
+    {
+      "file": "tests/supply.test.js",
+      "fileSha256": "2013a816c30073d9f546856b4ef884e956fb2d5dc161c38beb82daa2414c0c8f",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/supply.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.023,
+      "log": "logs/supply.test.tap",
+      "logSha256": "3838fe3a6a522b3feede27be54681d4e84c1625a0f748adeba5d2ba6c4cf535a"
+    },
+    {
+      "file": "tests/tier1-cone.test.js",
+      "fileSha256": "03d6fb8128ddf1360d22db18799b55b9b5fa34c3102be0b7336e54f09cacaa6b",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/tier1-cone.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 10.436,
+      "log": "logs/tier1-cone.test.tap",
+      "logSha256": "3c4a1feb6522b1d4a6c5e5a4fdf51669991cd186a847c89a094e6b7796750c5c"
+    },
+    {
+      "file": "tests/tier1-incumbents.test.js",
+      "fileSha256": "fa2ee5657851604bdfe7000c77b93f32df8327fa1e6cd4dc606ff0dfc21f4a8d",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/tier1-incumbents.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.667,
+      "log": "logs/tier1-incumbents.test.tap",
+      "logSha256": "bed51719a716b67c82d2f9c60f589eea05a26fde8a7da8c5b9e3f8a2f316d731"
+    },
+    {
+      "file": "tests/traceroute.test.js",
+      "fileSha256": "05688a1c7f2483bfb8a200ffb1d265bb5d23232a5efc3f00fd4d429c27d90776",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/traceroute.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 6.125,
+      "log": "logs/traceroute.test.tap",
+      "logSha256": "e61baa0eb4c029b4ad5180888aaf6c70bdcb2dd064a1eee5145db5481f130829"
+    },
+    {
+      "file": "tests/training-console.test.js",
+      "fileSha256": "4a463af00d8d1cda0460dad560a2f547919dba1ec9ed9bcc45c6f7588539fa85",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/training-console.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 9.637,
+      "log": "logs/training-console.test.tap",
+      "logSha256": "a69109769d0a5b2c014ea336b699b9e2c93eb64c34fbf3899f27a18618089dda"
+    },
+    {
+      "file": "tests/transport-boundaries.test.js",
+      "fileSha256": "b58c9ad3c0ea1af0835b669f62e7c6b160e7b63680aacc1bf40c513563ad3c35",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/transport-boundaries.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/transport-boundaries.test.tap",
+      "logSha256": "68e4549ab0139bd97ad801e70b2701cca15cf84dc3eb1f1ff6c550e140f1a1f3"
+    },
+    {
+      "file": "tests/transport.test.js",
+      "fileSha256": "a10b875afa55ca3557e3df7ad7a0b2761f551e2a108247409888f268c99439c8",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/transport.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.064,
+      "log": "logs/transport.test.tap",
+      "logSha256": "e67ef72526e85095ff09c37761422419951a4e878358d7f0c2b0f35afea59fb8"
+    },
+    {
+      "file": "tests/useless-subsea-upgrades.test.js",
+      "fileSha256": "9f5e00dbd44ffa62498582fc3c8fe0e185754957a9fca8d5b30cb1e7f1bbf1b6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/useless-subsea-upgrades.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 3.033,
+      "log": "logs/useless-subsea-upgrades.test.tap",
+      "logSha256": "23687c08891401768d08c3fd325043a5401e66f40c6d08e884f4ff04c862cfb7"
+    },
+    {
+      "file": "tests/utilities-caches.test.js",
+      "fileSha256": "ac9c8e8788cbed5229d0f1383d12c0f86cc8f55da02a094204920ddd78d82b41",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/utilities-caches.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 5.053,
+      "log": "logs/utilities-caches.test.tap",
+      "logSha256": "09935f693033cfcf9e56ef64fbd665fc65d7991fe6d4a913d97cdf28d1fb32cb"
+    },
+    {
+      "file": "tests/utilities.test.js",
+      "fileSha256": "cd3b39b55658227f39827653de5f41f7aa3c9a2379df1a13656a87d2cf0208eb",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/utilities.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 7.108,
+      "log": "logs/utilities.test.tap",
+      "logSha256": "c237bd92aa554c589e40c202fae9d4a31384396b789fca33df36d3ac454e7a9b"
+    },
+    {
+      "file": "tests/weekly-architect.test.js",
+      "fileSha256": "b8c6d6ceb0284f036933768ea829db1204b7e17075b3ff992973cfda8b104931",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/weekly-architect.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 11.378,
+      "log": "logs/weekly-architect.test.tap",
+      "logSha256": "fba49d272585bbc66752da0fbf204ecf4df953a2bf026250b15a89fe0ffdcba3"
+    },
+    {
+      "file": "tests/weekly-puzzle.test.js",
+      "fileSha256": "dc80ecbb51f938cd691407b44a92f8446c943a2f87c5076fe2208876a4677250",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/weekly-puzzle.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 45.991,
+      "log": "logs/weekly-puzzle.test.tap",
+      "logSha256": "f08fd55077ba73f8582084dfc51fcb7190046e28ba3775484c817afdc9c4284f"
+    },
+    {
+      "file": "tests/weekly-scenario.test.js",
+      "fileSha256": "bbc75a4c75788c84a2e14adcdb6ccfa4a9d85b79198845d67af89058954add83",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/weekly-scenario.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 19.543,
+      "log": "logs/weekly-scenario.test.tap",
+      "logSha256": "c37d98842d4332e1db8f30f8dc2df9272b4a11df92976290597d90431246a72b"
+    },
+    {
+      "file": "tests/workforce-bpo-integration.test.js",
+      "fileSha256": "ba4e056a81c506df5c1002e6298ff5b9b048c4be52df5b07abd26ffdd3a13903",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/workforce-bpo-integration.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.116,
+      "log": "logs/workforce-bpo-integration.test.tap",
+      "logSha256": "12371cb9cc9e803b154bea80875f0a9278cffe701113c0b57275bce7e5aa1893"
+    },
+    {
+      "file": "tests/workforce-bpo-ui.test.js",
+      "fileSha256": "95c6942b79974240337c9a8dbddd879dae5b6bdb17365d79247e2ef08846e0a5",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/workforce-bpo-ui.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 1.773,
+      "log": "logs/workforce-bpo-ui.test.tap",
+      "logSha256": "c16c4d6a4c36691a4b33ce0ac8e28d52ec4b6ceae973f73d7cdda8504f03b35d"
+    },
+    {
+      "file": "tests/workforce-bpo.test.js",
+      "fileSha256": "e2196fcc1e2e4dbf067e314af9ca4c9db8ebfdf419c00eb0663953bbcc83f13e",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/workforce-bpo.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.065,
+      "log": "logs/workforce-bpo.test.tap",
+      "logSha256": "f877b43dd4928e389c81cf851a639a2d2a78ff7f62403e8bd21f599ac25e4656"
+    },
+    {
+      "file": "tests/workforce-operations.test.js",
+      "fileSha256": "322b5b033556ec388aef69d43ca174a3e4614ae8be8afe36cd555f720a770fc6",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tests/workforce-operations.test.js"
+      ],
+      "exitCode": 0,
+      "status": "passed",
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "elapsedSeconds": 0.115,
+      "log": "logs/workforce-operations.test.tap",
+      "logSha256": "a0751c72e7c08c9e30887ecd3dc2142bfe6823c8d72b1bc8495892220e34f892"
+    }
+  ]
+}

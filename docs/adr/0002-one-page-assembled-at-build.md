@@ -1,5 +1,7 @@
 # ADR 0002: Source in many files, shipped as one page assembled at build
 
+> **Series of Calls applicability — 4 November 2026:** assembly in path order remains the build model. Communications factories, their shared SOC dispatcher and training consoles now coexist with the optional SP globals in the same page. Changes to SOC state must also update worker serialization and restore validation as appropriate. The upstream byte-for-byte equivalence and performance statements below describe the original split, not today's adaptation. See [the current architecture](../ARCHITECTURE.md) and [development workflow](../DEVELOPMENT_WORKFLOW.md) for current module ownership and verification.
+
 - Status: accepted
 - Date: 2026-10-27
 

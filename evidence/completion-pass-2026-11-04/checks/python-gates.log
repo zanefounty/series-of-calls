@@ -1,0 +1,34 @@
+{"mappingRecords": 3454, "originalRecords": 3360, "additions": 94, "fileRecords": 217, "distinctReferences": 91, "sourceCitationOccurrences": 72, "additionalResearchItems": 28, "upstreamCommits": 349, "upstreamFileVersions": 426, "sourceItems": 4787, "requirements": 4787}
+...................E...............................F...................
+======================================================================
+ERROR: test_deleted_evidence (gates_test.Gates.test_deleted_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 84, in test_deleted_evidence
+    self.change('evidence/acceptance.json',lambda d:d['tests'].pop('AC-SOC-001'))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 67, in change
+    p=self.root/path;d=json.loads(p.read_text());fn(d);p.write_text(json.dumps(d))
+                                                 ~~^^^
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 84, in <lambda>
+    self.change('evidence/acceptance.json',lambda d:d['tests'].pop('AC-SOC-001'))
+                                                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'AC-SOC-001'
+
+======================================================================
+FAIL: test_unresolved_behaviour_source (gates_test.Gates.test_unresolved_behaviour_source)
+----------------------------------------------------------------------
+verify.GateError: Acceptance tests failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gates_test.py", line 139, in test_unresolved_behaviour_source
+    with self.assertRaisesRegex(V.GateError,'lost provenance'):V.evidence(self.root)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "lost provenance" does not match "Acceptance tests failed"
+
+----------------------------------------------------------------------
+Ran 71 tests in 29.803s
+
+FAILED (failures=1, errors=1)

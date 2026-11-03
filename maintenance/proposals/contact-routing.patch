@@ -1,0 +1,44 @@
+--- a/SECURITY.md
++++ b/SECURITY.md
+@@ -2,14 +2,10 @@
+ 
+ ## Supported versions
+ 
+-There are no published or supported Series of Calls releases. The current `0.1.0-preview.1` label identifies an incomplete local preview, not a supported deployment. All telephony, messaging, identities, calls, records, and faults in the preview are synthetic.
++No Series of Calls release is currently supported. The `0.1.0-preview.1` development preview is incomplete. All communications, identities, records and faults are synthetic.
+ 
+ ## Reporting a vulnerability
+ 
+-This workspace has no active public repository or verified private security-reporting channel. Do not include exploit details, credentials, personal information, or other sensitive material in a public issue.
++Report suspected vulnerabilities privately through [GitHub vulnerability reporting](https://github.com/zanefounty/series-of-calls/security/advisories/new). GitHub reports that private vulnerability reporting is enabled for this independent repository. The accountable maintainer is [zanefounty](https://github.com/zanefounty). Reporter-to-recipient delivery has not yet been independently tested.
+ 
+-Before opening a public repository, the owner must configure GitHub private vulnerability reporting (or another private contact route), test that maintainers can receive reports, name the route here, and state which versions receive fixes. Until that is done, this file is a publication blocker notice rather than a working report channel. Do not send a report to the upstream Series of Tubes project; it is separate and is not responsible for this adaptation.
+-
+-## Response expectations
+-
+-No response-time or remediation commitment is published for this local preview. Set and publish one only after an accountable maintainer and private reporting route are in place.
++Do not send reports to Series of Tubes; its maintainer is not responsible for this adaptation. No response-time commitment is published for the preview.
+--- a/CODE_OF_CONDUCT.md
++++ b/CODE_OF_CONDUCT.md
+@@ -16,8 +16,8 @@
+ 
+ If public project spaces are opened, these standards apply to issues, pull requests, reviews, discussions, and project events. Project maintainers are responsible for reviewing reports and applying proportionate action, including a request to stop, content removal, or temporary or permanent loss of access. Reports made in good faith must not result in retaliation.
+ 
+-This workspace is not yet a public repository and has no published enforcement contact. Before enabling public participation, the owner must name a private report channel and confirm that someone can receive and act on reports. Do not use the upstream Series of Tubes maintainer or Signal group to report concerns about this independent adaptation.
++The accountable enforcement contact is [zanefounty](https://github.com/zanefounty). The owner has chosen [this project’s GitHub issue tracker](https://github.com/zanefounty/series-of-calls/issues) as the current contact route and has deferred a separate private conduct channel. GitHub issues are public; keep reports suitable for public disclosure. Do not use the upstream Series of Tubes maintainer or Signal group to report concerns about this independent adaptation.
+ 
+ ## Changes
+ 
+-Once a contact channel is established, concerns or suggestions about this policy can be sent there. This file does not represent that a reporting channel is active today.
++Concerns or suggestions about this policy can be raised through the project GitHub contact route. Private security concerns belong in GitHub vulnerability reporting.
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -4,7 +4,7 @@
+ 
+ ## Current contribution status
+ 
+-This workspace is not yet an independent Git repository and has no active public issue tracker. Do not send project reports to the upstream Series of Tubes issue tracker, its Signal group, or its maintainer. The owner must establish and verify the repository, support contact, private security-reporting route, and contribution terms before accepting public contributions. The [publication audit](docs/PUBLISHING_AUDIT.md) records those remaining steps.
++The independent public repository is [zanefounty/series-of-calls](https://github.com/zanefounty/series-of-calls), with genuine upstream history retained. [zanefounty](https://github.com/zanefounty) is the accountable support contact; use the project GitHub issue tracker when public intake opens. Do not send project reports to the upstream Series of Tubes issue tracker, its Signal group, or its maintainer. Private vulnerability reporting is enabled in GitHub. Public contribution intake remains subject to the publication review and contribution terms. The [publication audit](docs/PUBLISHING_AUDIT.md) records those remaining steps.
+ 
+ ## Development
+ 

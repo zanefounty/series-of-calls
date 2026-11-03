@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: AC-SOC-001 desired, provisioning, effective and observed state remain distinct
+ok 1 - AC-SOC-001 desired, provisioning, effective and observed state remain distinct
+  ---
+  duration_ms: 5.726854
+  type: 'test'
+  ...
+# Subtest: AC-SOC-002 ordered routes, scoped extensions, identity and directional media
+ok 2 - AC-SOC-002 ordered routes, scoped extensions, identity and directional media
+  ---
+  duration_ms: 4.194484
+  type: 'test'
+  ...
+# Subtest: AC-SOC-003 more trunks do not create skilled people or agent entitlements
+ok 3 - AC-SOC-003 more trunks do not create skilled people or agent entitlements
+  ---
+  duration_ms: 2.865717
+  type: 'test'
+  ...
+# Subtest: AC-SOC-004 session admission is independent of queue staffing
+ok 4 - AC-SOC-004 session admission is independent of queue staffing
+  ---
+  duration_ms: 0.630402
+  type: 'test'
+  ...
+# Subtest: AC-SOC-005 messaging preserves case identity across channels and retries are idempotent
+ok 5 - AC-SOC-005 messaging preserves case identity across channels and retries are idempotent
+  ---
+  duration_ms: 1.745493
+  type: 'test'
+  ...
+# Subtest: AC-SOC-006 successful voice can fail mandatory recording
+ok 6 - AC-SOC-006 successful voice can fail mandatory recording
+  ---
+  duration_ms: 0.780405
+  type: 'test'
+  ...
+# Subtest: AC-SOC-007 healthy room device does not establish calendar or interop readiness
+ok 7 - AC-SOC-007 healthy room device does not establish calendar or interop readiness
+  ---
+  duration_ms: 0.947434
+  type: 'test'
+  ...
+# Subtest: AC-SOC-008 information lineage and forbidden processing boundary
+ok 8 - AC-SOC-008 information lineage and forbidden processing boundary
+  ---
+  duration_ms: 1.647269
+  type: 'test'
+  ...
+# Subtest: AC-SOC-009 local devices still depend on identity, time and licensing during isolation
+ok 9 - AC-SOC-009 local devices still depend on identity, time and licensing during isolation
+  ---
+  duration_ms: 1.019976
+  type: 'test'
+  ...
+# Subtest: AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region
+ok 10 - AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region
+  ---
+  duration_ms: 18.22423
+  type: 'test'
+  ...
+# Subtest: AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay
+ok 11 - AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay
+  ---
+  duration_ms: 3.233687
+  type: 'test'
+  ...
+# Subtest: AC-SOC-012 worker serialization produces the synchronous command result
+ok 12 - AC-SOC-012 worker serialization produces the synchronous command result
+  ---
+  duration_ms: 14.146104
+  type: 'test'
+  ...
+# Subtest: AC-SOC-013 invalid references fail provisioning and command validation is atomic
+ok 13 - AC-SOC-013 invalid references fail provisioning and command validation is atomic
+  ---
+  duration_ms: 0.966728
+  type: 'test'
+  ...
+# Subtest: AC-SOC-014 cohort migration requires ready target and supports configuration recovery
+ok 14 - AC-SOC-014 cohort migration requires ready target and supports configuration recovery
+  ---
+  duration_ms: 1.657182
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.073578

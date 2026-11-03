@@ -1,0 +1,7 @@
+.soc-artwork{margin:0 0 18px;overflow:hidden;border-radius:12px;background:#102e36}
+.soc-artwork img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.soc-artwork-compact{max-width:900px;margin:18px auto}
+.soc-artwork-compact img{max-height:230px;object-position:center}
+#modalCard>.soc-artwork-compact{max-height:100px}
+#modalCard>.soc-artwork-compact img{max-height:100px}
+@media(max-width:640px){.soc-artwork-compact{margin:12px}.soc-artwork-compact img{max-height:160px}}

@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import datetime,hashlib,json,re,subprocess,sys
+from verify import acceptance_results,GateError
+root=Path(__file__).resolve().parents[1]
+plan=json.loads((root/'spec/acceptance-plan.json').read_text())
+expected={t for suite in plan['suites'].values() for t in suite}
+if any(not (root/path).is_file() for path in plan['suites']):sys.exit('Missing acceptance suite')
+command=['node','--test','--test-isolation=none','--test-reporter=tap',*plan['suites']]
+result=subprocess.run(command,cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+out=root/'evidence';out.mkdir(exist_ok=True)
+(out/'communications.tap').write_text(result.stdout)
+parseError=None
+try:tests=acceptance_results(result.stdout,expected)
+except GateError as error:tests={};parseError=str(error)
+inputs=plan['inputs']+['spec/acceptance-plan.json']
+report={'runAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'command':command,'runtime':subprocess.check_output(['node','--version'],text=True).strip(),'tests':tests,'failures':0 if result.returncode==0 and parseError is None else 1,'parseError':parseError,'inputs':{p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in inputs}}
+(out/'acceptance.json').write_text(json.dumps(report,indent=2)+'\n')
+print(f"Executed {len(tests)} acceptance cases; failures={report['failures']}")
+sys.exit(report['failures'])

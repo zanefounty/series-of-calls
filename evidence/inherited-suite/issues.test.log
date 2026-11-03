@@ -1,0 +1,101 @@
+✔ #4 several transits in one city share the load instead of filling one by one (647.897741ms)
+✖ #5 export writes a file and import restores it, with checks (260.606058ms)
+✔ #6 full transit, IX, caches and routers show up in the NOC and on the map (286.672337ms)
+✔ some routers take forever to boot, PacketOinkers most of all (275.673995ms)
+✔ the network name opens a menu with save, load and start over (266.155006ms)
+✔ a rare global outage shows a banner, dents traffic and only happens once (288.915798ms)
+✔ badges unlock with a rarity, persist across games, and secret ones stay hidden (313.475678ms)
+✔ Auto-TE spills overflow onto an alternate path when the shortest one is full (416.139861ms)
+✔ rare badges hook into incidents and deals (295.936605ms)
+✔ #7 NOC legend, sortable network table and transit destinations (464.127105ms)
+✔ #11 pausing freezes the dots on the links (251.393685ms)
+✔ #16 shark-averse customers only ask for routes that can stay on land (480.710275ms)
+✔ #28 scenic routing stays put, and splits over two equally quiet paths (296.211821ms)
+✔ #17 #30 very long dark fiber runs in long-haul mode, and regen sites bring full speed back (285.819182ms)
+✔ LACP trouble, partial packet loss and PMTUD black holes fire, hurt and clear (274.407325ms)
+✔ an optical control plane meltdown darkens every leased wave in a region, not your own fiber (271.232526ms)
+✔ decommissioning POPs, one or several, removes what is there and charges for the customers (329.101687ms)
+✔ #19 parallel waves draw as one line, dark fiber can add parallel links, NLNOG Day exists (286.441284ms)
+✔ #40 overland between continents costs ten times subsea or more, and has no dark fiber (221.711372ms)
+✔ #39 caches are limited by router ports, not by a fixed count (264.776539ms)
+✔ #31 #33 #38 connections overview lists every port, filters it and jumps to it (393.304389ms)
+✔ #13 #15 unhappy customers warn early, furious ones pause the game (optional) (275.607636ms)
+✔ #14 customers overview lists everyone with happiness, reasons and a jump (277.602905ms)
+✔ settings screen holds every option and opens from the menu and the title screen (248.729332ms)
+✔ #42 the share card draws links across the date line on both edges of the map (265.604923ms)
+✔ #45 unplugged optics go on a spares shelf, get reused for free, or sold for 40% (268.26689ms)
+✔ #35 your own trench can light another fiber pair once a ROADMaster is full (254.120919ms)
+✔ #64 your own subsea cable runs beside the route, however many waves share it (262.33003ms)
+✔ #64 leased and own land fiber stay near their route next to a trench full of waves (263.667546ms)
+✔ buttons behind an open modal stay quiet, and a declined PNI clears its stale button (352.559402ms)
+✔ #66 #68 subsea optics: engineered glass reaches further, and the same limit caps leased waves (405.216581ms)
+✔ #67 a subsea cable can be laid between landing stations that also share a landmass (468.381155ms)
+✔ #49 subsea cables stay on the map when you zoom in (222.410162ms)
+✔ #20 local PNIs satisfy local breakout only while Tier 1, without changing transit or IX rules (231.700981ms)
+✔ deal navigation visits the first missing POP, including second endpoints and multi-site offers (229.038672ms)
+✔ NOC leased lines tab prices leased dark fiber, own fiber and cables against the leases (543.873275ms)
+✔ connections in the NOC dashboard can be cancelled right there, after a confirm (303.445903ms)
+✔ connections in the NOC dashboard can be upgraded and grown into LAGs right there (314.328617ms)
+✔ leased-line savings only count when your own glass has room, and include the optics (244.502949ms)
+✔ cancelling from the Connections list confirms once, without forging the panel state (238.157156ms)
+✔ diversity offers respect buildable cable routes, not current infrastructure (246.769331ms)
+✔ mandatory and optional diversity requirements skip impossible city pairs (283.456298ms)
+✔ save migration checks diversity using the imported cable unlock (282.574687ms)
+✔ NOC link navigation replaces the phone and tablet sheet immediately (894.595017ms)
+✔ opening a link on desktop keeps the NOC sidebar available (273.980367ms)
+✔ #77 waves can join any route already dug between two cities (295.71592ms)
+✔ #73 losing Tier 1 to a sliver of reach is visible and explained (251.086949ms)
+✔ #69 embedded caches can sit in either metro building, so one dark building leaves the rest serving (312.48502ms)
+✔ #63 incidents you can fix with one click sit above hot ports in the NOC (292.145521ms)
+✔ #82 router swaps trade in the old gear, one swap a day, and requirements name the speed (313.431812ms)
+✔ fiber between nearby cities bends gently instead of looping around the neighbourhood (342.982014ms)
+✔ #105 swapping the only router in an empty POP needs no maintenance window (270.838561ms)
+✔ #104 declining a loan offer clears the bank badge while paused (229.889008ms)
+✔ #88 no subsea cable longer than any optic can light, and a refund for calling one off (505.43861ms)
+✔ #50 a city without a cable landing points to the nearest one (264.04604ms)
+✔ #36 your own IX moves between buildings, or runs a switch in both (289.5249ms)
+✔ #56 parallel waves of different sizes are labelled per size, not as N times the total (311.099882ms)
+✔ #107 a bigger optic never carries less than a smaller one at the same distance (278.234249ms)
+✔ #110 PNI buttons show the monthly port fee, not just the one-off setup (312.60234ms)
+✔ #111 #121 #12 the road to Tier 1: what is missing, and where to meet each network (544.034021ms)
+✔ #113 Red Sea Crisis wants traffic into Asia for a month, not broadband and a thin path on day 0 (1920.620488ms)
+✔ #84 Luxembourg has its own eyeball ISP at LU-SICK; no real company names among wave sellers (268.872444ms)
+✔ #51 a dark fiber shows what is rented out, and spare capacity can be listed with a broker (297.027837ms)
+✔ #126 you can zoom in far enough, and pick a short link between two close cities (279.920484ms)
+✔ #134 an exchange named after its city does not repeat the city in messages (306.675802ms)
+✔ #166 every Brazilian exchange is named after its city, São Paulo included (255.365805ms)
+✔ link redundancy trials distinguish a bridge, a full fallback and a healthy alternate path without changing the game (317.662472ms)
+✔ #219 splitting a one-member PNI across both sites splits it when the augment lands (312.284168ms)
+✔ #219 choosing one site again while the augment is on order keeps the LAG in that site (348.911093ms)
+✔ #210 candidate exits on saturated shortest paths are skipped to avoid fallback churn (316.911365ms)
+ℹ tests 70
+ℹ suites 0
+ℹ pass 69
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29935.150686
+
+✖ failing tests:
+
+test at tests/issues.test.js:26:1
+✖ #5 export writes a file and import restores it, with checks (260.606058ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /does not look/. Input:
+  
+  'Original Series of Tubes saves are incompatible with Series of Calls.'
+  
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/issues.test.js:40:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Original Series of Tubes saves are incompatible with Series of Calls.',
+    expected: /does not look/,
+    operator: 'match',
+    diff: 'simple'
+  }

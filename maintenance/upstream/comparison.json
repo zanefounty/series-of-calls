@@ -1,0 +1,1520 @@
+{
+  "total_commits": 366,
+  "files": [
+    {
+      "filename": ".claude/skills/edit-the-game/SKILL.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".claude/skills/gameplay-rules/SKILL.md",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": ".claude/skills/github-pages/SKILL.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".claude/skills/release/SKILL.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/ci.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/release.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/weekly-puzzle.yml",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "CHANGELOG.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "CLAUDE.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "CODE_OF_CONDUCT.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "README.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/ARCHITECTURE.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/MCP.md",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/adr/0003-translations-by-label.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "package-lock.json",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "package.json",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/build.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/compile-labels.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/fuzz-page.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/mcp-commands.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/mcp-game.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/mcp-page.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/puzzle-solver.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/route-fuzz.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/scenario-bot.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/scenario-ref.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/mcp.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/release-notes.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/route-fuzz.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/test-timings.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/weekly-architect.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/weekly-puzzle.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/weekly-scenario.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/architect/weekly/2026-W44.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/architect/weekly/2026-W45.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/architect/weekly/2026-W46.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/architect/weekly/index.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/i18n/de.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/i18n/es.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/i18n/fr.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/i18n/it.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/i18n/pt.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/puzzles/weekly/2026-W44.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/puzzles/weekly/2026-W45.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/puzzles/weekly/2026-W46.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/puzzles/weekly/index.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/scenarios/weekly/2026-W44.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/scenarios/weekly/2026-W45.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/scenarios/weekly/2026-W46.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/scenarios/weekly/index.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "site/sw.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/00-core/20-analytics.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/10-economy.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/20-routers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/25-router-art.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/30-supply-chain.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/40-ports.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/50-dark-fiber.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/60-reach-and-subsea.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/20-landmasses.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/30-coastline.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/40-city-coords.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/50-cities.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/55-city-pdb.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/60-cables.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/20-world/70-cable-ships.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/10-networks.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/20-rival-exchanges.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/30-long-tail.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/32-homegrown-eyeballs.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/35-glowball-sakura-lager.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/30-networks/40-traffic-shares.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/40-progress/10-businesses.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/40-progress/20-goals.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/40-progress/30-rules.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/50-state.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/10-banks.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/20-scenarios.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/30-conferences.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/35-capacity-deals.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/36-specialist.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/37-fiber-broker.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/50-traceroute.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/60-share-card.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/70-scenario-progress.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/80-new-game.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/90-automation.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/90-puzzles-data.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/92-puzzles.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/93-puzzles-weekly.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/94-scenarios-weekly.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/95-standing-orders.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/96-architect.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/96-pop-standard.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/97-puzzle-monkey.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/98-architect-weekly.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/10-helpers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/20-exchanges.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/30-pnis.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/35-pni-orders.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/38-pni-value.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/40-peering-desk.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/40-peering-inbox.js",
+      "status": "removed",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/50-peering-policy.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/70-sold-out.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/80-hot-ports-and-rank.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/90-backbone-core.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/95-utilities.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/10-dijkstra.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/20-routescript.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/25-ddos-flood.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/25-direct-egress.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/28-route-worker.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/29-route-cache.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/30-compute.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/40-billing.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/50-sanitize.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/60-requirements.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/70-customers-and-events.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/80-geography-and-latency.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/90-sites-and-service.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/10-incidents-and-ddos.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/20-failures.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/30-events.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/40-chaos-monkey.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/50-cable-ships.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/88-days/10-day-tick.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/88-days/20-badges.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/10-interface.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/20-pops-transit-ix.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/30-route-script-and-tools.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/40-sites-peering-caches.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/45-pni-list.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/50-customers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/60-links.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/70-dashboard-lists.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/80-security-and-china.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/85-routing-and-routers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/86-specialist.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/87-fiber-and-hardware.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/88-ops.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/88-optic-counts.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/88-utilities.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/89-game-and-settings.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/90-action-helpers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/91-slots.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/95-puzzles.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/96-architect.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/91-save.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/91-slots.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/92-audio.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/10-dom.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/20-phone.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/40-hud-and-panels.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/45-core-panel.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/46-routing-modal.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/50-city-panel.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/52-pni-list.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/55-utilities.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/57-ops-panel.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/60-decommission.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/70-link-panels.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/75-optic-counts.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/80-find-city.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/82-keys.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/10-progress.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/20-meet-a-network.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/30-customers.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/40-connections.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/50-lease-swaps.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/60-dashboard.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/80-hint.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/10-toasts.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/20-notifications.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/30-modal-and-names.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/35-pni-all.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/40-title.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/45-slots.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/50-release-notes.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/60-help.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/70-link-modal.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/80-own-cable.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/90-fiber-modals.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/95-puzzles.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/95-modals/96-architect.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/20-land-and-clouds.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/30-settings.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/50-link-geometry.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/60-draw.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/70-world-layer.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/75-city-size.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/80-cities.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/85-puzzle-cities.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/87-chaos-monkey.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/88-cable-ships.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/90-input.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/95-clicks.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/99-loop.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/i18n/en.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/index.html",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/10-hud.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/20-drawers.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/35-optic-counts.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/36-ops.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/37-router-art.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/40-modal.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/50-tablet.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/60-phone.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/70-puzzles.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/71-architect.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/any-home-city.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/architect.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/au-north.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/automation.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/backbone-core.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/badges-variants.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/best-effort.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/cable-labels.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/cable-ships.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/cache-ports.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/calendar.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/capitals.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/chaos-monkey.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/city-size.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/compute-idempotent.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/ddos-floods.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/ddos-model.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/direct-egress.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/durations.json",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/eyeballs.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/fiber-broker.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/find-city.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/focus-link.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/game.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/gameplay-rules.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/gangnam.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/glowball-sakura-lager.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/harness.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/helpers/reference-allocation.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/i18n.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/inbox.test.js",
+      "status": "removed",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/intern-optics.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/issues.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/keyboard-shortcuts.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/language-picker.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/link-trial.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/load-time.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/mcp-commands.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/mcp.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/metric-panel.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/modes.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/networks-list.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/new-game-speed.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/north-america.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/optic-counts.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/optic-ports.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/own-asn.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pages.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/peering-desk.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/peering.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/persist.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/philippines.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pni-all.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pni-global.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pni-list.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pnis-and-sold-out.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pop-standard.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/puzzle-monkey.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/puzzles.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/regions.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/release-story.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/report-link.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/route-cache.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/route-fuzz.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/route-server-peers.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/route-skip.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/route-worker.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/router-art.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/routing-modal.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/routing-reference.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/rules-locked.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/rules.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/sales-trial.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/save-size.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/save-slots.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/scenarios-playtest.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/sea-optic-hint.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/sea-rush.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/services.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/specialist.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/speed.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/standing-orders.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/subsea-upgrade-timing.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/tier1-cone.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/tier1-incumbents.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/traceroute.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/useless-subsea-upgrades.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/utilities-caches.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/utilities.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/weekly-architect.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/weekly-puzzle.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/weekly-scenario.test.js",
+      "status": "added",
+      "previous_filename": null
+    }
+  ]
+}

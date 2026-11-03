@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: upgrades queued during construction follow a second lay ship and keep their 30/180-day commissioning time
+ok 1 - upgrades queued during construction follow a second lay ship and keep their 30/180-day commissioning time
+  ---
+  duration_ms: 824.175705
+  type: 'test'
+  ...
+# Subtest: ordering upgrades early is as fast as ordering after booking the second lay ship
+ok 2 - ordering upgrades early is as fast as ordering after booking the second lay ship
+  ---
+  duration_ms: 472.813293
+  type: 'test'
+  ...
+# Subtest: packages included in the original order stay aligned with its accelerated finish
+ok 3 - packages included in the original order stay aligned with its accelerated finish
+  ---
+  duration_ms: 638.090633
+  type: 'test'
+  ...
+# Subtest: construction delays move pending commissioning dates without reinstalling completed equipment
+ok 4 - construction delays move pending commissioning dates without reinstalling completed equipment
+  ---
+  duration_ms: 422.900099
+  type: 'test'
+  ...
+# Subtest: old saves repair excessive pending waits without changing valid dates, charges or installed upgrades
+ok 5 - old saves repair excessive pending waits without changing valid dates, charges or installed upgrades
+  ---
+  duration_ms: 406.900331
+  type: 'test'
+  ...
+# Subtest: land fiber, leased cables, invalid upgrades and rejected lay ship bookings remain unaffected
+ok 6 - land fiber, leased cables, invalid upgrades and rejected lay ship bookings remain unaffected
+  ---
+  duration_ms: 465.139577
+  type: 'test'
+  ...
+# Subtest: one-click completion on land costs the same as repeated crew hires
+ok 7 - one-click completion on land costs the same as repeated crew hires
+  ---
+  duration_ms: 554.682442
+  type: 'test'
+  ...
+# Subtest: one-click completion is atomic when unaffordable and handles short or completed construction
+ok 8 - one-click completion is atomic when unaffordable and handles short or completed construction
+  ---
+  duration_ms: 443.773756
+  type: 'test'
+  ...
+# Subtest: owned ground fiber exposes the one-click button and uses the same crew pricing
+ok 9 - owned ground fiber exposes the one-click button and uses the same crew pricing
+  ---
+  duration_ms: 427.121234
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5004.798909

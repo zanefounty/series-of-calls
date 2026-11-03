@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: the Caribbean: islands on their own landmass, real landings, exchanges only where one runs (\#125)
+ok 1 - the Caribbean: islands on their own landmass, real landings, exchanges only where one runs (\#125)
+  ---
+  duration_ms: 759.37465
+  type: 'test'
+  ...
+# Subtest: the south-west Indian Ocean: Réunion on SAFE, Mauritius, Madagascar and the Seychelles (\#152)
+ok 2 - the south-west Indian Ocean: Réunion on SAFE, Mauritius, Madagascar and the Seychelles (\#152)
+  ---
+  duration_ms: 347.599263
+  type: 'test'
+  ...
+# Subtest: Pitcairn: no cable and no network, but you may land your own, and the UK pays while the islanders are online (\#124)
+ok 3 - Pitcairn: no cable and no network, but you may land your own, and the UK pays while the islanders are online (\#124)
+  ---
+  duration_ms: 440.591996
+  type: 'test'
+  ...
+# Subtest: Alaska and northern British Columbia: towns with no road in are islands, and the Arctic fiber breaks in the ice (\#145)
+ok 4 - Alaska and northern British Columbia: towns with no road in are islands, and the Arctic fiber breaks in the ice (\#145)
+  ---
+  duration_ms: 324.621555
+  type: 'test'
+  ...
+# Subtest: Russia's Arctic and Pacific: government boxes, real cables only, beaches where Polar Express never arrived (\#145)
+ok 5 - Russia's Arctic and Pacific: government boxes, real cables only, beaches where Polar Express never arrived (\#145)
+  ---
+  duration_ms: 392.896232
+  type: 'test'
+  ...
+# Subtest: saves with POPs in the new places survive a save and reload
+ok 6 - saves with POPs in the new places survive a save and reload
+  ---
+  duration_ms: 439.356678
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7809.824769

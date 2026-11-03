@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: AC-SOC-127 purchased and owned construction has effective capacity only after the specified lead time
+ok 1 - AC-SOC-127 purchased and owned construction has effective capacity only after the specified lead time
+  ---
+  duration_ms: 2.067447
+  type: 'test'
+  ...
+# Subtest: AC-SOC-128 explicit bidirectional media profiles consume bandwidth independently from sessions and staff
+ok 2 - AC-SOC-128 explicit bidirectional media profiles consume bandwidth independently from sessions and staff
+  ---
+  duration_ms: 0.859747
+  type: 'test'
+  ...
+# Subtest: AC-SOC-129 shared domain failures disable parallel paths while an independent route permits recovery
+ok 3 - AC-SOC-129 shared domain failures disable parallel paths while an independent route permits recovery
+  ---
+  duration_ms: 5.9834
+  type: 'test'
+  ...
+# Subtest: optional site power domains are independent and legacy site saves retain their old schema
+ok 4 - optional site power domains are independent and legacy site saves retain their old schema
+  ---
+  duration_ms: 0.588805
+  type: 'test'
+  ...
+# Subtest: AC-SOC-130 owned repair consumes a spare and crew once and cannot clear an independent shared-domain fault
+ok 5 - AC-SOC-130 owned repair consumes a spare and crew once and cannot clear an independent shared-domain fault
+  ---
+  duration_ms: 0.446503
+  type: 'test'
+  ...
+# Subtest: AC-SOC-131 reconciled external costs and contract-backed access never bill the same lease twice
+ok 6 - AC-SOC-131 reconciled external costs and contract-backed access never bill the same lease twice
+  ---
+  duration_ms: 0.776503
+  type: 'test'
+  ...
+# Subtest: AC-SOC-132 worker source, saves and corrupted path/cost rejection preserve transport mechanics
+ok 7 - AC-SOC-132 worker source, saves and corrupted path/cost rejection preserve transport mechanics
+  ---
+  duration_ms: 1.768334
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 27.059288

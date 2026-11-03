@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: \#186 a new network starts at half speed, even after a game at 8×
+ok 1 - \#186 a new network starts at half speed, even after a game at 8×
+  ---
+  duration_ms: 754.996501
+  type: 'test'
+  ...
+# Subtest: \#186 on a phone, play after pause resumes at half speed, not the old game's speed
+ok 2 - \#186 on a phone, play after pause resumes at half speed, not the old game's speed
+  ---
+  duration_ms: 343.733523
+  type: 'test'
+  ...
+# Subtest: \#186 a saved game still continues at the speed it was saved at
+ok 3 - \#186 a saved game still continues at the speed it was saved at
+  ---
+  duration_ms: 631.037767
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6953.423368

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "pack": "soc-issue-exercises-1",
+  "status": "optional-training-pack-with-two-bounded-runtime-demonstrations",
+  "evidence_caveat": "Archive reports are historical and anecdotal. These fictional exercises demonstrate only mechanics already present in the synthetic runtime; they do not verify the reported root causes, frequency, vendor behavior, or archived incident outcomes.",
+  "exercises": [
+    {
+      "id": "directional-media",
+      "source_id": "RES-CISCO-VOIP-002",
+      "source_url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+      "source_date": "2014-04-30",
+      "version_context": "CUCM, CUBE and Lync interoperation are mentioned; exact deployed versions are not stated in the initial report.",
+      "evidence_type": "Customer-style incident report with troubleshooting suggestions; the original reporter's resolution is unconfirmed.",
+      "archive_issue_paraphrase": "A reported blind transfer through a SIP trunk produced one-way audio. Replies discuss SDP direction and a conditional early-offer profile; another participant reports a separate header-manipulation fix.",
+      "runtime_scope": "Demonstrates only a generic directional-media failure and recovery using the modeled carrier media-in setting. It does not reproduce blind transfer, a transfer-created leg, SDP renegotiation, CUBE/Lync, or early-offer trunk behavior.",
+      "reference_commands": [
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "provision-test-agents"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "apply-agent-capacity"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "disable-inbound-media"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "apply-media-change"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "test-one-way-media"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "restore-inbound-media"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "apply-media-recovery"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "test-bidirectional-media"
+        },
+        {
+          "action": "step",
+          "exercise": "directional-media",
+          "step": "complete-recovered-call"
+        }
+      ],
+      "assessment": "Pass requires an observed ONE_WAY_MEDIA result with outbound=true and inbound=false, followed by a fresh voice interaction that reaches resolved with no obligations and has a MEDIA_PATHS trace reporting both directions true after inbound media is restored. A 200_OK or media trace without completed call handling is insufficient."
+    },
+    {
+      "id": "carrier-outage-recovery",
+      "source_id": "voiceops-2010-12-dash-outage",
+      "source_url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+      "source_date": "2010-12-15",
+      "version_context": "The sampled discussion does not provide a technical version matrix.",
+      "evidence_type": "Outage inquiry and customer recollection; replies do not establish scope, duration, cause, or resolution.",
+      "archive_issue_paraphrase": "A prospective customer asks about a reported carrier outage while available evidence includes questions and historical recollection rather than a confirmed incident account.",
+      "runtime_scope": "Demonstrates only synthetic carrier fault injection and a fresh successful call after clearing that fault. Incident timelines, evidence confidence, status notices, alternate routing, and the historical provider event are not modeled.",
+      "reference_commands": [
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "provision-test-agents"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "apply-agent-capacity"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "inject-carrier-outage"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "test-signalling-failure"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "clear-carrier-outage"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "test-recovered-call"
+        },
+        {
+          "action": "step",
+          "exercise": "carrier-outage-recovery",
+          "step": "complete-recovered-call"
+        }
+      ],
+      "assessment": "Pass requires an observed SIGNALLING_FAILED result while the carrier is faulted, followed by a fresh voice interaction that reaches resolved with no obligations and has 200_OK and bidirectional MEDIA_PATHS traces after the carrier fault is cleared. A stale successful call or early 200_OK cannot satisfy recovery."
+    }
+  ],
+  "pending_source_ids": [
+    {
+      "id": "RES-CISCO-VOIP-001",
+      "gap": "Hold/resume offer-answer profiles and endpoint-specific SDP behavior are not modeled."
+    },
+    {
+      "id": "RES-CISCO-VOIP-003",
+      "gap": "BLF key sequences and firmware-gated transfer behavior are not modeled."
+    },
+    {
+      "id": "RES-CISCO-VOIP-004",
+      "gap": "Trunk ingress-node membership is not modeled."
+    },
+    {
+      "id": "RES-CISCO-VOIP-008",
+      "gap": "Room endpoint provisioning authority and SIP URI drift are not modeled."
+    },
+    {
+      "id": "RES-CISCO-VOIP-011",
+      "gap": "Row-level device import mapping and uniqueness-conflict retry are not modeled."
+    },
+    {
+      "id": "voiceops-2010-08-peer-of-peer",
+      "gap": "Independent codec offers and transcoder paths are not modeled."
+    },
+    {
+      "id": "voiceops-2010-12-sbc-tcp-keepalive",
+      "gap": "Transport pinhole expiry and reconnect timing are not modeled."
+    }
+  ],
+  "runtime": {
+    "PACK": "soc-issue-exercises-1",
+    "VERSION": 1,
+    "definitions": {
+      "directional-media": {
+        "source": {
+          "id": "RES-CISCO-VOIP-002",
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+          "date": "2014-04-30",
+          "evidence": "customer-style report with troubleshooting suggestions; original resolution unconfirmed"
+        },
+        "scope": "This exercise reproduces a generic directional-media failure supported by the runtime. It does not model blind transfer, a new transfer leg, SDP renegotiation, CUBE/Lync, or early-offer trunk profiles, so it is not a reproduction of the archived transfer-specific mechanism.",
+        "failureCase": "issue-media-failure",
+        "recoveryCase": "issue-media-recovery",
+        "steps": [
+          "provision-test-agents",
+          "apply-agent-capacity",
+          "disable-inbound-media",
+          "apply-media-change",
+          "test-one-way-media",
+          "restore-inbound-media",
+          "apply-media-recovery",
+          "test-bidirectional-media",
+          "complete-recovered-call"
+        ]
+      },
+      "carrier-outage-recovery": {
+        "source": {
+          "id": "voiceops-2010-12-dash-outage",
+          "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+          "date": "2010-12-15",
+          "evidence": "outage inquiry and customer recollection; scope, cause, duration and resolution are not established"
+        },
+        "scope": "This exercise demonstrates only a synthetic carrier outage and a fresh successful call after clearing the fault. It does not reproduce the archived provider event, establish its cause or scope, or model incident communications and evidence confidence.",
+        "failureCase": "issue-outage-failure",
+        "recoveryCase": "issue-outage-recovery",
+        "steps": [
+          "provision-test-agents",
+          "apply-agent-capacity",
+          "inject-carrier-outage",
+          "test-signalling-failure",
+          "clear-carrier-outage",
+          "test-recovered-call",
+          "complete-recovered-call"
+        ]
+      }
+    },
+    "pending": [
+      {
+        "id": "RES-CISCO-VOIP-001",
+        "reason": "hold/resume offer-answer profiles and endpoint-specific SDP behavior are not modeled."
+      },
+      {
+        "id": "RES-CISCO-VOIP-003",
+        "reason": "BLF key sequences and firmware-gated transfer behavior are not modeled."
+      },
+      {
+        "id": "RES-CISCO-VOIP-004",
+        "reason": "trunk ingress-node membership is not modeled."
+      },
+      {
+        "id": "RES-CISCO-VOIP-008",
+        "reason": "room endpoint provisioning authority and SIP URI drift are not modeled."
+      },
+      {
+        "id": "RES-CISCO-VOIP-011",
+        "reason": "row-level device import mapping and uniqueness-conflict retry are not modeled."
+      },
+      {
+        "id": "voiceops-2010-08-peer-of-peer",
+        "reason": "independent codec offers and transcoder paths are not modeled."
+      },
+      {
+        "id": "voiceops-2010-12-sbc-tcp-keepalive",
+        "reason": "transport pinhole expiry and reconnect timing are not modeled."
+      }
+    ]
+  }
+}

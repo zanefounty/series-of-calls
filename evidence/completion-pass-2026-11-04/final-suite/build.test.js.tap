@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: build stamps version and date into the site
+ok 1 - build stamps version and date into the site
+  ---
+  duration_ms: 179.523144
+  type: 'test'
+  ...
+# Subtest: project hosting uses scoped application URLs and has no upstream publisher
+ok 2 - project hosting uses scoped application URLs and has no upstream publisher
+  ---
+  duration_ms: 7.197585
+  type: 'test'
+  ...
+# Subtest: version.json carries the release notes from the changelog
+ok 3 - version.json carries the release notes from the changelog
+  ---
+  duration_ms: 122.406777
+  type: 'test'
+  ...
+# Subtest: head carries the SEO and social metadata
+ok 4 - head carries the SEO and social metadata
+  ---
+  duration_ms: 11.085577
+  type: 'test'
+  ...
+# Subtest: a release build refuses to ship without release notes
+ok 5 - a release build refuses to ship without release notes
+  ---
+  duration_ms: 95.610717
+  type: 'test'
+  ...
+# Subtest: src: partials follow the layout rules (docs/adr/0002-one-page-assembled-at-build.md)
+ok 6 - src: partials follow the layout rules (docs/adr/0002-one-page-assembled-at-build.md)
+  ---
+  duration_ms: 12.106664
+  type: 'test'
+  ...
+# Subtest: distribution preserves upstream MIT and includes accurate attribution notices
+ok 7 - distribution preserves upstream MIT and includes accurate attribution notices
+  ---
+  duration_ms: 3.877093
+  type: 'test'
+  ...
+# Subtest: AC-SOC-362 build output validation protects the repository and its source inputs
+ok 8 - AC-SOC-362 build output validation protects the repository and its source inputs
+  ---
+  duration_ms: 2.302883
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 457.526898

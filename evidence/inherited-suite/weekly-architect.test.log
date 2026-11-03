@@ -1,0 +1,13 @@
+✔ the generator makes the same run for the same week, and its reference earns three stars (1646.707038ms)
+✔ a grow brief makes the reference make room: a bigger tube or a second one (1397.815659ms)
+✔ every published week is accepted and its reference still earns three stars (669.551053ms)
+✔ the game refuses a file that does not add up (242.015868ms)
+✔ this week's run shows in Puzzles, plays like a handmade one and keeps its own stars (994.728868ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10197.554958

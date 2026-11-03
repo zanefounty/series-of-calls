@@ -1,0 +1,456 @@
+{
+  "version": "soc-foundation-1",
+  "units": [
+    "seat",
+    "session",
+    "agent",
+    "Mbps",
+    "minute",
+    "message",
+    "room",
+    "GB",
+    "processor-minute",
+    "managed-operation"
+  ],
+  "products": [
+    {
+      "id": "directory",
+      "name": "Microsnoft Identity Grove",
+      "unit": "seat",
+      "console": "identity",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "local": false,
+        "identities": [
+          "alex",
+          "bea"
+        ],
+        "entitled": [
+          "alex",
+          "bea"
+        ],
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "connectivity",
+      "name": "Level Tree Access",
+      "unit": "Mbps",
+      "console": "carrier",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "capacity": 20,
+        "local": false,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "uc",
+      "name": "Microsnoft Workplace Phone",
+      "unit": "seat",
+      "console": "workplace",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "directory": "identity",
+        "connectivity": "access",
+        "deployment": "multitenant",
+        "carrierModel": "managed",
+        "capacity": 10,
+        "routes": [
+          {
+            "prefix": "+61",
+            "target": "desk"
+          }
+        ],
+        "extensionScope": "tenant",
+        "normalisation": "+61",
+        "signalling": true,
+        "mediaOut": true,
+        "mediaIn": true,
+        "local": false,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "directory",
+          "target": "directory",
+          "unit": "seat"
+        },
+        {
+          "field": "connectivity",
+          "target": "connectivity",
+          "unit": "Mbps"
+        }
+      ]
+    },
+    {
+      "id": "dedicated",
+      "name": "Disco Dedicated Voice",
+      "unit": "seat",
+      "console": "disco",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "directory": "identity",
+        "connectivity": "access",
+        "deployment": "dedicated",
+        "carrierModel": "gateway",
+        "capacity": 10,
+        "routes": [
+          {
+            "prefix": "+61",
+            "target": "desk"
+          }
+        ],
+        "extensionScope": "site",
+        "normalisation": "+61",
+        "signalling": true,
+        "mediaOut": true,
+        "mediaIn": true,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "directory",
+          "target": "directory",
+          "unit": "seat"
+        },
+        {
+          "field": "connectivity",
+          "target": "connectivity",
+          "unit": "Mbps"
+        }
+      ]
+    },
+    {
+      "id": "trunk",
+      "name": "Bellwether Interconnect",
+      "unit": "session",
+      "console": "carrier",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "capacity": 4,
+        "signalling": true,
+        "mediaOut": true,
+        "mediaIn": true,
+        "local": false,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "endpoint",
+      "name": "Disco Desk",
+      "unit": "seat",
+      "console": "disco",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "identity": "bea",
+        "extension": "201",
+        "scope": "tenant",
+        "number": "+61255500201",
+        "registered": true,
+        "firmware": 2,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "workforce",
+      "name": "People Orchard",
+      "unit": "agent",
+      "console": "workforce",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "operator": "player",
+        "people": 2,
+        "entitlements": 2,
+        "skills": [
+          "service"
+        ],
+        "languages": [
+          "en"
+        ],
+        "shiftStart": 0,
+        "shiftEnd": 1440,
+        "handlingMinutes": 3,
+        "wrapMinutes": 1,
+        "digitalConcurrency": 2,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "queue",
+      "name": "Disco Service Desk",
+      "unit": "session",
+      "console": "contact",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "workforce": "people",
+        "capacity": 4,
+        "skill": "service",
+        "language": "en",
+        "maxWait": 8,
+        "callback": true,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "workforce",
+          "target": "workforce",
+          "unit": "agent"
+        }
+      ]
+    },
+    {
+      "id": "channel",
+      "name": "Chatterleaf Business",
+      "unit": "message",
+      "console": "engage",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "approved": true,
+        "templates": [
+          "appointment"
+        ],
+        "rateLimit": 10,
+        "local": false,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "crm",
+      "name": "Casebook",
+      "unit": "seat",
+      "console": "casebook",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "identityMapping": true,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "workflow",
+      "name": "Disco Connective",
+      "unit": "message",
+      "console": "engage",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "channel": "messages",
+        "queue": "service",
+        "crm": "cases",
+        "template": "appointment",
+        "handoff": true,
+        "botResolves": false,
+        "retries": 2,
+        "local": false,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "channel",
+          "target": "channel",
+          "unit": "message"
+        },
+        {
+          "field": "queue",
+          "target": "queue",
+          "unit": "session"
+        },
+        {
+          "field": "crm",
+          "target": "crm",
+          "unit": "seat"
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "name": "Disco Room Garden",
+      "unit": "room",
+      "console": "rooms",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "directory": "identity",
+        "calendar": true,
+        "account": "bea",
+        "mode": "native",
+        "interop": false,
+        "firmware": 2,
+        "microphone": true,
+        "camera": true,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "directory",
+          "target": "directory",
+          "unit": "seat"
+        }
+      ]
+    },
+    {
+      "id": "recorder",
+      "name": "Echo Vault Capture",
+      "unit": "session",
+      "console": "governance",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "capacity": 4,
+        "consent": true,
+        "identityMapping": true,
+        "archive": "archive",
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": [
+        {
+          "field": "archive",
+          "target": "archive",
+          "unit": "GB"
+        }
+      ]
+    },
+    {
+      "id": "archive",
+      "name": "Echo Vault Archive",
+      "unit": "GB",
+      "console": "governance",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "capacity": 20,
+        "retentionDays": 30,
+        "access": [
+          "supervisor"
+        ],
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "processor",
+      "name": "Disco Speech Orchard",
+      "unit": "processor-minute",
+      "console": "processing",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "capacity": 10,
+        "language": "en",
+        "operation": "transcription",
+        "local": true,
+        "licenceLocal": false,
+        "region": "AU"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "infrastructure",
+      "name": "Clockwork Local Services",
+      "unit": "session",
+      "console": "infrastructure",
+      "sourceIds": [
+        "DEC-007",
+        "DEC-008"
+      ],
+      "configuration": {
+        "enabled": true,
+        "identity": true,
+        "dns": true,
+        "time": true,
+        "certificates": true,
+        "licensing": true,
+        "backup": true,
+        "local": true,
+        "region": "AU"
+      },
+      "dependencies": []
+    }
+  ],
+  "compatibility": [
+    {
+      "from": "uc",
+      "to": "queue",
+      "direction": "forward",
+      "features": [
+        "voice handoff"
+      ],
+      "versions": [
+        "soc-foundation-1"
+      ],
+      "supportOwner": "player",
+      "evidenceStatus": "scenario-tested",
+      "acceptance": "AC-SOC-003"
+    }
+  ]
+}

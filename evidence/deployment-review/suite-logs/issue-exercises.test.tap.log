@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-149 retains source attribution, caveats and explicitly pending issue gaps
+ok 1 - AC-SOC-149 retains source attribution, caveats and explicitly pending issue gaps
+  ---
+  duration_ms: 4.228221
+  type: 'test'
+  ...
+# Subtest: AC-SOC-150 reference directional-media commands produce the modeled one-way media failure
+ok 2 - AC-SOC-150 reference directional-media commands produce the modeled one-way media failure
+  ---
+  duration_ms: 6.723603
+  type: 'test'
+  ...
+# Subtest: AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure
+ok 3 - AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure
+  ---
+  duration_ms: 2.555876
+  type: 'test'
+  ...
+# Subtest: AC-SOC-152 unknown commands and out-of-order steps fail without state changes
+ok 4 - AC-SOC-152 unknown commands and out-of-order steps fail without state changes
+  ---
+  duration_ms: 1.361248
+  type: 'test'
+  ...
+# Subtest: AC-SOC-153 carrier-outage reference commands create an observed signalling failure
+ok 5 - AC-SOC-153 carrier-outage reference commands create an observed signalling failure
+  ---
+  duration_ms: 1.593839
+  type: 'test'
+  ...
+# Subtest: AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery
+ok 6 - AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery
+  ---
+  duration_ms: 6.781308
+  type: 'test'
+  ...
+# Subtest: AC-SOC-155 exercise save state validates and progress fingerprint excludes root call evidence
+ok 7 - AC-SOC-155 exercise save state validates and progress fingerprint excludes root call evidence
+  ---
+  duration_ms: 7.968354
+  type: 'test'
+  ...
+# Subtest: AC-SOC-156 worker source serializes the same source-bounded command policy
+ok 8 - AC-SOC-156 worker source serializes the same source-bounded command policy
+  ---
+  duration_ms: 1.190958
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 61.652879

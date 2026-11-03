@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: generator: deterministic for a week, and every theme a template the game knows
+ok 1 - generator: deterministic for a week, and every theme a template the game knows
+  ---
+  duration_ms: 2589.249131
+  type: 'test'
+  ...
+# Subtest: every committed week verifies: not won on day 0, the reference wins on its par with time to spare
+ok 2 - every committed week verifies: not won on day 0, the reference wins on its par with time to spare
+  ---
+  duration_ms: 1555.196706
+  type: 'test'
+  ...
+# Subtest: the file is checked field by field, and --check rejects a tampered one
+ok 3 - the file is checked field by field, and --check rejects a tampered one
+  ---
+  duration_ms: 1405.033417
+  type: 'test'
+  ...
+# Subtest: --check: a week the reference no longer wins is regenerated as a new revision, a new par is just written
+ok 4 - --check: a week the reference no longer wins is regenerated as a new revision, a new par is just written
+  ---
+  duration_ms: 2433.651196
+  type: 'test'
+  ...
+# Subtest: the page never asks for a weekly scenario on load, only when the Scenarios list opens
+ok 5 - the page never asks for a weekly scenario on load, only when the Scenarios list opens
+  ---
+  duration_ms: 392.910632
+  type: 'test'
+  ...
+# Subtest: the published scenario is played when it is good, the in-browser weekly when it is missing, offline or bad
+ok 6 - the published scenario is played when it is good, the in-browser weekly when it is missing, offline or bad
+  ---
+  duration_ms: 561.506676
+  type: 'test'
+  ...
+# Subtest: every goal type has a progress card, needs play, and wins, streaks and shares
+ok 7 - every goal type has a progress card, needs play, and wins, streaks and shares
+  ---
+  duration_ms: 527.227984
+  type: 'test'
+  ...
+# Subtest: saves keep the scenario, checked again on load; a tampered one plays on as the in-browser weekly
+ok 8 - saves keep the scenario, checked again on load; a tampered one plays on as the in-browser weekly
+  ---
+  duration_ms: 371.521878
+  type: 'test'
+  ...
+# Subtest: weekly scenario in every language and on a 360 px phone, with the door badge until started
+ok 9 - weekly scenario in every language and on a 360 px phone, with the door badge until started
+  ---
+  duration_ms: 2486.749102
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17535.338466

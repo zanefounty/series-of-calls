@@ -1,0 +1,17 @@
+✔ a reload drops you straight back into your saved network (841.120962ms)
+✔ leaving the page saves the game (244.489249ms)
+✔ a save too big for the browser is not retried every few seconds, but leaving still tries (285.853692ms)
+✔ customer names already used are remembered once each, and old saves shrink on load (377.286178ms)
+✔ returning players see what is new after an update, once (857.989992ms)
+✔ version comparison for the update banner (212.448233ms)
+✔ #46 an update that adds networks gives a courtesy route, and Tier 1 is shown only while it is true (268.938532ms)
+✔ in-app release notes stay short and link to the full notes on GitHub (246.855162ms)
+✔ the big-network benchmark save loads cleanly and routes traffic (326.406665ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10731.250641

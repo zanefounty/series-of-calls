@@ -1,0 +1,33 @@
+{
+  "version": "soc-portfolio-content-1",
+  "scope": "Bounded concurrent synthetic customer roots. Geography is a market selector and does not itself assert legal eligibility or approval.",
+  "customerLimit": 20,
+  "markets": [
+    {"id":"au-sydney","geography":"Australia / Sydney","jurisdiction":"AU"},
+    {"id":"au-melbourne","geography":"Australia / Melbourne","jurisdiction":"AU"},
+    {"id":"us-seattle","geography":"United States / Seattle","jurisdiction":"US"},
+    {"id":"jp-tokyo","geography":"Japan / Tokyo","jurisdiction":"JP"},
+    {"id":"eu-dublin","geography":"Europe / Dublin, Ireland","jurisdiction":"EU"}
+  ],
+  "runtime": {
+    "PACK": "soc-portfolio-1",
+    "VERSION": 1,
+    "CONTENT": "soc-portfolio-content-1",
+    "MAX_CUSTOMERS": 20,
+    "MAX_CATCHUP_MINUTES": 1440,
+    "markets": {
+      "au-sydney": {"geography":"Australia / Sydney","jurisdiction":"AU"},
+      "au-melbourne": {"geography":"Australia / Melbourne","jurisdiction":"AU"},
+      "us-seattle": {"geography":"United States / Seattle","jurisdiction":"US"},
+      "jp-tokyo": {"geography":"Japan / Tokyo","jurisdiction":"JP"},
+      "eu-dublin": {"geography":"Europe / Dublin","jurisdiction":"EU"}
+    },
+    "scenarios": ["smb", "enterprise", "government", "defence"]
+  },
+  "behaviorNotes": {
+    "childAdvanceCommand":{"type":"advance","minutes":1},
+    "forbiddenNestedPacks":["portfolio","campaign","progression"],
+    "finance":{"currency":"AUD","openingCapitalCentsPerBusiness":100000,"profitFormula":"externalRevenueCents - externalCostCents","cashIncludesOpeningCapital":true,"internalCashTracked":false,"internalLedgerAggregated":true,"interCustomerTransfersModeled":false}
+  },
+  "sourceIds": ["DEC-007","DEC-010","DEC-011","DEC-013","DEC-014","progress.goal.c3","progress.goal.c5","progress.goal.t2"]
+}

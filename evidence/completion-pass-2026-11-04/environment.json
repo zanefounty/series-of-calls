@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-03T20:30:56.240141+00:00",
+  "gitMetadata": false,
+  "checks": {
+    "dns:github.com": {
+      "status": "blocked",
+      "error": "[Errno -2] Name or service not known"
+    },
+    "dns:registry.npmjs.org": {
+      "status": "blocked",
+      "error": "[Errno -2] Name or service not known"
+    },
+    "localhost": {
+      "status": "blocked",
+      "error": "[Errno 1] Operation not permitted"
+    },
+    "dependency:jsdom": {
+      "status": "missing"
+    },
+    "dependency:playwright-core": {
+      "status": "missing"
+    }
+  },
+  "browserMcp": "No browser MCP tools exposed in this session"
+}

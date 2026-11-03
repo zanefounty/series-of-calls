@@ -1,0 +1,1163 @@
+{
+  "id": "REVISE-RECOMMENDATION-AUDIT-2026-11-04",
+  "checkedAt": "2026-11-04",
+  "status": "proposal-amendment-pending-owner-review",
+  "canonicalReviewsChanged": false,
+  "scope": "All 40 references marked revise in the 4 November 2026 reference and jurisdiction proposal JSON files. Each record includes linked claim wording, a replacement, limits, source URL/reachability, and a concrete owner decision.",
+  "method": "Opened exact primary-source URLs in batches using the connected web reader. Historical mail pages and exact pinned upstream files were read directly. No accepted review, source-pack bytes, canonical claim, or gameplay register was changed.",
+  "coverage": {
+    "expected": 40,
+    "included": 40,
+    "uniqueReferences": 40,
+    "directPrimaryPagesRetrieved": 39,
+    "blockedReference": "REF-267d4dda6bb79608 (pinned GitHub tree URL returned restricted-URL failure; three exact pinned component files were retrieved and are separately reviewed).",
+    "limitedContent": [
+      "REF-097413172db36986",
+      "REF-6ee11627b4e96799",
+      "REF-d91db49dd1296a40",
+      "REF-81f2bd205e0f66f7"
+    ],
+    "notes": "Four Webex App Hub URLs returned listing/index identity, but subsequent content fetches timed out, so detailed feature claims remain unverified. Microsoft Learn pages displayed an authorization notice while exposing readable page content. The Fireflies page directs readers to a signed-in integrations directory rather than exposing the named platform list."
+  },
+  "records": [
+    {
+      "referenceId": "REF-ac194430f67b3832",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-25a0d3acbe089fe8"
+      ],
+      "requirementIds": [
+        "REQ-34149e5830194956"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "page returned readable text with an authorization notice; page content is partial; accessed 2026-11-04",
+      "replacementWording": "The Microsoft Teams service-description page presents Teams feature families and says Teams is licensed through qualifying Microsoft 365 plans or as a standalone SKU; it directs readers to separate plan comparisons for subscription detail. Treat cloud, plan, Teams Phone/PSTN, Rooms, and event entitlements as separate dated evidence rather than one universal feature set.",
+      "retainedUncertainty": "The service description and linked plan tables change; this page is not a complete license matrix. The related PSTN, Rooms, and event pages are distinct sources.",
+      "ownerDecision": "Decide whether to retain only the service-description-level product scope here and keep plan, PSTN, Rooms, and events as separately sourced claims.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-25a0d3acbe089fe8",
+          "requirementId": "REQ-34149e5830194956",
+          "canonicalWording": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Microsoft Teams service description lists plan-specific feature families/cloud differences and directs Teams Phone to separate license/PSTN requirements; PSTN, Rooms licensing and meetings/events pages were also reviewed.",
+      "proposalUncertainty": "Repeated four-source composite; feature tables can change and should not be treated as timeless."
+    },
+    {
+      "referenceId": "REF-a8dbb077dacacede",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-a200581db0f56c8d"
+      ],
+      "requirementIds": [
+        "REQ-34149e5830194956"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "The Teams meetings-and-events overview distinguishes meetings and events, and its current notice states that some features moved from Teams Premium into Teams Enterprise on 1 April 2026 while Premium continues to include specified advanced capabilities. Cite this as a time-bounded licensing notice, not a complete feature or event-entitlement matrix.",
+      "retainedUncertainty": "Feature availability, event limits, and licensing can vary by plan, tenant, event mode, and date. The overview is not a legal or complete commercial entitlement source.",
+      "ownerDecision": "Decide whether to accept the scoped feature-family and 2026-04-01 notice, with any limit or license detail tied to the applicable dated plan documentation.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-a200581db0f56c8d",
+          "requirementId": "REQ-34149e5830194956",
+          "canonicalWording": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Meetings/events page distinguishes interactive meetings and role-structured events; notes Teams Premium/Enterprise licensing changed 2026-04-01.",
+      "proposalUncertainty": "Limits and licenses are time-sensitive; do not hard-code as timeless."
+    },
+    {
+      "referenceId": "REF-b8049813b772603e",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-17b469523e0fccdd"
+      ],
+      "requirementIds": [
+        "REQ-fcfe870dbabdbb62"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Microsoft describes Dynamics 365 Contact Center as a cloud-based, Copilot-first contact-center product with omnichannel capabilities including IVR, AI agents, summaries, sentiment analysis, and live transcription/translation. This overview supports product positioning and listed capabilities only.",
+      "retainedUncertainty": "The overview does not establish license/edition availability, region, residency, connector compatibility, service limits, or contractual entitlement.",
+      "ownerDecision": "Decide whether to accept the narrow product overview and move capability, region, and commercial details to their own dated primary sources.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-17b469523e0fccdd",
+          "requirementId": "REQ-fcfe870dbabdbb62",
+          "canonicalWording": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "D365 Contact Center overview describes cloud omnichannel routing, IVR, AI agents, transcription/translation, analytics and Teams collaboration.",
+      "proposalUncertainty": "Overview is product positioning, not edition, region, license, residency or interop evidence."
+    },
+    {
+      "referenceId": "REF-0ab35ad448a8e152",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-47c428cb682fd198"
+      ],
+      "requirementIds": [
+        "REQ-4a8f2bbb4079765f"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Microsoft 365 Local overview says Exchange Server, SharePoint Server, and Skype for Business Server can run on customer-owned Azure Local infrastructure. The page describes the listed product scope; its omission of Teams does not by itself prove an exhaustive negative claim about every Teams deployment.",
+      "retainedUncertainty": "Deployment choices, availability, and product scope are versioned; no Teams exclusion is stated here as an exhaustive rule.",
+      "ownerDecision": "Decide whether to retain the listed workloads and remove the categorical “no on-prem Teams edition” inference unless separately supported.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-47c428cb682fd198",
+          "requirementId": "REQ-4a8f2bbb4079765f",
+          "canonicalWording": "[Microsoft 365 Local](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview) runs Exchange Server, SharePoint Server and Skype for Business Server on customer-owned Azure Local infrastructure, with hybrid and disconnected deployment options. It should have its own product profile; it does not provide an on-premises Teams edition.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Microsoft 365 Local page documents Exchange, SharePoint and Skype for Business Server on customer-owned Azure Local, including hybrid/disconnected modes; it does not list Teams.",
+      "proposalUncertainty": "No on-prem Teams is inferred from documented scope, not an explicit exhaustive exclusion on this page."
+    },
+    {
+      "referenceId": "REF-994b72cced26fabb",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-a1def7797ff16712"
+      ],
+      "requirementIds": [
+        "REQ-d39d0f417f9016b0"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable with service tables; accessed 2026-11-04; guide states announcement 2026-09-23",
+      "replacementWording": "Microsoft’s ACS guide, updated for its 23 September 2026 announcement, sets 30 September 2028 as the standalone-offering transition date. It distinguishes services that retire and become unavailable from services/SDKs that remain but require breaking-change updates and eligible Teams-aligned scenarios for continued support. These categories and each service’s table entry must be kept separate.",
+      "retainedUncertainty": "The guide’s service-specific tables and supported Teams integration paths govern; eligibility does not establish feature parity. Retirement and breaking-change categories differ. Current page also describes onboarding restrictions for some retiring offers.",
+      "ownerDecision": "Decide whether to accept this category-specific statement; confirm any individual ACS service, existing-resource, migration, or onboarding detail against the current impacted-service table before encoding it.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-a1def7797ff16712",
+          "requirementId": "REQ-d39d0f417f9016b0",
+          "canonicalWording": "The [ACS retirement and breaking-changes guide](https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide) sets **30 September 2028** as the transition date for standalone ACS retirement and related SDK changes. Some services retire; certain calling and automation capabilities continue in supported Teams-aligned scenarios with changes. The game should distinguish retiring offers, supported existing deployments and permitted successor architectures.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "ACS guide sets 2028-09-30 for standalone retirement, separates retired from breaking-change services, and notes onboarding restrictions for retiring offers since 2026-10-23.",
+      "proposalUncertainty": "“Transition date” obscures different service categories. Preserve restrictions and supported Teams-aligned scenarios."
+    },
+    {
+      "referenceId": "REF-c6673929705ff2bf",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-21c67d1cbd6c351b"
+      ],
+      "requirementIds": [
+        "REQ-0dcd866e94553617"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Microsoft’s Teams Copilot guide says Copilot is unavailable in end-to-end encrypted meetings and currently unavailable in GCC High. It also differentiates during-meeting Copilot from transcript-dependent post-meeting use; bind any transcription/retention claim to the particular meeting/event mode and enabled recording/transcription policy.",
+      "retainedUncertainty": "The page is Teams-specific and time-sensitive. It does not establish a rule for every AI assistant, cloud, tenant, or future version.",
+      "ownerDecision": "Decide whether to accept only the cited Teams/E2EE and GCC High boundaries; require a separate source for any detailed retention or transcript lifecycle wording.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-21c67d1cbd6c351b",
+          "requirementId": "REQ-0dcd866e94553617",
+          "canonicalWording": "[Copilot in Teams documentation](https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription) distinguishes temporary speech processing from saved transcription and states that Copilot is unavailable in end-to-end encrypted meetings. Model that conflict for the relevant profile. Do not make it a universal rule covering every vendor or future version.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Copilot meeting/event page separates during-only temporary speech-to-text from transcription-backed during-and-after and excludes E2EE meetings; includes cloud/retention caveats.",
+      "proposalUncertainty": "Specify meeting/event mode; GCC High and Purview caveats mean not universal across Teams AI."
+    },
+    {
+      "referenceId": "REF-cbb04f2d2c34bccb",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-561d8817ca1026f1"
+      ],
+      "requirementIds": [
+        "REQ-51f946a444240d70"
+      ],
+      "primarySourceUrls": [
+        "https://www.webex.com/us/en/products/suite.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Cisco’s Webex Suite page markets a suite of workflows including meetings, messaging, calling, webinars, video messaging, events, whiteboarding, and polling. This page supports the marketed suite categories; details about Flex offers, Dedicated Instance, contact center, Connect, device interoperability, or wholesale routes require their respective product/offer documentation.",
+      "retainedUncertainty": "Marketing categories are not entitlement, compatibility, deployment, regional availability, or parity evidence; portfolio pages change.",
+      "ownerDecision": "Decide whether to accept this narrow portfolio example and keep each linked offer, product, deployment, and partner claim in its own reference record.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-561d8817ca1026f1",
+          "requirementId": "REQ-51f946a444240d70",
+          "canonicalWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Webex Suite page lists calling, meetings, messaging, events/webinars, polling, whiteboarding and AI; linked Flex, Dedicated Instance, CC, Connect, interoperability and wholesale materials reviewed.",
+      "proposalUncertainty": "Split composite into product/offer/deployment/partner claims; suite marketing alone is not detailed entitlement."
+    },
+    {
+      "referenceId": "REF-f17dabc322d17a54",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-a6276d9047a1da7e"
+      ],
+      "requirementIds": [
+        "REQ-51f946a444240d70"
+      ],
+      "primarySourceUrls": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; page states Updated 2026-06-18",
+      "replacementWording": "Cisco’s Flex Plan 3.0/Webex Suite data sheet (updated 18 June 2026) describes offer and buying-model distinctions. Use it for the specific offer families and combinations stated in that sheet, not as an enduring price/entitlement schedule.",
+      "retainedUncertainty": "Minimums, included features, add-ons, allowances, and commercial availability are offer-, region-, and date-dependent.",
+      "ownerDecision": "Decide whether to accept only the dated offer taxonomy; require a current quote/order guide for prices and customer entitlements.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-a6276d9047a1da7e",
+          "requirementId": "REQ-51f946a444240d70",
+          "canonicalWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Flex Plan 3.0 data sheet distinguishes Suite/Essentials, EA/NU/AU buying, combinations and deployment options.",
+      "proposalUncertainty": "Minimums, add-ons, allowances and entitlements vary by offer and change."
+    },
+    {
+      "referenceId": "REF-c9e920ec01b6f78b",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-4d9e35e3a246ec7a"
+      ],
+      "requirementIds": [
+        "REQ-51f946a444240d70"
+      ],
+      "primarySourceUrls": [
+        "https://help.webex.com/article/dk3o5r"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; page crawled 2026-11-04 (tool last crawl 5 days earlier)",
+      "replacementWording": "Cisco’s Dedicated Instance guide describes a Webex Calling add-on using a dedicated Cisco Unified Communications Manager architecture and related applications/clusters. Treat the guide’s listed applications and prerequisites as scope; promotional parity language does not prove complete feature equivalence with another deployment.",
+      "retainedUncertainty": "Availability and requirements depend on region, subscription, version, and add-ons; this page is not exhaustive feature parity or certification evidence.",
+      "ownerDecision": "Decide whether to accept the architecture and documented-scope wording while dropping any general “same features” implication.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-4d9e35e3a246ec7a",
+          "requirementId": "REQ-51f946a444240d70",
+          "canonicalWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Dedicated Instance docs describe a Webex Calling add-on on UCM architecture, applications/clusters and availability.",
+      "proposalUncertainty": "Promotional “same features” text is not exhaustive parity; check version/region/add-on."
+    },
+    {
+      "referenceId": "REF-ecd8d4f64aad9f35",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-68a0886f7e4eefc5",
+        "CLAIM-fbf813cd7e1b1387"
+      ],
+      "requirementIds": [
+        "REQ-51f946a444240d70",
+        "REQ-7993072717d54c9d"
+      ],
+      "primarySourceUrls": [
+        "https://help.webexconnect.io/docs/welcome"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "both pages readable; Meta pricing page redirected from business.whatsapp.com to whatsappbusiness.com; accessed 2026-11-04",
+      "replacementWording": "Webex Connect documentation describes a CPaaS platform with APIs/flows for customer interactions over listed channels, including WhatsApp and Facebook Messenger. Meta’s separate pricing page currently identifies marketing, authentication, utility, and service message categories and qualifying free cases. These support separate platform-integration and channel-pricing statements, not a combined entitlement or fixed rate.",
+      "retainedUncertainty": "WhatsApp rates and category rules depend on market/date and may change; the pricing URL redirected to whatsappbusiness.com. Webex Connect capability does not prove a specific WhatsApp entitlement or price.",
+      "ownerDecision": "Decide whether to split the claim into (1) Webex Connect channel/API capability and (2) Meta’s dated pricing categories, each with its own owner-reviewed scope.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-68a0886f7e4eefc5",
+          "requirementId": "REQ-51f946a444240d70",
+          "canonicalWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-fbf813cd7e1b1387",
+          "requirementId": "REQ-7993072717d54c9d",
+          "canonicalWording": "[WhatsApp's pricing documentation](https://business.whatsapp.com/products/platform-pricing) distinguishes delivered-message categories and free service responses within its customer-service rules. The game should account for the relevant channel economics rather than assuming every message has the same cost. [Webex Connect](https://help.webexconnect.io/docs/welcome) demonstrates that WhatsApp and Messenger can also be components of a commercial engagement platform.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Webex Connect docs describe CPaaS APIs/flows and channels including WhatsApp/Messenger; WhatsApp page says delivered-message charges vary by category/market with stated exceptions.",
+      "proposalUncertainty": "Separate platform integration from channel economics; prices/policies change. Pricing URL redirected to whatsappbusiness.com."
+    },
+    {
+      "referenceId": "REF-932dc1c63a5b9e08",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-8a04710ea80247ed"
+      ],
+      "requirementIds": [
+        "REQ-51f946a444240d70"
+      ],
+      "primarySourceUrls": [
+        "https://www.webex.com/us/en/solutions/interoperability.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Cisco’s interoperability page markets Cisco room devices as able to join Webex, Microsoft Teams, Google Meet, and Zoom, with native platform experiences or video interoperability depending on the described path. Keep native experience, CVI, and guest join distinct and cite the mode-specific product requirements.",
+      "retainedUncertainty": "The marketing page does not establish every device/firmware, license, tenant, region, or feature combination, nor does the retrieved text substantiate all integration mechanisms equally.",
+      "ownerDecision": "Decide whether to retain a broad supported-platform example while removing any claim that all Cisco room devices have identical native interoperability or feature parity.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-8a04710ea80247ed",
+          "requirementId": "REQ-51f946a444240d70",
+          "canonicalWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Cisco interoperability page describes joining Webex, Teams, Zoom and Google Meet using native room experiences, CVI and guest join.",
+      "proposalUncertainty": "Marketing does not prove device/firmware/license/region or feature parity; keep integration modes distinct."
+    },
+    {
+      "referenceId": "REF-5feedded0d34a197",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-4565d8fb254271df",
+        "CLAIM-def72d7bacfbf033"
+      ],
+      "requirementIds": [
+        "REQ-7732d48ed43ebe41",
+        "REQ-81e353eb84bbff84"
+      ],
+      "primarySourceUrls": [
+        "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; page states Updated 2026-06-16",
+      "replacementWording": "Cisco’s AI PODs for Collaboration data sheet (updated 16 June 2026) describes local transcription and specific isolated-deployment configurations, with licensing/connectivity qualifications and version-specific integrations. Represent compute location, internet connectivity, licensing, and application integration as independent attributes.",
+      "retainedUncertainty": "A product datasheet does not prove a complete air gap, that every workload is supported offline, or that licensing has no external dependency. Integration scope is version-specific.",
+      "ownerDecision": "Decide whether to accept only the listed AI POD configuration and require each offline/licensing/integration attribute to cite the exact data-sheet condition.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-4565d8fb254271df",
+          "requirementId": "REQ-81e353eb84bbff84",
+          "canonicalWording": "The [AI PODs datasheet](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) describes local transcription, but qualifies isolated operation with a licensing exception and documents direct Smart Licensing. Its integration table is version-specific. Treat local processing, disconnected licensing and supported application integrations as independent attributes.",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-def72d7bacfbf033",
+          "requirementId": "REQ-7732d48ed43ebe41",
+          "canonicalWording": "Local media, local storage, local AI and disconnected operation are distinct properties. A platform may satisfy one and fail another. The [Cisco AI PODs licensing qualification](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) is a useful example of why the entire service chain must be checked.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "AI PODs datasheet describes local transcription/isolated deployment, explicitly excepts licensing from zero external connectivity, and has version-specific integrations/Smart Licensing.",
+      "proposalUncertainty": "Supports independent attributes; do not generalize air-gap or integration claims to all workloads."
+    },
+    {
+      "referenceId": "REF-5fb1edff716b861d",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-d637c8d10c7a946a"
+      ],
+      "requirementIds": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Microsoft’s Direct Routing documentation lists SBC models/firmware certified for the Direct Routing interconnection and describes a vendor certification/testing process. Treat a listing as model- and firmware-specific evidence for Direct Routing only.",
+      "retainedUncertainty": "A mutable certification list does not establish Teams feature coverage, cloud/region approval, contact-center compatibility, room-device interoperability, or unrelated certifications.",
+      "ownerDecision": "Decide whether to accept this narrow certification scope and remove implications that one SBC certification transfers to other products or use cases.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-d637c8d10c7a946a",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "canonicalWording": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Direct Routing page lists SBC products/firmware and says certification is version-specific; related contact-center, room and recording programs were checked separately.",
+      "proposalUncertainty": "Mutable list; SBC certification is not feature/cloud coverage or another certification."
+    },
+    {
+      "referenceId": "REF-13aa74b705a9e357",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-a7275b68d7f5c42f"
+      ],
+      "requirementIds": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Microsoft documents Teams compliance recording through certified third-party recording solutions, with policy and cloud-specific requirements. It is a configured integration path, not an automatic recording property of every Teams call, meeting, queue, license, or cloud.",
+      "retainedUncertainty": "Eligibility varies by Teams workload/cloud, solution certification, policy, license, and supported call direction; device certification is a separate program.",
+      "ownerDecision": "Decide whether to retain the configured third-party integration example and state the relevant workload/cloud boundary for each scenario.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-a7275b68d7f5c42f",
+          "requirementId": "REQ-fc1aa0b29d83cf38",
+          "canonicalWording": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Microsoft describes policy-based recording using certified third-party solutions, a cloud matrix and explicit exclusions/limits.",
+      "proposalUncertainty": "Not automatic from Teams or hardware certification; varies by cloud, policy, license, direction and queue."
+    },
+    {
+      "referenceId": "REF-097413172db36986",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-80529de1efd098db"
+      ],
+      "requirementIds": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "primarySourceUrls": [
+        "https://apphub.webex.com/partner-solutions"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "index page fetched; partner detail pages timed out on follow-up; accessed 2026-11-04",
+      "replacementWording": "The Webex App Hub is a partner/application directory with product and category filters. Directory presence can identify a listed integration but does not itself establish certification, endorsement, operability, region coverage, or feature parity.",
+      "retainedUncertainty": "The index page was readable, but detail pages for referenced partner entries timed out on follow-up; descriptions/prerequisites were not reverified in this pass.",
+      "ownerDecision": "Decide whether to accept only directory presence; defer capability statements until the exact app listing and vendor documentation are retrievable and reviewed.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-80529de1efd098db",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "canonicalWording": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Webex App Hub lists partner apps/categories; Imagicle, Theta Lake and TTEC listing pages were also reviewed.",
+      "proposalUncertainty": "Catalogue presence is not certification, operability, endorsement, region support or feature parity; third-party disclaimer applies."
+    },
+    {
+      "referenceId": "REF-6ee11627b4e96799",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-d8e3a548360f0008"
+      ],
+      "requirementIds": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "primarySourceUrls": [
+        "https://apphub.webex.com/applications/imagicle-uc-suite"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "listing identity fetched; detail content timed out; accessed 2026-11-04",
+      "replacementWording": "The App Hub URL resolves to an Imagicle UC Suite listing, but the listing’s descriptive details were not retrievable in this audit. Do not treat the proposed feature set (attendant, recording, fax, analytics, or integrations) as independently reverified by this pass.",
+      "retainedUncertainty": "Partner-authored listing details and compatibility prerequisites were unavailable beyond the listing identity; not independent feature or deployment validation.",
+      "ownerDecision": "Decide whether to retain a source-pending proposal or defer detailed capability wording until listing content and current vendor compatibility material are reviewed.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-d8e3a548360f0008",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "canonicalWording": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Imagicle listing declares attendant console, recording, fax, analytics and integrations with Webex Calling/UCM/HCS/BroadWorks.",
+      "proposalUncertainty": "Partner description is not independent validation; verify versions, regions, subscription and prerequisites."
+    },
+    {
+      "referenceId": "REF-d91db49dd1296a40",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-5c942c4cb21a78d8"
+      ],
+      "requirementIds": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "primarySourceUrls": [
+        "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "listing identity fetched; detail content timed out; accessed 2026-11-04",
+      "replacementWording": "The App Hub URL resolves to a Theta Lake for Webex Calling listing, but its product description and requirements were not retrievable in this audit. Keep archiving, eDiscovery, supervision, SMS/CDR, retention, and subscription claims provisional pending the listing/vendor source text.",
+      "retainedUncertainty": "No legal-compliance determination, retention guarantee, or current technical integration detail was verified here.",
+      "ownerDecision": "Decide whether to defer the detailed claim pending a readable listing and current vendor documentation; directory presence alone is insufficient.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-5c942c4cb21a78d8",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "canonicalWording": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Theta Lake listing declares archiving/eDiscovery/supervision for Webex calls, recordings, SMS/CDRs and requires Webex Calling plus subscription.",
+      "proposalUncertainty": "Listing is not legal/compliance validation or a retention guarantee."
+    },
+    {
+      "referenceId": "REF-81f2bd205e0f66f7",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-1d52fdfbe385dd4a"
+      ],
+      "requirementIds": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "primarySourceUrls": [
+        "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "listing identity fetched; detail content timed out; accessed 2026-11-04",
+      "replacementWording": "The App Hub URL resolves to a TTEC Digital WFM Adapter listing, but its description and prerequisites were not retrievable in this audit. Keep real-time adherence, historical reports, supported WFM targets, account prerequisites, and commercial claims provisional until the listing is readable.",
+      "retainedUncertainty": "A directory listing title alone does not verify forecasting scope, data flows, region, versions, service dependencies, or price.",
+      "ownerDecision": "Decide whether to defer detailed adapter claims pending direct listing and current supplier documentation.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-1d52fdfbe385dd4a",
+          "requirementId": "REQ-82e12ce124c82d04",
+          "canonicalWording": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "TTEC listing declares real-time adherence and historical reports from Webex CC to named WFM products; requires paid Webex CC/TTEC account.",
+      "proposalUncertainty": "Does not verify forecasting feature scope, regions, data handling, versions or commercial terms."
+    },
+    {
+      "referenceId": "REF-a5f898a484d055da",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-616b56d32c938b78"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "primarySourceUrls": [
+        "https://kurmi-software.com/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Kurmi’s current Flow page describes user/device/license provisioning and deprovisioning, MACD automation, role-based delegation, migration, and connectors to multiple UC platforms; the page explicitly markets Webex, Teams, Zoom and other connectors. Treat these as supplier-described Flow capabilities, not proof of every lifecycle or platform function.",
+      "retainedUncertainty": "Supplier marketing does not establish version-specific depth, service levels, deployed connector behavior, regional availability, or equivalence to native administration.",
+      "ownerDecision": "Decide whether to accept these bounded Kurmi product claims and keep conferencing/assurance examples under their individual primary sources.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-616b56d32c938b78",
+          "requirementId": "REQ-090ca18180d23749",
+          "canonicalWording": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "Kurmi Flow homepage describes UC provisioning/deprovisioning, MACD, delegated access, migration and multi-platform connectors; linked lifecycle/conferencing/assurance vendor sources were reviewed.",
+      "proposalUncertainty": "Homepage supports category example, not whole composite. Keep each vendor/product feature on its own evidence; no equivalence inferred."
+    },
+    {
+      "referenceId": "REF-004474965260c809",
+      "proposalFile": "research/review-proposals/references-a-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-f45542864ca1ee00"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "primarySourceUrls": [
+        "https://www.voss-solutions.com/tech-solutions/cisco/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "VOSS describes automation, migration, provisioning, ongoing management, monitoring, and business analytics across Cisco UCM and Webex, including users, devices, meeting rooms, and contact-center environments. Attribute these capabilities to VOSS’s current Cisco solution description.",
+      "retainedUncertainty": "Supplier marketing does not verify a customer deployment, every product/version, SLA, region, or parity with native Cisco tools.",
+      "ownerDecision": "Decide whether to accept the source-attributed scope and split cross-vendor examples into independently sourced vendor/product claims.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-f45542864ca1ee00",
+          "requirementId": "REQ-090ca18180d23749",
+          "canonicalWording": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "VOSS Cisco page describes migration, provisioning, management, monitoring and analytics across UCM/Webex estate; cited vendor examples were reviewed.",
+      "proposalUncertainty": "Supplier marketing supports broad category, not version/SLA/deployment/parity. Split claim by product/vendor."
+    },
+    {
+      "referenceId": "REF-7ed8da24bfbaf244",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-1bfb1e73a5b814f7"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "primarySourceUrls": [
+        "https://www.ir.com/products/collaborate"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "IR describes its Collaborate product as managing communications and collaboration ecosystems, powered by the Prognosis platform, with real-time visibility and issue/performance identification in its product positioning. This supports an assurance/observability portfolio example, not universal monitoring coverage.",
+      "retainedUncertainty": "Specific products, metrics, integration method, and instrumentation depend on the deployed system; vendor page is positioning.",
+      "ownerDecision": "Decide whether to accept this portfolio classification while avoiding any unverified assertion about supported devices or monitored metrics.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-1bfb1e73a5b814f7",
+          "requirementId": "REQ-090ca18180d23749",
+          "canonicalWording": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The page describes managing communications and collaboration ecosystems, powered by Prognosis, with real-time visibility across multi-vendor systems and performance/issue identification.",
+      "proposalUncertainty": "Vendor positioning; specific monitored products and instrumentation depend on deployment."
+    },
+    {
+      "referenceId": "REF-d57c9265c13dcff5",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-d30c5a2dbd047d06"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "primarySourceUrls": [
+        "https://help.8x8.com/documentation"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "The current 8x8 documentation index links to Contact Center CX voice/chat/email, Engage, Workforce Management, analytics/reporting, and UC materials. Use it as a navigation index and time-stamped portfolio pointer, not as a definitive feature or commercial specification.",
+      "retainedUncertainty": "Index labels and linked products change; detailed capabilities and entitlements need their current product pages.",
+      "ownerDecision": "Decide whether to accept only the index-level portfolio example and cite product documentation for actual behavior or packaging.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-d30c5a2dbd047d06",
+          "requirementId": "REQ-b81620f2ef88a92c",
+          "canonicalWording": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The index links to current Contact Center CX voice/chat/email, Engage, Workforce Management and analytics/reporting material, as well as UC documentation.",
+      "proposalUncertainty": "Index is not a stable feature specification; product names, packaging and entitlements change."
+    },
+    {
+      "referenceId": "REF-2c126d5591584671",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-513413bc3bd34e9e",
+        "CLAIM-e632215a7246634e"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c",
+        "REQ-f289ccf97552f1ee"
+      ],
+      "primarySourceUrls": [
+        "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Genesys Cloud WEM documentation lists policy-based call recording/retention, quality evaluation/coaching, screen recording, speech/text analytics, workforce scheduling/adherence, feedback, gamification, and surveys. It does not substantiate the separate synthetic incidents used in scenario design.",
+      "retainedUncertainty": "Feature availability and entitlement can vary by version/region/license; a capability category does not prove a specific forecast, skills, identity, or BPO workflow.",
+      "ownerDecision": "Decide whether to accept these documented WEM categories only; keep stale-forecast, language-skill, and identity-mapping scenarios explicitly fictional.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-513413bc3bd34e9e",
+          "requirementId": "REQ-b81620f2ef88a92c",
+          "canonicalWording": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-e632215a7246634e",
+          "requirementId": "REQ-f289ccf97552f1ee",
+          "canonicalWording": "Useful incidents include broken CRM screen-pop, stale workforce forecasts, bot handoff loops, missing language skills, callback failures, inaccessible recordings and faulty identity mapping after migration. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) illustrates the separate workforce, quality and recording functions around the core contact-centre platform.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The WEM page covers categories including policy call recording/retention, quality evaluation/coaching, workforce, speech/text analytics and development/feedback/gamification. The specific synthetic incident examples (such as stale forecasts, language skill gaps or faulty identity mapping) are not evidenced by this page.",
+      "proposalUncertainty": "Vendor documentation may be product-version specific; exact feature entitlements need validation."
+    },
+    {
+      "referenceId": "REF-5847fdf5258de958",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-7169c6001d9a447d"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836"
+      ],
+      "primarySourceUrls": [
+        "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; article updated 2026-08-21",
+      "replacementWording": "Otter’s 21 August 2026 help article says Notetaker can join Zoom, Google Meet, and Microsoft Teams meetings, sync Google/Microsoft calendars, and record/transcribe; simultaneous meeting joining depends on plan. The article also requires calendar authorization for sync/join behavior.",
+      "retainedUncertainty": "This is current product help, not a privacy/DPA, retention, security, processor, or enterprise entitlement source. Plan limits can change.",
+      "ownerDecision": "Decide whether to accept only join/calendar/recording behavior and keep processing, retention, privacy and commercial assertions on separate current sources.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-7169c6001d9a447d",
+          "requirementId": "REQ-81f6cffdbdaac836",
+          "canonicalWording": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The overview says Otter Notetaker can join Zoom, Google Meet and Teams, sync with calendars, record/transcribe, and configure sharing/settings. Concurrent-meeting limits can depend on plan.",
+      "proposalUncertainty": "Feature availability and behavior are plan-sensitive; privacy and processing details need separate current policy/DPA sources."
+    },
+    {
+      "referenceId": "REF-52534bbbda04973d",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-9c99fd537543b27b",
+        "CLAIM-5c932b266786f9e9"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "primarySourceUrls": [
+        "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable, but exact integration list redirects to signed-in account UI; accessed 2026-11-04",
+      "replacementWording": "Fireflies’ help page describes support for major video-conferencing integrations but directs the user to the signed-in product integration directory for the current list; the page reviewed here does not itself enumerate or guarantee the proposed platform names. Do not infer identity, processing, retention, export, or permission scope from platform support alone.",
+      "retainedUncertainty": "The live list is account-accessed and mutable; integration names and behavior were not verified from the public page.",
+      "ownerDecision": "Decide whether to revise to the generic directory claim or defer named-platform claims until current public/accessible integration records are reviewed.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-9c99fd537543b27b",
+          "requirementId": "REQ-81f6cffdbdaac836",
+          "canonicalWording": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-5c932b266786f9e9",
+          "requirementId": "REQ-e161d488603ff1b0",
+          "canonicalWording": "A third-party meeting assistant can offer cross-platform value while adding another processor, identity and export path. [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI's Teams integration](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) provide concrete reference examples.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The help page lists meeting-platform integrations including Google Meet, Zoom, Teams, Dialpad, GoToMeeting and Webex and directs users to the current integrations page. It does not define processing, identity, retention or export details.",
+      "proposalUncertainty": "Integration support can change; listed platform support does not establish access scope or data lifecycle."
+    },
+    {
+      "referenceId": "REF-b3027a7b0a74c45d",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-4911b7f05c523234",
+        "CLAIM-692e152367019b74"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "primarySourceUrls": [
+        "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; article updated 2026-10-26",
+      "replacementWording": "Read AI’s Teams integration help article (updated 26 October 2026) describes meeting summaries and daily recaps of chats/channels, syncing Teams content for search and Readouts/Ask Read. Some features, especially channel access, may need Teams administrator approval; personal Microsoft accounts have limited functionality.",
+      "retainedUncertainty": "This help article does not specify full privacy, retention, processing region, deletion/export, or DPA terms. Permissions and feature availability depend on account/tenant settings.",
+      "ownerDecision": "Decide whether to accept the content-access and recap description with the work/school/admin conditions, and keep processor/data-lifecycle claims separate.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-4911b7f05c523234",
+          "requirementId": "REQ-81f6cffdbdaac836",
+          "canonicalWording": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-692e152367019b74",
+          "requirementId": "REQ-e161d488603ff1b0",
+          "canonicalWording": "A third-party meeting assistant can offer cross-platform value while adding another processor, identity and export path. [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI's Teams integration](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) provide concrete reference examples.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The Teams integration page describes meeting summaries and chat/channel recaps, syncing content for search, and possible Teams admin approval for channel access.",
+      "proposalUncertainty": "Permission and feature scope depend on tenant/admin configuration; consult current privacy and product documentation for data handling."
+    },
+    {
+      "referenceId": "REF-b774912c2fef487e",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-e1fcf00481fb5d51",
+        "CLAIM-b8f99abef72393e2"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b",
+        "REQ-90d0d170cd267a9d"
+      ],
+      "primarySourceUrls": [
+        "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; page last updated 2025-10-02, accessed 2026-11-04",
+      "replacementWording": "Microsoft’s Foundry Tools documentation describes selected disconnected containers for running specified APIs offline. It requires Microsoft approval, an approved Azure subscription/resource, and purchase of a commitment tier; the page lists particular speech, language, translation, vision, and document APIs.",
+      "retainedUncertainty": "This is a bounded service list, not all Azure AI services or an entirely disconnected Microsoft platform. Eligibility and commercial terms may change.",
+      "ownerDecision": "Decide whether to accept the specified offline-container offer only and name the API/container explicitly; do not generalize to other Azure or communications workloads.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-e1fcf00481fb5d51",
+          "requirementId": "REQ-030efcb9b980477b",
+          "canonicalWording": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+          "historicalDate": "See preserved source; requires scoped review"
+        },
+        {
+          "claimId": "CLAIM-b8f99abef72393e2",
+          "requirementId": "REQ-90d0d170cd267a9d",
+          "canonicalWording": "Provide both platform-native and specialist integrations. Hosted speech services and local inference have different operating obligations. [Deepgram's deployment documentation](https://developers.deepgram.com/docs/deployment-options) distinguishes hosted and customer-operated deployment; [Microsoft's disconnected container documentation](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers) identifies supported services and access requirements.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The current Learn page is under Foundry Tools and describes disconnected containers for specified services, with approval, an approved Azure subscription/resource and a purchased commitment tier required. The service list includes speech, translation, language, vision and document intelligence.",
+      "proposalUncertainty": "Eligibility and supported services change; the review did not independently validate a customer subscription or current commercial terms."
+    },
+    {
+      "referenceId": "REF-6974ff2c7027ebb4",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-dc4b33799e75f0c3"
+      ],
+      "requirementIds": [
+        "REQ-7993072717d54c9d"
+      ],
+      "primarySourceUrls": [
+        "https://business.whatsapp.com/products/platform-pricing",
+        "https://whatsappbusiness.com/products/platform-pricing/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable after redirect; accessed 2026-11-04",
+      "replacementWording": "Meta’s WhatsApp Business Platform pricing page currently separates marketing, authentication, utility, and service message categories and describes qualifying free service/utility and free-entry-point cases. Model category and applicable current market rate separately; do not hard-code a universal rate from this overview.",
+      "retainedUncertainty": "Rates vary by market/category and policy date; the source URL redirects to whatsappbusiness.com. This source says nothing about Webex Connect integration entitlement.",
+      "ownerDecision": "Decide whether to accept only the dated pricing-category rules and separate platform integration from WhatsApp economics.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-dc4b33799e75f0c3",
+          "requirementId": "REQ-7993072717d54c9d",
+          "canonicalWording": "[WhatsApp's pricing documentation](https://business.whatsapp.com/products/platform-pricing) distinguishes delivered-message categories and free service responses within its customer-service rules. The game should account for the relevant channel economics rather than assuming every message has the same cost. [Webex Connect](https://help.webexconnect.io/docs/welcome) demonstrates that WhatsApp and Messenger can also be components of a commercial engagement platform.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The current page describes delivered-message pricing with marketing, authentication, utility and service categories; service messages and qualifying utility responses are free, as are qualifying messages in the stated 72-hour free-entry-point window.",
+      "proposalUncertainty": "Pricing and terms are volatile, market-specific and may change without the overview page showing an effective date. Webex Connect portion of the linked claim is outside this reference and needs its own source review."
+    },
+    {
+      "referenceId": "REF-e5bb18ef74fe6ca4",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-185b2d6b9abe4742"
+      ],
+      "requirementIds": [
+        "REQ-7213258dcc84247f"
+      ],
+      "primarySourceUrls": [
+        "https://www.zoom.com/en/products/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable; accessed 2026-11-04",
+      "replacementWording": "Zoom’s current product catalog groups Zoom Workplace communication/productivity products and Zoom CX products, including Contact Center, Workforce Management, Quality Management, and CX Insights, alongside AI offerings. This supports a portfolio-overlap example, not feature substitution or parity.",
+      "retainedUncertainty": "Portfolio taxonomy and packaging change; the catalog does not establish PSTN scope, specialist contact-center workflows, license access, or equivalent service levels.",
+      "ownerDecision": "Decide whether to accept the catalog-level example and keep any channel-by-channel substitution claim separately evidenced.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-185b2d6b9abe4742",
+          "requirementId": "REQ-7213258dcc84247f",
+          "canonicalWording": "Slack provides huddles and meeting-note capabilities, while [Zoom's portfolio](https://www.zoom.com/en/products/) spans several collaboration and customer-service products. Treat substitution by job and capability; a competing meeting product need not replace PSTN or specialised customer-service requirements.",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The catalog includes Zoom Workplace capabilities (meetings, chat, phone, mail, calendar, scheduler, rooms) and Zoom CX products including Contact Center, Workforce Management, Quality and Insights, alongside AI offerings.",
+      "proposalUncertainty": "Catalog and packaging change; the page alone does not establish PSTN, specialist contact-centre or plan-level parity."
+    },
+    {
+      "referenceId": "REF-267d4dda6bb79608",
+      "proposalFile": "research/review-proposals/references-b-2026-11-04.json",
+      "claimIds": [
+        "CLAIM-eeb4a42e0f32b3c5"
+      ],
+      "requirementIds": [
+        "REQ-b8f252f0789bdaa8"
+      ],
+      "primarySourceUrls": [
+        "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "tree fetch failed as restricted URL; exact pinned files REF-01c1db3086024441, REF-8af7f0c64e902296, REF-31e291b1eee75a7a retrieved; checked 2026-11-04",
+      "replacementWording": "The pinned 48e6200 commit’s exact architecture, save, and test-harness files (reviewed separately below) establish specific file-level patterns. The repository tree URL itself was not retrievable, so this reference should not carry broader whole-repository claims.",
+      "retainedUncertainty": "Tree page was blocked by the reader. Exact file URLs at the pinned commit are accessible; no default-branch substitution. File-level evidence cannot establish all upstream obligations.",
+      "ownerDecision": "Decide whether to narrow or defer this repository-wide claim to exact pinned files and specific observations; the tree access failure is not evidence of absence.",
+      "canonicalWording": [
+        {
+          "claimId": "CLAIM-eeb4a42e0f32b3c5",
+          "requirementId": "REQ-b8f252f0789bdaa8",
+          "canonicalWording": "Retain the static browser shell, canvas interaction, panel infrastructure, persistence patterns and useful tests from [Series of Tubes at commit 48e6200](https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b). The source uses shared state and derived results in an assembled classic script; the expanded domain should have clear function boundaries within that initial architecture. [Upstream architecture](https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md).",
+          "historicalDate": "See preserved source; requires scoped review"
+        }
+      ],
+      "proposalFinding": "The exact pinned architecture file confirms the source is assembled from ordered files into a static HTML page with shared classic-script scope, a canvas/map layer, separate UI/panel layers, and a jsdom test harness. It supports these architecture patterns. The tree URL itself was not fetched, and this file does not prove every behavior in the broader claim or detailed save implementation; no default-branch substitute was used.",
+      "proposalUncertainty": "The tree page and earlier web/raw requests were inaccessible, but the exact pinned architecture file was retrieved through the GitHub connector. Access failure on the tree URL is not evidence of a missing commit. No default-branch contents were substituted."
+    },
+    {
+      "referenceId": "REF-01c1db3086024441",
+      "proposalFile": "research/review-proposals/references-c-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+        "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable exact pinned file; accessed 2026-11-04",
+      "replacementWording": "At pinned commit 48e6200, docs/ARCHITECTURE.md describes ordered source files assembled into a static HTML page, shared classic-script scope, canvas/map rendering, separate UI/panel layers, and a jsdom harness. Treat those as documented architecture at that commit; proposed expanded-domain boundaries and browser acceptance are fork requirements.",
+      "retainedUncertainty": "A documentation page records intended architecture, not proof every module follows it or that every proposed acceptance feature exists upstream.",
+      "ownerDecision": "Decide whether to accept only these commit-specific architecture observations and retain expanded-domain/browser requirements as the fork’s own proposal.",
+      "canonicalWording": [],
+      "proposalFinding": "The exact pinned docs/ARCHITECTURE.md was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. The earlier web-tool and raw URL attempts returned Cache miss; those failures are retained in checkedSources. The pinned document confirms a static page assembled from ordered src files into one classic HTML page, with shared top-level script scope, a canvas/map layer, panel/UI layers, and an in-memory jsdom harness. It supports those architecture observations, but not every proposed behavior as an upstream guarantee.",
+      "proposalUncertainty": null
+    },
+    {
+      "referenceId": "REF-8af7f0c64e902296",
+      "proposalFile": "research/review-proposals/references-c-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+        "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable exact pinned file; accessed 2026-11-04",
+      "replacementWording": "At pinned commit 48e6200, src/game/91-save.js uses a single sot-save-v1 localStorage key, gzip-compresses large saves, and exports a series-of-tubes app/version wrapper; import validation shown here accepts version-1 state with basic fields. This file does not document later save slots/cache behavior, an ISP schema, or licensing.",
+      "retainedUncertainty": "Claims about migration/sanitize rely on other files; do not extend this one-file evidence to a later revision or full save contract.",
+      "ownerDecision": "Decide whether to accept the exact file-level facts and keep licensing, later slot systems, and the fork’s validation requirements in separate sources.",
+      "canonicalWording": [],
+      "proposalFinding": "The exact pinned `src/game/91-save.js` was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. This file writes one `sot-save-v1` localStorage key, supports gzip storage for large saves, exports an object with `app: series-of-tubes` and `version`, and accepts `v===1` save data with basic day/cash/pops/links validation. Migration and sanitize are referenced as upstream functions elsewhere; this file does not establish an ISP-specific field inventory, slot scheme, version-stamped cache, or license terms. Earlier web and raw URL attempts returned Cache miss and are retained below.",
+      "proposalUncertainty": null
+    },
+    {
+      "referenceId": "REF-31e291b1eee75a7a",
+      "proposalFile": "research/review-proposals/references-c-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+        "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+        "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "readable exact pinned file; accessed 2026-11-04",
+      "replacementWording": "At pinned commit 48e6200, tests/harness.js assembles the page and runs it in jsdom, seeds randomness, and provides canvas/Path2D stubs for tests. Browser checks for topology, inspector, mobile controls, and save/reload are separate proposed fork acceptance.",
+      "retainedUncertainty": "A headless harness supports deterministic tests but does not evidence real-browser rendering, mobile behavior, offline behavior, or the proposed tests.",
+      "ownerDecision": "Decide whether to accept the narrow harness description and retain browser checks as unfulfilled fork work.",
+      "canonicalWording": [],
+      "proposalFinding": "The exact pinned tests/harness.js was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. It assembles the page using scripts/lib/page, loads it in jsdom, seeds Math.random, stubs Path2D and provides a recording fake canvas context. It supports the deterministic headless harness claim. The proposed real-browser smoke checks remain separate fork acceptance work. Earlier web and raw URL attempts returned Cache miss and are retained.",
+      "proposalUncertainty": null
+    },
+    {
+      "referenceId": "REF-b807374341cb4592",
+      "proposalFile": "research/review-proposals/references-c-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "original page readable; retrieved page did not include resolution; accessed 2026-11-04",
+      "replacementWording": "The 11 November 2021 MRA thread’s original report says an 8845 activation-code onboarding attempt failed TLS while Jabber MRA worked; the displayed reply discusses trusted certificate authorities and activation-code settings. The later trust-path change/registration result mentioned in the source pack was not present in the retrieved message, so state it only as an unverified follow-up until that message is independently retrieved.",
+      "retainedUncertainty": "Historical lab report with version/certificate context incomplete; no current Cisco trust-list rule or confirmed final resolution follows from this page.",
+      "ownerDecision": "Decide whether to accept the directly visible failure and advice as historical, while retaining the alleged resolution as pending retrieval.",
+      "canonicalWording": [],
+      "proposalFinding": "The initial archive page was accessible but the retrieved portion did not include the later reply said to contain the resolution. The connection failure is directly visible; the reported trust-path resolution remains unverified in this access pass.",
+      "proposalUncertainty": null
+    },
+    {
+      "referenceId": "REF-0fe3ded413d45133",
+      "proposalFile": "research/review-proposals/references-c-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "original and reply text readable; accessed 2026-11-04",
+      "replacementWording": "A 17 December 2015 VoiceOps thread asks about idle TCP signaling closed by a firewall during a Perimeta/BroadSoft migration. The responder explicitly says their keepalive advice is general rather than specific to those products, describing TCP keepalive, TLS heartbeat, and SIP OPTIONS approaches from experience.",
+      "retainedUncertainty": "Single historical question and generalized peer advice, not a verified product diagnosis, successful remedy, or current support recommendation.",
+      "ownerDecision": "Decide whether to accept the historical topology/report plus clearly attributed general suggestions; do not present keepalive as a confirmed Perimeta/BroadSoft fix.",
+      "canonicalWording": [],
+      "proposalFinding": "The archive was accessible and details the migration topology and idle-connection concern. The reply explicitly says its discussion is general rather than specific to Perimeta and BroadSoft; it describes possible keepalive layers and says OPTIONS polling had worked in the responder's experience.",
+      "proposalUncertainty": null
+    },
+    {
+      "referenceId": "REF-01234d0db452b257",
+      "proposalFile": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+        "https://www.cyber.gov.au/irap/irap-consumer-guide",
+        "https://www.cyber.gov.au/irap/irap-resources",
+        "https://www.cyber.gov.au/sites/default/files/2026-05/IRAP%20Policy%20%26%20Procedures%202026.pdf"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "cloud-assessment page and June 2026 IRAP Policy & Procedures PDF fetched; consumer guide/resources pages fetched but reader output exposed mainly navigation; exact-page find timed out; accessed 2026-11-04",
+      "replacementWording": "Australian government cloud consumers should assess a specific system against consumer requirements and risk tolerance, document shared responsibilities and control implementation, review assessment evidence, obtain a separate risk-based authorization decision, and monitor the service. An IRAP assessment/report informs that decision; it is not blanket authorization for every customer deployment.",
+      "retainedUncertainty": "Scope, controls, classification, residual risk, agency policy, and authorizing officer are system-specific. This guidance does not itself approve any provider or deployment.",
+      "ownerDecision": "Decide whether to accept only this scoped IRAP/consumer responsibility principle; leave deployment and legal approval explicitly to the accountable Australian entity.",
+      "canonicalWording": [],
+      "proposalFinding": "The source page remains available and calls for assessment against consumer requirements/risk tolerance, documented shared responsibilities, review of reports before authorisation, and ongoing monitoring. The current IRAP Consumer Guide page was last reviewed 2026-06-17; it requires defined assessment scope/deliverables and says the report informs a risk-based system decision. The official IRAP resources page lists 2026 program materials.",
+      "proposalUncertainty": [
+        "Specific PSPF/ISM controls, classification, entity policy, service scope, residual risk and authorising decision remain deployment-specific.",
+        "No legal eligibility or platform-wide approval is inferred."
+      ]
+    },
+    {
+      "referenceId": "REF-d8e8c2b149f9b9ab",
+      "proposalFile": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://www.fedramp.gov/2026/agencies/use/",
+        "https://www.fedramp.gov/2026/scope/",
+        "https://www.fedramp.gov/2026/timeline/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "use, scope, and timeline pages fetched; timeline states optional early adoption 2026-07-04 and mandatory adoption 2027-01-01 subject to area-specific applicability; accessed 2026-11-04",
+      "replacementWording": "For a federal information system using a FedRAMP-certified offering, the 2026 rules describe certification as reusable security evidence while the agency authorizes its own system and accepts risk for its information, configuration, integrations, and agency-operated controls. The agency determines whether its specific use is in scope. The official 2026 timeline schedules mandatory adoption for 1 January 2027, subject to area-specific applicability and effective dates.",
+      "retainedUncertainty": "Agency/system-specific scope, certification class/version, and provision-specific applicability govern; FedRAMP explicitly does not apply to every use of an internet service. The 2027-01-01 transition date is future-dated at this check and does not make each rule area effective on that date. FedRAMP is not universal approval and does not imply DoD/defense eligibility.",
+      "ownerDecision": "Decide whether to accept the per-system authorization and scoped transition wording. For a concrete use, identify the federal information, service, system, certification class, scope determination, and effective rule area.",
+      "canonicalWording": [],
+      "proposalFinding": "The agency-use page says certification is reusable evidence but each agency authorizes its own federal information system and accepts risk for its information, configuration, integrations, and agency-operated controls. The separate scope page says only an agency can decide whether its use is in scope. On 2026-11-04 optional early adoption has begun; mandatory adoption is scheduled for 2027-01-01, subject to area-specific applicability/effective dates.",
+      "proposalUncertainty": [
+        "Agency determines scope and applicable certification class/version for the actual use.",
+        "The 2027-01-01 mandatory transition is future-dated at this check; individual rule areas have separate applicability.",
+        "Do not apply FedRAMP to every agency internet service or infer defense approval."
+      ]
+    },
+    {
+      "referenceId": "REF-6d84d6a737cf7adf",
+      "proposalFile": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+        "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010301"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "official Japanese page readable; accessed 2026-11-04",
+      "replacementWording": "Japan’s official ISMAP overview says cloud services are assessed and registered on ISMAP/ISMAP-LIU lists and procurement from listed services is the general principle. ISMAP-LIU is a mechanism for SaaS used for lower-risk business/information processing. Verify the exact current service listing, scope, and procuring entity instructions.",
+      "retainedUncertainty": "The overview does not establish that a named product, version, integration, workload, or deployment is listed or eligible; the exact procurement decision remains with the government body.",
+      "ownerDecision": "Decide whether to accept the general list-based principle while retaining per-service and procurement-body verification as unresolved.",
+      "canonicalWording": [],
+      "proposalFinding": "The official Japanese overview remains available, describes service-level review/list registration, ISMAP-LIU for SaaS processing lower-risk business/information, and procurement from applicable lists in principle. It links a March 2026 program review and 2025 ISMAP-LIU material. The overview does not establish that any named offering, integration or deployment qualifies.",
+      "proposalUncertainty": [
+        "Check current exact service entry, version, scope and list status.",
+        "Check procuring body, workload, integrations, information type and procurement instructions.",
+        "ISMAP-LIU is lower-impact SaaS eligibility, not a general substitute for ISMAP."
+      ]
+    },
+    {
+      "referenceId": "REF-807e645f0a490d75",
+      "proposalFile": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+        "https://www.digital.go.jp/news/decb64eb-f26e-41cb-8d37-f3dd173108b8"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "official Japanese notice readable; dated addendum 2026-01-09; accessed 2026-11-04",
+      "replacementWording": "The ISMAP notice says generative-AI use requires separate risk measures; a generative-AI SaaS generally needs applicable ISMAP registration, including when externally integrated, and an unregistered AI service is not made equivalent to registered service merely by running on listed IaaS/PaaS. It also describes a narrower registered AI-development-platform case with separate AI-risk measures.",
+      "retainedUncertainty": "This notice is not an approval of a named AI product. Check exact service/list scope and current Digital Agency guidance for the date and use; the notice alone does not establish all detailed procurement rules.",
+      "ownerDecision": "Decide whether to accept this narrow distinction and require the current guidance/checklist before applying it to a specific government scenario.",
+      "canonicalWording": [],
+      "proposalFinding": "The ISMAP notice remains available. It calls for separate handling of generative-AI risk; says a generative AI SaaS generally needs its own applicable registration, including external integrations; and says underlying registered IaaS/PaaS does not confer registration on an unregistered AI service. It describes a narrower registered AI development-platform case that still requires AI-specific measures. The Digital Agency published government generative-AI procurement/use guideline version 2.0 on 2026-06-12, after the ISMAP notice.",
+      "proposalUncertainty": [
+        "Check current exact service-list scope for the AI SaaS, external model or development platform.",
+        "Review the full 2026 Digital Agency guideline/checklist before a specific scenario; this check used the official announcement only.",
+        "No named model or deployment is approved."
+      ]
+    },
+    {
+      "referenceId": "REF-9ad9e2087bdedc1b",
+      "proposalFile": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "claimIds": [],
+      "requirementIds": [],
+      "primarySourceUrls": [
+        "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+        "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en",
+        "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/"
+      ],
+      "primarySourceCheckedAt": "2026-11-04",
+      "reachability": "EDPB primary explainer fetched and its three cumulative criteria read; Commission overview fetch timed out and EUR-Lex legislation URL presented anti-bot JavaScript interstitial; accessed 2026-11-04",
+      "replacementWording": "The EDPB guide identifies an international transfer where a GDPR-subject controller/processor makes personal data available to another organization outside the EEA or to an international organization; Chapter V requirements apply in addition to ordinary GDPR duties. Determine the parties, access, recipient, and onward transfers before selecting an adequacy decision, safeguard, or derogation.",
+      "retainedUncertainty": "This is explanatory guidance; GDPR and current Commission decisions govern. Data residency alone does not decide whether a transfer occurs or which mechanism is valid.",
+      "ownerDecision": "Decide whether to accept the scoped transfer test and retain case-specific mechanism/legal analysis as an open decision.",
+      "canonicalWording": [],
+      "proposalFinding": "The EDPB page remains available and sets three cumulative transfer indicators: a GDPR-subject controller/processor, personal data made available to another organisation, and a recipient outside the EEA or an international organisation. Chapter V conditions apply in addition to ordinary GDPR duties. The Commission overview frames rules across the EEA and lists adequacy, safeguards and derogations among other tools. GDPR Articles 44-49 provide the legal framework.",
+      "proposalUncertainty": [
+        "Determine GDPR applicability and exact parties, disclosure, recipient and onward flows.",
+        "Check current mechanism and safeguards for the specific transfer; adequacy can be limited and may change.",
+        "The EDPB SME page is explanatory; the regulation and current Commission decisions govern a concrete case."
+      ]
+    }
+  ],
+  "decisions": {
+    "all": "Owner review remains pending. “Revise” recommendations are not accepted source claims. Current product, pricing, certification, jurisdiction, and provider eligibility require scenario-specific dated review."
+  },
+  "additionalRetrievalNotes": [
+    {
+      "referenceId": "REF-267d4dda6bb79608",
+      "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+      "result": "Reader returned restricted-URL failure. Exact pinned architecture, save, and harness files were fetched separately."
+    },
+    {
+      "referenceId": "REF-097413172db36986",
+      "url": "https://apphub.webex.com/partner-solutions",
+      "result": "Index page fetched; follow-up page content timed out."
+    },
+    {
+      "referenceId": "REF-6ee11627b4e96799",
+      "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+      "result": "Listing identity fetched; detail content timed out."
+    },
+    {
+      "referenceId": "REF-d91db49dd1296a40",
+      "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+      "result": "Listing identity fetched; detail content timed out."
+    },
+    {
+      "referenceId": "REF-81f2bd205e0f66f7",
+      "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+      "result": "Listing identity fetched; detail content timed out."
+    },
+    {
+      "referenceId": "REF-52534bbbda04973d",
+      "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+      "result": "Public page fetched, but named current integration list is only visible in signed-in account UI."
+    },
+    {
+      "referenceId": "REF-9ad9e2087bdedc1b",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en",
+      "result": "Fetch timed out; EDPB explainer was directly retrieved."
+    },
+    {
+      "referenceId": "REF-9ad9e2087bdedc1b",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/",
+      "result": "Anti-bot JavaScript interstitial; EDPB explainer was directly retrieved."
+    }
+  ]
+}

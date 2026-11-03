@@ -1,5 +1,5 @@
-name: Bug report
-description: Something in the game is broken, looks wrong or crashes.
+name: Training preview bug
+description: Something in the synthetic communications exercise is broken or misleading.
 title: "[bug] "
 labels: [bug, triage]
 body:
@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for reporting! The more of this you fill in, the faster it gets fixed.
-        **One bug per issue, please.**
+        **One bug per issue, please. Do not include real subscriber data, credentials, or sensitive security details.**
   - type: textarea
     id: what
     attributes:
@@ -19,10 +19,10 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce
-      description: What did you do right before it happened?
+      description: What did you do right before it happened? Use synthetic identities, numbers, and customer records only.
       placeholder: |
-        1. Open the Infra tab in Frankfurt
-        2. Tap "Upgrade to 400G"
+        1. Open the communications training exercise
+        2. Apply a synthetic configuration change
         3. …
     validations:
       required: true
@@ -35,9 +35,9 @@ body:
   - type: input
     id: version
     attributes:
-      label: Game version
-      description: Shown at the bottom of the title screen, and in the menu under "What's new".
-      placeholder: "1.25.1"
+      label: Preview version
+      description: Shown on the training console.
+      placeholder: "0.1.0-preview.1"
     validations:
       required: true
   - type: dropdown
@@ -45,10 +45,8 @@ body:
     attributes:
       label: Device
       options:
-        - Android phone
-        - iPhone
-        - Android tablet
-        - iPad
+        - Phone
+        - Tablet
         - Desktop or laptop
         - Other
     validations:
@@ -64,18 +62,17 @@ body:
     id: installed
     attributes:
       label: Installed as an app?
-      description: Did you add Series of Tubes to your home screen, or do you play in a browser tab?
+      description: Did you add Series of Calls to your home screen, or do you play in a browser tab?
       options:
-        - In a browser tab
-        - Installed on the home screen
+        - Browser tab
         - Not sure
     validations:
       required: true
   - type: textarea
     id: save
     attributes:
-      label: Saved game (optional, very helpful)
-      description: Menu → "Export save", then attach the file here. It lets us load your exact network.
+      label: Sanitized synthetic save (optional)
+      description: Attach only an export using fictional identities, numbers and cases. Inspect it for personal data and credentials first.
   - type: checkboxes
     id: checks
     attributes:

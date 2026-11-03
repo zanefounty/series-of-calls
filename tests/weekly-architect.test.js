@@ -10,7 +10,7 @@ const { game } = require('../scripts/weekly-puzzle');
 const AW = require('../scripts/weekly-architect');
 
 const DIR = path.join(__dirname, '..', 'site', 'architect', 'weekly');
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'sot-arwk-'));
+const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'soc-sp-arwk-'));
 
 test('the generator makes the same run for the same week, and its reference earns three stars', () => {
   const g = game(), a = AW.generate(g, '2026-W50', tmp()), b = AW.generate(g, '2026-W50', tmp());

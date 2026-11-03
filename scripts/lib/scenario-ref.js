@@ -64,7 +64,7 @@ Q.start=(steps,o={})=>quiet(()=>{Q.steps=steps;Q.i=0;Q.avoid=o.avoid||[];Q.step(
 // Starts scenario `id` (with `seed`, or its own), plays `plan` for up to `days` days (default: the scenario's), and
 // returns the day it was won (or null), whether the network went broke, and the end state.
 function play(ev, id, plan, { seed, days, avoid } = {}) {
-  ev(`localStorage.removeItem('sot-scn');beginGame('Ref',SCN.find(x=>x.id==='${id}').city,{scn:SCN.find(x=>x.id==='${id}')${seed ? ',seed:' + seed : ''}});if(UI.pendGame)ACT.pitchSkip();UI.speed=0;closeModal()`);
+  ev(`localStorage.removeItem('soc-sp-scn');beginGame('Ref',SCN.find(x=>x.id==='${id}').city,{scn:SCN.find(x=>x.id==='${id}')${seed ? ',seed:' + seed : ''}});if(UI.pendGame)ACT.pitchSkip();UI.speed=0;closeModal()`);
   if (ev('typeof __ref') === 'undefined') ev(REF);
   ev(`__ref.start(${JSON.stringify(plan)},${JSON.stringify({ avoid })})`);
   const n = days || ev('S.scn.days');

@@ -1,0 +1,13 @@
+✔ pages: the build is plain static files within GitHub Pages limits (1.219227ms)
+✔ pages: the repository has no hosting configuration for anywhere else (0.252097ms)
+✔ pages: every local file the site refers to is in the build (6.211935ms)
+✔ pages: only the release workflow deploys, and only with the GitHub Pages actions (0.45102ms)
+✔ pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things (1453.71715ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9969.620121

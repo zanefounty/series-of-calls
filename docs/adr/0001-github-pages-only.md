@@ -1,5 +1,7 @@
 # ADR 0001: Series of Tubes is hosted on GitHub Pages, and only there
 
+> **Series of Calls applicability — 4 November 2026:** the static GitHub Pages constraint is retained. The independent target is `https://zanefounty.github.io/series-of-calls/`; it is not yet a verified deployment. This adaptation has no `site/CNAME`, uses local assets and removes the upstream analytics/domain assumptions. The current `release.yml` and release gate determine deployment eligibility; the historical auto-release description below is not an active release procedure here. See [the current architecture](../ARCHITECTURE.md) and [publishing audit](../PUBLISHING_AUDIT.md). The original decision and rationale below remain attributed to upstream.
+
 - Status: accepted, not open for renegotiation
 - Date: 2026-10-27
 - Decided by: Frederic Jung

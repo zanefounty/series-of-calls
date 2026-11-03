@@ -1,0 +1,52 @@
+✔ sandbox: endless money, every unlock, nothing breaks, no badges (670.922013ms)
+✔ scenarios: rules apply, goals complete, deadlines fail, seeds repeat (376.788851ms)
+✔ completing a scenario records it and unlocks a badge (315.037596ms)
+✔ traceroute shows hops, the exit and the AS path (373.331071ms)
+✔ conferences: register, attend, and selective peers get easier for a while (284.792969ms)
+✔ the guided tutorial walks through the first steps and can be skipped (326.348219ms)
+✔ animations can be switched off, on or follow the system, and the choice sticks (256.198724ms)
+✔ half speed and deeper zoom (276.657532ms)
+✔ the map draws at every zoom, with and without animations, without throwing (368.346566ms)
+✔ RouteScript: parses safely, reports errors helpfully, and changes routing (373.696513ms)
+✔ RouteScript BGP: local-pref and prepending move transit, protected customers go first, the optimizer drafts a script (340.693497ms)
+✔ #27 new networks get a random name, and "Another one" never repeats it (271.110961ms)
+✔ iPhone home-screen app fills the screen when iOS reports a short viewport (232.560536ms)
+✔ phones in the browser get the install pitch before a new game, then can still play (331.105249ms)
+✔ the installed app and desktop browsers start straight away (511.308841ms)
+✔ #34 scenario goal, progress and customer level are always in view (543.755327ms)
+✔ NOC dashboard has a tab bar for its sections (286.948251ms)
+✔ a brand-new phone player can click through the install pitch and the title screen buttons (270.048428ms)
+✔ Flood Season: attacks keep coming, grow, and only count when service held (312.811703ms)
+✔ DKNOG in Copenhagen is on the conference calendar (287.360068ms)
+✖ the Signal group is linked from the title screen, the menu and How to play, in every language (240.753617ms)
+✔ #114 Only Spätzle-IX can be won by peering alone (653.56913ms)
+✔ RouteScript: help, ready-made scripts and the AI button (406.474059ms)
+✔ Flood Season keeps attacking and escalating after both success and timeout (545.418508ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16590.300005
+
+✖ failing tests:
+
+test at tests/modes.test.js:393:1
+✖ the Signal group is linked from the title screen, the menu and How to play, in every language (240.753617ms)
+  AssertionError [ERR_ASSERTION]: en: title footer links the group in a new tab
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/modes.test.js:398:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^_blank\|noopener\|/,
+    operator: 'match',
+    diff: 'simple'
+  }

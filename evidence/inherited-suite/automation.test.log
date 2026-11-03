@@ -1,0 +1,19 @@
+✔ the sales order signs ready offers once per shift, and pausing it stops it (680.993017ms)
+✔ the trial includes new bandwidth and later offers cannot overbook earlier accepted sales (286.438204ms)
+✔ the sales order checks actual circuits, latency and NNI capacity (316.210373ms)
+✔ new circuits do not take service away from healthy signed customers (319.371751ms)
+✔ fiber sales check live equipment and free spectrum, and repeated carrier orders still merge (303.65782ms)
+✔ capacity pair sales need completed infrastructure and reserve it for the accepted contract (313.075778ms)
+✔ future event demand is tested before signing, with booked events reserving headroom (309.766475ms)
+✔ failed capacity trials restore game, routing and map state even when compute throws (255.837395ms)
+✔ the repair order rushes affordable repairs once, skips unaffordable and expired incidents, and obeys its pause (282.785794ms)
+✔ the sales order leaves unready and expired offers alone without failure notifications (291.002073ms)
+✔ the #185 toggles in old saves become the sales and repair orders, malformed ones stay off (283.328904ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3990.588601

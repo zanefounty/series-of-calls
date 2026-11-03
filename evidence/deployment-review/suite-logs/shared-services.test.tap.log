@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: AC-SOC-201 canonical tenant membership is staged and failed generations preserve prior effective lines
+ok 1 - AC-SOC-201 canonical tenant membership is staged and failed generations preserve prior effective lines
+  ---
+  duration_ms: 1.858166
+  type: 'test'
+  ...
+# Subtest: AC-SOC-202 member presence and line DND remain independent gates
+ok 2 - AC-SOC-202 member presence and line DND remain independent gates
+  ---
+  duration_ms: 0.868043
+  type: 'test'
+  ...
+# Subtest: AC-SOC-203 ringing and parked calls consume real shared-line occupancy capacity
+ok 3 - AC-SOC-203 ringing and parked calls consume real shared-line occupancy capacity
+  ---
+  duration_ms: 0.69385
+  type: 'test'
+  ...
+# Subtest: AC-SOC-204 observe, answer, DND, park, and retrieve permissions are evaluated separately
+ok 4 - AC-SOC-204 observe, answer, DND, park, and retrieve permissions are evaluated separately
+  ---
+  duration_ms: 1.199407
+  type: 'test'
+  ...
+# Subtest: AC-SOC-205 alternate pickup is deterministic, same-tenant, live, and endpoint-aware
+ok 5 - AC-SOC-205 alternate pickup is deterministic, same-tenant, live, and endpoint-aware
+  ---
+  duration_ms: 0.426575
+  type: 'test'
+  ...
+# Subtest: AC-SOC-206 park slots, independent permissions, retrieval, and timeout do not finish calls
+ok 6 - AC-SOC-206 park slots, independent permissions, retrieval, and timeout do not finish calls
+  ---
+  duration_ms: 0.704865
+  type: 'test'
+  ...
+# Subtest: AC-SOC-207 reads are pure and failed actions retain state-derived traces only
+ok 7 - AC-SOC-207 reads are pure and failed actions retain state-derived traces only
+  ---
+  duration_ms: 0.353431
+  type: 'test'
+  ...
+# Subtest: AC-SOC-208 worker source, save validation, occupancy lineage, and synthetic source IDs stay exact
+ok 8 - AC-SOC-208 worker source, save validation, occupancy lineage, and synthetic source IDs stay exact
+  ---
+  duration_ms: 2.21592
+  type: 'test'
+  ...
+# Subtest: retrieved member needs retrieve permission only and an active person cannot take a second call
+ok 9 - retrieved member needs retrieve permission only and an active person cannot take a second call
+  ---
+  duration_ms: 0.609
+  type: 'test'
+  ...
+# Subtest: fingerprints ignore occupancy and historical configuration does not require a live member identity
+ok 10 - fingerprints ignore occupancy and historical configuration does not require a live member identity
+  ---
+  duration_ms: 4.353342
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 28.209957

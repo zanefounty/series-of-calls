@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-03T20:11:55.816762+00:00",
+  "scope": "Application runtime and JavaScript tests unchanged after the complete per-file run. Regenerated mapping audit and complete Python gate fixtures passed fresh acceptance/accounting and all 71 mutations. Distribution notice URLs passed the fresh build/byte checks. Governance proposals remain unapplied.",
+  "changes": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "before": "eafcbcbcd12cde8825a07045d18f7476bdc67e2fdcfa67393d20efe0295882a6",
+      "after": "bae955bd63ffbce32e2c9e85e59194deb0c8670901bb09f204019dc1ae945247"
+    },
+    {
+      "path": "maintenance/proposals/evidence-input-freeze.md",
+      "before": null,
+      "after": "74f7987c8c1c51e92bfdadd93003eb4c3b060a12d99251ab606200268bbb8e34"
+    },
+    {
+      "path": "maintenance/proposals/evidence-input-freeze.patch",
+      "before": null,
+      "after": "ce28777bf211aa47d0eb64811734c2050e9523817d1797f2bfba97eae712d978"
+    },
+    {
+      "path": "spec/README.md",
+      "before": "04b0194331713be98c9d12f70776c833118b104fd9e9ab321985283c8fb2c626",
+      "after": "baec25b148726b348c2bad0c9f21747b76cfdc0f1c3f5868eaf8404557cef40c"
+    },
+    {
+      "path": "spec/audit/mapping-review.json",
+      "before": "38e531857ec2bf63d774de9d63f28bfd84d2afb2f2ef75e0004a22b713d23ff7",
+      "after": "70b4194c6b6a8af188b208b41bd6b01f70566356920f1ad537cd0d47026f53ba"
+    },
+    {
+      "path": "tests/gates_test.py",
+      "before": "c2f929ce594831f65d3d904d15c38084aa4fe8ad12440e122f462ee58126585f",
+      "after": "b0a5f9441f8d3bd83ef0e45222a8f913b30d63210aaa27e64eec13da2565e3f4"
+    }
+  ],
+  "authoredDocumentationCurrentHashes": {
+    "README.md": "dc78e0aba245af6cc750d232a46d4eab16f99446464df1c14b528c2a0eee22e8",
+    "STATUS.md": "44ded78ac8481cc55bfca1f91d031d7df745b0e1bb9288d10186b1fbea40f629",
+    "CHANGELOG.md": "c1e8e726e971a4fca5c92d6efb2c9d0c8c7542dc4a43e1216d5363e89c088f65",
+    "docs/ARCHITECTURE.md": "a5cc1f8a04954121bffbba6e721e64b7cdb10debb037c005ae8d1154a7ae0527",
+    "docs/MCP.md": "282294bd37bd424389508711321d7bef68742828e64417284dd25bb4a3b4b22e",
+    "docs/PUBLISHING_AUDIT.md": "31773e019d0a974d18f5473416a104e7a5b8bd254a4b77de1b14e85396ef62ed",
+    "docs/DEPLOYMENT_REVIEW.md": "34e2ba738eda5cbf3c20c6596df1c67f5fcc2b1be07280ed26234cde3f4788ca",
+    "docs/DELIVERY_PLAN.md": "cbfb1b2d4f6e114b7291a3673a354f04d54e0b876b73280a01e349c5f81996a6",
+    "docs/BROWSER_ACCEPTANCE.md": "5caff42c0ec75e15e9fd17dd7db6c744e30c6f8d1af4f4decd355f4b0cfe5561"
+  }
+}

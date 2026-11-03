@@ -1,11 +1,11 @@
 /* ================= SAVE SLOTS =================
-   Several networks per browser, one per window. Each network (a slot) is its own key, sot-save-v1:<id>, plain JSON or
-   gzipped exactly like the old single save. A small index (sot-slots) describes them for the title screen, so listing
+   Several networks per browser, one per window. Each network (a slot) is its own key, soc-sp-save-v1:<id>, plain JSON or
+   gzipped exactly like the old single save. A small index (soc-sp-slots) describes them for the title screen, so listing
    them never reads a save. A write goes to the slot first and to the index after, so the index never points at a save
    that is not there yet; each write carries a sequence number (in the save and in its index entry), and a window never
    writes over a newer one that another window saved. Each tab keeps its slot in sessionStorage: a reload continues it.
-   Only one window plays a slot at a time: a Web Lock where the browser has them, else a heartbeat key, sot-open:<id>. */
-const SLOT_K='sot-save-v1:',SLOT_IX='sot-slots',SLOT_OLD='sot-save-v1',SLOT_HB='sot-open:',SLOT_SS='sot-slot',SLOT_MAIN='main';
+   Only one window plays a slot at a time: a Web Lock where the browser has them, else a heartbeat key, soc-sp-open:<id>. */
+const SLOT_K='soc-sp-save-v1:',SLOT_IX='soc-sp-slots',SLOT_OLD='soc-sp-save-v1',SLOT_HB='soc-sp-open:',SLOT_SS='soc-sp-slot',SLOT_MAIN='main';
 const SLOT={sq:{},top:{},rel:new Set(),no:new Set(),locks:new Map(),gzQ:new Map(),idle:[],wait:null,html:''};
 function slotRid(){try{const a=new Uint32Array(2);crypto.getRandomValues(a);return (a[0].toString(36)+a[1].toString(36)).slice(0,10);}catch(e){return (Date.now().toString(36)+(uidN++).toString(36)).slice(-10);}}
 const WIN=slotRid();// this page load; a reload is a new window that takes its tab's slot back
@@ -64,7 +64,7 @@ function slotClaim(id,steal,cb,n=4){const once=v=>{try{cb(v);}catch(e){console.e
   if(SLOT.locks.has(id)){slotBeatFor(id);once(true);return;}
   const L=LOCKS();
   if(L){let got=false;
-    L.request('sot-slot:'+id,steal?{steal:true}:{ifAvailable:true},lock=>{if(!lock){if(n>0&&(SLOT.rel.has(id)||!slotBusy(id)))setTimeout(()=>slotClaim(id,steal,cb,n-1),120);else once(false);return;}got=true;SLOT.rel.delete(id);
+    L.request('soc-sp-slot:'+id,steal?{steal:true}:{ifAvailable:true},lock=>{if(!lock){if(n>0&&(SLOT.rel.has(id)||!slotBusy(id)))setTimeout(()=>slotClaim(id,steal,cb,n-1),120);else once(false);return;}got=true;SLOT.rel.delete(id);
       return new Promise(r=>{SLOT.locks.set(id,r);slotBeatFor(id);once(true);});})
      .catch(()=>{SLOT.locks.delete(id);if(got)slotLost(id,'take');});// stolen: another window took over
     return;}
@@ -143,7 +143,7 @@ function slotBoot(go){slotMigrate(()=>{const list=slotIdx(true),mine=ssGet(SLOT_
     if(raw&&raw.startsWith(GZ)&&raw!==UI.gzRaw){if(!gzOk()){go();return;}gunzip(raw).then(t=>{UI.gzRaw=raw;UI.gzText=t;go();},e=>{console.error('[tubes] unpacking the save failed',e);go();});}
     else go();});});}
 // ---------- other windows ----------
-const BC=(()=>{try{return typeof BroadcastChannel==='function'?new BroadcastChannel('sot-slots'):null;}catch(e){return null;}})();
+const BC=(()=>{try{return typeof BroadcastChannel==='function'?new BroadcastChannel('soc-sp-slots'):null;}catch(e){return null;}})();
 if(BC)BC.onmessage=({data:m})=>{if(!m||typeof m!=='object'||!slotOkId(m.id))return;
   if(m.t==='focus'&&UI.slot===m.id){try{window.focus();}catch(e){}toast(tr('slots.here_it_is_name',{name:esc(S?S.name:'')}),'goal');}
   // Asked to hand over: save what we have, wait for it to land, then step aside and say so.

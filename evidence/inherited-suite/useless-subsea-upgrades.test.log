@@ -1,0 +1,12 @@
+✔ #198 upgrades that do nothing on a long Pacific cable are disabled and refused (590.0697ms)
+✔ #198 upgrades that only help together stay buyable, and one made useless by the other is not (355.46084ms)
+✔ #198 ordering a cable: useless upgrades can not be picked, and stale picks are not charged (403.031812ms)
+✔ #198 ordering a transpacific cable: both upgrades help together, and the redundant one of a pair drops out (468.241681ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2140.961809

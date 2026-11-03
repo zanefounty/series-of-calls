@@ -1,0 +1,27 @@
+{
+  "scope": "Isolated unapplied input guard test with stubbed passing execution/TAP parser; not application acceptance",
+  "cases": [
+    {
+      "case": "stable",
+      "exitCode": 0,
+      "changedInputs": [],
+      "passed": true
+    },
+    {
+      "case": "changed",
+      "exitCode": 1,
+      "changedInputs": [
+        "input.txt"
+      ],
+      "passed": true
+    },
+    {
+      "case": "deleted",
+      "exitCode": 1,
+      "changedInputs": [
+        "input.txt"
+      ],
+      "passed": true
+    }
+  ]
+}

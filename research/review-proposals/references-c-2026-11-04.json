@@ -1,0 +1,598 @@
+{
+  "id": "REFERENCE-RESEARCH-REVIEW-C-2026-11-04",
+  "kind": "consolidated-review-proposal",
+  "checkedAt": "2026-11-04",
+  "status": "independent-review-proposal-pending-owner-acceptance",
+  "purpose": "Review references 60\u201362 and 68\u201390 from the generated reference inventory. This dated proposal does not edit research/reviews.json, accept claims, or convert historical operator reports into current vendor guidance.",
+  "scope": "Three pinned upstream project files and 23 historical Cisco VoIP or VoiceOps mailing-list sources. Five jurisdiction observations at indices 63\u201367 are handled by the separate jurisdictions-2026-11-04 proposal.",
+  "references": [
+    {
+      "referenceId": "REF-01c1db3086024441",
+      "claimId": "CLAIM-a19ffea5ac479551",
+      "requirementId": "REQ-b8f252f0789bdaa8",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "The pinned upstream architecture describes a static browser page assembled from ordered source files into a classic script, with shared state and separated game layers. The proposed requirement is to retain useful shell, canvas, panel, persistence and test patterns while giving expanded domains clear function boundaries.",
+      "historicalSourceDate": "Pinned upstream commit 48e6200c532d486f79bc8376de0aecbf6169123b; archive snapshot recorded in maintenance/upstream/observations/2026-11-03-v260.",
+      "currentFinding": "The exact pinned docs/ARCHITECTURE.md was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. The earlier web-tool and raw URL attempts returned Cache miss; those failures are retained in checkedSources. The pinned document confirms a static page assembled from ordered src files into one classic HTML page, with shared top-level script scope, a canvas/map layer, panel/UI layers, and an in-memory jsdom harness. It supports those architecture observations, but not every proposed behavior as an upstream guarantee.",
+      "checkedSources": [
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+          "title": "Pinned upstream architecture",
+          "date": "Commit 48e6200c532d486f79bc8376de0aecbf6169123b; GitHub connector retrieved 2026-11-04",
+          "supports": "Exact commit states the build joins ordered source files into one self-contained index.html and describes shared classic-script scope, map/canvas and UI layers."
+        },
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+          "title": "Earlier web retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+          "title": "Earlier raw URL retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        }
+      ],
+      "scopeAndUncertainty": "The pinned document describes the upstream architecture, not a requirement that the fork preserve every component or exact layout. The separate real-browser smoke-test criteria are fork acceptance requirements, not claims proven by this architecture file.",
+      "recommendation": "revise",
+      "proposedClaim": "At commit 48e6200, Series of Tubes builds an assembled static HTML page from ordered source files into one classic script with shared scope, a canvas/map layer, and separate UI/panel layers. Use these as design references where they fit the expanded domain; keep browser smoke checks as independent acceptance requirements.",
+      "linkedRequirement": "Use the pinned architecture as a bounded design reference; retain selected browser and persistence patterns without treating the original file layout as a constraint on every new domain."
+    },
+    {
+      "referenceId": "REF-8af7f0c64e902296",
+      "claimId": "CLAIM-456d0885be38f7ff",
+      "requirementId": "REQ-090973d00531c506",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "The pinned save implementation writes the game state under `sot-save-v1`, wraps exported files with app/version metadata, and validates imported state. The design claim additionally asks the fork to isolate its identifiers and retain applicable license/attribution notices.",
+      "historicalSourceDate": "Pinned upstream commit 48e6200c532d486f79bc8376de0aecbf6169123b; archive snapshot recorded 2026-11-03.",
+      "currentFinding": "The exact pinned `src/game/91-save.js` was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. This file writes one `sot-save-v1` localStorage key, supports gzip storage for large saves, exports an object with `app: series-of-tubes` and `version`, and accepts `v===1` save data with basic day/cash/pops/links validation. Migration and sanitize are referenced as upstream functions elsewhere; this file does not establish an ISP-specific field inventory, slot scheme, version-stamped cache, or license terms. Earlier web and raw URL attempts returned Cache miss and are retained below.",
+      "checkedSources": [
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+          "title": "Pinned upstream save implementation",
+          "date": "Commit 48e6200c532d486f79bc8376de0aecbf6169123b; GitHub connector retrieved 2026-11-04",
+          "supports": "Exact save key, gzip threshold, export app/version metadata, v1 import checks, and save load behavior."
+        },
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+          "title": "Earlier web retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+          "title": "Earlier raw URL retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        }
+      ],
+      "scopeAndUncertainty": "The save implementation supports isolation and validation as fork design concerns, but this file alone does not define migration/sanitize internals, all saved fields, or legal notice requirements. Preserve applicable license terms based on the actual license text. Do not import details from later upstream versions into this pinned-source finding.",
+      "recommendation": "revise",
+      "proposedClaim": "At commit 48e6200, the game stores a version-1 state in the `sot-save-v1` key, gzip-compresses large saves, and wraps exports with `series-of-tubes` app and version metadata. A fork should use an isolated namespace and define its own validation/migration needs. This save file does not establish the later slot system, an ISP-specific schema, or license terms.",
+      "linkedRequirement": "Prevent save collisions between the upstream game and fork; version and validate fork-specific saved state, and preserve applicable notices."
+    },
+    {
+      "referenceId": "REF-31e291b1eee75a7a",
+      "claimId": "CLAIM-e0ab5deab9125280",
+      "requirementId": "REQ-f9a2946baca6d3c9",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "The upstream harness assembles the page in jsdom with deterministic randomness and a fake canvas. The requirement proposes retaining useful headless coverage and adding browser smoke coverage for topology, inspector, mobile controls and save/reload.",
+      "historicalSourceDate": "Pinned upstream commit 48e6200c532d486f79bc8376de0aecbf6169123b; archive snapshot recorded 2026-11-03.",
+      "currentFinding": "The exact pinned tests/harness.js was successfully retrieved through the connected GitHub file tool at commit 48e6200c532d486f79bc8376de0aecbf6169123b. It assembles the page using scripts/lib/page, loads it in jsdom, seeds Math.random, stubs Path2D and provides a recording fake canvas context. It supports the deterministic headless harness claim. The proposed real-browser smoke checks remain separate fork acceptance work. Earlier web and raw URL attempts returned Cache miss and are retained.",
+      "checkedSources": [
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+          "title": "Pinned upstream test harness",
+          "date": "Commit 48e6200c532d486f79bc8376de0aecbf6169123b; GitHub connector retrieved 2026-11-04",
+          "supports": "Exact implementation of assembled jsdom page, seeded randomness and fake canvas."
+        },
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+          "title": "Earlier web retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/fjaeckel/seriesoftubes/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+          "title": "Earlier raw URL retrieval attempt",
+          "date": "2026-11-04",
+          "supports": "Web tool returned Cache miss; later exact-commit GitHub connector retrieval succeeded."
+        }
+      ],
+      "scopeAndUncertainty": "The exact source verifies the deterministic headless harness. Browser checks for topology, inspector, mobile controls and save/reload are proposed fork acceptance requirements and are not implemented or evidenced by this file.",
+      "recommendation": "revise",
+      "proposedClaim": "At commit 48e6200, the upstream harness assembles the page in memory, runs it in jsdom with seeded randomness, and stubs canvas APIs for deterministic tests. Retain the headless pattern where useful and independently add real-browser checks for topology, inspector, mobile controls, and save/reload.",
+      "linkedRequirement": "Reuse deterministic headless tests while independently verifying key browser interactions and persistence in a real browser."
+    },
+    {
+      "referenceId": "REF-ce4e6c93d4f7f11d",
+      "claimId": "CLAIM-39b53c7bcd8fa320",
+      "requirementId": "REQ-39b53c7bcd8fa320",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2011 technical list explanation describes a pre-CUCM-8.5 hold/resume interoperability case in which a third-party endpoint's inactive SDP answer could leave media inactive; the thread describes changed behavior in 8.5 and does not confirm a customer repair.",
+      "historicalSourceDate": "2011-04-15 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archived thread was accessible. It explicitly discusses the pre-8.5 inactive SDP expectation and says 8.5 removed that requirement. This supports only the historical explanation and version boundary; it is not current endpoint behavior.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+          "title": "SIP Load and Re-Invite",
+          "date": "2011-04-15",
+          "supports": "Historical explanation of inactive SDP and CUCM version-dependent hold/resume behavior."
+        }
+      ],
+      "scopeAndUncertainty": "Technical discussion and cited release-note characterization, not controlled reproduction. Bound to the historical call flow and peer behavior; no current Cisco or SIP behavior is inferred.",
+      "recommendation": "accept",
+      "proposedClaim": "In a 2011 Cisco VoIP list discussion, a participant described a pre-CUCM-8.5 hold/resume interoperability case where an inactive SDP answer could leave media inactive, and said 8.5 changed that requirement. The thread does not confirm a particular customer's repair.",
+      "linkedRequirement": "Model historical hold/resume outcomes as version- and peer-profile-dependent synthetic behavior, including signalling success with inactive media."
+    },
+    {
+      "referenceId": "REF-caf76921eb104f1f",
+      "claimId": "CLAIM-2b2d832208d9f39c",
+      "requirementId": "REQ-2b2d832208d9f39c",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A reported blind transfer through CUBE/SIP to an external mobile produced one-way audio. Replies discuss SDP direction and a conditional early-offer profile setting; another participant reports a separate fix by header manipulation. The original reporter's issue was not confirmed fixed.",
+      "historicalSourceDate": "2014-04-30 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The original URL and retry both returned web-tool Cache miss. The existing source record preserves the date, report and replies, but this pass could not independently inspect the archive page. Keep the proposed claim provisional until the page can be retrieved.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+          "title": "One-way audio after BLIND transfer to SIP Trunk",
+          "date": "2014-04-30 per preserved source record",
+          "supports": "Direct page and retry returned Cache miss; source record remains the only available transcript for this check."
+        }
+      ],
+      "scopeAndUncertainty": "The existing record describes a historical incident, but source retrieval was unavailable. The proposed profile remedy is conditional and reportedly from a separate instance; do not prescribe it as generally safe.",
+      "recommendation": "unresolved",
+      "proposedClaim": "Pending direct archive recheck: a 2014 list report described one-way audio after a blind transfer through a CUBE/SIP trunk to a mobile, with replies discussing SDP direction and an early-offer-specific setting; a separate participant reported a fix in another case. The original reporter's outcome is not established by the preserved record.",
+      "linkedRequirement": "Represent transfer-leg media direction and conditional profile behavior without treating header rewriting as a universal remedy."
+    },
+    {
+      "referenceId": "REF-b975a5563a7e48f0",
+      "claimId": "CLAIM-2f08185dc79f23ef",
+      "requirementId": "REQ-2f08185dc79f23ef",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "The preserved record describes a 9951/expansion-module BLF speed-dial key starting another call when used during transfer, while manual dialing worked. A reply attributes it to firmware and recommends an engineering special; no reporter confirmation is recorded.",
+      "historicalSourceDate": "2013-04-02 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The exact archive URL and retry returned Cache miss. The existing dated source record supports the details but could not be verified against the live archive in this review.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+          "title": "Transfer using BLF Speed Dial on 9.1",
+          "date": "2013-04-02 per preserved source record",
+          "supports": "Direct page and retry returned Cache miss; preserved source record only."
+        }
+      ],
+      "scopeAndUncertainty": "Firmware diagnosis and engineering-special remedy are participant-attributed and old. No present-day product behavior or fix is implied; source retrieval remains unresolved.",
+      "recommendation": "unresolved",
+      "proposedClaim": "Pending direct archive recheck: the preserved 2013 source record reports a BLF key starting a new call during transfer on a 9951 setup, while manual dialing worked; a reply suspected firmware and suggested an engineering special, with no recorded confirmation of the fix.",
+      "linkedRequirement": "If modeled, distinguish the BLF transfer action from manual destination dialing and make the behavior explicitly synthetic and profile-bound."
+    },
+    {
+      "referenceId": "REF-a40f3ce6a34d2530",
+      "claimId": "CLAIM-2af25b61b00d01cc",
+      "requirementId": "REQ-2af25b61b00d01cc",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "An inbound INVITE reached a CUCM node outside the trunk's device-pool call-manager group and received 503; reversing dial-peer preference reportedly made calls work. The thread also mentions an all-node trunk option in later versions.",
+      "historicalSourceDate": "2013-04-10 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archive page was accessible and includes the ingress node and peer preference discussion, the reporter's reported outcome, and later-version all-node setting. This is one cluster configuration report, not a general cause of 503 responses.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+          "title": "quick question about sip and CUBE",
+          "date": "2013-04-10",
+          "supports": "Historical node membership, 503, and reported peer-order change."
+        }
+      ],
+      "scopeAndUncertainty": "The customer's exact CUCM version is not identified. Later-version option details and historical behavior should remain version-scoped; no universal 503 diagnosis is supported.",
+      "recommendation": "accept",
+      "proposedClaim": "In a 2013 report, an inbound SIP request reached a CUCM node outside the trunk's call-manager group and received 503. The reporter said reversing peer preference restored calls; a reply discussed all-node trunk operation in later releases.",
+      "linkedRequirement": "Model ingress-node membership and cluster preference as a historical synthetic cause of a specific device-handler rejection, with provisioning before recovery."
+    },
+    {
+      "referenceId": "REF-0d42f4b3d7e3d297",
+      "claimId": "CLAIM-854083e86a66110b",
+      "requirementId": "REQ-854083e86a66110b",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2019 report says a UCCX IVR failed after a move from ISDN/H.323 to central SIP, returning 404 despite a dial-peer match. Replies hypothesize CSS, partition or device-pool issues; no fix is documented.",
+      "historicalSourceDate": "2019-10-13 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archived thread was accessible. It confirms the reported transition and 404 and contains troubleshooting hypotheses without a confirmed resolution.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+          "title": "UCCX not working after change to SIP",
+          "date": "2019-10-13",
+          "supports": "Historical report of post-migration 404 and unconfirmed CSS/partition/device-pool hypotheses."
+        }
+      ],
+      "scopeAndUncertainty": "Hypotheses in replies are not established causes. This is not a current UCCX migration rule or a general interpretation of SIP 404.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2019 Cisco VoIP list report described a UCCX IVR returning 404 after a move from ISDN/H.323 to central SIP despite a dial-peer match. Replies proposed CSS, partition or device-pool checks, but the thread has no confirmed fix.",
+      "linkedRequirement": "Show a synthetic post-migration service lookup failure and keep routing/partition troubleshooting as hypotheses until tested."
+    },
+    {
+      "referenceId": "REF-0bffb652b76883d9",
+      "claimId": "CLAIM-f913436cdd150d04",
+      "requirementId": "REQ-f913436cdd150d04",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2013 report describes a registered 7945 with incorrect time and no configuration update. A reply lists device type, TFTP, old firmware timezone, and malformed or incomplete XML as possible causes.",
+      "historicalSourceDate": "2013-11-05 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and supports the symptom and multiple possible causes. The thread does not confirm which hypothesis applied or a resolution.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+          "title": "7945 phone has wrong time and can't verify config",
+          "date": "2013-11-05",
+          "supports": "Historical endpoint symptom and troubleshooting possibilities."
+        }
+      ],
+      "scopeAndUncertainty": "Suggestions are troubleshooting possibilities for old endpoint/CUCM contexts, not a confirmed diagnosis or current device guidance.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2013 report described a registered Cisco 7945 showing incorrect time and not receiving updated configuration. A reply listed device type, TFTP, firmware timezone and XML validity as possibilities; no cause or repair is confirmed in the thread.",
+      "linkedRequirement": "Keep endpoint registration, configuration retrieval and time state separate, and represent candidate causes as unverified until checked."
+    },
+    {
+      "referenceId": "REF-2985477e6ab52c6f",
+      "claimId": "CLAIM-2ca1de1ca67457cc",
+      "requirementId": "REQ-2ca1de1ca67457cc",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2015 8831 report describes a stuck logo/keypad with the device reachable and registered. A participant attributes a similar symptom to hardware revision needing firmware 10.3.1; this is not confirmed for the reporter.",
+      "historicalSourceDate": "2015-10-28 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and supports the symptom and the reply's conditional firmware/hardware suggestion. The record does not establish that the reporter applied it or resolved the fault.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+          "title": "8831 stuck on logo on keypad",
+          "date": "2015-10-28",
+          "supports": "Historical symptom and a participant's similar-case firmware hypothesis."
+        }
+      ],
+      "scopeAndUncertainty": "Do not treat 10.3.1 as a current fix or as confirmed for the reported device; retain historical hardware and version context.",
+      "recommendation": "accept",
+      "proposedClaim": "In a 2015 thread, an 8831 was reported stuck at its logo/keypad while still reachable and registered. A reply suggested a hardware-revision-specific 10.3.1 load based on another case; the original report's resolution is not recorded.",
+      "linkedRequirement": "Separate registration reachability from local user-interface readiness and keep firmware remediation conditional on the synthetic profile."
+    },
+    {
+      "referenceId": "REF-03fc3d994c353069",
+      "claimId": "CLAIM-b63cdc1e4b48a423",
+      "requirementId": "REQ-b63cdc1e4b48a423",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2018 thread reports CUCM resetting local configuration on a room endpoint; a reply describes managed provisioning syncing supported endpoint changes over SIP. URI changes after reset affected reachability, with no confirmed resolution of that URI issue.",
+      "historicalSourceDate": "2018-09-17 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible, including log excerpts and the reply about managed provisioning. It supports a historical account of configuration reset and URI reachability symptoms, but not a general behavior for all endpoints or a confirmed fix for the URI issue.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+          "title": "webkit fun!",
+          "date": "2018-09-17",
+          "supports": "Historical reset, managed provisioning reply and URI-related reachability report."
+        }
+      ],
+      "scopeAndUncertainty": "Endpoint model and exact configuration scope matter. SIP provisioning and URI behavior are described by participants in a 2018 operational context, not as current vendor policy.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2018 report describes CUCM resetting local settings on a room endpoint and a URI change affecting reachability. A reply says managed provisioning could sync supported settings over SIP. The thread does not confirm a fix for the URI issue.",
+      "linkedRequirement": "Represent managed configuration separately from local endpoint state and surface reachability effects without claiming a general provisioning rule."
+    },
+    {
+      "referenceId": "REF-b807374341cb4592",
+      "claimId": "CLAIM-153588976b69210c",
+      "requirementId": "REQ-153588976b69210c",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "An 8845 activation-code MRA flow reached cloud handshake but TLS to Expressway-E failed. The source record says a later reply reports a trust-path change allowed registration.",
+      "historicalSourceDate": "2021-11 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The initial archive page was accessible but the retrieved portion did not include the later reply said to contain the resolution. The connection failure is directly visible; the reported trust-path resolution remains unverified in this access pass.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+          "title": "MRA Onboarding via activation code... phone trust list?",
+          "date": "2021-11 per archive path",
+          "supports": "Initial post and thread context; later resolution not present in retrieved page portion."
+        }
+      ],
+      "scopeAndUncertainty": "Keep the trust-list change attributed to the reported historical thread, but do not treat it as verified or as present-day MRA configuration guidance. The archive portion containing the reply was not captured.",
+      "recommendation": "revise",
+      "proposedClaim": "A 2021 report describes an 8845 activation-code MRA flow reaching cloud handshake but failing TLS to Expressway-E. The source record attributes a subsequent successful registration to a trust-path change, but that reply was not independently retrieved in this review.",
+      "linkedRequirement": "Distinguish activation/handshake, TLS trust, and registration stages; require explicit synthetic trust configuration before the modeled registration succeeds."
+    },
+    {
+      "referenceId": "REF-66f30c9ce62710dc",
+      "claimId": "CLAIM-3a5b9328fd8234d7",
+      "requirementId": "REQ-3a5b9328fd8234d7",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A May 2022 Expressway cluster report shows a LocalZone warning and no responses to RAS UDP/1719 probes; opening the relevant firewall path cleared the warning while the cluster remained operational.",
+      "historicalSourceDate": "2022-05-14 attached HTML archive; checked 2026-11-04.",
+      "currentFinding": "The attached HTML thread was accessible. It includes packet-capture observations, firewall change and a cleared warning, while describing the cluster as operational. This is a reported environment-specific resolution.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+          "title": "Expressway Clustering attached thread",
+          "date": "2022-05-14",
+          "supports": "Historical firewall/RAS reachability observation and reported warning clearance."
+        }
+      ],
+      "scopeAndUncertainty": "The thread supports this reported environment only. UDP/1719 and warning behavior should not be generalized to current Expressway versions or other cluster configurations.",
+      "recommendation": "accept",
+      "proposedClaim": "In a May 2022 report, an Expressway cluster showed a LocalZone warning and RAS UDP/1719 probes received no response. The operator reported that allowing the firewall traffic cleared the warning while the cluster remained operational.",
+      "linkedRequirement": "Model cluster status and observed peer/firewall reachability separately; a warning can clear after a tested path change without implying total service failure beforehand."
+    },
+    {
+      "referenceId": "REF-5d4452fa6d915fc5",
+      "claimId": "CLAIM-4116975e2ef74f39",
+      "requirementId": "REQ-4116975e2ef74f39",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2013 CUCM bulk-provisioning import partially failed. Inactive number entries explain some failures, while a pickup-group/line duplicate constraint may remain unresolved.",
+      "historicalSourceDate": "2013-10-09 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and supports the partial import outcome, inactive number explanation, and discussion of a duplicate constraint. The remaining pickup-group issue is not documented as resolved.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+          "title": "Import on CUCM Several Failed Devices",
+          "date": "2013-10-09",
+          "supports": "Historical import outcome and data validation constraints."
+        }
+      ],
+      "scopeAndUncertainty": "The constraints belong to the reported historical CUCM import workflow and should not be asserted for other provisioning interfaces or current releases.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2013 CUCM bulk import had partial failures: some inactive number entries explained rejected rows, while a duplicate pickup-group/line constraint was discussed without a confirmed resolution.",
+      "linkedRequirement": "Give bulk provisioning row-level validation and partial outcomes, retaining unresolved duplicate-resource errors for review."
+    },
+    {
+      "referenceId": "REF-16fcbb5b2fd59e07",
+      "claimId": "CLAIM-572ffa82cf9601fe",
+      "requirementId": "REQ-572ffa82cf9601fe",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2019 CUCM upgrade-planning discussion covers 11.0 to 12.5 virtualization baselines and legacy phone support; it is not a completed migration report.",
+      "historicalSourceDate": "2019-08-21 mailing-list thread; checked 2026-11-04.",
+      "currentFinding": "The archived discussion was accessible and supports the stated planning concerns. It is a dated upgrade-planning exchange, not current version compatibility guidance or evidence a migration completed.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+          "title": "CUCM SU release cycle",
+          "date": "2019-08-21",
+          "supports": "Historical CUCM upgrade and virtualization planning discussion."
+        }
+      ],
+      "scopeAndUncertainty": "All platform versions and compatibility details are historical. Do not reuse them as current upgrade advice; verify present compatibility from current vendor documentation.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2019 list discussion considered a CUCM 11.0-to-12.5 upgrade, virtualization baselines, and older phone support. It records planning concerns, not a completed migration or current compatibility matrix.",
+      "linkedRequirement": "Make migration readiness depend on versioned platform and endpoint compatibility inputs, not assumptions carried forward from old release discussions."
+    },
+    {
+      "referenceId": "REF-86107818a4d492f7",
+      "claimId": "CLAIM-2b57da9c60033cfd",
+      "requirementId": "REQ-2b57da9c60033cfd",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2010 operator discussion says two customer SIP trunks through one provider required incompatible G.729-only and G.711-only profiles; participants suggest a common codec or transcoding.",
+      "historicalSourceDate": "2010-08-10 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archived thread was accessible and supports the mismatch and participant suggestions. The proposed remedies are discussion, not a confirmed change or general provider rule.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+          "title": "The peer of my peer is my peer?",
+          "date": "2010-08-10",
+          "supports": "Historical codec mismatch report and proposed common codec/transcoding."
+        }
+      ],
+      "scopeAndUncertainty": "Anecdotal two-trunk case in 2010. Codec availability and transcoding behavior are endpoint/provider-specific; nothing here establishes present-day provider capability.",
+      "recommendation": "accept",
+      "proposedClaim": "In a 2010 VoiceOps thread, two customer trunks through one provider were reported with G.729-only and G.711-only codec profiles and no common codec. Participants suggested a shared codec or transcoding; no confirmed remediation is recorded.",
+      "linkedRequirement": "Make codec compatibility and transcoding explicit per leg in synthetic call setup; do not infer a provider's transcoding from shared ownership."
+    },
+    {
+      "referenceId": "REF-5d951bf30e3c96d3",
+      "claimId": "CLAIM-86b1025e597d449d",
+      "requirementId": "REQ-86b1025e597d449d",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A historical report describes a Cisco CUBE race where a 200 response and cancellation leave call legs in inconsistent states.",
+      "historicalSourceDate": "2010-08 VoiceOps thread; exact day not verified in this check.",
+      "currentFinding": "The original archive URL and retry returned Cache miss. Existing source metadata and claim capture the reported race, but this pass could not verify the thread or exact date directly.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+          "title": "Ye ole Cisco Cube CM",
+          "date": "August 2010 per archive path; exact message date not retrieved",
+          "supports": "Direct URL and retry returned Cache miss."
+        }
+      ],
+      "scopeAndUncertainty": "Unverified archive retrieval. Treat as an unresolved historical report only; do not infer current CUBE race behavior or general SIP transaction semantics from it.",
+      "recommendation": "unresolved",
+      "proposedClaim": "Pending archive recheck: the preserved source record describes a CUBE call-race case where a 200 response and cancellation left call legs inconsistent. Exact date, sequence and outcome need direct source confirmation.",
+      "linkedRequirement": "If retained, model SIP answer/cancel ordering as a synthetic race with each call leg's resulting state visible."
+    },
+    {
+      "referenceId": "REF-f8221f4fdcb2415b",
+      "claimId": "CLAIM-ece39a4dede39c7d",
+      "requirementId": "REQ-ece39a4dede39c7d",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2010 post asks about a DASH Carrier Services outage; a participant recalls positive prior service but supplies no confirmed outage scope, cause or duration.",
+      "historicalSourceDate": "2010-12 VoiceOps thread; exact day not captured in proposal metadata.",
+      "currentFinding": "The archive was accessible. It is an outage inquiry with a limited recollection of prior service, not a verified incident report or provider assessment.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+          "title": "VoIP - complete outage at DASH Carrier Services",
+          "date": "December 2010",
+          "supports": "Historical outage inquiry and limited personal recollection; no incident details."
+        }
+      ],
+      "scopeAndUncertainty": "No outage details or causal evidence are established. Do not treat the post as proof of outage, provider reliability, or current service status.",
+      "recommendation": "accept",
+      "proposedClaim": "A December 2010 VoiceOps post asked about a possible DASH Carrier Services outage. The thread offers no confirmed scope, cause or duration; a participant only recalled positive prior experience.",
+      "linkedRequirement": "Separate unverified service reports from observed outage evidence and require scope, timestamps and impact before incident status is treated as confirmed."
+    },
+    {
+      "referenceId": "REF-6e6184fda25bddb4",
+      "claimId": "CLAIM-c9a58510901736f8",
+      "requirementId": "REQ-c9a58510901736f8",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2011 SBC HMR discussion describes domain-versus-destination-IP matching and a mismatch between intended traffic rejection and observed 404 Registrar Not Found. Replies mention packet captures, realm behavior and a reject action change between versions 6.1 and 6.2.",
+      "historicalSourceDate": "2011-06 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and includes the observed 404, filtering discussion and version-specific suggestions. The reply does not establish how current SBC versions behave.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+          "title": "SBC's that drop traffic based on domain",
+          "date": "June 2011",
+          "supports": "Historical domain/IP filter mismatch, response code and version-specific reply."
+        }
+      ],
+      "scopeAndUncertainty": "Vendor/version context is historical and incomplete. Keep the behavior and response code tied to the example; verify any real deployment against its current manual and capture.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2011 VoiceOps case reports an SBC filter intended to drop traffic by domain while traffic matching behavior depended on destination IP, and observed 404 Registrar Not Found. Replies discuss packet captures and a reject action difference between the then-referenced 6.1 and 6.2 versions.",
+      "linkedRequirement": "Make SIP edge filters match the configured domain or address deliberately and expose the actual synthetic response; require a valid-traffic regression check."
+    },
+    {
+      "referenceId": "REF-3cc23cc2422be034",
+      "claimId": "CLAIM-a1e3ccd52cec0563",
+      "requirementId": "REQ-a1e3ccd52cec0563",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2011 Allworx follow-me report describes answer confirmation followed by no audio. Replies hypothesize a re-INVITE/media latch issue, while the reporter later notes a low TTL after answer; no cause is confirmed.",
+      "historicalSourceDate": "2011-07-22 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and preserves competing explanations and the reporter's later observation. It does not confirm the media-latch hypothesis.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+          "title": "Allworx Followme - no audio issue",
+          "date": "2011-07-22",
+          "supports": "Historical one-way/no-audio report, proposed re-INVITE theory and differing TTL observation."
+        }
+      ],
+      "scopeAndUncertainty": "Cause remains unresolved. RTP counters or packets on unrelated legs do not establish that intended receiver media works; avoid encoding a vendor-specific root cause.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2011 follow-me report described answer confirmation followed by no audio. Replies proposed a re-INVITE/media-latching cause, but the reporter later supplied a TTL observation that did not confirm it; the thread leaves cause unresolved.",
+      "linkedRequirement": "After re-INVITE, assess media per expected receiver; keep hypotheses separate from confirmed leg reachability."
+    },
+    {
+      "referenceId": "REF-bcbd90c63b48817f",
+      "claimId": "CLAIM-80e3c074a4faa1eb",
+      "requirementId": "REQ-80e3c074a4faa1eb",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2012 operator asks whom to contact when a destination works over another route but fails through the current carrier; the post has no answer or evidence about a provider's support quality.",
+      "historicalSourceDate": "2012-09-04 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and confirms this is a routing/translation escalation question without a documented resolution.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+          "title": "Routing and translations contacts",
+          "date": "2012-09-04",
+          "supports": "Historical support-process question only."
+        }
+      ],
+      "scopeAndUncertainty": "The report demonstrates a process question, not a named carrier's support procedure or quality. No current contact or escalation path is supported.",
+      "recommendation": "accept",
+      "proposedClaim": "A September 2012 operator asked how to reach a carrier team that could inspect routing or translation data when an alternate route worked and the current carrier path failed. The thread does not provide a resolution.",
+      "linkedRequirement": "Make escalation workflows require a reproducible destination, route, time and observed failure, followed by a verified recovery call."
+    },
+    {
+      "referenceId": "REF-3c35bbedeac1d5e8",
+      "claimId": "CLAIM-20db5406df6f89dd",
+      "requirementId": "REQ-20db5406df6f89dd",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2014 discussion of Canadian toll-free calls proposes that origin geography, CIC, service area or local tandem routing may explain differing results, with a participant suggesting a route workaround.",
+      "historicalSourceDate": "2014-05-06 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and supports that participants proposed these explanations and a workaround. One participant expressly noted they were not logged into the relevant SMS source. It is not authoritative present-day routing or regulatory guidance.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+          "title": "Canadian Toll Free",
+          "date": "2014-05-06",
+          "supports": "Historical cross-border routing hypotheses and proposed workaround."
+        }
+      ],
+      "scopeAndUncertainty": "Terminology and route details belong to a historical participant discussion. Do not present as current Canadian toll-free policy, carrier requirement, or universal cause.",
+      "recommendation": "accept",
+      "proposedClaim": "In a May 2014 VoiceOps thread, participants proposed origin geography, carrier identification, service-area or tandem differences as possible reasons Canadian toll-free calls failed from some origins; a workaround was suggested. The discussion was not authoritative or a confirmed current rule.",
+      "linkedRequirement": "Make origin region and carrier/translation capabilities explicit in synthetic toll-free routing, and avoid assuming success transfers across origins."
+    },
+    {
+      "referenceId": "REF-92fc12a39434ac75",
+      "claimId": "CLAIM-ade44259370a7ba7",
+      "requirementId": "REQ-ade44259370a7ba7",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2015 procurement discussion considers support hours, geographic redundancy, integrations, operational skills and lifecycle costs alongside features; replies are personal recommendations, not a vendor evaluation.",
+      "historicalSourceDate": "2015-06-20 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible. The original asks about a class-4 softswitch design and support in Australian hours; one response recommends CSRPSwitch. The thread does not compare vendors systematically or establish current product quality.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+          "title": "Which Softswitch?",
+          "date": "2015-06-20",
+          "supports": "Historical procurement factors and individual recommendation."
+        }
+      ],
+      "scopeAndUncertainty": "Individual preferences from 2015, not current procurement advice, an objective vendor comparison, or evidence a named platform is superior.",
+      "recommendation": "accept",
+      "proposedClaim": "A 2015 class-4 softswitch discussion raised support coverage, geographic redundancy, integrations, operational skills and lifecycle cost; a reply offered an individual recommendation. It is not a comparative vendor evaluation.",
+      "linkedRequirement": "Evaluate fictional communications platform designs against declared support windows, independent recovery paths, integration work and operating costs."
+    },
+    {
+      "referenceId": "REF-625698d2aa90d70c",
+      "claimId": "CLAIM-dcf9b1a68091ce19",
+      "requirementId": "REQ-dcf9b1a68091ce19",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2015 operator asks about a supplier's announced fee for SMS-enabled numbers and a portability-aware registry. A response discusses a projected monthly fee and expected registry suppliers; the original sender supplied no further details.",
+      "historicalSourceDate": "2015-11-24 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible. It records a question and a projected January 2016 monthly fee with expected registry participants, but no final fee, implementation or registry-completeness result.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+          "title": "Upcoming Fees for Text Enabled Telephone Numbers (Bandwidth.com)",
+          "date": "2015-11-24",
+          "supports": "Historical fee notice question and registry description, without confirmation of subsequent outcome."
+        }
+      ],
+      "scopeAndUncertainty": "A projected fee is not proof it took effect. Do not infer current registry providers, portability handling, fees or carrier routing from the thread.",
+      "recommendation": "accept",
+      "proposedClaim": "A November 2015 post asks about a proposed fee for text-enabled numbers and a portability-corrected messaging registry. A reply described a projected fee effective January 2016 and anticipated registry providers; the thread does not confirm the final fee or subsequent registry behavior.",
+      "linkedRequirement": "Keep messaging carrier lookup distinct from voice routing; label unconfirmed fees and lookup freshness rather than presenting them as current facts."
+    },
+    {
+      "referenceId": "REF-0fe3ded413d45133",
+      "claimId": "CLAIM-d59ddbd1b8c58937",
+      "requirementId": "REQ-d59ddbd1b8c58937",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2015 Perimeta migration question describes idle TCP signaling sessions being closed by a firewall, leaving endpoint connectivity stale; a reply outlines TCP, TLS and SIP keepalive options from general experience.",
+      "historicalSourceDate": "2015-12-17 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and details the migration topology and idle-connection concern. The reply explicitly says its discussion is general rather than specific to Perimeta and BroadSoft; it describes possible keepalive layers and says OPTIONS polling had worked in the responder's experience.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+          "title": "Perimeta SBC & TCP",
+          "date": "2015-12-17",
+          "supports": "Historical migration question plus clearly scoped practitioner keepalive suggestions."
+        }
+      ],
+      "scopeAndUncertainty": "The advice is historical practitioner experience, not vendor-specific confirmation or current timer guidance. Keepalive availability and behavior vary with transport, endpoint, SBC and firewall configuration.",
+      "recommendation": "revise",
+      "proposedClaim": "A 2015 Perimeta/BroadSoft migration thread reports an idle TCP signaling path being closed by a firewall, leaving connectivity stale. A reply, explicitly speaking generally rather than specifically about those products, discusses TCP keepalive, TLS heartbeat and SIP OPTIONS as possible techniques based on its experience.",
+      "linkedRequirement": "Model idle transport expiry and distinct keepalive/re-registration paths as configurable synthetic mechanisms; do not encode historical intervals or vendor support as current fact."
+    },
+    {
+      "referenceId": "REF-339fdf527eed6fc1",
+      "claimId": "CLAIM-71372a8a464b2598",
+      "requirementId": "REQ-71372a8a464b2598",
+      "checkedAt": "2026-11-04",
+      "historicalClaim": "A 2020 operator discussion has differing local experience with N11 service-code routing. Participants describe geography-dependent translation and the difficulty of finding an authoritative mapping; an anecdotal emergency test is not a validated procedure.",
+      "historicalSourceDate": "2020-03-26 VoiceOps thread; checked 2026-11-04.",
+      "currentFinding": "The archive was accessible and shows a participant asking for a crowdsourced N11 list, an operator describing local/county variation, and another sharing a historical 711 translation list for some states while still requesting other providers' data. The thread presents incomplete operator-collected information, not a complete or authoritative mapping.",
+      "checkedSources": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+          "title": "Three Digit Numbers",
+          "date": "2020-03-26",
+          "supports": "Historical discussion of N11 geography and incomplete 711 information."
+        }
+      ],
+      "scopeAndUncertainty": "This thread is not a current routing table, emergency-service validation, or legal guidance. Do not route any live emergency or public service call from these historical details; synthetic location tests must remain isolated.",
+      "recommendation": "accept",
+      "proposedClaim": "A March 2020 VoiceOps discussion describes differing operator experience with N11 routing and calls for geographic mappings. It includes an incomplete operator-supplied 711 list and explicitly leaves other provider information outstanding; it is not authoritative or a validated emergency procedure.",
+      "linkedRequirement": "Keep fictional service-code mappings dated and geography-specific, fail unknown mappings explicitly, and isolate emergency-location exercises from live destinations."
+    }
+  ],
+  "limitations": [
+    "Earlier web/raw requests for the pinned upstream files returned Cache miss. The connected GitHub tool subsequently retrieved the exact architecture, save and harness files; findings use those files and retain the initial access history. No claim of a deleted or dead page is made.",
+    "Cisco/VoiceOps list pages were accessed as historical archives. These discussions do not establish current vendor behavior, support policy, carrier policy, fee schedules, service routes, or regulatory advice.",
+    "The two Cisco pages REF-caf76921eb104f1f and REF-b975a5563a7e48f0 and the CUBE race page REF-5d951bf30e3c96d3 remained unavailable after retry and are marked unresolved. The later MRA resolution reply was not retrieved and is marked as partially checked.",
+    "Recommendations are proposals only. No records in research/reviews.json were changed or accepted."
+  ]
+}

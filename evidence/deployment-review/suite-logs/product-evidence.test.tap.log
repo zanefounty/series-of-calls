@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: AC-SOC-288 eligibility evidence requires a real retained qualification event, authorization, current expiry, and explicit effective tick
+ok 1 - AC-SOC-288 eligibility evidence requires a real retained qualification event, authorization, current expiry, and explicit effective tick
+  ---
+  duration_ms: 2.122638
+  type: 'test'
+  ...
+# Subtest: AC-SOC-289 jurisdiction evidence needs an effective current boundary contract and trusted resource enforcement
+ok 2 - AC-SOC-289 jurisdiction evidence needs an effective current boundary contract and trusted resource enforcement
+  ---
+  duration_ms: 0.697459
+  type: 'test'
+  ...
+# Subtest: AC-SOC-290 lifecycle evidence is scoped to the actual offer lifecycle and deployment version/mode
+ok 3 - AC-SOC-290 lifecycle evidence is scoped to the actual offer lifecycle and deployment version/mode
+  ---
+  duration_ms: 1.127834
+  type: 'test'
+  ...
+# Subtest: AC-SOC-291 explicit revocation, stale deployment scope, and forged approvals cannot satisfy dependencies
+ok 4 - AC-SOC-291 explicit revocation, stale deployment scope, and forged approvals cannot satisfy dependencies
+  ---
+  duration_ms: 0.947947
+  type: 'test'
+  ...
+# Subtest: AC-SOC-292 requests reject undeclared dependencies, wrong features, and nonexistent resource references
+ok 5 - AC-SOC-292 requests reject undeclared dependencies, wrong features, and nonexistent resource references
+  ---
+  duration_ms: 0.300122
+  type: 'test'
+  ...
+# Subtest: AC-SOC-293 save validation and worker source preserve scoped evidence while inspection stays pure
+ok 6 - AC-SOC-293 save validation and worker source preserve scoped evidence while inspection stays pure
+  ---
+  duration_ms: 3.008573
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 20.797922

@@ -1,0 +1,174 @@
+{
+  "runtime": {
+    "PACK": "soc-capability-progression-1",
+    "VERSION": 1,
+    "CONTENT": "capability-progression-content-1",
+    "levelIds": [
+      "progress.progression-level.3",
+      "progress.progression-level.4",
+      "progress.progression-level.5",
+      "progress.progression-level.6",
+      "progress.progression-level.8",
+      "progress.progression-level.9",
+      "progress.progression-level.10",
+      "progress.progression-level.11",
+      "progress.progression-level.12"
+    ],
+    "goalIds": ["progress.goal.gi"],
+    "implementedLevels": [
+      "progress.progression-level.3",
+      "progress.progression-level.4",
+      "progress.progression-level.5",
+      "progress.progression-level.6",
+      "progress.progression-level.8",
+      "progress.progression-level.9",
+      "progress.progression-level.10",
+      "progress.progression-level.11",
+      "progress.progression-level.12"
+    ],
+    "implementedGoals": ["progress.goal.gi"],
+    "sourceIds": [
+      "progress.progression-level.1",
+      "progress.progression-level.2",
+      "progress.progression-level.3",
+      "progress.progression-level.4",
+      "progress.progression-level.5",
+      "progress.progression-level.6",
+      "progress.progression-level.7",
+      "progress.progression-level.8",
+      "progress.progression-level.9",
+      "progress.progression-level.10",
+      "progress.progression-level.11",
+      "progress.progression-level.12",
+      "progress.progression-level.13",
+      "progress.goal.bb",
+      "progress.goal.tr",
+      "progress.goal.ix",
+      "progress.goal.p5",
+      "progress.goal.ln",
+      "progress.goal.bz",
+      "progress.goal.rd",
+      "progress.goal.ca",
+      "progress.goal.pn",
+      "progress.goal.scrub",
+      "progress.goal.c3",
+      "progress.goal.t2",
+      "progress.goal.tb",
+      "progress.goal.df",
+      "progress.goal.m2",
+      "progress.goal.c5",
+      "progress.goal.gi",
+      "progress.goal.t10",
+      "progress.goal.t1"
+    ]
+  },
+  "status": "partial-mechanics; all source obligations remain pending",
+  "sourceIds": [
+    "progress.progression-level.1",
+    "progress.progression-level.2",
+    "progress.progression-level.3",
+    "progress.progression-level.4",
+    "progress.progression-level.5",
+    "progress.progression-level.6",
+    "progress.progression-level.7",
+    "progress.progression-level.8",
+    "progress.progression-level.9",
+    "progress.progression-level.10",
+    "progress.progression-level.11",
+    "progress.progression-level.12",
+    "progress.progression-level.13",
+    "progress.goal.bb",
+    "progress.goal.tr",
+    "progress.goal.ix",
+    "progress.goal.p5",
+    "progress.goal.ln",
+    "progress.goal.bz",
+    "progress.goal.rd",
+    "progress.goal.ca",
+    "progress.goal.pn",
+    "progress.goal.scrub",
+    "progress.goal.c3",
+    "progress.goal.t2",
+    "progress.goal.tb",
+    "progress.goal.df",
+    "progress.goal.m2",
+    "progress.goal.c5",
+    "progress.goal.gi",
+    "progress.goal.t10",
+    "progress.goal.t1"
+  ],
+  "implementedSourceIds": [
+    "progress.progression-level.3",
+    "progress.progression-level.4",
+    "progress.progression-level.5",
+    "progress.progression-level.6",
+    "progress.progression-level.8",
+    "progress.progression-level.9",
+    "progress.progression-level.10",
+    "progress.progression-level.11",
+    "progress.progression-level.12",
+    "progress.goal.gi"
+  ],
+  "mechanics": [
+    {
+      "id": "progress.progression-level.3",
+      "fictionalCapability": "UC and CC integrator",
+      "requires": ["verified directional product integration", "supported billed contract", "resolved human task", "successful meeting"],
+      "doesNotProve": ["external vendor certification", "regulatory approval"]
+    },
+    {
+      "id": "progress.progression-level.4",
+      "fictionalCapability": "Enterprise service provider",
+      "requires": ["completed multi-site resource migration", "current two-site fault exercise", "survivor continuity", "backed-up restore receipt", "recovered journey"],
+      "doesNotProve": ["market footprint", "unbounded availability"]
+    },
+    {
+      "id": "progress.progression-level.5",
+      "fictionalCapability": "National communications service provider",
+      "requires": ["two active portfolio tenants", "billed support-owned contracts", "wholesaler or carrier role", "wholesale cost receipts", "resolved voice cases"],
+      "doesNotProve": ["geographic nation-wide service coverage"]
+    },
+    {
+      "id": "progress.progression-level.6",
+      "fictionalCapability": "Public-service communications specialist",
+      "requires": ["government campaign award", "trusted eligible effective boundary flow", "completed information processing", "retained in-jurisdiction record", "resolved case"],
+      "doesNotProve": ["legal procurement authorization"]
+    },
+    {
+      "id": "progress.progression-level.8",
+      "fictionalCapability": "Omnichannel platform operator",
+      "requires": ["same tenant, canonical person and case", "resolved human voice need", "resolved human message need"],
+      "doesNotProve": ["bot-only containment"]
+    },
+    {
+      "id": "progress.progression-level.9",
+      "fictionalCapability": "Multi-region deployment specialist",
+      "requires": ["four distinct effective deployments", "commercial, private, sovereign and local synthetic profiles", "bound ready dependencies", "verified integration for each profile"],
+      "doesNotProve": ["vendor certification", "geographic market coverage"]
+    },
+    {
+      "id": "progress.progression-level.10",
+      "fictionalCapability": "Communications wholesaler",
+      "requires": ["two active partner tenants", "billed distributor-mediated contracts", "nonexpired customer configure grant scoped to contract resource", "revenue receipts"],
+      "doesNotProve": ["wholesale carrier infrastructure ownership"]
+    },
+    {
+      "id": "progress.progression-level.11",
+      "fictionalCapability": "AI communications operator",
+      "requires": ["passed sustained t10 service observation", "completed speech processing", "effective tested AI-assistance deployment", "resolved human integration task"],
+      "doesNotProve": ["bot resolution as human work"]
+    },
+    {
+      "id": "progress.progression-level.12",
+      "fictionalCapability": "Critical-service integrator",
+      "requires": ["completed current two-site fault exercise", "successful continuity and recovery journeys", "verified backup restore", "audited information read"],
+      "doesNotProve": ["government approval", "indefinite continuity"]
+    },
+    {
+      "id": "progress.goal.gi",
+      "fictionalCapability": "Major enterprise or public-service acceptance",
+      "requires": ["four retained assessed campaign track awards", "accepted supported enterprise and government contracts", "resolved cases and successful meetings", "current site-failure exercise and completed migration"],
+      "doesNotProve": ["contract size alone", "source obligation fully implemented"]
+    }
+  ]
+}

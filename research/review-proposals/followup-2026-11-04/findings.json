@@ -1,0 +1,101 @@
+{
+  "id": "REFERENCE-FOLLOWUP-2026-11-04-CISCO-VOICEOPS",
+  "kind": "historical-source-followup-proposal",
+  "checkedAt": "2026-11-04",
+  "status": "retrieved-proposed-owner-review-pending",
+  "canonicalReviewChanged": false,
+  "method": "Opened each exact Puck.nether.net Pipermail URL in the connected web reader, then followed only the adjacent previous/next message links needed to inspect replies. No bulk archive crawl was performed.",
+  "references": [
+    {
+      "referenceId": "REF-caf76921eb104f1f",
+      "claimId": "CLAIM-2b2d832208d9f39c",
+      "requirementId": "REQ-2b2d832208d9f39c",
+      "source": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+      "title": "One-way audio after BLIND transfer to SIP Trunk",
+      "sourceDate": "2014-04-30 09:25:36 EDT",
+      "retrieved": true,
+      "adjacentMessages": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035733.html",
+          "date": "2014-04-30 08:37:04 EDT",
+          "role": "reply quoting the original report"
+        }
+      ],
+      "observations": [
+        "The reporter describes an IP-phone-to-IP-phone call, blind-transferred to an off-network mobile through a SIP trunk and CUBE. After answer, audio reaches the remote party but not the IP phone; the phone page reports Stream = Not Ready. The reporter says the SDP address appears correct and notes that supplementary-service, CUBE and MTP configuration changes had been tried.",
+        "A reply asks for SIP control messaging and suggests a CUCM SIP-profile checkbox intended to avoid an inactive SDP in mid-call INVITEs. The quoted note limits that checkbox to early-offer SIP trunks and says it has no effect on SIP-line calls.",
+        "A later reply says the writer had seen SDP send/receive direction attributes accompany one-way audio, including a separate CUCM-to-Lync instance, and that SIP Header Manipulation Rules on an Acme Packet SBC fixed that separate instance. The original reporter's repair is not recorded."
+      ],
+      "revisionRecommended": "A 30 April 2014 Cisco VoIP list thread reports one-way audio after a blind transfer from an IP-phone call through a CUBE/SIP trunk to an off-network mobile: the remote party heard audio but the IP phone did not, although the reporter considered the SDP address correct and observed Stream = Not Ready. A reply suggested a CUCM SIP-profile option for send/receive SDP in mid-call INVITEs, explicitly limited to early-offer SIP trunks and not SIP-line calls. Another participant reported header manipulation fixing a separate instance. The thread does not establish that the original report was fixed or that either change is a general remedy.",
+      "retainCaveat": "Historical anecdote and participant troubleshooting only. No exact deployed versions are stated for the original case; the cited setting was described from CUCM 8.5.1 documentation. Do not prescribe header rewriting or the profile option generally.",
+      "ownerDecision": "Decide whether to accept the revised, narrowly historical wording for this claim. Acceptance would cover only the dated report and attributed suggestions; it would not approve a general CUBE/CUCM rule or a gameplay requirement.",
+      "sourcePackCrossCheck": "The existing RES-CISCO-VOIP-002 source record already captures the incident, conditional profile scope, separate header-manipulation report and absence of original-reporter resolution. This direct retrieval confirms it; no source-pack edit is proposed."
+    },
+    {
+      "referenceId": "REF-b975a5563a7e48f0",
+      "claimId": "CLAIM-2f08185dc79f23ef",
+      "requirementId": "REQ-2f08185dc79f23ef",
+      "source": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+      "title": "Transfer using BLF Speed Dial on 9.1",
+      "sourceDate": "2013-04-02 12:32:34 EDT",
+      "retrieved": true,
+      "adjacentMessages": [
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031721.html",
+          "date": "2013-04-02 12:40 as quoted in the retrieved follow-up",
+          "role": "participant diagnosis and engineering-special suggestion",
+          "directPageRetrieved": false,
+          "retrievalNote": "Opening this adjacent URL returned an internal reader error. Its message text and timestamp are quoted in the successfully retrieved reporter follow-up at https://puck.nether.net/pipermail/cisco-voip/2013-April/031720.html."
+        },
+        {
+          "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031720.html",
+          "date": "2013-04-02 12:57:11 EDT",
+          "role": "reporter follow-up"
+        }
+      ],
+      "observations": [
+        "The reporter says a 9951 with CKEM and speed-dial BLF buttons could place calls, but pressing a BLF during transfer created a new call; pressing transfer again did not complete the transfer and the transfer softkey did not appear. Manual dialing worked. The issue was reproducible on two systems.",
+        "A responder attributes the behavior to 9951 firmware 9.3.2, identifies CSCud07738 and states it was fixed in ES 5; the responder says ES 12 was the latest they knew and notes other on-hook-dialing bugs might warrant newer code.",
+        "The reporter's adjacent follow-up says a TAC case is open. No message confirms that an engineering special was installed or that the original symptom was resolved."
+      ],
+      "revisionRecommended": "A 2 April 2013 Cisco VoIP thread reports that a 9951 with CKEM could place calls using speed-dial BLF keys, but using a BLF key while transferring created a new call instead of completing the transfer; manual destination dialing worked, and the reporter reproduced it on two systems. A participant attributed it to firmware 9.3.2, named CSCud07738 and said it was fixed in ES 5; the same participant said ES 12 was the latest they knew. The reporter later said a TAC case was open. The archive does not confirm an installed fix or resolved outcome.",
+      "retainCaveat": "The bug attribution and engineering-special/fix details are participant statements about a 2013 release. They are not current firmware advice or an independently verified defect record.",
+      "ownerDecision": "Decide whether to accept this more complete but still participant-attributed historical wording. Do not accept the suspected cause or fix as an independent fact, current product behavior, or required simulated fix.",
+      "sourcePackCrossCheck": "The existing RES-CISCO-VOIP-003 record captures the reproduction, manual-dial contrast and unconfirmed remedy. It omits the bug ID/fix-in-ES-5 statement and reporter's open-TAC follow-up; this follow-up supplies those details without changing the preserved source pack."
+    },
+    {
+      "referenceId": "REF-5d951bf30e3c96d3",
+      "claimId": "CLAIM-86b1025e597d449d",
+      "requirementId": "REQ-86b1025e597d449d",
+      "source": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+      "title": "Ye ole Cisco Cube CM",
+      "sourceDate": "2010-08-10 17:05 EDT",
+      "retrieved": true,
+      "adjacentMessages": [
+        {
+          "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001765.html",
+          "date": "2010-08-10 18:59:52 EDT",
+          "role": "reply interpreting cause code and requesting further debug"
+        }
+      ],
+      "observations": [
+        "The original poster describes picking up a call on a local phone as the other phone disconnects, with a near-simultaneous CANCEL and 200 OK in the displayed flow. The poster says CUCM sees SIP/481 and reports call-control cause 16 and SIP cause 481.",
+        "The reply says the call-logic debug from the Cisco side would be needed. It interprets cause code 16 as normal clearing and suggests, tentatively, that the local router may have ended the call before receiving or acknowledging the 200 OK, perhaps because of user action or timeout. The reply does not establish that explanation as fact."
+      ],
+      "revisionRecommended": "An operator's 10 August 2010 VoiceOps post describes a call pickup coinciding with a remote disconnect/CANCEL and a CUBE-side 200 OK; the reporter says CUCM then saw SIP/481 and logged cause 16. A responder requested Cisco call-logic debug and tentatively suggested local clearing before the 200 OK was received or acknowledged, possibly after user action or timeout. The thread gives no confirmed root cause or resolution and does not establish a general two-leg state rule.",
+      "retainCaveat": "One historical troubleshooting exchange with sanitized addresses/configuration. Reply's cause-code interpretation and local-router hypothesis are suggestions, not independently verified protocol analysis. Keep any deterministic race as fictional design, separate from the report's evidence.",
+      "ownerDecision": "Decide whether to accept the narrower reported trace and explicitly tentative responder hypothesis. If the existing claim says that two legs had inconsistent established state as an observed fact, revise it to mark that as proposed fictional framing rather than verified source evidence.",
+      "sourcePackCrossCheck": "The existing voiceops-2010-08-cancel-after-ok record already preserves the 'different views' phrase as an issue paraphrase and marks the race as a scenario seed without confirmed resolution. The retrieved reply makes it important to label that state interpretation as a proposed abstraction, not a directly observed finding. Do not rewrite source-pack bytes."
+    }
+  ],
+  "humorReview": {
+    "sourceSpecificComparisonFound": false,
+    "note": "The Warren Buffett quotation in the CUBE reporter's signature is unrelated to the reported SIP incident and is not a product comparison. Preserve the existing fictional scenario wording 'The Scenic Route to a Cancelled Call' as authored gameplay humor, without attributing it to the source author. No source narrative or source-pack bytes were changed."
+  },
+  "limitations": [
+    "This verifies the text and message sequence in the linked archive pages, not underlying packet captures, defect database records, technical cause, remedy, prevalence, or current Cisco behavior.",
+    "The adjacent messages were limited to the immediate replies/follow-up. No broad archive scrape or separate Cisco documentation/bug tracker verification was performed.",
+    "The old CUCM 8.5.1 documentation linked from the 2014 thread was not separately retrieved. Its scope is reported as stated in the archived reply, not independently verified here.",
+    "No owner decision has been recorded. Canonical accepted reviews remain unchanged."
+  ]
+}

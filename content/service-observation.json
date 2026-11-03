@@ -1,0 +1,434 @@
+{
+  "version": "service-observation-content-1",
+  "pack": "soc-service-observation-1",
+  "sourceIds": [
+    "progress.goal.tb",
+    "progress.goal.t10",
+    "progress.goal.rd",
+    "DEC-010",
+    "DEC-011"
+  ],
+  "goals": [
+    "rd",
+    "tb",
+    "t10"
+  ],
+  "required": {
+    "tb": [
+      "identity",
+      "phone",
+      "carrier",
+      "people",
+      "service",
+      "cases"
+    ],
+    "t10": [
+      "identity",
+      "phone",
+      "carrier",
+      "people",
+      "service",
+      "cases",
+      "messages",
+      "engage",
+      "room"
+    ],
+    "rd": [
+      "identity",
+      "phone",
+      "carrier",
+      "desk",
+      "people",
+      "service",
+      "cases"
+    ]
+  },
+  "fictionalBalance": true,
+  "thresholdBasis": "explicit fictional gameplay thresholds; not a conversion of source traffic, throughput, or cash units",
+  "sourceUnits": {
+    "rd": {
+      "sourceId": "progress.goal.rd",
+      "sourceValue": 12500,
+      "sourceUnit": "source-game-cash",
+      "conversion": "none"
+    },
+    "tb": {
+      "sourceId": "progress.goal.tb",
+      "originalTitle": "Serve 1 Tbps",
+      "sourcePredicate": "R.served>=1000",
+      "sourceValue": 1000,
+      "sourceUnit": "Gbit/s",
+      "rewardValue": 75000,
+      "rewardUnit": "source-game-cash",
+      "conversion": "none"
+    },
+    "t10": {
+      "sourceId": "progress.goal.t10",
+      "originalTitle": "Serve 10 Tbps",
+      "sourcePredicate": "R.served>=10000",
+      "sourceValue": 10000,
+      "sourceUnit": "Gbit/s",
+      "rewardValue": 250000,
+      "rewardUnit": "source-game-cash",
+      "conversion": "none"
+    }
+  },
+  "thresholds": {
+    "tb": {
+      "minutes": 10,
+      "journeys": 12,
+      "completionPercent": 90,
+      "activeBuckets": 8,
+      "people": 2,
+      "concurrentSamples": 3,
+      "concurrent": 2
+    },
+    "t10": {
+      "minutes": 15,
+      "journeys": 30,
+      "completionPercent": 90,
+      "activeBuckets": 12,
+      "people": 4,
+      "concurrentSamples": 5,
+      "concurrent": 4,
+      "voice": 8,
+      "digital": 8,
+      "meetings": 2
+    },
+    "rd": {
+      "minutes": 10,
+      "caseBoundJourneys": 3,
+      "domains": 2,
+      "requiredFaultSamples": 1,
+      "maxLatencyMs": 500
+    }
+  },
+  "commands": [
+    {
+      "action": "open-window",
+      "goal": "tb | t10 | rd"
+    },
+    {
+      "action": "inject-incident",
+      "goal": "rd only; selects a domain from the saved real baseline trace"
+    },
+    {
+      "action": "recover-incident",
+      "goal": "rd only; requires a full sampled minute under fault"
+    }
+  ],
+  "referencePlans": {
+    "tb": [
+      "Use an assessed root with cases and the contact queue effective. Start the workforce pack and provision two named people with the service skill, English, one valid individual seat each, full shifts and availability.",
+      "Configure people.handlingMinutes to 1 and wrapMinutes to 0, provision, then open the tb window. Do not change configuration during the ten minutes.",
+      "For at least eight different minutes, submit two real service interactions with separate retained case IDs before advancing one minute. Keep the observed completion ratio at or above 90 percent. The per-minute sample must see at least two active assignments in three minutes."
+    ],
+    "t10": [
+      "Use an assessed root with service, messages, engage, cases and room resources ready. Start channels/contact and workforce packs; provision four named service-capable people, each with a valid individual seat.",
+      "Open the t10 window only after all selected resource and product bindings are ready. Hold configuration constant for fifteen sampled minutes.",
+      "Across twelve or more active minute buckets, generate at least eight human voice and eight human digital service journeys with retained, resolved case outcomes. At five sample minutes retain at least four concurrent service assignments. Dispatch two successful room meetings in separate commands and verify each result before the window closes."
+    ],
+    "rd": [
+      "Start transport before opening the window. Provision identity and service sites, two parallel effective links in different failure domains, then bind identity and service to those sites. The actual identity-to-service voice route must show both links as alternate choices.",
+      "With calling and workforce enabled, complete one resolved, case-bound, two-way voice journey to the service queue. Open rd after that journey so the saved trace is the before-incident baseline.",
+      "Open the ten-minute rd window. Dispatch inject-incident; it fails a domain from the observed baseline trace through the validated SOC transport command. Hold the failure through at least one complete observation minute and resolve the same caller and case over a route that excludes the failed domain and includes another domain.",
+      "Dispatch recover-incident after that sampled minute. Resolve a new human voice journey for the same canonical identity and case after recovery. Finish all ten samples without changing service configuration or losing a required path."
+    ]
+  },
+  "referenceCommandTemplates": {
+    "workforceRosterTwo": {
+      "type": "workforce",
+      "command": {
+        "action": "roster",
+        "people": [
+          {
+            "id": "agent-a",
+            "employer": "orchard-msp",
+            "skills": [
+              "service"
+            ],
+            "languages": [
+              "en"
+            ],
+            "shiftStart": 0,
+            "shiftEnd": 1440,
+            "available": true,
+            "digitalConcurrency": 2,
+            "entitlements": [
+              "seat-01"
+            ]
+          },
+          {
+            "id": "agent-b",
+            "employer": "orchard-msp",
+            "skills": [
+              "service"
+            ],
+            "languages": [
+              "en"
+            ],
+            "shiftStart": 0,
+            "shiftEnd": 1440,
+            "available": true,
+            "digitalConcurrency": 2,
+            "entitlements": [
+              "seat-02"
+            ]
+          }
+        ]
+      }
+    },
+    "serviceVoiceJourney": {
+      "type": "interact",
+      "channel": "voice",
+      "from": "alex",
+      "to": "+61255500201",
+      "caseId": "<same-case-id-for-this-journey>",
+      "language": "en"
+    },
+    "serviceDigitalJourney": {
+      "type": "interact",
+      "channel": "message",
+      "from": "alex",
+      "to": "service",
+      "caseId": "<case-id>",
+      "language": "en"
+    },
+    "transportAlternatePath": [
+      {
+        "type": "transport",
+        "command": {
+          "action": "start"
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "site",
+          "id": "origin",
+          "config": {
+            "name": "Synthetic caller edge",
+            "region": "AU",
+            "domain": "origin-site"
+          }
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "site",
+          "id": "destination",
+          "config": {
+            "name": "Synthetic service edge",
+            "region": "AU",
+            "domain": "service-site"
+          }
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "link",
+          "id": "path-a",
+          "config": {
+            "from": "origin",
+            "to": "destination",
+            "mode": "owned",
+            "capacityMbps": 10,
+            "latencyMs": 20,
+            "domain": "failure-domain-a",
+            "leadMinutes": 1,
+            "setupCents": 0,
+            "periodCents": 0,
+            "contract": null
+          }
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "link",
+          "id": "path-b",
+          "config": {
+            "from": "origin",
+            "to": "destination",
+            "mode": "owned",
+            "capacityMbps": 10,
+            "latencyMs": 40,
+            "domain": "failure-domain-b",
+            "leadMinutes": 1,
+            "setupCents": 0,
+            "periodCents": 0,
+            "contract": null
+          }
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "bind",
+          "resource": "identity",
+          "site": "origin"
+        }
+      },
+      {
+        "type": "transport",
+        "command": {
+          "action": "bind",
+          "resource": "service",
+          "site": "destination"
+        }
+      }
+    ],
+    "openTb": {
+      "type": "service-observation",
+      "command": {
+        "action": "open-window",
+        "goal": "tb"
+      }
+    },
+    "openT10": {
+      "type": "service-observation",
+      "command": {
+        "action": "open-window",
+        "goal": "t10"
+      }
+    },
+    "openRd": {
+      "type": "service-observation",
+      "command": {
+        "action": "open-window",
+        "goal": "rd"
+      }
+    }
+  },
+  "sourceObligations": [
+    {
+      "sourceId": "progress.goal.rd",
+      "status": "partial-mechanic-integrated-progression-pending",
+      "originalDescription": "survive a failure by rerouting after a path or upstream failure; source reward is 12,500 source-game cash",
+      "sourcePredicate": "S.stats.survived>0",
+      "sourceValue": 12500,
+      "sourceUnit": "source-game-cash",
+      "conversion": "none",
+      "currentEvidence": "same retained case, canonical identity and tenant before, during, and after a named transport-domain failure, with independent media routing and bounded latency",
+      "gap": "The simulation models a named synthetic transport-domain failure, not Internet-scale DDoS traffic or the original cash payout."
+    },
+    {
+      "sourceId": "progress.goal.tb",
+      "status": "partial-mechanic-integrated-progression-pending",
+      "originalDescription": "Serve 1 Tbps; the original R.served threshold is 1000 Gbit/s and the source reward is 75,000 source-game cash",
+      "sourcePredicate": "R.served>=1000",
+      "sourceValue": 1000,
+      "sourceUnit": "Gbit/s",
+      "rewardValue": 75000,
+      "rewardUnit": "source-game-cash",
+      "conversion": "none",
+      "currentEvidence": "10 consecutive observed minutes, 12 resolved human case journeys, 90 percent completion, two named people and repeated concurrent staffed load",
+      "gap": "The fictional bounded gameplay threshold is not a bandwidth conversion, does not meet the original Gbit/s predicate, and does not award source cash."
+    },
+    {
+      "sourceId": "progress.goal.t10",
+      "status": "partial-mechanic-integrated-progression-pending",
+      "originalDescription": "Serve 10 Tbps; the original R.served threshold is 10000 Gbit/s and the source reward is 250,000 source-game cash",
+      "sourcePredicate": "R.served>=10000",
+      "sourceValue": 10000,
+      "sourceUnit": "Gbit/s",
+      "rewardValue": 250000,
+      "rewardUnit": "source-game-cash",
+      "conversion": "none",
+      "currentEvidence": "15 consecutive observed minutes with separately counted voice, digital, meetings, task outcomes and four assigned people",
+      "gap": "The fictional bounded gameplay threshold is not a bandwidth conversion, does not meet the original Gbit/s predicate, and does not award source cash."
+    }
+  ],
+  "hookContract": {
+    "observeResource": "trusted root readiness for a named resource, including configured product and jurisdiction policy gates",
+    "dispatchRootCommand": "validated SOC.dispatch boundary returning a state with a newly recorded command and greater revision",
+    "observeTransportPath": "actual SOC transport resourcePath result with edges, domains and latency",
+    "transportDomainsForEdges": "resolve saved trace edge IDs to their effective failure-domain IDs",
+    "transportDomainFailed": "read the current transport failure-domain state"
+  },
+  "limitations": [
+    "The isolated mechanics are attached to shared SOC dispatch, save validation, calculation and worker execution. Progression awards and full source-goal fidelity remain separate work.",
+    "An immutable completed proof preserves historical results. Current readiness is evaluated separately; configuration changes make an open window fail.",
+    "A continuity proof requires transport bindings and an alternate path that survives the named failure. No alternate path means no proof.",
+    "This pack does not grant cash. Progression integration is required before a proof can be claimed as a milestone."
+  ],
+  "runtime": {
+    "PACK": "soc-service-observation-1",
+    "VERSION": 1,
+    "CONTENT": "service-observation-content-1",
+    "GOALS": [
+      "rd",
+      "tb",
+      "t10"
+    ],
+    "sourceIds": [
+      "progress.goal.tb",
+      "progress.goal.t10",
+      "progress.goal.rd",
+      "DEC-010",
+      "DEC-011"
+    ],
+    "thresholds": {
+      "tb": {
+        "minutes": 10,
+        "journeys": 12,
+        "completionPercent": 90,
+        "activeBuckets": 8,
+        "people": 2,
+        "concurrentSamples": 3,
+        "concurrent": 2
+      },
+      "t10": {
+        "minutes": 15,
+        "journeys": 30,
+        "completionPercent": 90,
+        "activeBuckets": 12,
+        "people": 4,
+        "concurrentSamples": 5,
+        "concurrent": 4,
+        "voice": 8,
+        "digital": 8,
+        "meetings": 2
+      },
+      "rd": {
+        "minutes": 10,
+        "caseBoundJourneys": 3,
+        "domains": 2,
+        "requiredFaultSamples": 1,
+        "maxLatencyMs": 500
+      }
+    },
+    "required": {
+      "tb": [
+        "identity",
+        "phone",
+        "carrier",
+        "people",
+        "service",
+        "cases"
+      ],
+      "t10": [
+        "identity",
+        "phone",
+        "carrier",
+        "people",
+        "service",
+        "cases",
+        "messages",
+        "engage",
+        "room"
+      ],
+      "rd": [
+        "identity",
+        "phone",
+        "carrier",
+        "desk",
+        "people",
+        "service",
+        "cases"
+      ]
+    }
+  }
+}

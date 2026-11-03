@@ -1,0 +1,227 @@
+{
+  "pack": "soc-boundaries-1",
+  "version": 1,
+  "synthetic": true,
+  "legalApprovalClaim": false,
+  "evidenceStatus": "observed-pending-specification-review",
+  "profiles": {
+    "AU": {
+      "fictionalRule": "domestic-control",
+      "sourceIds": [
+        "RES-AU-CLOUD-001"
+      ],
+      "description": "This fictional scenario requires domestic processing, storage, backups, key custody, administration, and support for the selected workload."
+    },
+    "US": {
+      "fictionalRule": "eligible-administration",
+      "sourceIds": [
+        "RES-US-CLOUD-001"
+      ],
+      "description": "This fictional scenario evaluates product offering evidence, customer authorization, and any required agency authorization as separate decisions."
+    },
+    "JP": {
+      "fictionalRule": "registered-service-language",
+      "sourceIds": [
+        "RES-JP-CLOUD-001",
+        "RES-JP-AI-001"
+      ],
+      "description": "This fictional scenario uses scoped service registration and Japanese service and support language; any AI use has a separate review decision."
+    },
+    "EU": {
+      "fictionalRule": "union-region-transfer-path",
+      "sourceIds": [
+        "RES-EU-TRANSFER-001"
+      ],
+      "description": "This fictional scenario evaluates the EU-wide region label and declared transfer paths independently. It does not model member-state approval."
+    }
+  },
+  "model": {
+    "separateDimensions": [
+      "eligibility evidence",
+      "customer or agency authorization",
+      "processing locations",
+      "storage locations",
+      "backup locations",
+      "key custody",
+      "administration locations and authorization",
+      "support locations",
+      "access roles",
+      "connectivity and continuity",
+      "licence availability"
+    ],
+    "resourceBindings": "Each flow records a resource identifier and generation. A changed or missing resource blocks qualification until the contract is restaged and provisioned.",
+    "disconnection": "A disconnected local design requires local flow continuity, available local services and key custody, an active unexpired local grace licence, and an available administration path at a permitted location. A cloud-only licence does not qualify while disconnected."
+  },
+  "researchIdsAreContextOnly": true,
+  "runtime": {
+    "PACK": "soc-boundaries-1",
+    "VERSION": 1,
+    "profiles": {
+      "AU": {
+        "id": "AU",
+        "fictionalRule": "domestic-control",
+        "sourceIds": [
+          "RES-AU-CLOUD-001"
+        ],
+        "requirements": {
+          "processingRegions": [
+            "AU"
+          ],
+          "storageRegions": [
+            "AU"
+          ],
+          "backupRegions": [
+            "AU"
+          ],
+          "keyRegions": [
+            "AU"
+          ],
+          "adminRegions": [
+            "AU"
+          ],
+          "supportRegions": [
+            "AU"
+          ],
+          "adminAuthorization": "customer-approved",
+          "allowedTransferMechanisms": []
+        }
+      },
+      "US": {
+        "id": "US",
+        "fictionalRule": "eligible-administration",
+        "sourceIds": [
+          "RES-US-CLOUD-001"
+        ],
+        "requirements": {
+          "processingRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "storageRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "backupRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "keyRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "adminRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "supportRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "adminAuthorization": "customer-approved",
+          "allowedTransferMechanisms": [
+            "adequacy",
+            "safeguards",
+            "derogation"
+          ]
+        }
+      },
+      "JP": {
+        "id": "JP",
+        "fictionalRule": "registered-service-language",
+        "sourceIds": [
+          "RES-JP-CLOUD-001",
+          "RES-JP-AI-001"
+        ],
+        "requirements": {
+          "processingRegions": [
+            "JP"
+          ],
+          "storageRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "backupRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "keyRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "adminRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "supportRegions": [
+            "JP"
+          ],
+          "adminAuthorization": "customer-approved",
+          "allowedTransferMechanisms": [
+            "adequacy",
+            "safeguards",
+            "derogation"
+          ]
+        }
+      },
+      "EU": {
+        "id": "EU",
+        "fictionalRule": "union-region-transfer-path",
+        "sourceIds": [
+          "RES-EU-TRANSFER-001"
+        ],
+        "requirements": {
+          "processingRegions": [
+            "EU"
+          ],
+          "storageRegions": [
+            "EU"
+          ],
+          "backupRegions": [
+            "EU"
+          ],
+          "keyRegions": [
+            "EU"
+          ],
+          "adminRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "supportRegions": [
+            "AU",
+            "US",
+            "JP",
+            "EU"
+          ],
+          "adminAuthorization": "customer-approved",
+          "allowedTransferMechanisms": [
+            "adequacy",
+            "safeguards",
+            "derogation"
+          ]
+        }
+      }
+    }
+  }
+}

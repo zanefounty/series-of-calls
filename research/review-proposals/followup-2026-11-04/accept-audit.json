@@ -1,0 +1,1210 @@
+{
+  "schemaVersion": 1,
+  "title": "Audit of 48 existing accept recommendations for compound-claim overreach",
+  "checkedAt": "2026-11-04",
+  "status": "owner-review-proposed-not-accepted",
+  "scope": "Audit only existing accept recommendations in references-a/b/c proposals. This follow-up does not edit source packs, canonical reviews or original proposals. Recommendations remain proposals pending owner decision.",
+  "sourceRetrievalNote": "The 18 Cisco-VoIP/VoiceOps archive URLs were reopened directly on 2026-11-04 and retain their historical dates. Most vendor pages were directly retrieved in the existing 2026-11-04 review set and a repeat batch; two repeat fetches timed out (Webex Wholesale guide and 3CX product page) and are explicitly flagged. Their dispositions rely on the prior review record and remain bounded to its claim.",
+  "counts": {
+    "audited": 48,
+    "retainNarrowAccept": 47,
+    "reviseBoundedAccept": 1,
+    "ownerAccepted": 0
+  },
+  "records": [
+    {
+      "referenceId": "REF-03fc3d994c353069",
+      "claimIds": [
+        "CLAIM-b63cdc1e4b48a423"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2018 thread reports CUCM resetting local configuration on a room endpoint; a reply describes managed provisioning syncing supported endpoint changes over SIP. URI changes after reset affected reachability, with no confirmed resolution of that URI issue.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2018 thread reports CUCM resetting local configuration on a room endpoint; a reply describes managed provisioning syncing supported endpoint changes over SIP. URI changes after reset affected reachability, with no confirmed resolution of that URI issue.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-0bffb652b76883d9",
+      "claimIds": [
+        "CLAIM-f913436cdd150d04"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2013 report describes a registered 7945 with incorrect time and no configuration update. A reply lists device type, TFTP, old firmware timezone, and malformed or incomplete XML as possible causes.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2013 report describes a registered 7945 with incorrect time and no configuration update. A reply lists device type, TFTP, old firmware timezone, and malformed or incomplete XML as possible causes.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-0d42f4b3d7e3d297",
+      "claimIds": [
+        "CLAIM-854083e86a66110b"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2019 report says a UCCX IVR failed after a move from ISDN/H.323 to central SIP, returning 404 despite a dial-peer match. Replies hypothesize CSS, partition or device-pool issues; no fix is documented.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2019 report says a UCCX IVR failed after a move from ISDN/H.323 to central SIP, returning 404 despite a dial-peer match. Replies hypothesize CSS, partition or device-pool issues; no fix is documented.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-0ddcf6e8a0d3d60c",
+      "claimIds": [
+        "CLAIM-cbc7eb75caccf472"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The [UCM Cloud for Government lifecycle notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html) gives **6 January 2027** as end of sale and **31 January 2028** as last support. Its transition options include Webex for Government Calling and on-premises UCM.",
+      "primarySourceURLs": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Cisco EOL15972 confirms order cutoff 2027-01-06, renew/change and support through 2028-01-31, with listed transition options.",
+      "retainedUncertainty": "Only named UCM Cloud for Government SKUs; Cisco FedRAMP positioning is not customer authorization proof.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-1454d7ffe209c85b",
+      "claimIds": [
+        "CLAIM-4ca2d0fe766055e0"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "3CX is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.3cx.com/phone-system/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the profile example; package, edition and version boundaries should remain explicit.",
+      "retainedUncertainty": "Vendor page is a current overview; specific integrations, availability and edition entitlements may change. Repeat direct fetch timed out on 2026-11-04; disposition rests on the earlier proposal retrieval and should be reopened before any expanded claim is used.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "timeout",
+        "url": "https://www.3cx.com/phone-system/"
+      }
+    },
+    {
+      "referenceId": "REF-1503bbaf273629fc",
+      "claimIds": [
+        "CLAIM-7f4496a572d35857"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Synergy SKY is a conferencing interoperability example.",
+      "primarySourceURLs": [
+        "https://www.synergysky.com/service-description"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports a conferencing example with explicit product and service-scope distinctions.",
+      "retainedUncertainty": "Service description is vendor-published; availability and restrictions can differ by offering and customer environment.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-16fcbb5b2fd59e07",
+      "claimIds": [
+        "CLAIM-572ffa82cf9601fe"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2019 CUCM upgrade-planning discussion covers 11.0 to 12.5 virtualization baselines and legacy phone support; it is not a completed migration report.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2019 CUCM upgrade-planning discussion covers 11.0 to 12.5 virtualization baselines and legacy phone support; it is not a completed migration report.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-18b941b71b6c92b7",
+      "claimIds": [
+        "CLAIM-8e9eae0210492987"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "RingCentral RingEX is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.ringcentral.com/au/en/office/product-overview.html"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the profile example in the Australia market; the broader migration/installed-base rationale is a design assertion rather than a product-page finding.",
+      "retainedUncertainty": "Features, plans and Australian availability vary; page does not establish legacy deployment prevalence or migration outcomes.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-2985477e6ab52c6f",
+      "claimIds": [
+        "CLAIM-2ca1de1ca67457cc"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2015 8831 report describes a stuck logo/keypad with the device reachable and registered. A participant attributes a similar symptom to hardware revision needing firmware 10.3.1; this is not confirmed for the reporter.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2015 8831 report describes a stuck logo/keypad with the device reachable and registered. A participant attributes a similar symptom to hardware revision needing firmware 10.3.1; this is not confirmed for the reporter.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-29c840ca324ce3fd",
+      "claimIds": [
+        "CLAIM-3181068a28e21c3d"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "RingCX is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.ringcentral.com/au/en/ringcx.html"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the RingCX profile example. It does not establish equivalence with other products or migration outcomes.",
+      "retainedUncertainty": "Channel count, features and plan availability can change and may vary by region/contract.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-2c204a90632309fa",
+      "claimIds": [
+        "CLAIM-d53a8640a2608b2f"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Avaya Aura is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.avaya.com/en/products/aura/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the profile example. The linked page does not establish lifecycle status for every older deployed Aura release.",
+      "retainedUncertainty": "Release and support status are version-specific; current lifecycle documentation is needed for any deployed version.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-2c6a952924346c36",
+      "claimIds": [
+        "CLAIM-ca612486c41b6f7e"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Mividas Core is a conferencing management example.",
+      "primarySourceURLs": [
+        "https://docs.mividas.com/docs/documentation/mividas-core/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the example as a management layer around named conferencing platforms.",
+      "retainedUncertainty": "Documentation version and compatibility matrix were not established; features may depend on product version.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-339fdf527eed6fc1",
+      "claimIds": [
+        "CLAIM-71372a8a464b2598"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2020 operator discussion has differing local experience with N11 service-code routing. Participants describe geography-dependent translation and the difficulty of finding an authoritative mapping; an anecdotal emergency test is not a validated procedure.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2020 operator discussion has differing local experience with N11 service-code routing. Participants describe geography-dependent translation and the difficulty of finding an authoritative mapping; an anecdotal emergency test is not a validated procedure.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-38e91eec89c3b7f1",
+      "claimIds": [
+        "CLAIM-35ebc22fe0e4bd68"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Infobip Conversations is an example of overlap between programmable communications and customer-service applications.",
+      "primarySourceURLs": [
+        "https://www.infobip.com/docs/conversations"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the stated example and feature family.",
+      "retainedUncertainty": "Docs may change; service, channel and connector availability vary by account and region.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-38feefe35f2f7619",
+      "claimIds": [
+        "CLAIM-1d491bff68072715"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "VQ is a conferencing example.",
+      "primarySourceURLs": [
+        "https://www.vqcomms.com/products/vq-conference-manager/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the conferencing example. Page also advertises FIPS/DISA/DoDIN APL claims; this review does not independently validate those claims or treat them as established compliance.",
+      "retainedUncertainty": "Vendor-authored feature and security assertions; release and deployment-specific support are not established.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-3978de94b73181f0",
+      "claimIds": [
+        "CLAIM-da808601ddf27285"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "FreeSWITCH is a specialist communications platform example.",
+      "primarySourceURLs": [
+        "https://developer.signalwire.com/freeswitch/foundations/introduction/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the specialist platform example while preserving open-source/commercial product distinction.",
+      "retainedUncertainty": "The introduction is not a full feature or support matrix; release and edition details may change.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-3c35bbedeac1d5e8",
+      "claimIds": [
+        "CLAIM-20db5406df6f89dd"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2014 discussion of Canadian toll-free calls proposes that origin geography, CIC, service area or local tandem routing may explain differing results, with a participant suggesting a route workaround.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2014 discussion of Canadian toll-free calls proposes that origin geography, CIC, service area or local tandem routing may explain differing results, with a participant suggesting a route workaround.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-3cc23cc2422be034",
+      "claimIds": [
+        "CLAIM-a1e3ccd52cec0563"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2011 Allworx follow-me report describes answer confirmation followed by no audio. Replies hypothesize a re-INVITE/media latch issue, while the reporter later notes a low TTL after answer; no cause is confirmed.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2011 Allworx follow-me report describes answer confirmation followed by no audio. Replies hypothesize a re-INVITE/media latch issue, while the reporter later notes a low TTL after answer; no cause is confirmed.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-4494e44133a096ff",
+      "claimIds": [
+        "CLAIM-a08ce3b99e3b06d5"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Mitel communications platforms are an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.mitel.com/products/business-phone-systems"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports a multi-product portfolio example; these offerings are not one interchangeable product family.",
+      "retainedUncertainty": "Catalog names and packaging may change; product-specific support and lifecycle evidence is needed.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-5300ce44d82bd40f",
+      "claimIds": [
+        "CLAIM-e6b06b7d4759516b"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "PSTN page distinguishes Calling Plans, Operator Connect, Teams Phone Mobile and Direct Routing by provider responsibilities, requirements, number types and support; allows mixed models.",
+      "retainedUncertainty": "Country availability and certification are scoped and changeable.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-5d4452fa6d915fc5",
+      "claimIds": [
+        "CLAIM-4116975e2ef74f39"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2013 CUCM bulk-provisioning import partially failed. Inactive number entries explain some failures, while a pickup-group/line duplicate constraint may remain unresolved.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2013 CUCM bulk-provisioning import partially failed. Inactive number entries explain some failures, while a pickup-group/line duplicate constraint may remain unresolved.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-6041cb9b4e29d0a7",
+      "claimIds": [
+        "CLAIM-ee1c8618006f345a",
+        "CLAIM-b1a7b056aaada840"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.\n[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Teams contact-center page distinguishes Unify, Extend and Connect, basic call queues from CCaaS, and lists participating providers; linked SBC, Rooms and recording sources reviewed separately.",
+      "retainedUncertainty": "Provider/certification list is a current snapshot; listing does not prove every feature/cloud case.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-625698d2aa90d70c",
+      "claimIds": [
+        "CLAIM-dcf9b1a68091ce19"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2015 operator asks about a supplier's announced fee for SMS-enabled numbers and a portability-aware registry. A response discusses a projected monthly fee and expected registry suppliers; the original sender supplied no further details.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2015 operator asks about a supplier's announced fee for SMS-enabled numbers and a portability-aware registry. A response discusses a projected monthly fee and expected registry suppliers; the original sender supplied no further details.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-62ae5701eec71289",
+      "claimIds": [
+        "CLAIM-92b0acded8e21ca2"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "RedSky and InformaCast illustrate a specialist emergency communications integration.",
+      "primarySourceURLs": [
+        "https://www.singlewire.com/integrations/redsky"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports an integration example only; does not establish regulatory compliance, emergency-call accuracy or successful emergency outcomes.",
+      "retainedUncertainty": "Vendor integration description; supported versions and operational requirements need deployment-specific validation.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-66f30c9ce62710dc",
+      "claimIds": [
+        "CLAIM-3a5b9328fd8234d7"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A May 2022 Expressway cluster report shows a LocalZone warning and no responses to RAS UDP/1719 probes; opening the relevant firewall path cleared the warning while the cluster remained operational.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A May 2022 Expressway cluster report shows a LocalZone warning and no responses to RAS UDP/1719 probes; opening the relevant firewall path cleared the warning while the cluster remained operational.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-6b9dd2ca3e9920e5",
+      "claimIds": [
+        "CLAIM-88a031caef088e05"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "ALE unified communications portfolio is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.al-enterprise.com/en/solutions/unified-communications"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the portfolio example only; does not establish a specific customer deployment or migration path.",
+      "retainedUncertainty": "Features and lifecycle depend on product and deployment version.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-6e6184fda25bddb4",
+      "claimIds": [
+        "CLAIM-c9a58510901736f8"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2011 SBC HMR discussion describes domain-versus-destination-IP matching and a mismatch between intended traffic rejection and observed 404 Registrar Not Found. Replies mention packet captures, realm behavior and a reject action change between versions 6.1 and 6.2.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2011 SBC HMR discussion describes domain-versus-destination-IP matching and a mismatch between intended traffic rejection and observed 404 Registrar Not Found. Replies mention packet captures, realm behavior and a reject action change between versions 6.1 and 6.2.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-7cec333be41fbfc9",
+      "claimIds": [
+        "CLAIM-92d312ca4625b869"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+        "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+        "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "revise_bounded_accept",
+      "auditReason": "Keep license quantity and feature differences distinct; the page supports 25 Basic licenses per organization and Pro unlimited, with feature entitlements varying by license. Do not reduce the model to a room-count tier alone.",
+      "boundedOwnerReviewWording": "As checked 2026-11-04, Microsoft documents up to 25 Teams Rooms Basic licenses per organization; additional rooms require Pro, for which the table lists unlimited licenses. Basic and Pro also have different feature entitlements. These details are a dated Microsoft licensing snapshot.",
+      "retainedUncertainty": "Entitlements may change; current snapshot only. Current offers and entitlements can change; preserve checked date and link to current source.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-80094745cafb63d6",
+      "claimIds": [
+        "CLAIM-5e832c5a7d8c0fed"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The documented [Teams Rooms Pro integration with ServiceNow](https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow) is Commercial-cloud-only. This is an example of an operational integration whose availability differs from that of the underlying room device.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Rooms Pro Management ServiceNow guide says Commercial Cloud only; lists prerequisites and requires test before enabling.",
+      "retainedUncertainty": "Specific to this ServiceNow incident integration, not all Rooms or ITSM integrations.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-86107818a4d492f7",
+      "claimIds": [
+        "CLAIM-2b57da9c60033cfd"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2010 operator discussion says two customer SIP trunks through one provider required incompatible G.729-only and G.711-only profiles; participants suggest a common codec or transcoding.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2010 operator discussion says two customer SIP trunks through one provider required incompatible G.729-only and G.711-only profiles; participants suggest a common codec or transcoding.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-92fc12a39434ac75",
+      "claimIds": [
+        "CLAIM-ade44259370a7ba7"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2015 procurement discussion considers support hours, geographic redundancy, integrations, operational skills and lifecycle costs alongside features; replies are personal recommendations, not a vendor evaluation.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2015 procurement discussion considers support hours, geographic redundancy, integrations, operational skills and lifecycle costs alongside features; replies are personal recommendations, not a vendor evaluation.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-a294a1068b534053",
+      "claimIds": [
+        "CLAIM-5b9f7ada9cd47d95"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Avaya Infinity is an installed-base and competitive profile example.",
+      "primarySourceURLs": [
+        "https://www.avaya.com/en/products/infinity-platform/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the portfolio example, not a guarantee that it replaces other listed communications or contact-centre functions.",
+      "retainedUncertainty": "Product packaging, roadmap and availability are subject to change; the overview does not establish feature parity.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-a333ec80b11e26ef",
+      "claimIds": [
+        "CLAIM-9aceba29f18ac56f"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Asterisk is an open-source communications platform example.",
+      "primarySourceURLs": [
+        "https://www.asterisk.org/get-started/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the platform example, not support-level, certification or feature guarantees for a particular distribution.",
+      "retainedUncertainty": "The page is an overview; release, module and support details need product-specific sources.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-a40f3ce6a34d2530",
+      "claimIds": [
+        "CLAIM-2af25b61b00d01cc"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "An inbound INVITE reached a CUCM node outside the trunk's device-pool call-manager group and received 503; reversing dial-peer preference reportedly made calls work. The thread also mentions an all-node trunk option in later versions.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "An inbound INVITE reached a CUCM node outside the trunk's device-pool call-manager group and received 503; reversing dial-peer preference reportedly made calls work. The thread also mentions an all-node trunk option in later versions.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-a4b34e38df123d83",
+      "claimIds": [
+        "CLAIM-a762654c4ca2ed90",
+        "CLAIM-673be91cbe9afe43"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Deepgram distinguishes hosted speech service from customer-operated deployment.",
+      "primarySourceURLs": [
+        "https://developers.deepgram.com/docs/deployment-options"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the deployment-model distinction, not a blanket local inference guarantee or any particular security/compliance outcome.",
+      "retainedUncertainty": "Eligibility, supported models and operational terms are plan-specific and should be confirmed with current contract and docs.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-b96b46dfea69de93",
+      "claimIds": [
+        "CLAIM-4679b0d113a829b1"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Pexip Connect is a conferencing interoperability example.",
+      "primarySourceURLs": [
+        "https://www.pexip.com/products/connect/microsoft-interoperability"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports interoperability as an example, not universal compatibility or certification.",
+      "retainedUncertainty": "Exact supported endpoints, licensing and service regions require product-specific validation; certification statements remain vendor claims.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-bcbd90c63b48817f",
+      "claimIds": [
+        "CLAIM-80e3c074a4faa1eb"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2012 operator asks whom to contact when a destination works over another route but fails through the current carrier; the post has no answer or evidence about a provider's support quality.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2012 operator asks whom to contact when a destination works over another route but fails through the current carrier; the post has no answer or evidence about a provider's support quality.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-bd36702520ca438c",
+      "claimIds": [
+        "CLAIM-b0621ee2b1b56935"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Sinch is an example of programmable communications and customer-service overlap.",
+      "primarySourceURLs": [
+        "https://sinch.com/products/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the portfolio example only.",
+      "retainedUncertainty": "Products, regions, plans and integrations vary; this overview does not verify any particular implementation.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-bf74910ae207c4ce",
+      "claimIds": [
+        "CLAIM-d1c0f36090a41105"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+        "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+        "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Microsoft explicitly says Rooms certification evaluates hardware design/performance, not feature-level or cloud environment support.",
+      "retainedUncertainty": "Device certification cannot prove service features, cloud support or compliance; list changes.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-ce4086e425fc31ca",
+      "claimIds": [
+        "CLAIM-38f6afe889658335"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The [GCC High and DoD service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod) is specific to defined US environments and eligibility. Country packs must establish their own requirements.",
+      "primarySourceURLs": [
+        "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "GCC High/DoD service description requires eligibility validation and distinguishes DoD-only purchase from qualifying GCC High access; lists environment differences.",
+      "retainedUncertainty": "Only these US environments; not requirements in other jurisdictions.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-ce4e6c93d4f7f11d",
+      "claimIds": [
+        "CLAIM-39b53c7bcd8fa320"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2011 technical list explanation describes a pre-CUCM-8.5 hold/resume interoperability case in which a third-party endpoint's inactive SDP answer could leave media inactive; the thread describes changed behavior in 8.5 and does not confirm a customer repair.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2011 technical list explanation describes a pre-CUCM-8.5 hold/resume interoperability case in which a third-party endpoint's inactive SDP answer could leave media inactive; the thread describes changed behavior in 8.5 and does not confirm a customer repair.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-d4ab6397cad04761",
+      "claimIds": [
+        "CLAIM-8de19cd86b7c985c"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Akkadian is an example of UC lifecycle management.",
+      "primarySourceURLs": [
+        "https://www.akkadianlabs.com/akkadian-platform/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports Akkadian as a lifecycle-management example only.",
+      "retainedUncertainty": "Vendor-authored capability statements; deployment and SKU availability require confirmation.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-db893272c3caa3e6",
+      "claimIds": [
+        "CLAIM-f9aad380d17926ea"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Twilio is an example showing overlap between programmable communications and customer-service applications.",
+      "primarySourceURLs": [
+        "https://www.twilio.com/en-us/products"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports the stated portfolio overlap example.",
+      "retainedUncertainty": "Catalog breadth does not establish feature parity, geography, plan inclusion or current availability for any specific deployment.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-e40e11d43985a98d",
+      "claimIds": [
+        "CLAIM-9224111c6bb17412"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+      "primarySourceURLs": [
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html",
+        "https://help.webex.com/article/nwwg3w6"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Contact Center 3.0 sheet distinguishes cloud/on-prem platforms, transitions, named/concurrent agents, agent types and platform-specific options.",
+      "retainedUncertainty": "Entitlements depend on platform and agent type; avoid generalizing across product families.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-effbf81bfc316bd6",
+      "claimIds": [
+        "CLAIM-e1a287349359beb2"
+      ],
+      "proposalFile": "references-b-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Company ownership and product identity should be separate records; the cited page describes Verint and Calabrio together without making capabilities interchangeable.",
+      "primarySourceURLs": [
+        "https://www.verint.com/calabrio/"
+      ],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "Supports distinct ownership and product-identity treatment. Current official page supersedes older pending-transaction evidence for present status.",
+      "retainedUncertainty": "Corporate/product statements are company-authored; specific product roadmaps and support commitments require current product and contractual documentation.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-f8221f4fdcb2415b",
+      "claimIds": [
+        "CLAIM-ece39a4dede39c7d"
+      ],
+      "proposalFile": "references-c-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "A 2010 post asks about a DASH Carrier Services outage; a participant recalls positive prior service but supplies no confirmed outage scope, cause or duration.",
+      "primarySourceURLs": [],
+      "sourceDateAndRetrieval": "Historical source date recorded in proposal; page checked 2026-11-04.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The wording identifies a product/category example and does not assert implementation parity or a universal capability.",
+      "boundedOwnerReviewWording": "A 2010 post asks about a DASH Carrier Services outage; a participant recalls positive prior service but supplies no confirmed outage scope, cause or duration.",
+      "retainedUncertainty": "",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    },
+    {
+      "referenceId": "REF-fb9dd3e3bcdca8c9",
+      "claimIds": [
+        "CLAIM-daf37ddd127fbfb7",
+        "CLAIM-54d47b9d61f1bb8a"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).\nPartner qualifications unlock defined offers or responsibilities. A qualification does not confer every integration or government approval. Cisco's [wholesale guide](https://help.webex.com/article/nwwg3w6) provides a concrete example of parent partners, subpartners, customer onboarding and billing responsibilities.",
+      "primarySourceURLs": [
+        "https://help.webex.com/article/nwwg3w6",
+        "https://www.webex.com/us/en/products/suite.html",
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+        "https://help.webex.com/article/dk3o5r",
+        "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+        "https://help.webexconnect.io/docs/welcome",
+        "https://www.webex.com/us/en/solutions/interoperability.html"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Wholesale guide describes customer provisioning, partner administration, provider billing and subpartner capability.",
+      "retainedUncertainty": "Specific to Webex Wholesale RTM; no other qualification or approval implied. Repeat direct fetch timed out on 2026-11-04; disposition rests on the earlier proposal retrieval and should be reopened before any expanded claim is used.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "timeout",
+        "url": "https://help.webex.com/article/nwwg3w6"
+      }
+    },
+    {
+      "referenceId": "REF-fcdabdb913c10b05",
+      "claimIds": [
+        "CLAIM-3dd28041126d988b"
+      ],
+      "proposalFile": "references-a-2026-11-04.json",
+      "existingRecommendedDisposition": "accept",
+      "acceptedClaimWording": "The [Webex WFO notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html) applies to specific offers with end of sale in July 2026. Preserve separate dates for sale, renewal and support; an offer retirement does not delete the entire workforce-management capability family.",
+      "primarySourceURLs": [
+        "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html"
+      ],
+      "sourceDateAndRetrieval": "Live page checked 2026-11-04; asserted claim date 2026-10-29 is not an archived snapshot.",
+      "auditOutcome": "retain_narrow_accept",
+      "auditReason": "The proposal already distinguishes the source-supported proposition from adjacent claims; retain only the bounded wording below.",
+      "boundedOwnerReviewWording": "Cisco EOL15916 confirms affected WFO SKUs, sale 2026-07-25, renewal/change 2027-07-30, support 2031-07-31.",
+      "retainedUncertainty": "Applies to listed offers, not the full WFM capability family; keep dates separate.",
+      "ownerDecision": {
+        "decision": "deferred",
+        "question": "Accept this bounded wording, request revision, or keep the claim pending?",
+        "ownerAccepted": false
+      },
+      "repeatFetchThisAudit": {
+        "status": "retrieved-or-verified-in-2026-11-04-review-set"
+      }
+    }
+  ]
+}

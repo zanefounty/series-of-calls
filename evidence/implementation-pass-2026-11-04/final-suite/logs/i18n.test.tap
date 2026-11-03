@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: the game starts in English unless the player or the browser asks for another language
+ok 1 - the game starts in English unless the player or the browser asks for another language
+  ---
+  duration_ms: 4059.852087
+  type: 'test'
+  ...
+# Subtest: missing translations fall back to the English, with placeholders filled
+ok 2 - missing translations fall back to the English, with placeholders filled
+  ---
+  duration_ms: 343.067736
+  type: 'test'
+  ...
+# Subtest: text that old saves stored in English is still translated
+ok 3 - text that old saves stored in English is still translated
+  ---
+  duration_ms: 680.120595
+  type: 'test'
+  ...
+# Subtest: every translation keeps the placeholders, HTML tags and plural forms of its English
+ok 4 - every translation keeps the placeholders, HTML tags and plural forms of its English
+  ---
+  duration_ms: 57.898702
+  type: 'test'
+  ...
+# Subtest: the static markup is translated by label
+ok 5 - the static markup is translated by label
+  ---
+  duration_ms: 381.548039
+  type: 'test'
+  ...
+# Subtest: the language dropdown on the title screen works before any game exists
+ok 6 - the language dropdown on the title screen works before any game exists
+  ---
+  duration_ms: 332.356268
+  type: 'test'
+  ...
+# Subtest: picking a language saves the choice and the game, then reloads
+ok 7 - picking a language saves the choice and the game, then reloads
+  ---
+  duration_ms: 354.691194
+  type: 'test'
+  ...
+# Subtest: a scenario started in English shows its Italian name after switching
+ok 8 - a scenario started in English shows its Italian name after switching
+  ---
+  duration_ms: 728.799759
+  type: 'test'
+  ...
+# Subtest: en: every screen, failure and event renders without errors or unfilled placeholders
+ok 9 - en: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1636.101094
+  type: 'test'
+  ...
+# Subtest: it: every screen, failure and event renders without errors or unfilled placeholders
+ok 10 - it: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1569.963887
+  type: 'test'
+  ...
+# Subtest: pt: every screen, failure and event renders without errors or unfilled placeholders
+ok 11 - pt: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1511.99915
+  type: 'test'
+  ...
+# Subtest: fr: every screen, failure and event renders without errors or unfilled placeholders
+ok 12 - fr: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1501.914068
+  type: 'test'
+  ...
+# Subtest: es: every screen, failure and event renders without errors or unfilled placeholders
+ok 13 - es: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1513.364896
+  type: 'test'
+  ...
+# Subtest: de: every screen, failure and event renders without errors or unfilled placeholders
+ok 14 - de: every screen, failure and event renders without errors or unfilled placeholders
+  ---
+  duration_ms: 1543.336625
+  type: 'test'
+  ...
+# Subtest: the translation check catches labels the build could not see, and English-keyed calls
+ok 15 - the translation check catches labels the build could not see, and English-keyed calls
+  ---
+  duration_ms: 9.039307
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24931.940551

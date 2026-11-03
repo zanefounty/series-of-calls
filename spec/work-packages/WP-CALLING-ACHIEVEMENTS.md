@@ -1,0 +1,33 @@
+# Calling achievement evidence engine
+
+## Scope and status
+
+This work package defines bounded evidence for five preserved source goals: `progress.goal.tr`, `progress.goal.p5`, `progress.goal.ca`, `progress.goal.pn`, and `progress.goal.scrub`. The module reports synthetic scenario capability only. It does not grant source-game cash, assert external delivery, or complete the mapped source requirements.
+
+The source descriptions and their fictional proposals remain in `content/progression.json`; this engine must not change or reinterpret their retained source attributes. It derives evidence from validated root state and recorded events. A configured desired value, inspection result, synthetic batch by itself, or caller-supplied success flag cannot earn an achievement. All deployments, carriers, calls, guests, and work records remain synthetic scenario evidence, not vendor acceptance or external service proof.
+
+## Source-linked evidence contracts
+
+| Goal | Source row | Evidence required | False-positive boundary |
+| --- | --- | --- | --- |
+| `tr` | `src/game/40-progress/20-goals.js`, `GOALS.tr` | Current effective external calling configuration; ordered route; carrier and security admission where configured; terminal successful voice interaction with both media directions; separate outbound and inbound external legs. The inbound leg must retain owned-number acceptance, ordered inbound route, inbound permission, and inbound carrier traces. Also require a successful, current collaboration join with a guest participant. | An internal extension, response window, single outbound call, one-way media, stale join, or fabricated direction/route label does not pass. |
+| `p5` | `src/game/40-progress/20-goals.js`, `GOALS.p5` | Five distinct, current, tested product service integrations. Each uses an accepted test command, current source and target generations/versions, directional availability evidence, and a live supported contract whose owner has an MSP or integrator role and whose resources include the tested bindings. | Repeated tests, duplicate edges, aliases to the same target service, unsupported versions/directions, or an unowned integration do not count. |
+| `ca` | `src/game/40-progress/20-goals.js`, `GOALS.ca` | A completed processing job derived from a retained synthetic recording, with transcription artefact lineage; current local speech processor and local licence; effective pipeline and information boundary at the scenario jurisdiction; and ready identity, DNS, time, certificates, backup, and licensing controls. | Desired-only configuration, a queued/blocked job, an arbitrary record, external-only licensing, wrong-region processing/storage, or disconnected operation with unavailable local control does not pass. |
+| `pn` | `src/game/40-progress/20-goals.js`, `GOALS.pn` | Current dedicated gateway/SBC carrier profile with authenticated peer and effective carrier/trunk dependencies, plus actual admitted, resolved carrier call evidence with signalling and bidirectional media. Preserve session-admission evidence separately from effective carrier configuration. | A managed shared carrier, unprovisioned gateway, missing peer authentication, one signalling response without completion/media, or stale configuration does not pass. |
+| `scrub` | `src/game/40-progress/20-goals.js`, `GOALS.scrub` | Current passed evaluation from all three independent admission-security controls, including filtered synthetic flood, admitted and blocked SIP samples, a blocked destination/spend attempt, and a separately admitted resolved voice call with reconciled actual core usage. | Bandwidth, a single control, synthetic abuse samples alone, blocking every call, caller success flags, or unreconciled spend do not pass. |
+
+## Runtime contract
+
+`src/game/33-calling-achievements.js` exports `SOC_CALLING_ACHIEVEMENTS` with `create`, `evaluate`, `evidence`, `validateEvidence`, `validate`, `validatePack`, `fingerprint`, and `source` functions. `evaluate(root, hooks)` and `evidence(root, sourceId, hooks)` are pure. `sourceIds` contains only the five exact preserved progression goal IDs recorded in `content/calling-achievements.json`; product/domain descriptions are not invented source IDs. The pack has no configuration command: requirements are sourced from effective state and recorded evidence.
+
+The parent integration in progression may use the returned immutable evidence snapshot when deriving readiness and validating an earned row. Product dependency checks must use a trusted integration hook equivalent to the existing `productBindingAvailable` progression hook. It must inspect the actual deployment/resource binding and core readiness; it must never accept a boolean supplied in an achievement command. The pack itself accepts no “passed”, “direction”, “media good”, “support owner”, “operator approved”, or “security ready” commands.
+
+### Inbound call integration boundary
+
+The central core now has a validated synthetic inbound `interact` path. `tr` uses its retained `direction:'inbound'` and the actual `INBOUND_NUMBER_ACCEPTED`, `ORDERED_INBOUND_ROUTE`, `INBOUND_PERMISSION_ACCEPTED`, and inbound `CARRIER_MODEL_SELECTED` trace entries. An operations response window is not a call and cannot satisfy this requirement. The evaluator does not create or relabel inbound interactions.
+
+## Validation and tests
+
+The module validates evidence against authoritative root records, generations, command history, and subpack validators. Proof snapshots retain the lineage needed to validate an already-earned award if bounded interaction history later prunes its original event; pruning is accepted only after the actual interaction ring is full and contains only newer IDs. This historical allowance does not make the goal currently ready after its configuration or supporting state changes. Inspection and evaluation may not mutate the root. The `41-progression.js` bridge records these validated proofs and delegates later validation back to this module.
+
+`tests/calling-achievements.test.js` covers: goal evidence being incomplete with default/unprovisioned state; positive and negative integration counts; connected and disconnected local speech-control cases; gateway and managed-carrier separation; security goals with abuse batches plus real calls; forged evidence; bounded interaction-ring pruning; source serialization; restore and pure evaluation. `tests/progression-calling.test.js` covers the central progression award and history-validation bridge for a real scrub settlement, the site continuity goal, and one capability level. The core inbound call route now supplies the retained owned-number, ordered-route, permission, carrier and bidirectional-media evidence required by `tr`.

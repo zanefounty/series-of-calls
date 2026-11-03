@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-11-03T21:12:55.929437+00:00",
+  "command": [
+    "python3",
+    "scripts/verify.py",
+    "all"
+  ],
+  "dependencyOverride": null,
+  "exitCode": 1,
+  "reportedTests": {
+    "tests": 424,
+    "pass": 396,
+    "fail": 28
+  },
+  "gateOutput": "Source, coverage, mapping and catalogue passed; current behavioural test execution failed.",
+  "limitation": "The standard local dependency tree is absent, as recorded in codex-preflight.json. This diagnostic failure is retained separately from the explicit external-dependency runs; it is not a successful locked-baseline check."
+}

@@ -1,0 +1,1312 @@
+{
+  "version": 1,
+  "scope": "All 13 source levels and 19 goals; proposed communications acceptance contracts, not implemented achievements.",
+  "items": [
+    {
+      "sourceId": "progress.progression-level.1",
+      "sourceRecordSha256": "adf0f068e349dbf763472984ea83ba7d184ca415f2e4ae2fe26bce5f185cb432",
+      "representation": "ucc.progression-level.1",
+      "name": "Local UC reseller",
+      "original": {
+        "id": "progress.progression-level.1",
+        "category": "Progression level",
+        "original_id": "1",
+        "original_name": "Local ISP",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Local ISP",
+          "q": "Your network diagram is a photo of a whiteboard.",
+          "req": "Start here",
+          "unlock": "Enterprises, game servers, hosting, L2VPNs and DDoS protection.",
+          "requirements": null,
+          "carried_region_min": 0
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[0] / LV_REQ[0]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.1",
+        "uc_name": "Local UC reseller",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Provision and support a first SMB voice and messaging contract. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Provision and support a first SMB voice and messaging contract. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.2",
+      "sourceRecordSha256": "1cee8f32bbf3d9e15d743838351153b8b3d85cb992a233d7f334901e021f5c27",
+      "representation": "ucc.progression-level.2",
+      "name": "Regional communications MSP",
+      "original": {
+        "id": "progress.progression-level.2",
+        "category": "Progression level",
+        "original_id": "2",
+        "original_name": "Regional player",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Regional player",
+          "q": "You now have a change freeze. Nobody remembers who declared it.",
+          "req": "peak 200 Gbps and 3 POPs",
+          "unlock": "Downstream ISPs, streaming startups and universities. Gear: Edge Lord 400 routers, dark fiber leases, Rainbow-in-a-Box DWDM, Ackackia 400ZR+ optics.",
+          "requirements": {
+            "pk": 200,
+            "pops": 3
+          },
+          "carried_region_min": 0
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[1] / LV_REQ[1]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.2",
+        "uc_name": "Regional communications MSP",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Serve multiple customers with repeatable provisioning and a support desk. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Serve multiple customers with repeatable provisioning and a support desk. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.3",
+      "sourceRecordSha256": "2e9fea082b8a986b80c7967b929e5822e475526a282f3ab64c8b9022febeb001",
+      "representation": "ucc.progression-level.3",
+      "name": "UC and CC integrator",
+      "original": {
+        "id": "progress.progression-level.3",
+        "category": "Progression level",
+        "original_id": "3",
+        "original_name": "Serious backbone",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Serious backbone",
+          "q": "It's not DNS. There's no way it's DNS. It was DNS.",
+          "req": "peak 1 Tbps and 6 POPs",
+          "unlock": "AI GPU data centers and cloud on-ramps. Gear: Chonk 800 routers, Sizzle 800ZR+ optics, ROADMaster 9000 line systems, building your own fiber.",
+          "requirements": {
+            "pk": 1000,
+            "pops": 6
+          },
+          "carried_region_min": 0
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[2] / LV_REQ[2]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.3",
+        "uc_name": "UC and CC integrator",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Operate voice, rooms, customer-service queues and their integrations. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Operate voice, rooms, customer-service queues and their integrations. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.4",
+      "sourceRecordSha256": "92751c4589e8689c1f2f1362a560649279e28e3e40bab76837656325fbe3059d",
+      "representation": "ucc.progression-level.4",
+      "name": "Enterprise service provider",
+      "original": {
+        "id": "progress.progression-level.4",
+        "category": "Progression level",
+        "original_id": "4",
+        "original_name": "Big league",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Big league",
+          "q": "Your MTU is 9000 on every link except the one that matters.",
+          "req": "peak 3 Tbps, 10 POPs, 3 continents",
+          "unlock": "AI training interconnects and hyperscaler DCI deals in the terabits. Gear: Absolute Unit 1.6T routers, Sienna WaveMagic 1.6T transponders.",
+          "requirements": {
+            "pk": 3000,
+            "pops": 10,
+            "reg": 3
+          },
+          "carried_region_min": 3
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[3] / LV_REQ[3]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.4",
+        "uc_name": "Enterprise service provider",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Deliver staged migrations and multi-site service continuity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Deliver staged migrations and multi-site service continuity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.5",
+      "sourceRecordSha256": "d7b688fe5e5f1ea24d392925893c8162c79f4d7137e647fa7c3491fcd4ea5e4d",
+      "representation": "ucc.progression-level.5",
+      "name": "National communications SP",
+      "original": {
+        "id": "progress.progression-level.5",
+        "category": "Progression level",
+        "original_id": "5",
+        "original_name": "Continental carrier",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Continental carrier",
+          "q": "Your NOC has a chat channel called #its-always-the-fiber, and it is always the fiber.",
+          "req": "peak 6 Tbps, 15 POPs, 4 continents",
+          "era": 1.15,
+          "unlock": "Esports world finals, and the 4K-everything era: eyeballs in every city want 15% more. Gear: Sonic the Whitebox 64 routers.",
+          "requirements": {
+            "pk": 6000,
+            "pops": 15,
+            "reg": 4
+          },
+          "carried_region_min": 4
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[4] / LV_REQ[4]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.5",
+        "uc_name": "National communications SP",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Offer wholesale calling and managed customer-service capacity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Offer wholesale calling and managed customer-service capacity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.6",
+      "sourceRecordSha256": "3678f77da91dba01f97ca8e526b6199d12aef5e5298ba7c369aa6fc40d64980f",
+      "representation": "ucc.progression-level.6",
+      "name": "Public-service communications specialist",
+      "original": {
+        "id": "progress.progression-level.6",
+        "category": "Progression level",
+        "original_id": "6",
+        "original_name": "Transcontinental",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Transcontinental",
+          "q": "You joined the outages mailing list. Today you are the outage.",
+          "req": "peak 9 Tbps and 20 POPs",
+          "unlock": "Sovereign cloud regions, and a free PNI with Doitsche Telekomm. Gear: ROADMaster 9000 C+L (128 channels), Disco 8K Ultra routers.",
+          "requirements": {
+            "pk": 9000,
+            "pops": 20
+          },
+          "carried_region_min": 4
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[5] / LV_REQ[5]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.6",
+        "uc_name": "Public-service communications specialist",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Deliver jurisdiction-specific government contract requirements. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Deliver jurisdiction-specific government contract requirements. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.7",
+      "sourceRecordSha256": "dccf4bc8353d93b9d230e156ce08bc9fd8e0dfea08569b26d6c6f815e0edd2d6",
+      "representation": "ucc.progression-level.7",
+      "name": "International managed provider",
+      "original": {
+        "id": "progress.progression-level.7",
+        "category": "Progression level",
+        "original_id": "7",
+        "original_name": "Global backbone",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Global backbone",
+          "q": "Your ASN now shows up in other people's traceroutes, and in their tickets.",
+          "req": "peak 12 Tbps, 25 POPs, 5 continents",
+          "unlock": "A free PNI with Voda-Phony. Gear: Absolute Unit 3.2T routers, 3.2T ports and 12.8T waves.",
+          "requirements": {
+            "pk": 12000,
+            "pops": 25,
+            "reg": 5
+          },
+          "carried_region_min": 5
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[6] / LV_REQ[6]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.7",
+        "uc_name": "International managed provider",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Coordinate carriers, languages, support and procurement across regions. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Coordinate carriers, languages, support and procurement across regions. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.8",
+      "sourceRecordSha256": "9128f1fc6f88265597a8ffbb542bb64bdd526b5a666e90630553669545801eac",
+      "representation": "ucc.progression-level.8",
+      "name": "Omnichannel platform operator",
+      "original": {
+        "id": "progress.progression-level.8",
+        "category": "Progression level",
+        "original_id": "8",
+        "original_name": "Packet empire",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Packet empire",
+          "q": "Your maintenance window is 2 a.m. in every time zone at once.",
+          "req": "peak 16 Tbps and 32 POPs",
+          "era": 1.15,
+          "unlock": "Cloud gaming platforms, and the cloud gaming era: eyeballs want another 15%. A free PNI with Tel-Mess. Gear: Sienna WaveMagic 3.2T transponders.",
+          "requirements": {
+            "pk": 16000,
+            "pops": 32
+          },
+          "carried_region_min": 5
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[7] / LV_REQ[7]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.8",
+        "uc_name": "Omnichannel platform operator",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Operate asynchronous journeys, CPaaS applications and customer context. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Operate asynchronous journeys, CPaaS applications and customer context. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.9",
+      "sourceRecordSha256": "3d7c2c5ee1538e2e1a46337eb27924c27eccf13fa68455a1d7c5d7807195048a",
+      "representation": "ucc.progression-level.9",
+      "name": "Multi-region deployment specialist",
+      "original": {
+        "id": "progress.progression-level.9",
+        "category": "Progression level",
+        "original_id": "9",
+        "original_name": "Six-continent carrier",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Six-continent carrier",
+          "q": "Somewhere, on every continent, a backhoe is thinking about you.",
+          "req": "peak 21 Tbps, 40 POPs, 6 continents",
+          "unlock": "Metaverse platforms (it finally took off), and a free PNI with Etis-a-lot. Gear: Arrrhipster 7800R5 routers, 102.4T fabrics for your own exchange.",
+          "requirements": {
+            "pk": 21000,
+            "pops": 40,
+            "reg": 6
+          },
+          "carried_region_min": 6
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[8] / LV_REQ[8]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.9",
+        "uc_name": "Multi-region deployment specialist",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Support distinct commercial, private, sovereign and local deployment profiles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Support distinct commercial, private, sovereign and local deployment profiles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.10",
+      "sourceRecordSha256": "2b8be6d26925bb1d921d5e4824cbc3083c3be70f947323644c25ff1173452ffe",
+      "representation": "ucc.progression-level.10",
+      "name": "Communications wholesaler",
+      "original": {
+        "id": "progress.progression-level.10",
+        "category": "Progression level",
+        "original_id": "10",
+        "original_name": "Backbone of backbones",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Backbone of backbones",
+          "q": "Your routing table needs its own routing table.",
+          "req": "peak 26 Tbps and 50 POPs",
+          "era": 1.2,
+          "unlock": "The VR era: eyeballs want 20% more. A free PNI with China Moble. Gear: Knockia 7950 XRS routers, 100T scrubbing.",
+          "requirements": {
+            "pk": 26000,
+            "pops": 50
+          },
+          "carried_region_min": 6
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[9] / LV_REQ[9]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.10",
+        "uc_name": "Communications wholesaler",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Supply partner tenants, delegated administration and auditable billing. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Supply partner tenants, delegated administration and auditable billing. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.11",
+      "sourceRecordSha256": "51b01f6e26ef7ab37bc3b9c75b78093d5a1e099b902586f96942b863bebe98ed",
+      "representation": "ucc.progression-level.11",
+      "name": "AI communications operator",
+      "original": {
+        "id": "progress.progression-level.11",
+        "category": "Progression level",
+        "original_id": "11",
+        "original_name": "Internet weather system",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Internet weather system",
+          "q": "When your BGP sneezes, a small country catches a cold.",
+          "req": "peak 33 Tbps and 60 POPs",
+          "unlock": "AGI labs (allegedly) wanting AI WANs of 12.8 to 25.6 Tbps, and free PNIs with Du-opoly and Ooh-redoo. Gear: Mikrowtik CCR 3.2T routers.",
+          "requirements": {
+            "pk": 33000,
+            "pops": 60
+          },
+          "carried_region_min": 6
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[10] / LV_REQ[10]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.11",
+        "uc_name": "AI communications operator",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Operate evaluated speech, agent assistance and automation at sustained load. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Operate evaluated speech, agent assistance and automation at sustained load. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.12",
+      "sourceRecordSha256": "32a68e4ddb5acf15633de97abe4393e28c63b237962aee55a110ec1865fda8f8",
+      "representation": "ucc.progression-level.12",
+      "name": "Critical-service integrator",
+      "original": {
+        "id": "progress.progression-level.12",
+        "category": "Progression level",
+        "original_id": "12",
+        "original_name": "Too big to route",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "Too big to route",
+          "q": "Your last fat-fingered route leak has its own Wikipedia page.",
+          "req": "peak 40 Tbps and 70 POPs",
+          "era": 1.25,
+          "unlock": "The AI agent era: eyeballs want 25% more, because bots now browse the web for people and they never sleep. Gear: eight fiber pairs in your own land trenches.",
+          "requirements": {
+            "pk": 40000,
+            "pops": 70
+          },
+          "carried_region_min": 6
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[11] / LV_REQ[11]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.12",
+        "uc_name": "Critical-service integrator",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Prove administrative continuity and controlled information handling under stress. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Prove administrative continuity and controlled information handling under stress. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.progression-level.13",
+      "sourceRecordSha256": "b6397a0aafeac86342d99b5aef7e3e706ba7e76c05eaaaf42602d7b3abb6e812",
+      "representation": "ucc.progression-level.13",
+      "name": "Communications ecosystem group",
+      "original": {
+        "id": "progress.progression-level.13",
+        "category": "Progression level",
+        "original_id": "13",
+        "original_name": "The Internet",
+        "original_role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "original_attributes": {
+          "n": "The Internet",
+          "q": "People phone you to ask if the internet is down. You are the internet. Have you tried turning yourself off and on again?",
+          "req": "peak 50 Tbps and 80 POPs",
+          "unlock": "Mars mission ground stations. Gear: The Router at the End of the Universe.",
+          "requirements": {
+            "pk": 50000,
+            "pops": 80
+          },
+          "carried_region_min": 6
+        },
+        "source_file": "src/game/40-progress/10-businesses.js",
+        "source_symbol": "LEVELS[12] / LV_REQ[12]",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "target_id": "ucc.progression-level.13",
+        "uc_name": "Communications ecosystem group",
+        "uc_role": "Business capability progression",
+        "treatment": "Replace",
+        "implementation": "Maintain a profitable portfolio across all four segments and several provider roles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "A higher game level does not itself grant regulatory or defence approval.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Maintain a profitable portfolio across all four segments and several provider roles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeCase": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "reviewRequired": "Define track-specific typed thresholds, qualification dependencies, observation window and recoverable evidence before implementation credit."
+    },
+    {
+      "sourceId": "progress.goal.bb",
+      "sourceRecordSha256": "d60fef1c6414ddeaeb71eefdb3cac12ec70277ef9cd2d72c6b1c208a269d061d",
+      "representation": "ucc.goal.bb",
+      "name": "First customer live",
+      "original": {
+        "id": "progress.goal.bb",
+        "category": "Goal",
+        "original_id": "bb",
+        "original_name": "Light up your first customers",
+        "original_role": "Open your home city and press “Launch broadband”. Eyeballs are people at home watching cat videos. They pay you every month.",
+        "original_attributes": {
+          "id": "bb",
+          "t": "Light up your first customers",
+          "d": "Open your home city and press “Launch broadband”. Eyeballs are people at home watching cat videos. They pay you every month.",
+          "r": 5000,
+          "ok": "()=>Object.values(S.pops).some(p=>p.bb)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.bb",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.bb",
+        "uc_name": "First customer live",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Provision users, numbers and working service journeys. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "At least one non-sandbox customer has provisioned identities, assigned numbers and a successful required voice and message journey with case context.",
+      "negativeCase": "Submitted configuration with no effective number assignment must fail.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.tr",
+      "sourceRecordSha256": "181c7d9cdb4256136f469b60167ad841edb7154e114a270e9354b53bd6c1dfa7",
+      "representation": "ucc.goal.tr",
+      "name": "External calling operational",
+      "original": {
+        "id": "progress.goal.tr",
+        "category": "Goal",
+        "original_id": "tr",
+        "original_name": "Reach the whole internet",
+        "original_role": "Your eyeballs want everything. Buy IP transit from a Tier 1 or Tier 2 in your city. Transit gives you the full routing table.",
+        "original_attributes": {
+          "id": "tr",
+          "t": "Reach the whole internet",
+          "d": "Your eyeballs want everything. Buy IP transit from a Tier 1 or Tier 2 in your city. Transit gives you the full routing table.",
+          "r": 5000,
+          "ok": "()=>S.transit.length>0"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.tr",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.tr",
+        "uc_name": "External calling operational",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Demonstrate permitted PSTN and external collaboration reach. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Inbound and outbound synthetic external calls pass permissions, ordered routing, carrier admission, signalling and both media directions; an allowed external collaboration join also succeeds.",
+      "negativeCase": "An internal extension call or one-way media cannot prove external reach.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.ix",
+      "sourceRecordSha256": "3302ab8385bfba049955d76744c585ba8c2de0d4c5648caf77063ba3ffae5bab",
+      "representation": "ucc.goal.ix",
+      "name": "First ecosystem integration",
+      "original": {
+        "id": "progress.goal.ix",
+        "category": "Goal",
+        "original_id": "ix",
+        "original_name": "Join an Internet Exchange",
+        "original_role": "Get a port at an IX: a big shared switch where networks swap traffic for free instead of paying transit.",
+        "original_attributes": {
+          "id": "ix",
+          "t": "Join an Internet Exchange",
+          "d": "Get a port at an IX: a big shared switch where networks swap traffic for free instead of paying transit.",
+          "r": 7500,
+          "ok": "()=>Object.keys(S.ixp).length>0"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.ix",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.ix",
+        "uc_name": "First ecosystem integration",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Connect a carrier or partner using an eligible supported integration. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "A scoped carrier or partner integration has compatible effective versions, an acceptance trace and an accountable support owner.",
+      "negativeCase": "A marketplace listing or configured connector without a tested integration cannot count.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.p5",
+      "sourceRecordSha256": "f873f41193373dc92f9557c3be89a8b91c23d0a9c4ae8f12cf7349f8889fb0a7",
+      "representation": "ucc.goal.p5",
+      "name": "Five working partner services",
+      "original": {
+        "id": "progress.goal.p5",
+        "category": "Goal",
+        "original_id": "p5",
+        "original_name": "Make 5 peering friends",
+        "original_role": "On the Peering tab, request sessions, or join the route server to peer with every open network at once.",
+        "original_attributes": {
+          "id": "p5",
+          "t": "Make 5 peering friends",
+          "d": "On the Peering tab, request sessions, or join the route server to peer with every open network at once.",
+          "r": 10000,
+          "ok": "()=>R.sessions>=5"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.p5",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.p5",
+        "uc_name": "Five working partner services",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Prove five scoped integrations with owned support responsibilities. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Five distinct service integrations satisfy their own scoped acceptance checks and support ownership; repeated tests of one integration count once.",
+      "negativeCase": "Five aliases of one partner service or an unsupported direction cannot reach the target.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.ln",
+      "sourceRecordSha256": "8945d769f7f5f8045a8cca5d1f97f5f4c9e5d6b808bd7a03bd85a112150e251d",
+      "representation": "ucc.goal.ln",
+      "name": "Second site connected",
+      "original": {
+        "id": "progress.goal.ln",
+        "category": "Goal",
+        "original_id": "ln",
+        "original_name": "Lay your first fiber",
+        "original_role": "Drag from your pink router to another city. Short hops are cheap. Oceans are not.",
+        "original_attributes": {
+          "id": "ln",
+          "t": "Lay your first fiber",
+          "d": "Drag from your pink router to another city. Short hops are cheap. Oceans are not.",
+          "r": 10000,
+          "ok": "()=>S.links.length>0"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.ln",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.ln",
+        "uc_name": "Second site connected",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Provide customer connectivity and test required inter-site communication. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Two distinct customer sites have effective purchased or operated connectivity and a successful required inter-site journey.",
+      "negativeCase": "Two endpoints on the same site or a purchased circuit still provisioning cannot count.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.bz",
+      "sourceRecordSha256": "f511ab8d8797fc141d6e0b26c8524dc6b9ea6fa34fca918e3db394636f912653",
+      "representation": "ucc.goal.bz",
+      "name": "First managed business contract",
+      "original": {
+        "id": "progress.goal.bz",
+        "category": "Goal",
+        "original_id": "bz",
+        "original_name": "Sign a business customer",
+        "original_role": "Businesses show up with a $ bubble. You need a POP in their city. Check the Deals tab.",
+        "original_attributes": {
+          "id": "bz",
+          "t": "Sign a business customer",
+          "d": "Businesses show up with a $ bubble. You need a POP in their city. Check the Deals tab.",
+          "r": 12500,
+          "ok": "()=>S.biz.some(b=>!b.scripted)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.bz",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.bz",
+        "uc_name": "First managed business contract",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Win and accept a non-tutorial customer contract. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "A non-tutorial bid passes qualification, is accepted by a synthetic customer, and creates versioned obligations and a billing commitment.",
+      "negativeCase": "A quote, declined offer or automatically seeded tutorial contract cannot count.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.rd",
+      "sourceRecordSha256": "e7b4cb69f854cc9701a46dc0e8f26e843e58b2d2ace9b5b98aad040596a5e4cd",
+      "representation": "ucc.goal.rd",
+      "name": "Continuity proven",
+      "original": {
+        "id": "progress.goal.rd",
+        "category": "Goal",
+        "original_id": "rd",
+        "original_name": "Survive a failure",
+        "original_role": "Things break all the time. Build a second path or a second upstream so traffic reroutes when something dies.",
+        "original_attributes": {
+          "id": "rd",
+          "t": "Survive a failure",
+          "d": "Things break all the time. Build a second path or a second upstream so traffic reroutes when something dies.",
+          "r": 12500,
+          "ok": "()=>S.stats.survived>0"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.rd",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.rd",
+        "uc_name": "Continuity proven",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Maintain required journeys through an incident. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Inject a named failure after a baseline observation; required journeys remain within explicit outage and quality budgets through recovery.",
+      "negativeCase": "Repairing the primary after an unpermitted outage does not prove continuity, even if the final call succeeds.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.ca",
+      "sourceRecordSha256": "967b5021fd7aa83838c465a8d007b65a9cd931888f5354164a32ca9704b8795e",
+      "representation": "ucc.goal.ca",
+      "name": "Local media or speech service",
+      "original": {
+        "id": "progress.goal.ca",
+        "category": "Goal",
+        "original_id": "ca",
+        "original_name": "Host an embedded cache",
+        "original_role": "Big CDNs give you free cache boxes once you send them enough traffic. Free bandwidth, just add power.",
+        "original_attributes": {
+          "id": "ca",
+          "t": "Host an embedded cache",
+          "d": "Big CDNs give you free cache boxes once you send them enough traffic. Free bandwidth, just add power.",
+          "r": 12500,
+          "ok": "()=>S.caches.length>0"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.ca",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.ca",
+        "uc_name": "Local media or speech service",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Deploy a local service and prove locality and dependency assumptions. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "A local media or speech deployment meets workload, capacity and location constraints; its licence, identity, time and control dependencies remain inspectable.",
+      "negativeCase": "Local media with an external control dependency fails a disconnected-operation claim, while remaining eligible for a connected local-media goal.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.pn",
+      "sourceRecordSha256": "86abc45405d8347fffa6a5c47758a92b2d27af44e3fb3aef2bffb31be69a13be",
+      "representation": "ucc.goal.pn",
+      "name": "Dedicated carrier interconnect",
+      "original": {
+        "id": "progress.goal.pn",
+        "category": "Goal",
+        "original_id": "pn",
+        "original_name": "Set up a PNI",
+        "original_role": "A private cross-connect to one network in the same data center, for when traffic outgrows the IX.",
+        "original_attributes": {
+          "id": "pn",
+          "t": "Set up a PNI",
+          "d": "A private cross-connect to one network in the same data center, for when traffic outgrows the IX.",
+          "r": 15000,
+          "ok": "()=>S.pni.some(pniOn)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.pn",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.pn",
+        "uc_name": "Dedicated carrier interconnect",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Bring a dedicated carrier or platform integration into service after acceptance tests. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "A dedicated interconnect completes provisioning and acceptance in both required directions, with independent session admission and media evidence.",
+      "negativeCase": "An ordinary shared managed carrier offer or one successful signalling response is insufficient.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.scrub",
+      "sourceRecordSha256": "a68d359fcd9665ad9455cdf5a66a2fe05a0b82da0b7863485b301c318cc6d385",
+      "representation": "ucc.goal.scrub",
+      "name": "Communications abuse defences",
+      "original": {
+        "id": "progress.goal.scrub",
+        "category": "Goal",
+        "original_id": "scrub",
+        "original_name": "Stand up DDoS defences",
+        "original_role": "Build a scrubbing center from a POP's Infra tab. It cleans attacks up to its capacity and lets you sell DDoS protection.",
+        "original_attributes": {
+          "id": "scrub",
+          "t": "Stand up DDoS defences",
+          "d": "Build a scrubbing center from a POP's Infra tab. It cleans attacks up to its capacity and lets you sell DDoS protection.",
+          "r": 20000,
+          "ok": "()=>hasScrub()"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.scrub",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.scrub",
+        "uc_name": "Communications abuse defences",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Deploy appropriate DDoS, SIP abuse and toll-fraud controls. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Independent synthetic DDoS, SIP admission and destination-spend controls reject applicable abuse fixtures while an allowed call still succeeds.",
+      "negativeCase": "Blocking all calls, adding bandwidth alone or configuring only one protection class cannot pass all required controls.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.c3",
+      "sourceRecordSha256": "2eb33e8fe15d31f507594fdf0b299f25900f7986998e2e24131456de92b6e334",
+      "representation": "ucc.goal.c3",
+      "name": "Three-region service footprint",
+      "original": {
+        "id": "progress.goal.c3",
+        "category": "Goal",
+        "original_id": "c3",
+        "original_name": "Go global",
+        "original_role": "Have POPs on 3 continents. Subsea cables cost a fortune, so plan the route.",
+        "original_attributes": {
+          "id": "c3",
+          "t": "Go global",
+          "d": "Have POPs on 3 continents. Subsea cables cost a fortune, so plan the route.",
+          "r": 50000,
+          "ok": "()=>regionsCount()>=3"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.c3",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.c3",
+        "uc_name": "Three-region service footprint",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Sustain eligible contracts across three regions with suitable support. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Active eligible contracts serve three distinct geographic markets over the stated observation window, with local support coverage and information flows.",
+      "negativeCase": "Three jurisdiction-profile labels on one deployment are not three served markets.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.t2",
+      "sourceRecordSha256": "770c7572c0201f913ce4c7a0b767fe0ad95bb13fcbb719b68f71c03ca2a67749",
+      "representation": "ucc.goal.t2",
+      "name": "Established communications MSP",
+      "original": {
+        "id": "progress.goal.t2",
+        "category": "Goal",
+        "original_id": "t2",
+        "original_name": "Become a Tier 2",
+        "original_role": "5+ POPs, ports on 3+ IXs and 15+ peering sessions.",
+        "original_attributes": {
+          "id": "t2",
+          "t": "Become a Tier 2",
+          "d": "5+ POPs, ports on 3+ IXs and 15+ peering sessions.",
+          "r": 50000,
+          "ok": "()=>isTier2()"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.t2",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.t2",
+        "uc_name": "Established communications MSP",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Meet a combined contract, support and integration milestone. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Meet the pack-defined customer count, support coverage and accepted-integration targets together over a complete billing period.",
+      "negativeCase": "Peak customer count before service activation or absence of skilled support invalidates the milestone.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.tb",
+      "sourceRecordSha256": "4b0d04fef2bfd70dbb471a72bf2fc1834484cae2be8830158b4c36a79d743c4f",
+      "representation": "ucc.goal.tb",
+      "name": "First sustained service scale target",
+      "original": {
+        "id": "progress.goal.tb",
+        "category": "Goal",
+        "original_id": "tb",
+        "original_name": "Serve 1 Tbps",
+        "original_role": "A terabit per second of happy traffic.",
+        "original_attributes": {
+          "id": "tb",
+          "t": "Serve 1 Tbps",
+          "d": "A terabit per second of happy traffic.",
+          "r": 75000,
+          "ok": "()=>R.served>=1000"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.tb",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.tb",
+        "uc_name": "First sustained service scale target",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Meet scenario-defined concurrent interactions and quality targets. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "Original bandwidth thresholds are not convertible to seats, agents or sessions.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Maintain the scenario target for concurrent interactions and completion/quality over a full load window; sessions, message throughput and available people have separate units.",
+      "negativeCase": "A momentary peak, a bandwidth purchase or technically delivered but unresolved tasks cannot satisfy sustained service quality.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.df",
+      "sourceRecordSha256": "6b01e8a3aa835cea275e3632eb9291195ed35aab0abd5d54eecfa85ca5757f9f",
+      "representation": "ucc.goal.df",
+      "name": "Own service infrastructure",
+      "original": {
+        "id": "progress.goal.df",
+        "category": "Goal",
+        "original_id": "df",
+        "original_name": "Light your own dark fiber",
+        "original_role": "Lease or dig dark fiber, put a DWDM system on it and light a channel. Cheaper per bit than waves, once it works.",
+        "original_attributes": {
+          "id": "df",
+          "t": "Light your own dark fiber",
+          "d": "Lease or dig dark fiber, put a DWDM system on it and light a channel. Cheaper per bit than waves, once it works.",
+          "r": 40000,
+          "ok": "()=>S.links.some(l=>l.kind==='df'&&dfCap(l)>0)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.df",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.df",
+        "uc_name": "Own service infrastructure",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Operate a customer or provider-controlled communications service with tested recovery. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Operate a player- or customer-controlled communications deployment with explicit administration, recovery resources, backup custody and a successful restore exercise.",
+      "negativeCase": "A cloud subscription described as private does not establish control of the local operating dependencies.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.m2",
+      "sourceRecordSha256": "837260bcb4e43af03095108eb389419eaf3a9541beb7fd76b7ed048132628bea",
+      "representation": "ucc.goal.m2",
+      "name": "Independent operating sites",
+      "original": {
+        "id": "progress.goal.m2",
+        "category": "Goal",
+        "original_id": "m2",
+        "original_name": "Be in two buildings at once",
+        "original_role": "Add a second site in a metro from the Infra tab, so one power cut no longer takes the whole city dark.",
+        "original_attributes": {
+          "id": "m2",
+          "t": "Be in two buildings at once",
+          "d": "Add a second site in a metro from the Infra tab, so one power cut no longer takes the whole city dark.",
+          "r": 30000,
+          "ok": "()=>Object.values(S.pops).some(p=>p.site2)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.m2",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.m2",
+        "uc_name": "Independent operating sites",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Prove two sites sustain required services through a shared-risk assessment. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Two operating sites survive independent power/site failures and an evaluated shared-risk incident within the continuity budget.",
+      "negativeCase": "Two sites behind the same unmitigated power, identity or carrier failure domain fail the independence claim.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.c5",
+      "sourceRecordSha256": "fb7e99b93ded14288c643da21ae70cb38c13a6b9c841e11b0e11e3d888145829",
+      "representation": "ucc.goal.c5",
+      "name": "Five-region portfolio",
+      "original": {
+        "id": "progress.goal.c5",
+        "category": "Goal",
+        "original_id": "c5",
+        "original_name": "Five continents",
+        "original_role": "POPs in five of the six regions on the map.",
+        "original_attributes": {
+          "id": "c5",
+          "t": "Five continents",
+          "d": "POPs in five of the six regions on the map.",
+          "r": 100000,
+          "ok": "()=>regionsCount()>=5"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.c5",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.c5",
+        "uc_name": "Five-region portfolio",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Meet region-specific carrier and data-handling requirements in five regions. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Five distinct geographic service markets pass their applicable workload and carrier/data-handling constraints, independently of the four jurisdiction-pack labels.",
+      "negativeCase": "Duplicating an AU/US/JP/EU label to invent a fifth approval or counting a map pin without active service fails.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.gi",
+      "sourceRecordSha256": "af7f3eb410608ce5de3e10d9b707fb72873cc99aa84a6e86f3718812163b854b",
+      "representation": "ucc.goal.gi",
+      "name": "Major enterprise or public-service contract",
+      "original": {
+        "id": "progress.goal.gi",
+        "category": "Goal",
+        "original_id": "gi",
+        "original_name": "Sign a giant",
+        "original_role": "Land an AI WAN, a multi-site training run or a fiber-pairs deal with a hyperscaler. Customer level 4 and a POP near their campus required.",
+        "original_attributes": {
+          "id": "gi",
+          "t": "Sign a giant",
+          "d": "Land an AI WAN, a multi-site training run or a fiber-pairs deal with a hyperscaler. Customer level 4 and a POP near their campus required.",
+          "r": 150000,
+          "ok": "()=>S.biz.some(b=>BIZ_T[b.type]&&BIZ_T[b.type].mega&&!BIZ_T[b.type].event)"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.gi",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.gi",
+        "uc_name": "Major enterprise or public-service contract",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Deliver a complex multi-site contract with a full acceptance record. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "A complex multi-site enterprise or public-service contract passes the whole acceptance set, including migration recovery, evidence custody and operating support.",
+      "negativeCase": "A signed large contract or one successful room join cannot substitute for delivered acceptance.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.t10",
+      "sourceRecordSha256": "f4597a6b69c7c49bbe4b9c0b8339bc12165d3ad688d73bbb1ca7a615883b36f1",
+      "representation": "ucc.goal.t10",
+      "name": "High-volume customer-service target",
+      "original": {
+        "id": "progress.goal.t10",
+        "category": "Goal",
+        "original_id": "t10",
+        "original_name": "Serve 10 Tbps",
+        "original_role": "Ten terabits per second of happy traffic. The giants will notice.",
+        "original_attributes": {
+          "id": "t10",
+          "t": "Serve 10 Tbps",
+          "d": "Ten terabits per second of happy traffic. The giants will notice.",
+          "r": 250000,
+          "ok": "()=>R.served>=10000"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.t10",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.t10",
+        "uc_name": "High-volume customer-service target",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Meet sustained voice, message, meeting and workforce targets. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "Original bandwidth thresholds are not convertible to seats, agents or sessions.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Sustain the higher pack-defined workload across voice, messaging, meetings and staffed handling with independent capacities and task-resolution targets.",
+      "negativeCase": "Increasing agent licences without people, or treating a bot reply as a completed task, fails the target.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    },
+    {
+      "sourceId": "progress.goal.t1",
+      "sourceRecordSha256": "c252768f78d2367ae6566ef92a1c6856e3635cf6253cd3cc334a2daf84930705",
+      "representation": "ucc.goal.t1",
+      "name": "Sustainable ecosystem operator",
+      "original": {
+        "id": "progress.goal.t1",
+        "category": "Goal",
+        "original_id": "t1",
+        "original_name": "Go transit-free: Tier 1!",
+        "original_role": "Peer with every Tier 1 over PNIs and cancel every transit port. Then nobody charges you to reach the internet.",
+        "original_attributes": {
+          "id": "t1",
+          "t": "Go transit-free: Tier 1!",
+          "d": "Peer with every Tier 1 over PNIs and cancel every transit port. Then nobody charges you to reach the internet.",
+          "r": 0,
+          "win": true,
+          "ok": "()=>isTier1()"
+        },
+        "source_file": "src/game/40-progress/20-goals.js",
+        "source_symbol": "GOALS.t1",
+        "source_url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "target_id": "ucc.goal.t1",
+        "uc_name": "Sustainable ecosystem operator",
+        "uc_role": "Rewarded campaign milestone",
+        "treatment": "Replace",
+        "implementation": "Meet portfolio quality, continuity, contractual eligibility and profitability objectives. Preserve inspectable completion and one-time rewards.",
+        "segments": [
+          "All"
+        ],
+        "target_examples": [],
+        "notes": "Replace transit-free Tier 1 victory; UC providers retain upstream dependencies.",
+        "origin_group": "progress"
+      },
+      "status": "specified-pending-implementation",
+      "acceptanceStatus": "not-executed",
+      "contract": "Across all four tracks, retain eligible supported services, continuity evidence and positive consolidated operating profit for the declared window.",
+      "negativeCase": "A grant, loan drawdown, internal subsidiary transfer or diagnostic-ledger balance cannot manufacture operating profit.",
+      "rewardPolicy": "Original r retained as historical balancing. No automatic conversion to AUD cents; the versioned campaign pack must declare reward currency, amount and posting account before activation."
+    }
+  ]
+}

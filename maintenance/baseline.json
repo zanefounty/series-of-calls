@@ -1,0 +1,13 @@
+{
+  "status": "incomplete",
+  "upstreamCommit": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "textBlobsVerified": 352,
+  "binaryBlobsUnavailable": 6,
+  "dependencyInstall": "npm ci --offline failed: url-parse 1.5.10 absent from cache",
+  "fallbackDependencies": {
+    "jsdom": "30.0.1 (requested 24.1.3)",
+    "playwright-core": "1.62.1 (requested 1.56.0)"
+  },
+  "build": "upstream build failed: spawnSync node EPERM in release-notes subprocess",
+  "tests": "Baseline attempt using available jsdom; several build, gameplay and latency failures. Not a passing upstream baseline."
+}

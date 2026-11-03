@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: global PNIs cover every eligible network and shared POP, including the long tail, in one transaction
+ok 1 - global PNIs cover every eligible network and shared POP, including the long tail, in one transaction
+  ---
+  duration_ms: 758.572069
+  type: 'test'
+  ...
+# Subtest: global PNIs share the available router ports, including four 10G breakouts per slot
+ok 2 - global PNIs share the available router ports, including four 10G breakouts per slot
+  ---
+  duration_ms: 745.107311
+  type: 'test'
+  ...
+# Subtest: global planning reserves ports for pending speed and LAG augments without mutating the save
+ok 3 - global planning reserves ports for pending speed and LAG augments without mutating the save
+  ---
+  duration_ms: 690.928047
+  type: 'test'
+  ...
+# Subtest: global PNIs require the full budget and reject unsupported sizes and an empty POP list
+ok 4 - global PNIs require the full budget and reject unsupported sizes and an empty POP list
+  ---
+  duration_ms: 345.594453
+  type: 'test'
+  ...
+# Subtest: the global batch, now in the Ops sheet, preserves scope, keyboard focus and translations on phones
+ok 5 - the global batch, now in the Ops sheet, preserves scope, keyboard focus and translations on phones
+  ---
+  duration_ms: 2092.742587
+  type: 'test'
+  ...
+# Subtest: bulk PNIs follow each network's own minimum port and lead time (pniMin, pniLead)
+ok 6 - bulk PNIs follow each network's own minimum port and lead time (pniMin, pniLead)
+  ---
+  duration_ms: 380.784157
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10229.33216

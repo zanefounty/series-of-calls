@@ -155,7 +155,7 @@ test('every goal type has a progress card, needs play, and wins, streaks and sha
     if (t === 'floods') assert.equal(ev("scnRule('ddos')"), true);
   }
   // A win: a POP goal met on day 1, recorded for the week, with a streak and the share line.
-  ev("localStorage.removeItem('sot-wkscn')");
+  ev("localStorage.removeItem('soc-sp-wkscn')");
   ev(`wsBegin(${JSON.stringify(fileFor('pops', key))},'T');if(UI.pendGame)ACT.pitchSkip();closeModal()`);
   // Waves take a few days to light (real lead times), so the goal is met once they are up.
   const build = "for(const c of ['ams','par']){UI.via=null;openLinkModal('fra',c);ACT.buildLink({tier:1});closeModal();}for(let i=0;i<90&&!S.scn.done;i++)dayTick()";
@@ -163,15 +163,15 @@ test('every goal type has a progress card, needs play, and wins, streaks and sha
   const d = ev('S.scn.done');
   assert.ok(d > 0 && d < 90, `won on day ${d}`);
   assert.match(dom.window.document.getElementById('modal').textContent, new RegExp(`Won on day ${d}!`));
-  assert.equal(ev('wsShareText()'), `Series of Tubes weekly ${key} “Island Hopper” won day ${d} (par 180) · seriesoftub.es`);
-  const rec = JSON.parse(ev("localStorage.getItem('sot-wkscn')"));
+  assert.equal(ev('wsShareText()'), `Series of Calls weekly ${key} “Island Hopper” won day ${d} (par 180) · zanefounty.github.io/series-of-calls/`);
+  const rec = JSON.parse(ev("localStorage.getItem('soc-sp-wkscn')"));
   assert.deepEqual(rec.w[key], { d, rv: 1 });
   assert.equal(rec.streak.n, 1);
   // Last week won too: the streak grows; a gap starts it again.
-  ev(`localStorage.setItem('sot-wkscn',JSON.stringify({go:{},w:{},streak:{last:pzPrevKey('${key}'),n:3,best:3}}))`);
+  ev(`localStorage.setItem('soc-sp-wkscn',JSON.stringify({go:{},w:{},streak:{last:pzPrevKey('${key}'),n:3,best:3}}))`);
   ev(`wsBegin(${JSON.stringify(fileFor('pops', key))},'T');if(UI.pendGame)ACT.pitchSkip();closeModal()`);
   ev(build);
-  assert.equal(JSON.parse(ev("localStorage.getItem('sot-wkscn')")).streak.n, 4);
+  assert.equal(JSON.parse(ev("localStorage.getItem('soc-sp-wkscn')")).streak.n, 4);
   assert.equal(ev(`wsStreak(wsLoad(),pzKeyAdd('${key}',2))`), 0);
   assert.deepEqual(errors, []);
 });

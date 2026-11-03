@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: every save without a preset plays On-call and earns the standard badge
+ok 1 - every save without a preset plays On-call and earns the standard badge
+  ---
+  duration_ms: 681.024324
+  type: 'test'
+  ...
+# Subtest: Change Freeze earns frosted badges and BGP at 3 a.m. fiery ones, shown in the toast and the list
+ok 2 - Change Freeze earns frosted badges and BGP at 3 a.m. fiery ones, shown in the toast and the list
+  ---
+  duration_ms: 738.271706
+  type: 'test'
+  ...
+# Subtest: Sandbox and puzzles earn no badges
+ok 3 - Sandbox and puzzles earn no badges
+  ---
+  duration_ms: 1115.920814
+  type: 'test'
+  ...
+# Subtest: a harder preset upgrades a badge, an easier one never downgrades it
+ok 4 - a harder preset upgrades a badge, an easier one never downgrades it
+  ---
+  duration_ms: 387.882239
+  type: 'test'
+  ...
+# Subtest: the collection counts badges per variant on this device, and fits a phone
+ok 5 - the collection counts badges per variant on this device, and fits a phone
+  ---
+  duration_ms: 337.966324
+  type: 'test'
+  ...
+# Subtest: old saves and old halls of fame keep loading, as standard badges
+ok 6 - old saves and old halls of fame keep loading, as standard badges
+  ---
+  duration_ms: 353.891773
+  type: 'test'
+  ...
+# Subtest: the share card rings the variant badges
+ok 7 - the share card rings the variant badges
+  ---
+  duration_ms: 323.557004
+  type: 'test'
+  ...
+# Subtest: a variant named after an Object prototype key is not a variant
+ok 8 - a variant named after an Object prototype key is not a variant
+  ---
+  duration_ms: 337.680099
+  type: 'test'
+  ...
+# Subtest: "Badge upgraded" means the collection on this device got a better variant
+ok 9 - "Badge upgraded" means the collection on this device got a better variant
+  ---
+  duration_ms: 389.908163
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9866.681715

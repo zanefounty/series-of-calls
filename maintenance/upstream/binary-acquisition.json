@@ -1,0 +1,63 @@
+{
+  "repository": "fjaeckel/seriesoftubes",
+  "pinnedTreeSha": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "checkedAt": "2026-11-03",
+  "scope": "Six binary blobs listed by the pinned upstream Git tree and absent from the local upstream snapshot. This record documents retrieval attempts only; no site assets were copied or replaced.",
+  "retrievalMethod": {
+    "tool": "GitHub connector github_fetch",
+    "endpointTemplate": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/{blobSha}",
+    "expectedResponse": "UTF-8 Git database JSON with base64 content",
+    "result": "The connector rejected each blob before returning content: HTTPError 400, GitHub Fetch only accepts UTF-8 text (Response: None).",
+    "assessment": "Blocked by connector UTF-8 restriction, including the 2,107-byte favicon; not identified as a size-cap failure. No alternate download route was attempted."
+  },
+  "assets": [
+    {
+      "path": "site/apple-touch-icon.png",
+      "blobSha": "9c5f1ee60bcf21221df7cbb72f925c6577350baf",
+      "size": 5054,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9c5f1ee60bcf21221df7cbb72f925c6577350baf",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text"
+    },
+    {
+      "path": "site/favicon.ico",
+      "blobSha": "a8c2a13a818c32244fe48514565a1282e6afada9",
+      "size": 2107,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a8c2a13a818c32244fe48514565a1282e6afada9",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text; github_fetch_blob also failed UTF-8 decoding"
+    },
+    {
+      "path": "site/icon-192.png",
+      "blobSha": "61c6d7598187fa78af10eb9e747400a26436bb0d",
+      "size": 9342,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61c6d7598187fa78af10eb9e747400a26436bb0d",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text"
+    },
+    {
+      "path": "site/icon-512.png",
+      "blobSha": "58dada30cf8e9ba924bc155133bdedee79ad2a99",
+      "size": 26342,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/58dada30cf8e9ba924bc155133bdedee79ad2a99",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text"
+    },
+    {
+      "path": "site/icon-maskable-512.png",
+      "blobSha": "ccc2c8d7e2cac80fe162de1b7e02c2e31727cb16",
+      "size": 13098,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ccc2c8d7e2cac80fe162de1b7e02c2e31727cb16",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text"
+    },
+    {
+      "path": "site/images/og-image.png",
+      "blobSha": "495cf360ca30665998139e4d3bd1cf8bc74ac3cb",
+      "size": 282773,
+      "sourceUrl": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/495cf360ca30665998139e4d3bd1cf8bc74ac3cb",
+      "status": "missing",
+      "attempt": "github_fetch rejected response as non-UTF-8 text"
+    }
+  ]
+}

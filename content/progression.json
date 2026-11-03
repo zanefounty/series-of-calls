@@ -1,0 +1,2091 @@
+{
+  "version": 1,
+  "pack": "soc-progression-1",
+  "contentVersion": "soc-progression-content-2",
+  "scope": "Partial communications progression overlay. Original source rows and attributes are preserved as provenance; no source obligation is claimed complete.",
+  "balanceStatus": "fictional thresholds selected for implementation; not validated gameplay balance",
+  "rewardPolicy": {
+    "earnedMilestone": {
+      "kind": "badge",
+      "unit": "achievement",
+      "amount": 1
+    },
+    "sourceCashConversion": "none",
+    "trainingCreditsAreSeparate": true
+  },
+  "implementedSourceRows": [
+    "progress.goal.bb",
+    "progress.goal.ix",
+    "progress.goal.bz",
+    "progress.goal.rd",
+    "progress.goal.tb",
+    "progress.goal.t10",
+    "progress.goal.c3",
+    "progress.goal.c5",
+    "progress.goal.t2",
+    "progress.goal.t1",
+    "progress.goal.tr",
+    "progress.goal.p5",
+    "progress.goal.ca",
+    "progress.goal.pn",
+    "progress.goal.scrub",
+    "progress.goal.ln",
+    "progress.goal.df",
+    "progress.goal.m2",
+    "progress.goal.gi",
+    "progress.progression-level.1",
+    "progress.progression-level.2",
+    "progress.progression-level.7",
+    "progress.progression-level.13",
+    "progress.progression-level.3",
+    "progress.progression-level.4",
+    "progress.progression-level.5",
+    "progress.progression-level.6",
+    "progress.progression-level.8",
+    "progress.progression-level.9",
+    "progress.progression-level.10",
+    "progress.progression-level.11",
+    "progress.progression-level.12"
+  ],
+  "pendingSourceRows": [],
+  "records": [
+    {
+      "sourceId": "progress.progression-level.1",
+      "representation": "ucc.progression-level.1",
+      "classification": "Progression level",
+      "fictionalName": "Local UC reseller",
+      "original": {
+        "id": "progress.progression-level.1",
+        "name": "Local ISP",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Local ISP",
+          "q": "Your network diagram is a photo of a whiteboard.",
+          "req": "Start here",
+          "unlock": "Enterprises, game servers, hosting, L2VPNs and DDoS protection.",
+          "requirements": null,
+          "carried_region_min": 0
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[0] / LV_REQ[0]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "adf0f068e349dbf763472984ea83ba7d184ca415f2e4ae2fe26bce5f185cb432"
+      },
+      "fictionalContract": "Provision and support a first SMB voice and messaging contract. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [
+        "validated SOC root",
+        "campaign award or typed business/product evidence"
+      ],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": "An SMB campaign award plus the first-customer-live and managed-contract evidence.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/41-progression.js",
+      "acceptanceStatus": "not-executed",
+      "narrative": {
+        "id": "NAR-ad4736cdc726e115",
+        "text": "Your first call-flow diagram is a photo of a whiteboard. The voicemail password is not allowed to be in the photo.",
+        "comparison": "The whiteboard start-up joke moves from physical network design to a documented call flow; it does not bypass identity or entitlement checks.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Derived from validated SOC campaign, business, interaction or product integration state; no user-set completion field.",
+      "positiveAcceptance": "An SMB campaign award plus the first-customer-live and managed-contract evidence.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": null,
+        "sourceText": "Start here",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/41-progression.js",
+        "src/game/44-campaign.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "This is a partial gameplay milestone, not completion of the mapped source obligation.",
+        "Source-specific distinguishing mechanics and full acceptance coverage remain pending."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.2",
+      "representation": "ucc.progression-level.2",
+      "classification": "Progression level",
+      "fictionalName": "Regional communications MSP",
+      "original": {
+        "id": "progress.progression-level.2",
+        "name": "Regional player",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Regional player",
+          "q": "You now have a change freeze. Nobody remembers who declared it.",
+          "req": "peak 200 Gbps and 3 POPs",
+          "unlock": "Downstream ISPs, streaming startups and universities. Gear: Edge Lord 400 routers, dark fiber leases, Rainbow-in-a-Box DWDM, Ackackia 400ZR+ optics.",
+          "requirements": {
+            "pk": 200,
+            "pops": 3
+          },
+          "carried_region_min": 0
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[1] / LV_REQ[1]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "1cee8f32bbf3d9e15d743838351153b8b3d85cb992a233d7f334901e021f5c27"
+      },
+      "fictionalContract": "Two distinct-market roots pass the sampled window with a retained human-resolved case and a new customer bill on each root.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "2 active customers in distinct market IDs; each has eligible live support and information flow, a new external bill during the 60-minute window, and an evidenced human resolved case.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-48de0802611845c5",
+        "text": "You now have a change freeze. Nobody remembers who declared it, but everyone remembers the last dial-plan update.",
+        "comparison": "The unexplained change freeze gains a calling-configuration consequence while preserving the original operational satire.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "Two distinct-market roots pass the sampled window with a retained human-resolved case and a new customer bill on each root.",
+      "negativeAcceptance": "A bot-only resolution, one customer, repeated same-market labels, or existing pre-window billing cannot earn the level.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.3",
+      "representation": "ucc.progression-level.3",
+      "classification": "Progression level",
+      "fictionalName": "UC and CC integrator",
+      "original": {
+        "id": "progress.progression-level.3",
+        "name": "Serious backbone",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Serious backbone",
+          "q": "It's not DNS. There's no way it's DNS. It was DNS.",
+          "req": "peak 1 Tbps and 6 POPs",
+          "unlock": "AI GPU data centers and cloud on-ramps. Gear: Chonk 800 routers, Sizzle 800ZR+ optics, ROADMaster 9000 line systems, building your own fiber.",
+          "requirements": {
+            "pk": 1000,
+            "pops": 6
+          },
+          "carried_region_min": 0
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[2] / LV_REQ[2]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "2e9fea082b8a986b80c7967b929e5822e475526a282f3ab64c8b9022febeb001"
+      },
+      "fictionalContract": "Operate voice, rooms, customer-service queues and their integrations. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-c9489808643b711d",
+        "text": "It is not DNS. There is no way it is DNS. The room calendar would like a word.",
+        "comparison": "The recurring DNS diagnosis stays a real dependency joke; a calendar fault still needs distinct evidence rather than an automatic DNS verdict.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Operate voice, rooms, customer-service queues and their integrations. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 1000,
+          "pops": 6
+        },
+        "sourceText": "peak 1 Tbps and 6 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.4",
+      "representation": "ucc.progression-level.4",
+      "classification": "Progression level",
+      "fictionalName": "Enterprise service provider",
+      "original": {
+        "id": "progress.progression-level.4",
+        "name": "Big league",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Big league",
+          "q": "Your MTU is 9000 on every link except the one that matters.",
+          "req": "peak 3 Tbps, 10 POPs, 3 continents",
+          "unlock": "AI training interconnects and hyperscaler DCI deals in the terabits. Gear: Absolute Unit 1.6T routers, Sienna WaveMagic 1.6T transponders.",
+          "requirements": {
+            "pk": 3000,
+            "pops": 10,
+            "reg": 3
+          },
+          "carried_region_min": 3
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[3] / LV_REQ[3]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "92751c4589e8689c1f2f1362a560649279e28e3e40bab76837656325fbe3059d"
+      },
+      "fictionalContract": "Deliver staged migrations and multi-site service continuity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-d06c75e81520d1fd",
+        "text": "Every migration cohort is ready except the one containing the reception desk.",
+        "comparison": "The one-link-that-matters MTU comparison becomes a staged migration dependency; aggregate completion cannot hide a critical failed cohort.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Deliver staged migrations and multi-site service continuity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 3000,
+          "pops": 10,
+          "reg": 3
+        },
+        "sourceText": "peak 3 Tbps, 10 POPs, 3 continents",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.5",
+      "representation": "ucc.progression-level.5",
+      "classification": "Progression level",
+      "fictionalName": "National communications SP",
+      "original": {
+        "id": "progress.progression-level.5",
+        "name": "Continental carrier",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Continental carrier",
+          "q": "Your NOC has a chat channel called #its-always-the-fiber, and it is always the fiber.",
+          "req": "peak 6 Tbps, 15 POPs, 4 continents",
+          "era": 1.15,
+          "unlock": "Esports world finals, and the 4K-everything era: eyeballs in every city want 15% more. Gear: Sonic the Whitebox 64 routers.",
+          "requirements": {
+            "pk": 6000,
+            "pops": 15,
+            "reg": 4
+          },
+          "carried_region_min": 4
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[4] / LV_REQ[4]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "d7b688fe5e5f1ea24d392925893c8162c79f4d7137e647fa7c3491fcd4ea5e4d"
+      },
+      "fictionalContract": "Offer wholesale calling and managed customer-service capacity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-b2db2f8029bdebe1",
+        "text": "Your service desk has a channel called #its-always-the-carrier. The carrier has one called #its-always-the-customer.",
+        "comparison": "The fibre blame-channel joke becomes the bilateral support boundary without assigning fault before the trace is inspected.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Offer wholesale calling and managed customer-service capacity. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 6000,
+          "pops": 15,
+          "reg": 4
+        },
+        "sourceText": "peak 6 Tbps, 15 POPs, 4 continents",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.6",
+      "representation": "ucc.progression-level.6",
+      "classification": "Progression level",
+      "fictionalName": "Public-service communications specialist",
+      "original": {
+        "id": "progress.progression-level.6",
+        "name": "Transcontinental",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Transcontinental",
+          "q": "You joined the outages mailing list. Today you are the outage.",
+          "req": "peak 9 Tbps and 20 POPs",
+          "unlock": "Sovereign cloud regions, and a free PNI with Doitsche Telekomm. Gear: ROADMaster 9000 C+L (128 channels), Disco 8K Ultra routers.",
+          "requirements": {
+            "pk": 9000,
+            "pops": 20
+          },
+          "carried_region_min": 4
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[5] / LV_REQ[5]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "3678f77da91dba01f97ca8e526b6199d12aef5e5298ba7c369aa6fc40d64980f"
+      },
+      "fictionalContract": "Deliver jurisdiction-specific government contract requirements. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-ef02b32998df29c7",
+        "text": "You subscribed to the service-status notices. Today you are the service-status notice.",
+        "comparison": "The outages-list role reversal is retained as fictional provider incident communication, not a real outage claim.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Deliver jurisdiction-specific government contract requirements. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 9000,
+          "pops": 20
+        },
+        "sourceText": "peak 9 Tbps and 20 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.7",
+      "representation": "ucc.progression-level.7",
+      "classification": "Progression level",
+      "fictionalName": "International managed provider",
+      "original": {
+        "id": "progress.progression-level.7",
+        "name": "Global backbone",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Global backbone",
+          "q": "Your ASN now shows up in other people's traceroutes, and in their tickets.",
+          "req": "peak 12 Tbps, 25 POPs, 5 continents",
+          "unlock": "A free PNI with Voda-Phony. Gear: Absolute Unit 3.2T routers, 3.2T ports and 12.8T waves.",
+          "requirements": {
+            "pk": 12000,
+            "pops": 25,
+            "reg": 5
+          },
+          "carried_region_min": 5
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[6] / LV_REQ[6]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "dccf4bc8353d93b9d230e156ce08bc9fd8e0dfea08569b26d6c6f815e0edd2d6"
+      },
+      "fictionalContract": "The five-market window passes with per-market language-matched named support, carrier readiness, an active distributor-backed contract and bound eligible information flows.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "All 5 distinct market IDs; each customer has current carrier capacity, a named support person fluent in that market’s configured support language, an eligible boundary, distributor procurement evidence, and new external billing during the 60-minute window.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-3433da8fc39991e8",
+        "text": "Your platform now appears in other people's call traces, and in their tickets.",
+        "comparison": "ASN and traceroute recognition becomes signalling traces and cross-provider support responsibility.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "The five-market window passes with per-market language-matched named support, carrier readiness, an active distributor-backed contract and bound eligible information flows.",
+      "negativeAcceptance": "Five markets with an English-only Tokyo roster, missing carrier, unqualified distributor contract, or unbound boundary fail.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.8",
+      "representation": "ucc.progression-level.8",
+      "classification": "Progression level",
+      "fictionalName": "Omnichannel platform operator",
+      "original": {
+        "id": "progress.progression-level.8",
+        "name": "Packet empire",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Packet empire",
+          "q": "Your maintenance window is 2 a.m. in every time zone at once.",
+          "req": "peak 16 Tbps and 32 POPs",
+          "era": 1.15,
+          "unlock": "Cloud gaming platforms, and the cloud gaming era: eyeballs want another 15%. A free PNI with Tel-Mess. Gear: Sienna WaveMagic 3.2T transponders.",
+          "requirements": {
+            "pk": 16000,
+            "pops": 32
+          },
+          "carried_region_min": 5
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[7] / LV_REQ[7]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "9128f1fc6f88265597a8ffbb542bb64bdd526b5a666e90630553669545801eac"
+      },
+      "fictionalContract": "Operate asynchronous journeys, CPaaS applications and customer context. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-34f4abdb5abdbc35",
+        "text": "Your maintenance window is 2 a.m. in every time zone at once. The callback queue is unconvinced.",
+        "comparison": "The impossible global maintenance window is retained, with outstanding asynchronous work kept visible.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Operate asynchronous journeys, CPaaS applications and customer context. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 16000,
+          "pops": 32
+        },
+        "sourceText": "peak 16 Tbps and 32 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.9",
+      "representation": "ucc.progression-level.9",
+      "classification": "Progression level",
+      "fictionalName": "Multi-region deployment specialist",
+      "original": {
+        "id": "progress.progression-level.9",
+        "name": "Six-continent carrier",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Six-continent carrier",
+          "q": "Somewhere, on every continent, a backhoe is thinking about you.",
+          "req": "peak 21 Tbps, 40 POPs, 6 continents",
+          "unlock": "Metaverse platforms (it finally took off), and a free PNI with Etis-a-lot. Gear: Arrrhipster 7800R5 routers, 102.4T fabrics for your own exchange.",
+          "requirements": {
+            "pk": 21000,
+            "pops": 40,
+            "reg": 6
+          },
+          "carried_region_min": 6
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[8] / LV_REQ[8]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "3d7c2c5ee1538e2e1a46337eb27924c27eccf13fa68455a1d7c5d7807195048a"
+      },
+      "fictionalContract": "Support distinct commercial, private, sovereign and local deployment profiles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-bb745b87956e8b8d",
+        "text": "Somewhere, beside every local appliance, a cloud licence is thinking about phoning home.",
+        "comparison": "The ubiquitous backhoe threat becomes the hidden external dependency in local deployments; local media alone does not establish disconnected operation.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Support distinct commercial, private, sovereign and local deployment profiles. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 21000,
+          "pops": 40,
+          "reg": 6
+        },
+        "sourceText": "peak 21 Tbps, 40 POPs, 6 continents",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.10",
+      "representation": "ucc.progression-level.10",
+      "classification": "Progression level",
+      "fictionalName": "Communications wholesaler",
+      "original": {
+        "id": "progress.progression-level.10",
+        "name": "Backbone of backbones",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Backbone of backbones",
+          "q": "Your routing table needs its own routing table.",
+          "req": "peak 26 Tbps and 50 POPs",
+          "era": 1.2,
+          "unlock": "The VR era: eyeballs want 20% more. A free PNI with China Moble. Gear: Knockia 7950 XRS routers, 100T scrubbing.",
+          "requirements": {
+            "pk": 26000,
+            "pops": 50
+          },
+          "carried_region_min": 6
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[9] / LV_REQ[9]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "2b8be6d26925bb1d921d5e4824cbc3083c3be70f947323644c25ff1173452ffe"
+      },
+      "fictionalContract": "Supply partner tenants, delegated administration and auditable billing. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-080cc6c2e34da4f3",
+        "text": "Your delegation tree now needs someone delegated to explain the delegation tree.",
+        "comparison": "The routing-table recursion becomes wholesale administration hierarchy; the joke grants no authority outside explicit scopes.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Supply partner tenants, delegated administration and auditable billing. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 26000,
+          "pops": 50
+        },
+        "sourceText": "peak 26 Tbps and 50 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.11",
+      "representation": "ucc.progression-level.11",
+      "classification": "Progression level",
+      "fictionalName": "AI communications operator",
+      "original": {
+        "id": "progress.progression-level.11",
+        "name": "Internet weather system",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Internet weather system",
+          "q": "When your BGP sneezes, a small country catches a cold.",
+          "req": "peak 33 Tbps and 60 POPs",
+          "unlock": "AGI labs (allegedly) wanting AI WANs of 12.8 to 25.6 Tbps, and free PNIs with Du-opoly and Ooh-redoo. Gear: Mikrowtik CCR 3.2T routers.",
+          "requirements": {
+            "pk": 33000,
+            "pops": 60
+          },
+          "carried_region_min": 6
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[10] / LV_REQ[10]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "51b01f6e26ef7ab37bc3b9c75b78093d5a1e099b902586f96942b863bebe98ed"
+      },
+      "fictionalContract": "Operate evaluated speech, agent assistance and automation at sustained load. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-667735d9d119e9df",
+        "text": "When your speech model sneezes, a thousand summaries prescribe a tissue.",
+        "comparison": "The large-provider weather metaphor becomes correlated AI output quality, with task evidence and review still required.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Operate evaluated speech, agent assistance and automation at sustained load. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 33000,
+          "pops": 60
+        },
+        "sourceText": "peak 33 Tbps and 60 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.12",
+      "representation": "ucc.progression-level.12",
+      "classification": "Progression level",
+      "fictionalName": "Critical-service integrator",
+      "original": {
+        "id": "progress.progression-level.12",
+        "name": "Too big to route",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "Too big to route",
+          "q": "Your last fat-fingered route leak has its own Wikipedia page.",
+          "req": "peak 40 Tbps and 70 POPs",
+          "era": 1.25,
+          "unlock": "The AI agent era: eyeballs want 25% more, because bots now browse the web for people and they never sleep. Gear: eight fiber pairs in your own land trenches.",
+          "requirements": {
+            "pk": 40000,
+            "pops": 70
+          },
+          "carried_region_min": 6
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[11] / LV_REQ[11]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "32a68e4ddb5acf15633de97abe4393e28c63b237962aee55a110ec1865fda8f8"
+      },
+      "fictionalContract": "Prove administrative continuity and controlled information handling under stress. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-d627e32fc35fb70a",
+        "text": "Your last fat-fingered forwarding rule has its own incident retrospective. And a sequel.",
+        "comparison": "The public route-leak notoriety becomes an inspectable fictional forwarding incident, preserving recovery and review obligations.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Prove administrative continuity and controlled information handling under stress. Replace peak Gbit/s and POP gates with contract outcomes, operating capacity, qualifications and supported scope.",
+      "negativeAcceptance": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "typedUnits": {
+        "sourceRequirement": {
+          "pk": 40000,
+          "pops": 70
+        },
+        "sourceText": "peak 40 Tbps and 70 POPs",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level."
+      ]
+    },
+    {
+      "sourceId": "progress.progression-level.13",
+      "representation": "ucc.progression-level.13",
+      "classification": "Progression level",
+      "fictionalName": "Communications ecosystem group",
+      "original": {
+        "id": "progress.progression-level.13",
+        "name": "The Internet",
+        "role": "Customer level unlocks new demand types, larger offers and later equipment.",
+        "attributes": {
+          "n": "The Internet",
+          "q": "People phone you to ask if the internet is down. You are the internet. Have you tried turning yourself off and on again?",
+          "req": "peak 50 Tbps and 80 POPs",
+          "unlock": "Mars mission ground stations. Gear: The Router at the End of the Universe.",
+          "requirements": {
+            "pk": 50000,
+            "pops": 80
+          },
+          "carried_region_min": 6
+        },
+        "sourceFile": "src/game/40-progress/10-businesses.js",
+        "sourceSymbol": "LEVELS[12] / LV_REQ[12]",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/10-businesses.js",
+        "sha256": "b6397a0aafeac86342d99b5aef7e3e706ba7e76c05eaaaf42602d7b3abb6e812"
+      },
+      "fictionalContract": "Four scenario roots pass fresh rd continuity and external billing, three provider role classifications are evidenced by actual contract support owners, and aggregate external business operating profit is positive.",
+      "negativeBoundary": "A source bandwidth/POP threshold, narrative label or unverified historical achievement cannot grant this communications level.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "All 4 distinct scenario tracks; at least 3 distinct configured provider role classifications; a fresh passed rd continuity proof and new external bill per customer; positive aggregate business revenue less costs over 60 minutes.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": {
+        "id": "NAR-deabed797d88b5e6",
+        "text": "People phone you to ask if the phones are down. You are the phone company. Please do not turn yourself off and on during the test call.",
+        "comparison": "The final Internet self-reference becomes the communications group and a continuity warning; reaching this narrative title does not earn the campaign win.",
+        "mechanicStatus": "See source requirement; prose is not mechanic completion."
+      },
+      "sourceRewards": null,
+      "productOrgRoleClass": {
+        "classification": "Progression level",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "Four scenario roots pass fresh rd continuity and external billing, three provider role classifications are evidenced by actual contract support owners, and aggregate external business operating profit is positive.",
+      "negativeAcceptance": "Four customer scenarios with only one provider, three provider labels on one organisation, stale continuity, or negative operating contribution fail.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.bb",
+      "representation": "ucc.goal.bb",
+      "classification": "Goal",
+      "fictionalName": "First customer live",
+      "original": {
+        "id": "progress.goal.bb",
+        "name": "Light up your first customers",
+        "role": "Open your home city and press “Launch broadband”. Eyeballs are people at home watching cat videos. They pay you every month.",
+        "attributes": {
+          "id": "bb",
+          "t": "Light up your first customers",
+          "d": "Open your home city and press “Launch broadband”. Eyeballs are people at home watching cat videos. They pay you every month.",
+          "r": 5000,
+          "ok": "()=>Object.values(S.pops).some(p=>p.bb)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.bb",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "d60fef1c6414ddeaeb71eefdb3cac12ec70277ef9cd2d72c6b1c208a269d061d"
+      },
+      "fictionalContract": "At least one non-sandbox customer has provisioned identities, assigned numbers and a successful required voice and message journey with case context.",
+      "negativeBoundary": "Submitted configuration with no effective number assignment must fail.",
+      "dependencies": [
+        "validated SOC root",
+        "campaign award or typed business/product evidence"
+      ],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": "An assessed SMB campaign award, a current supported billed contract, and a resolved interaction linked to a retained case.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/41-progression.js",
+      "acceptanceStatus": "not-executed",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 5000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Derived from validated SOC campaign, business, interaction or product integration state; no user-set completion field.",
+      "positiveAcceptance": "An assessed SMB campaign award, a current supported billed contract, and a resolved interaction linked to a retained case.",
+      "negativeAcceptance": "Submitted configuration with no effective number assignment must fail.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/41-progression.js",
+        "src/game/44-campaign.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "This is a partial gameplay milestone, not completion of the mapped source obligation.",
+        "Source-specific distinguishing mechanics and full acceptance coverage remain pending."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.tr",
+      "representation": "ucc.goal.tr",
+      "classification": "Goal",
+      "fictionalName": "External calling operational",
+      "original": {
+        "id": "progress.goal.tr",
+        "name": "Reach the whole internet",
+        "role": "Your eyeballs want everything. Buy IP transit from a Tier 1 or Tier 2 in your city. Transit gives you the full routing table.",
+        "attributes": {
+          "id": "tr",
+          "t": "Reach the whole internet",
+          "d": "Your eyeballs want everything. Buy IP transit from a Tier 1 or Tier 2 in your city. Transit gives you the full routing table.",
+          "r": 5000,
+          "ok": "()=>S.transit.length>0"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.tr",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "181c7d9cdb4256136f469b60167ad841edb7154e114a270e9354b53bd6c1dfa7"
+      },
+      "fictionalContract": "Inbound and outbound synthetic external calls pass permissions, ordered routing, carrier admission, signalling and both media directions; an allowed external collaboration join also succeeds.",
+      "negativeBoundary": "An internal extension call or one-way media cannot prove external reach.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/calling-achievements.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 5000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Inbound and outbound synthetic external calls pass permissions, ordered routing, carrier admission, signalling and both media directions; an allowed external collaboration join also succeeds.",
+      "negativeAcceptance": "An internal extension call or one-way media cannot prove external reach.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/calling-achievements.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "An internal extension call or one-way media cannot prove external reach."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.ix",
+      "representation": "ucc.goal.ix",
+      "classification": "Goal",
+      "fictionalName": "First ecosystem integration",
+      "original": {
+        "id": "progress.goal.ix",
+        "name": "Join an Internet Exchange",
+        "role": "Get a port at an IX: a big shared switch where networks swap traffic for free instead of paying transit.",
+        "attributes": {
+          "id": "ix",
+          "t": "Join an Internet Exchange",
+          "d": "Get a port at an IX: a big shared switch where networks swap traffic for free instead of paying transit.",
+          "r": 7500,
+          "ok": "()=>Object.keys(S.ixp).length>0"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.ix",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "3302ab8385bfba049955d76744c585ba8c2de0d4c5648caf77063ba3ffae5bab"
+      },
+      "fictionalContract": "A scoped carrier or partner integration has compatible effective versions, an acceptance trace and an accountable support owner.",
+      "negativeBoundary": "A marketplace listing or configured connector without a tested integration cannot count.",
+      "dependencies": [
+        "validated SOC root",
+        "campaign award or typed business/product evidence"
+      ],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": "A current synthetic scenario-verified integration with passing checks and an active support contract covering a bound core resource.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/41-progression.js",
+      "acceptanceStatus": "not-executed",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 7500,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Derived from validated SOC campaign, business, interaction or product integration state; no user-set completion field.",
+      "positiveAcceptance": "A current synthetic scenario-verified integration with passing checks and an active support contract covering a bound core resource.",
+      "negativeAcceptance": "A marketplace listing or configured connector without a tested integration cannot count.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/41-progression.js",
+        "src/game/44-campaign.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "This is a partial gameplay milestone, not completion of the mapped source obligation.",
+        "Source-specific distinguishing mechanics and full acceptance coverage remain pending."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.p5",
+      "representation": "ucc.goal.p5",
+      "classification": "Goal",
+      "fictionalName": "Five working partner services",
+      "original": {
+        "id": "progress.goal.p5",
+        "name": "Make 5 peering friends",
+        "role": "On the Peering tab, request sessions, or join the route server to peer with every open network at once.",
+        "attributes": {
+          "id": "p5",
+          "t": "Make 5 peering friends",
+          "d": "On the Peering tab, request sessions, or join the route server to peer with every open network at once.",
+          "r": 10000,
+          "ok": "()=>R.sessions>=5"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.p5",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "f873f41193373dc92f9557c3be89a8b91c23d0a9c4ae8f12cf7349f8889fb0a7"
+      },
+      "fictionalContract": "Five distinct service integrations satisfy their own scoped acceptance checks and support ownership; repeated tests of one integration count once.",
+      "negativeBoundary": "Five aliases of one partner service or an unsupported direction cannot reach the target.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/calling-achievements.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 10000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Five distinct service integrations satisfy their own scoped acceptance checks and support ownership; repeated tests of one integration count once.",
+      "negativeAcceptance": "Five aliases of one partner service or an unsupported direction cannot reach the target.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/calling-achievements.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "Five aliases of one partner service or an unsupported direction cannot reach the target."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.ln",
+      "representation": "ucc.goal.ln",
+      "classification": "Goal",
+      "fictionalName": "Second site connected",
+      "original": {
+        "id": "progress.goal.ln",
+        "name": "Lay your first fiber",
+        "role": "Drag from your pink router to another city. Short hops are cheap. Oceans are not.",
+        "attributes": {
+          "id": "ln",
+          "t": "Lay your first fiber",
+          "d": "Drag from your pink router to another city. Short hops are cheap. Oceans are not.",
+          "r": 10000,
+          "ok": "()=>S.links.length>0"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.ln",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "8945d769f7f5f8045a8cca5d1f97f5f4c9e5d6b808bd7a03bd85a112150e251d"
+      },
+      "fictionalContract": "Two distinct customer sites have effective purchased or operated connectivity and a successful required inter-site journey.",
+      "negativeBoundary": "Two endpoints on the same site or a purchased circuit still provisioning cannot count.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/site-operations.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 10000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Two distinct customer sites have effective purchased or operated connectivity and a successful required inter-site journey.",
+      "negativeAcceptance": "Two endpoints on the same site or a purchased circuit still provisioning cannot count.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/site-operations.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "Two endpoints on the same site or a purchased circuit still provisioning cannot count."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.bz",
+      "representation": "ucc.goal.bz",
+      "classification": "Goal",
+      "fictionalName": "First managed business contract",
+      "original": {
+        "id": "progress.goal.bz",
+        "name": "Sign a business customer",
+        "role": "Businesses show up with a $ bubble. You need a POP in their city. Check the Deals tab.",
+        "attributes": {
+          "id": "bz",
+          "t": "Sign a business customer",
+          "d": "Businesses show up with a $ bubble. You need a POP in their city. Check the Deals tab.",
+          "r": 12500,
+          "ok": "()=>S.biz.some(b=>!b.scripted)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.bz",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "f511ab8d8797fc141d6e0b26c8524dc6b9ea6fa34fca918e3db394636f912653"
+      },
+      "fictionalContract": "A non-tutorial bid passes qualification, is accepted by a synthetic customer, and creates versioned obligations and a billing commitment.",
+      "negativeBoundary": "A quote, declined offer or automatically seeded tutorial contract cannot count.",
+      "dependencies": [
+        "validated SOC root",
+        "campaign award or typed business/product evidence"
+      ],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": "A player-ordered customer contract is active, billed, supported by an MSP/integrator/BPO role, and has positive revenue and wholesale cost entries.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/41-progression.js",
+      "acceptanceStatus": "not-executed",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 12500,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Derived from validated SOC campaign, business, interaction or product integration state; no user-set completion field.",
+      "positiveAcceptance": "A player-ordered customer contract is active, billed, supported by an MSP/integrator/BPO role, and has positive revenue and wholesale cost entries.",
+      "negativeAcceptance": "A quote, declined offer or automatically seeded tutorial contract cannot count.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/41-progression.js",
+        "src/game/44-campaign.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "This is a partial gameplay milestone, not completion of the mapped source obligation.",
+        "Source-specific distinguishing mechanics and full acceptance coverage remain pending."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.rd",
+      "representation": "ucc.goal.rd",
+      "classification": "Goal",
+      "fictionalName": "The scenic route has a backup",
+      "original": {
+        "id": "progress.goal.rd",
+        "name": "Survive a failure",
+        "role": "Things break all the time. Build a second path or a second upstream so traffic reroutes when something dies.",
+        "attributes": {
+          "id": "rd",
+          "t": "Survive a failure",
+          "d": "Things break all the time. Build a second path or a second upstream so traffic reroutes when something dies.",
+          "r": 12500,
+          "ok": "()=>S.stats.survived>0"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.rd",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "e7b4cb69f854cc9701a46dc0e8f26e843e58b2d2ace9b5b98aad040596a5e4cd"
+      },
+      "fictionalContract": "A staffed, case-bound voice journey survives an observed failure of one named transport domain over an independent effective path and returns after recovery.",
+      "negativeBoundary": "Repairing a path after an unpermitted interruption, or returning the call without the same case, person and tenant, is not continuity.",
+      "dependencies": [],
+      "capabilityDelivery": "The milestone is a synthetic in-game achievement. It does not claim external vendor delivery, attack resistance certification, or source cash payout.",
+      "threshold": {
+        "minutes": 10,
+        "caseBoundJourneys": 3,
+        "domains": 2,
+        "requiredFaultSamples": 1,
+        "maxLatencyMs": 500
+      },
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/39-service-observation.js; src/game/41-progression.js; tests/service-observation.test.js; tests/progression-observation.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 12500,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Start the service-observation pack and open an rd window after a real baseline call. The pack chooses and fails a domain from the saved transport trace; it has no completion flag.",
+      "positiveAcceptance": "Complete the same human caller and retained case journey before, during and after a validated failure-domain injection; the during path excludes the failed domain, uses another domain, remains under 500 ms and has zero required-path interruption.",
+      "negativeAcceptance": "Repairing the primary after an unpermitted outage does not prove continuity, even if the final call succeeds.",
+      "typedUnits": {
+        "thresholds": "fictional gameplay counts and elapsed minutes",
+        "sourceReward": "source-game-cash",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/42-transport.js",
+        "src/game/49-workforce.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "This synthetic transport-domain test does not model Internet-scale DDoS traffic or every source failure mode.",
+        "The original 12,500 source-game-cash reward remains unconverted and unawarded."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.ca",
+      "representation": "ucc.goal.ca",
+      "classification": "Goal",
+      "fictionalName": "Local media or speech service",
+      "original": {
+        "id": "progress.goal.ca",
+        "name": "Host an embedded cache",
+        "role": "Big CDNs give you free cache boxes once you send them enough traffic. Free bandwidth, just add power.",
+        "attributes": {
+          "id": "ca",
+          "t": "Host an embedded cache",
+          "d": "Big CDNs give you free cache boxes once you send them enough traffic. Free bandwidth, just add power.",
+          "r": 12500,
+          "ok": "()=>S.caches.length>0"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.ca",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "967b5021fd7aa83838c465a8d007b65a9cd931888f5354164a32ca9704b8795e"
+      },
+      "fictionalContract": "A local media or speech deployment meets workload, capacity and location constraints; its licence, identity, time and control dependencies remain inspectable.",
+      "negativeBoundary": "Local media with an external control dependency fails a disconnected-operation claim, while remaining eligible for a connected local-media goal.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/calling-achievements.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 12500,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "A local media or speech deployment meets workload, capacity and location constraints; its licence, identity, time and control dependencies remain inspectable.",
+      "negativeAcceptance": "Local media with an external control dependency fails a disconnected-operation claim, while remaining eligible for a connected local-media goal.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/calling-achievements.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "Local media with an external control dependency fails a disconnected-operation claim, while remaining eligible for a connected local-media goal."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.pn",
+      "representation": "ucc.goal.pn",
+      "classification": "Goal",
+      "fictionalName": "Dedicated carrier interconnect",
+      "original": {
+        "id": "progress.goal.pn",
+        "name": "Set up a PNI",
+        "role": "A private cross-connect to one network in the same data center, for when traffic outgrows the IX.",
+        "attributes": {
+          "id": "pn",
+          "t": "Set up a PNI",
+          "d": "A private cross-connect to one network in the same data center, for when traffic outgrows the IX.",
+          "r": 15000,
+          "ok": "()=>S.pni.some(pniOn)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.pn",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "86abc45405d8347fffa6a5c47758a92b2d27af44e3fb3aef2bffb31be69a13be"
+      },
+      "fictionalContract": "A dedicated interconnect completes provisioning and acceptance in both required directions, with independent session admission and media evidence.",
+      "negativeBoundary": "An ordinary shared managed carrier offer or one successful signalling response is insufficient.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/calling-achievements.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 15000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "A dedicated interconnect completes provisioning and acceptance in both required directions, with independent session admission and media evidence.",
+      "negativeAcceptance": "An ordinary shared managed carrier offer or one successful signalling response is insufficient.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/calling-achievements.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "An ordinary shared managed carrier offer or one successful signalling response is insufficient."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.scrub",
+      "representation": "ucc.goal.scrub",
+      "classification": "Goal",
+      "fictionalName": "Communications abuse defences",
+      "original": {
+        "id": "progress.goal.scrub",
+        "name": "Stand up DDoS defences",
+        "role": "Build a scrubbing center from a POP's Infra tab. It cleans attacks up to its capacity and lets you sell DDoS protection.",
+        "attributes": {
+          "id": "scrub",
+          "t": "Stand up DDoS defences",
+          "d": "Build a scrubbing center from a POP's Infra tab. It cleans attacks up to its capacity and lets you sell DDoS protection.",
+          "r": 20000,
+          "ok": "()=>hasScrub()"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.scrub",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "a68d359fcd9665ad9455cdf5a66a2fe05a0b82da0b7863485b301c318cc6d385"
+      },
+      "fictionalContract": "Independent synthetic DDoS, SIP admission and destination-spend controls reject applicable abuse fixtures while an allowed call still succeeds.",
+      "negativeBoundary": "Blocking all calls, adding bandwidth alone or configuring only one protection class cannot pass all required controls.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/calling-achievements.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 20000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Independent synthetic DDoS, SIP admission and destination-spend controls reject applicable abuse fixtures while an allowed call still succeeds.",
+      "negativeAcceptance": "Blocking all calls, adding bandwidth alone or configuring only one protection class cannot pass all required controls.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/calling-achievements.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "Blocking all calls, adding bandwidth alone or configuring only one protection class cannot pass all required controls."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.c3",
+      "representation": "ucc.goal.c3",
+      "classification": "Goal",
+      "fictionalName": "Three-region service footprint",
+      "original": {
+        "id": "progress.goal.c3",
+        "name": "Go global",
+        "role": "Have POPs on 3 continents. Subsea cables cost a fortune, so plan the route.",
+        "attributes": {
+          "id": "c3",
+          "t": "Go global",
+          "d": "Have POPs on 3 continents. Subsea cables cost a fortune, so plan the route.",
+          "r": 50000,
+          "ok": "()=>regionsCount()>=3"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.c3",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "2eb33e8fe15d31f507594fdf0b299f25900f7986998e2e24131456de92b6e334"
+      },
+      "fictionalContract": "An integrated SOC dispatch opens and completes a 60-minute window across three customer roots in three separate market IDs; each has a new contract bill, provider-owned named support person and centrally enforced boundary approval.",
+      "negativeBoundary": "Three jurisdiction-profile labels on one deployment are not three served markets.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "60 sampled minutes; at least 3 distinct market IDs; every active customer has an external billed contract, provider-owned support person, ready contracted resource, and eligible bound information boundary.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 50000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "An integrated SOC dispatch opens and completes a 60-minute window across three customer roots in three separate market IDs; each has a new contract bill, provider-owned named support person and centrally enforced boundary approval.",
+      "negativeAcceptance": "Repeated jurisdiction labels, inactive customers, missing actual staff, unbound boundaries or an existing bill from before the window cannot pass.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.t2",
+      "representation": "ucc.goal.t2",
+      "classification": "Goal",
+      "fictionalName": "Established communications MSP",
+      "original": {
+        "id": "progress.goal.t2",
+        "name": "Become a Tier 2",
+        "role": "5+ POPs, ports on 3+ IXs and 15+ peering sessions.",
+        "attributes": {
+          "id": "t2",
+          "t": "Become a Tier 2",
+          "d": "5+ POPs, ports on 3+ IXs and 15+ peering sessions.",
+          "r": 50000,
+          "ok": "()=>isTier2()"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.t2",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "770c7572c0201f913ce4c7a0b767fe0ad95bb13fcbb719b68f71c03ca2a67749"
+      },
+      "fictionalContract": "Three eligible roots across two markets, two tested integrations bound to deployed resources, and a new bill per customer all produce a passed 60-minute t2 proof.",
+      "negativeBoundary": "Peak customer count before service activation or absence of skilled support invalidates the milestone.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "60 sampled minutes; at least 3 active customers in at least 2 distinct markets; at least 2 distinct current version-scoped synthetic product integrations; new external billing and eligible support for every customer.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 50000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "Three eligible roots across two markets, two tested integrations bound to deployed resources, and a new bill per customer all produce a passed 60-minute t2 proof.",
+      "negativeAcceptance": "A catalogue offer without deployed-resource binding and current successful integration test is not an integration; seat capacity does not count.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.tb",
+      "representation": "ucc.goal.tb",
+      "classification": "Goal",
+      "fictionalName": "A thousand requests, and the hold music still works",
+      "original": {
+        "id": "progress.goal.tb",
+        "name": "Serve 1 Tbps",
+        "role": "A terabit per second of happy traffic.",
+        "attributes": {
+          "id": "tb",
+          "t": "Serve 1 Tbps",
+          "d": "A terabit per second of happy traffic.",
+          "r": 75000,
+          "ok": "()=>R.served>=1000"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.tb",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "4b0d04fef2bfd70dbb471a72bf2fc1834484cae2be8830158b4c36a79d743c4f"
+      },
+      "fictionalContract": "Maintain staffed, case-retaining service over a bounded observation window; people, entitlements, concurrency and completion remain separate typed evidence.",
+      "negativeBoundary": "A momentary peak, purchased bandwidth, empty agent seats, bots or unresolved customer needs do not meet the sustained target.",
+      "dependencies": [],
+      "capabilityDelivery": "The milestone is a synthetic in-game achievement. It does not claim external vendor delivery, attack resistance certification, or source cash payout.",
+      "threshold": {
+        "minutes": 10,
+        "journeys": 12,
+        "completionPercent": 90,
+        "activeBuckets": 8,
+        "people": 2,
+        "concurrentSamples": 3,
+        "concurrent": 2
+      },
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/39-service-observation.js; src/game/41-progression.js; tests/service-observation.test.js; tests/progression-observation.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 75000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Start the service-observation pack and open a tb window after provisioning the queue and two named, individually entitled agents. The module derives results from real service interactions.",
+      "positiveAcceptance": "Across ten consecutive minutes complete at least 12 human service journeys with retained case context and at least 90 percent completion; show activity in eight minute buckets, two assigned people and two concurrent assignments in three sampled minutes.",
+      "negativeAcceptance": "A momentary peak, a bandwidth purchase or technically delivered but unresolved tasks cannot satisfy sustained service quality.",
+      "typedUnits": {
+        "thresholds": "fictional gameplay counts and elapsed minutes",
+        "sourceReward": "source-game-cash",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/42-transport.js",
+        "src/game/49-workforce.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "The fictional workload threshold is not a conversion of the source 1,000 requests or 75,000 source-game-cash reward.",
+        "The full source traffic model remains pending."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.df",
+      "representation": "ucc.goal.df",
+      "classification": "Goal",
+      "fictionalName": "Own service infrastructure",
+      "original": {
+        "id": "progress.goal.df",
+        "name": "Light your own dark fiber",
+        "role": "Lease or dig dark fiber, put a DWDM system on it and light a channel. Cheaper per bit than waves, once it works.",
+        "attributes": {
+          "id": "df",
+          "t": "Light your own dark fiber",
+          "d": "Lease or dig dark fiber, put a DWDM system on it and light a channel. Cheaper per bit than waves, once it works.",
+          "r": 40000,
+          "ok": "()=>S.links.some(l=>l.kind==='df'&&dfCap(l)>0)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.df",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "6b01e8a3aa835cea275e3632eb9291195ed35aab0abd5d54eecfa85ca5757f9f"
+      },
+      "fictionalContract": "Operate a player- or customer-controlled communications deployment with explicit administration, recovery resources, backup custody and a successful restore exercise.",
+      "negativeBoundary": "A cloud subscription described as private does not establish control of the local operating dependencies.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/site-operations.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 40000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Operate a player- or customer-controlled communications deployment with explicit administration, recovery resources, backup custody and a successful restore exercise.",
+      "negativeAcceptance": "A cloud subscription described as private does not establish control of the local operating dependencies.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/site-operations.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A cloud subscription described as private does not establish control of the local operating dependencies."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.m2",
+      "representation": "ucc.goal.m2",
+      "classification": "Goal",
+      "fictionalName": "Independent operating sites",
+      "original": {
+        "id": "progress.goal.m2",
+        "name": "Be in two buildings at once",
+        "role": "Add a second site in a metro from the Infra tab, so one power cut no longer takes the whole city dark.",
+        "attributes": {
+          "id": "m2",
+          "t": "Be in two buildings at once",
+          "d": "Add a second site in a metro from the Infra tab, so one power cut no longer takes the whole city dark.",
+          "r": 30000,
+          "ok": "()=>Object.values(S.pops).some(p=>p.site2)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.m2",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "837260bcb4e43af03095108eb389419eaf3a9541beb7fd76b7ed048132628bea"
+      },
+      "fictionalContract": "Two operating sites survive independent power/site failures and an evaluated shared-risk incident within the continuity budget.",
+      "negativeBoundary": "Two sites behind the same unmitigated power, identity or carrier failure domain fail the independence claim.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/site-operations.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 30000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "Two operating sites survive independent power/site failures and an evaluated shared-risk incident within the continuity budget.",
+      "negativeAcceptance": "Two sites behind the same unmitigated power, identity or carrier failure domain fail the independence claim.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/site-operations.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "Two sites behind the same unmitigated power, identity or carrier failure domain fail the independence claim."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.c5",
+      "representation": "ucc.goal.c5",
+      "classification": "Goal",
+      "fictionalName": "Five-region portfolio",
+      "original": {
+        "id": "progress.goal.c5",
+        "name": "Five continents",
+        "role": "POPs in five of the six regions on the map.",
+        "attributes": {
+          "id": "c5",
+          "t": "Five continents",
+          "d": "POPs in five of the six regions on the map.",
+          "r": 100000,
+          "ok": "()=>regionsCount()>=5"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.c5",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "fb7e99b93ded14288c643da21ae70cb38c13a6b9c841e11b0e11e3d888145829"
+      },
+      "fictionalContract": "Five active roots in the five catalogued geographic markets pass 60 consecutive minute samples and produce a new external contract bill per root; the full serialized SOC save restores.",
+      "negativeBoundary": "Duplicating an AU/US/JP/EU label to invent a fifth approval or counting a map pin without active service fails.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "60 sampled minutes; all 5 distinct market IDs; each active customer has at least one new external contract billing event and eligible live support and boundary evidence.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 100000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "Five active roots in the five catalogued geographic markets pass 60 consecutive minute samples and produce a new external contract bill per root; the full serialized SOC save restores.",
+      "negativeAcceptance": "Two different city IDs sharing one jurisdiction do not replace any of the five distinct markets; an unbilled or unsupported market fails the window.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.gi",
+      "representation": "ucc.goal.gi",
+      "classification": "Goal",
+      "fictionalName": "Major enterprise or public-service contract",
+      "original": {
+        "id": "progress.goal.gi",
+        "name": "Sign a giant",
+        "role": "Land an AI WAN, a multi-site training run or a fiber-pairs deal with a hyperscaler. Customer level 4 and a POP near their campus required.",
+        "attributes": {
+          "id": "gi",
+          "t": "Sign a giant",
+          "d": "Land an AI WAN, a multi-site training run or a fiber-pairs deal with a hyperscaler. Customer level 4 and a POP near their campus required.",
+          "r": 150000,
+          "ok": "()=>S.biz.some(b=>BIZ_T[b.type]&&BIZ_T[b.type].mega&&!BIZ_T[b.type].event)"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.gi",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "af7f3eb410608ce5de3e10d9b707fb72873cc99aa84a6e86f3718812163b854b"
+      },
+      "fictionalContract": "A complex multi-site enterprise or public-service contract passes the whole acceptance set, including migration recovery, evidence custody and operating support.",
+      "negativeBoundary": "A signed large contract or one successful room join cannot substitute for delivered acceptance.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability milestone is an in-game synthetic record; it does not assert external delivery or vendor support.",
+      "threshold": null,
+      "mechanicStatus": "partial",
+      "implementationEvidence": "tests/capability-progression.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 150000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "No separate progression configuration until source-specific mechanics are implemented.",
+      "positiveAcceptance": "A complex multi-site enterprise or public-service contract passes the whole acceptance set, including migration recovery, evidence custody and operating support.",
+      "negativeAcceptance": "A signed large contract or one successful room join cannot substitute for delivered acceptance.",
+      "typedUnits": {
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "tests/capability-progression.test.js"
+      ],
+      "remainingGaps": [
+        null,
+        "A signed large contract or one successful room join cannot substitute for delivered acceptance."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.t10",
+      "representation": "ucc.goal.t10",
+      "classification": "Goal",
+      "fictionalName": "The giants can wait on hold",
+      "original": {
+        "id": "progress.goal.t10",
+        "name": "Serve 10 Tbps",
+        "role": "Ten terabits per second of happy traffic. The giants will notice.",
+        "attributes": {
+          "id": "t10",
+          "t": "Serve 10 Tbps",
+          "d": "Ten terabits per second of happy traffic. The giants will notice.",
+          "r": 250000,
+          "ok": "()=>R.served>=10000"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.t10",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "f4597a6b69c7c49bbe4b9c0b8339bc12165d3ad688d73bbb1ca7a615883b36f1"
+      },
+      "fictionalContract": "Sustain a larger mixed contact floor across voice, digital and meetings with separately evidenced resolved tasks, assigned people and concurrency.",
+      "negativeBoundary": "More agent licences do not create people; bot containment and pending customer tasks do not count as finished service.",
+      "dependencies": [],
+      "capabilityDelivery": "The milestone is a synthetic in-game achievement. It does not claim external vendor delivery, attack resistance certification, or source cash payout.",
+      "threshold": {
+        "minutes": 15,
+        "journeys": 30,
+        "completionPercent": 90,
+        "activeBuckets": 12,
+        "people": 4,
+        "concurrentSamples": 5,
+        "concurrent": 4,
+        "voice": 8,
+        "digital": 8,
+        "meetings": 2
+      },
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/39-service-observation.js; src/game/41-progression.js; tests/service-observation.test.js; tests/progression-observation.test.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 250000,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Start the service-observation pack and open a t10 window only after voice, digital, meeting and workforce dependencies are ready. The module derives every channel and assignment count from root evidence.",
+      "positiveAcceptance": "Across fifteen consecutive minutes complete 30 human service journeys with at least 90 percent completion and activity in twelve minute buckets; include eight resolved voice and eight resolved digital journeys, two successful meeting dispatches, four distinct assigned people and four concurrent assignments in five samples.",
+      "negativeAcceptance": "Increasing agent licences without people, or treating a bot reply as a completed task, fails the target.",
+      "typedUnits": {
+        "thresholds": "fictional gameplay counts and elapsed minutes",
+        "sourceReward": "source-game-cash",
+        "conversionToCommunicationsUnits": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/42-transport.js",
+        "src/game/49-workforce.js",
+        "src/game/55-communications.js"
+      ],
+      "remainingGaps": [
+        "The fictional workload threshold is not a conversion of the source 10,000 requests or 250,000 source-game-cash reward.",
+        "The complete source high-volume model remains pending."
+      ]
+    },
+    {
+      "sourceId": "progress.goal.t1",
+      "representation": "ucc.goal.t1",
+      "classification": "Goal",
+      "fictionalName": "Sustainable ecosystem operator",
+      "original": {
+        "id": "progress.goal.t1",
+        "name": "Go transit-free: Tier 1!",
+        "role": "Peer with every Tier 1 over PNIs and cancel every transit port. Then nobody charges you to reach the internet.",
+        "attributes": {
+          "id": "t1",
+          "t": "Go transit-free: Tier 1!",
+          "d": "Peer with every Tier 1 over PNIs and cancel every transit port. Then nobody charges you to reach the internet.",
+          "r": 0,
+          "win": true,
+          "ok": "()=>isTier1()"
+        },
+        "sourceFile": "src/game/40-progress/20-goals.js",
+        "sourceSymbol": "GOALS.t1",
+        "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js",
+        "sha256": "c252768f78d2367ae6566ef92a1c6856e3635cf6253cd3cc334a2daf84930705"
+      },
+      "fictionalContract": "Four track roots each pass real same-case independent-path rd continuity, each produces an in-window external bill, and aggregate business ledger revenue minus cost is positive.",
+      "negativeBoundary": "A grant, loan drawdown, internal subsidiary transfer or diagnostic-ledger balance cannot manufacture operating profit.",
+      "dependencies": [],
+      "capabilityDelivery": "Capability evidence is a synthetic in-game qualification. It does not assert external customer delivery, real legal compliance, or vendor support.",
+      "threshold": "60 sampled minutes; all 4 distinct scenario tracks; a fresh passed rd continuity proof per customer; at least one new external bill per customer; positive aggregate business revenue less costs.",
+      "mechanicStatus": "partial",
+      "implementationEvidence": "src/game/36-market-qualification.js and src/game/41-progression.js",
+      "acceptanceStatus": "partial-mechanic-tested",
+      "narrative": null,
+      "sourceRewards": {
+        "sourceValue": 0,
+        "sourceUnit": "source-game-cash",
+        "conversion": "none"
+      },
+      "productOrgRoleClass": {
+        "classification": "Goal",
+        "productOrOrgOrRole": "gameplay-capability"
+      },
+      "configurationSurface": "Validated root dispatch: start market-qualification, then open-window with the source-specific qualification ID. Readiness is derived from current portfolio roots; no completion flag is configurable.",
+      "positiveAcceptance": "Four track roots each pass real same-case independent-path rd continuity, each produces an in-window external bill, and aggregate business ledger revenue minus cost is positive.",
+      "negativeAcceptance": "Loans, funding, internal transfers, cached continuity proofs, or a deficit after costs cannot satisfy the external-profit and fresh-continuity predicates.",
+      "typedUnits": {
+        "observation": "minutes",
+        "markets": "distinct configured geographic market IDs",
+        "billing": "external business ledger entries",
+        "money": "integer cents",
+        "sourceConversion": "none"
+      },
+      "currentMechanicLinks": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/41-progression.js",
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/market-qualification.test.js",
+        "tests/progression-market.test.js"
+      ],
+      "remainingGaps": [
+        "This is a partial synthetic gameplay mechanic, not completion of the mapped source obligation.",
+        "Original source numeric bandwidth, POP, continent, scale or reward semantics remain preserved as provenance and are not converted into these communications thresholds."
+      ]
+    }
+  ],
+  "runtime": {
+    "PACK": "soc-progression-1",
+    "VERSION": 1,
+    "CONTENT": "soc-progression-content-2",
+    "levelIds": [
+      "progress.progression-level.1",
+      "progress.progression-level.2",
+      "progress.progression-level.3",
+      "progress.progression-level.4",
+      "progress.progression-level.5",
+      "progress.progression-level.6",
+      "progress.progression-level.7",
+      "progress.progression-level.8",
+      "progress.progression-level.9",
+      "progress.progression-level.10",
+      "progress.progression-level.11",
+      "progress.progression-level.12",
+      "progress.progression-level.13"
+    ],
+    "goalIds": [
+      "progress.goal.bb",
+      "progress.goal.tr",
+      "progress.goal.ix",
+      "progress.goal.p5",
+      "progress.goal.ln",
+      "progress.goal.bz",
+      "progress.goal.rd",
+      "progress.goal.ca",
+      "progress.goal.pn",
+      "progress.goal.scrub",
+      "progress.goal.c3",
+      "progress.goal.t2",
+      "progress.goal.tb",
+      "progress.goal.df",
+      "progress.goal.m2",
+      "progress.goal.c5",
+      "progress.goal.gi",
+      "progress.goal.t10",
+      "progress.goal.t1"
+    ],
+    "implementedGoals": [
+      "progress.goal.bb",
+      "progress.goal.ix",
+      "progress.goal.bz",
+      "progress.goal.rd",
+      "progress.goal.tb",
+      "progress.goal.t10",
+      "progress.goal.c3",
+      "progress.goal.c5",
+      "progress.goal.t2",
+      "progress.goal.t1",
+      "progress.goal.tr",
+      "progress.goal.p5",
+      "progress.goal.ca",
+      "progress.goal.pn",
+      "progress.goal.scrub",
+      "progress.goal.ln",
+      "progress.goal.df",
+      "progress.goal.m2",
+      "progress.goal.gi"
+    ],
+    "implementedLevels": [
+      "progress.progression-level.1",
+      "progress.progression-level.2",
+      "progress.progression-level.7",
+      "progress.progression-level.13",
+      "progress.progression-level.3",
+      "progress.progression-level.4",
+      "progress.progression-level.5",
+      "progress.progression-level.6",
+      "progress.progression-level.8",
+      "progress.progression-level.9",
+      "progress.progression-level.10",
+      "progress.progression-level.11",
+      "progress.progression-level.12"
+    ]
+  }
+}

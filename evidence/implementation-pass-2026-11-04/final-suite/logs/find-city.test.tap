@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: find a city by its name, without accents, by country or by its exchange (\#218)
+ok 1 - find a city by its name, without accents, by country or by its exchange (\#218)
+  ---
+  duration_ms: 774.693157
+  type: 'test'
+  ...
+# Subtest: the search box opens with / or the HUD button, Enter jumps to the first city, Escape closes
+ok 2 - the search box opens with / or the HUD button, Enter jumps to the first city, Escape closes
+  ---
+  duration_ms: 395.095845
+  type: 'test'
+  ...
+# Subtest: in German, a German country name finds the city, and the search works on a phone
+ok 3 - in German, a German country name finds the city, and the search works on a phone
+  ---
+  duration_ms: 375.473768
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6765.420665

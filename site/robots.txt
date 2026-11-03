@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seriesoftub.es/sitemap.xml
+Sitemap: https://zanefounty.github.io/series-of-calls/sitemap.xml

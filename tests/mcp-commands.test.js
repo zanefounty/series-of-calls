@@ -7,7 +7,6 @@ const path = require('node:path');
 const { createSession, TOOLS, actArgs } = require('../scripts/lib/mcp-game');
 
 const tools = (s) => (name, args = {}) => TOOLS.find((t) => t.name === name).run(s, args);
-const BIG = path.join(__dirname, 'fixtures', 'big-network.json');
 // A sandbox network (money and every level, nothing breaks) with a POP in each city, broadband and transit at home.
 function sandbox({ city = 'fra', pops = ['ams'], seed = 7 } = {}) {
   const s = createSession(), T = tools(s), ev = (x) => s.game.ev(x);
@@ -16,6 +15,15 @@ function sandbox({ city = 'fra', pops = ['ams'], seed = 7 } = {}) {
   T('act', { action: 'buyTransit', args: { city, net: 'cog', tier: 1 } });
   for (const c of pops) T('act', { action: 'buildLink', args: { a: city, b: c, tier: 1 } });
   return { s, T, ev };
+}
+// Use the current app's canonical export envelope for tests that need a populated save. The historical
+// Series of Tubes fixture remains covered as a deliberately rejected foreign save in mcp.test.js.
+function populatedSave() {
+  const { T, ev } = sandbox({ city: 'fra', pops: ['ams', 'par'], seed: 37 });
+  T('act', { action: 'coreUp' });
+  ev(`for(let n=0;n<130;n++)S.biz.push({id:uid(),city:'fra',city2:null,reqs:[],name:'Example '+n,type:'dia',bw:10,rate:5,mood:100,since:0});compute()`);
+  T('advance', { days: 3 });
+  return JSON.stringify(T('export_save'));
 }
 const act = (T, action, args, dryRun) => T('act', { action, args, dryRun });
 
@@ -56,7 +64,8 @@ test('every declared argument is one the action really reads', () => {
 test('the state and results references cover every field', () => {
   const s = createSession(), T = tools(s), ev = (x) => s.game.ev(x);
   const docs = T('schema', { section: 'state' }), rdoc = T('schema', { section: 'results' });
-  for (const [label, setup] of [['a new game', () => {}], ['a scenario', () => T('act', { action: 'startScn', args: { id: 'stg' } })], ['the big network', () => T('load_save', { path: BIG })]]) {
+  const saved = populatedSave();
+  for (const [label, setup] of [['a new game', () => {}], ['a scenario', () => T('act', { action: 'startScn', args: { id: 'stg' } })], ['a populated Series of Calls save', () => T('load_save', { json: saved })]]) {
     setup();
     assert.deepEqual(Object.keys(T('state')).filter((k) => !docs[k]), [], `${label}: every state field has a line in schema state`);
     assert.deepEqual(Object.keys(T('results')).filter((k) => !rdoc[k]), [], `${label}: every results field has a line in schema results`);
@@ -306,8 +315,8 @@ test('the dashboard, the bank, the left drawer and the puzzle box read as text; 
   assert.equal(pz.where, 'puzzle', 'a puzzle shows its box');
   assert.ok(pz.text.length > 50);
   // A big network's panel is longer than one page.
-  T('load_save', { path: BIG });
-  const p1 = T('panel', { city: 'fra', tab: 'peer' });
+  T('load_save', { json: populatedSave() });
+  const p1 = T('panel', { city: 'fra', tab: 'cust' });
   assert.match(p1.textMore || '', /offset \d+/, 'the panel says where the next page starts');
   const off = +/offset (\d+)/.exec(p1.textMore)[1];
   const p2 = T('screen', { where: 'panel', offset: off });

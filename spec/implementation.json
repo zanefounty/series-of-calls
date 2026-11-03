@@ -1,0 +1,6522 @@
+{
+  "scope": "Tested communications, service operations, information and initial commercial mechanics; complete distinctive source fidelity remains pending review.; recent bounded workforce/BPO, allowance-pool, local-speech, artwork-entry and compact browser-harness mechanics are registered as partial and do not establish full source fidelity or browser campaign acceptance.",
+  "behaviours": [
+    {
+      "id": "BEH-SOC-001",
+      "sources": [
+        "DEC-008"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-001"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-002",
+      "sources": [
+        "uc-new:domain:directory-dialplan"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-002"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-003",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-003"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-004",
+      "sources": [
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-004"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-005",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-005"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-006",
+      "sources": [
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-006"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-007",
+      "sources": [
+        "uc-new:domain:room-joining"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-007"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-008",
+      "sources": [
+        "uc-new:domain:information-lineage"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-008"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-009",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-009"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-010",
+      "sources": [
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-010"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-011",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-011"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-012",
+      "sources": [
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-012"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-013",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-013"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-014",
+      "sources": [
+        "uc-new:domain:migration"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-014"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-015",
+      "sources": [
+        "DEC-007",
+        "DEC-008",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:identity"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-015"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-016",
+      "sources": [
+        "DEC-007",
+        "uc-new:domain:pricing",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-016"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-017",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-017"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-018",
+      "sources": [
+        "DEC-013",
+        "uc-new:domain:eligibility"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-018"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-019",
+      "sources": [
+        "DEC-010",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-019"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-020",
+      "sources": [
+        "DEC-007",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-020"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-021",
+      "sources": [
+        "DEC-007",
+        "uc-new:domain:substitution",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-021"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-022",
+      "sources": [
+        "DEC-013",
+        "DEC-012",
+        "uc-new:segment:smb",
+        "uc-new:segment:enterprise",
+        "uc-new:segment:government",
+        "uc-new:segment:defence"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-022"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-023",
+      "sources": [
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-023"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-024",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-024"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-025",
+      "sources": [
+        "uc-new:domain:directory-dialplan"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-025"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-026",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-026"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-027",
+      "sources": [
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-027"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-028",
+      "sources": [
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-028"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-029",
+      "sources": [
+        "uc-new:domain:migration"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-029"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-030",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-030"
+      ],
+      "status": "verified-service-mechanic"
+    },
+    {
+      "id": "BEH-SOC-031",
+      "sources": [
+        "uc-new:domain:information-lineage",
+        "uc-new:domain:speech-processing"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-031"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-032",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:speech-processing"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-032"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-033",
+      "sources": [
+        "uc-new:domain:information-lineage",
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-033"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-034",
+      "sources": [
+        "uc-new:domain:recording",
+        "uc-new:domain:information-lineage"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-034"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-035",
+      "sources": [
+        "uc-new:domain:room-joining"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-035"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-036",
+      "sources": [
+        "uc-new:domain:continuity",
+        "uc-new:domain:room-joining"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-036"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-037",
+      "sources": [
+        "uc-new:domain:speech-processing"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-037"
+      ],
+      "status": "verified-information-mechanic"
+    },
+    {
+      "id": "BEH-SOC-038",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-038"
+      ],
+      "status": "verified-campaign-mechanic"
+    },
+    {
+      "id": "BEH-SOC-039",
+      "sources": [
+        "uc-new:domain:workforce",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-039"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-040",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-040"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-041",
+      "sources": [
+        "uc-new:domain:workforce",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-041"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-042",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-042"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-043",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-043"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-044",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-044"
+      ],
+      "status": "verified-contact-mechanic"
+    },
+    {
+      "id": "BEH-SOC-045",
+      "sources": [
+        "uc-new:domain:directory-dialplan"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-045"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-046",
+      "sources": [
+        "uc-new:domain:directory-dialplan"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-046"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-047",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-047"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-048",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-048"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-049",
+      "sources": [
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-049"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-050",
+      "sources": [
+        "uc-new:domain:media"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-050"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-051",
+      "sources": [
+        "uc-new:domain:emergency"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-051"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-052",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/50-calling.js"
+      ],
+      "testIds": [
+        "AC-SOC-052"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-053",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-053"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-054",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-054"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-055",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-055"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-056",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-056"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-057",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-057"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-058",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js"
+      ],
+      "testIds": [
+        "AC-SOC-058"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-059",
+      "sources": [
+        "uc-new:domain:discovery"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-059"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-060",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-060"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-061",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-061"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-062",
+      "sources": [
+        "uc-new:domain:migration"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-062"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-063",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:domain:migration"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-063"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-064",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:information-lineage"
+      ],
+      "implementation": [
+        "src/game/48-estate.js"
+      ],
+      "testIds": [
+        "AC-SOC-064"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-065",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-065"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-066",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-066"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-067",
+      "sources": [
+        "uc-new:domain:workforce",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-067"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-068",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:media",
+        "uc-new:domain:emergency"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-068"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-069",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-069"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-070",
+      "sources": [
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/49-workforce.js",
+        "src/game/50-calling.js",
+        "src/game/51-contact.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-070"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded acceptance case; full source adaptation remains pending."
+    },
+    {
+      "id": "BEH-SOC-071",
+      "sources": [
+        "company-map:network:lvl",
+        "company-map:network:ntt",
+        "company-map:network:tly",
+        "company-map:network:cog",
+        "company-map:network:drz",
+        "company-map:network:sgt",
+        "company-map:network:cmc",
+        "company-map:network:nfx",
+        "company-map:network:ggl",
+        "company-map:network:msf",
+        "company-map:network:fbk",
+        "company-map:network:akm",
+        "company-map:network:cfl",
+        "company-map:provider-edge:nfx",
+        "company-map:provider-edge:ggl",
+        "company-map:provider-edge:fbk",
+        "company-map:provider-edge:akm",
+        "company-map:provider-edge:cfl",
+        "asset:RG:0",
+        "asset:RG:1",
+        "asset:RG:2",
+        "asset:RG:3",
+        "asset:RG:4",
+        "asset:RG:5",
+        "asset:RG:6",
+        "asset:RG:7",
+        "asset:RG:8",
+        "asset:RG:9",
+        "asset:RG:10",
+        "asset:RG:11",
+        "asset:RG:12",
+        "asset:RG:13",
+        "asset:RG:14",
+        "asset:RG:15",
+        "asset:RG:16",
+        "asset:SLOW_BOOT:0",
+        "asset:SLOW_BOOT:1",
+        "asset:SLOW_BOOT:2",
+        "asset:SLOW_BOOT:3",
+        "asset:SLOW_BOOT:4",
+        "asset:SLOW_BOOT:5",
+        "asset:SLOW_BOOT:6",
+        "ai-dialogue:0",
+        "ai-dialogue:1",
+        "ai-dialogue:2",
+        "ai-dialogue:3",
+        "ai-dialogue:4",
+        "ai-dialogue:5",
+        "ai-persona:0",
+        "ai-persona:1",
+        "ai-persona:2",
+        "ai-persona:3",
+        "ai-persona:4",
+        "ai-persona:5",
+        "progress.quote-delay-response.0",
+        "progress.quote-delay-response.1",
+        "progress.quote-delay-response.2",
+        "progress.quote-delay-response.3",
+        "progress.fictional-supplier-add-on.0",
+        "progress.fictional-supplier-add-on.1",
+        "progress.fictional-supplier-add-on.2",
+        "progress.fictional-supplier-add-on.3",
+        "progress.fictional-supplier-add-on.4",
+        "progress.fictional-supplier-add-on.5",
+        "progress.fictional-supplier-add-on.6",
+        "progress.finance-flavour.0",
+        "progress.finance-flavour.1",
+        "progress.finance-flavour.2",
+        "progress.finance-flavour.3",
+        "progress.finance-flavour.4",
+        "progress.finance-flavour.5",
+        "progress.progression-level.1",
+        "progress.progression-level.2",
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.7",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.progression-level.13",
+        "company-map:network:tat",
+        "company-map:network:tng",
+        "company-map:network:vdp",
+        "company-map:network:ctc",
+        "company-map:network:cun",
+        "company-map:network:cmb",
+        "company-map:network:dtk",
+        "company-map:network:amz",
+        "company-map:network:bdc",
+        "company-map:network:slw",
+        "company-map:network:tcs",
+        "company-map:network:abc",
+        "company-map:network:byd",
+        "company-map:network:rtc",
+        "company-map:network:ydx",
+        "company-map:network:vkl",
+        "company-map:network:ets",
+        "company-map:network:tmx",
+        "company-map:network:bcd",
+        "company-map:network:tsf",
+        "company-map:network:pld",
+        "company-map:network:spk",
+        "company-map:network:tsy",
+        "company-map:network:liq",
+        "company-map:network:scm",
+        "company-map:network:agc",
+        "company-map:network:djt",
+        "company-map:network:mtx",
+        "company-map:network:art",
+        "company-map:network:eth",
+        "company-map:network:mrc",
+        "company-map:network:sfc",
+        "company-map:network:teg",
+        "company-map:network:clr",
+        "company-map:network:viv"
+      ],
+      "implementation": [
+        "content/narrative.json",
+        "src/game/88-narrative.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-071"
+      ],
+      "status": "verified-text-adaptation",
+      "scope": "Text, provenance and UI only; source-specific mechanics remain partial."
+    },
+    {
+      "id": "BEH-SOC-072",
+      "sources": [
+        "uc-new:domain:messages",
+        "uc-new:domain:eligibility"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-072"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-073",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-073"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-074",
+      "sources": [
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-074"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-075",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-075"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-076",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-076"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-077",
+      "sources": [
+        "uc-new:domain:messages",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-077"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-078",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/channels.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-078"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-079",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-079"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-080",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-080"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-081",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-081"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-082",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-082"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-083",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-083"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-084",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/outcomes.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-084"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-085",
+      "sources": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:microsoft:contact-center",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:microsoft:local",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:cisco:dedicated-premises",
+        "uc-new:family:cisco:contact-center",
+        "uc-new:family:cisco:programmable-engagement",
+        "uc-new:family:cisco:meetings-devices",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:family:cisco:government",
+        "uc-new:family:cisco:local-speech",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-085"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-086",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-086"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-087",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-087"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-088",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-088"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-089",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:eligibility"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-089"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-090",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/products.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-090"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded synthetic acceptance evidence; complete source fidelity and release coverage remain pending."
+    },
+    {
+      "id": "BEH-SOC-091",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:provisioning",
+        "uc-new:domain:signalling",
+        "uc-new:domain:room-joining",
+        "uc-new:domain:speech-processing"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "tests/product-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-091"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded shared-kernel product binding paths; broader feature delivery and full vendor compatibility remain unverified."
+    },
+    {
+      "id": "BEH-SOC-092",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:provisioning",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "tests/product-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-092"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Bounded shared-kernel product binding paths; broader feature delivery and full vendor compatibility remain unverified."
+    },
+    {
+      "id": "BEH-SOC-093",
+      "sources": [
+        "uc-new:domain:messages",
+        "uc-new:domain:identity"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-093"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies queue eligibility and delivery receipt behavior after acceptance, including post-acceptance identity removal; this does not model a live messaging provider."
+    },
+    {
+      "id": "BEH-SOC-094",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:messages",
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-094"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies bounded unresolved bot containment and a same-case repeat with a distinct usage token; it does not model external billing."
+    },
+    {
+      "id": "BEH-SOC-095",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-095"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies synthetic task evidence is distinct from bot-answer completion; it does not verify an external business system."
+    },
+    {
+      "id": "BEH-SOC-096",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-096"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies canonical person, tenant, case and concurrent-need binding in the synthetic application state."
+    },
+    {
+      "id": "BEH-SOC-097",
+      "sources": [
+        "uc-new:domain:cpaas-workflows",
+        "uc-new:domain:provisioning",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-097"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies an unavailable supported task integration remains unresolved; the supported integration set is intentionally bounded."
+    },
+    {
+      "id": "BEH-SOC-098",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "tests/journey-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-098"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted journey suite verifies worker execution, validated saves and pure calculation parity for this path."
+    },
+    {
+      "id": "BEH-SOC-099",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-099"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-100",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/46-outcomes.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-100"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-101",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-101"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-102",
+      "sources": [
+        "uc-new:domain:identity",
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-102"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-103",
+      "sources": [
+        "uc-new:domain:messages"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-103"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-104",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-104"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-105",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-105"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-106",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "tests/advanced-boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-106"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Bounded adversarial save/lifecycle case; does not establish complete source parity."
+    },
+    {
+      "id": "BEH-SOC-107",
+      "sources": [
+        "uc-new:domain:journey-testing",
+        "DEC-012"
+      ],
+      "implementation": [
+        "content/campaign.json",
+        "src/game/44-campaign.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-107"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign content identity, worker source and optional save compatibility are checked. The 13 source levels and 19 source goals remain pending rather than credited as implemented."
+    },
+    {
+      "id": "BEH-SOC-108",
+      "sources": [
+        "uc-new:domain:journey-testing",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-108"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign windows sample each elapsed minute and make skipped samples or configuration changes sticky failures."
+    },
+    {
+      "id": "BEH-SOC-109",
+      "sources": [
+        "uc-new:domain:continuity",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-109"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Recovery evidence requires an actual validated fault, time under fault, a real recovery command and a new successful interaction."
+    },
+    {
+      "id": "BEH-SOC-110",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-110"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign service evidence requires a new resolved interaction with retained case context."
+    },
+    {
+      "id": "BEH-SOC-111",
+      "sources": [
+        "DEC-001",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-111"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Sandbox switching restores the saved track root snapshot and does not grant progression awards."
+    },
+    {
+      "id": "BEH-SOC-112",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:journey-testing",
+        "DEC-013"
+      ],
+      "implementation": [
+        "content/campaign.json",
+        "spec/work-packages/campaign-obligations.json",
+        "src/game/44-campaign.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-112"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Track and jurisdiction constraints remain isolated; unsupported original campaign objectives stay explicitly pending. This does not complete the four-track source campaign."
+    },
+    {
+      "id": "BEH-SOC-113",
+      "sources": [
+        "DEC-011",
+        "DEC-012",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-113"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign save validation binds tested awards, incident and observation-window structures; inspect and fingerprint reads are pure."
+    },
+    {
+      "id": "BEH-SOC-114",
+      "sources": [
+        "uc-new:domain:journey-testing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-114"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign readiness alone does not award progression: four distinct passing windows and current effective-service readiness are required for the covered award path."
+    },
+    {
+      "id": "BEH-SOC-115",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "uc-new:domain:identity"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "tests/estate-lifecycle-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-115"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted leaver integration revokes modeled identity, number and group access while retaining historical accepted-message bindings; this is synthetic lifecycle state, not an external directory action."
+    },
+    {
+      "id": "BEH-SOC-116",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "tests/estate-lifecycle-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-116"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted retries require current connector authority and per-resource generation; active workforce assignment handling is bounded synthetic behavior."
+    },
+    {
+      "id": "BEH-SOC-117",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "tests/estate-lifecycle-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-117"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted native-room compatibility checks use modeled product version, mode, room firmware and resource prerequisites; they do not assert external certification or interoperability."
+    },
+    {
+      "id": "BEH-SOC-118",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "tests/estate-lifecycle-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-118"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Targeted estate lifecycle and device cases retain deterministic replay, worker execution and save validation for covered states."
+    },
+    {
+      "id": "BEH-SOC-119",
+      "sources": [
+        "RES-AU-CLOUD-001",
+        "RES-US-CLOUD-001",
+        "RES-JP-CLOUD-001",
+        "RES-EU-TRANSFER-001"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-119"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "One synthetic contract staging case verifies desired/effective/provisioning separation; profiles are illustrative constraints, not legal determinations."
+    },
+    {
+      "id": "BEH-SOC-120",
+      "sources": [
+        "RES-AU-CLOUD-001",
+        "RES-US-CLOUD-001",
+        "RES-JP-CLOUD-001",
+        "RES-EU-TRANSFER-001"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-120"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Four fictional boundary profiles expose distinct explicit runtime rules; this is not a legal or jurisdictional compliance assessment."
+    },
+    {
+      "id": "BEH-SOC-121",
+      "sources": [
+        "RES-US-CLOUD-001",
+        "RES-JP-CLOUD-001"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-121"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Synthetic authorization, evidence and service-registration fields produce explicit blockers for the exercised US and Japan profiles; no legal conclusion is made."
+    },
+    {
+      "id": "BEH-SOC-122",
+      "sources": [
+        "RES-AU-CLOUD-001",
+        "RES-EU-TRANSFER-001"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-122"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Modeled information classifications, declared locations and transfer paths are evaluated against a selected synthetic profile."
+    },
+    {
+      "id": "BEH-SOC-123",
+      "sources": [
+        "RES-JP-CLOUD-001",
+        "RES-EU-TRANSFER-001"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-123"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Synthetic key-custody and administration observations are checked independently; profiles do not encode legal advice."
+    },
+    {
+      "id": "BEH-SOC-124",
+      "sources": [
+        "RES-AU-CLOUD-001",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-124"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Disconnected continuity requires modeled local services, key custody and active grace conditions; the case is synthetic."
+    },
+    {
+      "id": "BEH-SOC-125",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:information-lineage"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-125"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Evaluation reports multiple path-specific blockers and remains read-only for the exercised contract."
+    },
+    {
+      "id": "BEH-SOC-126",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:information-lineage",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "tests/boundaries.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-126"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Save validation rejects the tested stale and tampered state while fingerprints change for staged or observed policy inputs."
+    },
+    {
+      "id": "BEH-SOC-127",
+      "sources": [
+        "uc-new:domain:provisioning",
+        "asset:LT:0",
+        "asset:VXC:0",
+        "progress.operations-mechanic.pni-order",
+        "DEC-014"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-127"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Targeted construction cases distinguish purchased and owned link capacity and the configured lead time."
+    },
+    {
+      "id": "BEH-SOC-128",
+      "sources": [
+        "uc-new:domain:media",
+        "asset:LT:0",
+        "asset:PORT:0",
+        "DEC-010"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-128"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Synthetic voice and meeting media profiles reserve bidirectional bandwidth independently of workforce and seat counts."
+    },
+    {
+      "id": "BEH-SOC-129",
+      "sources": [
+        "uc-new:domain:continuity",
+        "asset:lagF/ixLagF:",
+        "asset:dfCap/dfCap0/capOf:"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-129"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Modeled shared-domain failures affect independent routes and reservations; the exercised recovery path is synthetic."
+    },
+    {
+      "id": "BEH-SOC-130",
+      "sources": [
+        "DEC-007",
+        "DEC-014",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-130"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Owned repair consumes modeled stock and crew, while an independent domain fault continues to block the path."
+    },
+    {
+      "id": "BEH-SOC-131",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "asset:LT:0",
+        "asset:VXC:0",
+        "DEC-010",
+        "DEC-014"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-131"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Targeted contract-backed capacity avoids standalone recurring charges and uncontracted capacity records synthetic external cost."
+    },
+    {
+      "id": "BEH-SOC-132",
+      "sources": [
+        "DEC-011",
+        "DEC-012",
+        "asset:LT:0",
+        "asset:VXC:0"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "tests/transport-boundaries.test.js",
+        "tests/transport.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-132"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Covered transport worker source, valid save replay, corrupted route/cost rejection and unnumbered adversarial tests for stock reconciliation and billing-period history."
+    },
+    {
+      "id": "BEH-SOC-133",
+      "sources": [
+        "uc-new:domain:media",
+        "uc-new:domain:room-joining",
+        "uc-new:domain:continuity",
+        "asset:LT:0",
+        "asset:dfCap/dfCap0/capOf:"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "src/game/55-communications.js",
+        "tests/domain-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-133"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Synthetic call admission and meeting join paths share modeled bandwidth capacity and respond to a shared transport-domain failure; this does not simulate a carrier network."
+    },
+    {
+      "id": "BEH-SOC-134",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "DEC-011",
+        "DEC-014",
+        "asset:LT:0"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/domain-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-134"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Synthetic transport invoices reconcile once with business cash and external invoice records; tested save, worker and repeated-calculation paths agree."
+    },
+    {
+      "id": "BEH-SOC-135",
+      "sources": [
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:information-lineage",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/domain-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-135"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Modeled actual resource locations and generations are checked against bound synthetic boundary contracts in four profiles; results are fictional operational gates, not legal determinations."
+    },
+    {
+      "id": "BEH-SOC-136",
+      "sources": [
+        "uc-new:domain:continuity",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/43-boundaries.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "tests/domain-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-136"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "A disconnected synthetic scenario uses modeled connectivity and an expiring local-license grace window; reads remain pure and save replay is covered."
+    },
+    {
+      "id": "BEH-SOC-137",
+      "sources": [
+        "DEC-001",
+        "DEC-011",
+        "DEC-012",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-137"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Shared dispatch completes and awards each of four campaign tracks across the four jurisdiction profiles; repeat assessment does not duplicate awards and switching tracks restores its saved root."
+    },
+    {
+      "id": "BEH-SOC-138",
+      "sources": [
+        "uc-new:domain:media",
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-138"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "The assessed campaign accepts an alternate voice path and an interoperable bridge meeting for SMB and enterprise scenarios."
+    },
+    {
+      "id": "BEH-SOC-139",
+      "sources": [
+        "uc-new:domain:journey-testing",
+        "uc-new:domain:provisioning",
+        "uc-new:domain:continuity",
+        "DEC-008"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-139"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Closed evidence becomes stale after endpoint changes, service interruptions make windows fail, and save validation rejects a forged passing window."
+    },
+    {
+      "id": "BEH-SOC-140",
+      "sources": [
+        "DEC-011",
+        "DEC-012",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/campaign-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-140"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Campaign dispatch matches worker execution; save/restore preserves replay equivalence and campaign calculation is pure."
+    },
+    {
+      "id": "BEH-SOC-141",
+      "sources": [
+        "progress.progression-level.1",
+        "progress.progression-level.13",
+        "progress.goal.bb",
+        "progress.goal.t1"
+      ],
+      "implementation": [
+        "content/progression.json",
+        "src/game/41-progression.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-141"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "All 32 progression source records retain original attributes and hashes, narrative links, and explicit pending rows in the progression content pack."
+    },
+    {
+      "id": "BEH-SOC-142",
+      "sources": [
+        "progress.progression-level.1",
+        "progress.goal.bb",
+        "progress.goal.ix",
+        "progress.goal.bz"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-142"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Empty and sandbox states do not unlock progression; pending source goals remain unclaimable and pure calculation does not mutate pack state."
+    },
+    {
+      "id": "BEH-SOC-143",
+      "sources": [
+        "progress.goal.bz"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "src/game/54-business.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-143"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "The managed-contract goal needs player-ordered accepted business, active supported service, accountable support and observed billing evidence."
+    },
+    {
+      "id": "BEH-SOC-144",
+      "sources": [
+        "progress.goal.bb",
+        "progress.progression-level.1"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-144"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "First-customer-live evidence requires the assessed SMB campaign award and retained resolved case lineage from SOC journeys."
+    },
+    {
+      "id": "BEH-SOC-145",
+      "sources": [
+        "progress.goal.bb",
+        "progress.goal.bz",
+        "progress.progression-level.1"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-145"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Explicit milestone claims issue one achievement badge once, update the progression fingerprint, and do not convert source cash values into business balance."
+    },
+    {
+      "id": "BEH-SOC-146",
+      "sources": [
+        "progress.goal.ix"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "src/game/45-products.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-146"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "The integration goal requires current tested product versions, compatible feature bindings, scoped support, and current core-resource availability; an observed phone outage or stale deployment generation removes eligibility."
+    },
+    {
+      "id": "BEH-SOC-147",
+      "sources": [
+        "progress.progression-level.1",
+        "progress.goal.bb"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-147"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Progression inspection and fingerprint are deterministic and pure; the module worker factory serializes the same validated state behavior."
+    },
+    {
+      "id": "BEH-SOC-148",
+      "sources": [
+        "progress.progression-level.1",
+        "progress.progression-level.13",
+        "progress.goal.bb",
+        "progress.goal.t1"
+      ],
+      "implementation": [
+        "content/progression.json",
+        "src/game/41-progression.js",
+        "tests/progression.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-148"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Progression save validation rejects forged achievement evidence, source IDs and completion of explicitly pending records."
+    },
+    {
+      "id": "BEH-SOC-149",
+      "sources": [
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "content/issue-exercises.json",
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-149"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "The optional exercise pack preserves two report citations, dates, evidence caveats, bounded scenario descriptions, and known issue gaps."
+    },
+    {
+      "id": "BEH-SOC-150",
+      "sources": [
+        "RES-CISCO-VOIP-002"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-150"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "The generic directional-media exercise produces an observed one-way media failure; it explicitly does not reproduce the report's blind-transfer mechanism."
+    },
+    {
+      "id": "BEH-SOC-151",
+      "sources": [
+        "RES-CISCO-VOIP-002"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-151"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Directional-media recovery requires a fresh bidirectional media trace, and evaluation leaves the input state unchanged."
+    },
+    {
+      "id": "BEH-SOC-152",
+      "sources": [
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-152"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Exercise steps reject out-of-order progress and arbitrary nested root commands without changing the input state."
+    },
+    {
+      "id": "BEH-SOC-153",
+      "sources": [
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-153"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "A synthetic carrier outage produces an observed signalling failure; the exercise does not claim to reproduce the historical provider event."
+    },
+    {
+      "id": "BEH-SOC-154",
+      "sources": [
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-154"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Clearing the modeled carrier fault and placing a fresh call yields observed signalling and bidirectional media success."
+    },
+    {
+      "id": "BEH-SOC-155",
+      "sources": [
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-155"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "Optional exercise progress validates on save; its fingerprint covers progress and excludes transient root interaction evidence."
+    },
+    {
+      "id": "BEH-SOC-156",
+      "sources": [
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "tests/issue-exercises.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-156"
+      ],
+      "status": "verified-module-mechanic",
+      "scope": "The serialized worker factory retains the same bounded command policy and rejects unsupported source exercises."
+    },
+    {
+      "id": "BEH-SOC-157",
+      "sources": [
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "src/game/55-communications.js",
+        "tests/learning-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-157"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Shared SOC dispatch starts and executes both bounded issue exercises; restart preserves interaction history, state restore works, and invalid steps are atomic."
+    },
+    {
+      "id": "BEH-SOC-158",
+      "sources": [
+        "progress.goal.bz",
+        "progress.goal.ix"
+      ],
+      "implementation": [
+        "src/game/41-progression.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "tests/learning-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-158"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Integrated progression claims require current effective product bindings and are explicit, once-only achievements with no financial reward conversion."
+    },
+    {
+      "id": "BEH-SOC-159",
+      "sources": [
+        "progress.goal.bb",
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/40-issue-exercises.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js",
+        "tests/learning-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-159"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Progression and issue-exercise commands match worker execution; restore validates saved pack state and repeated calculations do not mutate it."
+    },
+    {
+      "id": "BEH-SOC-160",
+      "sources": [
+        "progress.goal.bb",
+        "progress.goal.ix",
+        "RES-CISCO-VOIP-002",
+        "voiceops-2010-12-dash-outage"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/85-learning-extensions-ui.js",
+        "src/game/97-training.js",
+        "tests/learning-integration.test.js"
+      ],
+      "testIds": [
+        "AC-SOC-160"
+      ],
+      "status": "verified-integrated-mechanic",
+      "scope": "Learning controls respect edit locks, display locked progression claims, and dispatch actual issue exercise and progression commands through the SOC UI."
+    },
+    {
+      "id": "BEH-SOC-161",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-161"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-162",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-162"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-163",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-163"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-164",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-164"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-165",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-165"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-166",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-166"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-167",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-167"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-168",
+      "sources": [
+        "DEC-007",
+        "DEC-010",
+        "DEC-011",
+        "DEC-013"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js"
+      ],
+      "testIds": [
+        "AC-SOC-168"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-169",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-169"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-170",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-170"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-171",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-171"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-172",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-172"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-173",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-173"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-174",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-174"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-175",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-175"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-176",
+      "sources": [
+        "progress.goal.scrub",
+        "uc-new:domain:signalling",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-176"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-177",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-177"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-178",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-178"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-179",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-179"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-180",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-180"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-181",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-181"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-182",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-182"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-183",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-183"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-184",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd",
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js"
+      ],
+      "testIds": [
+        "AC-SOC-184"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-185",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-185"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-186",
+      "sources": [
+        "DEC-007",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/84-portfolio-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-186"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-187",
+      "sources": [
+        "DEC-007",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/84-portfolio-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-187"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-188",
+      "sources": [
+        "DEC-007",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-188"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-189",
+      "sources": [
+        "DEC-007",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-189"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-190",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-190"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-191",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-191"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-192",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-192"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-193",
+      "sources": [
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-193"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-194",
+      "sources": [
+        "DEC-007",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/84-portfolio-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-194"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-195",
+      "sources": [
+        "DEC-011",
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/83-observation-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-195"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-196",
+      "sources": [
+        "DEC-011",
+        "progress.goal.tb",
+        "progress.goal.t10",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/83-observation-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-196"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-197",
+      "sources": [
+        "progress.goal.scrub",
+        "DEC-010",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-197"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-198",
+      "sources": [
+        "progress.goal.scrub",
+        "DEC-010",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-198"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-199",
+      "sources": [
+        "progress.goal.scrub",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/82-security-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-199"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-200",
+      "sources": [
+        "progress.goal.scrub",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/82-security-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-200"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-201",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-201"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-202",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-202"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-203",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-203"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-204",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-204"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-205",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-205"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-206",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-206"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-207",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-207"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-208",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-208"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-209",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js",
+        "src/game/81-shared-services-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-209"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-210",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js",
+        "src/game/81-shared-services-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-210"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-211",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-211"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-212",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-212"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-213",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-213"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-214",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-214"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-215",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-215"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-216",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-216"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-217",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-217"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-218",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-218"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-219",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-219"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-220",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-220"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-221",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-221"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-222",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-222"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-223",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-223"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-224",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:identity",
+        "uc-new:domain:media",
+        "uc-new:domain:continuity",
+        "progress.progression-level.10",
+        "company-map:player-name:16"
+      ],
+      "implementation": [
+        "src/game/35-shared-services.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-224"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-225",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-225"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-226",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.goal.t1",
+        "progress.progression-level.2",
+        "progress.progression-level.7",
+        "progress.progression-level.13"
+      ],
+      "implementation": [
+        "src/game/36-market-qualification.js",
+        "src/game/37-portfolio.js",
+        "src/game/55-communications.js",
+        "src/game/84-portfolio-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-226"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-227",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-227"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-228",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-228"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-229",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-229"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-230",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-230"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-231",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-231"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-232",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-232"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-233",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-233"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-234",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-234"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-235",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js",
+        "src/game/80-specialist-lifecycle-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-235"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-236",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js",
+        "src/game/80-specialist-lifecycle-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-236"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-237",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-237"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-238",
+      "sources": [
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-238"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-239",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-239"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-240",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-240"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-241",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-241"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-242",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-242"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-243",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-243"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-244",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-244"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-245",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-245"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-246",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-246"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-247",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "src/game/96-operations-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-247"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-248",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "src/game/96-operations-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-248"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-249",
+      "sources": [
+        "uc-new:domain:number-porting"
+      ],
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-249"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-250",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-250"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-251",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-251"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-252",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-252"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-253",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-253"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-254",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-254"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-255",
+      "sources": [
+        "uc-new:domain:directory-dialplan",
+        "uc-new:domain:signalling",
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-255"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-256",
+      "sources": [
+        "uc-new:domain:journeys"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/79-interaction-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-256"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-257",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-257"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-258",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-258"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-259",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-259"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-260",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-260"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-261",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-261"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-262",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-262"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-263",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-263"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-264",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-264"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-265",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-265"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-266",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-266"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-267",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-267"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-268",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-268"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-269",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-269"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-270",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-270"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-271",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-271"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-272",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-272"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-273",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js"
+      ],
+      "testIds": [
+        "AC-SOC-273"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-274",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/78-site-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-274"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-275",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-275"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-276",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-276"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-277",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-277"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-278",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-278"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-279",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-279"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-280",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-280"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-281",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-281"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-282",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-282"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-283",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub",
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/33-calling-achievements.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-283"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-284",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub",
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/33-calling-achievements.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-284"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-285",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub",
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/33-calling-achievements.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-285"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-286",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.p5",
+        "progress.goal.ca",
+        "progress.goal.pn",
+        "progress.goal.scrub",
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/33-calling-achievements.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-286"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-287",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-287"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-288",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-288"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-289",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-289"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-290",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-290"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-291",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-291"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-292",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-292"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-293",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-293"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-294",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-294"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-295",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-295"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-296",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-296"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-297",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-297"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-298",
+      "sources": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:government",
+        "uc-new:domain:eligibility",
+        "uc-new:domain:sovereignty",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/75-product-evidence-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-298"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-299",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-299"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-300",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-300"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-301",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-301"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-302",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-302"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-303",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-303"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-304",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-304"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-305",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-305"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-306",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-306"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-307",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-307"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-308",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-308"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-309",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-309"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-310",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-310"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-311",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-311"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-312",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-312"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-313",
+      "sources": [
+        "uc-new:actor:voss",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/37-portfolio.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-313"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-314",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-314"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-315",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-315"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-316",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-316"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-317",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-317"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-318",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-318"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-319",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-319"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-320",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-320"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-321",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-321"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-322",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-322"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-323",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-323"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-324",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-324"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-325",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-325"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-326",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-326"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-327",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-327"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-328",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-328"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-329",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-329"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-330",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-330"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-331",
+      "sources": [
+        "voiceops-2010-08-peer-of-peer",
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js",
+        "src/game/77-media-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-331"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-332",
+      "sources": [
+        "uc-new:family:cisco:contact-center",
+        "uc-new:family:cisco:dedicated-premises",
+        "uc-new:family:cisco:government",
+        "uc-new:family:cisco:local-speech",
+        "uc-new:family:cisco:meetings-devices",
+        "uc-new:family:cisco:programmable-engagement",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:microsoft:contact-center",
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:microsoft:local",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:microsoft:workplace-phone"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/87-advanced-admin-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-332"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-333",
+      "sources": [
+        "uc-new:family:cisco:contact-center",
+        "uc-new:family:cisco:dedicated-premises",
+        "uc-new:family:cisco:government",
+        "uc-new:family:cisco:local-speech",
+        "uc-new:family:cisco:meetings-devices",
+        "uc-new:family:cisco:programmable-engagement",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:microsoft:contact-center",
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:microsoft:local",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:microsoft:workplace-phone"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/87-advanced-admin-ui.js",
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-333"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-334",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-334"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-335",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-335"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-336",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-336"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-337",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-337"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-338",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.progression-level.4",
+        "progress.progression-level.5",
+        "progress.progression-level.6",
+        "progress.progression-level.8",
+        "progress.progression-level.9",
+        "progress.progression-level.10",
+        "progress.progression-level.11",
+        "progress.progression-level.12",
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-338"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-339",
+      "sources": [
+        "progress.progression-level.10"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-339"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-340",
+      "sources": [
+        "progress.progression-level.5"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-340"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-341",
+      "sources": [
+        "progress.progression-level.3"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-341"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-342",
+      "sources": [
+        "progress.progression-level.8"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-342"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-343",
+      "sources": [
+        "progress.progression-level.6"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-343"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-344",
+      "sources": [
+        "progress.goal.gi"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/32-site-operations.js",
+        "src/game/41-progression.js",
+        "src/game/52-information.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-344"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-345",
+      "sources": [
+        "progress.progression-level.4"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-345"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-346",
+      "sources": [
+        "progress.progression-level.12"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-346"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-347",
+      "sources": [
+        "progress.progression-level.9"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-347"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-348",
+      "sources": [
+        "progress.progression-level.11"
+      ],
+      "implementation": [
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-348"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-349",
+      "sources": [
+        "uc-new:domain:information-lineage",
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-349"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-350",
+      "sources": [
+        "progress.goal.tr",
+        "progress.goal.pn"
+      ],
+      "implementation": [
+        "src/game/33-calling-achievements.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-350"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-351",
+      "sources": [
+        "progress.goal.ln",
+        "progress.goal.df",
+        "progress.goal.m2"
+      ],
+      "implementation": [
+        "src/game/32-site-operations.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-351"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-352",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:migration"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-352"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-353",
+      "sources": [
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "scripts/calls-mcp.js"
+      ],
+      "testIds": [
+        "AC-SOC-353",
+        "AC-SOC-354",
+        "AC-SOC-355",
+        "AC-SOC-356",
+        "AC-SOC-357"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-358",
+      "sources": [
+        "DEC-003",
+        "DEC-011",
+        "DEC-014"
+      ],
+      "implementation": [
+        "scripts/mcp.js"
+      ],
+      "testIds": [
+        "AC-SOC-358",
+        "AC-SOC-359",
+        "AC-SOC-360"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-361",
+      "sources": [
+        "DEC-003",
+        "DEC-012",
+        "DEC-014"
+      ],
+      "implementation": [
+        "scripts/lib/mcp-page.js"
+      ],
+      "testIds": [
+        "AC-SOC-361"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-362",
+      "sources": [
+        "DEC-002",
+        "DEC-021"
+      ],
+      "implementation": [
+        "scripts/build.js"
+      ],
+      "testIds": [
+        "AC-SOC-362"
+      ],
+      "status": "verified-foundation"
+    },
+    {
+      "id": "BEH-SOC-363",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js",
+        "src/game/55-communications.js",
+        "src/game/90-service-admin-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-363",
+        "AC-SOC-364",
+        "AC-SOC-365",
+        "AC-SOC-366",
+        "AC-SOC-367",
+        "AC-SOC-368"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "BEH-SOC-364",
+      "sources": [
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-369",
+        "AC-SOC-370",
+        "AC-SOC-371",
+        "AC-SOC-372",
+        "AC-SOC-373",
+        "AC-SOC-374",
+        "AC-SOC-375",
+        "AC-SOC-376",
+        "AC-SOC-377",
+        "AC-SOC-378",
+        "AC-SOC-379",
+        "AC-SOC-380",
+        "AC-SOC-381"
+      ],
+      "status": "partial",
+      "scope": "Bounded shared allowance-pool mechanics: eligible contracts consume one common allowance while wholesale cost remains charged; resource-aware usage chooses one deterministic matching contract by resource priority, and overlapping contract assignments are rejected. Full source-specific commercial fidelity remains pending."
+    },
+    {
+      "id": "BEH-SOC-365",
+      "sources": [
+        "uc-new:family:cisco:local-speech",
+        "uc-new:domain:speech-processing"
+      ],
+      "implementation": [
+        "src/game/27-speech-models.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js",
+        "src/game/74-speech-models-ui.js",
+        "scripts/calls-mcp.js"
+      ],
+      "testIds": [
+        "AC-SOC-382",
+        "AC-SOC-383",
+        "AC-SOC-384",
+        "AC-SOC-385",
+        "AC-SOC-386",
+        "AC-SOC-387",
+        "AC-SOC-388",
+        "AC-SOC-389",
+        "AC-SOC-390",
+        "AC-SOC-391",
+        "AC-SOC-392",
+        "AC-SOC-410",
+        "AC-SOC-411",
+        "AC-SOC-406"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "BEH-SOC-366",
+      "sources": [
+        "DEC-025"
+      ],
+      "implementation": [
+        "src/game/90-actions/89-game-and-settings.js",
+        "src/game/93-ui/30-install.js",
+        "artwork/manifest.json",
+        "site/site.webmanifest"
+      ],
+      "testIds": [
+        "AC-SOC-393",
+        "AC-SOC-394"
+      ],
+      "status": "partial",
+      "scope": "Bounded artwork-entry and asset-integrity verification; training opens through its real title control and generated assets match manifest hashes, but this does not perform required browser visual acceptance or complete campaign art review."
+    },
+    {
+      "id": "BEH-SOC-367",
+      "sources": [
+        "DEC-026"
+      ],
+      "implementation": [
+        "scripts/browser-campaigns.js"
+      ],
+      "testIds": [
+        "AC-SOC-395",
+        "AC-SOC-396",
+        "AC-SOC-397",
+        "AC-SOC-398",
+        "AC-SOC-399",
+        "AC-SOC-400",
+        "AC-SOC-401"
+      ],
+      "status": "partial",
+      "scope": "Contract/harness coverage only: it maps compact reference commands to visible controls and classifies browser runs. A sandbox-blocked launch provides no browser execution evidence; this is never full browser or campaign acceptance."
+    },
+    {
+      "id": "BEH-SOC-368",
+      "sources": [
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-402",
+        "AC-SOC-403",
+        "AC-SOC-404",
+        "AC-SOC-405"
+      ],
+      "status": "partial",
+      "scope": "Bounded resource-aware metering integration: voice and direct/delayed messages use only their bound contract resources; processor work is charged only when work runs, and legacy campaign/portfolio roots remain pure until successful migration. Does not establish full commercial campaign fidelity."
+    },
+    {
+      "id": "BEH-SOC-369",
+      "sources": [
+        "uc-new:segment:smb",
+        "uc-new:segment:enterprise",
+        "uc-new:segment:government",
+        "uc-new:segment:defence"
+      ],
+      "implementation": [
+        "src/game/26-customer-needs.js",
+        "src/game/72-customer-needs-ui.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-438",
+        "AC-SOC-439",
+        "AC-SOC-440",
+        "AC-SOC-441",
+        "AC-SOC-442",
+        "AC-SOC-443",
+        "AC-SOC-444",
+        "AC-SOC-445",
+        "AC-SOC-453",
+        "AC-SOC-446",
+        "AC-SOC-450",
+        "AC-SOC-455"
+      ],
+      "status": "partial",
+      "scope": "Editable independent customer dimensions, delayed profile application, jurisdiction seeds and visible planning controls. This does not implement all customer demand, procurement, support or service-fit consequences; full segment obligations remain partial."
+    },
+    {
+      "id": "BEH-SOC-370",
+      "sources": [
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js",
+        "src/game/71-workforce-presence-ui.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-425",
+        "AC-SOC-426",
+        "AC-SOC-427",
+        "AC-SOC-428",
+        "AC-SOC-429",
+        "AC-SOC-430",
+        "AC-SOC-447",
+        "AC-SOC-448",
+        "AC-SOC-451",
+        "AC-SOC-454"
+      ],
+      "status": "partial",
+      "scope": "Observed attendance independently constrains actual queue allocation; customer/BPO authority is enforced and sampled forecasts retain time dimensions and scheduled shifts. Full BPO multi-client and specialist workforce behaviour remains incomplete."
+    },
+    {
+      "id": "BEH-SOC-371",
+      "sources": [
+        "uc-new:domain:cpaas-workflows"
+      ],
+      "implementation": [
+        "src/game/47-channels.js",
+        "src/game/70-webhook-ui.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-422",
+        "AC-SOC-417",
+        "AC-SOC-418",
+        "AC-SOC-419",
+        "AC-SOC-420",
+        "AC-SOC-421",
+        "AC-SOC-423",
+        "AC-SOC-424",
+        "AC-SOC-449",
+        "AC-SOC-451"
+      ],
+      "status": "partial",
+      "scope": "Synthetic callbacks follow real simulated channel delivery receipts, with delayed policy, independent app/supplier observations, idempotency, rate limits, retries and saved lineage. Full CPaaS workflow/application catalogue obligations remain partial."
+    },
+    {
+      "id": "BEH-SOC-372",
+      "sources": [
+        "DEC-026",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "scripts/lib/campaign-journey.js",
+        "scripts/lib/campaign-ui.js",
+        "scripts/browser-campaigns.js",
+        "scripts/mcp-smoke.py"
+      ],
+      "testIds": [
+        "AC-SOC-433",
+        "AC-SOC-434",
+        "AC-SOC-435",
+        "AC-SOC-436",
+        "AC-SOC-437"
+      ],
+      "status": "partial",
+      "scope": "Extended campaign reference paths cover prerequisite tracks, evidence windows, required offer procurement, incident recovery, billing and renewal. Kernel and DOM tests are not real-browser evidence and do not close full source-specific commercial fidelity."
+    },
+    {
+      "id": "BEH-SOC-373",
+      "sources": [
+        "DEC-025"
+      ],
+      "implementation": [
+        "src/game/74-speech-models-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-452"
+      ],
+      "status": "partial",
+      "scope": "Speech administration resolves translation markers into visible text. Real-browser visual acceptance remains outstanding."
+    },
+    {
+      "id": "BEH-SOC-374",
+      "sources": [
+        "uc-new:segment:smb",
+        "uc-new:segment:enterprise",
+        "uc-new:segment:government",
+        "uc-new:segment:defence",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/26-customer-needs.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/72-customer-needs-ui.js",
+        "src/game/98-business-ui.js",
+        "scripts/mcp-smoke.py"
+      ],
+      "testIds": [
+        "AC-SOC-456",
+        "AC-SOC-457",
+        "AC-SOC-458",
+        "AC-SOC-459",
+        "AC-SOC-460",
+        "AC-SOC-461",
+        "AC-SOC-462",
+        "AC-SOC-463",
+        "AC-SOC-464"
+      ],
+      "status": "partial",
+      "scope": "Explicit profile-bound subscriptions constrain measured typed capacity and renewal; pure inspection retains missing workload, jurisdiction, support, accessibility and monthly cost evidence as unproven. Purchased quantities and effective serviceable capacity remain independent, with source-specific completeness pending."
+    },
+    {
+      "id": "BEH-SOC-375",
+      "sources": [
+        "DEC-010",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/39-service-observation.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-465"
+      ],
+      "status": "partial",
+      "scope": "Imported minute samples reject contradictory aggregate readiness, missing required resource bits and non-boolean observations while preserving historical failures after repair."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 /* A network too big for the browser's storage fails to save every time, and turning it into text takes a
    moment on huge saves, every 5 seconds and after every click. After a failure the autosave waits before trying
    again (1 minute, then 2, 4, at most 5); leaving the page, exporting or another game (a new S) still try at once. */
-/* A puzzle is never saved: only its stars are, under their own key (sot-puzzles). While one runs, the network it set
+/* A puzzle is never saved: only its stars are, under their own key (soc-sp-puzzles). While one runs, the network it set
    aside (UI.pzKeep) is the one saved, to its own slot, so closing the tab mid-puzzle loses nothing. */
 function save(force,st){if(!st)st=pzOn()?UI.pzKeep:S;const id=UI.slot;
   // Half a day (its routing still in the worker) is never saved: the day's end saves instead.
@@ -46,7 +46,7 @@ function packBiz(b){const o={};for(const k in b){const v=b[k];if(v===undefined||
 function unpackBiz(b,links){for(const k in BIZ_DEF)if(!(k in b))b[k]=BIZ_DEF[k];if(!('pm' in b)&&b.mood!==undefined)b.pm=b.mood;if(!Array.isArray(b.reqs))b.reqs=[];
   if(b.type==='wwave'&&b.what===undefined){const l=links.get(b.link);b.what=l?wwWhat(l,b.slots||1):'';}return b;}
 // sv (the slot's save stamp) is added when the text is written, never carried in the game.
-const packSave=s=>({...s,sv:undefined,biz:s.biz.map(packBiz)});
+const packSave=s=>({...s,socApp:'series-of-calls-sp',sv:undefined,biz:s.biz.map(packBiz)});
 // Out of room (quota) or not allowed to store at all (private window, blocked site data): different advice.
 const saveFull=e=>!!e&&(e.name==='QuotaExceededError'||e.name==='NS_ERROR_DOM_QUOTA_REACHED'||e.code===22||e.code===1014);
 const saveFailing=()=>!!(UI.saveFail&&UI.saveFail.s===S);
@@ -56,16 +56,17 @@ addEventListener('pagehide',()=>save(true));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true);else checkUpdate();});
 /* Export / import: move a network to another device or keep a backup. The file is the same
    object the autosave writes, wrapped with a little metadata. */
-function saveFileName(nm){const d=new Date().toISOString().slice(0,10),n=String(nm||'network').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'network';return `series-of-tubes-${n}-${d}.json`;}
+function saveFileName(nm){const d=new Date().toISOString().slice(0,10),n=String(nm||'network').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'network';return `series-of-calls-sp-${n}-${d}.json`;}
 function saveDl(txt,nm){const blob=new Blob([txt],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=saveFileName(nm);document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
   toast(tr('save.save_exported_file_is_in_your',{file:esc(saveFileName(nm))}),'good');}
-function exportSave(){if(!S||S.mode==='puzzle')return;save(true);saveDl(JSON.stringify({app:'series-of-tubes',version:APP_VERSION,exported:new Date().toISOString(),S:packSave(S)},null,1),S.name);}
+function exportSave(){if(!S||S.mode==='puzzle')return;save(true);saveDl(JSON.stringify({app:'series-of-calls-sp',version:APP_VERSION,exported:new Date().toISOString(),S:packSave(S)},null,1),S.name);}
 // Any network on this device, straight from storage: the file wraps the saved text as it is, without loading it.
 function exportSlot(id){const e=slotIdx().find(x=>x.id===id),raw=slotRaw(id);if(!e||raw==null)return;
   if(id===UI.slot&&S&&!pzOn()){exportSave();return;}
-  (raw.startsWith(GZ)?gunzip(raw):Promise.resolve(raw)).then(t=>saveDl(`{"app":"series-of-tubes","version":${JSON.stringify(APP_VERSION)},"exported":"${new Date().toISOString()}","S":${t}}`,e.name),()=>toast(tr('loop.your_saved_game_could_not_be'),'bad'));}
+  (raw.startsWith(GZ)?gunzip(raw):Promise.resolve(raw)).then(t=>saveDl(`{"app":"series-of-calls-sp","version":${JSON.stringify(APP_VERSION)},"exported":"${new Date().toISOString()}","S":${t}}`,e.name),()=>toast(tr('loop.your_saved_game_could_not_be'),'bad'));}
 function parseSave(txt){if(typeof txt!=='string')return {err:tr('save.that_file_is_not_valid_json')};let j;try{j=JSON.parse(txt);}catch(e){return {err:tr('save.that_file_is_not_valid_json')};}
-  const s=j&&j.app==='series-of-tubes'&&j.S?j.S:j;
+  if(!j||(j.app!=='series-of-calls-sp'&&j.socApp!=='series-of-calls-sp'))return {err:tr('training.isp_save')};
+  const s=j&&j.app==='series-of-calls-sp'&&j.S?j.S:j;
   if(!s||typeof s!=='object'||s.v!==1||typeof s.day!=='number'||typeof s.cash!=='number'||!s.pops||typeof s.pops!=='object'||!Array.isArray(s.links))return {err:tr('save.that_does_not_look_like_a')};
   if(s.lost)return {err:tr('save.that_network_went_bankrupt_it_cannot')};
   for(const c of Object.keys(s.pops))if(!isCity(c))return {err:tr('save.that_save_has_a_pop_in',{city:esc(String(c).slice(0,12))})};

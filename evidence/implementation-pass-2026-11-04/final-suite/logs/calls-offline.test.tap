@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: project-scoped cache serves navigation offline and preserves other application caches
+ok 1 - project-scoped cache serves navigation offline and preserves other application caches
+  ---
+  duration_ms: 19.668884
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 32.207751

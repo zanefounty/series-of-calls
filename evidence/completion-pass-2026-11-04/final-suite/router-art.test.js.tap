@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: every router model has a picture, and each one is valid SVG
+ok 1 - every router model has a picture, and each one is valid SVG
+  ---
+  duration_ms: 716.762287
+  type: 'test'
+  ...
+# Subtest: only the POP overview shows a picture: its model, left of the city name
+ok 2 - only the POP overview shows a picture: its model, left of the city name
+  ---
+  duration_ms: 403.608133
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6289.573903

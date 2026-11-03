@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: AC-SOC-199 optional security controls start through shared dispatch and stay locked in read-only mode
+ok 1 - AC-SOC-199 optional security controls start through shared dispatch and stay locked in read-only mode
+  ---
+  duration_ms: 666.257273
+  type: 'test'
+  ...
+# Subtest: AC-SOC-200 typed controls, observations and synthetic diagnostics dispatch accurately; real calls use ordinary core interaction
+ok 2 - AC-SOC-200 typed controls, observations and synthetic diagnostics dispatch accurately; real calls use ordinary core interaction
+  ---
+  duration_ms: 383.249405
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1337.256099

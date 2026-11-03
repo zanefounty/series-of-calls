@@ -1,26 +1,26 @@
 name: Feature request
-description: An idea for something new in the game.
+description: A proposal for a synthetic training scenario or mechanic.
 title: "[feature] "
 labels: [enhancement, triage]
 body:
   - type: markdown
     attributes:
       value: |
-        Ideas are welcome! The best ones describe what happens in real networks and how it could become a fun mechanic.
+        Proposals should describe the learner's task, the simulated evidence, and what should block a false pass. Cite public sources for real-world context; do not include private operational data.
         **One idea per issue, please.**
   - type: dropdown
     id: area
     attributes:
       label: Part of the game
       options:
-        - Map and interface
-        - Phones and tablets
-        - Network building (POPs, links, fiber, routers)
-        - Peering, transit and exchanges
-        - Customers
-        - Money, banks and prices
-        - Incidents and events
-        - Scenarios, goals and badges
+        - Configuration and provisioning
+        - Calling and messaging
+        - Workforce and customer service
+        - Products and integrations
+        - Information boundaries
+        - Commercial operations
+        - Physical transport
+        - Learning and assessment
         - Something else
     validations:
       required: true
@@ -28,7 +28,7 @@ body:
     id: problem
     attributes:
       label: What problem does it solve, or what is missing?
-      description: For example "When I reach Tier 1 I can't find where my transit ports are."
+      description: For example "The room setup exercise does not show which observed dependency blocks provisioning."
     validations:
       required: true
   - type: textarea

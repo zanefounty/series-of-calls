@@ -1,0 +1,41 @@
+# Engine mechanic
+
+| Mapping ID | Proposed representation | Requirement | Behaviour obligation |
+| --- | --- | --- | --- |
+| engine:compute | Shared interaction engine / uc.engine.compute | REQ-0b4df510eb87aa9b | Split demand generation, eligibility, signalling, media, workforce, messaging, information processing and economics. Retain aggregate operation with representative traces. |
+| engine:dijkstra | Transport route solver / uc.engine.dijkstra | REQ-22785c0fce9c6e47 | Keep deterministic shortest paths for transport. Call control, queue routing and information policy require their own evaluators. |
+| engine:allocation_order | Eligible service-path evaluation / uc.engine.allocation_order | REQ-ee2959a6ad80b4d9 | Evaluate capability, customer policy and dependency health first, then preference, quality and cost. Do not assign universal cloud or vendor precedence. |
+| engine:ECMP | Transport distribution and service admission / uc.engine.ECMP | REQ-201dbd7464bc9958 | Retain transport ECMP. Use session affinity and supported application load distribution for calls, meetings and workflows. |
+| engine:L2_first | Reserved customer capacity / uc.engine.L2_first | REQ-55609bf9db44c787 | Reserve relevant transport, sessions, media and dedicated processing without conflating them with workforce availability. |
+| engine:broadband | Managed seat adoption / uc.engine.broadband | REQ-cac82d683f9422ab | Track people, seats, active users, rooms and agent entitlements independently from usage and quality. |
+| engine:latency_penalty | Workload experience model / uc.engine.latency_penalty | REQ-a52ede485b637157 | Use separate latency, jitter, loss, codec, meeting and application-response assumptions; original thresholds are game balancing, not a UC quality standard. |
+| engine:site_failure | Independent service-site recovery / uc.engine.site_failure | REQ-e13a0dcf3293f476 | Preserve physical failure domains and independently model call-control, media, identity, record and support dependencies. |
+| engine:diversity | Service dependency diversity / uc.engine.diversity | REQ-36d20e659ef83f86 | Retain shared-risk grouping and add common carriers, identity providers, applications, storage and administrative domains. |
+| engine:p95 | Typed usage and subscription billing / uc.engine.p95 | REQ-6ec6eed545966337 | Keep percentile billing only for underlay contracts that use it. Bill seats, agents, rooms, minutes, messages and inference independently. |
+| engine:minimum_commit | Offer allowances and commitments / uc.engine.minimum_commit | REQ-b7e4fb2ff89ca849 | Use per-offer minimums, included usage and overage. No universal20% commitment across UC suppliers. |
+| engine:monthly_ledger | Consolidated provider ledger / uc.engine.monthly_ledger | REQ-acf1d23047de825a | Include projects, subscriptions, wholesale, staff, support, hardware, processing and penalties. Eliminate transfers between owned subsidiaries. |
+| engine:contract_mood | Customer outcomes and renewal / uc.engine.contract_mood | REQ-95ed06af9222be25 | Combine resolution, user experience, continuity, information handling and delivery performance. Keep causes inspectable. |
+| engine:grace | Contract implementation window / uc.engine.grace | REQ-0fb84b5733f3ed68 | Separate permitted onboarding milestones from mandatory service eligibility. Prohibited processing is never cured by a grace timer. |
+| engine:mega | Large enterprise and hosted-service bids / uc.engine.mega | REQ-cb158c839b98da4a | Generate scoped regional or sovereign UC/CC deployments with support, media, AI and connectivity needs; preserve actual site-instance list separately. |
+| engine:geo_price | Regional offer and transport economics / uc.engine.geo_price | REQ-ce152bbc36ec09ca | Keep route economics for underlay; platform availability, number coverage and channel prices are separate dated catalogue fields. |
+| engine:annual_erosion | Offer-specific market repricing / uc.engine.annual_erosion | REQ-b1e15b70c323a3c0 | Apply market events to named offers or segments; avoid global automatic decline in every service price. |
+| engine:traceroute | Interaction inspector / uc.engine.traceroute | REQ-fde3dfb600a628e4 | Trace number/identity resolution, permission, route, signalling, both media directions, queue, human or AI handling, records, resolution and cost. |
+| engine:share_card | Service portfolio image / uc.engine.share_card | REQ-2d4284f3085a1434 | Show synthetic company footprint, customer outcomes and service metrics; preserve native download/share controls. |
+| engine:safe_policy | Typed policy DSL / uc.engine.safe_policy | REQ-4cfda564a5c92b81 | Keep parsing into plain data, error messages and dry-run comparison. Add typed UC rules with eligibility gates. |
+| engine:ai_dryrun | Policy proposal evaluation / uc.engine.ai_dryrun | REQ-f73329108c26e2ae | Score required service outcomes and policy compliance before cost; explain bad suggestions and keep optional AI separate from engine truth. |
+| engine:sanitizer | Versioned UC state validation / uc.engine.sanitizer | REQ-4f884deab1e01cd7 | Validate tenants, numbers, contracts, integrations, workforce and information lineage. Add deterministic migrations and reject unknown incompatible schemas. |
+| engine:storage | UC save namespace / uc.engine.storage | REQ-58120385f2ae1f1b | Use series-of-calls save identity and new schema. Preserve explicit export/import and quota-failure reporting. |
+| engine:compression | Large portfolio save compression / uc.engine.compression | REQ-ea44509b37ade2b0 | Retain compression and compaction while keeping required contracts, evidence and derived-record references. |
+| engine:audio | UC game audio feedback / uc.engine.audio | REQ-ce823755803fcd6f | Keep mute and feedback behaviour; sounds do not represent real calls. |
+| engine:morph | Service panel rendering / uc.engine.morph | REQ-c5a01389184d11a4 | Keep delegated controls and safe replacement of changed actions. |
+| engine:mobile | Mobile service management / uc.engine.mobile | REQ-31c18e4e21190317 | Keep touch-friendly navigation and make new service details usable at narrow widths. |
+| engine:PWA | Installable UC simulation / uc.engine.PWA | REQ-0239d2650aca9f34 | Update product name, icons, cache and manifest. Offline game execution does not imply simulated vendor services are disconnected-capable. |
+| engine:map | Regional service and dependency map / uc.engine.map | REQ-a51e9475882ece89 | Add filters for transport, UC tenants, CC, meetings, information flows and partner relationships. |
+| engine:map_lod | Large-portfolio map rendering / uc.engine.map_lod | REQ-97e4f75c7655ed57 | Keep cached world geometry and grouping; count application and physical dependencies separately. |
+| engine:input | Service-topology interaction / uc.engine.input | REQ-0dd3448b122daee9 | Keep input and hit testing, with typed edge selection and accessible detail panels. |
+| engine:loop | Business clock and short interaction steps / uc.engine.loop | REQ-d9c49876c6e8a5bf | Preserve responsive clock and deterministic scheduling; add shorter queue/media event steps without simulating every packet. |
+| engine:analytics | Fork analytics configuration / uc.engine.analytics | REQ-c8ba9b05458fd866 | Remove upstream host assumptions; add only intentional fork telemetry. |
+| engine:localisation | UC domain localisation / uc.engine.localisation | REQ-dd0312195ef45c41 | Reuse label infrastructure. Rewrite domain labels and maintain all supported language dictionaries; duplicate translations are not separate gameplay items. |
+| engine:game_identity | Series of Calls identity / uc.engine.game_identity | REQ-d30deb173164c78d | Update title, description, app IDs, menus, release links and origin-specific files. |
+| engine:source_assembly | Static UC game build / uc.engine.source_assembly | REQ-9fd793663fdd5c3c | Preserve the lightweight build initially, with clear boundaries around new UC subsystems. |
+| engine:test_harness | UC behavioural verification / uc.engine.test_harness | REQ-3634b8d93f56850b | Reuse seed and headless infrastructure. Replace domain fixtures with journeys, workforce bottlenecks, policy failures and economic reconciliation. |

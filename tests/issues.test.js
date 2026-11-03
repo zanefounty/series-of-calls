@@ -33,13 +33,13 @@ test('#5 export writes a file and import restores it, with checks', () => {
   window.URL.revokeObjectURL = () => {};
   window.HTMLAnchorElement.prototype.click = function () { window.__dl = this.download; };
   ev("ACT.exportSave()");
-  assert.match(window.__dl, /^series-of-tubes-export-me-\d{4}-\d\d-\d\d\.json$/);
-  const txt = ev("JSON.stringify({app:'series-of-tubes',version:APP_VERSION,S})");
+  assert.match(window.__dl, /^series-of-calls-sp-export-me-\d{4}-\d\d-\d\d\.json$/);
+  const txt = ev("JSON.stringify({app:'series-of-calls-sp',version:APP_VERSION,S})");
   assert.ok(blobText);
   ev("S.cash=1;S.name='Other'");
-  assert.match(ev(`parseSave('{"nope":1}').err`), /does not look/);
+  assert.match(ev(`parseSave('{"nope":1}').err`), /incompatible/);
   assert.match(ev(`parseSave('not json').err`), /not valid JSON/);
-  assert.match(ev(`parseSave(JSON.stringify(Object.assign(JSON.parse(${JSON.stringify(txt)}).S,{lost:true}))).err`), /bankrupt/);
+  assert.match(ev(`parseSave(JSON.stringify(Object.assign(JSON.parse(${JSON.stringify(txt)}).S,{lost:true,socApp:'series-of-calls-sp'}))).err`), /bankrupt/);
   ev(`UI.importing=parseSave(${JSON.stringify(txt)}).s;ACT.importGo()`);
   assert.equal(ev("S.name"), 'Export Me');
   assert.equal(ev("S.cash"), 1234567);
@@ -116,13 +116,13 @@ test('a rare global outage shows a banner, dents traffic and only happens once',
 test('badges unlock with a rarity, persist across games, and secret ones stay hidden', () => {
   const { ev, errors } = load();
   base(ev);
-  ev("localStorage.removeItem('sot-badges');S.ach={};compute();checkGoals();ACT.leftTab({t:'goals'})");
+  ev("localStorage.removeItem('soc-sp-badges');S.ach={};compute();checkGoals();ACT.leftTab({t:'goals'})");
   let txt = ev("document.body.textContent");
   assert.match(txt, /Badges/);
   assert.match(txt, /\?\?\?/, 'secret badges are hidden');
   ev("ACT.buyIx({city:'fra',tier:1,signed:true});ACT.rs({city:'fra'});compute();checkGoals()");
   assert.ok(ev("S.ach.hello!==undefined"), 'first peering badge');
-  assert.ok(ev("!!JSON.parse(localStorage.getItem('sot-badges')).hello"), 'remembered across games');
+  assert.ok(ev("!!JSON.parse(localStorage.getItem('soc-sp-badges')).hello"), 'remembered across games');
   ev("S.stats.sharks=3;checkGoals()");
   assert.ok(ev("S.ach.bait!==undefined&&S.ach.shark!==undefined"));
   ev("ACT.leftTab({t:'goals'})");
@@ -427,7 +427,7 @@ test('#13 #15 unhappy customers warn early, furious ones pause the game (optiona
   assert.ok(ev("S.biz.find(b=>b.id==='b2').mood") < 30);
   assert.equal(ev('UI.speed'), 2, 'no pause with the setting off');
   assert.doesNotMatch(toasts(), /Snack Overflow is getting unhappy/);
-  assert.equal(ev("JSON.parse(localStorage.getItem('sot-prefs')).pauseFurious"), false, 'stored per device');
+  assert.equal(ev("JSON.parse(localStorage.getItem('soc-sp-prefs')).pauseFurious"), false, 'stored per device');
   assert.deepEqual(errors, []);
 });
 

@@ -1,0 +1,17 @@
+✔ architect runs: every reference passes each brief, on plan and within budget (970.43448ms)
+✔ architect runs: the chaos monkey finds a shared trench, edits clear the cut, old builds are paid for (373.349692ms)
+✔ architect runs: a latency brief needs the fast path, and normal puzzles are untouched (299.327448ms)
+✔ architect runs: Play on the title screen's puzzle list starts a run (255.499609ms)
+✔ architect runs: a ring goal needs one cycle through its cities (352.565886ms)
+✔ architect runs: the detour needs room, and a roomy but pricey build misses the budget star (472.795485ms)
+✔ architect runs: a bigger tube brings a bigger router, and changing an old tube is a new lease (248.617722ms)
+✔ architect runs: the map tells two tubes in one trench from two separate paths (267.906073ms)
+✔ #231 the puzzle list counts each section's own stars: runs above, packs next to the packs (247.025022ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8469.961451

@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-11-03T06:42:33.857586+00:00",
+  "results": [
+    {
+      "suite": "tests/game.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/game.rerun.log"
+    },
+    {
+      "suite": "tests/issues.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/issues.rerun.log"
+    },
+    {
+      "suite": "tests/modes.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/modes.rerun.log"
+    },
+    {
+      "suite": "tests/latency.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/latency.rerun.log"
+    },
+    {
+      "suite": "tests/report-link.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/report-link.rerun.log"
+    },
+    {
+      "suite": "tests/utilities.test.js",
+      "exitCode": 0,
+      "log": "evidence/inherited-suite/utilities.rerun.log"
+    }
+  ],
+  "dependencyOverride": true
+}

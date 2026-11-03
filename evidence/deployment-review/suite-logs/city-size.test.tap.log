@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: five city sizes from eyeballs: megacities are rare, outposts are huts
+ok 1 - five city sizes from eyeballs: megacities are rare, outposts are huts
+  ---
+  duration_ms: 787.954174
+  type: 'test'
+  ...
+# Subtest: crowded small cities give way to bigger ones as dots; your POPs and the selected city never do
+ok 2 - crowded small cities give way to bigger ones as dots; your POPs and the selected city never do
+  ---
+  duration_ms: 440.542264
+  type: 'test'
+  ...
+# Subtest: zooming in gives every city its skyline back; zoomed out the map is dots sized by eyeballs
+ok 3 - zooming in gives every city its skyline back; zoomed out the map is dots sized by eyeballs
+  ---
+  duration_ms: 407.045463
+  type: 'test'
+  ...
+# Subtest: a city shown as a dot is still there to tap
+ok 4 - a city shown as a dot is still there to tap
+  ---
+  duration_ms: 400.971685
+  type: 'test'
+  ...
+# Subtest: phones draw cities a little smaller, so more of them keep their skyline
+ok 5 - phones draw cities a little smaller, so more of them keep their skyline
+  ---
+  duration_ms: 409.303647
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2780.974042

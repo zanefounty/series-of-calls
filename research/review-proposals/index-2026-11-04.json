@@ -1,0 +1,1315 @@
+{
+  "checkedAt": "2026-11-03T20:57:54.685408+00:00",
+  "status": "structural-validation-passed",
+  "scope": "Proposal coverage and canonical ID/link integrity only; not source truth, owner acceptance or release readiness. Accept recommendations are restricted to the per-record scope and are not full composite-claim acceptance.",
+  "referenceCount": 91,
+  "proposalCount": 91,
+  "claimCount": 100,
+  "recommendations": {
+    "revise": 40,
+    "accept": 48,
+    "unresolved": 3
+  },
+  "canonicalAcceptedReviews": 0,
+  "inputs": {
+    "research/review-proposals/references-a-2026-11-04.json": "e3518f898e087ded66d9fbf5b1448cf0079b495b35103c51ab78914a1f0a904f",
+    "research/review-proposals/references-b-2026-11-04.json": "559a7823071ce7f6fb88b256a03655c55c89b9324a77c891e7d04f7277459f56",
+    "research/review-proposals/references-c-2026-11-04.json": "f622f9facffc54ebfd36b203e17170a9922ab0f02ef35a15018138fe31f5bcad",
+    "research/review-proposals/jurisdictions-2026-11-04.json": "c8e76630bb9741abe1b7f83fa04fe2a4021cbd571ad5427c70096f17dd898956"
+  },
+  "errors": [],
+  "records": [
+    {
+      "reference": "REF-ac194430f67b3832",
+      "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+      "claims": [
+        "CLAIM-25a0d3acbe089fe8"
+      ],
+      "requirements": [
+        "REQ-34149e5830194956"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5300ce44d82bd40f",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+      "claims": [
+        "CLAIM-e6b06b7d4759516b"
+      ],
+      "requirements": [
+        "REQ-34149e5830194956"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-7cec333be41fbfc9",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+      "claims": [
+        "CLAIM-92d312ca4625b869"
+      ],
+      "requirements": [
+        "REQ-34149e5830194956"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a8dbb077dacacede",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+      "claims": [
+        "CLAIM-a200581db0f56c8d"
+      ],
+      "requirements": [
+        "REQ-34149e5830194956"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b8049813b772603e",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+      "claims": [
+        "CLAIM-17b469523e0fccdd"
+      ],
+      "requirements": [
+        "REQ-fcfe870dbabdbb62"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6041cb9b4e29d0a7",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+      "claims": [
+        "CLAIM-ee1c8618006f345a",
+        "CLAIM-b1a7b056aaada840"
+      ],
+      "requirements": [
+        "REQ-fc1aa0b29d83cf38",
+        "REQ-fcfe870dbabdbb62"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-0ab35ad448a8e152",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+      "claims": [
+        "CLAIM-47c428cb682fd198"
+      ],
+      "requirements": [
+        "REQ-4a8f2bbb4079765f"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-ce4086e425fc31ca",
+      "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+      "claims": [
+        "CLAIM-38f6afe889658335"
+      ],
+      "requirements": [
+        "REQ-91713cf90631b52d"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-994b72cced26fabb",
+      "url": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+      "claims": [
+        "CLAIM-a1def7797ff16712"
+      ],
+      "requirements": [
+        "REQ-d39d0f417f9016b0"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-c6673929705ff2bf",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+      "claims": [
+        "CLAIM-21c67d1cbd6c351b"
+      ],
+      "requirements": [
+        "REQ-0dcd866e94553617"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-80094745cafb63d6",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+      "claims": [
+        "CLAIM-5e832c5a7d8c0fed"
+      ],
+      "requirements": [
+        "REQ-fe62fc25439ee2d0"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-cbb04f2d2c34bccb",
+      "url": "https://www.webex.com/us/en/products/suite.html",
+      "claims": [
+        "CLAIM-561d8817ca1026f1"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-f17dabc322d17a54",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+      "claims": [
+        "CLAIM-a6276d9047a1da7e"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-c9e920ec01b6f78b",
+      "url": "https://help.webex.com/article/dk3o5r",
+      "claims": [
+        "CLAIM-4d9e35e3a246ec7a"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-e40e11d43985a98d",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+      "claims": [
+        "CLAIM-9224111c6bb17412"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-ecd8d4f64aad9f35",
+      "url": "https://help.webexconnect.io/docs/welcome",
+      "claims": [
+        "CLAIM-68a0886f7e4eefc5",
+        "CLAIM-fbf813cd7e1b1387"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70",
+        "REQ-7993072717d54c9d"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-932dc1c63a5b9e08",
+      "url": "https://www.webex.com/us/en/solutions/interoperability.html",
+      "claims": [
+        "CLAIM-8a04710ea80247ed"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-fb9dd3e3bcdca8c9",
+      "url": "https://help.webex.com/article/nwwg3w6",
+      "claims": [
+        "CLAIM-daf37ddd127fbfb7",
+        "CLAIM-54d47b9d61f1bb8a"
+      ],
+      "requirements": [
+        "REQ-51f946a444240d70",
+        "REQ-6d734411a6b79933"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5feedded0d34a197",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+      "claims": [
+        "CLAIM-4565d8fb254271df",
+        "CLAIM-def72d7bacfbf033"
+      ],
+      "requirements": [
+        "REQ-7732d48ed43ebe41",
+        "REQ-81e353eb84bbff84"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-0ddcf6e8a0d3d60c",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+      "claims": [
+        "CLAIM-cbc7eb75caccf472"
+      ],
+      "requirements": [
+        "REQ-516e0364542ccd19"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-fcdabdb913c10b05",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+      "claims": [
+        "CLAIM-3dd28041126d988b"
+      ],
+      "requirements": [
+        "REQ-a685e7e2c9bb589d"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5fb1edff716b861d",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+      "claims": [
+        "CLAIM-d637c8d10c7a946a"
+      ],
+      "requirements": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-bf74910ae207c4ce",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+      "claims": [
+        "CLAIM-d1c0f36090a41105"
+      ],
+      "requirements": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-13aa74b705a9e357",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+      "claims": [
+        "CLAIM-a7275b68d7f5c42f"
+      ],
+      "requirements": [
+        "REQ-fc1aa0b29d83cf38"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-097413172db36986",
+      "url": "https://apphub.webex.com/partner-solutions",
+      "claims": [
+        "CLAIM-80529de1efd098db"
+      ],
+      "requirements": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6ee11627b4e96799",
+      "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+      "claims": [
+        "CLAIM-d8e3a548360f0008"
+      ],
+      "requirements": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-d91db49dd1296a40",
+      "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+      "claims": [
+        "CLAIM-5c942c4cb21a78d8"
+      ],
+      "requirements": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-81f2bd205e0f66f7",
+      "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+      "claims": [
+        "CLAIM-1d52fdfbe385dd4a"
+      ],
+      "requirements": [
+        "REQ-82e12ce124c82d04"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a5f898a484d055da",
+      "url": "https://kurmi-software.com/",
+      "claims": [
+        "CLAIM-616b56d32c938b78"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-004474965260c809",
+      "url": "https://www.voss-solutions.com/tech-solutions/cisco/",
+      "claims": [
+        "CLAIM-f45542864ca1ee00"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-a-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-d4ab6397cad04761",
+      "url": "https://www.akkadianlabs.com/akkadian-platform/",
+      "claims": [
+        "CLAIM-8de19cd86b7c985c"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-38feefe35f2f7619",
+      "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+      "claims": [
+        "CLAIM-1d491bff68072715"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-2c6a952924346c36",
+      "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+      "claims": [
+        "CLAIM-ca612486c41b6f7e"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b96b46dfea69de93",
+      "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+      "claims": [
+        "CLAIM-4679b0d113a829b1"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-1503bbaf273629fc",
+      "url": "https://www.synergysky.com/service-description",
+      "claims": [
+        "CLAIM-7f4496a572d35857"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-7ed8da24bfbaf244",
+      "url": "https://www.ir.com/products/collaborate",
+      "claims": [
+        "CLAIM-1bfb1e73a5b814f7"
+      ],
+      "requirements": [
+        "REQ-090ca18180d23749"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-db893272c3caa3e6",
+      "url": "https://www.twilio.com/en-us/products",
+      "claims": [
+        "CLAIM-f9aad380d17926ea"
+      ],
+      "requirements": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-bd36702520ca438c",
+      "url": "https://sinch.com/products/",
+      "claims": [
+        "CLAIM-b0621ee2b1b56935"
+      ],
+      "requirements": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-38e91eec89c3b7f1",
+      "url": "https://www.infobip.com/docs/conversations",
+      "claims": [
+        "CLAIM-35ebc22fe0e4bd68"
+      ],
+      "requirements": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-d57c9265c13dcff5",
+      "url": "https://help.8x8.com/documentation",
+      "claims": [
+        "CLAIM-d30c5a2dbd047d06"
+      ],
+      "requirements": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-2c126d5591584671",
+      "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+      "claims": [
+        "CLAIM-513413bc3bd34e9e",
+        "CLAIM-e632215a7246634e"
+      ],
+      "requirements": [
+        "REQ-b81620f2ef88a92c",
+        "REQ-f289ccf97552f1ee"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5847fdf5258de958",
+      "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+      "claims": [
+        "CLAIM-7169c6001d9a447d"
+      ],
+      "requirements": [
+        "REQ-81f6cffdbdaac836"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-52534bbbda04973d",
+      "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+      "claims": [
+        "CLAIM-9c99fd537543b27b",
+        "CLAIM-5c932b266786f9e9"
+      ],
+      "requirements": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b3027a7b0a74c45d",
+      "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+      "claims": [
+        "CLAIM-4911b7f05c523234",
+        "CLAIM-692e152367019b74"
+      ],
+      "requirements": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a4b34e38df123d83",
+      "url": "https://developers.deepgram.com/docs/deployment-options",
+      "claims": [
+        "CLAIM-a762654c4ca2ed90",
+        "CLAIM-673be91cbe9afe43"
+      ],
+      "requirements": [
+        "REQ-030efcb9b980477b",
+        "REQ-90d0d170cd267a9d"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b774912c2fef487e",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+      "claims": [
+        "CLAIM-e1fcf00481fb5d51",
+        "CLAIM-b8f99abef72393e2"
+      ],
+      "requirements": [
+        "REQ-030efcb9b980477b",
+        "REQ-90d0d170cd267a9d"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-62ae5701eec71289",
+      "url": "https://www.singlewire.com/integrations/redsky",
+      "claims": [
+        "CLAIM-92b0acded8e21ca2"
+      ],
+      "requirements": [
+        "REQ-030efcb9b980477b"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a333ec80b11e26ef",
+      "url": "https://www.asterisk.org/get-started/",
+      "claims": [
+        "CLAIM-9aceba29f18ac56f"
+      ],
+      "requirements": [
+        "REQ-030efcb9b980477b"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-3978de94b73181f0",
+      "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+      "claims": [
+        "CLAIM-da808601ddf27285"
+      ],
+      "requirements": [
+        "REQ-030efcb9b980477b"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-effbf81bfc316bd6",
+      "url": "https://www.verint.com/calabrio/",
+      "claims": [
+        "CLAIM-e1a287349359beb2"
+      ],
+      "requirements": [
+        "REQ-1df9a0c4458db01f"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-18b941b71b6c92b7",
+      "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+      "claims": [
+        "CLAIM-8e9eae0210492987"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-29c840ca324ce3fd",
+      "url": "https://www.ringcentral.com/au/en/ringcx.html",
+      "claims": [
+        "CLAIM-3181068a28e21c3d"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-2c204a90632309fa",
+      "url": "https://www.avaya.com/en/products/aura/",
+      "claims": [
+        "CLAIM-d53a8640a2608b2f"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a294a1068b534053",
+      "url": "https://www.avaya.com/en/products/infinity-platform/",
+      "claims": [
+        "CLAIM-5b9f7ada9cd47d95"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-4494e44133a096ff",
+      "url": "https://www.mitel.com/products/business-phone-systems",
+      "claims": [
+        "CLAIM-a08ce3b99e3b06d5"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6b9dd2ca3e9920e5",
+      "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+      "claims": [
+        "CLAIM-88a031caef088e05"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-1454d7ffe209c85b",
+      "url": "https://www.3cx.com/phone-system/",
+      "claims": [
+        "CLAIM-4ca2d0fe766055e0"
+      ],
+      "requirements": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6974ff2c7027ebb4",
+      "url": "https://business.whatsapp.com/products/platform-pricing",
+      "claims": [
+        "CLAIM-dc4b33799e75f0c3"
+      ],
+      "requirements": [
+        "REQ-7993072717d54c9d"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-e5bb18ef74fe6ca4",
+      "url": "https://www.zoom.com/en/products/",
+      "claims": [
+        "CLAIM-185b2d6b9abe4742"
+      ],
+      "requirements": [
+        "REQ-7213258dcc84247f"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-267d4dda6bb79608",
+      "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+      "claims": [
+        "CLAIM-eeb4a42e0f32b3c5"
+      ],
+      "requirements": [
+        "REQ-b8f252f0789bdaa8"
+      ],
+      "proposal": "research/review-proposals/references-b-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-01c1db3086024441",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+      "claims": [
+        "CLAIM-a19ffea5ac479551"
+      ],
+      "requirements": [
+        "REQ-b8f252f0789bdaa8"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-8af7f0c64e902296",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+      "claims": [
+        "CLAIM-456d0885be38f7ff"
+      ],
+      "requirements": [
+        "REQ-090973d00531c506"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-31e291b1eee75a7a",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+      "claims": [
+        "CLAIM-e0ab5deab9125280"
+      ],
+      "requirements": [
+        "REQ-f9a2946baca6d3c9"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-ce4e6c93d4f7f11d",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+      "claims": [
+        "CLAIM-39b53c7bcd8fa320"
+      ],
+      "requirements": [
+        "REQ-39b53c7bcd8fa320"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-caf76921eb104f1f",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+      "claims": [
+        "CLAIM-2b2d832208d9f39c"
+      ],
+      "requirements": [
+        "REQ-2b2d832208d9f39c"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "unresolved",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b975a5563a7e48f0",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+      "claims": [
+        "CLAIM-2f08185dc79f23ef"
+      ],
+      "requirements": [
+        "REQ-2f08185dc79f23ef"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "unresolved",
+      "accepted": false
+    },
+    {
+      "reference": "REF-a40f3ce6a34d2530",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+      "claims": [
+        "CLAIM-2af25b61b00d01cc"
+      ],
+      "requirements": [
+        "REQ-2af25b61b00d01cc"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-0d42f4b3d7e3d297",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+      "claims": [
+        "CLAIM-854083e86a66110b"
+      ],
+      "requirements": [
+        "REQ-854083e86a66110b"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-0bffb652b76883d9",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+      "claims": [
+        "CLAIM-f913436cdd150d04"
+      ],
+      "requirements": [
+        "REQ-f913436cdd150d04"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-2985477e6ab52c6f",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+      "claims": [
+        "CLAIM-2ca1de1ca67457cc"
+      ],
+      "requirements": [
+        "REQ-2ca1de1ca67457cc"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-03fc3d994c353069",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+      "claims": [
+        "CLAIM-b63cdc1e4b48a423"
+      ],
+      "requirements": [
+        "REQ-b63cdc1e4b48a423"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-b807374341cb4592",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+      "claims": [
+        "CLAIM-153588976b69210c"
+      ],
+      "requirements": [
+        "REQ-153588976b69210c"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-66f30c9ce62710dc",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+      "claims": [
+        "CLAIM-3a5b9328fd8234d7"
+      ],
+      "requirements": [
+        "REQ-3a5b9328fd8234d7"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5d4452fa6d915fc5",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+      "claims": [
+        "CLAIM-4116975e2ef74f39"
+      ],
+      "requirements": [
+        "REQ-4116975e2ef74f39"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-16fcbb5b2fd59e07",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+      "claims": [
+        "CLAIM-572ffa82cf9601fe"
+      ],
+      "requirements": [
+        "REQ-572ffa82cf9601fe"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-86107818a4d492f7",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+      "claims": [
+        "CLAIM-2b57da9c60033cfd"
+      ],
+      "requirements": [
+        "REQ-2b57da9c60033cfd"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-5d951bf30e3c96d3",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+      "claims": [
+        "CLAIM-86b1025e597d449d"
+      ],
+      "requirements": [
+        "REQ-86b1025e597d449d"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "unresolved",
+      "accepted": false
+    },
+    {
+      "reference": "REF-f8221f4fdcb2415b",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+      "claims": [
+        "CLAIM-ece39a4dede39c7d"
+      ],
+      "requirements": [
+        "REQ-ece39a4dede39c7d"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6e6184fda25bddb4",
+      "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+      "claims": [
+        "CLAIM-c9a58510901736f8"
+      ],
+      "requirements": [
+        "REQ-c9a58510901736f8"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-3cc23cc2422be034",
+      "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+      "claims": [
+        "CLAIM-a1e3ccd52cec0563"
+      ],
+      "requirements": [
+        "REQ-a1e3ccd52cec0563"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-bcbd90c63b48817f",
+      "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+      "claims": [
+        "CLAIM-80e3c074a4faa1eb"
+      ],
+      "requirements": [
+        "REQ-80e3c074a4faa1eb"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-3c35bbedeac1d5e8",
+      "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+      "claims": [
+        "CLAIM-20db5406df6f89dd"
+      ],
+      "requirements": [
+        "REQ-20db5406df6f89dd"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-92fc12a39434ac75",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+      "claims": [
+        "CLAIM-ade44259370a7ba7"
+      ],
+      "requirements": [
+        "REQ-ade44259370a7ba7"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-625698d2aa90d70c",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+      "claims": [
+        "CLAIM-dcf9b1a68091ce19"
+      ],
+      "requirements": [
+        "REQ-dcf9b1a68091ce19"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-0fe3ded413d45133",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+      "claims": [
+        "CLAIM-d59ddbd1b8c58937"
+      ],
+      "requirements": [
+        "REQ-d59ddbd1b8c58937"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-339fdf527eed6fc1",
+      "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+      "claims": [
+        "CLAIM-71372a8a464b2598"
+      ],
+      "requirements": [
+        "REQ-71372a8a464b2598"
+      ],
+      "proposal": "research/review-proposals/references-c-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "accept",
+      "accepted": false
+    },
+    {
+      "reference": "REF-01234d0db452b257",
+      "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+      "claims": [
+        "CLAIM-4abda4d004716da6"
+      ],
+      "requirements": [
+        "REQ-4abda4d004716da6"
+      ],
+      "proposal": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-d8e8c2b149f9b9ab",
+      "url": "https://www.fedramp.gov/2026/agencies/use/",
+      "claims": [
+        "CLAIM-2314f315d795c6a6"
+      ],
+      "requirements": [
+        "REQ-2314f315d795c6a6"
+      ],
+      "proposal": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-6d84d6a737cf7adf",
+      "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+      "claims": [
+        "CLAIM-7a874cbe68218153"
+      ],
+      "requirements": [
+        "REQ-7a874cbe68218153"
+      ],
+      "proposal": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-807e645f0a490d75",
+      "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+      "claims": [
+        "CLAIM-ed81e9aa7bb61a3d"
+      ],
+      "requirements": [
+        "REQ-ed81e9aa7bb61a3d"
+      ],
+      "proposal": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    },
+    {
+      "reference": "REF-9ad9e2087bdedc1b",
+      "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+      "claims": [
+        "CLAIM-ef7e6982b2ab8356"
+      ],
+      "requirements": [
+        "REQ-ef7e6982b2ab8356"
+      ],
+      "proposal": "research/review-proposals/jurisdictions-2026-11-04.json",
+      "checkedAt": "2026-11-04",
+      "recommendation": "revise",
+      "accepted": false
+    }
+  ]
+}

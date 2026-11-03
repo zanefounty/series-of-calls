@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "pack": "soc-product-evidence-1",
+  "version": 1,
+  "status": "bounded synthetic workflow integrated with shared dispatch; administration panel awaits parent renderer wiring",
+  "sourceIds": [
+    "uc-new:family:microsoft:government-clouds",
+    "uc-new:family:cisco:government",
+    "uc-new:domain:eligibility",
+    "uc-new:domain:sovereignty",
+    "uc-new:domain:product-evidence"
+  ],
+  "scope": "Evidence is bound to an existing product deployment, declared feature/dependency, actual root resource, offer, family, product version, mode, deployment generation, root scenario and jurisdiction.",
+  "evidenceTypes": {
+    "eligibility-evidence": "Current fictional business qualification with retained qualification event, actual expiry and resource authorization.",
+    "jurisdiction-evidence": "Effective 43 contract/profile/resource binding plus the trusted 55 actual-resource boundary enforcement result.",
+    "lifecycle-evidence": "Effective 45 offer lifecycle state for the exact deployment scope; it is offering lifecycle evidence, not operational-support or vendor certification."
+  },
+  "rules": {
+    "syntheticEvidenceLifetime": 60,
+    "desiredProvisionEffectiveObserved": true,
+    "explicitRevocation": true,
+    "externalApprovalClaim": false,
+    "realVendorCertification": false,
+    "legalApproval": false
+  },
+  "limitations": [
+    "No national accreditation, procurement approval, legal decision, real vendor support matrix, or external certification is asserted.",
+    "Missing trusted business, boundary, lifecycle, or product state remains unavailable.",
+    "Language-model and integration-version evidence remain unsupported by this pack."
+  ],
+  "uiLabels": {
+    "product_evidence_ui.title": "Product evidence",
+    "product_evidence_ui.intro": "Request synthetic, workload-scoped evidence for an existing product deployment.",
+    "product_evidence_ui.synthetic": "Fictional scenario evidence only. This does not represent vendor certification or legal approval.",
+    "product_evidence_ui.start": "Start evidence workflow",
+    "product_evidence_ui.start_hint": "Start product administration and create a deployment before requesting scoped evidence.",
+    "product_evidence_ui.read_only": "Read-only mode",
+    "product_evidence_ui.none": "No evidence requests yet.",
+    "product_evidence_ui.request": "Request evidence",
+    "product_evidence_ui.request_id": "Request ID",
+    "product_evidence_ui.deployment": "Existing deployment",
+    "product_evidence_ui.feature": "Declared feature",
+    "product_evidence_ui.dependency": "Declared evidence dependency",
+    "product_evidence_ui.resource": "Bound resource",
+    "product_evidence_ui.derived_resource": "Resource derived from the deployment dependency",
+    "product_evidence_ui.submit": "Submit request",
+    "product_evidence_ui.desired": "Desired scope",
+    "product_evidence_ui.effective": "Effective evidence",
+    "product_evidence_ui.observed": "Evaluation observation",
+    "product_evidence_ui.provisioning": "Provisioning",
+    "product_evidence_ui.status": "Status",
+    "product_evidence_ui.generation": "Generation",
+    "product_evidence_ui.expires": "Expires at synthetic minute",
+    "product_evidence_ui.scope": "Scope",
+    "product_evidence_ui.source": "Evidence source",
+    "product_evidence_ui.reasons": "Blocking reasons",
+    "product_evidence_ui.availability": "Current availability",
+    "product_evidence_ui.available": "Available",
+    "product_evidence_ui.unavailable": "Unavailable",
+    "product_evidence_ui.revoke": "Revoke evidence",
+    "product_evidence_ui.reason": "Operator reason",
+    "product_evidence_ui.scope_withdrawn": "Scope withdrawn",
+    "product_evidence_ui.evidence_withdrawn": "Evidence withdrawn",
+    "product_evidence_ui.operator_revocation": "Operator revocation",
+    "product_evidence_ui.approval_limit": "This workflow never asserts external approval, certification, accreditation, or legal status.",
+    "product_evidence_ui.products_required": "Start product administration and create a product deployment first.",
+    "product_evidence_ui.scope_hint": "The resource is taken from the selected deployment's declared dependency; authorization and evidence are checked during provisioning.",
+    "product_evidence_ui.no_evidence_features": "No existing deployment declares a supported evidence dependency."
+  },
+  "runtime": {
+    "PACK": "soc-product-evidence-1",
+    "VERSION": 1,
+    "TTL": 60,
+    "evidenceTypes": ["jurisdiction-evidence", "eligibility-evidence", "lifecycle-evidence"],
+    "sourceIds": [
+      "uc-new:family:microsoft:government-clouds",
+      "uc-new:family:cisco:government",
+      "uc-new:domain:eligibility",
+      "uc-new:domain:sovereignty",
+      "uc-new:domain:product-evidence"
+    ]
+  }
+}

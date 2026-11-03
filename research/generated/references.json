@@ -1,0 +1,1294 @@
+[
+  {
+    "id": "REF-ac194430f67b3832",
+    "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+    "labels": [
+      "Teams service description"
+    ],
+    "claims": [
+      "CLAIM-25a0d3acbe089fe8"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5300ce44d82bd40f",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+    "labels": [
+      "PSTN connectivity documentation"
+    ],
+    "claims": [
+      "CLAIM-e6b06b7d4759516b"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-7cec333be41fbfc9",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+    "labels": [
+      "Rooms licensing"
+    ],
+    "claims": [
+      "CLAIM-92d312ca4625b869"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a8dbb077dacacede",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+    "labels": [
+      "meetings and events documentation"
+    ],
+    "claims": [
+      "CLAIM-a200581db0f56c8d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b8049813b772603e",
+    "url": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+    "labels": [
+      "Dynamics 365 Contact Center"
+    ],
+    "claims": [
+      "CLAIM-17b469523e0fccdd"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6041cb9b4e29d0a7",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+    "labels": [
+      "Teams contact-centre integration documentation",
+      "Microsoft's contact-centre catalogue"
+    ],
+    "claims": [
+      "CLAIM-ee1c8618006f345a",
+      "CLAIM-b1a7b056aaada840"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-0ab35ad448a8e152",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+    "labels": [
+      "Microsoft 365 Local"
+    ],
+    "claims": [
+      "CLAIM-47c428cb682fd198"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-ce4086e425fc31ca",
+    "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+    "labels": [
+      "GCC High and DoD service description"
+    ],
+    "claims": [
+      "CLAIM-38f6afe889658335"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-994b72cced26fabb",
+    "url": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+    "labels": [
+      "ACS retirement and breaking-changes guide"
+    ],
+    "claims": [
+      "CLAIM-a1def7797ff16712"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-c6673929705ff2bf",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+    "labels": [
+      "Copilot in Teams documentation"
+    ],
+    "claims": [
+      "CLAIM-21c67d1cbd6c351b"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-80094745cafb63d6",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+    "labels": [
+      "Teams Rooms Pro integration with ServiceNow"
+    ],
+    "claims": [
+      "CLAIM-5e832c5a7d8c0fed"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-cbb04f2d2c34bccb",
+    "url": "https://www.webex.com/us/en/products/suite.html",
+    "labels": [
+      "Webex Suite"
+    ],
+    "claims": [
+      "CLAIM-561d8817ca1026f1"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-f17dabc322d17a54",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+    "labels": [
+      "Flex and Suite offers"
+    ],
+    "claims": [
+      "CLAIM-a6276d9047a1da7e"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-c9e920ec01b6f78b",
+    "url": "https://help.webex.com/article/dk3o5r",
+    "labels": [
+      "Dedicated Instance"
+    ],
+    "claims": [
+      "CLAIM-4d9e35e3a246ec7a"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-e40e11d43985a98d",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+    "labels": [
+      "contact-centre product families"
+    ],
+    "claims": [
+      "CLAIM-9224111c6bb17412"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-ecd8d4f64aad9f35",
+    "url": "https://help.webexconnect.io/docs/welcome",
+    "labels": [
+      "Webex Connect",
+      "Webex Connect"
+    ],
+    "claims": [
+      "CLAIM-68a0886f7e4eefc5",
+      "CLAIM-fbf813cd7e1b1387"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-932dc1c63a5b9e08",
+    "url": "https://www.webex.com/us/en/solutions/interoperability.html",
+    "labels": [
+      "device interoperability"
+    ],
+    "claims": [
+      "CLAIM-8a04710ea80247ed"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-fb9dd3e3bcdca8c9",
+    "url": "https://help.webex.com/article/nwwg3w6",
+    "labels": [
+      "Wholesale Route to Market",
+      "wholesale guide"
+    ],
+    "claims": [
+      "CLAIM-daf37ddd127fbfb7",
+      "CLAIM-54d47b9d61f1bb8a"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5feedded0d34a197",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+    "labels": [
+      "AI PODs datasheet",
+      "Cisco AI PODs licensing qualification"
+    ],
+    "claims": [
+      "CLAIM-4565d8fb254271df",
+      "CLAIM-def72d7bacfbf033"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-0ddcf6e8a0d3d60c",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+    "labels": [
+      "UCM Cloud for Government lifecycle notice"
+    ],
+    "claims": [
+      "CLAIM-cbc7eb75caccf472"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-fcdabdb913c10b05",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+    "labels": [
+      "Webex WFO notice"
+    ],
+    "claims": [
+      "CLAIM-3dd28041126d988b"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5fb1edff716b861d",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+    "labels": [
+      "SBC certification"
+    ],
+    "claims": [
+      "CLAIM-d637c8d10c7a946a"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-bf74910ae207c4ce",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+    "labels": [
+      "Rooms hardware certification"
+    ],
+    "claims": [
+      "CLAIM-d1c0f36090a41105"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-13aa74b705a9e357",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+    "labels": [
+      "compliance recording"
+    ],
+    "claims": [
+      "CLAIM-a7275b68d7f5c42f"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-097413172db36986",
+    "url": "https://apphub.webex.com/partner-solutions",
+    "labels": [
+      "Webex App Hub"
+    ],
+    "claims": [
+      "CLAIM-80529de1efd098db"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6ee11627b4e96799",
+    "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+    "labels": [
+      "Imagicle"
+    ],
+    "claims": [
+      "CLAIM-d8e3a548360f0008"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-d91db49dd1296a40",
+    "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+    "labels": [
+      "Theta Lake"
+    ],
+    "claims": [
+      "CLAIM-5c942c4cb21a78d8"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-81f2bd205e0f66f7",
+    "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+    "labels": [
+      "TTEC Digital WFM adapter"
+    ],
+    "claims": [
+      "CLAIM-1d52fdfbe385dd4a"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a5f898a484d055da",
+    "url": "https://kurmi-software.com/",
+    "labels": [
+      "Kurmi"
+    ],
+    "claims": [
+      "CLAIM-616b56d32c938b78"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-004474965260c809",
+    "url": "https://www.voss-solutions.com/tech-solutions/cisco/",
+    "labels": [
+      "VOSS"
+    ],
+    "claims": [
+      "CLAIM-f45542864ca1ee00"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-d4ab6397cad04761",
+    "url": "https://www.akkadianlabs.com/akkadian-platform/",
+    "labels": [
+      "Akkadian"
+    ],
+    "claims": [
+      "CLAIM-8de19cd86b7c985c"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-38feefe35f2f7619",
+    "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+    "labels": [
+      "VQ"
+    ],
+    "claims": [
+      "CLAIM-1d491bff68072715"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-2c6a952924346c36",
+    "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+    "labels": [
+      "Mividas"
+    ],
+    "claims": [
+      "CLAIM-ca612486c41b6f7e"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b96b46dfea69de93",
+    "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+    "labels": [
+      "Pexip"
+    ],
+    "claims": [
+      "CLAIM-4679b0d113a829b1"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-1503bbaf273629fc",
+    "url": "https://www.synergysky.com/service-description",
+    "labels": [
+      "Synergy SKY"
+    ],
+    "claims": [
+      "CLAIM-7f4496a572d35857"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-7ed8da24bfbaf244",
+    "url": "https://www.ir.com/products/collaborate",
+    "labels": [
+      "IR Collaborate"
+    ],
+    "claims": [
+      "CLAIM-1bfb1e73a5b814f7"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-db893272c3caa3e6",
+    "url": "https://www.twilio.com/en-us/products",
+    "labels": [
+      "Twilio"
+    ],
+    "claims": [
+      "CLAIM-f9aad380d17926ea"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-bd36702520ca438c",
+    "url": "https://sinch.com/products/",
+    "labels": [
+      "Sinch"
+    ],
+    "claims": [
+      "CLAIM-b0621ee2b1b56935"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-38e91eec89c3b7f1",
+    "url": "https://www.infobip.com/docs/conversations",
+    "labels": [
+      "Infobip Conversations"
+    ],
+    "claims": [
+      "CLAIM-35ebc22fe0e4bd68"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-d57c9265c13dcff5",
+    "url": "https://help.8x8.com/documentation",
+    "labels": [
+      "8x8 documentation"
+    ],
+    "claims": [
+      "CLAIM-d30c5a2dbd047d06"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-2c126d5591584671",
+    "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+    "labels": [
+      "Genesys WEM",
+      "Genesys WEM"
+    ],
+    "claims": [
+      "CLAIM-513413bc3bd34e9e",
+      "CLAIM-e632215a7246634e"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5847fdf5258de958",
+    "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+    "labels": [
+      "Otter"
+    ],
+    "claims": [
+      "CLAIM-7169c6001d9a447d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-52534bbbda04973d",
+    "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+    "labels": [
+      "Fireflies",
+      "Fireflies"
+    ],
+    "claims": [
+      "CLAIM-9c99fd537543b27b",
+      "CLAIM-5c932b266786f9e9"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b3027a7b0a74c45d",
+    "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+    "labels": [
+      "Read AI",
+      "Read AI's Teams integration"
+    ],
+    "claims": [
+      "CLAIM-4911b7f05c523234",
+      "CLAIM-692e152367019b74"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a4b34e38df123d83",
+    "url": "https://developers.deepgram.com/docs/deployment-options",
+    "labels": [
+      "Deepgram deployment options",
+      "Deepgram's deployment documentation"
+    ],
+    "claims": [
+      "CLAIM-a762654c4ca2ed90",
+      "CLAIM-673be91cbe9afe43"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b774912c2fef487e",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+    "labels": [
+      "Microsoft disconnected containers",
+      "Microsoft's disconnected container documentation"
+    ],
+    "claims": [
+      "CLAIM-e1fcf00481fb5d51",
+      "CLAIM-b8f99abef72393e2"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-62ae5701eec71289",
+    "url": "https://www.singlewire.com/integrations/redsky",
+    "labels": [
+      "RedSky and InformaCast integration"
+    ],
+    "claims": [
+      "CLAIM-92b0acded8e21ca2"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a333ec80b11e26ef",
+    "url": "https://www.asterisk.org/get-started/",
+    "labels": [
+      "Asterisk"
+    ],
+    "claims": [
+      "CLAIM-9aceba29f18ac56f"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-3978de94b73181f0",
+    "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+    "labels": [
+      "FreeSWITCH"
+    ],
+    "claims": [
+      "CLAIM-da808601ddf27285"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-effbf81bfc316bd6",
+    "url": "https://www.verint.com/calabrio/",
+    "labels": [
+      "Verint's Calabrio page"
+    ],
+    "claims": [
+      "CLAIM-e1a287349359beb2"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-18b941b71b6c92b7",
+    "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+    "labels": [
+      "RingCentral RingEX"
+    ],
+    "claims": [
+      "CLAIM-8e9eae0210492987"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-29c840ca324ce3fd",
+    "url": "https://www.ringcentral.com/au/en/ringcx.html",
+    "labels": [
+      "RingCX"
+    ],
+    "claims": [
+      "CLAIM-3181068a28e21c3d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-2c204a90632309fa",
+    "url": "https://www.avaya.com/en/products/aura/",
+    "labels": [
+      "Avaya Aura"
+    ],
+    "claims": [
+      "CLAIM-d53a8640a2608b2f"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a294a1068b534053",
+    "url": "https://www.avaya.com/en/products/infinity-platform/",
+    "labels": [
+      "Infinity"
+    ],
+    "claims": [
+      "CLAIM-5b9f7ada9cd47d95"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-4494e44133a096ff",
+    "url": "https://www.mitel.com/products/business-phone-systems",
+    "labels": [
+      "Mitel communications platforms"
+    ],
+    "claims": [
+      "CLAIM-a08ce3b99e3b06d5"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6b9dd2ca3e9920e5",
+    "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+    "labels": [
+      "ALE's UC portfolio"
+    ],
+    "claims": [
+      "CLAIM-88a031caef088e05"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-1454d7ffe209c85b",
+    "url": "https://www.3cx.com/phone-system/",
+    "labels": [
+      "3CX"
+    ],
+    "claims": [
+      "CLAIM-4ca2d0fe766055e0"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6974ff2c7027ebb4",
+    "url": "https://business.whatsapp.com/products/platform-pricing",
+    "labels": [
+      "WhatsApp's pricing documentation"
+    ],
+    "claims": [
+      "CLAIM-dc4b33799e75f0c3"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-e5bb18ef74fe6ca4",
+    "url": "https://www.zoom.com/en/products/",
+    "labels": [
+      "Zoom's portfolio"
+    ],
+    "claims": [
+      "CLAIM-185b2d6b9abe4742"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-267d4dda6bb79608",
+    "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+    "labels": [
+      "Series of Tubes at commit 48e6200"
+    ],
+    "claims": [
+      "CLAIM-eeb4a42e0f32b3c5"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-01c1db3086024441",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+    "labels": [
+      "Upstream architecture"
+    ],
+    "claims": [
+      "CLAIM-a19ffea5ac479551"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-8af7f0c64e902296",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+    "labels": [
+      "Save implementation"
+    ],
+    "claims": [
+      "CLAIM-456d0885be38f7ff"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-31e291b1eee75a7a",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+    "labels": [
+      "Upstream test harness"
+    ],
+    "claims": [
+      "CLAIM-e0ab5deab9125280"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-01234d0db452b257",
+    "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+    "labels": [
+      "Australia cloud assessment and authorisation"
+    ],
+    "claims": [
+      "CLAIM-4abda4d004716da6"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-d8e8c2b149f9b9ab",
+    "url": "https://www.fedramp.gov/2026/agencies/use/",
+    "labels": [
+      "FedRAMP agency use of certified cloud services"
+    ],
+    "claims": [
+      "CLAIM-2314f315d795c6a6"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6d84d6a737cf7adf",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+    "labels": [
+      "ISMAP programme overview"
+    ],
+    "claims": [
+      "CLAIM-7a874cbe68218153"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-807e645f0a490d75",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+    "labels": [
+      "ISMAP notice concerning generative AI services"
+    ],
+    "claims": [
+      "CLAIM-ed81e9aa7bb61a3d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-9ad9e2087bdedc1b",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+    "labels": [
+      "EDPB international data transfers guide"
+    ],
+    "claims": [
+      "CLAIM-ef7e6982b2ab8356"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-ce4e6c93d4f7f11d",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+    "labels": [
+      "SIP Load and Re-Invite"
+    ],
+    "claims": [
+      "CLAIM-39b53c7bcd8fa320"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-caf76921eb104f1f",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+    "labels": [
+      "One-way audio after BLIND transfer to SIP Trunk"
+    ],
+    "claims": [
+      "CLAIM-2b2d832208d9f39c"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b975a5563a7e48f0",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+    "labels": [
+      "Transfer using BLF Speed Dial on 9.1"
+    ],
+    "claims": [
+      "CLAIM-2f08185dc79f23ef"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-a40f3ce6a34d2530",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+    "labels": [
+      "quick question about sip and CUBE"
+    ],
+    "claims": [
+      "CLAIM-2af25b61b00d01cc"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-0d42f4b3d7e3d297",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+    "labels": [
+      "UCCX not working after change to SIP"
+    ],
+    "claims": [
+      "CLAIM-854083e86a66110b"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-0bffb652b76883d9",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+    "labels": [
+      "7945 phone has wrong time and can't verify config"
+    ],
+    "claims": [
+      "CLAIM-f913436cdd150d04"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-2985477e6ab52c6f",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+    "labels": [
+      "8831 stuck on logo on keypad"
+    ],
+    "claims": [
+      "CLAIM-2ca1de1ca67457cc"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-03fc3d994c353069",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+    "labels": [
+      "webkit fun!"
+    ],
+    "claims": [
+      "CLAIM-b63cdc1e4b48a423"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-b807374341cb4592",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+    "labels": [
+      "MRA Onboarding via activation code... phone trust list?"
+    ],
+    "claims": [
+      "CLAIM-153588976b69210c"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-66f30c9ce62710dc",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+    "labels": [
+      "Expressway Clustering..."
+    ],
+    "claims": [
+      "CLAIM-3a5b9328fd8234d7"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5d4452fa6d915fc5",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+    "labels": [
+      "Import on CUCM Several Failed Devices"
+    ],
+    "claims": [
+      "CLAIM-4116975e2ef74f39"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-16fcbb5b2fd59e07",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+    "labels": [
+      "CUCM SU release cycle"
+    ],
+    "claims": [
+      "CLAIM-572ffa82cf9601fe"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-86107818a4d492f7",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+    "labels": [
+      "The peer of my peer is my peer?"
+    ],
+    "claims": [
+      "CLAIM-2b57da9c60033cfd"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-5d951bf30e3c96d3",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+    "labels": [
+      "Ye ole Cisco Cube CM"
+    ],
+    "claims": [
+      "CLAIM-86b1025e597d449d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-f8221f4fdcb2415b",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+    "labels": [
+      "VoIP - complete outage at DASH Carrier Services"
+    ],
+    "claims": [
+      "CLAIM-ece39a4dede39c7d"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-6e6184fda25bddb4",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+    "labels": [
+      "SBC's that drop traffic based on domain"
+    ],
+    "claims": [
+      "CLAIM-c9a58510901736f8"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-3cc23cc2422be034",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+    "labels": [
+      "Allworx Followme - no audio issue"
+    ],
+    "claims": [
+      "CLAIM-a1e3ccd52cec0563"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-bcbd90c63b48817f",
+    "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+    "labels": [
+      "Routing and translations contacts"
+    ],
+    "claims": [
+      "CLAIM-80e3c074a4faa1eb"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-3c35bbedeac1d5e8",
+    "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+    "labels": [
+      "Canadian Toll Free"
+    ],
+    "claims": [
+      "CLAIM-20db5406df6f89dd"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-92fc12a39434ac75",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+    "labels": [
+      "Which Softswitch?"
+    ],
+    "claims": [
+      "CLAIM-ade44259370a7ba7"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-625698d2aa90d70c",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+    "labels": [
+      "Upcoming Fees for Text Enabled Telephone Numbers (Bandwidth.com)"
+    ],
+    "claims": [
+      "CLAIM-dcf9b1a68091ce19"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-0fe3ded413d45133",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+    "labels": [
+      "Perimeta SBC & TCP"
+    ],
+    "claims": [
+      "CLAIM-d59ddbd1b8c58937"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  },
+  {
+    "id": "REF-339fdf527eed6fc1",
+    "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+    "labels": [
+      "Three Digit Numbers"
+    ],
+    "claims": [
+      "CLAIM-71372a8a464b2598"
+    ],
+    "lastSuccessfulCheck": null,
+    "acceptedReview": null,
+    "activeJurisdictionClaim": false,
+    "observations": []
+  }
+]

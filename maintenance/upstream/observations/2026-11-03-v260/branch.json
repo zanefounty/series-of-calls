@@ -1,0 +1,99 @@
+{
+  "name": "main",
+  "commit": {
+    "sha": "b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+    "node_id": "C_kwDOVUZ3tdoAKGI3ZTVmMTkzYjQyNDY4OWUzZGJkZjZlNTc2MzliNTIxMmUwNGQ1YzI",
+    "commit": {
+      "author": {
+        "name": "Frederic Jung",
+        "email": "frederic@jc-ix.net",
+        "date": "2026-11-03T10:43:45Z"
+      },
+      "committer": {
+        "name": "Frederic Jung",
+        "email": "frederic@jc-ix.net",
+        "date": "2026-11-03T10:43:45Z"
+      },
+      "message": "pages test: look for raw labels one text node at a time\n\nThe check joined whole panels' textContent, so a NOC log line ending in a\nfull stop ran into its timestamp ('facendo.' + 'proprio ora') and read as a\nlabel. The new cities moved the seeded game onto such a line in Italian.",
+      "tree": {
+        "sha": "95e823c57e27075a7f3a091680d993f5a5494982",
+        "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/95e823c57e27075a7f3a091680d993f5a5494982"
+      },
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/commits/b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unknown_key",
+        "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgrLzsfFISF4by8Q+FKz27YpkK1USsBB+m\namu1QkJnbDsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAAQPkYkGz3\naS+5bMxmaJ6ZGnlMu2Jwspy0PImc14Uweaj6gAnZWrdTBrGSZutQ7sqfPnJ1ZSTCjCIsOe5tzyh9\nRwY=\n-----END SSH SIGNATURE-----",
+        "payload": "tree 95e823c57e27075a7f3a091680d993f5a5494982\nparent 823e4188befe7e105df7edbb1599403c92f2d805\nauthor Frederic Jung <frederic@jc-ix.net> 1793702625 +0000\ncommitter Frederic Jung <frederic@jc-ix.net> 1793702625 +0000\n\npages test: look for raw labels one text node at a time\n\nThe check joined whole panels' textContent, so a NOC log line ending in a\nfull stop ran into its timestamp ('facendo.' + 'proprio ora') and read as a\nlabel. The new cities moved the seeded game onto such a line in Italian.\n",
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+    "html_url": "https://github.com/fjaeckel/seriesoftubes/commit/b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+    "comments_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/b7e5f193b424689e3dbdf6e57639b5212e04d5c2/comments",
+    "author": {
+      "login": "fjaeckel",
+      "id": 273436,
+      "node_id": "MDQ6VXNlcjI3MzQzNg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/273436?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/fjaeckel",
+      "html_url": "https://github.com/fjaeckel",
+      "followers_url": "https://api.github.com/users/fjaeckel/followers",
+      "following_url": "https://api.github.com/users/fjaeckel/following{/other_user}",
+      "gists_url": "https://api.github.com/users/fjaeckel/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/fjaeckel/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/fjaeckel/subscriptions",
+      "organizations_url": "https://api.github.com/users/fjaeckel/orgs",
+      "repos_url": "https://api.github.com/users/fjaeckel/repos",
+      "events_url": "https://api.github.com/users/fjaeckel/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/fjaeckel/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "fjaeckel",
+      "id": 273436,
+      "node_id": "MDQ6VXNlcjI3MzQzNg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/273436?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/fjaeckel",
+      "html_url": "https://github.com/fjaeckel",
+      "followers_url": "https://api.github.com/users/fjaeckel/followers",
+      "following_url": "https://api.github.com/users/fjaeckel/following{/other_user}",
+      "gists_url": "https://api.github.com/users/fjaeckel/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/fjaeckel/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/fjaeckel/subscriptions",
+      "organizations_url": "https://api.github.com/users/fjaeckel/orgs",
+      "repos_url": "https://api.github.com/users/fjaeckel/repos",
+      "events_url": "https://api.github.com/users/fjaeckel/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/fjaeckel/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "823e4188befe7e105df7edbb1599403c92f2d805",
+        "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/823e4188befe7e105df7edbb1599403c92f2d805",
+        "html_url": "https://github.com/fjaeckel/seriesoftubes/commit/823e4188befe7e105df7edbb1599403c92f2d805"
+      }
+    ]
+  },
+  "_links": {
+    "self": "https://api.github.com/repos/fjaeckel/seriesoftubes/branches/main",
+    "html": "https://github.com/fjaeckel/seriesoftubes/tree/main"
+  },
+  "protected": false,
+  "protection": {
+    "enabled": false,
+    "required_status_checks": {
+      "enforcement_level": "off",
+      "contexts": [],
+      "checks": []
+    }
+  },
+  "protection_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/branches/main/protection"
+}

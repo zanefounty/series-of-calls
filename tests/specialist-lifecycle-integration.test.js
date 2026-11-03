@@ -1,0 +1,25 @@
+const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
+const S=require('../src/game/55-communications'),cmd=(s,type,command)=>S.dispatch(s,{type,command}),tick=(s,n=1)=>S.dispatch(s,{type:'advance',minutes:n});
+function setup(){let s=cmd(S.create(),'products',{action:'start'});s=cmd(s,'business',{action:'start'});s=S.dispatch(s,{type:'configure',id:'phone',config:{routes:[{prefix:'+61',target:'desk'}]}});s=cmd(s,'products',{action:'offer',offer:{id:'phone-offer',family:'microsoft:workplace-phone',edition:'standard',unit:'seat',quantity:10,features:['telephony'],dependencies:{identity:'identity'}}});s=tick(s);s=cmd(s,'products',{action:'deploy',id:'phone-deployment',offer:'phone-offer',productVersion:'scenario-1',mode:'multitenant',region:'AU',bindings:[{feature:'telephony',resources:['phone']}]});s=tick(s);return cmd(s,'specialist-lifecycle',{action:'start'});}
+const evidence=(s,change={})=>cmd(s,'specialist-lifecycle',{action:'record',deploymentId:'phone-deployment',supportOwnerId:'orchard-msp',evidenceType:'internal-test',evidenceDate:'2026-11-03',sale:'available',renewal:'eligible',support:'supported',...change});
+const order={action:'order',offer:'workplace',quantity:2,unit:'seat',currency:'AUD',resources:['phone'],sell:true};
+test('AC-SOC-237 product lifecycle controls real sales and renewals without ending installed service',()=>{
+ let s=setup();assert.throws(()=>cmd(s,'business',order),/PRODUCT_LIFECYCLE_SALE_BLOCKED/);s=tick(evidence(s));s=cmd(s,'business',order);const contract=s.business.contracts.at(-1).id;s=tick(evidence(s,{sale:'ended',renewal:'ineligible'}));s=tick(s,180);assert.equal(s.business.contracts.at(-1).status,'renewal');assert.throws(()=>cmd(s,'business',{action:'renew',contract}),/PRODUCT_LIFECYCLE_RENEWAL_BLOCKED/);
+ s=tick(evidence(s,{sale:'ended',renewal:'eligible'}));const renewed=cmd(s,'business',{action:'renew',contract});assert.equal(renewed.business.contracts.at(-1).status,'provisioning');const call=S.dispatch(renewed,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'installed-after-sale-end'});assert.equal(call.interactions.at(-1).outcome,'CONNECTED');
+ const restored=S.restore(JSON.stringify(call));assert.deepEqual(restored,call);const box={};vm.createContext(box);vm.runInContext(S.workerSource()+';globalThis.engine=SOC;',box);const c={type:'specialist-lifecycle',command:{action:'renewal-check',deploymentId:'phone-deployment'}};assert.equal(JSON.stringify(box.engine.dispatch(call,c)),JSON.stringify(S.dispatch(call,c)));
+});
+test('AC-SOC-238 product evidence requires actual support delegation and becomes stale on product change',()=>{
+ let s=setup();assert.throws(()=>evidence(s,{supportOwnerId:'people-orchard'}),/AUTHORITY_DENIED/);s=tick(evidence(s));let report=S.calculate(s).specialistLifecycle.deployments[0];assert.equal(report.evidenceReady,true);
+ s=cmd(s,'products',{action:'configure',id:'phone-deployment',config:{productVersion:'scenario-2'}});s=tick(s);assert.equal(S.calculate(s).specialistLifecycle.deployments[0].evidenceReady,false);assert.throws(()=>cmd(s,'business',order),/LIFECYCLE/);s=tick(evidence(s));s=cmd(s,'business',{action:'revoke',grant:'customer-service'});assert.equal(S.calculate(s).specialistLifecycle.deployments[0].evidenceReady,false);assert.throws(()=>evidence(s),/AUTHORITY_DENIED/);const before=JSON.stringify(s);S.calculate(s);assert.equal(JSON.stringify(s),before);
+});
+
+test('sold product bindings remain a renewal obligation and a retained lineage row rejects one-sided save tampering',()=>{
+ let s=tick(evidence(setup()));s=cmd(s,'business',order);const id=s.business.contracts.at(-1).id;
+ const contract=s.business.contracts.find(x=>x.id===id),row=s.specialistLifecycle.commercialBindings.find(x=>x.contractId===id);
+ assert.deepEqual(row,{contractId:id,at:s.clock,deploymentIds:['phone-deployment'],resources:['phone'],supportOwner:'orchard-msp'});
+ const missingRow=structuredClone(s);missingRow.specialistLifecycle.commercialBindings=[];assert.throws(()=>S.restore(JSON.stringify(missingRow)),/LIFECYCLE_LINEAGE/);
+ const erasedContractLineage=structuredClone(s);erasedContractLineage.business.contracts.find(x=>x.id===id).lifecycleDeployments=[];assert.throws(()=>S.restore(JSON.stringify(erasedContractLineage)),/LIFECYCLE_LINEAGE/);
+ const changedRetainedBinding=structuredClone(s);changedRetainedBinding.specialistLifecycle.commercialBindings[0].deploymentIds=[];assert.throws(()=>S.restore(JSON.stringify(changedRetainedBinding)),/LIFECYCLE_LINEAGE/);
+ s=cmd(s,'products',{action:'configure',id:'phone-deployment',config:{bindings:[]}});s=tick(s,180);assert.throws(()=>cmd(s,'business',{action:'renew',contract:id}),/BINDING_REMOVED/);
+ const broken=structuredClone(s);delete broken.business.contracts.find(x=>x.id===id).lifecycleDeployments;assert.throws(()=>S.restore(JSON.stringify(broken)),/LIFECYCLE_LINEAGE/);
+});

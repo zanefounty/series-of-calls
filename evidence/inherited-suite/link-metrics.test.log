@@ -1,0 +1,16 @@
+✔ #122 the routing metric belongs to the city pair (884.467577ms)
+✔ #122 a link on standby idles while the others have room and takes over when they fail (518.47674ms)
+✔ #122 a standby link takes the overflow when the active links are full (430.83605ms)
+✔ #122 the order links are built in does not change where traffic goes (1833.803656ms)
+✔ #122 a new link between the same cities adds capacity and keeps the pair metric (409.447663ms)
+✔ #122 old saves keep routing as before: per-link metrics become the pair metric (421.308166ms)
+✔ #122 traceroute shows an active link, not one on standby (538.250144ms)
+✔ #122 the standby button shows next to another link, on desktop and phone (528.434167ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10567.199536

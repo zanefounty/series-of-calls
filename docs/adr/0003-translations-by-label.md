@@ -1,5 +1,7 @@
 # ADR 0003: Translations are keyed by labels, not by English text
 
+> **Series of Calls applicability — 4 November 2026:** the label/placeholder/plural mechanism is retained for both game modes. Training consoles, diagnostic explanations and source-linked humour use it too. Five locale dictionaries now accompany English. `i18n:check` establishes structural parity; it does not establish fluent translation quality or source fidelity. Preserve comparisons when adapting jokes and review their actual visible placement. Historical size/performance figures below belong to the upstream change; see [the current architecture](../ARCHITECTURE.md) and [development workflow](../DEVELOPMENT_WORKFLOW.md).
+
 - Status: accepted
 - Date: 2026-10-27
 

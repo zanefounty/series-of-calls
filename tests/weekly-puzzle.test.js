@@ -155,12 +155,12 @@ test('stars belong to the revision of the week they were earned on', () => {
   assert.equal(ev(`pzWkValid(${JSON.stringify(j)},'${k}').rev`), 1, 'a first edition is rev 1');
   assert.ok(ok({ ...j, rev: 2 }));
   for (const rev of [1, 0, '2', 2.5, 1000]) assert.equal(ok({ ...j, rev }), false, `rev ${rev}`);
-  ev(`localStorage.setItem('sot-puzzles',JSON.stringify({wk:{'${k}':{st:3,sp:1},'2026-W01':{st:2,sp:5}}}))`);
+  ev(`localStorage.setItem('soc-sp-puzzles',JSON.stringify({wk:{'${k}':{st:3,sp:1},'2026-W01':{st:2,sp:5}}}))`);
   assert.equal(ev(`pzWkRec(pzLoad(),pzWkValid(${JSON.stringify(j)},'${k}')).st`), 3, 'same week, same revision: the stars stand');
   const d2 = `pzWkValid(${JSON.stringify({ ...j, rev: 2 })},'${k}')`;
   assert.equal(ev(`pzWkRec(pzLoad(),${d2})`), null, 'regenerated: that week starts again');
   ev(`pzBegin(${d2});pzRecord({stars:1,spend:9})`);
-  const p = JSON.parse(ev("localStorage.getItem('sot-puzzles')"));
+  const p = JSON.parse(ev("localStorage.getItem('soc-sp-puzzles')"));
   assert.deepEqual(p.wk[k], { st: 1, sp: 9, rv: 2 }, 'a lower score on the new revision replaces the old one');
   assert.deepEqual(p.wk['2026-W01'], { st: 2, sp: 5 }, 'other weeks keep theirs');
   assert.equal(ev(`pzWkRec(pzLoad(),${d2}).st`), 1);
@@ -230,8 +230,8 @@ test('the published puzzle is played when it is good, the seeded one when it is 
   SV.judge(ev, sol.links);
   ev(`pzsApplyRt(${JSON.stringify(sol.rt)});pzAfter()`);
   assert.equal(ev('pzEval().stars'), 3);
-  assert.match(ev('pzShareText(pzEval())'), new RegExp(`^Series of Tubes puzzle ${key} ⭐⭐⭐ \\$[\\d.]+[kM] · seriesoftub\\.es$`));
-  const p = JSON.parse(ev("localStorage.getItem('sot-puzzles')"));
+  assert.match(ev('pzShareText(pzEval())'), new RegExp(`^Series of Calls puzzle ${key} ⭐⭐⭐ \\$[\\d.]+[kM] · zanefounty\\.github\\.io/series-of-calls/$`));
+  const p = JSON.parse(ev("localStorage.getItem('soc-sp-puzzles')"));
   assert.equal(p.wk[key].st, 3);
   assert.equal(p.streak.last, key);
   ev('ACT.pzLeave({})');

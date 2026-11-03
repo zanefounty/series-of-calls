@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-03T13:51:49.755Z",
+  "status": "blocked",
+  "offline": "not-run",
+  "results": [],
+  "scope": "Compiled consoles, configuration, topology, keyboard, save/export/import, tab ownership, worker execution and offline reload at a project path. Full scenario acceptance remains separate.",
+  "stage": "listen",
+  "error": "Error: listen EPERM: operation not permitted 127.0.0.1\n    at Server.setupListenHandle [as _listen2] (node:net:2368:21)\n    at listenInCluster (node:net:2499:12)\n    at node:net:2728:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)"
+}

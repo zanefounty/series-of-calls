@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-11-03T14:10:41.657998+00:00",
+  "scope": "Structural backlog and local environment audit; no semantic source completion or hosted settings inferred",
+  "requirements": {
+    "partial": 207,
+    "pending": 4576
+  },
+  "requirementCount": 4783,
+  "finalDispositions": 0,
+  "references": 91,
+  "acceptedReferenceReviews": 0,
+  "readiness": {
+    "independentPublicRepository": false,
+    "completeUpstreamHistory": false,
+    "lockedDependencyBaseline": false,
+    "fullBrowserAcceptance": false,
+    "branchProtection": false,
+    "enforcedApiBudget": false,
+    "enabledMaintenance": false,
+    "completeSpecificationReview": false
+  },
+  "repositoryGitMetadataPresent": false,
+  "githubConnectorDestinationCheck": "404 Not Found; may be absent or inaccessible to the connection",
+  "npmCache": {
+    "exactLockedTarballsPresent": 54,
+    "missing": 10,
+    "missingPackages": [
+      "jsdom",
+      "nwsapi",
+      "playwright-core",
+      "psl",
+      "querystringify",
+      "requires-port",
+      "rrweb-cssom",
+      "tough-cookie",
+      "universalify",
+      "url-parse"
+    ]
+  },
+  "networkChecks": {
+    "github.com": "Temporary failure in name resolution",
+    "registry.npmjs.org": "Temporary failure in name resolution",
+    "localListener": "EPERM creating IPv4 socket"
+  },
+  "licenseSha256": "9a05d7606b8295d3833d42381da2c2ce334c9a909c36a0c7c014680f70ed499d"
+}

@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: sandbox: endless money, every unlock, nothing breaks, no badges
+ok 1 - sandbox: endless money, every unlock, nothing breaks, no badges
+  ---
+  duration_ms: 750.938749
+  type: 'test'
+  ...
+# Subtest: scenarios: rules apply, goals complete, deadlines fail, seeds repeat
+ok 2 - scenarios: rules apply, goals complete, deadlines fail, seeds repeat
+  ---
+  duration_ms: 502.14663
+  type: 'test'
+  ...
+# Subtest: completing a scenario records it and unlocks a badge
+ok 3 - completing a scenario records it and unlocks a badge
+  ---
+  duration_ms: 364.267029
+  type: 'test'
+  ...
+# Subtest: traceroute shows hops, the exit and the AS path
+ok 4 - traceroute shows hops, the exit and the AS path
+  ---
+  duration_ms: 457.302756
+  type: 'test'
+  ...
+# Subtest: conferences: register, attend, and selective peers get easier for a while
+ok 5 - conferences: register, attend, and selective peers get easier for a while
+  ---
+  duration_ms: 391.095924
+  type: 'test'
+  ...
+# Subtest: the guided tutorial walks through the first steps and can be skipped
+ok 6 - the guided tutorial walks through the first steps and can be skipped
+  ---
+  duration_ms: 388.207073
+  type: 'test'
+  ...
+# Subtest: animations can be switched off, on or follow the system, and the choice sticks
+ok 7 - animations can be switched off, on or follow the system, and the choice sticks
+  ---
+  duration_ms: 397.375199
+  type: 'test'
+  ...
+# Subtest: half speed and deeper zoom
+ok 8 - half speed and deeper zoom
+  ---
+  duration_ms: 339.880311
+  type: 'test'
+  ...
+# Subtest: the map draws at every zoom, with and without animations, without throwing
+ok 9 - the map draws at every zoom, with and without animations, without throwing
+  ---
+  duration_ms: 435.614581
+  type: 'test'
+  ...
+# Subtest: RouteScript: parses safely, reports errors helpfully, and changes routing
+ok 10 - RouteScript: parses safely, reports errors helpfully, and changes routing
+  ---
+  duration_ms: 397.858829
+  type: 'test'
+  ...
+# Subtest: RouteScript BGP: local-pref and prepending move transit, protected customers go first, the optimizer drafts a script
+ok 11 - RouteScript BGP: local-pref and prepending move transit, protected customers go first, the optimizer drafts a script
+  ---
+  duration_ms: 359.728322
+  type: 'test'
+  ...
+# Subtest: \#27 new networks get a random name, and "Another one" never repeats it
+ok 12 - \#27 new networks get a random name, and "Another one" never repeats it
+  ---
+  duration_ms: 293.308444
+  type: 'test'
+  ...
+# Subtest: iPhone home-screen app fills the screen when iOS reports a short viewport
+ok 13 - iPhone home-screen app fills the screen when iOS reports a short viewport
+  ---
+  duration_ms: 283.559378
+  type: 'test'
+  ...
+# Subtest: phones in the browser get the install pitch before a new game, then can still play
+ok 14 - phones in the browser get the install pitch before a new game, then can still play
+  ---
+  duration_ms: 319.933936
+  type: 'test'
+  ...
+# Subtest: the installed app and desktop browsers start straight away
+ok 15 - the installed app and desktop browsers start straight away
+  ---
+  duration_ms: 637.80149
+  type: 'test'
+  ...
+# Subtest: \#34 scenario goal, progress and customer level are always in view
+ok 16 - \#34 scenario goal, progress and customer level are always in view
+  ---
+  duration_ms: 533.907268
+  type: 'test'
+  ...
+# Subtest: NOC dashboard has a tab bar for its sections
+ok 17 - NOC dashboard has a tab bar for its sections
+  ---
+  duration_ms: 349.228801
+  type: 'test'
+  ...
+# Subtest: a brand-new phone player can click through the install pitch and the title screen buttons
+ok 18 - a brand-new phone player can click through the install pitch and the title screen buttons
+  ---
+  duration_ms: 415.318794
+  type: 'test'
+  ...
+# Subtest: Flood Season: attacks keep coming, grow, and only count when service held
+ok 19 - Flood Season: attacks keep coming, grow, and only count when service held
+  ---
+  duration_ms: 363.771361
+  type: 'test'
+  ...
+# Subtest: DKNOG in Copenhagen is on the conference calendar
+ok 20 - DKNOG in Copenhagen is on the conference calendar
+  ---
+  duration_ms: 377.802528
+  type: 'test'
+  ...
+# Subtest: the project feedback page is linked from the title screen, the menu and How to play, in every language
+ok 21 - the project feedback page is linked from the title screen, the menu and How to play, in every language
+  ---
+  duration_ms: 2068.092154
+  type: 'test'
+  ...
+# Subtest: \#114 Only Spätzle-IX can be won by peering alone
+ok 22 - \#114 Only Spätzle-IX can be won by peering alone
+  ---
+  duration_ms: 693.566562
+  type: 'test'
+  ...
+# Subtest: RouteScript: help, ready-made scripts and the AI button
+ok 23 - RouteScript: help, ready-made scripts and the AI button
+  ---
+  duration_ms: 448.184924
+  type: 'test'
+  ...
+# Subtest: Flood Season keeps attacking and escalating after both success and timeout
+ok 24 - Flood Season keeps attacking and escalating after both success and timeout
+  ---
+  duration_ms: 690.543518
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19798.870059

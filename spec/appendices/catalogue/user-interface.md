@@ -1,0 +1,29 @@
+# User interface
+
+| Mapping ID | Proposed representation | Requirement | Behaviour obligation |
+| --- | --- | --- | --- |
+| view:hud | Service outcomes, margin, resource pressure and incidents / uc.view.hud | REQ-962274517a7bff56 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:left_goals | Contracts, readiness milestones and achievements / uc.view.left_goals | REQ-2c5a16b04d887184 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:left_deals | Sales opportunities, tenders and partner events / uc.view.left_deals | REQ-e948138ed28394a2 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:left_noc | Service operations and customer impact / uc.view.left_noc | REQ-80aedd9ad1715629 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:left_nets | Ecosystem organisations and partner inbox / uc.view.left_nets | REQ-d89e033da57035d1 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:city_cust | Regional customers and workloads / uc.view.city_cust | REQ-25688079b162d457 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:city_up | Calling providers and platform subscriptions / uc.view.city_up | REQ-4004ae29604088b8 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:city_peer | Supported integrations and interconnects / uc.view.city_peer | REQ-73079b394116b329 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:city_links | Transport and application dependencies / uc.view.city_links | REQ-3e5e97e9cd223051 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:city_infra | Gateways, media, rooms, local processing and power / uc.view.city_infra | REQ-3dbaf2d7cda0f59a | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_overview | Service and business overview / uc.view.dash_overview | REQ-e987e76266d20f08 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_cust | Customer outcomes, obligations and renewals / uc.view.dash_cust | REQ-89cfd1b574306f7a | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_conn | Dependency and support register / uc.view.dash_conn | REQ-674e9e4a2d799480 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_traffic | Usage by customer job, channel, provider and cost / uc.view.dash_traffic | REQ-a9710ef5866de341 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_infra | Physical and application resource utilisation / uc.view.dash_infra | REQ-1c53c9a2faf91840 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:dash_lease | Leased versus owned service resources / uc.view.dash_lease | REQ-59664b203ee8f9e0 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:bank | Business funding and obligations / uc.view.bank | REQ-5e1f226a1021c64b | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:title | Company, home region and campaign picker / uc.view.title | REQ-c4f6033658895e2d | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:help | UC/CC operating handbook / uc.view.help | REQ-2c41398b6d950823 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:notifications | Actionable incidents, changes and evidence / uc.view.notifications | REQ-b467bd9ca0109464 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:link_detail | Typed dependency and affected journeys / uc.view.link_detail | REQ-1d209182077adea6 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:decommission | Tenant, platform and site retirement planner / uc.view.decommission | REQ-fd6e4dcfe544e313 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:policy_editor | Service-policy editor and impact comparison / uc.view.policy_editor | REQ-2cc4a0d7fee462aa | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:trace_modal | Representative interaction source and outcome / uc.view.trace_modal | REQ-7c5bd9bef0b07988 | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |
+| view:settings | Equivalent preferences with service-outcome alert thresholds / uc.view.settings | REQ-a68fd888bbf03c4b | Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence. |

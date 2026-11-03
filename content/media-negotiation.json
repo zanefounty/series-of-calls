@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "pack": "soc-media-negotiation-1",
+  "version": 1,
+  "status": "optional synthetic model; central integration pending",
+  "sourceIds": [
+    "voiceops-2010-08-peer-of-peer",
+    "uc-new:domain:media",
+    "uc-new:domain:signalling"
+  ],
+  "sourceRefs": [
+    {
+      "id": "voiceops-2010-08-peer-of-peer",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+      "date": "2010-08-10",
+      "use": "Historical operator anecdote seeds a synthetic interconnect negotiation exercise; it is not verified vendor guidance."
+    },
+    {
+      "id": "uc-new:domain:media",
+      "use": "Mapped domain capability for separate directional media outcomes and codec negotiation."
+    },
+    {
+      "id": "uc-new:domain:signalling",
+      "use": "Mapped domain capability for reporting signaling separately from media success."
+    }
+  ],
+  "mechanics": {
+    "profiles": "Endpoints, carriers, and transcoders each keep desired, provisioning, effective, and observed state.",
+    "negotiation": "An ordered intersection chooses the first end-to-end codec. A configured compatible bidirectional transcoder can bridge distinct codec legs. Endpoint early/delayed offer modes create distinct synthetic offer-trace entries.",
+    "routes": [
+      "outbound",
+      "internal",
+      "inbound"
+    ],
+    "transcoderCapacity": "Explicit session count; no bandwidth or workforce conversion.",
+    "limitations": "Synthetic offer and path model only. Offer traces do not model SIP timing. Does not model encryption, NAT, packet loss, device-specific implementations, or real carrier behavior. The calling pack's simpler codec policy remains available until this pack is started and connected by the parent kernel."
+  },
+  "runtime": {
+    "PACK": "soc-media-negotiation-1",
+    "VERSION": 1,
+    "CODECS": [
+      "opus",
+      "g711",
+      "g722",
+      "g729"
+    ]
+  }
+}

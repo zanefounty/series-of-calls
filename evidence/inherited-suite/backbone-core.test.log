@@ -1,0 +1,21 @@
+✔ every router is classed by the highest backbone it runs (520.982101ms)
+✔ a new network runs plain IGP: no Auto-TE until the backbone is upgraded, one step at a time (288.408513ms)
+✔ running a lower level is free, and Auto-TE and RouteScript pause below RSVP-TE (270.902002ms)
+✔ the core costs router CPU, less the higher it goes; POPs whose router cannot run it stay outside (288.344969ms)
+✔ label switching: traffic passing through a POP costs its router less from LDP up (579.373532ms)
+✔ interop failures: only with mixed vendors at the top of what some router can do (329.33548ms)
+✔ a new game never gets interop incidents or CPU costs: the classic game is unchanged (258.362535ms)
+✔ saves: an old save with Auto-TE keeps it on the old rules, scenarios ignore the core, garbage is repaired (239.276362ms)
+✔ the backbone panel and the router panels, on a phone too (570.022438ms)
+✔ an upgraded backbone brings its own customers: L3VPN from LDP, flex-algo from SR-MPLS, slices from SRv6 (302.875509ms)
+✔ fast reroute: from RSVP-TE up, customers lose half as much happiness while a link is cut (873.696599ms)
+✔ an interop lab cuts interop incidents, is bought once, and survives a save (296.477421ms)
+✔ badges for the backbone: label switcher, bleeding edge, single-vendor shop, vendor zoo (323.608905ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13230.188261

@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-023 four carrier models have distinct prerequisites and mobile number restrictions
+ok 1 - AC-SOC-023 four carrier models have distinct prerequisites and mobile number restrictions
+  ---
+  duration_ms: 18.08083
+  type: 'test'
+  ...
+# Subtest: AC-SOC-024 number reservations, port lead times, cutover and recovery retain supplier history
+ok 2 - AC-SOC-024 number reservations, port lead times, cutover and recovery retain supplier history
+  ---
+  duration_ms: 3.422
+  type: 'test'
+  ...
+# Subtest: AC-SOC-025 dial normalisation, permissions and internal extension signalling are independent of PSTN
+ok 3 - AC-SOC-025 dial normalisation, permissions and internal extension signalling are independent of PSTN
+  ---
+  duration_ms: 2.782922
+  type: 'test'
+  ...
+# Subtest: AC-SOC-026 contact integration models scope authentication, cloud and features separately
+ok 4 - AC-SOC-026 contact integration models scope authentication, cloud and features separately
+  ---
+  duration_ms: 4.11684
+  type: 'test'
+  ...
+# Subtest: AC-SOC-027 retry backoff, API acceptance and delivery evidence precede human handling
+ok 5 - AC-SOC-027 retry backoff, API acceptance and delivery evidence precede human handling
+  ---
+  duration_ms: 4.079923
+  type: 'test'
+  ...
+# Subtest: AC-SOC-028 webhook verification, deduplication, rate limits and receipt timeouts are observable
+ok 6 - AC-SOC-028 webhook verification, deduplication, rate limits and receipt timeouts are observable
+  ---
+  duration_ms: 4.918606
+  type: 'test'
+  ...
+# Subtest: AC-SOC-029 migration cohorts keep independent placements and restore through provisioning
+ok 7 - AC-SOC-029 migration cohorts keep independent placements and restore through provisioning
+  ---
+  duration_ms: 4.368877
+  type: 'test'
+  ...
+# Subtest: AC-SOC-030 conversation windows, consent, saved operations and worker results are reproducible
+ok 8 - AC-SOC-030 conversation windows, consent, saved operations and worker results are reproducible
+  ---
+  duration_ms: 21.46518
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 91.855023

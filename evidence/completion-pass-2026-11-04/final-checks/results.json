@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-11-03T21:00:01.946858+00:00",
+  "dependencyOverride": "/home/zane-fountylabs/workspace/fountry/node_modules",
+  "inputDrift": [],
+  "checks": [
+    {
+      "name": "acceptance",
+      "command": [
+        "python3",
+        "scripts/record-evidence.py"
+      ],
+      "startedAt": "2026-11-03T20:57:11.574995+00:00",
+      "seconds": 146.53,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/acceptance.log"
+    },
+    {
+      "name": "python-gates",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "*_test.py"
+      ],
+      "startedAt": "2026-11-03T20:59:30.266714+00:00",
+      "seconds": 29.62,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/python-gates.log"
+    },
+    {
+      "name": "development-gates",
+      "command": [
+        "python3",
+        "scripts/verify.py",
+        "all"
+      ],
+      "startedAt": "2026-11-03T20:59:57.888207+00:00",
+      "seconds": 1.342,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/development-gates.log"
+    },
+    {
+      "name": "delivery",
+      "command": [
+        "python3",
+        "scripts/delivery-inventory.py",
+        "--check"
+      ],
+      "startedAt": "2026-11-03T20:59:59.230771+00:00",
+      "seconds": 0.128,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/delivery.log"
+    },
+    {
+      "name": "release",
+      "command": [
+        "python3",
+        "scripts/verify.py",
+        "release"
+      ],
+      "startedAt": "2026-11-03T20:59:59.359028+00:00",
+      "seconds": 1.377,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/release.log"
+    },
+    {
+      "name": "translations",
+      "command": [
+        "node",
+        "scripts/i18n-check.js"
+      ],
+      "startedAt": "2026-11-03T21:00:00.736824+00:00",
+      "seconds": 0.985,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/translations.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "node",
+        "scripts/build.js"
+      ],
+      "startedAt": "2026-11-03T21:00:01.722338+00:00",
+      "seconds": 0.207,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/final-checks/build.log"
+    }
+  ],
+  "releaseEligible": false,
+  "scope": "Actual bounded implementation checks; external dependency diagnostic. Release result and its blockers are retained."
+}

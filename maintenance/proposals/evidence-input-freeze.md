@@ -1,0 +1,7 @@
+# Acceptance input freeze — unapplied governance proposal
+
+The active recorder currently reads the plan before tests and hashes inputs after tests. A runtime file changed during execution could therefore be recorded with a hash the tests never ran. This pass froze the final input tree and separately verified unchanged hashes; that operational check is not a replacement for an enforced recorder guard.
+
+`evidence-input-freeze.patch` captures every planned input hash before execution, compares it afterward, records the original hashes and rejects changed or removed inputs even if the test command succeeds. It preserves the existing test parser and failure handling. Syntax and clean patch application were checked. An isolated guard test with stubbed passing execution/parser results passed all three cases: stable input succeeds, changed input fails, and deleted input fails while retaining the original hash. The receipt is `evidence/implementation-pass-2026-11-04/evidence-proposal-test.json`. This is proposal validation, not application acceptance. The proposal is unapplied and is not claimed as active enforcement.
+
+AGENTS.md requires governance changes in a separate owner-reviewed PR. Apply and test this patch there, including stable-input success and negative cases where a passing test changes or deletes an input. Keep the adaptation agent disabled and do not use this proposal to approve release readiness.

@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-03",
+  "path": "site/scenarios/weekly/2026-W44.json",
+  "pinnedFile": "files/pinned/site/scenarios/weekly/2026-W44.json",
+  "mainFile": "files/main/site/scenarios/weekly/2026-W44.json",
+  "change": {
+    "revision": { "from": 2, "to": 3 },
+    "goal.floods.n": { "from": 32, "to": 28 },
+    "par": { "from": 214, "to": 198 },
+    "unchanged": ["theme", "city", "cash", "days", "level", "rules", "mods", "seed", "goal.floods.big", "reference plan"]
+  },
+  "verification": {
+    "command": "NODE_PATH=/home/zane-fountylabs/workspace/fountry/node_modules node -e with scripts/weekly-scenario.js verify()",
+    "publishedRevision2": { "ok": false, "late": 266, "reason": "reference wins only on day 266 of 250" },
+    "upstreamRevision3": { "ok": true, "par": 198 },
+    "interpretation": "The new target/par pair passes the repository's headless reference-play verifier; the old pair no longer does against this simulation. This is game-balance evidence, not external evidence."
+  },
+  "saveImpact": {
+    "mechanism": "wsBegin stores the validated scenario copy in S.scn.wk; sanitize validates and keeps that embedded copy, including goal and par. Existing v2 saves therefore retain their old values.",
+    "recordImpact": "wsWin requires the saved weekly result revision to match the currently published revision. Replacing rev 2 with rev 3 makes earlier W44 wins recorded as rev 2 no longer count for the current revision display.",
+    "refreshImpact": "W44 ended before the check date. weekly-scenario refresh deliberately leaves valid past weeks unchanged, so this update requires an explicit file adoption and is not an automatic refresh result."
+  },
+  "recommendation": "Adoption is technically reproducible and old active saves retain their v2 snapshot. Treat the content change as pending owner review because it changes the goal threshold and revision, and it invalidates rev-2 W44 result matching; do not imply automatic migration of old records."
+}

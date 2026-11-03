@@ -1,0 +1,45 @@
+2027-W10: rejected a latency scenario in scl: no goal to calibrate
+2027-W10: rejected a latency scenario in bkk: the reference does not win in 230 days
+2027-W10: rejected a latency scenario in cph: no goal to calibrate
+2027-W10: rejected a latency scenario in alg: no goal to calibrate
+2027-W10: rejected a latency scenario in lag: no goal to calibrate
+2027-W10: rejected a latency scenario in tun: no goal to calibrate
+2027-W10: rejected a latency scenario in scl: no goal to calibrate
+2027-W10: rejected a latency scenario in bcn: no goal to calibrate
+2027-W10: rejected a latency scenario in lad: no goal to calibrate
+2027-W10: rejected a latency scenario in mad: no goal to calibrate
+2027-W10: rejected a latency scenario in dar: no goal to calibrate
+2027-W10: rejected a latency scenario in bom: no goal to calibrate
+2027-W10: rejected a region scenario in jnb: the reference wins already on day 3 of 370
+2027-W10: rejected a region scenario in vix: the reference wins already on day 6 of 330
+2027-W10: rejected a latency scenario in scl: no goal to calibrate
+2027-W10: rejected a latency scenario in bkk: the reference does not win in 230 days
+2027-W10: rejected a latency scenario in cph: no goal to calibrate
+2027-W10: rejected a latency scenario in alg: no goal to calibrate
+2027-W10: rejected a latency scenario in lag: no goal to calibrate
+2027-W10: rejected a latency scenario in tun: no goal to calibrate
+2027-W10: rejected a latency scenario in scl: no goal to calibrate
+2027-W10: rejected a latency scenario in bcn: no goal to calibrate
+2027-W10: rejected a latency scenario in lad: no goal to calibrate
+2027-W10: rejected a latency scenario in mad: no goal to calibrate
+2027-W10: rejected a latency scenario in dar: no goal to calibrate
+2027-W10: rejected a latency scenario in bom: no goal to calibrate
+2027-W10: rejected a region scenario in jnb: the reference wins already on day 3 of 370
+2027-W10: rejected a region scenario in vix: the reference wins already on day 6 of 330
+✔ generator: deterministic for a week, and every theme a template the game knows (13509.187124ms)
+✔ every committed week verifies: not won on day 0, the reference wins on its par with time to spare (1468.407922ms)
+✔ the file is checked field by field, and --check rejects a tampered one (1355.727694ms)
+✔ --check: a week the reference no longer wins is regenerated as a new revision, a new par is just written (2533.866872ms)
+✔ the page never asks for a weekly scenario on load, only when the Scenarios list opens (297.855071ms)
+✔ the published scenario is played when it is good, the in-browser weekly when it is missing, offline or bad (469.21921ms)
+✔ every goal type has a progress card, needs play, and wins, streaks and shares (465.063366ms)
+✔ saves keep the scenario, checked again on load; a tampered one plays on as the in-browser weekly (269.519597ms)
+✔ weekly scenario in every language and on a 360 px phone, with the door badge until started (2101.007871ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27692.823679

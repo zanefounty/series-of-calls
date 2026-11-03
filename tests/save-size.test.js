@@ -4,7 +4,7 @@ const { load } = require('./harness');
 
 // Make the browser's storage refuse the save: 'QuotaExceededError' (too big) or 'SecurityError' (not allowed).
 const refuse = name => `window.__err=${JSON.stringify(name)};{const P=Object.getPrototypeOf(localStorage),set=P.setItem;
-  P.setItem=function(k,v){if(k.startsWith('sot-save-v1')&&__err){const e=new Error('no');e.name=__err;throw e;}return set.call(this,k,v);};}`;
+  P.setItem=function(k,v){if(k.startsWith('soc-sp-save-v1')&&__err){const e=new Error('no');e.name=__err;throw e;}return set.call(this,k,v);};}`;
 
 test('#176 a save that does not fit tells the player once, with Export, and the menu says so', () => {
   const { ev, dom, errors } = load();
@@ -91,7 +91,7 @@ test('#176 a huge save is gzipped into storage and the next visit loads it', asy
   assert.ok(raw.length < full / 4, `much smaller in storage (${raw.length} vs ${full})`);
   const before = a.ev("JSON.stringify([S.name,S.day,S.biz.length,S.biz.find(b=>b.id==='h77').what])");
   // The next visit: the page unpacks it before booting and continues the same network.
-  const b = load({ gzip: true, storage: { 'sot-save-v1': raw } });
+  const b = load({ gzip: true, storage: { 'soc-sp-save-v1': raw } });
   await settle(b.ev, 'UI.started===true');
   assert.equal(b.ev("JSON.stringify([S.name,S.day,S.biz.length,S.biz.find(b=>b.id==='h77').what])"), before);
   assert.deepEqual(a.errors, []);
@@ -114,7 +114,7 @@ test('#176 a newer save is never overwritten by an older one still compressing',
 });
 
 test('#176 a damaged compressed save is kept, marked damaged, and the player is told', async () => {
-  const { ev, dom, errors } = load({ gzip: true, storage: { 'sot-save-v1': 'gz:bm90IGd6aXA=' } });
+  const { ev, dom, errors } = load({ gzip: true, storage: { 'soc-sp-save-v1': 'gz:bm90IGd6aXA=' } });
   await settle(ev, "slotIdx().length===1&&/could not be/.test(document.getElementById('toasts').textContent)");
   assert.equal(ev("slotIdx()[0].broken"), true, 'listed as damaged, so it can still be exported or deleted');
   assert.equal(ev("slotRaw('main')"), 'gz:bm90IGd6aXA=', 'the damaged save is kept as it was');

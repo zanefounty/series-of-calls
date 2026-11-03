@@ -1,0 +1,18 @@
+✔ at its own POP a carrier's port takes the traffic bound for that carrier, not an even split (641.139875ms)
+✔ traffic for a carrier's customers prefers that carrier too, and a carrier beats its own customers' other upstreams (296.11575ms)
+✔ when the carrier's own port is full, the rest spills onto the other transit ports (292.150118ms)
+✔ Prefer, Backup only and RouteScript keep the say they had (889.838625ms)
+✔ a Prefer-marked port keeps the say at its own POP only; the other POPs still use their own carrier ports (378.466789ms)
+✔ from a POP without the carrier's port, traffic uses the nearest port, or crosses your network when the port carries (310.83733ms)
+✔ traceroute shows the exit that routing uses, and says why (318.507334ms)
+✔ the carry setting is saved, repaired and optional (1017.25694ms)
+✔ each port offers the choice when it can matter, on a desktop and a phone (605.614788ms)
+✔ the control reads right in every language (1559.680192ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11523.392519

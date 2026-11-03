@@ -2,11 +2,11 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const cliCapture = require('./cli-capture');
 const { load } = require('./harness');
 
 const RN = path.join(__dirname, '..', 'scripts', 'release-notes.js');
-const run = (...a) => JSON.parse(execFileSync(process.execPath, [RN, ...a], { encoding: 'utf8' }));
+const run = (...a) => JSON.parse(cliCapture(process.execPath, [RN, ...a]).stdout);
 
 test('the release notes script reads a story and the bullets apart', () => {
   const story = run('2.0.0', '--story'), notes = run('2.0.0');

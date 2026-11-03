@@ -1,0 +1,62 @@
+{
+  "pack": "soc-site-operations-1",
+  "version": 1,
+  "sourceIds": [
+    "progress.goal.ln",
+    "progress.goal.df",
+    "progress.goal.m2",
+    "asset:siteNo/siteName:",
+    "asset:popIdle:",
+    "asset:crewCost/crewSteps:",
+    "engine:site_failure",
+    "engine:diversity",
+    "engine:sanitizer",
+    "DEC-007",
+    "DEC-010",
+    "DEC-011",
+    "DEC-014"
+  ],
+  "runtime": {
+    "PACK": "soc-site-operations-1",
+    "VERSION": 1,
+    "GOALS": [
+      "progress.goal.ln",
+      "progress.goal.df",
+      "progress.goal.m2"
+    ]
+  },
+  "scope": {
+    "purpose": "A bounded synthetic site inventory, backup-backed fault/restore exercise, and per-resource migration ledger using canonical core resources and transport sites.",
+    "siteState": [
+      "desired configuration",
+      "generation-scoped provisioning",
+      "last successful effective configuration",
+      "observed power, reachability, administration, backup, and restore availability"
+    ],
+    "canonicalReferences": [
+      "Each transportSite reference must resolve to a canonical current transport site and agree with its reported region and domains.",
+      "Administrative, endpoint, backup, and restore references must resolve to canonical current core resources.",
+      "Bindings carry both site and resource generation. Reconfiguration invalidates stale bindings and exercise evidence."
+    ],
+    "operationalDependencies": [
+      "Customer/provider ownership and each administrative action use an independent trusted authorization hook.",
+      "Backup and restore resources are separate canonical resources; an accepted restore receipt is required.",
+      "Fault injection and clearing must change actual parent-observed failure state; a local exercise status toggle is insufficient.",
+      "A baseline journey is recorded before fault injection; outage and recovery journeys target the actual surviving canonical endpoint and include interaction and physical edge references.",
+      "Restore is asynchronous: captured resource configs must become effective again before a fresh recovered journey completes the exercise.",
+      "Shared-risk labels must be returned by the canonical transport-site resolver."
+    ],
+    "goals": {
+      "progress.goal.ln": "At least two effective sites and an evidenced cross-site baseline, survivor-targeted fault interval journeys, and a fresh journey after recovery.",
+      "progress.goal.df": "A completed backup-backed restore at a site whose captured effective ownership is local and controlled and whose administration, backup, and restore resources were observed available at completion.",
+      "progress.goal.m2": "For the same two-site pair, completed power and whole-site failures targeted at each site plus a shared-risk test; each exercise requires faulted and recovered survivor journeys and verified restore."
+    },
+    "migration": "A migration snapshots source and target site generations. Each resource has an independent accepted transfer receipt. Partial items can retry without replaying accepted items; either site generation change blocks stale continuation.",
+    "limits": [
+      "The site pack is optional and the central SOC dispatcher provides a synthetic adapter for its transport, resource, journey, and restore hooks; standalone or integration fixtures do not certify an external service.",
+      "Backup and restore receipts describe simulated in-game state transitions and are not external backup certification.",
+      "This does not reproduce the upstream SP geography, facility/equipment inventory, optical capacity model, construction market, or source reward economy.",
+      "The three source goal representations are bounded gameplay candidates; they do not establish full source conversion or external delivery."
+    ]
+  }
+}

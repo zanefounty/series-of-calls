@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: typed counts buy and remove optics on land fiber
+ok 1 - typed counts buy and remove optics on land fiber
+  ---
+  duration_ms: 762.907893
+  type: 'test'
+  ...
+# Subtest: typed counts buy and remove optics on subsea fiber
+ok 2 - typed counts buy and remove optics on subsea fiber
+  ---
+  duration_ms: 421.211892
+  type: 'test'
+  ...
+# Subtest: batch price matches individual channel purchases with spares, regen cards and tariffs
+ok 3 - batch price matches individual channel purchases with spares, regen cards and tariffs
+  ---
+  duration_ms: 421.429784
+  type: 'test'
+  ...
+# Subtest: unaffordable batches, port limits and invalid input never partially change state
+ok 4 - unaffordable batches, port limits and invalid input never partially change state
+  ---
+  duration_ms: 347.10398
+  type: 'test'
+  ...
+# Subtest: channel reservations and reach, line-system, level and router compatibility still apply
+ok 5 - channel reservations and reach, line-system, level and router compatibility still apply
+  ---
+  duration_ms: 380.476075
+  type: 'test'
+  ...
+# Subtest: plus and minus buttons work alongside typed counts
+ok 6 - plus and minus buttons work alongside typed counts
+  ---
+  duration_ms: 370.723249
+  type: 'test'
+  ...
+# Subtest: draft counts and quotes stay together when reopening a panel or using shortcuts
+ok 7 - draft counts and quotes stay together when reopening a panel or using shortcuts
+  ---
+  duration_ms: 378.829368
+  type: 'test'
+  ...
+# Subtest: \#229 giving up a fiber puts its optics on the spares shelf, and so does decommissioning its POP
+ok 8 - \#229 giving up a fiber puts its optics on the spares shelf, and so does decommissioning its POP
+  ---
+  duration_ms: 364.979398
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3774.376457

@@ -1,0 +1,13 @@
+✔ one status chip per network, most direct first (626.290318ms)
+✔ the value line matches the transit bill by hand, and the worth-it rule (299.22152ms)
+✔ the PNI list: worth it first, filters, groups by type folded when idle, phones (501.650655ms)
+✔ the same chip in the Networks tab and the bulk PNI preview (305.461372ms)
+✔ every language renders the PNI list without raw labels (1507.955197ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8412.478045

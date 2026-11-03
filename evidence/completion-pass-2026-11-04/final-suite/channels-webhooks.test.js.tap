@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-422 webhook policy provisions separately from observed state and stays effective during amendment
+ok 1 - AC-SOC-422 webhook policy provisions separately from observed state and stays effective during amendment
+  ---
+  duration_ms: 3.714234
+  type: 'test'
+  ...
+# Subtest: AC-SOC-417 synthetic callback authenticates and delivers from the accepted channel conversation with case context
+ok 2 - AC-SOC-417 synthetic callback authenticates and delivers from the accepted channel conversation with case context
+  ---
+  duration_ms: 1.005619
+  type: 'test'
+  ...
+# Subtest: AC-SOC-418 authentication rejection is an application failure, not supplier downtime, and does not retry
+ok 3 - AC-SOC-418 authentication rejection is an application failure, not supplier downtime, and does not retry
+  ---
+  duration_ms: 0.44662
+  type: 'test'
+  ...
+# Subtest: AC-SOC-419 transient application and supplier failures back off and recover; duplicate channel receipts keep one idempotency key
+ok 4 - AC-SOC-419 transient application and supplier failures back off and recover; duplicate channel receipts keep one idempotency key
+  ---
+  duration_ms: 1.1586
+  type: 'test'
+  ...
+# Subtest: AC-SOC-420 rate limits retry with bounded exponential delay and exhausted jobs fail explicitly before later recovery
+ok 5 - AC-SOC-420 rate limits retry with bounded exponential delay and exhausted jobs fail explicitly before later recovery
+  ---
+  duration_ms: 1.51389
+  type: 'test'
+  ...
+# Subtest: AC-SOC-421 webhook state validates across JSON save replay and worker source with transactional command rejection
+ok 6 - AC-SOC-421 webhook state validates across JSON save replay and worker source with transactional command rejection
+  ---
+  duration_ms: 4.114301
+  type: 'test'
+  ...
+# Subtest: AC-SOC-423 webhook validation rejects receipt and acceptance lineage tampering
+ok 7 - AC-SOC-423 webhook validation rejects receipt and acceptance lineage tampering
+  ---
+  duration_ms: 1.892855
+  type: 'test'
+  ...
+# Subtest: AC-SOC-424 webhook validation rejects nonmonotonic attempts and terminal status mismatches
+ok 8 - AC-SOC-424 webhook validation rejects nonmonotonic attempts and terminal status mismatches
+  ---
+  duration_ms: 0.75921
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29.651985

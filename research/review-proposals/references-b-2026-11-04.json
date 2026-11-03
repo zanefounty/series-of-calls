@@ -1,0 +1,660 @@
+{
+  "batch": "B",
+  "reviewedAt": "2026-11-04",
+  "range": {
+    "source": "research/generated/references.json",
+    "zeroBasedStart": 30,
+    "zeroBasedEndExclusive": 60
+  },
+  "status": "review proposal only; no accepted registry review or owner approval is recorded",
+  "entries": [
+    {
+      "referenceId": "REF-d4ab6397cad04761",
+      "claimIds": [
+        "CLAIM-8de19cd86b7c985c"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.akkadianlabs.com/akkadian-platform/",
+          "access": "accessible; current vendor product page; no publication date shown"
+        }
+      ],
+      "historicalClaim": "Akkadian is an example of UC lifecycle management.",
+      "currentFinding": "The platform page describes UC provisioning and lifecycle governance across users, contact-centre agents, workspaces and access, including templates, directory-number management, bulk operations, multi-cluster administration, roles and audit.",
+      "scope": "Supports Akkadian as a lifecycle-management example only.",
+      "uncertainty": "Vendor-authored capability statements; deployment and SKU availability require confirmation."
+    },
+    {
+      "referenceId": "REF-38feefe35f2f7619",
+      "claimIds": [
+        "CLAIM-1d491bff68072715"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+          "access": "accessible; current vendor product page; no publication date shown"
+        }
+      ],
+      "historicalClaim": "VQ is a conferencing example.",
+      "currentFinding": "The product page describes a self-hosted Cisco Meeting Server collaboration service with directory integration, SSO/MFA/RBAC, multi-tenancy, meeting protections, multi-cluster operation, APIs and high availability.",
+      "scope": "Supports the conferencing example. Page also advertises FIPS/DISA/DoDIN APL claims; this review does not independently validate those claims or treat them as established compliance.",
+      "uncertainty": "Vendor-authored feature and security assertions; release and deployment-specific support are not established."
+    },
+    {
+      "referenceId": "REF-2c6a952924346c36",
+      "claimIds": [
+        "CLAIM-ca612486c41b6f7e"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+          "access": "accessible; documentation reports update about six months before review"
+        }
+      ],
+      "historicalClaim": "Mividas Core is a conferencing management example.",
+      "currentFinding": "Documentation describes virtual meeting-room management, scheduling, call control, security, room configuration, troubleshooting and reporting for Cisco Meeting Server and Pexip Infinity.",
+      "scope": "Supports the example as a management layer around named conferencing platforms.",
+      "uncertainty": "Documentation version and compatibility matrix were not established; features may depend on product version."
+    },
+    {
+      "referenceId": "REF-b96b46dfea69de93",
+      "claimIds": [
+        "CLAIM-4679b0d113a829b1"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+          "access": "accessible; current vendor product page; no publication date shown"
+        }
+      ],
+      "historicalClaim": "Pexip Connect is a conferencing interoperability example.",
+      "currentFinding": "The page describes Microsoft Teams interoperability for SIP/H.323 endpoints and rooms, alongside cross-platform interoperability involving Zoom, Webex and Google Meet and cloud/self-hosted deployment options.",
+      "scope": "Supports interoperability as an example, not universal compatibility or certification.",
+      "uncertainty": "Exact supported endpoints, licensing and service regions require product-specific validation; certification statements remain vendor claims."
+    },
+    {
+      "referenceId": "REF-1503bbaf273629fc",
+      "claimIds": [
+        "CLAIM-7f4496a572d35857"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.synergysky.com/service-description",
+          "access": "accessible; service description effective 2026-06-01"
+        }
+      ],
+      "historicalClaim": "Synergy SKY is a conferencing interoperability example.",
+      "currentFinding": "The service description covers CONNECT and CONNECT GO for Zoom Rooms, standards-based SIP interoperability, and meeting join across Teams, Zoom, Google Meet and Apple FaceTime. SIP registration/calling is identified as non-Gov scope.",
+      "scope": "Supports a conferencing example with explicit product and service-scope distinctions.",
+      "uncertainty": "Service description is vendor-published; availability and restrictions can differ by offering and customer environment."
+    },
+    {
+      "referenceId": "REF-7ed8da24bfbaf244",
+      "claimIds": [
+        "CLAIM-1bfb1e73a5b814f7"
+      ],
+      "requirementIds": [
+        "REQ-090ca18180d23749"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.ir.com/products/collaborate",
+          "access": "accessible; current vendor product page; no publication date shown"
+        }
+      ],
+      "historicalClaim": "The claim categorizes IR Collaborate under assurance.",
+      "currentFinding": "The page describes managing communications and collaboration ecosystems, powered by Prognosis, with real-time visibility across multi-vendor systems and performance/issue identification.",
+      "scope": "Revise the category to monitoring/observability. The page does not establish independent assurance, certification or a particular assurance outcome.",
+      "uncertainty": "Vendor positioning; specific monitored products and instrumentation depend on deployment."
+    },
+    {
+      "referenceId": "REF-db893272c3caa3e6",
+      "claimIds": [
+        "CLAIM-f9aad380d17926ea"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.twilio.com/en-us/products",
+          "access": "accessible; current product catalog"
+        }
+      ],
+      "historicalClaim": "Twilio is an example showing overlap between programmable communications and customer-service applications.",
+      "currentFinding": "The catalog lists communications APIs for messaging, SMS, WhatsApp, RCS, voice, SIP trunking, email and video, plus Conversations and Flex/contact-centre offerings.",
+      "scope": "Supports the stated portfolio overlap example.",
+      "uncertainty": "Catalog breadth does not establish feature parity, geography, plan inclusion or current availability for any specific deployment."
+    },
+    {
+      "referenceId": "REF-bd36702520ca438c",
+      "claimIds": [
+        "CLAIM-b0621ee2b1b56935"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://sinch.com/products/",
+          "access": "accessible; current vendor product catalog"
+        }
+      ],
+      "historicalClaim": "Sinch is an example of programmable communications and customer-service overlap.",
+      "currentFinding": "The catalog includes messaging, voice, email, verification and numbers APIs, as well as applications including contact centre, messaging platform and chatbot builder.",
+      "scope": "Supports the portfolio example only.",
+      "uncertainty": "Products, regions, plans and integrations vary; this overview does not verify any particular implementation."
+    },
+    {
+      "referenceId": "REF-38e91eec89c3b7f1",
+      "claimIds": [
+        "CLAIM-35ebc22fe0e4bd68"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.infobip.com/docs/conversations",
+          "access": "accessible; documentation updated four days before review"
+        }
+      ],
+      "historicalClaim": "Infobip Conversations is an example of overlap between programmable communications and customer-service applications.",
+      "currentFinding": "Documentation describes a cloud contact-centre service with channels, threads, queues, routing, agent assignment, resolution/history, automation and CRM/customer data connections.",
+      "scope": "Supports the stated example and feature family.",
+      "uncertainty": "Docs may change; service, channel and connector availability vary by account and region."
+    },
+    {
+      "referenceId": "REF-d57c9265c13dcff5",
+      "claimIds": [
+        "CLAIM-d30c5a2dbd047d06"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://help.8x8.com/documentation",
+          "access": "accessible documentation index; content retrieved about five days before review"
+        }
+      ],
+      "historicalClaim": "8x8 documentation supports the portfolio-overlap example.",
+      "currentFinding": "The index links to current Contact Center CX voice/chat/email, Engage, Workforce Management and analytics/reporting material, as well as UC documentation.",
+      "scope": "The index supports that these product families exist in the documentation; revise to cite specific feature pages and avoid treating the index as proof that capabilities are one package or universally available.",
+      "uncertainty": "Index is not a stable feature specification; product names, packaging and entitlements change."
+    },
+    {
+      "referenceId": "REF-2c126d5591584671",
+      "claimIds": [
+        "CLAIM-513413bc3bd34e9e",
+        "CLAIM-e632215a7246634e"
+      ],
+      "requirementIds": [
+        "REQ-b81620f2ef88a92c",
+        "REQ-f289ccf97552f1ee"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+          "access": "accessible current Genesys documentation"
+        }
+      ],
+      "historicalClaim": "The source supports workforce/quality products and is cited alongside a list of example contact-centre incidents.",
+      "currentFinding": "The WEM page covers categories including policy call recording/retention, quality evaluation/coaching, workforce, speech/text analytics and development/feedback/gamification. The specific synthetic incident examples (such as stale forecasts, language skill gaps or faulty identity mapping) are not evidenced by this page.",
+      "scope": "Keep WEM as a workforce and quality family example. Separate the incident examples as design scenarios or provide direct incident evidence; do not attribute them to this WEM page.",
+      "uncertainty": "Vendor documentation may be product-version specific; exact feature entitlements need validation."
+    },
+    {
+      "referenceId": "REF-5847fdf5258de958",
+      "claimIds": [
+        "CLAIM-7169c6001d9a447d"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+          "access": "accessible; official help page updated 2026-08-21"
+        }
+      ],
+      "historicalClaim": "Otter is an example of meeting-assistant integrations, with third-party processing treated as a distinct dependency.",
+      "currentFinding": "The overview says Otter Notetaker can join Zoom, Google Meet and Teams, sync with calendars, record/transcribe, and configure sharing/settings. Concurrent-meeting limits can depend on plan.",
+      "scope": "Supports meeting integration and transcription example. The page does not substantiate the broader data-processing, retention, export or processor assertions.",
+      "uncertainty": "Feature availability and behavior are plan-sensitive; privacy and processing details need separate current policy/DPA sources."
+    },
+    {
+      "referenceId": "REF-52534bbbda04973d",
+      "claimIds": [
+        "CLAIM-9c99fd537543b27b",
+        "CLAIM-5c932b266786f9e9"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+          "access": "accessible first-party help page; updated about six months before review"
+        }
+      ],
+      "historicalClaim": "Fireflies is an example of cross-platform meeting assistance and of an added processing/identity/export dependency.",
+      "currentFinding": "The help page lists meeting-platform integrations including Google Meet, Zoom, Teams, Dialpad, GoToMeeting and Webex and directs users to the current integrations page. It does not define processing, identity, retention or export details.",
+      "scope": "Supports the integration example only. Keep data-processing dependency as a design concern and cite current privacy/security and integration permission documentation separately.",
+      "uncertainty": "Integration support can change; listed platform support does not establish access scope or data lifecycle."
+    },
+    {
+      "referenceId": "REF-b3027a7b0a74c45d",
+      "claimIds": [
+        "CLAIM-4911b7f05c523234",
+        "CLAIM-692e152367019b74"
+      ],
+      "requirementIds": [
+        "REQ-81f6cffdbdaac836",
+        "REQ-e161d488603ff1b0"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+          "access": "accessible; official help page updated 2026-10-26"
+        }
+      ],
+      "historicalClaim": "Read AI is an example of meeting assistance and of added processor, identity and export dependencies.",
+      "currentFinding": "The Teams integration page describes meeting summaries and chat/channel recaps, syncing content for search, and possible Teams admin approval for channel access.",
+      "scope": "Supports the integration and permission example, but does not define all privacy, processor, retention or export flows.",
+      "uncertainty": "Permission and feature scope depend on tenant/admin configuration; consult current privacy and product documentation for data handling."
+    },
+    {
+      "referenceId": "REF-a4b34e38df123d83",
+      "claimIds": [
+        "CLAIM-a762654c4ca2ed90",
+        "CLAIM-673be91cbe9afe43"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b",
+        "REQ-90d0d170cd267a9d"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://developers.deepgram.com/docs/deployment-options",
+          "access": "accessible current official documentation; no explicit revision date displayed"
+        }
+      ],
+      "historicalClaim": "Deepgram distinguishes hosted speech service from customer-operated deployment.",
+      "currentFinding": "Docs distinguish hosted multi-tenant service from self-hosting on customer-provisioned cloud or datacentre infrastructure. For self-hosting, the customer operates infrastructure, backups and monitoring and applies updates; self-hosting is described as a Premium offering for specific requirements.",
+      "scope": "Supports the deployment-model distinction, not a blanket local inference guarantee or any particular security/compliance outcome.",
+      "uncertainty": "Eligibility, supported models and operational terms are plan-specific and should be confirmed with current contract and docs."
+    },
+    {
+      "referenceId": "REF-b774912c2fef487e",
+      "claimIds": [
+        "CLAIM-e1fcf00481fb5d51",
+        "CLAIM-b8f99abef72393e2"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b",
+        "REQ-90d0d170cd267a9d"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+          "access": "page content accessible, but approval/access banner present; service requires Microsoft approval"
+        }
+      ],
+      "historicalClaim": "Microsoft disconnected containers are cited as a local/disconnected deployment option with supported services and access requirements.",
+      "currentFinding": "The current Learn page is under Foundry Tools and describes disconnected containers for specified services, with approval, an approved Azure subscription/resource and a purchased commitment tier required. The service list includes speech, translation, language, vision and document intelligence.",
+      "scope": "Revise to describe this as a gated, paid, service-specific disconnected container offer, not generic local inference or unrestricted offline use. Preserve the page's approval/access limitation.",
+      "uncertainty": "Eligibility and supported services change; the review did not independently validate a customer subscription or current commercial terms."
+    },
+    {
+      "referenceId": "REF-62ae5701eec71289",
+      "claimIds": [
+        "CLAIM-92b0acded8e21ca2"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.singlewire.com/integrations/redsky",
+          "access": "accessible current vendor integration page"
+        }
+      ],
+      "historicalClaim": "RedSky and InformaCast illustrate a specialist emergency communications integration.",
+      "currentFinding": "The page says InformaCast alerts on-site security personnel at the emergency location and lists support for Teams, Cisco CUCM/CER and Webex Calling; it links to interface-control documentation.",
+      "scope": "Supports an integration example only; does not establish regulatory compliance, emergency-call accuracy or successful emergency outcomes.",
+      "uncertainty": "Vendor integration description; supported versions and operational requirements need deployment-specific validation."
+    },
+    {
+      "referenceId": "REF-a333ec80b11e26ef",
+      "claimIds": [
+        "CLAIM-9aceba29f18ac56f"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.asterisk.org/get-started/",
+          "access": "accessible official Asterisk page"
+        }
+      ],
+      "historicalClaim": "Asterisk is an open-source communications platform example.",
+      "currentFinding": "The page describes Asterisk as an open-source framework for communications applications, including IP PBX, VoIP gateways, conference servers and custom solutions; it identifies Sangoma as sponsor.",
+      "scope": "Supports the platform example, not support-level, certification or feature guarantees for a particular distribution.",
+      "uncertainty": "The page is an overview; release, module and support details need product-specific sources."
+    },
+    {
+      "referenceId": "REF-3978de94b73181f0",
+      "claimIds": [
+        "CLAIM-da808601ddf27285"
+      ],
+      "requirementIds": [
+        "REQ-030efcb9b980477b"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+          "access": "accessible official FreeSWITCH documentation hosted by SignalWire"
+        }
+      ],
+      "historicalClaim": "FreeSWITCH is a specialist communications platform example.",
+      "currentFinding": "The introduction describes voice, video and text communications, endpoint/channel management, SIP and call routing, voicemail and conferencing. It distinguishes open-source FreeSWITCH from commercial FreeSWITCH Enterprise.",
+      "scope": "Supports the specialist platform example while preserving open-source/commercial product distinction.",
+      "uncertainty": "The introduction is not a full feature or support matrix; release and edition details may change."
+    },
+    {
+      "referenceId": "REF-effbf81bfc316bd6",
+      "claimIds": [
+        "CLAIM-e1a287349359beb2"
+      ],
+      "requirementIds": [
+        "REQ-1df9a0c4458db01f"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.verint.com/calabrio/",
+          "access": "accessible; current page identifies Calabrio as part of Verint from early 2026"
+        }
+      ],
+      "historicalClaim": "Company ownership and product identity should be separate records; the cited page describes Verint and Calabrio together without making capabilities interchangeable.",
+      "currentFinding": "The current page states Calabrio became part of Verint in early 2026, presents a unified Verint corporate brand and says Calabrio products continue to be supported and developed with no forced migrations. It presents Calabrio One/WFM product capabilities separately.",
+      "scope": "Supports distinct ownership and product-identity treatment. Current official page supersedes older pending-transaction evidence for present status.",
+      "uncertainty": "Corporate/product statements are company-authored; specific product roadmaps and support commitments require current product and contractual documentation."
+    },
+    {
+      "referenceId": "REF-18b941b71b6c92b7",
+      "claimIds": [
+        "CLAIM-8e9eae0210492987"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+          "access": "accessible current Australia product page"
+        }
+      ],
+      "historicalClaim": "RingCentral RingEX is an installed-base and competitive profile example.",
+      "currentFinding": "The Australia page describes RingEX with calls, texts, video, fax, chat, meetings and integrations.",
+      "scope": "Supports the profile example in the Australia market; the broader migration/installed-base rationale is a design assertion rather than a product-page finding.",
+      "uncertainty": "Features, plans and Australian availability vary; page does not establish legacy deployment prevalence or migration outcomes."
+    },
+    {
+      "referenceId": "REF-29c840ca324ce3fd",
+      "claimIds": [
+        "CLAIM-3181068a28e21c3d"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.ringcentral.com/au/en/ringcx.html",
+          "access": "accessible current Australia product page"
+        }
+      ],
+      "historicalClaim": "RingCX is an installed-base and competitive profile example.",
+      "currentFinding": "The page describes contact-centre capabilities across voice and 20+ digital channels, agent management/coaching, IVAs, analytics and outbound engagement.",
+      "scope": "Supports the RingCX profile example. It does not establish equivalence with other products or migration outcomes.",
+      "uncertainty": "Channel count, features and plan availability can change and may vary by region/contract."
+    },
+    {
+      "referenceId": "REF-2c204a90632309fa",
+      "claimIds": [
+        "CLAIM-d53a8640a2608b2f"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.avaya.com/en/products/aura/",
+          "access": "accessible current Avaya product page; refers to Aura 10.3"
+        }
+      ],
+      "historicalClaim": "Avaya Aura is an installed-base and competitive profile example.",
+      "currentFinding": "The current page presents Aura 10.3 enterprise voice/unified communications, including call control, SIP, administration and gateway capabilities.",
+      "scope": "Supports the profile example. The linked page does not establish lifecycle status for every older deployed Aura release.",
+      "uncertainty": "Release and support status are version-specific; current lifecycle documentation is needed for any deployed version."
+    },
+    {
+      "referenceId": "REF-a294a1068b534053",
+      "claimIds": [
+        "CLAIM-5b9f7ada9cd47d95"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.avaya.com/en/products/infinity-platform/",
+          "access": "accessible current Avaya product page"
+        }
+      ],
+      "historicalClaim": "Avaya Infinity is an installed-base and competitive profile example.",
+      "currentFinding": "The page describes CX orchestration, AI, workflow and data for inbound and outbound customer experience.",
+      "scope": "Supports the portfolio example, not a guarantee that it replaces other listed communications or contact-centre functions.",
+      "uncertainty": "Product packaging, roadmap and availability are subject to change; the overview does not establish feature parity."
+    },
+    {
+      "referenceId": "REF-4494e44133a096ff",
+      "claimIds": [
+        "CLAIM-a08ce3b99e3b06d5"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.mitel.com/products/business-phone-systems",
+          "access": "accessible current vendor catalog; retrieved about one day before review"
+        }
+      ],
+      "historicalClaim": "Mitel communications platforms are an installed-base and competitive profile example.",
+      "currentFinding": "The catalog includes MiCollab, MiVoice Business, OpenScape UC/Voice, MX-ONE, Mitel CX, contact-centre and workforce-management products.",
+      "scope": "Supports a multi-product portfolio example; these offerings are not one interchangeable product family.",
+      "uncertainty": "Catalog names and packaging may change; product-specific support and lifecycle evidence is needed."
+    },
+    {
+      "referenceId": "REF-6b9dd2ca3e9920e5",
+      "claimIds": [
+        "CLAIM-88a031caef088e05"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+          "access": "accessible current ALE product page"
+        }
+      ],
+      "historicalClaim": "ALE unified communications portfolio is an installed-base and competitive profile example.",
+      "currentFinding": "The page describes hybrid cloud and on-premises communications including OmniPCX/OXO telephony, video/conferencing, messaging and Rainbow.",
+      "scope": "Supports the portfolio example only; does not establish a specific customer deployment or migration path.",
+      "uncertainty": "Features and lifecycle depend on product and deployment version."
+    },
+    {
+      "referenceId": "REF-1454d7ffe209c85b",
+      "claimIds": [
+        "CLAIM-4ca2d0fe766055e0"
+      ],
+      "requirementIds": [
+        "REQ-2aedcc3f38614886"
+      ],
+      "recommendation": "accept",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.3cx.com/phone-system/",
+          "access": "accessible current vendor product page"
+        }
+      ],
+      "historicalClaim": "3CX is an installed-base and competitive profile example.",
+      "currentFinding": "The page describes hosted, on-premises and self-hosted PBX options with telephony, contact-centre queues, live chat and messaging such as WhatsApp/SMS, plus AI features.",
+      "scope": "Supports the profile example; package, edition and version boundaries should remain explicit.",
+      "uncertainty": "Vendor page is a current overview; specific integrations, availability and edition entitlements may change."
+    },
+    {
+      "referenceId": "REF-6974ff2c7027ebb4",
+      "claimIds": [
+        "CLAIM-dc4b33799e75f0c3"
+      ],
+      "requirementIds": [
+        "REQ-7993072717d54c9d"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://business.whatsapp.com/products/platform-pricing",
+          "access": "redirects to https://whatsappbusiness.com/products/platform-pricing/; current official pricing page accessible, no effective date displayed"
+        },
+        {
+          "url": "https://whatsappbusiness.com/products/platform-pricing/",
+          "access": "current official pricing page after redirect"
+        }
+      ],
+      "historicalClaim": "WhatsApp pricing distinguishes delivered-message categories and free service responses within customer-service rules; channel economics should not assume equal message cost.",
+      "currentFinding": "The current page describes delivered-message pricing with marketing, authentication, utility and service categories; service messages and qualifying utility responses are free, as are qualifying messages in the stated 72-hour free-entry-point window.",
+      "scope": "Revise to tie any rates to the dated market-specific rate card and preserve category/window eligibility conditions. The page supports differentiated pricing, not an evergreen price amount.",
+      "uncertainty": "Pricing and terms are volatile, market-specific and may change without the overview page showing an effective date. Webex Connect portion of the linked claim is outside this reference and needs its own source review."
+    },
+    {
+      "referenceId": "REF-e5bb18ef74fe6ca4",
+      "claimIds": [
+        "CLAIM-185b2d6b9abe4742"
+      ],
+      "requirementIds": [
+        "REQ-7213258dcc84247f"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://www.zoom.com/en/products/",
+          "access": "accessible current product catalog"
+        }
+      ],
+      "historicalClaim": "Zoom is a broad collaboration and customer-service portfolio example; the claim says substitution should be evaluated by job and capability.",
+      "currentFinding": "The catalog includes Zoom Workplace capabilities (meetings, chat, phone, mail, calendar, scheduler, rooms) and Zoom CX products including Contact Center, Workforce Management, Quality and Insights, alongside AI offerings.",
+      "scope": "Supports the breadth of the portfolio. The non-substitution rule is an analytical conclusion, not a claim established by this catalog; preserve as design guidance and assess capability by capability.",
+      "uncertainty": "Catalog and packaging change; the page alone does not establish PSTN, specialist contact-centre or plan-level parity."
+    },
+    {
+      "referenceId": "REF-267d4dda6bb79608",
+      "claimIds": [
+        "CLAIM-eeb4a42e0f32b3c5"
+      ],
+      "requirementIds": [
+        "REQ-b8f252f0789bdaa8"
+      ],
+      "recommendation": "revise",
+      "checkedAt": "2026-11-04",
+      "sources": [
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+          "access": "exact pinned commit tree remains unavailable in web check"
+        },
+        {
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+          "access": "retrieved through connected GitHub file tool at exact commit 48e6200c532d486f79bc8376de0aecbf6169123b; earlier web and raw requests returned Cache miss"
+        }
+      ],
+      "historicalClaim": "The pinned upstream commit is said to provide the browser shell, canvas interaction, panels, persistence patterns, useful tests and architecture described in the claim.",
+      "currentFinding": "The exact pinned architecture file confirms the source is assembled from ordered files into a static HTML page with shared classic-script scope, a canvas/map layer, separate UI/panel layers, and a jsdom test harness. It supports these architecture patterns. The tree URL itself was not fetched, and this file does not prove every behavior in the broader claim or detailed save implementation; no default-branch substitute was used.",
+      "scope": "Use the exact pinned file as a bounded architecture reference. The separate save implementation and harness sources provide more specific evidence for persistence and testing; the architecture page alone does not establish every listed behavior.",
+      "uncertainty": "The tree page and earlier web/raw requests were inaccessible, but the exact pinned architecture file was retrieved through the GitHub connector. Access failure on the tree URL is not evidence of a missing commit. No default-branch contents were substituted."
+    }
+  ]
+}

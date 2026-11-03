@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: kit balances each provider with minimal moves while buying the missing hardware
+ok 1 - kit balances each provider with minimal moves while buying the missing hardware
+  ---
+  duration_ms: 824.857694
+  type: 'test'
+  ...
+# Subtest: an already equipped PoP can balance caches for free, even with negative cash
+ok 2 - an already equipped PoP can balance caches for free, even with negative cash
+  ---
+  duration_ms: 453.426828
+  type: 'test'
+  ...
+# Subtest: a rejected kit purchase never moves caches or partially installs hardware
+ok 3 - a rejected kit purchase never moves caches or partially installs hardware
+  ---
+  duration_ms: 389.916322
+  type: 'test'
+  ...
+# Subtest: odd provider totals are balanced across the whole PoP with the fewest moves
+ok 4 - odd provider totals are balanced across the whole PoP with the fewest moves
+  ---
+  duration_ms: 409.646679
+  type: 'test'
+  ...
+# Subtest: cache batch fills missing provider/site pairs, keeps extra boxes and respects eligibility
+ok 5 - cache batch fills missing provider/site pairs, keeps extra boxes and respects eligibility
+  ---
+  duration_ms: 429.682971
+  type: 'test'
+  ...
+# Subtest: one-site requests add only A, then a new second site gets exactly its missing boxes
+ok 6 - one-site requests add only A, then a new second site gets exactly its missing boxes
+  ---
+  duration_ms: 434.209463
+  type: 'test'
+  ...
+# Subtest: cache requests reject stale eligibility and insufficient port capacity atomically
+ok 7 - cache requests reject stale eligibility and insufficient port capacity atomically
+  ---
+  duration_ms: 434.378894
+  type: 'test'
+  ...
+# Subtest: balanced caches keep serving when either site fails
+ok 8 - balanced caches keep serving when either site fails
+  ---
+  duration_ms: 418.404645
+  type: 'test'
+  ...
+# Subtest: more boxes while demand outgrows them, balanced across sites (\#248)
+ok 9 - more boxes while demand outgrows them, balanced across sites (\#248)
+  ---
+  duration_ms: 400.510944
+  type: 'test'
+  ...
+# Subtest: boxes follow the traffic each city really sends: Russia and China have their own networks (\#260)
+ok 10 - boxes follow the traffic each city really sends: Russia and China have their own networks (\#260)
+  ---
+  duration_ms: 366.117895
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4904.786982

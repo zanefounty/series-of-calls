@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: redundancy kit matches normal purchases, including cash, monthly costs and save reload
+ok 1 - redundancy kit matches normal purchases, including cash, monthly costs and save reload
+  ---
+  duration_ms: 1229.248564
+  type: 'test'
+  ...
+# Subtest: kit is all-or-nothing, rejects stale quotes and handles missing PoPs
+ok 2 - kit is all-or-nothing, rejects stale quotes and handles missing PoPs
+  ---
+  duration_ms: 384.357442
+  type: 'test'
+  ...
+# Subtest: kit buys only missing components and preserves extra routers and service placement
+ok 3 - kit buys only missing components and preserves extra routers and service placement
+  ---
+  duration_ms: 433.254382
+  type: 'test'
+  ...
+# Subtest: bulk peering covers rival IXs, respects policy and is idempotent
+ok 4 - bulk peering covers rival IXs, respects policy and is idempotent
+  ---
+  duration_ms: 450.637484
+  type: 'test'
+  ...
+# Subtest: bulk peering skips disconnected IXs, route server coverage and existing down sessions
+ok 5 - bulk peering skips disconnected IXs, route server coverage and existing down sessions
+  ---
+  duration_ms: 403.961004
+  type: 'test'
+  ...
+# Subtest: utilities are available from the Ops sheet in the menu and from PoP Infra in every language
+ok 6 - utilities are available from the Ops sheet in the menu and from PoP Infra in every language
+  ---
+  duration_ms: 1847.38619
+  type: 'test'
+  ...
+# Subtest: join all route servers preserves existing sessions and covers rival and remote IX ports
+ok 7 - join all route servers preserves existing sessions and covers rival and remote IX ports
+  ---
+  duration_ms: 445.38499
+  type: 'test'
+  ...
+# Subtest: route-server batch leaves peering policy and player-owned exchanges alone
+ok 8 - route-server batch leaves peering policy and player-owned exchanges alone
+  ---
+  duration_ms: 464.909991
+  type: 'test'
+  ...
+# Subtest: \#192 the Infra tab shows the kit as one line, without repeating its rows
+ok 9 - \#192 the Infra tab shows the kit as one line, without repeating its rows
+  ---
+  duration_ms: 883.988755
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6867.920747

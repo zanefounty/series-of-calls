@@ -1,13 +1,13 @@
 {
-  "name": "seriesoftubes",
-  "version": "2.6.0",
-  "description": "A cartoon browser game about building the internet.",
+  "name": "series-of-calls",
+  "version": "0.1.0-preview.1",
+  "description": "Synthetic communications configuration training — incomplete foundation preview",
   "private": true,
   "license": "MIT",
-  "homepage": "https://seriesoftub.es/",
+  "homepage": "https://zanefounty.github.io/series-of-calls/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fjaeckel/seriesoftubes.git"
+    "url": "git+https://github.com/zanefounty/series-of-calls.git"
   },
   "scripts": {
     "test": "node scripts/test.js",
@@ -17,15 +17,48 @@
     "i18n:fix": "node scripts/i18n-check.js --fix",
     "dev": "node scripts/dev.js",
     "page": "node scripts/lib/page.js",
-    "serve": "npm run build && npx --yes serve@14.2.4 _site",
+    "serve": "npm run build && node scripts/serve.js",
     "perf": "node scripts/perf-bench.js",
-    "mcp": "node scripts/mcp.js"
+    "mcp": "node scripts/mcp.js",
+    "test:communications": "node --test --test-isolation=none tests/communications.test.js tests/business.test.js tests/service-operations.test.js tests/information.test.js tests/contact.test.js tests/calling-policy.test.js tests/workforce-operations.test.js tests/estate-operations.test.js tests/estate-lifecycle-integration.test.js tests/packs-integration.test.js tests/module-boundaries.test.js tests/assessment-packs.test.js tests/channels.test.js tests/outcomes.test.js tests/products.test.js tests/product-integration.test.js tests/advanced-boundaries.test.js tests/advanced-admin-ui.test.js tests/domain-admin-ui.test.js tests/domain-integration.test.js tests/campaign.test.js tests/campaign-integration.test.js tests/progression.test.js tests/issue-exercises.test.js tests/learning-integration.test.js tests/journey-integration.test.js tests/boundaries.test.js tests/transport.test.js tests/transport-boundaries.test.js tests/portfolio.test.js tests/admission-security.test.js tests/service-observation.test.js tests/portfolio-integration.test.js tests/portfolio-ui.test.js tests/progression-observation.test.js tests/observation-ui.test.js tests/admission-security-integration.test.js tests/security-ui.test.js tests/shared-services.test.js tests/shared-services-ui.test.js tests/shared-services-integration.test.js tests/market-qualification.test.js tests/market-ui.test.js tests/specialist-lifecycle.test.js tests/specialist-lifecycle-ui.test.js tests/specialist-lifecycle-integration.test.js tests/market-integration.test.js tests/number-porting.test.js tests/number-porting-ui.test.js tests/number-porting-integration.test.js tests/progression-market.test.js tests/inbound-calling.test.js tests/interaction-ui.test.js tests/site-integration.test.js tests/site-operations.test.js tests/site-ui.test.js tests/calling-achievements.test.js tests/progression-calling.test.js tests/product-evidence.test.js tests/product-evidence-integration.test.js tests/product-evidence-ui.test.js tests/managed-operations.test.js tests/managed-integration.test.js tests/managed-operations-ui.test.js tests/media-negotiation.test.js tests/media-integration.test.js tests/media-ui.test.js tests/product-rebase.test.js tests/capability-progression.test.js tests/workforce-bpo.test.js tests/workforce-bpo-integration.test.js tests/workforce-bpo-ui.test.js tests/business-pool-integration.test.js tests/business-pool-ui.test.js tests/business-shared-allowances.test.js tests/business-metering-integration.test.js tests/speech-models.test.js tests/speech-models-integration.test.js tests/speech-models-ui.test.js tests/artwork-entry.test.js tests/browser-campaigns-contract.test.js",
+    "spec:generate": "python3 scripts/generate-spec.py",
+    "check:source": "python3 scripts/verify.py source",
+    "check:coverage": "python3 scripts/verify.py coverage",
+    "check:catalogue": "python3 scripts/verify.py catalogue",
+    "check:evidence": "python3 scripts/verify.py evidence",
+    "check:upstream": "python3 scripts/verify.py upstream",
+    "check:freshness": "python3 scripts/verify.py freshness",
+    "check:release": "python3 scripts/verify.py release",
+    "check:all": "python3 scripts/verify.py all",
+    "test:gates": "python3 -m unittest discover -s tests -p '*_test.py'",
+    "evidence": "python3 scripts/record-evidence.py",
+    "mcp:calls": "node scripts/calls-mcp.js",
+    "test:browser": "node scripts/browser-smoke.js",
+    "observe:upstream": "python3 scripts/observe-upstream.py",
+    "observe:references": "python3 scripts/observe-references.py",
+    "audit:mapping": "python3 scripts/audit-mapping.py",
+    "check:mapping": "python3 scripts/verify.py mapping",
+    "narrative:generate": "python3 scripts/generate-narrative.py",
+    "test:mcp": "python3 scripts/mcp-smoke.py",
+    "check:delivery": "python3 scripts/delivery-inventory.py --check",
+    "test:browser:campaigns": "node scripts/browser-campaigns.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "devDependencies": {
     "jsdom": "24.1.3",
     "playwright-core": "1.56.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/zanefounty/series-of-calls/issues"
+  },
+  "keywords": [
+    "communications",
+    "training",
+    "simulator",
+    "synthetic",
+    "uc",
+    "contact-centre"
+  ]
 }

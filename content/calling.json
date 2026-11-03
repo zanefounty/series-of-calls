@@ -1,0 +1,39 @@
+{
+  "pack": "soc-calling-1",
+  "defaults": {
+    "directory": {
+      "tenants": [],
+      "identities": [],
+      "federation": [],
+      "publicReach": []
+    },
+    "services": {
+      "forwarding": [],
+      "fallback": [],
+      "groups": [],
+      "mailboxes": []
+    },
+    "media": {
+      "codecs": [
+        "opus",
+        "g711"
+      ],
+      "encryptionRequired": true,
+      "maxLatencyMs": 180,
+      "maxJitterMs": 30,
+      "maxLossPct": 3,
+      "natReachable": true
+    },
+    "emergency": {
+      "jurisdiction": "AU",
+      "routes": [],
+      "notifications": []
+    }
+  },
+  "sourceIds": [
+    "uc-new:domain:directory-dialplan",
+    "uc-new:domain:media",
+    "uc-new:domain:emergency",
+    "uc-new:domain:journeys"
+  ]
+}

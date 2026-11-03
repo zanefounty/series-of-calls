@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: advanced admin renders optional starters and disables every control in read-only mode
+ok 1 - advanced admin renders optional starters and disables every control in read-only mode
+  ---
+  duration_ms: 703.236566
+  type: 'test'
+  ...
+# Subtest: channel UI configures accounts and permissions without fabricating acceptance or receipt events
+ok 2 - channel UI configures accounts and permissions without fabricating acceptance or receipt events
+  ---
+  duration_ms: 420.521847
+  type: 'test'
+  ...
+# Subtest: channel attempt form passes account, purpose, template, and selected need through the ordinary interaction command
+ok 3 - channel attempt form passes account, purpose, template, and selected need through the ordinary interaction command
+  ---
+  duration_ms: 415.42615
+  type: 'test'
+  ...
+# Subtest: outcomes UI configures policy and task evidence separately from a bot reply
+ok 4 - outcomes UI configures policy and task evidence separately from a bot reply
+  ---
+  duration_ms: 412.189682
+  type: 'test'
+  ...
+# Subtest: product UI submits structured offers, lifecycle, and referenced deployment setup
+ok 5 - product UI submits structured offers, lifecycle, and referenced deployment setup
+  ---
+  duration_ms: 393.706768
+  type: 'test'
+  ...
+# Subtest: product integration setup and test are directional and visibly synthetic
+ok 6 - product integration setup and test are directional and visibly synthetic
+  ---
+  duration_ms: 399.216348
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3088.891606

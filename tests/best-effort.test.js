@@ -89,7 +89,7 @@ test('Best Effort: deep in the red, a rescue loan instead of game over', () => {
 test('quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything', () => {
   const { ev, dom, errors } = load();
   const shown = () => ev("document.getElementById('toasts').textContent");
-  ev("localStorage.removeItem('sot-prefs');PREFS={}");
+  ev("localStorage.removeItem('soc-sp-prefs');PREFS={}");
   start(ev, 'soft');
   assert.equal(ev('quietOn()'), true);
   ev("document.getElementById('toasts').innerHTML='';UI.tick=true;toast('Quiet news','good');toast('Bad news','bad');toast('A milestone','goal');UI.tick=false");
@@ -157,4 +157,20 @@ test('no "attracts attacks" warning where nobody attacks', () => {
   start(ev, 'oncall');
   assert.match(risk(), /Gaming attracts attacks/);
   assert.deepEqual(errors, []);
+});
+
+// The original game can coexist on the same origin without changing this app's preferences.
+test('Series of Calls SP preferences ignore the original game storage identity', () => {
+  const foreign=JSON.stringify({quiet:true,pauseIncident:true});
+  const h=load({storage:{'sot-prefs':foreign}});
+  try {
+    assert.equal(h.ev('PREFS.quiet'),undefined);
+    assert.equal(h.ev('pref("pauseIncident")'),false);
+    h.ev('setPref("quiet", false)');
+    assert.equal(h.dom.window.localStorage.getItem('sot-prefs'),foreign);
+    assert.equal(JSON.parse(h.dom.window.localStorage.getItem('soc-sp-prefs')).quiet,false);
+  } finally { h.dom.window.close(); }
+  const local=load({storage:{'sot-prefs':foreign,'soc-sp-prefs':JSON.stringify({quiet:false,pauseIncident:true})}});
+  try { assert.equal(local.ev('PREFS.quiet'),false);assert.equal(local.ev('pref("pauseIncident")'),true); }
+  finally { local.dom.window.close(); }
 });

@@ -64,7 +64,7 @@ const TOOLS = [
   },
   {
     name: 'load_save',
-    description: 'Load a saved game: a file exported from the game (Menu → Export save, the series-of-tubes-*.json from a bug report) or a raw save, as a path or as JSON text. Old saves are migrated exactly as the game does.',
+    description: 'Load a saved game: a file exported from the game (Menu → Export save, the series-of-calls-sp-*.json from a bug report) or a raw save, as a path or as JSON text. Old saves are migrated exactly as the game does.',
     inputSchema: obj({ path: str('Path to a .json save file.'), json: str('The save itself, as JSON text.') }),
     run: (s, a) => {
       if (!a.path === !a.json) throw new Error('Give either path or json.');

@@ -8,7 +8,7 @@
    cut, everything still connected gets all of its traffic. Tubes come in three sizes; routers follow by themselves (the
    cheapest model that takes the tubes), and traffic finds the detour by itself (Auto-TE): models, ports and metrics are
    someone else's job. */
-const AR_KEY='sot-architect',AR_TIER=1,AR_TIERS=[0,1,2],AR_RUN=550,AR_HOLD=650; // ms: the monkey's run to a tube, then how long the cut shows
+const AR_KEY='soc-sp-architect',AR_TIER=1,AR_TIERS=[0,1,2],AR_RUN=550,AR_HOLD=650; // ms: the monkey's run to a tube, then how long the cut shows
 // A brief: add (new sites), gold (sites that must survive any single cut), ring (sites that must sit on one ring), drop
 // (close a city: no POP allowed there any more), dem {city: Gbps} (what a site pulls from HQ, 10G unless set; a later
 // brief can raise it), lat [a,b,ms] (the fastest path between two sites under ms), tubes (the

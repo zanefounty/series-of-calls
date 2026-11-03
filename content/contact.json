@@ -1,0 +1,32 @@
+{
+  "pack": "soc-contact-1",
+  "defaults": {
+    "ivr": false,
+    "menu": [
+      {
+        "digit": "1",
+        "queue": "service",
+        "skill": "service",
+        "language": "en"
+      },
+      {
+        "digit": "2",
+        "queue": "service",
+        "skill": "service",
+        "language": "ja"
+      }
+    ],
+    "priority": "oldest",
+    "callbacks": true,
+    "callbackDelay": 3,
+    "callbackAttempts": 2,
+    "supervisors": [
+      "supervisor"
+    ],
+    "qualityThreshold": 70
+  },
+  "sourceIds": [
+    "uc-new:domain:journeys",
+    "uc-new:domain:workforce"
+  ]
+}

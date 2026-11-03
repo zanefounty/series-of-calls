@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: Glowball Sakura Lager is a Tier 2 in the big hubs, not everywhere
+ok 1 - Glowball Sakura Lager is a Tier 2 in the big hubs, not everywhere
+  ---
+  duration_ms: 632.51234
+  type: 'test'
+  ...
+# Subtest: it sells transit only where it is, and never to Australians, but peers on the big Australian exchanges
+ok 2 - it sells transit only where it is, and never to Australians, but peers on the big Australian exchanges
+  ---
+  duration_ms: 374.156864
+  type: 'test'
+  ...
+# Subtest: far from home it costs more than the locals, so it is never the cheap way in
+ok 3 - far from home it costs more than the locals, so it is never the cheap way in
+  ---
+  duration_ms: 394.141965
+  type: 'test'
+  ...
+# Subtest: buying transit from it reaches the whole internet
+ok 4 - buying transit from it reaches the whole internet
+  ---
+  duration_ms: 382.673377
+  type: 'test'
+  ...
+# Subtest: it takes a PNI and open peering at an exchange, and carries its own traffic over them
+ok 5 - it takes a PNI and open peering at an exchange, and carries its own traffic over them
+  ---
+  duration_ms: 406.247787
+  type: 'test'
+  ...
+# Subtest: networks in its own regions buy their transit from it, so a PNI with it reaches them; none in Australia
+ok 6 - networks in its own regions buy their transit from it, so a PNI with it reaches them; none in Australia
+  ---
+  duration_ms: 369.145791
+  type: 'test'
+  ...
+# Subtest: a game saved before it existed gets the courtesy route to it
+ok 7 - a game saved before it existed gets the courtesy route to it
+  ---
+  duration_ms: 686.329361
+  type: 'test'
+  ...
+# Subtest: the city panel offers it as a transit provider, on a desktop and a phone
+ok 8 - the city panel offers it as a transit provider, on a desktop and a phone
+  ---
+  duration_ms: 649.653175
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11951.15302

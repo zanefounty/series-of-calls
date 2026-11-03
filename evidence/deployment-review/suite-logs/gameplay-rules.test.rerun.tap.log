@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: W1: every city has a country code, a region and real coordinates
+ok 1 - W1: every city has a country code, a region and real coordinates
+  ---
+  duration_ms: 1.364217
+  type: 'test'
+  ...
+# Subtest: W2: every country on the map has at least two consumer networks of its own
+ok 2 - W2: every country on the map has at least two consumer networks of its own
+  ---
+  duration_ms: 3.06957
+  type: 'test'
+  ...
+# Subtest: W3: every city can buy transit from someone, or is a documented exception
+ok 3 - W3: every city can buy transit from someone, or is a documented exception
+  ---
+  duration_ms: 0.459169
+  type: 'test'
+  ...
+# Subtest: W4: cables are consistent: real cities, two distinct ends, a length and unique ids
+ok 4 - W4: cables are consistent: real cities, two distinct ends, a length and unique ids
+  ---
+  duration_ms: 0.37686
+  type: 'test'
+  ...
+# Subtest: W5: every island city can be reached: it shares its land, has a cable, or a beach to land one
+ok 5 - W5: every island city can be reached: it shares its land, has a cable, or a beach to land one
+  ---
+  duration_ms: 0.881776
+  type: 'test'
+  ...
+# Subtest: N1: network ids and ASNs are unique, ASNs are valid
+ok 6 - N1: network ids and ASNs are unique, ASNs are valid
+  ---
+  duration_ms: 0.496145
+  type: 'test'
+  ...
+# Subtest: N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name
+ok 7 - N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name
+  ---
+  duration_ms: 1.615715
+  type: 'test'
+  ...
+# Subtest: N3: every network sits in a founding Tier 1’s customer cone, or is a documented island
+ok 8 - N3: every network sits in a founding Tier 1’s customer cone, or is a documented island
+  ---
+  duration_ms: 0.554174
+  type: 'test'
+  ...
+# Subtest: N4: no upstream cycles
+ok 9 - N4: no upstream cycles
+  ---
+  duration_ms: 0.432328
+  type: 'test'
+  ...
+# Subtest: N5: traffic shares are sane
+ok 10 - N5: traffic shares are sane
+  ---
+  duration_ms: 0.647673
+  type: 'test'
+  ...
+# Subtest: N6: every network has a type, a peering policy and a translated blurb
+ok 11 - N6: every network has a type, a peering policy and a translated blurb
+  ---
+  duration_ms: 0.308064
+  type: 'test'
+  ...
+# Subtest: N7: presence is real: PoPs are cities, exchange ports only where the network is
+ok 12 - N7: presence is real: PoPs are cities, exchange ports only where the network is
+  ---
+  duration_ms: 0.734214
+  type: 'test'
+  ...
+# Subtest: M1: On-call is the classic game: the default rules, and what old saves load as
+ok 13 - M1: On-call is the classic game: the default rules, and what old saves load as
+  ---
+  duration_ms: 0.364493
+  type: 'test'
+  ...
+# Subtest: M2: presets are ordered: Best Effort never harsher than Change Freeze, Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler
+ok 14 - M2: presets are ordered: Best Effort never harsher than Change Freeze, Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler
+  ---
+  duration_ms: 2273.791525
+  type: 'test'
+  ...
+# Subtest: M3: every subsystem that can annoy the player reads a rule
+ok 15 - M3: every subsystem that can annoy the player reads a rule
+  ---
+  duration_ms: 515.580032
+  type: 'test'
+  ...
+# Subtest: M4: scenarios and the weekly challenge always run On-call
+ok 16 - M4: scenarios and the weekly challenge always run On-call
+  ---
+  duration_ms: 502.41679
+  type: 'test'
+  ...
+# Subtest: M5: Sandbox has no locked feature
+ok 17 - M5: Sandbox has no locked feature
+  ---
+  duration_ms: 372.717998
+  type: 'test'
+  ...
+# Subtest: C1: every scenario has a goal its card checks, and none is won on day 0
+ok 18 - C1: every scenario has a goal its card checks, and none is won on day 0
+  ---
+  duration_ms: 594.661218
+  type: 'test'
+  ...
+# Subtest: C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js)
+ok 19 - C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js)
+  ---
+  duration_ms: 0.345454
+  type: 'test'
+  ...
+# Subtest: C3: every player-facing string is translated in every language
+ok 20 - C3: every player-facing string is translated in every language
+  ---
+  duration_ms: 1114.617256
+  type: 'test'
+  ...
+# Subtest: F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180
+ok 21 - F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180
+  ---
+  duration_ms: 326.585503
+  type: 'test'
+  ...
+# Subtest: F2: a simple build in a start city makes money within three months on On-call
+ok 22 - F2: a simple build in a start city makes money within three months on On-call
+  ---
+  duration_ms: 1604.722181
+  type: 'test'
+  ...
+# Subtest: F3: a specialist path only brings customers you can already serve
+ok 23 - F3: a specialist path only brings customers you can already serve
+  ---
+  duration_ms: 341.988051
+  type: 'test'
+  ...
+# Subtest: F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures
+ok 24 - F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures
+  ---
+  duration_ms: 1534.927625
+  type: 'test'
+  ...
+# Subtest: F5: rented capacity never outgrows the route's market (\#203)
+ok 25 - F5: rented capacity never outgrows the route's market (\#203)
+  ---
+  duration_ms: 376.27261
+  type: 'test'
+  ...
+# Subtest: D1: attack sizes come from the world, never from your network
+ok 26 - D1: attack sizes come from the world, never from your network
+  ---
+  duration_ms: 408.298669
+  type: 'test'
+  ...
+# Subtest: D2: a full port slows everyone on it
+ok 27 - D2: a full port slows everyone on it
+  ---
+  duration_ms: 346.770382
+  type: 'test'
+  ...
+# Subtest: D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget
+ok 28 - D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget
+  ---
+  duration_ms: 330.968644
+  type: 'test'
+  ...
+# Subtest: D4: RTBH costs only the target
+ok 29 - D4: RTBH costs only the target
+  ---
+  duration_ms: 366.377013
+  type: 'test'
+  ...
+# Subtest: no page errors while checking the rules
+ok 30 - no page errors while checking the rules
+  ---
+  duration_ms: 0.216146
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18307.300803

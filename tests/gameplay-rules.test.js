@@ -4,7 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const fs = require('node:fs');
-const { execFileSync } = require('node:child_process');
+const cliCapture = require('./cli-capture');
 const { load } = require('./harness');
 
 // Every exception names what breaks the rule and why. One per line, sorted within each rule.
@@ -307,7 +307,7 @@ test('C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzl
 });
 
 test('C3: every player-facing string is translated in every language', () => {
-  const out = execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts', 'i18n-check.js')], { encoding: 'utf8' });
+  const out = cliCapture(process.execPath, [path.join(__dirname, '..', 'scripts', 'i18n-check.js')]).stdout;
   assert.match(out, /en\.js: \d+ labels, 0 problems/, 'C3: ' + out);
   const langs = out.split('\n').filter((l) => /^[a-z]{2}\.js: \d+ missing/.test(l));
   assert.ok(langs.length >= 5, 'C3: every language is checked');

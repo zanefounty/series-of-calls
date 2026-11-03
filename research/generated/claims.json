@@ -1,0 +1,1625 @@
+[
+  {
+    "id": "CLAIM-25a0d3acbe089fe8",
+    "source": "DESIGN-93d408bc61aa8817",
+    "requirement": "REQ-34149e5830194956",
+    "reference": "REF-ac194430f67b3832",
+    "claim": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-e6b06b7d4759516b",
+    "source": "DESIGN-93d408bc61aa8817",
+    "requirement": "REQ-34149e5830194956",
+    "reference": "REF-5300ce44d82bd40f",
+    "claim": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-92d312ca4625b869",
+    "source": "DESIGN-93d408bc61aa8817",
+    "requirement": "REQ-34149e5830194956",
+    "reference": "REF-7cec333be41fbfc9",
+    "claim": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a200581db0f56c8d",
+    "source": "DESIGN-93d408bc61aa8817",
+    "requirement": "REQ-34149e5830194956",
+    "reference": "REF-a8dbb077dacacede",
+    "claim": "The [Teams service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description) identifies major feature families and cloud differences. [PSTN connectivity documentation](https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity) distinguishes the operating models. [Rooms licensing](https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing) and [meetings and events documentation](https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events) support separate room and event capabilities.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-17b469523e0fccdd",
+    "source": "DESIGN-cf15a250f0dab3ba",
+    "requirement": "REQ-fcfe870dbabdbb62",
+    "reference": "REF-b8049813b772603e",
+    "claim": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-ee1c8618006f345a",
+    "source": "DESIGN-cf15a250f0dab3ba",
+    "requirement": "REQ-fcfe870dbabdbb62",
+    "reference": "REF-6041cb9b4e29d0a7",
+    "claim": "[Dynamics 365 Contact Center](https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center) supplies an omnichannel and AI-assisted customer-service reference. [Teams contact-centre integration documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) distinguishes Connect, Extend and Unify and lists participating solutions, including Cisco. Teams basic queues and a full contact-centre product should have different capability profiles.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-47c428cb682fd198",
+    "source": "DESIGN-866ba19f20194e1b",
+    "requirement": "REQ-4a8f2bbb4079765f",
+    "reference": "REF-0ab35ad448a8e152",
+    "claim": "[Microsoft 365 Local](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview) runs Exchange Server, SharePoint Server and Skype for Business Server on customer-owned Azure Local infrastructure, with hybrid and disconnected deployment options. It should have its own product profile; it does not provide an on-premises Teams edition.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-38f6afe889658335",
+    "source": "DESIGN-013d12804b9a90dc",
+    "requirement": "REQ-91713cf90631b52d",
+    "reference": "REF-ce4086e425fc31ca",
+    "claim": "The [GCC High and DoD service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod) is specific to defined US environments and eligibility. Country packs must establish their own requirements.",
+    "section": "Microsoft reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a1def7797ff16712",
+    "source": "DESIGN-05b43e451dd174a0",
+    "requirement": "REQ-d39d0f417f9016b0",
+    "reference": "REF-994b72cced26fabb",
+    "claim": "The [ACS retirement and breaking-changes guide](https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide) sets **30 September 2028** as the transition date for standalone ACS retirement and related SDK changes. Some services retire; certain calling and automation capabilities continue in supported Teams-aligned scenarios with changes. The game should distinguish retiring offers, supported existing deployments and permitted successor architectures.",
+    "section": "Microsoft lifecycle and feature constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-21c67d1cbd6c351b",
+    "source": "DESIGN-bdfa6d751dcedce1",
+    "requirement": "REQ-0dcd866e94553617",
+    "reference": "REF-c6673929705ff2bf",
+    "claim": "[Copilot in Teams documentation](https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription) distinguishes temporary speech processing from saved transcription and states that Copilot is unavailable in end-to-end encrypted meetings. Model that conflict for the relevant profile. Do not make it a universal rule covering every vendor or future version.",
+    "section": "Microsoft lifecycle and feature constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-5e832c5a7d8c0fed",
+    "source": "DESIGN-1752a30ca1683113",
+    "requirement": "REQ-fe62fc25439ee2d0",
+    "reference": "REF-80094745cafb63d6",
+    "claim": "The documented [Teams Rooms Pro integration with ServiceNow](https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow) is Commercial-cloud-only. This is an example of an operational integration whose availability differs from that of the underlying room device.",
+    "section": "Microsoft lifecycle and feature constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-561d8817ca1026f1",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-cbb04f2d2c34bccb",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a6276d9047a1da7e",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-f17dabc322d17a54",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4d9e35e3a246ec7a",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-c9e920ec01b6f78b",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-9224111c6bb17412",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-e40e11d43985a98d",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-68a0886f7e4eefc5",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-ecd8d4f64aad9f35",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-8a04710ea80247ed",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-932dc1c63a5b9e08",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-daf37ddd127fbfb7",
+    "source": "DESIGN-788d2c401a5dc03b",
+    "requirement": "REQ-51f946a444240d70",
+    "reference": "REF-fb9dd3e3bcdca8c9",
+    "claim": "Sources: [Webex Suite](https://www.webex.com/us/en/products/suite.html), [Flex and Suite offers](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html), [Dedicated Instance](https://help.webex.com/article/dk3o5r), [contact-centre product families](https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html), [Webex Connect](https://help.webexconnect.io/docs/welcome), [device interoperability](https://www.webex.com/us/en/solutions/interoperability.html) and [Wholesale Route to Market](https://help.webex.com/article/nwwg3w6).",
+    "section": "Cisco reference pack",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4565d8fb254271df",
+    "source": "DESIGN-9dd5f6344f4833ef",
+    "requirement": "REQ-81e353eb84bbff84",
+    "reference": "REF-5feedded0d34a197",
+    "claim": "The [AI PODs datasheet](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) describes local transcription, but qualifies isolated operation with a licensing exception and documents direct Smart Licensing. Its integration table is version-specific. Treat local processing, disconnected licensing and supported application integrations as independent attributes.",
+    "section": "Cisco lifecycle and local AI constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-cbc7eb75caccf472",
+    "source": "DESIGN-56c8666e480fab2e",
+    "requirement": "REQ-516e0364542ccd19",
+    "reference": "REF-0ddcf6e8a0d3d60c",
+    "claim": "The [UCM Cloud for Government lifecycle notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html) gives **6 January 2027** as end of sale and **31 January 2028** as last support. Its transition options include Webex for Government Calling and on-premises UCM.",
+    "section": "Cisco lifecycle and local AI constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-3dd28041126d988b",
+    "source": "DESIGN-8398196e83fb79d7",
+    "requirement": "REQ-a685e7e2c9bb589d",
+    "reference": "REF-fcdabdb913c10b05",
+    "claim": "The [Webex WFO notice](https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html) applies to specific offers with end of sale in July 2026. Preserve separate dates for sale, renewal and support; an offer retirement does not delete the entire workforce-management capability family.",
+    "section": "Cisco lifecycle and local AI constraints",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-b1a7b056aaada840",
+    "source": "DESIGN-363ff8832a731653",
+    "requirement": "REQ-fc1aa0b29d83cf38",
+    "reference": "REF-6041cb9b4e29d0a7",
+    "claim": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-d637c8d10c7a946a",
+    "source": "DESIGN-363ff8832a731653",
+    "requirement": "REQ-fc1aa0b29d83cf38",
+    "reference": "REF-5fb1edff716b861d",
+    "claim": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-d1c0f36090a41105",
+    "source": "DESIGN-363ff8832a731653",
+    "requirement": "REQ-fc1aa0b29d83cf38",
+    "reference": "REF-bf74910ae207c4ce",
+    "claim": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a7275b68d7f5c42f",
+    "source": "DESIGN-363ff8832a731653",
+    "requirement": "REQ-fc1aa0b29d83cf38",
+    "reference": "REF-13aa74b705a9e357",
+    "claim": "[Microsoft's contact-centre catalogue](https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center) verifies a range of independent and Teams-oriented integrations. [SBC certification](https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers), [Rooms hardware certification](https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware) and [compliance recording](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance) are separate programmes. Device certification explicitly does not establish feature-level or cloud-environment support.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-80529de1efd098db",
+    "source": "DESIGN-eb0a6c1ce502202e",
+    "requirement": "REQ-82e12ce124c82d04",
+    "reference": "REF-097413172db36986",
+    "claim": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-d8e3a548360f0008",
+    "source": "DESIGN-eb0a6c1ce502202e",
+    "requirement": "REQ-82e12ce124c82d04",
+    "reference": "REF-6ee11627b4e96799",
+    "claim": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-5c942c4cb21a78d8",
+    "source": "DESIGN-eb0a6c1ce502202e",
+    "requirement": "REQ-82e12ce124c82d04",
+    "reference": "REF-d91db49dd1296a40",
+    "claim": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-1d52fdfbe385dd4a",
+    "source": "DESIGN-eb0a6c1ce502202e",
+    "requirement": "REQ-82e12ce124c82d04",
+    "reference": "REF-81f2bd205e0f66f7",
+    "claim": "[Webex App Hub](https://apphub.webex.com/partner-solutions) supplies another ecosystem reference. Specific examples include [Imagicle](https://apphub.webex.com/applications/imagicle-uc-suite), [Theta Lake](https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake) and the [TTEC Digital WFM adapter](https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc). Marketplace presence is a distinct evidence type from formal certification.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-616b56d32c938b78",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-a5f898a484d055da",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-f45542864ca1ee00",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-004474965260c809",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-8de19cd86b7c985c",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-d4ab6397cad04761",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-1d491bff68072715",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-38feefe35f2f7619",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-ca612486c41b6f7e",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-2c6a952924346c36",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4679b0d113a829b1",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-b96b46dfea69de93",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-7f4496a572d35857",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-1503bbaf273629fc",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-1bfb1e73a5b814f7",
+    "source": "DESIGN-7e890263c59f32d7",
+    "requirement": "REQ-090ca18180d23749",
+    "reference": "REF-7ed8da24bfbaf244",
+    "claim": "Lifecycle-management examples are grounded in [Kurmi](https://kurmi-software.com/), [VOSS](https://www.voss-solutions.com/tech-solutions/cisco/) and [Akkadian](https://www.akkadianlabs.com/akkadian-platform/). Conferencing examples are grounded in [VQ](https://www.vqcomms.com/products/vq-conference-manager/), [Mividas](https://docs.mividas.com/docs/documentation/mividas-core/), [Pexip](https://www.pexip.com/products/connect/microsoft-interoperability) and [Synergy SKY](https://www.synergysky.com/service-description). Assurance is represented by [IR Collaborate](https://www.ir.com/products/collaborate).",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-f9aad380d17926ea",
+    "source": "DESIGN-47812975256f7cf8",
+    "requirement": "REQ-b81620f2ef88a92c",
+    "reference": "REF-db893272c3caa3e6",
+    "claim": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-b0621ee2b1b56935",
+    "source": "DESIGN-47812975256f7cf8",
+    "requirement": "REQ-b81620f2ef88a92c",
+    "reference": "REF-bd36702520ca438c",
+    "claim": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-35ebc22fe0e4bd68",
+    "source": "DESIGN-47812975256f7cf8",
+    "requirement": "REQ-b81620f2ef88a92c",
+    "reference": "REF-38e91eec89c3b7f1",
+    "claim": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-d30c5a2dbd047d06",
+    "source": "DESIGN-47812975256f7cf8",
+    "requirement": "REQ-b81620f2ef88a92c",
+    "reference": "REF-d57c9265c13dcff5",
+    "claim": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-513413bc3bd34e9e",
+    "source": "DESIGN-47812975256f7cf8",
+    "requirement": "REQ-b81620f2ef88a92c",
+    "reference": "REF-2c126d5591584671",
+    "claim": "[Twilio](https://www.twilio.com/en-us/products), [Sinch](https://sinch.com/products/), [Infobip Conversations](https://www.infobip.com/docs/conversations) and [8x8 documentation](https://help.8x8.com/documentation) show the overlap between programmable communications and customer-service applications. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) supports the workforce and quality family.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-7169c6001d9a447d",
+    "source": "DESIGN-224ee53b0347e91b",
+    "requirement": "REQ-81f6cffdbdaac836",
+    "reference": "REF-5847fdf5258de958",
+    "claim": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-9c99fd537543b27b",
+    "source": "DESIGN-224ee53b0347e91b",
+    "requirement": "REQ-81f6cffdbdaac836",
+    "reference": "REF-52534bbbda04973d",
+    "claim": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4911b7f05c523234",
+    "source": "DESIGN-224ee53b0347e91b",
+    "requirement": "REQ-81f6cffdbdaac836",
+    "reference": "REF-b3027a7b0a74c45d",
+    "claim": "[Otter](https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview), [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) demonstrate meeting-assistant integrations. Their data access and processing are distinct dependencies.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a762654c4ca2ed90",
+    "source": "DESIGN-036889638c3893b0",
+    "requirement": "REQ-030efcb9b980477b",
+    "reference": "REF-a4b34e38df123d83",
+    "claim": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-e1fcf00481fb5d51",
+    "source": "DESIGN-036889638c3893b0",
+    "requirement": "REQ-030efcb9b980477b",
+    "reference": "REF-b774912c2fef487e",
+    "claim": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-92b0acded8e21ca2",
+    "source": "DESIGN-036889638c3893b0",
+    "requirement": "REQ-030efcb9b980477b",
+    "reference": "REF-62ae5701eec71289",
+    "claim": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-9aceba29f18ac56f",
+    "source": "DESIGN-036889638c3893b0",
+    "requirement": "REQ-030efcb9b980477b",
+    "reference": "REF-a333ec80b11e26ef",
+    "claim": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-da808601ddf27285",
+    "source": "DESIGN-036889638c3893b0",
+    "requirement": "REQ-030efcb9b980477b",
+    "reference": "REF-3978de94b73181f0",
+    "claim": "[Deepgram deployment options](https://developers.deepgram.com/docs/deployment-options), [Microsoft disconnected containers](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers), [RedSky and InformaCast integration](https://www.singlewire.com/integrations/redsky), [Asterisk](https://www.asterisk.org/get-started/) and [FreeSWITCH](https://developer.signalwire.com/freeswitch/foundations/introduction/) support the remaining specialist families.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-e1a287349359beb2",
+    "source": "DESIGN-2d64d549457e7328",
+    "requirement": "REQ-1df9a0c4458db01f",
+    "reference": "REF-effbf81bfc316bd6",
+    "claim": "Company ownership and product identity need separate records. For example, [Verint's Calabrio page](https://www.verint.com/calabrio/) describes their combined organisation; that does not make all product capabilities interchangeable.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-8e9eae0210492987",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-18b941b71b6c92b7",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-3181068a28e21c3d",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-29c840ca324ce3fd",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-d53a8640a2608b2f",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-2c204a90632309fa",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-5b9f7ada9cd47d95",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-a294a1068b534053",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a08ce3b99e3b06d5",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-4494e44133a096ff",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-88a031caef088e05",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-6b9dd2ca3e9920e5",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4ca2d0fe766055e0",
+    "source": "DESIGN-b1e7661c640cff04",
+    "requirement": "REQ-2aedcc3f38614886",
+    "reference": "REF-1454d7ffe209c85b",
+    "claim": "Additional installed-base and competitive profiles should include [RingCentral RingEX](https://www.ringcentral.com/au/en/office/product-overview.html) and [RingCX](https://www.ringcentral.com/au/en/ringcx.html), [Avaya Aura](https://www.avaya.com/en/products/aura/) and [Infinity](https://www.avaya.com/en/products/infinity-platform/), [Mitel communications platforms](https://www.mitel.com/products/business-phone-systems), [ALE's UC portfolio](https://www.al-enterprise.com/en/solutions/unified-communications), and [3CX](https://www.3cx.com/phone-system/). Their existing deployments create upgrade, support, interworking and migration choices. An older deployed version does not make its entire supplier obsolete.",
+    "section": "Third party ecosystem",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-54d47b9d61f1bb8a",
+    "source": "DESIGN-1411d25f21d34973",
+    "requirement": "REQ-6d734411a6b79933",
+    "reference": "REF-fb9dd3e3bcdca8c9",
+    "claim": "Partner qualifications unlock defined offers or responsibilities. A qualification does not confer every integration or government approval. Cisco's [wholesale guide](https://help.webex.com/article/nwwg3w6) provides a concrete example of parent partners, subpartners, customer onboarding and billing responsibilities.",
+    "section": "Partners and commercial operations",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-dc4b33799e75f0c3",
+    "source": "DESIGN-6697cbeaf6d33a1f",
+    "requirement": "REQ-7993072717d54c9d",
+    "reference": "REF-6974ff2c7027ebb4",
+    "claim": "[WhatsApp's pricing documentation](https://business.whatsapp.com/products/platform-pricing) distinguishes delivered-message categories and free service responses within its customer-service rules. The game should account for the relevant channel economics rather than assuming every message has the same cost. [Webex Connect](https://help.webexconnect.io/docs/welcome) demonstrates that WhatsApp and Messenger can also be components of a commercial engagement platform.",
+    "section": "Competition and channel substitution",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-fbf813cd7e1b1387",
+    "source": "DESIGN-6697cbeaf6d33a1f",
+    "requirement": "REQ-7993072717d54c9d",
+    "reference": "REF-ecd8d4f64aad9f35",
+    "claim": "[WhatsApp's pricing documentation](https://business.whatsapp.com/products/platform-pricing) distinguishes delivered-message categories and free service responses within its customer-service rules. The game should account for the relevant channel economics rather than assuming every message has the same cost. [Webex Connect](https://help.webexconnect.io/docs/welcome) demonstrates that WhatsApp and Messenger can also be components of a commercial engagement platform.",
+    "section": "Competition and channel substitution",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-185b2d6b9abe4742",
+    "source": "DESIGN-3f3814727263de52",
+    "requirement": "REQ-7213258dcc84247f",
+    "reference": "REF-e5bb18ef74fe6ca4",
+    "claim": "Slack provides huddles and meeting-note capabilities, while [Zoom's portfolio](https://www.zoom.com/en/products/) spans several collaboration and customer-service products. Treat substitution by job and capability; a competing meeting product need not replace PSTN or specialised customer-service requirements.",
+    "section": "Competition and channel substitution",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-e632215a7246634e",
+    "source": "DESIGN-46801416016d33dd",
+    "requirement": "REQ-f289ccf97552f1ee",
+    "reference": "REF-2c126d5591584671",
+    "claim": "Useful incidents include broken CRM screen-pop, stale workforce forecasts, bot handoff loops, missing language skills, callback failures, inaccessible recordings and faulty identity mapping after migration. [Genesys WEM](https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/) illustrates the separate workforce, quality and recording functions around the core contact-centre platform.",
+    "section": "Contact centre and customer journey simulation",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-673be91cbe9afe43",
+    "source": "DESIGN-ac6be27aa8f52554",
+    "requirement": "REQ-90d0d170cd267a9d",
+    "reference": "REF-a4b34e38df123d83",
+    "claim": "Provide both platform-native and specialist integrations. Hosted speech services and local inference have different operating obligations. [Deepgram's deployment documentation](https://developers.deepgram.com/docs/deployment-options) distinguishes hosted and customer-operated deployment; [Microsoft's disconnected container documentation](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers) identifies supported services and access requirements.",
+    "section": "Transcription AI and information handling",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-b8f99abef72393e2",
+    "source": "DESIGN-ac6be27aa8f52554",
+    "requirement": "REQ-90d0d170cd267a9d",
+    "reference": "REF-b774912c2fef487e",
+    "claim": "Provide both platform-native and specialist integrations. Hosted speech services and local inference have different operating obligations. [Deepgram's deployment documentation](https://developers.deepgram.com/docs/deployment-options) distinguishes hosted and customer-operated deployment; [Microsoft's disconnected container documentation](https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers) identifies supported services and access requirements.",
+    "section": "Transcription AI and information handling",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-5c932b266786f9e9",
+    "source": "DESIGN-ee57f328049954c3",
+    "requirement": "REQ-e161d488603ff1b0",
+    "reference": "REF-52534bbbda04973d",
+    "claim": "A third-party meeting assistant can offer cross-platform value while adding another processor, identity and export path. [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI's Teams integration](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) provide concrete reference examples.",
+    "section": "Transcription AI and information handling",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-692e152367019b74",
+    "source": "DESIGN-ee57f328049954c3",
+    "requirement": "REQ-e161d488603ff1b0",
+    "reference": "REF-b3027a7b0a74c45d",
+    "claim": "A third-party meeting assistant can offer cross-platform value while adding another processor, identity and export path. [Fireflies](https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported) and [Read AI's Teams integration](https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams) provide concrete reference examples.",
+    "section": "Transcription AI and information handling",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-def72d7bacfbf033",
+    "source": "DESIGN-a7a2f88ad9e6b1f3",
+    "requirement": "REQ-7732d48ed43ebe41",
+    "reference": "REF-5feedded0d34a197",
+    "claim": "Local media, local storage, local AI and disconnected operation are distinct properties. A platform may satisfy one and fail another. The [Cisco AI PODs licensing qualification](https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html) is a useful example of why the entire service chain must be checked.",
+    "section": "Sovereignty and disconnected operation",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-eeb4a42e0f32b3c5",
+    "source": "DESIGN-4bdc6435094790d3",
+    "requirement": "REQ-b8f252f0789bdaa8",
+    "reference": "REF-267d4dda6bb79608",
+    "claim": "Retain the static browser shell, canvas interaction, panel infrastructure, persistence patterns and useful tests from [Series of Tubes at commit 48e6200](https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b). The source uses shared state and derived results in an assembled classic script; the expanded domain should have clear function boundaries within that initial architecture. [Upstream architecture](https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md).",
+    "section": "Engine and content architecture",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-a19ffea5ac479551",
+    "source": "DESIGN-4bdc6435094790d3",
+    "requirement": "REQ-b8f252f0789bdaa8",
+    "reference": "REF-01c1db3086024441",
+    "claim": "Retain the static browser shell, canvas interaction, panel infrastructure, persistence patterns and useful tests from [Series of Tubes at commit 48e6200](https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b). The source uses shared state and derived results in an assembled classic script; the expanded domain should have clear function boundaries within that initial architecture. [Upstream architecture](https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md).",
+    "section": "Engine and content architecture",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-456d0885be38f7ff",
+    "source": "DESIGN-818a3fbcd5be0f37",
+    "requirement": "REQ-090973d00531c506",
+    "reference": "REF-8af7f0c64e902296",
+    "claim": "Give the fork a new application ID, local-storage namespace, service-worker cache and versioned save schema. Upstream saves have ISP-specific fields and validation. Preserve the original MIT notice and attribution, and update domain, release and analytics assumptions. [Save implementation](https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js).",
+    "section": "Engine and content architecture",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-e0ab5deab9125280",
+    "source": "DESIGN-17f0f9d9b4bb5579",
+    "requirement": "REQ-f9a2946baca6d3c9",
+    "reference": "REF-31e291b1eee75a7a",
+    "claim": "Keep the existing headless harness where useful, with a small real-browser smoke test for topology selection, the inspector, mobile controls and save/reload. [Upstream test harness](https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js).",
+    "section": "Delivery phases and acceptance",
+    "historicalEvidence": {
+      "sourceDocument": "research/source/Series of Calls communications ecosystem design.md",
+      "assertedDate": "2026-10-29"
+    },
+    "checkedAt": null,
+    "status": "unreviewed",
+    "versionOrJurisdiction": "See preserved source; requires scoped review",
+    "uncertainty": "Original research assertion, not independently revalidated"
+  },
+  {
+    "id": "CLAIM-4abda4d004716da6",
+    "source": "RES-AU-CLOUD-001",
+    "requirement": "REQ-4abda4d004716da6",
+    "reference": "REF-01234d0db452b257",
+    "claim": "Cloud consumers assess their own deployed systems and shared responsibilities. Provider assessment evidence supports an authorising officer’s risk decision; it is not an unconditional approval of every customer configuration.",
+    "section": "Jurisdiction research additions",
+    "historicalEvidence": {
+      "sourceDocument": "research/additions.json",
+      "assertedDate": "2026-11-03"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "AU; government cloud assessment guidance, page reviewed 2024-01-18",
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "CLAIM-2314f315d795c6a6",
+    "source": "RES-US-CLOUD-001",
+    "requirement": "REQ-2314f315d795c6a6",
+    "reference": "REF-d8e8c2b149f9b9ab",
+    "claim": "FedRAMP evidence can be reused while an agency still authorises its own system, configuration and integrations. Customer responsibilities and agency mission risk remain part of that decision.",
+    "section": "Jurisdiction research additions",
+    "historicalEvidence": {
+      "sourceDocument": "research/additions.json",
+      "assertedDate": "2026-11-03"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "US federal; 2026 consolidated rules page, applicability needs reviewer confirmation",
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "CLAIM-7a874cbe68218153",
+    "source": "RES-JP-CLOUD-001",
+    "requirement": "REQ-7a874cbe68218153",
+    "reference": "REF-6d84d6a737cf7adf",
+    "claim": "ISMAP evaluates and registers cloud services for government procurement. Its overview distinguishes the main programme from the low-impact SaaS programme and describes procurement from registered service lists in principle.",
+    "section": "Jurisdiction research additions",
+    "historicalEvidence": {
+      "sourceDocument": "research/additions.json",
+      "assertedDate": "2026-11-03"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "JP; official ISMAP overview retrieved 2026-11-03",
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "CLAIM-ed81e9aa7bb61a3d",
+    "source": "RES-JP-AI-001",
+    "requirement": "REQ-ed81e9aa7bb61a3d",
+    "reference": "REF-807e645f0a490d75",
+    "claim": "ISMAP registration does not remove the need for government bodies to address risks particular to generative AI services.",
+    "section": "Jurisdiction research additions",
+    "historicalEvidence": {
+      "sourceDocument": "research/additions.json",
+      "assertedDate": "2026-11-03"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "JP; official ISMAP generative AI notice retrieved 2026-11-03",
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "CLAIM-ef7e6982b2ab8356",
+    "source": "RES-EU-TRANSFER-001",
+    "requirement": "REQ-ef7e6982b2ab8356",
+    "reference": "REF-9ad9e2087bdedc1b",
+    "claim": "The guide distinguishes adequacy decisions, appropriate safeguards and derogations for transfers outside the EEA. Transfer rules involve the parties and protection mechanisms, not only the storage location.",
+    "section": "Jurisdiction research additions",
+    "historicalEvidence": {
+      "sourceDocument": "research/additions.json",
+      "assertedDate": "2026-11-03"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "EU/EEA; GDPR international-transfer overview, not a national government accreditation scheme",
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "CLAIM-39b53c7bcd8fa320",
+    "source": "RES-CISCO-VOIP-001",
+    "requirement": "REQ-39b53c7bcd8fa320",
+    "reference": "REF-ce4e6c93d4f7f11d",
+    "claim": "Technical explanation in a list discussion, including a cited release-note description; not a controlled reproduction report. A participant explains that hold/resume and supplementary call operations could leave media inactive when a third-party endpoint returned an inactive SDP answer where the older call flow expected send/receive media. The thread also discusses the changed behavior in CUCM 8.5. Outcome noted in the thread: Historical version-dependent interoperability behavior is described; no specific customer call is confirmed as repaired in this thread.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/0",
+      "sourceRecordSha256": "4cba3474f4730ea6ae09e0a2e2f05a007fe09dcfab159955018d55535db2e3cb"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2011-04-15; product context: CUCM before 8.5 is explicitly discussed; no complete deployed version matrix is stated.",
+    "uncertainty": "Applies to the described historical offer/answer behavior and counterpart implementations; not a general claim about current SIP endpoints. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-2b2d832208d9f39c",
+    "source": "RES-CISCO-VOIP-002",
+    "requirement": "REQ-2b2d832208d9f39c",
+    "reference": "REF-caf76921eb104f1f",
+    "claim": "Customer-style incident report plus troubleshooting suggestions and a separate claimed fix. A reported phone-to-phone call transferred blindly through a CUBE/SIP trunk to an external mobile had one-way audio. Replies discuss SDP direction attributes and a SIP-profile option limited to early-offer trunks; one participant says header manipulation fixed a separate instance. Outcome noted in the thread: The archive does not confirm that the original reporter's call was fixed. A reply reports one other instance repaired with SBC header manipulation.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/1",
+      "sourceRecordSha256": "74ea10f0cb44dee08fe2adffebe47aacee708232c4df7942cdaa48b0bf12770e"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2014-04-30; product context: CUCM, CUBE and a Lync interoperation example are mentioned; exact versions are not stated in the initial report.",
+    "uncertainty": "SDP address appearance alone did not establish working RTP in the report. The proposed profile setting is conditional on early offer and should not become a blanket remedy. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-2f08185dc79f23ef",
+    "source": "RES-CISCO-VOIP-003",
+    "requirement": "REQ-2f08185dc79f23ef",
+    "reference": "REF-b975a5563a7e48f0",
+    "claim": "Reproducible report across two systems and a reply attributing it to a particular firmware bug. A 9951 with expansion module could place calls using a busy-lamp-field speed dial, but using that key during a transfer created another call instead of completing transfer. Manual destination dialing worked. Outcome noted in the thread: Reply recommends an engineering special; archive does not include the reporter's confirmation of the fix.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/2",
+      "sourceRecordSha256": "d18ea975879984c2a4a40eb0c3d1364eb9139c9e65093e52353ee7cb7564aedc"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2013-04-02; product context: Thread title identifies CUCM 9.1; a reply identifies phone firmware 9.3.2 as the suspected bug.",
+    "uncertainty": "The firmware cause and remedy are participant-attributed and bound to an old release; no present-day product claim is implied. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-2af25b61b00d01cc",
+    "source": "RES-CISCO-VOIP-004",
+    "requirement": "REQ-2af25b61b00d01cc",
+    "reference": "REF-a40f3ce6a34d2530",
+    "claim": "Specific error diagnosis and participant-reported configuration resolution. An inbound INVITE reached a CUCM node that was not in the trunk's device-pool call-manager group and received a 503. The thread explains that trunk ingress node membership and dial-peer node preference must align; changing preference resolved calls for the reporter. Outcome noted in the thread: The reporter states that reversing publisher/subscriber dial-peer preference made calls work; the discussion also points to all-node trunk operation in later versions.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/3",
+      "sourceRecordSha256": "3c3f1d2fd520bbb263e1c7fc793614892a805503e7eb150c7d03a28cde1a979a"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2013-04-10; product context: A reply notes that CUCM 8.x and later can accept a SIP trunk on all nodes; the exact customer's version is not identified.",
+    "uncertainty": "This is a historical cluster/trunk routing example, not a claim that all 503 responses have this cause. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-854083e86a66110b",
+    "source": "RES-CISCO-VOIP-005",
+    "requirement": "REQ-854083e86a66110b",
+    "reference": "REF-0d42f4b3d7e3d297",
+    "claim": "Incident report plus unconfirmed troubleshooting hypotheses. After replacing an ISDN/H.323 gateway path with centralized SIP, a UCCX IVR call received a 404 despite a reported dial-peer match. A reply suggests CSS/partition visibility or SIP-trunk device-pool context as hypotheses. Outcome noted in the thread: No resolution is present in the sampled post; the proposed causes remain hypotheses.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/4",
+      "sourceRecordSha256": "14c679e05da25a3119dc51e5f44e8c90936c0b0ae921e67b0e5b44d1c1f3cd7e"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2019-10-13; product context: CUCM/UCCX/CUBE releases are not stated in the archived post.",
+    "uncertainty": "The thread is incomplete and does not prove the suggested class-of-service or device-pool cause. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-f913436cdd150d04",
+    "source": "RES-CISCO-VOIP-006",
+    "requirement": "REQ-f913436cdd150d04",
+    "reference": "REF-0bffb652b76883d9",
+    "claim": "Incident report with multiple participant hypotheses; no single cause confirmed in this message. A registered phone displayed the wrong time and did not appear to apply current load or configuration. Replies raise wrong provisioned device type, stale firmware/time-zone compatibility and malformed or incomplete configuration XML as possible causes. Outcome noted in the thread: Possible checks are suggested, but the sampled thread does not confirm the original device was repaired.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/5",
+      "sourceRecordSha256": "e93d6fa53b43d934eeb4bb2d0bf7ad61e4a0ef04af725300d8a2e2c79ae16d1f"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2013-11-05; product context: 7945 SCCP firmware and CUCM are discussed; one load predates Olson timezone handling. Exact CUCM release is not stated.",
+    "uncertainty": "Several distinct causes are mentioned and must stay separate in a scenario; registration is not evidence that every configuration field took effect. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-2ca1de1ca67457cc",
+    "source": "RES-CISCO-VOIP-007",
+    "requirement": "REQ-2ca1de1ca67457cc",
+    "reference": "REF-2985477e6ab52c6f",
+    "claim": "Specific field report and participant's claimed matching diagnosis based on another recent case. A phone remained registered and reachable while its keypad display was stuck at a logo; the inactive firmware load reported an internal phone error. A responder associated the symptoms with a hardware revision/load requirement. Outcome noted in the thread: The archived response says the hardware-revision requirement explained the symptom in the responder's case; the thread does not establish a universal fix or show final outcome for the original device.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/6",
+      "sourceRecordSha256": "605d8987ade4c6b9105425121da8992063c8732833327067aaba77d51b0da31f"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2015-10-28; product context: The report names active phone load 9.3.3.5 and an attempted 10.3.1 SR load; a reply describes a hardware revision requiring the newer load.",
+    "uncertainty": "Model revision and load compatibility are scenario-specific; registration and reachability do not imply usable display or successful upgrade. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-b63cdc1e4b48a423",
+    "source": "RES-CISCO-VOIP-008",
+    "requirement": "REQ-b63cdc1e4b48a423",
+    "reference": "REF-03fc3d994c353069",
+    "claim": "Question plus reply describing the provisioning synchronization flow and supporting SIP traces. A room endpoint's local configuration could be overwritten by CUCM on reset; a participant explains that CUCM-managed provisioning can send supported endpoint changes back through SIP. The report also notes that an endpoint SIP URI changed across reset/registration and affected reachability/interoperation. Outcome noted in the thread: The reply identifies CUCM provisioning mode as the synchronization boundary; the thread does not document a final resolution for the URI/dialing symptom.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/7",
+      "sourceRecordSha256": "0e11731993edd9c9e8228c08406394cce16531a0cc0b62ab96248d528004e70b"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2018-09-14 to 2018-09-17; product context: A CE 9.3.3 endpoint and an older TC-software room endpoint are distinguished; exact model versions beyond those are not required here.",
+    "uncertainty": "The behavior is tied to endpoint model/software and managed-provisioning mode; local GUI edits are not generally authoritative. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-153588976b69210c",
+    "source": "RES-CISCO-VOIP-009",
+    "requirement": "REQ-153588976b69210c",
+    "reference": "REF-b807374341cb4592",
+    "claim": "Incident report, troubleshooting exchange and later participant-reported resolution. The activation-code phone completed cloud handshake but failed TLS to the edge, while Jabber MRA worked. Replies distinguish the phone firmware's CA trust list; a later thread reply reports that adding the needed certificate chain to the phone-edge trust path allowed registration. Outcome noted in the thread: The follow-up reports successful phone registration after trust-chain handling; it is not a statement of current recommended certificate operations.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/8",
+      "sourceRecordSha256": "f7c27864b5fd2a6f8820250624cecad98d269959376b4261f2d153ed614c383e"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2021-11-05 to 2021-12-01; product context: An 8845 activation-code onboarding flow is discussed; Jabber MRA worked in the reporter's environment, phone onboarding did not.",
+    "uncertainty": "Trust stores and onboarding flows vary by endpoint firmware and service version; never treat one endpoint's success as proof another endpoint trusts the same CA. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-3a5b9328fd8234d7",
+    "source": "RES-CISCO-VOIP-010",
+    "requirement": "REQ-3a5b9328fd8234d7",
+    "reference": "REF-66f30c9ce62710dc",
+    "claim": "Incident report followed by participant-reported packet-capture diagnosis and firewall change. A newly formed cluster was operational but raised a peer-not-responding warning for a LocalZone that was not visible in the expected GUI. The thread later reports packet captures showing RAS UDP traffic without replies and says allowing that traffic cleared the warning. Outcome noted in the thread: The reporter says the error cleared after the firewall allowance; cluster service had been described as operational even while the warning appeared.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/9",
+      "sourceRecordSha256": "574e249b43002e878376f53a7b4bdb9a2b4bf0bd9782626eab4bd03e430eeb89"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2022-05-12 to 2022-05-14; product context: Expressway-E cluster setup; exact release not stated. The accessible archive item is the original thread's HTML attachment rather than its ordinary message page.",
+    "uncertainty": "The exact cluster build and full network path are absent; do not generalize the port or hidden-zone symptoms beyond the scenario's declared dependency. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-4116975e2ef74f39",
+    "source": "RES-CISCO-VOIP-011",
+    "requirement": "REQ-4116975e2ef74f39",
+    "reference": "REF-5d4452fa6d915fc5",
+    "claim": "Migration incident with participant-reported reduction in failures and further unresolved data-integrity question. A device import had partial failures. A participant reports that moving user identifiers from a legacy field to the owner-user field reduced failures; another remaining unique-constraint issue was tied to inactive numbers in the later reply. Outcome noted in the thread: Some import errors were attributed to inactive entries and addressed in discussion; a duplicate pickup-group line constraint remained a manual or unresolved concern for additional customers.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/10",
+      "sourceRecordSha256": "3162a6cff00337b748ef98deb2dfeb72cbc3f44b8fb1ca8d2863ea825fb4a099"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2013-10-09; product context: A Business Edition 5000 to 6000 migration at the same software version is stated; device/import tooling version is not specified.",
+    "uncertainty": "The observed field mapping is specific to the migration/import path and does not establish a universal schema rule. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-572ffa82cf9601fe",
+    "source": "RES-CISCO-VOIP-012",
+    "requirement": "REQ-572ffa82cf9601fe",
+    "reference": "REF-16fcbb5b2fd59e07",
+    "claim": "Upgrade-planning discussion and participant-reported compatibility warning, not a complete authoritative compatibility matrix. Participants discuss an upgrade path constrained by a change in supported virtualization baselines and endpoint models that would no longer register after upgrade; a bridge upgrade path is raised as a question. Outcome noted in the thread: The thread signals a need to validate the destination release and endpoint inventory; it does not document one system's completed migration.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/11",
+      "sourceRecordSha256": "a97354c2d6f46bd02168f883a207a926ebb0fc1938d8c9358812413b208a9da3"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical Cisco VoIP mailing-list post dated 2019-08-21; product context: The discussion compares older CUCM releases and virtualization baselines; the post lists legacy phone models that a proposed target release would no longer support.",
+    "uncertainty": "Exact support varies by release, device and compatibility matrix. The archive list is historical and must not be reused as current support data. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule."
+  },
+  {
+    "id": "CLAIM-2b57da9c60033cfd",
+    "source": "voiceops-2010-08-peer-of-peer",
+    "requirement": "REQ-2b57da9c60033cfd",
+    "reference": "REF-86107818a4d492f7",
+    "claim": "Operator anecdote and peer discussion: A transit provider can connect each customer to the public network while still failing to connect two customers whose media capabilities do not overlap.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/0",
+      "sourceRecordSha256": "8b7ea6c9311ab8c876872d7d9cbc0fa30a6ae5818f96f74e802fa70ce3e3061d"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2010-08-10; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "One reported interconnect scenario: two customer networks had individually usable trunks but incompatible codec offers when they called each other through a shared upstream. Replies suggest common codec or transcoding paths, but do not establish a universal remedy. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-86b1025e597d449d",
+    "source": "voiceops-2010-08-cancel-after-ok",
+    "requirement": "REQ-86b1025e597d449d",
+    "reference": "REF-5d951bf30e3c96d3",
+    "claim": "Single operator troubleshooting report: A successful answer response and a near-simultaneous cancellation can leave the two call legs with different views of whether the call is established.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/1",
+      "sourceRecordSha256": "0e857b0d2b1fed325775c8f74cedc41c4bc6c38a86deb24e69b64cab80422755"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2010-08-10; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The message describes a timing race in one historical SIP call flow. The archive excerpt does not show a confirmed resolution, so the timing is a scenario seed rather than a verified product rule. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-ece39a4dede39c7d",
+    "source": "voiceops-2010-12-dash-outage",
+    "requirement": "REQ-ece39a4dede39c7d",
+    "reference": "REF-f8221f4fdcb2415b",
+    "claim": "Outage inquiry and customer recollection: A prospective customer must assess a reported outage while the available evidence is incomplete and partly based on historical experience.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/2",
+      "sourceRecordSha256": "e9acf03fbdc070886727805e8217ccd6c6c276e3093f9c88d25fc3a25368fa44"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2010-12-15; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The sampled replies ask whether the reported service interruption was common and resolved. One participant recalls a previously positive service history. This small exchange does not establish outage duration, scope, cause, or current service quality. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-c9a58510901736f8",
+    "source": "voiceops-2011-06-sbc-domain-filter",
+    "requirement": "REQ-c9a58510901736f8",
+    "reference": "REF-6e6184fda25bddb4",
+    "claim": "Configuration troubleshooting thread: Filtering by request domain can have a different effect from filtering by destination IP, and a configured rejection may still return an unexpected response instead of dropping unwanted traffic.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/3",
+      "sourceRecordSha256": "caf08a7683cc1c34d41f04d0c8f3292620f01d78ac56e26b9964cc0256a1dbff"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2011-06-17; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "Operators discuss a specific historical SBC configuration and desired rejection behavior. The filtering behavior and response mapping are product-specific and not general security guidance. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-a1e3ccd52cec0563",
+    "source": "voiceops-2011-07-followme-media",
+    "requirement": "REQ-a1e3ccd52cec0563",
+    "reference": "REF-3cc23cc2422be034",
+    "claim": "Operator report with competing hypotheses: A follow-me flow can succeed through answer confirmation, then lose media after a re-INVITE changes the negotiated path. Seeing packets on multiple legs does not prove the intended endpoint is receiving them.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/4",
+      "sourceRecordSha256": "486dd7fee9701932d57585d7cffb043dbec525dbbc6a14c22f39801dd72d85c9"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2011-07-22; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The thread contains a proposed media-latching explanation and a later observation that does not confirm it. The cause remains uncertain in the sampled exchange; do not encode one vendor-specific diagnosis as fact. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-80e3c074a4faa1eb",
+    "source": "voiceops-2012-09-routing-escalation",
+    "requirement": "REQ-80e3c074a4faa1eb",
+    "reference": "REF-bcbd90c63b48817f",
+    "claim": "Single operator support-process question: When a destination is known to work through another route but fails through the current carrier, the operator may not know how to reach the team that can inspect routing or translation data.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/5",
+      "sourceRecordSha256": "c700c41c7c1b2866b439912fe294bf02bef5ab4eba891e5fe5314f70d2ad76ae"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2012-09-04; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The captured post asks where to escalate a routing/translation failure and does not contain a resolution. It is evidence of a support workflow problem, not evidence about any provider's support quality. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-20db5406df6f89dd",
+    "source": "voiceops-2014-05-canadian-tollfree",
+    "requirement": "REQ-20db5406df6f89dd",
+    "reference": "REF-3c35bbedeac1d5e8",
+    "claim": "Operator troubleshooting thread with a proposed route workaround: A destination that works from one origin geography can fail from another because the translated carrier identifier, local database, or service-area policy differs along the path.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/6",
+      "sourceRecordSha256": "91c13c69a49f6a46e52c892af0430ed0dceeb63f146d43343568c3d0ddceaff9"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2014-05-06; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "Participants discuss a historical cross-border routing case and describe different behaviors based on originating and terminating network context. The terminology and route details are specific to that environment and are not current regulatory or carrier-routing advice. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-ade44259370a7ba7",
+    "source": "voiceops-2015-06-softswitch-support",
+    "requirement": "REQ-ade44259370a7ba7",
+    "reference": "REF-92fc12a39434ac75",
+    "claim": "Operator procurement discussion and personal recommendations: Softswitch selection includes support availability, geographic redundancy, integration workload, operational skills, and lifecycle cost, not only feature lists or license price.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/7",
+      "sourceRecordSha256": "9e351f6fab47f02b83acdaac7768f6535d629531f3b83ac224fcd53d7a4cad48"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2015-06-20; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The thread presents individual preferences and market observations from 2015. It is not a vendor comparison, current product review, or evidence that a named platform is superior. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-dcf9b1a68091ce19",
+    "source": "voiceops-2015-11-text-routing-registry",
+    "requirement": "REQ-dcf9b1a68091ce19",
+    "reference": "REF-625698d2aa90d70c",
+    "claim": "Operator question about a supplier notice and a registry description: Messaging delivery can depend on a portability-aware carrier lookup distinct from voice routing, while price notices and data-source behavior may be unclear to operators.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/8",
+      "sourceRecordSha256": "2715ad6b5fcd6a88893c31b7ef81b83fedb5a29b8b405fe6fcbe86028c473b09"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2015-11-24; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The message questions an announced fee and the underlying portability-corrected messaging registry. It does not confirm the final fee, registry completeness, or current routing arrangements. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-d59ddbd1b8c58937",
+    "source": "voiceops-2015-12-sbc-tcp-keepalive",
+    "requirement": "REQ-d59ddbd1b8c58937",
+    "reference": "REF-0fe3ded413d45133",
+    "claim": "Operator migration question with practitioner reply: A firewall can close an idle signaling connection even when the endpoint and server appear configured, leaving registrations stale until an explicit keepalive or re-registration succeeds.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/9",
+      "sourceRecordSha256": "96f8ce8ab2b62c3717852a4a19f223ee5b6631a0504c2c205cbb379928a9c954"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2015-12-17; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "The reply outlines possible keepalive layers and its own operational experience. The thread is tied to then-current implementations; timings and mechanisms should not be generalized to current products. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  },
+  {
+    "id": "CLAIM-71372a8a464b2598",
+    "source": "voiceops-2020-03-special-service-geography",
+    "requirement": "REQ-71372a8a464b2598",
+    "reference": "REF-339fdf527eed6fc1",
+    "claim": "Multi-operator discussion with conflicting local experience: Short service codes may need geography-aware translation, and operators distinguish a synthetic emergency-location check from placing a real emergency call.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/10",
+      "sourceRecordSha256": "eaf087257968391fa070375a77c9defe90080ade3e7035a025d22e42d2a2884f"
+    },
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-review",
+    "versionOrJurisdiction": "Historical VoiceOps mailing-list post dated 2020-03-26; version/product context is limited to the source account and is not current guidance.",
+    "uncertainty": "Participants describe different special-service routing practices and express uncertainty about an authoritative geography-to-destination source. The message's emergency-test anecdote is not a validated procedure or legal guidance; no real special-service route should be inferred from it. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim."
+  }
+]

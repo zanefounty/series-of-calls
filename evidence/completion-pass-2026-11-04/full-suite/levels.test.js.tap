@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: thirteen customer levels, each harder than the last
+ok 1 - thirteen customer levels, each harder than the last
+  ---
+  duration_ms: 712.598867
+  type: 'test'
+  ...
+# Subtest: traffic eras raise the eyeball ceiling as you level up
+ok 2 - traffic eras raise the eyeball ceiling as you level up
+  ---
+  duration_ms: 385.695897
+  type: 'test'
+  ...
+# Subtest: new routers: the 3.2T main line, side-grades, and 3.2T ports only once unlocked
+ok 3 - new routers: the 3.2T main line, side-grades, and 3.2T ports only once unlocked
+  ---
+  duration_ms: 392.036355
+  type: 'test'
+  ...
+# Subtest: C+L line systems double the channels; level 12 trenches hold eight pairs
+ok 4 - C+L line systems double the channels; level 12 trenches hold eight pairs
+  ---
+  duration_ms: 381.495719
+  type: 'test'
+  ...
+# Subtest: paid-peering giants give you a free PNI once you are big enough
+ok 5 - paid-peering giants give you a free PNI once you are big enough
+  ---
+  duration_ms: 381.904568
+  type: 'test'
+  ...
+# Subtest: the new customer types turn up at their levels
+ok 6 - the new customer types turn up at their levels
+  ---
+  duration_ms: 720.420732
+  type: 'test'
+  ...
+# Subtest: old saves keep their level; nonsense levels are clamped
+ok 7 - old saves keep their level; nonsense levels are clamped
+  ---
+  duration_ms: 517.185952
+  type: 'test'
+  ...
+# Subtest: a big old network that jumps several levels hears about each one in the event log
+ok 8 - a big old network that jumps several levels hears about each one in the event log
+  ---
+  duration_ms: 368.148467
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9803.192764

@@ -10,41 +10,63 @@ const { createSession, TOOLS } = require('../scripts/lib/mcp-game');
 const tools = (s) => (name, args = {}) => TOOLS.find((t) => t.name === name).run(s, args);
 
 test('speaks MCP over stdio: initialize, list tools, call one, and errors as errors', async () => {
-  const child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'mcp.js')], { stdio: ['pipe', 'pipe', 'pipe'] });
-  const lines = [];
-  let buf = '';
-  const waiters = [];
-  child.stdout.on('data', (d) => { buf += d; let i; while ((i = buf.indexOf('\n')) >= 0) { lines.push(JSON.parse(buf.slice(0, i))); buf = buf.slice(i + 1); waiters.splice(0).forEach((w) => w()); } });
-  const ask = async (msg) => {
-    child.stdin.write(JSON.stringify({ jsonrpc: '2.0', ...msg }) + '\n');
-    if (msg.id === undefined) return null;
-    const found = () => lines.find((l) => l.id === msg.id);
-    while (!found()) await new Promise((r) => waiters.push(r));
-    return found();
-  };
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tubes-mcp-stdio-'));
+  const input = path.join(dir, 'requests.jsonl'), output = path.join(dir, 'replies.jsonl'), error = path.join(dir, 'stderr.log');
+  const requests = [
+    { id: 1, method: 'initialize', params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'test', version: '1' } } },
+    { id: 9, method: 'initialize', params: { protocolVersion: '1999-01-01' } },
+    { method: 'notifications/initialized' },
+    { id: 2, method: 'tools/list' },
+    { id: 3, method: 'tools/call', params: { name: 'status', arguments: {} } },
+    { id: 4, method: 'tools/call', params: { name: 'network', arguments: { network: 'no such thing at all' } } },
+    { id: 5, method: 'tools/call', params: { name: 'nope' } },
+    { id: 6, method: 'resources/list' },
+  ];
+  fs.writeFileSync(input, requests.map((request) => JSON.stringify({ jsonrpc: '2.0', ...request })).join('\n') + '\n');
+  const fds = [fs.openSync(input, 'r'), fs.openSync(output, 'w'), fs.openSync(error, 'w')];
+  let child, spawnError = null, exitInfo = null, lines = [];
   try {
-    const init = await ask({ id: 1, method: 'initialize', params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'test', version: '1' } } });
-    assert.equal(init.result.protocolVersion, '2025-06-18');
-    assert.equal(init.result.serverInfo.name, 'seriesoftubes');
-    assert.ok(init.result.capabilities.tools);
-    assert.equal((await ask({ id: 9, method: 'initialize', params: { protocolVersion: '1999-01-01' } })).result.protocolVersion, '2025-11-25', 'an unknown version gets the newest');
-    await ask({ method: 'notifications/initialized' });
-    const list = await ask({ id: 2, method: 'tools/list' });
-    const names = list.result.tools.map((t) => t.name);
-    for (const n of ['new_game', 'load_save', 'export_save', 'status', 'advance', 'network', 'city', 'find', 'traceroute', 'peering_check', 'hot_spots', 'actions', 'act', 'screen', 'panel', 'click', 'open_link', 'schema', 'catalog', 'state', 'results', 'ui']) assert.ok(names.includes(n), n);
-    assert.ok(list.result.tools.every((t) => t.description && t.inputSchema && t.inputSchema.type === 'object'));
-    const st = await ask({ id: 3, method: 'tools/call', params: { name: 'status', arguments: {} } });
-    assert.equal(st.result.isError, undefined);
-    assert.equal(JSON.parse(st.result.content[0].text).home, 'Frankfurt', 'a game is loaded from the start');
-    const bad = await ask({ id: 4, method: 'tools/call', params: { name: 'network', arguments: { network: 'no such thing at all' } } });
-    assert.equal(bad.result.isError, true);
-    assert.match(bad.result.content[0].text, /No network matches/);
-    assert.equal((await ask({ id: 5, method: 'tools/call', params: { name: 'nope' } })).error.code, -32602);
-    assert.equal((await ask({ id: 6, method: 'resources/list' })).error.code, -32601);
-    assert.equal(lines.filter((l) => l.id === undefined).length, 0, 'notifications get no answer');
-  } finally {
+    child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'mcp.js')], { stdio: fds });
+    const closed = new Promise((resolve) => child.once('close', (code, signal) => resolve({ code, signal })));
+    child.on('error', (errorEvent) => { spawnError = errorEvent; });
+    child.on('exit', (code, signal) => { exitInfo = { code, signal }; });
+    const requiredIds = [1, 9, 2, 3, 4, 5, 6], deadline = Date.now() + 5000;
+    while (Date.now() < deadline) {
+      const text = fs.readFileSync(output, 'utf8'), rows = text.split('\n').filter(Boolean);
+      lines = rows.map((line) => JSON.parse(line));
+      if (requiredIds.every((id) => lines.some((line) => line.id === id))) break;
+      if (spawnError) throw new Error(`MCP child spawn/error: ${spawnError.message}`);
+      if (exitInfo) throw new Error(`MCP child exited before all replies (code=${exitInfo.code}, signal=${exitInfo.signal}; stderr=${fs.readFileSync(error, 'utf8')})`);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    assert.ok(requiredIds.every((id) => lines.some((line) => line.id === id)), 'MCP reply timeout waiting for the full request batch');
     child.kill();
+    const close = await Promise.race([closed, new Promise((_, reject) => setTimeout(() => reject(new Error('MCP child did not stop after test cleanup')), 1000))]);
+    assert.ok(close.code !== null || close.signal, 'MCP child was not reaped after the test completed');
+  } finally {
+    if (child && child.exitCode === null && child.signalCode === null) child.kill();
+    for (const fd of fds) fs.closeSync(fd);
+    fs.rmSync(dir, { recursive: true, force: true });
   }
+  const reply = (id) => lines.find((line) => line.id === id);
+  const init = reply(1);
+  assert.equal(init.result.protocolVersion, '2025-06-18');
+  assert.equal(init.result.serverInfo.name, 'series-of-calls-sp');
+  assert.ok(init.result.capabilities.tools);
+  assert.equal(reply(9).result.protocolVersion, '2025-11-25', 'an unknown version gets the newest');
+  const list = reply(2), names = list.result.tools.map((t) => t.name);
+  for (const n of ['new_game', 'load_save', 'export_save', 'status', 'advance', 'network', 'city', 'find', 'traceroute', 'peering_check', 'hot_spots', 'actions', 'act', 'screen', 'panel', 'click', 'open_link', 'schema', 'catalog', 'state', 'results', 'ui']) assert.ok(names.includes(n), n);
+  assert.ok(list.result.tools.every((t) => t.description && t.inputSchema && t.inputSchema.type === 'object'));
+  const st = reply(3);
+  assert.equal(st.result.isError, undefined);
+  assert.equal(JSON.parse(st.result.content[0].text).home, 'Frankfurt', 'a game is loaded from the start');
+  const bad = reply(4);
+  assert.equal(bad.result.isError, true);
+  assert.match(bad.result.content[0].text, /No network matches/);
+  assert.equal(reply(5).error.code, -32602);
+  assert.equal(reply(6).error.code, -32601);
+  assert.equal(lines.filter((line) => line.id === undefined).length, 0, 'notifications get no answer');
+  fs.rmSync(dir, { recursive: true, force: true });
 });
 
 test('plays like a player: buy, answer the quote by its button, and run time forward', () => {
@@ -135,19 +157,17 @@ test('saves go out and come back, and a bug report save loads as the game loads 
   const out = T('export_save', { path: file });
   assert.ok(out.bytes > 1000);
   const j = JSON.parse(fs.readFileSync(file, 'utf8'));
-  assert.equal(j.app, 'series-of-tubes');
-  assert.match(j.version, /^\d+\.\d+\.\d+$/, 'stamped with the version, like a real export');
+  assert.equal(j.app, 'series-of-calls-sp');
+  assert.equal(j.version, require('../package.json').version, 'stamped with the Series of Calls package version');
   const cash = T('status').cash;
   T('new_game', { city: 'nyc' });
   const back = T('load_save', { path: file });
   assert.equal(back.day, 12);
   assert.equal(back.cash, cash);
-  assert.throws(() => T('load_save', { json: '{"nope":1}' }), /does not look like/);
+  assert.throws(() => T('load_save', { json: '{"nope":1}' }), /incompatible with Series of Calls/);
   assert.throws(() => T('load_save', {}), /either path or json/);
-  // the big benchmark network, as a stand-in for a player's late-game save
-  const big = T('load_save', { path: path.join(__dirname, 'fixtures', 'big-network.json') });
-  assert.equal(big.name, 'Shinternet');
-  assert.ok(T('hot_spots', { limit: 2 }).transitPorts.length === 2);
+  // The inherited benchmark save has the upstream app identity and must not cross this product boundary.
+  assert.throws(() => T('load_save', { path: path.join(__dirname, 'fixtures', 'big-network.json') }), /incompatible with Series of Calls/);
   assert.deepEqual(s.errors(), []);
 });
 

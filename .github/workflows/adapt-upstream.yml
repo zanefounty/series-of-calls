@@ -1,0 +1,85 @@
+name: Adapt upstream (disabled until owner setup)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: upstream-adaptation
+  cancel-in-progress: false
+jobs:
+  generate:
+    # Owner-reviewed governance change required to activate. Never infer readiness from a secret name.
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      base: ${{ steps.base.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - run: python3 scripts/check-agent-ready.py
+        env:
+          SOC_OPENAI_API_KEY: ${{ secrets.SOC_OPENAI_API_KEY }}
+          SOC_LIMIT_RECEIPT: ${{ vars.SOC_LIMIT_RECEIPT }}
+      - id: codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.SOC_OPENAI_API_KEY }}
+          sandbox: workspace-write
+          safety-strategy: drop-sudo
+          prompt-file: maintenance/adaptation-prompt.md
+          output-file: adaptation-report.txt
+      - name: Preserve candidate patch and report
+        if: always()
+        run: |
+          git add -N -- src site tests
+          git diff --binary -- src site tests > adaptation.patch
+          git rev-parse HEAD > adaptation-base.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adaptation-candidate
+          path: |
+            adaptation.patch
+            adaptation-report.txt
+            adaptation-base.txt
+  publish:
+    needs: generate
+    if: ${{ always() && needs.generate.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BASE_SHA: ${{ needs.generate.outputs.base }}
+      BRANCH: bot/upstream-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.BASE_SHA }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: adaptation-candidate
+          path: /tmp/candidate
+      - name: Validate and publish without executing candidate code
+        run: |
+          test "$(cat /tmp/candidate/adaptation-base.txt)" = "$BASE_SHA"
+          python3 scripts/validate-agent-patch.py /tmp/candidate/adaptation.patch
+          git switch -c "$BRANCH"
+          git apply /tmp/candidate/adaptation.patch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- src site tests
+          git -c core.hooksPath=/dev/null commit -m 'Adapt pending upstream behaviour (owner review required)'
+          git push origin "$BRANCH"
+          gh pr create --draft --base main --head "$BRANCH" --title 'Review upstream adaptation' --body-file /tmp/candidate/adaptation-report.txt
+          gh workflow run ci.yml --ref "$BRANCH"
+          gh workflow run accountability.yml --ref "$BRANCH"

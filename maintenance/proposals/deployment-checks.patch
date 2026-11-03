@@ -1,0 +1,30 @@
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -50,14 +50,14 @@
+ 
+   # The one check to look at, named as before: green only when every part and the build are.
+   test:
+-    needs: [part, build]
++    needs: [part, build, translations]
+     if: always()
+     runs-on: ubuntu-latest
+     steps:
+       - name: Every part and the build passed
+         run: |
+-          echo "parts: ${{ needs.part.result }}, build: ${{ needs.build.result }}"
+-          test "${{ needs.part.result }}" = success && test "${{ needs.build.result }}" = success
++          echo "parts: ${{ needs.part.result }}, build: ${{ needs.build.result }}, translations: ${{ needs.translations.result }}"
++          test "${{ needs.part.result }}" = success && test "${{ needs.build.result }}" = success && test "${{ needs.translations.result }}" = success
+ 
+   translations:
+     runs-on: ubuntu-latest
+--- a/.github/workflows/release.yml
++++ b/.github/workflows/release.yml
+@@ -8,6 +8,7 @@
+   cancel-in-progress: false
+ jobs:
+   build:
++    if: github.ref == 'refs/heads/main'
+     runs-on: ubuntu-latest
+     timeout-minutes: 30
+     steps:

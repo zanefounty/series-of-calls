@@ -1,0 +1,78 @@
+[
+  {
+    "id": "OBS-20261103-001",
+    "reference": "REF-5300ce44d82bd40f",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+    "title": "PSTN connectivity models",
+    "checkedAt": "2026-11-03T05:47:04.397445+00:00",
+    "observation": "The documentation distinguishes vendor-managed plans, integrated fixed-line operators, integrated mobile operators and customer/integrator-managed SBC connectivity. Models may coexist within a tenant. Mobile integration supports user numbers, with different support for service numbers.",
+    "applicableVersionOrJurisdiction": "Current retrieved documentation; availability varies by market and operator.",
+    "claims": [
+      "CLAIM-e6b06b7d4759516b"
+    ],
+    "requirements": [
+      "REQ-34149e5830194956"
+    ],
+    "historicalEvidence": "Preserved source document dated 2026-10-29; current retrieval is an observation, not an archived full page.",
+    "status": "observed-pending-specification-review",
+    "implementationGap": "The foundation exposes only three carrier labels and does not yet model separate onboarding, mobile number restrictions or mixed-carrier ownership."
+  },
+  {
+    "id": "OBS-20261103-002",
+    "reference": "REF-6041cb9b4e29d0a7",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+    "title": "Contact-centre integration boundaries",
+    "checkedAt": "2026-11-03T05:47:04.397445+00:00",
+    "observation": "Connect uses SBC/direct-routing integration; Extend uses Teams client and communications APIs; Unify embeds calling experiences through ACS-based applications. These models differ in control and agent experience.",
+    "applicableVersionOrJurisdiction": "Current integration overview; certification is solution/version-specific.",
+    "claims": [
+      "CLAIM-ee1c8618006f345a",
+      "CLAIM-b1a7b056aaada840"
+    ],
+    "requirements": [
+      "REQ-fc1aa0b29d83cf38",
+      "REQ-fcfe870dbabdbb62"
+    ],
+    "historicalEvidence": "Preserved source document dated 2026-10-29; current retrieval is an observation, not an archived full page.",
+    "status": "observed-pending-specification-review",
+    "implementationGap": "The foundation has generic queue handoff only. Distinct integration model state machines and compatibility capabilities remain required."
+  },
+  {
+    "id": "OBS-20261103-003",
+    "reference": "REF-c9e920ec01b6f78b",
+    "url": "https://help.webex.com/article/dk3o5r",
+    "title": "Dedicated calling and coexistence",
+    "checkedAt": "2026-11-03T05:47:04.397445+00:00",
+    "observation": "Dedicated Instance is based on Unified Communications Manager architecture and can coexist with multitenant calling. Calling features are not universally shared across the boundary; the document gives hunt-group participation as a limitation.",
+    "applicableVersionOrJurisdiction": "Webex document dated 2026-10-16; release-specific endpoints and integrations need their own compatibility checks.",
+    "claims": [
+      "CLAIM-4d9e35e3a246ec7a"
+    ],
+    "requirements": [
+      "REQ-51f946a444240d70"
+    ],
+    "historicalEvidence": "Preserved source document dated 2026-10-29; current retrieval is an observation, not an archived full page.",
+    "status": "observed-pending-specification-review",
+    "implementationGap": "A dedicated label and local flag do not establish isolated cloud hosting or feature-preserving coexistence. Full cluster and interworking contracts remain pending."
+  },
+  {
+    "id": "OBS-20261103-004",
+    "reference": "REF-5feedded0d34a197",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+    "title": "Local transcription and licensing exception",
+    "checkedAt": "2026-11-03T05:47:04.397445+00:00",
+    "observation": "The appliance data sheet describes local transcription processing and ephemeral captions, but qualifies isolated operation with a licensing exception. It specifies direct-mode Smart Licensing and concurrent-session licensing, distinct from consumption metering.",
+    "applicableVersionOrJurisdiction": "Cisco data sheet updated 2026-06-16; its licensing exception must remain explicit.",
+    "claims": [
+      "CLAIM-4565d8fb254271df",
+      "CLAIM-def72d7bacfbf033"
+    ],
+    "requirements": [
+      "REQ-7732d48ed43ebe41",
+      "REQ-81e353eb84bbff84"
+    ],
+    "historicalEvidence": "Preserved source document dated 2026-10-29; current retrieval is an observation, not an archived full page.",
+    "status": "observed-pending-specification-review",
+    "implementationGap": "The generic processor-minute archetype must not stand in for this product. A separate concurrent-session, ephemeral-caption appliance with explicit licence connectivity is required."
+  }
+]

@@ -43,7 +43,7 @@ function parent() {
   const moves = opt('--moves', null) ? +opt('--moves') : undefined;
   // --save FILE: every game starts from this save (a plain one, or an export from the menu) instead of a new network.
   const RAW = opt('--save', null) ? JSON.parse(fs.readFileSync(opt('--save'), 'utf8')) : null;
-  const save = RAW ? JSON.stringify(RAW.app === 'series-of-tubes' && RAW.S ? RAW.S : RAW) : undefined;
+  const save = RAW ? JSON.stringify(RAW.app === 'series-of-calls-sp' && RAW.S ? RAW.S : RAW) : undefined;
   const results = [];
   let next = 0, live = 0;
   const t0 = Date.now();

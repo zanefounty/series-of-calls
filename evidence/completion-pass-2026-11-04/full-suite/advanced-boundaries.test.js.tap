@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-099 outcomes preserve explicit task failure, case identity, and unresolved history
+ok 1 - AC-SOC-099 outcomes preserve explicit task failure, case identity, and unresolved history
+  ---
+  duration_ms: 1.922282
+  type: 'test'
+  ...
+# Subtest: AC-SOC-100 outcomes reject a saved open need whose retry was silently removed
+ok 2 - AC-SOC-100 outcomes reject a saved open need whose retry was silently removed
+  ---
+  duration_ms: 0.406659
+  type: 'test'
+  ...
+# Subtest: AC-SOC-101 channels require current permission before opening or retrying a new delivery
+ok 3 - AC-SOC-101 channels require current permission before opening or retrying a new delivery
+  ---
+  duration_ms: 3.46111
+  type: 'test'
+  ...
+# Subtest: AC-SOC-102 channels preserve purpose and case binding across pause, expiry, and resume
+ok 4 - AC-SOC-102 channels preserve purpose and case binding across pause, expiry, and resume
+  ---
+  duration_ms: 1.072861
+  type: 'test'
+  ...
+# Subtest: AC-SOC-103 channel retry windows remain purpose and case specific after the first window closes
+ok 5 - AC-SOC-103 channel retry windows remain purpose and case specific after the first window closes
+  ---
+  duration_ms: 0.870566
+  type: 'test'
+  ...
+# Subtest: AC-SOC-104 products separate lifecycle-effective existing service from new sale eligibility
+ok 6 - AC-SOC-104 products separate lifecycle-effective existing service from new sale eligibility
+  ---
+  duration_ms: 1.058339
+  type: 'test'
+  ...
+# Subtest: AC-SOC-105 product provisioning failures retain prior effective version and validators reject stale-ready saves
+ok 7 - AC-SOC-105 product provisioning failures retain prior effective version and validators reject stale-ready saves
+  ---
+  duration_ms: 0.854176
+  type: 'test'
+  ...
+# Subtest: AC-SOC-106 product save cannot retain a verified label after directional evidence is removed
+ok 8 - AC-SOC-106 product save cannot retain a verified label after directional evidence is removed
+  ---
+  duration_ms: 0.759786
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23.932404

@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: speaks MCP over stdio: initialize, list tools, call one, and errors as errors
+ok 1 - speaks MCP over stdio: initialize, list tools, call one, and errors as errors
+  ---
+  duration_ms: 1025.302275
+  type: 'test'
+  ...
+# Subtest: plays like a player: buy, answer the quote by its button, and run time forward
+ok 2 - plays like a player: buy, answer the quote by its button, and run time forward
+  ---
+  duration_ms: 978.143142
+  type: 'test'
+  ...
+# Subtest: the same seed and the same moves give the same game
+ok 3 - the same seed and the same moves give the same game
+  ---
+  duration_ms: 972.515782
+  type: 'test'
+  ...
+# Subtest: reads the world and the network: networks, cities, search, traceroute, peering and hot spots
+ok 4 - reads the world and the network: networks, cities, search, traceroute, peering and hot spots
+  ---
+  duration_ms: 392.164003
+  type: 'test'
+  ...
+# Subtest: panels and the network list read as text with buttons
+ok 5 - panels and the network list read as text with buttons
+  ---
+  duration_ms: 355.404261
+  type: 'test'
+  ...
+# Subtest: saves go out and come back, and a bug report save loads as the game loads it
+ok 6 - saves go out and come back, and a bug report save loads as the game loads it
+  ---
+  duration_ms: 416.590956
+  type: 'test'
+  ...
+# Subtest: only game actions: files, slots, settings and the clock stay out of reach
+ok 7 - only game actions: files, slots, settings and the clock stay out of reach
+  ---
+  duration_ms: 311.299515
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12805.582554

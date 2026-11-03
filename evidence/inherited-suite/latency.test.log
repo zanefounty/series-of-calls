@@ -1,0 +1,31 @@
+✔ broadband backhauled to transit far away is slow, and slow is bad service (722.433722ms)
+✔ the penalty is on a curve, and traffic that needs no transit is never penalised (319.005343ms)
+✖ the slow-city warning box does not restyle the yellow progress bars (263.811264ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9442.810679
+
+✖ failing tests:
+
+test at tests/latency.test.js:56:1
+✖ the slow-city warning box does not restyle the yellow progress bars (263.811264ms)
+  AssertionError [ERR_ASSERTION]: yellow bars have no padding (00)
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/latency.test.js:61:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

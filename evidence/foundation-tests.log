@@ -1,0 +1,2836 @@
+TAP version 13
+# Subtest: AC-SOC-197 independent abuse controls gate actual calls and usage reconciles once against the core ledger
+ok 1 - AC-SOC-197 independent abuse controls gate actual calls and usage reconciles once against the core ledger
+  ---
+  duration_ms: 18.308522
+  type: 'test'
+  ...
+# Subtest: AC-SOC-198 rolling spend includes a live calls previous minutes and a blocked call retains already billed costs
+ok 2 - AC-SOC-198 rolling spend includes a live calls previous minutes and a blocked call retains already billed costs
+  ---
+  duration_ms: 24.502029
+  type: 'test'
+  ...
+# Subtest: AC-SOC-169 source rows, original reward and unit distinctions remain explicit
+ok 3 - AC-SOC-169 source rows, original reward and unit distinctions remain explicit
+  ---
+  duration_ms: 0.73965
+  type: 'test'
+  ...
+# Subtest: AC-SOC-170 each control stages desired, provisioning, effective and observed state separately
+ok 4 - AC-SOC-170 each control stages desired, provisioning, effective and observed state separately
+  ---
+  duration_ms: 0.478524
+  type: 'test'
+  ...
+# Subtest: AC-SOC-171 packet batches use PPS by explicit second and reads never consume or reset the bucket
+ok 5 - AC-SOC-171 packet batches use PPS by explicit second and reads never consume or reset the bucket
+  ---
+  duration_ms: 0.61994
+  type: 'test'
+  ...
+# Subtest: AC-SOC-172 SIP authentication, methods, validity and attempts per second are independent of PPS
+ok 6 - AC-SOC-172 SIP authentication, methods, validity and attempts per second are independent of PPS
+  ---
+  duration_ms: 0.547822
+  type: 'test'
+  ...
+# Subtest: AC-SOC-173 outbound preflight checks all controls and destination prefixes without mutating state
+ok 7 - AC-SOC-173 outbound preflight checks all controls and destination prefixes without mutating state
+  ---
+  duration_ms: 0.398207
+  type: 'test'
+  ...
+# Subtest: AC-SOC-174 per-minute spend is reserved before core billing and settles only against attributable minute rows
+ok 8 - AC-SOC-174 per-minute spend is reserved before core billing and settles only against attributable minute rows
+  ---
+  duration_ms: 1.30367
+  type: 'test'
+  ...
+# Subtest: AC-SOC-175 validators reject invalid linked usage, restore exact saves and serialize worker code
+ok 9 - AC-SOC-175 validators reject invalid linked usage, restore exact saves and serialize worker code
+  ---
+  duration_ms: 14.449765
+  type: 'test'
+  ...
+# Subtest: AC-SOC-176 synthetic attacks cannot stand in for an admitted, resolved and reconciled voice call
+ok 10 - AC-SOC-176 synthetic attacks cannot stand in for an admitted, resolved and reconciled voice call
+  ---
+  duration_ms: 0.590331
+  type: 'test'
+  ...
+# Subtest: advanced admin renders optional starters and disables every control in read-only mode
+ok 11 - advanced admin renders optional starters and disables every control in read-only mode
+  ---
+  duration_ms: 659.122071
+  type: 'test'
+  ...
+# Subtest: channel UI configures accounts and permissions without fabricating acceptance or receipt events
+ok 12 - channel UI configures accounts and permissions without fabricating acceptance or receipt events
+  ---
+  duration_ms: 413.368748
+  type: 'test'
+  ...
+# Subtest: channel attempt form passes account, purpose, template, and selected need through the ordinary interaction command
+ok 13 - channel attempt form passes account, purpose, template, and selected need through the ordinary interaction command
+  ---
+  duration_ms: 386.292562
+  type: 'test'
+  ...
+# Subtest: outcomes UI configures policy and task evidence separately from a bot reply
+ok 14 - outcomes UI configures policy and task evidence separately from a bot reply
+  ---
+  duration_ms: 404.110348
+  type: 'test'
+  ...
+# Subtest: product UI submits structured offers, lifecycle, and referenced deployment setup
+ok 15 - product UI submits structured offers, lifecycle, and referenced deployment setup
+  ---
+  duration_ms: 350.799663
+  type: 'test'
+  ...
+# Subtest: product integration setup and test are directional and visibly synthetic
+ok 16 - product integration setup and test are directional and visibly synthetic
+  ---
+  duration_ms: 356.190342
+  type: 'test'
+  ...
+# Subtest: AC-SOC-099 outcomes preserve explicit task failure, case identity, and unresolved history
+ok 17 - AC-SOC-099 outcomes preserve explicit task failure, case identity, and unresolved history
+  ---
+  duration_ms: 1.567437
+  type: 'test'
+  ...
+# Subtest: AC-SOC-100 outcomes reject a saved open need whose retry was silently removed
+ok 18 - AC-SOC-100 outcomes reject a saved open need whose retry was silently removed
+  ---
+  duration_ms: 0.368494
+  type: 'test'
+  ...
+# Subtest: AC-SOC-101 channels require current permission before opening or retrying a new delivery
+ok 19 - AC-SOC-101 channels require current permission before opening or retrying a new delivery
+  ---
+  duration_ms: 2.334507
+  type: 'test'
+  ...
+# Subtest: AC-SOC-102 channels preserve purpose and case binding across pause, expiry, and resume
+ok 20 - AC-SOC-102 channels preserve purpose and case binding across pause, expiry, and resume
+  ---
+  duration_ms: 0.607068
+  type: 'test'
+  ...
+# Subtest: AC-SOC-103 channel retry windows remain purpose and case specific after the first window closes
+ok 21 - AC-SOC-103 channel retry windows remain purpose and case specific after the first window closes
+  ---
+  duration_ms: 0.341167
+  type: 'test'
+  ...
+# Subtest: AC-SOC-104 products separate lifecycle-effective existing service from new sale eligibility
+ok 22 - AC-SOC-104 products separate lifecycle-effective existing service from new sale eligibility
+  ---
+  duration_ms: 1.054728
+  type: 'test'
+  ...
+# Subtest: AC-SOC-105 product provisioning failures retain prior effective version and validators reject stale-ready saves
+ok 23 - AC-SOC-105 product provisioning failures retain prior effective version and validators reject stale-ready saves
+  ---
+  duration_ms: 0.52077
+  type: 'test'
+  ...
+# Subtest: AC-SOC-106 product save cannot retain a verified label after directional evidence is removed
+ok 24 - AC-SOC-106 product save cannot retain a verified label after directional evidence is removed
+  ---
+  duration_ms: 0.64271
+  type: 'test'
+  ...
+# Subtest: completed handling and wrap do not invalidate their own assessment evidence
+ok 25 - completed handling and wrap do not invalidate their own assessment evidence
+  ---
+  duration_ms: 1.896432
+  type: 'test'
+  ...
+# Subtest: caller aliases keep canonical case identity and ambiguous cross-tenant aliases are rejected
+ok 26 - caller aliases keep canonical case identity and ambiguous cross-tenant aliases are rejected
+  ---
+  duration_ms: 3.155985
+  type: 'test'
+  ...
+# Subtest: AC-SOC-119 contract staging keeps desired, effective, provisioning, and observed state independent
+ok 27 - AC-SOC-119 contract staging keeps desired, effective, provisioning, and observed state independent
+  ---
+  duration_ms: 1.652044
+  type: 'test'
+  ...
+# Subtest: AC-SOC-120 four fictional profiles have distinct explicit runtime rules and useful valid examples
+ok 28 - AC-SOC-120 four fictional profiles have distinct explicit runtime rules and useful valid examples
+  ---
+  duration_ms: 0.509877
+  type: 'test'
+  ...
+# Subtest: AC-SOC-121 US offering, customer, and agency authorization, and JP service and AI decisions, remain separate
+ok 29 - AC-SOC-121 US offering, customer, and agency authorization, and JP service and AI decisions, remain separate
+  ---
+  duration_ms: 0.342848
+  type: 'test'
+  ...
+# Subtest: AC-SOC-122 information flows bind declared classifications, locations, roles, and resource generations
+ok 30 - AC-SOC-122 information flows bind declared classifications, locations, roles, and resource generations
+  ---
+  duration_ms: 0.282438
+  type: 'test'
+  ...
+# Subtest: AC-SOC-123 key custody and administration are independently checked; EU transfer paths need declared parties and mechanism
+ok 31 - AC-SOC-123 key custody and administration are independently checked; EU transfer paths need declared parties and mechanism
+  ---
+  duration_ms: 0.300328
+  type: 'test'
+  ...
+# Subtest: AC-SOC-124 disconnected local continuity requires local services, keys, unexpired local grace, and an admin path
+ok 32 - AC-SOC-124 disconnected local continuity requires local services, keys, unexpired local grace, and an admin path
+  ---
+  duration_ms: 0.177574
+  type: 'test'
+  ...
+# Subtest: AC-SOC-125 evaluation reports all blockers with precise paths and reads do not mutate state
+ok 33 - AC-SOC-125 evaluation reports all blockers with precise paths and reads do not mutate state
+  ---
+  duration_ms: 0.341316
+  type: 'test'
+  ...
+# Subtest: AC-SOC-126 saves validate, fingerprints track staged and observed policy, content matches source, and worker source is reproducible
+ok 34 - AC-SOC-126 saves validate, fingerprints track staged and observed policy, content matches source, and worker source is reproducible
+  ---
+  duration_ms: 3.2976
+  type: 'test'
+  ...
+# Subtest: build stamps version and date into the site
+ok 35 - build stamps version and date into the site
+  ---
+  duration_ms: 106.657076
+  type: 'test'
+  ...
+# Subtest: project hosting uses scoped application URLs and has no upstream publisher
+ok 36 - project hosting uses scoped application URLs and has no upstream publisher
+  ---
+  duration_ms: 6.365839
+  type: 'test'
+  ...
+# Subtest: version.json carries the release notes from the changelog
+ok 37 - version.json carries the release notes from the changelog
+  ---
+  duration_ms: 105.686125
+  type: 'test'
+  ...
+# Subtest: head carries the SEO and social metadata
+ok 38 - head carries the SEO and social metadata
+  ---
+  duration_ms: 10.026966
+  type: 'test'
+  ...
+# Subtest: a release build refuses to ship without release notes
+ok 39 - a release build refuses to ship without release notes
+  ---
+  duration_ms: 94.887333
+  type: 'test'
+  ...
+# Subtest: src: partials follow the layout rules (docs/adr/0002-one-page-assembled-at-build.md)
+ok 40 - src: partials follow the layout rules (docs/adr/0002-one-page-assembled-at-build.md)
+  ---
+  duration_ms: 11.91933
+  type: 'test'
+  ...
+# Subtest: distribution preserves upstream MIT and includes accurate attribution notices
+ok 41 - distribution preserves upstream MIT and includes accurate attribution notices
+  ---
+  duration_ms: 1.029442
+  type: 'test'
+  ...
+# Subtest: AC-SOC-362 build output validation protects the repository and its source inputs
+ok 42 - AC-SOC-362 build output validation protects the repository and its source inputs
+  ---
+  duration_ms: 2.798587
+  type: 'test'
+  ...
+# Subtest: AC-SOC-015 organisation roles and delegated authority control configuration
+ok 43 - AC-SOC-015 organisation roles and delegated authority control configuration
+  ---
+  duration_ms: 2.707681
+  type: 'test'
+  ...
+# Subtest: AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness
+ok 44 - AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness
+  ---
+  duration_ms: 1.82759
+  type: 'test'
+  ...
+# Subtest: AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once
+ok 45 - AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once
+  ---
+  duration_ms: 6.70688
+  type: 'test'
+  ...
+# Subtest: AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries
+ok 46 - AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries
+  ---
+  duration_ms: 3.763721
+  type: 'test'
+  ...
+# Subtest: AC-SOC-019 engineers, support staff and skilled contact-centre people are independent
+ok 47 - AC-SOC-019 engineers, support staff and skilled contact-centre people are independent
+  ---
+  duration_ms: 2.100074
+  type: 'test'
+  ...
+# Subtest: AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit
+ok 48 - AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit
+  ---
+  duration_ms: 1.625659
+  type: 'test'
+  ...
+# Subtest: AC-SOC-021 renewal, cancellation commitments and market events retain contract history
+ok 49 - AC-SOC-021 renewal, cancellation commitments and market events retain contract history
+  ---
+  duration_ms: 10.508988
+  type: 'test'
+  ...
+# Subtest: AC-SOC-038 imported commercial authority and financial obligations retain validated relationships
+ok 50 - AC-SOC-038 imported commercial authority and financial obligations retain validated relationships
+  ---
+  duration_ms: 1.287387
+  type: 'test'
+  ...
+# Subtest: AC-SOC-022 all business tracks require their services and run identically in worker and replay
+ok 51 - AC-SOC-022 all business tracks require their services and run identically in worker and replay
+  ---
+  duration_ms: 162.877889
+  type: 'test'
+  ...
+# Subtest: AC-SOC-275 calling goal report is pure, source-scoped and never accepts a raw success assertion
+ok 52 - AC-SOC-275 calling goal report is pure, source-scoped and never accepts a raw success assertion
+  ---
+  duration_ms: 0.798675
+  type: 'test'
+  ...
+# Subtest: AC-SOC-276 local speech goal needs retained recording lineage, completed work and effective local dependencies
+ok 53 - AC-SOC-276 local speech goal needs retained recording lineage, completed work and effective local dependencies
+  ---
+  duration_ms: 8.51973
+  type: 'test'
+  ...
+# Subtest: AC-SOC-277 gateway goal cannot pass on configuration or 200 OK alone; both call directions and media are required
+ok 54 - AC-SOC-277 gateway goal cannot pass on configuration or 200 OK alone; both call directions and media are required
+  ---
+  duration_ms: 5.293085
+  type: 'test'
+  ...
+# Subtest: AC-SOC-278 external reach needs the owned-number inbound path as well as outbound and a current guest join
+ok 55 - AC-SOC-278 external reach needs the owned-number inbound path as well as outbound and a current guest join
+  ---
+  duration_ms: 474.61392
+  type: 'test'
+  ...
+# Subtest: AC-SOC-350 trace eviction watermark advances only for evicted terminal calls while an older live call remains retained
+ok 56 - AC-SOC-350 trace eviction watermark advances only for evicted terminal calls while an older live call remains retained
+  ---
+  duration_ms: 263.641644
+  type: 'test'
+  ...
+# Subtest: AC-SOC-279 five partner-service goal counts distinct current directional tests with supported ownership
+ok 57 - AC-SOC-279 five partner-service goal counts distinct current directional tests with supported ownership
+  ---
+  duration_ms: 24.274838
+  type: 'test'
+  ...
+# Subtest: AC-SOC-280 security achievement delegates to the validated three-control engine and requires an actual settled call
+ok 58 - AC-SOC-280 security achievement delegates to the validated three-control engine and requires an actual settled call
+  ---
+  duration_ms: 0.422348
+  type: 'test'
+  ...
+# Subtest: AC-SOC-281 security goal passes only after independently configured abuse samples and an actual core settlement
+ok 59 - AC-SOC-281 security goal passes only after independently configured abuse samples and an actual core settlement
+  ---
+  duration_ms: 278.665978
+  type: 'test'
+  ...
+# Subtest: AC-SOC-282 worker serialization has the same source-scoped pure report
+ok 60 - AC-SOC-282 worker serialization has the same source-scoped pure report
+  ---
+  duration_ms: 1.571034
+  type: 'test'
+  ...
+# Subtest: AC-SOC-045 tenant scoped aliases and directed federation do not leak same short extensions
+ok 61 - AC-SOC-045 tenant scoped aliases and directed federation do not leak same short extensions
+  ---
+  duration_ms: 0.861834
+  type: 'test'
+  ...
+# Subtest: AC-SOC-046 forwarding loops stop, while permission denial cannot be bypassed by fallback
+ok 62 - AC-SOC-046 forwarding loops stop, while permission denial cannot be bypassed by fallback
+  ---
+  duration_ms: 0.461095
+  type: 'test'
+  ...
+# Subtest: AC-SOC-047 configured fallback runs only for its declared trigger
+ok 63 - AC-SOC-047 configured fallback runs only for its declared trigger
+  ---
+  duration_ms: 0.243669
+  type: 'test'
+  ...
+# Subtest: AC-SOC-048 reception picks a deterministic available tenant member then mailbox, with owner access
+ok 64 - AC-SOC-048 reception picks a deterministic available tenant member then mailbox, with owner access
+  ---
+  duration_ms: 0.339945
+  type: 'test'
+  ...
+# Subtest: AC-SOC-049 full and unavailable voicemail are distinct from conversation resolution
+ok 65 - AC-SOC-049 full and unavailable voicemail are distinct from conversation resolution
+  ---
+  duration_ms: 0.135042
+  type: 'test'
+  ...
+# Subtest: AC-SOC-050 media failure preserves signalling and reports directional quality dimensions
+ok 66 - AC-SOC-050 media failure preserves signalling and reports directional quality dimensions
+  ---
+  duration_ms: 0.08666
+  type: 'test'
+  ...
+# Subtest: AC-SOC-051 emergency route requires synthetic intent, eligible location, dependencies and notification
+ok 67 - AC-SOC-051 emergency route requires synthetic intent, eligible location, dependencies and notification
+  ---
+  duration_ms: 0.370555
+  type: 'test'
+  ...
+# Subtest: AC-SOC-052 failed per-node provisioning preserves effective policy; saves, worker source and inspection are deterministic
+ok 68 - AC-SOC-052 failed per-node provisioning preserves effective policy; saves, worker source and inspection are deterministic
+  ---
+  duration_ms: 1.420651
+  type: 'test'
+  ...
+# Subtest: AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed JSON-RPC envelopes
+ok 69 - AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed JSON-RPC envelopes
+  ---
+  duration_ms: 0.422031
+  type: 'test'
+  ...
+# Subtest: AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments
+ok 70 - AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments
+  ---
+  duration_ms: 1.109814
+  type: 'test'
+  ...
+# Subtest: AC-SOC-355 new exercises cover all four scenario tracks and round trip through validated export/import
+ok 71 - AC-SOC-355 new exercises cover all four scenario tracks and round trip through validated export/import
+  ---
+  duration_ms: 1.095508
+  type: 'test'
+  ...
+# Subtest: AC-SOC-356 validated commands are atomic, revision checked and idempotent on retry
+ok 72 - AC-SOC-356 validated commands are atomic, revision checked and idempotent on retry
+  ---
+  duration_ms: 0.932414
+  type: 'test'
+  ...
+# Subtest: AC-SOC-357 invalid imports are atomic and tool notifications never execute mutations
+ok 73 - AC-SOC-357 invalid imports are atomic and tool notifications never execute mutations
+  ---
+  duration_ms: 0.312105
+  type: 'test'
+  ...
+# Subtest: AC-SOC-406 MCP discovers the speech pack and enforces its prerequisite and save boundaries
+ok 74 - AC-SOC-406 MCP discovers the speech pack and enforces its prerequisite and save boundaries
+  ---
+  duration_ms: 2.793998
+  type: 'test'
+  ...
+# Subtest: project-scoped cache serves navigation offline and preserves other application caches
+ok 75 - project-scoped cache serves navigation offline and preserves other application caches
+  ---
+  duration_ms: 5.120426
+  type: 'test'
+  ...
+# Subtest: AC-SOC-137 all four assessed tracks earn once-only awards through shared dispatch across AU US JP EU
+ok 76 - AC-SOC-137 all four assessed tracks earn once-only awards through shared dispatch across AU US JP EU
+  ---
+  duration_ms: 3743.890169
+  type: 'test'
+  ...
+# Subtest: AC-SOC-138 campaign assessment accepts alternate voice and interoperable meeting configurations
+ok 77 - AC-SOC-138 campaign assessment accepts alternate voice and interoperable meeting configurations
+  ---
+  duration_ms: 173.619782
+  type: 'test'
+  ...
+# Subtest: AC-SOC-139 closed evidence becomes stale after endpoint changes and outages cannot be hidden by recovery
+ok 78 - AC-SOC-139 closed evidence becomes stale after endpoint changes and outages cannot be hidden by recovery
+  ---
+  duration_ms: 5.926938
+  type: 'test'
+  ...
+# Subtest: AC-SOC-140 campaign commands retain worker save replay and pure calculation equivalence
+ok 79 - AC-SOC-140 campaign commands retain worker save replay and pure calculation equivalence
+  ---
+  duration_ms: 24.695961
+  type: 'test'
+  ...
+# Subtest: AC-SOC-107 campaign content, source serialization and optional save compatibility are explicit
+ok 80 - AC-SOC-107 campaign content, source serialization and optional save compatibility are explicit
+  ---
+  duration_ms: 2.098513
+  type: 'test'
+  ...
+# Subtest: AC-SOC-108 observation windows sample every minute and make configuration changes and skipped samples sticky
+ok 81 - AC-SOC-108 observation windows sample every minute and make configuration changes and skipped samples sticky
+  ---
+  duration_ms: 2.119411
+  type: 'test'
+  ...
+# Subtest: AC-SOC-109 recovery requires the real validated fault, time under fault, recovery and a new successful journey
+ok 82 - AC-SOC-109 recovery requires the real validated fault, time under fault, recovery and a new successful journey
+  ---
+  duration_ms: 6.031836
+  type: 'test'
+  ...
+# Subtest: AC-SOC-110 service assessment needs a newly resolved interaction with retained case context
+ok 83 - AC-SOC-110 service assessment needs a newly resolved interaction with retained case context
+  ---
+  duration_ms: 4.861479
+  type: 'test'
+  ...
+# Subtest: AC-SOC-111 sandbox track switching preserves full root snapshots and does not grant progression rewards
+ok 84 - AC-SOC-111 sandbox track switching preserves full root snapshots and does not grant progression rewards
+  ---
+  duration_ms: 2.150644
+  type: 'test'
+  ...
+# Subtest: AC-SOC-112 jurisdiction and workload constraints stay track-specific and unsupported source objectives remain pending
+ok 85 - AC-SOC-112 jurisdiction and workload constraints stay track-specific and unsupported source objectives remain pending
+  ---
+  duration_ms: 99.942205
+  type: 'test'
+  ...
+# Subtest: AC-SOC-113 save validation binds awards, incident and window structures; inspection and fingerprints are pure
+ok 86 - AC-SOC-113 save validation binds awards, incident and window structures; inspection and fingerprints are pure
+  ---
+  duration_ms: 3.414825
+  type: 'test'
+  ...
+# Subtest: AC-SOC-114 campaign readiness is not an award: all four distinct windows and current service readiness are required
+ok 87 - AC-SOC-114 campaign readiness is not an award: all four distinct windows and current service readiness are required
+  ---
+  duration_ms: 118.49677
+  type: 'test'
+  ...
+# Subtest: AC-SOC-334 capability overlay declares only the assigned progression rows and preserves partial scope
+ok 88 - AC-SOC-334 capability overlay declares only the assigned progression rows and preserves partial scope
+  ---
+  duration_ms: 0.248815
+  type: 'test'
+  ...
+# Subtest: AC-SOC-335 real reference roots do not unlock capabilities from names, defaults, or incomplete configuration
+ok 89 - AC-SOC-335 real reference roots do not unlock capabilities from names, defaults, or incomplete configuration
+  ---
+  duration_ms: 0.830855
+  type: 'test'
+  ...
+# Subtest: AC-SOC-336 stale or missing typed source records cannot support a derived capability
+ok 90 - AC-SOC-336 stale or missing typed source records cannot support a derived capability
+  ---
+  duration_ms: 0.860545
+  type: 'test'
+  ...
+# Subtest: AC-SOC-337 inspection, fingerprint, restore shape, and worker source remain pure and deterministic
+ok 91 - AC-SOC-337 inspection, fingerprint, restore shape, and worker source remain pure and deterministic
+  ---
+  duration_ms: 3.111861
+  type: 'test'
+  ...
+# Subtest: AC-SOC-338 trusted hooks can narrow eligibility but cannot fill missing local evidence
+ok 92 - AC-SOC-338 trusted hooks can narrow eligibility but cannot fill missing local evidence
+  ---
+  duration_ms: 0.745419
+  type: 'test'
+  ...
+# Subtest: AC-SOC-339 wholesaler and delegated administration levels require real multi-tenant contracts and ledgers
+ok 93 - AC-SOC-339 wholesaler and delegated administration levels require real multi-tenant contracts and ledgers
+  ---
+  duration_ms: 251.799802
+  type: 'test'
+  ...
+# Subtest: AC-SOC-340 national provider evidence needs separately scoped billed tenants, wholesale cost and resolved voice cases
+ok 94 - AC-SOC-340 national provider evidence needs separately scoped billed tenants, wholesale cost and resolved voice cases
+  ---
+  duration_ms: 20771.645801
+  type: 'test'
+  ...
+# Subtest: AC-SOC-341 UC and contact centre integration level needs tested supported deployments, resolved human work and a joined meeting
+ok 95 - AC-SOC-341 UC and contact centre integration level needs tested supported deployments, resolved human work and a joined meeting
+  ---
+  duration_ms: 336.219356
+  type: 'test'
+  ...
+# Subtest: AC-SOC-342 omnichannel capability needs two human-resolved channel journeys on one canonical case
+ok 96 - AC-SOC-342 omnichannel capability needs two human-resolved channel journeys on one canonical case
+  ---
+  duration_ms: 5.665703
+  type: 'test'
+  ...
+# Subtest: AC-SOC-343 government capability needs the assessed government track, eligible boundary, processed in-region record and case
+ok 97 - AC-SOC-343 government capability needs the assessed government track, eligible boundary, processed in-region record and case
+  ---
+  duration_ms: 2126.026616
+  type: 'test'
+  ...
+# Subtest: AC-SOC-344 major acceptance needs all four awarded tracks plus billed enterprise and public customers and real site recovery
+ok 98 - AC-SOC-344 major acceptance needs all four awarded tracks plus billed enterprise and public customers and real site recovery
+  ---
+  duration_ms: 5038.836086
+  type: 'test'
+  ...
+# Subtest: AC-SOC-345 enterprise service level accepts completed site migration plus fault, continuity and restore receipts
+ok 99 - AC-SOC-345 enterprise service level accepts completed site migration plus fault, continuity and restore receipts
+  ---
+  duration_ms: 26.527184
+  type: 'test'
+  ...
+# Subtest: AC-SOC-346 critical-service level requires a retained processed record with an actual authorised read
+ok 100 - AC-SOC-346 critical-service level requires a retained processed record with an actual authorised read
+  ---
+  duration_ms: 31.969753
+  type: 'test'
+  ...
+# Subtest: AC-SOC-347 multi-region level requires four effective deployment modes with live directional integrations and scoped evidence
+ok 101 - AC-SOC-347 multi-region level requires four effective deployment modes with live directional integrations and scoped evidence
+  ---
+  duration_ms: 1003.901532
+  type: 'test'
+  ...
+# Subtest: AC-SOC-348 AI operator level combines sustained measured workload, human task resolution and effective assistance processing
+ok 102 - AC-SOC-348 AI operator level combines sustained measured workload, human task resolution and effective assistance processing
+  ---
+  duration_ms: 329.881431
+  type: 'test'
+  ...
+# Subtest: AC-SOC-072 three fictional channels have distinct account and eligibility rules
+ok 103 - AC-SOC-072 three fictional channels have distinct account and eligibility rules
+  ---
+  duration_ms: 1.524519
+  type: 'test'
+  ...
+# Subtest: AC-SOC-073 permissions are per tenant, canonical person, channel and purpose; revoked queued sends fail fresh checks
+ok 104 - AC-SOC-073 permissions are per tenant, canonical person, channel and purpose; revoked queued sends fail fresh checks
+  ---
+  duration_ms: 0.76297
+  type: 'test'
+  ...
+# Subtest: AC-SOC-074 Chatterleaf has finite reply windows and approved outside-window templates; Letterbox has no universal window
+ok 105 - AC-SOC-074 Chatterleaf has finite reply windows and approved outside-window templates; Letterbox has no universal window
+  ---
+  duration_ms: 0.60436
+  type: 'test'
+  ...
+# Subtest: AC-SOC-075 Casechat requires an authenticated case owner session with tenant and expiry binding
+ok 106 - AC-SOC-075 Casechat requires an authenticated case owner session with tenant and expiry binding
+  ---
+  duration_ms: 0.64963
+  type: 'test'
+  ...
+# Subtest: AC-SOC-076 paused conversations allocate no work and resume rechecks current permission and identity
+ok 107 - AC-SOC-076 paused conversations allocate no work and resume rechecks current permission and identity
+  ---
+  duration_ms: 0.596732
+  type: 'test'
+  ...
+# Subtest: AC-SOC-077 delivery and read receipts are distinct, ordered, idempotent, and do not resolve a conversation
+ok 108 - AC-SOC-077 delivery and read receipts are distinct, ordered, idempotent, and do not resolve a conversation
+  ---
+  duration_ms: 0.977306
+  type: 'test'
+  ...
+# Subtest: AC-SOC-078 failed provisioning preserves effective accounts; validation, purity and worker source are deterministic
+ok 109 - AC-SOC-078 failed provisioning preserves effective accounts; validation, purity and worker source are deterministic
+  ---
+  duration_ms: 4.782767
+  type: 'test'
+  ...
+# Subtest: AC-SOC-001 desired, provisioning, effective and observed state remain distinct
+ok 110 - AC-SOC-001 desired, provisioning, effective and observed state remain distinct
+  ---
+  duration_ms: 0.581423
+  type: 'test'
+  ...
+# Subtest: AC-SOC-002 ordered routes, scoped extensions, identity and directional media
+ok 111 - AC-SOC-002 ordered routes, scoped extensions, identity and directional media
+  ---
+  duration_ms: 1.337782
+  type: 'test'
+  ...
+# Subtest: AC-SOC-003 more trunks do not create skilled people or agent entitlements
+ok 112 - AC-SOC-003 more trunks do not create skilled people or agent entitlements
+  ---
+  duration_ms: 1.635464
+  type: 'test'
+  ...
+# Subtest: AC-SOC-004 session admission is independent of queue staffing
+ok 113 - AC-SOC-004 session admission is independent of queue staffing
+  ---
+  duration_ms: 0.502389
+  type: 'test'
+  ...
+# Subtest: AC-SOC-005 messaging preserves case identity across channels and retries are idempotent
+ok 114 - AC-SOC-005 messaging preserves case identity across channels and retries are idempotent
+  ---
+  duration_ms: 1.077646
+  type: 'test'
+  ...
+# Subtest: AC-SOC-006 successful voice can fail mandatory recording
+ok 115 - AC-SOC-006 successful voice can fail mandatory recording
+  ---
+  duration_ms: 0.450825
+  type: 'test'
+  ...
+# Subtest: AC-SOC-007 healthy room device does not establish calendar or interop readiness
+ok 116 - AC-SOC-007 healthy room device does not establish calendar or interop readiness
+  ---
+  duration_ms: 0.449872
+  type: 'test'
+  ...
+# Subtest: AC-SOC-008 information lineage and forbidden processing boundary
+ok 117 - AC-SOC-008 information lineage and forbidden processing boundary
+  ---
+  duration_ms: 0.757217
+  type: 'test'
+  ...
+# Subtest: AC-SOC-009 local devices still depend on identity, time and licensing during isolation
+ok 118 - AC-SOC-009 local devices still depend on identity, time and licensing during isolation
+  ---
+  duration_ms: 0.563487
+  type: 'test'
+  ...
+# Subtest: AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region
+ok 119 - AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region
+  ---
+  duration_ms: 9.452756
+  type: 'test'
+  ...
+# Subtest: AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay
+ok 120 - AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay
+  ---
+  duration_ms: 2.826259
+  type: 'test'
+  ...
+# Subtest: AC-SOC-012 worker serialization produces the synchronous command result
+ok 121 - AC-SOC-012 worker serialization produces the synchronous command result
+  ---
+  duration_ms: 3.463229
+  type: 'test'
+  ...
+# Subtest: AC-SOC-013 invalid references fail provisioning and command validation is atomic
+ok 122 - AC-SOC-013 invalid references fail provisioning and command validation is atomic
+  ---
+  duration_ms: 1.03352
+  type: 'test'
+  ...
+# Subtest: AC-SOC-014 cohort migration requires ready target and supports configuration recovery
+ok 123 - AC-SOC-014 cohort migration requires ready target and supports configuration recovery
+  ---
+  duration_ms: 1.106749
+  type: 'test'
+  ...
+# Subtest: AC-SOC-039 IVR choices select language and skill while provisioning preserves prior effective menus
+ok 124 - AC-SOC-039 IVR choices select language and skill while provisioning preserves prior effective menus
+  ---
+  duration_ms: 2.999626
+  type: 'test'
+  ...
+# Subtest: AC-SOC-040 callbacks release the original session and preserve identity with bounded retries
+ok 125 - AC-SOC-040 callbacks release the original session and preserve identity with bounded retries
+  ---
+  duration_ms: 2.98115
+  type: 'test'
+  ...
+# Subtest: AC-SOC-041 warm transfers require another agent and preserve source wrap-up load
+ok 126 - AC-SOC-041 warm transfers require another agent and preserve source wrap-up load
+  ---
+  duration_ms: 2.506021
+  type: 'test'
+  ...
+# Subtest: AC-SOC-042 cold transfers reset queue waiting, retain the journey and change required skill
+ok 127 - AC-SOC-042 cold transfers reset queue waiting, retain the journey and change required skill
+  ---
+  duration_ms: 1.63163
+  type: 'test'
+  ...
+# Subtest: AC-SOC-043 queue priority and quality assessment remain independent of delivery success
+ok 128 - AC-SOC-043 queue priority and quality assessment remain independent of delivery success
+  ---
+  duration_ms: 2.220077
+  type: 'test'
+  ...
+# Subtest: AC-SOC-044 scheduled contact work survives reload and agrees with worker execution
+ok 129 - AC-SOC-044 scheduled contact work survives reload and agrees with worker execution
+  ---
+  duration_ms: 7.92794
+  type: 'test'
+  ...
+# Subtest: domain administration start buttons and read-only locks use shared dispatch only
+ok 130 - domain administration start buttons and read-only locks use shared dispatch only
+  ---
+  duration_ms: 327.523448
+  type: 'test'
+  ...
+# Subtest: transport form dispatches viable synthetic site and purchased or owned link configs
+ok 131 - transport form dispatches viable synthetic site and purchased or owned link configs
+  ---
+  duration_ms: 367.786985
+  type: 'test'
+  ...
+# Subtest: boundary form stages typed requirements and flows, records observations, and binds a real resource
+ok 132 - boundary form stages typed requirements and flows, records observations, and binds a real resource
+  ---
+  duration_ms: 395.207945
+  type: 'test'
+  ...
+# Subtest: domain panel renders actual enforcement separately from declared evaluation and is pure
+ok 133 - domain panel renders actual enforcement separately from declared evaluation and is pure
+  ---
+  duration_ms: 341.613235
+  type: 'test'
+  ...
+# Subtest: campaign panel exposes named progression windows and dispatches only the campaign module API
+ok 134 - campaign panel exposes named progression windows and dispatches only the campaign module API
+  ---
+  duration_ms: 351.194131
+  type: 'test'
+  ...
+# Subtest: campaign starter stays disabled outside the SMB scenario
+ok 135 - campaign starter stays disabled outside the SMB scenario
+  ---
+  duration_ms: 381.821596
+  type: 'test'
+  ...
+# Subtest: campaign UI displays authoritative assessment and gates incident controls by the real observation window
+ok 136 - campaign UI displays authoritative assessment and gates incident controls by the real observation window
+  ---
+  duration_ms: 362.7412
+  type: 'test'
+  ...
+# Subtest: AC-SOC-133 real call admission and room joins require independent transport capacity and reroute after shared faults
+ok 137 - AC-SOC-133 real call admission and room joins require independent transport capacity and reroute after shared faults
+  ---
+  duration_ms: 10.097831
+  type: 'test'
+  ...
+# Subtest: AC-SOC-134 transport invoices reconcile once into real business cash, with save/worker/repeated calculation equivalence
+ok 138 - AC-SOC-134 transport invoices reconcile once into real business cash, with save/worker/repeated calculation equivalence
+  ---
+  duration_ms: 9.088551
+  type: 'test'
+  ...
+# Subtest: AC-SOC-135 actual information resources, custody and bound contracts gate government service in all four profiles
+ok 139 - AC-SOC-135 actual information resources, custody and bound contracts gate government service in all four profiles
+  ---
+  duration_ms: 24.996418
+  type: 'test'
+  ...
+# Subtest: AC-SOC-136 disconnected operation derives real connectivity and expires local licence grace without mutating reads
+ok 140 - AC-SOC-136 disconnected operation derives real connectivity and expires local licence grace without mutating reads
+  ---
+  duration_ms: 4.2788
+  type: 'test'
+  ...
+# Subtest: AC-SOC-115 leaver stages explicit identity, number, group and device revocations while retaining accepted history
+ok 141 - AC-SOC-115 leaver stages explicit identity, number, group and device revocations while retaining accepted history
+  ---
+  duration_ms: 15.493042
+  type: 'test'
+  ...
+# Subtest: AC-SOC-116 leaver retries honor connector authority and per-resource generations; active work remains assigned until safe
+ok 142 - AC-SOC-116 leaver retries honor connector authority and per-resource generations; active work remains assigned until safe
+  ---
+  duration_ms: 4.848368
+  type: 'test'
+  ...
+# Subtest: AC-SOC-117 native room firmware requires current room product binding and observed room prerequisites
+ok 143 - AC-SOC-117 native room firmware requires current room product binding and observed room prerequisites
+  ---
+  duration_ms: 3.133201
+  type: 'test'
+  ...
+# Subtest: AC-SOC-118 leaver and device state survive worker execution and validated save replay
+ok 144 - AC-SOC-118 leaver and device state survive worker execution and validated save replay
+  ---
+  duration_ms: 19.421611
+  type: 'test'
+  ...
+# Subtest: AC-SOC-059 discovery reconciles idempotently and retains unresolved identity evidence
+ok 145 - AC-SOC-059 discovery reconciles idempotently and retains unresolved identity evidence
+  ---
+  duration_ms: 0.424689
+  type: 'test'
+  ...
+# Subtest: AC-SOC-060 effective connector scope and observed authority gate exact actions
+ok 146 - AC-SOC-060 effective connector scope and observed authority gate exact actions
+  ---
+  duration_ms: 0.280329
+  type: 'test'
+  ...
+# Subtest: AC-SOC-061 batch JML can partly fail and retry only the failed item once
+ok 147 - AC-SOC-061 batch JML can partly fail and retry only the failed item once
+  ---
+  duration_ms: 0.274788
+  type: 'test'
+  ...
+# Subtest: AC-SOC-062 stale mover preserves newer state and unsupported leavers stay blocked
+ok 148 - AC-SOC-062 stale mover preserves newer state and unsupported leavers stay blocked
+  ---
+  duration_ms: 0.264003
+  type: 'test'
+  ...
+# Subtest: AC-SOC-063 device project checks platform support, generation and rollback checkpoint
+ok 149 - AC-SOC-063 device project checks platform support, generation and rollback checkpoint
+  ---
+  duration_ms: 0.293212
+  type: 'test'
+  ...
+# Subtest: AC-SOC-064 export and backup independently check hold, access, region, administrator, key and local dependencies
+ok 150 - AC-SOC-064 export and backup independently check hold, access, region, administrator, key and local dependencies
+  ---
+  duration_ms: 1.894435
+  type: 'test'
+  ...
+# Subtest: AC-SOC-250 inbound calling resolves an owned number through actual carrier, media and staffed handling
+ok 151 - AC-SOC-250 inbound calling resolves an owned number through actual carrier, media and staffed handling
+  ---
+  duration_ms: 1.54502
+  type: 'test'
+  ...
+# Subtest: AC-SOC-251 inbound number ownership and supplier state precede ordered routing
+ok 152 - AC-SOC-251 inbound number ownership and supplier state precede ordered routing
+  ---
+  duration_ms: 1.587165
+  type: 'test'
+  ...
+# Subtest: AC-SOC-252 inbound carrier onboarding, directional media and route ordering remain independent
+ok 153 - AC-SOC-252 inbound carrier onboarding, directional media and route ordering remain independent
+  ---
+  duration_ms: 2.739342
+  type: 'test'
+  ...
+# Subtest: AC-SOC-253 inbound identity scope, entitlements and case separation reject false local identity
+ok 154 - AC-SOC-253 inbound identity scope, entitlements and case separation reject false local identity
+  ---
+  duration_ms: 3.149782
+  type: 'test'
+  ...
+# Subtest: AC-SOC-254 inbound admission uses network and SIP controls without treating incoming calls as outbound spend
+ok 155 - AC-SOC-254 inbound admission uses network and SIP controls without treating incoming calls as outbound spend
+  ---
+  duration_ms: 3.032555
+  type: 'test'
+  ...
+# Subtest: AC-SOC-255 inbound sessions cannot bypass capacity and workers preserve replay and trace lineage
+ok 156 - AC-SOC-255 inbound sessions cannot bypass capacity and workers preserve replay and trace lineage
+  ---
+  duration_ms: 6.714335
+  type: 'test'
+  ...
+# Subtest: AC-SOC-031 information work is delayed, capacity typed, lineage retained and reads pure
+ok 157 - AC-SOC-031 information work is delayed, capacity typed, lineage retained and reads pure
+  ---
+  duration_ms: 2.223446
+  type: 'test'
+  ...
+# Subtest: AC-SOC-032 processing boundaries, language and quality fail independently of calling
+ok 158 - AC-SOC-032 processing boundaries, language and quality fail independently of calling
+  ---
+  duration_ms: 6.227828
+  type: 'test'
+  ...
+# Subtest: AC-SOC-033 permissions narrow along lineage and held descendants prevent deletion
+ok 159 - AC-SOC-033 permissions narrow along lineage and held descendants prevent deletion
+  ---
+  duration_ms: 4.305412
+  type: 'test'
+  ...
+# Subtest: AC-SOC-034 retention expiry, hold release and replay preserve tombstones
+ok 160 - AC-SOC-034 retention expiry, hold release and replay preserve tombstones
+  ---
+  duration_ms: 15.269547
+  type: 'test'
+  ...
+# Subtest: AC-SOC-035 bookings, native and interop joins, events and recording dependencies differ
+ok 161 - AC-SOC-035 bookings, native and interop joins, events and recording dependencies differ
+  ---
+  duration_ms: 5.014605
+  type: 'test'
+  ...
+# Subtest: AC-SOC-036 disconnected local processing and meeting media require local licences and services
+ok 162 - AC-SOC-036 disconnected local processing and meeting media require local licences and services
+  ---
+  duration_ms: 3.132789
+  type: 'test'
+  ...
+# Subtest: AC-SOC-037 pipeline plans persist across configuration changes and worker execution matches
+ok 163 - AC-SOC-037 pipeline plans persist across configuration changes and worker execution matches
+  ---
+  duration_ms: 6.535649
+  type: 'test'
+  ...
+# Subtest: AC-SOC-349 information history records actual bounded evictions without changing lineage or read purity
+ok 164 - AC-SOC-349 information history records actual bounded evictions without changing lineage or read purity
+  ---
+  duration_ms: 2114.674264
+  type: 'test'
+  ...
+# Subtest: AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states
+ok 165 - AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states
+  ---
+  duration_ms: 441.492594
+  type: 'test'
+  ...
+# Subtest: AC-SOC-149 retains source attribution, caveats and explicitly pending issue gaps
+ok 166 - AC-SOC-149 retains source attribution, caveats and explicitly pending issue gaps
+  ---
+  duration_ms: 0.775672
+  type: 'test'
+  ...
+# Subtest: AC-SOC-150 reference directional-media commands produce the modeled one-way media failure
+ok 167 - AC-SOC-150 reference directional-media commands produce the modeled one-way media failure
+  ---
+  duration_ms: 2.142154
+  type: 'test'
+  ...
+# Subtest: AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure
+ok 168 - AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure
+  ---
+  duration_ms: 1.297809
+  type: 'test'
+  ...
+# Subtest: AC-SOC-152 unknown commands and out-of-order steps fail without state changes
+ok 169 - AC-SOC-152 unknown commands and out-of-order steps fail without state changes
+  ---
+  duration_ms: 0.997383
+  type: 'test'
+  ...
+# Subtest: AC-SOC-153 carrier-outage reference commands create an observed signalling failure
+ok 170 - AC-SOC-153 carrier-outage reference commands create an observed signalling failure
+  ---
+  duration_ms: 0.763097
+  type: 'test'
+  ...
+# Subtest: AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery
+ok 171 - AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery
+  ---
+  duration_ms: 3.642338
+  type: 'test'
+  ...
+# Subtest: AC-SOC-155 exercise save state validates and progress fingerprint excludes root call evidence
+ok 172 - AC-SOC-155 exercise save state validates and progress fingerprint excludes root call evidence
+  ---
+  duration_ms: 5.689917
+  type: 'test'
+  ...
+# Subtest: AC-SOC-156 worker source serializes the same source-bounded command policy
+ok 173 - AC-SOC-156 worker source serializes the same source-bounded command policy
+  ---
+  duration_ms: 0.837194
+  type: 'test'
+  ...
+# Subtest: AC-SOC-093 consent is checked before each acceptance and an accepted send keeps its delivery receipt after revocation
+ok 174 - AC-SOC-093 consent is checked before each acceptance and an accepted send keeps its delivery receipt after revocation
+  ---
+  duration_ms: 10.042379
+  type: 'test'
+  ...
+# Subtest: AC-SOC-094 business purpose stays separate from channel purpose; bot containment is unresolved and repeat reserves a new usage token
+ok 175 - AC-SOC-094 business purpose stays separate from channel purpose; bot containment is unresolved and repeat reserves a new usage token
+  ---
+  duration_ms: 8.423326
+  type: 'test'
+  ...
+# Subtest: AC-SOC-095 bot-resolved transport is not task success; supported task evidence can resolve the need
+ok 176 - AC-SOC-095 bot-resolved transport is not task success; supported task evidence can resolve the need
+  ---
+  duration_ms: 4.069337
+  type: 'test'
+  ...
+# Subtest: AC-SOC-096 outcomes reject forged case, tenant, person and non-live task result bindings
+ok 177 - AC-SOC-096 outcomes reject forged case, tenant, person and non-live task result bindings
+  ---
+  duration_ms: 4.921708
+  type: 'test'
+  ...
+# Subtest: AC-SOC-097 a successful result cannot resolve when its configured task resource is unavailable
+ok 178 - AC-SOC-097 a successful result cannot resolve when its configured task resource is unavailable
+  ---
+  duration_ms: 17.135827
+  type: 'test'
+  ...
+# Subtest: AC-SOC-098 worker, save validation, and pure calculations preserve outcome and channel state
+ok 179 - AC-SOC-098 worker, save validation, and pure calculations preserve outcome and channel state
+  ---
+  duration_ms: 12.993352
+  type: 'test'
+  ...
+# Subtest: AC-SOC-157 shared dispatch executes both real incident exercises and preserves restart history
+ok 180 - AC-SOC-157 shared dispatch executes both real incident exercises and preserves restart history
+  ---
+  duration_ms: 9.205895
+  type: 'test'
+  ...
+# Subtest: AC-SOC-158 achievements use current product bindings and once-only explicit claims without financial reward conversion
+ok 181 - AC-SOC-158 achievements use current product bindings and once-only explicit claims without financial reward conversion
+  ---
+  duration_ms: 16.287287
+  type: 'test'
+  ...
+# Subtest: AC-SOC-159 learning packs share worker commands and validate saved progress without mutating inspection
+ok 182 - AC-SOC-159 learning packs share worker commands and validate saved progress without mutating inspection
+  ---
+  duration_ms: 39.836355
+  type: 'test'
+  ...
+# Subtest: AC-SOC-160 learning controls respect locks and execute actual issue and achievement commands
+ok 183 - AC-SOC-160 learning controls respect locks and execute actual issue and achievement commands
+  ---
+  duration_ms: 336.62469
+  type: 'test'
+  ...
+# Subtest: AC-SOC-306 two real portfolio customers retain independent JML outcomes, delayed readiness, retry, and one typed charge each
+ok 184 - AC-SOC-306 two real portfolio customers retain independent JML outcomes, delayed readiness, retry, and one typed charge each
+  ---
+  duration_ms: 31.269898
+  type: 'test'
+  ...
+# Subtest: AC-SOC-307 stale per-resource generations block before charge and worker/save replay keeps bounded state deterministic
+ok 185 - AC-SOC-307 stale per-resource generations block before charge and worker/save replay keeps bounded state deterministic
+  ---
+  duration_ms: 23.247795
+  type: 'test'
+  ...
+# Subtest: AC-SOC-308 managed-operation history and portfolio clock survive sandbox campaign track changes without impure reads
+ok 186 - AC-SOC-308 managed-operation history and portfolio clock survive sandbox campaign track changes without impure reads
+  ---
+  duration_ms: 13.869316
+  type: 'test'
+  ...
+# Subtest: AC-SOC-309 posted managed history remains valid while an inactive portfolio child pauses and later catches up
+ok 187 - AC-SOC-309 posted managed history remains valid while an inactive portfolio child pauses and later catches up
+  ---
+  duration_ms: 19.515689
+  type: 'test'
+  ...
+# Subtest: AC-SOC-310 global managed obligations block portfolio deactivation after the child contract is canceled
+ok 188 - AC-SOC-310 global managed obligations block portfolio deactivation after the child contract is canceled
+  ---
+  duration_ms: 12.606691
+  type: 'test'
+  ...
+# Subtest: AC-SOC-311 managed operations UI is a typed root-scoped form and forwards full selected desired configurations
+ok 189 - AC-SOC-311 managed operations UI is a typed root-scoped form and forwards full selected desired configurations
+  ---
+  duration_ms: 355.161267
+  type: 'test'
+  ...
+# Subtest: AC-SOC-312 managed operations retry control targets one blocked customer and disabled/read-only controls do not dispatch
+ok 190 - AC-SOC-312 managed operations retry control targets one blocked customer and disabled/read-only controls do not dispatch
+  ---
+  duration_ms: 353.73032
+  type: 'test'
+  ...
+# Subtest: AC-SOC-313 mover UI changes one existing calling entitlement without changing canonical identity
+ok 191 - AC-SOC-313 mover UI changes one existing calling entitlement without changing canonical identity
+  ---
+  duration_ms: 371.564404
+  type: 'test'
+  ...
+# Subtest: AC-SOC-299 cross-customer jobs keep tenant and per-resource outcomes, then retry only unfinished work once
+ok 192 - AC-SOC-299 cross-customer jobs keep tenant and per-resource outcomes, then retry only unfinished work once
+  ---
+  duration_ms: 1.669844
+  type: 'test'
+  ...
+# Subtest: AC-SOC-300 contract, connector, canonical inventory, resource scope, and child authority fail closed per customer
+ok 193 - AC-SOC-300 contract, connector, canonical inventory, resource scope, and child authority fail closed per customer
+  ---
+  duration_ms: 0.744578
+  type: 'test'
+  ...
+# Subtest: AC-SOC-301 joiner and mover jobs require a meaningful supported identity change instead of billing a no-op
+ok 194 - AC-SOC-301 joiner and mover jobs require a meaningful supported identity change instead of billing a no-op
+  ---
+  duration_ms: 0.44181
+  type: 'test'
+  ...
+# Subtest: AC-SOC-302 stale generations and forged job results cannot become delivered or billed evidence
+ok 195 - AC-SOC-302 stale generations and forged job results cannot become delivered or billed evidence
+  ---
+  duration_ms: 0.295607
+  type: 'test'
+  ...
+# Subtest: AC-SOC-303 settlement is typed, idempotent per completed item, and never invents a price when no hook exists
+ok 196 - AC-SOC-303 settlement is typed, idempotent per completed item, and never invents a price when no hook exists
+  ---
+  duration_ms: 1.044856
+  type: 'test'
+  ...
+# Subtest: AC-SOC-304 estate completion waits for matching effective provisioned and observed resource state before settlement
+ok 197 - AC-SOC-304 estate completion waits for matching effective provisioned and observed resource state before settlement
+  ---
+  duration_ms: 0.339129
+  type: 'test'
+  ...
+# Subtest: AC-SOC-305 read, fingerprints, saves and worker factory are deterministic and mutation resistant
+ok 198 - AC-SOC-305 read, fingerprints, saves and worker factory are deterministic and mutation resistant
+  ---
+  duration_ms: 1.184819
+  type: 'test'
+  ...
+# Subtest: AC-SOC-225 market qualification shared dispatch preserves sampled proof through worker, restore and campaign clocks
+ok 199 - AC-SOC-225 market qualification shared dispatch preserves sampled proof through worker, restore and campaign clocks
+  ---
+  duration_ms: 2066.836991
+  type: 'test'
+  ...
+# Subtest: AC-SOC-211 market IDs are geography keys and cannot be inferred from jurisdiction labels
+ok 200 - AC-SOC-211 market IDs are geography keys and cannot be inferred from jurisdiction labels
+  ---
+  duration_ms: 29.284721
+  type: 'test'
+  ...
+# Subtest: AC-SOC-212 c3 needs 60 actual samples, new customer billing, support and eligible information flow
+ok 201 - AC-SOC-212 c3 needs 60 actual samples, new customer billing, support and eligible information flow
+  ---
+  duration_ms: 2506.726679
+  type: 'test'
+  ...
+# Subtest: AC-SOC-213 c5 requires all five active market identities, including the two separate AU markets
+ok 202 - AC-SOC-213 c5 requires all five active market identities, including the two separate AU markets
+  ---
+  duration_ms: 1908.454266
+  type: 'test'
+  ...
+# Subtest: AC-SOC-214 t2 requires three customers, two markets, support, new billing and current tested integrations
+ok 203 - AC-SOC-214 t2 requires three customers, two markets, support, new billing and current tested integrations
+  ---
+  duration_ms: 1131.870033
+  type: 'test'
+  ...
+# Subtest: AC-SOC-215 portfolio profit is sampled from external business ledgers only
+ok 204 - AC-SOC-215 portfolio profit is sampled from external business ledgers only
+  ---
+  duration_ms: 30.382157
+  type: 'test'
+  ...
+# Subtest: AC-SOC-216 level 2 and 7 preserve customer, human-case, market-language, carrier and distributor distinctions
+ok 205 - AC-SOC-216 level 2 and 7 preserve customer, human-case, market-language, carrier and distributor distinctions
+  ---
+  duration_ms: 151.314709
+  type: 'test'
+  ...
+# Subtest: AC-SOC-217 observed cohort and configuration changes are sticky and cannot recover into a pass
+ok 206 - AC-SOC-217 observed cohort and configuration changes are sticky and cannot recover into a pass
+  ---
+  duration_ms: 883.710685
+  type: 'test'
+  ...
+# Subtest: AC-SOC-218 inspection purity, worker serialization, restore-compatible state shape and proof deletion checks
+ok 207 - AC-SOC-218 inspection purity, worker serialization, restore-compatible state shape and proof deletion checks
+  ---
+  duration_ms: 57.482706
+  type: 'test'
+  ...
+# Subtest: AC-SOC-226 market controls act on the portfolio while a customer is selected and remain read only without a lock
+ok 208 - AC-SOC-226 market controls act on the portfolio while a customer is selected and remain read only without a lock
+  ---
+  duration_ms: 427.789944
+  type: 'test'
+  ...
+# Subtest: AC-SOC-323 actual carrier and caller offers drive direct media, directional failure and synthetic offer traces
+ok 209 - AC-SOC-323 actual carrier and caller offers drive direct media, directional failure and synthetic offer traces
+  ---
+  duration_ms: 6.456899
+  type: 'test'
+  ...
+# Subtest: AC-SOC-324 transcoding consumes explicit live sessions independently from agents and releases before wrap-up
+ok 210 - AC-SOC-324 transcoding consumes explicit live sessions independently from agents and releases before wrap-up
+  ---
+  duration_ms: 6.522903
+  type: 'test'
+  ...
+# Subtest: AC-SOC-325 incoming media uses carrier offers while optional codec negotiation replaces the legacy single-codec gate
+ok 211 - AC-SOC-325 incoming media uses carrier offers while optional codec negotiation replaces the legacy single-codec gate
+  ---
+  duration_ms: 3.776478
+  type: 'test'
+  ...
+# Subtest: AC-SOC-326 media observation loss ends a real active call and worker execution matches synchronous commands
+ok 212 - AC-SOC-326 media observation loss ends a real active call and worker execution matches synchronous commands
+  ---
+  duration_ms: 9.146886
+  type: 'test'
+  ...
+# Subtest: AC-SOC-327 an active session renegotiates when an effective endpoint codec offer changes
+ok 213 - AC-SOC-327 an active session renegotiates when an effective endpoint codec offer changes
+  ---
+  duration_ms: 3.161045
+  type: 'test'
+  ...
+# Subtest: AC-SOC-328 an active transferred call atomically reroutes its media target to the destination queue
+ok 214 - AC-SOC-328 an active transferred call atomically reroutes its media target to the destination queue
+  ---
+  duration_ms: 9.987774
+  type: 'test'
+  ...
+# Subtest: AC-SOC-314 independent endpoint and carrier offers choose the first end-to-end codec and preserve directional media
+ok 215 - AC-SOC-314 independent endpoint and carrier offers choose the first end-to-end codec and preserve directional media
+  ---
+  duration_ms: 0.398066
+  type: 'test'
+  ...
+# Subtest: AC-SOC-315 no common codec fails without a transcoder even when profiles and signalling are healthy
+ok 216 - AC-SOC-315 no common codec fails without a transcoder even when profiles and signalling are healthy
+  ---
+  duration_ms: 0.128637
+  type: 'test'
+  ...
+# Subtest: AC-SOC-316 an explicit effective transcoder bridges offers and its session capacity is independent of other resources
+ok 217 - AC-SOC-316 an explicit effective transcoder bridges offers and its session capacity is independent of other resources
+  ---
+  duration_ms: 0.485603
+  type: 'test'
+  ...
+# Subtest: AC-SOC-317 internal and inbound route shapes do not require a carrier for internal calls or an internal source for inbound calls
+ok 218 - AC-SOC-317 internal and inbound route shapes do not require a carrier for internal calls or an internal source for inbound calls
+  ---
+  duration_ms: 0.203658
+  type: 'test'
+  ...
+# Subtest: AC-SOC-318 pending and failed generations keep prior effective offers; observations do not consume on reads
+ok 219 - AC-SOC-318 pending and failed generations keep prior effective offers; observations do not consume on reads
+  ---
+  duration_ms: 0.503784
+  type: 'test'
+  ...
+# Subtest: AC-SOC-319 save validation binds reserved sessions to live calls and valid configured resources
+ok 220 - AC-SOC-319 save validation binds reserved sessions to live calls and valid configured resources
+  ---
+  duration_ms: 0.585412
+  type: 'test'
+  ...
+# Subtest: AC-SOC-320 event and released-session rings stay bounded and preserve monotonic identifiers
+ok 221 - AC-SOC-320 event and released-session rings stay bounded and preserve monotonic identifiers
+  ---
+  duration_ms: 33.829222
+  type: 'test'
+  ...
+# Subtest: AC-SOC-321 active calls reroute atomically, exclude their own transcoder session, and retain bounded history
+ok 222 - AC-SOC-321 active calls reroute atomically, exclude their own transcoder session, and retain bounded history
+  ---
+  duration_ms: 1.075254
+  type: 'test'
+  ...
+# Subtest: AC-SOC-322 worker source reproduces inspection and routes while source IDs remain content-linked
+ok 223 - AC-SOC-322 worker source reproduces inspection and routes while source IDs remain content-linked
+  ---
+  duration_ms: 2.154312
+  type: 'test'
+  ...
+# Subtest: AC-SOC-329 media console is visibly synthetic and every control is disabled in read-only mode
+ok 224 - AC-SOC-329 media console is visibly synthetic and every control is disabled in read-only mode
+  ---
+  duration_ms: 331.267774
+  type: 'test'
+  ...
+# Subtest: AC-SOC-330 starter and typed endpoint, carrier, transcoder, and observation forms dispatch validated shapes
+ok 225 - AC-SOC-330 starter and typed endpoint, carrier, transcoder, and observation forms dispatch validated shapes
+  ---
+  duration_ms: 446.482955
+  type: 'test'
+  ...
+# Subtest: AC-SOC-331 read-only path preflight reports codec, signaling, directions, and synthetic offer trace without dispatching a call
+ok 226 - AC-SOC-331 read-only path preflight reports codec, signaling, directions, and synthetic offer trace without dispatching a call
+  ---
+  duration_ms: 357.625293
+  type: 'test'
+  ...
+# Subtest: tampered JML source lineage is rejected on restore validation
+ok 227 - tampered JML source lineage is rejected on restore validation
+  ---
+  duration_ms: 0.47075
+  type: 'test'
+  ...
+# Subtest: inventory identity cannot be linked to a resource of a different estate kind
+ok 228 - inventory identity cannot be linked to a resource of a different estate kind
+  ---
+  duration_ms: 0.108752
+  type: 'test'
+  ...
+# Subtest: repeated discovery preserves the reviewed canonical resource link
+ok 229 - repeated discovery preserves the reviewed canonical resource link
+  ---
+  duration_ms: 0.235296
+  type: 'test'
+  ...
+# Subtest: authority revoked after submit blocks background work without aborting simulation advance
+ok 230 - authority revoked after submit blocks background work without aborting simulation advance
+  ---
+  duration_ms: 0.187262
+  type: 'test'
+  ...
+# Subtest: connector fault is independent of desired and effective configuration and recover flags
+ok 231 - connector fault is independent of desired and effective configuration and recover flags
+  ---
+  duration_ms: 0.155761
+  type: 'test'
+  ...
+# Subtest: retry rechecks connector resource-kind scope captured by a pending job
+ok 232 - retry rechecks connector resource-kind scope captured by a pending job
+  ---
+  duration_ms: 0.071406
+  type: 'test'
+  ...
+# Subtest: failed connector provisioning keeps prior effective capabilities in place
+ok 233 - failed connector provisioning keeps prior effective capabilities in place
+  ---
+  duration_ms: 0.080919
+  type: 'test'
+  ...
+# Subtest: estate fingerprint ignores job and transfer progress but tracks control and inventory changes
+ok 234 - estate fingerprint ignores job and transfer progress but tracks control and inventory changes
+  ---
+  duration_ms: 0.112653
+  type: 'test'
+  ...
+# Subtest: JML desired configuration may be pending while the old effective configuration stays active
+ok 235 - JML desired configuration may be pending while the old effective configuration stays active
+  ---
+  duration_ms: 0.056438
+  type: 'test'
+  ...
+# Subtest: firmware cannot claim native meeting compatibility without an explicit compatibility hook
+ok 236 - firmware cannot claim native meeting compatibility without an explicit compatibility hook
+  ---
+  duration_ms: 0.081374
+  type: 'test'
+  ...
+# Subtest: transfer save validation binds lineage and access metadata to the captured policy
+ok 237 - transfer save validation binds lineage and access metadata to the captured policy
+  ---
+  duration_ms: 0.166099
+  type: 'test'
+  ...
+# Subtest: restored workforce assignment cannot invent a person and entitlement snapshot
+ok 238 - restored workforce assignment cannot invent a person and entitlement snapshot
+  ---
+  duration_ms: 0.226596
+  type: 'test'
+  ...
+# Subtest: restored assignments cannot exceed one person’s voice or digital concurrency
+ok 239 - restored assignments cannot exceed one person’s voice or digital concurrency
+  ---
+  duration_ms: 0.229514
+  type: 'test'
+  ...
+# Subtest: calling save validation rejects mailbox-message owner and tenant mismatches
+ok 240 - calling save validation rejects mailbox-message owner and tenant mismatches
+  ---
+  duration_ms: 0.233119
+  type: 'test'
+  ...
+# Subtest: calling provisioning keeps prior effective policy until the new generation is ready
+ok 241 - calling provisioning keeps prior effective policy until the new generation is ready
+  ---
+  duration_ms: 0.219704
+  type: 'test'
+  ...
+# Subtest: calling fingerprint tracks policy generations but ignores voicemail and event progress
+ok 242 - calling fingerprint tracks policy generations but ignores voicemail and event progress
+  ---
+  duration_ms: 0.15296
+  type: 'test'
+  ...
+# Subtest: AC-SOC-071 source-linked humour preserves role boundaries and cannot determine simulation outcomes
+ok 243 - AC-SOC-071 source-linked humour preserves role boundaries and cannot determine simulation outcomes
+  ---
+  duration_ms: 463.195993
+  type: 'test'
+  ...
+# Subtest: AC-SOC-249 pending supplier orders prevent customer suspension and share the global clock and worker paths
+ok 244 - AC-SOC-249 pending supplier orders prevent customer suspension and share the global clock and worker paths
+  ---
+  duration_ms: 80.078545
+  type: 'test'
+  ...
+# Subtest: AC-SOC-247 port order form sends the typed version 2 supplier lead and synthetic cutover
+ok 245 - AC-SOC-247 port order form sends the typed version 2 supplier lead and synthetic cutover
+  ---
+  duration_ms: 657.641299
+  type: 'test'
+  ...
+# Subtest: AC-SOC-248 supplier response form sends explicit accept or rejection details
+ok 246 - AC-SOC-248 supplier response form sends explicit accept or rejection details
+  ---
+  duration_ms: 342.90872
+  type: 'test'
+  ...
+# Subtest: AC-SOC-239 legacy number-port actions and version 1 rows keep their original behavior
+ok 247 - AC-SOC-239 legacy number-port actions and version 1 rows keep their original behavior
+  ---
+  duration_ms: 26.898638
+  type: 'test'
+  ...
+# Subtest: AC-SOC-240 supplier lead business days use pinned weekday calendar and preserve minute-of-day
+ok 248 - AC-SOC-240 supplier lead business days use pinned weekday calendar and preserve minute-of-day
+  ---
+  duration_ms: 0.139017
+  type: 'test'
+  ...
+# Subtest: AC-SOC-241 order creation snapshots provider and rejects a cutover before supplier due time
+ok 249 - AC-SOC-241 order creation snapshots provider and rejects a cutover before supplier due time
+  ---
+  duration_ms: 0.926575
+  type: 'test'
+  ...
+# Subtest: AC-SOC-242 supplier cannot respond before due time and acceptance waits for planned cutover
+ok 250 - AC-SOC-242 supplier cannot respond before due time and acceptance waits for planned cutover
+  ---
+  duration_ms: 23.007233
+  type: 'test'
+  ...
+# Subtest: AC-SOC-243 supplier rejection records its reason and leaves number routing unchanged
+ok 251 - AC-SOC-243 supplier rejection records its reason and leaves number routing unchanged
+  ---
+  duration_ms: 18.305074
+  type: 'test'
+  ...
+# Subtest: AC-SOC-244 missing supplier response at cutover fails without silently changing provider
+ok 252 - AC-SOC-244 missing supplier response at cutover fails without silently changing provider
+  ---
+  duration_ms: 19.660513
+  type: 'test'
+  ...
+# Subtest: AC-SOC-245 recovery restores the captured previous provider after a completed supplier order
+ok 253 - AC-SOC-245 recovery restores the captured previous provider after a completed supplier order
+  ---
+  duration_ms: 21.408481
+  type: 'test'
+  ...
+# Subtest: AC-SOC-246 supplier order history validates, saves, runs in worker, and inspects without mutation
+ok 254 - AC-SOC-246 supplier order history validates, saves, runs in worker, and inspects without mutation
+  ---
+  duration_ms: 28.670689
+  type: 'test'
+  ...
+# Subtest: AC-SOC-195 observation controls start a real pack and window; thresholds, guides, live counts and closure are visible
+ok 255 - AC-SOC-195 observation controls start a real pack and window; thresholds, guides, live counts and closure are visible
+  ---
+  duration_ms: 327.826803
+  type: 'test'
+  ...
+# Subtest: AC-SOC-196 continuity controls only dispatch after a real baseline, sampled fault and recovery gate
+ok 256 - AC-SOC-196 continuity controls only dispatch after a real baseline, sampled fault and recovery gate
+  ---
+  duration_ms: 372.793889
+  type: 'test'
+  ...
+# Subtest: observation checks use readable labels and source notes preserve bandwidth units
+ok 257 - observation checks use readable labels and source notes preserve bandwidth units
+  ---
+  duration_ms: 301.567691
+  type: 'test'
+  ...
+# Subtest: AC-SOC-079 optional pack configures deterministically and keeps reads pure
+ok 258 - AC-SOC-079 optional pack configures deterministically and keeps reads pure
+  ---
+  duration_ms: 0.634006
+  type: 'test'
+  ...
+# Subtest: AC-SOC-080 explicit task evidence resolves the need; bot containment without task success does not
+ok 259 - AC-SOC-080 explicit task evidence resolves the need; bot containment without task success does not
+  ---
+  duration_ms: 0.292684
+  type: 'test'
+  ...
+# Subtest: AC-SOC-081 repeat uses the canonical parent hook, retains case identity and deduplicates only original replay charges
+ok 260 - AC-SOC-081 repeat uses the canonical parent hook, retains case identity and deduplicates only original replay charges
+  ---
+  duration_ms: 0.180677
+  type: 'test'
+  ...
+# Subtest: AC-SOC-082 unsupported intent, missing task integration and stale identity context escalate explicitly
+ok 261 - AC-SOC-082 unsupported intent, missing task integration and stale identity context escalate explicitly
+  ---
+  duration_ms: 0.435512
+  type: 'test'
+  ...
+# Subtest: AC-SOC-083 unavailable channel delays; cross-channel context loss adds effort; attempt cap stops repeats
+ok 262 - AC-SOC-083 unavailable channel delays; cross-channel context loss adds effort; attempt cap stops repeats
+  ---
+  duration_ms: 0.312294
+  type: 'test'
+  ...
+# Subtest: AC-SOC-084 duplicate settlement is idempotent; forged evaluations and saves fail; worker output matches
+ok 263 - AC-SOC-084 duplicate settlement is idempotent; forged evaluations and saves fail; worker output matches
+  ---
+  duration_ms: 1.788212
+  type: 'test'
+  ...
+# Subtest: AC-SOC-065 optional packs start on validated dispatch and absent packs preserve old saves
+ok 264 - AC-SOC-065 optional packs start on validated dispatch and absent packs preserve old saves
+  ---
+  duration_ms: 1.728177
+  type: 'test'
+  ...
+# Subtest: AC-SOC-066 per-person queue assignment uses same-person skills, language and licensed-seat cap
+ok 265 - AC-SOC-066 per-person queue assignment uses same-person skills, language and licensed-seat cap
+  ---
+  duration_ms: 3.027624
+  type: 'test'
+  ...
+# Subtest: AC-SOC-067 workforce warm transfer reserves a different person and retains source wrap
+ok 266 - AC-SOC-067 workforce warm transfer reserves a different person and retains source wrap
+  ---
+  duration_ms: 1.417325
+  type: 'test'
+  ...
+# Subtest: AC-SOC-068 calling resolves tenants and forwarding, reports directional media and synthetic emergency outcome
+ok 267 - AC-SOC-068 calling resolves tenants and forwarding, reports directional media and synthetic emergency outcome
+  ---
+  duration_ms: 13.096494
+  type: 'test'
+  ...
+# Subtest: AC-SOC-069 estate changes use central generation/config hooks; unsupported leaver fields remain rejected
+ok 268 - AC-SOC-069 estate changes use central generation/config hooks; unsupported leaver fields remain rejected
+  ---
+  duration_ms: 1.675348
+  type: 'test'
+  ...
+# Subtest: AC-SOC-070 combined packs validate, inspect purely, restore, and serialize to the same worker result
+ok 269 - AC-SOC-070 combined packs validate, inspect purely, restore, and serialize to the same worker result
+  ---
+  duration_ms: 5.403433
+  type: 'test'
+  ...
+# Subtest: pages: the build is plain static files within GitHub Pages limits
+ok 270 - pages: the build is plain static files within GitHub Pages limits
+  ---
+  duration_ms: 0.666405
+  type: 'test'
+  ...
+# Subtest: pages: the repository has no hosting configuration for anywhere else
+ok 271 - pages: the repository has no hosting configuration for anywhere else
+  ---
+  duration_ms: 0.210793
+  type: 'test'
+  ...
+# Subtest: pages: every local file the site refers to is in the build
+ok 272 - pages: every local file the site refers to is in the build
+  ---
+  duration_ms: 10.644677
+  type: 'test'
+  ...
+# Subtest: pages: only the release workflow deploys, and only with the GitHub Pages actions
+ok 273 - pages: only the release workflow deploys, and only with the GitHub Pages actions
+  ---
+  duration_ms: 0.595951
+  type: 'test'
+  ...
+# Subtest: pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things
+ok 274 - pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things
+  ---
+  duration_ms: 1150.162335
+  type: 'test'
+  ...
+# Subtest: a reload drops you straight back into your saved network
+ok 275 - a reload drops you straight back into your saved network
+  ---
+  duration_ms: 716.258685
+  type: 'test'
+  ...
+# Subtest: leaving the page saves the game
+ok 276 - leaving the page saves the game
+  ---
+  duration_ms: 373.430415
+  type: 'test'
+  ...
+# Subtest: a save too big for the browser is not retried every few seconds, but leaving still tries
+ok 277 - a save too big for the browser is not retried every few seconds, but leaving still tries
+  ---
+  duration_ms: 371.091301
+  type: 'test'
+  ...
+# Subtest: customer names already used are remembered once each, and old saves shrink on load
+ok 278 - customer names already used are remembered once each, and old saves shrink on load
+  ---
+  duration_ms: 476.408299
+  type: 'test'
+  ...
+# Subtest: returning players see what is new after an update, once
+ok 279 - returning players see what is new after an update, once
+  ---
+  duration_ms: 1163.675574
+  type: 'test'
+  ...
+# Subtest: version comparison for the update banner
+ok 280 - version comparison for the update banner
+  ---
+  duration_ms: 334.610596
+  type: 'test'
+  ...
+# Subtest: \#46 an update that adds networks gives a courtesy route, and Tier 1 is shown only while it is true
+ok 281 - \#46 an update that adds networks gives a courtesy route, and Tier 1 is shown only while it is true
+  ---
+  duration_ms: 376.80945
+  type: 'test'
+  ...
+# Subtest: in-app release notes stay short and link to the full notes on GitHub
+ok 282 - in-app release notes stay short and link to the full notes on GitHub
+  ---
+  duration_ms: 434.620252
+  type: 'test'
+  ...
+# Subtest: the big-network benchmark save loads cleanly and routes traffic
+ok 283 - the big-network benchmark save loads cleanly and routes traffic
+  ---
+  duration_ms: 441.13371
+  type: 'test'
+  ...
+# Subtest: AC-SOC-185 tenant birth clock and calling plus outcome canonical identity remain consistent
+ok 284 - AC-SOC-185 tenant birth clock and calling plus outcome canonical identity remain consistent
+  ---
+  duration_ms: 3.861085
+  type: 'test'
+  ...
+# Subtest: AC-SOC-188 portfolio shared dispatch advances all real roots and worker save replay agrees
+ok 285 - AC-SOC-188 portfolio shared dispatch advances all real roots and worker save replay agrees
+  ---
+  duration_ms: 19.591019
+  type: 'test'
+  ...
+# Subtest: AC-SOC-189 concurrent portfolio survives campaign track switching without rewind or duplication
+ok 286 - AC-SOC-189 concurrent portfolio survives campaign track switching without rewind or duplication
+  ---
+  duration_ms: 3.876013
+  type: 'test'
+  ...
+# Subtest: AC-SOC-186 portfolio controls use locked shared dispatch to add, select, activate and deactivate customers
+ok 287 - AC-SOC-186 portfolio controls use locked shared dispatch to add, select, activate and deactivate customers
+  ---
+  duration_ms: 355.474073
+  type: 'test'
+  ...
+# Subtest: AC-SOC-187 portfolio panel displays actual business finance and separates opening capital from profit
+ok 288 - AC-SOC-187 portfolio panel displays actual business finance and separates opening capital from profit
+  ---
+  duration_ms: 359.706599
+  type: 'test'
+  ...
+# Subtest: AC-SOC-194 assembled training console configures the selected child, ticks every child, returns to root view, and restores save
+ok 289 - AC-SOC-194 assembled training console configures the selected child, ticks every child, returns to root view, and restores save
+  ---
+  duration_ms: 463.133969
+  type: 'test'
+  ...
+# Subtest: AC-SOC-161 five geographic markets keep geography distinct from jurisdiction
+ok 290 - AC-SOC-161 five geographic markets keep geography distinct from jurisdiction
+  ---
+  duration_ms: 0.835399
+  type: 'test'
+  ...
+# Subtest: AC-SOC-162 two real child journeys and accepted contracts stay isolated by customer
+ok 291 - AC-SOC-162 two real child journeys and accepted contracts stay isolated by customer
+  ---
+  duration_ms: 8.333196
+  type: 'test'
+  ...
+# Subtest: AC-SOC-163 every active child ticks once independent of selected view; inactive roots pause
+ok 292 - AC-SOC-163 every active child ticks once independent of selected view; inactive roots pause
+  ---
+  duration_ms: 1.308277
+  type: 'test'
+  ...
+# Subtest: AC-SOC-164 deactivation respects live contracts and obligations
+ok 293 - AC-SOC-164 deactivation respects live contracts and obligations
+  ---
+  duration_ms: 2.861917
+  type: 'test'
+  ...
+# Subtest: AC-SOC-165 portfolio finance aggregates actual child ledger and excludes internal cash/profit
+ok 294 - AC-SOC-165 portfolio finance aggregates actual child ledger and excludes internal cash/profit
+  ---
+  duration_ms: 50.116562
+  type: 'test'
+  ...
+# Subtest: AC-SOC-166 forwarding is strict and rejects nested packs, child time changes and cross-customer swaps
+ok 295 - AC-SOC-166 forwarding is strict and rejects nested packs, child time changes and cross-customer swaps
+  ---
+  duration_ms: 0.817595
+  type: 'test'
+  ...
+# Subtest: AC-SOC-167 customer identity, market, root, and customer bounds are save-validated
+ok 296 - AC-SOC-167 customer identity, market, root, and customer bounds are save-validated
+  ---
+  duration_ms: 7.466312
+  type: 'test'
+  ...
+# Subtest: AC-SOC-168 inspect and calculate are pure and deterministic through worker source serialization
+ok 297 - AC-SOC-168 inspect and calculate are pure and deterministic through worker source serialization
+  ---
+  duration_ms: 4.543972
+  type: 'test'
+  ...
+# Subtest: project preview serves compiled files under its base path, including notices and HEAD
+ok 298 - project preview serves compiled files under its base path, including notices and HEAD
+  ---
+  duration_ms: 1.44889
+  type: 'test'
+  ...
+# Subtest: AC-SOC-294 shared dispatch provisions qualification, boundary, and lifecycle evidence only for their real scoped inputs
+ok 299 - AC-SOC-294 shared dispatch provisions qualification, boundary, and lifecycle evidence only for their real scoped inputs
+  ---
+  duration_ms: 79.082815
+  type: 'test'
+  ...
+# Subtest: AC-SOC-295 proof availability follows scope change, explicit revocation, expiry, save restore, and worker dispatch
+ok 300 - AC-SOC-295 proof availability follows scope change, explicit revocation, expiry, save restore, and worker dispatch
+  ---
+  duration_ms: 244.701535
+  type: 'test'
+  ...
+# Subtest: AC-SOC-296 evidence controls remain read only and clearly scope synthetic evidence
+ok 301 - AC-SOC-296 evidence controls remain read only and clearly scope synthetic evidence
+  ---
+  duration_ms: 308.8403
+  type: 'test'
+  ...
+# Subtest: AC-SOC-297 evidence request derives resource from selected feature dependency and dispatches scoped command
+ok 302 - AC-SOC-297 evidence request derives resource from selected feature dependency and dispatches scoped command
+  ---
+  duration_ms: 301.941296
+  type: 'test'
+  ...
+# Subtest: AC-SOC-298 evidence revocation offers only active effective proofs and uses an explicit reason
+ok 303 - AC-SOC-298 evidence revocation offers only active effective proofs and uses an explicit reason
+  ---
+  duration_ms: 309.837083
+  type: 'test'
+  ...
+# Subtest: AC-SOC-288 eligibility evidence requires a real retained qualification event, authorization, current expiry, and explicit effective tick
+ok 304 - AC-SOC-288 eligibility evidence requires a real retained qualification event, authorization, current expiry, and explicit effective tick
+  ---
+  duration_ms: 0.867262
+  type: 'test'
+  ...
+# Subtest: AC-SOC-289 jurisdiction evidence needs an effective current boundary contract and trusted resource enforcement
+ok 305 - AC-SOC-289 jurisdiction evidence needs an effective current boundary contract and trusted resource enforcement
+  ---
+  duration_ms: 0.501515
+  type: 'test'
+  ...
+# Subtest: AC-SOC-290 lifecycle evidence is scoped to the actual offer lifecycle and deployment version/mode
+ok 306 - AC-SOC-290 lifecycle evidence is scoped to the actual offer lifecycle and deployment version/mode
+  ---
+  duration_ms: 0.450198
+  type: 'test'
+  ...
+# Subtest: AC-SOC-291 explicit revocation, stale deployment scope, and forged approvals cannot satisfy dependencies
+ok 307 - AC-SOC-291 explicit revocation, stale deployment scope, and forged approvals cannot satisfy dependencies
+  ---
+  duration_ms: 0.799569
+  type: 'test'
+  ...
+# Subtest: AC-SOC-292 requests reject undeclared dependencies, wrong features, and nonexistent resource references
+ok 308 - AC-SOC-292 requests reject undeclared dependencies, wrong features, and nonexistent resource references
+  ---
+  duration_ms: 0.192246
+  type: 'test'
+  ...
+# Subtest: AC-SOC-293 save validation and worker source preserve scoped evidence while inspection stays pure
+ok 309 - AC-SOC-293 save validation and worker source preserve scoped evidence while inspection stays pure
+  ---
+  duration_ms: 2.033617
+  type: 'test'
+  ...
+# Subtest: AC-SOC-091 shared dispatch, optional save compatibility and bound product features gate calling, meeting and processing
+ok 310 - AC-SOC-091 shared dispatch, optional save compatibility and bound product features gate calling, meeting and processing
+  ---
+  duration_ms: 8.497155
+  type: 'test'
+  ...
+# Subtest: AC-SOC-092 bindings reject wrong core kind and out-of-scope cloud modes; stale directional proof blocks a newly generated route
+ok 311 - AC-SOC-092 bindings reject wrong core kind and out-of-scope cloud modes; stale directional proof blocks a newly generated route
+  ---
+  duration_ms: 2.919254
+  type: 'test'
+  ...
+# Subtest: AC-SOC-332 explicit integration scope updates preserve historical results and require a fresh successful test
+ok 312 - AC-SOC-332 explicit integration scope updates preserve historical results and require a fresh successful test
+  ---
+  duration_ms: 16.504289
+  type: 'test'
+  ...
+# Subtest: AC-SOC-333 product console exposes explicit integration scope update through the same validated command
+ok 313 - AC-SOC-333 product console exposes explicit integration scope update through the same validated command
+  ---
+  duration_ms: 379.922856
+  type: 'test'
+  ...
+# Subtest: AC-SOC-352 historical deployment generations retain their own offer scope through pending and completed offer switches
+ok 314 - AC-SOC-352 historical deployment generations retain their own offer scope through pending and completed offer switches
+  ---
+  duration_ms: 3.525021
+  type: 'test'
+  ...
+# Subtest: AC-SOC-085 each mapped product family has distinct scenario slots and modes; real target example strings do not become capabilities
+ok 315 - AC-SOC-085 each mapped product family has distinct scenario slots and modes; real target example strings do not become capabilities
+  ---
+  duration_ms: 6.115785
+  type: 'test'
+  ...
+# Subtest: AC-SOC-086 offer sale and support lifecycle are independent and effective only after provisioning
+ok 316 - AC-SOC-086 offer sale and support lifecycle are independent and effective only after provisioning
+  ---
+  duration_ms: 0.621995
+  type: 'test'
+  ...
+# Subtest: AC-SOC-087 deployment mode, feature subset and dependency gates preserve prior effective configuration
+ok 317 - AC-SOC-087 deployment mode, feature subset and dependency gates preserve prior effective configuration
+  ---
+  duration_ms: 0.683531
+  type: 'test'
+  ...
+# Subtest: AC-SOC-088 compatibility is directional, feature-scoped and bound to exact deployment generations and versions
+ok 318 - AC-SOC-088 compatibility is directional, feature-scoped and bound to exact deployment generations and versions
+  ---
+  duration_ms: 1.010319
+  type: 'test'
+  ...
+# Subtest: AC-SOC-089 family-specific conflicts, jurisdiction evidence and local licensing remain explicit prerequisites
+ok 319 - AC-SOC-089 family-specific conflicts, jurisdiction evidence and local licensing remain explicit prerequisites
+  ---
+  duration_ms: 1.450762
+  type: 'test'
+  ...
+# Subtest: AC-SOC-090 save validation, deterministic inspection and source-serialized worker behavior match
+ok 320 - AC-SOC-090 save validation, deterministic inspection and source-serialized worker behavior match
+  ---
+  duration_ms: 2.154308
+  type: 'test'
+  ...
+# Subtest: AC-SOC-283 calling progression routes scrub awards through actual shared dispatch evidence and preserves a strict historical proof
+ok 321 - AC-SOC-283 calling progression routes scrub awards through actual shared dispatch evidence and preserves a strict historical proof
+  ---
+  duration_ms: 25.652334
+  type: 'test'
+  ...
+# Subtest: AC-SOC-284 site continuity goal is awarded only from the validated site exercise receipt and remains historically verifiable
+ok 322 - AC-SOC-284 site continuity goal is awarded only from the validated site exercise receipt and remains historically verifiable
+  ---
+  duration_ms: 21.01323
+  type: 'test'
+  ...
+# Subtest: AC-SOC-285 capability overlay level is claimable through progression only from the supported customer portfolio evidence
+ok 323 - AC-SOC-285 capability overlay level is claimable through progression only from the supported customer portfolio evidence
+  ---
+  duration_ms: 224.046909
+  type: 'test'
+  ...
+# Subtest: AC-SOC-286 claiming a progression achievement does not change the current synthetic meeting fingerprint
+ok 324 - AC-SOC-286 claiming a progression achievement does not change the current synthetic meeting fingerprint
+  ---
+  duration_ms: 4.29168
+  type: 'test'
+  ...
+# Subtest: AC-SOC-219 c3, c5 and t2 market goals award only after real sampled commercial evidence
+ok 325 - AC-SOC-219 c3, c5 and t2 market goals award only after real sampled commercial evidence
+  ---
+  duration_ms: 4381.980223
+  type: 'test'
+  ...
+# Subtest: AC-SOC-220 c5/t2/level-2/level-7 reject missing markets, deployment and human journeys
+ok 326 - AC-SOC-220 c5/t2/level-2/level-7 reject missing markets, deployment and human journeys
+  ---
+  duration_ms: 4239.680988
+  type: 'test'
+  ...
+# Subtest: AC-SOC-221 t1 and level 13 require four customer scenarios, continuity, profit and three provider roles
+ok 327 - AC-SOC-221 t1 and level 13 require four customer scenarios, continuity, profit and three provider roles
+  ---
+  duration_ms: 13280.230013
+  type: 'test'
+  ...
+# Subtest: AC-SOC-222 market awards are durable, bounded, once-only, worker-equivalent and inspection is pure
+ok 328 - AC-SOC-222 market awards are durable, bounded, once-only, worker-equivalent and inspection is pure
+  ---
+  duration_ms: 1402.166199
+  type: 'test'
+  ...
+# Subtest: AC-SOC-190 progression exposes the three source-linked observations as partial mechanics only
+ok 329 - AC-SOC-190 progression exposes the three source-linked observations as partial mechanics only
+  ---
+  duration_ms: 5.044164
+  type: 'test'
+  ...
+# Subtest: AC-SOC-191 a real closed tb window can be claimed, while missing or forged proof is rejected
+ok 330 - AC-SOC-191 a real closed tb window can be claimed, while missing or forged proof is rejected
+  ---
+  duration_ms: 55.274572
+  type: 'test'
+  ...
+# Subtest: AC-SOC-192 t10 requires the full mixed-service proof before an award
+ok 331 - AC-SOC-192 t10 requires the full mixed-service proof before an award
+  ---
+  duration_ms: 178.14339
+  type: 'test'
+  ...
+# Subtest: AC-SOC-193 rd award needs the same case and tenant across a live independent path, with historical evidence retained
+ok 332 - AC-SOC-193 rd award needs the same case and tenant across a live independent path, with historical evidence retained
+  ---
+  duration_ms: 30.307381
+  type: 'test'
+  ...
+# Subtest: AC-SOC-141 progression rows preserve original source attributes, witty adaptations and pending boundaries
+ok 333 - AC-SOC-141 progression rows preserve original source attributes, witty adaptations and pending boundaries
+  ---
+  duration_ms: 0.498855
+  type: 'test'
+  ...
+# Subtest: AC-SOC-142 an empty or sandbox campaign cannot unlock level or goal milestones
+ok 334 - AC-SOC-142 an empty or sandbox campaign cannot unlock level or goal milestones
+  ---
+  duration_ms: 0.767587
+  type: 'test'
+  ...
+# Subtest: AC-SOC-143 first managed contract requires accepted player order, active service, support role and actual billing
+ok 335 - AC-SOC-143 first managed contract requires accepted player order, active service, support role and actual billing
+  ---
+  duration_ms: 18.445596
+  type: 'test'
+  ...
+# Subtest: AC-SOC-144 first customer live requires the assessed SMB award and retained resolved case lineage
+ok 336 - AC-SOC-144 first customer live requires the assessed SMB award and retained resolved case lineage
+  ---
+  duration_ms: 5570.331307
+  type: 'test'
+  ...
+# Subtest: AC-SOC-145 milestone claims are explicit, one-time and do not convert source cash rewards
+ok 337 - AC-SOC-145 milestone claims are explicit, one-time and do not convert source cash rewards
+  ---
+  duration_ms: 129.294426
+  type: 'test'
+  ...
+# Subtest: AC-SOC-146 ecosystem integration requires current tested versions, successful directional checks and scoped support
+ok 338 - AC-SOC-146 ecosystem integration requires current tested versions, successful directional checks and scoped support
+  ---
+  duration_ms: 30.06303
+  type: 'test'
+  ...
+# Subtest: AC-SOC-147 progression inspection, fingerprint and worker serialization are deterministic and pure
+ok 339 - AC-SOC-147 progression inspection, fingerprint and worker serialization are deterministic and pure
+  ---
+  duration_ms: 15.569046
+  type: 'test'
+  ...
+# Subtest: AC-SOC-148 save validation rejects forged awards, altered source IDs and invented pending completions
+ok 340 - AC-SOC-148 save validation rejects forged awards, altered source IDs and invented pending completions
+  ---
+  duration_ms: 135.200938
+  type: 'test'
+  ...
+# Subtest: \#176 a save that does not fit tells the player once, with Export, and the menu says so
+ok 341 - \#176 a save that does not fit tells the player once, with Export, and the menu says so
+  ---
+  duration_ms: 358.149384
+  type: 'test'
+  ...
+# Subtest: \#176 storage that is blocked altogether gets its own advice
+ok 342 - \#176 storage that is blocked altogether gets its own advice
+  ---
+  duration_ms: 347.337195
+  type: 'test'
+  ...
+# Subtest: \#176 saves leave customer defaults out, and loading puts them back exactly
+ok 343 - \#176 saves leave customer defaults out, and loading puts them back exactly
+  ---
+  duration_ms: 558.377022
+  type: 'test'
+  ...
+# Subtest: \#176 an older, unpacked save still loads the same
+ok 344 - \#176 an older, unpacked save still loads the same
+  ---
+  duration_ms: 393.952222
+  type: 'test'
+  ...
+# Subtest: \#176 small saves stay plain JSON, written at once
+ok 345 - \#176 small saves stay plain JSON, written at once
+  ---
+  duration_ms: 328.425401
+  type: 'test'
+  ...
+# Subtest: \#176 a huge save is gzipped into storage and the next visit loads it
+ok 346 - \#176 a huge save is gzipped into storage and the next visit loads it
+  ---
+  duration_ms: 870.932309
+  type: 'test'
+  ...
+# Subtest: \#176 a newer save is never overwritten by an older one still compressing
+ok 347 - \#176 a newer save is never overwritten by an older one still compressing
+  ---
+  duration_ms: 489.788929
+  type: 'test'
+  ...
+# Subtest: \#176 a damaged compressed save is kept, marked damaged, and the player is told
+ok 348 - \#176 a damaged compressed save is kept, marked damaged, and the player is told
+  ---
+  duration_ms: 332.296357
+  type: 'test'
+  ...
+# Subtest: the single save of older versions becomes the first network, losslessly, and loads exactly as before
+ok 349 - the single save of older versions becomes the first network, losslessly, and loads exactly as before
+  ---
+  duration_ms: 726.910537
+  type: 'test'
+  ...
+# Subtest: a browser with no room for the copy keeps playing from the old key
+ok 350 - a browser with no room for the copy keeps playing from the old key
+  ---
+  duration_ms: 723.814277
+  type: 'test'
+  ...
+# Subtest: a compressed (gz) single save migrates and loads the same network
+ok 351 - a compressed (gz) single save migrates and loads the same network
+  ---
+  duration_ms: 664.010608
+  type: 'test'
+  ...
+# Subtest: two networks coexist and load independently; the title lists them, newest first
+ok 352 - two networks coexist and load independently; the title lists them, newest first
+  ---
+  duration_ms: 558.627621
+  type: 'test'
+  ...
+# Subtest: the title lists networks from the index alone, without reading any save
+ok 353 - the title lists networks from the index alone, without reading any save
+  ---
+  duration_ms: 404.179491
+  type: 'test'
+  ...
+# Subtest: each tab continues its own network on reload, and two tabs play two networks at once
+ok 354 - each tab continues its own network on reload, and two tabs play two networks at once
+  ---
+  duration_ms: 1946.80452
+  type: 'test'
+  ...
+# Subtest: opening a network open in another window offers to switch or take over, and take-over hands it across
+ok 355 - opening a network open in another window offers to switch or take over, and take-over hands it across
+  ---
+  duration_ms: 751.250789
+  type: 'test'
+  ...
+# Subtest: without Web Locks or BroadcastChannel the heartbeat still keeps one writer per network
+ok 356 - without Web Locks or BroadcastChannel the heartbeat still keeps one writer per network
+  ---
+  duration_ms: 711.158169
+  type: 'test'
+  ...
+# Subtest: a stale write is refused: a newer save of the same network from another window is never overwritten
+ok 357 - a stale write is refused: a newer save of the same network from another window is never overwritten
+  ---
+  duration_ms: 758.929054
+  type: 'test'
+  ...
+# Subtest: saves are written slot first, then the index, and every write moves the sequence on
+ok 358 - saves are written slot first, then the index, and every write moves the sequence on
+  ---
+  duration_ms: 369.044332
+  type: 'test'
+  ...
+# Subtest: deleting a network removes its save and its line, after a confirmation
+ok 359 - deleting a network removes its save and its line, after a confirmation
+  ---
+  duration_ms: 431.895449
+  type: 'test'
+  ...
+# Subtest: a network deleted in another window is never written back by the window playing it
+ok 360 - a network deleted in another window is never written back by the window playing it
+  ---
+  duration_ms: 725.134944
+  type: 'test'
+  ...
+# Subtest: export the network on screen, or any network from the list; import adds a new network and keeps the old
+ok 361 - export the network on screen, or any network from the list; import adds a new network and keeps the old
+  ---
+  duration_ms: 405.457755
+  type: 'test'
+  ...
+# Subtest: renaming the network renames it in the list
+ok 362 - renaming the network renames it in the list
+  ---
+  duration_ms: 385.709166
+  type: 'test'
+  ...
+# Subtest: puzzles never write a network, and a tab closed mid-puzzle keeps the network it set aside
+ok 363 - puzzles never write a network, and a tab closed mid-puzzle keeps the network it set aside
+  ---
+  duration_ms: 733.312505
+  type: 'test'
+  ...
+# Subtest: a big save still compressing when a puzzle starts lands in its network, and so does the next one
+ok 364 - a big save still compressing when a puzzle starts lands in its network, and so does the next one
+  ---
+  duration_ms: 499.270655
+  type: 'test'
+  ...
+# Subtest: leaving a puzzle when the network cannot be loaded marks it damaged, and Continue does not crash
+ok 365 - leaving a puzzle when the network cannot be loaded marks it damaged, and Continue does not crash
+  ---
+  duration_ms: 384.792724
+  type: 'test'
+  ...
+# Subtest: a corrupted index is rebuilt from the saves themselves
+ok 366 - a corrupted index is rebuilt from the saves themselves
+  ---
+  duration_ms: 797.231503
+  type: 'test'
+  ...
+# Subtest: out of room: the warning offers to free up space, listing the other networks by size
+ok 367 - out of room: the warning offers to free up space, listing the other networks by size
+  ---
+  duration_ms: 438.052037
+  type: 'test'
+  ...
+# Subtest: the networks list fits a 360 px phone and has a tap target and a ⋯ menu per network, in every language
+ok 368 - the networks list fits a 360 px phone and has a tap target and a ⋯ menu per network, in every language
+  ---
+  duration_ms: 2775.663637
+  type: 'test'
+  ...
+# Subtest: a save the game could not load is tried again: by the next version, or with Try again
+ok 369 - a save the game could not load is tried again: by the next version, or with Try again
+  ---
+  duration_ms: 438.801296
+  type: 'test'
+  ...
+# Subtest: AC-SOC-199 optional security controls start through shared dispatch and stay locked in read-only mode
+ok 370 - AC-SOC-199 optional security controls start through shared dispatch and stay locked in read-only mode
+  ---
+  duration_ms: 329.60352
+  type: 'test'
+  ...
+# Subtest: AC-SOC-200 typed controls, observations and synthetic diagnostics dispatch accurately; real calls use ordinary core interaction
+ok 371 - AC-SOC-200 typed controls, observations and synthetic diagnostics dispatch accurately; real calls use ordinary core interaction
+  ---
+  duration_ms: 377.192979
+  type: 'test'
+  ...
+# Subtest: service administration renders all optional pack starters and respects read-only mode
+ok 372 - service administration renders all optional pack starters and respects read-only mode
+  ---
+  duration_ms: 335.456831
+  type: 'test'
+  ...
+# Subtest: calling UI gives guided directory, media, routing, reception and synthetic emergency forms
+ok 373 - calling UI gives guided directory, media, routing, reception and synthetic emergency forms
+  ---
+  duration_ms: 358.282863
+  type: 'test'
+  ...
+# Subtest: workforce UI captures person rows, operator agreements, arrivals, forecasts and coaching
+ok 374 - workforce UI captures person rows, operator agreements, arrivals, forecasts and coaching
+  ---
+  duration_ms: 365.581868
+  type: 'test'
+  ...
+# Subtest: estate UI guides inventory, connectors, lifecycle revocations, device projects and transfers
+ok 375 - estate UI guides inventory, connectors, lifecycle revocations, device projects and transfers
+  ---
+  duration_ms: 408.933175
+  type: 'test'
+  ...
+# Subtest: AC-SOC-177 source units remain typed and the selected thresholds make no cash or bandwidth conversion
+ok 376 - AC-SOC-177 source units remain typed and the selected thresholds make no cash or bandwidth conversion
+  ---
+  duration_ms: 0.240988
+  type: 'test'
+  ...
+# Subtest: AC-SOC-178 sampling is minute-exact, inspection is pure, and a skipped minute is sticky failure
+ok 377 - AC-SOC-178 sampling is minute-exact, inspection is pure, and a skipped minute is sticky failure
+  ---
+  duration_ms: 2.20362
+  type: 'test'
+  ...
+# Subtest: AC-SOC-179 a real core save with no staffed journeys cannot qualify as sustained service
+ok 378 - AC-SOC-179 a real core save with no staffed journeys cannot qualify as sustained service
+  ---
+  duration_ms: 32.716171
+  type: 'test'
+  ...
+# Subtest: AC-SOC-180 licenses do not stand in for named people
+ok 379 - AC-SOC-180 licenses do not stand in for named people
+  ---
+  duration_ms: 7.116901
+  type: 'test'
+  ...
+# Subtest: AC-SOC-181 t10 independently requires voice, digital, meetings, concurrency and four assigned people
+ok 380 - AC-SOC-181 t10 independently requires voice, digital, meetings, concurrency and four assigned people
+  ---
+  duration_ms: 432.099506
+  type: 'test'
+  ...
+# Subtest: AC-SOC-182 transport continuity needs a real baseline and validated root dispatch
+ok 381 - AC-SOC-182 transport continuity needs a real baseline and validated root dispatch
+  ---
+  duration_ms: 20.191252
+  type: 'test'
+  ...
+# Subtest: AC-SOC-183 open-window configuration changes and failed resources cannot be repaired into a pass
+ok 382 - AC-SOC-183 open-window configuration changes and failed resources cannot be repaired into a pass
+  ---
+  duration_ms: 4.069796
+  type: 'test'
+  ...
+# Subtest: AC-SOC-184 save validation rejects forged pass statuses and worker source preserves the pure module API
+ok 383 - AC-SOC-184 save validation rejects forged pass statuses and worker source preserves the pure module API
+  ---
+  duration_ms: 5.520966
+  type: 'test'
+  ...
+# Subtest: AC-SOC-023 four carrier models have distinct prerequisites and mobile number restrictions
+ok 384 - AC-SOC-023 four carrier models have distinct prerequisites and mobile number restrictions
+  ---
+  duration_ms: 3.567926
+  type: 'test'
+  ...
+# Subtest: AC-SOC-024 number reservations, port lead times, cutover and recovery retain supplier history
+ok 385 - AC-SOC-024 number reservations, port lead times, cutover and recovery retain supplier history
+  ---
+  duration_ms: 5.481766
+  type: 'test'
+  ...
+# Subtest: AC-SOC-025 dial normalisation, permissions and internal extension signalling are independent of PSTN
+ok 386 - AC-SOC-025 dial normalisation, permissions and internal extension signalling are independent of PSTN
+  ---
+  duration_ms: 1.715749
+  type: 'test'
+  ...
+# Subtest: AC-SOC-026 contact integration models scope authentication, cloud and features separately
+ok 387 - AC-SOC-026 contact integration models scope authentication, cloud and features separately
+  ---
+  duration_ms: 2.787638
+  type: 'test'
+  ...
+# Subtest: AC-SOC-027 retry backoff, API acceptance and delivery evidence precede human handling
+ok 388 - AC-SOC-027 retry backoff, API acceptance and delivery evidence precede human handling
+  ---
+  duration_ms: 2.070763
+  type: 'test'
+  ...
+# Subtest: AC-SOC-028 webhook verification, deduplication, rate limits and receipt timeouts are observable
+ok 389 - AC-SOC-028 webhook verification, deduplication, rate limits and receipt timeouts are observable
+  ---
+  duration_ms: 2.650426
+  type: 'test'
+  ...
+# Subtest: AC-SOC-029 migration cohorts keep independent placements and restore through provisioning
+ok 390 - AC-SOC-029 migration cohorts keep independent placements and restore through provisioning
+  ---
+  duration_ms: 2.143182
+  type: 'test'
+  ...
+# Subtest: AC-SOC-030 conversation windows, consent, saved operations and worker results are reproducible
+ok 391 - AC-SOC-030 conversation windows, consent, saved operations and worker results are reproducible
+  ---
+  duration_ms: 7.347039
+  type: 'test'
+  ...
+# Subtest: AC-SOC-223 shared ringing pickup park and retrieval drive actual core phases, usage and terminal release
+ok 392 - AC-SOC-223 shared ringing pickup park and retrieval drive actual core phases, usage and terminal release
+  ---
+  duration_ms: 14.176065
+  type: 'test'
+  ...
+# Subtest: AC-SOC-224 shared failures enforce permissions, timeout, endpoint changes and occupancy restore links
+ok 393 - AC-SOC-224 shared failures enforce permissions, timeout, endpoint changes and occupancy restore links
+  ---
+  duration_ms: 15.758341
+  type: 'test'
+  ...
+# Subtest: alternate answering excludes this call transport reservation and consumes voice occupancy only in active/parked phases
+ok 394 - alternate answering excludes this call transport reservation and consumes voice occupancy only in active/parked phases
+  ---
+  duration_ms: 11.078069
+  type: 'test'
+  ...
+# Subtest: unavailable owner routes to an eligible alternate, and leaver failure releases active occupancy
+ok 395 - unavailable owner routes to an eligible alternate, and leaver failure releases active occupancy
+  ---
+  duration_ms: 9.459211
+  type: 'test'
+  ...
+# Subtest: AC-SOC-209 shared-services starter and line/presence forms use typed shared dispatch with readonly locking
+ok 396 - AC-SOC-209 shared-services starter and line/presence forms use typed shared dispatch with readonly locking
+  ---
+  duration_ms: 359.097751
+  type: 'test'
+  ...
+# Subtest: AC-SOC-210 shared call controls submit only selected live interaction IDs and never fake call completion
+ok 397 - AC-SOC-210 shared call controls submit only selected live interaction IDs and never fake call completion
+  ---
+  duration_ms: 344.592252
+  type: 'test'
+  ...
+# Subtest: AC-SOC-201 canonical tenant membership is staged and failed generations preserve prior effective lines
+ok 398 - AC-SOC-201 canonical tenant membership is staged and failed generations preserve prior effective lines
+  ---
+  duration_ms: 0.680613
+  type: 'test'
+  ...
+# Subtest: AC-SOC-202 member presence and line DND remain independent gates
+ok 399 - AC-SOC-202 member presence and line DND remain independent gates
+  ---
+  duration_ms: 0.398636
+  type: 'test'
+  ...
+# Subtest: AC-SOC-203 ringing and parked calls consume real shared-line occupancy capacity
+ok 400 - AC-SOC-203 ringing and parked calls consume real shared-line occupancy capacity
+  ---
+  duration_ms: 0.207848
+  type: 'test'
+  ...
+# Subtest: AC-SOC-204 observe, answer, DND, park, and retrieve permissions are evaluated separately
+ok 401 - AC-SOC-204 observe, answer, DND, park, and retrieve permissions are evaluated separately
+  ---
+  duration_ms: 0.307597
+  type: 'test'
+  ...
+# Subtest: AC-SOC-205 alternate pickup is deterministic, same-tenant, live, and endpoint-aware
+ok 402 - AC-SOC-205 alternate pickup is deterministic, same-tenant, live, and endpoint-aware
+  ---
+  duration_ms: 0.321203
+  type: 'test'
+  ...
+# Subtest: AC-SOC-206 park slots, independent permissions, retrieval, and timeout do not finish calls
+ok 403 - AC-SOC-206 park slots, independent permissions, retrieval, and timeout do not finish calls
+  ---
+  duration_ms: 0.309837
+  type: 'test'
+  ...
+# Subtest: AC-SOC-207 reads are pure and failed actions retain state-derived traces only
+ok 404 - AC-SOC-207 reads are pure and failed actions retain state-derived traces only
+  ---
+  duration_ms: 0.247446
+  type: 'test'
+  ...
+# Subtest: AC-SOC-208 worker source, save validation, occupancy lineage, and synthetic source IDs stay exact
+ok 405 - AC-SOC-208 worker source, save validation, occupancy lineage, and synthetic source IDs stay exact
+  ---
+  duration_ms: 2.068744
+  type: 'test'
+  ...
+# Subtest: retrieved member needs retrieve permission only and an active person cannot take a second call
+ok 406 - retrieved member needs retrieve permission only and an active person cannot take a second call
+  ---
+  duration_ms: 0.312462
+  type: 'test'
+  ...
+# Subtest: fingerprints ignore occupancy and historical configuration does not require a live member identity
+ok 407 - fingerprints ignore occupancy and historical configuration does not require a live member identity
+  ---
+  duration_ms: 0.266862
+  type: 'test'
+  ...
+# Subtest: AC-SOC-257 site exercises prove real cross-site baseline, surviving inbound calls and asynchronous backup restoration
+ok 408 - AC-SOC-257 site exercises prove real cross-site baseline, surviving inbound calls and asynchronous backup restoration
+  ---
+  duration_ms: 27.316163
+  type: 'test'
+  ...
+# Subtest: AC-SOC-351 site historical journeys survive a real interaction-ring eviction but recent deleted proof is rejected
+ok 409 - AC-SOC-351 site historical journeys survive a real interaction-ring eviction but recent deleted proof is rejected
+  ---
+  duration_ms: 1064.556868
+  type: 'test'
+  ...
+# Subtest: AC-SOC-258 site diversity requires power and whole-site failure of both sites plus an alternate shared-risk path
+ok 410 - AC-SOC-258 site diversity requires power and whole-site failure of both sites plus an alternate shared-risk path
+  ---
+  duration_ms: 44.210007
+  type: 'test'
+  ...
+# Subtest: AC-SOC-259 site probe failures remain saved and cannot award continuity when routes, power or media fail
+ok 411 - AC-SOC-259 site probe failures remain saved and cannot award continuity when routes, power or media fail
+  ---
+  duration_ms: 20.279052
+  type: 'test'
+  ...
+# Subtest: AC-SOC-260 site provisioning and restore reject unsupported ownership and unavailable backup dependencies
+ok 412 - AC-SOC-260 site provisioning and restore reject unsupported ownership and unavailable backup dependencies
+  ---
+  duration_ms: 19.819267
+  type: 'test'
+  ...
+# Subtest: AC-SOC-261 site worker command equivalence and endpoint migration use canonical transport bindings
+ok 413 - AC-SOC-261 site worker command equivalence and endpoint migration use canonical transport bindings
+  ---
+  duration_ms: 14.752319
+  type: 'test'
+  ...
+# Subtest: AC-SOC-262 site inventory stages validated canonical resources and keeps provisioning separate from effective/observed state
+ok 414 - AC-SOC-262 site inventory stages validated canonical resources and keeps provisioning separate from effective/observed state
+  ---
+  duration_ms: 0.698436
+  type: 'test'
+  ...
+# Subtest: AC-SOC-263 ln and m2 evidence requires effective distinct sites, a continuous journey under fault, restoration, and a fresh recovered journey
+ok 415 - AC-SOC-263 ln and m2 evidence requires effective distinct sites, a continuous journey under fault, restoration, and a fresh recovered journey
+  ---
+  duration_ms: 3.438138
+  type: 'test'
+  ...
+# Subtest: AC-SOC-264 same-power sites cannot claim power diversity and rejected commands leave state unchanged
+ok 416 - AC-SOC-264 same-power sites cannot claim power diversity and rejected commands leave state unchanged
+  ---
+  duration_ms: 0.278663
+  type: 'test'
+  ...
+# Subtest: AC-SOC-265 shared-risk tags must be backed by canonical transport-site domain evidence
+ok 417 - AC-SOC-265 shared-risk tags must be backed by canonical transport-site domain evidence
+  ---
+  duration_ms: 0.141971
+  type: 'test'
+  ...
+# Subtest: AC-SOC-266 shared-risk exercise uses the common canonical domain and requires journeys on both sides of restore
+ok 418 - AC-SOC-266 shared-risk exercise uses the common canonical domain and requires journeys on both sides of restore
+  ---
+  duration_ms: 0.280946
+  type: 'test'
+  ...
+# Subtest: AC-SOC-267 a failed current prerequisite leaves the last effective site config in place and exposes the rejected generation
+ok 419 - AC-SOC-267 a failed current prerequisite leaves the last effective site config in place and exposes the rejected generation
+  ---
+  duration_ms: 0.256484
+  type: 'test'
+  ...
+# Subtest: AC-SOC-268 a failed journey during the injected interval prevents continuity completion
+ok 420 - AC-SOC-268 a failed journey during the injected interval prevents continuity completion
+  ---
+  duration_ms: 0.247944
+  type: 'test'
+  ...
+# Subtest: AC-SOC-269 restore and continuity evidence go stale when canonical resource generations change
+ok 421 - AC-SOC-269 restore and continuity evidence go stale when canonical resource generations change
+  ---
+  duration_ms: 0.188962
+  type: 'test'
+  ...
+# Subtest: AC-SOC-270 an accepted restore receipt cannot complete unless backup resource configurations are actually restored
+ok 422 - AC-SOC-270 an accepted restore receipt cannot complete unless backup resource configurations are actually restored
+  ---
+  duration_ms: 0.34095
+  type: 'test'
+  ...
+# Subtest: AC-SOC-271 multi-site migration retains per-resource successes, retries only incomplete items, and rejects stale site generations
+ok 423 - AC-SOC-271 multi-site migration retains per-resource successes, retries only incomplete items, and rejects stale site generations
+  ---
+  duration_ms: 0.925509
+  type: 'test'
+  ...
+# Subtest: AC-SOC-272 save validation blocks forged completion, stale binding lineage, and worker-source drift
+ok 424 - AC-SOC-272 save validation blocks forged completion, stale binding lineage, and worker-source drift
+  ---
+  duration_ms: 2.023623
+  type: 'test'
+  ...
+# Subtest: AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions
+ok 425 - AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions
+  ---
+  duration_ms: 18.244586
+  type: 'test'
+  ...
+# Subtest: AC-SOC-287 historical site exercises remain valid across endpoint migration, return migration, and core trace pruning
+ok 426 - AC-SOC-287 historical site exercises remain valid across endpoint migration, return migration, and core trace pruning
+  ---
+  duration_ms: 1134.053967
+  type: 'test'
+  ...
+# Subtest: AC-SOC-274 site console dispatches typed continuity commands and prevents read-only changes
+ok 427 - AC-SOC-274 site console dispatches typed continuity commands and prevents read-only changes
+  ---
+  duration_ms: 656.815018
+  type: 'test'
+  ...
+# Subtest: AC-SOC-237 product lifecycle controls real sales and renewals without ending installed service
+ok 428 - AC-SOC-237 product lifecycle controls real sales and renewals without ending installed service
+  ---
+  duration_ms: 22.910204
+  type: 'test'
+  ...
+# Subtest: AC-SOC-238 product evidence requires actual support delegation and becomes stale on product change
+ok 429 - AC-SOC-238 product evidence requires actual support delegation and becomes stale on product change
+  ---
+  duration_ms: 3.988075
+  type: 'test'
+  ...
+# Subtest: sold product bindings remain a renewal obligation and a retained lineage row rejects one-sided save tampering
+ok 430 - sold product bindings remain a renewal obligation and a retained lineage row rejects one-sided save tampering
+  ---
+  duration_ms: 10.991696
+  type: 'test'
+  ...
+# Subtest: AC-SOC-235 lifecycle admin starts through dispatch and records typed axes for an effective deployment
+ok 431 - AC-SOC-235 lifecycle admin starts through dispatch and records typed axes for an effective deployment
+  ---
+  duration_ms: 329.514513
+  type: 'test'
+  ...
+# Subtest: AC-SOC-236 renewal controls require current evidence and show independent readiness without a raw command terminal
+ok 432 - AC-SOC-236 renewal controls require current evidence and show independent readiness without a raw command terminal
+  ---
+  duration_ms: 357.41548
+  type: 'test'
+  ...
+# Subtest: AC-SOC-227 sale, renewal and support evidence axes remain independent
+ok 433 - AC-SOC-227 sale, renewal and support evidence axes remain independent
+  ---
+  duration_ms: 0.611254
+  type: 'test'
+  ...
+# Subtest: AC-SOC-228 lifecycle evidence provisions after a tick and failed replacement preserves prior effective evidence
+ok 434 - AC-SOC-228 lifecycle evidence provisions after a tick and failed replacement preserves prior effective evidence
+  ---
+  duration_ms: 0.390193
+  type: 'test'
+  ...
+# Subtest: AC-SOC-229 version, feature and generation changes stale a previously ready record
+ok 435 - AC-SOC-229 version, feature and generation changes stale a previously ready record
+  ---
+  duration_ms: 0.197657
+  type: 'test'
+  ...
+# Subtest: AC-SOC-230 support-owner authority is checked again at provisioning and at current status
+ok 436 - AC-SOC-230 support-owner authority is checked again at provisioning and at current status
+  ---
+  duration_ms: 0.252786
+  type: 'test'
+  ...
+# Subtest: AC-SOC-231 missing effective products, dependencies or owner hooks fail closed
+ok 437 - AC-SOC-231 missing effective products, dependencies or owner hooks fail closed
+  ---
+  duration_ms: 0.219962
+  type: 'test'
+  ...
+# Subtest: AC-SOC-232 renewal checks create an audit receipt without mutating a financial contract
+ok 438 - AC-SOC-232 renewal checks create an audit receipt without mutating a financial contract
+  ---
+  duration_ms: 0.350136
+  type: 'test'
+  ...
+# Subtest: AC-SOC-233 lifecycle inspections are pure and saved receipts round trip exactly
+ok 439 - AC-SOC-233 lifecycle inspections are pure and saved receipts round trip exactly
+  ---
+  duration_ms: 0.535437
+  type: 'test'
+  ...
+# Subtest: AC-SOC-234 worker source factory matches main-thread transitions and rejects bad evidence dates
+ok 440 - AC-SOC-234 worker source factory matches main-thread transitions and rejects bad evidence dates
+  ---
+  duration_ms: 1.763879
+  type: 'test'
+  ...
+# Subtest: compiled page retains training labels and opens the configuration console
+ok 441 - compiled page retains training labels and opens the configuration console
+  ---
+  duration_ms: 458.316604
+  type: 'test'
+  ...
+# Subtest: training console exposes the advanced channel and outcomes controls
+ok 442 - training console exposes the advanced channel and outcomes controls
+  ---
+  duration_ms: 353.444461
+  type: 'test'
+  ...
+# Subtest: advanced UI submissions reach the real dispatcher with core-bound channel and need context
+ok 443 - advanced UI submissions reach the real dispatcher with core-bound channel and need context
+  ---
+  duration_ms: 842.734791
+  type: 'test'
+  ...
+# Subtest: product offer and deployment defaults use a viable real core binding through SOC.dispatch
+ok 444 - product offer and deployment defaults use a viable real core binding through SOC.dispatch
+  ---
+  duration_ms: 478.361381
+  type: 'test'
+  ...
+# Subtest: compiled product-evidence, media, and managed panels start through shared dispatch with correct root dependencies
+ok 445 - compiled product-evidence, media, and managed panels start through shared dispatch with correct root dependencies
+  ---
+  duration_ms: 529.592681
+  type: 'test'
+  ...
+# Subtest: compiled specialist starters are read-only in a non-owning tab
+ok 446 - compiled specialist starters are read-only in a non-owning tab
+  ---
+  duration_ms: 349.366086
+  type: 'test'
+  ...
+# Subtest: training form submits desired configuration, provisions and survives reload
+ok 447 - training form submits desired configuration, provisions and survives reload
+  ---
+  duration_ms: 842.755484
+  type: 'test'
+  ...
+# Subtest: only one tab edits; reopening reads the save written by the next owner
+ok 448 - only one tab edits; reopening reads the save written by the next owner
+  ---
+  duration_ms: 839.280342
+  type: 'test'
+  ...
+# Subtest: stale worker result replays against current configuration; close cancels work
+ok 449 - stale worker result replays against current configuration; close cancels work
+  ---
+  duration_ms: 437.379502
+  type: 'test'
+  ...
+# Subtest: worker errors use the synchronous validated command; absent locks prevent writes
+ok 450 - worker errors use the synchronous validated command; absent locks prevent writes
+  ---
+  duration_ms: 747.471109
+  type: 'test'
+  ...
+# Subtest: business forms provision required services and reconcile a billing period
+ok 451 - business forms provision required services and reconcile a billing period
+  ---
+  duration_ms: 583.521722
+  type: 'test'
+  ...
+# Subtest: operations forms expose onboarding, porting and deployment changes through shared commands
+ok 452 - operations forms expose onboarding, porting and deployment changes through shared commands
+  ---
+  duration_ms: 535.113813
+  type: 'test'
+  ...
+# Subtest: information forms provision processing policy and book a room through shared commands
+ok 453 - information forms provision processing policy and book a room through shared commands
+  ---
+  duration_ms: 518.309254
+  type: 'test'
+  ...
+# Subtest: contact forms provision IVR and schedule a callback without retaining the original session
+ok 454 - contact forms provision IVR and schedule a callback without retaining the original session
+  ---
+  duration_ms: 445.857383
+  type: 'test'
+  ...
+# Subtest: topology supports keyboard navigation and scaled pointer selection
+ok 455 - topology supports keyboard navigation and scaled pointer selection
+  ---
+  duration_ms: 374.411107
+  type: 'test'
+  ...
+# Subtest: transport save validation reconciles repair spares with stock purchases
+ok 456 - transport save validation reconciles repair spares with stock purchases
+  ---
+  duration_ms: 0.707764
+  type: 'test'
+  ...
+# Subtest: transport save validation prevents replaying an already charged billing period
+ok 457 - transport save validation prevents replaying an already charged billing period
+  ---
+  duration_ms: 0.25559
+  type: 'test'
+  ...
+# Subtest: transport save validation rejects deleting a period invoice and reducing the cost total
+ok 458 - transport save validation rejects deleting a period invoice and reducing the cost total
+  ---
+  duration_ms: 0.346224
+  type: 'test'
+  ...
+# Subtest: AC-SOC-127 purchased and owned construction has effective capacity only after the specified lead time
+ok 459 - AC-SOC-127 purchased and owned construction has effective capacity only after the specified lead time
+  ---
+  duration_ms: 0.42668
+  type: 'test'
+  ...
+# Subtest: AC-SOC-128 explicit bidirectional media profiles consume bandwidth independently from sessions and staff
+ok 460 - AC-SOC-128 explicit bidirectional media profiles consume bandwidth independently from sessions and staff
+  ---
+  duration_ms: 0.22466
+  type: 'test'
+  ...
+# Subtest: AC-SOC-129 shared domain failures disable parallel paths while an independent route permits recovery
+ok 461 - AC-SOC-129 shared domain failures disable parallel paths while an independent route permits recovery
+  ---
+  duration_ms: 0.306464
+  type: 'test'
+  ...
+# Subtest: optional site power domains are independent and legacy site saves retain their old schema
+ok 462 - optional site power domains are independent and legacy site saves retain their old schema
+  ---
+  duration_ms: 0.356176
+  type: 'test'
+  ...
+# Subtest: AC-SOC-130 owned repair consumes a spare and crew once and cannot clear an independent shared-domain fault
+ok 463 - AC-SOC-130 owned repair consumes a spare and crew once and cannot clear an independent shared-domain fault
+  ---
+  duration_ms: 0.276307
+  type: 'test'
+  ...
+# Subtest: AC-SOC-131 reconciled external costs and contract-backed access never bill the same lease twice
+ok 464 - AC-SOC-131 reconciled external costs and contract-backed access never bill the same lease twice
+  ---
+  duration_ms: 0.429164
+  type: 'test'
+  ...
+# Subtest: AC-SOC-132 worker source, saves and corrupted path/cost rejection preserve transport mechanics
+ok 465 - AC-SOC-132 worker source, saves and corrupted path/cost rejection preserve transport mechanics
+  ---
+  duration_ms: 1.202813
+  type: 'test'
+  ...
+# Subtest: AC-SOC-053 skill and language must belong to one available person
+ok 466 - AC-SOC-053 skill and language must belong to one available person
+  ---
+  duration_ms: 0.367328
+  type: 'test'
+  ...
+# Subtest: AC-SOC-054 one person cannot take concurrent voice or wrap work; digital concurrency is per person
+ok 467 - AC-SOC-054 one person cannot take concurrent voice or wrap work; digital concurrency is per person
+  ---
+  duration_ms: 0.250843
+  type: 'test'
+  ...
+# Subtest: AC-SOC-055 customer rosters are externally controlled; BPO needs scoped delegation
+ok 468 - AC-SOC-055 customer rosters are externally controlled; BPO needs scoped delegation
+  ---
+  duration_ms: 0.276117
+  type: 'test'
+  ...
+# Subtest: AC-SOC-056 desired roster provisions one minute later and does not erase active assignments
+ok 469 - AC-SOC-056 desired roster provisions one minute later and does not erase active assignments
+  ---
+  duration_ms: 0.232588
+  type: 'test'
+  ...
+# Subtest: AC-SOC-057 forecasts snapshot history and coaching costs time before adding skill
+ok 470 - AC-SOC-057 forecasts snapshot history and coaching costs time before adding skill
+  ---
+  duration_ms: 0.409059
+  type: 'test'
+  ...
+# Subtest: AC-SOC-058 save validation, deterministic worker source and repeated inspection are stable
+ok 471 - AC-SOC-058 save validation, deterministic worker source and repeated inspection are stable
+  ---
+  duration_ms: 1.244545
+  type: 'test'
+  ...
+1..471
+# tests 471
+# suites 0
+# pass 471
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 132455.758279

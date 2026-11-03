@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "source": "User-approved implementation plan supplied in this conversation, 2026-11-03",
+  "earlierConversation": "Not supplied separately. The preserved design document contains the earlier calling model and ecosystem expansion; do not invent additional interview evidence.",
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "topic": "Product",
+      "requirement": "Synthetic browser configuration training with a communications-business management campaign; guided lessons, assessed challenges and sandbox; outcome and constraint assessment accepts alternative solutions.",
+      "supersedes": "A management-game-only interpretation"
+    },
+    {
+      "id": "DEC-002",
+      "topic": "Repository",
+      "requirement": "Independent public zanefounty/series-of-calls repository without a GitHub fork relationship; preserve all upstream Git history, MIT licence and attribution; origin is the new repository and upstream is fjaeckel/seriesoftubes.",
+      "supersedes": "A GitHub fork relationship"
+    },
+    {
+      "id": "DEC-003",
+      "topic": "Baseline",
+      "requirement": "Use latest upstream main and reconcile the original mapping baseline, including save slots, background simulation, automation, puzzles, architect challenges, calendar and MCP.",
+      "supersedes": "Implement directly from 48e6200c532d486f79bc8376de0aecbf6169123b"
+    },
+    {
+      "id": "DEC-004",
+      "topic": "Sources",
+      "requirement": "Preserve both supplied files unchanged, including all JSON metadata, original attributes, predicates, implementation notes, references, counts, 217 file records, findings and limitations; record hashes, provenance and dates.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-005",
+      "topic": "Coverage",
+      "requirement": "Every substantive source item requires stable source, requirement, fictional representation, implementation and acceptance IDs. Generated complete appendices accompany explanatory behavioural specifications; semantic fidelity still needs human review.",
+      "supersedes": "A short brief or renamed-item catalogue as sufficient specification"
+    },
+    {
+      "id": "DEC-006",
+      "topic": "Fiction",
+      "requirement": "Gameplay uses fictional organisations, products and channels; all calls, messages, tenants, users and diagnostics remain synthetic. Preserve deployment, connectivity, integration and processing distinctions.",
+      "supersedes": "Real reference vendors as gameplay identities"
+    },
+    {
+      "id": "DEC-007",
+      "topic": "Scope",
+      "requirement": "Implement organisation roles, UC/calling, meetings/rooms, contact centre, CPaaS/messaging, third-party applications, AI/information, infrastructure/SP, commercial operations, market dynamics, government and defence.",
+      "supersedes": "A compact initial catalogue as final scope"
+    },
+    {
+      "id": "DEC-008",
+      "topic": "Training state",
+      "requirement": "Separate desired configuration, provisioning progress, effective configuration and observed service state. Each configurable family needs its own appropriate administration workflow and diagnostics.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-009",
+      "topic": "Interaction evidence",
+      "requirement": "Inspector explains intent, channel, dependencies, decisions, signalling, directional media, human/automated handling, records, obligations and cost. Synthetic protocol traces derive from actual simulated transitions.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-010",
+      "topic": "Workforce",
+      "requirement": "Telecommunications capacity, agent entitlement and available skilled people are independent. Staffing controls follow workforce operating responsibility.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-011",
+      "topic": "Execution",
+      "requirement": "Retain saved state, derived results and validated action dispatch; pure recalculation cannot bill, advance queues or consume randomness. Deterministic clocks, IDs and randomness; aggregate demand and bounded detailed traces; UI, automation and local MCP share command validation.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-012",
+      "topic": "Persistence",
+      "requirement": "Independent application, save schema, storage, cache, slot, lock and broadcast identities; clear rejection of ISP saves; version content and jurisdiction packs; worker serialization, stale-result rejection and synchronous fallback.",
+      "supersedes": "Accept old ISP saves as communications saves"
+    },
+    {
+      "id": "DEC-013",
+      "topic": "Campaign",
+      "requirement": "SMB digital service, enterprise acquisition/migration, government citizen service and defence administrative continuity; Australian, US, Japanese and EU-wide jurisdiction variants. EU-wide rules imply no member-state approvals.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-014",
+      "topic": "Physical network",
+      "requirement": "Retain physical network gameplay as an optional SP expansion; an MSP can purchase connectivity.",
+      "supersedes": "Mandatory physical-network construction before MSP play"
+    },
+    {
+      "id": "DEC-015",
+      "topic": "Enforcement",
+      "requirement": "Executable source integrity, specification coverage, catalogue, acceptance, upstream, freshness and release gates; negative tests for missing mappings/evidence, false completion, invalid relationships, stale upstream and expired jurisdiction reviews.",
+      "supersedes": "Filename presence or implemented flags as proof"
+    },
+    {
+      "id": "DEC-016",
+      "topic": "Upstream cadence",
+      "requirement": "Weekly and manual checks of pinned main and releases with complete commit/file inventories; last successful check, latest observed, classified, implemented/resolved and outstanding work are distinct. Every change is copy, adapt, already covered or explicitly excluded; exclusions need owner approval and rationale.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-017",
+      "topic": "Deadlines",
+      "requirement": "Classify within 7 days; ordinary adoption within 30 days; urgent fixes within 7 days; successful check no older than 14 days at release. Pending work permits development; overdue work blocks release. No watchdog or waiver subsystem.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-018",
+      "topic": "Adaptation agent",
+      "requirement": "Codex on a GitHub runner, isolated read-only generation and separate trusted bot PR writer; explicit checks for bot PRs, one active run, bounded attempts/time, source/runtime/model/change/test/usage records; leave failures visible. Agent cannot approve exclusions, extend deadlines, raise budgets or weaken gates.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-019",
+      "topic": "Budget and governance",
+      "requirement": "Dedicated API project with enforced US$25 monthly spending limit; keep execution disabled until credentials and enforcement exist. Slight provider overshoot is possible; no exact per-run dollar guarantee. Owner approval for bot changes; owner PRs may bypass review but never required checks. Governance changes need separate owner-reviewed PRs.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-020",
+      "topic": "Reference maintenance",
+      "requirement": "Monthly link and material-content observations, historical evidence and reviewer acceptance kept separate; never rewrite gameplay automatically. Active jurisdiction claims reviewed within 90 days.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-021",
+      "topic": "Release",
+      "requirement": "All supplied mappings, research and upstream additions verified or explicitly approved; reference and failing solutions for all assessed scenarios; browser desktop/mobile, keyboard, offline, replay, worker, concurrency and configuration progression checks; publish only eligible full build to https://zanefounty.github.io/series-of-calls/. Intermediate builds accurately labelled.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-022",
+      "topic": "Humour",
+      "requirement": "Preserve and appropriately transpose the original witty fictional names, comparisons and narrative into mapped communications roles. Keep source provenance, do not let flavour establish technical readiness, and retain outstanding narrative review.",
+      "supersedes": "Generic labels that discard the original comparison"
+    },
+    {
+      "id": "DEC-023",
+      "topic": "Community issue research",
+      "requirement": "Use cheaper-model agents to research the Cisco VoIP and VoiceOps Puck archives for candidate gameplay issues. Record primary thread evidence, historical uncertainty and proposed fictional acceptance cases; distinguish proposals from adopted requirements.",
+      "supersedes": null
+    },
+    {
+      "id": "DEC-024",
+      "topic": "First playable handoff",
+      "requirement": "Complete the full original agreed scope before the first playable handoff. Intermediate builds remain internal checkpoints; do not replace full completion with an early private playtest.",
+      "supersedes": "An early playable SMB checkpoint as the requested handoff"
+    },
+    {
+      "id": "DEC-025",
+      "topic": "Version artwork",
+      "requirement": "Regenerate coherent witty illustrated operations artwork for launch, four campaigns and optional SP, with responsive assets, installation icons, social preview, provenance and actual browser visual checks. Preserve source-linked humour and clear administration controls.",
+      "supersedes": "Retain missing upstream images or use the favicon as the social preview"
+    },
+    {
+      "id": "DEC-026",
+      "topic": "Complete verification",
+      "requirement": "Run all applicable original-app and adapted-app tests with locked dependencies, both real stdio MCP servers, browser MCP playthroughs and automated real-browser desktop/mobile/offline/keyboard/concurrent-tab tests. No blocked checks, dependency overrides or compact reference exercises count as full campaign acceptance.",
+      "supersedes": "Treat passing selected tests or headless MCP as sufficient first-play acceptance"
+    },
+    {
+      "id": "DEC-027",
+      "topic": "Archive expansion order",
+      "requirement": "Original scope first: retain the 23 already registered operator findings as core obligations; review the 75 archive proposals, but keep additional scenarios in later expansion rather than making every proposal a release requirement.",
+      "supersedes": null
+    }
+  ]
+}

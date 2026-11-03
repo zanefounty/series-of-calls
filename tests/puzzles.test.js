@@ -273,7 +273,7 @@ test('determinism and speed: the same build always gets the same stars, fast eno
 
 test('progress: the puzzle set with traffic starts the stars again once, with the old ones framed', () => {
   const { ev, errors } = load();
-  ev("localStorage.setItem('sot-puzzles',JSON.stringify({s:{hello:{st:3,sp:1},eurotrip:{st:2},gone:{st:3}},wk:{'2026-W40':{st:3,sp:9}},streak:{last:'2026-W40',n:2,best:4}}))");
+  ev("localStorage.setItem('soc-sp-puzzles',JSON.stringify({s:{hello:{st:3,sp:1},eurotrip:{st:2},gone:{st:3}},wk:{'2026-W40':{st:3,sp:9}},streak:{last:'2026-W40',n:2,best:4}}))");
   let p = JSON.parse(ev('JSON.stringify(pzLoad())'));
   assert.deepEqual(p.s, {}, 'old stars do not count in the new set');
   assert.equal(p.old, 8);
@@ -286,25 +286,25 @@ test('progress: the puzzle set with traffic starts the stars again once, with th
   assert.match(ev("document.getElementById('modalCard').textContent"), /Framed on the wall: 8 ⭐/);
   // New stars are kept under the new set.
   ev("pzBegin(pzDef('hello'))");build(ev, REF.hello.three);
-  p = JSON.parse(ev("localStorage.getItem('sot-puzzles')"));
+  p = JSON.parse(ev("localStorage.getItem('soc-sp-puzzles')"));
   assert.equal(p.set, 2);
   assert.equal(p.s.hello.st, 3);
   assert.equal(JSON.parse(ev('JSON.stringify(pzLoad())')).old, 8);
   // Bad data is ignored.
-  ev("localStorage.setItem('sot-puzzles',JSON.stringify({set:2,s:{hello:{st:99,sp:'x'},nope:{st:3}},old:'<b>',wk:{bad:{st:3}},streak:{n:-4,last:'<b>'}}))");
+  ev("localStorage.setItem('soc-sp-puzzles',JSON.stringify({set:2,s:{hello:{st:99,sp:'x'},nope:{st:3}},old:'<b>',wk:{bad:{st:3}},streak:{n:-4,last:'<b>'}}))");
   p = JSON.parse(ev('JSON.stringify(pzLoad())'));
   assert.deepEqual(p.s, { hello: { st: 3, sp: null } });
   assert.equal(p.old, null);
   assert.deepEqual(p.wk, {});
   assert.deepEqual(p.streak, { last: null, n: 0, best: 0 });
-  ev("localStorage.setItem('sot-puzzles','{nope')");
+  ev("localStorage.setItem('soc-sp-puzzles','{nope')");
   assert.equal(ev('pzStarsTotal(pzLoad())'), 0);
   // Packs unlock by the new stars.
-  ev("localStorage.removeItem('sot-puzzles')");
+  ev("localStorage.removeItem('soc-sp-puzzles')");
   assert.equal(ev("pzPackOpen('rodeo')"), false);
   ev("ACT.pzStart({id:'edgelord'})");
   assert.notEqual(ev('S.pz.id'), 'edgelord', 'a locked puzzle does not start');
-  ev("localStorage.setItem('sot-puzzles',JSON.stringify({set:2,s:{hello:{st:3},eurotrip:{st:3},bigboat:{st:2},shining:{st:2}}}))");
+  ev("localStorage.setItem('soc-sp-puzzles',JSON.stringify({set:2,s:{hello:{st:3},eurotrip:{st:3},bigboat:{st:2},shining:{st:2}}}))");
   assert.equal(ev("pzPackOpen('rodeo')"), true, '10 stars open pack 2');
   ev('ACT.puzzleMenu({})');
   assert.match(ev("document.getElementById('modalCard').textContent"), /Next pack, Traffic Cops, unlocks at 18/);
@@ -313,7 +313,7 @@ test('progress: the puzzle set with traffic starts the stars again once, with th
 
 test('results card: stars, the next puzzle, a retry, a share line and stars left in the pack', () => {
   const { ev, errors } = load();
-  ev("localStorage.removeItem('sot-puzzles');pzBegin(pzDef('eurotrip'))");
+  ev("localStorage.removeItem('soc-sp-puzzles');pzBegin(pzDef('eurotrip'))");
   build(ev, REF.eurotrip.one);
   assert.ok(ev("$('modal').hidden||!document.querySelector('#modalCard .pzres')"), 'two stars: no results card, play goes on');
   assert.match(ev("document.getElementById('toasts').textContent"), /One chaos monkey away/, 'a cheer with the next step instead');
@@ -332,9 +332,9 @@ test('results card: stars, the next puzzle, a retry, a share line and stars left
   assert.ok(ev("document.querySelector('#modalCard .btns.cta').classList.contains('pzdone')"));
   assert.match(ev("document.querySelector('#modalCard .pznext').textContent"), /Next puzzle →/);
   assert.equal(ev("document.querySelector('#modalCard [data-act=pzRetry]')"), null, 'no retry after three stars');
-  assert.match(ev('pzShareText(pzEval())'), /^Series of Tubes puzzle Euro Trip ⭐⭐⭐ \$[\d.]+[kM] · seriesoftub\.es$/);
+  assert.match(ev('pzShareText(pzEval())'), /^Series of Calls puzzle Euro Trip ⭐⭐⭐ \$[\d.]+[kM] · zanefounty\.github\.io\/series-of-calls\/$/);
   // The last puzzle points back to the list.
-  ev("localStorage.setItem('sot-puzzles',JSON.stringify({set:2,s:Object.fromEntries(PZ.map(p=>[p.id,{st:3}]))}));pzBegin(pzDef('samba'))");
+  ev("localStorage.setItem('soc-sp-puzzles',JSON.stringify({set:2,s:Object.fromEntries(PZ.map(p=>[p.id,{st:3}]))}));pzBegin(pzDef('samba'))");
   build(ev, REF.samba.three);
   assert.match(ev("document.querySelector('#modalCard .pznext').textContent"), /More puzzles/);
   assert.match(ev("document.getElementById('modalCard').textContent"), /Every star in this pack is yours/);
@@ -343,7 +343,7 @@ test('results card: stars, the next puzzle, a retry, a share line and stars left
 
 test('best spend: kept for the best star count, and a cheaper build at the same stars counts', () => {
   const { ev, errors } = load();
-  ev("localStorage.removeItem('sot-puzzles');pzBegin(pzDef('braces'))");
+  ev("localStorage.removeItem('soc-sp-puzzles');pzBegin(pzDef('braces'))");
   const rec = () => JSON.parse(ev("JSON.stringify(pzLoad().s.braces||null)"));
   build(ev, REF.braces.three);
   const three = evalP(ev);
@@ -374,10 +374,10 @@ test('weekly puzzle (seeded stand-in): stable per week, carries traffic, its ref
     build(ev, wi.ref.map((x, j) => [x, wi.ref[(j + 1) % wi.ref.length], wi.refVia[j], 0]));
     assert.equal(evalP(ev).stars, 3, `week +${i}`);
   }
-  ev("localStorage.removeItem('sot-puzzles');pzBegin(pzWeekly(new Date(2026,9,28)))");
+  ev("localStorage.removeItem('soc-sp-puzzles');pzBegin(pzWeekly(new Date(2026,9,28)))");
   build(ev, w.ref.map((x, j) => [x, w.ref[(j + 1) % w.ref.length], w.refVia[j], 0]));
-  assert.match(ev('pzShareText(pzEval())'), /^Series of Tubes puzzle 2026-W44 ⭐⭐⭐ \$[\d.]+[kM] · seriesoftub\.es$/);
-  assert.equal(ev("JSON.parse(localStorage.getItem('sot-puzzles')).streak.n"), 1);
+  assert.match(ev('pzShareText(pzEval())'), /^Series of Calls puzzle 2026-W44 ⭐⭐⭐ \$[\d.]+[kM] · zanefounty\.github\.io\/series-of-calls\/$/);
+  assert.equal(ev("JSON.parse(localStorage.getItem('soc-sp-puzzles')).streak.n"), 1);
   ev("const p=pzLoad();pzStreak(p,'2026-W45');pzStreak(p,'2026-W45');pzStreak(p,'2026-W46');window.__p=p");
   assert.equal(ev('__p.streak.n'), 3);
   ev("pzStreak(__p,'2026-W49')");
@@ -454,7 +454,7 @@ test('the main save is byte-identical before and after playing and solving a puz
   build(ev, REF.hello.three);
   ev("save(true);for(let i=0;i<5;i++)frame(performance.now()+6000*i);window.dispatchEvent(new Event('pagehide'));ACT.exportSave({})");
   assert.equal(ev("slotRaw(UI.slot||window.__slot)"), before, 'untouched while in the puzzle');
-  assert.equal(ev("JSON.parse(localStorage.getItem('sot-puzzles')).s.hello.st"), 3, 'the stars are kept');
+  assert.equal(ev("JSON.parse(localStorage.getItem('soc-sp-puzzles')).s.hello.st"), 3, 'the stars are kept');
   ev('ACT.pzLeave({})');
   assert.equal(ev('S.mode'), 'normal');
   assert.equal(ev('S.name'), name);

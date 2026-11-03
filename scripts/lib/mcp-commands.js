@@ -509,6 +509,7 @@ const API_CMD={
 };
 
 const API_VIEW={
+ training:{args:[],doc:'Open the Series of Calls communications training console.'},
  help:{args:[],doc:'Open the how-to-play modal.'},
  dash:{args:[],doc:'Open the NOC dashboard.'},
  dashClose:{args:[],doc:'Close the NOC dashboard.'},
@@ -622,6 +623,7 @@ const API_SESSION={
 };
 
 const API_STATE_DOC={
+ socApp:{type:'string',doc:'The Series of Calls application marker included in its canonical save envelope.'},
  v:{type:'integer',doc:'Save format version.'},
  name:{type:'string',doc:'Your network\'s name.'},
  asn:{type:'integer',doc:'Your AS number.'},

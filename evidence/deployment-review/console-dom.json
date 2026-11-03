@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-03T14:14:58.242Z",
+  "status": "passed",
+  "scope": "compiled DOM only; not real-browser acceptance",
+  "starts": 19,
+  "controls": 10,
+  "prerequisite": "Tenant and identity submitted through calling console; directory advanced to effective state before shared-services start",
+  "dependency": "external jsdom 30.0.1"
+}

@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-169 source rows, original reward and unit distinctions remain explicit
+ok 1 - AC-SOC-169 source rows, original reward and unit distinctions remain explicit
+  ---
+  duration_ms: 1.883589
+  type: 'test'
+  ...
+# Subtest: AC-SOC-170 each control stages desired, provisioning, effective and observed state separately
+ok 2 - AC-SOC-170 each control stages desired, provisioning, effective and observed state separately
+  ---
+  duration_ms: 0.56997
+  type: 'test'
+  ...
+# Subtest: AC-SOC-171 packet batches use PPS by explicit second and reads never consume or reset the bucket
+ok 3 - AC-SOC-171 packet batches use PPS by explicit second and reads never consume or reset the bucket
+  ---
+  duration_ms: 0.935677
+  type: 'test'
+  ...
+# Subtest: AC-SOC-172 SIP authentication, methods, validity and attempts per second are independent of PPS
+ok 4 - AC-SOC-172 SIP authentication, methods, validity and attempts per second are independent of PPS
+  ---
+  duration_ms: 0.49796
+  type: 'test'
+  ...
+# Subtest: AC-SOC-173 outbound preflight checks all controls and destination prefixes without mutating state
+ok 5 - AC-SOC-173 outbound preflight checks all controls and destination prefixes without mutating state
+  ---
+  duration_ms: 1.080449
+  type: 'test'
+  ...
+# Subtest: AC-SOC-174 per-minute spend is reserved before core billing and settles only against attributable minute rows
+ok 6 - AC-SOC-174 per-minute spend is reserved before core billing and settles only against attributable minute rows
+  ---
+  duration_ms: 1.746709
+  type: 'test'
+  ...
+# Subtest: AC-SOC-175 validators reject invalid linked usage, restore exact saves and serialize worker code
+ok 7 - AC-SOC-175 validators reject invalid linked usage, restore exact saves and serialize worker code
+  ---
+  duration_ms: 15.042896
+  type: 'test'
+  ...
+# Subtest: AC-SOC-176 synthetic attacks cannot stand in for an admitted, resolved and reconciled voice call
+ok 8 - AC-SOC-176 synthetic attacks cannot stand in for an admitted, resolved and reconciled voice call
+  ---
+  duration_ms: 0.482017
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34.890813

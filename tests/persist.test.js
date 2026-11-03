@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const { build } = require('../scripts/build');
 const { load } = require('./harness');
 
 const OUT = require('node:fs').mkdtempSync(require('node:path').join(require('node:os').tmpdir(), 'tubes-build-'));
@@ -15,7 +15,7 @@ function playedGame() {
 
 test('a reload drops you straight back into your saved network', () => {
   const { saved, day } = playedGame();
-  const b = load({ storage: { 'sot-save-v1': saved } });
+  const b = load({ storage: { 'soc-sp-save-v1': saved } });
   assert.equal(b.ev('UI.started'), true);
   assert.equal(b.ev('S.day'), day);
   assert.equal(b.ev('UI.speed'), 2, 'game speed is remembered');
@@ -34,7 +34,7 @@ test('a save too big for the browser is not retried every few seconds, but leavi
   const a = load();
   // A storage that counts tries and refuses the game save, like a full quota.
   a.ev(`window.__tries=0;window.__full=true;const P=Object.getPrototypeOf(localStorage),set=P.setItem;
-    P.setItem=function(k,v){if(k.startsWith('sot-save-v1')){__tries++;if(__full){const e=new Error('full');e.name='QuotaExceededError';throw e;}}return set.call(this,k,v);};
+    P.setItem=function(k,v){if(k.startsWith('soc-sp-save-v1')){__tries++;if(__full){const e=new Error('full');e.name='QuotaExceededError';throw e;}}return set.call(this,k,v);};
     ACT.start({});for(let i=0;i<7;i++)dayTick();__tries=0;UI.saveFail=null;save()`);
   assert.equal(a.ev('__tries'), 1);
   a.ev('save();save();after()');
@@ -64,14 +64,14 @@ test('customer names already used are remembered once each, and old saves shrink
 
 test('returning players see what is new after an update, once', () => {
   const { saved } = playedGame();
-  execFileSync(process.execPath, ['scripts/build.js'], { cwd: root, env: { ...process.env, OUT, VERSION: '1.1.0', BUILD_DATE: '2026-10-23' } });
+  build({out:OUT,version:'1.1.0',date:'2026-10-23'});
   const file = path.join(OUT, 'index.html');
-  const b = load({ file, storage: { 'sot-save-v1': saved, 'sot-seen-version': '1.0.0' } });
+  const b = load({ file, storage: { 'soc-sp-save-v1': saved, 'soc-sp-seen-version': '1.0.0' } });
   const text = b.ev("document.getElementById('modalCard').textContent");
-  assert.match(text, /New in Series of Tubes 1\.1\.0/);
+  assert.match(text, /New in Series of Calls 1\.1\.0/);
   assert.match(text, /Spätzle-IX/);
-  assert.equal(b.ev("localStorage.getItem('sot-seen-version')"), '1.1.0');
-  const c = load({ file, storage: { 'sot-save-v1': saved, 'sot-seen-version': '1.1.0' } });
+  assert.equal(b.ev("localStorage.getItem('soc-sp-seen-version')"), '1.1.0');
+  const c = load({ file, storage: { 'soc-sp-save-v1': saved, 'soc-sp-seen-version': '1.1.0' } });
   assert.equal(c.ev("document.getElementById('modal').hidden"), true, 'not shown again');
 });
 

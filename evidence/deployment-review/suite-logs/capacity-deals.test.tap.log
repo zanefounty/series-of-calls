@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: \#168 only some conferences sell sponsorships, and a sponsor gets more local customers
+ok 1 - \#168 only some conferences sell sponsorships, and a sponsor gets more local customers
+  ---
+  duration_ms: 776.176577
+  type: 'test'
+  ...
+# Subtest: \#168 a capacity conference brings big deals you can sign before you build
+ok 2 - \#168 a capacity conference brings big deals you can sign before you build
+  ---
+  duration_ms: 420.984089
+  type: 'test'
+  ...
+# Subtest: \#168 missing the delivery date costs a penalty and the deal
+ok 3 - \#168 missing the delivery date costs a penalty and the deal
+  ---
+  duration_ms: 380.419338
+  type: 'test'
+  ...
+# Subtest: \#168 saves keep sponsorships and pending deals, and old saves still load
+ok 4 - \#168 saves keep sponsorships and pending deals, and old saves still load
+  ---
+  duration_ms: 375.118483
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9921.889296

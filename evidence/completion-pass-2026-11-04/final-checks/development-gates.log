@@ -1,0 +1,5 @@
+PASS source
+PASS coverage
+PASS mapping
+PASS catalogue
+FAIL Behaviour implementation absent from tested inputs

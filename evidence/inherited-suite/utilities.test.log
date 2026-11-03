@@ -1,0 +1,33 @@
+✔ redundancy kit matches normal purchases, including cash, monthly costs and save reload (940.349339ms)
+✔ kit is all-or-nothing, rejects stale quotes and handles missing PoPs (261.095733ms)
+✔ kit buys only missing components and preserves extra routers and service placement (300.099741ms)
+✔ bulk peering covers rival IXs, respects policy and is idempotent (336.906352ms)
+✔ bulk peering skips disconnected IXs, route server coverage and existing down sessions (300.204702ms)
+✖ utilities are available from the Ops sheet in the menu and from PoP Infra in every language (259.512158ms)
+✔ join all route servers preserves existing sessions and covers rival and remote IX ports (328.491405ms)
+✔ route-server batch leaves peering policy and player-owned exchanges alone (295.299348ms)
+✔ #192 the Infra tab shows the kit as one line, without repeating its rows (538.039794ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3877.651426
+
+✖ failing tests:
+
+test at tests/utilities.test.js:92:1
+✖ utilities are available from the Ops sheet in the menu and from PoP Infra in every language (259.512158ms)
+  ReferenceError: SIGNAL is not defined
+      at Object.menu (https://tests.invalid/:11431:58)
+      at eval (eval at ev (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/harness.js:57:34), <anonymous>:1:5)
+      at eval (<anonymous>)
+      at ev (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/harness.js:57:34)
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/utilities.test.js:95:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)

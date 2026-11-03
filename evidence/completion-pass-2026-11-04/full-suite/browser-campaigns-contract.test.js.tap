@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: AC-SOC-395 compact browser matrix includes every scenario, jurisdiction and mode exactly once
+ok 1 - AC-SOC-395 compact browser matrix includes every scenario, jurisdiction and mode exactly once
+  ---
+  duration_ms: 1.037671
+  type: 'test'
+  ...
+# Subtest: AC-SOC-396 each SOC.reference command has a visible browser action mapping for all 48 profiles
+ok 2 - AC-SOC-396 each SOC.reference command has a visible browser action mapping for all 48 profiles
+  ---
+  duration_ms: 9.323116
+  type: 'test'
+  ...
+# Subtest: AC-SOC-397 core reference paths satisfy SOC.assess across the full profile matrix without hidden pack setup
+ok 3 - AC-SOC-397 core reference paths satisfy SOC.assess across the full profile matrix without hidden pack setup
+  ---
+  duration_ms: 42.375262
+  type: 'test'
+  ...
+# Subtest: AC-SOC-398 browser selection and diagnostic limit are configurable but bounded
+ok 4 - AC-SOC-398 browser selection and diagnostic limit are configurable but bounded
+  ---
+  duration_ms: 0.512341
+  type: 'test'
+  ...
+# Subtest: AC-SOC-399 reference clock mapping preserves every minute for 1 through 1440 minute advances
+ok 5 - AC-SOC-399 reference clock mapping preserves every minute for 1 through 1440 minute advances
+  ---
+  duration_ms: 0.218094
+  type: 'test'
+  ...
+# Subtest: AC-SOC-400 only a complete error-free locked-version browser matrix can report passed
+ok 6 - AC-SOC-400 only a complete error-free locked-version browser matrix can report passed
+  ---
+  duration_ms: 0.41336
+  type: 'test'
+  ...
+# Subtest: AC-SOC-401 page wait predicates use the lexical SCT binding and the mapped config submits through real UI dispatch
+ok 7 - AC-SOC-401 page wait predicates use the lexical SCT binding and the mapped config submits through real UI dispatch
+  ---
+  duration_ms: 795.817586
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1183.312884

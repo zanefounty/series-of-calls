@@ -1,14 +1,21 @@
-<!-- One small feature or one fix per pull request, please. See CONTRIBUTING.md. -->
+<!-- Keep the change narrow and explain the user-visible result. See CONTRIBUTING.md. -->
 
-## What and why
+## Change
 
-## How it was tested
+What changed, and why?
 
-<!-- Tests added or changed, and what you checked by hand (phone width, both orientations, Italian). -->
+## Evidence and boundaries
 
-## Performance
+- Acceptance IDs and exact behaviours covered:
+- Negative case or failure condition:
+- Source/research provenance, if relevant:
+- Remaining limitations:
+- Confirm new material may be shared under the project's contribution terms, once those terms are confirmed:
 
-<!-- Changes to src/ must show their performance on a big network. The Performance check posts the
-     numbers as a comment on this PR. Locally:
-       npm run perf -- --base-ref origin/main
-     Explain anything marked slower. -->
+## Verification
+
+- Commands and results:
+- Save/worker/replay or browser checks, if relevant:
+- UI sizes/locales checked, if relevant:
+
+<!-- Do not claim full source coverage, legal approval, provider certification, or upstream endorsement from a narrow test result. -->

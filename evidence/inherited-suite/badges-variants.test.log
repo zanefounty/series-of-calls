@@ -1,0 +1,17 @@
+✔ every save without a preset plays On-call and earns the standard badge (602.392576ms)
+✔ Change Freeze earns frosted badges and BGP at 3 a.m. fiery ones, shown in the toast and the list (558.230855ms)
+✔ Sandbox and puzzles earn no badges (784.323685ms)
+✔ a harder preset upgrades a badge, an easier one never downgrades it (294.855639ms)
+✔ the collection counts badges per variant on this device, and fits a phone (262.22028ms)
+✔ old saves and old halls of fame keep loading, as standard badges (276.037047ms)
+✔ the share card rings the variant badges (254.690366ms)
+✔ a variant named after an Object prototype key is not a variant (256.904904ms)
+✔ "Badge upgraded" means the collection on this device got a better variant (287.128194ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8795.142078

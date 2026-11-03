@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: Best Effort is a Normal preset with its own rules, kept through save and load
+ok 1 - Best Effort is a Normal preset with its own rules, kept through save and load
+  ---
+  duration_ms: 779.608802
+  type: 'test'
+  ...
+# Subtest: Best Effort: a subsea cut mends on its own clock, with no cable ship
+ok 2 - Best Effort: a subsea cut mends on its own clock, with no cable ship
+  ---
+  duration_ms: 800.653142
+  type: 'test'
+  ...
+# Subtest: Best Effort: no conference season
+ok 3 - Best Effort: no conference season
+  ---
+  duration_ms: 460.320196
+  type: 'test'
+  ...
+# Subtest: Best Effort: customers sour half as fast
+ok 4 - Best Effort: customers sour half as fast
+  ---
+  duration_ms: 787.564353
+  type: 'test'
+  ...
+# Subtest: Best Effort: deep in the red, a rescue loan instead of game over
+ok 5 - Best Effort: deep in the red, a rescue loan instead of game over
+  ---
+  duration_ms: 474.219321
+  type: 'test'
+  ...
+# Subtest: quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything
+ok 6 - quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything
+  ---
+  duration_ms: 379.169645
+  type: 'test'
+  ...
+# Subtest: the title screen offers Best Effort first, and it earns Freeze-dried badges
+ok 7 - the title screen offers Best Effort first, and it earns Freeze-dried badges
+  ---
+  duration_ms: 335.56818
+  type: 'test'
+  ...
+# Subtest: Best Effort: PNIs and their augments are up the moment they are ordered
+ok 8 - Best Effort: PNIs and their augments are up the moment they are ordered
+  ---
+  duration_ms: 428.745588
+  type: 'test'
+  ...
+# Subtest: no "attracts attacks" warning where nobody attacks
+ok 9 - no "attracts attacks" warning where nobody attacks
+  ---
+  duration_ms: 331.191301
+  type: 'test'
+  ...
+# Subtest: Series of Calls SP preferences ignore the original game storage identity
+ok 10 - Series of Calls SP preferences ignore the original game storage identity
+  ---
+  duration_ms: 659.678942
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12000.404888

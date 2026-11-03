@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: service administration renders all optional pack starters and respects read-only mode
+ok 1 - service administration renders all optional pack starters and respects read-only mode
+  ---
+  duration_ms: 666.45621
+  type: 'test'
+  ...
+# Subtest: calling UI gives guided directory, media, routing, reception and synthetic emergency forms
+ok 2 - calling UI gives guided directory, media, routing, reception and synthetic emergency forms
+  ---
+  duration_ms: 424.291995
+  type: 'test'
+  ...
+# Subtest: workforce UI captures person rows, operator agreements, arrivals, forecasts and coaching
+ok 3 - workforce UI captures person rows, operator agreements, arrivals, forecasts and coaching
+  ---
+  duration_ms: 375.567424
+  type: 'test'
+  ...
+# Subtest: estate UI guides inventory, connectors, lifecycle revocations, device projects and transfers
+ok 4 - estate UI guides inventory, connectors, lifecycle revocations, device projects and transfers
+  ---
+  duration_ms: 386.613054
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2173.136268

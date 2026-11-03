@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: diversity map: the indexed graph answers like disjointRoutes() over every possible link
+ok 1 - diversity map: the indexed graph answers like disjointRoutes() over every possible link
+  ---
+  duration_ms: 19929.26926
+  type: 'test'
+  ...
+# Subtest: link curves: skipping far-away cities gives the same bend around the ones in the way
+ok 2 - link curves: skipping far-away cities gives the same bend around the ones in the way
+  ---
+  duration_ms: 2029.746681
+  type: 'test'
+  ...
+# Subtest: land test: the bounding box shortcut agrees with walking every coastline
+ok 3 - land test: the bounding box shortcut agrees with walking every coastline
+  ---
+  duration_ms: 2496.765694
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24820.522388

@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: C1 played: every scenario has a reference strategy and a shortcut that fails
+ok 1 - C1 played: every scenario has a reference strategy and a shortcut that fails
+  ---
+  duration_ms: 668.651517
+  type: 'test'
+  ...
+# Subtest: stg: the reference wins in its days, the shortcut does not
+ok 2 - stg: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2743.204489
+  type: 'test'
+  ...
+# Subtest: redsea: the reference wins in its days, the shortcut does not
+ok 3 - redsea: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1698.67904
+  type: 'test'
+  ...
+# Subtest: spat: the reference wins in its days, the shortcut does not
+ok 4 - spat: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 824.933769
+  type: 'test'
+  ...
+# Subtest: carnaval: the reference wins in its days, the shortcut does not
+ok 5 - carnaval: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 782.123454
+  type: 'test'
+  ...
+# Subtest: darien: the reference wins in its days, the shortcut does not
+ok 6 - darien: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1251.645375
+  type: 'test'
+  ...
+# Subtest: c2c: the reference wins in its days, the shortcut does not
+ok 7 - c2c: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1357.161588
+  type: 'test'
+  ...
+# Subtest: ixbr: the reference wins in its days, the shortcut does not
+ok 8 - ixbr: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2278.146281
+  type: 'test'
+  ...
+# Subtest: gangnam: the reference wins in its days, the shortcut does not
+ok 9 - gangnam: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1385.521994
+  type: 'test'
+  ...
+# Subtest: flood: the reference wins in its days, the shortcut does not
+ok 10 - flood: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 992.340569
+  type: 'test'
+  ...
+# Subtest: fttb: the reference wins in its days, the shortcut does not
+ok 11 - fttb: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1637.699752
+  type: 'test'
+  ...
+# Subtest: baltic: the reference wins in its days, the shortcut does not
+ok 12 - baltic: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 999.039978
+  type: 'test'
+  ...
+# Subtest: pac: the reference wins in its days, the shortcut does not
+ok 13 - pac: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1734.438654
+  type: 'test'
+  ...
+# Subtest: atl: the reference wins in its days, the shortcut does not
+ok 14 - atl: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1971.686899
+  type: 'test'
+  ...
+# Subtest: gangnam: Seoul transit and Kay-Tea does not win
+ok 15 - gangnam: Seoul transit and Kay-Tea does not win
+  ---
+  duration_ms: 797.615265
+  type: 'test'
+  ...
+# Subtest: gangnam: everything from Tokyo does not win
+ok 16 - gangnam: everything from Tokyo does not win
+  ---
+  duration_ms: 655.102067
+  type: 'test'
+  ...
+# Subtest: gangnam: the 1.x reference does not win
+ok 17 - gangnam: the 1.x reference does not win
+  ---
+  duration_ms: 1031.175411
+  type: 'test'
+  ...
+# Subtest: gangnam: Tokyo haul, Seoul transit first does not win
+ok 18 - gangnam: Tokyo haul, Seoul transit first does not win
+  ---
+  duration_ms: 1006.810609
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 32492.634712

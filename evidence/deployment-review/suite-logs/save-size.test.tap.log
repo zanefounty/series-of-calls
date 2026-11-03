@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: \#176 a save that does not fit tells the player once, with Export, and the menu says so
+ok 1 - \#176 a save that does not fit tells the player once, with Export, and the menu says so
+  ---
+  duration_ms: 721.86969
+  type: 'test'
+  ...
+# Subtest: \#176 storage that is blocked altogether gets its own advice
+ok 2 - \#176 storage that is blocked altogether gets its own advice
+  ---
+  duration_ms: 373.769402
+  type: 'test'
+  ...
+# Subtest: \#176 saves leave customer defaults out, and loading puts them back exactly
+ok 3 - \#176 saves leave customer defaults out, and loading puts them back exactly
+  ---
+  duration_ms: 404.15201
+  type: 'test'
+  ...
+# Subtest: \#176 an older, unpacked save still loads the same
+ok 4 - \#176 an older, unpacked save still loads the same
+  ---
+  duration_ms: 384.858022
+  type: 'test'
+  ...
+# Subtest: \#176 small saves stay plain JSON, written at once
+ok 5 - \#176 small saves stay plain JSON, written at once
+  ---
+  duration_ms: 363.348977
+  type: 'test'
+  ...
+# Subtest: \#176 a huge save is gzipped into storage and the next visit loads it
+ok 6 - \#176 a huge save is gzipped into storage and the next visit loads it
+  ---
+  duration_ms: 892.402622
+  type: 'test'
+  ...
+# Subtest: \#176 a newer save is never overwritten by an older one still compressing
+ok 7 - \#176 a newer save is never overwritten by an older one still compressing
+  ---
+  duration_ms: 504.210218
+  type: 'test'
+  ...
+# Subtest: \#176 a damaged compressed save is kept, marked damaged, and the player is told
+ok 8 - \#176 a damaged compressed save is kept, marked damaged, and the player is told
+  ---
+  duration_ms: 313.657611
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9818.323373

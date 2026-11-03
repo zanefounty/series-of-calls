@@ -1,0 +1,19 @@
+{
+  "revision": 1,
+  "sources": [
+    {
+      "path": "research/source/Series of Calls communications ecosystem design.md",
+      "sha256": "7317a73af47b91a8804ea83bfc837b521a5a38630e68e7acb2b7e1fe364fa5b3",
+      "originalPath": "/mnt/c/Users/User/Downloads/Series of Calls communications ecosystem design.md",
+      "originalModifiedAt": "2026-11-03T04:26:45.111036+00:00",
+      "importedAt": "2026-11-03T04:54:25.463707+00:00"
+    },
+    {
+      "path": "research/source/series-of-calls-full-mapping.json",
+      "sha256": "a971dd4fca10b44d258288b790631a963987999a272d1b5bc1780f31550c18af",
+      "originalPath": "/mnt/c/Users/User/Downloads/series-of-calls-full-mapping.json",
+      "originalModifiedAt": "2026-11-03T04:26:23.680720+00:00",
+      "importedAt": "2026-11-03T04:54:25.551084+00:00"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: CLI capture returns exact stdout and stderr from a real child
+ok 1 - CLI capture returns exact stdout and stderr from a real child
+  ---
+  duration_ms: 21.556998
+  type: 'test'
+  ...
+# Subtest: CLI capture throws with status and both streams for a nonzero child
+ok 2 - CLI capture throws with status and both streams for a nonzero child
+  ---
+  duration_ms: 19.758833
+  type: 'test'
+  ...
+# Subtest: CLI capture reports timeout and preserves output written before timeout
+ok 3 - CLI capture reports timeout and preserves output written before timeout
+  ---
+  duration_ms: 2007.559783
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2059.964543

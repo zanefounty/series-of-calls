@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: \#62 a redundancy check computes only the trial, and matches comparing two fresh routings
+ok 1 - \#62 a redundancy check computes only the trial, and matches comparing two fresh routings
+  ---
+  duration_ms: 697.906824
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5878.256117

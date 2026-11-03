@@ -1,0 +1,242 @@
+{
+  "source": "Cisco VoIP mailing list archive",
+  "archiveIndex": "https://puck.nether.net/pipermail/cisco-voip/",
+  "checkedAt": "2026-11-03",
+  "method": {
+    "selection": "Bounded sample of primary archive threads found through archive-indexed search, across dial plans, provisioning, transfers, media, rooms/endpoints, interoperation and migration. No bulk crawl performed.",
+    "retrievalGap": "The archive root and month indexes returned cache/access errors in the available web reader. Search-indexed primary post pages or original archive attachment pages were accessible. Selection is not exhaustive and does not establish prevalence.",
+    "evidenceCaveat": "Mailing-list posts are historical and anecdotal. Reports, participant hypotheses and claimed remedies are recorded as such, not treated as verified current vendor behaviour or support policy. Product versions are included only where visible in the archived discussion."
+  },
+  "status": "research-proposals-pending-review",
+  "findings": [
+    {
+      "id": "RES-CISCO-VOIP-001",
+      "threadId": "021307",
+      "title": "SIP Load and Re-Invite",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+      "posted": "2011-04-15",
+      "versionContext": "CUCM before 8.5 is explicitly discussed; no complete deployed version matrix is stated.",
+      "issue": "A participant explains that hold/resume and supplementary call operations could leave media inactive when a third-party endpoint returned an inactive SDP answer where the older call flow expected send/receive media. The thread also discusses the changed behavior in CUCM 8.5.",
+      "evidenceType": "Technical explanation in a list discussion, including a cited release-note description; not a controlled reproduction report.",
+      "outcome": "Historical version-dependent interoperability behavior is described; no specific customer call is confirmed as repaired in this thread.",
+      "uncertainty": "Applies to the described historical offer/answer behavior and counterpart implementations; not a general claim about current SIP endpoints.",
+      "existingMechanicOrGap": "The calling pack reports codec, encryption, NAT and quality dimensions. The core can show signalling success with failed media, but does not model hold/resume SDP negotiation or endpoint-specific offer/answer contracts. Candidate source: uc-new:domain:media, uc-new:domain:signalling.",
+      "gameplayProposal": {
+        "scenario": "A fictional Orchard room endpoint and Disco desk phone share a SIP trunk; hold, resume or transfer can leave one leg's media inactive when the two endpoint profiles disagree.",
+        "dependencies": ["endpoint offer-answer profile", "trunk early-offer profile", "hold/resume sequence", "codec-change support"],
+        "positiveAcceptance": "When both endpoint profiles accept the negotiated resume offer, signalling and both media directions recover after hold/resume.",
+        "negativeAcceptance": "When the far endpoint returns an incompatible inactive answer, retain successful signalling but report the affected media leg as inactive and identify the profile interaction; do not claim the historical version behavior is universal."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-002",
+      "threadId": "035734",
+      "title": "One-way audio after BLIND transfer to SIP Trunk",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+      "posted": "2014-04-30",
+      "versionContext": "CUCM, CUBE and a Lync interoperation example are mentioned; exact versions are not stated in the initial report.",
+      "issue": "A reported phone-to-phone call transferred blindly through a CUBE/SIP trunk to an external mobile had one-way audio. Replies discuss SDP direction attributes and a SIP-profile option limited to early-offer trunks; one participant says header manipulation fixed a separate instance.",
+      "evidenceType": "Customer-style incident report plus troubleshooting suggestions and a separate claimed fix.",
+      "outcome": "The archive does not confirm that the original reporter's call was fixed. A reply reports one other instance repaired with SBC header manipulation.",
+      "uncertainty": "SDP address appearance alone did not establish working RTP in the report. The proposed profile setting is conditional on early offer and should not become a blanket remedy.",
+      "existingMechanicOrGap": "The core supports blind transfer journeys only in narrow forms and the calling pack models directional media, but not transfer-leg SDP renegotiation or trunk-profile-specific behavior. Candidate source: uc-new:domain:media, uc-new:domain:signalling, uc-new:domain:continuity.",
+      "gameplayProposal": {
+        "scenario": "A call transferred from an internal desk through a fictional Bellwether trunk to an off-network test endpoint creates a new media leg with a mismatched direction attribute.",
+        "dependencies": ["transfer type", "trunk offer mode", "mid-call media profile", "SBC interworking policy"],
+        "positiveAcceptance": "A compatible early-offer profile completes the blind transfer and both endpoints report media in both directions.",
+        "negativeAcceptance": "A direction mismatch leaves the destination leg one-way while signalling remains established; the diagnosis names the synthetic leg/profile and does not prescribe header rewriting as universally safe."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-003",
+      "threadId": "031722",
+      "title": "Transfer using BLF Speed Dial on 9.1",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+      "posted": "2013-04-02",
+      "versionContext": "Thread title identifies CUCM 9.1; a reply identifies phone firmware 9.3.2 as the suspected bug.",
+      "issue": "A 9951 with expansion module could place calls using a busy-lamp-field speed dial, but using that key during a transfer created another call instead of completing transfer. Manual destination dialing worked.",
+      "evidenceType": "Reproducible report across two systems and a reply attributing it to a particular firmware bug.",
+      "outcome": "Reply recommends an engineering special; archive does not include the reporter's confirmation of the fix.",
+      "uncertainty": "The firmware cause and remedy are participant-attributed and bound to an old release; no present-day product claim is implied.",
+      "existingMechanicOrGap": "The core's transfer flow does not model BLF/presence buttons, endpoint key sequences or firmware-gated transfer behavior. Candidate source: uc-new:domain:continuity, uc-new:family:cisco:dedicated-premises.",
+      "gameplayProposal": {
+        "scenario": "A fictional desk endpoint has a working directory shortcut but a firmware-gated transfer-key sequence.",
+        "dependencies": ["endpoint firmware", "BLF presence binding", "transfer state", "target availability"],
+        "positiveAcceptance": "With a compatible firmware profile, selecting the monitored destination while transfer is pending completes the original call transfer.",
+        "negativeAcceptance": "With an incompatible firmware profile, the same key starts a second call and leaves the first transfer pending; manual dialing remains a distinct diagnostic control."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-004",
+      "threadId": "031839",
+      "title": "quick question about sip and CUBE",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+      "posted": "2013-04-10",
+      "versionContext": "A reply notes that CUCM 8.x and later can accept a SIP trunk on all nodes; the exact customer's version is not identified.",
+      "issue": "An inbound INVITE reached a CUCM node that was not in the trunk's device-pool call-manager group and received a 503. The thread explains that trunk ingress node membership and dial-peer node preference must align; changing preference resolved calls for the reporter.",
+      "evidenceType": "Specific error diagnosis and participant-reported configuration resolution.",
+      "outcome": "The reporter states that reversing publisher/subscriber dial-peer preference made calls work; the discussion also points to all-node trunk operation in later versions.",
+      "uncertainty": "This is a historical cluster/trunk routing example, not a claim that all 503 responses have this cause.",
+      "existingMechanicOrGap": "The foundation has generic trunk readiness and route matching but does not model ingress-node membership, cluster call-manager groups or SIP device-handler matching. Candidate source: uc-new:domain:signalling, uc-new:domain:directory-dialplan, uc-new:domain:provisioning.",
+      "gameplayProposal": {
+        "scenario": "A fictional multi-node call service receives a trunk INVITE on a node outside the trunk's effective node set.",
+        "dependencies": ["cluster node membership", "trunk device pool", "ingress target", "route preference", "release capability"],
+        "positiveAcceptance": "A request arriving at an allowed trunk node matches the configured service and proceeds to dial-plan evaluation.",
+        "negativeAcceptance": "A request delivered to a disallowed node returns a synthetic device-handler rejection even when the destination number is valid; adjusting preference or enabling a supported all-node mode repairs only after provisioning."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-005",
+      "threadId": "048395",
+      "title": "UCCX not working after change to SIP",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+      "posted": "2019-10-13",
+      "versionContext": "CUCM/UCCX/CUBE releases are not stated in the archived post.",
+      "issue": "After replacing an ISDN/H.323 gateway path with centralized SIP, a UCCX IVR call received a 404 despite a reported dial-peer match. A reply suggests CSS/partition visibility or SIP-trunk device-pool context as hypotheses.",
+      "evidenceType": "Incident report plus unconfirmed troubleshooting hypotheses.",
+      "outcome": "No resolution is present in the sampled post; the proposed causes remain hypotheses.",
+      "uncertainty": "The thread is incomplete and does not prove the suggested class-of-service or device-pool cause.",
+      "existingMechanicOrGap": "The current dial-plan path has simple ordered routes and permissions but not inherited partition/search-space context or migration comparison between old and new gateway ingress. Candidate source: uc-new:domain:directory-dialplan, uc-new:domain:migration.",
+      "gameplayProposal": {
+        "scenario": "A fictional IVR cutover changes inbound transport while retaining the old destination pattern; the new trunk's search context cannot see one service target.",
+        "dependencies": ["inbound trunk context", "route partition", "calling search scope", "IVR service identity", "cutover cohort"],
+        "positiveAcceptance": "A target visible from the new SIP ingress resolves and the IVR continues after staged cutover.",
+        "negativeAcceptance": "An otherwise existing target outside the new trunk's search scope returns a synthetic not-found result; testing the legacy path separately does not mark the new path healthy."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-006",
+      "threadId": "033901",
+      "title": "7945 phone has wrong time and can't verify config",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+      "posted": "2013-11-05",
+      "versionContext": "7945 SCCP firmware and CUCM are discussed; one load predates Olson timezone handling. Exact CUCM release is not stated.",
+      "issue": "A registered phone displayed the wrong time and did not appear to apply current load or configuration. Replies raise wrong provisioned device type, stale firmware/time-zone compatibility and malformed or incomplete configuration XML as possible causes.",
+      "evidenceType": "Incident report with multiple participant hypotheses; no single cause confirmed in this message.",
+      "outcome": "Possible checks are suggested, but the sampled thread does not confirm the original device was repaired.",
+      "uncertainty": "Several distinct causes are mentioned and must stay separate in a scenario; registration is not evidence that every configuration field took effect.",
+      "existingMechanicOrGap": "The foundation observes resource readiness and firmware version but does not represent downloaded configuration generations, parsing errors, timezone schema compatibility or observed-vs-effective endpoint settings. Candidate source: uc-new:domain:provisioning, uc-new:domain:discovery.",
+      "gameplayProposal": {
+        "scenario": "A synthetic endpoint registers while retaining an older active configuration because its declared model or timezone schema does not match the assigned profile.",
+        "dependencies": ["endpoint model", "firmware parser capability", "configuration schema version", "timezone data", "TFTP/config integrity"],
+        "positiveAcceptance": "A compatible model/load parses the current configuration and observed time/config generation matches the effective assignment.",
+        "negativeAcceptance": "An unsupported field or corrupted synthetic config leaves the prior observed generation intact and exposes a parse/model mismatch even though registration remains up."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-007",
+      "threadId": "041045",
+      "title": "8831 stuck on logo on keypad",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+      "posted": "2015-10-28",
+      "versionContext": "The report names active phone load 9.3.3.5 and an attempted 10.3.1 SR load; a reply describes a hardware revision requiring the newer load.",
+      "issue": "A phone remained registered and reachable while its keypad display was stuck at a logo; the inactive firmware load reported an internal phone error. A responder associated the symptoms with a hardware revision/load requirement.",
+      "evidenceType": "Specific field report and participant's claimed matching diagnosis based on another recent case.",
+      "outcome": "The archived response says the hardware-revision requirement explained the symptom in the responder's case; the thread does not establish a universal fix or show final outcome for the original device.",
+      "uncertainty": "Model revision and load compatibility are scenario-specific; registration and reachability do not imply usable display or successful upgrade.",
+      "existingMechanicOrGap": "The estate pack already proposes firmware compatibility and per-device upgrade status; this thread supports separately tracking active-load registration, inactive-load failure and hardware revision. Candidate source: uc-new:domain:provisioning, uc-new:domain:discovery.",
+      "gameplayProposal": {
+        "scenario": "A desk endpoint registers on its previous load, while a hardware subrevision rejects the staged image and leaves a local UI function unavailable.",
+        "dependencies": ["endpoint hardware revision", "target firmware compatibility", "upgrade result", "display/UI capability"],
+        "positiveAcceptance": "A compatible target image installs and post-upgrade checks confirm both registration and display capability.",
+        "negativeAcceptance": "A rejected upgrade leaves the prior active load registered but marks the display capability failed; a ping/registration check alone cannot pass the device acceptance."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-008",
+      "threadId": "046676",
+      "title": "webkit fun!",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+      "posted": "2018-09-14 to 2018-09-17",
+      "versionContext": "A CE 9.3.3 endpoint and an older TC-software room endpoint are distinguished; exact model versions beyond those are not required here.",
+      "issue": "A room endpoint's local configuration could be overwritten by CUCM on reset; a participant explains that CUCM-managed provisioning can send supported endpoint changes back through SIP. The report also notes that an endpoint SIP URI changed across reset/registration and affected reachability/interoperation.",
+      "evidenceType": "Question plus reply describing the provisioning synchronization flow and supporting SIP traces.",
+      "outcome": "The reply identifies CUCM provisioning mode as the synchronization boundary; the thread does not document a final resolution for the URI/dialing symptom.",
+      "uncertainty": "The behavior is tied to endpoint model/software and managed-provisioning mode; local GUI edits are not generally authoritative.",
+      "existingMechanicOrGap": "The estate package can track provisioning, and the calling package tracks aliases, but neither currently models room-endpoint capability, authoritative configuration source or SIP-URI identity drift. Candidate source: uc-new:domain:provisioning, uc-new:domain:identity, uc-new:family:cisco:dedicated-premises.",
+      "gameplayProposal": {
+        "scenario": "A fictional room endpoint has CUCM-managed and local settings with a service-domain URI; unsupported local edits revert, while an approved setting is synchronized back through the control plane.",
+        "dependencies": ["endpoint family/software mode", "authoritative provisioning source", "SIP URI mapping", "registration domain", "supported setting list"],
+        "positiveAcceptance": "A supported change sent through the configured management path persists after reset and the room endpoint remains reachable by its canonical URI.",
+        "negativeAcceptance": "An unsupported local change reverts and an alias pointing at the stale URI fails; do not infer feature parity between CE and TC endpoints."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-009",
+      "threadId": "050355",
+      "title": "MRA Onboarding via activation code... phone trust list?",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+      "followUpUrl": "https://puck.nether.net/pipermail/cisco-voip/2021-December/050399.html",
+      "posted": "2021-11-05 to 2021-12-01",
+      "versionContext": "An 8845 activation-code onboarding flow is discussed; Jabber MRA worked in the reporter's environment, phone onboarding did not.",
+      "issue": "The activation-code phone completed cloud handshake but failed TLS to the edge, while Jabber MRA worked. Replies distinguish the phone firmware's CA trust list; a later thread reply reports that adding the needed certificate chain to the phone-edge trust path allowed registration.",
+      "evidenceType": "Incident report, troubleshooting exchange and later participant-reported resolution.",
+      "outcome": "The follow-up reports successful phone registration after trust-chain handling; it is not a statement of current recommended certificate operations.",
+      "uncertainty": "Trust stores and onboarding flows vary by endpoint firmware and service version; never treat one endpoint's success as proof another endpoint trusts the same CA.",
+      "existingMechanicOrGap": "The core has generic certificates and external connectivity dependencies but not per-endpoint trust roots, activation-code enrollment or separate client-versus-phone MRA capability. Candidate source: uc-new:domain:provisioning, uc-new:domain:signalling, uc-new:family:cisco:dedicated-premises.",
+      "gameplayProposal": {
+        "scenario": "A fictional room phone and desktop client use the same edge service but different trust bundles during remote onboarding.",
+        "dependencies": ["activation-code eligibility", "endpoint firmware trust roots", "edge certificate chain", "phone-edge trust distribution", "DNS/reachability"],
+        "positiveAcceptance": "A phone whose trust bundle accepts the edge chain enrolls and registers; the client and room phone are evaluated independently.",
+        "negativeAcceptance": "A client succeeds while the phone fails TLS with an explicit trust-chain reason; adding a compatible synthetic trust anchor and reprovisioning enables retry."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-010",
+      "threadId": "1ee03a22",
+      "title": "Expressway Clustering...",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+      "posted": "2022-05-12 to 2022-05-14",
+      "versionContext": "Expressway-E cluster setup; exact release not stated. The accessible archive item is the original thread's HTML attachment rather than its ordinary message page.",
+      "issue": "A newly formed cluster was operational but raised a peer-not-responding warning for a LocalZone that was not visible in the expected GUI. The thread later reports packet captures showing RAS UDP traffic without replies and says allowing that traffic cleared the warning.",
+      "evidenceType": "Incident report followed by participant-reported packet-capture diagnosis and firewall change.",
+      "outcome": "The reporter says the error cleared after the firewall allowance; cluster service had been described as operational even while the warning appeared.",
+      "uncertainty": "The exact cluster build and full network path are absent; do not generalize the port or hidden-zone symptoms beyond the scenario's declared dependency.",
+      "existingMechanicOrGap": "Current local infrastructure checks generic DNS/time/certificates, but does not model control-plane packets, cluster peer health, hidden inherited zones or stale provisioned objects. Candidate source: uc-new:domain:signalling, uc-new:domain:continuity, uc-new:family:cisco:dedicated-premises.",
+      "gameplayProposal": {
+        "scenario": "A fictional edge cluster forms while an inherited local traversal dependency remains invisible in the console and peer-control traffic is blocked.",
+        "dependencies": ["cluster peer state", "declared traversal zone", "control-plane transport policy", "observed packet counters", "management visibility"],
+        "positiveAcceptance": "After the required fictional control-plane path is reachable and the inherited object is reconciled, the peer warning clears while service remains available.",
+        "negativeAcceptance": "A green cluster membership indicator does not hide a failed peer diagnostic; an unconfigured or blocked control path retains a distinct warning and recovery action."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-011",
+      "threadId": "033565",
+      "title": "Import on CUCM Several Failed Devices",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+      "posted": "2013-10-09",
+      "versionContext": "A Business Edition 5000 to 6000 migration at the same software version is stated; device/import tooling version is not specified.",
+      "issue": "A device import had partial failures. A participant reports that moving user identifiers from a legacy field to the owner-user field reduced failures; another remaining unique-constraint issue was tied to inactive numbers in the later reply.",
+      "evidenceType": "Migration incident with participant-reported reduction in failures and further unresolved data-integrity question.",
+      "outcome": "Some import errors were attributed to inactive entries and addressed in discussion; a duplicate pickup-group line constraint remained a manual or unresolved concern for additional customers.",
+      "uncertainty": "The observed field mapping is specific to the migration/import path and does not establish a universal schema rule.",
+      "existingMechanicOrGap": "The estate package proposes staged migration and per-item failure/retry. Current product migration has cohort-level checks but not a source-field mapping audit, inactive-record filtering or uniqueness-conflict queue. Candidate source: uc-new:domain:migration, uc-new:domain:discovery, uc-new:domain:identity.",
+      "gameplayProposal": {
+        "scenario": "A fictional customer imports a bounded endpoint cohort from one platform version to another; stale owner fields, inactive number records and duplicate line associations cause only some rows to fail.",
+        "dependencies": ["source-field mapping", "active identity status", "unique line ownership", "target schema", "per-item import receipts"],
+        "positiveAcceptance": "Correctly mapped active rows migrate once, preserve ownership, and remain placed only after target verification.",
+        "negativeAcceptance": "Inactive or conflicting rows fail independently with retained evidence; retrying after data correction does not duplicate successful rows or overwrite a newer target edit."
+      }
+    },
+    {
+      "id": "RES-CISCO-VOIP-012",
+      "threadId": "048059",
+      "title": "CUCM SU release cycle",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+      "posted": "2019-08-21",
+      "versionContext": "The discussion compares older CUCM releases and virtualization baselines; the post lists legacy phone models that a proposed target release would no longer support.",
+      "issue": "Participants discuss an upgrade path constrained by a change in supported virtualization baselines and endpoint models that would no longer register after upgrade; a bridge upgrade path is raised as a question.",
+      "evidenceType": "Upgrade-planning discussion and participant-reported compatibility warning, not a complete authoritative compatibility matrix.",
+      "outcome": "The thread signals a need to validate the destination release and endpoint inventory; it does not document one system's completed migration.",
+      "uncertainty": "Exact support varies by release, device and compatibility matrix. The archive list is historical and must not be reused as current support data.",
+      "existingMechanicOrGap": "The estate package proposes firmware/platform compatibility and rollback; it does not yet require a target-release support audit across hypervisor baseline and endpoint models before starting migration. Candidate source: uc-new:domain:migration, uc-new:domain:provisioning, uc-new:domain:discovery.",
+      "gameplayProposal": {
+        "scenario": "A fictional platform upgrade changes both host baseline and supported endpoint inventory; some phones would be stranded if cutover proceeded without a compatibility plan.",
+        "dependencies": ["source and target release", "virtualization baseline", "endpoint model/firmware inventory", "bridge upgrade path", "replacement or retained legacy cluster"],
+        "positiveAcceptance": "A staged upgrade proceeds only after every in-scope endpoint has a supported target path or an explicitly retained compatible service path.",
+        "negativeAcceptance": "The upgrade is blocked or leaves an explicit failed cohort when a target release drops a device; a successful publisher upgrade alone cannot mark endpoints migrated."
+      }
+    }
+  ]
+}

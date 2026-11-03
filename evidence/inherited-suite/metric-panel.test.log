@@ -1,0 +1,10 @@
+✔ #131 switching the custom metric mode re-renders even while the field has focus (1103.974548ms)
+✔ #131 the daily re-render still keeps a half-typed value (620.669923ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6811.07865

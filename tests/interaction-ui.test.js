@@ -1,0 +1,7 @@
+const test=require('node:test'),assert=require('node:assert/strict'),{load}=require('./harness');
+test('AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states',()=>{const h=load(),w=h.dom.window;try{
+ h.ev("SCT.state=SOC.dispatch(SOC.create(),{type:'operations',command:{action:'start'}});SCT.state=SOC.dispatch(SCT.state,{type:'advance',minutes:1});SCT.locked=true;socRender();");
+ let f=w.document.querySelector('#soc-journey-controls form');f.elements.direction.value='inbound';f.elements.direction.dispatchEvent(new w.Event('change'));assert.equal(f.elements.from.value,'+12125550199');f.elements.direction.value='outbound';f.elements.direction.dispatchEvent(new w.Event('change'));assert.equal(f.elements.from.value,'alex');f.elements.direction.value='inbound';f.elements.direction.dispatchEvent(new w.Event('change'));f.dispatchEvent(new w.Event('submit',{cancelable:true}));assert.equal(h.ev('SCT.state.interactions.at(-1).direction'),'inbound');assert.equal(h.ev('SCT.state.interactions.at(-1).phase'),'queued');
+ for(const state of ['SCT.locked=false','SCT.locked=true;SCT.busy=true']){h.ev(state+';socRender();');f=w.document.querySelector('#soc-journey-controls form');const before=h.ev('JSON.stringify(SCT.state)');assert.equal(f.querySelector('fieldset').disabled,true);f.dispatchEvent(new w.Event('submit',{cancelable:true}));assert.equal(h.ev('JSON.stringify(SCT.state)'),before);}
+ assert.deepEqual(h.errors,[]);
+}finally{h.dom.window.close();}});

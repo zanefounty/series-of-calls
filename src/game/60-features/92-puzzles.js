@@ -6,7 +6,7 @@
    transit port (t.pz, which takes no router port), a circuit is an L2VPN customer, eyeballs are broadband with a fixed
    demand. That S is never saved. Only progress (stars and best spend per puzzle, weekly results and the weekly streak)
    is kept, under its own key, so the main save is never touched. */
-const PZ_KEY='sot-puzzles',PZ_YEAR=12,PZ_SET=2;
+const PZ_KEY='soc-sp-puzzles',PZ_YEAR=12,PZ_SET=2;
 const pzOn=()=>!!(S&&S.mode==='puzzle'&&S.pz);
 const pzDef=id=>PZ.find(p=>p.id===id)||null;
 // goal: a city the traffic starts or ends in; via: a suggested stepping stone; avoid: off limits; off: any other city

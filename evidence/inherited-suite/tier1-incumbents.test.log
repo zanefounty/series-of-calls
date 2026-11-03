@@ -1,0 +1,13 @@
+✔ #194 Doitsche Telekomm and Tangerine Telecom are Tier 1s (623.200592ms)
+✔ #194 new games need both for Tier 1, old saves keep their set (266.307904ms)
+✔ #194 the Road to Tier 1 names them when the PNIs are missing (301.124127ms)
+✔ #194 Doitsche sells the dearest transit in Europe and still charges for peering; Tangerine sells it cheaper (268.696335ms)
+✔ #194 the network list shows them as Tier 1 on a phone (281.266065ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6964.265214

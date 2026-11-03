@@ -137,7 +137,7 @@
     settle();
     return { savedBy: r.ver, ...status() };
   };
-  const exportSave = (version) => JSON.stringify({ app: 'series-of-tubes', version: /^\d/.test(APP_VERSION) ? APP_VERSION : version, exported: new Date().toISOString(), S: packSave(S) });
+  const exportSave = (version) => JSON.stringify({ app: 'series-of-calls-sp', version: /^\d/.test(APP_VERSION) ? APP_VERSION : version, exported: new Date().toISOString(), S: packSave(S) });
 
   // ---------- reading the network ----------
   const status = () => {
@@ -145,7 +145,7 @@
     const t1 = isTier1();
     return {
       name: S.name, asn: S.asn, home: cityName(S.home), mode: S.mode, rules: S.rules && S.rules.preset,
-      day: S.day, date: dateStr(S.day), cash: Math.round(S.cash), level: S.lvl || 0,
+      day: S.day, date: dateStr(S.day), cash: Math.round(S.cash), level: S.lvl || 1,
       tier: tierLabel(), whyNotTier1: t1 ? null : text(t1Why()),
       goal: goal ? { title: text(goal.t), what: text(goal.d) } : null,
       monthly: { revenue: Math.round(R.revMo), cost: Math.round(R.costMo), profit: Math.round(R.revMo - R.costMo),

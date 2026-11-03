@@ -1,0 +1,69 @@
+{
+  "contentVersion": 1,
+  "description": "Synthetic digital channel profiles, default permissions/configuration, and fictional comparison copy.",
+  "runtime": {
+    "channels": [
+      "chatterleaf",
+      "letterbox",
+      "casechat"
+    ],
+    "defaults": {
+      "chatterleaf": {
+        "sender": "orchard-business",
+        "approvedSender": true,
+        "purposes": [
+          "service",
+          "transactional",
+          "promotional",
+          "appointment"
+        ],
+        "approvedTemplates": [
+          "service-outside-window",
+          "appointment-reminder"
+        ],
+        "responseWindowMinutes": 24,
+        "localDependencyAvailable": true
+      },
+      "letterbox": {
+        "sender": "orchard-support",
+        "verifiedSender": true,
+        "purposes": [
+          "service",
+          "transactional",
+          "promotional",
+          "appointment"
+        ],
+        "templates": [
+          "transaction-update",
+          "case-receipt",
+          "appointment-confirmation"
+        ],
+        "asynchronous": true,
+        "localDependencyAvailable": true
+      },
+      "casechat": {
+        "origin": "https://support.orchard.example",
+        "authenticated": true,
+        "purposes": [
+          "service",
+          "transactional"
+        ],
+        "templates": [
+          "case-update",
+          "handoff-note"
+        ],
+        "sessionMinutes": 30,
+        "localDependencyAvailable": true
+      }
+    },
+    "witty": {
+      "chatterleaf": "Chatterleaf Business — the reply window is a polite knock, not a battering ram.",
+      "letterbox": "Letterbox Service — the letter can arrive later; it does not become a read receipt by optimism.",
+      "casechat": "Casechat Web — a session key matters; a familiar case number is not one."
+    }
+  },
+  "sourceIds": [
+    "DESIGN-2359d2e6225d9ba1",
+    "DESIGN-41bd82de734f0424"
+  ]
+}

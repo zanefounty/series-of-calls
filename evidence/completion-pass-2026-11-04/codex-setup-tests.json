@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-03T21:07:28.116502+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/codex",
+    "-p",
+    "test_setup.py"
+  ],
+  "exitCode": 0,
+  "inputs": {
+    ".codex/config.toml": "48249c82769c79ca92f3114c2269f7e3c7665b9f329a870ca061871aa3de2bac",
+    ".codex/agents/soc_builder.toml": "c7c4d6be75108521a959769e1763ecec813eed0502a8775d5002aeabbd0f1854",
+    ".codex/agents/soc_research.toml": "1fd241a303b09b71eed3924277c1d0dc6b76549f452d936f9f3461a3d36e8942",
+    ".codex/agents/soc_upstream.toml": "b34179b0e57595d0b9bd47e39fbb1fdc6f980d99d98edb21403450185b97fae8",
+    ".codex/agents/soc_verifier.toml": "e7f3fe0022e4f6976e3bc0334a82f55ea37473d9428a6acc911bdeae3815895b",
+    "maintenance/codex/preflight.py": "00357c70bd9124e6c6269ce41efa077fb27dc5a435731f629bc5bff24fb0f19b",
+    "maintenance/codex/prepare-user-config.py": "777c6ce2ed4dea0858ebd6c1b7e69a5460bc8f9869441b909ffef1f8e818178d",
+    "maintenance/codex/test_setup.py": "dd5385d76d6c2d102bb4302761b4c98f384c1976a44ec6f919b2e05fded6c1ac"
+  },
+  "scope": "Eight local configuration migration/path checks. Native client discovery, model access and browser startup remain unverified."
+}

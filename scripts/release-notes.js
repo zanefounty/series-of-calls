@@ -6,7 +6,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const version = process.argv[2], story = process.argv.includes('--story');
+function releaseNotes(version, story=false) {
 const text = fs.readFileSync(path.join(__dirname, '..', 'CHANGELOG.md'), 'utf8');
 const lines = text.split('\n');
 const start = lines.findIndex((l) => l.startsWith(`## [${version}]`));
@@ -28,5 +28,8 @@ if (story) {
     }
     if (cur.length) paras.push(cur.join(' '));
   }
-  process.stdout.write(JSON.stringify(paras));
-} else process.stdout.write(JSON.stringify(notes));
+  return JSON.stringify(paras);
+} else return JSON.stringify(notes);
+}
+module.exports = { releaseNotes };
+if (require.main === module) process.stdout.write(releaseNotes(process.argv[2], process.argv.includes('--story')));

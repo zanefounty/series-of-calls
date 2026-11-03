@@ -1,0 +1,76 @@
+{
+  "pack": "soc-operations-1",
+  "schemas": {
+    "carrier": {
+      "mode": "managed",
+      "provider": "level-tree",
+      "planLicensed": true,
+      "operatorApproved": false,
+      "operatorContract": false,
+      "delegation": false,
+      "simAssigned": false,
+      "mobileEligible": false,
+      "sbcCertified": false,
+      "tlsTrusted": false,
+      "hostnameValid": false,
+      "peerAuthenticated": false,
+      "codec": "opus"
+    },
+    "integration": {
+      "model": "connect",
+      "sbcLinked": true,
+      "apiAuthorised": false,
+      "appAssigned": false,
+      "embeddedToken": false,
+      "features": [
+        "transfer"
+      ],
+      "cloud": "public"
+    },
+    "workflow": {
+      "authenticated": true,
+      "endpointAvailable": true,
+      "callbackVerified": true,
+      "transientFailures": 0,
+      "retries": 2,
+      "backoff": 1,
+      "timeout": 10,
+      "deliveryReceipts": true,
+      "consent": true,
+      "responseWindow": 24
+    }
+  },
+  "sourceIds": [
+    "uc-new:domain:signalling",
+    "uc-new:domain:number-porting"
+  ],
+  "numberPorting": {
+    "legacyAction": "port",
+    "legacySchemaVersion": 1,
+    "action": "portOrder",
+    "responseAction": "portResponse",
+    "schemaVersion": 2,
+    "calendar": "scenario-minute-day0-monday-weekdays",
+    "minutesPerDay": 1440,
+    "maxLeadBusinessDays": 60
+  },
+  "features": {
+    "connect": [
+      "transfer",
+      "presence"
+    ],
+    "extend": [
+      "transfer",
+      "presence",
+      "context",
+      "supervision"
+    ],
+    "unify": [
+      "transfer",
+      "presence",
+      "context",
+      "supervision",
+      "embedded-client"
+    ]
+  }
+}

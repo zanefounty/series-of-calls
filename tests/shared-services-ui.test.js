@@ -1,0 +1,24 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const {load}=require('./harness');
+
+const identities=['alice','bob','caller'].map((canonical,n)=>({canonical,tenant:'tenant-a',endpoint:`ep-${canonical}`,known:true,aliases:[],number:'',jurisdiction:'AU',site:'site-a',location:'Synthetic location',emergencyEligible:false}));
+const config={tenant:'tenant-a',owner:'alice',members:[{person:'alice',permissions:['observe','answer','dnd']},{person:'bob',permissions:['observe','answer','park','retrieve']}],capacity:2,parkSlots:2,ringMinutes:1,parkMinutes:5,dnd:false};
+function boot(){
+ const {dom,ev,errors}=load(),w=dom.window;ev(`window.__commands=[];window.__uiState=null;window.__uiError=null;socApply=(command)=>window.__commands.push(JSON.parse(JSON.stringify(command)));socError=(error)=>{window.__uiError=String(error?.message||error);};`);
+ const makeState=prepared=>{w.__uiState=ev(`(()=>{const s=SOC.create();s.calling={nodes:{directory:{effective:{tenants:[{id:'tenant-a',name:'Fictional tenant'}],identities:${JSON.stringify(identities)}}}}};${prepared?`s.sharedServices=SOC_SHARED_SERVICES.create(s);const config=${JSON.stringify(config)},hooks={identity:(_s,person)=>({person,tenant:'tenant-a',endpoint:'ep-'+person,known:true,entitled:true}),endpointReady:()=>true};SOC_SHARED_SERVICES.command(s,{action:'configure',id:'team-line',config},hooks);SOC_SHARED_SERVICES.command(s,{action:'observe-line',id:'team-line',available:true});for(const person of ['alice','bob'])SOC_SHARED_SERVICES.command(s,{action:'presence',person,state:'available'},hooks);s.clock++;SOC_SHARED_SERVICES.advance(s,s.clock,hooks);s.interactions.push({id:'interaction-7',channel:'voice',from:'caller',to:'team-line',sharedLine:'team-line',tenant:'tenant-a',phase:'ringing',outcome:null,trace:[],obligations:[]});SOC_SHARED_SERVICES.ringing(s,s.interactions[0],'team-line',{},hooks);`:''}return s;})()`);};
+ const render=(locked=true)=>{w.__locked=locked;ev(`SCT.state=window.__uiState;SCT.locked=window.__locked;let m=document.getElementById('shared-test-mount');if(!m){m=document.createElement('div');m.id='shared-test-mount';document.body.appendChild(m);}m.innerHTML=socSharedServicesPanel(SCT.state,null);socBindSharedServices();`);};
+ const submit=selector=>{const f=w.document.querySelector(selector);assert.ok(f,selector);f.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));if(w.__uiError)throw Error(w.__uiError);};
+ return {dom,w,ev,errors,makeState,render,submit,commands:()=>JSON.parse(JSON.stringify(w.__commands))};
+}
+
+test('AC-SOC-209 shared-services starter and line/presence forms use typed shared dispatch with readonly locking',()=>{
+ const h=boot();h.makeState(false);h.render(false);assert.equal(h.w.document.querySelector('[data-shared-start] button').disabled,true);assert.match(h.w.document.querySelector('#soc-shared-services-admin').textContent,/fictional shared-line appearances/);
+ h.makeState(false);h.render(true);h.submit('[data-shared-start]');assert.deepEqual(h.commands().at(-1),{type:'shared-services',command:{action:'start'}});
+ h.makeState(true);h.render(true);const form=h.w.document.querySelector('[data-shared-form="configure"]');assert.ok(form.querySelectorAll('[data-shared-member-row]').length>=2);assert.equal(form.querySelector('textarea'),null);h.submit('[data-shared-form="configure"]');let c=h.commands().at(-1);assert.equal(c.type,'shared-services');assert.equal(c.command.action,'configure');assert.equal(c.command.config.tenant,'tenant-a');assert.ok(c.command.config.members.every(m=>Array.isArray(m.permissions)));
+ h.makeState(true);h.render(true);h.submit('[data-shared-form="presence"]');c=h.commands().at(-1);assert.deepEqual(c.command,{action:'presence',person:'alice',state:'available'});
+ h.makeState(true);h.render(false);for(const el of h.w.document.querySelectorAll('#soc-shared-services-admin button,#soc-shared-services-admin input,#soc-shared-services-admin select'))assert.equal(el.disabled,true);h.dom.window.close();
+});
+
+test('AC-SOC-210 shared call controls submit only selected live interaction IDs and never fake call completion',()=>{
+ const h=boot();h.makeState(true);h.render(true);const form=h.w.document.querySelector('[data-shared-form="call-control"]');assert.ok([...form.elements.interactionId.options].some(o=>o.value==='interaction-7'));form.elements.action.value='answer';form.elements.interactionId.value='interaction-7';form.elements.actor.value='bob';h.submit('[data-shared-form="call-control"]');assert.deepEqual(h.commands().at(-1),{type:'shared-services',command:{action:'answer',interactionId:'interaction-7',actor:'bob'}});assert.match(h.w.document.querySelector('#soc-shared-services-admin').textContent,/core owns call outcome and media/i);assert.equal(h.w.__uiState.interactions[0].phase,'ringing');assert.equal(h.w.__uiState.interactions[0].outcome,null);h.dom.window.close();
+});

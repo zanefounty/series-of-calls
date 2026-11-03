@@ -1,0 +1,20 @@
+{
+  "contentVersion": 1,
+  "description": "Synthetic deployment-scoped product lifecycle evidence; no external availability or certification assertion.",
+  "runtime": {
+    "PACK": "soc-specialist-lifecycle-1",
+    "VERSION": 1,
+    "AS_OF_DATE": "2026-11-03",
+    "evidenceTypes": [
+      "operator-observation",
+      "internal-test",
+      "contract-record"
+    ],
+    "saleStates": ["available", "ended"],
+    "renewalStates": ["eligible", "ineligible"],
+    "supportStates": ["supported", "ended"]
+  },
+  "sourceIds": [
+    "uc-new:domain:product-evidence"
+  ]
+}

@@ -1,0 +1,32 @@
+# Project configuration checked against Codex CLI 0.166.0 and official docs
+# on 2026-11-04. Load this trusted project from its own root.
+# Permissions are selected by the owner on launch; this file cannot override
+# managed requirements or grant access to an already-running executor.
+web_search = "live"
+
+[agents]
+max_concurrent_threads_per_session = 3
+
+[mcp_servers.series-of-calls]
+command = "node"
+args = ["scripts/calls-mcp.js"]
+cwd = ".."
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.series-of-calls-sp]
+command = "node"
+args = ["scripts/mcp.js"]
+cwd = ".."
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.series-of-calls-browser]
+command = "npx"
+args = ["--yes", "@playwright/mcp@0.0.84", "--headless", "--isolated", "--caps", "network", "--save-session", "--output-dir", "evidence/browser-mcp"]
+cwd = ".."
+startup_timeout_sec = 120
+tool_timeout_sec = 120
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"

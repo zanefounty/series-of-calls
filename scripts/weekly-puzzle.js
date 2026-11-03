@@ -265,7 +265,7 @@ function size(ev, def, links, n1) {
 }
 // Plays a sized build (links and routers) in the game and returns the stars it earns.
 function play(ev, def, b) {
-  ev(`localStorage.removeItem('sot-puzzles');pzBegin(${JSON.stringify(def)})`);
+  ev(`localStorage.removeItem('soc-sp-puzzles');pzBegin(${JSON.stringify(def)})`);
   SV.judge(ev, b.links); ev(`pzsApplyRt(${JSON.stringify(b.rt)})`);
   return JSON.parse(ev('JSON.stringify((({stars,spend,goal,n1,cheap})=>({stars,spend,goal,n1,cheap}))(pzEval()))'));
 }

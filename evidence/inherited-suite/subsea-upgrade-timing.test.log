@@ -1,0 +1,17 @@
+✔ upgrades queued during construction follow a second lay ship and keep their 30/180-day commissioning time (739.647045ms)
+✔ ordering upgrades early is as fast as ordering after booking the second lay ship (379.280651ms)
+✔ packages included in the original order stay aligned with its accelerated finish (536.023602ms)
+✔ construction delays move pending commissioning dates without reinstalling completed equipment (276.642753ms)
+✔ old saves repair excessive pending waits without changing valid dates, charges or installed upgrades (262.585079ms)
+✔ land fiber, leased cables, invalid upgrades and rejected lay ship bookings remain unaffected (262.544942ms)
+✔ one-click completion on land costs the same as repeated crew hires (467.316295ms)
+✔ one-click completion is atomic when unaffordable and handles short or completed construction (261.020934ms)
+✔ owned ground fiber exposes the one-click button and uses the same crew pricing (273.449102ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3831.190832

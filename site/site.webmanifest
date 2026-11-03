@@ -1,13 +1,13 @@
 {
-  "name": "Series of Tubes",
-  "short_name": "Tubes",
-  "description": "A cartoon game about building the internet.",
-  "start_url": "/",
-  "scope": "/",
+  "name": "Series of Calls",
+  "short_name": "Calls",
+  "description": "Synthetic communications training \u2014 foundation preview",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#57C4E5",
-  "theme_color": "#57C4E5",
+  "background_color": "#edf1ef",
+  "theme_color": "#102e36",
   "categories": [
     "games",
     "education",
@@ -15,28 +15,31 @@
   ],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/icon-maskable-512.png",
+      "src": "icon-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
-    },
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
     }
   ],
-  "id": "/",
+  "id": "./series-of-calls",
   "display_override": [
     "standalone",
     "fullscreen"

@@ -1,38 +1,13 @@
-/* Series of Tubes service worker: makes the game installable and playable offline.
-   The page always comes from the network when there is one, so a new release shows up on the
-   next visit; everything else is served from the cache and refreshed in the background. */
-const CACHE = 'sot-__VERSION__';
-const CORE = ['/', '/index.html', '/site.webmanifest', '/favicon.svg', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/i18n/it.js?v=__VERSION__', '/i18n/pt.js?v=__VERSION__', '/i18n/fr.js?v=__VERSION__', '/i18n/es.js?v=__VERSION__', '/i18n/de.js?v=__VERSION__'];
-
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
-});
-
-self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k.startsWith('sot-') && k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
-});
-
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
-  // The update check must always ask the network.
-  if (url.origin === location.origin && url.pathname === '/version.json') return;
-  if (req.mode === 'navigate') {
-    e.respondWith(fetch(req).then((r) => { const copy = r.clone(); caches.open(CACHE).then((c) => c.put('/', copy)); return r; })
-      .catch(() => caches.match('/').then((r) => r || caches.match('/index.html'))));
-    return;
-  }
-  const local = url.origin === location.origin, fonts = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
-  if (!local && !fonts) return;
-  // Weekly puzzles, scenarios and Architect runs are published between releases: ask the network first, and keep a copy for offline.
-  if (local && (url.pathname.startsWith('/puzzles/weekly/') || url.pathname.startsWith('/scenarios/weekly/') || url.pathname.startsWith('/architect/weekly/'))) {
-    e.respondWith(fetch(req).then((r) => { if (r.ok) { const copy = r.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); } return r; })
-      .catch(() => caches.match(req).then((r) => r || Response.error())));
-    return;
-  }
-  e.respondWith(caches.open(CACHE).then((c) => c.match(req).then((hit) => {
-    const net = fetch(req).then((r) => { if (r && (r.ok || r.type === 'opaque')) c.put(req, r.clone()); return r; }).catch(() => hit);
-    return hit || net;
-  })));
+/* Every URL is scoped to this application, including project-path hosting. */
+const CACHE='series-of-calls-__VERSION__';
+const BASE=self.registration.scope;
+const CORE=['./','index.html','site.webmanifest','favicon.svg','images/launch-640.webp','images/launch-1280.webp','images/smb-640.webp','images/smb-1280.webp','images/enterprise-640.webp','images/enterprise-1280.webp','images/government-640.webp','images/government-1280.webp','images/defence-640.webp','images/defence-1280.webp','images/sp-640.webp','images/sp-1280.webp','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png','favicon.ico','i18n/it.js?v=__VERSION__','i18n/pt.js?v=__VERSION__','i18n/fr.js?v=__VERSION__','i18n/es.js?v=__VERSION__','i18n/de.js?v=__VERSION__'].map(p=>new URL(p,BASE).href);
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('series-of-calls-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{
+ const req=e.request,url=new URL(req.url);if(req.method!=='GET'||!url.href.startsWith(BASE)||url.pathname.endsWith('/version.json'))return;
+ e.respondWith(caches.open(CACHE).then(async cache=>{
+  try{const response=await fetch(req);if(response.ok)await cache.put(req,response.clone());return response;}
+  catch(error){return (await cache.match(req))||(req.mode==='navigate'&&await cache.match(new URL('index.html',BASE).href))||Response.error();}
+ }));
 });

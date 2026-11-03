@@ -10,11 +10,13 @@ function segBtns(act,cur,opts){return opts.map(([v,l])=>btn(l,act,{v},cur===v?'p
 /* Animation setting: auto follows the system's reduced-motion preference, or force it on or off. */
 /* Settings are per device (localStorage), not part of the save: they are about how you like to play. */
 const PREF_DEF={pauseFurious:true,warnUnhappy:true,pauseIncident:false,quiet:false};
-let PREFS=(()=>{try{const j=JSON.parse(localStorage.getItem('sot-prefs')||'{}');return j&&typeof j==='object'?j:{};}catch(e){return {};}})();
+const readPrefs=k=>{try{const j=JSON.parse(localStorage.getItem(k)||'{}');return j&&typeof j==='object'&&!Array.isArray(j)?j:{};}catch(e){return {};}};
+// Preferences have an independent application identity, like save slots and locks.
+let PREFS=readPrefs('soc-sp-prefs');
 const pref=k=>typeof PREFS[k]==='boolean'?PREFS[k]:PREF_DEF[k];
 // Quiet notifications: the player's choice once made, until then on in Best Effort only.
 const quietOn=()=>typeof PREFS.quiet==='boolean'?PREFS.quiet:rulePreset()==='soft';
-function setPref(k,v){if(!own(PREF_DEF,k))return;PREFS[k]=!!v;try{localStorage.setItem('sot-prefs',JSON.stringify(PREFS));}catch(e){}}
+function setPref(k,v){if(!own(PREF_DEF,k))return;PREFS[k]=!!v;try{localStorage.setItem('soc-sp-prefs',JSON.stringify(PREFS));}catch(e){}}
 // Stop the clock for something the player must see. Nothing happens if the game is already paused.
 function autoPause(){if(!S||!UI.speed)return false;UI.resumeSpeed=UI.speed;UI.speed=0;renderHUD();return true;}
 const resumeAct=()=>({l:tr('common.resume'),act:'speed',args:{v:UI.resumeSpeed||1}});

@@ -1,0 +1,1378 @@
+{
+  "auditId": "reference-review-2026-11-03",
+  "checkedAt": "2026-11-03",
+  "method": "Opened the registered URLs with browser retrieval; scoped each conclusion to the opened page and its stated date, jurisdiction, product, edition, and evidence type. No claim is marked as blanket accepted.",
+  "sourceRegistries": {
+    "references": "research/generated/references.json",
+    "claims": "research/generated/claims.json",
+    "preservedDesign": "research/source/Series of Calls communications ecosystem design.md"
+  },
+  "referenceCount": 68,
+  "references": [
+    {
+      "referenceId": "REF-ac194430f67b3832",
+      "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Teams service description",
+      "evidenceType": "Microsoft Learn product/service description",
+      "claimIds": [
+        "CLAIM-25a0d3acbe089fe8"
+      ],
+      "assessment": "Supported with scope limits",
+      "scopedFinding": "Feature families and availability vary by plan and cloud; the page lists separate cloud variants and references licensing/availability. Supports family-level profiles, not universal parity.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-5300ce44d82bd40f",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "PSTN connectivity in Microsoft Teams",
+      "evidenceType": "Microsoft Learn architecture/operating-model documentation",
+      "claimIds": [
+        "CLAIM-e6b06b7d4759516b"
+      ],
+      "assessment": "Supported",
+      "scopedFinding": "Documents Calling Plans, Operator Connect, Phone Mobile and Direct Routing as distinct models with different carrier/management responsibilities. Supports modeling these as separate pathways.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-7cec333be41fbfc9",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Teams Rooms licensing",
+      "evidenceType": "Microsoft Learn licensing page",
+      "claimIds": [
+        "CLAIM-92d312ca4625b869"
+      ],
+      "assessment": "Supported; time-sensitive details",
+      "scopedFinding": "Basic and Pro licenses have different capabilities/limits; shared meeting devices require Rooms licenses. Limits are edition-specific and subject to change.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-a8dbb077dacacede",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Meetings and events in Microsoft Teams",
+      "evidenceType": "Microsoft Learn product documentation",
+      "claimIds": [
+        "CLAIM-a200581db0f56c8d"
+      ],
+      "assessment": "Supported; time-sensitive details",
+      "scopedFinding": "Describes meeting/event types, roles, limits and licensing; page states licensing changes effective 2026-04-01. Avoid carrying old SKU assumptions forward.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-b8049813b772603e",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Dynamics 365 Contact Center overview",
+      "evidenceType": "Microsoft Learn product documentation",
+      "claimIds": [
+        "CLAIM-17b469523e0fccdd"
+      ],
+      "assessment": "Supported as product example",
+      "scopedFinding": "Describes cloud contact-center/omnichannel and AI-related features as a Microsoft product reference. Does not validate any simulation capability or competitor equivalence.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-6041cb9b4e29d0a7",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Teams contact center",
+      "evidenceType": "Microsoft Learn product/integration catalog",
+      "claimIds": [
+        "CLAIM-ee1c8618006f345a",
+        "CLAIM-b1a7b056aaada840"
+      ],
+      "assessment": "Supported with scope limits",
+      "scopedFinding": "Distinguishes Connect, Extend and Unify and lists vendor integrations. Supports distinct integration models, not generic full-contact-center capability for native Teams queues.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-0ab35ad448a8e152",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Microsoft 365 Local overview",
+      "evidenceType": "Microsoft Learn product overview",
+      "claimIds": [
+        "CLAIM-47c428cb682fd198"
+      ],
+      "assessment": "Partial; negative claim unresolved",
+      "scopedFinding": "Lists Exchange Server, SharePoint Server and Skype for Business Server running on customer-owned Azure Local, with hybrid/disconnected options. Claim that this is not an on-prem Teams edition is not explicit on this page; treat that negative as unresolved absent a direct exclusion statement.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+          "accessStatus": "opened"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/answers/questions/2151762/does-teams-server-exist",
+          "accessStatus": "opened as a follow-up, non-primary community Q&A",
+          "use": "Supplementary only; answer is anonymous and not an official product specification."
+        }
+      ],
+      "notes": [
+        "A Microsoft Learn Q&A page with an anonymous answer states that Teams itself has no on-premises version, but this is not a primary product specification and is not treated as sufficient to accept the negative claim."
+      ]
+    },
+    {
+      "referenceId": "REF-ce4086e425fc31ca",
+      "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "GCC High and DoD service description",
+      "evidenceType": "Microsoft Learn US-government service description",
+      "claimIds": [
+        "CLAIM-38f6afe889658335"
+      ],
+      "assessment": "Supported with jurisdiction scope",
+      "scopedFinding": "Describes defined US government cloud environments, eligibility and feature differences. Supports US-specific profiles; does not support exporting the rules to other jurisdictions.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-994b72cced26fabb",
+      "url": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Azure Communication Services retirement and breaking changes",
+      "evidenceType": "Microsoft Learn lifecycle guide",
+      "claimIds": [
+        "CLAIM-a1def7797ff16712"
+      ],
+      "assessment": "Supported with exact-scenario scope; date-sensitive",
+      "scopedFinding": "Guide says standalone ACS retirement effective 2028-09-30 and distinguishes retirements/breaking changes from supported Teams-aligned scenarios. Tables are feature-specific; do not generalize that all calling/automation continues.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-c6673929705ff2bf",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Copilot in Teams transcription",
+      "evidenceType": "Microsoft Learn product documentation",
+      "claimIds": [
+        "CLAIM-21c67d1cbd6c351b"
+      ],
+      "assessment": "Supported with scope limits",
+      "scopedFinding": "For Teams meeting Copilot, distinguishes temporary speech processing from saved transcription; E2EE meetings are unsupported. Scope is Teams meeting configuration and applicable licensing/cloud, not all Copilot or vendors.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-80094745cafb63d6",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Configure ServiceNow integration for Teams Rooms",
+      "evidenceType": "Microsoft Learn product setup article",
+      "claimIds": [
+        "CLAIM-5e832c5a7d8c0fed"
+      ],
+      "assessment": "Supported with scope limits",
+      "scopedFinding": "Integration is available for Commercial cloud; government cloud guidance points to email/ITSM ingestion instead. Supports an example of integration availability differing from room-device availability.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-cbb04f2d2c34bccb",
+      "url": "https://www.webex.com/us/en/products/suite.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Webex Suite",
+      "evidenceType": "Cisco product marketing page",
+      "claimIds": [
+        "CLAIM-561d8817ca1026f1"
+      ],
+      "assessment": "Partially supported; marketing claims only",
+      "scopedFinding": "Lists collaboration workflows (meetings, messaging, calling, webinars, events, etc.) and vendor-described deployment/residency positioning. Marketing page does not substantiate detailed feature/region/security guarantees.",
+      "openedSources": [
+        {
+          "url": "https://www.webex.com/us/en/products/suite.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-f17dabc322d17a54",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Cisco Collaboration Flex Plan 3.0 and Webex Suite data sheet",
+      "evidenceType": "Cisco offer data sheet, updated 2026-06-18",
+      "claimIds": [
+        "CLAIM-a6276d9047a1da7e"
+      ],
+      "assessment": "Supported; time-sensitive offer details",
+      "scopedFinding": "Lists subscription buying models, bundles/add-ons and cloud/on-prem options; specific tiers differ. Current offers should be modeled as SKU/entitlement-specific.",
+      "openedSources": [
+        {
+          "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-c9e920ec01b6f78b",
+      "url": "https://help.webex.com/article/dk3o5r",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Introduction to Dedicated Instance",
+      "evidenceType": "Cisco Help Center product documentation, dated 2026-10-16",
+      "claimIds": [
+        "CLAIM-4d9e35e3a246ec7a"
+      ],
+      "assessment": "Supported with explicit limitations",
+      "scopedFinding": "Dedicated Instance is a Webex Calling add-on based on UCM architecture and supports older endpoints/integrations; split users across DI and Webex Calling have non-harmonized features. Supports migration/interworking differences, not feature parity.",
+      "openedSources": [
+        {
+          "url": "https://help.webex.com/article/dk3o5r",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-e40e11d43985a98d",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Cisco Collaboration Flex 3.0 Contact Center data sheet",
+      "evidenceType": "Cisco offer data sheet, updated 2026-06-11",
+      "claimIds": [
+        "CLAIM-9224111c6bb17412"
+      ],
+      "assessment": "Supported; time-sensitive offer details",
+      "scopedFinding": "Lists cloud/on-prem contact-center platforms, channels and buying models; named-agent model is Webex Contact Center only and supervisors/admins require Premium Agent. Offer details are version-specific.",
+      "openedSources": [
+        {
+          "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-ecd8d4f64aad9f35",
+      "url": "https://help.webexconnect.io/docs/welcome",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Webex Connect Platform Overview",
+      "evidenceType": "Vendor product documentation",
+      "claimIds": [
+        "CLAIM-68a0886f7e4eefc5",
+        "CLAIM-fbf813cd7e1b1387"
+      ],
+      "assessment": "Supported as product example",
+      "scopedFinding": "Describes CPaaS, channels, flow orchestration, integrations and contact policy. Supports an example of commercial multi-channel engagement and consent/contact thresholds; does not establish channel availability by geography or a universal guarantee.",
+      "openedSources": [
+        {
+          "url": "https://help.webexconnect.io/docs/welcome",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-932dc1c63a5b9e08",
+      "url": "https://www.webex.com/us/en/solutions/interoperability.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Video conferencing interoperability",
+      "evidenceType": "Cisco product page",
+      "claimIds": [
+        "CLAIM-8a04710ea80247ed"
+      ],
+      "assessment": "Partially supported; product claim",
+      "scopedFinding": "Claims Cisco devices join Webex, Teams, Zoom and Google Meet through native/certified/CVI experiences. Scope depends on device, mode, licensing and platform; marketing overview alone cannot validate all interoperability functions.",
+      "openedSources": [
+        {
+          "url": "https://www.webex.com/us/en/solutions/interoperability.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-fb9dd3e3bcdca8c9",
+      "url": "https://help.webex.com/article/nwwg3w6",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Wholesale Route-to-Market Solution Guide",
+      "evidenceType": "Cisco Help Center product/partner guide, dated 2026-08-06",
+      "claimIds": [
+        "CLAIM-daf37ddd127fbfb7",
+        "CLAIM-54d47b9d61f1bb8a"
+      ],
+      "assessment": "Supported with programme scope",
+      "scopedFinding": "Describes parent/subpartner onboarding, customer provisioning, package offers, partner administration and billing reports. Concrete wholesale example; responsibilities are specific to this programme.",
+      "openedSources": [
+        {
+          "url": "https://help.webex.com/article/nwwg3w6",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-5feedded0d34a197",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Cisco AI PODs for Collaboration datasheet",
+      "evidenceType": "Cisco vendor datasheet, updated 2026-06-16",
+      "claimIds": [
+        "CLAIM-4565d8fb254271df",
+        "CLAIM-def72d7bacfbf033"
+      ],
+      "assessment": "Supported with material qualification",
+      "scopedFinding": "Describes on-prem transcription and claims air-gap support, but says licensing is an exception to zero external connectivity. Lists language/capacity/integration constraints. Treat as vendor-published, version-specific claims, not independent verification.",
+      "openedSources": [
+        {
+          "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-0ddcf6e8a0d3d60c",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "End-of-Sale and End-of-Life: UCM Cloud for Government",
+      "evidenceType": "Cisco lifecycle notice, updated 2026-10-14",
+      "claimIds": [
+        "CLAIM-cbc7eb75caccf472"
+      ],
+      "assessment": "Supported; lifecycle date-sensitive",
+      "scopedFinding": "States last order 2027-01-06 and renewal/support through 2028-01-31; offers Webex for Government Calling or on-prem UCM transition options. Time-sensitive product notice, not generalized supplier obsolescence.",
+      "openedSources": [
+        {
+          "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-fcdabdb913c10b05",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "End-of-Sale and End-of-Life: Cisco Webex WFO",
+      "evidenceType": "Cisco lifecycle notice, updated 2026-06-30",
+      "claimIds": [
+        "CLAIM-3dd28041126d988b"
+      ],
+      "assessment": "Supported; lifecycle date-sensitive",
+      "scopedFinding": "Applies to listed Webex WFO SKUs: last order 2026-07-25, renewal 2027-07-30, support 2031-07-31. Retirement of listed offers does not mean the whole WFO family disappears.",
+      "openedSources": [
+        {
+          "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-5fb1edff716b861d",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Session Border Controllers certified for Direct Routing",
+      "evidenceType": "Microsoft Learn certification list",
+      "claimIds": [
+        "CLAIM-d637c8d10c7a946a"
+      ],
+      "assessment": "Supported; current device/version list changes",
+      "scopedFinding": "Certification/support is limited to listed device and firmware versions; non-certified SBC support may be rejected and vendor is first support path. Certification is distinct from cloud/feature approval.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-bf74910ae207c4ce",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Teams Rooms certified hardware",
+      "evidenceType": "Microsoft Learn certification listing",
+      "claimIds": [
+        "CLAIM-d1c0f36090a41105"
+      ],
+      "assessment": "Supported; current catalogue changes",
+      "scopedFinding": "Reference is a certified-hardware catalogue; certification is device/model-specific and does not by itself establish support for every feature or cloud environment, consistent with the scoped claim.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-13aa74b705a9e357",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Teams compliance recording",
+      "evidenceType": "Microsoft Learn product documentation",
+      "claimIds": [
+        "CLAIM-a7275b68d7f5c42f"
+      ],
+      "assessment": "Supported with scope limits",
+      "scopedFinding": "Documents a separate compliance-recording solution/program; it should be modeled separately from ordinary meeting recording. Details depend on integration/vendor/cloud and are not captured by catalog presence alone.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-097413172db36986",
+      "url": "https://apphub.webex.com/partner-solutions",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Webex App Hub partner solutions",
+      "evidenceType": "Cisco marketplace catalogue",
+      "claimIds": [
+        "CLAIM-80529de1efd098db"
+      ],
+      "assessment": "Supported only as marketplace evidence",
+      "scopedFinding": "Marketplace page lists partner solutions by product/category. Presence is ecosystem evidence, not formal certification, security approval, support guarantee or feature parity.",
+      "openedSources": [
+        {
+          "url": "https://apphub.webex.com/partner-solutions",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-6ee11627b4e96799",
+      "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Imagicle UCX Suite listing",
+      "evidenceType": "Cisco marketplace listing; third-party supplier description",
+      "claimIds": [
+        "CLAIM-d8e3a548360f0008"
+      ],
+      "assessment": "Supported as listing, not independent validation",
+      "scopedFinding": "Listing describes attendant console, recording, fax and analytics integrations, including mixed Cisco environments. It is supplier-supplied listing content; validate account, cloud, feature and commercial prerequisites separately.",
+      "openedSources": [
+        {
+          "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-d91db49dd1296a40",
+      "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Theta Lake for Webex Calling listing",
+      "evidenceType": "Cisco marketplace listing; third-party supplier description",
+      "claimIds": [
+        "CLAIM-5c942c4cb21a78d8"
+      ],
+      "assessment": "Supported as listing, not compliance approval",
+      "scopedFinding": "Listing describes archiving/compliance review for specified Webex Calling, SMS, recordings/CDRs and other products, requiring active Webex Calling plus Theta Lake subscription. It is not a legal-compliance certification.",
+      "openedSources": [
+        {
+          "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-81f2bd205e0f66f7",
+      "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "WFM Adapter by TTEC Digital listing",
+      "evidenceType": "Cisco marketplace listing; third-party supplier description",
+      "claimIds": [
+        "CLAIM-1d52fdfbe385dd4a"
+      ],
+      "assessment": "Supported as listing, prerequisite-specific",
+      "scopedFinding": "Listing describes RTA and historical-report transfer to third-party WFM (including NICE, Aspect, Verint, Calabrio) and requires a paid Webex Contact Center account/admin. Does not validate forecast quality or all versions.",
+      "openedSources": [
+        {
+          "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-a5f898a484d055da",
+      "url": "https://kurmi-software.com/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Kurmi Software",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-616b56d32c938b78"
+      ],
+      "assessment": "Supported as supplier capability example",
+      "scopedFinding": "Current page describes Flow user/device/license provisioning, deprovisioning, role-based delegation, migration and multiple UC connectors. Marketing claims only; exact connector versions and functions need product-specific validation.",
+      "openedSources": [
+        {
+          "url": "https://kurmi-software.com/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-004474965260c809",
+      "url": "https://www.voss-solutions.com/tech-solutions/cisco/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "VOSS Cisco tech solutions",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-f45542864ca1ee00"
+      ],
+      "assessment": "Supported as supplier capability example",
+      "scopedFinding": "Describes automation, migration, provisioning, management, monitoring and analytics across Cisco UC/Webex. Product-page claims, not independent performance/security proof.",
+      "openedSources": [
+        {
+          "url": "https://www.voss-solutions.com/tech-solutions/cisco/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-d4ab6397cad04761",
+      "url": "https://www.akkadianlabs.com/akkadian-platform/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Akkadian Platform",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-8de19cd86b7c985c"
+      ],
+      "assessment": "Supported as supplier capability example",
+      "scopedFinding": "Describes policy-driven UC provisioning/lifecycle workflows across Teams, Cisco/Webex, Zoom and other environments. Claims are supplier marketing; do not infer actual certification or effectivity.",
+      "openedSources": [
+        {
+          "url": "https://www.akkadianlabs.com/akkadian-platform/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-38feefe35f2f7619",
+      "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "VQ Conference Manager",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-1d491bff68072715"
+      ],
+      "assessment": "Partially supported; vendor assertions",
+      "scopedFinding": "Describes self-hosted/air-gapped Cisco Meeting Server management, identity/LDAP, RBAC, multi-tenancy and API automation; states FIPS/DISA/JITC/APL and sub-minute failover. Security/certification/availability claims are vendor assertions, not independently verified here.",
+      "openedSources": [
+        {
+          "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-2c6a952924346c36",
+      "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Mividas Core documentation",
+      "evidenceType": "Supplier documentation index",
+      "claimIds": [
+        "CLAIM-ca612486c41b6f7e"
+      ],
+      "assessment": "Partial; exact feature claims need page-level sources",
+      "scopedFinding": "The exact URL opens a broad documentation index with topics for deployment, offline environments, users/meetings, tenant routing, policies and integrations. It supports existence of documented product/admin areas, but this index alone does not substantiate specific feature behavior or current version.",
+      "openedSources": [
+        {
+          "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-b96b46dfea69de93",
+      "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Pexip Connect Microsoft interoperability",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-4679b0d113a829b1"
+      ],
+      "assessment": "Partially supported; vendor assertions",
+      "scopedFinding": "Describes CVI joining Teams from non-Teams devices and SIP calling from Teams Rooms into cross-platform meetings; mentions sovereign/air-gapped use and multi-tenant deployment. Product claims require scenario/version/tenant validation and are not certification evidence by themselves.",
+      "openedSources": [
+        {
+          "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-1503bbaf273629fc",
+      "url": "https://www.synergysky.com/service-description",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Synergy SKY CONNECT service description",
+      "evidenceType": "Supplier service description, effective 2026-06-01",
+      "claimIds": [
+        "CLAIM-7f4496a572d35857"
+      ],
+      "assessment": "Supported with scenario-specific qualifications",
+      "scopedFinding": "Explicitly differentiates Cloud, Hybrid and self-hosted Government deployment; feature matrix varies by calendar/platform, including GCC/GCC-H/DoD and on-prem Exchange. Strong support for scenario-specific feature matrices, but self-described service claims only.",
+      "openedSources": [
+        {
+          "url": "https://www.synergysky.com/service-description",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-7ed8da24bfbaf244",
+      "url": "https://www.ir.com/products/collaborate",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "IR Collaborate",
+      "evidenceType": "Supplier product page",
+      "claimIds": [
+        "CLAIM-1bfb1e73a5b814f7"
+      ],
+      "assessment": "Partial; broad category only",
+      "scopedFinding": "Page describes a Collaborate portfolio for managing communications/collaboration ecosystems and customer segments. It is a high-level marketing page and provides little feature-level evidence for assurance/monitoring claims.",
+      "openedSources": [
+        {
+          "url": "https://www.ir.com/products/collaborate",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-db893272c3caa3e6",
+      "url": "https://www.twilio.com/en-us/products",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Twilio products",
+      "evidenceType": "Supplier product catalog",
+      "claimIds": [
+        "CLAIM-f9aad380d17926ea"
+      ],
+      "assessment": "Supported as product-family example",
+      "scopedFinding": "Catalog lists programmable communications channels, APIs, contact center and engagement products. Catalog supports category overlap only; specific channel, region, price, SLA and product capabilities need their own current documentation.",
+      "openedSources": [
+        {
+          "url": "https://www.twilio.com/en-us/products",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-bd36702520ca438c",
+      "url": "https://sinch.com/products/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Sinch products",
+      "evidenceType": "Supplier product catalog",
+      "claimIds": [
+        "CLAIM-b0621ee2b1b56935"
+      ],
+      "assessment": "Supported as product-family example",
+      "scopedFinding": "Catalog lists messaging, voice, email, verification, contact center, APIs and network connectivity. Supports broad category existence only, not detailed availability/pricing or performance claims.",
+      "openedSources": [
+        {
+          "url": "https://sinch.com/products/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-38e91eec89c3b7f1",
+      "url": "https://www.infobip.com/docs/conversations",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Infobip Conversations",
+      "evidenceType": "Supplier product documentation",
+      "claimIds": [
+        "CLAIM-35ebc22fe0e4bd68"
+      ],
+      "assessment": "Supported as product example",
+      "scopedFinding": "Describes cloud CCaaS with messaging channels, queues/routing, agent roles, history, automations and analytics. Channel list and product functions are product-specific and require current account/region/version validation.",
+      "openedSources": [
+        {
+          "url": "https://www.infobip.com/docs/conversations",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-d57c9265c13dcff5",
+      "url": "https://help.8x8.com/documentation",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "8x8 documentation",
+      "evidenceType": "Documentation index",
+      "claimIds": [
+        "CLAIM-d30c5a2dbd047d06"
+      ],
+      "assessment": "Partial; index only",
+      "scopedFinding": "Index links contact-center, WFM, UC, analytics and CPaaS documentation; it is a navigation index rather than substantive evidence. Use linked product docs for any specific mechanic/capability claim.",
+      "openedSources": [
+        {
+          "url": "https://help.8x8.com/documentation",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-2c126d5591584671",
+      "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Genesys Cloud WEM overview",
+      "evidenceType": "Genesys product documentation",
+      "claimIds": [
+        "CLAIM-513413bc3bd34e9e",
+        "CLAIM-e632215a7246634e"
+      ],
+      "assessment": "Supported with feature/license scope limits",
+      "scopedFinding": "Describes recording/retention policies, quality/coaching, screen recording, analytics, surveys and workforce scheduling/adherence. Supports WEM capability-family distinction; not proof that all capabilities are present in all licenses/regions.",
+      "openedSources": [
+        {
+          "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-5847fdf5258de958",
+      "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Otter Notetaker Overview",
+      "evidenceType": "Otter Help Center, updated 2026-08-21",
+      "claimIds": [
+        "CLAIM-7169c6001d9a447d"
+      ],
+      "assessment": "Supported with explicit operating constraints",
+      "scopedFinding": "Describes calendar-connected bot that joins/records/transcribes Zoom, Meet and Teams; bot is visible as a guest, and platform/org guest policies and consent apply. Do not characterize as silent/anonymous or universally permitted.",
+      "openedSources": [
+        {
+          "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-52534bbbda04973d",
+      "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Fireflies supported conferencing platforms",
+      "evidenceType": "Fireflies Help Center, last updated about six months before check",
+      "claimIds": [
+        "CLAIM-9c99fd537543b27b",
+        "CLAIM-5c932b266786f9e9"
+      ],
+      "assessment": "Supported narrowly; time-sensitive list",
+      "scopedFinding": "Lists supported meeting platforms and integration enablement behavior. It is a vendor support list and does not establish consent, privacy, retention, admin approval or availability in regulated clouds.",
+      "openedSources": [
+        {
+          "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-b3027a7b0a74c45d",
+      "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Read AI Teams connection guide",
+      "evidenceType": "Read AI Help Center, updated 2026-10-26",
+      "claimIds": [
+        "CLAIM-4911b7f05c523234",
+        "CLAIM-692e152367019b74"
+      ],
+      "assessment": "Supported with access/consent scope limits",
+      "scopedFinding": "Describes syncing Teams chats/channels, summaries and reports; work/school account needed for full features and channel access may require admin approval. Adds a third-party identity/data path; not blanket permission.",
+      "openedSources": [
+        {
+          "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-a4b34e38df123d83",
+      "url": "https://developers.deepgram.com/docs/deployment-options",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Deepgram deployment options",
+      "evidenceType": "Deepgram developer documentation",
+      "claimIds": [
+        "CLAIM-a762654c4ca2ed90",
+        "CLAIM-673be91cbe9afe43"
+      ],
+      "assessment": "Supported with plan qualification",
+      "scopedFinding": "Distinguishes hosted multitenant service from premium self-hosted service on customer cloud/data center; self-hosted customer owns infrastructure/backups/monitoring and applies updates. Supports distinct operating obligations, not a promise of disconnected use.",
+      "openedSources": [
+        {
+          "url": "https://developers.deepgram.com/docs/deployment-options",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-b774912c2fef487e",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Microsoft disconnected containers",
+      "evidenceType": "Microsoft Learn docs, last updated 2025-10-02",
+      "claimIds": [
+        "CLAIM-e1fcf00481fb5d51",
+        "CLAIM-b8f99abef72393e2"
+      ],
+      "assessment": "Supported with strict scope and approval conditions",
+      "scopedFinding": "Only listed Foundry containers are supported; disconnected use requires access approval, Azure subscription/resource approval and commitment-tier billing; offline usage records must be collected. Scope is these containers, not any Microsoft AI service.",
+      "openedSources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-62ae5701eec71289",
+      "url": "https://www.singlewire.com/integrations/redsky",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "RedSky integration",
+      "evidenceType": "Singlewire partner integration page",
+      "claimIds": [
+        "CLAIM-92b0acded8e21ca2"
+      ],
+      "assessment": "Supported with geography and integration scope",
+      "scopedFinding": "Describes RedSky E911 location/routing for US and Canada and named call platforms; InformaCast pairing adds internal notification. Vendor/partner page, not regulatory suitability or universal emergency-call coverage.",
+      "openedSources": [
+        {
+          "url": "https://www.singlewire.com/integrations/redsky",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-a333ec80b11e26ef",
+      "url": "https://www.asterisk.org/get-started/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Asterisk getting started",
+      "evidenceType": "Asterisk/Sangoma project page",
+      "claimIds": [
+        "CLAIM-9aceba29f18ac56f"
+      ],
+      "assessment": "Supported with implementation caveat",
+      "scopedFinding": "Describes Asterisk as open-source framework for PBX, gateways, conferencing and custom communications; notes developer/system-integrator expertise. Supports framework model, not a ready turnkey/secure solution claim.",
+      "openedSources": [
+        {
+          "url": "https://www.asterisk.org/get-started/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-3978de94b73181f0",
+      "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "FreeSWITCH introduction and core concepts",
+      "evidenceType": "FreeSWITCH Users Manual",
+      "claimIds": [
+        "CLAIM-da808601ddf27285"
+      ],
+      "assessment": "Supported",
+      "scopedFinding": "Describes a software switching platform; directory, dialplan and module configuration separately govern authentication/routing/behavior. Supports configurable platform model. Product page notes FreeSWITCH Enterprise is commercially supported; does not imply free support.",
+      "openedSources": [
+        {
+          "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-effbf81bfc316bd6",
+      "url": "https://www.verint.com/calabrio/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Verint + Calabrio",
+      "evidenceType": "Verint portfolio/brand page",
+      "claimIds": [
+        "CLAIM-e1a287349359beb2"
+      ],
+      "assessment": "Supported narrowly; product specifics unresolved",
+      "scopedFinding": "Current page presents Verint platform and workforce/CX portfolio; the URL/title indicates Verint + Calabrio relationship. It does not show that all products, contracts, support or features became interchangeable. Claim's separation of company ownership and product identity is appropriate.",
+      "openedSources": [
+        {
+          "url": "https://www.verint.com/calabrio/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-18b941b71b6c92b7",
+      "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "RingCentral RingEX overview (Australia)",
+      "evidenceType": "RingCentral AU product page",
+      "claimIds": [
+        "CLAIM-8e9eae0210492987"
+      ],
+      "assessment": "Supported as product profile only",
+      "scopedFinding": "Describes RingEX as calls/text/video/fax/workplace collaboration with AI and routing. Marketed as an AU page; uptime and integration counts are supplier claims. Does not establish all feature availability, SLA or regulatory fit.",
+      "openedSources": [
+        {
+          "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-29c840ca324ce3fd",
+      "url": "https://www.ringcentral.com/au/en/ringcx.html",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "RingCentral RingCX (Australia)",
+      "evidenceType": "RingCentral AU product page",
+      "claimIds": [
+        "CLAIM-3181068a28e21c3d"
+      ],
+      "assessment": "Supported as product profile only; time-sensitive claims",
+      "scopedFinding": "Describes contact-center voice plus 20+ digital channels, AI, WEM, integrations and outbound. Pricing/availability and numeric performance assertions are marketing claims and can change.",
+      "openedSources": [
+        {
+          "url": "https://www.ringcentral.com/au/en/ringcx.html",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-2c204a90632309fa",
+      "url": "https://www.avaya.com/en/products/aura/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Avaya Aura",
+      "evidenceType": "Avaya product page",
+      "claimIds": [
+        "CLAIM-d53a8640a2608b2f"
+      ],
+      "assessment": "Supported as profile; vendor claims",
+      "scopedFinding": "Describes enterprise voice, SIP routing, centralized management, on-prem/cloud-connected deployment and current Aura 10.3. Scale/security/compliance statements are supplier assertions; do not infer every deployment has them.",
+      "openedSources": [
+        {
+          "url": "https://www.avaya.com/en/products/aura/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-a294a1068b534053",
+      "url": "https://www.avaya.com/en/products/infinity-platform/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Avaya Infinity",
+      "evidenceType": "Avaya product page",
+      "claimIds": [
+        "CLAIM-5b9f7ada9cd47d95"
+      ],
+      "assessment": "Supported as profile only",
+      "scopedFinding": "Describes orchestration of customer interactions, data, AI and workflows with deployment/control positioning. Marketing-level reference; architecture, service availability and actual controls need further technical sources.",
+      "openedSources": [
+        {
+          "url": "https://www.avaya.com/en/products/infinity-platform/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-4494e44133a096ff",
+      "url": "https://www.mitel.com/products/business-phone-systems",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Mitel business phone systems",
+      "evidenceType": "Mitel product portfolio page",
+      "claimIds": [
+        "CLAIM-a08ce3b99e3b06d5"
+      ],
+      "assessment": "Supported as portfolio profile only",
+      "scopedFinding": "Describes cloud, on-prem, hybrid and private-cloud business communications, including dedicated secure cloud positioning. Broad portfolio marketing; no evidence of feature parity or compliance approvals.",
+      "openedSources": [
+        {
+          "url": "https://www.mitel.com/products/business-phone-systems",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-6b9dd2ca3e9920e5",
+      "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "ALE Unified Communications",
+      "evidenceType": "Alcatel-Lucent Enterprise solution page",
+      "claimIds": [
+        "CLAIM-88a031caef088e05"
+      ],
+      "assessment": "Supported as portfolio profile only",
+      "scopedFinding": "Lists telephony, conferencing, messaging, mobility and products; page/resources carry different update dates. Supports portfolio presence, not the bundled feature set in every product/market.",
+      "openedSources": [
+        {
+          "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-1454d7ffe209c85b",
+      "url": "https://www.3cx.com/phone-system/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "3CX phone system",
+      "evidenceType": "3CX product page",
+      "claimIds": [
+        "CLAIM-4ca2d0fe766055e0"
+      ],
+      "assessment": "Supported as profile only",
+      "scopedFinding": "Describes self-hosted/hosted phone system, contact center, messaging and integrated AI offerings. Edition/deployment and supported-trunk details vary; marketing page alone cannot verify security or version-specific operation.",
+      "openedSources": [
+        {
+          "url": "https://www.3cx.com/phone-system/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-6974ff2c7027ebb4",
+      "url": "https://business.whatsapp.com/products/platform-pricing",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened; redirected",
+      "pageTitle": "WhatsApp Business Platform Pricing",
+      "evidenceType": "Meta/WhatsApp Business Platform pricing page; redirected to whatsappbusiness.com",
+      "claimIds": [
+        "CLAIM-dc4b33799e75f0c3"
+      ],
+      "assessment": "Supported; time-sensitive pricing/policy",
+      "scopedFinding": "Pricing distinguishes marketing/authentication/utility/service delivered messages and a 24-hour customer-service window; rate varies by market-category. Pricing rules are date/market-sensitive and should be verified from current rate table. Webex Connect's channel support is a separate commercial example.",
+      "openedSources": [
+        {
+          "url": "https://business.whatsapp.com/products/platform-pricing",
+          "resolvedUrl": "https://whatsappbusiness.com/products/platform-pricing/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-e5bb18ef74fe6ca4",
+      "url": "https://www.zoom.com/en/products/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Zoom products",
+      "evidenceType": "Zoom product portfolio page",
+      "claimIds": [
+        "CLAIM-185b2d6b9abe4742"
+      ],
+      "assessment": "Supported as portfolio scope only",
+      "scopedFinding": "Lists Workplace, Phone, Rooms, Contact Center, WFM, virtual agent, AI services and AI On-Prem. Supports portfolio breadth only; does not show that Zoom replaces PSTN/provider, specialized requirements, or any one competitor in a given scenario.",
+      "openedSources": [
+        {
+          "url": "https://www.zoom.com/en/products/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-267d4dda6bb79608",
+      "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "browser cache miss",
+      "pageTitle": "Series of Tubes pinned repository",
+      "evidenceType": "Pinned GitHub repository at commit 48e6200c532d486f79bc8376de0aecbf6169123b",
+      "claimIds": [
+        "CLAIM-eeb4a42e0f32b3c5"
+      ],
+      "assessment": "Unresolved; preserve historical reference",
+      "scopedFinding": "Direct URL and pinned tree failed with browser cache miss; search did not retrieve the exact repo. No source-level claim independently verified in this audit.",
+      "openedSources": [],
+      "notes": [
+        "Retained historical reference; retrieval failure is not evidence that the source or claim is false."
+      ]
+    },
+    {
+      "referenceId": "REF-01c1db3086024441",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "browser cache miss",
+      "pageTitle": "Series of Tubes upstream architecture",
+      "evidenceType": "Pinned GitHub ARCHITECTURE.md at commit 48e6200c532d486f79bc8376de0aecbf6169123b",
+      "claimIds": [
+        "CLAIM-a19ffea5ac479551"
+      ],
+      "assessment": "Unresolved; preserve historical reference",
+      "scopedFinding": "Direct URL failed with browser cache miss; no external page content obtained. Architecture assertions remain unverified in this review.",
+      "openedSources": [],
+      "notes": [
+        "Retained historical reference; retrieval failure is not evidence that the source or claim is false."
+      ]
+    },
+    {
+      "referenceId": "REF-8af7f0c64e902296",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "browser cache miss",
+      "pageTitle": "Series of Tubes save implementation",
+      "evidenceType": "Pinned GitHub src/game/91-save.js at commit 48e6200c532d486f79bc8376de0aecbf6169123b",
+      "claimIds": [
+        "CLAIM-456d0885be38f7ff"
+      ],
+      "assessment": "Unresolved; preserve historical reference",
+      "scopedFinding": "Direct URL failed with browser cache miss. Save-schema/validation assertions remain unverified in this review.",
+      "openedSources": [],
+      "notes": [
+        "Retained historical reference; retrieval failure is not evidence that the source or claim is false."
+      ]
+    },
+    {
+      "referenceId": "REF-31e291b1eee75a7a",
+      "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "browser cache miss",
+      "pageTitle": "Series of Tubes test harness",
+      "evidenceType": "Pinned GitHub tests/harness.js at commit 48e6200c532d486f79bc8376de0aecbf6169123b",
+      "claimIds": [
+        "CLAIM-e0ab5deab9125280"
+      ],
+      "assessment": "Unresolved; preserve historical reference",
+      "scopedFinding": "Direct URL failed with browser cache miss. Harness/test assertions remain unverified in this review.",
+      "openedSources": [],
+      "notes": [
+        "Retained historical reference; retrieval failure is not evidence that the source or claim is false."
+      ]
+    },
+    {
+      "referenceId": "REF-01234d0db452b257",
+      "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Cloud assessment and authorisation",
+      "evidenceType": "Australian Cyber Security Centre publication",
+      "claimIds": [
+        "CLAIM-4abda4d004716da6"
+      ],
+      "assessment": "Supported with AU scope; page aging noted",
+      "scopedFinding": "Describes risk-based cloud assessment and authorisation, shared responsibility, evidence, assessment and ongoing assurance. Provider evidence informs the accountable authorising officer; it is not blanket acceptance of all customer configurations. Source page published 2020-07-27 and reviewed 2024-01-18.",
+      "openedSources": [
+        {
+          "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-d8e8c2b149f9b9ab",
+      "url": "https://www.fedramp.gov/2026/agencies/use/",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Using a FedRAMP Certified Cloud Service",
+      "evidenceType": "FedRAMP official agency guidance, 2026 page",
+      "claimIds": [
+        "CLAIM-2314f315d795c6a6"
+      ],
+      "assessment": "Supported with agency-specific authorization scope",
+      "scopedFinding": "Reusable FedRAMP evidence does not itself authorize an agency system; agency decides its configuration, integrations and controls and must authorize and monitor its system. US federal context only.",
+      "openedSources": [
+        {
+          "url": "https://www.fedramp.gov/2026/agencies/use/",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-6d84d6a737cf7adf",
+      "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "ISMAP overview",
+      "evidenceType": "Japanese government ISMAP portal",
+      "claimIds": [
+        "CLAIM-7a874cbe68218153"
+      ],
+      "assessment": "Supported with Japanese programme scope",
+      "scopedFinding": "ISMAP evaluates/registers cloud services for government procurement; overview distinguishes main scheme and ISMAP-LIU low-impact SaaS and describes procurement from registered lists in principle. Does not itself prove a specific service is currently listed or suitable.",
+      "openedSources": [
+        {
+          "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-807e645f0a490d75",
+      "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "Considerations for generative AI services",
+      "evidenceType": "Japanese government ISMAP portal notice, dated 2026-01-09",
+      "claimIds": [
+        "CLAIM-ed81e9aa7bb61a3d"
+      ],
+      "assessment": "Supported with AI-specific caveat",
+      "scopedFinding": "Says government bodies must address AI-specific risks even for registered services; distinguishes SaaS registration from using an unregistered model on a registered IaaS/PaaS under conditions. Not blanket approval or prohibition.",
+      "openedSources": [
+        {
+          "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "referenceId": "REF-9ad9e2087bdedc1b",
+      "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+      "checkedAt": "2026-11-03",
+      "accessStatus": "opened",
+      "pageTitle": "International data transfers",
+      "evidenceType": "European Data Protection Board SME guidance",
+      "claimIds": [
+        "CLAIM-ef7e6982b2ab8356"
+      ],
+      "assessment": "Supported with transfer-mechanism scope; no localization claim",
+      "scopedFinding": "Explains transfer criteria and adequacy/safeguards/derogations for transfers outside EEA. It is not a general EU localization rule and does not imply storage location alone determines transfer legality.",
+      "openedSources": [
+        {
+          "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+          "accessStatus": "opened"
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

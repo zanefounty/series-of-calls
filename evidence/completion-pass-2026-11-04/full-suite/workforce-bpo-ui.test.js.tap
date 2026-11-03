@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: AC-SOC-367 roster form submits structured breaks through dispatch and renders independent adherence fields
+ok 1 - AC-SOC-367 roster form submits structured breaks through dispatch and renders independent adherence fields
+  ---
+  duration_ms: 774.187873
+  type: 'test'
+  ...
+# Subtest: AC-SOC-368 roster form rejects incomplete break intervals and customer operated staffing is read only
+ok 2 - AC-SOC-368 roster form rejects incomplete break intervals and customer operated staffing is read only
+  ---
+  duration_ms: 400.323453
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1507.550976

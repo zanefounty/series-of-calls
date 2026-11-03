@@ -26,7 +26,7 @@ test('language is one dropdown on the title screen and in Settings, in every lan
 test('changing the dropdown in Settings switches language and keeps the game', () => {
   const { ev, errors } = load();
   ev("ACT.start({});dayTick();ACT.settings();const s=document.getElementById('langSel');s.value='fr';s.dispatchEvent(new Event('change',{bubbles:true}))");
-  assert.equal(ev("localStorage.getItem('sot-lang')"), 'fr');
+  assert.equal(ev("localStorage.getItem('soc-sp-lang')"), 'fr');
   assert.ok(ev("slotRaw(UI.slot)"), 'saved before reloading');
   assert.deepEqual(errors, []);
 });

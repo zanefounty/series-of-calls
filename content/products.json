@@ -1,0 +1,458 @@
+{
+  "contentVersion": 1,
+  "description": "Synthetic product-family offers, modes, features, dependencies, and conflicts.",
+  "runtime": {
+    "PACK": "soc-products-1",
+    "VERSION": 1,
+    "units": [
+      "seat",
+      "session",
+      "agent-seat",
+      "room",
+      "instance",
+      "api-call",
+      "processor-minute",
+      "GB"
+    ],
+    "families": {
+      "microsoft:workplace-phone": {
+        "sourceID": "uc-new:family:microsoft:workplace-phone",
+        "organization": "provider:msf",
+        "name": "Microsnoft collaboration and telephony",
+        "modes": [
+          "multitenant",
+          "carrier-connected"
+        ],
+        "features": {
+          "collaboration": [
+            "identity"
+          ],
+          "telephony": [
+            "identity"
+          ],
+          "numbering": [
+            "identity"
+          ],
+          "carrier-interconnect": [
+            "identity",
+            "carrier"
+          ],
+          "mobile-network-integration": [
+            "identity",
+            "carrier"
+          ],
+          "direct-routing": [
+            "identity",
+            "carrier"
+          ]
+        }
+      },
+      "microsoft:meetings-rooms": {
+        "sourceID": "uc-new:family:microsoft:meetings-rooms",
+        "organization": "provider:msf",
+        "name": "Microsnoft meetings rooms and meeting intelligence",
+        "modes": [
+          "cloud",
+          "room-deployment"
+        ],
+        "features": {
+          "meetings": [
+            "identity"
+          ],
+          "events": [
+            "identity"
+          ],
+          "room-devices": [
+            "identity",
+            "calendar"
+          ],
+          "room-panels": [
+            "identity",
+            "calendar"
+          ],
+          "calendar-integration": [
+            "identity"
+          ],
+          "meeting-intelligence": [
+            "identity",
+            "capture-permission"
+          ],
+          "protected-meeting-mode": [
+            "identity"
+          ]
+        },
+        "conflicts": [
+          [
+            "meeting-intelligence",
+            "protected-meeting-mode"
+          ]
+        ]
+      },
+      "microsoft:contact-center": {
+        "sourceID": "uc-new:family:microsoft:contact-center",
+        "organization": "provider:msf",
+        "name": "Microsnoft customer-service platform",
+        "modes": [
+          "cloud",
+          "customer-operated"
+        ],
+        "features": {
+          "omnichannel-routing": [
+            "identity",
+            "workforce"
+          ],
+          "agent-assistance": [
+            "identity",
+            "workforce"
+          ],
+          "customer-records": [
+            "identity",
+            "crm"
+          ],
+          "customer-workflows": [
+            "identity",
+            "crm"
+          ],
+          "basic-call-queues": [
+            "identity",
+            "workforce"
+          ]
+        }
+      },
+      "microsoft:communication-apis": {
+        "sourceID": "uc-new:family:microsoft:communication-apis",
+        "organization": "provider:msf",
+        "name": "Microsnoft communication APIs",
+        "modes": [
+          "cloud",
+          "embedded"
+        ],
+        "features": {
+          "embedded-communications": [
+            "identity",
+            "api-access"
+          ],
+          "supported-architecture": [
+            "identity",
+            "api-access"
+          ],
+          "teams-aligned-integration": [
+            "identity",
+            "api-access"
+          ]
+        }
+      },
+      "microsoft:government-clouds": {
+        "sourceID": "uc-new:family:microsoft:government-clouds",
+        "organization": "provider:msf",
+        "name": "Microsnoft government deployment profiles",
+        "modes": [
+          "commercial",
+          "gcc",
+          "gcc-high",
+          "dod"
+        ],
+        "features": {
+          "workload-scoped-availability": [
+            "jurisdiction-evidence"
+          ],
+          "eligibility-evidence": [
+            "eligibility-evidence"
+          ],
+          "regional-evidence": [
+            "jurisdiction-evidence"
+          ]
+        }
+      },
+      "microsoft:local": {
+        "sourceID": "uc-new:family:microsoft:local",
+        "organization": "provider:msf",
+        "name": "Microsnoft local communications deployment",
+        "modes": [
+          "customer-operated-local",
+          "restricted-connectivity-local"
+        ],
+        "features": {
+          "local-infrastructure": [
+            "compute",
+            "identity",
+            "licensing-service"
+          ],
+          "local-identity": [
+            "identity"
+          ],
+          "local-update-service": [
+            "compute"
+          ],
+          "licensing-connectivity": [
+            "licensing-service"
+          ]
+        }
+      },
+      "cisco:suite-calling": {
+        "sourceID": "uc-new:family:cisco:suite-calling",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco cloud suite and calling",
+        "modes": [
+          "multitenant"
+        ],
+        "features": {
+          "collaboration": [
+            "identity"
+          ],
+          "meetings": [
+            "identity"
+          ],
+          "messaging": [
+            "identity"
+          ],
+          "multitenant-calling": [
+            "identity",
+            "carrier"
+          ],
+          "pstn-supply": [
+            "carrier"
+          ],
+          "reception": [
+            "identity",
+            "workforce"
+          ],
+          "customer-assistance": [
+            "identity",
+            "workforce"
+          ]
+        }
+      },
+      "cisco:dedicated-premises": {
+        "sourceID": "uc-new:family:cisco:dedicated-premises",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco dedicated and premises UC",
+        "modes": [
+          "dedicated",
+          "premises"
+        ],
+        "features": {
+          "unified-communications": [
+            "compute",
+            "identity"
+          ],
+          "messaging-voicemail": [
+            "compute",
+            "identity"
+          ],
+          "edge-connectivity": [
+            "network-edge"
+          ],
+          "survivability": [
+            "compute",
+            "local-services"
+          ]
+        }
+      },
+      "cisco:contact-center": {
+        "sourceID": "uc-new:family:cisco:contact-center",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco contact-centre families",
+        "modes": [
+          "multitenant",
+          "hosted",
+          "premises"
+        ],
+        "features": {
+          "digital-handling": [
+            "identity",
+            "workforce"
+          ],
+          "workforce-operations": [
+            "identity",
+            "workforce"
+          ],
+          "quality-review": [
+            "identity",
+            "recording"
+          ],
+          "ai-assistance": [
+            "identity",
+            "processing"
+          ],
+          "enterprise-hosted-routing": [
+            "identity",
+            "workforce"
+          ],
+          "premises-routing": [
+            "compute",
+            "workforce"
+          ]
+        }
+      },
+      "cisco:programmable-engagement": {
+        "sourceID": "uc-new:family:cisco:programmable-engagement",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco programmable engagement",
+        "modes": [
+          "cloud",
+          "provider-operated"
+        ],
+        "features": {
+          "channel-accounts": [
+            "channel-supplier"
+          ],
+          "workflow-flows": [
+            "api-access"
+          ],
+          "api-execution": [
+            "api-access"
+          ],
+          "webhook-delivery": [
+            "api-access"
+          ],
+          "digital-handling": [
+            "channel-supplier",
+            "workforce"
+          ],
+          "human-handoff": [
+            "channel-supplier",
+            "workforce"
+          ]
+        }
+      },
+      "cisco:meetings-devices": {
+        "sourceID": "uc-new:family:cisco:meetings-devices",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco meetings and device deployment families",
+        "modes": [
+          "native-room",
+          "interop-bridge",
+          "local-media"
+        ],
+        "features": {
+          "room-device": [
+            "identity",
+            "calendar"
+          ],
+          "desk-device": [
+            "identity"
+          ],
+          "board-device": [
+            "identity",
+            "calendar"
+          ],
+          "native-join": [
+            "identity",
+            "media"
+          ],
+          "interop-join": [
+            "interop-provider",
+            "media"
+          ],
+          "browser-join": [
+            "identity",
+            "media"
+          ],
+          "local-media-mesh": [
+            "compute",
+            "media"
+          ],
+          "meeting-server": [
+            "compute",
+            "identity",
+            "media"
+          ]
+        }
+      },
+      "cisco:provider-operations": {
+        "sourceID": "uc-new:family:cisco:provider-operations",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco partner and service-provider operations",
+        "modes": [
+          "provider-operated",
+          "multi-tenant"
+        ],
+        "features": {
+          "tenant-administration": [
+            "tenant-authority"
+          ],
+          "subpartner-agreements": [
+            "contract-authority"
+          ],
+          "wholesale-billing": [
+            "billing-system"
+          ],
+          "order-fulfilment": [
+            "order-system"
+          ],
+          "provider-operations": [
+            "tenant-authority",
+            "support-owner"
+          ]
+        }
+      },
+      "cisco:government": {
+        "sourceID": "uc-new:family:cisco:government",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco government and sovereign deployment profiles",
+        "modes": [
+          "jurisdiction-scoped-cloud",
+          "sovereign-infrastructure"
+        ],
+        "features": {
+          "workload-scoped-availability": [
+            "jurisdiction-evidence"
+          ],
+          "eligibility-evidence": [
+            "eligibility-evidence"
+          ],
+          "lifecycle-evidence": [
+            "lifecycle-evidence"
+          ]
+        }
+      },
+      "cisco:local-speech": {
+        "sourceID": "uc-new:family:cisco:local-speech",
+        "organization": "actor:disco-collaboration",
+        "name": "Disco local transcription",
+        "modes": [
+          "customer-operated-local"
+        ],
+        "features": {
+          "local-inference": [
+            "compute",
+            "language-model"
+          ],
+          "supported-language-stage": [
+            "language-model"
+          ],
+          "versioned-integration": [
+            "integration-version"
+          ],
+          "stored-output": [
+            "storage",
+            "information-policy"
+          ],
+          "operating-effort": [
+            "operator"
+          ],
+          "licensing-connectivity": [
+            "licensing-service"
+          ]
+        }
+      }
+    }
+  },
+  "sourceIds": [
+    "uc-new:family:cisco:contact-center",
+    "uc-new:family:cisco:dedicated-premises",
+    "uc-new:family:cisco:government",
+    "uc-new:family:cisco:local-speech",
+    "uc-new:family:cisco:meetings-devices",
+    "uc-new:family:cisco:programmable-engagement",
+    "uc-new:family:cisco:provider-operations",
+    "uc-new:family:cisco:suite-calling",
+    "uc-new:family:microsoft:communication-apis",
+    "uc-new:family:microsoft:contact-center",
+    "uc-new:family:microsoft:government-clouds",
+    "uc-new:family:microsoft:local",
+    "uc-new:family:microsoft:meetings-rooms",
+    "uc-new:family:microsoft:workplace-phone"
+  ]
+}

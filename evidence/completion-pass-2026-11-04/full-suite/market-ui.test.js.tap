@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: AC-SOC-226 market controls act on the portfolio while a customer is selected and remain read only without a lock
+ok 1 - AC-SOC-226 market controls act on the portfolio while a customer is selected and remain read only without a lock
+  ---
+  duration_ms: 881.879736
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1225.519931

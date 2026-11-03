@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const cliCapture = require('./cli-capture');
 const { load } = require('./harness');
 const { mannWhitneyP } = require('../scripts/perf-stats');
 
@@ -23,9 +23,9 @@ test('perf bench: runs end to end on a small save and compares a version with it
   ev("ACT.start({});S.cash=1e9;for(const g of GOALS)S.done[g.id]=0;ACT.launchBB({city:'fra'});ACT.buildPop({city:'ams'})");
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'perf-'));
   const save = path.join(dir, 'save.json'), js = path.join(dir, 'out.json');
-  fs.writeFileSync(save, JSON.stringify({ app: 'series-of-tubes', version: 'test', S: JSON.parse(ev('JSON.stringify(S)')) }));
-  const md = execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts', 'perf-bench.js'), '--save', save,
-    '--base', require('../scripts/lib/page').pageFile(path.join(dir, 'base.html')), '--runs', '3', '--json', js], { encoding: 'utf8' });
+  fs.writeFileSync(save, JSON.stringify({ app: 'series-of-calls-sp', version: 'test', S: JSON.parse(ev('JSON.stringify(S)')) }));
+  const md = cliCapture(process.execPath, [path.join(__dirname, '..', 'scripts', 'perf-bench.js'), '--save', save,
+    '--base', require('../scripts/lib/page').pageFile(path.join(dir, 'base.html')), '--runs', '3', '--json', js]).stdout;
   assert.match(md, /2 POPs/, 'reads an exported save');
   assert.match(md, /Routing results are identical to the base/);
   assert.match(md, /\| Routing: compute\(\) \|/);

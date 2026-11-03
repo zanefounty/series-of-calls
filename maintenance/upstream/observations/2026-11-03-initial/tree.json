@@ -1,0 +1,3207 @@
+{
+  "sha": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "tree": [
+    {
+      "path": ".claude",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54fab259a05daafac0d08dda375f51f0173d2862",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/54fab259a05daafac0d08dda375f51f0173d2862"
+    },
+    {
+      "path": ".claude/skills",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f160c4eb80c0422703fca5068314663c5734bbce",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/f160c4eb80c0422703fca5068314663c5734bbce"
+    },
+    {
+      "path": ".claude/skills/add-strings",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c86561fbba973e99a04f5c078c6c6f1b04ec34ad",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/c86561fbba973e99a04f5c078c6c6f1b04ec34ad"
+    },
+    {
+      "path": ".claude/skills/add-strings/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a891e789228a79bfb7154f26d563115aef77eb01",
+      "size": 4691,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a891e789228a79bfb7154f26d563115aef77eb01"
+    },
+    {
+      "path": ".claude/skills/edit-the-game",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b6a7f3cd048bd5e0efdf4b6ce734a04385e9a833",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/b6a7f3cd048bd5e0efdf4b6ce734a04385e9a833"
+    },
+    {
+      "path": ".claude/skills/edit-the-game/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfacf0eeb478952e8494699b6217e852a6c826cb",
+      "size": 4079,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bfacf0eeb478952e8494699b6217e852a6c826cb"
+    },
+    {
+      "path": ".claude/skills/gameplay-rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1304d2b98a576715369dbf9605c55f00c0a8b0a0",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/1304d2b98a576715369dbf9605c55f00c0a8b0a0"
+    },
+    {
+      "path": ".claude/skills/gameplay-rules/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a7f1d3fe543523a6ff6ff8126254fb9be881fc4",
+      "size": 8818,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1a7f1d3fe543523a6ff6ff8126254fb9be881fc4"
+    },
+    {
+      "path": ".claude/skills/github-pages",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d5b975b9b510586cf78aa9d645f92ded54ca66b4",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/d5b975b9b510586cf78aa9d645f92ded54ca66b4"
+    },
+    {
+      "path": ".claude/skills/github-pages/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "205db5b43b08a075c13e93239f0ccf45be513228",
+      "size": 4252,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/205db5b43b08a075c13e93239f0ccf45be513228"
+    },
+    {
+      "path": ".claude/skills/performance",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "52fe772fc255c2aa6c6afb77a77af56f4d1021f0",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/52fe772fc255c2aa6c6afb77a77af56f4d1021f0"
+    },
+    {
+      "path": ".claude/skills/performance/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c071f466cc4d5654eb25d9b723b9694803774406",
+      "size": 5981,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c071f466cc4d5654eb25d9b723b9694803774406"
+    },
+    {
+      "path": ".claude/skills/release",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cc36d6d88a5d4087b4dccf5a9f8ed0310d525d49",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/cc36d6d88a5d4087b4dccf5a9f8ed0310d525d49"
+    },
+    {
+      "path": ".claude/skills/release/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "509d3fb177615bbf2bf652916015b37854fc4520",
+      "size": 5686,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/509d3fb177615bbf2bf652916015b37854fc4520"
+    },
+    {
+      "path": ".claude/skills/write-tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "547f1e14dd722c08e0a5242ebcfe128c88975884",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/547f1e14dd722c08e0a5242ebcfe128c88975884"
+    },
+    {
+      "path": ".claude/skills/write-tests/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efe406c8e20804268151c041aa330f711ad0bde7",
+      "size": 2728,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/efe406c8e20804268151c041aa330f711ad0bde7"
+    },
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb714b7465c55f0d0c7c792e09cd91280a948d80",
+      "size": 145,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cb714b7465c55f0d0c7c792e09cd91280a948d80"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b8a9b9729f794956937093e17071d59ceb17db49",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/b8a9b9729f794956937093e17071d59ceb17db49"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "57c4b78bb4cb3f2c9cffdd978ee6a91c3f7868ce",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/57c4b78bb4cb3f2c9cffdd978ee6a91c3f7868ce"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/1-bug.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d76444dd52d5cbca598bdbf912b0903155c743be",
+      "size": 2470,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d76444dd52d5cbca598bdbf912b0903155c743be"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/2-feature.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf46ef2a7035107820d0d4fe5fc969e81dc694ae",
+      "size": 1662,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cf46ef2a7035107820d0d4fe5fc969e81dc694ae"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/3-balance.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a91c3905dadbee2006b45deb07cd9be00ee6eae",
+      "size": 1254,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7a91c3905dadbee2006b45deb07cd9be00ee6eae"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/4-translation.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31d261ea0dbf595d0b6806c7f335c66090d0ca2d",
+      "size": 1020,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/31d261ea0dbf595d0b6806c7f335c66090d0ca2d"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aedb3800301edde77681de6bfa4fa42a1f5db163",
+      "size": 514,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/aedb3800301edde77681de6bfa4fa42a1f5db163"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4f1a0ac84668ad71ccc6e4caa933ad62d97444e",
+      "size": 480,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b4f1a0ac84668ad71ccc6e4caa933ad62d97444e"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dc6dab10b58ed9b3162f540216f81f14b1d5a20",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/8dc6dab10b58ed9b3162f540216f81f14b1d5a20"
+    },
+    {
+      "path": ".github/workflows/auto-release.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29bfba0eec4f58be8573a7bcf442d02039dcda73",
+      "size": 3062,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/29bfba0eec4f58be8573a7bcf442d02039dcda73"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bb0ed762174ab3283d02529c87b3ccae33b2c1d",
+      "size": 1970,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8bb0ed762174ab3283d02529c87b3ccae33b2c1d"
+    },
+    {
+      "path": ".github/workflows/claude.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ff912ca66c3f77ea6f95b519fe33f9707c317b6",
+      "size": 1151,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8ff912ca66c3f77ea6f95b519fe33f9707c317b6"
+    },
+    {
+      "path": ".github/workflows/perf-comment.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f6c28689324363aa1458317db889d388c2974e9",
+      "size": 1824,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2f6c28689324363aa1458317db889d388c2974e9"
+    },
+    {
+      "path": ".github/workflows/perf.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48c05e4dc13838fc2d0880cfbb6787fe894627d4",
+      "size": 2073,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/48c05e4dc13838fc2d0880cfbb6787fe894627d4"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9e813feed98baaaf646051d381e16d6f9eee08f",
+      "size": 6359,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c9e813feed98baaaf646051d381e16d6f9eee08f"
+    },
+    {
+      "path": ".github/workflows/weekly-puzzle.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fdff9347ab34ff7794e7998ceaca8a24f2c589b1",
+      "size": 4603,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fdff9347ab34ff7794e7998ceaca8a24f2c589b1"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24c994505350cba2eedd447b5bb3dc28fe83f5d8",
+      "size": 31,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/24c994505350cba2eedd447b5bb3dc28fe83f5d8"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee68ffc651de065ecf9971df8ee82f78513657bf",
+      "size": 98538,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ee68ffc651de065ecf9971df8ee82f78513657bf"
+    },
+    {
+      "path": "CLAUDE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e383fa177560f88adce0e93a1c06ef319fd7cf46",
+      "size": 6817,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e383fa177560f88adce0e93a1c06ef319fd7cf46"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9021e8fc3af30582ead813f4750f1386be700865",
+      "size": 3023,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9021e8fc3af30582ead813f4750f1386be700865"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aaeb19fc7f6b453b73f2867c799e4ccd7abfc729",
+      "size": 8390,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/aaeb19fc7f6b453b73f2867c799e4ccd7abfc729"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f4c52c8b370092b334e45b389203d56af0fc940",
+      "size": 1070,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3f4c52c8b370092b334e45b389203d56af0fc940"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc6e3fba967502f3fa07de6b3360d136d5a99219",
+      "size": 4088,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cc6e3fba967502f3fa07de6b3360d136d5a99219"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "223d346122cc4e4fe3d35f552176070502ba628c",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/223d346122cc4e4fe3d35f552176070502ba628c"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbae642792140961c4a5e844876186de270a2159",
+      "size": 22738,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cbae642792140961c4a5e844876186de270a2159"
+    },
+    {
+      "path": "docs/MCP.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b4a52f6c34b863ca2b88bc1f0116531cfa6dbff",
+      "size": 3572,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/0b4a52f6c34b863ca2b88bc1f0116531cfa6dbff"
+    },
+    {
+      "path": "docs/adr",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf9de07400400479d705d9b4f84f10588961b24d",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/bf9de07400400479d705d9b4f84f10588961b24d"
+    },
+    {
+      "path": "docs/adr/0001-github-pages-only.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "039db578d2ba6e982687a8093aa350d61c5d2705",
+      "size": 3294,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/039db578d2ba6e982687a8093aa350d61c5d2705"
+    },
+    {
+      "path": "docs/adr/0002-one-page-assembled-at-build.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "653d70110028c0fe385973b2eace6a30a20de931",
+      "size": 4341,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/653d70110028c0fe385973b2eace6a30a20de931"
+    },
+    {
+      "path": "docs/adr/0003-translations-by-label.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a75c20964fd272c56d4a597d97e3c4fd9350fc1b",
+      "size": 4227,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a75c20964fd272c56d4a597d97e3c4fd9350fc1b"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c49ac8f2e5383d4d83610c5ca61d46e71abc09d2",
+      "size": 29783,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c49ac8f2e5383d4d83610c5ca61d46e71abc09d2"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d3363d43dc4908cd65e78eb111ac9c9162d87b3",
+      "size": 888,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6d3363d43dc4908cd65e78eb111ac9c9162d87b3"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b87a5787d4e2e173a5cb74af9ba314e4a210cc71",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/b87a5787d4e2e173a5cb74af9ba314e4a210cc71"
+    },
+    {
+      "path": "scripts/build.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c8971a47dd8c7a8cbcdc18068648375e96927a8",
+      "size": 4239,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6c8971a47dd8c7a8cbcdc18068648375e96927a8"
+    },
+    {
+      "path": "scripts/dev.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aaa403ba64270a511c38c133587fb7c29693e223",
+      "size": 3104,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/aaa403ba64270a511c38c133587fb7c29693e223"
+    },
+    {
+      "path": "scripts/i18n-add.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27468e5ab417b241387f01bfb9ad074ae1ae7068",
+      "size": 3890,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/27468e5ab417b241387f01bfb9ad074ae1ae7068"
+    },
+    {
+      "path": "scripts/i18n-check.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d8e6571f6042e2f365037ef88ea0bcab9933d0a",
+      "size": 8831,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8d8e6571f6042e2f365037ef88ea0bcab9933d0a"
+    },
+    {
+      "path": "scripts/legacy",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0a822bb6768dcc59fa07b7e5f9409982ece6ebe3",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/0a822bb6768dcc59fa07b7e5f9409982ece6ebe3"
+    },
+    {
+      "path": "scripts/legacy/labels.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab210963e9ae943f7b0bef3c65ee71e49b48642a",
+      "size": 7022,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ab210963e9ae943f7b0bef3c65ee71e49b48642a"
+    },
+    {
+      "path": "scripts/legacy/port-branch.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "923043c9c613dc6790d7f299f3ee85fcb477770d",
+      "size": 7679,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/923043c9c613dc6790d7f299f3ee85fcb477770d"
+    },
+    {
+      "path": "scripts/legacy/split-index-html.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb542f84da75f1868049262fd147d0ca62c9a8b3",
+      "size": 10012,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bb542f84da75f1868049262fd147d0ca62c9a8b3"
+    },
+    {
+      "path": "scripts/legacy/transforms.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e08e047b34d2699cf827aeb91f578f59a644005",
+      "size": 6404,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3e08e047b34d2699cf827aeb91f578f59a644005"
+    },
+    {
+      "path": "scripts/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eca706fa75afb668993a2a4e828e09445a867341",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/eca706fa75afb668993a2a4e828e09445a867341"
+    },
+    {
+      "path": "scripts/lib/compile-labels.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a78cf4e729b22fd90c1317c30c4daee50eb32e60",
+      "size": 2808,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a78cf4e729b22fd90c1317c30c4daee50eb32e60"
+    },
+    {
+      "path": "scripts/lib/dict.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1e06eac2ec8c00f123032c60fbb78944b66416f",
+      "size": 2322,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e1e06eac2ec8c00f123032c60fbb78944b66416f"
+    },
+    {
+      "path": "scripts/lib/fuzz-page.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4953550db0866499c5f90306aa227d378b936b1",
+      "size": 13304,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c4953550db0866499c5f90306aa227d378b936b1"
+    },
+    {
+      "path": "scripts/lib/mcp-game.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1079e28c85e3a901781cf9781aab7b2a44054c93",
+      "size": 10111,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1079e28c85e3a901781cf9781aab7b2a44054c93"
+    },
+    {
+      "path": "scripts/lib/mcp-page.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77afe6e6263fca4d62ad8a4eb96b14749f2b002a",
+      "size": 17862,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/77afe6e6263fca4d62ad8a4eb96b14749f2b002a"
+    },
+    {
+      "path": "scripts/lib/page.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "880af5c62a793f55fa8bc31079e08b17663fb025",
+      "size": 5528,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/880af5c62a793f55fa8bc31079e08b17663fb025"
+    },
+    {
+      "path": "scripts/lib/puzzle-solver.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a225744e54539db1fa80e3f5b21e6e276b2199cb",
+      "size": 6760,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a225744e54539db1fa80e3f5b21e6e276b2199cb"
+    },
+    {
+      "path": "scripts/lib/route-fuzz.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5b5eb23e42dee7c9c24f4faaeb24617e60707f8",
+      "size": 11208,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b5b5eb23e42dee7c9c24f4faaeb24617e60707f8"
+    },
+    {
+      "path": "scripts/lib/scenario-bot.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf811ea6a1fe4eaef0f7f0d413dc6ffd2d523ea6",
+      "size": 5340,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bf811ea6a1fe4eaef0f7f0d413dc6ffd2d523ea6"
+    },
+    {
+      "path": "scripts/lib/scenario-ref.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6164e8f4900edb20c7f41e830a215bf75746645a",
+      "size": 7880,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6164e8f4900edb20c7f41e830a215bf75746645a"
+    },
+    {
+      "path": "scripts/mcp.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e4fdeb7bace6212839fcecef9c4cec647fc9867",
+      "size": 3779,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5e4fdeb7bace6212839fcecef9c4cec647fc9867"
+    },
+    {
+      "path": "scripts/perf-bench.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "272e9ac0256a365edd645c9aab7c9682c4caa53b",
+      "size": 8951,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/272e9ac0256a365edd645c9aab7c9682c4caa53b"
+    },
+    {
+      "path": "scripts/perf-browser.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8a7123bb2601abfcd7cf322f63cb45bd5e0ac3d",
+      "size": 5121,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a8a7123bb2601abfcd7cf322f63cb45bd5e0ac3d"
+    },
+    {
+      "path": "scripts/perf-fixture.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f99e74427697a695770bdd980753740a02f2ffc",
+      "size": 3548,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9f99e74427697a695770bdd980753740a02f2ffc"
+    },
+    {
+      "path": "scripts/perf-stats.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1904e3ec776065fbf9db1108197ee001b2ebe65a",
+      "size": 1342,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1904e3ec776065fbf9db1108197ee001b2ebe65a"
+    },
+    {
+      "path": "scripts/release-notes.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82bc3d2ec1b1c4bebf7c80ca922d9d3b47067a12",
+      "size": 1516,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/82bc3d2ec1b1c4bebf7c80ca922d9d3b47067a12"
+    },
+    {
+      "path": "scripts/route-fuzz.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2027857fdf15bdf8f400b96992bdd92dafc183d",
+      "size": 5310,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e2027857fdf15bdf8f400b96992bdd92dafc183d"
+    },
+    {
+      "path": "scripts/test-timings.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bf7d5e27da44ce2286d0fba89dac920967b434b",
+      "size": 1852,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1bf7d5e27da44ce2286d0fba89dac920967b434b"
+    },
+    {
+      "path": "scripts/test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2eb92f493f665df8c9266b1e2dad1f455940ea3f",
+      "size": 3191,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2eb92f493f665df8c9266b1e2dad1f455940ea3f"
+    },
+    {
+      "path": "scripts/weekly-architect.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e916be0d610cc001b8a29c39bc19869a376cdff",
+      "size": 19690,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1e916be0d610cc001b8a29c39bc19869a376cdff"
+    },
+    {
+      "path": "scripts/weekly-puzzle.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a9a0a1a4c22935e8252b605b525eb89f6420f72",
+      "size": 29728,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5a9a0a1a4c22935e8252b605b525eb89f6420f72"
+    },
+    {
+      "path": "scripts/weekly-scenario.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f6785e91e9ab90501df82661b0f059a4f97f282",
+      "size": 22632,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/0f6785e91e9ab90501df82661b0f059a4f97f282"
+    },
+    {
+      "path": "site",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "27131e341c4f4bfe96558e68f8417f065e361637",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/27131e341c4f4bfe96558e68f8417f065e361637"
+    },
+    {
+      "path": "site/404.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3603502bff29572cca9d6731b5b6deb4cbb7d1e5",
+      "size": 1576,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3603502bff29572cca9d6731b5b6deb4cbb7d1e5"
+    },
+    {
+      "path": "site/CNAME",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fb0a9278c5a0d0d3b006c432e0b208110d40ea7",
+      "size": 15,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8fb0a9278c5a0d0d3b006c432e0b208110d40ea7"
+    },
+    {
+      "path": "site/apple-touch-icon.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c5f1ee60bcf21221df7cbb72f925c6577350baf",
+      "size": 5054,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9c5f1ee60bcf21221df7cbb72f925c6577350baf"
+    },
+    {
+      "path": "site/architect",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ba5e6aa0a83c532cd817fe1363e16721bca09597",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/ba5e6aa0a83c532cd817fe1363e16721bca09597"
+    },
+    {
+      "path": "site/architect/weekly",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7b286f2d690e10ecb48948fe863178a662271100",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/7b286f2d690e10ecb48948fe863178a662271100"
+    },
+    {
+      "path": "site/architect/weekly/2026-W44.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18ecb430da05568a55b748fe062f6154f15218b6",
+      "size": 859,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/18ecb430da05568a55b748fe062f6154f15218b6"
+    },
+    {
+      "path": "site/architect/weekly/2026-W45.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ebd07364a78a5ea7e29fe6c2e528da7b040e160",
+      "size": 708,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/0ebd07364a78a5ea7e29fe6c2e528da7b040e160"
+    },
+    {
+      "path": "site/architect/weekly/2026-W46.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "446e87a2ccdc13f36abda258e16807f878dcf638",
+      "size": 783,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/446e87a2ccdc13f36abda258e16807f878dcf638"
+    },
+    {
+      "path": "site/architect/weekly/index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89558411e2402c346fac2f616c8d996e074770e4",
+      "size": 51,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/89558411e2402c346fac2f616c8d996e074770e4"
+    },
+    {
+      "path": "site/d000727792a2ac2fdaa24ec953ed6d2b.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f93aa807b04238880868b3f7413f247fff15ff7",
+      "size": 33,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9f93aa807b04238880868b3f7413f247fff15ff7"
+    },
+    {
+      "path": "site/favicon.ico",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8c2a13a818c32244fe48514565a1282e6afada9",
+      "size": 2107,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a8c2a13a818c32244fe48514565a1282e6afada9"
+    },
+    {
+      "path": "site/favicon.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a55c8104c4472471510ef2600561166114f13483",
+      "size": 571,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a55c8104c4472471510ef2600561166114f13483"
+    },
+    {
+      "path": "site/i18n",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5639ea291e0287432da56cfa05e957830d95a08e",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/5639ea291e0287432da56cfa05e957830d95a08e"
+    },
+    {
+      "path": "site/i18n/de.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62c0c8be03ef2cf7fb34b38c2ba0be63d3a5705f",
+      "size": 407971,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/62c0c8be03ef2cf7fb34b38c2ba0be63d3a5705f"
+    },
+    {
+      "path": "site/i18n/es.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "746a61b3006ded29a0ab8346903db494012425a7",
+      "size": 405400,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/746a61b3006ded29a0ab8346903db494012425a7"
+    },
+    {
+      "path": "site/i18n/fr.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e05cb951f88a4ffdac79eee7f94185503d80a343",
+      "size": 423980,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e05cb951f88a4ffdac79eee7f94185503d80a343"
+    },
+    {
+      "path": "site/i18n/it.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fff5637432f088fbf2dc7f68bfec0aa50bdc98da",
+      "size": 405448,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fff5637432f088fbf2dc7f68bfec0aa50bdc98da"
+    },
+    {
+      "path": "site/i18n/pt.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67b0b08a7ba441006476d16b8a7fe16bf9644575",
+      "size": 397370,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/67b0b08a7ba441006476d16b8a7fe16bf9644575"
+    },
+    {
+      "path": "site/icon-192.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61c6d7598187fa78af10eb9e747400a26436bb0d",
+      "size": 9342,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61c6d7598187fa78af10eb9e747400a26436bb0d"
+    },
+    {
+      "path": "site/icon-512.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58dada30cf8e9ba924bc155133bdedee79ad2a99",
+      "size": 26342,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/58dada30cf8e9ba924bc155133bdedee79ad2a99"
+    },
+    {
+      "path": "site/icon-maskable-512.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccc2c8d7e2cac80fe162de1b7e02c2e31727cb16",
+      "size": 13098,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ccc2c8d7e2cac80fe162de1b7e02c2e31727cb16"
+    },
+    {
+      "path": "site/images",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "69b53a5ea75c06e4a50a01a5d8dff6d299e2204e",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/69b53a5ea75c06e4a50a01a5d8dff6d299e2204e"
+    },
+    {
+      "path": "site/images/og-image.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "495cf360ca30665998139e4d3bd1cf8bc74ac3cb",
+      "size": 282773,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/495cf360ca30665998139e4d3bd1cf8bc74ac3cb"
+    },
+    {
+      "path": "site/llms.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "853aa6396f4b613e581f1992117282de5c3cebd5",
+      "size": 1834,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/853aa6396f4b613e581f1992117282de5c3cebd5"
+    },
+    {
+      "path": "site/puzzles",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b893154c8941341516227ad4762c89c6d16ec023",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/b893154c8941341516227ad4762c89c6d16ec023"
+    },
+    {
+      "path": "site/puzzles/weekly",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8bd0041f6dae0e17dbeef2dc79ab68442f574c7c",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/8bd0041f6dae0e17dbeef2dc79ab68442f574c7c"
+    },
+    {
+      "path": "site/puzzles/weekly/2026-W44.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be7a930e68f0cbc32084800758761b6d090a23e6",
+      "size": 417,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/be7a930e68f0cbc32084800758761b6d090a23e6"
+    },
+    {
+      "path": "site/puzzles/weekly/2026-W45.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc475a54b0a4a74169899f0fd5bf7df8dff6ca09",
+      "size": 404,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fc475a54b0a4a74169899f0fd5bf7df8dff6ca09"
+    },
+    {
+      "path": "site/puzzles/weekly/2026-W46.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11a7fbf8be222d6fb3faff05180d5cf5bbf76067",
+      "size": 430,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/11a7fbf8be222d6fb3faff05180d5cf5bbf76067"
+    },
+    {
+      "path": "site/puzzles/weekly/index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e112cc1de6fc6b23187bffa37cc6a4ed5f339142",
+      "size": 51,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e112cc1de6fc6b23187bffa37cc6a4ed5f339142"
+    },
+    {
+      "path": "site/robots.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f83aa5d23eb529193825440ffd469be4713a857",
+      "size": 68,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6f83aa5d23eb529193825440ffd469be4713a857"
+    },
+    {
+      "path": "site/scenarios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e13d08af8f752f235aeae9abdead4d0ca87486ea",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/e13d08af8f752f235aeae9abdead4d0ca87486ea"
+    },
+    {
+      "path": "site/scenarios/weekly",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d096a4f6373d96ac4b2397038c4cfc75d2f8f183",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/d096a4f6373d96ac4b2397038c4cfc75d2f8f183"
+    },
+    {
+      "path": "site/scenarios/weekly/2026-W44.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "730bb3d1963aee7ecd3e0d2cb226b5efbc11c31f",
+      "size": 485,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/730bb3d1963aee7ecd3e0d2cb226b5efbc11c31f"
+    },
+    {
+      "path": "site/scenarios/weekly/2026-W45.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "498ff4ffdb1c6b64557503cca31a6249501eb4d5",
+      "size": 543,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/498ff4ffdb1c6b64557503cca31a6249501eb4d5"
+    },
+    {
+      "path": "site/scenarios/weekly/2026-W46.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df843d6e09375a908e7c9e294ba6828feb4e960d",
+      "size": 474,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/df843d6e09375a908e7c9e294ba6828feb4e960d"
+    },
+    {
+      "path": "site/scenarios/weekly/index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89558411e2402c346fac2f616c8d996e074770e4",
+      "size": 51,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/89558411e2402c346fac2f616c8d996e074770e4"
+    },
+    {
+      "path": "site/site.webmanifest",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccb36866b7df723259f5c968ef3e59e9b242ae34",
+      "size": 869,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ccb36866b7df723259f5c968ef3e59e9b242ae34"
+    },
+    {
+      "path": "site/sitemap.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2329d904ba50ac733ed6e2e9bc4d61dd03b36a42",
+      "size": 441,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2329d904ba50ac733ed6e2e9bc4d61dd03b36a42"
+    },
+    {
+      "path": "site/sw.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "745bafae1e5aa5ac8e4b43a4d174fd7d9a990b6a",
+      "size": 2398,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/745bafae1e5aa5ac8e4b43a4d174fd7d9a990b6a"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0c086bb878bde36f756566f1008121afe9c12763",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/0c086bb878bde36f756566f1008121afe9c12763"
+    },
+    {
+      "path": "src/game",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "23131759f56f52aa6ddbe80569d7c4fd357db1d2",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/23131759f56f52aa6ddbe80569d7c4fd357db1d2"
+    },
+    {
+      "path": "src/game/00-core",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c64f7bffd08c5f8b657c7e9b556b696f2595b583",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/c64f7bffd08c5f8b657c7e9b556b696f2595b583"
+    },
+    {
+      "path": "src/game/00-core/10-language.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "affe78425f5e394b86e00105760a8cfce5e67961",
+      "size": 1489,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/affe78425f5e394b86e00105760a8cfce5e67961"
+    },
+    {
+      "path": "src/game/00-core/20-analytics.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3154d230b36dd2ed370bdf14b70421030a485a51",
+      "size": 1723,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3154d230b36dd2ed370bdf14b70421030a485a51"
+    },
+    {
+      "path": "src/game/10-catalog",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f81dd1640167012913ecd175fd41fabd42d1c510",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/f81dd1640167012913ecd175fd41fabd42d1c510"
+    },
+    {
+      "path": "src/game/10-catalog/10-economy.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "465ff59df0a182b0b527f83b1e0d4b0485377872",
+      "size": 6277,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/465ff59df0a182b0b527f83b1e0d4b0485377872"
+    },
+    {
+      "path": "src/game/10-catalog/20-routers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ce9685b4a96db0c75ed421ef0093a6c4a448e10",
+      "size": 5994,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1ce9685b4a96db0c75ed421ef0093a6c4a448e10"
+    },
+    {
+      "path": "src/game/10-catalog/25-router-art.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d72c6e17706c3ae928d25d65276efe0ef239dcea",
+      "size": 24125,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d72c6e17706c3ae928d25d65276efe0ef239dcea"
+    },
+    {
+      "path": "src/game/10-catalog/30-supply-chain.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fc363be7f1f0b552b7b6262f06e814937adc784",
+      "size": 3822,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8fc363be7f1f0b552b7b6262f06e814937adc784"
+    },
+    {
+      "path": "src/game/10-catalog/40-ports.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f6f6d16c06aa51271b5c57458954825642322d5",
+      "size": 3671,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1f6f6d16c06aa51271b5c57458954825642322d5"
+    },
+    {
+      "path": "src/game/10-catalog/50-dark-fiber.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6286a95d76c798655acec250a4603c7a90e77e1",
+      "size": 4745,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f6286a95d76c798655acec250a4603c7a90e77e1"
+    },
+    {
+      "path": "src/game/10-catalog/60-reach-and-subsea.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4bb4b1e00ae78b882a82b15ecb0f0f90346eaeb",
+      "size": 7332,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e4bb4b1e00ae78b882a82b15ecb0f0f90346eaeb"
+    },
+    {
+      "path": "src/game/20-world",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ad9abbcd0c83b27cb062d2d738716cbe54b3352e",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/ad9abbcd0c83b27cb062d2d738716cbe54b3352e"
+    },
+    {
+      "path": "src/game/20-world/10-projection.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f47fa68c8e36d7adcd831c9085ccd2e68afd1207",
+      "size": 962,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f47fa68c8e36d7adcd831c9085ccd2e68afd1207"
+    },
+    {
+      "path": "src/game/20-world/20-landmasses.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb62801bf1e0ae7069e6e900ab7bc87811d449ea",
+      "size": 13305,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fb62801bf1e0ae7069e6e900ab7bc87811d449ea"
+    },
+    {
+      "path": "src/game/20-world/30-coastline.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28274b1b36c6e2867ea5027c633d2563719a7663",
+      "size": 104396,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/28274b1b36c6e2867ea5027c633d2563719a7663"
+    },
+    {
+      "path": "src/game/20-world/40-city-coords.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93bffa2ef5baf61dfef0b15fbae778a6ea571ee1",
+      "size": 5440,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/93bffa2ef5baf61dfef0b15fbae778a6ea571ee1"
+    },
+    {
+      "path": "src/game/20-world/50-cities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e0fe5f9e8c9f8fc8c11e42d7932f4ffa4caa59c",
+      "size": 41189,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7e0fe5f9e8c9f8fc8c11e42d7932f4ffa4caa59c"
+    },
+    {
+      "path": "src/game/20-world/55-city-pdb.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02b7f38c4d8bc5877cbe4d2f20c067f0b85b5126",
+      "size": 5524,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/02b7f38c4d8bc5877cbe4d2f20c067f0b85b5126"
+    },
+    {
+      "path": "src/game/20-world/60-cables.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "294fa31e07a13730bb51e634c13d205950dbce03",
+      "size": 91684,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/294fa31e07a13730bb51e634c13d205950dbce03"
+    },
+    {
+      "path": "src/game/20-world/70-cable-ships.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c92f139ee0737689b23ddd0e3dbe034226ddc97b",
+      "size": 2706,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c92f139ee0737689b23ddd0e3dbe034226ddc97b"
+    },
+    {
+      "path": "src/game/30-networks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2a64de4ee2f55f3f35b4e5a751cccc6c707be11a",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/2a64de4ee2f55f3f35b4e5a751cccc6c707be11a"
+    },
+    {
+      "path": "src/game/30-networks/10-networks.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf6682d41fd293d0fa594a534d6c5934baa0c545",
+      "size": 32317,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bf6682d41fd293d0fa594a534d6c5934baa0c545"
+    },
+    {
+      "path": "src/game/30-networks/20-rival-exchanges.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3abb2ccc5e8d89b6c7b779b7794c1285ec0b40bb",
+      "size": 4052,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3abb2ccc5e8d89b6c7b779b7794c1285ec0b40bb"
+    },
+    {
+      "path": "src/game/30-networks/30-long-tail.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1304fb865d02babb2ee1b859c41072f28cdfbe23",
+      "size": 16550,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1304fb865d02babb2ee1b859c41072f28cdfbe23"
+    },
+    {
+      "path": "src/game/30-networks/32-homegrown-eyeballs.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf283deedb04f7a7efecd475f368150925292a6c",
+      "size": 14922,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bf283deedb04f7a7efecd475f368150925292a6c"
+    },
+    {
+      "path": "src/game/30-networks/35-glowball-sakura-lager.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c45b8dedaaf74a3e40d01d5d896f39cdc769a170",
+      "size": 1871,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c45b8dedaaf74a3e40d01d5d896f39cdc769a170"
+    },
+    {
+      "path": "src/game/30-networks/40-traffic-shares.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88838875f4b54e604a42cde21f7bd237dd342b64",
+      "size": 3542,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/88838875f4b54e604a42cde21f7bd237dd342b64"
+    },
+    {
+      "path": "src/game/40-progress",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "524660bd1218f566a030ca54c218d68c9c723388",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/524660bd1218f566a030ca54c218d68c9c723388"
+    },
+    {
+      "path": "src/game/40-progress/10-businesses.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48a35e5b9c2e28eae25b4b11d642db70670617fc",
+      "size": 11306,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/48a35e5b9c2e28eae25b4b11d642db70670617fc"
+    },
+    {
+      "path": "src/game/40-progress/20-goals.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e4eaf3bb10ca5f127bd98ad20a5cea6e56e9a7d",
+      "size": 2521,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9e4eaf3bb10ca5f127bd98ad20a5cea6e56e9a7d"
+    },
+    {
+      "path": "src/game/40-progress/30-rules.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12f7c92e8cac7f8f030f2282705966c3644bfff8",
+      "size": 5499,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/12f7c92e8cac7f8f030f2282705966c3644bfff8"
+    },
+    {
+      "path": "src/game/50-state.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53850bf65cbd97444221212be5d5a1ff7cc41805",
+      "size": 746,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/53850bf65cbd97444221212be5d5a1ff7cc41805"
+    },
+    {
+      "path": "src/game/60-features",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "00a2a6e7197ae77f59dd5ab91446636a42d7d969",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/00a2a6e7197ae77f59dd5ab91446636a42d7d969"
+    },
+    {
+      "path": "src/game/60-features/10-banks.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38311f2219826f306f7029af0a5114db42a524e9",
+      "size": 11521,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/38311f2219826f306f7029af0a5114db42a524e9"
+    },
+    {
+      "path": "src/game/60-features/20-scenarios.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eedd60f8cd2b2edf9e671443dcb59367d7e44c0f",
+      "size": 10363,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/eedd60f8cd2b2edf9e671443dcb59367d7e44c0f"
+    },
+    {
+      "path": "src/game/60-features/30-conferences.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "def6c62826ebe65df6e7ecdfeae4ab8f6bb52583",
+      "size": 4638,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/def6c62826ebe65df6e7ecdfeae4ab8f6bb52583"
+    },
+    {
+      "path": "src/game/60-features/35-capacity-deals.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdb5c512177296c1e7248ef35496082c13d86350",
+      "size": 5256,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bdb5c512177296c1e7248ef35496082c13d86350"
+    },
+    {
+      "path": "src/game/60-features/36-specialist.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37e7039add785e499b071456333b8ecdc97369de",
+      "size": 12111,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/37e7039add785e499b071456333b8ecdc97369de"
+    },
+    {
+      "path": "src/game/60-features/37-fiber-broker.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0f0275b555d460e676623b0b1f12830d2dab38f",
+      "size": 3000,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a0f0275b555d460e676623b0b1f12830d2dab38f"
+    },
+    {
+      "path": "src/game/60-features/40-tutorial.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "413f8886b5c11c18fc480fa288fdcd9d81c67edf",
+      "size": 1870,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/413f8886b5c11c18fc480fa288fdcd9d81c67edf"
+    },
+    {
+      "path": "src/game/60-features/50-traceroute.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce195c19d16032e008e4ddafd6cdf4a6487f3699",
+      "size": 9979,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ce195c19d16032e008e4ddafd6cdf4a6487f3699"
+    },
+    {
+      "path": "src/game/60-features/60-share-card.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b86351a96c18f0cc8a3a3488303724e3871b5fd",
+      "size": 5116,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1b86351a96c18f0cc8a3a3488303724e3871b5fd"
+    },
+    {
+      "path": "src/game/60-features/70-scenario-progress.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4436e58ddf3de2ba0eb31a94c5391c1a78f2c7ba",
+      "size": 3277,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4436e58ddf3de2ba0eb31a94c5391c1a78f2c7ba"
+    },
+    {
+      "path": "src/game/60-features/80-new-game.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acaeda182848f536f6c09f85dcd7704b689aae8b",
+      "size": 855,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/acaeda182848f536f6c09f85dcd7704b689aae8b"
+    },
+    {
+      "path": "src/game/60-features/85-pitcairn.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1497980fcb29ece5a52f8101b48650c73ac9d0e8",
+      "size": 558,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1497980fcb29ece5a52f8101b48650c73ac9d0e8"
+    },
+    {
+      "path": "src/game/60-features/90-automation.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "528c15ab89115cd04084d287b3240f379bb1db3b",
+      "size": 2768,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/528c15ab89115cd04084d287b3240f379bb1db3b"
+    },
+    {
+      "path": "src/game/60-features/90-puzzles-data.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9c611e49766b7c39e6da347c87236aa378e87d9",
+      "size": 5474,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b9c611e49766b7c39e6da347c87236aa378e87d9"
+    },
+    {
+      "path": "src/game/60-features/92-puzzles.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9500c5770156ab28cf1d60fb42efe0e974cfa97b",
+      "size": 16600,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9500c5770156ab28cf1d60fb42efe0e974cfa97b"
+    },
+    {
+      "path": "src/game/60-features/93-puzzles-weekly.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08ae97b153b5aeb2b4e5c154f241eb16d70d0628",
+      "size": 9720,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/08ae97b153b5aeb2b4e5c154f241eb16d70d0628"
+    },
+    {
+      "path": "src/game/60-features/94-scenarios-weekly.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa8c0538b322b0abf48476c1bdf5a27dfa3e1803",
+      "size": 16152,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fa8c0538b322b0abf48476c1bdf5a27dfa3e1803"
+    },
+    {
+      "path": "src/game/60-features/95-standing-orders.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2a75abe9bc5f96a8c2b2fa1c9f6129782bbc607",
+      "size": 25851,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c2a75abe9bc5f96a8c2b2fa1c9f6129782bbc607"
+    },
+    {
+      "path": "src/game/60-features/96-architect.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed69701b49879923f5a709654a3c0fd1477232e2",
+      "size": 16806,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ed69701b49879923f5a709654a3c0fd1477232e2"
+    },
+    {
+      "path": "src/game/60-features/96-pop-standard.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dad4b00b3a2b15d04f49de6dee0297c583d1f4a5",
+      "size": 2112,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/dad4b00b3a2b15d04f49de6dee0297c583d1f4a5"
+    },
+    {
+      "path": "src/game/60-features/97-puzzle-monkey.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff43a69613c68e21f093ba5e9cd57f3373502015",
+      "size": 2568,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ff43a69613c68e21f093ba5e9cd57f3373502015"
+    },
+    {
+      "path": "src/game/60-features/98-architect-weekly.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7a00d0c1f891a6a8cc4636da0d4b9c46b154ee3",
+      "size": 7052,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d7a00d0c1f891a6a8cc4636da0d4b9c46b154ee3"
+    },
+    {
+      "path": "src/game/70-rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7acacb938fcdf8dcb4ebcaef15d6fe66ba3fdb49",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/7acacb938fcdf8dcb4ebcaef15d6fe66ba3fdb49"
+    },
+    {
+      "path": "src/game/70-rules/10-helpers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "891a223683f1fd870e55fa9dfc8956c58cd15783",
+      "size": 3553,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/891a223683f1fd870e55fa9dfc8956c58cd15783"
+    },
+    {
+      "path": "src/game/70-rules/20-exchanges.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b451433189d14054723d7131c67345f83bb55127",
+      "size": 3830,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b451433189d14054723d7131c67345f83bb55127"
+    },
+    {
+      "path": "src/game/70-rules/30-pnis.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb8a2e5c0f7dce3c324503cfc77a2922497d1b68",
+      "size": 2636,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bb8a2e5c0f7dce3c324503cfc77a2922497d1b68"
+    },
+    {
+      "path": "src/game/70-rules/35-pni-orders.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b31325d45c9ab5b1075141284f595e349546b00",
+      "size": 2594,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1b31325d45c9ab5b1075141284f595e349546b00"
+    },
+    {
+      "path": "src/game/70-rules/38-pni-value.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "193e8bc1953caeab5eeaa3763d08298fb6eb462b",
+      "size": 3901,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/193e8bc1953caeab5eeaa3763d08298fb6eb462b"
+    },
+    {
+      "path": "src/game/70-rules/40-peering-desk.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8369bdbc2a5fde60b341040a0d836586c938147",
+      "size": 2900,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e8369bdbc2a5fde60b341040a0d836586c938147"
+    },
+    {
+      "path": "src/game/70-rules/50-peering-policy.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93e191391c9e380cf798b6a0517db7bb6c115075",
+      "size": 3545,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/93e191391c9e380cf798b6a0517db7bb6c115075"
+    },
+    {
+      "path": "src/game/70-rules/55-mergers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7f0e8ffd5eede52742accb0ae18be8ffb9027df",
+      "size": 1231,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f7f0e8ffd5eede52742accb0ae18be8ffb9027df"
+    },
+    {
+      "path": "src/game/70-rules/60-de-kicks.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d194641f625ff4127dfe7b369298286d089f9b46",
+      "size": 3681,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d194641f625ff4127dfe7b369298286d089f9b46"
+    },
+    {
+      "path": "src/game/70-rules/70-sold-out.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ab07bc73baf0279c719e22a7ca2a40372849eaf",
+      "size": 3131,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6ab07bc73baf0279c719e22a7ca2a40372849eaf"
+    },
+    {
+      "path": "src/game/70-rules/80-hot-ports-and-rank.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "990cde3ba00cd8820b514861d01d706d18364206",
+      "size": 3669,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/990cde3ba00cd8820b514861d01d706d18364206"
+    },
+    {
+      "path": "src/game/70-rules/90-backbone-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58e7971b4cec3d9e22e9669be7d7efc467356d15",
+      "size": 5700,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/58e7971b4cec3d9e22e9669be7d7efc467356d15"
+    },
+    {
+      "path": "src/game/70-rules/95-utilities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e3718c8a736468fa9cf3dae2393f238698a70cc",
+      "size": 3655,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5e3718c8a736468fa9cf3dae2393f238698a70cc"
+    },
+    {
+      "path": "src/game/80-simulation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7c36ef3608fdd8516011a9bb3cff975ec94b7832",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/7c36ef3608fdd8516011a9bb3cff975ec94b7832"
+    },
+    {
+      "path": "src/game/80-simulation/10-dijkstra.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b53685b5cccdb8460b0f82af294b6b74d9fbb40",
+      "size": 1971,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5b53685b5cccdb8460b0f82af294b6b74d9fbb40"
+    },
+    {
+      "path": "src/game/80-simulation/20-routescript.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "574ea673e9be4132b039a757c79a80608c69ca79",
+      "size": 15372,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/574ea673e9be4132b039a757c79a80608c69ca79"
+    },
+    {
+      "path": "src/game/80-simulation/25-ddos-flood.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcf7b497100596c5c14e082ace335f16e284c9fe",
+      "size": 7534,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fcf7b497100596c5c14e082ace335f16e284c9fe"
+    },
+    {
+      "path": "src/game/80-simulation/25-direct-egress.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ae0effb96958f4d3cab6b0b0f23e433a478c1fd",
+      "size": 1433,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4ae0effb96958f4d3cab6b0b0f23e433a478c1fd"
+    },
+    {
+      "path": "src/game/80-simulation/28-route-worker.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57d9fdbdda1c99d0f5fb0caa986aee1725fed553",
+      "size": 5530,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/57d9fdbdda1c99d0f5fb0caa986aee1725fed553"
+    },
+    {
+      "path": "src/game/80-simulation/29-route-cache.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f134dce96d1343d78c3f58fb4abb9d84198f078",
+      "size": 5521,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7f134dce96d1343d78c3f58fb4abb9d84198f078"
+    },
+    {
+      "path": "src/game/80-simulation/30-compute.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5353c91b82a8d8c74fdba7fbf55231cff5304beb",
+      "size": 39795,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5353c91b82a8d8c74fdba7fbf55231cff5304beb"
+    },
+    {
+      "path": "src/game/80-simulation/40-billing.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2280050b6a2e354525cdb50caf418126a0cc4dd",
+      "size": 2210,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f2280050b6a2e354525cdb50caf418126a0cc4dd"
+    },
+    {
+      "path": "src/game/80-simulation/50-sanitize.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8c6d75297b5bd7a6b7af5db76445f6b6a6ed6c2",
+      "size": 21489,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a8c6d75297b5bd7a6b7af5db76445f6b6a6ed6c2"
+    },
+    {
+      "path": "src/game/80-simulation/60-requirements.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53306c0cee4ec0692d3b75954e963337da1b320f",
+      "size": 9284,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/53306c0cee4ec0692d3b75954e963337da1b320f"
+    },
+    {
+      "path": "src/game/80-simulation/70-customers-and-events.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70301b40c3c44a423ee65ee004a5f846fcd01e78",
+      "size": 7131,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/70301b40c3c44a423ee65ee004a5f846fcd01e78"
+    },
+    {
+      "path": "src/game/80-simulation/80-geography-and-latency.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32173ba7cec6ef6129901382e7b2e09534c454c6",
+      "size": 7115,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/32173ba7cec6ef6129901382e7b2e09534c454c6"
+    },
+    {
+      "path": "src/game/80-simulation/90-sites-and-service.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b1fea610a4f1a5e5e083637ce2174838981a1d4",
+      "size": 5265,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9b1fea610a4f1a5e5e083637ce2174838981a1d4"
+    },
+    {
+      "path": "src/game/85-incidents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "29c9861b95fb07267ee774e035117d581ef294b9",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/29c9861b95fb07267ee774e035117d581ef294b9"
+    },
+    {
+      "path": "src/game/85-incidents/10-incidents-and-ddos.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db254dcda54ff976b0e7bb53ceaf272cb429fad4",
+      "size": 16907,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/db254dcda54ff976b0e7bb53ceaf272cb429fad4"
+    },
+    {
+      "path": "src/game/85-incidents/20-failures.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b69711bfa9afae530da85ab1502fa5f7a633ad05",
+      "size": 24813,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b69711bfa9afae530da85ab1502fa5f7a633ad05"
+    },
+    {
+      "path": "src/game/85-incidents/30-events.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5bcfd38f04148ad5762f2a0c6a07292ab7460f6",
+      "size": 7571,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b5bcfd38f04148ad5762f2a0c6a07292ab7460f6"
+    },
+    {
+      "path": "src/game/85-incidents/40-chaos-monkey.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6798c3768da117c31422cb8b99fbd9441962a01b",
+      "size": 5320,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6798c3768da117c31422cb8b99fbd9441962a01b"
+    },
+    {
+      "path": "src/game/85-incidents/50-cable-ships.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a09e9e57f3fa948ecd2aa6aed0d50603f81f976f",
+      "size": 8571,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a09e9e57f3fa948ecd2aa6aed0d50603f81f976f"
+    },
+    {
+      "path": "src/game/88-days",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f123f69dd1f527ac4358f3bf408649f9cfda0f95",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/f123f69dd1f527ac4358f3bf408649f9cfda0f95"
+    },
+    {
+      "path": "src/game/88-days/10-day-tick.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31f024b199b0c573c94fba04d247a0cd28c1866c",
+      "size": 13861,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/31f024b199b0c573c94fba04d247a0cd28c1866c"
+    },
+    {
+      "path": "src/game/88-days/20-badges.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50dbb8314971014787c291265a4336c46443cbb3",
+      "size": 16315,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/50dbb8314971014787c291265a4336c46443cbb3"
+    },
+    {
+      "path": "src/game/90-actions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4bc1024f124d487a2245ca1175ecd93d5d1c541",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/f4bc1024f124d487a2245ca1175ecd93d5d1c541"
+    },
+    {
+      "path": "src/game/90-actions/10-interface.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ed9bcceb89e1522d9e8f1351fdbb0a57540394",
+      "size": 6336,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e1ed9bcceb89e1522d9e8f1351fdbb0a57540394"
+    },
+    {
+      "path": "src/game/90-actions/20-pops-transit-ix.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dca4e9e3a7353c9a520d0961a762e8980231a7c",
+      "size": 7740,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7dca4e9e3a7353c9a520d0961a762e8980231a7c"
+    },
+    {
+      "path": "src/game/90-actions/30-route-script-and-tools.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0824989d2615ac4b972ba0f6b2d38f360ba0d7a",
+      "size": 4940,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c0824989d2615ac4b972ba0f6b2d38f360ba0d7a"
+    },
+    {
+      "path": "src/game/90-actions/40-sites-peering-caches.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f43bbe4d3924254ce9a2f3d92f8f44489a935e2",
+      "size": 5499,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1f43bbe4d3924254ce9a2f3d92f8f44489a935e2"
+    },
+    {
+      "path": "src/game/90-actions/45-pni-list.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93c3abbc29da1974ede5b1430afd96e810a118b7",
+      "size": 410,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/93c3abbc29da1974ede5b1430afd96e810a118b7"
+    },
+    {
+      "path": "src/game/90-actions/50-customers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53d9aee4de15b8792aa7ec05d2149066fe6f7c62",
+      "size": 2426,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/53d9aee4de15b8792aa7ec05d2149066fe6f7c62"
+    },
+    {
+      "path": "src/game/90-actions/60-links.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46817ed8e951ac1d8675f43c16e9add8bb3a7177",
+      "size": 9229,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/46817ed8e951ac1d8675f43c16e9add8bb3a7177"
+    },
+    {
+      "path": "src/game/90-actions/70-dashboard-lists.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96ae70d190ab476cfbb655d1de148656e5ad557a",
+      "size": 2182,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/96ae70d190ab476cfbb655d1de148656e5ad557a"
+    },
+    {
+      "path": "src/game/90-actions/80-security-and-china.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "815b29dc2c6eb7c49b898b6ff71f36fbd7709020",
+      "size": 4438,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/815b29dc2c6eb7c49b898b6ff71f36fbd7709020"
+    },
+    {
+      "path": "src/game/90-actions/85-routing-and-routers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "995c150e67e47e44735cd51265596522cf09eaf5",
+      "size": 4133,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/995c150e67e47e44735cd51265596522cf09eaf5"
+    },
+    {
+      "path": "src/game/90-actions/86-specialist.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0db742c3aa876f3d117b5744bcc9f88f58799853",
+      "size": 1403,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/0db742c3aa876f3d117b5744bcc9f88f58799853"
+    },
+    {
+      "path": "src/game/90-actions/87-fiber-and-hardware.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9befa30f1cf00398b3124bdc33e7620d69268f64",
+      "size": 7683,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9befa30f1cf00398b3124bdc33e7620d69268f64"
+    },
+    {
+      "path": "src/game/90-actions/88-ops.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f1c77d42297841d81be1f1061681b5ac34c3165",
+      "size": 2971,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1f1c77d42297841d81be1f1061681b5ac34c3165"
+    },
+    {
+      "path": "src/game/90-actions/88-optic-counts.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6215bd5c91c11c22a20159adbee17bf7c36f3306",
+      "size": 1269,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6215bd5c91c11c22a20159adbee17bf7c36f3306"
+    },
+    {
+      "path": "src/game/90-actions/88-utilities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9346b714719b295cd6ae083d1f031e887f6c8eae",
+      "size": 1938,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9346b714719b295cd6ae083d1f031e887f6c8eae"
+    },
+    {
+      "path": "src/game/90-actions/89-game-and-settings.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "201f4f1d9e10622141869d2af4a4ffcbaa29a17f",
+      "size": 7363,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/201f4f1d9e10622141869d2af4a4ffcbaa29a17f"
+    },
+    {
+      "path": "src/game/90-actions/90-action-helpers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a7694265213dfcc904311f3321c92ddc1d12d48",
+      "size": 7083,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7a7694265213dfcc904311f3321c92ddc1d12d48"
+    },
+    {
+      "path": "src/game/90-actions/91-slots.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f97105b782f06384d34c0ea9a41389c5267a3a78",
+      "size": 3935,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f97105b782f06384d34c0ea9a41389c5267a3a78"
+    },
+    {
+      "path": "src/game/90-actions/95-puzzles.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1342f7f294c66a3f5fcffd6048fef595b423640",
+      "size": 7747,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e1342f7f294c66a3f5fcffd6048fef595b423640"
+    },
+    {
+      "path": "src/game/90-actions/96-architect.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f74e15e985d0fc55c968add26de468e17c994682",
+      "size": 453,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f74e15e985d0fc55c968add26de468e17c994682"
+    },
+    {
+      "path": "src/game/91-save.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49edca6dbe7f30d2459ef549dc00407a09b6a384",
+      "size": 9276,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/49edca6dbe7f30d2459ef549dc00407a09b6a384"
+    },
+    {
+      "path": "src/game/91-slots.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c647112000f685076945f36e6cf3da7b57fd9719",
+      "size": 15592,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c647112000f685076945f36e6cf3da7b57fd9719"
+    },
+    {
+      "path": "src/game/92-audio.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd041d516810f8e8b9324372d4f2000132d7819f",
+      "size": 1192,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fd041d516810f8e8b9324372d4f2000132d7819f"
+    },
+    {
+      "path": "src/game/93-ui",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "da8bd009508e508a00c69637024684e82b5b8944",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/da8bd009508e508a00c69637024684e82b5b8944"
+    },
+    {
+      "path": "src/game/93-ui/10-dom.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43ecc9e707518d6a44c84c75d77d8c293bea86f7",
+      "size": 2207,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/43ecc9e707518d6a44c84c75d77d8c293bea86f7"
+    },
+    {
+      "path": "src/game/93-ui/20-phone.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e4cebe00e93150d9f5bc4786b2c254ea6bb1bd6",
+      "size": 3250,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9e4cebe00e93150d9f5bc4786b2c254ea6bb1bd6"
+    },
+    {
+      "path": "src/game/93-ui/30-install.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73e0c719991f672e85d397099867806f839456bc",
+      "size": 3541,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/73e0c719991f672e85d397099867806f839456bc"
+    },
+    {
+      "path": "src/game/93-ui/40-hud-and-panels.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dc6ffc0eabba9365bc4945e501bb72ea8585fe7",
+      "size": 14821,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3dc6ffc0eabba9365bc4945e501bb72ea8585fe7"
+    },
+    {
+      "path": "src/game/93-ui/45-core-panel.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de2a9720219782f2d5909b8bc89f9f6e6203f751",
+      "size": 2442,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/de2a9720219782f2d5909b8bc89f9f6e6203f751"
+    },
+    {
+      "path": "src/game/93-ui/50-city-panel.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "045d7ba31531a20b3182f8c509671b39e1c98189",
+      "size": 23297,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/045d7ba31531a20b3182f8c509671b39e1c98189"
+    },
+    {
+      "path": "src/game/93-ui/52-pni-list.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cad97f466885428205ed0b738fce82f47fe053d9",
+      "size": 5788,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cad97f466885428205ed0b738fce82f47fe053d9"
+    },
+    {
+      "path": "src/game/93-ui/55-utilities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f32be679e325edb0acaaeccfe22d640146553fcf",
+      "size": 4117,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f32be679e325edb0acaaeccfe22d640146553fcf"
+    },
+    {
+      "path": "src/game/93-ui/57-ops-panel.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89f4a3f11330c7db6828548c1b3a92b5e266d62f",
+      "size": 6495,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/89f4a3f11330c7db6828548c1b3a92b5e266d62f"
+    },
+    {
+      "path": "src/game/93-ui/60-decommission.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8df5df0d926649d6648db798394279a890c8a50",
+      "size": 3745,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d8df5df0d926649d6648db798394279a890c8a50"
+    },
+    {
+      "path": "src/game/93-ui/70-link-panels.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c64aa1da18ff7a0b23fedef96ac85a37982cba72",
+      "size": 38952,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c64aa1da18ff7a0b23fedef96ac85a37982cba72"
+    },
+    {
+      "path": "src/game/93-ui/75-optic-counts.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35fe1cfec14542c64b347942f93f56346ff37297",
+      "size": 1602,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/35fe1cfec14542c64b347942f93f56346ff37297"
+    },
+    {
+      "path": "src/game/93-ui/80-find-city.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f14971896e4da84a42b7fc67d8d09fad1c436cc",
+      "size": 3556,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4f14971896e4da84a42b7fc67d8d09fad1c436cc"
+    },
+    {
+      "path": "src/game/94-dashboard",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8c9672af5a9495f90c1f4bd519bab8a8c656ec5f",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/8c9672af5a9495f90c1f4bd519bab8a8c656ec5f"
+    },
+    {
+      "path": "src/game/94-dashboard/10-progress.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6212c7b8ab773955a469b2407c21a9173d915f9",
+      "size": 5983,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b6212c7b8ab773955a469b2407c21a9173d915f9"
+    },
+    {
+      "path": "src/game/94-dashboard/20-meet-a-network.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "736005a9bd3c5f355bdf5a299c65e6e2d41be52b",
+      "size": 3892,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/736005a9bd3c5f355bdf5a299c65e6e2d41be52b"
+    },
+    {
+      "path": "src/game/94-dashboard/30-customers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ff718e67a073e9ff4e0c2cf47c224bbd6e2ec3a",
+      "size": 5667,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8ff718e67a073e9ff4e0c2cf47c224bbd6e2ec3a"
+    },
+    {
+      "path": "src/game/94-dashboard/40-connections.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f4e4401b8cffe9d7bc1a0c8b9ebebc8a4abaa70",
+      "size": 12662,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9f4e4401b8cffe9d7bc1a0c8b9ebebc8a4abaa70"
+    },
+    {
+      "path": "src/game/94-dashboard/50-lease-swaps.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d56dceeaac91802f9e8ca56dfb71656cba0d1985",
+      "size": 6373,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d56dceeaac91802f9e8ca56dfb71656cba0d1985"
+    },
+    {
+      "path": "src/game/94-dashboard/60-dashboard.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "269f6893ef8b953e02ad996ab0013e43bfd9cc75",
+      "size": 9062,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/269f6893ef8b953e02ad996ab0013e43bfd9cc75"
+    },
+    {
+      "path": "src/game/94-dashboard/70-bank.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ec5c812621b8368d93abdabe5436cb89c3583bd",
+      "size": 6440,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7ec5c812621b8368d93abdabe5436cb89c3583bd"
+    },
+    {
+      "path": "src/game/94-dashboard/80-hint.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "387fb46dd135f1ea505af79c12cf103a4bf0e2fa",
+      "size": 841,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/387fb46dd135f1ea505af79c12cf103a4bf0e2fa"
+    },
+    {
+      "path": "src/game/95-modals",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c9cfdad3779ab0112e4ca117a166356aa8be7a6e",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/c9cfdad3779ab0112e4ca117a166356aa8be7a6e"
+    },
+    {
+      "path": "src/game/95-modals/10-toasts.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b319984679f3e137e30525421169af8dc3b02d78",
+      "size": 597,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b319984679f3e137e30525421169af8dc3b02d78"
+    },
+    {
+      "path": "src/game/95-modals/20-notifications.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84447c62bbd1f4033920a245c011cff697b80b2f",
+      "size": 4421,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/84447c62bbd1f4033920a245c011cff697b80b2f"
+    },
+    {
+      "path": "src/game/95-modals/30-modal-and-names.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95ac2d77d14ce2b3b4ad060214e5d59b80e99d91",
+      "size": 3130,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/95ac2d77d14ce2b3b4ad060214e5d59b80e99d91"
+    },
+    {
+      "path": "src/game/95-modals/35-pni-all.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fa8047c8a88974929609dd60aa2564840c8dc07",
+      "size": 3272,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4fa8047c8a88974929609dd60aa2564840c8dc07"
+    },
+    {
+      "path": "src/game/95-modals/40-title.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54b38674c37b53a95703fec4dd4e5409bb830ee4",
+      "size": 8591,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/54b38674c37b53a95703fec4dd4e5409bb830ee4"
+    },
+    {
+      "path": "src/game/95-modals/45-slots.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "047c54d740e620bfb3e0b964e4cbd7ea38c13ffb",
+      "size": 5817,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/047c54d740e620bfb3e0b964e4cbd7ea38c13ffb"
+    },
+    {
+      "path": "src/game/95-modals/50-release-notes.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eadfb36982e5cf1425ef0c9014eab89a9e19a29c",
+      "size": 2643,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/eadfb36982e5cf1425ef0c9014eab89a9e19a29c"
+    },
+    {
+      "path": "src/game/95-modals/60-help.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58cb71dc0673385956cda9589e4f6d340822295d",
+      "size": 6271,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/58cb71dc0673385956cda9589e4f6d340822295d"
+    },
+    {
+      "path": "src/game/95-modals/70-link-modal.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b21f39efb4b0e98c878ae33b4ded04c53736312d",
+      "size": 5426,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b21f39efb4b0e98c878ae33b4ded04c53736312d"
+    },
+    {
+      "path": "src/game/95-modals/80-own-cable.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e28bbf25f972e0c1547b17f2a8aa3bd27e049f0",
+      "size": 25303,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2e28bbf25f972e0c1547b17f2a8aa3bd27e049f0"
+    },
+    {
+      "path": "src/game/95-modals/90-fiber-modals.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e66fc7e802adfcad15476fa1e3dceade4bc8b35",
+      "size": 5802,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9e66fc7e802adfcad15476fa1e3dceade4bc8b35"
+    },
+    {
+      "path": "src/game/95-modals/95-puzzles.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "933a6f1043436528761792a747e83b3c2e299ecd",
+      "size": 22925,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/933a6f1043436528761792a747e83b3c2e299ecd"
+    },
+    {
+      "path": "src/game/95-modals/96-architect.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42412e30ccb1c838f042d35860d5fd41ca721bcf",
+      "size": 14161,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/42412e30ccb1c838f042d35860d5fd41ca721bcf"
+    },
+    {
+      "path": "src/game/96-map",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "226ee14b922d583fe44fc8a140fcb98986e59eae",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/226ee14b922d583fe44fc8a140fcb98986e59eae"
+    },
+    {
+      "path": "src/game/96-map/10-canvas.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3210b616e7adbc1fd9aac2ba421fdc4deb5ff124",
+      "size": 3806,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3210b616e7adbc1fd9aac2ba421fdc4deb5ff124"
+    },
+    {
+      "path": "src/game/96-map/20-land-and-clouds.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c810ce88c50561c4c80203e811357ae089f9b36",
+      "size": 2489,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6c810ce88c50561c4c80203e811357ae089f9b36"
+    },
+    {
+      "path": "src/game/96-map/30-settings.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61aade4beed317e995f28e5fd7aeb97dd58fb4eb",
+      "size": 4467,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61aade4beed317e995f28e5fd7aeb97dd58fb4eb"
+    },
+    {
+      "path": "src/game/96-map/40-level-of-detail.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5336f3066fc17f5a8fd4cc9d760659a40234004d",
+      "size": 861,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5336f3066fc17f5a8fd4cc9d760659a40234004d"
+    },
+    {
+      "path": "src/game/96-map/50-link-geometry.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c03a54db4927dff40feaa499a8bd6215270e0ba",
+      "size": 9270,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5c03a54db4927dff40feaa499a8bd6215270e0ba"
+    },
+    {
+      "path": "src/game/96-map/60-draw.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff300dfd9b1a43a6666645458a45ff3d71d6cc85",
+      "size": 14963,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ff300dfd9b1a43a6666645458a45ff3d71d6cc85"
+    },
+    {
+      "path": "src/game/96-map/70-world-layer.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab367260d292cfb7707c9d5327728af6beb21ada",
+      "size": 2772,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ab367260d292cfb7707c9d5327728af6beb21ada"
+    },
+    {
+      "path": "src/game/96-map/75-city-size.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f3c9537d0c569dcf8ad01ee106dc99d3b167e14",
+      "size": 2952,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2f3c9537d0c569dcf8ad01ee106dc99d3b167e14"
+    },
+    {
+      "path": "src/game/96-map/80-cities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31b55ecdb93fac18b429ee2970c154ab5df9f7ce",
+      "size": 9720,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/31b55ecdb93fac18b429ee2970c154ab5df9f7ce"
+    },
+    {
+      "path": "src/game/96-map/85-puzzle-cities.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be64a9f0d5d160e25983b61adaa3ea9f19e3ce93",
+      "size": 2102,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/be64a9f0d5d160e25983b61adaa3ea9f19e3ce93"
+    },
+    {
+      "path": "src/game/96-map/87-chaos-monkey.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "373f18d515b97639a27008ca4f89fdb17421c868",
+      "size": 7602,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/373f18d515b97639a27008ca4f89fdb17421c868"
+    },
+    {
+      "path": "src/game/96-map/88-cable-ships.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5a81dcc44ac56e6f555b1fd6464df845ac3cd41",
+      "size": 5889,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f5a81dcc44ac56e6f555b1fd6464df845ac3cd41"
+    },
+    {
+      "path": "src/game/96-map/90-input.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a0d13cde50db98abe256642fe51dc8ab6d6d0de",
+      "size": 5301,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1a0d13cde50db98abe256642fe51dc8ab6d6d0de"
+    },
+    {
+      "path": "src/game/96-map/95-clicks.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "605eba6a265dd3b1464b3f5ceed299ea1823ee38",
+      "size": 2184,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/605eba6a265dd3b1464b3f5ceed299ea1823ee38"
+    },
+    {
+      "path": "src/game/99-loop.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b21d751a673adb663aa3e8bc9bc46fe4b1ebfd6",
+      "size": 5100,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8b21d751a673adb663aa3e8bc9bc46fe4b1ebfd6"
+    },
+    {
+      "path": "src/i18n",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dada3c84b928fd826e82f6baea03dee330c7a3c3",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/dada3c84b928fd826e82f6baea03dee330c7a3c3"
+    },
+    {
+      "path": "src/i18n/en.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b95e35878a3869000b5059a7b80f6c89c096590e",
+      "size": 375222,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b95e35878a3869000b5059a7b80f6c89c096590e"
+    },
+    {
+      "path": "src/index.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "490d3db88868457a7bed34cca85b14d59035dd75",
+      "size": 13214,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/490d3db88868457a7bed34cca85b14d59035dd75"
+    },
+    {
+      "path": "src/styles",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bd5ef3218554db0349eda7fcd63e71f60bb94e97",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/bd5ef3218554db0349eda7fcd63e71f60bb94e97"
+    },
+    {
+      "path": "src/styles/00-base.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eba8a90ccfc555ffca3b7b258ee6324c51e10d91",
+      "size": 1544,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/eba8a90ccfc555ffca3b7b258ee6324c51e10d91"
+    },
+    {
+      "path": "src/styles/10-hud.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e00a535c8fe6c74d2d2c0647856c97bf9eedfa8f",
+      "size": 2960,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e00a535c8fe6c74d2d2c0647856c97bf9eedfa8f"
+    },
+    {
+      "path": "src/styles/20-drawers.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f510ec7e3c3813adc7e8f7637494834b6cac9bf",
+      "size": 7230,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5f510ec7e3c3813adc7e8f7637494834b6cac9bf"
+    },
+    {
+      "path": "src/styles/30-toasts.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47db06fe1281f435d5f5147b256d58e2d879db28",
+      "size": 1200,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/47db06fe1281f435d5f5147b256d58e2d879db28"
+    },
+    {
+      "path": "src/styles/35-optic-counts.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6690821db11977eee355c400ac5ac34bbe193bab",
+      "size": 272,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6690821db11977eee355c400ac5ac34bbe193bab"
+    },
+    {
+      "path": "src/styles/36-ops.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a2cbf527932761cbc92bdcdd60e5d35cf0108ca",
+      "size": 1058,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6a2cbf527932761cbc92bdcdd60e5d35cf0108ca"
+    },
+    {
+      "path": "src/styles/37-router-art.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f78ef52da56eaa4c8c7c245be24575ba935ac5c7",
+      "size": 597,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f78ef52da56eaa4c8c7c245be24575ba935ac5c7"
+    },
+    {
+      "path": "src/styles/40-modal.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75cfd1b25d9ea43f8d4659f57aaec740a7bdd31e",
+      "size": 21189,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/75cfd1b25d9ea43f8d4659f57aaec740a7bdd31e"
+    },
+    {
+      "path": "src/styles/50-tablet.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80a7ac2a2ab95ee043e7ab4cdf634811d8cc1cf4",
+      "size": 1663,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/80a7ac2a2ab95ee043e7ab4cdf634811d8cc1cf4"
+    },
+    {
+      "path": "src/styles/60-phone.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8d02e6364e135247bb2210441c34405ced97f23",
+      "size": 10142,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b8d02e6364e135247bb2210441c34405ced97f23"
+    },
+    {
+      "path": "src/styles/70-puzzles.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a126f60e7221eb6131d96fdb73a69ba62d924eaa",
+      "size": 6176,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a126f60e7221eb6131d96fdb73a69ba62d924eaa"
+    },
+    {
+      "path": "src/styles/71-architect.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4f6d62f240ddcb81569ed2be3867da77750949c",
+      "size": 2237,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e4f6d62f240ddcb81569ed2be3867da77750949c"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a1ea52e9c5f255ce455ac1876548b2cca91e21e7",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/a1ea52e9c5f255ce455ac1876548b2cca91e21e7"
+    },
+    {
+      "path": "tests/any-home-city.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0330cb72f526b5a8e45b70d05f1ff37d32c24d39",
+      "size": 3750,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/0330cb72f526b5a8e45b70d05f1ff37d32c24d39"
+    },
+    {
+      "path": "tests/architect.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a487aba7ecd6a1e66797752e5a212361e0735c66",
+      "size": 11480,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a487aba7ecd6a1e66797752e5a212361e0735c66"
+    },
+    {
+      "path": "tests/automation.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b772f83ce4b64b29fc520d36933787bb456bdea",
+      "size": 11205,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6b772f83ce4b64b29fc520d36933787bb456bdea"
+    },
+    {
+      "path": "tests/backbone-core.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8a907494263094948193282350ac59d182eb6ef",
+      "size": 14748,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e8a907494263094948193282350ac59d182eb6ef"
+    },
+    {
+      "path": "tests/badges-variants.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f1b6a202a8e7635519b6690755cb6a29782de1d",
+      "size": 8514,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9f1b6a202a8e7635519b6690755cb6a29782de1d"
+    },
+    {
+      "path": "tests/build.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6c99664a51951ded3e20c94a8e0d286295f337f",
+      "size": 3424,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a6c99664a51951ded3e20c94a8e0d286295f337f"
+    },
+    {
+      "path": "tests/cable-labels.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc9f6661d9634dc50cbc12556b2558ba371c13f2",
+      "size": 1665,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/dc9f6661d9634dc50cbc12556b2558ba371c13f2"
+    },
+    {
+      "path": "tests/cable-ships.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d0069728972c21bc5303e1f01b9301e442e695f",
+      "size": 14385,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5d0069728972c21bc5303e1f01b9301e442e695f"
+    },
+    {
+      "path": "tests/cache-ports.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce03ceb82b672fd954dfd9b559a6497461c87b68",
+      "size": 3345,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ce03ceb82b672fd954dfd9b559a6497461c87b68"
+    },
+    {
+      "path": "tests/calendar.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18bea1e35b8fa38a831ee27ba3f605131d587a15",
+      "size": 2942,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/18bea1e35b8fa38a831ee27ba3f605131d587a15"
+    },
+    {
+      "path": "tests/capacity-deals.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db535f0258d57aa528fbad7e2a99c51e373eaf95",
+      "size": 6664,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/db535f0258d57aa528fbad7e2a99c51e373eaf95"
+    },
+    {
+      "path": "tests/chaos-monkey.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fedcfdd5dab2660eb4101f9951b64bd08371ae71",
+      "size": 6274,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fedcfdd5dab2660eb4101f9951b64bd08371ae71"
+    },
+    {
+      "path": "tests/city-size.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c16fcd505c65d875e1c343259c1acf320aa4db5",
+      "size": 4385,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8c16fcd505c65d875e1c343259c1acf320aa4db5"
+    },
+    {
+      "path": "tests/compute-idempotent.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a2470fd117724fde4cff31e456da81f69da5ee6",
+      "size": 2269,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4a2470fd117724fde4cff31e456da81f69da5ee6"
+    },
+    {
+      "path": "tests/ddos-floods.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "216171604174cc7e2130c8de8978fc21777856ea",
+      "size": 9619,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/216171604174cc7e2130c8de8978fc21777856ea"
+    },
+    {
+      "path": "tests/ddos-model.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72e318bbe3fdd4e47e3ff3984e19fba749ec4344",
+      "size": 16070,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/72e318bbe3fdd4e47e3ff3984e19fba749ec4344"
+    },
+    {
+      "path": "tests/direct-egress.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb448c5c749e91ed7b96393e6cb86a20975602d2",
+      "size": 12202,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/cb448c5c749e91ed7b96393e6cb86a20975602d2"
+    },
+    {
+      "path": "tests/durations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ec3786c3c82c4f2f73927e11836203b2ae50d70",
+      "size": 2619,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6ec3786c3c82c4f2f73927e11836203b2ae50d70"
+    },
+    {
+      "path": "tests/eyeballs.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2922d515cf07e8efd3361345285bb2e5c27d070",
+      "size": 4811,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d2922d515cf07e8efd3361345285bb2e5c27d070"
+    },
+    {
+      "path": "tests/fiber-broker.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f893c3d811b4558e5b9c7fe33654a7bbb40a6cf5",
+      "size": 4544,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f893c3d811b4558e5b9c7fe33654a7bbb40a6cf5"
+    },
+    {
+      "path": "tests/find-city.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c59753487aa7e0dc013b7645770881beeac8704",
+      "size": 3759,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4c59753487aa7e0dc013b7645770881beeac8704"
+    },
+    {
+      "path": "tests/fixtures",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bfa72a9003807bed24ef09866628b9b7858798fd",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/bfa72a9003807bed24ef09866628b9b7858798fd"
+    },
+    {
+      "path": "tests/fixtures/big-network.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdcd61362432055df1916f99df65d776530329db",
+      "size": 236166,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bdcd61362432055df1916f99df65d776530329db"
+    },
+    {
+      "path": "tests/focus-link.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "758a8864af87db6315cdf07d3b4cbe6d4e4119b1",
+      "size": 3002,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/758a8864af87db6315cdf07d3b4cbe6d4e4119b1"
+    },
+    {
+      "path": "tests/game.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb7011934de14841c6a7fb4d8bfca7ddcb7de17a",
+      "size": 29428,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/bb7011934de14841c6a7fb4d8bfca7ddcb7de17a"
+    },
+    {
+      "path": "tests/gameplay-rules.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67fa522f8e8b629fc14421cce44c4a77cd3b5737",
+      "size": 32785,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/67fa522f8e8b629fc14421cce44c4a77cd3b5737"
+    },
+    {
+      "path": "tests/gangnam.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c989bdee60b9273c159eac5447eab02efcc7221f",
+      "size": 2963,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c989bdee60b9273c159eac5447eab02efcc7221f"
+    },
+    {
+      "path": "tests/glowball-sakura-lager.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2da949b5885683639ba8ead48d6a1acae4e4cbd0",
+      "size": 8318,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/2da949b5885683639ba8ead48d6a1acae4e4cbd0"
+    },
+    {
+      "path": "tests/harness.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df7b5d8ab12af3f55638aad509933836983a05d0",
+      "size": 7410,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/df7b5d8ab12af3f55638aad509933836983a05d0"
+    },
+    {
+      "path": "tests/helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2126caf5e502a6fe621d119bb98d5404e3ad0ff6",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/2126caf5e502a6fe621d119bb98d5404e3ad0ff6"
+    },
+    {
+      "path": "tests/helpers/reference-allocation.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "096f6d26a166082b73cf324395eb96042f6c8217",
+      "size": 1686,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/096f6d26a166082b73cf324395eb96042f6c8217"
+    },
+    {
+      "path": "tests/i18n.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c111d8afe158c977f74683838eabbecf5efdae2a",
+      "size": 12417,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c111d8afe158c977f74683838eabbecf5efdae2a"
+    },
+    {
+      "path": "tests/islands-and-arctic.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78ddfc68a18e969d94f5ea925c9124014f74b0f0",
+      "size": 9300,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/78ddfc68a18e969d94f5ea925c9124014f74b0f0"
+    },
+    {
+      "path": "tests/issues.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8e8de95cba05f860eb50a4190b0347ca549b1c5",
+      "size": 95431,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f8e8de95cba05f860eb50a4190b0347ca549b1c5"
+    },
+    {
+      "path": "tests/language-picker.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18ea8848666efc847368071b2997f013f76bec64",
+      "size": 2124,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/18ea8848666efc847368071b2997f013f76bec64"
+    },
+    {
+      "path": "tests/latency.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a4714e912f2fe4aa8e0ef22674d5171de41632c",
+      "size": 3830,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5a4714e912f2fe4aa8e0ef22674d5171de41632c"
+    },
+    {
+      "path": "tests/levels.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "150efe3d7ff8a5c9fe25d4707754a5a443e273d3",
+      "size": 8448,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/150efe3d7ff8a5c9fe25d4707754a5a443e273d3"
+    },
+    {
+      "path": "tests/link-metrics.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5ed30ba5b5201aebf47e33d396da565a9fd35d5",
+      "size": 7575,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/e5ed30ba5b5201aebf47e33d396da565a9fd35d5"
+    },
+    {
+      "path": "tests/link-trial.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae39a326e12d3f0a9ce608211ab0f11ddcd1ed63",
+      "size": 1733,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ae39a326e12d3f0a9ce608211ab0f11ddcd1ed63"
+    },
+    {
+      "path": "tests/load-time.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9106cab3ae9d2a6e1174a14016c00d0d25dcad7d",
+      "size": 4909,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9106cab3ae9d2a6e1174a14016c00d0d25dcad7d"
+    },
+    {
+      "path": "tests/mcp.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76a1dad63cf6c397b47e4ce3a69f56d17526c7ac",
+      "size": 9321,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/76a1dad63cf6c397b47e4ce3a69f56d17526c7ac"
+    },
+    {
+      "path": "tests/metric-panel.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fdf2d5aa7a4e17caa2d2a2737eeda9d118800bad",
+      "size": 1938,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/fdf2d5aa7a4e17caa2d2a2737eeda9d118800bad"
+    },
+    {
+      "path": "tests/modes.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91a379f0fe6a0dc1b246c5b1cd95fdcae12bc459",
+      "size": 28456,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/91a379f0fe6a0dc1b246c5b1cd95fdcae12bc459"
+    },
+    {
+      "path": "tests/more-cables.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba0342092968336ce00c62bc52256bec364b0bdb",
+      "size": 5167,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ba0342092968336ce00c62bc52256bec364b0bdb"
+    },
+    {
+      "path": "tests/moscow-premium.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eed3be36b85807c35e577d5178311ce91f84c388",
+      "size": 4883,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/eed3be36b85807c35e577d5178311ce91f84c388"
+    },
+    {
+      "path": "tests/networks-list.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "307bfbf24618d4ea3d38e1d3428bd37f5a144af3",
+      "size": 975,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/307bfbf24618d4ea3d38e1d3428bd37f5a144af3"
+    },
+    {
+      "path": "tests/new-game-speed.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61f9517967eae5b9d0fbcd3ba64eeeeb9666cc41",
+      "size": 1782,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61f9517967eae5b9d0fbcd3ba64eeeeb9666cc41"
+    },
+    {
+      "path": "tests/optic-counts.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df0119663143570d4817cf2a51974bf1bab32b92",
+      "size": 7929,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/df0119663143570d4817cf2a51974bf1bab32b92"
+    },
+    {
+      "path": "tests/optic-ports.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "252eed172095a1e092c25c0ecbc92f5722f7ba0f",
+      "size": 2139,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/252eed172095a1e092c25c0ecbc92f5722f7ba0f"
+    },
+    {
+      "path": "tests/own-asn.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c39ec0b2f5a7cad1eec103da1b6d036e9fa56c1f",
+      "size": 1869,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c39ec0b2f5a7cad1eec103da1b6d036e9fa56c1f"
+    },
+    {
+      "path": "tests/pages.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d0a74bf0374191d1405909798486d68c842f05f",
+      "size": 5626,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/3d0a74bf0374191d1405909798486d68c842f05f"
+    },
+    {
+      "path": "tests/peering-desk.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5de75edc8be4bd180a29b253121a954ed08587d",
+      "size": 7319,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c5de75edc8be4bd180a29b253121a954ed08587d"
+    },
+    {
+      "path": "tests/peering.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab2d0a7cffa49b6a2ef71305c0584bd5806ce0bc",
+      "size": 16788,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ab2d0a7cffa49b6a2ef71305c0584bd5806ce0bc"
+    },
+    {
+      "path": "tests/perf.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4233af5d943c1c57e0efc8fb3303e5bb623d2d0",
+      "size": 2266,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/a4233af5d943c1c57e0efc8fb3303e5bb623d2d0"
+    },
+    {
+      "path": "tests/persist.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c02ccc838638b93c9844d88ce5b5bd8f045737b0",
+      "size": 7827,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c02ccc838638b93c9844d88ce5b5bd8f045737b0"
+    },
+    {
+      "path": "tests/philippines.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "812737d8aeb624796a45e8dc9213c236dce77e32",
+      "size": 10493,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/812737d8aeb624796a45e8dc9213c236dce77e32"
+    },
+    {
+      "path": "tests/pni-all.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "764f532663f4e6959b2126ebb85327e2e298fdfd",
+      "size": 8506,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/764f532663f4e6959b2126ebb85327e2e298fdfd"
+    },
+    {
+      "path": "tests/pni-global.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21f83cecf9e1740e7c97564b12b1f3da2b39b077",
+      "size": 9117,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/21f83cecf9e1740e7c97564b12b1f3da2b39b077"
+    },
+    {
+      "path": "tests/pni-list.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c479412a3567ec1bee1cf72e516cfe9d960dadca",
+      "size": 7948,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c479412a3567ec1bee1cf72e516cfe9d960dadca"
+    },
+    {
+      "path": "tests/pnis-and-sold-out.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88f5a1cd7a6129aa5f84bd1553e5fb8eb069de9d",
+      "size": 8160,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/88f5a1cd7a6129aa5f84bd1553e5fb8eb069de9d"
+    },
+    {
+      "path": "tests/pop-standard.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6e53cd7d108b3efdce713a63f5e9ecdd2b3f5a4",
+      "size": 4824,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f6e53cd7d108b3efdce713a63f5e9ecdd2b3f5a4"
+    },
+    {
+      "path": "tests/puzzle-monkey.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccfa6e5a194f08ee711808dbd6996554f5b3f2e4",
+      "size": 2289,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ccfa6e5a194f08ee711808dbd6996554f5b3f2e4"
+    },
+    {
+      "path": "tests/puzzles.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ed0c68fb2a62bdac057bd14e26f5948d7a45682",
+      "size": 39623,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7ed0c68fb2a62bdac057bd14e26f5948d7a45682"
+    },
+    {
+      "path": "tests/regions.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c84c98d29e2d457c75364f4d83715f824acdb21d",
+      "size": 75891,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/c84c98d29e2d457c75364f4d83715f824acdb21d"
+    },
+    {
+      "path": "tests/release-story.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f15081162265339e0fe118f8ebbf94b64ffa3b98",
+      "size": 2197,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f15081162265339e0fe118f8ebbf94b64ffa3b98"
+    },
+    {
+      "path": "tests/report-link.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1931b5a5e73f558eff6dc2343f328cbacc6e8d0",
+      "size": 1808,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/d1931b5a5e73f558eff6dc2343f328cbacc6e8d0"
+    },
+    {
+      "path": "tests/route-cache.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "051667206b4667953b3ffd8143c801230a3342c7",
+      "size": 4833,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/051667206b4667953b3ffd8143c801230a3342c7"
+    },
+    {
+      "path": "tests/route-fuzz.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5958b2781d30ad23431fb3cec5e3365793b869a1",
+      "size": 1744,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/5958b2781d30ad23431fb3cec5e3365793b869a1"
+    },
+    {
+      "path": "tests/route-skip.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a3a649ea53fb434a28af49e5d21eb957651c87a",
+      "size": 2923,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1a3a649ea53fb434a28af49e5d21eb957651c87a"
+    },
+    {
+      "path": "tests/route-worker.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f673fea8b034010f5cb457810c066afd93cce69",
+      "size": 3090,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4f673fea8b034010f5cb457810c066afd93cce69"
+    },
+    {
+      "path": "tests/router-art.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c289e322dd9910fcb706c21fe4dd61b90a2feb4",
+      "size": 1883,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7c289e322dd9910fcb706c21fe4dd61b90a2feb4"
+    },
+    {
+      "path": "tests/routers-per-pop.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0fe9d33e0645d3e8e66fedc4a02d2114d5380f2",
+      "size": 2049,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b0fe9d33e0645d3e8e66fedc4a02d2114d5380f2"
+    },
+    {
+      "path": "tests/routing-reference.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c2622d2508a42ac221ebd14325e4d5d5b0062d9",
+      "size": 6102,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/1c2622d2508a42ac221ebd14325e4d5d5b0062d9"
+    },
+    {
+      "path": "tests/rules-locked.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61d394130feba7e3b37550d2ee080cb09000ecdc",
+      "size": 3434,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61d394130feba7e3b37550d2ee080cb09000ecdc"
+    },
+    {
+      "path": "tests/rules.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "413ad74c68775bb352194814cb0dffe0acc46567",
+      "size": 9128,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/413ad74c68775bb352194814cb0dffe0acc46567"
+    },
+    {
+      "path": "tests/sales-trial.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "814b62b9856ae172133e0a698dea3ee300049864",
+      "size": 5423,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/814b62b9856ae172133e0a698dea3ee300049864"
+    },
+    {
+      "path": "tests/save-size.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f4c544cd62e597f595e5b4090a80017d97f801e",
+      "size": 7830,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4f4c544cd62e597f595e5b4090a80017d97f801e"
+    },
+    {
+      "path": "tests/save-slots.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74fbdcfae190e4fd31ff88deb0ef5238442feede",
+      "size": 23124,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/74fbdcfae190e4fd31ff88deb0ef5238442feede"
+    },
+    {
+      "path": "tests/scenarios-playtest.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "000515f990992764bb17e5547ba9b946879c1464",
+      "size": 9392,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/000515f990992764bb17e5547ba9b946879c1464"
+    },
+    {
+      "path": "tests/sea-optic-hint.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "894ab4bde10145df969fd3717a6f3bd05e060807",
+      "size": 4724,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/894ab4bde10145df969fd3717a6f3bd05e060807"
+    },
+    {
+      "path": "tests/sea-routing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ff58dba33a97394bfef6e0b4a8511a50d269f2b",
+      "size": 10563,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8ff58dba33a97394bfef6e0b4a8511a50d269f2b"
+    },
+    {
+      "path": "tests/services.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ba8bc546b1793f286073594efc85bacc939b7a5",
+      "size": 8459,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/9ba8bc546b1793f286073594efc85bacc939b7a5"
+    },
+    {
+      "path": "tests/specialist.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f877d43ae7cdcb10eaa04bfd0f211eeb7acc87c0",
+      "size": 10505,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/f877d43ae7cdcb10eaa04bfd0f211eeb7acc87c0"
+    },
+    {
+      "path": "tests/speed.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce976547e2181b393e8ad9cd4bd257330be357a4",
+      "size": 26014,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/ce976547e2181b393e8ad9cd4bd257330be357a4"
+    },
+    {
+      "path": "tests/standing-orders.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d2defa62cecd2ecb9db80650519eb6af53a86fc",
+      "size": 39151,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/4d2defa62cecd2ecb9db80650519eb6af53a86fc"
+    },
+    {
+      "path": "tests/subsea-upgrade-timing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "963639cf25a830bcb5247485e585df7787928a2f",
+      "size": 10905,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/963639cf25a830bcb5247485e585df7787928a2f"
+    },
+    {
+      "path": "tests/supply.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e2219ae32da567c78cad6e4facce01dc122c217",
+      "size": 3837,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/7e2219ae32da567c78cad6e4facce01dc122c217"
+    },
+    {
+      "path": "tests/tier1-cone.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0622e1c2be1d7d96de165c2043539da4c554280",
+      "size": 13458,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b0622e1c2be1d7d96de165c2043539da4c554280"
+    },
+    {
+      "path": "tests/tier1-incumbents.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97a6316e90a5152f69af1faba7fa0babb71217be",
+      "size": 3517,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/97a6316e90a5152f69af1faba7fa0babb71217be"
+    },
+    {
+      "path": "tests/useless-subsea-upgrades.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0f790cdf63fb3021055ed1715c551ebf1fbe327",
+      "size": 5047,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/b0f790cdf63fb3021055ed1715c551ebf1fbe327"
+    },
+    {
+      "path": "tests/utilities-caches.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fb46aabbc8f9ec85a9d66d39b3e9172841a99ad",
+      "size": 10164,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/6fb46aabbc8f9ec85a9d66d39b3e9172841a99ad"
+    },
+    {
+      "path": "tests/utilities.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "415925fc7cdf79a645a3ed02e3ce31a5bf0bf59c",
+      "size": 9232,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/415925fc7cdf79a645a3ed02e3ce31a5bf0bf59c"
+    },
+    {
+      "path": "tests/weekly-architect.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "916ba4138a0972aba8663dc7178847aa36e76a3f",
+      "size": 5262,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/916ba4138a0972aba8663dc7178847aa36e76a3f"
+    },
+    {
+      "path": "tests/weekly-puzzle.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c3c118fbcc04411fe8eb279db42aad55a6c3696",
+      "size": 19137,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/8c3c118fbcc04411fe8eb279db42aad55a6c3696"
+    },
+    {
+      "path": "tests/weekly-scenario.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61fedb7de3078d0ed6176a933bcbf93944d45460",
+      "size": 15688,
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/blobs/61fedb7de3078d0ed6176a933bcbf93944d45460"
+    }
+  ],
+  "truncated": false
+}

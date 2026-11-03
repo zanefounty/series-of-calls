@@ -145,17 +145,17 @@ test('the carry setting is saved, repaired and optional', () => {
   const { ev, errors } = twoPops();
   ev(`ACT.setCarry({id:'${port(ev, 'lvl')}',on:1});save(true)`);
   const saved = ev('slotRaw(UI.slot)');
-  const again = load({ storage: { 'sot-save-v1': saved } });
+  const again = load({ storage: { 'soc-sp-save-v1': saved } });
   assert.equal(again.ev("S.transit.find(t=>t.net==='lvl').carry"), true, 'survives a reload');
   assert.equal(again.ev("S.transit.find(t=>t.net==='tly').carry"), undefined, 'and is off for the others');
   // Hand-edited or imported garbage is dropped; an old save without the field just loads.
   const bad = JSON.parse(saved);
   bad.transit.forEach((t, i) => { t.carry = i ? 'yes' : 1; });
-  const fixed = load({ storage: { 'sot-save-v1': JSON.stringify(bad) } });
+  const fixed = load({ storage: { 'soc-sp-save-v1': JSON.stringify(bad) } });
   assert.equal(fixed.ev("S.transit.some(t=>'carry' in t)"), false);
   const old = JSON.parse(saved);
   old.transit.forEach((t) => { delete t.carry; });
-  assert.equal(load({ storage: { 'sot-save-v1': JSON.stringify(old) } }).ev("S.transit.length"), 2);
+  assert.equal(load({ storage: { 'soc-sp-save-v1': JSON.stringify(old) } }).ev("S.transit.length"), 2);
   assert.deepEqual([...errors, ...again.errors, ...fixed.errors], []);
 });
 

@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: AC-SOC-299 cross-customer jobs keep tenant and per-resource outcomes, then retry only unfinished work once
+ok 1 - AC-SOC-299 cross-customer jobs keep tenant and per-resource outcomes, then retry only unfinished work once
+  ---
+  duration_ms: 4.083811
+  type: 'test'
+  ...
+# Subtest: AC-SOC-300 contract, connector, canonical inventory, resource scope, and child authority fail closed per customer
+ok 2 - AC-SOC-300 contract, connector, canonical inventory, resource scope, and child authority fail closed per customer
+  ---
+  duration_ms: 0.843029
+  type: 'test'
+  ...
+# Subtest: AC-SOC-301 joiner and mover jobs require a meaningful supported identity change instead of billing a no-op
+ok 3 - AC-SOC-301 joiner and mover jobs require a meaningful supported identity change instead of billing a no-op
+  ---
+  duration_ms: 1.562185
+  type: 'test'
+  ...
+# Subtest: AC-SOC-302 stale generations and forged job results cannot become delivered or billed evidence
+ok 4 - AC-SOC-302 stale generations and forged job results cannot become delivered or billed evidence
+  ---
+  duration_ms: 0.487765
+  type: 'test'
+  ...
+# Subtest: AC-SOC-303 settlement is typed, idempotent per completed item, and never invents a price when no hook exists
+ok 5 - AC-SOC-303 settlement is typed, idempotent per completed item, and never invents a price when no hook exists
+  ---
+  duration_ms: 0.86356
+  type: 'test'
+  ...
+# Subtest: AC-SOC-304 estate completion waits for matching effective provisioned and observed resource state before settlement
+ok 6 - AC-SOC-304 estate completion waits for matching effective provisioned and observed resource state before settlement
+  ---
+  duration_ms: 0.677416
+  type: 'test'
+  ...
+# Subtest: AC-SOC-305 read, fingerprints, saves and worker factory are deterministic and mutation resistant
+ok 7 - AC-SOC-305 read, fingerprints, saves and worker factory are deterministic and mutation resistant
+  ---
+  duration_ms: 2.029983
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24.467279

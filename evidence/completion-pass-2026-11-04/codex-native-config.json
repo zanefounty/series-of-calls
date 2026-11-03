@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-03T21:15:26.385093+00:00",
+  "codex": "0.166.0",
+  "exitCode": 0,
+  "configSha256": "48249c82769c79ca92f3114c2269f7e3c7665b9f329a870ca061871aa3de2bac",
+  "scope": "Native app-server parser accepts project settings supplied as explicit overrides; no model call or MCP connection is started. This does not prove runtime project discovery.",
+  "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)",
+  "startupOutputParsed": true
+}

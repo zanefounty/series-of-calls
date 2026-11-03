@@ -33,7 +33,7 @@ function tickErr(e){console.error('[tubes] tick failed',e);if(UI.tickErr)return;
   toast(tr('loop.something_in_the_noc_glitched_the'),'bad');}
 function boot(data){
   i18nDom();
-  try{UI.muted=localStorage.getItem('sot-mute')==='1';UI.anim=localStorage.getItem('sot-anim')||'auto';}catch(e){}
+  try{UI.muted=localStorage.getItem('soc-sp-mute')==='1';UI.anim=localStorage.getItem('soc-sp-anim')||'auto';}catch(e){}
   applyAnim();
   if(data&&data.S){S=migrate(data.S);UI.started=true;if(data.cam)Object.assign(cam,data.cam);compute();renderAll();}
   else{const sv=UI.slot?loadSave():null,stamp=sv&&sv.sv;if(sv)delete sv.sv;

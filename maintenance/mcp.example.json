@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "series-of-calls": {"command": "node", "args": ["scripts/calls-mcp.js"]},
+    "series-of-calls-sp": {"command": "node", "args": ["scripts/mcp.js"]},
+    "series-of-calls-browser": {
+      "command": "npx",
+      "args": ["--yes", "@playwright/mcp@0.0.84", "--headless", "--isolated", "--caps", "network", "--save-session", "--output-dir", "evidence/browser-mcp"]
+    }
+  }
+}

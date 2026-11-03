@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-031 information work is delayed, capacity typed, lineage retained and reads pure
+ok 1 - AC-SOC-031 information work is delayed, capacity typed, lineage retained and reads pure
+  ---
+  duration_ms: 11.362653
+  type: 'test'
+  ...
+# Subtest: AC-SOC-032 processing boundaries, language and quality fail independently of calling
+ok 2 - AC-SOC-032 processing boundaries, language and quality fail independently of calling
+  ---
+  duration_ms: 7.227417
+  type: 'test'
+  ...
+# Subtest: AC-SOC-033 permissions narrow along lineage and held descendants prevent deletion
+ok 3 - AC-SOC-033 permissions narrow along lineage and held descendants prevent deletion
+  ---
+  duration_ms: 4.500145
+  type: 'test'
+  ...
+# Subtest: AC-SOC-034 retention expiry, hold release and replay preserve tombstones
+ok 4 - AC-SOC-034 retention expiry, hold release and replay preserve tombstones
+  ---
+  duration_ms: 19.131268
+  type: 'test'
+  ...
+# Subtest: AC-SOC-035 bookings, native and interop joins, events and recording dependencies differ
+ok 5 - AC-SOC-035 bookings, native and interop joins, events and recording dependencies differ
+  ---
+  duration_ms: 6.512887
+  type: 'test'
+  ...
+# Subtest: AC-SOC-036 disconnected local processing and meeting media require local licences and services
+ok 6 - AC-SOC-036 disconnected local processing and meeting media require local licences and services
+  ---
+  duration_ms: 4.032701
+  type: 'test'
+  ...
+# Subtest: AC-SOC-037 pipeline plans persist across configuration changes and worker execution matches
+ok 7 - AC-SOC-037 pipeline plans persist across configuration changes and worker execution matches
+  ---
+  duration_ms: 19.966953
+  type: 'test'
+  ...
+# Subtest: AC-SOC-349 information history records actual bounded evictions without changing lineage or read purity
+ok 8 - AC-SOC-349 information history records actual bounded evictions without changing lineage or read purity
+  ---
+  duration_ms: 2479.048601
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2588.72402

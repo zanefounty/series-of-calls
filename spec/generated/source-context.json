@@ -1,0 +1,822 @@
+{
+  "metadata": {
+    "title": "Series of Calls: full Series of Tubes to UC/CC mapping",
+    "schema_version": "1.0",
+    "status": "Proposed design mapping; not a playable implementation",
+    "audit_date": "2026-10-29",
+    "source_repository": "https://github.com/fjaeckel/seriesoftubes",
+    "source_version": "1.37.0",
+    "source_commit": "48e6200c532d486f79bc8376de0aecbf6169123b",
+    "source_tree": "02ebd05a76bcb8e2f74de625aadb27e4564a1894",
+    "design_context": "https://chatgpt.com/space/page_c4d155bcfb248191a93207a10e4bf73f",
+    "scope": "Every enumerated original game catalogue item, effective company and supplier relationship, asset and location, customer template, progression/scenario/event/achievement, action handler, observed top-level state field and distinct audited mechanic. One row can retain multiple source numeric parameters in original_attributes.",
+    "exclusions_as_separate_rows": [
+      "Coastline and cable waypoint vertices",
+      "City label offsets",
+      "Derived lookup indexes and caches",
+      "Repeated narrative strings within one incident class",
+      "Translated copies of identical entities",
+      "Individual CSS declarations and repeated parameterised button instances"
+    ],
+    "interpretation": [
+      "Original facts are pinned to the upstream commit; target names, roles, treatments and implementation notes are proposals.",
+      "3,454 mapping rows include relationships, templates, schema fields and implementation mappings; this is not a count of distinct physical objects.",
+      "The 237 city records include legacy-save and IX-only records, not 237 active starting markets.",
+      "The 243 facilities are source primary/explicit secondary entries; numbered options and generic templates are separately identified.",
+      "Reference product and vendor names identify research profiles, not a claim of universal availability, interoperability, certification or current commercial terms.",
+      "Real vendors are not assigned the satirical behaviour, quality or commercial practices of original fictional companies.",
+      "Physical Gbit/s, application sessions, paid seats, staffed agents, messages and AI processing are distinct units.",
+      "All four customer segments can use multiple deployment modes; government and defence are not single global certifications."
+    ],
+    "treatments": {
+      "Retain": "Keep the original identity or mechanism with appropriate UC labels.",
+      "Adapt": "Retain the role or workflow but change its behaviour/data for UC/CC.",
+      "Split": "Separate an overloaded original concept into physical and UC domain concepts.",
+      "Replace": "Retire the original behaviour and implement the proposed mechanism.",
+      "Remove": "Omit from the active fork subject to the stated dependency review.",
+      "New": "Required UC/CC concept with no direct original equivalent."
+    },
+    "verification": {
+      "unique_row_ids": true,
+      "required_fields_complete": true,
+      "all_original_source_files_available": true,
+      "player_actions_mapped": 193,
+      "unmapped_player_actions": 0,
+      "source_capture": {
+        "files_checked": 163,
+        "normalization": "remove exactly one final LF",
+        "matches_after_normalization": 163,
+        "other_differences": 0
+      },
+      "resolved_review_findings": [
+        "review-001",
+        "review-002",
+        "review-003",
+        "review-004",
+        "review-005",
+        "review-006"
+      ],
+      "not_performed": [
+        "No remote fork or repository modification",
+        "No playable UC simulation implemented or tested",
+        "No claim of current real-world product parity or legal/procurement eligibility"
+      ]
+    },
+    "licence": {
+      "upstream": "MIT",
+      "copyright": "Copyright (c) 2026 Frederic Jung",
+      "notice": "MIT License\n\nCopyright (c) 2026 Frederic Jung\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+    },
+    "stable_identity_note": "Row IDs distinguish source entries. Target IDs may intentionally converge when multiple original templates represent one proposed organisation; A Hyperscaler Who Shall Not Be Named is the documented case."
+  },
+  "coverage": {
+    "total_mapping_rows": 3454,
+    "original_mapping_rows": 3360,
+    "new_uc_additions": 94,
+    "by_origin_group": {
+      "company": 680,
+      "asset": 1659,
+      "progress": 501,
+      "root": 520,
+      "new": 94
+    },
+    "by_treatment": {
+      "Adapt": 1656,
+      "Split": 367,
+      "Replace": 263,
+      "Retain": 1074,
+      "New": 94
+    },
+    "by_category": {
+      "Achievement mechanic": 2,
+      "Asset mechanics": 37,
+      "Attack flavour": 12,
+      "Attack vector types": 5,
+      "Automation dialogue": 6,
+      "Automation flavour": 6,
+      "Automation persona": 6,
+      "Badge": 66,
+      "Badge rarity": 4,
+      "Boot event messages": 7,
+      "Cable route pairs": 475,
+      "Cable ship names": 8,
+      "Cable systems": 162,
+      "Capacity deal mechanic": 2,
+      "Capacity deal route": 16,
+      "Capacity deal type": 3,
+      "Catalogue parameters": 64,
+      "Cities": 237,
+      "Company access policy": 4,
+      "Company data field": 26,
+      "Company merger relationship": 2,
+      "Company supply relationship": 125,
+      "Company type": 4,
+      "Conference": 21,
+      "Conference mechanic": 6,
+      "Connectivity fabric providers": 3,
+      "Cost category": 13,
+      "Credit rating": 8,
+      "Customer requirement": 16,
+      "Customer service data field": 16,
+      "Customer service type": 31,
+      "Daily rule": 21,
+      "Engine mechanic": 37,
+      "Exchanges": 191,
+      "Fabric handoff tiers": 2,
+      "Facilities": 243,
+      "Facility name templates": 8,
+      "Facility number options": 17,
+      "Fictional lender": 16,
+      "Fictional supplier add-on": 7,
+      "Filter capability tiers": 3,
+      "Finance flavour": 6,
+      "Finance mechanic": 10,
+      "Game mode": 4,
+      "Generic customer name": 35,
+      "Goal": 19,
+      "Hardware supply shocks": 3,
+      "Incident mechanic": 11,
+      "Incident type": 32,
+      "Land connectivity groups": 58,
+      "Large campuses": 25,
+      "Loan covenant": 28,
+      "Marine construction delay messages": 6,
+      "Marine passage corridors": 2,
+      "Market event": 22,
+      "Micro partner": 24,
+      "Minor incident": 18,
+      "Named customer template": 152,
+      "Named provider edge product": 5,
+      "Network company": 154,
+      "New Cisco product family": 8,
+      "New Microsoft product family": 6,
+      "New UC CC domain object": 25,
+      "New customer segment": 4,
+      "New ecosystem actor": 51,
+      "Operations mechanic": 21,
+      "Optical line systems": 3,
+      "Optical modules": 4,
+      "Optical rate and reach modes": 14,
+      "Owned cable designs": 3,
+      "Owned cable name templates": 16,
+      "Owned exchange fabric tiers": 5,
+      "Partner inbox mechanic": 6,
+      "Partner policy": 3,
+      "Partner request template": 8,
+      "Physical port tiers": 6,
+      "Player action": 193,
+      "Player company name": 32,
+      "Policy recipe": 7,
+      "Policy syntax": 10,
+      "Progression level": 13,
+      "Protection capacity tiers": 4,
+      "Provider demand or reach profile": 8,
+      "Provider routing preferences": 3,
+      "Quote delay response": 4,
+      "Regions": 6,
+      "Revenue category": 4,
+      "Rival ecosystem exchange": 26,
+      "Router models": 17,
+      "Scenario": 13,
+      "Simulation speed": 6,
+      "Small ecosystem company": 60,
+      "State field": 194,
+      "Subsea upgrades": 2,
+      "Supplier response": 26,
+      "Transport capacity tiers": 7,
+      "Transport routing preferences": 4,
+      "Transport wholesalers": 6,
+      "Tutorial step": 6,
+      "User interface": 25,
+      "User preference": 3,
+      "Virtual circuit tiers": 3,
+      "Weekly modifier": 6,
+      "Weekly start location": 16,
+      "Wholesale buyer": 15
+    },
+    "repository_files": 217,
+    "source_files_captured": 163,
+    "source_game_js_files": 104,
+    "catalogue_counts": {
+      "network_companies_total": 214,
+      "network_companies_core": 154,
+      "network_companies_tail": 60,
+      "rival_exchanges": 26,
+      "base_customer_types": 31,
+      "named_base_customer_templates": 152,
+      "generic_customer_names": 35,
+      "player_company_names": 32,
+      "router_models": 17,
+      "cities": 237,
+      "facilities": 243,
+      "city_exchanges": 191,
+      "cables": 162,
+      "cable_route_pairs": 475,
+      "mega_campuses": 25,
+      "goals": 19,
+      "levels": 13,
+      "banks": 16,
+      "covenants": 28,
+      "scenarios": 13,
+      "conferences": 21,
+      "badges": 66,
+      "player_actions": 193
+    },
+    "company_coverage": {
+      "source_commit": "48e6200c532d486f79bc8376de0aecbf6169123b",
+      "counts": {
+        "Network company": 154,
+        "Small ecosystem company": 60,
+        "Rival ecosystem exchange": 26,
+        "Company supply relationship": 125,
+        "Company merger relationship": 2,
+        "Customer service type": 31,
+        "Named customer template": 152,
+        "Generic customer name": 35,
+        "Player company name": 32,
+        "Company data field": 26,
+        "Company type": 4,
+        "Company access policy": 4,
+        "Named provider edge product": 5,
+        "Customer service data field": 16,
+        "Provider demand or reach profile": 8
+      },
+      "total_mapping_rows": 680,
+      "coverage": {
+        "networks": 214,
+        "mapped_networks": 214,
+        "business_types": 31,
+        "mapped_business_types": 31,
+        "upstream_relationships": 125,
+        "mapped_upstream_relationships": 125,
+        "rival_exchanges": 26,
+        "mapped_rival_exchanges": 26,
+        "special_name_entries": 152,
+        "mapped_special_name_entries": 152,
+        "generic_names": 35,
+        "mapped_generic_names": 35,
+        "player_names": 32,
+        "mapped_player_names": 32,
+        "network_fields": 26,
+        "mapped_network_fields": 26,
+        "business_fields": 16,
+        "mapped_business_fields": 16
+      }
+    },
+    "asset_coverage": {
+      "total": 1659,
+      "counts": {
+        "Cities": 237,
+        "Facilities": 243,
+        "Exchanges": 191,
+        "Facility number options": 17,
+        "Facility name templates": 8,
+        "Regions": 6,
+        "Land connectivity groups": 58,
+        "Cable systems": 162,
+        "Cable route pairs": 475,
+        "Large campuses": 25,
+        "Router models": 17,
+        "Boot event messages": 7,
+        "Protection capacity tiers": 4,
+        "Attack vector types": 5,
+        "Filter capability tiers": 3,
+        "Owned exchange fabric tiers": 5,
+        "Transport capacity tiers": 7,
+        "Physical port tiers": 6,
+        "Optical line systems": 3,
+        "Optical modules": 4,
+        "Optical rate and reach modes": 14,
+        "Transport wholesalers": 6,
+        "Connectivity fabric providers": 3,
+        "Fabric handoff tiers": 2,
+        "Virtual circuit tiers": 3,
+        "Transport routing preferences": 4,
+        "Provider routing preferences": 3,
+        "Hardware supply shocks": 3,
+        "Subsea upgrades": 2,
+        "Owned cable name templates": 16,
+        "Cable ship names": 8,
+        "Marine construction delay messages": 6,
+        "Marine passage corridors": 2,
+        "Owned cable designs": 3,
+        "Catalogue parameters": 64,
+        "Asset mechanics": 37
+      },
+      "treatments": {
+        "Adapt": 556,
+        "Split": 226,
+        "Retain": 864,
+        "Replace": 13
+      },
+      "coverage": {
+        "cities": 237,
+        "cityPrimaryFacilities": 237,
+        "citySecondaryFacilityTemplates": 6,
+        "cityExchanges": 191,
+        "cableSystems": 162,
+        "cableRoutePairs": 475,
+        "largeCampuses": 25,
+        "routerModels": 17,
+        "landConnectivityGroups": 58
+      },
+      "excludedAsSeparateRows": [
+        "Coastline vertices",
+        "Cable waypoint vertices",
+        "City label nudges",
+        "Calendar labels",
+        "Translated copies of identical entities"
+      ],
+      "notes": [
+        "Source commit 48e6200c532d486f79bc8376de0aecbf6169123b; no source files changed.",
+        "Original geographical/cable identities retained; physical geography is not cloud presence or regulatory approval.",
+        "Source vendor parodies are not attributed to real vendors.",
+        "No automatic conversion of Gbit/s to users, seats, sessions, agent capacity or AI throughput."
+      ]
+    },
+    "progress_coverage": {
+      "commit": "48e6200c532d486f79bc8376de0aecbf6169123b",
+      "rows": 501,
+      "counts": {
+        "Progression level": 13,
+        "Goal": 19,
+        "Fictional lender": 16,
+        "Loan covenant": 28,
+        "Credit rating": 8,
+        "Finance mechanic": 10,
+        "Finance flavour": 6,
+        "Scenario": 13,
+        "Weekly modifier": 6,
+        "Weekly start location": 16,
+        "Game mode": 4,
+        "Conference": 21,
+        "Conference mechanic": 6,
+        "Capacity deal type": 3,
+        "Wholesale buyer": 15,
+        "Capacity deal route": 16,
+        "Capacity deal mechanic": 2,
+        "Tutorial step": 6,
+        "Partner policy": 3,
+        "Micro partner": 24,
+        "Partner request template": 8,
+        "Automation flavour": 6,
+        "Partner inbox mechanic": 6,
+        "Supplier response": 26,
+        "Fictional supplier add-on": 7,
+        "Quote delay response": 4,
+        "Operations mechanic": 21,
+        "Incident type": 32,
+        "Minor incident": 18,
+        "Attack flavour": 12,
+        "Incident mechanic": 11,
+        "Market event": 22,
+        "Daily rule": 21,
+        "Badge": 66,
+        "Badge rarity": 4,
+        "Achievement mechanic": 2
+      },
+      "source_catalogue_counts": {
+        "levels": 13,
+        "level_requirements": 13,
+        "goals": 19,
+        "banks": 16,
+        "covenants": 28,
+        "scenarios": 13,
+        "conferences": 21,
+        "badges": 66,
+        "tiny_partners": 24,
+        "incident_types": 32,
+        "market_events": 22,
+        "harmless_incidents": 18,
+        "attack_flavour": 12
+      },
+      "boundary": "Every discrete named catalogue item and distinct mechanic in assigned source; source predicates retained. Rendering labels, repeated notification strings and narrative variants within an incident class are not separate gameplay records. Source code defines no standalone beer collectible inventory.",
+      "excluded_overlap": [
+        "MERGERS instances owned by company agent",
+        "BIZ_T base and business names owned by company agent",
+        "MEGA campus instances owned by asset agent",
+        "DDOS_VEC and equipment tiers owned by asset agent",
+        "Action handlers and UI widgets owned by root"
+      ]
+    },
+    "new_coverage": {
+      "total": 94,
+      "categories": {
+        "New ecosystem actor": 51,
+        "New Microsoft product family": 6,
+        "New Cisco product family": 8,
+        "New customer segment": 4,
+        "New UC CC domain object": 25
+      },
+      "source_page": "https://chatgpt.com/space/page_c4d155bcfb248191a93207a10e4bf73f",
+      "additional_supplier_evidence_pending": [
+        "jabra",
+        "epos",
+        "crestron",
+        "q-sys",
+        "telnyx",
+        "bandwidth",
+        "vonage"
+      ],
+      "hardware_name_verification": {
+        "source": "src/game/10-catalog/20-routers.js",
+        "names": [
+          "Disco 8K",
+          "Disco 8K Ultra"
+        ],
+        "indices": [
+          8,
+          11
+        ]
+      }
+    }
+  },
+  "review": {
+    "reviewer": "asset_mapping",
+    "source_commit": "48e6200c532d486f79bc8376de0aecbf6169123b",
+    "scope": "Independent static catalogue, identity, source attribution and design-boundary review of the four original-to-UC mapping datasets. Source capture hashes checked against the pinned Git tree. This is a coverage review, not a test of a playable fork.",
+    "reviewed_files": [
+      "company_mapping.json",
+      "progress_mapping.json",
+      "root_mapping.json",
+      "asset_mapping.json",
+      "company_inventory.json",
+      "progress_catalogue_extract.json",
+      "root_inventory.json",
+      "asset_inventory.json"
+    ],
+    "baseline_row_counts": {
+      "company_mapping": 680,
+      "progress_mapping": 501,
+      "root_mapping": 503,
+      "asset_mapping": 1659,
+      "total": 3343
+    },
+    "findings": [
+      {
+        "id": "review-001",
+        "severity": "medium",
+        "type": "source_attribution",
+        "rows": [
+          "view:city_cust",
+          "view:city_up",
+          "view:city_peer",
+          "view:city_links",
+          "view:city_infra",
+          "view:dash_overview",
+          "view:dash_cust",
+          "view:dash_conn",
+          "view:dash_traffic",
+          "view:dash_infra",
+          "view:dash_lease",
+          "view:bank",
+          "view:title",
+          "view:help",
+          "view:notifications",
+          "view:link_detail",
+          "view:decommission",
+          "view:policy_editor",
+          "view:trace_modal",
+          "view:settings"
+        ],
+        "problem": "All view rows cited 93-ui/40-hud-and-panels.js in the baseline, although the definitions for these interfaces live in other source files. This makes the row-level provenance misleading.",
+        "examples": [
+          {
+            "file": "src/game/93-ui/60-decommission.js",
+            "symbols": [
+              "decomModal"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/60-decommission.js"
+          },
+          {
+            "file": "src/game/95-modals/40-title.js",
+            "symbols": [
+              "showTitle"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/95-modals/40-title.js"
+          },
+          {
+            "file": "src/game/80-simulation/20-routescript.js",
+            "symbols": [
+              "teModal"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/80-simulation/20-routescript.js"
+          },
+          {
+            "file": "src/game/60-features/50-traceroute.js",
+            "symbols": [
+              "traceModal"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/60-features/50-traceroute.js"
+          },
+          {
+            "file": "src/game/96-map/30-settings.js",
+            "symbols": [
+              "settingsHtml"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/96-map/30-settings.js"
+          },
+          {
+            "file": "src/game/95-modals/20-notifications.js",
+            "symbols": [
+              "logSection"
+            ],
+            "lines": null,
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/95-modals/20-notifications.js"
+          }
+        ],
+        "proposed_fix": "Use actual defining source file/function and commit permalink for each view. Keep row ID and target identity stable. Parent acknowledged and is applying these provenance fixes; do not add duplicate view rows.",
+        "status": "resolved_in_root_builder"
+      },
+      {
+        "id": "review-002",
+        "severity": "medium",
+        "type": "missing_original_economics",
+        "rows": [
+          "action:sellSpare"
+        ],
+        "problem": "The spare sale action is mapped, but SPARE_RESALE=0.4 and spareValue(o)=round(optCost(o)*0.4) are referenced indirectly and absent as original numeric attributes. The separately mapped router resale fraction is 0.3, so the two rules must not be conflated.",
+        "evidence": {
+          "file": "src/game/90-actions/90-action-helpers.js",
+          "symbols": [
+            "SPARE_RESALE",
+            "spareValue"
+          ],
+          "lines": [
+            14
+          ],
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/90-actions/90-action-helpers.js"
+        },
+        "original_values": {
+          "SPARE_RESALE": 0.4,
+          "formula": "Math.round(optCost(o)*SPARE_RESALE)"
+        },
+        "proposed_fix": "Attach resale_fraction=0.4, formula and supporting source permalink to action:sellSpare.original_attributes. Preserve the optional physical-SP application. Any sale or transfer rules for UC appliances and licences need their own fictional balancing and eligibility.",
+        "status": "resolved_in_final_mapping"
+      },
+      {
+        "id": "review-003",
+        "severity": "medium",
+        "type": "missing_original_economics",
+        "rows": [
+          "action:decomGo",
+          "view:decommission"
+        ],
+        "problem": "Retirement impact is correctly adapted, but its original early-termination amounts are missing. DECOM_MONTHS is 3; every affected customer charges at least 2000, otherwise half an event fee or three months of bw*rate.",
+        "evidence": {
+          "file": "src/game/93-ui/60-decommission.js",
+          "symbols": [
+            "DECOM_MONTHS",
+            "decomImpact",
+            "decommission"
+          ],
+          "lines": [
+            3,
+            6
+          ],
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/60-decommission.js"
+        },
+        "original_values": {
+          "DECOM_MONTHS": 3,
+          "minimum_penalty": 2000,
+          "event_fee_fraction": 0.5,
+          "formula": "Math.max(2000,Math.round(b.fee?b.fee*0.5:b.bw*b.rate*DECOM_MONTHS))"
+        },
+        "proposed_fix": "Attach exact values/formula to the existing retirement action/view original_attributes. UC version should use typed contract termination and retention obligations with previewed costs, not universal conversion of Gbit/s contracts into seats.",
+        "status": "resolved_in_final_mapping"
+      },
+      {
+        "id": "review-004",
+        "severity": "medium",
+        "type": "missing_original_pricing_tables",
+        "rows": [
+          "engine:geo_price",
+          "engine:annual_erosion"
+        ],
+        "problem": "The two mechanics are present, but their empty original_attributes lose the actual regional pricing tables and geographic multipliers outside the catalog folder. Asset scalar catalogue covers AU_WAVE and country prices but does not cover these additional tables.",
+        "evidence": {
+          "file": "src/game/80-simulation/80-geography-and-latency.js",
+          "symbols": [
+            "NULLARBOR",
+            "LAND_X",
+            "WAVE_LAND",
+            "WAVE_SUB",
+            "landMult",
+            "waveMarket"
+          ],
+          "lines": null,
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/80-simulation/80-geography-and-latency.js"
+        },
+        "original_values": {
+          "NULLARBOR": 1.7,
+          "LAND_X": 45,
+          "WAVE_LAND": {
+            "EU": 0.65,
+            "AM": 1,
+            "SA": 1.6,
+            "AS": 1.4,
+            "OC": 1.2,
+            "AF": 2.2
+          },
+          "WAVE_SUB": {
+            "EU": 0.8,
+            "AM": 1,
+            "SA": 2,
+            "AS": 1.5,
+            "OC": 1.5,
+            "AF": 4.5
+          },
+          "land_mult": {
+            "domestic_uae": 3,
+            "andes": 2,
+            "rain": 2,
+            "border": 2,
+            "intercontinental": 45,
+            "nullarbor": 1.7
+          },
+          "annual_erosion_base": 0.92,
+          "annual_erosion_floor": 0.55,
+          "year_days": 360,
+          "route_mood_formula": "0.85+(hstr(sortedPair+'|mood')%31)/100"
+        },
+        "proposed_fix": "Attach the tables and formulas to the existing engine rows, citing them as original game balancing. Keep regional UC prices, availability and jurisdiction profiles independent and dated. No need to inflate the mapping count with each scalar/table cell.",
+        "status": "resolved_in_final_mapping"
+      },
+      {
+        "id": "review-005",
+        "severity": "low",
+        "type": "missing_original_routing_parameters",
+        "rows": [
+          "policy-rule:5",
+          "recipe:diet"
+        ],
+        "problem": "All three allowed prepend options are mapped in the grammar, but the original modeled traffic factors are absent as numeric attributes.",
+        "evidence": [
+          {
+            "file": "src/game/80-simulation/20-routescript.js",
+            "symbols": [
+              "PREPEND_F"
+            ],
+            "lines": [
+              45
+            ],
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/80-simulation/20-routescript.js"
+          },
+          {
+            "file": "src/game/80-simulation/30-compute.js",
+            "symbols": [
+              "compute"
+            ],
+            "lines": [
+              21
+            ],
+            "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/80-simulation/30-compute.js"
+          }
+        ],
+        "original_values": {
+          "PREPEND_F": [
+            0,
+            0.35,
+            0.6,
+            0.75
+          ]
+        },
+        "proposed_fix": "Attach the exact factor table to policy-rule:5.original_attributes. Preserve the existing underlay-only interpretation; these are game approximation factors, not actual BGP or UC routing guarantees.",
+        "status": "resolved_in_final_mapping"
+      },
+      {
+        "id": "review-006",
+        "severity": "low",
+        "type": "missing_named_choice_set",
+        "rows": [
+          "action:pickStart",
+          "view:title"
+        ],
+        "problem": "All city instances are mapped, but the five suggested starting homes are not preserved as the named UI choice set. The weekly 16-city seed pool is a different list.",
+        "evidence": {
+          "file": "src/game/95-modals/40-title.js",
+          "symbols": [
+            "START5",
+            "homeOk",
+            "showTitle"
+          ],
+          "lines": [
+            4
+          ],
+          "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/95-modals/40-title.js"
+        },
+        "original_values": {
+          "START5": [
+            "fra",
+            "nyc",
+            "sin",
+            "sao",
+            "syd"
+          ],
+          "homeOk": "known city, not off, not China, and at least one transit supplier sells there"
+        },
+        "proposed_fix": "Attach START5 and the original eligibility predicate to action:pickStart or view:title. The UC adaptation should require an eligible launch-market/platform/carrier offer rather than copying a country exclusion as a real-world rule. No duplicate city rows needed.",
+        "status": "resolved_in_final_mapping"
+      },
+      {
+        "id": "review-007",
+        "severity": "info",
+        "type": "source_capture_integrity",
+        "rows": [],
+        "problem": "All 163 downloaded captures have one extra final LF compared with their pinned Git blob bytes. There are no content differences after removing that one LF.",
+        "evidence_file": "source_validation.json",
+        "original_values": {
+          "checked_files": 163,
+          "byte_exact_files": 0,
+          "remove_one_final_LF_matches": 163,
+          "other_differences": 0
+        },
+        "proposed_fix": "Describe captures as content-verified against the pinned tree after final-newline normalization. Keep snapshots unchanged. Do not claim byte-identical capture hashes.",
+        "status": "document_only"
+      }
+    ],
+    "verified": {
+      "unique_mapping_row_ids": true,
+      "all_mapping_source_files_exist": true,
+      "crisco_in_mapping_json": false,
+      "actual_hardware_names": [
+        "Disco 8K",
+        "Disco 8K Ultra"
+      ],
+      "source_capture": {
+        "files_checked": 163,
+        "normalization": "remove exactly one final LF",
+        "matches_after_normalization": 163,
+        "other_differences": 0
+      },
+      "named_catalogue_counts": {
+        "network_companies_total": 214,
+        "network_companies_core": 154,
+        "network_companies_tail": 60,
+        "rival_exchanges": 26,
+        "base_customer_types": 31,
+        "named_base_customer_templates": 152,
+        "generic_customer_names": 35,
+        "player_company_names": 32,
+        "router_models": 17,
+        "cities": 237,
+        "facilities": 243,
+        "city_exchanges": 191,
+        "cables": 162,
+        "cable_route_pairs": 475,
+        "mega_campuses": 25,
+        "goals": 19,
+        "levels": 13,
+        "banks": 16,
+        "covenants": 28,
+        "scenarios": 13,
+        "conferences": 21,
+        "badges": 66,
+        "player_actions": 193
+      },
+      "design_boundaries": [
+        "Physical cities/cables/optics retained as transport underlay; application services modeled separately.",
+        "IX membership and fictional partner membership do not imply Teams/Webex/PSTN interoperability or certification.",
+        "Gbps, port and optical capacities are not converted numerically into calls, seats, agent staffing or transcription throughput.",
+        "Original geographic/caricature costs are identified as game values rather than current real-world legal or market facts.",
+        "Root workload/latency and application eligibility mappings explicitly replace network-only assumptions.",
+        "Named caches become edge content/connector capabilities, not caching of live conversations."
+      ]
+    },
+    "resolved_or_nonissues": [
+      {
+        "rows": [
+          "company-map:business-name:wwave:4",
+          "company-map:business-name:dfpair:0",
+          "company-map:business-name:pairs:0"
+        ],
+        "target_id": "customer:a-hyperscaler-who-shall-not-be-named",
+        "reason": "Same buyer name in three product name pools intentionally resolves to one organisation with multiple contracts. Unique row/template identities are preserved. Company agent confirmed the identity policy and documents it."
+      },
+      {
+        "rows": [
+          "progress.scenario.redsea"
+        ],
+        "reason": "RS_G=80 and RS_DAYS=30 already survive in the exact English goal text; completion predicate also preserved. An extra parameter row is optional, not a missing scenario."
+      },
+      {
+        "reason": "TAIL and GSL mutations appear in the effective NETS catalogue; they are not missing companies just because source_symbol references NETS."
+      },
+      {
+        "reason": "PLACES/NEARM/SPOTM, CAB/NET/FAB indexes, DFC/OPTG caches, projection/coastline vertices, geometry nudges and duplicate translations are implementation or derived data, not additional gameplay items."
+      },
+      {
+        "reason": "A row per action handler correctly covers parameterized actions; every button label or repeated translated string should not be counted as a separate gameplay element."
+      },
+      {
+        "reason": "State-field and engine rows are implementation mappings. Report them separately from distinct named catalogue items when describing total coverage."
+      }
+    ],
+    "limitations": "Review checked named object counts, exact examples, source/economic gaps, identities and major UC analogy boundaries. It does not imply every numeric expression or rendered text label has its own row; meaningful retained parameters may be attributes on existing rows. The proposed UC design still requires balancing, dated product capability data and implementation/testing."
+  }
+}

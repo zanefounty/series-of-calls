@@ -1,0 +1,968 @@
+/* Series of Calls simulation kernel. All services and protocol events are synthetic.
+   calculate() is pure; dispatch() is the sole state-changing command boundary. */
+const SOC = (function socKernel() {
+  'use strict';
+  const APP='series-of-calls', PACK='soc-foundation-1', SCHEMA=1;
+  const business=typeof SOC_BUSINESS!=='undefined'?SOC_BUSINESS:require('./54-business.js');
+  const operations=typeof SOC_OPERATIONS!=='undefined'?SOC_OPERATIONS:require('./53-service-operations.js');
+  const information=typeof SOC_INFORMATION!=='undefined'?SOC_INFORMATION:require('./52-information.js');
+  const contact=typeof SOC_CONTACT!=='undefined'?SOC_CONTACT:require('./51-contact.js');
+  const estate=typeof SOC_ESTATE!=='undefined'?SOC_ESTATE:require('./48-estate.js');
+  const workforce=typeof SOC_WORKFORCE!=='undefined'?SOC_WORKFORCE:require('./49-workforce.js');
+  const calling=typeof SOC_CALLING!=='undefined'?SOC_CALLING:require('./50-calling.js');
+  const products=typeof SOC_PRODUCTS!=='undefined'?SOC_PRODUCTS:require('./45-products.js');
+  const channels=typeof SOC_CHANNELS!=='undefined'?SOC_CHANNELS:require('./47-channels.js');
+  const outcomes=typeof SOC_OUTCOMES!=='undefined'?SOC_OUTCOMES:require('./46-outcomes.js');
+  const transport=typeof SOC_TRANSPORT!=='undefined'?SOC_TRANSPORT:require('./42-transport.js');
+  const boundaries=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:require('./43-boundaries.js');
+  const progression=typeof SOC_PROGRESSION!=='undefined'?SOC_PROGRESSION:require('./41-progression.js');
+  const issueExercises=typeof SOC_ISSUE_EXERCISES!=='undefined'?SOC_ISSUE_EXERCISES:require('./40-issue-exercises.js');
+  const admissionSecurity=typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');
+  const serviceObservation=typeof SOC_SERVICE_OBSERVATION!=='undefined'?SOC_SERVICE_OBSERVATION:require('./39-service-observation.js');
+  const portfolio=typeof SOC_PORTFOLIO!=='undefined'?SOC_PORTFOLIO:require('./37-portfolio.js');
+  const productEvidence=typeof SOC_PRODUCT_EVIDENCE!=='undefined'?SOC_PRODUCT_EVIDENCE:require('./28-product-evidence.js');
+  const managedOperations=typeof SOC_MANAGED_OPERATIONS!=='undefined'?SOC_MANAGED_OPERATIONS:require('./29-managed-operations.js');
+  const mediaNegotiation=typeof SOC_MEDIA_NEGOTIATION!=='undefined'?SOC_MEDIA_NEGOTIATION:require('./30-media-negotiation.js');
+  const siteOperations=typeof SOC_SITE_OPERATIONS!=='undefined'?SOC_SITE_OPERATIONS:require('./32-site-operations.js');
+  const capabilityProgression=typeof SOC_CAPABILITY_PROGRESSION!=='undefined'?SOC_CAPABILITY_PROGRESSION:require('./31-capability-progression.js');
+  const callingAchievements=typeof SOC_CALLING_ACHIEVEMENTS!=='undefined'?SOC_CALLING_ACHIEVEMENTS:require('./33-calling-achievements.js');
+  const specialistLifecycle=typeof SOC_SPECIALIST_LIFECYCLE!=='undefined'?SOC_SPECIALIST_LIFECYCLE:require('./34-specialist-lifecycle.js');
+  const sharedServices=typeof SOC_SHARED_SERVICES!=='undefined'?SOC_SHARED_SERVICES:require('./35-shared-services.js');
+  const marketQualification=typeof SOC_MARKET_QUALIFICATION!=='undefined'?SOC_MARKET_QUALIFICATION:require('./36-market-qualification.js');
+  const campaign=typeof SOC_CAMPAIGN!=='undefined'?SOC_CAMPAIGN:require('./44-campaign.js');
+  const customerNeeds=typeof SOC_CUSTOMER_NEEDS!=='undefined'?SOC_CUSTOMER_NEEDS:require('./26-customer-needs.js');
+  const speechModels=typeof SOC_SPEECH_MODELS!=='undefined'?SOC_SPEECH_MODELS:require('./27-speech-models.js');
+  const clone=x=>JSON.parse(JSON.stringify(x));
+  const fail=(code,detail)=>{throw new Error(code+(detail?': '+detail:''));};
+  const ownKey=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+  const isId=x=>typeof x==='string'&&/^[a-z][a-z0-9-]{0,47}$/.test(x);
+  const units=['seat','session','agent','Mbps','minute','message','room','GB','processor-minute','managed-operation'];
+  const catalogue={
+    directory:{name:'Microsnoft Identity Grove',console:'identity',unit:'seat',defaults:{enabled:true,local:false,identities:['alex','bea'],entitled:['alex','bea'],region:'AU'}},
+    connectivity:{name:'Level Tree Access',console:'carrier',unit:'Mbps',defaults:{enabled:true,capacity:20,local:false,region:'AU'}},
+    uc:{name:'Microsnoft Workplace Phone',console:'workplace',unit:'seat',defaults:{enabled:true,directory:'identity',connectivity:'access',deployment:'multitenant',carrierModel:'managed',capacity:10,routes:[{prefix:'+61',target:'desk'}],extensionScope:'tenant',normalisation:'+61',signalling:true,mediaOut:true,mediaIn:true,local:false,region:'AU'}},
+    dedicated:{name:'Disco Dedicated Voice',console:'disco',unit:'seat',defaults:{enabled:true,directory:'identity',connectivity:'access',deployment:'dedicated',carrierModel:'gateway',capacity:10,routes:[{prefix:'+61',target:'desk'}],extensionScope:'site',normalisation:'+61',signalling:true,mediaOut:true,mediaIn:true,local:true,region:'AU'}},
+    trunk:{name:'Bellwether Interconnect',console:'carrier',unit:'session',defaults:{enabled:true,capacity:4,signalling:true,mediaOut:true,mediaIn:true,local:false,region:'AU'}},
+    endpoint:{name:'Disco Desk',console:'disco',unit:'seat',defaults:{enabled:true,identity:'bea',extension:'201',scope:'tenant',number:'+61255500201',registered:true,firmware:2,local:true,region:'AU'}},
+    workforce:{name:'People Orchard',console:'workforce',unit:'agent',defaults:{enabled:true,operator:'player',people:2,entitlements:2,skills:['service'],languages:['en'],shiftStart:0,shiftEnd:1440,handlingMinutes:3,wrapMinutes:1,digitalConcurrency:2,local:true,region:'AU'}},
+    queue:{name:'Disco Service Desk',console:'contact',unit:'session',defaults:{enabled:true,workforce:'people',capacity:4,skill:'service',language:'en',maxWait:8,callback:true,local:true,region:'AU'}},
+    channel:{name:'Chatterleaf Business',console:'engage',unit:'message',defaults:{enabled:true,approved:true,templates:['appointment'],rateLimit:10,local:false,region:'AU'}},
+    crm:{name:'Casebook',console:'casebook',unit:'seat',defaults:{enabled:true,identityMapping:true,local:true,region:'AU'}},
+    workflow:{name:'Disco Connective',console:'engage',unit:'message',defaults:{enabled:true,channel:'messages',queue:'service',crm:'cases',template:'appointment',handoff:true,botResolves:false,retries:2,local:false,region:'AU'}},
+    room:{name:'Disco Room Garden',console:'rooms',unit:'room',defaults:{enabled:true,directory:'identity',calendar:true,account:'bea',mode:'native',interop:false,firmware:2,microphone:true,camera:true,local:true,region:'AU'}},
+    recorder:{name:'Echo Vault Capture',console:'governance',unit:'session',defaults:{enabled:true,capacity:4,consent:true,identityMapping:true,archive:'archive',local:true,region:'AU'}},
+    archive:{name:'Echo Vault Archive',console:'governance',unit:'GB',defaults:{enabled:true,capacity:20,retentionDays:30,access:['supervisor'],local:true,region:'AU'}},
+    processor:{name:'Disco Speech Orchard',console:'processing',unit:'processor-minute',defaults:{enabled:true,capacity:10,language:'en',operation:'transcription',local:true,licenceLocal:false,region:'AU'}},
+    infrastructure:{name:'Clockwork Local Services',console:'infrastructure',unit:'session',defaults:{enabled:true,identity:true,dns:true,time:true,certificates:true,licensing:true,backup:true,local:true,region:'AU'}}
+  };
+  const scenarios={
+    smb:{name:'SMB · Orchard Repairs',channel:'message',goal:'Resolve a digital enquiry with retained case context.',required:['resolved','context'],jurisdiction:'AU'},
+    enterprise:{name:'Enterprise · Canopy Group',channel:'voice',goal:'Complete recorded calling and a room join after a cohort change.',required:['resolved','recording','meeting'],jurisdiction:'AU'},
+    government:{name:'Government · Civic Grove',channel:'voice',goal:'Resolve a recorded enquiry with permitted transcription and retention.',required:['resolved','recording','transcript'],jurisdiction:'AU'},
+    defence:{name:'Defence · Wattle Training Centre',channel:'voice',goal:'Keep local administrative calling and rooms working during disconnection.',required:['resolved','meeting','disconnected'],jurisdiction:'AU'}
+  };
+  const jurisdictions=['AU','US','JP','EU'];
+  const scenarioTenants={smb:'orchard-repairs',enterprise:'canopy-group',government:'civic-grove',defence:'wattle-centre'};
+  function validateConfig(kind,c){
+    const p=catalogue[kind];if(!p||!c||Array.isArray(c)||typeof c!=='object')fail('INVALID_CONFIG');
+    for(const [k,v] of Object.entries(c)){
+      if(!ownKey(p.defaults,k))fail('UNKNOWN_FIELD',k);
+      const d=p.defaults[k];
+      if(Array.isArray(d)){
+        if(!Array.isArray(v)||v.length>200)fail('INVALID_LIST',k);
+        if(k==='routes')for(const r of v){if(!r||Object.keys(r).sort().join(',')!=='prefix,target'||typeof r.prefix!=='string'||!/^\+?[0-9]{1,16}$/.test(r.prefix)||!isId(r.target))fail('INVALID_ROUTE');}
+        else if(v.some(x=>typeof x!=='string'||x.length>80)||new Set(v).size!==v.length)fail('INVALID_LIST',k);
+      }else if(typeof v!==typeof d||(typeof v==='number'&&(!Number.isFinite(v)||v<0||v>100000||!Number.isInteger(v)))||(typeof v==='string'&&v.length>100))fail('INVALID_FIELD',k);
+    }
+    if(Object.keys(c).length!==Object.keys(p.defaults).length)fail('MISSING_CONFIG_FIELD');
+    if(!jurisdictions.includes(c.region))fail('INVALID_REGION');
+    if(c.deployment&&!['multitenant','dedicated','premises'].includes(c.deployment))fail('INVALID_DEPLOYMENT');
+    if(kind==='uc'&&c.deployment!=='multitenant')fail('PRODUCT_DEPLOYMENT_MISMATCH');
+    if(kind==='dedicated'&&c.deployment==='multitenant')fail('PRODUCT_DEPLOYMENT_MISMATCH');
+    if(c.carrierModel&&!['managed','direct','mobile','gateway'].includes(c.carrierModel))fail('INVALID_CARRIER_MODEL');
+    if(c.operator&&!['player','bpo','customer'].includes(c.operator))fail('INVALID_OPERATOR');
+    if(c.mode&&!['native','guest','bridge'].includes(c.mode))fail('INVALID_ROOM_MODE');
+    if(c.operation&&!['transcription','translation','summary','redaction','index'].includes(c.operation))fail('INVALID_PROCESSING_OPERATION');
+    if(kind==='workforce'&&(c.shiftStart>=c.shiftEnd||c.shiftEnd>1440||c.handlingMinutes<1||c.digitalConcurrency<1))fail('INVALID_SHIFT');
+  }
+  function resource(id,kind,config={}){
+    if(!isId(id)||!ownKey(catalogue,kind))fail('INVALID_RESOURCE');
+    const desired={...clone(catalogue[kind].defaults),...clone(config)};validateConfig(kind,desired);
+    return {id,kind,desired,effective:null,generation:1,provisioning:{status:'pending',due:1,generation:1},fault:null};
+  }
+  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName}={}){
+    if(!ownKey(scenarios,scenario)||!jurisdictions.includes(jurisdiction)||!['guided','assessed','sandbox'].includes(mode)||!Number.isSafeInteger(seed)||seed<1||seed>2147483646||!Number.isSafeInteger(clock)||clock<0||clock>100000000||tenant!==undefined&&(!isId(tenant)||tenant.length>48)||customerName!==undefined&&(typeof customerName!=='string'||!customerName.trim()||customerName.length>100))fail('INVALID_EXERCISE');
+    const resources={};
+    const add=(id,kind,c={})=>resources[id]=resource(id,kind,{region:jurisdiction,...c});
+    add('identity','directory');add('access','connectivity');add('phone','uc');add('carrier','trunk');add('desk','endpoint');
+    add('people','workforce');add('service','queue');add('messages','channel');add('cases','crm');add('engage','workflow');
+    add('room','room');add('archive','archive');add('recorder','recorder');add('speech','processor');add('local','infrastructure');
+    // Deliberate initial faults are repairable through the same configuration surface.
+    resources.phone.desired.routes=[{prefix:'+61',target:'service'}];
+    if(scenario==='smb')resources.people.desired.people=0;
+    if(scenario==='enterprise'){resources.recorder.desired.identityMapping=false;resources.room.desired.calendar=false;}
+    if(scenario==='government')resources.speech.desired.region=jurisdiction==='AU'?'US':'AU';
+    if(scenario==='defence'){
+      resources.phone=resource('phone','dedicated',{region:jurisdiction,routes:[{prefix:'+61',target:'desk'}]});
+      for(const id of ['identity','access','carrier'])resources[id].desired.local=true;
+      resources.local.desired.licensing=false;
+    }
+    for(const r of Object.values(resources))r.provisioning.due=clock+1;
+    return {app:APP,v:SCHEMA,pack:PACK,rules:'fictional-boundaries-1',scenario,jurisdiction,mode,seed,...(tenant!==undefined?{tenant}:{}),...(customerName!==undefined?{customerName}:{}),clock,revision:0,nextId:1,tracePrunedThrough:0,connected:true,resources,interactions:[],cases:{},records:[],ledger:[],totals:{revenue:0,cost:0},commands:[],receipts:[],lastMeeting:null};
+  }
+  const links={uc:{directory:['directory'],connectivity:['connectivity']},dedicated:{directory:['directory'],connectivity:['connectivity']},queue:{workforce:['workforce']},workflow:{channel:['channel'],queue:['queue'],crm:['crm']},room:{directory:['directory']},recorder:{archive:['archive']}};
+  function dependencies(s,r,c){
+    const errors=[];
+    for(const [field,kinds] of Object.entries(links[r.kind]||{})){
+      const target=s.resources[c[field]];
+      if(!target)errors.push({code:'MISSING_DEPENDENCY',field,target:c[field]});
+      else if(!kinds.includes(target.kind))errors.push({code:'INCOMPATIBLE_DEPENDENCY',field,target:c[field]});
+    }
+    return errors;
+  }
+  function observe(s,id,visited=new Set()){
+    const r=s.resources[id];if(!r)return {ready:false,reasons:['MISSING_RESOURCE']};
+    const c=r.effective;if(!c)return {ready:false,reasons:['NOT_PROVISIONED']};
+    if(visited.has(id))return {ready:false,reasons:['DEPENDENCY_CYCLE']};
+    const next=new Set(visited);next.add(id);const reasons=[];
+    if(!c.enabled)reasons.push('DISABLED');if(r.fault)reasons.push(r.fault);
+    if(!s.connected&&!c.local)reasons.push('EXTERNAL_DEPENDENCY');
+    for(const e of dependencies(s,r,c))reasons.push(e.code+':'+e.field);
+    for(const field of Object.keys(links[r.kind]||{})){
+      if(!observe(s,c[field],next).ready)reasons.push('DEPENDENCY_UNAVAILABLE:'+field);
+    }
+    if(!s.connected&&['uc','dedicated','directory','room','processor','trunk'].includes(r.kind)){
+      const local=s.resources.local?.effective;
+      if(!local||!['identity','dns','time','certificates','licensing'].every(k=>local[k])||!observe(s,'local',next).ready)reasons.push('LOCAL_SUPPORT_DEPENDENCY');
+      if(r.kind==='processor'&&!c.licenceLocal)reasons.push('EXTERNAL_LICENCE');
+    }
+    return {ready:reasons.length===0,reasons};
+  }
+  const config=(s,id)=>s.resources[id]?.effective;
+  const productBindingKinds={
+    ...Object.fromEntries(['workload-scoped-availability','eligibility-evidence','regional-evidence','lifecycle-evidence'].map(feature=>[feature,{kinds:{phone:['uc','dedicated']},modes:['commercial','gcc','gcc-high','dod','jurisdiction-scoped-cloud','sovereign-infrastructure'],scopedEvidence:true}])),
+    telephony:{kinds:{phone:['uc']},modes:['multitenant'],coreDeployment:'multitenant'},
+    'multitenant-calling':{kinds:{phone:['uc']},modes:['multitenant'],coreDeployment:'multitenant'},
+    'carrier-interconnect':{kinds:{carrier:['trunk']},modes:['multitenant','dedicated','premises']},
+    'pstn-supply':{kinds:{carrier:['trunk']},modes:['multitenant','dedicated','premises']},
+    'unified-communications':{kinds:{phone:['dedicated']},modes:['dedicated','premises'],coreDeployment:['dedicated','premises']},
+    meetings:{kinds:{room:['room']},modes:['room-deployment','native-room']},
+    events:{kinds:{room:['room']},modes:['room-deployment','native-room']},
+    'room-devices':{kinds:{room:['room']},modes:['room-deployment','native-room']},
+    'room-panels':{kinds:{room:['room']},modes:['room-deployment','native-room']},
+    'calendar-integration':{kinds:{room:['room']},modes:['room-deployment','native-room']},
+    'native-join':{kinds:{room:['room']},modes:['native-room','room-deployment'],roomModes:['native']},
+    'interop-join':{kinds:{room:['room']},modes:['interop-bridge'],roomModes:['guest','bridge'],interop:true},
+    'browser-join':{kinds:{room:['room']},modes:['interop-bridge','native-room'],roomModes:['guest','native','bridge']},
+    'local-inference':{kinds:{speech:['processor']},modes:['customer-operated-local'],processorLocal:true},
+    'supported-language-stage':{kinds:{speech:['processor']},modes:['customer-operated-local']},
+    'versioned-integration':{kinds:{speech:['processor']},modes:['customer-operated-local'],processorLocal:true},
+    'stored-output':{kinds:{archive:['archive']},modes:['customer-operated-local']},
+    'operating-effort':{kinds:{people:['workforce']},modes:['customer-operated-local']},
+    'licensing-connectivity':{kinds:{local:['infrastructure']},modes:['customer-operated-local']},
+    'agent-assistance':{kinds:{speech:['processor']},modes:['cloud','multitenant','hosted','premises']},
+    'ai-assistance':{kinds:{speech:['processor']},modes:['multitenant','hosted','premises']},
+    recording:{kinds:{recorder:['recorder']},modes:['cloud','customer-operated','multitenant','premises']},
+    'quality-review':{kinds:{recorder:['recorder']},modes:['multitenant','hosted','premises']}
+  };
+  function productBindingInScope(s,deployment,binding,strict=true){
+    const model=productBindingKinds[binding.feature],cfg=deployment.effective||deployment.desired;
+    if(!model||!model.modes.includes(cfg.mode)||binding.resources.some(id=>!ownKey(model.kinds,id)||!s.resources[id]||!model.kinds[id].includes(s.resources[id].kind)))return false;
+    if(model.coreDeployment&&(Array.isArray(model.coreDeployment)?!model.coreDeployment.includes(cfg.mode):cfg.mode!==model.coreDeployment))return false;
+    if(model.scopedEvidence){const dependencies=products.families[cfg.family]?.features?.[binding.feature]||[];if(!dependencies.length||binding.resources.some(id=>dependencies.some(dep=>cfg.dependencies[dep]!==id)))return false;}
+    if(!strict)return true;
+    if(cfg.region!==s.jurisdiction)return false;
+    for(const id of binding.resources){const r=s.resources[id],effective=r.effective||r.desired;if(r.desired.region!==s.jurisdiction||effective.region!==s.jurisdiction)return false;
+      if(model.coreDeployment&&!(Array.isArray(model.coreDeployment)?model.coreDeployment.includes(r.desired.deployment):r.desired.deployment===cfg.mode&&r.desired.deployment===model.coreDeployment))return false;
+      if(model.roomModes&&(!model.roomModes.includes(effective.mode)||model.interop&&!effective.interop))return false;
+      if(model.processorLocal&&(!effective.local||!observe(s,id).ready))return false;
+    }
+    return true;
+  }
+  function productEvidenceHooks(){return {
+    authorize:(state,r)=>business.authorise(state,r.desired.resourceId,'configure'),
+    qualification:(state,resourceId)=>{const b=state.business,organisation=b?.player,expires=b?.qualifications?.[organisation]?.[state.scenario]||0;return {eligible:expires>state.clock,organisation,scenario:state.scenario,expires,resourceId,authorised:business.authorise(state,resourceId,'configure')};},
+    boundaryAssessment:(state,resourceId)=>{const b=boundaryCheck(state,resourceId);return b?{...b,resourceBindings:(b.resourceBindings||[]).map(x=>x.resource)}:{eligible:false,resourceBindings:[]};},
+    lifecycle:(state,resourceId,context)=>{const d=state.products?.deployments.find(x=>x.id===context.deploymentId),o=state.products?.offers.find(x=>x.id===context.offer),life=o?.effectiveLifecycle;return {eligible:!!d&&d.generation===context.generation&&o?.lifecycleProvisioning.status==='ready'&&life?.sale==='available'&&life?.support==='supported'&&business.authorise(state,resourceId,'configure'),offerId:o?.id,offerGeneration:o?.lifecycleGeneration,axes:life?{sale:life.sale,support:life.support}:null,deploymentId:d?.id,productVersion:d?.desired.productVersion,family:d?.desired.family,mode:d?.desired.mode,synthetic:true,externalApprovalClaim:false};}
+  };}
+  function speechHooks(s){
+    const stamp=(...values)=>values.reduce((n,x)=>n*100000+(Number.isSafeInteger(x)?x:0),0);
+    return {
+      authorize:(state,request)=>business.authorise(state,'speech','configure')&&!!state.products?.deployments.some(d=>d.id===request.scope&&d.desired.family==='cisco:local-speech'),
+      deployment:(state,id)=>{
+        const d=state.products?.deployments.find(x=>x.id===id);if(!d)return null;
+        const current=d.provisioning.status==='ready'&&d.provisioning.generation===d.generation?d.effective:d.desired;
+        if(!current)return null;
+        return {id:d.id,family:current.family,mode:current.mode,status:d.provisioning.status==='ready'&&d.provisioning.generation===d.generation?'ready':d.provisioning.status==='pending'?'provisioning':'unavailable',generation:d.generation,productVersion:current.productVersion,offerId:current.offer,region:current.region};
+      },
+      resource:(state,id,role,scope)=>{
+        const r=state.resources[id],c=r?.effective;if(!r||!c||r.provisioning.status!=='ready'||r.provisioning.generation!==r.generation)return null;
+        if(role==='compute'){
+          const processor=state.resources.speech,pc=processor?.effective,local=state.resources[id],ready=observe(state,id).ready&&observe(state,'speech').ready&&local.kind==='infrastructure'&&processor?.kind==='processor';
+          return {ready,generation:stamp(local.generation,processor.generation),region:c.region,localInference:ready&&c.local===true&&pc.local===true,capacity:pc.capacity,offlineSupported:pc.local===true&&c.identity===true&&c.dns===true&&c.time===true&&c.certificates===true,languages:['en','ja','fr','de'],stages:['transcription','diarisation','translation']};
+        }
+        if(role==='permission'){
+          const info=state.information,recorder=state.resources.recorder,rc=recorder?.effective,b=info?.boundary?.effective,p=info?.pipeline?.effective;
+          if(r.kind!=='recorder'||!info||!rc||!b||!p)return null;
+          const region=rc.region;
+          return {ready:observe(state,id).ready&&rc.consent===true&&rc.identityMapping===true&&p.enabled===true&&b.processRegions.includes(region),generation:stamp(r.generation,info.pipeline.generation,info.boundary.generation),deploymentId:scope.deploymentId,localSpeech:true};
+        }
+        if(role==='licensing'){
+          const processor=state.resources.speech,pc=processor?.effective,local=state.resources[id];if(local.kind!=='infrastructure'||processor?.kind!=='processor'||!pc)return null;
+          const offlineAuthorized=c.licensing===true&&pc.licenceLocal===true;
+          return {ready:observe(state,id).ready, generation:stamp(local.generation,processor.generation),deploymentId:scope.deploymentId,connected:state.connected===true,offlineAuthorized};
+        }
+        return null;
+      },
+      integration:(state,q)=>{
+        const d=state.products?.deployments.find(x=>x.id===q.deploymentId),cfg=d&&(d.provisioning.status==='ready'&&d.provisioning.generation===d.generation?d.effective:d.desired);
+        const installed=state.speechModels?.installations.some(x=>x.desired.deploymentId===q.deploymentId&&x.desired.deploymentGeneration===q.deploymentGeneration&&x.desired.productVersion===q.productVersion&&x.desired.modelVersion===q.modelVersion&&x.provisioning.status==='ready'&&x.effective);
+        if(!d||!cfg||d.generation!==q.deploymentGeneration||cfg.productVersion!==q.productVersion||cfg.offer!==q.offerId||cfg.region!==q.region||cfg.family!=='cisco:local-speech'||!cfg.features.includes('versioned-integration')||q.integrationId!=='local-speech-adapter'||q.integrationVersion!=='scenario-2.0.0'||!installed)return {status:'blocked',reason:'SPEECH_ADAPTER_SCOPE_OR_VERSION_MISMATCH'};
+        return {status:'scenario-verified',integrationId:q.integrationId,integrationVersion:q.integrationVersion,deploymentId:d.id,deploymentGeneration:d.generation,productVersion:cfg.productVersion,offerId:cfg.offer,region:cfg.region};
+      }
+    };
+  }
+  function productHooks(s){
+    return {
+      authorize:(state,objectId,action,context)=>{const findBindings=id=>state.products?.deployments.find(x=>x.id===id)?.desired.bindings.flatMap(b=>b.resources)||[],refs=Object.values(context?.dependencies||{}),bound=[...(context?.bindings||[]).flatMap(b=>b.resources||[]),...findBindings(context?.source),...findBindings(context?.target),...findBindings(objectId)],resources=[...new Set([...refs,...bound])].filter(id=>state.resources[id]);return (resources.length?resources:['phone']).every(id=>business.authorise(state,id,'configure'));},
+      validateBinding:(state,deployment,binding)=>productBindingInScope(state,deployment,binding,true),
+      observeDependency:(state,kind,resourceId,context)=>{if(['language-model','integration-version'].includes(kind))return state.speechModels?speechModels.availability(state,kind,resourceId,context,speechHooks(state)):{ready:false,reason:'SPEECH_MODELS_NOT_STARTED'};const r=state.resources[resourceId];if(!r)return {ready:false,reason:'PRODUCT_DEPENDENCY_MISSING'};const types={identity:['directory'],carrier:['trunk','connectivity'],calendar:['room'], 'capture-permission':['recorder'],workforce:['workforce'],crm:['crm'],'api-access':['workflow'],compute:['infrastructure'],'licensing-service':['infrastructure'],'network-edge':['connectivity','trunk'],recording:['recorder'],processing:['processor'],'channel-supplier':['channel'],'interop-provider':['room'],media:['uc','dedicated','trunk'],'tenant-authority':['directory'],'contract-authority':['directory'],'billing-system':['workflow'],'order-system':['workflow'],'support-owner':['workforce'],storage:['archive'],'information-policy':['archive'],operator:['workforce']};if(types[kind]&&!types[kind].includes(r.kind))return {ready:false,reason:'PRODUCT_DEPENDENCY_KIND_MISMATCH'};if(kind.endsWith('-evidence'))return state.productEvidence?productEvidence.availability(state,kind,resourceId,context,productEvidenceHooks()):{ready:false,reason:'PRODUCT_EVIDENCE_UNAVAILABLE'};const c=r.effective||{};if(kind==='calendar'&&!c.calendar)return {ready:false,reason:'CALENDAR_NOT_ENABLED'};if(kind==='capture-permission'&&(!c.consent||!c.identityMapping))return {ready:false,reason:'CAPTURE_PERMISSION_NOT_READY'};if(kind==='workforce'&&(!c.people||!c.entitlements))return {ready:false,reason:'WORKFORCE_NOT_STAFFED'};if(kind==='crm'&&!c.identityMapping)return {ready:false,reason:'CRM_IDENTITY_MAPPING_MISSING'};if(kind==='licensing-service'&&!c.licensing)return {ready:false,reason:'LOCAL_LICENCE_UNAVAILABLE'};if(kind==='channel-supplier'&&!c.approved)return {ready:false,reason:'CHANNEL_NOT_APPROVED'};const result=observe(state,resourceId);return {ready:result.ready,generation:r.generation,reason:result.reasons[0]||'PRODUCT_DEPENDENCY_UNAVAILABLE'};},
+      testDirectionalPath:(state,source,target)=>source.effective?.region===target.effective?.region&&source.effective?.region===state.jurisdiction?{ready:true}:{ready:false,reason:'COMPATIBILITY_REGION_SCOPE'}
+    };
+  }
+  function productGate(s,resourceId){if(!s.products)return null;const hooks=productHooks(s),bindings=products.bindingsForResource(s,resourceId);for(const b of bindings){const status=products.bindingStatus(s,b.deploymentId,b.feature,resourceId,hooks);if(!status.available)return {available:false,...b,reason:status.code,details:status};}return bindings.length?{available:true,bindings}:null;}
+  function speechModelContext(s){
+    if(!s.speechModels||!s.products)return null;const gate=productGate(s,'speech');if(!gate?.available)return null;
+    const binding=gate.bindings.find(x=>['local-inference','supported-language-stage','versioned-integration'].includes(x.feature));if(!binding)return null;
+    const d=s.products.deployments.find(x=>x.id===binding.deploymentId),c=d?.effective;if(!d||!c||c.family!=='cisco:local-speech')return null;
+    return {deploymentId:d.id,family:c.family,generation:d.generation,mode:c.mode,offer:c.offer,productVersion:c.productVersion,region:c.region,modelResourceId:c.dependencies['language-model'],integrationResourceId:c.dependencies['integration-version']};
+  }
+  function productServices(s){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));if(s.products)for(const id of Object.keys(s.resources)){const gate=productGate(s,id);if(gate&&!gate.available)services[id]={ready:false,reasons:['PRODUCT_FEATURE_UNAVAILABLE:'+gate.reason]};}if(s.boundaries)for(const id of Object.keys(s.resources)){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)services[id]={ready:false,reasons:gate.blocking.map(x=>x.code)};}return services;}
+  const estateKind=r=>r.kind==='directory'?'user':['endpoint','room'].includes(r.kind)?'device':['carrier','trunk'].includes(r.kind)?'number':'dependency';
+  function estateHooks(s){
+    function getResource(state,id){const r=state.resources[id];return r?{...r,estateKind:estateKind(r)}:null;}
+    function applyResource(state,id,completeConfig,expectedGeneration){const r=state.resources[id];if(!r)fail('RESOURCE_UNAVAILABLE');if(r.generation!==expectedGeneration)fail('STALE_GENERATION');if(!business.authorise(state,id,'configure'))fail('DELEGATION_REQUIRED');validateConfig(r.kind,completeConfig);r.desired=clone(completeConfig);r.generation++;r.provisioning={status:'pending',due:state.clock+1,generation:r.generation};return r;}
+    const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
+    const same=(a,b)=>JSON.stringify(stable(a))===JSON.stringify(stable(b));
+    function applyLeaver(state,id,completeConfig,revocations,expectedGeneration){
+      if(!Array.isArray(revocations)||!revocations.length||new Set(revocations).size!==revocations.length||revocations.some(x=>!['identity','group-token','number','device'].includes(x)))fail('LEAVER_REVOCATION_INTENT_REQUIRED');
+      const trial=clone(state),r=trial.resources[id];if(!r)fail('RESOURCE_UNAVAILABLE');if(r.generation!==expectedGeneration)fail('STALE_GENERATION');
+      const row=trial.estate.inventory.find(x=>x.resourceId===id&&x.canonicalId===id&&!x.conflicts.length&&!x.unknowns.length);if(!row)fail('IDENTITY_LINK_REQUIRED');
+      const profile=trial.resources.identity?.effective?.identities||trial.resources.identity?.desired?.identities||[];
+      const job=trial.estate.jobs.find(j=>j.operation==='leaver'&&j.items.some(item=>item.resource===id&&item.expectedGeneration===expectedGeneration));
+      let principal=null,change;
+      if(revocations.includes('device')){
+        if(revocations.length!==1||!['endpoint','room'].includes(r.kind))fail('LEAVER_REVOCATION_RESOURCE_MISMATCH');
+        principal=r.kind==='endpoint'?r.desired.identity:r.desired.account;
+        const identityItem=job?.items.find(item=>item.resource==='identity'&&item.revocations?.includes('identity')&&Array.isArray(item.config?.identities)&&!item.config.identities.includes(principal));
+        if(!profile.includes(principal)&&!identityItem)fail('LEAVER_IDENTITY_UNKNOWN');
+        const expected=clone(r.desired);if(r.kind==='endpoint')expected.registered=false;else expected.enabled=false;
+        if(!same(completeConfig,expected))fail('DEVICE_REVOCATION_CONFIG_REQUIRED');
+        change=()=>applyResource(trial,id,completeConfig,expectedGeneration);
+      }else{
+        if(!revocations.includes('identity')||id!=='identity'||r.kind!=='directory')fail('LEAVER_REVOCATION_RESOURCE_MISMATCH');
+        const before=r.desired.identities,after=completeConfig?.identities;
+        const removed=before.filter(x=>!Array.isArray(after)||!after.includes(x)),added=Array.isArray(after)?after.filter(x=>!before.includes(x)):[];
+        if(removed.length!==1||added.length||!r.desired.entitled.includes(removed[0])||!Array.isArray(completeConfig.entitled)||completeConfig.entitled.includes(removed[0]))fail('LEAVER_IDENTITY_CONFIG_REQUIRED');
+        principal=removed[0];if(!profile.includes(principal))fail('LEAVER_IDENTITY_UNKNOWN');
+        const expected=clone(r.desired);expected.identities=before.filter(x=>x!==principal);expected.entitled=r.desired.entitled.filter(x=>x!==principal);
+        if(!same(completeConfig,expected))fail('LEAVER_COMPLETE_CONFIG_REQUIRED');
+        const devices=Object.values(trial.resources).filter(x=>x.kind==='endpoint'&&x.desired.identity===principal||x.kind==='room'&&x.desired.account===principal);
+        for(const device of devices){const item=job?.items.find(x=>x.resource===device.id&&x.revocations?.includes('device')&&(x.kind==='device'));if(!item)fail('LEAVER_DEVICE_ITEM_REQUIRED');}
+        change=()=>applyResource(trial,id,completeConfig,expectedGeneration);
+      }
+      if(trial.workforceOps){
+        const person=trial.workforceOps.roster.desired.find(x=>x.id===principal);
+        if(person){if(trial.workforceOps.assignments.some(x=>x.person===principal&&['voice','digital','wrap'].includes(x.status)))fail('WORKFORCE_ASSIGNMENT_ACTIVE');if(person.available){if(!business.authorise(trial,'people','configure'))fail('DELEGATION_REQUIRED');workforce.command(trial,{action:'availability',person:principal,available:false});}}
+      }
+      if(!business.authorise(trial,'identity','configure'))fail('DELEGATION_REQUIRED');
+      if(revocations.includes('identity')&&trial.calling){
+        if(!business.authorise(trial,'phone','configure'))fail('DELEGATION_REQUIRED');
+        const node=trial.calling.nodes.directory,old=node.desired,oldPerson=old.identities.find(x=>x.canonical===principal);
+        const directory={...clone(old),identities:old.identities.filter(x=>x.canonical!==principal)};
+        if(revocations.includes('number'))directory.publicReach=old.publicReach.filter(x=>!oldPerson||x.number!==oldPerson.number||x.tenant!==oldPerson.tenant);
+        if(!same(directory,old))calling.configure(trial.calling,{node:'directory',config:directory,at:trial.clock});
+      }
+      if(revocations.includes('group-token')){
+        if(!trial.calling)fail('GROUP_TOKEN_MAPPING_UNAVAILABLE');if(!business.authorise(trial,'phone','configure'))fail('DELEGATION_REQUIRED');
+        const old=trial.calling.nodes.services.desired,groups=old.groups.map(g=>({...g,members:g.members.filter(x=>x!==principal)})),mailboxes=old.mailboxes.map(m=>m.delegate===principal?{...m,delegate:null}:m),forwarding=old.forwarding.filter(x=>x.from!==principal&&x.target!==principal),fallback=old.fallback.filter(x=>x.from!==principal&&x.target!==principal);
+        const services={...clone(old),groups,mailboxes,forwarding,fallback};if(same(services,old))fail('GROUP_TOKEN_MAPPING_UNAVAILABLE');calling.configure(trial.calling,{node:'services',config:services,at:trial.clock});
+      }
+      if(revocations.includes('number')){
+        if(!business.authorise(trial,'carrier','configure'))fail('DELEGATION_REQUIRED');
+        let found=false;if(trial.operations){for(const n of trial.operations.numbers.filter(x=>x.holder===principal&&x.status==='active')){n.holder=null;n.status='reserved';found=true;}}
+        if(trial.calling){const node=trial.calling.nodes.directory,old=node.desired,person=old.identities.find(x=>x.canonical===principal),effective=trial.calling.nodes.directory.effective?.identities.find(x=>x.canonical===principal),number=person?.number||effective?.number;if(number){const base=clone(node.desired),identities=base.identities.map(x=>x.canonical===principal?{...x,number:''}:x),publicReach=base.publicReach.filter(x=>x.number!==number);const directory={...base,identities,publicReach};calling.configure(trial.calling,{node:'directory',config:directory,at:trial.clock});found=true;}}
+        if(!found)fail('NUMBER_ACCESS_UNAVAILABLE');
+      }
+      change();
+      if(trial.calling)calling.validate(trial.calling);if(trial.workforceOps)workforce.validate(trial);if(trial.operations)operations.validate(trial);
+      state.resources=trial.resources;state.calling=trial.calling;state.workforceOps=trial.workforceOps;state.operations=trial.operations;
+      return state.resources[id];
+    }
+    function nativeMeetingRequired(state,resourceId){const r=state.resources[resourceId];return r?.kind==='room'&&(r.effective?.mode==='native'||r.desired?.mode==='native');}
+    function nativeMeetingCompatible(state,resourceId,firmware){
+      const r=state.resources[resourceId],room=r?.effective,firmwareLevel=Number(String(firmware).replace(/\D/g,''));
+      if(resourceId!=='room'||r?.kind!=='room'||!room||!observe(state,'room').ready||firmwareLevel<2||room.firmware<2||room.mode!=='native'||room.interop||!room.calendar||!room.microphone||!room.camera)return false;
+      const directory=state.resources[room.directory]?.effective;if(!directory||!observe(state,room.directory).ready||!directory.identities.includes(room.account))return false;
+      if(!state.products)return false;
+      const choices={
+        'microsoft:meetings-rooms':{modes:['room-deployment'],features:['meetings','room-devices']},
+        'cisco:meetings-devices':{modes:['native-room'],features:['room-device','native-join']}
+      };
+      return state.products.deployments.some(d=>{const spec=choices[d.effective?.family];if(!spec||!spec.modes.includes(d.effective.mode)||!d.effective.productVersion)return false;return d.effective.features.some(feature=>spec.features.includes(feature)&&products.bindingStatus(state,d.id,feature,resourceId,productHooks(state)).available);});
+    }
+    return {getResource,applyResource,applyLeaver,nativeMeetingRequired,nativeMeetingCompatible};
+  }
+  function campaignConfiguration(s){return JSON.stringify([Object.entries(s.resources).map(([id,r])=>[id,r.generation,r.desired,r.effective]),operations.fingerprint(s),information.fingerprint(s),contact.fingerprint(s),workforce.fingerprint(s),s.calling?calling.fingerprint(s.calling):null,s.products?products.fingerprint(s):null,s.channels?channels.fingerprint(s.channels):null,s.outcomes?outcomes.fingerprint(s):null,s.boundaries?boundaries.fingerprint(s):null,s.transport?transport.fingerprint(s):null,...(s.siteOperations?[siteOperations.configurationFingerprint(s)]:[]),...(s.mediaNegotiation?[mediaNegotiation.fingerprint(s)]:[]),...(s.productEvidence?[productEvidence.fingerprint(s)]:[])]);}
+  function progressionHooks(s){return {portfolioHooks:portfolioHooks(s),siteHooks:siteHooks(),boundaryAssessment:(state,id)=>boundaries.evaluate(state,id),integrationStatus:(state,id)=>{const edge=state.products?.integrations.find(e=>e.id===id);if(!edge)return {status:'missing'};const report=products.compatibilityStatus(state,id);if(report.status!=='scenario-verified')return report;for(const [deploymentId,featureKey] of [[edge.source,'sourceFeature'],[edge.target,'targetFeature']]){const deployment=state.products.deployments.find(d=>d.id===deploymentId);for(const pair of edge.features){const feature=pair[featureKey],binding=deployment.effective?.bindings.find(b=>b.feature===feature);if(!binding||binding.resources.some(resourceId=>!productServices(state)[resourceId]?.ready||!products.bindingStatus(state,deploymentId,feature,resourceId,productHooks(state)).available))return {status:'unavailable'};}}return report;},marketQualificationHooks:()=>marketHooks(),productBindingAvailable:(state,deploymentId,feature,resourceId)=>productServices(state)[resourceId]?.ready===true&&products.bindingStatus(state,deploymentId,feature,resourceId,productHooks(state)).available,observeResource:(state,id)=>{const observation=observe(state,id),gate=productGate(state,id),boundary=boundaryCheck(state,id);return {...observation,ready:observation.ready&&(!gate||gate.available)&&(!boundary||boundary.eligible)};}};}
+  function serviceObservationHooks(){const domains=(s,edges)=>[...new Set(edges.map(id=>s.transport?.links[id]?.effective?.domain).filter(Boolean))];return {observeResource:(s,id)=>productServices(s)[id],dispatchRootCommand:(s,c)=>dispatch(s,c),observeTransportPath:(s,q)=>{const p=transport.resourcePath(s,q.from,q.to,q.profile);return {...p,domains:domains(s,p.edges||[])};},transportDomainsForEdges:domains,transportDomainFailed:(s,id)=>s.transport?.domains[id]===true};}
+  function managedHooks(){return {
+    authorizeCustomer:(state,q)=>{const row=state.portfolio?.customers.find(c=>c.id===q.customerId),b=row?.root.business,c=b?.contracts.find(c=>c.id===q.contractId);return !!row?.active&&c?.status==='active'&&c.supportOwner===q.operator&&c.resources.includes(q.resource)&&business.authorise({...row.root,business:{...b,player:q.operator}},q.resource,q.action);},
+    dispatchCustomer:(state,customerId,command)=>{portfolio.command(state.portfolio,{action:'dispatchcustomer',customerId,command},portfolioHooks(state));return state.portfolio.customers.find(c=>c.id===customerId).root;},
+    resourceReadiness:(state,q)=>{const child=state.portfolio?.customers.find(c=>c.id===q.customerId)?.root,r=child?.resources[q.resource];return !!r&&r.generation===q.generation&&r.provisioning.status==='ready'&&JSON.stringify(r.effective)===JSON.stringify(q.config)&&productServices(child)[q.resource]?.ready===true;},
+    settleUsage:(state,q)=>{const row=state.portfolio?.customers.find(c=>c.id===q.customerId);if(!row?.active||!productServices(row.root)[q.resource]?.ready)fail('MANAGED_USAGE_RESOURCE_UNAVAILABLE');return business.managedUsage(row.root,q);}
+  };}
+  function portfolioHooks(s){return {managedOperationsObligations:customerId=>!!s.managedOperations?.jobs.some(job=>job.participants.some(p=>p.customerId===customerId&&p.childJobId&&(p.status!=='complete'||p.items.some(item=>item.status!=='complete'||item.billingStatus!=='posted')))),createCustomer:(_,c)=>create({scenario:c.scenario,jurisdiction:c.jurisdiction,tenant:c.tenant,customerName:c.name,clock:c.clock,mode:s.mode,seed:s.seed}),dispatchCustomer:(state,command)=>dispatch(state,command),validateCustomer:state=>{if(state.mode!==s.mode||state.seed!==s.seed)fail('PORTFOLIO_CUSTOMER_CONTEXT_MISMATCH');validateState(state);return true;}};}
+  function lifecycleHooks(){return {
+    inspectDeployment:(state,id)=>{const d=state.products?.deployments.find(x=>x.id===id);return {exists:!!d,effective:!!d?.effective&&d.provisioning.status==='ready',offerId:d?.effective?.offer,version:d?.effective?.productVersion,generation:d?.generation,features:d?.effective?.features||[],dependenciesReady:!!d?.effective&&d.effective.features.every(f=>products.featureStatus(state,id,f,productHooks(state)).available)};},
+    authorizeSupportOwner:(state,ownerId,id)=>{const b=state.business,d=state.products?.deployments.find(x=>x.id===id),org=b?.organisations[ownerId];if(!org?.roles.some(r=>['msp','integrator','bpo'].includes(r))||!d?.effective)return false;const refs=[...new Set([...Object.values(d.effective.dependencies),...d.effective.bindings.flatMap(x=>x.resources)])];return refs.length>0&&refs.every(resource=>business.authorise(state,resource,'configure')&&business.authorise({...state,business:{...b,player:ownerId}},resource,'configure'));}
+  };}
+  function boundLifecycleDeployments(s,resources){return [...new Set((resources||[]).flatMap(id=>products.bindingsForResource(s,id).map(b=>b.deploymentId)))].sort();}
+  function lifecycleCommercial(s,c){
+    if(!s.specialistLifecycle||!['order','renew'].includes(c?.action))return;
+    const contract=c.action==='renew'?s.business?.contracts.find(x=>x.id===c.contract):c;if(!contract)return;
+    const owner=contract.supportOwner||s.business?.player;
+    const ids=[...new Set([...boundLifecycleDeployments(s,contract.resources),...(contract.lifecycleDeployments||[])])];
+    for(const id of contract.lifecycleDeployments||[])if(!s.products.deployments.find(d=>d.id===id)?.effective?.bindings.some(b=>b.resources.some(r=>contract.resources.includes(r))))fail('PRODUCT_LIFECYCLE_BINDING_REMOVED:'+id);
+    for(const id of ids){const status=specialistLifecycle.deploymentStatus(s,id,lifecycleHooks()),record=s.specialistLifecycle.records.find(r=>r.id===status.evidenceId);if(!status.evidenceReady||status.axes?.support!=='supported'||record?.supportOwnerId!==owner||c.action==='order'&&status.axes.sale!=='available'||c.action==='renew'&&!status.renewalReadiness)fail('PRODUCT_LIFECYCLE_'+(c.action==='renew'?'RENEWAL':'SALE')+'_BLOCKED:'+id);}
+  }
+  function customerCommercial(s,c){
+    if(!['order','renew'].includes(c?.action))return;
+    const contract=c.action==='renew'?s.business?.contracts.find(x=>x.id===c.contract):c;
+    if(!contract||contract.customerProfile===undefined)return;
+    const profile=s.customerNeeds?.profiles.find(x=>x.id===contract.customerProfile);
+    if(!profile?.effective||profile.segment!==s.scenario||(contract.customer||'customer')!=='customer'||contract.sell!==true)fail('CUSTOMER_PROFILE_SCOPE_REQUIRED');
+    if(c.action==='renew'){
+      const fit=customerNeeds.evaluate(s,profile.id,productServices(s));
+      const failed=fit.criteria.filter(x=>x.status==='unmet');
+      if(failed.length)fail('CUSTOMER_FIT_RENEWAL_BLOCKED:'+failed.map(x=>x.id).join(','));
+    }
+  }
+  function sharedHooks(){return {
+    authorize:state=>business.authorise(state,'phone','configure'),
+    identity:(state,person)=>{const who=state.calling?.nodes.directory.effective?.identities.find(x=>x.canonical===person),directory=config(state,'identity');return who?{person:who.canonical,tenant:who.tenant,endpoint:who.endpoint,known:who.known,entitled:!!directory?.entitled.includes(person)}:null;},
+    endpointReady:(state,who)=>who.known&&who.entitled&&state.resources[who.endpoint]?.kind==='endpoint'&&config(state,who.endpoint)?.identity===who.person&&config(state,who.endpoint)?.registered===true&&productServices(state)[who.endpoint]?.ready===true,
+    interaction:(state,i)=>{const who=canonicalInfo(state,i.from);return {person:who?.person,tenant:who?.tenant,phase:i.phase,known:!!who,terminal:['resolved','failed'].includes(i.phase)};},
+    federated:(state,from,to)=>state.calling?.nodes.directory.effective?.federation.some(e=>e.from===from&&e.to===to)===true,
+    beforeAction:(state,i,action,actor)=>{if(i.phase!==({answer:'ringing',park:'shared-active',retrieve:'parked'}[action]))return false;return sharedReady(state,i,actor);}
+  };}
+  function sharedReady(s,i,actor){
+    const phone=config(s,operations.platform(s,i.from));if(!phone?.signalling||!phone.mediaIn||!phone.mediaOut||!productServices(s)[operations.platform(s,i.from)]?.ready)return false;
+    const who=sharedHooks().identity(s,actor);if(!who||!sharedHooks().endpointReady(s,who))return false;
+    if(s.calling){const q=calling.media(s.calling,i);if(!q.outbound||!q.inbound)return false;}
+    if(s.transport){const from=s.transport.bindings[i.from]?i.from:'identity',path=transport.resourcePath(s,from,who.endpoint,'voice',i.id);if(!path.ready)return false;}
+    return true;
+  }
+  function sharedCommand(s,q){
+    if(!business.authorise(s,'phone','configure'))fail('DELEGATION_REQUIRED');
+    if(q?.action==='start'){if(Object.keys(q).join(',')!=='action')fail('INVALID_SHARED_SERVICES_COMMAND');if(s.sharedServices)fail('SHARED_SERVICES_ALREADY_STARTED');if(!s.calling)fail('CALLING_PACK_REQUIRED');s.sharedServices=sharedServices.create(s);return;}
+    const result=sharedServices.command(s,q,sharedHooks());
+    if(['answer','park','retrieve'].includes(q?.action)){
+      const i=s.interactions.find(x=>x.id===q.interactionId);if(i)event(s,i,'shared-service',result.code,{actor:q.actor,line:result.line||i.sharedLine});
+      if(!result.allowed)return;
+      if(q.action==='park'){i.phase='parked';i.due=result.due;event(s,i,'signalling','CALL_HELD',{slot:q.slot});}
+      else{if(s.transport){transport.release(s,i.id);const from=s.transport.bindings[i.from]?i.from:'identity',path=transport.admit(s,i.id,from,result.endpoint,'voice');if(!path.ready)return finish(s,i,path.reason);}i.destination=result.endpoint;i.phase='shared-active';i.sharedActor=q.actor;i.due=s.clock+3;event(s,i,'signalling',q.action==='answer'?'200_OK':'CALL_RESUMED',{endpoint:result.endpoint});}
+    }
+  }
+  function marketHooks(){return {
+    validatePortfolio:root=>portfolio.validate(root.portfolio,portfolioHooks(root)),
+    resourceReady:(state,id)=>productServices(state)[id]||{ready:false},
+    integrationStatus:(state,id)=>{const edge=state.products?.integrations.find(x=>x.id===id);if(!edge)return {status:'missing'};const check=products.compatibilityStatus(state,id);if(check.status==='scenario-verified'&&!edge.features.every(f=>products.featureStatus(state,edge.source,f.sourceFeature,productHooks(state)).available&&products.featureStatus(state,edge.target,f.targetFeature,productHooks(state)).available))return {status:'blocked'};return check;},
+    boundaryAssessment:(state,id)=>{const contract=state.boundaries?.contracts.find(x=>x.id===id);if(!contract?.effective)return {eligible:false};const flows=contract.effective.flows;return {profile:contract.effective.profile,resourceBindings:flows.map(f=>f.resource),eligible:flows.length>0&&flows.every(f=>boundaryCheck(state,f.resource)?.eligible===true)};}
+  };}
+  function campaignHooks(){return {
+    configurationFingerprint:state=>campaignConfiguration(state),
+    observeResource:(state,id)=>{const observation=observe(state,id),product=productGate(state,id),boundary=state.boundaries?.bindings[id]?boundaryCheck(state,id):null;return {ready:observation.ready&&(!product||product.available)&&(!boundary||boundary.eligible),reasons:[...observation.reasons,...(product&&!product.available?[product.reason]:[]),...(boundary&&!boundary.eligible?boundary.blocking.map(x=>x.code):[])]};},
+    dispatchRootCommand:(state,command)=>dispatch(state,command),
+    selectTrack:(state,track,context)=>{if(state.campaign.progress[state.scenario].windows.some(w=>w.status==='open'))fail('CAMPAIGN_WINDOW_OPEN');const next=context.targetSnapshot?validateState(clone(context.targetSnapshot.root)):create({scenario:track,jurisdiction:state.jurisdiction,mode:state.mode,seed:state.seed});next.revision=state.revision;next.commands=clone(state.commands);const receipts=new Map([...next.receipts,...state.receipts].map(r=>[r.id,r]));next.receipts=[...receipts.values()].slice(-1000);if(state.progression)next.progression=clone(state.progression);if(state.portfolio)next.portfolio=clone(state.portfolio);if(state.managedOperations)next.managedOperations=clone(state.managedOperations);if(state.marketQualification)next.marketQualification=clone(state.marketQualification);return next;}
+  };}
+  function mediaHooks(excludeInteractionId){return {
+    excludeInteractionId,
+    resourceExists:(state,id)=>!!state.resources[id],
+    resourceReady:(state,id)=>productServices(state)[id]?.ready===true,
+    routeAuthorized:(state,path,fromTenant,toTenant)=>fromTenant===toTenant||!!state.calling?.nodes.directory.effective?.federation.some(e=>e.from===fromTenant&&e.to===toTenant)
+  };}
+  function mediaRoute(s,i,target,platform,carrierRequired){
+    const profile=(table,resourceId)=>{const rows=Object.values(table).filter(n=>(n.effective||n.desired).resourceId===resourceId);return rows.length===1?rows[0].id:null;},p=s.mediaNegotiation;
+    const toEndpoint=profile(p.endpoints,target),carrierId=carrierRequired?profile(p.carriers,'carrier'):null;
+    if(!toEndpoint||carrierRequired&&!carrierId)return null;
+    if(i.direction==='inbound')return {direction:'inbound',carrierId,toEndpoint};
+    const caller=s.calling?.nodes.directory.effective?.identities.find(x=>x.canonical===i.from),desks=Object.values(s.resources).filter(r=>r.kind==='endpoint'&&r.effective?.identity===i.from),source=caller?.endpoint||(desks.length===1?desks[0].id:platform),fromEndpoint=profile(p.endpoints,source);
+    return fromEndpoint?{direction:carrierRequired?'outbound':'internal',fromEndpoint,toEndpoint,...(carrierRequired?{carrierId}:{})}:null;
+  }
+  function prepareMedia(s,i,target,platform,carrierRequired){
+    if(!s.mediaNegotiation)return null;const path=mediaRoute(s,i,target,platform,carrierRequired);if(!path)return {status:'blocked',signalling:{ready:false},blockingReasons:['MEDIA_PROFILE_REQUIRED']};
+    const result=mediaNegotiation.preflight(s,path,mediaHooks());for(const code of result.negotiation.offerTrace||[])event(s,i,'media-offer',code,{path:clone(path)});return result;
+  }
+  function carrierAdmitted(i){return i?.trace?.some(t=>t.code==='CARRIER_PATH_ADMITTED'&&['inbound','outbound'].includes(t.direction)||t.code==='CARRIER_MODEL_SELECTED'&&(!t.direction||t.direction==='inbound'))===true;}
+  function carrierOccupancy(s,except){return s.interactions.filter(x=>x!==except&&x.channel==='voice'&&['queued','handling','ringing','shared-active','parked'].includes(x.phase)&&carrierAdmitted(x)).length;}
+  function admitMedia(s,i,result){
+    if(!result)return true;
+    i.media.out=i.media.out&&result.media?.fromTo===true;i.media.in=i.media.in&&result.media?.toFrom===true;event(s,i,'media','MEDIA_PATHS',i.media);
+    event(s,i,'media','CODEC_NEGOTIATED',result.negotiation);
+    if(result.status!=='ready'){event(s,i,'media','MEDIA_NEGOTIATION_FAILED',{reasons:result.blockingReasons});finish(s,i,result.blockingReasons[0]||'MEDIA_NEGOTIATION_FAILED');return false;}
+    const reserved=mediaNegotiation.reserve(s,i.id,result.path,mediaHooks());if(!reserved.accepted){finish(s,i,reserved.result.blockingReasons[0]||'MEDIA_NEGOTIATION_FAILED');return false;}
+    i.media.out=i.media.out&&result.media.fromTo;i.media.in=i.media.in&&result.media.toFrom;return true;
+  }
+  function siteHooks(){
+    const resourceView=(s,id)=>{const r=s.resources[id];if(!r)return null;const o=observe(s,id);return {id,generation:r.generation,ready:r.provisioning.status==='ready'&&o.ready,available:o.ready,config:r.effective?clone(r.effective):null};};
+    const siteView=(s,id)=>{const n=s.transport?.sites[id],c=n?.effective||n?.desired;if(!c)return null;const ready=transport.inspect(s).siteStatus[id]===true;return {id,ready,available:ready,power:ready,region:c.region,powerDomain:c.powerDomain||c.domain,failureDomain:c.domain,sharedDomains:[...new Set(Object.values(s.transport.links).filter(l=>l.effective&&[l.effective.from,l.effective.to].includes(id)).map(l=>l.effective.domain))]};};
+    return {
+      authorize:(s,action,owner)=>!!s.business?.organisations[owner]&&Object.keys(s.business.ownership).filter(id=>s.business.ownership[id]===owner).some(id=>business.authorise(s,id,'configure')),
+      resource:resourceView,transportSite:siteView,
+      siteOwnership:(s,q)=>{const n=s.siteOperations?.sites[q.site],c=n?.desired,ts=s.transport?.sites[q.transportSite];if(!c||!ts?.effective||!s.business)return null;const refs=[c.adminResource,...c.endpointResources,c.backupResource,c.restoreResource],owned=refs.every(id=>s.business.ownership[id]===q.owner),controlled=refs.every(id=>business.authorise(s,id,'configure')),local=refs.every(id=>s.resources[id]?.effective?.local===true&&s.resources[id].effective.region===ts.effective.region);if(q.ownership==='customer'&&!s.business.organisations[q.owner]?.roles.includes('customer')||q.ownership==='provider'&&!s.business.organisations[q.owner]?.roles.some(r=>['msp','integrator','carrier'].includes(r)))return null;return {site:q.site,owner:q.owner,ownership:q.ownership,local,controlled:owned&&controlled,recordId:'ownership-'+q.site,generation:ts.generation};},
+      captureBackup:(s,q)=>{const r=resourceView(s,q.backupResource);if(!r?.ready||r.config.local!==true||!(s.resources[q.backupResource].kind==='archive'||s.resources[q.backupResource].kind==='infrastructure'&&r.config.backup))fail('SITE_BACKUP_UNAVAILABLE');return {success:true,snapshotId:'backup-'+s.nextId++,receiptId:'backup-receipt-'+s.nextId++,backupResource:q.backupResource,resources:clone(q.resources)};},
+      injectFault:(s,q)=>{if(s.transport.domains[q.domain]===true)fail('SITE_DOMAIN_ALREADY_FAILED');transport.command(s,{action:'domain',id:q.domain,failed:true},transportHooks(s));return {id:q.domain,domain:q.domain,active:true};},
+      clearFault:(s,id)=>{transport.command(s,{action:'domain',id,failed:false},transportHooks(s));return s.transport.domains[id]===false;},
+      edgeInDomain:(s,id,domain)=>s.transport?.links[id]?.effective?.domain===domain,
+      restore:(s,q)=>{const restore=resourceView(s,q.restoreResource);if(!restore?.ready||s.resources[q.restoreResource].kind!=='infrastructure'||!restore.config.backup||!restore.config.local)fail('SITE_RESTORE_UNAVAILABLE');for(const snap of q.resources){const r=s.resources[snap.id];if(!r||!business.authorise(s,snap.id,'configure'))fail('DELEGATION_REQUIRED');validateConfig(r.kind,snap.config);r.desired=clone(snap.config);r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}return {accepted:true,receiptId:'restore-receipt-'+s.nextId++,backupSnapshotId:q.backupSnapshotId,restoreResource:q.restoreResource,due:s.clock+1};},
+      journey:(s,q)=>{const target=q.toResources[0],endpoint=config(s,target);if(s.resources[target]?.kind!=='endpoint'||!endpoint?.number)return {success:false};let from='+12125550199',direction='inbound',sourceResource='carrier';if(q.phase==='baseline'){const source=q.fromResources[0],conf=config(s,source);if(s.resources[source]?.kind!=='endpoint'||!conf?.identity)return {success:false};from=conf.identity;direction='outbound';sourceResource=s.transport.bindings[from]?from:'identity';}const sourceSite=s.transport.bindings[sourceResource],targetSite=s.transport.bindings[target];startInteraction(s,{channel:'voice',direction,from,to:endpoint.number,caseId:'site-probe-'+s.nextId,media:{encrypted:true}});const i=s.interactions.at(-1),path=i.trace.find(t=>t.code==='MEDIA_TRANSPORT_ADMITTED');return {success:i.phase==='resolved'&&i.outcome==='CONNECTED'&&i.destination===target,interactionId:i.id,sourceSite,targetSite,targetResource:i.destination,edges:path?.edges||[],interaction:clone(i)};},
+      migrateResource:(s,q)=>{const from=s.siteOperations.sites[q.fromSite],to=s.siteOperations.sites[q.toSite];if(!business.authorise(s,q.resource,'migrate')||s.transport.bindings[q.resource]!==from.effective.transportSite||!siteView(s,to.effective.transportSite)?.ready)return {success:false};transport.command(s,{action:'bind',resource:q.resource,site:to.effective.transportSite},transportHooks(s));const person=config(s,q.resource)?.identity;if(person&&canonicalInfo(s,person))transport.command(s,{action:'bind',resource:person,site:to.effective.transportSite},transportHooks(s));return {success:true,receiptId:'migration-receipt-'+s.nextId++,...q};}
+    };
+  }
+  function transportHooks(s){return {authorize:(state)=>business.authorise(state,'access','configure'),resourceExists:(state,id)=>!!state.resources[id]||!!canonicalInfo(state,id),bill:(state,invoice)=>business.externalCost(state,invoice),failed:(state,id,reason)=>{const i=state.interactions.find(x=>x.id===id);if(i){event(state,i,'transport',reason);finish(state,i,reason);}else transport.release(state,id);}};}
+  function boundaryCheck(s,resourceId){
+    if(!s.boundaries)return null;const key=s.boundaries.bindings[resourceId];
+    if(!key)return ['government','defence'].includes(s.scenario)?{eligible:false,blocking:[{code:'BOUNDARY_CONTRACT_REQUIRED',path:resourceId}]}:null;
+    const node=s.boundaries.contracts.find(x=>x.id===key),local=config(s,'local'),localReady=!!local&&observe(s,'local').ready&&['identity','dns','time','certificates','licensing'].every(k=>local[k]);
+    const context={...s,boundaries:{...s.boundaries,contracts:s.boundaries.contracts.map(c=>c.id===key?{...c,observed:{...c.observed,connected:s.connected&&c.observed.connected,cloudLicenceAvailable:s.connected&&c.observed.cloudLicenceAvailable,localServicesAvailable:localReady&&c.observed.localServicesAvailable}}:c)}};
+    const result=boundaries.evaluate(context,key),blocking=[...result.blocking];
+    if(node.effective&&!node.effective.flows.some(f=>f.resource===resourceId))blocking.push({code:'BOUNDARY_RESOURCE_NOT_COVERED',path:resourceId});
+    if(node.effective?.profile!==s.jurisdiction)blocking.push({code:'BOUNDARY_PROFILE_MISMATCH',path:resourceId});
+    for(const flow of node.effective?.flows||[]){const r=s.resources[flow.resource],c=r?.effective;if(!c||!observe(s,flow.resource).ready)blocking.push({code:'BOUNDARY_RESOURCE_UNAVAILABLE',path:flow.resource});
+      if(c){const locations=r.kind==='archive'?flow.storageRegions:flow.processingRegions;if(!locations.includes(c.region))blocking.push({code:'BOUNDARY_ACTUAL_LOCATION_MISMATCH',path:flow.resource});if(!s.connected&&!c.local)blocking.push({code:'BOUNDARY_EXTERNAL_RESOURCE',path:flow.resource});if(r.kind==='archive'&&c.access.some(role=>!flow.accessRoles.includes(role)))blocking.push({code:'BOUNDARY_ACTUAL_ACCESS_MISMATCH',path:flow.resource});}
+    }
+    return {...result,eligible:blocking.length===0,blocking};
+  }
+  function canonicalInfo(s,who){
+    if(s.calling){const identities=s.calling.nodes.directory.effective?.identities||[],exact=identities.filter(x=>x.canonical===who),matches=exact.length?exact:identities.filter(x=>x.endpoint===who||x.number===who||x.aliases.includes(who));const found=matches.length===1?matches[0]:null;return found?.known?{person:found.canonical,tenant:found.tenant}:null;}
+    return config(s,'identity')?.identities.includes(who)?{person:who,tenant:s.tenant||scenarioTenants[s.scenario]}:null;
+  }
+  function trustedCase(s,caseId){const entry=s.cases?.[caseId];if(!entry)return null;const identity=canonicalInfo(s,entry.identity);if(!identity||identity.person!==entry.identity||entry.tenant&&identity.tenant!==entry.tenant)return null;return {person:identity.person,tenant:entry.tenant||identity.tenant,caseId};}
+  function channelContext(s,i,overrides={}){
+    const bound=trustedCase(s,i.caseId),who=canonicalInfo(s,i.from),person=who?.person,tenant=who?.tenant;
+    const account=overrides.account||i.account||'chatterleaf',purpose=overrides.purpose||i.purpose||'service',template=overrides.template||i.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[account]);
+    if(!person||!tenant||!bound||bound.person!==person||bound.tenant!==tenant)return null;
+    return {tenant,person,canonicalPerson:person,channel:'message',account,purpose,caseId:i.caseId,caseIdentity:bound.person,caseTenant:bound.tenant,authenticatedIdentity:person,template,at:s.clock};
+  }
+  function channelOperationHooks(s){if(!s.channels)return {};return {
+    beforeAccept:(state,i)=>{const context=channelContext(state,i);if(!context)return {ok:false,retryable:false,reason:'CHANNEL_CASE_IDENTITY_UNAVAILABLE'};const check=channels.beforeAccept(state.channels,i,context);return {ok:check.eligible,retryable:['CHANNEL_PROVIDER_UNAVAILABLE','CHANNEL_PROVIDER_FAULT','CHANNEL_AUTHENTICATION_REQUIRED'].includes(check.reason),reason:check.reason};},
+    accepted:(state,i,job)=>{const context=channelContext(state,i);if(!context)fail('CHANNEL_CASE_IDENTITY_UNAVAILABLE');channels.recordAcceptance(state.channels,i,context,job);event(state,i,'channel','CHANNEL_ACCEPTED',{job:job.id});},
+    delivered:(state,i,job)=>{const accepted=state.channels.acceptances.find(x=>x.interaction===i.id);if(!accepted)fail('CHANNEL_ACCEPTANCE_REQUIRED');const context={tenant:accepted.tenant,person:accepted.person,canonicalPerson:accepted.person,channel:'message',account:accepted.channel,purpose:accepted.purpose,caseId:accepted.caseId,caseIdentity:accepted.person,caseTenant:accepted.tenant,authenticatedIdentity:accepted.person,template:accepted.template,at:state.clock};channels.recordDelivery(state.channels,i,context,job);event(state,i,'channel','CHANNEL_DELIVERY_RECORDED',{job:job.id});}
+  };}
+  function taskResource(s,integration){const supported={cases:['cases','crm'],engage:['engage','workflow'],room:['room','room']},rule=supported[integration];if(!rule)return null;const [id,kind]=rule;return s.resources[id]?.kind===kind?id:null;}
+  function taskIntegrationReady(s,need){const route=need?.resolutionCriteria,resourceId=route&&taskResource(s,route.integration),resource=resourceId&&s.resources[resourceId];if(!resource||!observe(s,resourceId).ready)return false;if(resource.kind==='crm')return resource.effective?.identityMapping===true;if(resource.kind==='workflow')return resource.effective?.crm==='cases'&&resource.effective?.queue==='service'&&observe(s,'cases').ready&&observe(s,'service').ready;if(resource.kind==='room')return resource.effective?.calendar===true&&!!config(s,'identity')?.identities.includes(resource.effective?.account);return false;}
+  function outcomeContext(s,i,need,technicalSuccess){
+    const bound=trustedCase(s,i.caseId),who=canonicalInfo(s,i.from),identity=bound&&who&&bound.person===who.person&&bound.tenant===(i.tenant||who.tenant);
+    return {actor:i.botAnswered?'bot':'human',technicalSuccess:!!technicalSuccess,taskIntegrationReady:taskIntegrationReady(s,need),contextRetained:!!bound&&!!identity,tenant:bound?.tenant||i.tenant||who?.tenant||need.tenant,person:bound?.person||who?.person||need.person,caseId:i.caseId,purpose:need.purpose,businessIntent:need.intent,identityVerified:!!identity};
+  }
+  function hasCustomerResolution(i){return i.phase==='resolved'&&(!i.needId||i.needOutcome?.outcome==='resolved');}
+  function workforceHandle(s,i){return s.workforceOps.assignments.some(a=>a.interaction===i.id)?`${i.id}-assignment-${s.workforceOps.nextId}`:i.id;}
+  const fingerprint=s=>JSON.stringify([s.connected,Object.values(s.resources).map(r=>[r.id,r.generation,r.effective,r.fault]),...(s.operations?[operations.fingerprint(s)]:[]),...(s.information?[information.fingerprint(s)]:[]),...(s.contact?[contact.fingerprint(s)]:[]),...(s.estate?[estate.fingerprint(s)]:[]),...(s.workforceOps?[workforce.fingerprint(s)]:[]),...(s.calling?[calling.fingerprint(s.calling)]:[]),...(s.products?[products.fingerprint(s)]:[]),...(s.channels?[channels.fingerprint(s.channels)]:[]),...(s.outcomes?[outcomes.fingerprint(s)]:[]),...(s.transport?[transport.fingerprint(s)]:[]),...(s.boundaries?[boundaries.fingerprint(s)]:[]),...(s.campaign?[campaign.fingerprint(s)]:[]),...(s.issueExercises?[issueExercises.fingerprint(s)]:[]),...(s.sharedServices?[sharedServices.fingerprint(s)]:[]),...(s.siteOperations?[siteOperations.configurationFingerprint(s)]:[]),...(s.mediaNegotiation?[mediaNegotiation.fingerprint(s)]:[]),...(s.productEvidence?[productEvidence.fingerprint(s)]:[]),...(s.speechModels?[speechModels.fingerprint(s)]:[]),...(s.customerNeeds?[customerNeeds.fingerprint(s)]:[])]);
+  function calculate(s){
+    const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));
+    const assessment=assess(s);return {revision:s.revision,clock:s.clock,services,profit:s.totals.revenue-s.totals.cost,queue:s.interactions.filter(i=>['queued','handling','wrap'].includes(i.phase)).length,resolved:s.interactions.filter(hasCustomerResolution).length,assessment,productEvidence:s.productEvidence?productEvidence.inspect(s,productEvidenceHooks()):null,speechModels:s.speechModels?speechModels.inspect(s,speechHooks(s)):null,customerNeeds:s.customerNeeds?customerNeeds.inspect(s,services):null,managedOperations:s.managedOperations?managedOperations.inspect(s):null,mediaNegotiation:s.mediaNegotiation?mediaNegotiation.inspect(s):null,siteOperations:s.siteOperations?siteOperations.inspect(s,siteHooks()):null,specialistLifecycle:s.specialistLifecycle?specialistLifecycle.inspect(s,lifecycleHooks()):null,sharedServices:s.sharedServices?sharedServices.inspect(s):null,marketQualification:s.marketQualification?marketQualification.inspect(s,marketHooks()):null,admissionSecurity:s.admissionSecurity?admissionSecurity.inspect(s):null,serviceObservation:s.serviceObservation?serviceObservation.inspect(s,serviceObservationHooks()):null,portfolio:s.portfolio?portfolio.inspect(s.portfolio):null,business:business.calculate(s,assessment,services),operations:operations.inspect(s),information:information.inspect(s),contact:contact.inspect(s),estate:estate.inspect(s),workforce:workforce.inspect(s),calling:s.calling?calling.inspect(s.calling):null,products:s.products?products.inspect(s):null,channels:s.channels?channels.inspect(s.channels):null,outcomes:s.outcomes?outcomes.inspect(s):null,transport:transport.inspect(s),campaign:s.campaign?campaign.inspect(s,campaignHooks()):null,progression:s.progression?progression.inspect(s,progressionHooks(s)):null,issueExercises:s.issueExercises?issueExercises.inspect(s):null,boundaries:s.boundaries?{...boundaries.inspect(s),enforcement:Object.fromEntries(Object.keys(s.boundaries.bindings).map(id=>[id,boundaryCheck(s,id)]))}:null};
+  }
+  function event(s,i,stage,code,detail={}){i.trace.push({at:s.clock,stage,code,synthetic:true,...detail});if(i.trace.length>80)i.trace.shift();}
+  function finish(s,i,code,success=false){if(['resolved','failed'].includes(i.phase))return i;if(s.mediaNegotiation)mediaNegotiation.release(s,i.id);if(!success&&s.workforceOps&&i.agent)workforce.finish(s,i.workforceAssignment||i.id,config(s,i.worker)?.wrapMinutes||0);if(s.transport)transport.release(s,i.id);i.phase=success?'resolved':'failed';i.outcome=code;i.finishedAt=s.clock;event(s,i,'outcome',code);if(s.sharedServices)sharedServices.release(s,i.id,code,sharedHooks());if(s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id)){const settlement=admissionSecurity.settle(s,i.id);event(s,i,'security','SECURITY_CALL_SETTLED',{cents:settlement.record.cents});}if(s.outcomes&&i.needId&&!i.needOutcome){const need=s.outcomes.needs.find(n=>n.id===i.needId);if(!need)fail('OUTCOMES_NEED_UNAVAILABLE');const interaction={id:i.id,needId:i.needId,caseId:i.caseId,channel:i.channel==='message'?'message':'voice',idempotencyKey:i.outcomeIdempotencyKey||i.id};const evaluation=outcomes.evaluate(s,interaction,outcomeContext(s,i,need,success));if(evaluation){const attempt=outcomes.settle(s,interaction,evaluation);if(attempt){i.needOutcome={outcome:attempt.outcome,reason:attempt.reason,attemptId:attempt.id};event(s,i,'customer-need',attempt.reason,{needId:need.id,attemptId:attempt.id,customerOutcome:attempt.outcome,technicalSuccess:attempt.technicalSuccess,...(attempt.handoffDestination?{handoffDestination:attempt.handoffDestination}:{})});}}}return i;}
+  function record(s,i){
+    const mandatory=['enterprise','government'].includes(s.scenario),r=config(s,'recorder'),a=config(s,r?.archive);
+    if(!mandatory)return;
+    for(const id of ['recorder','archive',...(s.scenario==='government'?['speech']:[])]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible){i.obligations.push('INFORMATION_BOUNDARY_FAILED');event(s,i,'boundary','INFORMATION_BOUNDARY_FAILED',{resource:id,blocking:gate.blocking});return;}}
+    if(s.information&&s.records.length>=500){i.obligations.push('RECORD_CAPACITY');event(s,i,'record','RECORD_CAPACITY');return;}
+    if(!observe(s,'recorder').ready||!r.consent||!r.identityMapping||r.capacity<1||!a||a.retentionDays<30||a.capacity<1||!a.access.includes('supervisor')||r.region!==s.jurisdiction||a.region!==s.jurisdiction){i.obligations.push('RECORDING_FAILED');event(s,i,'record','RECORDING_FAILED');return;}
+    if(s.information){const boundary=s.information.boundary.effective;if(!boundary?.processRegions.includes(r.region)||!boundary.storageRegions.includes(a.region)||a.capacity<Math.ceil((s.records.filter(r=>!r.deleted).length+1)/100)){i.obligations.push('INFORMATION_CAPTURE_BOUNDARY');event(s,i,'record','INFORMATION_CAPTURE_BOUNDARY');return;}}
+    const item={id:'record-'+s.nextId++,kind:'recording',interaction:i.id,parents:[],captureRegion:r.region,region:a.region,retentionDays:a.retentionDays,access:[...a.access],createdAt:s.clock};
+    s.records.push(item);i.records.push(item.id);event(s,i,'record','RECORDING_STORED',{record:item.id});
+    if(s.information){const productSpeech=productGate(s,'speech');if(productSpeech&&!productSpeech.available){i.obligations.push('PRODUCT_PROCESSOR_UNAVAILABLE');event(s,i,'processing','PRODUCT_FEATURE_BLOCKED',{deployment:productSpeech.deploymentId,feature:productSpeech.feature,resource:'speech',reason:productSpeech.reason});}else information.enqueue(s,item,speechModelContext(s));}
+    if(s.scenario==='government'&&!s.information){
+      const p=config(s,'speech');
+      const productSpeech=productGate(s,'speech');if(productSpeech&&!productSpeech.available){i.obligations.push('PRODUCT_PROCESSOR_UNAVAILABLE');event(s,i,'processing','PRODUCT_FEATURE_BLOCKED',{deployment:productSpeech.deploymentId,feature:productSpeech.feature,resource:'speech',reason:productSpeech.reason});return;}
+      if(!p||!observe(s,'speech').ready||p.region!==s.jurisdiction||p.capacity<1||p.language!==i.language){i.obligations.push('PROCESSING_BOUNDARY');event(s,i,'processing','PROCESSING_BOUNDARY');return;}
+      const derived={...item,id:'record-'+s.nextId++,kind:p.operation,parents:[item.id],region:p.region};s.records.push(derived);i.records.push(derived.id);event(s,i,'processing','ARTEFACT_CREATED',{record:derived.id,operation:p.operation});
+    }
+    if(s.records.length>500)s.records.splice(0,s.records.length-500);
+  }
+  function route(s,i){
+    const callingDirectory=s.calling?.nodes?.directory?.effective;
+    const callerIdentity=callingDirectory?.identities.find(x=>x.canonical===i.from);
+    const canonicalCaller=callerIdentity?.canonical||i.from;
+    const platform=operations.platform(s,canonicalCaller),phone=config(s,platform),directory=config(s,phone?.directory),trunk=config(s,'carrier');
+    event(s,i,'intent','CALL_REQUEST',{from:i.from,dialled:i.dialled||i.to,platform,...(s.operations?{normalised:i.to}:{})});
+    if(i.intent&&!s.calling)return finish(s,i,'CALLING_PACK_REQUIRED');
+    const emitCalling=(detail)=>event(s,i,'calling',detail.code,detail);
+    if(s.calling){
+      const emergency=calling.emergency(s.calling,i,Object.fromEntries(Object.keys(s.resources).map(id=>[id,{available:observe(s,id).ready}])),emitCalling);
+      if(emergency){i.emergency=emergency;return finish(s,i,emergency.outcome,emergency.outcome==='TEST_EMERGENCY_ROUTED');}
+      if(!callerIdentity||!callerIdentity.known)return finish(s,i,'UNKNOWN_CALLER');
+      const caller=calling.normalise(s.calling,callerIdentity.canonical,callerIdentity.canonical);if(!caller.ok)return finish(s,i,caller.code);
+    }
+    if(!phone||!observe(s,platform).ready||!directory?.identities.includes(canonicalCaller)||!directory.entitled.includes(canonicalCaller))return finish(s,i,'IDENTITY_OR_ENTITLEMENT');
+    const productPhone=productGate(s,platform);if(productPhone&&!productPhone.available){event(s,i,'product','PRODUCT_FEATURE_BLOCKED',{deployment:productPhone.deploymentId,feature:productPhone.feature,resource:platform,reason:productPhone.reason});return finish(s,i,'PRODUCT_DEPLOYMENT_UNAVAILABLE');}
+    let target;
+    let callingRoute=null;
+    if(s.calling){
+      const statuses=Object.fromEntries(Object.values(s.resources).map(r=>{const c=config(s,r.id),busy=s.interactions.filter(x=>x!==i&&x.destination===r.id&&['queued','handling','wrap'].includes(x.phase)).length;return [r.id,{registered:r.kind!=='endpoint'||!!c?.registered,available:observe(s,r.id).ready,capacity:r.kind==='queue'?busy<(c?.capacity||0):true}];}));
+      const servicePolicy=s.calling.nodes.services.effective,group=servicePolicy?.groups.find(g=>g.id===i.to);
+      const shared=s.sharedServices?.lines[i.to];if(shared)i.sharedLine=i.to;let routeTarget=shared?((shared.effective||shared.desired).members.find(m=>m.permissions.includes('answer')&&s.sharedServices.presence[m.person]?.state==='available'&&sharedHooks().endpointReady(s,sharedHooks().identity(s,m.person)||{}))?.person||(shared.effective||shared.desired).owner):i.to;
+      if(group){if(group.tenant!==callerIdentity.tenant&&!s.calling.nodes.directory.effective.federation.some(e=>e.from===callerIdentity.tenant&&e.to===group.tenant))return finish(s,i,'FEDERATION_REQUIRED');const reception=calling.reception(s.calling,group.id,statuses);event(s,i,'calling','RECEPTION_RESULT',reception);
+        if(reception.outcome==='VOICEMAIL'){
+          const mailbox=servicePolicy.mailboxes.find(m=>m.id===reception.mailbox),stored=mailbox?calling.voicemail(s.calling,{mailbox:mailbox.id,owner:mailbox.owner,sourceInteraction:i.id,content:`Synthetic message for ${group.id}`,at:s.clock}):{outcome:'MAILBOX_UNAVAILABLE'};
+          event(s,i,'calling','VOICEMAIL_RESULT',stored);return finish(s,i,stored.outcome==='STORED'?'VOICEMAIL_STORED':stored.outcome,false);
+        }
+        if(reception.outcome!=='ANSWERED')return finish(s,i,'GROUP_NO_ANSWER');routeTarget=reception.identity;
+      }
+      callingRoute=calling.resolve(s.calling,i,routeTarget,statuses,emitCalling);if(callingRoute.terminal)return finish(s,i,callingRoute.outcome);
+      if(callingRoute.endpoint)target=callingRoute.endpoint;
+    }
+    if(!target&&/^\d{1,5}$/.test(i.to)){
+      const matches=Object.values(s.resources).filter(r=>r.kind==='endpoint'&&r.effective?.extension===i.to&&r.effective.scope===i.scope);
+      if(matches.length!==1)return finish(s,i,matches.length?'AMBIGUOUS_EXTENSION':'UNKNOWN_EXTENSION');target=matches[0].id;
+    }else if(!target){
+      const number=i.to.replace(/[ ()-]/g,'');
+      if(!/^\+[1-9]\d{5,14}$/.test(number))return finish(s,i,'INVALID_NUMBER');
+      target=phone.routes.find(r=>number.startsWith(r.prefix))?.target;
+      event(s,i,'routing','ORDERED_ROUTE',{normalised:number,target:target||null});
+    }
+    if(callingRoute?.kind==='public'){
+      const number=callingRoute.target.replace(/[ ()-]/g,'');target=phone.routes.find(r=>number.startsWith(r.prefix))?.target;
+      event(s,i,'routing','PUBLIC_NUMBER_ROUTE',{normalised:number,target:target||null,tenant:callingRoute.tenant});
+    }
+    if(!target||!s.resources[target]||!['endpoint','queue'].includes(s.resources[target].kind))return finish(s,i,'NO_ROUTE');
+    const ingress=contact.ingress(s,i,target,event);if(ingress.error)return finish(s,i,ingress.error);target=ingress.target;
+    const internalCalling=!!callingRoute?.endpoint;
+    const operationInteraction={...i,from:canonicalCaller,to:callingRoute?.kind==='public'?callingRoute.target:i.to};
+    const operationError=internalCalling?null:operations.call(s,operationInteraction,target,event);if(operationError)return finish(s,i,operationError);
+    if(internalCalling&&s.operations)event(s,i,'routing','INTERNAL_EXTENSION',{carrierRequired:false,callingKind:'directory'});
+    const carrierRequired=internalCalling?false:!s.operations||!/^\d{1,5}$/.test(i.to);
+    if(!phone.signalling||carrierRequired&&(!trunk||!observe(s,'carrier').ready||!trunk.signalling))return finish(s,i,'SIGNALLING_FAILED');
+    const active=carrierOccupancy(s,i);
+    if(carrierRequired&&active>=trunk.capacity)return finish(s,i,'SESSION_CAPACITY');
+    if(s.admissionSecurity&&carrierRequired){const gate=admissionSecurity.admit(s,i,{peerId:'synthetic-carrier',destination:operationInteraction.to,method:'INVITE',messageBytes:128,messageValid:true,secondOffset:0});event(s,i,'security',gate.allowed?'SECURITY_CALL_ADMITTED':'SECURITY_CALL_BLOCKED',{reasons:gate.reasons});if(!gate.allowed)return finish(s,i,gate.reasons[0]?.code||'SECURITY_CALL_BLOCKED');}
+    const negotiated=prepareMedia(s,i,target,platform,carrierRequired);if(negotiated&&!negotiated.signalling.ready){event(s,i,'media','MEDIA_NEGOTIATION_FAILED',{reasons:negotiated.blockingReasons});return finish(s,i,negotiated.blockingReasons[0]);}
+    event(s,i,'signalling','INVITE');if(!i.sharedLine)event(s,i,'signalling','200_OK');
+    i.media={...(i.mediaInputs||{}),out:phone.mediaOut&&(!carrierRequired||trunk.mediaOut),in:phone.mediaIn&&(!carrierRequired||trunk.mediaIn)};if(!negotiated)event(s,i,'media','MEDIA_PATHS',i.media);
+    if(!admitMedia(s,i,negotiated))return;
+    if(!i.media.out||!i.media.in)return finish(s,i,'ONE_WAY_MEDIA');
+    if(s.calling){const quality=calling.media(s.calling,i,emitCalling);i.callingMedia=quality;if(!quality.outbound||!quality.inbound)return finish(s,i,'CALLING_MEDIA_'+quality.failure);}
+    if(!observe(s,target).ready)return finish(s,i,'DESTINATION_UNAVAILABLE');
+    for(const id of [platform,...(carrierRequired?['carrier']:[])]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible){event(s,i,'boundary','CALL_BOUNDARY_FAILED',{resource:id,blocking:gate.blocking});return finish(s,i,'CALL_BOUNDARY_FAILED');}}
+    if(s.transport){const from=s.transport.bindings[i.from]?i.from:'identity',path=transport.admit(s,i.id,from,target,'voice');event(s,i,'transport',path.ready?'MEDIA_TRANSPORT_ADMITTED':path.reason,{...path,sourceSite:s.transport.bindings[from],targetSite:s.transport.bindings[target]});if(!path.ready)return finish(s,i,path.reason);}
+    if(carrierRequired&&!carrierAdmitted(i))event(s,i,'carrier','CARRIER_PATH_ADMITTED',{direction:'outbound',carrier:'carrier'});
+    i.destination=target;
+    if(i.sharedLine){const decision=sharedServices.ringing(s,i,i.sharedLine,{},sharedHooks());event(s,i,'shared-service',decision.code,{line:i.sharedLine,members:decision.members||[]});if(!decision.allowed)return finish(s,i,decision.code);i.phase='ringing';i.due=decision.due;event(s,i,'signalling','180_RINGING');return;}
+    if(s.resources[target].kind==='endpoint'){
+      if(!config(s,target).registered)return finish(s,i,'ENDPOINT_UNREGISTERED');
+      record(s,i);return finish(s,i,'CONNECTED',true);
+    }
+    i.phase='queued';event(s,i,'queue','ENQUEUED',{queue:target});
+  }
+  function inboundRoute(s,i){
+    event(s,i,'intent','CALL_REQUEST',{direction:'inbound',from:i.from,dialled:i.to});
+    const assigned=s.operations?.numbers.find(n=>n.number===i.to&&n.status==='active');
+    if(!assigned)return finish(s,i,s.operations?'INBOUND_NUMBER_UNASSIGNED':'INBOUND_OPERATIONS_REQUIRED');
+    const platform=operations.platform(s,assigned.holder),phone=config(s,platform),directory=config(s,phone?.directory),trunk=config(s,'carrier');
+    if(!phone||!observe(s,platform).ready||!directory?.identities.includes(assigned.holder)||!directory.entitled.includes(assigned.holder))return finish(s,i,'INBOUND_HOLDER_OR_ENTITLEMENT');
+    if(s.calling){const matches=s.calling.nodes.directory.effective?.identities.filter(x=>x.canonical===assigned.holder&&x.known)||[];if(matches.length!==1||matches[0].tenant!==(s.tenant||scenarioTenants[s.scenario]))return finish(s,i,'INBOUND_TENANT_SCOPE');}
+    event(s,i,'number','INBOUND_NUMBER_ACCEPTED',{number:assigned.number,holder:assigned.holder,provider:assigned.provider,tenant:s.tenant||scenarioTenants[s.scenario]});
+    let target=phone.routes.find(r=>i.to.startsWith(r.prefix))?.target;
+    event(s,i,'routing','ORDERED_INBOUND_ROUTE',{normalised:i.to,target:target||null,platform});
+    if(!target||!['endpoint','queue'].includes(s.resources[target]?.kind))return finish(s,i,'NO_INBOUND_ROUTE');
+    const ingress=contact.ingress(s,i,target,event);if(ingress.error)return finish(s,i,ingress.error);target=ingress.target;
+    const operationError=operations.inboundCall(s,i,target,event);if(operationError)return finish(s,i,operationError);
+    const product=productGate(s,platform);if(product&&!product.available)return finish(s,i,'PRODUCT_DEPLOYMENT_UNAVAILABLE');
+    event(s,i,'permission','INBOUND_PERMISSION_ACCEPTED',{holder:assigned.holder,platform,generation:s.resources[platform].generation});
+    if(!phone.signalling||!trunk||!observe(s,'carrier').ready||!trunk.signalling)return finish(s,i,'SIGNALLING_FAILED');
+    const active=carrierOccupancy(s,i);
+    if(active>=trunk.capacity)return finish(s,i,'SESSION_CAPACITY');
+    if(s.admissionSecurity){const gate=admissionSecurity.admitInbound(s,i);event(s,i,'security',gate.code);if(!gate.allowed)return finish(s,i,gate.code);}
+    const negotiated=prepareMedia(s,i,target,platform,true);if(negotiated&&!negotiated.signalling.ready){event(s,i,'media','MEDIA_NEGOTIATION_FAILED',{reasons:negotiated.blockingReasons});return finish(s,i,negotiated.blockingReasons[0]);}
+    event(s,i,'signalling','INVITE');event(s,i,'signalling','200_OK');
+    i.media={...(i.mediaInputs||{}),out:phone.mediaOut&&trunk.mediaOut,in:phone.mediaIn&&trunk.mediaIn};if(!negotiated)event(s,i,'media','MEDIA_PATHS',i.media);
+    if(!admitMedia(s,i,negotiated))return;
+    if(!i.media.out||!i.media.in)return finish(s,i,'ONE_WAY_MEDIA');
+    if(s.calling){const quality=calling.media(s.calling,i,detail=>event(s,i,'calling',detail.code,detail));i.callingMedia=quality;if(!quality.outbound||!quality.inbound)return finish(s,i,'CALLING_MEDIA_'+quality.failure);}
+    if(!observe(s,target).ready)return finish(s,i,'DESTINATION_UNAVAILABLE');
+    for(const id of [platform,'carrier',target]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)return finish(s,i,'CALL_BOUNDARY_FAILED');}
+    if(s.transport){const path=transport.admit(s,i.id,'carrier',target,'voice');event(s,i,'transport',path.ready?'MEDIA_TRANSPORT_ADMITTED':path.reason,{...path,sourceSite:s.transport.bindings.carrier,targetSite:s.transport.bindings[target]});if(!path.ready)return finish(s,i,path.reason);}
+    if(!carrierAdmitted(i))event(s,i,'carrier','CARRIER_PATH_ADMITTED',{direction:'inbound',carrier:'carrier'});
+    i.destination=target;
+    if(s.resources[target].kind==='endpoint'){const endpoint=config(s,target);if(!endpoint.registered)return finish(s,i,'ENDPOINT_UNREGISTERED');if(!directory.identities.includes(endpoint.identity)||!directory.entitled.includes(endpoint.identity))return finish(s,i,'DESTINATION_ENTITLEMENT');record(s,i);return finish(s,i,'CONNECTED',true);}
+    i.phase='queued';event(s,i,'queue','ENQUEUED',{queue:target});
+  }
+  function startInteraction(s,c,internal={}){
+    if(c.direction!==undefined&&(!['inbound','outbound'].includes(c.direction)||c.channel!=='voice')||c.direction==='inbound'&&(!/^\+[1-9]\d{5,14}$/.test(c.from)||!/^\+[1-9]\d{5,14}$/.test(c.to)||c.intent!==undefined||c.needId!==undefined))fail('INVALID_CALL_DIRECTION');
+    if(c.choice!==undefined&&(typeof c.choice!=='string'||!/^\d?$/.test(c.choice)))fail('INVALID_IVR_CHOICE');
+    if(!['voice','message'].includes(c.channel)||typeof c.from!=='string'||c.from.length>80||typeof c.to!=='string'||c.to.length>80||!isId(c.caseId)||!['en','ja','fr','de'].includes(c.language||'en')||c.intent!==undefined&&(c.intent!=='test-emergency'||c.channel!=='voice')||c.media!==undefined&&!validMediaInput(c.media)||c.account!==undefined&&(!channels.channels.includes(c.account)||c.channel!=='message')||c.purpose!==undefined&&!['service','transactional','promotional','appointment'].includes(c.purpose)||c.template!==undefined&&!isId(c.template)||c.needId!==undefined&&!isId(c.needId))fail('INVALID_INTERACTION');
+    let need=null;if(c.needId){if(!s.outcomes)fail('OUTCOMES_NOT_STARTED');need=s.outcomes.needs.find(n=>n.id===c.needId);if(!need||need.status!=='open'||need.caseId!==c.caseId)fail('OUTCOMES_NEED_UNAVAILABLE');const resolved=canonicalInfo(s,c.from);const canonical=resolved?.canonical||resolved?.person,tenant=resolved?.tenant;if(!canonical||canonical!==need.person||tenant!==need.tenant)fail('OUTCOMES_NEED_IDENTITY_MISMATCH');const active=s.interactions.some(x=>x.needId===need.id&&!['resolved','failed'].includes(x.phase));if(active)fail('OUTCOMES_NEED_BUSY');if(internal.repeat){if(need.repeat.status!=='emitted'||need.repeat.pendingInteractionId!==internal.id||need.repeat.pendingKey!==internal.idempotencyKey)fail('REPEAT_SETTLEMENT_MISMATCH');}else if(need.repeat.status!=='none')fail('OUTCOMES_NEED_BUSY');}
+    const account=c.account||'chatterleaf',purpose=c.purpose||'service',template=c.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[account]);
+    const interactionId=internal.id||`interaction-${s.nextId++}`;
+    const i={id:interactionId,channel:c.channel,...(c.direction?{direction:c.direction}:{}),from:c.from,to:c.channel==='voice'&&!s.calling?operations.normalise(s,c.to):c.to,...(s.operations?{dialled:c.to}:{}),...(c.intent?{intent:c.intent}:{}),...(c.media?{mediaInputs:clone(c.media)}:{}),...(c.channel==='message'?{account,purpose,template}:{}),...(c.needId?{needId:c.needId,purpose}:{}),...(internal.repeat?{outcomeIdempotencyKey:internal.idempotencyKey,usageToken:internal.usageToken}:{}),scope:c.scope||'tenant',caseId:c.caseId,language:c.language||'en',phase:'arrival',startedAt:s.clock,fingerprint:fingerprint(s),trace:[],records:[],obligations:[],context:false};
+    if(s.contact)i.choice=c.choice||'';
+    if(s.interactions.length>=200){const j=s.interactions.findIndex(x=>['resolved','failed'].includes(x.phase));if(j<0)fail('TRACE_CAPACITY');const [removed]=s.interactions.splice(j,1),match=/^interaction-([1-9]\d*)$/.exec(removed?.id||'');if(match)s.tracePrunedThrough=Math.max(s.tracePrunedThrough||0,Number(match[1]));}
+    s.interactions.push(i);
+    if(c.direction==='inbound'){i.tenant=s.tenant||scenarioTenants[s.scenario];}
+    else if(s.calling){
+      const identities=s.calling.nodes.directory.effective?.identities||[],exact=identities.filter(x=>x.canonical===c.from),matches=exact.length?exact:identities.filter(x=>x.endpoint===c.from||x.number===c.from||x.aliases.includes(c.from));
+      if(matches.length!==1)return finish(s,i,matches.length?'AMBIGUOUS_CALLER':'UNKNOWN_CALLER');
+      if(!matches[0].known)return finish(s,i,'UNKNOWN_CALLER');
+      if(matches[0].canonical!==c.from)i.requestedFrom=c.from;
+      i.from=matches[0].canonical;i.tenant=matches[0].tenant;
+    }else{const identity=canonicalInfo(s,i.from);if(identity){i.from=identity.person;i.tenant=identity.tenant;}else if(s.channels||s.outcomes)return finish(s,i,'UNKNOWN_CALLER');}
+    if(need&&(i.from!==need.person||i.tenant!==need.tenant))fail('OUTCOMES_NEED_IDENTITY_MISMATCH');
+    const crm=config(s,'cases');
+    if(crm&&observe(s,'cases').ready&&crm.identityMapping){
+      const prior=s.cases[c.caseId];
+      if(prior&&(prior.identity!==i.from||prior.tenant&&i.tenant&&prior.tenant!==i.tenant))fail('CASE_IDENTITY_MISMATCH');
+      if(!prior&&Object.keys(s.cases).length>=1000)fail('CASE_CAPACITY');
+      s.cases[c.caseId]={identity:i.from,...(i.tenant?{tenant:i.tenant}:{}),interactions:[...(prior?.interactions||[]),i.id].slice(-30)};i.context=true;
+    }
+    event(s,i,'context',i.context?'CASE_LINKED':'CONTEXT_LOST',{caseId:c.caseId});
+    if(c.channel==='voice'){if(i.direction==='inbound')inboundRoute(s,i);else route(s,i);return;}
+    const w=config(s,'engage'),ch=config(s,w?.channel);
+    if(!w||!observe(s,'engage').ready||!ch?.approved||!s.operations&&!ch.templates.includes(w.template))return finish(s,i,'CHANNEL_OR_TEMPLATE');
+    if(s.operations&&operations.enqueue(s,i,event,channelOperationHooks(s),finish))return;
+    if(s.interactions.filter(x=>x.channel==='message'&&x.startedAt===s.clock&&x!==i&&x.outcome!=='RATE_LIMIT').length>=ch.rateLimit)return finish(s,i,'RATE_LIMIT');
+    event(s,i,'delivery','WEBHOOK_ACCEPTED');
+    business.meterResource(s,'message',1,['engage',w.channel,'cases']);
+    if(w.botResolves){i.botAnswered=true;event(s,i,'automation','BOT_RESOLVED');return finish(s,i,'RESOLVED',true);}
+    if(!w.handoff)return finish(s,i,'HANDOFF_LOOP');
+    i.destination=w.queue;i.phase='queued';event(s,i,'handoff','HUMAN_HANDOFF',{queue:w.queue});
+  }
+  function validMediaInput(m){return !!m&&typeof m==='object'&&!Array.isArray(m)&&!Object.keys(m).some(k=>!['codec','encrypted','natOutbound','natInbound','latencyMs','jitterMs','lossPct'].includes(k))&&!Object.entries(m).some(([k,v])=>['encrypted','natOutbound','natInbound'].includes(k)?typeof v!=='boolean':k==='codec'?typeof v!=='string'||v.length>20:typeof v!=='number'||!Number.isFinite(v)||v<0||v>(k==='latencyMs'?5000:k==='jitterMs'?1000:100));}
+  function channelAdminContext(s,person,caseId,channel,purpose){
+    const info=canonicalInfo(s,person),bound=trustedCase(s,caseId);if(!info||!bound||info.person!==bound.person||info.tenant!==bound.tenant)return null;
+    return {tenant:info.tenant,person:info.person,canonicalPerson:info.person,account:channel,channel,purpose,caseId,caseIdentity:bound.person,caseTenant:bound.tenant,authenticatedIdentity:info.person,template:({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[channel]),at:s.clock};
+  }
+  function channelCommand(s,c){
+    const q=c.command;if(!q||typeof q.action!=='string')fail('INVALID_CHANNEL_COMMAND');
+    if(q.action==='start'){if(s.channels)fail('CHANNELS_ALREADY_STARTED');if(!business.authorise(s,'messages','configure'))fail('DELEGATION_REQUIRED');if(!s.operations)s.operations=operations.create(s);s.channels=channels.create(s);return;}
+    if(!s.channels)fail('CHANNELS_NOT_STARTED');
+    if(q.action==='delivery')fail('CHANNEL_RECEIPT_PARENT_ONLY');
+    if(['configure','observe','permission','open','pause','resume','read'].includes(q.action)&&!business.authorise(s,'messages','configure'))fail('DELEGATION_REQUIRED');
+    let context={};
+    if(q.action==='permission'){
+      const identity=canonicalInfo(s,q.person);if(!identity||identity.person!==q.person||identity.tenant!==q.tenant)fail('CHANNEL_PERMISSION_IDENTITY_MISMATCH');
+    }else if(q.action==='open'){
+      context=channelAdminContext(s,q.person,q.caseId,q.channel,q.purpose);if(!context||q.tenant!==context.tenant)fail('CHANNEL_CASE_IDENTITY_MISMATCH');
+    }else if(q.action==='pause'||q.action==='resume'){
+      const conv=s.channels.conversations.find(x=>x.id===q.conversation);if(!conv)fail('CHANNEL_CONVERSATION_BINDING');
+      const person=q.person||conv.person;context=channelAdminContext(s,person,conv.caseId,conv.channel,conv.purpose);if(!context||conv.person!==context.person||conv.tenant!==context.tenant)fail('CHANNEL_CASE_IDENTITY_MISMATCH');
+    }else if(q.action==='read'){
+      const conv=s.channels.conversations.find(x=>x.id===q.conversation),accepted=s.channels.acceptances.find(x=>x.interaction===q.interaction&&x.conversation===q.conversation);
+      if(!conv||!accepted||accepted.person!==conv.person||accepted.tenant!==conv.tenant||accepted.channel!==conv.channel||accepted.caseId!==conv.caseId)fail('CHANNEL_RECEIPT_PARENT_ONLY');
+      context={tenant:accepted.tenant,person:accepted.person,canonicalPerson:accepted.person,channel:'message',account:accepted.channel,caseId:accepted.caseId};
+    }
+    channels.command(s.channels,q,context);
+  }
+  function outcomesCommand(s,c){
+    const q=c.command;if(!q||typeof q.action!=='string')fail('INVALID_OUTCOMES_COMMAND');
+    if(q.action==='start'){if(s.outcomes)fail('OUTCOMES_ALREADY_STARTED');if(!business.authorise(s,'cases','configure'))fail('DELEGATION_REQUIRED');s.outcomes=outcomes.create(s);return;}
+    if(!s.outcomes)fail('OUTCOMES_NOT_STARTED');
+    if(q.action==='need'){
+      const bound=trustedCase(s,q.caseId),person=canonicalInfo(s,q.person);if(!bound||!person||bound.person!==q.person||bound.person!==person.person||bound.tenant!==q.tenant||person.tenant!==q.tenant)fail('OUTCOMES_CASE_IDENTITY_MISMATCH');
+    }else if(q.action==='task-result'){
+      const need=s.outcomes.needs.find(n=>n.id===q.needId),i=s.interactions.find(x=>x.id===q.interactionId);if(!need||!i||i.needId!==need.id||!['arrival','delivery','queued','handling','wrap'].includes(i.phase)||i.caseId!==need.caseId||i.from!==need.person||i.tenant!==need.tenant)fail('OUTCOMES_LIVE_INTERACTION_REQUIRED');
+    }
+    if(!business.authorise(s,'cases','configure'))fail('DELEGATION_REQUIRED');
+    outcomes.command(s,q);
+  }
+  function advanceMinute(s){
+    s.clock++;
+    if(s.admissionSecurity)admissionSecurity.advance(s);
+    for(const r of Object.values(s.resources))if(r.provisioning.status==='pending'&&r.provisioning.due<=s.clock){
+      const errors=dependencies(s,r,r.desired);
+      r.provisioning={...r.provisioning,status:errors.length?'failed':'ready',errors};
+      if(!errors.length)r.effective=clone(r.desired);
+    }
+    if(s.boundaries)boundaries.advance(s,s.clock);
+    if(s.productEvidence)productEvidence.advance(s,productEvidenceHooks());
+    if(s.mediaNegotiation)mediaNegotiation.advance(s);
+    if(s.customerNeeds)customerNeeds.advance(s);
+    if(s.speechModels)speechModels.advance(s,speechHooks(s));
+    if(s.products)products.advance(s,productHooks(s));
+    if(s.specialistLifecycle)specialistLifecycle.advance(s,lifecycleHooks());
+    if(s.transport)transport.advance(s,transportHooks(s));
+    if(s.channels)channels.advance(s.channels,s.clock);
+    if(s.operations)operations.advance(s,productServices(s),event,finish,(state,unit,amount)=>business.meterResource(state,unit,amount,['engage',config(state,'engage')?.channel,'cases'].filter(Boolean)),business.authorise,channelOperationHooks(s));
+    if(s.contact)contact.advance(s,Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)])),event,startInteraction);
+    if(s.workforceOps)workforce.advance(s);
+    if(s.calling)calling.advance(s.calling,s.clock,(node,desired)=>{
+      const refs=node==='directory'?['identity']:node==='services'?['service']:node==='media'?['phone']:['local','carrier'];
+      return refs.every(id=>observe(s,id).ready)&&(!desired.routes||desired.routes.every(r=>observe(s,r.carrier).ready&&observe(s,r.localDependency).ready));
+    });
+    if(s.siteOperations)siteOperations.advance(s,siteHooks());
+    if(s.mediaNegotiation)for(const session of s.mediaNegotiation.sessions.filter(x=>x.status==='reserved')){
+      const i=s.interactions.find(x=>x.id===session.interactionId);if(!i)continue;
+      const currentTarget=s.mediaNegotiation.endpoints[session.route.toEndpoint]?.effective?.resourceId;
+      let path=session.route;
+      if(i.destination&&currentTarget!==i.destination){
+        const targets=Object.values(s.mediaNegotiation.endpoints).filter(n=>n.effective?.resourceId===i.destination);
+        if(targets.length!==1){finish(s,i,'MEDIA_REROUTE_UNAVAILABLE');continue;}
+        path={...path,toEndpoint:targets[0].id};
+      }
+      const status=mediaNegotiation.preflight(s,path,mediaHooks(i.id));
+      if(status.status!=='ready'){finish(s,i,status.blockingReasons[0]||'MEDIA_NEGOTIATION_FAILED');continue;}
+      const negotiation=status.negotiation;
+      if(path!==session.route||['codecFrom','codecTo','transcoderId'].some(k=>session[k]!==negotiation[k])||JSON.stringify(session.offerModes)!==JSON.stringify(negotiation.offerModes)){
+        const changed=mediaNegotiation.reroute(s,i.id,path,mediaHooks(i.id));
+        if(!changed.accepted){finish(s,i,'MEDIA_REROUTE_UNAVAILABLE');continue;}
+        for(const code of negotiation.offerTrace)event(s,i,'media-offer',code,{path:clone(path),renegotiation:true});
+        event(s,i,'media','CODEC_RENEGOTIATED',negotiation);
+      }
+    }
+    if(s.estate)estate.advance(s,estateHooks(s));
+    if(s.sharedServices){const step=sharedServices.advance(s,s.clock,sharedHooks());for(const expired of step.expired){const i=s.interactions.find(x=>x.id===expired.interactionId);if(i)finish(s,i,expired.reason);}}
+    for(const i of s.interactions){
+      if(i.phase==='shared-active'){if(!sharedReady(s,i,i.sharedActor))finish(s,i,'SHARED_MEDIA_OR_ENDPOINT_UNAVAILABLE');else if(s.clock>=i.due){record(s,i);finish(s,i,'CONNECTED',true);}}
+      if(i.phase==='handling'&&s.clock>=i.due){if(s.mediaNegotiation)mediaNegotiation.release(s,i.id);i.phase='wrap';const wrap=config(s,i.worker)?.wrapMinutes||0;i.due=s.clock+wrap;if(s.workforceOps)workforce.finish(s,i.workforceAssignment||i.id,wrap);event(s,i,'handling','WRAP_UP',{...(i.agent?{agent:i.agent}:{})});}
+      if(i.phase==='wrap'&&s.clock>=i.due){record(s,i);finish(s,i,'RESOLVED',true);}
+    }
+    for(const i of contact.queued(s)){
+      const q=config(s,i.destination),w=config(s,q?.workforce);
+      if(!q||!w||!observe(s,i.destination).ready){event(s,i,'queue','SERVICE_UNAVAILABLE');continue;}
+      if(s.clock-(i.queueEnteredAt??i.startedAt)>q.maxWait){finish(s,i,q.callback?'CALLBACK_REQUIRED':'ABANDONED');continue;}
+      const busy=s.interactions.filter(x=>x.worker===q.workforce&&['handling','wrap'].includes(x.phase));
+      if(s.workforceOps){
+        const skill=i.requiredSkill||q.skill,channel=i.channel==='message'?'digital':'voice',snapshot=workforce.effectiveCapacity(s,{channel,skill,language:i.language});
+        if(!snapshot.people.length){event(s,i,'workforce',snapshot.reason==='ROSTER_NOT_EFFECTIVE'?'ROSTER_NOT_EFFECTIVE':'SKILL_OR_SHIFT',{skill,language:i.language});continue;}
+        if(busy.filter(x=>x.destination===i.destination).length>=q.capacity){event(s,i,'workforce','QUEUE_SESSION_CAPACITY',{queue:i.destination,capacity:q.capacity});continue;}
+        const assigned=workforce.admit(s,{interaction:workforceHandle(s,i),channel,skill,language:i.language});i.agent=assigned.person;i.workforceAssignment=assigned.interaction;
+      }else{
+        const shift=s.clock%1440;
+        if(shift<w.shiftStart||shift>=w.shiftEnd||!w.skills.includes(i.requiredSkill||q.skill)||!w.languages.includes(i.language)){event(s,i,'workforce','SKILL_OR_SHIFT');continue;}
+        const load=contact.occupied(s,q.workforce)+busy.reduce((a,x)=>a+(x.channel==='message'?1/w.digitalConcurrency:1),0),need=i.channel==='message'?1/w.digitalConcurrency:1;
+        if(load+need>Math.min(w.people,w.entitlements)||busy.filter(x=>x.destination===i.destination).length>=q.capacity){event(s,i,'workforce','PEOPLE_OR_ENTITLEMENTS');continue;}
+      }
+      i.phase='handling';i.worker=q.workforce;i.due=s.clock+w.handlingMinutes+(i.context?0:2);event(s,i,'handling','AGENT_ASSIGNED',{...(i.agent?{agent:i.agent}:{})});
+    }
+    // Integer cents; one usage entry per simulation minute, never in calculate().
+    const billableVoice=s.interactions.filter(i=>['handling','queued','shared-active','parked'].includes(i.phase)&&i.channel==='voice').filter(i=>{if(!s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id))return true;const gate=admissionSecurity.admitUsage(s,i.id);event(s,i,'security',gate.allowed?'SECURITY_USAGE_ADMITTED':'SECURITY_USAGE_BLOCKED',{reason:gate.reason||null,cents:gate.cents||0});if(!gate.allowed)finish(s,i,gate.reason);return gate.allowed;});
+    const usage=billableVoice.length;
+    const people=config(s,'people'),staff=people&&people.operator!=='customer'?people.people:0;
+    const cost=usage*2+staff+Object.values(s.resources).filter(r=>r.effective?.enabled).length;
+    const revenue=s.interactions.filter(i=>hasCustomerResolution(i)&&i.finishedAt===s.clock).length*150;
+    s.ledger.push({id:'minute-'+s.clock,minute:s.clock,unit:'minute',usage,revenue,cost,...(s.admissionSecurity?{voiceInteractions:billableVoice.map(i=>i.id)}:{})});s.totals.revenue+=revenue;s.totals.cost+=cost;
+    if(s.ledger.length>1440)s.ledger.shift();
+    for(const i of billableVoice){const routed=i.trace.find(t=>t.code===(i.direction==='inbound'?'ORDERED_INBOUND_ROUTE':'CALL_REQUEST')&&t.platform);business.meterResource(s,'minute',1,[routed?.platform||'phone']);}
+    if(s.information)information.advance(s,productServices(s),event,business.meterResource,s.speechModels?(context,request)=>speechModels.processingGate(s,{...context,...request},speechHooks(s)):undefined);
+    if(s.business){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));
+      const q=config(s,'service'),channel=scenarios[s.scenario].channel==='message'?'digital':'voice';
+      const snapshot=s.workforceOps&&s.workforceOps.roster.effective?workforce.effectiveCapacity(s,{channel,skill:q?.skill||'service',language:q?.language||'en'}):null;
+      const path=s.transport?transport.resourcePath(s,'identity','service',scenarios[s.scenario].channel==='message'?'message':'voice'):null;if(path&&!path.ready)for(const id of scenarios[s.scenario].channel==='message'?['engage','messages','cases']:['phone','carrier'])services[id]={ready:false,reasons:[path.reason]};business.advance(s,services,assess(s),snapshot?{throughput:snapshot.throughput,people:snapshot.people}:null,path?{...path,voiceKbps:transport.profiles.voice.kbps}:null);
+    }
+    if(s.outcomes){const scheduled=[];outcomes.advance(s,{configReady:()=>true,channelAvailable:(state,need,channel)=>{
+      if(channel==='voice')return observe(s,'phone').ready&&observe(s,'service').ready;
+      const original=s.interactions.find(i=>i.id===need.attempts.at(-1)?.interactionId);if(!s.channels)return !!original;
+      const probe={id:`repeat-probe-${need.id}`,caseId:need.caseId,channel:'message'},context=original&&channelContext(s,{...original,caseId:need.caseId,channel:'message',purpose:original.purpose||'service'});return !!context&&channels.eligibility(s.channels,probe,context).eligible;
+    },emitRepeat:(state,request)=>{
+      const original=state.interactions.find(i=>i.id===request.repeatOfInteraction);if(!original)return null;const id=`interaction-${state.nextId++}`;scheduled.push({id,request,original});return {interactionId:id};
+    }});
+      for(const {id,request,original} of scheduled){const c={channel:request.channel,from:request.person,to:request.channel==='voice'?original.to:'service',caseId:request.caseId,language:original.language||'en',purpose:original.purpose||'service',needId:request.needId,...(request.channel==='message'?{account:original.account||'chatterleaf',template:original.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[original.account||'chatterleaf'])}:{})};startInteraction(s,c,{id,repeat:true,idempotencyKey:request.idempotencyKey,usageToken:request.usageToken});}
+    }
+    if(s.serviceObservation)serviceObservation.advance(s,serviceObservationHooks());
+    if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s));
+    if(s.managedOperations)managedOperations.advance(s,managedHooks());
+    if(s.marketQualification)marketQualification.advance(s,marketHooks());
+    if(s.campaign)campaign.advance(s,campaignHooks());
+  }
+  function meeting(s){
+    const c=config(s,'room'),d=config(s,c?.directory);
+    const reasons=[];
+    if(!c||!observe(s,'room').ready)reasons.push('ROOM_UNAVAILABLE');
+    if(c){if(!c.calendar)reasons.push('CALENDAR');if(!d?.identities.includes(c.account))reasons.push('ROOM_ACCOUNT');if(c.firmware<2)reasons.push('FIRMWARE');if(!c.microphone||!c.camera)reasons.push('PERIPHERALS');if(c.mode!=='native'&&!c.interop)reasons.push('INTEROPERABILITY');}
+    const roomBoundary=boundaryCheck(s,'room');if(roomBoundary&&!roomBoundary.eligible)reasons.push(...roomBoundary.blocking.map(x=>x.code+':'+x.path));
+    if(s.transport){const path=transport.resourcePath(s,'identity','room','meeting');if(!path.ready)reasons.push(path.reason);}
+    const productRoom=productGate(s,'room');if(productRoom&&!productRoom.available)reasons.push('PRODUCT_FEATURE_UNAVAILABLE:'+productRoom.feature+':'+productRoom.reason);
+    return {at:s.clock,revision:s.revision,fingerprint:fingerprint(s),success:!reasons.length,reasons,synthetic:true};
+  }
+  function assess(s){
+    const latest=s.interactions.at(-1),fresh=latest?.fingerprint===fingerprint(s);
+    const checks={resolved:!!latest&&hasCustomerResolution(latest)&&fresh,context:!!latest?.context&&fresh,recording:!!latest?.records.some(id=>s.records.some(r=>r.id===id&&r.kind==='recording'&&!r.deleted))&&fresh,transcript:!!latest?.records.some(id=>s.records.some(r=>r.id===id&&r.kind==='transcription'&&!r.deleted))&&fresh,meeting:!!s.lastMeeting?.success&&s.lastMeeting.fingerprint===fingerprint(s),disconnected:!s.connected};
+    const required=[...scenarios[s.scenario].required];
+    if(s.information&&['enterprise','government'].includes(s.scenario)){checks.processing=!!latest&&s.information.jobs.some(j=>j.interaction===latest.id&&j.status==='complete');required.push('processing');}
+    if(s.contact){checks.quality=contact.assess(s);required.push('quality');}
+    return {passed:required.every(k=>checks[k])&&(!latest||latest.obligations.length===0),checks,missing:required.filter(k=>!checks[k])};
+  }
+  function validateState(s){
+    if(!s||s.app!==APP||s.v!==SCHEMA)fail('INCOMPATIBLE_SAVE','Original ISP saves are not communications exercises');
+    if(s.pack!==PACK||s.rules!=='fictional-boundaries-1')fail('CONTENT_PACK_UNAVAILABLE');
+    if(!ownKey(scenarios,s.scenario)||!jurisdictions.includes(s.jurisdiction)||!['guided','assessed','sandbox'].includes(s.mode)||s.tenant!==undefined&&(!isId(s.tenant)||s.tenant.length>48)||s.customerName!==undefined&&(typeof s.customerName!=='string'||!s.customerName.trim()||s.customerName.length>100))fail('INVALID_SAVE_PROFILE');
+    for(const k of ['clock','revision','nextId','seed'])if(!Number.isSafeInteger(s[k])||s[k]<0)fail('INVALID_SAVE_NUMBER',k);
+    if(s.tracePrunedThrough!==undefined&&(!Number.isSafeInteger(s.tracePrunedThrough)||s.tracePrunedThrough<0||s.tracePrunedThrough>s.nextId-1))fail('INVALID_TRACE_PRUNE_WATERMARK');
+    if(typeof s.connected!=='boolean'||!s.resources||typeof s.resources!=='object'||Array.isArray(s.resources)||Object.keys(s.resources).length>500)fail('INVALID_SAVE_RESOURCES');
+    const required={identity:['directory'],access:['connectivity'],phone:['uc','dedicated'],carrier:['trunk'],desk:['endpoint'],people:['workforce'],service:['queue'],messages:['channel'],cases:['crm'],engage:['workflow'],room:['room'],archive:['archive'],recorder:['recorder'],speech:['processor'],local:['infrastructure']};
+    for(const [id,kinds] of Object.entries(required))if(!ownKey(s.resources,id)||!kinds.includes(s.resources[id]?.kind))fail('MISSING_CORE_RESOURCE',id);
+    for(const [id,r] of Object.entries(s.resources)){
+      if(!isId(id)||r.id!==id||!ownKey(catalogue,r.kind))fail('INVALID_SAVE_RESOURCE');
+      validateConfig(r.kind,r.desired);if(r.effective)validateConfig(r.kind,r.effective);
+      if(!Number.isSafeInteger(r.generation)||!r.provisioning||!['pending','ready','failed'].includes(r.provisioning.status)||!Number.isSafeInteger(r.provisioning.due)||r.provisioning.generation!==r.generation)fail('INVALID_PROVISIONING');
+      if(r.fault!==null&&!['OUTAGE','CERTIFICATE_EXPIRED'].includes(r.fault))fail('INVALID_FAULT');
+    }
+    for(const [k,max] of Object.entries({interactions:200,records:500,ledger:1440,commands:1000,receipts:1000}))if(!Array.isArray(s[k])||s[k].length>max)fail('INVALID_SAVE_COLLECTION',k);
+    if(!s.cases||typeof s.cases!=='object'||Array.isArray(s.cases)||Object.keys(s.cases).length>1000)fail('INVALID_CASES');
+    if(!s.totals||!['revenue','cost'].every(k=>Number.isSafeInteger(s.totals[k])&&s.totals[k]>=0))fail('INVALID_TOTALS');
+    for(const i of s.interactions)if(!i||!['voice','message'].includes(i.channel)||!['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked','resolved','failed'].includes(i.phase)||!Array.isArray(i.trace)||i.trace.length>80||!Array.isArray(i.records)||!Array.isArray(i.obligations)||!Number.isSafeInteger(i.startedAt)||typeof i.caseId!=='string'||i.mediaInputs!==undefined&&!validMediaInput(i.mediaInputs)||i.intent!==undefined&&!s.calling)fail('INVALID_INTERACTION_STATE');
+    for(const i of s.interactions){
+      if(!isId(i.id)||typeof i.from!=='string'||typeof i.to!=='string'||typeof i.fingerprint!=='string'||!isId(i.caseId)||i.records.some(x=>!isId(x))||i.obligations.some(x=>typeof x!=='string')||i.trace.some(t=>!t||!Number.isSafeInteger(t.at)||typeof t.stage!=='string'||typeof t.code!=='string'||t.synthetic!==true))fail('INVALID_INTERACTION_STATE');
+      if(['ringing','shared-active','parked'].includes(i.phase)&&(!s.sharedServices||!isId(i.sharedLine)||!Number.isSafeInteger(i.due)||!s.sharedServices.occupancy.some(o=>o.interactionId===i.id)))fail('INVALID_SHARED_INTERACTION');
+      if(i.agent!==undefined&&(!isId(i.agent)||!s.workforceOps))fail('INVALID_WORKFORCE_ASSIGNMENT');
+      if(i.tenant!==undefined&&!isId(i.tenant)||i.requestedFrom!==undefined&&(typeof i.requestedFrom!=='string'||i.requestedFrom.length>80))fail('INVALID_INTERACTION_IDENTITY');
+      if(i.direction!==undefined&&(!['inbound','outbound'].includes(i.direction)||i.channel!=='voice')||i.direction==='inbound'&&(!/^\+[1-9]\d{5,14}$/.test(i.from)||!/^\+[1-9]\d{5,14}$/.test(i.to)||i.intent!==undefined||i.needId!==undefined))fail('INVALID_CALL_DIRECTION');
+      if(i.direction==='inbound'&&i.phase!=='failed'&&(!i.trace.some(t=>t.code==='INBOUND_NUMBER_ACCEPTED'&&t.number===i.to)||!i.trace.some(t=>t.code==='ORDERED_INBOUND_ROUTE')||!i.trace.some(t=>t.code==='INBOUND_PERMISSION_ACCEPTED')))fail('INVALID_INBOUND_TRACE');
+      if(i.intent!==undefined&&i.intent!=='test-emergency')fail('INVALID_INTERACTION_INTENT');
+      if(i.account!==undefined&&(!channels.channels.includes(i.account)||i.channel!=='message')||i.purpose!==undefined&&!['service','transactional','promotional','appointment'].includes(i.purpose)||i.template!==undefined&&!isId(i.template)||i.needId!==undefined&&!isId(i.needId)||i.usageToken!==undefined&&!isId(i.usageToken)||i.outcomeIdempotencyKey!==undefined&&!isId(i.outcomeIdempotencyKey)||i.botAnswered!==undefined&&typeof i.botAnswered!=='boolean')fail('INVALID_INTERACTION_CHANNEL_CONTEXT');
+      if(['handling','wrap'].includes(i.phase)&&(!Number.isSafeInteger(i.due)||s.resources[i.worker]?.kind!=='workforce'))fail('INVALID_HANDLING_STATE');
+      if(['queued','handling','wrap'].includes(i.phase)&&s.resources[i.destination]?.kind!=='queue')fail('INVALID_QUEUE_STATE');
+      if(i.needId){const n=s.outcomes?.needs.find(x=>x.id===i.needId),bound=s.cases[i.caseId];if(!n||!bound||i.caseId!==n.caseId||i.from!==n.person||i.tenant!==n.tenant||bound.identity!==n.person||bound.tenant!==n.tenant)fail('INVALID_INTERACTION_NEED_LINK');}
+      if(i.needOutcome){const n=s.outcomes?.needs.find(x=>x.id===i.needId),a=n?.attempts.find(x=>x.id===i.needOutcome.attemptId&&x.interactionId===i.id);if(!a||i.needOutcome.outcome!==a.outcome||i.needOutcome.reason!==a.reason)fail('INVALID_INTERACTION_NEED_OUTCOME');}
+    }
+    for(const [id,c] of Object.entries(s.cases))if(!isId(id)||!c||typeof c.identity!=='string'||c.tenant!==undefined&&!isId(c.tenant)||!Array.isArray(c.interactions)||c.interactions.length>30||c.interactions.some(x=>!isId(x)))fail('INVALID_CASES');
+    for(const r of s.records)if(!r||!isId(r.id)||typeof r.kind!=='string'||!isId(r.interaction)||!Array.isArray(r.parents)||r.parents.some(x=>!isId(x))||!Array.isArray(r.access)||r.access.some(x=>typeof x!=='string')||!jurisdictions.includes(r.region)||!Number.isSafeInteger(r.createdAt))fail('INVALID_RECORD');
+    for(const l of s.ledger)if(!l||l.id!=='minute-'+l.minute||l.unit!=='minute'||!['minute','usage','revenue','cost'].every(k=>Number.isSafeInteger(l[k])&&l[k]>=0))fail('INVALID_LEDGER');
+    for(const receipt of s.receipts)if(!receipt||!isId(receipt.id)||typeof receipt.command!=='string')fail('INVALID_RECEIPT');
+    if(s.lastMeeting!==null&&(!s.lastMeeting||typeof s.lastMeeting.success!=='boolean'||!Array.isArray(s.lastMeeting.reasons)||s.lastMeeting.reasons.some(x=>typeof x!=='string')||typeof s.lastMeeting.fingerprint!=='string'))fail('INVALID_MEETING');
+    business.validate(s);operations.validate(s);information.validate(s);contact.validate(s);estate.validate(s);workforce.validate(s);
+    if(s.customerNeeds!==undefined)customerNeeds.validate(s);
+    if(s.speechModels!==undefined){if(!s.products||!s.information)fail('SPEECH_MODELS_DEPENDENCIES_REQUIRED');speechModels.validate(s);}
+    if(s.calling!==undefined)calling.validate(s.calling);
+    if(s.products!==undefined){products.validate(s);for(const d of s.products.deployments)for(const c of [d.desired,d.effective].filter(Boolean)){const deployment={id:d.id,desired:c,effective:c};for(const b of c.bindings)if(!productBindingInScope(s,deployment,b,false))fail('INVALID_PRODUCT_BINDING_SAVE');}}
+    if(s.workforceOps){for(const a of s.workforceOps.assignments.filter(a=>['voice','digital'].includes(a.status)))if(!s.interactions.some(i=>i.phase==='handling'&&i.agent===a.person&&(i.workforceAssignment||i.id)===a.interaction))fail('ORPHAN_WORKFORCE_ASSIGNMENT');for(const i of s.interactions.filter(i=>i.agent&&['handling','wrap'].includes(i.phase)))if(!s.workforceOps.assignments.some(a=>a.interaction===(i.workforceAssignment||i.id)&&a.person===i.agent&&['voice','digital','wrap'].includes(a.status)))fail('INVALID_WORKFORCE_ASSIGNMENT');}
+    if(s.channels!==undefined){if(!s.operations||s.channels.clock!==s.clock)fail('CHANNEL_OPERATIONS_REQUIRED');channels.validate(s.channels);for(const a of s.channels.acceptances){const job=s.operations.jobs.find(j=>j.id===a.parentJob);if(job&&(job.interaction!==a.interaction||job.status!=='accepted'&&job.status!=='delivered'||job.acceptedAt!==a.authorizedAt))fail('INVALID_CHANNEL_PARENT_ACCEPTANCE');}for(const receipt of s.channels.receipts.filter(r=>r.kind==='delivery')){const a=s.channels.acceptances.find(x=>x.interaction===receipt.interaction),job=a&&s.operations.jobs.find(j=>j.id===a.parentJob);if(!a||a.conversation!==null&&a.conversation!==receipt.conversation||a.caseId!==s.channels.conversations.find(c=>c.id===receipt.conversation)?.caseId||job&&(job.status!=='delivered'||job.receiptAt>receipt.at))fail('INVALID_CHANNEL_PARENT_DELIVERY');}}
+    if(s.outcomes!==undefined){outcomes.validate(s);for(const n of s.outcomes.needs){const bound=s.cases[n.caseId];if(!bound||bound.identity!==n.person||bound.tenant!==n.tenant)fail('INVALID_OUTCOMES_CASE_LINK');if(n.repeat.status==='emitted'){const pending=s.interactions.find(i=>i.id===n.repeat.pendingInteractionId);if(!pending||pending.needId!==n.id||pending.caseId!==n.caseId||pending.from!==n.person||pending.tenant!==n.tenant||pending.outcomeIdempotencyKey!==n.repeat.pendingKey)fail('INVALID_REPEAT_INTERACTION_LINK');}}}
+    if(s.transport){transport.validate(s);if(!s.business)fail('TRANSPORT_BUSINESS_REQUIRED');for(const l of s.transport.ledger)if(!s.business.externalInvoices?.some(x=>x.id===l.id&&x.cents===l.cents))fail('TRANSPORT_INVOICE_NOT_RECONCILED');if(s.business.externalInvoices?.some(x=>!s.transport.ledger.some(l=>l.id===x.id&&l.cents===x.cents)))fail('TRANSPORT_INVOICE_NOT_RECONCILED');for(const r of s.transport.reservations)if(!s.interactions.some(i=>i.id===r.id&&['queued','handling','wrap','ringing','shared-active','parked'].includes(i.phase)))fail('TRANSPORT_RESERVATION_ORPHAN');}
+    if(s.boundaries){boundaries.validate(s);if(s.boundaries.clock!==s.clock)fail('BOUNDARY_CLOCK_MISMATCH');}
+    if(s.admissionSecurity){admissionSecurity.validate(s);for(const row of s.ledger)if(row.voiceInteractions!==undefined&&(!Array.isArray(row.voiceInteractions)||row.voiceInteractions.length!==row.usage||new Set(row.voiceInteractions).size!==row.usage||row.voiceInteractions.some(x=>!isId(x))))fail('INVALID_VOICE_LEDGER');}
+    if(s.specialistLifecycle){if(!s.products||!s.business)fail('SPECIALIST_LIFECYCLE_DEPENDENCIES_REQUIRED');specialistLifecycle.validate(s);for(const contract of s.business.contracts)if(!Array.isArray(contract.lifecycleDeployments)||new Set(contract.lifecycleDeployments).size!==contract.lifecycleDeployments.length||contract.lifecycleDeployments.some(id=>!s.products.deployments.some(d=>d.id===id)))fail('INVALID_CONTRACT_LIFECYCLE_LINEAGE');}
+    if(s.sharedServices){if(!s.calling)fail('CALLING_PACK_REQUIRED');sharedServices.validate(s,sharedHooks());}
+    if(s.serviceObservation)serviceObservation.validate(s);
+    if(s.portfolio){portfolio.validate(s.portfolio,portfolioHooks(s));if(JSON.stringify(s.portfolio).length>6000000)fail('PORTFOLIO_SAVE_LIMIT');}
+    if(s.marketQualification)marketQualification.validate(s,{hooks:marketHooks()});
+    if(s.issueExercises)issueExercises.validate(s);
+    if(s.productEvidence){if(!s.products)fail('PRODUCT_EVIDENCE_PRODUCT_STATE_REQUIRED');productEvidence.validate(s);}
+    if(s.mediaNegotiation)mediaNegotiation.validate(s);
+    if(s.managedOperations){if(!s.portfolio)fail('MANAGED_OPERATIONS_PORTFOLIO_REQUIRED');managedOperations.validate(s);}
+    if(s.siteOperations){if(!s.transport||!s.business)fail('SITE_OPERATIONS_DEPENDENCIES_REQUIRED');siteOperations.validate(s);}
+    if(s.progression){if(!s.campaign)fail('PROGRESSION_CAMPAIGN_REQUIRED');progression.validate(s);}
+    if(s.campaign){campaign.validate(s);for(const snap of Object.values(s.campaign.snapshots))validateState(snap.root);}
+    return s;
+  }
+  const commandFields={configure:['id','config'],add:['id','kind','config'],advance:['minutes'],interact:['channel','direction','from','to','caseId','language','scope','choice','intent','media','account','purpose','template','needId'],fault:['id','fault'],connect:['connected'],meeting:[],migrate:['identities','target'],restore:['resources'],business:['command'],operations:['command'],information:['command'],contact:['command'],calling:['command'],estate:['command'],workforce:['command'],products:['command'],channels:['command'],outcomes:['command'],transport:['command'],boundaries:['command'],campaign:['command'],portfolio:['command'],'product-evidence':['command'],'media-negotiation':['command'],'managed-operations':['command'],'site-operations':['command'],'specialist-lifecycle':['command'],'shared-services':['command'],'market-qualification':['command'],'service-observation':['command'],'admission-security':['command'],progression:['command'],'issue-exercises':['command'],'speech-models':['command'],'customer-needs':['command']};
+  function dispatch(state,command){
+    validateState(state);
+    if(!command||!ownKey(commandFields,command.type)||Object.keys(command).some(k=>!['type','expectedRevision','requestId',...commandFields[command.type]].includes(k)))fail('INVALID_COMMAND');
+    if(command.requestId!==undefined&&(!isId(command.requestId)))fail('INVALID_REQUEST_ID');
+    if(command.requestId){const prior=state.receipts.find(x=>x.id===command.requestId);if(prior){if(prior.command!==JSON.stringify({...command,expectedRevision:undefined}))fail('IDEMPOTENCY_CONFLICT');return clone(state);}}
+    if(command.expectedRevision!==undefined&&command.expectedRevision!==state.revision)fail('STALE_COMMAND');
+    const s=migrateBusinessSaves(clone(state)),c=command;
+    if(c.type==='configure'){
+      const r=s.resources[c.id];if(!r||!c.config||typeof c.config!=='object'||Array.isArray(c.config))fail('UNKNOWN_RESOURCE');
+      if(!business.authorise(s,c.id,'configure'))fail('DELEGATION_REQUIRED');
+      if(r.kind==='workforce'&&r.desired.operator==='customer'&&Object.keys(c.config).some(k=>k!=='enabled'))fail('WORKFORCE_CUSTOMER_CONTROLLED');
+      const desired={...r.desired,...clone(c.config)};validateConfig(r.kind,desired);r.desired=desired;r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};
+      if(s.operations&&r.id==='phone'&&c.config.carrierModel){const n=s.operations.carrier,mode={managed:'managed',direct:'operator',mobile:'mobile',gateway:'gateway'}[c.config.carrierModel];if(n.desired.mode!==mode){n.desired.mode=mode;n.generation++;n.provisioning={status:'pending',due:s.clock+1,generation:n.generation,errors:[]};}}
+    }else if(c.type==='add'){
+      if(s.resources[c.id]||Object.keys(s.resources).length>=500)fail('DUPLICATE_OR_LIMIT');s.resources[c.id]=resource(c.id,c.kind,c.config);s.resources[c.id].provisioning.due=s.clock+1;if(s.business)s.business.ownership[c.id]=s.business.player;
+    }else if(c.type==='advance'){
+      if(!Number.isInteger(c.minutes)||c.minutes<1||c.minutes>1440)fail('INVALID_DURATION');for(let n=0;n<c.minutes;n++)advanceMinute(s);
+    }else if(c.type==='interact')startInteraction(s,c);
+    else if(c.type==='fault'){
+      if(!s.resources[c.id]||![null,'OUTAGE','CERTIFICATE_EXPIRED'].includes(c.fault))fail('INVALID_FAULT');if(!business.authorise(s,c.id,'fault'))fail('DELEGATION_REQUIRED');s.resources[c.id].fault=c.fault;
+    }else if(c.type==='connect'){
+      if(typeof c.connected!=='boolean')fail('INVALID_CONNECTIVITY');s.connected=c.connected;
+    }else if(c.type==='meeting')s.lastMeeting=meeting(s);
+    else if(c.type==='migrate'){
+      const target=s.resources[c.target];if(!target||!['uc','dedicated'].includes(target.kind)||!Array.isArray(c.identities)||!c.identities.length||c.identities.some(id=>!config(s,'identity')?.identities.includes(id)))fail('INVALID_COHORT');
+      // Versioned change project: identities move only after the target is ready. Old routes stay effective until provisioning.
+      if(!observe(s,c.target).ready)fail('TARGET_NOT_READY');
+      for(const r of Object.values(s.resources).filter(r=>r.kind==='endpoint'&&c.identities.includes(r.desired.identity))){if(!business.authorise(s,r.id,'migrate'))fail('DELEGATION_REQUIRED');r.desired.scope=target.desired.extensionScope;r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}
+    }else if(c.type==='restore'){
+      if(!c.resources||typeof c.resources!=='object'||Array.isArray(c.resources))fail('INVALID_CHECKPOINT');
+      for(const [id,conf] of Object.entries(c.resources)){const r=s.resources[id];if(!r)fail('UNKNOWN_RESOURCE');if(!business.authorise(s,id,'configure'))fail('DELEGATION_REQUIRED');validateConfig(r.kind,conf);if(r.kind==='workforce'&&r.desired.operator==='customer'&&Object.keys(conf).some(k=>k!=='enabled'&&JSON.stringify(conf[k])!==JSON.stringify(r.desired[k])))fail('WORKFORCE_CUSTOMER_CONTROLLED');r.desired=clone(conf);r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}
+    }else if(c.type==='business'){lifecycleCommercial(s,c.command);customerCommercial(s,c.command);if(c.command?.action==='qualify'&&s.boundaries){for(const id of s.scenario==='government'?['phone','recorder','archive','speech']:['phone','room','local']){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)fail('BOUNDARY_QUALIFICATION_REQUIRED:'+id);}}business.command(s,c.command,Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)])),assess(s));if(s.specialistLifecycle&&c.command?.action==='order')specialistLifecycle.bindContract(s,s.business.contracts.at(-1),boundLifecycleDeployments(s,s.business.contracts.at(-1).resources));}
+    else if(c.type==='operations'){
+      if(!['receipt','inbound'].includes(c.command?.action)&&!business.authorise(s,'phone','configure'))fail('DELEGATION_REQUIRED');
+      if(c.command?.action==='migration')for(const r of Object.values(s.resources).filter(r=>r.kind==='endpoint'&&c.command.identities?.includes(r.desired.identity)))if(!business.authorise(s,r.id,'migrate'))fail('DELEGATION_REQUIRED');
+      if(c.command?.action==='rollback')for(const id of Object.keys(s.operations?.migrations.find(m=>m.id===c.command.migration)?.checkpoint||{}))if(!business.authorise(s,id,'configure'))fail('DELEGATION_REQUIRED');
+      operations.command(s,c.command,productServices(s),event,finish,channelOperationHooks(s));
+    }else if(c.type==='information'){
+      const resourceId=['book','cancel','join'].includes(c.command?.action)||c.command?.kind==='meeting'?'room':'archive';
+      if(!business.authorise(s,resourceId,'configure'))fail('DELEGATION_REQUIRED');
+      const informationServices=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));informationServices.speechModelContext=()=>speechModelContext(s);information.command(s,c.command,informationServices,meeting(s),event);
+    }else if(c.type==='contact'){
+      if(!business.authorise(s,'service','configure'))fail('DELEGATION_REQUIRED');
+      if(c.command?.action==='transfer'&&!business.authorise(s,c.command.target,'configure'))fail('DELEGATION_REQUIRED');
+      const before=c.command?.action==='transfer'?s.interactions.find(i=>i.id===c.command.interaction):null,sourcePhase=before?.phase,sourceWorker=before?.worker,sourceAssignment=before?.workforceAssignment||before?.id;
+      contact.command(s,c.command,Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)])),event,finish);
+      if(s.workforceOps&&before&&sourcePhase==='handling')workforce.finish(s,sourceAssignment,config(s,sourceWorker)?.wrapMinutes||0);
+      if(s.workforceOps&&before&&c.command.mode==='warm'){
+        const q=config(s,c.command.target),channel=before.channel==='message'?'digital':'voice',skill=before.requiredSkill||q.skill,request={channel,skill,language:before.language,excludePeople:before.agent?[before.agent]:[]},snapshot=workforce.effectiveCapacity(s,request);
+        if(!snapshot.people.length)fail('WARM_TRANSFER_NO_AGENT');
+        const assigned=workforce.admit(s,{...request,interaction:workforceHandle(s,before)});before.agent=assigned.person;before.workforceAssignment=assigned.interaction;
+      }else if(s.workforceOps&&before&&c.command.mode==='cold'){delete before.agent;delete before.workforceAssignment;}
+    }else if(c.type==='calling'){
+      if(c.command?.action==='start'){if(s.calling)fail('CALLING_ALREADY_STARTED');if(!business.authorise(s,'phone','configure'))fail('DELEGATION_REQUIRED');s.calling=calling.create();for(const n of Object.values(s.calling.nodes))n.provisioning.due=s.clock+1;}
+      else{if(!s.calling)fail('CALLING_NOT_STARTED');const resourceId=c.command?.type==='configure'?({directory:'identity',services:'service',media:'phone',emergency:'local'}[c.command.node]||'phone'):'phone';if(!business.authorise(s,resourceId,'configure'))fail('DELEGATION_REQUIRED');calling.command(s.calling,c.command);}
+    }else if(c.type==='estate'){
+      if(c.command?.action==='start'){if(s.estate)fail('ESTATE_ALREADY_STARTED');if(!business.authorise(s,'identity','configure'))fail('DELEGATION_REQUIRED');s.estate=estate.create(s);}
+      else{if(!s.estate)fail('ESTATE_NOT_STARTED');if(!business.authorise(s,'identity','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='transfer'&&s.boundaries){const gate=boundaryCheck(s,'archive'),key=s.boundaries.bindings.archive,policy=s.boundaries.contracts.find(x=>x.id===key)?.effective,flow=policy?.flows.find(f=>f.resource==='archive'),q=c.command;if(!gate?.eligible||!flow||(q.operation==='backup'?flow.backupRegions:flow.storageRegions).includes(q.destinationRegion)===false||!flow.adminLocations.includes(q.administratorRegion)||!flow.keyCustodyRegions.includes(q.keyRegion)||q.access?.some(x=>!flow.accessRoles.includes(x)))fail('BOUNDARY_TRANSFER_NOT_PERMITTED');}estate.command(s,c.command,estateHooks(s));}
+    }else if(c.type==='workforce'){
+      if(c.command?.action==='start'){if(s.workforceOps)fail('WORKFORCE_ALREADY_STARTED');if(!business.authorise(s,'people','configure'))fail('DELEGATION_REQUIRED');s.workforceOps=workforce.create(s);}
+      else{if(!s.workforceOps)fail('WORKFORCE_NOT_STARTED');if(['admit','finish'].includes(c.command?.action))fail('WORKFORCE_INTERNAL_ACTION');if(['roster','availability','presence','coach','agreement','staffing-forecast'].includes(c.command?.action)&&!business.authorise(s,'people','configure'))fail('DELEGATION_REQUIRED');workforce.command(s,c.command);}
+    }else if(c.type==='products'){
+      if(c.command?.action==='start'){if(s.products)fail('PRODUCTS_ALREADY_STARTED');if(!business.authorise(s,'phone','configure'))fail('DELEGATION_REQUIRED');s.products=products.create(s);}
+      else{if(!s.products)fail('PRODUCTS_NOT_STARTED');if(s.specialistLifecycle&&c.command?.action==='test-integration'){const edge=s.products.integrations.find(x=>x.id===c.command.id);if(edge&&[edge.source,edge.target].some(id=>{const status=specialistLifecycle.deploymentStatus(s,id,lifecycleHooks());return !status.evidenceReady||status.axes?.support!=='supported';}))fail('PRODUCT_LIFECYCLE_EVIDENCE_REQUIRED');}products.command(s,c.command,productHooks(s));}
+    }else if(c.type==='customer-needs'){
+      if(!business.authorise(s,'identity','configure'))fail('DELEGATION_REQUIRED');customerNeeds.command(s,c.command);
+    }else if(c.type==='speech-models'){
+      if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_SPEECH_MODELS_COMMAND');if(s.speechModels)fail('SPEECH_MODELS_ALREADY_STARTED');if(!s.products||!s.information)fail('SPEECH_MODELS_DEPENDENCIES_REQUIRED');if(!business.authorise(s,'speech','configure'))fail('DELEGATION_REQUIRED');s.speechModels=speechModels.create(s);}
+      else{if(!s.speechModels)fail('SPEECH_MODELS_NOT_STARTED');if(!business.authorise(s,'speech','configure'))fail('DELEGATION_REQUIRED');speechModels.command(s,c.command,speechHooks(s));}
+    }else if(c.type==='channels')channelCommand(s,c);
+    else if(c.type==='outcomes')outcomesCommand(s,c);
+    else if(c.type==='product-evidence'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_PRODUCT_EVIDENCE_COMMAND');if(s.productEvidence)fail('PRODUCT_EVIDENCE_ALREADY_STARTED');s.productEvidence=productEvidence.create(s);}else{const ref=c.command?.resourceId||s.productEvidence?.requests.find(r=>r.id===c.command?.id)?.desired.resourceId;if(!ref||!business.authorise(s,ref,'configure'))fail('DELEGATION_REQUIRED');productEvidence.command(s,c.command,productEvidenceHooks());}}
+    else if(c.type==='media-negotiation'){if(!business.authorise(s,'phone','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_MEDIA_NEGOTIATION_COMMAND');if(s.mediaNegotiation)fail('MEDIA_NEGOTIATION_ALREADY_STARTED');s.mediaNegotiation=mediaNegotiation.create(s);}else{const profile=c.command?.config,kind=c.command?.action;if(profile&&['endpoint','carrier'].includes(kind)){const r=s.resources[profile.resourceId];if(!r||!business.authorise(s,r.id,'configure')||kind==='carrier'&&r.kind!=='trunk'||kind==='endpoint'&&!['endpoint','uc','dedicated','queue'].includes(r.kind))fail('MEDIA_RESOURCE_SCOPE');if(kind==='endpoint'){const tenant=r.kind==='endpoint'&&s.calling?s.calling.nodes.directory.effective?.identities.find(x=>x.endpoint===r.id)?.tenant:(s.tenant||scenarioTenants[s.scenario]);if(profile.tenant!==tenant)fail('MEDIA_TENANT_SCOPE');}}mediaNegotiation.command(s,c.command,mediaHooks());}}
+    else if(c.type==='managed-operations'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_MANAGED_OPERATIONS_COMMAND');if(s.managedOperations)fail('MANAGED_OPERATIONS_ALREADY_STARTED');s.managedOperations=managedOperations.create(s);}else managedOperations.command(s,c.command,managedHooks());}
+    else if(c.type==='site-operations'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_SITE_OPERATIONS_COMMAND');if(s.siteOperations)fail('SITE_OPERATIONS_ALREADY_STARTED');if(!s.transport||!s.business)fail('SITE_OPERATIONS_DEPENDENCIES_REQUIRED');s.siteOperations=siteOperations.create(s);}else siteOperations.command(s,c.command,siteHooks());}
+    else if(c.type==='specialist-lifecycle'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_SPECIALIST_LIFECYCLE_COMMAND');if(s.specialistLifecycle)fail('SPECIALIST_LIFECYCLE_ALREADY_STARTED');if(!s.products||!s.business)fail('SPECIALIST_LIFECYCLE_DEPENDENCIES_REQUIRED');s.specialistLifecycle=specialistLifecycle.create(s);for(const contract of s.business.contracts)specialistLifecycle.bindContract(s,contract,boundLifecycleDeployments(s,contract.resources));}else specialistLifecycle.command(s,c.command,lifecycleHooks());}
+    else if(c.type==='shared-services')sharedCommand(s,c.command);
+    else if(c.type==='market-qualification'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_MARKET_QUALIFICATION_COMMAND');if(s.marketQualification)fail('MARKET_QUALIFICATION_ALREADY_STARTED');s.marketQualification=marketQualification.create(s,marketHooks());}else marketQualification.command(s,c.command,marketHooks());}
+    else if(c.type==='admission-security'){if(!business.authorise(s,'carrier','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_ADMISSION_SECURITY_COMMAND');if(s.admissionSecurity)fail('ADMISSION_SECURITY_ALREADY_STARTED');if(s.interactions.some(i=>i.channel==='voice'&&!['resolved','failed'].includes(i.phase)))fail('SECURITY_ACTIVE_CALLS');s.admissionSecurity=admissionSecurity.create(s);}else admissionSecurity.command(s,c.command);}
+    else if(c.type==='service-observation'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_SERVICE_OBSERVATION_COMMAND');if(s.serviceObservation)fail('SERVICE_OBSERVATION_ALREADY_STARTED');s.serviceObservation=serviceObservation.create(s);}else serviceObservation.command(s,c.command,serviceObservationHooks());}
+    else if(c.type==='portfolio'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_PORTFOLIO_COMMAND');if(s.portfolio)fail('PORTFOLIO_ALREADY_STARTED');s.portfolio=portfolio.create({clock:s.clock});}else portfolio.command(s.portfolio,c.command,portfolioHooks(s));}
+    else if(c.type==='campaign'){if(c.command?.action==='start'){if(s.campaign)fail('CAMPAIGN_ALREADY_STARTED');s.campaign=campaign.create(s);}else campaign.command(s,c.command,campaignHooks());}
+    else if(c.type==='progression'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_PROGRESSION_COMMAND');if(s.progression)fail('PROGRESSION_ALREADY_STARTED');s.progression=progression.create(s);}else progression.command(s,c.command,progressionHooks(s));}
+    else if(c.type==='issue-exercises'){if(c.command?.action==='start'){if(Object.keys(c.command).join(',')!=='action')fail('INVALID_ISSUE_EXERCISE_COMMAND');if(s.issueExercises)fail('ISSUE_EXERCISES_ALREADY_STARTED');s.issueExercises=issueExercises.create(s);}else issueExercises.command(s,c.command,{dispatchRootCommand:(state,command)=>dispatch(state,command)});}
+    else if(c.type==='transport'){if(!business.authorise(s,'access','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(s.transport)fail('TRANSPORT_ALREADY_STARTED');if(!s.business)s.business=business.create(s);s.transport=transport.create(s);}else transport.command(s,c.command,transportHooks(s));}
+    else if(c.type==='boundaries'){if(!business.authorise(s,'archive','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(s.boundaries)fail('BOUNDARIES_ALREADY_STARTED');s.boundaries=boundaries.create(s);}else boundaries.command(s,c.command);}
+    if(s.marketQualification)marketQualification.observe(s,marketHooks());
+    s.revision++;
+    s.commands.push({at:s.clock,revision:s.revision,command:clone(c)});if(s.commands.length>1000)s.commands.shift();
+    if(c.requestId){s.receipts.push({id:c.requestId,command:JSON.stringify({...c,expectedRevision:undefined})});if(s.receipts.length>1000)s.receipts.shift();}
+    return validateState(s);
+  }
+  function reference(s){
+    const commands=[];
+    if(s.scenario==='smb')commands.push({type:'configure',id:'people',config:{people:2}});
+    if(s.scenario==='enterprise')commands.push({type:'configure',id:'recorder',config:{identityMapping:true}},{type:'configure',id:'room',config:{calendar:true}});
+    if(s.scenario==='government')commands.push({type:'configure',id:'speech',config:{region:s.jurisdiction}});
+    if(s.scenario==='defence')commands.push({type:'configure',id:'local',config:{licensing:true}},{type:'connect',connected:false});
+    commands.push({type:'advance',minutes:1},{type:'interact',channel:scenarios[s.scenario].channel,from:'alex',to:'+61255500201',caseId:'reference-case'},{type:'advance',minutes:5},{type:'meeting'});
+    return commands;
+  }
+  // Migrate only owned, structurally validated roots; validation itself stays read-only.
+  function migrateBusinessSaves(s){business.migrateLegacy(s);for(const row of s.portfolio?.customers||[])migrateBusinessSaves(row.root);for(const snap of Object.values(s.campaign?.snapshots||{}))migrateBusinessSaves(snap.root);return s;}
+  function restore(text){if(typeof text!=='string'||text.length>8e6)fail('INVALID_SAVE_SIZE');const s=validateState(JSON.parse(text));return validateState(migrateBusinessSaves(s));}
+  const workerSource=()=>customerNeeds.source()+speechModels.source()+productEvidence.source()+managedOperations.source()+mediaNegotiation.source()+capabilityProgression.source()+siteOperations.source()+callingAchievements.source()+specialistLifecycle.source()+sharedServices.source()+marketQualification.source()+admissionSecurity.source()+serviceObservation.source()+portfolio.source()+issueExercises.source()+progression.source()+campaign.source()+transport.source()+boundaries.source()+estate.source()+workforce.source()+calling.source()+products.source()+channels.source()+outcomes.source()+contact.source()+information.source()+operations.source()+business.source()+`const SOC=(${socKernel.toString()})();onmessage=e=>{const {id,state,command}=e.data;try{postMessage({id,revision:state.revision,state:SOC.dispatch(state,command)});}catch(error){postMessage({id,revision:state.revision,error:error.message});}};`;
+  return {APP,PACK,SCHEMA,units,catalogue,scenarios,jurisdictions,create,resource,validateConfig,validateState,observe,calculate,dispatch,assess,reference,restore,meeting,workerSource,business,operations,information,contact,estate,workforce,calling,products,channels,outcomes,transport,boundaries,campaign,progression,issueExercises,portfolio,serviceObservation,admissionSecurity,sharedServices,marketQualification,specialistLifecycle,siteOperations,capabilityProgression,callingAchievements,productEvidence,managedOperations,mediaNegotiation,speechModels,customerNeeds};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=SOC;

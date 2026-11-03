@@ -34,7 +34,7 @@ function load(opts = {}) {
       if (opts.navigatorLanguage) Object.defineProperty(window.navigator, 'language', { value: opts.navigatorLanguage });
       // A non-English game: jsdom does not fetch the dictionary script, so register it up front.
       // (opts.dir: the folder the dictionary comes from, e.g. a build's _site/i18n.)
-      if (opts.lang) { window.localStorage.setItem('sot-lang', opts.lang); window.eval(fs.readFileSync(path.join(opts.dir || path.join(__dirname, '..', 'site', 'i18n'), opts.lang + '.js'), 'utf8')); }
+      if (opts.lang) { window.localStorage.setItem('soc-sp-lang', opts.lang); window.eval(fs.readFileSync(path.join(opts.dir || path.join(__dirname, '..', 'site', 'i18n'), opts.lang + '.js'), 'utf8')); }
       // jsdom has no CompressionStream; {gzip:true} lends the page Node's, the same API browsers have (#176).
       if (opts.gzip) for (const k of ['CompressionStream', 'DecompressionStream', 'TextEncoder', 'TextDecoder']) window[k] = globalThis[k];
       window.Path2D = class { moveTo() {} lineTo() {} quadraticCurveTo() {} bezierCurveTo() {} arc() {} rect() {} closePath() {} };
@@ -74,7 +74,7 @@ function browser({ locks = true, channel = true } = {}) {
     const fire = (key, oldValue, newValue) => { if (shared) for (const w of wins) if (w !== win && !w.closed) later(() => { try { w.dispatchEvent(new w.StorageEvent('storage', { key, oldValue, newValue })); } catch (e) {} }); };
     return {
       getItem: (k) => { if (shared) log.push(['get', String(k)]); return map.has(String(k)) ? map.get(String(k)) : null; },
-      setItem: (k, v) => { if (win.closed) return; k = String(k); v = String(v); if (shared && b.quota && k.startsWith('sot-save-v1:') && v.length > b.quota) { const e = new win.Error('full'); e.name = 'QuotaExceededError'; throw e; } const o = map.has(k) ? map.get(k) : null; map.set(k, v); if (shared) { log.push(['set', k]); fire(k, o, v); } },
+      setItem: (k, v) => { if (win.closed) return; k = String(k); v = String(v); if (shared && b.quota && k.startsWith('soc-sp-save-v1:') && v.length > b.quota) { const e = new win.Error('full'); e.name = 'QuotaExceededError'; throw e; } const o = map.has(k) ? map.get(k) : null; map.set(k, v); if (shared) { log.push(['set', k]); fire(k, o, v); } },
       removeItem: (k) => { k = String(k); if (!map.has(k)) return; const o = map.get(k); map.delete(k); if (shared) fire(k, o, null); },
       key: (i) => [...map.keys()][i] ?? null,
       get length() { return map.size; },

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: the generator makes the same run for the same week, and its reference earns three stars
+ok 1 - the generator makes the same run for the same week, and its reference earns three stars
+  ---
+  duration_ms: 1570.106141
+  type: 'test'
+  ...
+# Subtest: a grow brief makes the reference make room: a bigger tube or a second one
+ok 2 - a grow brief makes the reference make room: a bigger tube or a second one
+  ---
+  duration_ms: 1744.531543
+  type: 'test'
+  ...
+# Subtest: every published week is accepted and its reference still earns three stars
+ok 3 - every published week is accepted and its reference still earns three stars
+  ---
+  duration_ms: 716.096519
+  type: 'test'
+  ...
+# Subtest: the game refuses a file that does not add up
+ok 4 - the game refuses a file that does not add up
+  ---
+  duration_ms: 318.236501
+  type: 'test'
+  ...
+# Subtest: this week's run shows in Puzzles, plays like a handmade one and keeps its own stars
+ok 5 - this week's run shows in Puzzles, plays like a handmade one and keeps its own stars
+  ---
+  duration_ms: 1149.673787
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10718.196722

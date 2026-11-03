@@ -158,7 +158,7 @@ function cablePlan(ev, plan) {
 // Starts the draft in the game (so its rules apply), finishes the plan, and plays it with the reference player.
 function run(g, file, plan, days) {
   const { ev } = g;
-  ev(`localStorage.removeItem('sot-wkscn');wsBegin(${JSON.stringify(file)},'Ref');if(UI.pendGame)ACT.pitchSkip()`);
+  ev(`localStorage.removeItem('soc-sp-wkscn');wsBegin(${JSON.stringify(file)},'Ref');if(UI.pendGame)ACT.pitchSkip()`);
   const p = cablePlan(ev, plan); if (!p || (plan.targets && p.steps.length < 2)) return null;
   return { plan: p, res: BOT.play(ev, { ...file, ref: p }, p, { days, stop: false }) };
 }

@@ -1,0 +1,323 @@
+{
+  "version": "soc-campaign-content-1",
+  "scope": "Four synthetic cumulative service tracks; source campaign goals and progression levels remain pending until their distinct mechanics are implemented.",
+  "reward": {
+    "unit": "training-credit",
+    "amounts": {
+      "smb": 1,
+      "enterprise": 2,
+      "government": 3,
+      "defence": 4
+    },
+    "currencyConversion": null
+  },
+  "jurisdictions": [
+    "AU",
+    "US",
+    "JP",
+    "EU"
+  ],
+  "tracks": [
+    {
+      "id": "smb",
+      "title": "Orchard Repairs",
+      "sequence": 1,
+      "predecessor": null,
+      "workload": "SMB voice and digital customer service",
+      "requiredResources": [
+        "identity",
+        "phone",
+        "carrier",
+        "people",
+        "service",
+        "engage",
+        "messages",
+        "cases"
+      ],
+      "distinctTask": "Resolve a real customer need while retaining its case and contact context.",
+      "economics": "An accepted customer contract, staffed support owner, and at least one posted retail and wholesale billing period.",
+      "incident": {
+        "failureDomain": "carrier",
+        "trigger": "fault",
+        "recovery": "clear-fault-and-restore-service"
+      },
+      "windows": {
+        "baseline": 1,
+        "service": 5,
+        "recovery": 8,
+        "economics": 60
+      },
+      "acceptedAlternatives": [
+        "voice-journey",
+        "digital-journey"
+      ]
+    },
+    {
+      "id": "enterprise",
+      "title": "Canopy Group Migration",
+      "sequence": 2,
+      "predecessor": "smb",
+      "workload": "Enterprise coexistence, migration, meetings and retained evidence",
+      "requiredResources": [
+        "identity",
+        "phone",
+        "carrier",
+        "desk",
+        "room",
+        "recorder",
+        "archive",
+        "people",
+        "service"
+      ],
+      "distinctTask": "Complete a staged migration and prove both calling directions plus a meeting and recording obligation.",
+      "economics": "An accepted enterprise contract with accountable support and a posted bill and supplier cost.",
+      "incident": {
+        "failureDomain": "phone",
+        "trigger": "fault",
+        "recovery": "restore-config-and-service"
+      },
+      "windows": {
+        "baseline": 1,
+        "service": 10,
+        "recovery": 8,
+        "economics": 60
+      },
+      "acceptedAlternatives": [
+        "supported-native-room",
+        "supported-interop-room",
+        "dedicated-or-multitenant-calling"
+      ]
+    },
+    {
+      "id": "government",
+      "title": "Civic Grove Public Service",
+      "sequence": 3,
+      "predecessor": "enterprise",
+      "workload": "Jurisdiction-scoped government service with controlled records",
+      "requiredResources": [
+        "identity",
+        "phone",
+        "carrier",
+        "desk",
+        "people",
+        "service",
+        "recorder",
+        "archive",
+        "speech"
+      ],
+      "distinctTask": "Complete an eligible service task and retain a record within the selected fictional boundary.",
+      "economics": "An accepted public-service contract with support ownership and posted revenue and wholesale cost.",
+      "incident": {
+        "failureDomain": "speech",
+        "trigger": "fault",
+        "recovery": "restore-in-boundary-processing"
+      },
+      "windows": {
+        "baseline": 1,
+        "service": 10,
+        "recovery": 8,
+        "economics": 60
+      },
+      "acceptedAlternatives": [
+        "eligible-in-boundary-processing-chain"
+      ]
+    },
+    {
+      "id": "defence",
+      "title": "Wattle Disconnected Continuity",
+      "sequence": 4,
+      "predecessor": "government",
+      "workload": "Synthetic local communications during a controlled disconnection",
+      "requiredResources": [
+        "identity",
+        "phone",
+        "carrier",
+        "desk",
+        "people",
+        "service",
+        "local",
+        "recorder",
+        "archive"
+      ],
+      "distinctTask": "Complete an allowed local journey while disconnected and reconcile retained evidence after reconnection.",
+      "economics": "An accepted supported defence exercise contract with posted operating revenue and cost.",
+      "incident": {
+        "failureDomain": "external-connectivity",
+        "trigger": "disconnect",
+        "recovery": "reconnect-and-reconcile"
+      },
+      "windows": {
+        "baseline": 1,
+        "service": 5,
+        "recovery": 8,
+        "economics": 60
+      },
+      "acceptedAlternatives": [
+        "customer-operated-local",
+        "provider-supported-local"
+      ]
+    }
+  ],
+  "unimplementedSourceObligations": {
+    "status": "pending",
+    "progressionLevels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "goals": [
+      "bb",
+      "tr",
+      "ix",
+      "p5",
+      "ln",
+      "bz",
+      "rd",
+      "ca",
+      "pn",
+      "scrub",
+      "c3",
+      "t2",
+      "tb",
+      "df",
+      "m2",
+      "c5",
+      "gi",
+      "t10",
+      "t1"
+    ],
+    "reason": "No source-level or source-goal reward predicate is inferred from these four track contracts."
+  },
+  "runtime": {
+    "PACK": "soc-campaign-1",
+    "VERSION": 1,
+    "CONTENT": "soc-campaign-content-1",
+    "tracks": {
+      "smb": {
+        "sequence": 1,
+        "predecessor": null,
+        "reward": 1,
+        "resources": [
+          "identity",
+          "phone",
+          "carrier",
+          "people",
+          "service",
+          "engage",
+          "messages",
+          "cases"
+        ],
+        "windows": {
+          "baseline": 1,
+          "service": 5,
+          "recovery": 8,
+          "economics": 60
+        },
+        "incident": {
+          "kind": "fault",
+          "resource": "carrier",
+          "fault": "OUTAGE",
+          "recover": null
+        }
+      },
+      "enterprise": {
+        "sequence": 2,
+        "predecessor": "smb",
+        "reward": 2,
+        "resources": [
+          "identity",
+          "phone",
+          "carrier",
+          "desk",
+          "room",
+          "recorder",
+          "archive",
+          "people",
+          "service"
+        ],
+        "windows": {
+          "baseline": 1,
+          "service": 10,
+          "recovery": 8,
+          "economics": 60
+        },
+        "incident": {
+          "kind": "fault",
+          "resource": "phone",
+          "fault": "OUTAGE",
+          "recover": null
+        }
+      },
+      "government": {
+        "sequence": 3,
+        "predecessor": "enterprise",
+        "reward": 3,
+        "resources": [
+          "identity",
+          "phone",
+          "carrier",
+          "desk",
+          "people",
+          "service",
+          "recorder",
+          "archive",
+          "speech"
+        ],
+        "windows": {
+          "baseline": 1,
+          "service": 10,
+          "recovery": 8,
+          "economics": 60
+        },
+        "incident": {
+          "kind": "fault",
+          "resource": "speech",
+          "fault": "OUTAGE",
+          "recover": null
+        }
+      },
+      "defence": {
+        "sequence": 4,
+        "predecessor": "government",
+        "reward": 4,
+        "resources": [
+          "identity",
+          "phone",
+          "carrier",
+          "desk",
+          "people",
+          "service",
+          "local",
+          "recorder",
+          "archive"
+        ],
+        "windows": {
+          "baseline": 1,
+          "service": 5,
+          "recovery": 8,
+          "economics": 60
+        },
+        "incident": {
+          "kind": "connect",
+          "fault": false,
+          "recover": true
+        }
+      }
+    }
+  },
+  "sourceIds": [
+    "DESIGN-23077d703d4e05bd",
+    "DESIGN-e705ba7f167b89fb",
+    "DESIGN-0b7780e161e2a7db"
+  ]
+}

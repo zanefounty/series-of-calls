@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: \#262 by default the intern lights new fiber with the most Gbps per dollar, as before
+ok 1 - \#262 by default the intern lights new fiber with the most Gbps per dollar, as before
+  ---
+  duration_ms: 781.03834
+  type: 'test'
+  ...
+# Subtest: \#262 told to go big, the intern lights new fiber with the most Gbps per channel
+ok 2 - \#262 told to go big, the intern lights new fiber with the most Gbps per channel
+  ---
+  duration_ms: 418.843747
+  type: 'test'
+  ...
+# Subtest: \#262 the biggest optic that fits the budget, and it never swaps what is already lit
+ok 3 - \#262 the biggest optic that fits the budget, and it never swaps what is already lit
+  ---
+  duration_ms: 739.809352
+  type: 'test'
+  ...
+# Subtest: \#262 the setting is saved, an unknown value falls back, and it shows on the phone
+ok 4 - \#262 the setting is saved, an unknown value falls back, and it shows on the phone
+  ---
+  duration_ms: 382.052266
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2648.822644

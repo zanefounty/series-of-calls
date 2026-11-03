@@ -1,0 +1,29 @@
+✔ the single save of older versions becomes the first network, losslessly, and loads exactly as before (920.24253ms)
+✔ a browser with no room for the copy keeps playing from the old key (538.277061ms)
+✔ a compressed (gz) single save migrates and loads the same network (486.999483ms)
+✔ two networks coexist and load independently; the title lists them, newest first (477.204363ms)
+✔ the title lists networks from the index alone, without reading any save (318.439612ms)
+✔ each tab continues its own network on reload, and two tabs play two networks at once (1265.672203ms)
+✔ opening a network open in another window offers to switch or take over, and take-over hands it across (531.937077ms)
+✔ without Web Locks or BroadcastChannel the heartbeat still keeps one writer per network (525.199203ms)
+✔ a stale write is refused: a newer save of the same network from another window is never overwritten (551.121679ms)
+✔ saves are written slot first, then the index, and every write moves the sequence on (279.982653ms)
+✔ deleting a network removes its save and its line, after a confirmation (321.505342ms)
+✔ a network deleted in another window is never written back by the window playing it (542.815107ms)
+✔ export the network on screen, or any network from the list; import adds a new network and keeps the old (320.813209ms)
+✔ renaming the network renames it in the list (293.202127ms)
+✔ puzzles never write a network, and a tab closed mid-puzzle keeps the network it set aside (620.315282ms)
+✔ a big save still compressing when a puzzle starts lands in its network, and so does the next one (408.109856ms)
+✔ leaving a puzzle when the network cannot be loaded marks it damaged, and Continue does not crash (279.62107ms)
+✔ a corrupted index is rebuilt from the saves themselves (550.665742ms)
+✔ out of room: the warning offers to free up space, listing the other networks by size (310.956352ms)
+✔ the networks list fits a 360 px phone and has a tap target and a ⋯ menu per network, in every language (1954.859477ms)
+✔ a save the game could not load is tried again: by the next version, or with Try again (322.824535ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18270.99652

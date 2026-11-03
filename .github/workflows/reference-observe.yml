@@ -1,0 +1,63 @@
+name: Observe research references
+on:
+  schedule:
+    - cron: '43 6 1 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: reference-observation
+  cancel-in-progress: false
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      observed: ${{ steps.observation.outcome }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - id: observation
+        continue-on-error: true
+        run: python3 scripts/observe-references.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-observation-${{ github.run_id }}
+          path: |
+            maintenance/reference-check.json
+            maintenance/reference-history/
+  persist:
+    needs: observe
+    if: ${{ always() && (needs.observe.outputs.observed == 'success' || needs.observe.outputs.observed == 'failure') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: bot/references-observation-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: reference-observation-${{ github.run_id }}
+          path: /tmp/observation
+      - name: Validate observation data with trusted code
+        run: python3 scripts/accept-observation.py references /tmp/observation
+      - name: Propose observation persistence
+        run: |
+          git switch -c "$BRANCH"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- maintenance/
+          git -c core.hooksPath=/dev/null commit -m 'Record references observations for owner review'
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title 'Review references observations' --body-file maintenance/observation-pr.md
+          gh workflow run accountability.yml --ref "$BRANCH"

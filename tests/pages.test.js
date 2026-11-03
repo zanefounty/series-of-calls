@@ -5,11 +5,11 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const { build } = require('../scripts/build');
 
 const root = path.join(__dirname, '..');
 const OUT = fs.mkdtempSync(path.join(os.tmpdir(), 'tubes-pages-'));
-execFileSync(process.execPath, ['scripts/build.js'], { cwd: root, stdio: 'pipe', env: { ...process.env, OUT, VERSION: '1.2.3', BUILD_DATE: '2026-10-27' } });
+build({out:OUT,version:'1.2.3',date:'2026-10-27'});
 
 const files = (dir, rel = '') => fs.readdirSync(path.join(dir, rel), { withFileTypes: true }).flatMap((e) => {
   const r = path.posix.join(rel, e.name);
@@ -32,8 +32,8 @@ test('pages: the build is plain static files within GitHub Pages limits', () => 
     total += size;
   }
   assert.ok(total < 1e9, 'the site is under the 1 GB limit');
-  for (const f of ['index.html', '404.html', 'CNAME', 'version.json', 'sw.js']) assert.ok(fs.existsSync(path.join(OUT, f)), `${f} is shipped`);
-  assert.equal(read('CNAME').trim(), 'seriesoftub.es');
+  for (const f of ['index.html', '404.html', 'version.json', 'sw.js']) assert.ok(fs.existsSync(path.join(OUT, f)), `${f} is shipped`);
+  assert.equal(fs.existsSync(path.join(OUT,'CNAME')),false,'no upstream custom domain');
 });
 
 test('pages: the repository has no hosting configuration for anywhere else', () => {
@@ -44,12 +44,13 @@ test('pages: every local file the site refers to is in the build', () => {
   const html = read('index.html');
   const refs = new Set();
   for (const m of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) refs.add(m[1]);
-  for (const m of read('sw.js').matchAll(/'(\/[^']*)'/g)) refs.add(m[1]);
+  const vm=require('node:vm'),context={URL,self:{registration:{scope:'https://tests.invalid/series-of-calls/'},addEventListener(){}}};vm.createContext(context);vm.runInContext(read('sw.js'),context);
+  for(const url of vm.runInContext('CORE',context)){assert.ok(url.startsWith(context.self.registration.scope));refs.add(url.slice(context.self.registration.scope.length));}
   for (const i of JSON.parse(read('site.webmanifest')).icons || []) refs.add(i.src);
   const local = [...refs].filter((u) => !/^(https?:|data:|mailto:|#|\$\{|javascript:)/.test(u) && !u.includes('${') && !u.includes("'+"));
   assert.ok(local.length >= 5, 'found the local references');
   for (const u of local) {
-    const p = u.split(/[?#]/)[0].replace(/^\//, '') || 'index.html';
+    const p = u.split(/[?#]/)[0].replace(/^\//, '').replace(/^\.\//,'') || 'index.html';
     assert.ok(fs.existsSync(path.join(OUT, p)), `${u} resolves inside the build`);
   }
   // Same origin for code: the only scripts from elsewhere are the analytics counter, and no stylesheets

@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: a flood loads the backbone and the victim as on main, whatever order the POPs were built in
+ok 1 - a flood loads the backbone and the victim as on main, whatever order the POPs were built in
+  ---
+  duration_ms: 1227.838498
+  type: 'test'
+  ...
+# Subtest: an attack is held or lost at its victim; other POPs and their DDoS-protected customers are not charged
+ok 2 - an attack is held or lost at its victim; other POPs and their DDoS-protected customers are not charged
+  ---
+  duration_ms: 384.737445
+  type: 'test'
+  ...
+# Subtest: fourteen attacks on a big network keep the save small, and 2.0 saves with entry ports still load
+ok 3 - fourteen attacks on a big network keep the save small, and 2.0 saves with entry ports still load
+  ---
+  duration_ms: 547.561246
+  type: 'test'
+  ...
+# Subtest: spicy chaos stretches exactly the attack (or outage) an incident is about, and saves keep it
+ok 4 - spicy chaos stretches exactly the attack (or outage) an incident is about, and saves keep it
+  ---
+  duration_ms: 415.283652
+  type: 'test'
+  ...
+# Subtest: an imported save cannot put HTML in a Flood Season attacker's name
+ok 5 - an imported save cannot put HTML in a Flood Season attacker's name
+  ---
+  duration_ms: 359.740332
+  type: 'test'
+  ...
+# Subtest: the China licence arrives in a tenth of the time with quick lead times, and the button says so
+ok 6 - the China licence arrives in a tenth of the time with quick lead times, and the button says so
+  ---
+  duration_ms: 668.70239
+  type: 'test'
+  ...
+# Subtest: Flood Season escalates from ordinary floods to monsters, and goes for the people you serve
+ok 7 - Flood Season escalates from ordinary floods to monsters, and goes for the people you serve
+  ---
+  duration_ms: 555.64482
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12722.835455

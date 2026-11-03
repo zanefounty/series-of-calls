@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: \#195 China Telecomet sells its premium crossing in Moscow, and nothing else there
+ok 1 - \#195 China Telecomet sells its premium crossing in Moscow, and nothing else there
+  ---
+  duration_ms: 747.86044
+  type: 'test'
+  ...
+# Subtest: \#195 it costs the same in Moscow as in Hong Kong, and the bill agrees with the panel
+ok 2 - \#195 it costs the same in Moscow as in Hong Kong, and the bill agrees with the panel
+  ---
+  duration_ms: 391.702472
+  type: 'test'
+  ...
+# Subtest: \#195 European traffic hauled to Moscow crosses into China with far less loss on the premium port
+ok 3 - \#195 European traffic hauled to Moscow crosses into China with far less loss on the premium port
+  ---
+  duration_ms: 803.686606
+  type: 'test'
+  ...
+# Subtest: \#195 Hong Kong still works as before, and premium is not offered where it is not sold
+ok 4 - \#195 Hong Kong still works as before, and premium is not offered where it is not sold
+  ---
+  duration_ms: 376.263787
+  type: 'test'
+  ...
+# Subtest: \#195 saves: a Moscow port stays premium, a bogus premium elsewhere is dropped, and it meets the China requirement
+ok 5 - \#195 saves: a Moscow port stays premium, a bogus premium elsewhere is dropped, and it meets the China requirement
+  ---
+  duration_ms: 351.556204
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7886.464848

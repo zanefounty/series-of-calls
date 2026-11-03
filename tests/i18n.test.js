@@ -68,9 +68,9 @@ test('the game starts in English unless the player or the browser asks for anoth
   const it = load({ lang: 'it' });
   assert.equal(it.ev('LANG'), 'it');
   assert.equal(it.ev('document.documentElement.lang'), 'it');
-  assert.equal(load({ navigatorLanguage: 'it-IT', storage: { 'sot-lang': 'en' } }).ev('LANG'), 'en', 'a saved choice wins');
-  assert.equal(load({ storage: { 'sot-lang': 'xx' } }).ev('LANG'), 'en', 'unknown languages fall back to English');
-  const offline = load({ storage: { 'sot-lang': 'it' } });
+  assert.equal(load({ navigatorLanguage: 'it-IT', storage: { 'soc-sp-lang': 'en' } }).ev('LANG'), 'en', 'a saved choice wins');
+  assert.equal(load({ storage: { 'soc-sp-lang': 'xx' } }).ev('LANG'), 'en', 'unknown languages fall back to English');
+  const offline = load({ storage: { 'soc-sp-lang': 'it' } });
   assert.equal(offline.ev('LANG'), 'en', 'no dictionary, no Italian');
   assert.equal(offline.ev('document.documentElement.lang'), 'en');
 });
@@ -114,23 +114,23 @@ test('the language dropdown on the title screen works before any game exists', (
   const { ev } = load();
   assert.equal(ev('S'), null);
   ev("const s=document.querySelector('#modalCard select#langTitle');s.value='it';s.dispatchEvent(new Event('change',{bubbles:true}))");
-  assert.equal(ev("localStorage.getItem('sot-lang')"), 'it');
+  assert.equal(ev("localStorage.getItem('soc-sp-lang')"), 'it');
 });
 
 test('picking a language saves the choice and the game, then reloads', () => {
   const { ev } = load();
   ev('ACT.start({});dayTick()');
   ev("ACT.langSet({v:'it'})");
-  assert.equal(ev("localStorage.getItem('sot-lang')"), 'it');
+  assert.equal(ev("localStorage.getItem('soc-sp-lang')"), 'it');
   assert.ok(ev("slotRaw(UI.slot)"));
   ev("ACT.langSet({v:'klingon'})");
-  assert.equal(ev("localStorage.getItem('sot-lang')"), 'it');
+  assert.equal(ev("localStorage.getItem('soc-sp-lang')"), 'it');
 });
 
 test('a scenario started in English shows its Italian name after switching', () => {
   const en = load();
   en.ev("ACT.startScn({id:'stg'});save()");
-  const { ev } = load({ lang: 'it', storage: { 'sot-save-v1': en.ev("slotRaw(UI.slot)") } });
+  const { ev } = load({ lang: 'it', storage: { 'soc-sp-save-v1': en.ev("slotRaw(UI.slot)") } });
   const name = ev("SCN.find(x=>x.id==='stg').n");
   assert.notEqual(name, en.ev("SCN.find(x=>x.id==='stg').n"));
   assert.ok(ev("document.getElementById('hAsn').textContent").includes(name));

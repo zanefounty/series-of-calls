@@ -1,0 +1,47 @@
+{
+  "contentVersion": 1,
+  "description": "Fictional shared-line appearance, presence, pickup, parking, and retrieval mechanics. No real calling or vendor parity is asserted.",
+  "runtime": {
+    "PACK": "soc-shared-services-1",
+    "VERSION": 1,
+    "defaults": {"capacity": 2, "parkSlots": 2, "ringMinutes": 1, "parkMinutes": 5, "dnd": false},
+    "rights": ["observe", "answer", "dnd", "park", "retrieve"],
+    "presenceStates": ["available", "busy", "do-not-disturb", "offline"]
+  },
+  "sourceIds": [
+    "uc-new:domain:directory-dialplan",
+    "uc-new:domain:signalling",
+    "uc-new:domain:identity",
+    "uc-new:domain:media",
+    "uc-new:domain:continuity",
+    "progress.progression-level.10",
+    "company-map:player-name:16"
+  ],
+  "sourceLimits": {
+    "design": "The preserved communications design explicitly lists shared lines within enterprise voice. The mapping has no individual source row for shared line appearances, busy-lamp presence, call pickup, or park/retrieve.",
+    "decomposition": "These gameplay rules decompose the mapped directory, signaling, identity and continuity obligations. The cosmetic Shared Line Huggers row is flavor only.",
+    "completion": "This pack does not claim full source mapping, real vendor compatibility, call resolution, healthy media, or progression-level completion."
+  },
+  "lineSchema": {
+    "tenant": "Existing canonical tenant ID; members must all belong to it unless the parent explicitly validates federation.",
+    "owner": "Canonical member ID; no implicit rights are granted.",
+    "members": "Canonical identities with explicit observe, answer, dnd, park, and retrieve rights.",
+    "capacity": "Synthetic maximum simultaneous ringing, active, and parked calls on this line.",
+    "parkSlots": "Named slots park-1 through park-N, independent of line session capacity.",
+    "ringMinutes": "Simulated ringing timeout; parent owns the terminal call outcome.",
+    "parkMinutes": "Synthetic retrieval deadline; it never resolves or terminates a parent call by itself.",
+    "dnd": "Desired/effective line-level DND, separate from each member's observed presence."
+  },
+  "acceptanceCases": [
+    {"id":"AC-SOC-201","positive":"A staged line becomes effective only after its canonical tenant members and endpoints are validated.","negative":"Unknown identity, cross-tenant member, missing entitlement, duplicate member, or invalid permissions are rejected."},
+    {"id":"AC-SOC-202","positive":"Available members ring when line DND is disabled; member presence changes do not change line DND.","negative":"Offline/busy/DND members do not receive pickup eligibility, and line DND blocks new ringing even when members are available."},
+    {"id":"AC-SOC-203","positive":"Ringing occupancy consumes shared line capacity until answer, park/retrieve, or parent-confirmed terminal release.","negative":"A concurrent attempt at capacity is rejected without creating a second occupancy."},
+    {"id":"AC-SOC-204","positive":"Each member can observe, answer, change line DND, park, and retrieve only the permissions explicitly granted; a retrieve-only member can retrieve without answer rights.","negative":"Membership alone does not grant pickup, DND, park, or retrieval, and one person cannot hold two active calls."},
+    {"id":"AC-SOC-205","positive":"An authorized available alternate appearance can answer one actual ringing interaction.","negative":"Foreign tenant, stale interaction, non-answer member, or unavailable endpoint cannot pick it up."},
+    {"id":"AC-SOC-206","positive":"An authorized active member parks a live interaction in an unused configured slot; an authorized same-tenant member retrieves it before deadline.","negative":"Duplicate/invalid slots, missing permissions, stale calls, and timed-out retrieval are rejected."},
+    {"id":"AC-SOC-207","positive":"Assessment and inspection report state-derived decisions without changing state.","negative":"Blocked actions do not mutate parent interaction phases, media, usage, or resolution evidence."},
+    {"id":"AC-SOC-208","positive":"Strict save validation and worker source preserve staged state, occupancy, permissions, and trace decisions.","negative":"Corrupt generations, fabricated interaction references, core phase/line/deadline mismatch, duplicate slots, tenant mismatch, and fabricated success traces fail."},
+    {"id":"AC-SOC-209","positive":"Typed admin controls configure lines and record synthetic presence observations through shared dispatch.","negative":"Read-only mode disables every mutating control."},
+    {"id":"AC-SOC-210","positive":"The panel exposes actual core interaction IDs and shared-service decisions while leaving final call outcomes to core.","negative":"The UI cannot create a successful call, healthy media, or a terminal resolution itself."}
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "sha": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "node_id": "C_kwDOVUZ3tdoAKGRhMWE0ZTJmM2M5ZjdmYWMxMmM5NGVlZmI4ZDM1YmQ2YjFlNGFlMTY",
+  "commit": {
+    "author": {
+      "name": "Frederic Jung",
+      "email": "frederic@jc-ix.net",
+      "date": "2026-11-02T20:45:30Z"
+    },
+    "committer": {
+      "name": "Frederic Jung",
+      "email": "frederic@jc-ix.net",
+      "date": "2026-11-02T20:45:30Z"
+    },
+    "message": "Give POPs built by links, fiber, cables and seats the standard routers (#261)\n\nOnly Build POP applied the standard. A wave, dark fiber, own subsea cable\nor consortium seat to a new city now applies it too, and their offers\nquote newPopCost() (the site plus the standard's routers).",
+    "tree": {
+      "sha": "50ce1069f8fb996144615bcf8bf1d0ca1edadb35",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/trees/50ce1069f8fb996144615bcf8bf1d0ca1edadb35"
+    },
+    "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/git/commits/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unknown_key",
+      "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgrLzsfFISF4by8Q+FKz27YpkK1USsBB+m\namu1QkJnbDsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAAQKEMJrSk\njQnyn2cokL1q8uibpaAHUYHWiIEofBXvEJbRCU6f7ne59HMl/5jtdYDOuKEVASdzSerAMUISMC7x\nVQ8=\n-----END SSH SIGNATURE-----",
+      "payload": "tree 50ce1069f8fb996144615bcf8bf1d0ca1edadb35\nparent 1a4a62d0f2e892837d4b4985bd2ab97aed1674fe\nauthor Frederic Jung <frederic@jc-ix.net> 1793652330 +0100\ncommitter Frederic Jung <frederic@jc-ix.net> 1793652330 +0100\n\nGive POPs built by links, fiber, cables and seats the standard routers (#261)\n\nOnly Build POP applied the standard. A wave, dark fiber, own subsea cable\nor consortium seat to a new city now applies it too, and their offers\nquote newPopCost() (the site plus the standard's routers).\n",
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "html_url": "https://github.com/fjaeckel/seriesoftubes/commit/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "comments_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/comments",
+  "author": {
+    "login": "fjaeckel",
+    "id": 273436,
+    "node_id": "MDQ6VXNlcjI3MzQzNg==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/273436?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/fjaeckel",
+    "html_url": "https://github.com/fjaeckel",
+    "followers_url": "https://api.github.com/users/fjaeckel/followers",
+    "following_url": "https://api.github.com/users/fjaeckel/following{/other_user}",
+    "gists_url": "https://api.github.com/users/fjaeckel/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/fjaeckel/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/fjaeckel/subscriptions",
+    "organizations_url": "https://api.github.com/users/fjaeckel/orgs",
+    "repos_url": "https://api.github.com/users/fjaeckel/repos",
+    "events_url": "https://api.github.com/users/fjaeckel/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/fjaeckel/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "fjaeckel",
+    "id": 273436,
+    "node_id": "MDQ6VXNlcjI3MzQzNg==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/273436?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/fjaeckel",
+    "html_url": "https://github.com/fjaeckel",
+    "followers_url": "https://api.github.com/users/fjaeckel/followers",
+    "following_url": "https://api.github.com/users/fjaeckel/following{/other_user}",
+    "gists_url": "https://api.github.com/users/fjaeckel/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/fjaeckel/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/fjaeckel/subscriptions",
+    "organizations_url": "https://api.github.com/users/fjaeckel/orgs",
+    "repos_url": "https://api.github.com/users/fjaeckel/repos",
+    "events_url": "https://api.github.com/users/fjaeckel/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/fjaeckel/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "1a4a62d0f2e892837d4b4985bd2ab97aed1674fe",
+      "url": "https://api.github.com/repos/fjaeckel/seriesoftubes/commits/1a4a62d0f2e892837d4b4985bd2ab97aed1674fe",
+      "html_url": "https://github.com/fjaeckel/seriesoftubes/commit/1a4a62d0f2e892837d4b4985bd2ab97aed1674fe"
+    }
+  ],
+  "stats": {
+    "total": 42,
+    "additions": 34,
+    "deletions": 8
+  },
+  "files": [
+    {
+      "sha": "ee68ffc651de065ecf9971df8ee82f78513657bf",
+      "filename": "CHANGELOG.md",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/CHANGELOG.md",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/CHANGELOG.md",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/CHANGELOG.md?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -6,7 +6,7 @@ All notable changes to this project are documented here. The project follows\n \n ## [Unreleased]\n \n-- The Build POP button now shows the whole price of a new POP, including the routers of your standard POP (#261). Before, it showed only the site, although the standard routers were paid for on top; a note under the button now lists them, and the intern's one-tap template prices them in as well.\n+- The Build POP button now shows the whole price of a new POP, including the routers of your standard POP (#261). Before, it showed only the site, although the standard routers were paid for on top; a note under the button now lists them, and the intern's one-tap template prices them in as well. POPs that come with a new wave, dark fiber, your own subsea cable or a consortium seat now get the standard routers too, and those offers show the price with them.\n \n ## [2.5.0] — 2026-11-02\n "
+    },
+    {
+      "sha": "37e7039add785e499b071456333b8ecdc97369de",
+      "filename": "src/game/60-features/36-specialist.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F60-features%2F36-specialist.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F60-features%2F36-specialist.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F60-features%2F36-specialist.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -58,7 +58,7 @@ const seatRoute=name=>Object.values(SEAT_ROUTES).flat().find(r=>r[2]===name);\n function seatOffer(c,d){const rs=(c?SEAT_ROUTES[c]||[]:Object.values(SEAT_ROUTES).flat()).filter(r=>isCity(r[0])&&isCity(r[1])&&(c||S.pops[r[0]]||S.pops[r[1]])&&!S.links.some(l=>l.seat&&l.cname===r[2]));\n   if(!rs.length)return null;const r=rs[hstr(S.asn+'|seat|'+d)%rs.length];return {a:r[0],b:r[1],name:r[2],km:seatKm(r[0],r[1]),exp:d+SEAT_EXP};}\n function seatConf(c){if(S.seatOff||lvl()<SEAT_LV||S.scn)return;S.seatOff=seatOffer(c,S.day);if(S.seatOff)toast(tr('specialist.a_consortium_is_selling_seats_on',{name:esc(S.seatOff.name),a:CITY[S.seatOff.a].name,b:CITY[S.seatOff.b].name}),'goal',[{l:tr('common.show_me'),act:'leftTab',args:{t:'deals'}}]);}\n-function seatSection(){const o=S.seatOff;if(!o||o.exp<=S.day)return '';const pop=[o.a,o.b].filter(c=>!S.pops[c]).reduce((x,c)=>x+popCost(c),0);\n+function seatSection(){const o=S.seatOff;if(!o||o.exp<=S.day)return '';const pop=[o.a,o.b].filter(c=>!S.pops[c]).reduce((x,c)=>x+newPopCost(c),0);\n   return `<div class=\"inc\" style=\"background:#E6F4FF\"><div class=\"nm\">🚢 ${tr('specialist.consortium_seat_name',{name:esc(o.name)})}</div><div class=\"meta\">${tr('specialist.a_b_km_km_ready_in',{a:CITY[o.a].name,b:CITY[o.b].name,km:o.km.toLocaleString(),n:seatDays(o.km),ms:linkLat({kind:'df',own:true,sub:true,km:o.km,seaDesign:'standard'}).toFixed(1)})} · ${tr('ui.n_d_left',{n:o.exp-S.day})}</div>\n   <div class=\"meta\">${tr('specialist.your_own_fiber_pairs_on_a')}${pop?' '+tr('specialist.includes_pops_at_the_landings_price',{price:fmt$(pop)}):''}</div>\n   <div class=\"btns\">${SEAT_N.map(n=>{const c=seatCost(o.km,n)+pop;return btn(`${trn('specialist.n_fiber_pairs',n)} <small>${fmt$(c)} · ${tr('common.price_mo',{price:fmt$(seatMo(o.km,n))})}</small>`,'seatBuy',{n},'sm',S.cash<c);}).join('')}${btn(tr('common.decline'),'seatNo',{},'ghost sm')}</div></div>`;}"
+    },
+    {
+      "sha": "dad4b00b3a2b15d04f49de6dee0297c583d1f4a5",
+      "filename": "src/game/60-features/96-pop-standard.js",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F60-features%2F96-pop-standard.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F60-features%2F96-pop-standard.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F60-features%2F96-pop-standard.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -5,6 +5,8 @@\n function popStdQuote(){const d=S.popStd;if(!d||pzOn())return null;const g=techOk('rg',d.g,RG[d.g].lvl)?d.g:0;\n   let cost=g?Math.max(0,Math.round(RG[g].cost*hwMul('rt')*techMul(RG[g].lvl))-tradeIn(0,1)):0;for(let n=1;n<d.rt;n++)cost+=routerCost(g,n);\n   const mo=(d.rt-1)*ROUTER_MO+cageMo(d.rt)+d.rt*RG[g].mo-RG[0].mo;return cost||mo?{cost,mo,g,rt:d.rt}:null;}\n+// A new POP's setup with the standard's routers, for every way a POP gets built (links, cables, seats).\n+function newPopCost(c){const q=popStdQuote();return popCost(c)+(q?q.cost:0);}\n function popStdApply(city){const d=S.popStd,p=S.pops[city];if(!d||!p||pzOn())return;let miss=false;const c0=S.cash;\n   if(d.g!==(p.rgen||0)){if(techOk('rg',d.g,RG[d.g].lvl)&&S.cash>=swapCost(city,d.g)){spend(swapCost(city,d.g));p.rgen=d.g;}else miss=true;}\n   while((p.routers||1)<d.rt){const k=routerCost(p.rgen||0,p.routers||1);if(S.cash<k){miss=true;break;}spend(k);p.routers=(p.routers||1)+1;}"
+    },
+    {
+      "sha": "46817ed8e951ac1d8675f43c16e9add8bb3a7177",
+      "filename": "src/game/90-actions/60-links.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F60-links.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F60-links.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F90-actions%2F60-links.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -19,7 +19,7 @@ Object.assign(ACT,{\n    if(!waveOk(a,b,tier)){toast(tr('links.a_wave_wave_needs_need_at',{wave:LT[tier].n,need:esc(waveNeed(tier))}),'bad');sfx('err');return;}\n    const wr=waveRoute(a,b,mult,border);if(!wr){toast(tr('links.no_cable_available_for_that_route'),'bad');sfx('err');return;}\n    {const so=soldOut(a,b,tier,wr.cab);if(so){toast(tr('links.no_wave_capacity_on_this_route',{wave:LT[tier].n,why:tr(so.why),n:Math.max(1,so.until-S.day)}),'bad');sfx('err');return;}}{const w=subWaveWhy(tier,wr.km,wr.sub);if(w){toast(tr('links.no_wave_waves_on_this_cable',{wave:LT[tier].n,why:esc(w)}),'bad');sfx('err');return;}}const base=Math.round(waveMo(wr.km,wr.sub,tier)*wr.wm),cost=base+(S.pops[b]?0:popCost(b));\n-   if(!portGate(a,1)||!portGate(b,1))return;if(!spend(cost))return;if(!S.pops[b])S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false};\n+   if(!portGate(a,1)||!portGate(b,1))return;if(!spend(cost))return;if(!S.pops[b]){S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false};popStdApply(b);}\n    const id=uid();const l={id,a,b,kind:'wave',border,premium:border&&!!UI.cnPrem&&(a==='hkg'||b==='hkg'),tier,km:wr.km,sub:wr.sub,cable:wr.cab,mo:base,mult:wr.wm,trench:wr.cab?'cab:'+wr.cab:(jn?jn.k:id),cut:0,day:S.day};S.links.push(l);closeModal();\n    if(sib.length){UI.sel={type:'link',id};}else{UI.sel={type:'city',id:b};UI.tab='cust';}\n    floater((CITY[a].x+CITY[a].x+wrapDx(CITY[a].x,CITY[b].x))/2,(CITY[a].y+CITY[b].y)/2-20,tr('links.wave_lit',{wave:LT[tier].n}),'#FF4F9A');after();},"
+    },
+    {
+      "sha": "0db742c3aa876f3d117b5744bcc9f88f58799853",
+      "filename": "src/game/90-actions/86-specialist.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F86-specialist.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F86-specialist.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F90-actions%2F86-specialist.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -2,7 +2,7 @@ Object.assign(ACT,{\n  demoAsk:({k,id})=>{const it=demoItem(k,id);if(!it||!demoCan(it.lvl)||demoAt(k,id)!==null)return;S.demo=S.demo||{};const at=S.day+leadDays(DEMO_DAYS);S.demo[k+':'+id]=at;\n    toast(tr('specialist.the_vendor_ships_a_demo_name',{name:esc(it.n),n:at-S.day,p:Math.round((DEMO_MUL-1)*100)}),'good');after();},\n  seatBuy:({n})=>{const o=S.seatOff;n=+n;if(!o||o.exp<=S.day||!SEAT_N.includes(n))return;const miss=[o.a,o.b].filter(c=>!S.pops[c]),cost=seatCost(o.km,n)+miss.reduce((x,c)=>x+popCost(c),0);if(!spend(cost))return;\n-   for(const c of miss)S.pops[c]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};\n+   for(const c of miss){S.pops[c]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};popStdApply(c);}\n    const id=uid(),days=seatDays(o.km);S.links.push({id,a:o.a,b:o.b,kind:'df',own:true,sub:true,seat:true,seaDesign:'standard',sys:'roadm',ch:[],km:o.km,cable:null,cname:o.name,mo:seatMo(o.km,n),trench:'seat:'+id,cut:0,day:S.day,ready:S.day+days,spares:false,pairs:n,paid:seatCost(o.km,n)});\n    S.seatOff=null;S.stats.seats=(S.stats.seats||0)+1;UI.sel={type:'link',id};\n    toast(tr('specialist.you_own_n_fiber_pairs_on',{n,name:esc(o.name),a:CITY[o.a].name,b:CITY[o.b].name,d:days}),'goal');sfx('build');after();},"
+    },
+    {
+      "sha": "9befa30f1cf00398b3124bdc33e7620d69268f64",
+      "filename": "src/game/90-actions/87-fiber-and-hardware.js",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 4,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F87-fiber-and-hardware.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F90-actions%2F87-fiber-and-hardware.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F90-actions%2F87-fiber-and-hardware.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -8,7 +8,7 @@ Object.assign(ACT,{\n  dfSrc:({v})=>{UI.dfSrc=v;if(UI.pending)openLinkModal(UI.pending.a,UI.pending.b);},\n  dfSys:({v})=>{UI.dfSys=v;if(UI.pending)openLinkModal(UI.pending.a,UI.pending.b);},\n  orderCable:()=>{const p=UI.pending;if(!p)return;const {a,b}=p;if(ownCabWhy(a,b))return;const design=own(SEA_DESIGNS,UI.seaDesign)?UI.seaDesign:'standard',up=seaUps(seaQuote(a,b,design).km),q=seaQuote(a,b,design,up),km=q.km,cost=q.cost+(S.pops[b]?0:popCost(b));if(seaLack(km,up).length||!spend(cost))return;\n-   if(!S.pops[b])S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};\n+   if(!S.pops[b]){S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};popStdApply(b);}\n    const used=new Set(S.links.map(l=>l.cname).filter(Boolean)),cname=OWNCAB_NAMES.find(n=>!used.has(n))||`${pick(OWNCAB_NAMES)} ${used.size+1}`,id=uid(),ship=layName({id}),days=q.days;\n    S.links.push({id,a,b,kind:'df',own:true,sub:true,seaDesign:design,seaPath:q.pts.map(p=>p.slice()),sys:'roadm',ch:[],km,cable:null,cname,mo:Math.round(km*OWNCAB_OM),trench:'own:'+id,cut:0,day:S.day,ready:S.day+days,spares:false,pairs:1});\n    const laid=S.links[S.links.length-1];laid.paid=q.cost;for(const k of Object.keys(SUB_UPGRADES))if(up[k])laid['sub'+k]=laid.ready;UI.seaDesign='standard';UI.seaterminal=UI.seaengineering=false;\n@@ -17,7 +17,7 @@ Object.assign(ACT,{\n  orderDf:()=>{const p=UI.pending;if(!p)return;const {a,b}=p;if(!dfAllowed(a,b))return;const sc=isSub(a,b)?subDfCable(a,b):null,km=sc?sc.km:kmBetween(a,b);\n    const own=UI.dfSrc==='build'&&!sc,sys=DF_SYS[UI.dfSys]&&techOk('sys',UI.dfSys,DF_SYS[UI.dfSys].lvl)?UI.dfSys:'lite';if(lvl()<2)return;\n    const up=(own?digCost(km):0)+sysCost(sys)+ampCount(km)*AMP_COST+(S.pops[b]?0:popCost(b));if(!spend(up))return;\n-   if(!S.pops[b])S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};\n+   if(!S.pops[b]){S.pops[b]={day:S.day,bb:null,boost:0,down:0,routers:1,gen:false,rgen:0};popStdApply(b);}\n    const sib=pairLinks(a,b).filter(l=>l.kind!=='vxc'),id=uid();\n    const l={id,a,b,kind:'df',own,sys,ch:[],km,sub:!!sc,cable:sc?sc.cid:null,mo:own?Math.round(km*0.15):dfLeaseMo(km),trench:sc?'cab:'+sc.cid:id,cut:0,day:S.day,ready:S.day+(own?dfBuildDays(km):leadDays(IRU_DAYS)),spares:false};\n    S.links.push(l);closeModal();UI.sel={type:'link',id};"
+    },
+    {
+      "sha": "b21f39efb4b0e98c878ae33b4ded04c53736312d",
+      "filename": "src/game/95-modals/70-link-modal.js",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 4,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F95-modals%2F70-link-modal.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/src%2Fgame%2F95-modals%2F70-link-modal.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/src%2Fgame%2F95-modals%2F70-link-modal.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -1,7 +1,7 @@\n function openLinkModal(a,b){\n   if([a,b].includes('kyv')&&[a,b].includes('mos')){openModal(`<div style=\"display:flex;align-items:center\"><h2 style=\"font-size:24px\">${tr('common.not_happening')}</h2><button class=\"x\" data-act=\"closeModal\" aria-label=\"${tr('common.close')}\">×</button></div><p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.nobody_sells_capacity_between_kyiv')}</p>`);return;}\n   if((cnCity(a)||cnCity(b))&&!cnOk()){openModal(`<div style=\"display:flex;align-items:center\"><h2 style=\"font-size:24px\">${tr('link_modal.not_without_a_license')}</h2><button class=\"x\" data-act=\"closeModal\" aria-label=\"${tr('common.close')}\">×</button></div><p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.building_into_mainland_china_needs_a',{city:CITY[cnCity(a)?a:b].name})}</p>`);return;}\n-  let route='';UI.pending={a,b};const km=kmBetween(a,b),sub=isSub(a,b),pop=S.pops[b]?0:popCost(b),sib=pairLinks(a,b).filter(l=>l.kind!=='vxc');\n+  let route='';UI.pending={a,b};const km=kmBetween(a,b),sub=isSub(a,b),pop=S.pops[b]?0:newPopCost(b),sib=pairLinks(a,b).filter(l=>l.kind!=='vxc');\n   if(!sib.length)UI.route='diverse';const border=cnCity(a)!==cnCity(b),jn=sib.length?routeJoin(a,b):null,ts=landTrenches(a,b),mult=(sib.length&&!(jn&&jn.k===(ts[0]||{}).k)?DIVERSE:1)*(border?3*(UI.cnPrem&&(a==='hkg'||b==='hkg')?1.6:1):1);\n   if(border)route+=`<p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.cross_border_circuits_into_mainland')}</p>${a==='hkg'||b==='hkg'?`<div class=\"seg\">${btn(tr('common.regular_crossing'),'cnPrem',{v:0},!UI.cnPrem?'pink':'ghost')}${btn(tr('link_modal.premium_crossing_60_3_loss'),'cnPrem',{v:1},UI.cnPrem?'pink':'ghost')}</div>`:`<p class=\"note\">${tr('link_modal.premium_crossings_are_only_sold_in')}</p>`}`;\n   if(sib.length&&!(isSub(a,b)&&cablesFor(a,b).length)&&!(UI.via&&UI.via!=='land'&&cablesFor(a,b).some(c=>c.cid===UI.via))){route+=`<p class=\"lead\" style=\"margin-top:8px\">${trn('link_modal.you_already_have_n_link_here',sib.length,{list:sib.map(l=>capName(l)).join(', ')})}</p>\n@@ -16,6 +16,6 @@ function openLinkModal(a,b){\n   const wr=waveRoute(a,b,mult,border);\n   openModal(`${head}\n   <p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.waves_are_leased_at_a_flat')}</p>\n-  ${pop?`<p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.includes_a_new_pop_in_city',{city:CITY[b].name,price:fmt$(popCost(b)),extra:ruCity(b)?', '+tr('link_modal.government_box_included'):CITY[b].uae?', '+tr('link_modal.free_zone_license_included'):CITY[b].saudi?', '+tr('link_modal.local_telecom_licence_included'):''})}</p>`:''}${route}${viaSeg(a,b)}\n+  ${pop?`<p class=\"lead\" style=\"margin-top:8px\">${tr('link_modal.includes_a_new_pop_in_city',{city:CITY[b].name,price:fmt$(pop),extra:ruCity(b)?', '+tr('link_modal.government_box_included'):CITY[b].uae?', '+tr('link_modal.free_zone_license_included'):CITY[b].saudi?', '+tr('link_modal.local_telecom_licence_included'):''})}</p>`:''}${route}${viaSeg(a,b)}\n   <div class=\"tiers\">${LT.map((T,i)=>{const lc=Math.round(waveMo(wr.km,wr.sub,i)*wr.wm),c=lc+pop,sw=subWaveWhy(i,wr.km,wr.sub),so=!sw&&soldOut(a,b,i,wr.cab),ok=waveOk(a,b,i)&&!sw&&!so;return !waveShown(i)?'':`<button class=\"tierbtn\" data-act=\"buildLink\" data-args='{\"tier\":${i}}'${S.cash<c||!ok?' disabled':''}><span class=\"sz\">${T.n}</span><span class=\"grow meta\">${sw?tr('common.too_far_for_this_cable'):so?tr('link_modal.sold_out_for_n_days',{n:Math.max(1,so.until-S.day)}):!ok?tr('link_modal.needs_what_at_both_ends',{what:esc(waveNeed(i))}):pop?tr('link_modal.due_now_price',{price:fmt$(c)}):tr('common.flat_rate')}</span><span class=\"pr num\">${tr('common.price_mo',{price:fmt$(lc)})}</span></button>`;}).join('')}</div>`);\n }"
+    },
+    {
+      "sha": "f6e53cd7d108b3efdce713a63f5e9ecdd2b3f5a4",
+      "filename": "tests/pop-standard.test.js",
+      "status": "modified",
+      "additions": 24,
+      "deletions": 0,
+      "changes": 24,
+      "blob_url": "https://github.com/fjaeckel/seriesoftubes/blob/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/tests%2Fpop-standard.test.js",
+      "raw_url": "https://github.com/fjaeckel/seriesoftubes/raw/da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16/tests%2Fpop-standard.test.js",
+      "contents_url": "https://api.github.com/repos/fjaeckel/seriesoftubes/contents/tests%2Fpop-standard.test.js?ref=da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "patch": "@@ -61,3 +61,27 @@ test('the price of a new POP includes the standard routers, on the button and in\n   assert.equal(ev('popStdQuote()'), null);\n   assert.deepEqual(errors, []);\n });\n+\n+test('POPs built by a link, dark fiber or a consortium seat get the standard too, at the quoted price (#261)', () => {\n+  const { ev, errors } = load();\n+  const A = g('Arrrhipster 7280R'), Ai = ev(A);\n+  ev(start + `;S.lvl=4;S.pops.fra.rgen=${A};S.pops.fra.routers=2;ACT.popStdSet({city:'fra'})`);\n+  const std = ev('popStdQuote().cost');\n+  assert.equal(ev(\"newPopCost('ams')\"), ev(\"popCost('ams')\") + std);\n+  // A wave to a city without a POP.\n+  ev(\"UI.pending={a:'fra',b:'ams'};UI.lmode='wave';ACT.buildLink({tier:0})\");\n+  assert.ok(ev('!!S.pops.ams'), 'the wave built the POP');\n+  assert.equal(ev('S.pops.ams.rgen'), Ai);\n+  assert.equal(ev('S.pops.ams.routers'), 2);\n+  // Dark fiber to a city without a POP.\n+  ev(\"UI.pending={a:'fra',b:'par'};UI.lmode='df';UI.dfSys='lite';ACT.orderDf()\");\n+  assert.equal(ev('S.pops.par.rgen'), Ai);\n+  assert.equal(ev('S.pops.par.routers'), 2);\n+  // A consortium seat with a landing that has no POP yet; its offer is priced with the standard.\n+  ev(\"S.seatOff={a:'fra',b:'lis',name:'Test',km:seatKm('fra','lis'),exp:S.day+30};UI.tab='links'\");\n+  assert.ok(ev(\"seatSection()\").includes(ev(\"fmt$(newPopCost('lis'))\")));\n+  ev('ACT.seatBuy({n:1})');\n+  assert.equal(ev('S.pops.lis.rgen'), Ai);\n+  assert.equal(ev('S.pops.lis.routers'), 2);\n+  assert.deepEqual(errors, []);\n+});"
+    }
+  ]
+}

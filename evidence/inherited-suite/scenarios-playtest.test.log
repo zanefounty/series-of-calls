@@ -1,0 +1,26 @@
+✔ C1 played: every scenario has a reference strategy and a shortcut that fails (541.081654ms)
+✔ stg: the reference wins in its days, the shortcut does not (2810.426805ms)
+✔ redsea: the reference wins in its days, the shortcut does not (1601.618059ms)
+✔ spat: the reference wins in its days, the shortcut does not (719.335486ms)
+✔ carnaval: the reference wins in its days, the shortcut does not (727.915556ms)
+✔ darien: the reference wins in its days, the shortcut does not (1181.193407ms)
+✔ c2c: the reference wins in its days, the shortcut does not (1334.46905ms)
+✔ ixbr: the reference wins in its days, the shortcut does not (2505.315801ms)
+✔ gangnam: the reference wins in its days, the shortcut does not (1520.185966ms)
+✔ flood: the reference wins in its days, the shortcut does not (926.349235ms)
+✔ fttb: the reference wins in its days, the shortcut does not (1436.197561ms)
+✔ baltic: the reference wins in its days, the shortcut does not (1069.26009ms)
+✔ pac: the reference wins in its days, the shortcut does not (2002.579085ms)
+✔ atl: the reference wins in its days, the shortcut does not (2182.885379ms)
+✔ gangnam: Seoul transit and Kay-Tea does not win (818.376408ms)
+✔ gangnam: everything from Tokyo does not win (629.222756ms)
+✔ gangnam: the 1.x reference does not win (1021.596602ms)
+✔ gangnam: Tokyo haul, Seoul transit first does not win (1126.090237ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32831.356011

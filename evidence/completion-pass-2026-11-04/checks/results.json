@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-11-03T20:54:47.874578+00:00",
+  "dependencyOverride": "/home/zane-fountylabs/workspace/fountry/node_modules",
+  "inputDrift": [],
+  "checks": [
+    {
+      "name": "acceptance",
+      "command": [
+        "python3",
+        "scripts/record-evidence.py"
+      ],
+      "startedAt": "2026-11-03T20:50:39.997262+00:00",
+      "seconds": 148.751,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/checks/acceptance.log"
+    },
+    {
+      "name": "python-gates",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "*_test.py"
+      ],
+      "startedAt": "2026-11-03T20:52:59.072662+00:00",
+      "seconds": 29.875,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/checks/python-gates.log"
+    },
+    {
+      "name": "development-gates",
+      "command": [
+        "python3",
+        "scripts/verify.py",
+        "all"
+      ],
+      "startedAt": "2026-11-03T20:53:27.017039+00:00",
+      "seconds": 1.367,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/checks/development-gates.log"
+    },
+    {
+      "name": "delivery",
+      "command": [
+        "python3",
+        "scripts/delivery-inventory.py",
+        "--check"
+      ],
+      "startedAt": "2026-11-03T20:53:28.383858+00:00",
+      "seconds": 0.13,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/checks/delivery.log"
+    },
+    {
+      "name": "release",
+      "command": [
+        "python3",
+        "scripts/verify.py",
+        "release"
+      ],
+      "startedAt": "2026-11-03T20:53:28.514531+00:00",
+      "seconds": 1.367,
+      "exitCode": 1,
+      "log": "evidence/completion-pass-2026-11-04/checks/release.log"
+    },
+    {
+      "name": "translations",
+      "command": [
+        "node",
+        "scripts/i18n-check.js"
+      ],
+      "startedAt": "2026-11-03T20:53:29.881992+00:00",
+      "seconds": 0.998,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/checks/translations.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "node",
+        "scripts/build.js"
+      ],
+      "startedAt": "2026-11-03T20:53:30.880537+00:00",
+      "seconds": 0.205,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/checks/build.log"
+    },
+    {
+      "name": "mcp",
+      "command": [
+        "python3",
+        "scripts/mcp-smoke.py",
+        "--campaigns",
+        "--output",
+        "/home/zane-fountylabs/workspace/zefun/series-of-calls/evidence/completion-pass-2026-11-04/mcp-final.json"
+      ],
+      "startedAt": "2026-11-03T20:53:31.086300+00:00",
+      "seconds": 80.689,
+      "exitCode": 0,
+      "log": "evidence/completion-pass-2026-11-04/checks/mcp.log"
+    }
+  ],
+  "releaseEligible": false,
+  "scope": "Actual bounded implementation checks; external dependency diagnostic. Release result and its blockers are retained."
+}

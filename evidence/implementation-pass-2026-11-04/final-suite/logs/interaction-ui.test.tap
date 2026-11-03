@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states
+ok 1 - AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states
+  ---
+  duration_ms: 897.357621
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1214.208424

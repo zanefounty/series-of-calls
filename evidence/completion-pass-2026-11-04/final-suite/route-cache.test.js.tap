@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: a change to links, POPs, ports, peering, events or RouteScript rebuilds what routing keeps; demand alone does not
+ok 1 - a change to links, POPs, ports, peering, events or RouteScript rebuilds what routing keeps; demand alone does not
+  ---
+  duration_ms: 3608.679996
+  type: 'test'
+  ...
+# Subtest: days in a row reuse the kept tables and route like a fresh start every day
+ok 2 - days in a row reuse the kept tables and route like a fresh start every day
+  ---
+  duration_ms: 1082.418806
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13315.381626

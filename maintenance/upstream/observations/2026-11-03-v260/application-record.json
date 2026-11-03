@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-03T11:28:09.584458+00:00",
+  "base": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+  "head": "b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+  "scope": "Text application inventory, not verified source fidelity or release acceptance. Governance instructions remain pending; optional SP tests and foundation tests have separate receipts.",
+  "files": [
+    {
+      "path": ".claude/skills/edit-the-game/SKILL.md",
+      "upstreamBlob": "7dc75ddb383add6b2865f70e48d1393fceb8549d",
+      "applicationStatus": "pending-governance-review",
+      "localSha256": "2a0a5e1432447cf2312694ecbda9eae005f13c34bad370880c25eb21bf98f7cf",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": ".claude/skills/gameplay-rules/SKILL.md",
+      "upstreamBlob": "b25899180d191f2714a252622482f9e5e4810f6e",
+      "applicationStatus": "pending-governance-review",
+      "localSha256": "96acde7bae5df863168735f8f43fc9bc59fffd6d817458c448d75c332b552fd4",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "upstreamBlob": "d7bca0be06097af4024fc745b6ea8fd4785eb1e1",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "b7004993a752b5373294fa84f2b35eecaba8b460a502f90ee24a692ec34102d3",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "upstreamBlob": "97294491157195a035cce6cbacb72f7bce79678b",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "96c00c760d549adee977f499b7a91778b51de62886c7ab08e1fa6a647f635778",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "docs/MCP.md",
+      "upstreamBlob": "ffacde0da3f6b3a02fda7db29cf97e5b1cd3836e",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "48a575333a40c7b468d0d7972d3335e2ce47c3cda263ea57b2ea2aa546bda6b8",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "package-lock.json",
+      "upstreamBlob": "b5daef63fb6369372d7603f9426d0bb9c6e11732",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "package.json",
+      "upstreamBlob": "44ea9c610c662443a0a6178b9e88dfd07b975828",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "61a0f49ec2e0bdd47d8bab90b58d43e6a8f613fe48a1e33c2470974795004d88",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "scripts/lib/fuzz-page.js",
+      "upstreamBlob": "4586d55e749666ea71ca97886e84b5d54a92b245",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "64becd6c49ee461578c488acaae35cf289f12d0870d3194f65e1921b38bcc0da",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "scripts/lib/mcp-commands.js",
+      "upstreamBlob": "6a5d8e11a4ba04889502be5aad4195f72539020a",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "9566ce02c3924abd0a17bb2ecd43a1dbe96cecec661f2542579dfb98cc308528",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "scripts/lib/mcp-game.js",
+      "upstreamBlob": "fbf098343d922bae3f7177a27e04d61a2b7b0661",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "a1334a4caae57f2afd101d8542cd56b96fc7ae1af4d4492c9b6caee523f21c9b",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "scripts/lib/mcp-page.js",
+      "upstreamBlob": "8853f404c3fadb1695180725f9e918c18ad6f424",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "4f198c2f9ffea97ad94d0b7a719719d7ef8e93c1a29dc6e4304b15b2a3f163d0",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "scripts/mcp.js",
+      "upstreamBlob": "75f9d4b1358dde63a31d48b9b5cd8cf4ed382f70",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "fce04eb7625136d5dcc93fdc3758033fa34fec1c7d0cd3955ff98e3c9c2bebaa",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/i18n/de.js",
+      "upstreamBlob": "f9d25959d2693dd5b9187bde9ab3174067a91911",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "ea7344effa40d7847ba8b14c5a883c0776ac91e77f5071fbfc6724ef6a405f53",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/i18n/es.js",
+      "upstreamBlob": "193a39ff89b215f5755dd8ebf1479f8ecbdb9dfe",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "a902870f4be6335484837a81d9f7f0c36e07c7b59b78f5fafcd030dc3b03c302",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/i18n/fr.js",
+      "upstreamBlob": "4950bfcda5c911090338cc426335e08b3c414f70",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "bedbec17e1fa4a85d259193e66517ed6e7913627aec41e785947bb59f1bb6192",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/i18n/it.js",
+      "upstreamBlob": "e495fadd6990761d53f54c2234b4de47e0fe4522",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "e81c37b223ee8282a922e3ccbeb35d2a3ff9aaa0a787fe2d873db659dedd0be7",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/i18n/pt.js",
+      "upstreamBlob": "446141bf33cb42eaa91ffe551548a916b23c3847",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "73867fcb201b4fe6d97ccda6a4da9ed4c09ee2bb6018652feef4c3e8b938be29",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "site/scenarios/weekly/2026-W44.json",
+      "upstreamBlob": "f43ff92de8aedb556a64b34b8679183b701deac0",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "0a72614ae5aef23ff5ca67630c22386fce705a14bd94634182e9d3fdf13ffbb7",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/20-world/40-city-coords.js",
+      "upstreamBlob": "e965808e2cd0d5b7a0e77e756b3a45b735568a4a",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8f3c6944280f7367040794d491ae9d1c94b7e5806112af22b020fdc814f7e250",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/20-world/50-cities.js",
+      "upstreamBlob": "24cf46856da8acbc4e318f9887babe12be2a1b80",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "731e8b5c7b1d08a5d47c512b285f99f0c78caacea6f7166838731f66bbec86ce",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/20-world/55-city-pdb.js",
+      "upstreamBlob": "79fe1d8670bc0a11b30076ebafd32ce3a3088dc2",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "b62da6ba1f6f264cd146fb8830685d8902bc341c96bf67a6cc28448b6d2604a4",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/20-world/60-cables.js",
+      "upstreamBlob": "58c1cd50f43cebd6decc9b54338b134fd61ec5c0",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "487f727baf9c73e3572919418049c087f50627091cfb8aa3b1c5a029a710dccf",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/30-networks/10-networks.js",
+      "upstreamBlob": "e8ac20a655d48a6dc848d5a114bb79dbc0555c8f",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "2760062834d062f5281cb148ef0273b5500b7976e012964181e605bba0a1b3a0",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/40-progress/30-rules.js",
+      "upstreamBlob": "0dce567afa9cfa7f5f9aaad60a0f7466544f3cde",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "ebdc2554e651b1b36c37969a93a8f6fe9529134424aff22abf8a5d83b8921ede",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/60-features/10-banks.js",
+      "upstreamBlob": "ae9e1727430c2489ad20b482e26210a5371ff8c0",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "36201fe16ddc87fc449d017dd5a52a37791a43b5c7bf9b4a485ff56c859f7a7a",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/60-features/30-conferences.js",
+      "upstreamBlob": "78e9a6d321f4bf52f1979ee19ea9738cfea78c71",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "20cbb99f5ca67b4c658bf9b77cd4a88df6c23753283712ad09f75a6001632a42",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/60-features/50-traceroute.js",
+      "upstreamBlob": "cb354376d6e2467cb0dbe38c68c7534945e88647",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "d0de5f3a80294dcffcf2da3243df30aa3254a424781ac764af73961a470cceb4",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/60-features/95-standing-orders.js",
+      "upstreamBlob": "15f0e70ed76f3f91f848905eb1c43825e26874d0",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "06ab2a4b759acc65030ed4dfe9e652f08ef7c1bf793cd3d09c8d7f59ac28b503",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/70-rules/30-pnis.js",
+      "upstreamBlob": "0b39e0bc433a78ddadc8a4ec35c4a9b004292cc5",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "97e7d3e46fc3675845a529a8e356ccf3136b7ec6bf56ee7e26115013b1f54abf",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/70-rules/35-pni-orders.js",
+      "upstreamBlob": "e0c428c5d9be652dbeb9871f94cac9a510a79b59",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8a248229c5c611f0a6d58a573306beecc5532017a36c97d6ad9ac3e5334e2454",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/70-rules/40-peering-desk.js",
+      "upstreamBlob": "6ada9878f4aa765a590efd2ead6b376a4b7fa54f",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "d521ccc505f29c5bf23553c1baeb854695594477730c600590da269fd6263b87",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/80-simulation/70-customers-and-events.js",
+      "upstreamBlob": "3e512e14481d80f2ce6a7d798d17ad8c0fd24b77",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "c0b307b4853cf54828988dd8396d77cdb2178607605cb61cc1e3150ed7ebbc23",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/85-incidents/20-failures.js",
+      "upstreamBlob": "df141aa9b900533f6d00cd09bd8990721d3561ef",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "0b2824ccb1391a4e174e20fcccfab12e1a5b43a065e801fa1e172afb0810a4ef",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/85-incidents/50-cable-ships.js",
+      "upstreamBlob": "02febde88109f9e1b2c242ffa0dd2d38caaf6c49",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8b728daa94fdcd0ac385945cc6d9b0422df4e96655cf8f4666f226c495ef9799",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/88-days/10-day-tick.js",
+      "upstreamBlob": "d6cbaf74aa2f9cad397d400d92e3d75f5277c69c",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "4f5d7e43447258f917676d6651169af9065825c95ee282d1b827680e16dddb1e",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/88-days/20-badges.js",
+      "upstreamBlob": "63f665053dc9a7339e8443bfda7ee1b2eb1b9bb1",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8e88c8127a16da37535ae08eea075ee46e1967ff0bf9a3e44fb0d6fce729b5ec",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/90-actions/20-pops-transit-ix.js",
+      "upstreamBlob": "32ff2f1c61aab53512d4c45008cc44892fd92fba",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "bbd32e5a22ec492e182568a9a9f4121eda4b0dd38cc82d4822e1cdf32e311567",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/90-actions/40-sites-peering-caches.js",
+      "upstreamBlob": "2a98fd92cd9574802c1c7e54ec07549f7fdf4bd4",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "76a338a52c09c85e5822bc9fd81adb2c0a856134de0074ecebecb61634f45457",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/90-actions/85-routing-and-routers.js",
+      "upstreamBlob": "6a6822f1c986e545b2d721ff930c151dce10ef6f",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "959fce6b7baf82077688e89fae62340cceb2b1eb7bf94e2903b7c4b165f50ef2",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/90-actions/87-fiber-and-hardware.js",
+      "upstreamBlob": "c7fd8e2fb905f68ca422372ac9bab9f8241ba3e7",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "26fc4837746829b39764f85551821cddee7aa0aedcd422af297e9c5660440c46",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/93-ui/10-dom.js",
+      "upstreamBlob": "ffb1f612a8ee08e46ad445754708d5d4fe2399a9",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "38aeae228e3a25e224acb9b5c81954fee60c879377252b9be10d49d4b9faa1e3",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/93-ui/40-hud-and-panels.js",
+      "upstreamBlob": "953dfa2bc6bcd43eaa9b546a5b8b428729fe10c9",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8d530e2227b3852486ae31eb06d06427c1586f67020a1700f57f2f2f31a0e6ac",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/93-ui/46-routing-modal.js",
+      "upstreamBlob": "5d2aae1805de7b285b64fc82f2444ba6abc568f2",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "62f96e3715ba47060a1a2c6a6ccd933eee99bdb74de359c2316643f0309d2108",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/93-ui/70-link-panels.js",
+      "upstreamBlob": "dcd549168bbacc10a4ccf81710bf29963b94aa81",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "2b823b8a4004c7904cee41a297dbdf2c07718183bc67b830b113a308e5178b1e",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/95-modals/10-toasts.js",
+      "upstreamBlob": "15e2fbb5dbff2eb95235516a2fd0cb484a7b3ed9",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "5eb0d08b0a33aecdf97e3a619d5a56fa0d89c656b591dd60ed88eb74da26ec11",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/game/96-map/30-settings.js",
+      "upstreamBlob": "bc2605bb90dfc84328cd1edbd39bbee5a623bed3",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "63a8c0510396cffec235512c632d3c6452c975969299c631a6dee7eb9a83e51b",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/i18n/en.js",
+      "upstreamBlob": "b5549370966dd53c2689e60635565e85b3265af1",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "af78206159d33418a8826d19a7983fa10b127100f1221e0adeb4bb4b331dd53d",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/styles/20-drawers.css",
+      "upstreamBlob": "31fc8199569e42d86a77cb540cb20d7b3cef10f1",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "3ded7a4094e718b228b0acb5ab08f5692246eda50dce39b73d4358cd23197b90",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/styles/40-modal.css",
+      "upstreamBlob": "ab9b0d6df0c448f7d53dbb17751c302f712599d8",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "89f553440aba23d03072b91851567b47ad476eaa3a92fba4ec3ce1e582115bc3",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/styles/50-tablet.css",
+      "upstreamBlob": "9efb1c2fa51bd322d53f877e23b42429466bdf11",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "890622346362b2d8966f58ec53884b67ea04a98d49a36819fd18a8eafa331e56",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "src/styles/60-phone.css",
+      "upstreamBlob": "8e2860679e57946006682da7ad291b201cf6e854",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "b39d6eddf6ec28e50693d9db1106f41a86ba12ee098b1ccd5f677ce410db6019",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/au-north.test.js",
+      "upstreamBlob": "6d5cdaa372e3367d955a399082461a1d84723d62",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "c94da12b230495cec811db488657e9cd1ea886f887f6568e2b259cd2d82b9b1c",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/backbone-core.test.js",
+      "upstreamBlob": "5e7bba9f7598963b4d63e8cf43bb96ba9cebe7fa",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "f668bf1c3ebc8899bef1af1cdbc77c8f7aa32d956cf53c40dde0bb7a215a72f7",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/best-effort.test.js",
+      "upstreamBlob": "03698a9937f35f7fd2a3390adc6abf6914266be1",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "45659bd88114ad63bc69300ff68dfeca41737b574cc88169592dbaaafb1f7c10",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/ddos-model.test.js",
+      "upstreamBlob": "774692bea62b8fce0a3500445d7cc7035e1701be",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "399163578e7ab446486306736cb4e2bcd09496e0e214059b79e2f041a0a86182",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/game.test.js",
+      "upstreamBlob": "c182655893ee1932c0ea47430f5cd7c85b8fd4f6",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "9bd936f49df9c22de9d9025a42838f07f0e3ca05138774ff1baa11ec818babe6",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/gameplay-rules.test.js",
+      "upstreamBlob": "8e469934be99041f1bd6cd38d1495135f267534d",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "0d05f5728be88b639c9154e26aeffc616ebdee94e3d6a09101853d7dbd89f744",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/intern-optics.test.js",
+      "upstreamBlob": "0cc9d1999f782edcc11ce478b23d292821042194",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "59e2e6ddf9ee7c32b8d3801c09baa36a626eabbb71fa745c99563e18f2c2e33e",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/issues.test.js",
+      "upstreamBlob": "39057ba2f5acf3ac4ad4c75ee8df3ea4dbb44d3f",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "02c4e099a377294cb2b0342723233921e29ca9dd3f49961fc98f792ff7e214c2",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/mcp-commands.test.js",
+      "upstreamBlob": "5c336ce445271a767b83b5c57e5afec4cd2a4a2e",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "4140c9c9c711c97f0332189273ab5d235599a0495f4a60a08dfb3bcdbf8d3018",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/mcp.test.js",
+      "upstreamBlob": "2880e95348514a072d054d4368992152e95750a4",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "ac827ae8590eb1755eb799484899b27fa8cd94a02b7df5830f8fc8fb0c7a2b6c",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/pages.test.js",
+      "upstreamBlob": "2db014dd756a6c2954e801ffef958665969bbe7f",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "47d9b91feff9365633aa06ad3e4fce7b3223c326ee20f64532d8a3be092a316b",
+      "matchesUpstreamBlob": false,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/route-server-peers.test.js",
+      "upstreamBlob": "9604897c1e5dd94559d52aee5b03089b99b21bdd",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "e4f4fa7f36ae771b5d80966686c138b7ebef367bb320538e953aa436c4dab0d7",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/routing-modal.test.js",
+      "upstreamBlob": "1516086006b4b13ebfbb22dc1c7b9b1fe0c8c5c9",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "d093cf06f5ebab049a777f9b907a2e5a54c8a842f45550b18419f244dfc6bbf4",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/rules.test.js",
+      "upstreamBlob": "104fb3bfe34a06bf0e4775ee4913ee2276ea8391",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "cc8d2642bbbc27586121b6cb06c47ceb4c65ff81c3157c42521e364624caffc6",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/scenarios-playtest.test.js",
+      "upstreamBlob": "a35ae05282c6c12a46b3f7ff624a006078f8e563",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "32a9a7755cc4e465c000e8a5cabacfb74f0ac564980ddda16099477864427fc3",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/sea-rush.test.js",
+      "upstreamBlob": "77f8afe368c5745afa47304d0abc4f4fc02ad696",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "8107edbdfc563a41b382dc995d27ea359fd096f83e29cb0bb6d5ac724c08c05f",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    },
+    {
+      "path": "tests/traceroute.test.js",
+      "upstreamBlob": "a0caf057b4f2684c04bf2ec96ef046efb0df93b0",
+      "applicationStatus": "applied-awaiting-full-adoption-review",
+      "localSha256": "05688a1c7f2483bfb8a200ffb1d265bb5d23232a5efc3f00fd4d429c27d90776",
+      "matchesUpstreamBlob": true,
+      "disposition": "adapt"
+    }
+  ]
+}

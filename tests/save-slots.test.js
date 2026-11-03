@@ -19,23 +19,23 @@ function legacySave() {
 test('the single save of older versions becomes the first network, losslessly, and loads exactly as before', async () => {
   const { txt, snap } = legacySave();
   const b = browser();
-  const a = load({ browser: b, storage: { 'sot-save-v1': txt } });
+  const a = load({ browser: b, storage: { 'soc-sp-save-v1': txt } });
   await settle(a.ev, 'UI.started===true');
   assert.equal(a.ev('JSON.stringify([S.name,S.day,S.cash,S.asn,Object.keys(S.pops),S.transit.length])'), snap, 'the same network');
   assert.equal(a.ev('UI.speed'), 2);
-  assert.equal(b.ls.get('sot-save-v1:main'), txt, 'copied byte for byte');
-  assert.equal(b.ls.get('sot-save-v1'), txt, 'the old key stays as a fallback until the network saves again');
+  assert.equal(b.ls.get('soc-sp-save-v1:main'), txt, 'copied byte for byte');
+  assert.equal(b.ls.get('soc-sp-save-v1'), txt, 'the old key stays as a fallback until the network saves again');
   const e = idx(a.ev);
   assert.equal(e.length, 1);
   assert.equal(e[0].id, 'main');
   assert.equal(e[0].name, 'Old Faithful');
   assert.equal(e[0].day, 30);
   // The copy was read back before the index was written.
-  const i = b.log.findIndex((x) => x[0] === 'set' && x[1] === 'sot-save-v1:main'), r = b.log.findIndex((x, n) => n > i && x[0] === 'get' && x[1] === 'sot-save-v1:main'), w = b.log.findIndex((x) => x[0] === 'set' && x[1] === 'sot-slots');
+  const i = b.log.findIndex((x) => x[0] === 'set' && x[1] === 'soc-sp-save-v1:main'), r = b.log.findIndex((x, n) => n > i && x[0] === 'get' && x[1] === 'soc-sp-save-v1:main'), w = b.log.findIndex((x) => x[0] === 'set' && x[1] === 'soc-sp-slots');
   assert.ok(i >= 0 && r > i && w > r, 'write new, read it back, then the index');
   a.ev('dayTick();save(true)');
-  assert.equal(b.ls.has('sot-save-v1'), false, 'after a later save, the old key is retired');
-  assert.equal(JSON.parse(b.ls.get('sot-save-v1:main')).day, 31);
+  assert.equal(b.ls.has('soc-sp-save-v1'), false, 'after a later save, the old key is retired');
+  assert.equal(JSON.parse(b.ls.get('soc-sp-save-v1:main')).day, 31);
   assert.deepEqual(a.errors, []);
 });
 
@@ -43,11 +43,11 @@ test('a browser with no room for the copy keeps playing from the old key', async
   const { txt } = legacySave();
   const b = browser();
   b.quota = 10;// every slot write is refused
-  const a = load({ browser: b, storage: { 'sot-save-v1': txt } });
+  const a = load({ browser: b, storage: { 'soc-sp-save-v1': txt } });
   await settle(a.ev, 'UI.started===true');
   assert.equal(a.ev('S.name'), 'Old Faithful');
-  assert.equal(b.ls.has('sot-save-v1:main'), false);
-  assert.equal(b.ls.get('sot-save-v1'), txt, 'never touched');
+  assert.equal(b.ls.has('soc-sp-save-v1:main'), false);
+  assert.equal(b.ls.get('soc-sp-save-v1'), txt, 'never touched');
   assert.deepEqual(a.errors, []);
 });
 
@@ -57,11 +57,11 @@ test('a compressed (gz) single save migrates and loads the same network', async 
   const day = g.ev('S.day');
   assert.ok(raw.startsWith('gz:'));
   const b = browser();
-  const a = load({ browser: b, gzip: true, storage: { 'sot-save-v1': raw } });
+  const a = load({ browser: b, gzip: true, storage: { 'soc-sp-save-v1': raw } });
   await settle(a.ev, 'UI.started===true');
   assert.equal(a.ev('S.name'), 'Squeezed');
   assert.equal(a.ev('S.day'), day);
-  assert.equal(b.ls.get('sot-save-v1:main'), raw);
+  assert.equal(b.ls.get('soc-sp-save-v1:main'), raw);
   assert.equal(idx(a.ev)[0].name, 'Squeezed', 'the index knows its name without unpacking it again');
   assert.deepEqual(a.errors, []);
 });
@@ -90,7 +90,7 @@ test('two networks coexist and load independently; the title lists them, newest 
   await settle(a.ev, 'UI.started===true');
   assert.equal(a.ev('S.name'), 'Second Net');
   assert.equal(a.ev('S.day'), 9);
-  assert.equal(JSON.parse(b.ls.get('sot-save-v1:' + first)).name, 'First Net', 'each in its own key');
+  assert.equal(JSON.parse(b.ls.get('soc-sp-save-v1:' + first)).name, 'First Net', 'each in its own key');
   assert.deepEqual(a.errors, []);
 });
 
@@ -103,7 +103,7 @@ test('the title lists networks from the index alone, without reading any save', 
   a.ev('ACT.toTitle()');
   b.log.length = 0;
   a.ev('showTitle()');
-  assert.deepEqual(b.log.filter((x) => x[1].startsWith('sot-save-v1')), [], 'no save was read');
+  assert.deepEqual(b.log.filter((x) => x[1].startsWith('soc-sp-save-v1')), [], 'no save was read');
   assert.equal(a.ev("document.querySelectorAll('#slotList .slot').length"), 2);
 });
 
@@ -167,9 +167,9 @@ test('opening a network open in another window offers to switch or take over, an
   assert.equal(w1.ev('UI.slot'), null);
   assert.equal(w1.ev('S'), null);
   w2.ev('dayTick();save(true)');
-  const before = b.ls.get('sot-save-v1:' + id);
+  const before = b.ls.get('soc-sp-save-v1:' + id);
   w1.ev("save(true);dispatchEvent(new Event('pagehide'))");
-  assert.equal(b.ls.get('sot-save-v1:' + id), before, 'the window that stepped aside never writes again');
+  assert.equal(b.ls.get('soc-sp-save-v1:' + id), before, 'the window that stepped aside never writes again');
   assert.equal(JSON.parse(before).day, 5);
   assert.deepEqual(w1.errors, []);
   assert.deepEqual(w2.errors, []);
@@ -201,12 +201,12 @@ test('a stale write is refused: a newer save of the same network from another wi
   play(w1.ev, 'Contested');
   const id = w1.ev('UI.slot');
   // Another window (a forked tab, a crashed lock) saves a newer version behind this one's back.
-  const ix = JSON.parse(b.ls.get('sot-slots'));
-  const newer = JSON.parse(b.ls.get('sot-save-v1:' + id));newer.day = 99;newer.sv = { seq: 1000, at: Date.now() };
-  b.ls.set('sot-save-v1:' + id, JSON.stringify(newer));
-  ix.slots[0].seq = 1000;ix.slots[0].day = 99;b.ls.set('sot-slots', JSON.stringify(ix));
+  const ix = JSON.parse(b.ls.get('soc-sp-slots'));
+  const newer = JSON.parse(b.ls.get('soc-sp-save-v1:' + id));newer.day = 99;newer.sv = { seq: 1000, at: Date.now() };
+  b.ls.set('soc-sp-save-v1:' + id, JSON.stringify(newer));
+  ix.slots[0].seq = 1000;ix.slots[0].day = 99;b.ls.set('soc-sp-slots', JSON.stringify(ix));
   w1.ev('dayTick();save(true)');
-  assert.equal(JSON.parse(b.ls.get('sot-save-v1:' + id)).day, 99, 'the newer save stays');
+  assert.equal(JSON.parse(b.ls.get('soc-sp-save-v1:' + id)).day, 99, 'the newer save stays');
   assert.match(card(w1.ev), /saved in another window/);
   assert.equal(w1.ev('UI.slot'), null, 'and this window stops saving');
   assert.ok(w1.ev("!!document.querySelector('#modalCard [data-act=cont]')"), 'with a way to load the newest version');
@@ -214,9 +214,9 @@ test('a stale write is refused: a newer save of the same network from another wi
   const w2 = load({ browser: b });
   await flush();
   play(w2.ev, 'Watcher');
-  const id2 = w2.ev('UI.slot'), ix2 = JSON.parse(b.ls.get('sot-slots')), e = ix2.slots.find((x) => x.id === id2);
+  const id2 = w2.ev('UI.slot'), ix2 = JSON.parse(b.ls.get('soc-sp-slots')), e = ix2.slots.find((x) => x.id === id2);
   e.seq += 50;
-  w1.dom.window.localStorage.setItem('sot-slots', JSON.stringify(ix2));// written by another window: w2 gets the event
+  w1.dom.window.localStorage.setItem('soc-sp-slots', JSON.stringify(ix2));// written by another window: w2 gets the event
   await settle(w2.ev, 'UI.slot===null');
   assert.deepEqual(w1.errors, []);
   assert.deepEqual(w2.errors, []);
@@ -230,11 +230,11 @@ test('saves are written slot first, then the index, and every write moves the se
   b.log.length = 0;
   a.ev('dayTick();save(true)');
   const sets = b.log.filter((x) => x[0] === 'set').map((x) => x[1]);
-  assert.ok(sets.indexOf('sot-save-v1:' + id) < sets.indexOf('sot-slots'), sets.join());
-  const s = JSON.parse(b.ls.get('sot-save-v1:' + id)), e = idx(a.ev).find((x) => x.id === id);
+  assert.ok(sets.indexOf('soc-sp-save-v1:' + id) < sets.indexOf('soc-sp-slots'), sets.join());
+  const s = JSON.parse(b.ls.get('soc-sp-save-v1:' + id)), e = idx(a.ev).find((x) => x.id === id);
   assert.equal(s.sv.seq, e.seq, 'the save and its index entry agree');
   a.ev('save(true)');
-  assert.equal(JSON.parse(b.ls.get('sot-save-v1:' + id)).sv.seq, e.seq + 1);
+  assert.equal(JSON.parse(b.ls.get('soc-sp-save-v1:' + id)).sv.seq, e.seq + 1);
   assert.equal(a.ev('"sv" in S'), false, 'the stamp lives in storage, not in the game');
 });
 
@@ -250,9 +250,9 @@ test('deleting a network removes its save and its line, after a confirmation', a
   assert.match(card(a.ev), /Goner/);
   a.ev("document.querySelector('#modalCard [data-act=slotDel]').click()");
   assert.match(card(a.ev), /cannot be undone/);
-  assert.ok(b.ls.has('sot-save-v1:' + gone), 'nothing deleted before the confirmation');
+  assert.ok(b.ls.has('soc-sp-save-v1:' + gone), 'nothing deleted before the confirmation');
   a.ev("document.querySelector('#modalCard [data-act=slotDelGo]').click()");
-  assert.equal(b.ls.has('sot-save-v1:' + gone), false);
+  assert.equal(b.ls.has('soc-sp-save-v1:' + gone), false);
   assert.deepEqual(idx(a.ev).map((e) => e.name), ['Keeper']);
   assert.match(card(a.ev), /Continue Keeper/);
   assert.deepEqual(a.errors, []);
@@ -268,7 +268,7 @@ test('a network deleted in another window is never written back by the window pl
   w2.ev(`ACT.slotDelGo({id:'${id}'})`);
   await settle(w1.ev, 'UI.slot===null');
   w1.ev("save(true);dispatchEvent(new Event('pagehide'))");
-  assert.equal(b.ls.has('sot-save-v1:' + id), false);
+  assert.equal(b.ls.has('soc-sp-save-v1:' + id), false);
   assert.equal(idx(w2.ev).length, 0);
   assert.match(w1.ev("document.getElementById('toasts').textContent"), /deleted in another window/);
 });
@@ -290,13 +290,13 @@ test('export the network on screen, or any network from the list; import adds a 
   assert.equal(a.ev('S.name'), 'Exported Net');
   assert.equal(a.ev('S.day'), 7);
   assert.equal(idx(a.ev).length, 2);
-  assert.equal(JSON.parse(b.ls.get('sot-save-v1:' + first)).day, 7, 'the first network is still there');
+  assert.equal(JSON.parse(b.ls.get('soc-sp-save-v1:' + first)).day, 7, 'the first network is still there');
   // Export from the list: straight from storage, the same network.
   a.ev('ACT.toTitle()');
   a.ev(`ACT.slotExport({id:'${first}'})`);
   await settle(a.ev, 'true');await flush(5);
   const j = JSON.parse(await text(files[1]));
-  assert.equal(j.app, 'series-of-tubes');
+  assert.equal(j.app, 'series-of-calls-sp');
   assert.equal(j.S.name, 'Exported Net');
   assert.equal(a.ev(`parseSave(${JSON.stringify(JSON.stringify(j))}).err||null`), null, 'and it imports');
   assert.deepEqual(a.errors, []);
@@ -323,11 +323,11 @@ test('puzzles never write a network, and a tab closed mid-puzzle keeps the netwo
   play(a.ev, 'Set Aside', 'fra', 3);
   const id = a.ev('UI.slot');
   a.ev("ACT.pzStart({id:'hello'})");
-  const kept = b.ls.get('sot-save-v1:' + id);
+  const kept = b.ls.get('soc-sp-save-v1:' + id);
   a.ev("S.pops.lon={day:0};save(true);for(let i=0;i<5;i++)frame(performance.now()+6000*i);dispatchEvent(new Event('pagehide'))");
-  assert.equal(b.ls.get('sot-save-v1:' + id), kept, 'the puzzle never writes the slot');
+  assert.equal(b.ls.get('soc-sp-save-v1:' + id), kept, 'the puzzle never writes the slot');
   assert.equal(JSON.parse(kept).name, 'Set Aside');
-  assert.ok(b.ls.has('sot-puzzles') || true);
+  assert.ok(b.ls.has('soc-sp-puzzles') || true);
   // The tab closes mid-puzzle; the next one continues the network.
   b.close(a.dom.window);
   const r = load({ browser: b });
@@ -367,7 +367,7 @@ test('leaving a puzzle when the network cannot be loaded marks it damaged, and C
   a.ev('migrate=__m');
   assert.match(a.ev("document.getElementById('toasts').textContent"), /could not be loaded/);
   assert.equal(idx(a.ev)[0].broken, true);
-  assert.ok(b.ls.has('sot-save-v1:' + id), 'kept, so it can be exported');
+  assert.ok(b.ls.has('soc-sp-save-v1:' + id), 'kept, so it can be exported');
   a.ev(`ACT.cont({id:${JSON.stringify(id)}})`);
   await flush();
   assert.equal(a.ev('!!UI.started'), false);
@@ -383,15 +383,15 @@ test('a corrupted index is rebuilt from the saves themselves', async () => {
   a.ev('ACT.toTitle()');
   play(a.ev, 'Beta', 'nyc', 3);
   a.ev('ACT.toTitle()');
-  b.ls.set('sot-slots', '{not json');
-  b.ls.set('sot-save-v1:junk1', 'garbage');
+  b.ls.set('soc-sp-slots', '{not json');
+  b.ls.set('soc-sp-save-v1:junk1', 'garbage');
   const c = load({ browser: b });
   await flush();
   const names = idx(c.ev).map((e) => e.name || (e.broken ? '(damaged)' : '?')).sort();
   assert.deepEqual(names, ['(damaged)', 'Alpha', 'Beta']);
   assert.match(c.ev("document.getElementById('slotList').textContent"), /Damaged/);
   // An index line whose save is gone is dropped.
-  const ix = JSON.parse(b.ls.get('sot-slots'));ix.slots.push({ id: 'ghost', name: 'Ghost', day: 1, at: Date.now() });b.ls.set('sot-slots', JSON.stringify(ix));
+  const ix = JSON.parse(b.ls.get('soc-sp-slots'));ix.slots.push({ id: 'ghost', name: 'Ghost', day: 1, at: Date.now() });b.ls.set('soc-sp-slots', JSON.stringify(ix));
   c.ev('showTitle()');
   assert.equal(c.ev("idx=slotIdx().map(e=>e.name).includes('Ghost')"), false);
   assert.deepEqual(c.errors, []);
@@ -448,7 +448,7 @@ test('a save the game could not load is tried again: by the next version, or wit
   await flush();
   a.ev('migrate=__m');
   assert.equal(idx(a.ev)[0].broken, true);
-  assert.equal(JSON.parse(b.ls.get('sot-slots')).slots[0].bv, a.ev('APP_VERSION'));
+  assert.equal(JSON.parse(b.ls.get('soc-sp-slots')).slots[0].bv, a.ev('APP_VERSION'));
   a.ev(`ACT.slotMenu({id:${q}})`);
   assert.match(card(a.ev), /Try again/);
   // Try again, with the bug gone: it opens, and is no longer damaged.
@@ -457,8 +457,8 @@ test('a save the game could not load is tried again: by the next version, or wit
   assert.equal(a.ev('!!UI.started&&S.name'), 'Phoenix');
   assert.equal(idx(a.ev)[0].broken, false);
   // Marked damaged by an older version: the index reads it as worth another try.
-  const ix = JSON.parse(b.ls.get('sot-slots'));ix.slots[0].broken = true;ix.slots[0].bv = '0.0.1';
-  b.ls.set('sot-slots', JSON.stringify(ix));
+  const ix = JSON.parse(b.ls.get('soc-sp-slots'));ix.slots[0].broken = true;ix.slots[0].bv = '0.0.1';
+  b.ls.set('soc-sp-slots', JSON.stringify(ix));
   assert.equal(JSON.parse(a.ev('JSON.stringify(slotIdx(true))'))[0].broken, false);
   assert.deepEqual(a.errors, []);
 });

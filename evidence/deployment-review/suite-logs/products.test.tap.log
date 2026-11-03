@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: AC-SOC-085 each mapped product family has distinct scenario slots and modes; real target example strings do not become capabilities
+ok 1 - AC-SOC-085 each mapped product family has distinct scenario slots and modes; real target example strings do not become capabilities
+  ---
+  duration_ms: 16.180871
+  type: 'test'
+  ...
+# Subtest: AC-SOC-086 offer sale and support lifecycle are independent and effective only after provisioning
+ok 2 - AC-SOC-086 offer sale and support lifecycle are independent and effective only after provisioning
+  ---
+  duration_ms: 1.53925
+  type: 'test'
+  ...
+# Subtest: AC-SOC-087 deployment mode, feature subset and dependency gates preserve prior effective configuration
+ok 3 - AC-SOC-087 deployment mode, feature subset and dependency gates preserve prior effective configuration
+  ---
+  duration_ms: 0.879174
+  type: 'test'
+  ...
+# Subtest: AC-SOC-088 compatibility is directional, feature-scoped and bound to exact deployment generations and versions
+ok 4 - AC-SOC-088 compatibility is directional, feature-scoped and bound to exact deployment generations and versions
+  ---
+  duration_ms: 0.871472
+  type: 'test'
+  ...
+# Subtest: AC-SOC-089 family-specific conflicts, jurisdiction evidence and local licensing remain explicit prerequisites
+ok 5 - AC-SOC-089 family-specific conflicts, jurisdiction evidence and local licensing remain explicit prerequisites
+  ---
+  duration_ms: 1.822421
+  type: 'test'
+  ...
+# Subtest: AC-SOC-090 save validation, deterministic inspection and source-serialized worker behavior match
+ok 6 - AC-SOC-090 save validation, deterministic inspection and source-serialized worker behavior match
+  ---
+  duration_ms: 2.899692
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 51.954708

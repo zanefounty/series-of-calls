@@ -1,0 +1,14 @@
+/* Synthetic callback policy and fault observations, over the channels dispatcher. */
+const SOC_WEBHOOK_LABELS={title:N_('webhook.title'),note:N_('webhook.note'),enabled:N_('webhook.enabled'),rateLimit:N_('webhook.rate_limit'),retries:N_('webhook.retries'),backoff:N_('webhook.backoff'),submit:N_('webhook.submit'),authenticated:N_('webhook.authenticated'),applicationAvailable:N_('webhook.application_available'),supplierAvailable:N_('webhook.supplier_available'),observe:N_('webhook.observe'),policy:N_('webhook.policy'),delivery:N_('webhook.delivery'),none:N_('webhook.none')};
+const socWebhookT=k=>tr(SOC_WEBHOOK_LABELS[k]);
+function socWebhookPanel(s,results){
+ const w=results.channels?.webhooks;if(!w)return '';
+ const flag=(k,value)=>`<label class="soc-toggle"><input type="checkbox" name="${k}"${value?' checked':''}>${socWebhookT(k)}</label>`,num=(k,max)=>`<label>${socWebhookT(k)}<input name="${k}" type="number" min="${k==='retries'?0:1}" max="${max}" value="${w.desired[k]}" required></label>`;
+ const disabled=!SCT.locked||SCT.busy;
+ return `<section id="soc-webhook" class="soc-business"><h2>${socWebhookT('title')}</h2><p>${socWebhookT('note')}</p><form data-webhook="policy"><fieldset${disabled?' disabled':''}>${flag('enabled',w.desired.enabled)}${num('rateLimit',100)}${num('retries',8)}${num('backoff',60)}<button type="submit">${socWebhookT('submit')}</button></fieldset></form><form data-webhook="observe"><fieldset${disabled?' disabled':''}>${flag('authenticated',w.observed.authenticated)}${flag('applicationAvailable',w.observed.applicationAvailable)}${flag('supplierAvailable',w.observed.supplierAvailable)}<button type="submit">${socWebhookT('observe')}</button></fieldset></form><details><summary>${socWebhookT('policy')}</summary><pre>${esc(JSON.stringify({desired:w.desired,effective:w.effective,provisioning:w.provisioning,observed:w.observed},null,2))}</pre></details><h3>${socWebhookT('delivery')}</h3>${w.deliveries.length?w.deliveries.map(d=>`<article data-webhook-delivery="${esc(d.id)}"><h4>${esc(d.caseId)} · ${esc(d.status)}</h4><p>${esc(d.reason||'')} · ${esc(d.idempotencyKey)}</p><pre>${esc(JSON.stringify(d.attempts,null,2))}</pre></article>`).join(''):`<p>${socWebhookT('none')}</p>`}</section>`;
+}
+function socBindWebhook(){
+ for(const form of document.querySelectorAll('[data-webhook]'))form.onsubmit=e=>{
+  e.preventDefault();try{const f=form.elements;const command=form.dataset.webhook==='policy'?{action:'webhook-configure',config:{enabled:f.enabled.checked,rateLimit:Number(f.rateLimit.value),retries:Number(f.retries.value),backoff:Number(f.backoff.value)}}:{action:'webhook-observe',authenticated:f.authenticated.checked,applicationAvailable:f.applicationAvailable.checked,supplierAvailable:f.supplierAvailable.checked};socApply({type:'channels',command});}catch(error){socError(error);}
+ };
+}

@@ -1,0 +1,743 @@
+npm notice run series-of-calls@0.1.0-preview.1 test
+npm notice run node scripts/test.js
+✔ tests/admission-security-integration.test.js (87.9773ms)
+✔ tests/admission-security.test.js (52.743338ms)
+✔ tests/advanced-admin-ui.test.js (3268.021815ms)
+✔ tests/advanced-boundaries.test.js (45.996634ms)
+✔ tests/any-home-city.test.js (6825.237175ms)
+✔ tests/architect.test.js (9324.610748ms)
+✔ tests/assessment-packs.test.js (61.53266ms)
+✔ tests/au-north.test.js (9948.515186ms)
+✔ tests/automation.test.js (4987.943394ms)
+✔ tests/backbone-core.test.js (14945.812704ms)
+✔ tests/badges-variants.test.js (10229.352936ms)
+✔ tests/best-effort.test.js (12029.642081ms)
+✔ tests/boundaries.test.js (50.032799ms)
+✔ tests/build.test.js (436.591085ms)
+✔ tests/business.test.js (292.296189ms)
+✔ tests/cable-labels.test.js (6436.286699ms)
+✔ tests/cable-ships.test.js (13357.756103ms)
+✔ tests/cache-ports.test.js (7128.444117ms)
+✔ tests/calendar.test.js (2175.964802ms)
+✔ tests/calling-achievements.test.js (1282.521616ms)
+✔ tests/calling-policy.test.js (40.165166ms)
+✔ tests/calls-mcp.test.js (128.987449ms)
+✔ tests/calls-offline.test.js (50.679456ms)
+✔ tests/campaign-integration.test.js (4471.344209ms)
+✔ tests/campaign.test.js (376.513951ms)
+
+Interrupted while running:
+
+⚠ tests/capability-progression.test.js (tests/capability-progression.test.js:1:1)
+⚠ tests/capacity-deals.test.js (tests/capacity-deals.test.js:1:1)
+⚠ tests/channels.test.js (tests/channels.test.js:1:1)
+⚠ tests/chaos-monkey.test.js (tests/chaos-monkey.test.js:1:1)
+⚠ tests/city-size.test.js (tests/city-size.test.js:1:1)
+⚠ tests/communications.test.js (tests/communications.test.js:1:1)
+⚠ tests/compute-idempotent.test.js (tests/compute-idempotent.test.js:1:1)
+⚠ tests/contact.test.js (tests/contact.test.js:1:1)
+⚠ tests/ddos-floods.test.js (tests/ddos-floods.test.js:1:1)
+⚠ tests/ddos-model.test.js (tests/ddos-model.test.js:1:1)
+⚠ tests/direct-egress.test.js (tests/direct-egress.test.js:1:1)
+⚠ tests/domain-admin-ui.test.js (tests/domain-admin-ui.test.js:1:1)
+⚠ tests/domain-integration.test.js (tests/domain-integration.test.js:1:1)
+⚠ tests/estate-lifecycle-integration.test.js (tests/estate-lifecycle-integration.test.js:1:1)
+⚠ tests/estate-operations.test.js (tests/estate-operations.test.js:1:1)
+⚠ tests/eyeballs.test.js (tests/eyeballs.test.js:1:1)
+✖ tests/capability-progression.test.js (30918.891411ms)
+✔ tests/capacity-deals.test.js (10016.42072ms)
+✔ tests/channels.test.js (54.097939ms)
+✔ tests/chaos-monkey.test.js (15337.711075ms)
+✔ tests/city-size.test.js (2930.064653ms)
+✔ tests/communications.test.js (122.351455ms)
+✔ tests/compute-idempotent.test.js (6082.971176ms)
+✔ tests/contact.test.js (106.886065ms)
+✔ tests/ddos-floods.test.js (13062.919448ms)
+✖ tests/ddos-model.test.js (15073.937233ms)
+✖ tests/direct-egress.test.js (11692.946255ms)
+✔ tests/domain-admin-ui.test.js (4335.09229ms)
+✔ tests/domain-integration.test.js (186.383499ms)
+✔ tests/estate-lifecycle-integration.test.js (146.099783ms)
+✔ tests/estate-operations.test.js (49.964114ms)
+✖ tests/eyeballs.test.js (1359.381448ms)
+✖ tests/fiber-broker.test.js
+✖ tests/find-city.test.js
+✖ tests/focus-link.test.js
+✖ tests/game.test.js
+✖ tests/gameplay-rules.test.js
+✖ tests/gangnam.test.js
+✖ tests/glowball-sakura-lager.test.js
+✖ tests/i18n.test.js
+✖ tests/inbound-calling.test.js
+✖ tests/information.test.js
+✖ tests/interaction-ui.test.js
+✖ tests/intern-optics.test.js
+✖ tests/islands-and-arctic.test.js
+✖ tests/issue-exercises.test.js
+✖ tests/issues.test.js
+✖ tests/journey-integration.test.js
+✖ tests/language-picker.test.js
+✖ tests/latency.test.js
+✖ tests/learning-integration.test.js
+✖ tests/levels.test.js
+✖ tests/link-metrics.test.js
+✖ tests/link-trial.test.js
+✖ tests/load-time.test.js
+✖ tests/managed-integration.test.js
+✖ tests/managed-operations-ui.test.js
+✖ tests/managed-operations.test.js
+✖ tests/market-integration.test.js
+✖ tests/market-qualification.test.js
+✖ tests/market-ui.test.js
+✖ tests/mcp-commands.test.js
+✖ tests/mcp.test.js
+✖ tests/media-integration.test.js
+✖ tests/media-negotiation.test.js
+✖ tests/media-ui.test.js
+✖ tests/metric-panel.test.js
+✖ tests/modes.test.js
+✖ tests/module-boundaries.test.js
+✖ tests/more-cables.test.js
+✖ tests/moscow-premium.test.js
+✖ tests/narrative.test.js
+✖ tests/networks-list.test.js
+✖ tests/new-game-speed.test.js
+✖ tests/number-porting-integration.test.js
+✖ tests/number-porting-ui.test.js
+✖ tests/number-porting.test.js
+✖ tests/observation-ui.test.js
+✖ tests/optic-counts.test.js
+✖ tests/optic-ports.test.js
+✖ tests/outcomes.test.js
+✖ tests/own-asn.test.js
+✖ tests/packs-integration.test.js
+✖ tests/pages.test.js
+✖ tests/peering-desk.test.js
+✖ tests/peering.test.js
+✖ tests/perf.test.js
+✖ tests/persist.test.js
+✖ tests/philippines.test.js
+✖ tests/pni-all.test.js
+✖ tests/pni-global.test.js
+✖ tests/pni-list.test.js
+✖ tests/pnis-and-sold-out.test.js
+✖ tests/pop-standard.test.js
+✖ tests/portfolio-integration.test.js
+✖ tests/portfolio-ui.test.js
+✖ tests/portfolio.test.js
+✖ tests/preview-server.test.js
+✖ tests/product-evidence-integration.test.js
+✖ tests/product-evidence-ui.test.js
+✖ tests/product-evidence.test.js
+✖ tests/product-integration.test.js
+✖ tests/product-rebase.test.js
+✖ tests/products.test.js
+✖ tests/progression-calling.test.js
+✖ tests/progression-market.test.js
+✖ tests/progression-observation.test.js
+✖ tests/progression.test.js
+✖ tests/puzzle-monkey.test.js
+✖ tests/puzzles.test.js
+✖ tests/regions.test.js
+✖ tests/release-story.test.js
+✖ tests/report-link.test.js
+✖ tests/route-cache.test.js
+✖ tests/route-fuzz.test.js
+✖ tests/route-server-peers.test.js
+✖ tests/route-skip.test.js
+✖ tests/route-worker.test.js
+✖ tests/router-art.test.js
+✖ tests/routers-per-pop.test.js
+✖ tests/routing-modal.test.js
+✖ tests/routing-reference.test.js
+✖ tests/rules-locked.test.js
+✖ tests/rules.test.js
+✖ tests/sales-trial.test.js
+✖ tests/save-size.test.js
+✖ tests/save-slots.test.js
+✖ tests/scenarios-playtest.test.js
+✖ tests/sea-optic-hint.test.js
+✖ tests/sea-routing.test.js
+✖ tests/sea-rush.test.js
+✖ tests/security-ui.test.js
+✖ tests/service-admin-ui.test.js
+✖ tests/service-observation.test.js
+✖ tests/service-operations.test.js
+✖ tests/services.test.js
+✖ tests/shared-services-integration.test.js
+✖ tests/shared-services-ui.test.js
+✖ tests/shared-services.test.js
+✖ tests/site-integration.test.js
+✖ tests/site-operations.test.js
+✖ tests/site-ui.test.js
+✖ tests/specialist-lifecycle-integration.test.js
+✖ tests/specialist-lifecycle-ui.test.js
+✖ tests/specialist-lifecycle.test.js
+✖ tests/specialist.test.js
+✖ tests/speed.test.js
+✖ tests/standing-orders.test.js
+✖ tests/subsea-upgrade-timing.test.js
+✖ tests/supply.test.js
+✖ tests/tier1-cone.test.js
+✖ tests/tier1-incumbents.test.js
+✖ tests/traceroute.test.js
+✖ tests/training-console.test.js
+✖ tests/transport-boundaries.test.js
+✖ tests/transport.test.js
+✖ tests/useless-subsea-upgrades.test.js
+✖ tests/utilities-caches.test.js
+✖ tests/utilities.test.js
+✖ tests/weekly-architect.test.js
+✖ tests/weekly-puzzle.test.js
+✖ tests/weekly-scenario.test.js
+✖ tests/workforce-operations.test.js
+ℹ tests 172
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 135
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54899.547399
+
+✖ failing tests:
+
+test at tests/capability-progression.test.js:1:1
+✖ tests/capability-progression.test.js (30918.891411ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/ddos-model.test.js:1:1
+✖ tests/ddos-model.test.js (15073.937233ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/direct-egress.test.js:1:1
+✖ tests/direct-egress.test.js (11692.946255ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/eyeballs.test.js:1:1
+✖ tests/eyeballs.test.js (1359.381448ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/fiber-broker.test.js:1:1
+✖ tests/fiber-broker.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/find-city.test.js:1:1
+✖ tests/find-city.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/focus-link.test.js:1:1
+✖ tests/focus-link.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/game.test.js:1:1
+✖ tests/game.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/gameplay-rules.test.js:1:1
+✖ tests/gameplay-rules.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/gangnam.test.js:1:1
+✖ tests/gangnam.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/glowball-sakura-lager.test.js:1:1
+✖ tests/glowball-sakura-lager.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/i18n.test.js:1:1
+✖ tests/i18n.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/inbound-calling.test.js:1:1
+✖ tests/inbound-calling.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/information.test.js:1:1
+✖ tests/information.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/interaction-ui.test.js:1:1
+✖ tests/interaction-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/intern-optics.test.js:1:1
+✖ tests/intern-optics.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/islands-and-arctic.test.js:1:1
+✖ tests/islands-and-arctic.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/issue-exercises.test.js:1:1
+✖ tests/issue-exercises.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/issues.test.js:1:1
+✖ tests/issues.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/journey-integration.test.js:1:1
+✖ tests/journey-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/language-picker.test.js:1:1
+✖ tests/language-picker.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/latency.test.js:1:1
+✖ tests/latency.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/learning-integration.test.js:1:1
+✖ tests/learning-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/levels.test.js:1:1
+✖ tests/levels.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/link-metrics.test.js:1:1
+✖ tests/link-metrics.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/link-trial.test.js:1:1
+✖ tests/link-trial.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/load-time.test.js:1:1
+✖ tests/load-time.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/managed-integration.test.js:1:1
+✖ tests/managed-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/managed-operations-ui.test.js:1:1
+✖ tests/managed-operations-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/managed-operations.test.js:1:1
+✖ tests/managed-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/market-integration.test.js:1:1
+✖ tests/market-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/market-qualification.test.js:1:1
+✖ tests/market-qualification.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/market-ui.test.js:1:1
+✖ tests/market-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/mcp-commands.test.js:1:1
+✖ tests/mcp-commands.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/mcp.test.js:1:1
+✖ tests/mcp.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/media-integration.test.js:1:1
+✖ tests/media-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/media-negotiation.test.js:1:1
+✖ tests/media-negotiation.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/media-ui.test.js:1:1
+✖ tests/media-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/metric-panel.test.js:1:1
+✖ tests/metric-panel.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/modes.test.js:1:1
+✖ tests/modes.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/module-boundaries.test.js:1:1
+✖ tests/module-boundaries.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/more-cables.test.js:1:1
+✖ tests/more-cables.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/moscow-premium.test.js:1:1
+✖ tests/moscow-premium.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/narrative.test.js:1:1
+✖ tests/narrative.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/networks-list.test.js:1:1
+✖ tests/networks-list.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/new-game-speed.test.js:1:1
+✖ tests/new-game-speed.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/number-porting-integration.test.js:1:1
+✖ tests/number-porting-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/number-porting-ui.test.js:1:1
+✖ tests/number-porting-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/number-porting.test.js:1:1
+✖ tests/number-porting.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/observation-ui.test.js:1:1
+✖ tests/observation-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/optic-counts.test.js:1:1
+✖ tests/optic-counts.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/optic-ports.test.js:1:1
+✖ tests/optic-ports.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/outcomes.test.js:1:1
+✖ tests/outcomes.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/own-asn.test.js:1:1
+✖ tests/own-asn.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/packs-integration.test.js:1:1
+✖ tests/packs-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pages.test.js:1:1
+✖ tests/pages.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/peering-desk.test.js:1:1
+✖ tests/peering-desk.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/peering.test.js:1:1
+✖ tests/peering.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/perf.test.js:1:1
+✖ tests/perf.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/persist.test.js:1:1
+✖ tests/persist.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/philippines.test.js:1:1
+✖ tests/philippines.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pni-all.test.js:1:1
+✖ tests/pni-all.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pni-global.test.js:1:1
+✖ tests/pni-global.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pni-list.test.js:1:1
+✖ tests/pni-list.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pnis-and-sold-out.test.js:1:1
+✖ tests/pnis-and-sold-out.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pop-standard.test.js:1:1
+✖ tests/pop-standard.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/portfolio-integration.test.js:1:1
+✖ tests/portfolio-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/portfolio-ui.test.js:1:1
+✖ tests/portfolio-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/portfolio.test.js:1:1
+✖ tests/portfolio.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/preview-server.test.js:1:1
+✖ tests/preview-server.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/product-evidence-integration.test.js:1:1
+✖ tests/product-evidence-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/product-evidence-ui.test.js:1:1
+✖ tests/product-evidence-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/product-evidence.test.js:1:1
+✖ tests/product-evidence.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/product-integration.test.js:1:1
+✖ tests/product-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/product-rebase.test.js:1:1
+✖ tests/product-rebase.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/products.test.js:1:1
+✖ tests/products.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/progression-calling.test.js:1:1
+✖ tests/progression-calling.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/progression-market.test.js:1:1
+✖ tests/progression-market.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/progression-observation.test.js:1:1
+✖ tests/progression-observation.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/progression.test.js:1:1
+✖ tests/progression.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/puzzle-monkey.test.js:1:1
+✖ tests/puzzle-monkey.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/puzzles.test.js:1:1
+✖ tests/puzzles.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/regions.test.js:1:1
+✖ tests/regions.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/release-story.test.js:1:1
+✖ tests/release-story.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/report-link.test.js:1:1
+✖ tests/report-link.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-cache.test.js:1:1
+✖ tests/route-cache.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-fuzz.test.js:1:1
+✖ tests/route-fuzz.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-server-peers.test.js:1:1
+✖ tests/route-server-peers.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-skip.test.js:1:1
+✖ tests/route-skip.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-worker.test.js:1:1
+✖ tests/route-worker.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/router-art.test.js:1:1
+✖ tests/router-art.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routers-per-pop.test.js:1:1
+✖ tests/routers-per-pop.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routing-modal.test.js:1:1
+✖ tests/routing-modal.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routing-reference.test.js:1:1
+✖ tests/routing-reference.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/rules-locked.test.js:1:1
+✖ tests/rules-locked.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/rules.test.js:1:1
+✖ tests/rules.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sales-trial.test.js:1:1
+✖ tests/sales-trial.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/save-size.test.js:1:1
+✖ tests/save-size.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/save-slots.test.js:1:1
+✖ tests/save-slots.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/scenarios-playtest.test.js:1:1
+✖ tests/scenarios-playtest.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-optic-hint.test.js:1:1
+✖ tests/sea-optic-hint.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-routing.test.js:1:1
+✖ tests/sea-routing.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-rush.test.js:1:1
+✖ tests/sea-rush.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/security-ui.test.js:1:1
+✖ tests/security-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-admin-ui.test.js:1:1
+✖ tests/service-admin-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-observation.test.js:1:1
+✖ tests/service-observation.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-operations.test.js:1:1
+✖ tests/service-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/services.test.js:1:1
+✖ tests/services.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services-integration.test.js:1:1
+✖ tests/shared-services-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services-ui.test.js:1:1
+✖ tests/shared-services-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services.test.js:1:1
+✖ tests/shared-services.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-integration.test.js:1:1
+✖ tests/site-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-operations.test.js:1:1
+✖ tests/site-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-ui.test.js:1:1
+✖ tests/site-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle-integration.test.js:1:1
+✖ tests/specialist-lifecycle-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle-ui.test.js:1:1
+✖ tests/specialist-lifecycle-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle.test.js:1:1
+✖ tests/specialist-lifecycle.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist.test.js:1:1
+✖ tests/specialist.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/speed.test.js:1:1
+✖ tests/speed.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/standing-orders.test.js:1:1
+✖ tests/standing-orders.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/subsea-upgrade-timing.test.js:1:1
+✖ tests/subsea-upgrade-timing.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/supply.test.js:1:1
+✖ tests/supply.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tier1-cone.test.js:1:1
+✖ tests/tier1-cone.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tier1-incumbents.test.js:1:1
+✖ tests/tier1-incumbents.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/traceroute.test.js:1:1
+✖ tests/traceroute.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/training-console.test.js:1:1
+✖ tests/training-console.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/transport-boundaries.test.js:1:1
+✖ tests/transport-boundaries.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/transport.test.js:1:1
+✖ tests/transport.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/useless-subsea-upgrades.test.js:1:1
+✖ tests/useless-subsea-upgrades.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/utilities-caches.test.js:1:1
+✖ tests/utilities-caches.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/utilities.test.js:1:1
+✖ tests/utilities.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-architect.test.js:1:1
+✖ tests/weekly-architect.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-puzzle.test.js:1:1
+✖ tests/weekly-puzzle.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-scenario.test.js:1:1
+✖ tests/weekly-scenario.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-operations.test.js:1:1
+✖ tests/workforce-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'

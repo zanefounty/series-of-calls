@@ -1,0 +1,67 @@
+✔ W1: every city has a country code, a region and real coordinates (1.783099ms)
+✔ W2: every country on the map has at least two consumer networks of its own (3.391195ms)
+✔ W3: every city can buy transit from someone, or is a documented exception (0.928162ms)
+✔ W4: cables are consistent: real cities, two distinct ends, a length and unique ids (0.535131ms)
+✔ W5: every island city can be reached: it shares its land, has a cable, or a beach to land one (0.940738ms)
+✔ N1: network ids and ASNs are unique, ASNs are valid (0.567072ms)
+✔ N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name (1.658319ms)
+✔ N3: every network sits in a founding Tier 1’s customer cone, or is a documented island (0.596597ms)
+✔ N4: no upstream cycles (0.379527ms)
+✔ N5: traffic shares are sane (0.976248ms)
+✔ N6: every network has a type, a peering policy and a translated blurb (0.405401ms)
+✔ N7: presence is real: PoPs are cities, exchange ports only where the network is (0.760693ms)
+✔ M1: On-call is the classic game: the default rules, and what old saves load as (0.396394ms)
+✔ M2: presets are ordered: Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler (1530.675018ms)
+✔ M3: every subsystem that can annoy the player reads a rule (471.531843ms)
+✔ M4: scenarios and the weekly challenge always run On-call (435.929367ms)
+✔ M5: Sandbox has no locked feature (230.567852ms)
+✔ C1: every scenario has a goal its card checks, and none is won on day 0 (488.34466ms)
+✔ C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js) (0.447647ms)
+✖ C3: every player-facing string is translated in every language (862.470144ms)
+✔ F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180 (252.908845ms)
+✔ F2: a simple build in a start city makes money within three months on On-call (1321.019858ms)
+✔ F3: a specialist path only brings customers you can already serve (242.241979ms)
+✔ F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures (1195.367143ms)
+✔ F5: rented capacity never outgrows the route's market (#203) (315.930774ms)
+✔ D1: attack sizes come from the world, never from your network (305.102163ms)
+✔ D2: a full port slows everyone on it (292.809082ms)
+✔ D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget (303.157479ms)
+✔ D4: RTBH costs only the target (344.013365ms)
+✔ no page errors while checking the rules (0.124309ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 29
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16100.326269
+
+✖ failing tests:
+
+test at tests/gameplay-rules.test.js:304:1
+✖ C3: every player-facing string is translated in every language (862.470144ms)
+  <ref *1> Error: spawnSync /usr/bin/node EPERM
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at execFileSync (node:child_process:972:15)
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gameplay-rules.test.js:305:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -1,
+    code: 'EPERM',
+    syscall: 'spawnSync /usr/bin/node',
+    path: '/usr/bin/node',
+    spawnargs: [ '/home/zane-fountylabs/workspace/zefun/series-of-calls/scripts/i18n-check.js' ],
+    error: [Circular *1],
+    status: 0,
+    signal: null,
+    output: [ null, '', '' ],
+    pid: 234,
+    stdout: '',
+    stderr: ''
+  }

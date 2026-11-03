@@ -1,284 +1,100 @@
-# Architecture
+# Series of Calls architecture
 
-Series of Tubes is a static web game hosted on **GitHub Pages, and only there**
-([ADR 0001](adr/0001-github-pages-only.md)). Its source is split into many small files under `src/`;
-the build joins them into **one self-contained `index.html`** (one inline `<style>`, one inline
-`<script>`), exactly the page players have always loaded ([ADR 0002](adr/0002-one-page-assembled-at-build.md)).
+Reviewed against the local runtime on 4 November 2026. See [the documentation index](README.md) for implementation, research and verification workflows.
 
-```
-src/                         the game page, in pieces
-  index.html                 shell: <head>, static markup, the language loader, the @include lines
-  i18n/en.js                 the English for every label → inlined at the top of the page's <script>
-  styles/NN-*.css            → pasted into the page's <style>, in path order
-  game/NN-area/NN-*.js       → pasted into the page's <script>, in path order
-site/                        static files copied to the build as they are (dictionaries, icons, sw.js…)
-scripts/lib/page.js          the assembler: <!-- @include DIR --> → every file under src/DIR, sorted
-scripts/build.js             _site/ = site/ + the assembled page, version-stamped, release notes baked in
-```
+Series of Calls is a browser based communications configuration training preview. The executable application is an incomplete foundation, not the complete conversion described by the [versioned specification](../spec/README.md). Runtime behavior, source mappings, and acceptance records have different scopes; a passing test for a bounded mechanic does not complete its source requirement.
 
-Because the partials are concatenated into one classic script, they share one top-level scope, just as
-when they were one file: `S`, `CITY` or `compute()` are visible everywhere, function declarations are
-hoisted across files, and top-level statements run in path order. Find code by name
-(`grep -rn "function compute(" src/game`); the folders follow the game's layers:
+The page also retains an optional physical network sandbox adapted from Series of Tubes. It is a separate game mode with its own state and save format. Communications training is the primary application surface and uses the SOC runtime described below.
 
-| Folder under `src/game/` | What lives there |
+## Communications runtime
+
+The training console is assembled into the same static page as the optional sandbox. Its implementation is divided between the browser renderer, a root simulation kernel, and optional domain packs. The pack modules are plain JavaScript factories whose exported `source()` functions serialize the same implementation into the worker; browser, direct module tests, and worker execution therefore share the same rules.
+
+| File or directory | Role |
 | --- | --- |
-| `00-core/` | `tr()`/`trn()`/`N_()` and the dictionary; version, release notes and the analytics counter |
-| `10-catalog/` | Prices and gear: POP and port costs, routers (`RG`), supply chain, port slots, dark fiber systems and optics (`OPT`), reach and subsea upgrades |
-| `20-world/` | Map projection, landmasses, coastline, city coordinates (`CITY_LL`), `CITIES`, `CABLES` |
-| `30-networks/` | Other ASes (`NETS`), rival exchanges (`XIX`), the long tail, traffic shares (`NSH`) |
-| `40-progress/` | Customer types (`BIZ_T`), `LEVELS` and their requirements, `GOALS`; the per-save ruleset (`S.rules`, `rule()`, `PRESETS`, `chaosMul()`, `leadDays()`) |
-| `50-state.js` | The globals `S`, `R`, `UI`; `emptyR()` |
-| `60-features/` | Banks and loans, scenarios and the weekly challenge, puzzles and the published weekly puzzle, conferences, the tutorial, traceroute, the share card, `newGame()`, the offer trial (`autoOffer()`), standing orders (`S.ops`, `opsDay()`, run from `dayTick()`) |
-| `70-rules/` | Formatting helpers and market rules: exchanges, PNIs, the peering desk (requests answered by policy), peering policy and snubs, DE-KICKS, sold-out routes, hot ports and the Tier 1/2/3 rank |
-| `80-simulation/` | Dijkstra, RouteScript, where a DDoS flood goes (`ddosLoad()`/`ddosAfter()`, called by `compute()`), `compute()`, monthly prices, `sanitize()`/`migrate()`, customer requirements, events, geography pricing and latency, second sites and service |
-| `85-incidents/` | `addInc()`, DDoS attacks (targets, sizes, scoring, the NOC card) and scrubbing, `fireFailure()`, `clearInc()`, `fireEvent()`, the chaos monkey, cable ships (`50-cable-ships.js`: a subsea cut sends a club ship from its port along the cable routes; voyages in `S.fleet`, drawn by `96-map/88-cable-ships.js`) |
-| `88-days/` | `dayTick()`, new offers, badges, `checkGoals()` |
-| `90-actions/` | The `ACT` map, one file per area (`const ACT` in `10-interface.js`, `Object.assign(ACT,…)` in the rest), and their helpers |
-| `91-save.js`, `92-audio.js` | Save, export and import; sound effects |
-| `93-ui/` | DOM helpers (`$`, `btn`, `morph`), the phone tab bar, install pitch, HUD, left panel, city and link panels, decommissioning |
-| `94-dashboard/` | Scenario and level progress, where to meet a network, customers and connections overviews, lease swaps, the NOC dashboard, the bank, hints |
-| `95-modals/` | Toasts, notifications, modals, title screen, what's new, help, the link and own-cable modals |
-| `96-map/` | The canvas: resize, land and clouds, settings, level of detail, link geometry, `draw()`, the world layer, cities, input and click delegation |
-| `99-loop.js` | `frame()` and `boot()` |
+| `src/game/55-communications.js` | Root SOC kernel: state creation, validation, shared command dispatch, minute advancement, calculations, restore and worker source. |
+| `src/game/26-*.js` to `54-*.js` | Versioned domain packs and the root of the pack dependency graph (see the module map below). Each exposes its implemented API and content version. |
+| `src/game/70-*.js` to `96-*.js` | Administration and training panels. Controls submit typed commands through the shared SOC dispatcher. Rendering and inspection are read-only. |
+| `src/game/97-training.js` | Training console, browser persistence, worker advancement, resource panels and interactions between the optional packs. |
+| `src/index.html`, `scripts/lib/page.js`, `scripts/build.js` | Static page shell, include assembler and build. The build produces the page in `_site/`. |
+| `scripts/calls-mcp.js` | Local MCP server for communications exercises. See [MCP.md](MCP.md). |
+| `spec/`, `research/`, `content/`, `evidence/` | Versioned requirements and source records, content snapshots, and acceptance evidence. These are not all runtime features. |
 
-`src/styles/` holds the CSS the same way: base, HUD, drawers, toasts, modal, tablet, then phone.
+### State and commands
 
-Rules for the source (checked by `tests/build.test.js` and the assembler): files are named
-`NN-lower-case.js`/`.css`, end with a newline and never close their `<script>`/`<style>`; top-level code
-may only use top-level values from earlier files; tables people add to have one entry per line, the
-id-keyed ones sorted. New features get their own file in the right folder (`edit-the-game` skill).
-Development runs on `npm run dev` (assembles on every request, reloads on save);
-`npm run page -- -o FILE` writes the assembled page.
+`SOC.create()` creates a root state identified by `app: "series-of-calls"`, `pack: "soc-foundation-1"`, and `v: 1` (the root schema version). The initial profiles are the fictional scenarios `smb`, `enterprise`, `government`, and `defence`; jurisdiction profiles are `AU`, `US`, `JP`, and `EU`. These profiles are simulation inputs, not statements of legal approval or vendor certification.
 
-## Other files
+The root state owns a synthetic clock, configuration resources, interactions, cases, records, accounting ledgers and optional pack state. Resource configurations distinguish desired values, provisioning state, effective values and observations. Pack-specific state is attached only when the pack is started or used. `SOC.calculate(state)` derives read-only observations; it does not advance the clock or mutate the supplied state.
 
-| Path | What it is |
+All mutations go through `SOC.dispatch(state, command)`. The dispatcher validates the existing state and the command shape, applies the command to a copy, checks the resulting state, and returns a new state. Core command types include `configure`, `add`, `advance`, `interact`, `fault`, `connect`, `meeting`, `migrate`, and pack commands such as `calling`, `operations`, `channels`, `boundaries`, `campaign`, and `portfolio`. Inspect the dispatcher and owning pack for exact command fields; MCP inspection exposes selected schemas and summaries, not a complete command-schema endpoint. A pack command is not supported merely because a requirement mentions it.
+
+`expectedRevision` rejects stale updates. `requestId` supports idempotent command replay. Commands and bounded receipts are recorded in the root so that replay and evidence checks can bind to the state change that occurred. Validation is applied on dispatch, import and worker results. Synthetic event traces record modeled decisions and outcomes; they are not real network traffic or external service confirmations.
+
+### Runtime pack map and ownership
+
+The first digit ranges reflect the current file organization, not a promise that every specification area is complete. Packs are opt-in state machines unless the root explicitly installs or invokes them. A pack's `PACK`/version, `validate`, `inspect` or `calculate`, `fingerprint`, and `source` exports describe its implemented contract; not every pack uses every method.
+
+| Module | Runtime responsibility |
 | --- | --- |
-| `src/i18n/en.js` | English: label → text, one entry per line, sorted; inlined into the page by `<!-- @include i18n -->` |
-| `site/i18n/it.js`, `pt.js`, `fr.js`, `es.js`, `de.js` | Translations: label → text, the same layout; loaded only for that language |
-| `site/sw.js` | Service worker: network-first for pages, stale-while-revalidate for assets. Cache name is stamped with the version |
-| `site/site.webmanifest`, icons, `404.html`, `CNAME`, `robots.txt`, `sitemap.xml`, `llms.txt` | PWA and GitHub Pages files, copied as they are |
-| `scripts/lib/page.js` | Assembles the page from `src/` (also from a git ref with `--ref`, for performance baselines) |
-| `scripts/lib/compile-labels.js` | Shrinks labels to short ids in the shipped page and dictionaries |
-| `scripts/build.js` | Builds `_site/` for GitHub Pages: copies `site/`, writes the page, stamps `__VERSION__`/`__BUILD_DATE__`, bakes release notes, writes `version.json` |
-| `scripts/dev.js` | `npm run dev`: development server, no dependencies |
-| `scripts/test.js` | `npm test`: runs every `tests/*.test.js` |
-| `scripts/release-notes.js` | Extracts a version's CHANGELOG bullets |
-| `scripts/perf-bench.js`, `perf-browser.js`, `perf-stats.js`, `perf-fixture.js` | Big-network benchmark, base vs head, headless and in Chromium as a desktop and a throttled phone, with a significance test per row (posted on every PR by `perf.yml` + `perf-comment.yml`), and the generator of its save, `tests/fixtures/big-network.json` |
-| `scripts/mcp.js`, `scripts/lib/mcp-game.js`, `scripts/lib/mcp-commands.js`, `scripts/lib/mcp-page.js` | The game as a local MCP server: typed tools to play, inspect and debug it from an AI client ([MCP.md](MCP.md)) |
-| `scripts/i18n-check.js`, `scripts/i18n-add.js`, `scripts/lib/dict.js` | Translation coverage and dictionary order; adding, renaming and removing entries |
-| `scripts/legacy/` | The splitter that made `src/` from the old `site/index.html` (and gave its text labels), and `port-branch.js`, which carries older branches over |
-| `tests/harness.js` | Loads the assembled page in jsdom with a seeded `Math.random` and a fake canvas |
-| `.github/workflows/ci.yml` | Tests and build on every push and PR |
-| `.github/workflows/auto-release.yml` | On a `package.json` version bump on `main`: test, tag, GitHub release from the CHANGELOG, start the deploy |
-| `.github/workflows/release.yml` | Builds and deploys to GitHub Pages, the only workflow that can |
-| `.github/workflows/weekly-puzzle.yml` | Sunday 03:37 UTC: makes the week's puzzle, commits it to `main` (data only, no release) and starts `release.yml` for the live release tag with `weekly=true` |
-| `scripts/weekly-puzzle.js`, `site/puzzles/weekly/` | The weekly puzzle generator and its output, one `<key>.json` per week plus `index.json` (see below) |
-| `scripts/weekly-scenario.js`, `scripts/lib/scenario-bot.js`, `site/scenarios/weekly/` | The weekly scenario generator, its reference player and its output (see below) |
-| `docs/adr/` | Decisions: GitHub Pages only (0001), one page assembled at build (0002), translations by label (0003) |
+| `26-customer-needs.js`, `27-speech-models.js` | Editable customer requirements with delayed effective profiles; deployment-scoped local speech installations and integration evidence. |
+| `28-product-evidence.js`, `29-managed-operations.js`, `30-media-negotiation.js`, `31-capability-progression.js`, `32-site-operations.js`, `33-calling-achievements.js`, `34-specialist-lifecycle.js`, `35-shared-services.js`, `36-market-qualification.js`, `37-portfolio.js`, `38-admission-security.js`, `39-service-observation.js`, `40-issue-exercises.js`, `41-progression.js`, `42-transport.js`, `43-boundaries.js`, `44-campaign.js` | Optional evidence, management, media, progression, sites, shared calling, market, portfolio, security, transport, boundary and exercise packs. Their outputs are scoped to stored synthetic state and retained evidence. |
+| `45-products.js`, `46-outcomes.js`, `47-channels.js`, `48-estate.js`, `49-workforce.js`, `50-calling.js` | Product offers/deployments, customer needs and task results, channel accounts/permission, estate inventory/connectors, roster/coaching, and tenant-aware calling directory/services. |
+| `51-contact.js`, `52-information.js`, `53-service-operations.js`, `54-business.js` | Core contact handling, information processing, supplier/carrier/workflow operations, and commercial ownership/qualification. |
+| `55-communications.js` | Root state and command boundary, effective resource observation, call/message routing and execution, cross-pack hooks, validation, calculations and minute transitions. |
+| `70-webhook-ui.js` through `96-*.js`; `97-training.js` | Typed domain panels and the browser console. UI actions submit commands; they do not write pack state directly. |
 
-## Globals
+The root owns shared resources, clock, interactions, cases, records, traces and operating ledgers. Domain packs keep their own configuration and event/evidence records attached to that root. Core routing calls trusted pack hooks at the decision point: for example, it checks effective carrier and directory state, validates boundary bindings against actual root resources, reserves media and transport paths, and settles security usage against core voice ledger rows. A pack's standalone positive result is not a substitute for the corresponding core integration path.
 
-- **`S`**: the whole saved game (one JSON object). Cash, day, POPs, links, transit,
-  IX ports, PNIs, caches, customers (`biz`), offers, incidents (`inc`), live events
-  (`ev`), stats, settings. Saved to `localStorage` key `sot-save-v1:<slot>` (one per network, see below).
-- **`R`**: results of the last `compute()`: per-link load, per-exit use, served and
-  demanded traffic, reach, costs and revenue. Never saved; always rebuilt.
-- **`UI`**: view state (selection, open tabs, speed, confirmations). Not game state.
-- **`cam`**: map camera (x, y, zoom).
+The portfolio is a separate optional container. It can hold up to twenty independently validated customer roots, each bound to a scenario, jurisdiction, market and tenant. The portfolio has its own clock and journals. A portfolio tick advances each active child root by one synthetic minute. Customer-scoped configuration and workload commands are recorded through `portfolio.dispatchcustomer`; nested portfolio, campaign, progression, market qualification and managed-operations containers are prohibited in child roots. The browser routes most commands to the selected customer while keeping portfolio management, clock advancement, market qualification and managed operations at the portfolio root. Selecting a customer changes which root is rendered; it does not merge tenant state.
 
-Lookup tables built at load: `CITY[id]`, `NET[id]`, `CABLE`, `FAB`, `BIZ_T`, `REQS`.
+### Evidence, current state and saved history
 
-## The life of a day
+Desired configuration, provisioning, effective configuration and observed availability are separate values. A submitted change may remain pending or fail while the previous effective configuration continues to operate. Root calculations and pack inspections report current readiness and blockers; they do not mutate state.
 
-`frame()` (requestAnimationFrame) accumulates time; every `DAY_MS × speed` it calls
-`dayTick()`, at most four times per frame, each inside a try/catch so one bad tick
-never freezes the game.
+Evidence is scoped to its producing mechanism. For example, declared boundary flows are evaluated separately from the central runtime's enforcement against actual resource location and availability. Media offers, directional codec agreement and transcoder session capacity are separate from link bandwidth and agent seats. Site continuity evidence must link to actual transport paths, core interactions, faults, backup snapshots and restore receipts. Product-evidence records are fictional availability evidence, not vendor certifications. Progression awards retain historical proof and validate it against saved source records; they remain distinct from current readiness after later configuration changes. Missing, pruned, or incomplete lineage is not reconstructed from a caller-supplied success flag.
 
-`dayTick()`:
+### Time and worker execution
 
-1. Advances `S.day`, runs scheduled world events (conferences, IX price wars, licences).
-2. Runs `compute()` to route today's traffic.
-3. Records history for 95th-percentile billing, stats and streaks.
-4. Rolls failures (`fireFailure()`) and events (`fireEvent()`) when their timers run out,
-   and expires incidents.
-   Then the NOC intern's standing orders (`opsDay()`), if one is hired: each order clicks the same `ACT`
-   actions a player would, muted, within its monthly budget, and the shift recomputes once at the end, only if
-   a job changed the network. An order that throws is paused; the day goes on. The NOC gets one notice a week.
-5. Updates customer mood, churn and new offers; IX members join; loans tick.
-6. Every 30 days: bills the month (revenue minus costs) and checks for bankruptcy.
-7. Checks goals, level, badges and scenario end conditions.
+`advance` moves the synthetic minute clock and applies due provisioning, workload, delivery, callback, continuity and assessment transitions. Calls, messages, capacity, media, workforce, transport and security checks use modeled state. A blocked or failed interaction remains distinguishable from an accepted, connected, delivered or resolved one.
 
-## compute(): the traffic model
+The training console serializes `SOC.workerSource()` into a worker for clock advancement where supported. The worker executes the same kernel and receives a snapshot plus a command. The UI discards replies from cancelled jobs, closed or unlocked consoles, and replies whose revision no longer matches the current root; a revision mismatch is re-executed once against the current state. Worker creation failure, a browser worker error event or a five-second timeout falls back to synchronous dispatch. A domain error returned in a worker message is surfaced without applying a result. The result is validated before it can replace the browser state. Calculations and panel rendering remain read-only.
 
-1. Builds a graph from your live links: parallel links between the same two cities
-   merge into one edge with summed capacity. The routing metric belongs to the city pair
-   (`S.pairMet`) and sets the edge's weight; Dijkstra gives shortest paths from each POP.
-   Links on standby (`l.standby`) add their capacity to the edge, but when loads are
-   handed back to links the active ones fill first and standby links take the rest.
-2. Builds the exit list `E`: embedded caches (rank 0), PNIs (1), IX ports (2),
-   transit (3). Each exit has a capacity, the networks it can reach (`ok(net)`) and an
-   egress preference (`high`, `normal`, `low` = backup only). A transit port can also be set to
-   carry (`t.carry`): see step 4.
-3. Builds flows: for every POP, its demand (eyeballs and customers) split across
-   destination networks by their traffic share (`NSH`, with regional variants for
-   China, Russia and Korea). Incidents can add junk flows or scale demand.
-4. Routes flows rank by rank: the nearest usable exit first, ECMP across equal exits,
-   consuming link, router (`nodeCap`) and exit capacity. A carrier's own transit port also
-   goes first, before plain transit, for traffic bound for that carrier or for a network that buys
-   transit from it (`25-direct-egress.js`: the shorter AS path): always at its own POP, and from every
-   POP when the port is set to carry. Such a port is still an ordinary transit exit for the other
-   POPs. Backup, RouteScript and Auto-TE rules keep their say, and so does a Prefer-marked port at its own POP (the other
-   POPs keep the rule). With Auto-TE, overflow spills
-   onto alternate paths; RouteScript rules (`teRules()`) can prefer, avoid, cap, drain
-   or blackhole.
-5. Layer-2 customers (L2VPN, SD-WAN, waves) are carved out of link capacity first.
-6. Totals costs (`R.cost`) and revenue (`R.rev`) per month.
+### Workforce, allowances and local speech integration
 
-It runs every day and after every action, so it is built for big networks: the graph works on city
-indices (`CIDX`), each exit is asked once per network what it can reach, and `R.ef` (what crosses each
-link) is only put together for a link when something reads it.
+The workforce roster accepts optional non-overlapping break intervals within each person's shift. Effective capacity excludes a scheduled break independently from entitlement, skill and actual availability. Observed presence is a separate available/away/offline value. Roster availability edits provision before changing effective eligibility and cannot overwrite presence. Customer-operated staffing rejects attendance commands; BPO attendance requires its own scoped grant. Public commands cannot call the internal admission/finish hooks, and imported active assignments must match real handling interactions. The attendance panel also estimates skill/language demand from duration-qualified samples and capacity across future shifts/breaks. It assumes current presence and assignments persist; it does not advance a queue or certify a workforce plan. These remain bounded BPO mechanics.
 
-What follows from the network's shape alone is kept from one call to the next (`29-route-cache.js`): the shortest
-paths from every POP, and who reaches whom with each network's exit lists. Each has a key made of everything it is
-built from (the live graph with its weights; every exit with what it reaches and how it is preferred, RouteScript and
-the events that move routes), so most days, when only demand changes, they are reused, and any other change rebuilds
-them. Only indices are kept: exits, lists and paths are made fresh every call, because routing writes on them.
-`tests/route-cache.test.js` checks the keys, and the equivalence tests route with and without the kept tables.
-`scripts/route-fuzz.js` plays hundreds of random seeded games on main's page and this checkout's at once, comparing all
-of R and S after every move and day, with the kept tables and without (`tests/route-fuzz.test.js` plays a few).
+`26-customer-needs.js` holds editable SMB, enterprise, government and defence requirements in the optional `customerNeeds` pack. Employee, seat, agent and room counts are independent. Each revision provisions for one synthetic minute before becoming effective. Segment/source identity is immutable, and observed profile application does not establish measured service, procurement eligibility or capacity. `72-customer-needs-ui.js` exposes the same typed commands as MCP.
 
-Each loop of `compute()` runs in a function of its own (the stages are closures, the busiest is `rankPass`;
-the money is `computeMoney()`). V8 optimises a small function quickly and keeps it; `compute()` as one 33 KB function
-never stayed optimised: it ran in baseline code, boxing every number, and was compiled again and again in the background
-only to be thrown away, which cost more CPU than the routing itself. Keep it that way: a new loop goes in a function.
+`47-channels.js` can create synthetic webhook jobs from actual accepted channel deliveries. The disabled-by-default policy provisions before use; application authentication, application availability and supplier availability are independent observations. Jobs preserve receipt/case lineage and idempotency, use deterministic bounded retries and rate limits, and run only on clock advancement. Terminal failures remain terminal after observation repair. `70-webhook-ui.js` submits policy and observation commands through normal dispatch. No real network request is made.
 
-Served share per city (`sfOf`) drives eyeball revenue and customer mood.
+Business contracts can share a scoped usage allowance in minutes, messages or processor-minutes. Pools provision before use; amendments take effect at the next aligned billing boundary without refilling the current period. The dispatcher meters voice against the recorded route platform, messages at accepted delivery, and processing against the job's actual processor. Supplied resource priority chooses the eligible contract; a missing match never bills an unrelated one. Included retail usage still incurs wholesale cost. Legacy pool fields migrate only on an owned dispatch/restore copy, including portfolio children and campaign snapshots; validation does not mutate caller state.
 
-## Routing in a worker
+`27-speech-models.js` is the optional `soc-speech-models-1` pack. The `speech-models` command provisions synthetic versioned model installations and integration-test evidence. Both bind to a product deployment generation, offer, region and exact dependency resources. Compute, permission and licensing resources must be effective; disconnected execution also requires local support and authorization. Product availability and information jobs use those same bindings, so a model for another deployment or dependency cannot satisfy a job. `74-speech-models-ui.js` exposes installation and integration forms through normal dispatch. No external model executes and no real provider support is asserted.
 
-During play, each day's `compute()` runs off the main thread (`src/game/80-simulation/28-route-worker.js`), so a big
-network does not freeze the page once a day.
+`73-artwork-ui.js` renders the six project illustrations using responsive WebP sources and translated alternative text. Title and campaign panels share this renderer. `artwork/manifest.json` preserves generation provenance and export hashes; the service worker includes the shipped variants. The title's training action is allowed before the optional SP state exists.
 
-- **Built from the page itself.** The worker is the page's own inline game script (`document.currentScript.textContent`)
-  run again from a Blob URL, after a short prelude of inert stand-ins for `document`, storage and the other DOM globals,
-  and the player's dictionary. Nothing is fetched: GitHub Pages still serves one page, and a release cannot mismatch.
-  In the worker `RW_IN` is true and `boot()` never runs; the catalogs are rebuilt by the same top-level code.
-- **The day split.** `dayTick()` is `dayPre()` (the world moves on), `compute()`, `dayPost()` (bills, moods, offers,
-  goals). In play, `frame()` calls `rwDay()` instead: `dayPre()`, then S and what routing reads of yesterday's R
-  (`R.load`, `R.l2route`, `R.efg`) are posted, and the next day waits until R comes back and `dayPost()` has run. So a day
-  sees exactly the routing it would have had in one go: same results, same random numbers. Half a day is never saved.
-- **What crosses.** `R.ef` and `R.fl` are lazy getters; their pieces (`R.efp`, `R.flc`) travel instead, typed arrays
-  transferred, and `efBuild()`/`flDefine()` (in `30-compute.js`) rebuild the same lazy R on the page.
-- **Actions mid-day.** Every `compute()` bumps `RW.gen`. If an action routed while a day was in flight, the worker's
-  answer is stale: it is dropped and the day ends with the action's R.
-- **Fallbacks.** Tests (`__TUBES_TEST__`, and jsdom has no Worker), `window.__TUBES_SYNC__`, a browser without workers, a
-  post that fails or a worker that errors take the synchronous path (`rwKill()` routes the day in flight on the page).
-- **Still on the main thread**, because the caller reads R right away: actions (`after()`), loading a game, failures and
-  events that fire during a day, standing orders, the chaos monkey, RouteScript what-ifs, the link panel's cut check and
-  automatic offers.
+### Browser persistence
 
-## Actions and rendering
+The training console stores its slot at `series-of-calls:training:<slot>` in local storage. The stored envelope contains `app`, a monotonically increasing `seq`, and the SOC `state`. The console requires the browser's `navigator.locks` API and requests `series-of-calls:training-lock:<slot>`; when that API is unavailable or the slot is already held, editing is refused. A later sequence also prevents a stale writer from overwriting a newer save. There is no heartbeat fallback for the training console. The normal training slot is `main`.
 
-- Player actions live in `ACT`. Buttons render as `btn(label, act, args, cls, disabled)`
-  and a delegated click handler calls `ACT[act](JSON args)`.
-- An action validates its inputs (they come from the DOM), mutates `S`, shows a
-  `toast()` and calls `after()`.
-- `after()` = `purgeInc()` + `compute()` + `checkGoals()` + `renderAll()` + `save()`.
-- `renderLeft()` draws the left tabs (deals, NOC, customers…), `renderPanel()` the
-  selection panel (city, link, network). On phones these become bottom sheets
-  controlled by `renderTabbar()`.
-- These panels and the dashboard are rebuilt as HTML every tick and written with `morph()`, which
-  patches only what changed. Buttons whose action changed are replaced, so taps stay safe (#44).
-- The map is a canvas drawn every frame by `draw()`. Zoomed out (`lodFar()`) it uses
-  a simplified style; parallel waves are grouped by `linkGroups()`.
+Training exports are JSON states and restore through `SOC.restore`, which validates the application schema. They are separate from optional Series of Tubes saves, which use `soc-sp-save-v1:<slot>` (with `soc-sp-save-v1` as the legacy single-slot migration key) and the older `S` state. One format is not a migration path for the other.
 
-## The weekly puzzle
+## Optional physical network sandbox
 
-A puzzle week runs from Sunday 06:00 Berlin time to the next Sunday 06:00, and is named after the ISO week of
-its Monday (the week starting Sunday 1 November 2026 is `2026-W45`); `pzWeekKey()` and `pzWeekStart()` in
-`src/game/60-features/93-puzzles-weekly.js` handle summer time and the year boundary.
+The retained sandbox keeps the original map game and its own state model. It remains available from the page's SP entry point and through the separate legacy MCP server `scripts/mcp.js`; the communications MCP server is `scripts/calls-mcp.js`.
 
-Every Sunday `weekly-puzzle.yml` runs `scripts/weekly-puzzle.js`, which loads the real game headless, picks a
-theme the last three weeks did not have (region tour, ring, detour around a hub, ocean crossing, island hopping,
-latency sprint) and cities the last four weeks did not use, gives them traffic (content in the first city, eyeballs
-in the others, a circuit with a latency cap for a sprint), searches for the cheapest topology that connects them and
-the cheapest one that survives any single cut (a whole cable, or a trench), then sizes both with the game's own
-routing (`scripts/lib/puzzle-solver.js`: links and routers big enough for every flow, after any cut too, then as
-small as they go). The budget sits just above that N-1 build. Both references are judged by the game's own star
-code and must earn one and three stars, or the puzzle is thrown away. The file holds only ids, numbers and
-translation labels with their fill-ins
-(`{"v":2,"key","theme","cities","src","dem","via","avoid","budget","twist","name":{"l","p"},"joke":{"l","p"},"ref","rev"?}`).
-`--check` re-validates every file the way the game does.
+The page assembler concatenates the classic scripts in path order. The optional sandbox's `S` is the network save, `R` is the last traffic computation, and `UI` is view state. Its routing model builds a graph from live links, chooses exits among caches, PNIs, exchanges and transit, applies capacity and preference rules, and derives costs and revenue. Its `compute()` path and worker preserve that game's deterministic traffic calculation. The map, weekly puzzle, weekly scenario, network actions, and their established save migration remain optional SP features; they are not the communications training state or acceptance evidence.
 
-The game fetches `puzzles/weekly/<key>.json` (relative, same origin) only when the Puzzles list opens, and checks
-it field by field (`pzWkValid()`): known fields, playable cities, labels from the theme's own list, sane numbers.
-When it is missing, offline or wrong, the seeded weekly (`pzWeekly()`) stands in, so the weekly puzzle always
-works. The service worker fetches these files network-first and keeps a copy for offline play.
+### Existing SP save and translation boundaries
 
-The weekly ships without a release: the workflow commits only `site/puzzles/weekly/` to `main` (no version bump,
-so `auto-release.yml` stays quiet) and starts `release.yml` from the live release's tag with `weekly=true`, which
-rebuilds that exact release with every weekly file from `main` and deploys it. Every release build takes the
-weekly files from `main` too, so no deploy ever drops a published week.
+The sandbox's save slots use `soc-sp-save-v1:<slot>` in local storage and retain their existing migration/sanitization path. Its index is `soc-sp-slots`, current tab slot is in `sessionStorage['soc-sp-slot']`, and it maintains a cross-tab heartbeat at `soc-sp-open:<slot>` (used as the lock fallback when Web Locks are unavailable). Its preferences and progress use separate `soc-sp-*` keys, including `soc-sp-prefs`, `soc-sp-weekly`, `soc-sp-scn` and `soc-sp-wkscn`. Do not rename those keys as part of SOC training storage work. Training uses the `series-of-calls:training:` prefix described above.
 
-The weekly scenario is its twin, in the same weeks and the same workflow run: `scripts/weekly-scenario.js` writes
-`site/scenarios/weekly/<key>.json`. A template (plain data in the script) picks a theme, a home city, rules from the
-scenario vocabulary (`scnRule` keys, `WEEK_MODS`) and a goal type with parameters; each goal type (`WS_GOALS` in
-`src/game/60-features/94-scenarios-weekly.js`) is implemented once in the game, with its progress card. A reference
-player (`scripts/lib/scenario-bot.js`) plays it through `ACT`, seeded with the scenario's seed; the goal's number is
-calibrated from that run, the scenario must not be won on day 0, the reference must win with a tenth of the days to
-spare, and its finishing day is the par. The file keeps the reference plan (`ref`), which `--check` replays. The game
-fetches the file when the Scenarios list opens, checks it with `wsValid()` (again in `sanitize()` on load), and falls
-back to the in-browser `weekly()`.
+Both modes use the shared label-based translation system: English labels are in `src/i18n/en.js`, and the five dictionaries are in `site/i18n/`. The communications panels use the same translation lookup but their labels do not establish runtime coverage of incomplete mechanics.
 
-## Saves, imports and migration
+## Build, tests and maintenance gates
 
-- `save()` writes `S` to localStorage every few seconds and after actions, into this window's slot
-  (`UI.slot`, `src/game/91-slots.js`): `sot-save-v1:<id>`, plain JSON or `gz:`-compressed above a million
-  characters, with a stamp `sv:{seq,at}` appended. Then the index `sot-slots` (name, ASN, preset, day, tier,
-  cash, last played, size, seq) is updated; the title screen lists networks from the index alone.
-- Each tab keeps its slot in `sessionStorage['sot-slot']`. One window per slot: a Web Lock
-  (`sot-slot:<id>`) where supported, plus a heartbeat `sot-open:<id>`; BroadcastChannel `sot-slots` asks
-  another window to hand over, and the `storage` event stops a window whose slot was saved newer elsewhere
-  (higher seq) or deleted. A window never writes a slot whose index seq is newer than its own.
-- The single save of older versions (`sot-save-v1`) is copied to slot `main` and read back before the
-  index lists it; the old key is removed only by that slot's next successful save.
-- `boot()` loads the save through `migrate()` → `sanitize()`. If loading throws, the
-  slot is kept and marked damaged in the index (it can still be exported or deleted).
-- Puzzles never write a slot; while one runs, `save()` writes the network set aside (`UI.pzKeep`).
-- `sanitize(s)` is the gate for all untrusted state (saves and imported files): it
-  drops unknown ids, clamps numbers, repairs references and fills defaults. Every new
-  field in `S` needs a line there.
+`npm test` runs the JavaScript suites. `npm run test:communications` runs the selected communications and integration suites. `npm run build` assembles the static page. `npm run i18n:check` checks label coverage. The Python verification commands are scoped gates for source accounting, catalogue parity, coverage, recorded evidence, upstream accounting, freshness and release readiness; a release gate may remain red while required deliverables are pending.
 
-## Translations
+The repository contains an upstream adaptation workflow, but its generation job currently has `if: ${{ false }}`. It is therefore disabled in workflow code. `scripts/check-agent-ready.py` also fails closed unless the required owner-reviewed setup, credential and current provider-enforced limit receipt are present. Do not describe the workflow as active or infer that the required provider controls have been verified from a workflow file or secret name.
 
-Text is keyed by label ([ADR 0003](adr/0003-translations-by-label.md)):
-
-- `tr('area.label', vars)` looks up `DICT['area.label']` and fills `{placeholders}`; `trn('area.label', n)`
-  picks `one` or `other` of a plural; `N_('area.label')` marks a label kept in a table or a save, translated
-  where it is shown.
-- `DICT` is the English (`src/i18n/en.js`, inlined into the page) with the player's language
-  (`site/i18n/<lang>.js`) laid over it. English text from saves of 1.33 and older still finds its translation.
-- Static markup uses `data-i18n="label"`, `data-i18n-aria-label`, `data-i18n-title`; `i18nDom()` swaps it at boot.
-- The build swaps labels for short ids in the shipped page and dictionaries (`scripts/lib/compile-labels.js`);
-  `N_()` labels stay whole because saves keep them.
-- `npm run i18n:check` checks the English against the code and every translation against the English.
-
-## Tests
-
-`tests/*.test.js` use `node:test` and `tests/harness.js`, which assembles `src/` in memory, so tests
-never run a stale build. `npm test` runs every file in `tests/`; a new suite needs no registration:
-
-```js
-const { load } = require('./harness');
-const { ev, errors } = load();            // seeded, deterministic
-ev("ACT.start({});S.cash=1e8;ACT.launchBB({city:'fra'})");
-ev("compute()");
-assert.equal(ev("R.reach>0"), true);
-assert.deepEqual(errors, []);
-```
-
-`ev()` runs code inside the page. To force a specific random failure, patch the
-picker, e.g. evaluate `fireFailure` with `.replace('const e=pick(opts);', "const e='x';")`.
-Use `window.__reseed(n)` to reset the random sequence mid-test.
+The optional SP workflow and release details remain in `.github/workflows/`; those workflows do not establish that the communications product is complete, that a hosted release has passed its gates, or that real-browser acceptance has run.

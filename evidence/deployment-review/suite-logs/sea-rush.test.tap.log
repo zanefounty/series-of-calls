@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: \#258 paying hurries the permits and the factory, 30 days a step, down to what the factory needs
+ok 1 - \#258 paying hurries the permits and the factory, 30 days a step, down to what the factory needs
+  ---
+  duration_ms: 734.381413
+  type: 'test'
+  ...
+# Subtest: \#258 a short cable is quick; once the ships sail, money buys no more paperwork
+ok 2 - \#258 a short cable is quick; once the ships sail, money buys no more paperwork
+  ---
+  duration_ms: 374.001036
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6303.011944

@@ -1,0 +1,16 @@
+✔ typed counts buy and remove optics on land fiber (617.036911ms)
+✔ typed counts buy and remove optics on subsea fiber (301.738514ms)
+✔ batch price matches individual channel purchases with spares, regen cards and tariffs (323.268434ms)
+✔ unaffordable batches, port limits and invalid input never partially change state (232.420082ms)
+✔ channel reservations and reach, line-system, level and router compatibility still apply (326.178909ms)
+✔ plus and minus buttons work alongside typed counts (297.653802ms)
+✔ draft counts and quotes stay together when reopening a panel or using shortcuts (258.671751ms)
+✔ #229 giving up a fiber puts its optics on the spares shelf, and so does decommissioning its POP (263.057651ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2929.65201

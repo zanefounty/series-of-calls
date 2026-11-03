@@ -1,0 +1,49 @@
+{
+  "recoveredAt": "2026-11-03T21:34:34.968847+00:00",
+  "commit": "b7e5f193b424689e3dbdf6e57639b5212e04d5c2",
+  "assets": [
+    {
+      "originalPath": "site/apple-touch-icon.png",
+      "blob": "9c5f1ee60bcf21221df7cbb72f925c6577350baf",
+      "sha256": "9a7460ee8d538008ce83be3cfeeddef03eed0f55207435adae043933a24c42e8",
+      "bytes": 5054,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/apple-touch-icon.png"
+    },
+    {
+      "originalPath": "site/favicon.ico",
+      "blob": "a8c2a13a818c32244fe48514565a1282e6afada9",
+      "sha256": "7a16ef6cfa0a42158f99afae5600ce55ce5901789ccf2aaf7173172f000e2c82",
+      "bytes": 2107,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/favicon.ico"
+    },
+    {
+      "originalPath": "site/icon-192.png",
+      "blob": "61c6d7598187fa78af10eb9e747400a26436bb0d",
+      "sha256": "b904dff728feedc8304092a1c4d754a6d530dd3d10f8847e2b6012b9cb4eef7e",
+      "bytes": 9342,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/icon-192.png"
+    },
+    {
+      "originalPath": "site/icon-512.png",
+      "blob": "58dada30cf8e9ba924bc155133bdedee79ad2a99",
+      "sha256": "206aeac58530a14f1f2006504fed1d20e9fe9fbba22c3dfca8a560bc0cb89d33",
+      "bytes": 26342,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/icon-512.png"
+    },
+    {
+      "originalPath": "site/icon-maskable-512.png",
+      "blob": "ccc2c8d7e2cac80fe162de1b7e02c2e31727cb16",
+      "sha256": "31c07a9aa432118e4eaebc322701cca0e0cfef467ea4e9de61dca4831319dd17",
+      "bytes": 13098,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/icon-maskable-512.png"
+    },
+    {
+      "originalPath": "site/images/og-image.png",
+      "blob": "495cf360ca30665998139e4d3bd1cf8bc74ac3cb",
+      "sha256": "b2a9d851277ddf8251ac4133de454e542b96756e830211caf12b4852692b5445",
+      "bytes": 282773,
+      "archivePath": "evidence/access-restored-2026-11-04/upstream/original-binaries/site/images/og-image.png"
+    }
+  ],
+  "activeAssetsPreserved": true
+}

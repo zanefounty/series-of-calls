@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "projectId": null,
+  "monthlyLimitUSD": 25,
+  "hardLimitVerifiedAt": null,
+  "hardLimitEvidence": null,
+  "maxAttempts": 1,
+  "maxMinutes": 20,
+  "model": null,
+  "cliVersion": null,
+  "reasonDisabled": "Dedicated API project, enforced spending limit, credentials, bot identity and branch protections have not been configured or verified."
+}

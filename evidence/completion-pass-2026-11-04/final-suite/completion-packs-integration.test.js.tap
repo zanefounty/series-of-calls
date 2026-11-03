@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: AC-SOC-446 customer profiles retain jurisdiction, independent quantities, provisioning and worker/save equivalence through dispatch
+ok 1 - AC-SOC-446 customer profiles retain jurisdiction, independent quantities, provisioning and worker/save equivalence through dispatch
+  ---
+  duration_ms: 39.551231
+  type: 'test'
+  ...
+# Subtest: AC-SOC-447 attendance constrains real queue handling and revoked delegation rejects changes atomically
+ok 2 - AC-SOC-447 attendance constrains real queue handling and revoked delegation rejects changes atomically
+  ---
+  duration_ms: 8.023069
+  type: 'test'
+  ...
+# Subtest: AC-SOC-448 staffing forecasts scale explicit sample durations and respect upcoming shift boundaries
+ok 3 - AC-SOC-448 staffing forecasts scale explicit sample durations and respect upcoming shift boundaries
+  ---
+  duration_ms: 3.30112
+  type: 'test'
+  ...
+# Subtest: AC-SOC-449 actual message delivery queues one callback and application recovery does not charge another message
+ok 4 - AC-SOC-449 actual message delivery queues one callback and application recovery does not charge another message
+  ---
+  duration_ms: 17.935394
+  type: 'test'
+  ...
+# Subtest: AC-SOC-454 external commands cannot fabricate workforce assignments or bypass roster provisioning
+ok 5 - AC-SOC-454 external commands cannot fabricate workforce assignments or bypass roster provisioning
+  ---
+  duration_ms: 2.065732
+  type: 'test'
+  ...
+# Subtest: AC-SOC-455 imported customer profiles reject changed source lineage and impossible application times
+ok 6 - AC-SOC-455 imported customer profiles reject changed source lineage and impossible application times
+  ---
+  duration_ms: 1.742287
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 103.71223

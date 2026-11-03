@@ -1,0 +1,12 @@
+✔ the title screen has one drawer for the home city: the five suggested first, then every city by continent (566.375573ms)
+✔ picking any city starts the network there, and the line under the drawer follows the choice (292.988682ms)
+✔ a home that cannot work is refused, and the game falls back to Frankfurt (272.397807ms)
+✔ the title screen works on a phone in every language: language first, the name on top, compact presets (1564.236681ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6381.55633

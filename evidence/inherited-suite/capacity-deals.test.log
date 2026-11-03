@@ -1,0 +1,12 @@
+✔ #168 only some conferences sell sponsorships, and a sponsor gets more local customers (594.139503ms)
+✔ #168 a capacity conference brings big deals you can sign before you build (299.9794ms)
+✔ #168 missing the delivery date costs a penalty and the deal (250.273395ms)
+✔ #168 saves keep sponsorships and pending deals, and old saves still load (271.297053ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9589.514001

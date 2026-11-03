@@ -1,0 +1,13 @@
+✔ #195 China Telecomet sells its premium crossing in Moscow, and nothing else there (593.729512ms)
+✔ #195 it costs the same in Moscow as in Hong Kong, and the bill agrees with the panel (276.829776ms)
+✔ #195 European traffic hauled to Moscow crosses into China with far less loss on the premium port (549.148341ms)
+✔ #195 Hong Kong still works as before, and premium is not offered where it is not sold (264.882304ms)
+✔ #195 saves: a Moscow port stays premium, a bogus premium elsewhere is dropped, and it meets the China requirement (271.610909ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7185.594695

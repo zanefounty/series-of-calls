@@ -1,0 +1,787 @@
+TAP version 13
+# Subtest: \#255 Port Hedland, Townsville and Alice Springs are on the map and playable
+ok 1 - \#255 Port Hedland, Townsville and Alice Springs are on the map and playable
+  ---
+  duration_ms: 365.328875
+  type: 'test'
+  ...
+# Subtest: \#255 the wet season doubles the time to reach a cut in the tropical north, and only there
+ok 2 - \#255 the wet season doubles the time to reach a cut in the tropical north, and only there
+  ---
+  duration_ms: 356.81351
+  type: 'test'
+  ...
+# Subtest: every router is classed by the highest backbone it runs
+ok 3 - every router is classed by the highest backbone it runs
+  ---
+  duration_ms: 334.38133
+  type: 'test'
+  ...
+# Subtest: a new network runs plain IGP: no Auto-TE until the backbone is upgraded, one step at a time
+ok 4 - a new network runs plain IGP: no Auto-TE until the backbone is upgraded, one step at a time
+  ---
+  duration_ms: 384.336534
+  type: 'test'
+  ...
+# Subtest: running a lower level is free, and Auto-TE and RouteScript pause below RSVP-TE
+ok 5 - running a lower level is free, and Auto-TE and RouteScript pause below RSVP-TE
+  ---
+  duration_ms: 397.139289
+  type: 'test'
+  ...
+# Subtest: the core costs router CPU, less the higher it goes; POPs whose router cannot run it stay outside
+ok 6 - the core costs router CPU, less the higher it goes; POPs whose router cannot run it stay outside
+  ---
+  duration_ms: 368.732244
+  type: 'test'
+  ...
+# Subtest: label switching: traffic passing through a POP costs its router less from LDP up
+ok 7 - label switching: traffic passing through a POP costs its router less from LDP up
+  ---
+  duration_ms: 768.3643
+  type: 'test'
+  ...
+# Subtest: interop failures: only with mixed vendors at the top of what some router can do
+ok 8 - interop failures: only with mixed vendors at the top of what some router can do
+  ---
+  duration_ms: 354.343226
+  type: 'test'
+  ...
+# Subtest: a new game never gets interop incidents or CPU costs: the classic game is unchanged
+ok 9 - a new game never gets interop incidents or CPU costs: the classic game is unchanged
+  ---
+  duration_ms: 292.812001
+  type: 'test'
+  ...
+# Subtest: saves: an old save with Auto-TE keeps it on the old rules, scenarios ignore the core, garbage is repaired
+ok 10 - saves: an old save with Auto-TE keeps it on the old rules, scenarios ignore the core, garbage is repaired
+  ---
+  duration_ms: 322.648072
+  type: 'test'
+  ...
+# Subtest: the backbone panel and the router panels, on a phone too
+ok 11 - the backbone panel and the router panels, on a phone too
+  ---
+  duration_ms: 736.628125
+  type: 'test'
+  ...
+# Subtest: an upgraded backbone brings its own customers: L3VPN from LDP, flex-algo from SR-MPLS, slices from SRv6
+ok 12 - an upgraded backbone brings its own customers: L3VPN from LDP, flex-algo from SR-MPLS, slices from SRv6
+  ---
+  duration_ms: 374.464846
+  type: 'test'
+  ...
+# Subtest: fast reroute: from RSVP-TE up, customers lose half as much happiness while a link is cut
+ok 13 - fast reroute: from RSVP-TE up, customers lose half as much happiness while a link is cut
+  ---
+  duration_ms: 976.331893
+  type: 'test'
+  ...
+# Subtest: an interop lab cuts interop incidents, is bought once, and survives a save
+ok 14 - an interop lab cuts interop incidents, is bought once, and survives a save
+  ---
+  duration_ms: 334.726878
+  type: 'test'
+  ...
+# Subtest: badges for the backbone: label switcher, bleeding edge, single-vendor shop, vendor zoo
+ok 15 - badges for the backbone: label switcher, bleeding edge, single-vendor shop, vendor zoo
+  ---
+  duration_ms: 369.376439
+  type: 'test'
+  ...
+# Subtest: Best Effort is a Normal preset with its own rules, kept through save and load
+ok 16 - Best Effort is a Normal preset with its own rules, kept through save and load
+  ---
+  duration_ms: 388.103222
+  type: 'test'
+  ...
+# Subtest: Best Effort: a subsea cut mends on its own clock, with no cable ship
+ok 17 - Best Effort: a subsea cut mends on its own clock, with no cable ship
+  ---
+  duration_ms: 665.651686
+  type: 'test'
+  ...
+# Subtest: Best Effort: no conference season
+ok 18 - Best Effort: no conference season
+  ---
+  duration_ms: 390.285626
+  type: 'test'
+  ...
+# Subtest: Best Effort: customers sour half as fast
+ok 19 - Best Effort: customers sour half as fast
+  ---
+  duration_ms: 623.873693
+  type: 'test'
+  ...
+# Subtest: Best Effort: deep in the red, a rescue loan instead of game over
+ok 20 - Best Effort: deep in the red, a rescue loan instead of game over
+  ---
+  duration_ms: 356.267803
+  type: 'test'
+  ...
+# Subtest: quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything
+ok 21 - quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything
+  ---
+  duration_ms: 343.910875
+  type: 'test'
+  ...
+# Subtest: the title screen offers Best Effort first, and it earns Freeze-dried badges
+ok 22 - the title screen offers Best Effort first, and it earns Freeze-dried badges
+  ---
+  duration_ms: 321.459857
+  type: 'test'
+  ...
+# Subtest: Best Effort: PNIs and their augments are up the moment they are ordered
+ok 23 - Best Effort: PNIs and their augments are up the moment they are ordered
+  ---
+  duration_ms: 384.911129
+  type: 'test'
+  ...
+# Subtest: no "attracts attacks" warning where nobody attacks
+ok 24 - no "attracts attacks" warning where nobody attacks
+  ---
+  duration_ms: 283.429727
+  type: 'test'
+  ...
+# Subtest: Series of Calls SP preferences ignore the original game storage identity
+ok 25 - Series of Calls SP preferences ignore the original game storage identity
+  ---
+  duration_ms: 594.279229
+  type: 'test'
+  ...
+# Subtest: sizes come from the world: the same draws give the same floods however big you are
+ok 26 - sizes come from the world: the same draws give the same floods however big you are
+  ---
+  duration_ms: 513.617941
+  type: 'test'
+  ...
+# Subtest: a flood bigger than its port fills it and slows everyone on it; Flowspec behind the port cannot help
+ok 27 - a flood bigger than its port fills it and slows everyone on it; Flowspec behind the port cannot help
+  ---
+  duration_ms: 368.436463
+  type: 'test'
+  ...
+# Subtest: RTBH saves everyone else and sends only the target dark
+ok 28 - RTBH saves everyone else and sends only the target dark
+  ---
+  duration_ms: 380.152168
+  type: 'test'
+  ...
+# Subtest: the same flood spread over eight POPs fills no port
+ok 29 - the same flood spread over eight POPs fills no port
+  ---
+  duration_ms: 523.616529
+  type: 'test'
+  ...
+# Subtest: Flowspec rules are finite on each router: the third flood on a two-rule router passes unfiltered
+ok 30 - Flowspec rules are finite on each router: the third flood on a two-rule router passes unfiltered
+  ---
+  duration_ms: 377.560957
+  type: 'test'
+  ...
+# Subtest: an engaged scrubbing center pulls the flood off your ports; what it cannot clean hurts only the target
+ok 31 - an engaged scrubbing center pulls the flood off your ports; what it cannot clean hurts only the target
+  ---
+  duration_ms: 426.250027
+  type: 'test'
+  ...
+# Subtest: Auto-RTBH pulls the plug when a flood fills ports and hurts others
+ok 32 - Auto-RTBH pulls the plug when a flood fills ports and hurts others
+  ---
+  duration_ms: 412.513032
+  type: 'test'
+  ...
+# Subtest: held, sacrificed and got through are scored at the end
+ok 33 - held, sacrificed and got through are scored at the end
+  ---
+  duration_ms: 398.039597
+  type: 'test'
+  ...
+# Subtest: how often: never in Change Freeze, Sandbox or puzzles; BGP at 3 a.m. about twice On-call
+ok 34 - how often: never in Change Freeze, Sandbox or puzzles; BGP at 3 a.m. about twice On-call
+  ---
+  duration_ms: 1455.828553
+  type: 'test'
+  ...
+# Subtest: saves before 2.2 load: an attack on a city finds its target, and an IX blackhole is dropped
+ok 35 - saves before 2.2 load: an attack on a city finds its target, and an IX blackhole is dropped
+  ---
+  duration_ms: 319.378487
+  type: 'test'
+  ...
+# Subtest: the NOC card fits a phone and the sandbox can send a test flood
+ok 36 - the NOC card fits a phone and the sandbox can send a test flood
+  ---
+  duration_ms: 337.74869
+  type: 'test'
+  ...
+# Subtest: a DDoS-protection customer under attack who goes down, or is blackholed, is paid out once per attack
+ok 37 - a DDoS-protection customer under attack who goes down, or is blackholed, is paid out once per attack
+  ---
+  duration_ms: 355.411388
+  type: 'test'
+  ...
+# Subtest: overlapping attacks have their own cards and buttons and end on their own
+ok 38 - overlapping attacks have their own cards and buttons and end on their own
+  ---
+  duration_ms: 358.033063
+  type: 'test'
+  ...
+# Subtest: Hackback 3000 is still a gamble
+ok 39 - Hackback 3000 is still a gamble
+  ---
+  duration_ms: 363.878014
+  type: 'test'
+  ...
+# Subtest: a sacrificial PNI takes all of its peer's junk, and a clean pipe scrubs a transit upstream
+ok 40 - a sacrificial PNI takes all of its peer's junk, and a clean pipe scrubs a transit upstream
+  ---
+  duration_ms: 343.03991
+  type: 'test'
+  ...
+# Subtest: several scrubbing centers share a flood by size, and a far one costs the target latency
+ok 41 - several scrubbing centers share a flood by size, and a far one costs the target latency
+  ---
+  duration_ms: 403.803836
+  type: 'test'
+  ...
+# Subtest: RackNet and TeamSpooked need gaming customers and slip past Flowspec; amplification floods do not
+ok 42 - RackNet and TeamSpooked need gaming customers and slip past Flowspec; amplification floods do not
+  ---
+  duration_ms: 350.3478
+  type: 'test'
+  ...
+# Subtest: an attack started during the day is announced and scored after the day's routing
+ok 43 - an attack started during the day is announced and scored after the day's routing
+  ---
+  duration_ms: 316.199321
+  type: 'test'
+  ...
+# Subtest: W1: every city has a country code, a region and real coordinates
+ok 44 - W1: every city has a country code, a region and real coordinates
+  ---
+  duration_ms: 0.41713
+  type: 'test'
+  ...
+# Subtest: W2: every country on the map has at least two consumer networks of its own
+ok 45 - W2: every country on the map has at least two consumer networks of its own
+  ---
+  duration_ms: 13.696229
+  type: 'test'
+  ...
+# Subtest: W3: every city can buy transit from someone, or is a documented exception
+ok 46 - W3: every city can buy transit from someone, or is a documented exception
+  ---
+  duration_ms: 0.672028
+  type: 'test'
+  ...
+# Subtest: W4: cables are consistent: real cities, two distinct ends, a length and unique ids
+ok 47 - W4: cables are consistent: real cities, two distinct ends, a length and unique ids
+  ---
+  duration_ms: 0.412313
+  type: 'test'
+  ...
+# Subtest: W5: every island city can be reached: it shares its land, has a cable, or a beach to land one
+ok 48 - W5: every island city can be reached: it shares its land, has a cable, or a beach to land one
+  ---
+  duration_ms: 0.872205
+  type: 'test'
+  ...
+# Subtest: N1: network ids and ASNs are unique, ASNs are valid
+ok 49 - N1: network ids and ASNs are unique, ASNs are valid
+  ---
+  duration_ms: 0.430974
+  type: 'test'
+  ...
+# Subtest: N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name
+ok 50 - N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name
+  ---
+  duration_ms: 1.677631
+  type: 'test'
+  ...
+# Subtest: N3: every network sits in a founding Tier 1’s customer cone, or is a documented island
+ok 51 - N3: every network sits in a founding Tier 1’s customer cone, or is a documented island
+  ---
+  duration_ms: 0.510134
+  type: 'test'
+  ...
+# Subtest: N4: no upstream cycles
+ok 52 - N4: no upstream cycles
+  ---
+  duration_ms: 0.19843
+  type: 'test'
+  ...
+# Subtest: N5: traffic shares are sane
+ok 53 - N5: traffic shares are sane
+  ---
+  duration_ms: 0.429501
+  type: 'test'
+  ...
+# Subtest: N6: every network has a type, a peering policy and a translated blurb
+ok 54 - N6: every network has a type, a peering policy and a translated blurb
+  ---
+  duration_ms: 0.266554
+  type: 'test'
+  ...
+# Subtest: N7: presence is real: PoPs are cities, exchange ports only where the network is
+ok 55 - N7: presence is real: PoPs are cities, exchange ports only where the network is
+  ---
+  duration_ms: 0.698728
+  type: 'test'
+  ...
+# Subtest: M1: On-call is the classic game: the default rules, and what old saves load as
+ok 56 - M1: On-call is the classic game: the default rules, and what old saves load as
+  ---
+  duration_ms: 0.294841
+  type: 'test'
+  ...
+# Subtest: M2: presets are ordered: Best Effort never harsher than Change Freeze, Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler
+ok 57 - M2: presets are ordered: Best Effort never harsher than Change Freeze, Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler
+  ---
+  duration_ms: 2167.118406
+  type: 'test'
+  ...
+# Subtest: M3: every subsystem that can annoy the player reads a rule
+ok 58 - M3: every subsystem that can annoy the player reads a rule
+  ---
+  duration_ms: 777.163432
+  type: 'test'
+  ...
+# Subtest: M4: scenarios and the weekly challenge always run On-call
+ok 59 - M4: scenarios and the weekly challenge always run On-call
+  ---
+  duration_ms: 551.359421
+  type: 'test'
+  ...
+# Subtest: M5: Sandbox has no locked feature
+ok 60 - M5: Sandbox has no locked feature
+  ---
+  duration_ms: 297.888534
+  type: 'test'
+  ...
+# Subtest: C1: every scenario has a goal its card checks, and none is won on day 0
+ok 61 - C1: every scenario has a goal its card checks, and none is won on day 0
+  ---
+  duration_ms: 651.066485
+  type: 'test'
+  ...
+# Subtest: C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js)
+ok 62 - C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js)
+  ---
+  duration_ms: 0.838226
+  type: 'test'
+  ...
+# Subtest: C3: every player-facing string is translated in every language
+not ok 63 - C3: every player-facing string is translated in every language
+  ---
+  duration_ms: 1254.664076
+  type: 'test'
+  location: '/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gameplay-rules.test.js:309:1'
+  failureType: 'testCodeFailure'
+  error: 'spawnSync /usr/bin/node EPERM'
+  code: 'EPERM'
+  stack: |-
+    Object.spawnSync (node:internal/child_process:1191:20)
+    spawnSync (node:child_process:929:24)
+    execFileSync (node:child_process:972:15)
+    TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/gameplay-rules.test.js:310:15)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180
+ok 64 - F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180
+  ---
+  duration_ms: 350.245812
+  type: 'test'
+  ...
+# Subtest: F2: a simple build in a start city makes money within three months on On-call
+ok 65 - F2: a simple build in a start city makes money within three months on On-call
+  ---
+  duration_ms: 1630.959583
+  type: 'test'
+  ...
+# Subtest: F3: a specialist path only brings customers you can already serve
+ok 66 - F3: a specialist path only brings customers you can already serve
+  ---
+  duration_ms: 318.456529
+  type: 'test'
+  ...
+# Subtest: F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures
+ok 67 - F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures
+  ---
+  duration_ms: 1482.915488
+  type: 'test'
+  ...
+# Subtest: F5: rented capacity never outgrows the route's market (\#203)
+ok 68 - F5: rented capacity never outgrows the route's market (\#203)
+  ---
+  duration_ms: 356.946399
+  type: 'test'
+  ...
+# Subtest: D1: attack sizes come from the world, never from your network
+ok 69 - D1: attack sizes come from the world, never from your network
+  ---
+  duration_ms: 334.149996
+  type: 'test'
+  ...
+# Subtest: D2: a full port slows everyone on it
+ok 70 - D2: a full port slows everyone on it
+  ---
+  duration_ms: 370.097985
+  type: 'test'
+  ...
+# Subtest: D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget
+ok 71 - D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget
+  ---
+  duration_ms: 383.007326
+  type: 'test'
+  ...
+# Subtest: D4: RTBH costs only the target
+ok 72 - D4: RTBH costs only the target
+  ---
+  duration_ms: 395.82761
+  type: 'test'
+  ...
+# Subtest: no page errors while checking the rules
+ok 73 - no page errors while checking the rules
+  ---
+  duration_ms: 0.106366
+  type: 'test'
+  ...
+# Subtest: \#262 by default the intern lights new fiber with the most Gbps per dollar, as before
+ok 74 - \#262 by default the intern lights new fiber with the most Gbps per dollar, as before
+  ---
+  duration_ms: 402.660401
+  type: 'test'
+  ...
+# Subtest: \#262 told to go big, the intern lights new fiber with the most Gbps per channel
+ok 75 - \#262 told to go big, the intern lights new fiber with the most Gbps per channel
+  ---
+  duration_ms: 687.282811
+  type: 'test'
+  ...
+# Subtest: \#262 the biggest optic that fits the budget, and it never swaps what is already lit
+ok 76 - \#262 the biggest optic that fits the budget, and it never swaps what is already lit
+  ---
+  duration_ms: 811.137677
+  type: 'test'
+  ...
+# Subtest: \#262 the setting is saved, an unknown value falls back, and it shows on the phone
+ok 77 - \#262 the setting is saved, an unknown value falls back, and it shows on the phone
+  ---
+  duration_ms: 383.100593
+  type: 'test'
+  ...
+# Subtest: every action in the game is in exactly one class, so a new one forces a decision
+ok 78 - every action in the game is in exactly one class, so a new one forces a decision
+  ---
+  duration_ms: 384.888193
+  type: 'test'
+  ...
+# Subtest: every declared argument is one the action really reads
+ok 79 - every declared argument is one the action really reads
+  ---
+  duration_ms: 374.046713
+  type: 'test'
+  ...
+# Subtest: the state and results references cover every field
+ok 80 - the state and results references cover every field
+  ---
+  duration_ms: 778.344885
+  type: 'test'
+  ...
+# Subtest: typed text reaches the game: rename, RouteScript, the custom metric, traceroute
+ok 81 - typed text reaches the game: rename, RouteScript, the custom metric, traceroute
+  ---
+  duration_ms: 419.34833
+  type: 'test'
+  ...
+# Subtest: multi-step builds take their choices as arguments: waves, dark fiber, own cable, circuits, closing POPs
+ok 82 - multi-step builds take their choices as arguments: waves, dark fiber, own cable, circuits, closing POPs
+  ---
+  duration_ms: 550.87767
+  type: 'test'
+  ...
+# Subtest: confirmations are given in one call; a click still arms them as in the game
+ok 83 - confirmations are given in one call; a click still arms them as in the game
+  ---
+  duration_ms: 429.140364
+  type: 'test'
+  ...
+# Subtest: the utilities sheet's one-call buttons work without a quote in hand
+ok 84 - the utilities sheet's one-call buttons work without a quote in hand
+  ---
+  duration_ms: 383.351856
+  type: 'test'
+  ...
+# Subtest: arguments are checked before anything runs, with what would fit
+ok 85 - arguments are checked before anything runs, with what would fit
+  ---
+  duration_ms: 360.524432
+  type: 'test'
+  ...
+# Subtest: the outcome says what happened
+ok 86 - the outcome says what happened
+  ---
+  duration_ms: 430.296724
+  type: 'test'
+  ...
+# Subtest: dry runs do not use up the dice: the seeded game plays on exactly as without them
+ok 87 - dry runs do not use up the dice: the seeded game plays on exactly as without them
+  ---
+  duration_ms: 857.572322
+  type: 'test'
+  ...
+# Subtest: a dry run prices every command that has a price, and changes nothing
+ok 88 - a dry run prices every command that has a price, and changes nothing
+  ---
+  duration_ms: 979.699021
+  type: 'test'
+  ...
+# Subtest: everything an action needs can be read: loan offers, conference keys, recipes, reference tables
+ok 89 - everything an action needs can be read: loan offers, conference keys, recipes, reference tables
+  ---
+  duration_ms: 452.070573
+  type: 'test'
+  ...
+# Subtest: the dashboard, the bank, the left drawer and the puzzle box read as text; long text comes in pages
+ok 90 - the dashboard, the bank, the left drawer and the puzzle box read as text; long text comes in pages
+  ---
+  duration_ms: 907.617755
+  type: 'test'
+  ...
+# Subtest: new_game takes your own ASN and the sandbox chaos dial
+ok 91 - new_game takes your own ASN and the sandbox chaos dial
+  ---
+  duration_ms: 353.897547
+  type: 'test'
+  ...
+# Subtest: every button the panels, drawers, dashboard and windows render is classified, and typed ones pass their domains
+ok 92 - every button the panels, drawers, dashboard and windows render is classified, and typed ones pass their domains
+  ---
+  duration_ms: 734.208016
+  type: 'test'
+  ...
+# Subtest: \#265 peering desk leaves route-server networks on the route server
+ok 93 - \#265 peering desk leaves route-server networks on the route server
+  ---
+  duration_ms: 350.78009
+  type: 'test'
+  ...
+# Subtest: the backbone, Auto-TE and DDoS settings open from a button at the top of the NOC tab
+ok 94 - the backbone, Auto-TE and DDoS settings open from a button at the top of the NOC tab
+  ---
+  duration_ms: 355.244035
+  type: 'test'
+  ...
+# Subtest: a paused Auto-TE shows on the button, and the modal works on a phone
+ok 95 - a paused Auto-TE shows on the button, and the modal works on a phone
+  ---
+  duration_ms: 362.286668
+  type: 'test'
+  ...
+# Subtest: an old save without rules loads as On-call, a sandbox save as Sandbox
+ok 96 - an old save without rules loads as On-call, a sandbox save as Sandbox
+  ---
+  duration_ms: 308.255497
+  type: 'test'
+  ...
+# Subtest: rules survive save and load, and junk is repaired
+ok 97 - rules survive save and load, and junk is repaired
+  ---
+  duration_ms: 340.009436
+  type: 'test'
+  ...
+# Subtest: the title screen: four doors, four Normal presets, a chaos picker for Sandbox, at 360 px
+ok 98 - the title screen: four doors, four Normal presets, a chaos picker for Sandbox, at 360 px
+  ---
+  duration_ms: 355.646494
+  type: 'test'
+  ...
+# Subtest: On-call shows no extra tag; the share card names other presets
+ok 99 - On-call shows no extra tag; the share card names other presets
+  ---
+  duration_ms: 329.319601
+  type: 'test'
+  ...
+# Subtest: Sandbox lays its own subsea cable without being Tier 1, and passes the level gates
+ok 100 - Sandbox lays its own subsea cable without being Tier 1, and passes the level gates
+  ---
+  duration_ms: 487.06651
+  type: 'test'
+  ...
+# Subtest: Sandbox chaos: none by default, but it can be asked for
+ok 101 - Sandbox chaos: none by default, but it can be asked for
+  ---
+  duration_ms: 538.975028
+  type: 'test'
+  ...
+# Subtest: Change Freeze breaks less than On-call, BGP at 3 a.m. more, on the same seed
+ok 102 - Change Freeze breaks less than On-call, BGP at 3 a.m. more, on the same seed
+  ---
+  duration_ms: 2498.562698
+  type: 'test'
+  ...
+# Subtest: chaos stretches spicy outages and leaves On-call ones alone
+ok 103 - chaos stretches spicy outages and leaves On-call ones alone
+  ---
+  duration_ms: 337.953622
+  type: 'test'
+  ...
+# Subtest: quick lead times: PNIs, dark fiber and own builds arrive in days (\#151)
+ok 104 - quick lead times: PNIs, dark fiber and own builds arrive in days (\#151)
+  ---
+  duration_ms: 349.179299
+  type: 'test'
+  ...
+# Subtest: Change Freeze: no hardware market, no sold-out routes
+ok 105 - Change Freeze: no hardware market, no sold-out routes
+  ---
+  duration_ms: 372.492017
+  type: 'test'
+  ...
+# Subtest: no clock: dayTick advances no days, sends no bills, and the speed buttons hide
+ok 106 - no clock: dayTick advances no days, sends no bills, and the speed buttons hide
+  ---
+  duration_ms: 533.701195
+  type: 'test'
+  ...
+# Subtest: C1 played: every scenario has a reference strategy and a shortcut that fails
+ok 107 - C1 played: every scenario has a reference strategy and a shortcut that fails
+  ---
+  duration_ms: 317.653978
+  type: 'test'
+  ...
+# Subtest: stg: the reference wins in its days, the shortcut does not
+ok 108 - stg: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2716.005444
+  type: 'test'
+  ...
+# Subtest: redsea: the reference wins in its days, the shortcut does not
+ok 109 - redsea: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1956.337862
+  type: 'test'
+  ...
+# Subtest: spat: the reference wins in its days, the shortcut does not
+ok 110 - spat: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 933.554397
+  type: 'test'
+  ...
+# Subtest: carnaval: the reference wins in its days, the shortcut does not
+ok 111 - carnaval: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 807.508022
+  type: 'test'
+  ...
+# Subtest: darien: the reference wins in its days, the shortcut does not
+ok 112 - darien: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1229.279613
+  type: 'test'
+  ...
+# Subtest: c2c: the reference wins in its days, the shortcut does not
+ok 113 - c2c: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1784.65287
+  type: 'test'
+  ...
+# Subtest: ixbr: the reference wins in its days, the shortcut does not
+ok 114 - ixbr: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2661.995881
+  type: 'test'
+  ...
+# Subtest: gangnam: the reference wins in its days, the shortcut does not
+ok 115 - gangnam: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2029.901203
+  type: 'test'
+  ...
+# Subtest: flood: the reference wins in its days, the shortcut does not
+ok 116 - flood: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1036.314253
+  type: 'test'
+  ...
+# Subtest: fttb: the reference wins in its days, the shortcut does not
+ok 117 - fttb: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1433.188115
+  type: 'test'
+  ...
+# Subtest: baltic: the reference wins in its days, the shortcut does not
+ok 118 - baltic: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 1381.192229
+  type: 'test'
+  ...
+# Subtest: pac: the reference wins in its days, the shortcut does not
+ok 119 - pac: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2105.328613
+  type: 'test'
+  ...
+# Subtest: atl: the reference wins in its days, the shortcut does not
+ok 120 - atl: the reference wins in its days, the shortcut does not
+  ---
+  duration_ms: 2612.865948
+  type: 'test'
+  ...
+# Subtest: gangnam: Seoul transit and Kay-Tea does not win
+ok 121 - gangnam: Seoul transit and Kay-Tea does not win
+  ---
+  duration_ms: 951.539662
+  type: 'test'
+  ...
+# Subtest: gangnam: everything from Tokyo does not win
+ok 122 - gangnam: everything from Tokyo does not win
+  ---
+  duration_ms: 747.035291
+  type: 'test'
+  ...
+# Subtest: gangnam: the 1.x reference does not win
+ok 123 - gangnam: the 1.x reference does not win
+  ---
+  duration_ms: 1143.090492
+  type: 'test'
+  ...
+# Subtest: gangnam: Tokyo haul, Seoul transit first does not win
+ok 124 - gangnam: Tokyo haul, Seoul transit first does not win
+  ---
+  duration_ms: 1445.546334
+  type: 'test'
+  ...
+# Subtest: \#258 paying hurries the permits and the factory, 30 days a step, down to what the factory needs
+ok 125 - \#258 paying hurries the permits and the factory, 30 days a step, down to what the factory needs
+  ---
+  duration_ms: 407.6793
+  type: 'test'
+  ...
+# Subtest: \#258 a short cable is quick; once the ships sail, money buys no more paperwork
+ok 126 - \#258 a short cable is quick; once the ships sail, money buys no more paperwork
+  ---
+  duration_ms: 390.900297
+  type: 'test'
+  ...
+# Subtest: traceroute shows an embedded cache hop only when a cache is the exit
+ok 127 - traceroute shows an embedded cache hop only when a cache is the exit
+  ---
+  duration_ms: 422.853968
+  type: 'test'
+  ...
+1..127
+# tests 127
+# suites 0
+# pass 126
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 85348.225428

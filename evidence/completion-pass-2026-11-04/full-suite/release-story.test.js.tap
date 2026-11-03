@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: the release notes script reads a story and the bullets apart
+ok 1 - the release notes script reads a story and the bullets apart
+  ---
+  duration_ms: 71.642524
+  type: 'test'
+  ...
+# Subtest: "What's new" tells the story in full, with every change one tap away
+ok 2 - "What's new" tells the story in full, with every change one tap away
+  ---
+  duration_ms: 720.728124
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2017.020263

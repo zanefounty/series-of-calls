@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: \#187 a capability brings its customers before the level does, only when you can serve them
+ok 1 - \#187 a capability brings its customers before the level does, only when you can serve them
+  ---
+  duration_ms: 748.182289
+  type: 'test'
+  ...
+# Subtest: \#187 vendor demo units: one level ahead, a wait and a markup
+ok 2 - \#187 vendor demo units: one level ahead, a wait and a markup
+  ---
+  duration_ms: 406.076566
+  type: 'test'
+  ...
+# Subtest: \#187 pioneer fiber: dig your own before level 3, at a markup
+ok 3 - \#187 pioneer fiber: dig your own before level 3, at a markup
+  ---
+  duration_ms: 363.836532
+  type: 'test'
+  ...
+# Subtest: \#173 a consortium seat: offer, pay, build, light, cut, save
+ok 4 - \#173 a consortium seat: offer, pay, build, light, cut, save
+  ---
+  duration_ms: 383.833934
+  type: 'test'
+  ...
+# Subtest: \#187 the Low-latency boutique: pick it on day 0, traders weigh more and pay more, Speed of Light wins
+ok 5 - \#187 the Low-latency boutique: pick it on day 0, traders weigh more and pay more, Speed of Light wins
+  ---
+  duration_ms: 1137.88239
+  type: 'test'
+  ...
+# Subtest: \#187 old saves load as Global backbone; scenarios ignore charters
+ok 6 - \#187 old saves load as Global backbone; scenarios ignore charters
+  ---
+  duration_ms: 326.659668
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10577.573132

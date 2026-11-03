@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: the sales order signs ready offers once per shift, and pausing it stops it
+ok 1 - the sales order signs ready offers once per shift, and pausing it stops it
+  ---
+  duration_ms: 695.096242
+  type: 'test'
+  ...
+# Subtest: the trial includes new bandwidth and later offers cannot overbook earlier accepted sales
+ok 2 - the trial includes new bandwidth and later offers cannot overbook earlier accepted sales
+  ---
+  duration_ms: 364.044558
+  type: 'test'
+  ...
+# Subtest: the sales order checks actual circuits, latency and NNI capacity
+ok 3 - the sales order checks actual circuits, latency and NNI capacity
+  ---
+  duration_ms: 359.440649
+  type: 'test'
+  ...
+# Subtest: new circuits do not take service away from healthy signed customers
+ok 4 - new circuits do not take service away from healthy signed customers
+  ---
+  duration_ms: 366.483414
+  type: 'test'
+  ...
+# Subtest: fiber sales check live equipment and free spectrum, and repeated carrier orders still merge
+ok 5 - fiber sales check live equipment and free spectrum, and repeated carrier orders still merge
+  ---
+  duration_ms: 364.961531
+  type: 'test'
+  ...
+# Subtest: capacity pair sales need completed infrastructure and reserve it for the accepted contract
+ok 6 - capacity pair sales need completed infrastructure and reserve it for the accepted contract
+  ---
+  duration_ms: 364.981287
+  type: 'test'
+  ...
+# Subtest: future event demand is tested before signing, with booked events reserving headroom
+ok 7 - future event demand is tested before signing, with booked events reserving headroom
+  ---
+  duration_ms: 321.368971
+  type: 'test'
+  ...
+# Subtest: failed capacity trials restore game, routing and map state even when compute throws
+ok 8 - failed capacity trials restore game, routing and map state even when compute throws
+  ---
+  duration_ms: 325.944597
+  type: 'test'
+  ...
+# Subtest: the repair order rushes affordable repairs once, skips unaffordable and expired incidents, and obeys its pause
+ok 9 - the repair order rushes affordable repairs once, skips unaffordable and expired incidents, and obeys its pause
+  ---
+  duration_ms: 332.571276
+  type: 'test'
+  ...
+# Subtest: the sales order leaves unready and expired offers alone without failure notifications
+ok 10 - the sales order leaves unready and expired offers alone without failure notifications
+  ---
+  duration_ms: 328.322805
+  type: 'test'
+  ...
+# Subtest: the \#185 toggles in old saves become the sales and repair orders, malformed ones stay off
+ok 11 - the \#185 toggles in old saves become the sales and repair orders, malformed ones stay off
+  ---
+  duration_ms: 308.443974
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4424.170415

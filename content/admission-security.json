@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "pack": "soc-admission-security-1",
+  "status": "core-shared-dispatch-integrated-progression-pending",
+  "runtime": {
+    "PACK": "soc-admission-security-1",
+    "VERSION": 1,
+    "controls": ["network", "sip", "destination"],
+    "methods": ["INVITE", "REGISTER", "OPTIONS", "MESSAGE", "ACK", "CANCEL", "BYE"],
+    "sourceIds": ["progress.goal.scrub", "progress.incident-mechanic.scrub", "action:scrubUp", "action:scrubMode", "state:S.scrubMode", "state:S.scrubs", "requirement:scrubbed", "requirement:scrubnear", "asset:scrubMo1/scrubMo/cleanMo:", "asset:SCRUB_TIERS:0", "asset:SCRUB_TIERS:1", "asset:SCRUB_TIERS:2", "asset:SCRUB_TIERS:3"],
+    "defaults": {
+      "network": {"enabled": false, "capacityPps": 1000, "mitigationPps": 1000, "activationMode": "always"},
+      "sip": {"enabled": false, "attemptsPerSecond": 10, "allowedMethods": ["INVITE"], "maxMessageBytes": 2048, "requireAuthenticatedPeer": true},
+      "destination": {"enabled": false, "allowedPrefixes": [], "perCallMaxCents": 1000, "windowSpendLimitCents": 5000, "windowMinutes": 1440}
+    }
+  },
+  "sourceIds": ["progress.goal.scrub", "progress.incident-mechanic.scrub", "action:scrubUp", "action:scrubMode", "state:S.scrubMode", "state:S.scrubs", "requirement:scrubbed", "requirement:scrubnear", "asset:scrubMo1/scrubMo/cleanMo:", "asset:SCRUB_TIERS:0", "asset:SCRUB_TIERS:1", "asset:SCRUB_TIERS:2", "asset:SCRUB_TIERS:3"],
+  "sourceGoal": {
+    "id": "progress.goal.scrub",
+    "requirement": "REQ-b8b7bd22fb0ba9f0",
+    "originalTitle": "Stand up DDoS defences",
+    "originalDescription": "Build a scrubbing center from a POP's Infra tab. It cleans attacks up to its capacity and lets you sell DDoS protection.",
+    "sourceReward": 20000,
+    "sourceRewardUnit": "source-game currency; not mapped to AUD or a runtime reward",
+    "originalPredicate": "hasScrub()"
+  },
+  "relatedSourceRows": [
+    {"id":"progress.incident-mechanic.scrub","requirement":"REQ-fde68e7a294f8106","sourceFields":{"nearest_working":true,"overflow":true,"residual_fraction":0.15},"implementationNote":"Filtered IP floods are not evidence of application recovery."},
+    {"id":"action:scrubUp","requirement":"REQ-bc6315651ffdf880","implementationNote":"Source action upgrades to a higher unlocked capacity tier after source-game spending; tier progression and its cost are not mapped into Mbps, PPS or AUD."},
+    {"id":"action:scrubMode","requirement":"REQ-9c63219ea3a97ca5","implementationNote":"Source action toggles between always-on and on-demand scrubbing; the runtime keeps these as explicit synthetic modes."},
+    {"id":"state:S.scrubMode","requirement":"REQ-09c6107ba838a8b7","initial":"always","implementationNote":"Source activation mode is retained as scenario context."},
+    {"id":"state:S.scrubs","requirement":"REQ-4f9ea27cb82b86aa","initial":[],"implementationNote":"Source instances are retained as context; this optional module does not invent POP placement or a live scrubbing network."},
+    {"id":"requirement:scrubbed","requirement":"REQ-40b07688e5d6cfa4","implementationNote":"Customer source text asks for a network that runs DDoS scrubbing; runtime evidence additionally keeps SIP and destination controls separate."},
+    {"id":"requirement:scrubnear","requirement":"REQ-e8e81c318513bc8e","implementationNote":"Regional placement remains pending because the runtime has no physical scrubbing-site inventory or real continent mapping."},
+    {"id":"asset:scrubMo1/scrubMo/cleanMo:","requirement":"REQ-33f00f7d8bcfcf3f","implementationNote":"Protection capacity charges remain separate from UC security/support services."},
+    {"id":"asset:SCRUB_TIERS:0","requirement":"REQ-50f4bba0a36f0108","sourceCapacity":"100G","implementationNote":"Source capacity stays provenance; runtime packet-per-second admission is not converted from this bandwidth."},
+    {"id":"asset:SCRUB_TIERS:1","requirement":"REQ-dac51f366022633e","sourceCapacity":"1T","implementationNote":"Source capacity stays provenance; runtime packet-per-second admission is not converted from this bandwidth."},
+    {"id":"asset:SCRUB_TIERS:2","requirement":"REQ-2cebcf7776951ca5","sourceCapacity":"10T","implementationNote":"Source capacity stays provenance; runtime packet-per-second admission is not converted from this bandwidth."},
+    {"id":"asset:SCRUB_TIERS:3","requirement":"REQ-6d23fd00b3ddb8e8","sourceCapacity":"100T","implementationNote":"Source capacity stays provenance; runtime packet-per-second admission is not converted from this bandwidth."}
+  ],
+  "controls": {
+    "network": {"unit":"packets per simulated second (PPS)","config":{"enabled":"boolean","capacityPps":"clean service ceiling","mitigationPps":"filtering ceiling; must be at least capacityPps","activationMode":"always|on-demand"},"failure":"overload beyond mitigation capacity or inactive/unavailable scrubbing marks the protected path unavailable until an explicit simulation tick advances the bucket."},
+    "sip": {"unit":"signalling attempts per simulated second", "config":{"enabled":"boolean","attemptsPerSecond":"per peer","allowedMethods":"explicit SIP method list","maxMessageBytes":"positive byte ceiling","requireAuthenticatedPeer":"boolean"},"peerObservation":{"available":"boolean","authenticated":"boolean","methods":"observed method list"},"failure":"unknown/unavailable/unauthenticated peer, method mismatch, malformed or oversized message, or rate overflow is retained with a synthetic reason."},
+    "destination": {"unit":"AUD cents from the core's 2-cent-per-queued-or-handling-voice-minute charge", "config":{"enabled":"boolean","allowedPrefixes":"explicit synthetic E.164-like prefix list","perCallMaxCents":"per interaction spend ceiling","windowSpendLimitCents":"rolling spend ceiling","windowMinutes":"rolling window length"},"failure":"unapproved destination is rejected before call admission; per-call and rolling-window caps are rechecked before each core voice-minute charge. Settlements reconcile against actual core minute rows and their voice interaction IDs; this module issues no money."}
+  },
+  "reference_fixture": {
+    "configures": [
+      {"action":"configure","control":"network","config":{"enabled":true,"capacityPps":100,"mitigationPps":1000,"activationMode":"always"}},
+      {"action":"configure","control":"sip","config":{"enabled":true,"attemptsPerSecond":10,"allowedMethods":["INVITE"],"maxMessageBytes":2048,"requireAuthenticatedPeer":true}},
+      {"action":"configure","control":"destination","config":{"enabled":true,"allowedPrefixes":["+612"],"perCallMaxCents":500,"windowSpendLimitCents":1000,"windowMinutes":60}},
+      {"action":"peer","id":"synthetic-carrier","available":true,"authenticated":true,"methods":["INVITE"]}
+    ],
+    "packetBatch":{"action":"inject-packets","peer":"synthetic-test-source","packets":500,"secondOffset":0},
+    "signallingSamples":[{"action":"inject-signalling","peer":"synthetic-carrier","attempts":1,"method":"INVITE","messageBytes":128,"valid":true,"secondOffset":1},{"action":"inject-signalling","peer":"synthetic-carrier","attempts":1,"method":"REGISTER","messageBytes":128,"valid":true,"secondOffset":2}],
+    "callContext":{"peerId":"synthetic-carrier","method":"INVITE","messageBytes":128,"messageValid":true,"destination":"+61255500001","secondOffset":0},
+    "billingContract":"The core calls preflight and admit before an outgoing voice call is accepted. Immediately before each active queued/handling interaction contributes to core usage, the core calls admitUsage; a block excludes that interaction before calculating usage. The core writes minute-N ledger rows with usage and voiceInteractions (one unique interaction ID per admitted unit), with voice cost included in row cost at 2 AUD cents per usage unit. On every terminal outcome it calls settle; the module reconciles each admitted minute against those actual core rows and does not post a second charge. Failed calls preserve already incurred usage costs."
+  },
+  "completionCriteria": [
+    "A packet flood is filtered within configured PPS capacity while protected path remains available; unfiltered overflow records a failure.",
+    "A valid authenticated INVITE is admitted and at least one invalid, unauthenticated, disallowed-method or over-rate signalling sample is blocked.",
+    "A permitted, resolved voice interaction has actual usage reconciled against the core AUD-cent minute ledger; a destination/spend fixture is blocked before any over-limit minute charge accrues.",
+    "All three controls are independently effective. Bandwidth, seats, agents and credits are never substituted for PPS, signalling attempts or AUD cents."
+  ],
+  "pending": ["Regional scrubber placement and nearest-site overflow from requirement:scrubnear/progress.incident-mechanic.scrub", "Transport-layer volumetric capacity tiers and their cost/latency", "Campaign/progression award and source-goal integration"]
+}

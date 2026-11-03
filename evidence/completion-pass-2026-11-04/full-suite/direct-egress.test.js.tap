@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: at its own POP a carrier's port takes the traffic bound for that carrier, not an even split
+ok 1 - at its own POP a carrier's port takes the traffic bound for that carrier, not an even split
+  ---
+  duration_ms: 718.100278
+  type: 'test'
+  ...
+# Subtest: traffic for a carrier's customers prefers that carrier too, and a carrier beats its own customers' other upstreams
+ok 2 - traffic for a carrier's customers prefers that carrier too, and a carrier beats its own customers' other upstreams
+  ---
+  duration_ms: 417.928127
+  type: 'test'
+  ...
+# Subtest: when the carrier's own port is full, the rest spills onto the other transit ports
+ok 3 - when the carrier's own port is full, the rest spills onto the other transit ports
+  ---
+  duration_ms: 368.645772
+  type: 'test'
+  ...
+# Subtest: Prefer, Backup only and RouteScript keep the say they had
+ok 4 - Prefer, Backup only and RouteScript keep the say they had
+  ---
+  duration_ms: 1192.610027
+  type: 'test'
+  ...
+# Subtest: a Prefer-marked port keeps the say at its own POP only; the other POPs still use their own carrier ports
+ok 5 - a Prefer-marked port keeps the say at its own POP only; the other POPs still use their own carrier ports
+  ---
+  duration_ms: 442.714236
+  type: 'test'
+  ...
+# Subtest: from a POP without the carrier's port, traffic uses the nearest port, or crosses your network when the port carries
+ok 6 - from a POP without the carrier's port, traffic uses the nearest port, or crosses your network when the port carries
+  ---
+  duration_ms: 384.673127
+  type: 'test'
+  ...
+# Subtest: traceroute shows the exit that routing uses, and says why
+ok 7 - traceroute shows the exit that routing uses, and says why
+  ---
+  duration_ms: 362.602671
+  type: 'test'
+  ...
+# Subtest: the carry setting is saved, repaired and optional
+ok 8 - the carry setting is saved, repaired and optional
+  ---
+  duration_ms: 1334.271769
+  type: 'test'
+  ...
+# Subtest: each port offers the choice when it can matter, on a desktop and a phone
+ok 9 - each port offers the choice when it can matter, on a desktop and a phone
+  ---
+  duration_ms: 790.229828
+  type: 'test'
+  ...
+# Subtest: the control reads right in every language
+ok 10 - the control reads right in every language
+  ---
+  duration_ms: 1990.393535
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13195.093805

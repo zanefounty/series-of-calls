@@ -1,0 +1,16 @@
+✔ the chaos monkey visits On-call and BGP at 3 a.m., never Change Freeze or Sandbox (2081.399031ms)
+✔ a visit lasts 120 to 240 days, snips every couple of weeks and pauses the usual failures (529.643259ms)
+✔ weak spots are tubes with no other way round (406.879973ms)
+✔ outlasting it unnoticed pays a bonus and earns the badge; going home hurt pays nothing (393.138637ms)
+✔ a banana sends it home early, for a price (444.351959ms)
+✔ saves keep the monkey; old and broken saves are repaired (413.60449ms)
+✔ "Met the Chaos Monkey" comes from a visit, not from an ordinary fiber cut (408.174999ms)
+✔ #226 the monkey's notice in the NOC has no Open button that would open the NOC again (395.959637ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13769.583232

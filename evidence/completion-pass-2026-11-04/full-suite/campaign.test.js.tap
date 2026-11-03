@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-SOC-107 campaign content, source serialization and optional save compatibility are explicit
+ok 1 - AC-SOC-107 campaign content, source serialization and optional save compatibility are explicit
+  ---
+  duration_ms: 4.968196
+  type: 'test'
+  ...
+# Subtest: AC-SOC-108 observation windows sample every minute and make configuration changes and skipped samples sticky
+ok 2 - AC-SOC-108 observation windows sample every minute and make configuration changes and skipped samples sticky
+  ---
+  duration_ms: 10.453876
+  type: 'test'
+  ...
+# Subtest: AC-SOC-109 recovery requires the real validated fault, time under fault, recovery and a new successful journey
+ok 3 - AC-SOC-109 recovery requires the real validated fault, time under fault, recovery and a new successful journey
+  ---
+  duration_ms: 11.034924
+  type: 'test'
+  ...
+# Subtest: AC-SOC-110 service assessment needs a newly resolved interaction with retained case context
+ok 4 - AC-SOC-110 service assessment needs a newly resolved interaction with retained case context
+  ---
+  duration_ms: 7.391125
+  type: 'test'
+  ...
+# Subtest: AC-SOC-111 sandbox track switching preserves full root snapshots and does not grant progression rewards
+ok 5 - AC-SOC-111 sandbox track switching preserves full root snapshots and does not grant progression rewards
+  ---
+  duration_ms: 2.961413
+  type: 'test'
+  ...
+# Subtest: AC-SOC-112 jurisdiction and workload constraints stay track-specific and unsupported source objectives remain pending
+ok 6 - AC-SOC-112 jurisdiction and workload constraints stay track-specific and unsupported source objectives remain pending
+  ---
+  duration_ms: 121.221641
+  type: 'test'
+  ...
+# Subtest: AC-SOC-113 save validation binds awards, incident and window structures; inspection and fingerprints are pure
+ok 7 - AC-SOC-113 save validation binds awards, incident and window structures; inspection and fingerprints are pure
+  ---
+  duration_ms: 3.555418
+  type: 'test'
+  ...
+# Subtest: AC-SOC-114 campaign readiness is not an award: all four distinct windows and current service readiness are required
+ok 8 - AC-SOC-114 campaign readiness is not an award: all four distinct windows and current service readiness are required
+  ---
+  duration_ms: 141.256013
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 335.144015

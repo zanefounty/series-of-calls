@@ -1,0 +1,56 @@
+{
+  "version": "market-qualification-content-1",
+  "pack": "soc-market-qualification-1",
+  "sourceIds": [
+    "progress.goal.c3",
+    "progress.goal.c5",
+    "progress.goal.t2",
+    "progress.goal.t1",
+    "progress.progression-level.2",
+    "progress.progression-level.7",
+    "progress.progression-level.13"
+  ],
+  "markets": [
+    {"id":"au-sydney","geography":"Australia / Sydney","jurisdiction":"AU","supportLanguage":"en"},
+    {"id":"au-melbourne","geography":"Australia / Melbourne","jurisdiction":"AU","supportLanguage":"en"},
+    {"id":"us-seattle","geography":"United States / Seattle","jurisdiction":"US","supportLanguage":"en"},
+    {"id":"jp-tokyo","geography":"Japan / Tokyo","jurisdiction":"JP","supportLanguage":"ja"},
+    {"id":"eu-dublin","geography":"Europe / Dublin, Ireland","jurisdiction":"EU","supportLanguage":"en"}
+  ],
+  "goals": ["c3", "c5", "t2", "t1", "level-2", "level-7", "level-13"],
+  "thresholds": {
+    "c3": {"minutes":60,"distinctMarkets":3,"newExternalBillingPerParticipant":1},
+    "c5": {"minutes":60,"distinctMarkets":5,"newExternalBillingPerParticipant":1},
+    "t2": {"minutes":60,"activeCustomers":3,"distinctMarkets":2,"currentIntegrations":2,"newExternalBillingPerParticipant":1},
+    "t1": {"minutes":60,"scenarios":["smb","enterprise","government","defence"],"freshContinuityPerScenario":1,"externalOperatingProfitCentsMinimum":1,"newExternalBillingPerParticipant":1},
+    "level-2": {"minutes":60,"activeCustomers":2,"resolvedHumanCasesPerParticipant":1,"newExternalBillingPerParticipant":1},
+    "level-7": {"minutes":60,"distinctMarkets":5,"carrierPerParticipant":true,"supportLanguagePerMarket":true,"distributorProcurementPerParticipant":true,"newExternalBillingPerParticipant":1},
+    "level-13": {"minutes":60,"scenarios":["smb","enterprise","government","defence"],"providerRoles":3,"freshContinuityPerScenario":1,"externalOperatingProfitCentsMinimum":1,"newExternalBillingPerParticipant":1}
+  },
+  "marketIdentityNote": "Five fictional commercial market IDs are not continent counts or legal jurisdictions. au-sydney and au-melbourne are different markets under the same AU jurisdiction.",
+  "thresholdBasis": "fictional v1 gameplay balance; not source-unit conversion and not validated economic balance",
+  "finance": {"profitUnit":"AUD-cent","formula":"external revenue delta minus external cost delta over the sampled 60-minute window","excluded":["opening capital","loan funding","internal transfers","core diagnostic totals"]},
+  "runtime": {
+    "PACK": "soc-market-qualification-1",
+    "VERSION": 1,
+    "CONTENT": "market-qualification-content-1",
+    "GOALS": ["c3", "c5", "t2", "t1", "level-2", "level-7", "level-13"],
+    "sourceIds": ["progress.goal.c3","progress.goal.c5","progress.goal.t2","progress.goal.t1","progress.progression-level.2","progress.progression-level.7","progress.progression-level.13"],
+    "markets": {
+      "au-sydney": {"geography":"Australia / Sydney","jurisdiction":"AU","supportLanguage":"en"},
+      "au-melbourne": {"geography":"Australia / Melbourne","jurisdiction":"AU","supportLanguage":"en"},
+      "us-seattle": {"geography":"United States / Seattle","jurisdiction":"US","supportLanguage":"en"},
+      "jp-tokyo": {"geography":"Japan / Tokyo","jurisdiction":"JP","supportLanguage":"ja"},
+      "eu-dublin": {"geography":"Europe / Dublin, Ireland","jurisdiction":"EU","supportLanguage":"en"}
+    },
+    "thresholds": {
+      "c3": {"minutes":60,"distinctMarkets":3,"newExternalBillingPerParticipant":1},
+      "c5": {"minutes":60,"distinctMarkets":5,"newExternalBillingPerParticipant":1},
+      "t2": {"minutes":60,"activeCustomers":3,"distinctMarkets":2,"currentIntegrations":2,"newExternalBillingPerParticipant":1},
+      "t1": {"minutes":60,"scenarios":["smb","enterprise","government","defence"],"freshContinuityPerScenario":1,"externalOperatingProfitCentsMinimum":1,"newExternalBillingPerParticipant":1},
+      "level-2": {"minutes":60,"activeCustomers":2,"resolvedHumanCasesPerParticipant":1,"newExternalBillingPerParticipant":1},
+      "level-7": {"minutes":60,"distinctMarkets":5,"carrierPerParticipant":true,"supportLanguagePerMarket":true,"distributorProcurementPerParticipant":true,"newExternalBillingPerParticipant":1},
+      "level-13": {"minutes":60,"scenarios":["smb","enterprise","government","defence"],"providerRoles":3,"freshContinuityPerScenario":1,"externalOperatingProfitCentsMinimum":1,"newExternalBillingPerParticipant":1}
+    }
+  }
+}

@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: AC-SOC-323 actual carrier and caller offers drive direct media, directional failure and synthetic offer traces
+ok 1 - AC-SOC-323 actual carrier and caller offers drive direct media, directional failure and synthetic offer traces
+  ---
+  duration_ms: 16.456639
+  type: 'test'
+  ...
+# Subtest: AC-SOC-324 transcoding consumes explicit live sessions independently from agents and releases before wrap-up
+ok 2 - AC-SOC-324 transcoding consumes explicit live sessions independently from agents and releases before wrap-up
+  ---
+  duration_ms: 11.902047
+  type: 'test'
+  ...
+# Subtest: AC-SOC-325 incoming media uses carrier offers while optional codec negotiation replaces the legacy single-codec gate
+ok 3 - AC-SOC-325 incoming media uses carrier offers while optional codec negotiation replaces the legacy single-codec gate
+  ---
+  duration_ms: 8.85838
+  type: 'test'
+  ...
+# Subtest: AC-SOC-326 media observation loss ends a real active call and worker execution matches synchronous commands
+ok 4 - AC-SOC-326 media observation loss ends a real active call and worker execution matches synchronous commands
+  ---
+  duration_ms: 25.754643
+  type: 'test'
+  ...
+# Subtest: AC-SOC-327 an active session renegotiates when an effective endpoint codec offer changes
+ok 5 - AC-SOC-327 an active session renegotiates when an effective endpoint codec offer changes
+  ---
+  duration_ms: 4.383361
+  type: 'test'
+  ...
+# Subtest: AC-SOC-328 an active transferred call atomically reroutes its media target to the destination queue
+ok 6 - AC-SOC-328 an active transferred call atomically reroutes its media target to the destination queue
+  ---
+  duration_ms: 7.467154
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107.70907

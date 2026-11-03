@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: AC-SOC-185 tenant birth clock and calling plus outcome canonical identity remain consistent
+ok 1 - AC-SOC-185 tenant birth clock and calling plus outcome canonical identity remain consistent
+  ---
+  duration_ms: 12.456065
+  type: 'test'
+  ...
+# Subtest: AC-SOC-188 portfolio shared dispatch advances all real roots and worker save replay agrees
+ok 2 - AC-SOC-188 portfolio shared dispatch advances all real roots and worker save replay agrees
+  ---
+  duration_ms: 38.385177
+  type: 'test'
+  ...
+# Subtest: AC-SOC-189 concurrent portfolio survives campaign track switching without rewind or duplication
+ok 3 - AC-SOC-189 concurrent portfolio survives campaign track switching without rewind or duplication
+  ---
+  duration_ms: 6.948222
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.961316

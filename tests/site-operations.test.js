@@ -1,0 +1,91 @@
+const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
+const S=require('../src/game/32-site-operations');
+const {E,act,siteFixture,exercise}=require('./helpers/site-fixture');
+const tick=(s,minutes=1)=>E.dispatch(s,{type:'advance',minutes});
+const refs=['admin-a','edge-a','backup-a','restore-a','admin-b','edge-b','backup-b','restore-b','edge-a2'];
+function fixture(){
+ const root={clock:0};root.siteOperations=S.create(root);
+ const resources=Object.fromEntries(refs.map((id,i)=>[id,{id,generation:1,ready:true,available:true,config:{resource:id,revision:1}}]));
+ const ts={
+  'transport-a':{id:'transport-a',ready:true,region:'AU',powerDomain:'power-a',failureDomain:'failure-a',sharedDomains:['risk-ab'],available:true,power:true},
+  'transport-b':{id:'transport-b',ready:true,region:'AU',powerDomain:'power-b',failureDomain:'failure-b',sharedDomains:['risk-ab'],available:true,power:true},
+  'transport-c':{id:'transport-c',ready:true,region:'AU',powerDomain:'power-c',failureDomain:'failure-c',sharedDomains:[],available:true,power:true}
+ };
+ const faults={},calls={journey:0,migration:{}};let journeyFails=false,secondMigrationFails=true;
+ const hooks={authorize:()=>true,resource:(r,id)=>resources[id]||null,transportSite:(r,id)=>ts[id]||null,
+  siteOwnership:(r,{site,transportSite,owner,ownership})=>({site,transportSite,owner,ownership,local:true,controlled:true,recordId:'ownership-'+site,generation:1}),
+  observeSite:(r,{config})=>({available:config.endpointResources.every(id=>resources[id]?.ready&&resources[id]?.available),power:ts[config.transportSite]?.power===true,administration:resources[config.adminResource]?.ready===true,backup:resources[config.backupResource]?.ready===true,restore:resources[config.restoreResource]?.ready===true}),
+  captureBackup:(r,{site,backupResource,resources})=>({success:true,snapshotId:'snapshot-'+site,receiptId:'backup-receipt-'+site,backupResource,resources}),
+  injectFault:(r,{exerciseId,domain})=>{faults[exerciseId]={id:'fault-'+exerciseId,domain,active:true};return faults[exerciseId];},
+  clearFault:(r,id)=>{const f=Object.values(faults).find(x=>x.id===id);if(!f)return false;f.active=false;return true;},
+  restore:(r,x)=>{for(const snap of x.resources)resources[snap.id].config=structuredClone(snap.config);return {accepted:true,receiptId:'restore-'+x.exerciseId,backupSnapshotId:x.backupSnapshotId,restoreResource:x.restoreResource,due:r.clock+1};},
+  journey:(r,x)=>({success:!journeyFails,interactionId:'journey-'+(++calls.journey),sourceSite:x.sourceSite||'transport-c',targetSite:x.targetSite,targetResource:x.toResources[0],edges:['route-ab']}),
+  edgeInDomain:()=>false,
+  migrateResource:(r,x)=>{calls.migration[x.resource]=(calls.migration[x.resource]||0)+1;if(x.resource==='edge-a2'&&secondMigrationFails)return {success:false};return {success:true,receiptId:'move-'+x.resource,resource:x.resource,fromSite:x.fromSite,toSite:x.toSite};}
+ };
+ return {root,resources,ts,hooks,calls,setJourneyFails:v=>journeyFails=v,setSecondMigrationFails:v=>secondMigrationFails=v};
+}
+function config(site,over={}){return {name:site.toUpperCase(),region:'AU',transportSite:site==='site-a'?'transport-a':site==='site-b'?'transport-b':'transport-c',ownership:'customer',owner:'orchard',powerDomain:site==='site-a'?'power-a':site==='site-b'?'power-b':'power-c',failureDomain:site==='site-a'?'failure-a':site==='site-b'?'failure-b':'failure-c',sharedDomains:site==='site-c'?[]:['risk-ab'],adminResource:`admin-${site.slice(-1)}`,endpointResources:[`edge-${site.slice(-1)}`,...(site==='site-a'?['edge-a2']:[])],backupResource:`backup-${site.slice(-1)}`,restoreResource:`restore-${site.slice(-1)}`,...over};}
+function cmd(f,command){return S.command(f.root,command,f.hooks);}
+function addSite(f,id,configValue){cmd(f,{action:'site',id,config:configValue});f.root.clock++;S.advance(f.root,f.hooks);}
+function twoSites(f){addSite(f,'site-a',config('site-a'));addSite(f,'site-b',config('site-b'));}
+function runExercise(f,id,kind,targetSite='site-a'){cmd(f,{action:'exercise',id,kind,sites:['site-a','site-b'],targetSite});f.root.clock++;S.advance(f.root,f.hooks);f.root.clock++;S.advance(f.root,f.hooks);cmd(f,{action:'recover',kind:'exercise',id});cmd(f,{action:'restore',kind:'exercise',id});f.root.clock++;S.advance(f.root,f.hooks);f.root.clock++;S.advance(f.root,f.hooks);}
+test('AC-SOC-262 site inventory stages validated canonical resources and keeps provisioning separate from effective/observed state',()=>{
+ const f=fixture();cmd(f,{action:'site',id:'site-a',config:config('site-a')});const staged=f.root.siteOperations.sites['site-a'];assert.equal(staged.provisioning.status,'pending');assert.equal(staged.effective,null);assert.equal(S.validate(f.root),true);
+ f.root.clock++;S.advance(f.root,f.hooks);const n=f.root.siteOperations.sites['site-a'];assert.equal(n.provisioning.status,'ready');assert.equal(n.effective.transportSite,'transport-a');assert.deepEqual(n.observed.reasons,[]);cmd(f,{action:'bind',resource:'edge-a',site:'site-a'});assert.equal(S.inspect(f.root,f.hooks).bindings['edge-a'].site,'site-a');assert.equal(S.validate(f.root),true);
+});
+test('AC-SOC-263 ln and m2 evidence requires effective distinct sites, a continuous journey under fault, restoration, and a fresh recovered journey',()=>{
+ const f=fixture();twoSites(f);cmd(f,{action:'exercise',id:'power-cut-1',kind:'power',sites:['site-a','site-b']});assert.throws(()=>cmd(f,{action:'recover',kind:'exercise',id:'power-cut-1'}),/SITE_EXERCISE_NOT_FAULTED/);
+ f.root.clock++;S.advance(f.root,f.hooks);assert.throws(()=>cmd(f,{action:'recover',kind:'exercise',id:'power-cut-1'}),/SITE_CONTINUITY_EVIDENCE_REQUIRED/);f.root.clock++;S.advance(f.root,f.hooks);cmd(f,{action:'recover',kind:'exercise',id:'power-cut-1'});assert.equal(S.validate(f.root),true);cmd(f,{action:'restore',kind:'exercise',id:'power-cut-1'});f.root.clock++;S.advance(f.root,f.hooks);f.root.clock++;S.advance(f.root,f.hooks);
+ assert.equal(S.inspect(f.root,f.hooks).goals.m2.status,'incomplete');
+ for(const [id,kind,target] of [['power-cut-2','power','site-b'],['site-loss-1','site-failure','site-a'],['site-loss-2','site-failure','site-b'],['shared-risk-1','shared-risk','site-a']])runExercise(f,id,kind,target);
+ const view=S.inspect(f.root,f.hooks),exercise=view.exercises[0];assert.equal(exercise.status,'complete');assert.equal(exercise.baseline.sourceSite,'transport-a');assert.equal(exercise.baseline.targetSite,'transport-b');assert.equal(exercise.continuity.length,1);assert.ok(exercise.continuity[0].interactionId);assert.equal(exercise.continuity[0].targetSite,'transport-b');assert.equal(exercise.continuity[0].targetResource,'edge-b');assert.ok(exercise.recoveredJourney.interactionId);assert.equal(view.goals.ln.status,'ready');assert.equal(view.goals.df.status,'ready');assert.equal(view.goals.m2.status,'ready');assert.equal(view.goals.m2.evidence[0].exercises.length,5);for(const sourceId of S.GOALS){const evidence=S.goalEvidence(f.root,sourceId,f.hooks);assert.ok(evidence?.length,sourceId);assert.equal(S.validateEvidence(f.root,sourceId,evidence,{archived:true}),true);const tampered=structuredClone(evidence);if(sourceId===S.GOALS[0])tampered[0].journeys[0]='forged-journey';else if(sourceId===S.GOALS[1])tampered[0].receipt='forged-receipt';else tampered[0].exercises[0].id='forged-exercise';assert.equal(S.validateEvidence(f.root,sourceId,tampered,{archived:true}),false);}assert.equal(S.validate(f.root),true);
+});
+test('AC-SOC-264 same-power sites cannot claim power diversity and rejected commands leave state unchanged',()=>{
+ const f=fixture();twoSites(f);f.root.siteOperations.sites['site-b'].effective.powerDomain='power-a';const before=JSON.stringify(f.root.siteOperations);assert.throws(()=>cmd(f,{action:'exercise',id:'bad-power',kind:'power',sites:['site-a','site-b']}),/SITE_POWER_DIVERSITY_REQUIRED/);assert.equal(JSON.stringify(f.root.siteOperations),before);
+});
+test('AC-SOC-265 shared-risk tags must be backed by canonical transport-site domain evidence',()=>{
+ const f=fixture(),bad={...config('site-a'),sharedDomains:['invented-risk']};assert.throws(()=>cmd(f,{action:'site',id:'site-a',config:bad}),/SITE_SHARED_DOMAIN_NOT_CANONICAL/);assert.equal(Object.keys(f.root.siteOperations.sites).length,0);
+});
+test('AC-SOC-266 shared-risk exercise uses the common canonical domain and requires journeys on both sides of restore',()=>{
+ const f=fixture();twoSites(f);runExercise(f,'risk-window','shared-risk');const x=S.inspect(f.root,f.hooks).exercises[0];assert.equal(x.failedDomain,'risk-ab');assert.equal(x.status,'complete');assert.ok(x.baseline.interactionId);assert.ok(x.continuity[0].interactionId);assert.ok(x.recoveredJourney.interactionId);
+});
+test('AC-SOC-267 a failed current prerequisite leaves the last effective site config in place and exposes the rejected generation',()=>{
+ const f=fixture();addSite(f,'site-a',config('site-a'));cmd(f,{action:'bind',resource:'edge-a',site:'site-a'});const node=f.root.siteOperations.sites['site-a'];const oldEffective=structuredClone(node.effective);const oldBinding=structuredClone(f.root.siteOperations.bindings['edge-a']);f.resources['edge-a'].generation++;f.resources['edge-a'].ready=false;
+ const desired=config('site-a',{name:'Replacement site'});cmd(f,{action:'site',id:'site-a',config:desired});assert.deepEqual(node.effective,oldEffective);assert.equal(node.provisioning.status,'pending');f.root.clock++;S.advance(f.root,f.hooks);assert.equal(node.provisioning.status,'failed');assert.deepEqual(node.effective,oldEffective);assert.equal(node.provisioning.generation,node.generation);assert.equal(S.validate(f.root),true);
+ assert.deepEqual(f.root.siteOperations.bindings['edge-a'],oldBinding);assert.equal(node.effectiveGeneration,1);assert.equal(node.generation,2);
+});
+test('AC-SOC-268 a failed journey during the injected interval prevents continuity completion',()=>{
+ const f=fixture();twoSites(f);cmd(f,{action:'exercise',id:'outage-1',kind:'power',sites:['site-a','site-b']});f.root.clock++;S.advance(f.root,f.hooks);f.setJourneyFails(true);f.root.clock++;S.advance(f.root,f.hooks);assert.throws(()=>cmd(f,{action:'recover',kind:'exercise',id:'outage-1'}),/SITE_CONTINUITY_EVIDENCE_REQUIRED/);assert.equal(S.inspect(f.root,f.hooks).exercises[0].status,'failed');
+});
+test('AC-SOC-269 restore and continuity evidence go stale when canonical resource generations change',()=>{
+ const f=fixture();twoSites(f);cmd(f,{action:'exercise',id:'stale-restore',kind:'power',sites:['site-a','site-b']});f.root.clock++;S.advance(f.root,f.hooks);f.root.clock++;S.advance(f.root,f.hooks);cmd(f,{action:'recover',kind:'exercise',id:'stale-restore'});f.resources['backup-a'].generation++;assert.throws(()=>cmd(f,{action:'restore',kind:'exercise',id:'stale-restore'}),/SITE_EXERCISE_GENERATION_STALE/);assert.equal(f.root.siteOperations.exercises[0].phase,'restoring');
+});
+test('AC-SOC-270 an accepted restore receipt cannot complete unless backup resource configurations are actually restored',()=>{
+ const f=fixture();twoSites(f);cmd(f,{action:'exercise',id:'restore-mismatch',kind:'power',sites:['site-a','site-b']});f.root.clock++;S.advance(f.root,f.hooks);f.root.clock++;S.advance(f.root,f.hooks);cmd(f,{action:'recover',kind:'exercise',id:'restore-mismatch'});f.resources['edge-a'].config={resource:'tampered',revision:9};f.hooks.restore=(r,x)=>({accepted:true,receiptId:'pretend-restore',backupSnapshotId:x.backupSnapshotId,restoreResource:'restore-a',due:r.clock+1});cmd(f,{action:'restore',kind:'exercise',id:'restore-mismatch'});f.root.clock++;S.advance(f.root,f.hooks);const v=S.inspect(f.root,f.hooks);assert.equal(v.exercises[0].status,'failed');assert.equal(v.exercises[0].restoration.status,'failed');assert.equal(v.goals.df.status,'incomplete');
+});
+test('AC-SOC-271 multi-site migration retains per-resource successes, retries only incomplete items, and rejects stale site generations',()=>{
+ const f=fixture();twoSites(f);addSite(f,'site-b',config('site-b',{endpointResources:['edge-b','edge-a','edge-a2']}));cmd(f,{action:'bind',resource:'edge-a',site:'site-a'});cmd(f,{action:'bind',resource:'edge-a2',site:'site-a'});cmd(f,{action:'plan',id:'migration-1',fromSite:'site-a',toSite:'site-b',resources:['edge-a','edge-a2']});cmd(f,{action:'cutover',id:'migration-1'});
+ let m=S.inspect(f.root,f.hooks).migrations[0];assert.equal(m.phase,'partial');assert.equal(m.items[0].status,'complete');assert.equal(m.items[1].status,'blocked');f.setSecondMigrationFails(false);cmd(f,{action:'cutover',id:'migration-1'});m=S.inspect(f.root,f.hooks).migrations[0];assert.equal(m.phase,'complete');assert.equal(f.calls.migration['edge-a'],1);assert.equal(f.calls.migration['edge-a2'],2);assert.equal(S.validate(f.root),true);
+ const f2=fixture();twoSites(f2);addSite(f2,'site-b',config('site-b',{endpointResources:['edge-b','edge-a']}));cmd(f2,{action:'bind',resource:'edge-a',site:'site-a'});cmd(f2,{action:'plan',id:'migration-stale',fromSite:'site-a',toSite:'site-b',resources:['edge-a']});cmd(f2,{action:'site',id:'site-b',config:config('site-b',{name:'Changed target',endpointResources:['edge-b','edge-a']})});f2.root.clock++;S.advance(f2.root,f2.hooks);assert.throws(()=>cmd(f2,{action:'cutover',id:'migration-stale'}),/SITE_MIGRATION_GENERATION_STALE/);
+});
+test('AC-SOC-272 save validation blocks forged completion, stale binding lineage, and worker-source drift',()=>{
+ const f=fixture();twoSites(f);runExercise(f,'valid','power');const saved=JSON.stringify(f.root);assert.deepEqual(S.inspect(JSON.parse(saved),f.hooks),S.inspect(f.root,f.hooks));
+ const forged=JSON.parse(saved);forged.siteOperations.exercises[0].status='complete';forged.siteOperations.exercises[0].continuity=[];assert.throws(()=>S.validate(forged),/INVALID_SITE_OPERATIONS_COMPLETION/);
+ const stale=JSON.parse(saved);stale.siteOperations.bindings['edge-a']={site:'site-a',generation:99,resourceGeneration:1};assert.throws(()=>S.validate(stale),/INVALID_SITE_OPERATIONS_BINDING/);
+ const ctx={};vm.createContext(ctx);vm.runInContext(S.source()+';globalThis.S=SOC_SITE_OPERATIONS;',ctx);const remote=ctx.S.create(f.root);assert.equal(remote.pack,S.PACK);assert.equal(typeof ctx.S.advance,'function');
+ const before=JSON.stringify(f.root);assert.deepEqual(S.inspect(f.root,f.hooks),S.inspect(f.root,f.hooks));assert.equal(JSON.stringify(f.root),before);
+ const configFingerprint=S.configurationFingerprint(f.root),historyOnly=structuredClone(f.root);historyOnly.siteOperations.exercises[0].continuity[0].at++;historyOnly.siteOperations.sites['site-a'].observed.at++;assert.equal(S.configurationFingerprint(historyOnly),configFingerprint,'exercise progress and observation timestamps must not invalidate service configuration evidence');historyOnly.siteOperations.sites['site-a'].observed.available=false;assert.notEqual(S.configurationFingerprint(historyOnly),configFingerprint,'changed observed availability invalidates service evidence');historyOnly.siteOperations.sites['site-a'].desired.name='Changed desired site';assert.notEqual(S.configurationFingerprint(historyOnly),configFingerprint,'desired configuration changes invalidate service evidence');
+});
+test('AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions',()=>{
+ const saved=exercise(siteFixture()),sample=saved.siteOperations.exercises[0].continuity[0];
+ const phantom=structuredClone(saved),site=phantom.siteOperations.sites['site-b'],cfg=structuredClone(site.effective);cfg.endpointResources=['desk','phantom-endpoint'];site.desired=structuredClone(cfg);site.effective=structuredClone(cfg);site.resourceGenerations={'admin-b':1,'desk':1,'phantom-endpoint':1,'backup-b':1,'restore-b':1};site.desiredResourceGenerations=structuredClone(site.resourceGenerations);assert.throws(()=>E.restore(JSON.stringify(phantom)),/INVALID_SITE_OPERATIONS_RESOURCE_REFERENCE/);
+ const stale=structuredClone(saved);stale.transport.bindings.alexdesk='office-b';assert.throws(()=>E.restore(JSON.stringify(stale)),/INVALID_SITE_OPERATIONS_BINDING_LINEAGE/);
+ const forged=structuredClone(saved),forgedJourney=forged.siteOperations.exercises[0].continuity[0];forgedJourney.interactionId='interaction-999999';forgedJourney.interactionProof.id='interaction-999999';assert.throws(()=>E.restore(JSON.stringify(forged)),/INVALID_SITE_OPERATIONS_JOURNEY_LINEAGE/);
+ const badEdge=structuredClone(saved),recovered=badEdge.siteOperations.exercises[0].recoveredJourney;recovered.edges=['invented-link'];recovered.interactionProof.edges=['invented-link'];assert.throws(()=>E.restore(JSON.stringify(badEdge)),/INVALID_SITE_OPERATIONS_JOURNEY_LINEAGE/);assert.ok(sample.interactionId);
+});
+test('AC-SOC-287 historical site exercises remain valid across endpoint migration, return migration, and core trace pruning',()=>{
+ let s=exercise(siteFixture()),original=s.siteOperations.exercises[0].baseline.interactionId,siteB=structuredClone(s.siteOperations.sites['site-b'].desired);siteB.endpointResources.push('alexdesk');s=act(s,'site-operations',{action:'site',id:'site-b',config:siteB});s=tick(s);s=act(s,'site-operations',{action:'plan',id:'move-to-b',fromSite:'site-a',toSite:'site-b',resources:['alexdesk']});s=act(s,'site-operations',{action:'cutover',id:'move-to-b'});assert.equal(s.siteOperations.bindings.alexdesk.site,'site-b');assert.equal(s.transport.bindings.alexdesk,'office-b');assert.deepEqual(E.restore(JSON.stringify(s)),s);
+ s=act(s,'site-operations',{action:'plan',id:'move-back-a',fromSite:'site-b',toSite:'site-a',resources:['alexdesk']});s=act(s,'site-operations',{action:'cutover',id:'move-back-a'});assert.equal(s.siteOperations.bindings.alexdesk.site,'site-a');assert.equal(s.transport.bindings.alexdesk,'office-a');assert.deepEqual(E.restore(JSON.stringify(s)),s);
+ for(let n=0;n<205;n++)s=E.dispatch(s,{type:'interact',channel:'voice',direction:'outbound',from:'alex',to:'+61255500201',caseId:`retention-${n}`,media:{encrypted:true}});assert.equal(s.interactions.some(x=>x.id===original),false);assert.deepEqual(E.restore(JSON.stringify(s)),s);const proof=s.siteOperations.exercises[0].baseline.interactionProof;assert.ok(proof&&proof.edges.length>0&&proof.signal.invite&&proof.media.in&&proof.media.out);
+});

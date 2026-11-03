@@ -1,0 +1,16 @@
+✔ #176 a save that does not fit tells the player once, with Export, and the menu says so (549.184627ms)
+✔ #176 storage that is blocked altogether gets its own advice (247.747834ms)
+✔ #176 saves leave customer defaults out, and loading puts them back exactly (289.771256ms)
+✔ #176 an older, unpacked save still loads the same (263.771815ms)
+✔ #176 small saves stay plain JSON, written at once (237.431977ms)
+✔ #176 a huge save is gzipped into storage and the next visit loads it (606.813922ms)
+✔ #176 a newer save is never overwritten by an older one still compressing (353.061024ms)
+✔ #176 a damaged compressed save is kept, marked damaged, and the player is told (206.163667ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9503.621471

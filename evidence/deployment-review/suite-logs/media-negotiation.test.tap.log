@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: AC-SOC-314 independent endpoint and carrier offers choose the first end-to-end codec and preserve directional media
+ok 1 - AC-SOC-314 independent endpoint and carrier offers choose the first end-to-end codec and preserve directional media
+  ---
+  duration_ms: 2.023116
+  type: 'test'
+  ...
+# Subtest: AC-SOC-315 no common codec fails without a transcoder even when profiles and signalling are healthy
+ok 2 - AC-SOC-315 no common codec fails without a transcoder even when profiles and signalling are healthy
+  ---
+  duration_ms: 0.310591
+  type: 'test'
+  ...
+# Subtest: AC-SOC-316 an explicit effective transcoder bridges offers and its session capacity is independent of other resources
+ok 3 - AC-SOC-316 an explicit effective transcoder bridges offers and its session capacity is independent of other resources
+  ---
+  duration_ms: 1.042884
+  type: 'test'
+  ...
+# Subtest: AC-SOC-317 internal and inbound route shapes do not require a carrier for internal calls or an internal source for inbound calls
+ok 4 - AC-SOC-317 internal and inbound route shapes do not require a carrier for internal calls or an internal source for inbound calls
+  ---
+  duration_ms: 0.354302
+  type: 'test'
+  ...
+# Subtest: AC-SOC-318 pending and failed generations keep prior effective offers; observations do not consume on reads
+ok 5 - AC-SOC-318 pending and failed generations keep prior effective offers; observations do not consume on reads
+  ---
+  duration_ms: 1.889401
+  type: 'test'
+  ...
+# Subtest: AC-SOC-319 save validation binds reserved sessions to live calls and valid configured resources
+ok 6 - AC-SOC-319 save validation binds reserved sessions to live calls and valid configured resources
+  ---
+  duration_ms: 0.591773
+  type: 'test'
+  ...
+# Subtest: AC-SOC-320 event and released-session rings stay bounded and preserve monotonic identifiers
+ok 7 - AC-SOC-320 event and released-session rings stay bounded and preserve monotonic identifiers
+  ---
+  duration_ms: 38.234783
+  type: 'test'
+  ...
+# Subtest: AC-SOC-321 active calls reroute atomically, exclude their own transcoder session, and retain bounded history
+ok 8 - AC-SOC-321 active calls reroute atomically, exclude their own transcoder session, and retain bounded history
+  ---
+  duration_ms: 1.35767
+  type: 'test'
+  ...
+# Subtest: AC-SOC-322 worker source reproduces inspection and routes while source IDs remain content-linked
+ok 9 - AC-SOC-322 worker source reproduces inspection and routes while source IDs remain content-linked
+  ---
+  duration_ms: 2.71633
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 62.1204

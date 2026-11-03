@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "pack": "soc-calling-achievements-1",
+  "scope": "Source-linked synthetic evidence adapters for the five preserved calling progression goals. This pack does not complete the original source requirements.",
+  "sourceRefs": [
+    {
+      "sourceId": "progress.goal.tr",
+      "sourceRecordSha256": "181c7d9cdb4256136f469b60167ad841edb7154e114a270e9354b53bd6c1dfa7",
+      "sourceFile": "src/game/40-progress/20-goals.js",
+      "sourceSymbol": "GOALS.tr",
+      "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js"
+    },
+    {
+      "sourceId": "progress.goal.p5",
+      "sourceRecordSha256": "f873f41193373dc92f9557c3be89a8b91c23d0a9c4ae8f12cf7349f8889fb0a7",
+      "sourceFile": "src/game/40-progress/20-goals.js",
+      "sourceSymbol": "GOALS.p5",
+      "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js"
+    },
+    {
+      "sourceId": "progress.goal.ca",
+      "sourceRecordSha256": "967b5021fd7aa83838c465a8d007b65a9cd931888f5354164a32ca9704b8795e",
+      "sourceFile": "src/game/40-progress/20-goals.js",
+      "sourceSymbol": "GOALS.ca",
+      "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js"
+    },
+    {
+      "sourceId": "progress.goal.pn",
+      "sourceRecordSha256": "86abc45405d8347fffa6a5c47758a92b2d27af44e3fb3aef2bffb31be69a13be",
+      "sourceFile": "src/game/40-progress/20-goals.js",
+      "sourceSymbol": "GOALS.pn",
+      "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js"
+    },
+    {
+      "sourceId": "progress.goal.scrub",
+      "sourceRecordSha256": "a68d359fcd9665ad9455cdf5a66a2fe05a0b82da0b7863485b301c318cc6d385",
+      "sourceFile": "src/game/40-progress/20-goals.js",
+      "sourceSymbol": "GOALS.scrub",
+      "sourceUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/40-progress/20-goals.js"
+    }
+  ],
+  "runtime": {
+    "PACK": "soc-calling-achievements-1",
+    "VERSION": 1,
+    "goalIds": [
+      "progress.goal.tr",
+      "progress.goal.p5",
+      "progress.goal.ca",
+      "progress.goal.pn",
+      "progress.goal.scrub"
+    ],
+    "sourceIds": [
+      "progress.goal.tr",
+      "progress.goal.p5",
+      "progress.goal.ca",
+      "progress.goal.pn",
+      "progress.goal.scrub"
+    ]
+  },
+  "mechanics": {
+    "progress.goal.tr": "Successful external inbound and outbound calls with ordered routes and bidirectional media, plus a current guest collaboration join.",
+    "progress.goal.p5": "Five distinct current tested partner integrations with directional availability and supported ownership.",
+    "progress.goal.ca": "Completed local speech-processing lineage with jurisdiction, local licence, pipeline, boundary, identity, network and continuity dependencies.",
+    "progress.goal.pn": "Authenticated dedicated gateway configuration plus successful inbound and outbound carrier calls with bidirectional media.",
+    "progress.goal.scrub": "Independent network, SIP and destination controls with synthetic abuse samples and reconciled real core-call usage."
+  },
+  "limitations": [
+    "Fictional synthetic gameplay evidence only.",
+    "No carrier or vendor acceptance is asserted.",
+    "Original reward values are retained as provenance and are not converted to cash.",
+    "The original source completion thresholds are not claimed complete."
+  ],
+  "sourceIds": [
+    "progress.goal.tr",
+    "progress.goal.p5",
+    "progress.goal.ca",
+    "progress.goal.pn",
+    "progress.goal.scrub"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "contentVersion": 1,
+  "description": "Synthetic supported needs, task integrations, retry limits, and effort settings.",
+  "runtime": {
+    "PACK": "soc-outcomes-1",
+    "defaults": {
+      "supportedIntents": [],
+      "taskIntegrations": [],
+      "handoffDestination": "service",
+      "maxAttempts": 3,
+      "repeatInterval": 5,
+      "repeatEffort": 1,
+      "contextLossEffort": 2,
+      "maxRepeatEmissionsPerAdvance": 2
+    }
+  },
+  "sourceIds": [
+    "DESIGN-15b8df4e4f2fabc2",
+    "DESIGN-c44f309d8db90ed2",
+    "DESIGN-41bd82de734f0424"
+  ]
+}

@@ -1,0 +1,13 @@
+npm notice run series-of-calls@0.1.0-preview.1 test
+npm notice run node scripts/test.js tests/build.test.js tests/pages.test.js tests/release-story.test.js
+✔ tests/build.test.js (439.658731ms)
+✔ tests/pages.test.js (10325.395477ms)
+✔ tests/release-story.test.js (2045.87884ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10334.689467

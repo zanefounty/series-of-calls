@@ -1,0 +1,22 @@
+✔ AC-SOC-001 desired, provisioning, effective and observed state remain distinct (4.402025ms)
+✔ AC-SOC-002 ordered routes, scoped extensions, identity and directional media (3.382894ms)
+✔ AC-SOC-003 more trunks do not create skilled people or agent entitlements (2.98572ms)
+✔ AC-SOC-004 session admission is independent of queue staffing (0.597384ms)
+✔ AC-SOC-005 messaging preserves case identity across channels and retries are idempotent (1.570016ms)
+✔ AC-SOC-006 successful voice can fail mandatory recording (0.758602ms)
+✔ AC-SOC-007 healthy room device does not establish calendar or interop readiness (0.949308ms)
+✔ AC-SOC-008 information lineage and forbidden processing boundary (1.544958ms)
+✔ AC-SOC-009 local devices still depend on identity, time and licensing during isolation (1.033706ms)
+✔ AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region (12.381677ms)
+✔ AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay (3.285567ms)
+✔ AC-SOC-012 worker serialization produces the synchronous command result (6.958545ms)
+✔ AC-SOC-013 invalid references fail provisioning and command validation is atomic (0.923723ms)
+✔ AC-SOC-014 cohort migration requires ready target and supports configuration recovery (1.630681ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.251419

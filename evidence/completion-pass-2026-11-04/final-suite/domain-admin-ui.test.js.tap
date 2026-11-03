@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: domain administration start buttons and read-only locks use shared dispatch only
+ok 1 - domain administration start buttons and read-only locks use shared dispatch only
+  ---
+  duration_ms: 723.095231
+  type: 'test'
+  ...
+# Subtest: transport form dispatches viable synthetic site and purchased or owned link configs
+ok 2 - transport form dispatches viable synthetic site and purchased or owned link configs
+  ---
+  duration_ms: 417.620767
+  type: 'test'
+  ...
+# Subtest: boundary form stages typed requirements and flows, records observations, and binds a real resource
+ok 3 - boundary form stages typed requirements and flows, records observations, and binds a real resource
+  ---
+  duration_ms: 423.013266
+  type: 'test'
+  ...
+# Subtest: domain panel renders actual enforcement separately from declared evaluation and is pure
+ok 4 - domain panel renders actual enforcement separately from declared evaluation and is pure
+  ---
+  duration_ms: 359.58365
+  type: 'test'
+  ...
+# Subtest: campaign panel exposes named progression windows and dispatches only the campaign module API
+ok 5 - campaign panel exposes named progression windows and dispatches only the campaign module API
+  ---
+  duration_ms: 366.453485
+  type: 'test'
+  ...
+# Subtest: campaign starter stays disabled outside the SMB scenario
+ok 6 - campaign starter stays disabled outside the SMB scenario
+  ---
+  duration_ms: 343.332523
+  type: 'test'
+  ...
+# Subtest: campaign UI displays authoritative assessment and gates incident controls by the real observation window
+ok 7 - campaign UI displays authoritative assessment and gates incident controls by the real observation window
+  ---
+  duration_ms: 413.012494
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3361.786828

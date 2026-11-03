@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-03T21:38:12.684008+00:00",
+  "scope": "Initial locked install and suite; runtime edited later, so not final-input acceptance.",
+  "install": {
+    "command": "env -u NODE_PATH npm ci",
+    "exitCode": 0,
+    "packagesAdded": 64,
+    "jsdom": "24.1.3",
+    "playwright-core": "1.56.0",
+    "externalNodePath": false
+  },
+  "suite": {
+    "command": "env -u NODE_PATH npm test",
+    "exitCode": 0,
+    "tests": 1314,
+    "passed": 1314,
+    "failed": 0,
+    "log": "initial-locked-suite.log",
+    "sourceFrozen": false
+  },
+  "runtime": "v24.22.2",
+  "sourcePackHashes": {
+    "research/source/series-of-calls-full-mapping.json": "a971dd4fca10b44d258288b790631a963987999a272d1b5bc1780f31550c18af",
+    "research/source/Series of Calls communications ecosystem design.md": "7317a73af47b91a8804ea83bfc837b521a5a38630e68e7acb2b7e1fe364fa5b3"
+  },
+  "repository": {
+    "default_branch": "main",
+    "fork": false,
+    "full_name": "zanefounty/series-of-calls",
+    "has_issues": false,
+    "has_wiki": false,
+    "html_url": "https://github.com/zanefounty/series-of-calls",
+    "private": false
+  },
+  "securityReporting": {
+    "enabled": true
+  },
+  "ownerDecisions": {
+    "contactOwner": "zanefounty",
+    "contactRoute": "GitHub; user does not require private conduct disclosure at this time",
+    "research": "Retain proposals for next release; no claim-by-claim acceptance recorded"
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "research_scope": {
+    "archive": "https://puck.nether.net/pipermail/voiceops/",
+    "retrieved_on": "2026-11-03",
+    "selection": "Bounded search of the archive index and selected primary message pages for routing and number portability, interop, emergency-location testability, failure/recovery, and support operations.",
+    "limitations": "The archive root and monthly index pages were inaccessible through the available browser tool, so discovery relied on search-indexed Puck archive pages. Eleven individual threads were inspected; this is a representative sample, not a complete crawl. Some threads report unresolved questions or single-operator experience. Dates and product details are historical and not current guidance.",
+    "privacy": "No author names, contact details, addresses, subscriber identifiers, or real destination-number examples are retained. Thread titles and archive URLs identify source material only.",
+    "status": "Research proposals only; none are adopted requirements, legal conclusions, or implementation claims."
+  },
+  "findings": [
+    {
+      "source_id": "voiceops-2010-08-peer-of-peer",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+      "thread": "The peer of my peer is my peer?",
+      "date": "2010-08-10",
+      "evidence_type": "Operator anecdote and peer discussion",
+      "uncertainty": "One reported interconnect scenario: two customer networks had individually usable trunks but incompatible codec offers when they called each other through a shared upstream. Replies suggest common codec or transcoding paths, but do not establish a universal remedy.",
+      "issue_paraphrase": "A transit provider can connect each customer to the public network while still failing to connect two customers whose media capabilities do not overlap.",
+      "fictional_behaviour_proposal": {
+        "scenario": "Your Neighbor's Neighbor Is Still a Different Codec",
+        "behaviour": "Give two fictional tenants distinct codec offers and an upstream route. The learner must inspect the end-to-end path and choose a compatible offer or a licensed synthetic transcoder. Show call signaling separately from media success.",
+        "humour_note": "The title's neighbor joke is transposed to fictional peers; do not imply any real carrier failed in this way."
+      },
+      "state_distinctions": {
+        "desired": "Tenant codec preferences, interconnect route, and transcoder selection.",
+        "effective": "Provisioned profile and media resources after the normal delay.",
+        "observed": "Signaling result, negotiated codec, media direction, and whether the call has usable audio."
+      },
+      "acceptance": {
+        "positive": "A call between otherwise incompatible tenants succeeds only after selecting an overlapping codec or making a compatible transcoder effective; media evidence names the chosen path.",
+        "negative": "Both tenants can call a simulated public destination, yet a peer-to-peer call fails with `NO_COMMON_MEDIA` when neither a common codec nor transcoder exists."
+      },
+      "linked_mechanics": ["communications route and media observations", "carrier and integration models"],
+      "gap": "Current acceptance distinguishes two media directions but does not model codec compatibility across independently administered peer networks or a separately provisioned transcoder."
+    },
+    {
+      "source_id": "voiceops-2010-08-cancel-after-ok",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+      "thread": "Ye ole Cisco Cube CM",
+      "date": "2010-08-10",
+      "evidence_type": "Single operator troubleshooting report",
+      "uncertainty": "The message describes a timing race in one historical SIP call flow. The archive excerpt does not show a confirmed resolution, so the timing is a scenario seed rather than a verified product rule.",
+      "issue_paraphrase": "A successful answer response and a near-simultaneous cancellation can leave the two call legs with different views of whether the call is established.",
+      "fictional_behaviour_proposal": {
+        "scenario": "The Scenic Route to a Cancelled Call",
+        "behaviour": "Introduce configurable signaling delay at the terminating leg. Let the learner inspect event order and decide how duplicate or late final responses should be handled without declaring success from the first response alone.",
+        "humour_note": "Use the scenic-route comparison for a misaligned signaling timeline, without assigning blame to a real operator."
+      },
+      "state_distinctions": {
+        "desired": "Call setup timers, cancellation policy, and route targets.",
+        "effective": "The timer and signaling configuration active on each leg.",
+        "observed": "Timestamped INVITE, final response, CANCEL, acknowledgement, and final call phase."
+      },
+      "acceptance": {
+        "positive": "A deliberately delayed cancellation produces one deterministic terminal outcome with both legs reconciled and an auditable event trace.",
+        "negative": "A late response after cancellation must not leave the call marked connected or create a duplicate charge/interaction."
+      },
+      "linked_mechanics": ["interaction traces", "delayed delivery and retries", "deterministic replay"],
+      "gap": "The current kernel models call outcomes and traces but not a race between SIP final responses and cancellation across separate legs."
+    },
+    {
+      "source_id": "voiceops-2010-12-dash-outage",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+      "thread": "VoIP - complete outage at DASH Carrier Services",
+      "date": "2010-12-15",
+      "evidence_type": "Outage inquiry and customer recollection",
+      "uncertainty": "The sampled replies ask whether the reported service interruption was common and resolved. One participant recalls a previously positive service history. This small exchange does not establish outage duration, scope, cause, or current service quality.",
+      "issue_paraphrase": "A prospective customer must assess a reported outage while the available evidence is incomplete and partly based on historical experience.",
+      "fictional_behaviour_proposal": {
+        "scenario": "A Status Page Is Not a Recovery Plan",
+        "behaviour": "Present synthetic, time-stamped evidence from monitoring, a status notice, and an escalation ticket. Require the learner to separate confirmed impact from hypotheses, preserve an alternate route, and verify recovery before closing the incident.",
+        "humour_note": "Keep the reporting dry and kind; the outage affects fictional service only."
+      },
+      "state_distinctions": {
+        "desired": "Primary and alternate carrier routes plus incident communication thresholds.",
+        "effective": "Routes and escalation contacts actually provisioned at incident time.",
+        "observed": "Synthetic call completion, message delivery, status-feed timestamps, and recovery evidence."
+      },
+      "acceptance": {
+        "positive": "The learner identifies affected services from observed tests, communicates only confirmed facts, routes through an already validated alternate, and closes only after independent recovery checks pass.",
+        "negative": "A green status page or an unverified cause hypothesis alone cannot close the incident; a stale successful call cannot prove current recovery."
+      },
+      "linked_mechanics": ["fault injection", "alternate carriers", "synthetic status and audit events"],
+      "gap": "Current faults are resource-scoped and do not model cross-service incident timelines, evidence confidence, or customer-support updates."
+    },
+    {
+      "source_id": "voiceops-2011-06-sbc-domain-filter",
+      "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+      "thread": "SBC's that drop traffic based on domain",
+      "date": "2011-06-17",
+      "evidence_type": "Configuration troubleshooting thread",
+      "uncertainty": "Operators discuss a specific historical SBC configuration and desired rejection behavior. The filtering behavior and response mapping are product-specific and not general security guidance.",
+      "issue_paraphrase": "Filtering by request domain can have a different effect from filtering by destination IP, and a configured rejection may still return an unexpected response instead of dropping unwanted traffic.",
+      "fictional_behaviour_proposal": {
+        "scenario": "The Domain Name Bouncer Checks the Wrong Guest List",
+        "behaviour": "Let the learner filter a fictional SIP edge on request-domain and source address. Show the exact rejection response and test both intended hostile traffic and valid tenant traffic that shares infrastructure.",
+        "humour_note": "The guest-list joke targets a configuration mismatch, not an attacker or affected customer."
+      },
+      "state_distinctions": {
+        "desired": "Ingress filter keys, response policy, and allow-list entries.",
+        "effective": "Rules active on the edge after provisioning.",
+        "observed": "Matched rule, returned response, dropped/accepted disposition, and any valid traffic affected."
+      },
+      "acceptance": {
+        "positive": "A valid synthetic request reaches the intended tenant, while a request matching the configured unwanted host condition is rejected with the selected response.",
+        "negative": "A rule that only matches an IP literal does not silently satisfy a request-domain policy; an overbroad filter is detected by a valid-traffic regression case."
+      },
+      "linked_mechanics": ["SBC and carrier configuration", "fault and observed outcome"],
+      "gap": "There is no SIP edge filtering model or acceptance for false positives and explicit signaling response semantics."
+    },
+    {
+      "source_id": "voiceops-2011-07-followme-media",
+      "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+      "thread": "Allworx Followme - no audio issue",
+      "date": "2011-07-22",
+      "evidence_type": "Operator report with competing hypotheses",
+      "uncertainty": "The thread contains a proposed media-latching explanation and a later observation that does not confirm it. The cause remains uncertain in the sampled exchange; do not encode one vendor-specific diagnosis as fact.",
+      "issue_paraphrase": "A follow-me flow can succeed through answer confirmation, then lose media after a re-INVITE changes the negotiated path. Seeing packets on multiple legs does not prove the intended endpoint is receiving them.",
+      "fictional_behaviour_proposal": {
+        "scenario": "Follow-Me Takes the Scenic Route",
+        "behaviour": "Model call signaling and inbound/outbound media separately. After an answer-confirmation step, apply a synthetic re-INVITE that changes the media endpoint. Offer packet counters and SDP snapshots as evidence; allow more than one plausible fault until the trace disambiguates it.",
+        "humour_note": "The route joke describes media taking an unintended path; never mock a real service interruption."
+      },
+      "state_distinctions": {
+        "desired": "Forwarding, media anchoring/latching policy, and NAT placement.",
+        "effective": "Media policy and endpoint mapping on the current call legs.",
+        "observed": "Signaling acknowledgements plus directional RTP reachability after each re-INVITE."
+      },
+      "acceptance": {
+        "positive": "A compatible media policy follows the revised endpoint and both directions become reachable after the re-INVITE.",
+        "negative": "A 200 response and RTP counters on unrelated legs cannot pass when one expected receiver has no inbound media."
+      },
+      "linked_mechanics": ["directional media quality", "forwarding and call routes", "interaction traces"],
+      "gap": "Current mechanics can represent one-way media but not media-latching behavior changing during a call after a re-INVITE."
+    },
+    {
+      "source_id": "voiceops-2012-09-routing-escalation",
+      "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+      "thread": "Routing and translations contacts",
+      "date": "2012-09-04",
+      "evidence_type": "Single operator support-process question",
+      "uncertainty": "The captured post asks where to escalate a routing/translation failure and does not contain a resolution. It is evidence of a support workflow problem, not evidence about any provider's support quality.",
+      "issue_paraphrase": "When a destination is known to work through another route but fails through the current carrier, the operator may not know how to reach the team that can inspect routing or translation data.",
+      "fictional_behaviour_proposal": {
+        "scenario": "Support Queue with a Queue of Its Own",
+        "behaviour": "Give the learner a synthetic failing call, a healthy control route, and generic escalation roles. Require a concise evidence bundle and track submitted, acknowledged, and resolved states without real contacts or external messaging.",
+        "humour_note": "A short hold-music aside may nod to nested support queues; keep diagnostics and incident impact respectful."
+      },
+      "state_distinctions": {
+        "desired": "Escalation ownership, evidence requirements, and fallback routing.",
+        "effective": "Current support path, permissions, and alternate carrier readiness.",
+        "observed": "Call test result, evidence attached, acknowledgement time, and verified route recovery."
+      },
+      "acceptance": {
+        "positive": "The learner isolates the failing route with a control call, submits normalized synthetic trace evidence to the correct fictional role, and verifies a repaired call.",
+        "negative": "An escalation without destination, timestamp, route, and observed failure remains incomplete; an alternate is not treated as available until tested."
+      },
+      "linked_mechanics": ["carrier integration models", "support-chain gap obligation", "call traces"],
+      "gap": "The current interface has no support ticket lifecycle, escalation evidence bundle, or support-chain dependency."
+    },
+    {
+      "source_id": "voiceops-2014-05-canadian-tollfree",
+      "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+      "thread": "Canadian Toll Free",
+      "date": "2014-05-06",
+      "evidence_type": "Operator troubleshooting thread with a proposed route workaround",
+      "uncertainty": "Participants discuss a historical cross-border routing case and describe different behaviors based on originating and terminating network context. The terminology and route details are specific to that environment and are not current regulatory or carrier-routing advice.",
+      "issue_paraphrase": "A destination that works from one origin geography can fail from another because the translated carrier identifier, local database, or service-area policy differs along the path.",
+      "fictional_behaviour_proposal": {
+        "scenario": "The Border Is in the Translation Table",
+        "behaviour": "Use synthetic origin region, destination class, translation record, and carrier capability. Ask learners to trace the exact lookup and choose a permitted alternate that supports the origin context; retain a distinct blocked outcome when no route is eligible.",
+        "humour_note": "The map joke applies to the lookup chain, not to cross-border customers."
+      },
+      "state_distinctions": {
+        "desired": "Origin-aware translation, carrier eligibility, and service-area policy.",
+        "effective": "Provisioned translation and terminating carrier capabilities.",
+        "observed": "Lookup result, selected route, rejection cause, and outcome from each synthetic origin region."
+      },
+      "acceptance": {
+        "positive": "A permitted route handles the same synthetic destination from the supported origin region, with the selected carrier and translation visible in the trace.",
+        "negative": "A route that works from one region cannot be assumed to work from another; unsupported service-area or carrier capability fails with a precise reason."
+      },
+      "linked_mechanics": ["jurisdiction settings", "route normalization", "carrier modes"],
+      "gap": "Current route resolution has no origin-region-aware toll-free translation or carrier identifier capability model."
+    },
+    {
+      "source_id": "voiceops-2015-06-softswitch-support",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+      "thread": "Which Softswitch?",
+      "date": "2015-06-20",
+      "evidence_type": "Operator procurement discussion and personal recommendations",
+      "uncertainty": "The thread presents individual preferences and market observations from 2015. It is not a vendor comparison, current product review, or evidence that a named platform is superior.",
+      "issue_paraphrase": "Softswitch selection includes support availability, geographic redundancy, integration workload, operational skills, and lifecycle cost, not only feature lists or license price.",
+      "fictional_behaviour_proposal": {
+        "scenario": "A Switchboard with Two Time Zones",
+        "behaviour": "Offer several fictional architectures with different redundancy, support windows, integration burden, and operating cost. Learners choose based on declared service requirements, then experience a support-window or failover constraint in a synthetic exercise.",
+        "humour_note": "Use a fictional switchboard metaphor; do not reuse vendor recommendations or names from the thread."
+      },
+      "state_distinctions": {
+        "desired": "Chosen architecture, support coverage, redundancy, and integration scope.",
+        "effective": "Provisioned active/standby paths and support escalation window.",
+        "observed": "Failover result, service recovery time, support acknowledgement, and recurring operating cost."
+      },
+      "acceptance": {
+        "positive": "A selected design meets the declared recovery and support-window constraints, and the test confirms failover through an independent path.",
+        "negative": "A low-cost design lacking the required support window or independent failure path fails qualification even if its feature checklist is longer."
+      },
+      "linked_mechanics": ["commercial offer and product separation", "geographic resources", "incident recovery"],
+      "gap": "Current product/offer decisions do not grade support coverage, operational skill requirements, or failover independence."
+    },
+    {
+      "source_id": "voiceops-2015-11-text-routing-registry",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+      "thread": "Upcoming Fees for Text Enabled Telephone Numbers (Bandwidth.com)",
+      "date": "2015-11-24",
+      "evidence_type": "Operator question about a supplier notice and a registry description",
+      "uncertainty": "The message questions an announced fee and the underlying portability-corrected messaging registry. It does not confirm the final fee, registry completeness, or current routing arrangements.",
+      "issue_paraphrase": "Messaging delivery can depend on a portability-aware carrier lookup distinct from voice routing, while price notices and data-source behavior may be unclear to operators.",
+      "fictional_behaviour_proposal": {
+        "scenario": "The Text Message Took the Other Exit",
+        "behaviour": "Give fictional voice and messaging lookups separate carrier results, one stale routing entry, and a pending supplier charge notice. Require the learner to verify the message path and show unknown commercial amounts as unresolved rather than inventing them.",
+        "humour_note": "The exit-sign comparison describes separate voice and messaging routes."
+      },
+      "state_distinctions": {
+        "desired": "Messaging route policy, registry source, freshness threshold, and cost assumptions.",
+        "effective": "Current messaging lookup and active supplier schedule.",
+        "observed": "Lookup result, delivery receipt, stale-data warning, and confirmed versus unknown charge."
+      },
+      "acceptance": {
+        "positive": "A portability-corrected synthetic messaging lookup selects the eligible messaging carrier, delivers the test message, and records only a confirmed cost.",
+        "negative": "A successful voice route cannot imply messaging delivery; a stale lookup or unconfirmed fee cannot be presented as successful/current."
+      },
+      "linked_mechanics": ["distinct channel accounts", "supplier outages", "delayed message receipts", "commercial ledger"],
+      "gap": "The application lacks a messaging-specific portability lookup, lookup freshness, and uncertain charge-notice model."
+    },
+    {
+      "source_id": "voiceops-2015-12-sbc-tcp-keepalive",
+      "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+      "thread": "Perimeta SBC & TCP",
+      "date": "2015-12-17",
+      "evidence_type": "Operator migration question with practitioner reply",
+      "uncertainty": "The reply outlines possible keepalive layers and its own operational experience. The thread is tied to then-current implementations; timings and mechanisms should not be generalized to current products.",
+      "issue_paraphrase": "A firewall can close an idle signaling connection even when the endpoint and server appear configured, leaving registrations stale until an explicit keepalive or re-registration succeeds.",
+      "fictional_behaviour_proposal": {
+        "scenario": "The Quiet Phone That Stopped Listening",
+        "behaviour": "Simulate UDP/TCP/TLS connection maintenance as distinct mechanisms. Allow a registration to appear active while its network pinhole has expired, then test OPTIONS-style polling or a re-registration path and measure recovery delay.",
+        "humour_note": "A quiet phone joke stays focused on synthetic connection state."
+      },
+      "state_distinctions": {
+        "desired": "Transport, keepalive policy, registration refresh, and expiry threshold.",
+        "effective": "Provisioned keepalive behavior and current registration expiry.",
+        "observed": "Reachability probes, firewall pinhole status, registration state, and incoming call success."
+      },
+      "acceptance": {
+        "positive": "A chosen keepalive refreshes the synthetic path before expiry and the endpoint remains callable with bounded signaling overhead.",
+        "negative": "A stale registration cannot be treated as reachable when its observed connection has expired; the learner must recover registration before incoming calls pass."
+      },
+      "linked_mechanics": ["registration state", "local/external dependency observations", "fault recovery"],
+      "gap": "Current endpoints have registration and connectivity states but do not model idle transport expiry, keepalive layers, or reconnect delay."
+    },
+    {
+      "source_id": "voiceops-2020-03-special-service-geography",
+      "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+      "thread": "Three Digit Numbers",
+      "date": "2020-03-26",
+      "evidence_type": "Multi-operator discussion with conflicting local experience",
+      "uncertainty": "Participants describe different special-service routing practices and express uncertainty about an authoritative geography-to-destination source. The message's emergency-test anecdote is not a validated procedure or legal guidance; no real special-service route should be inferred from it.",
+      "issue_paraphrase": "Short service codes may need geography-aware translation, and operators distinguish a synthetic emergency-location check from placing a real emergency call.",
+      "fictional_behaviour_proposal": {
+        "scenario": "A Map for Short Codes, a Sandbox for Location",
+        "behaviour": "Create a dated synthetic service-code mapping by fictional region and a separately labeled emergency-location test endpoint. The test endpoint returns only synthetic location/callback metadata and must have no route to real dispatch or public networks.",
+        "humour_note": "Use a tiny map legend joke only for ordinary service-code routing; keep emergency test screens plain and serious."
+      },
+      "state_distinctions": {
+        "desired": "Dated region-to-service-code translation and approved synthetic test profile.",
+        "effective": "The currently provisioned mapping and test endpoint behavior.",
+        "observed": "Resolved synthetic destination, test-region metadata, and an explicit `NO_EXTERNAL_EMERGENCY_ROUTE` boundary."
+      },
+      "acceptance": {
+        "positive": "A synthetic service code resolves using the caller's fictional region; the emergency-location test returns the configured synthetic location and callback metadata without contacting a real service.",
+        "negative": "A missing or stale region mapping fails with an explicit unknown-translation reason; no test input can route to a live emergency destination or be labeled legal compliance."
+      },
+      "linked_mechanics": ["synthetic emergency policy", "jurisdiction packs", "route normalization", "observed test outcomes"],
+      "gap": "Current emergency handling is an initial synthetic policy and has no dated geography-specific service-code table or isolated location/callback test workflow."
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+TAP version 13
+# Subtest: a new game has no intern and every order off; nothing runs and no random numbers are drawn
+ok 1 - a new game has no intern and every order off; nothing runs and no random numbers are drawn
+  ---
+  duration_ms: 775.984665
+  type: 'test'
+  ...
+# Subtest: the intern is hired from customer level 2 (or with gates open), costs a monthly salary, and can be let go
+ok 2 - the intern is hired from customer level 2 (or with gates open), costs a monthly salary, and can be let go
+  ---
+  duration_ms: 475.075543
+  type: 'test'
+  ...
+# Subtest: transit headroom adds a LAG member, exactly as the + member button would
+ok 3 - transit headroom adds a LAG member, exactly as the + member button would
+  ---
+  duration_ms: 801.919741
+  type: 'test'
+  ...
+# Subtest: transit headroom buys a new port from a chosen provider and stops at the multiple
+ok 4 - transit headroom buys a new port from a chosen provider and stops at the multiple
+  ---
+  duration_ms: 813.734048
+  type: 'test'
+  ...
+# Subtest: routers: add one above the load level, as Add router would
+ok 5 - routers: add one above the load level, as Add router would
+  ---
+  duration_ms: 867.700686
+  type: 'test'
+  ...
+# Subtest: routers: swap generation only where a second router carries the traffic
+ok 6 - routers: swap generation only where a second router carries the traffic
+  ---
+  duration_ms: 391.921838
+  type: 'test'
+  ...
+# Subtest: caches: free boxes only once the network sends enough traffic locally
+ok 7 - caches: free boxes only once the network sends enough traffic locally
+  ---
+  duration_ms: 355.597108
+  type: 'test'
+  ...
+# Subtest: IX: weekly route servers and every willing peer, the same as the \#192 batch
+ok 8 - IX: weekly route servers and every willing peer, the same as the \#192 batch
+  ---
+  duration_ms: 734.306422
+  type: 'test'
+  ...
+# Subtest: PNI: weekly, big enough networks only, paid peering left out by default, at each network's own size and lead time
+ok 9 - PNI: weekly, big enough networks only, paid peering left out by default, at each network's own size and lead time
+  ---
+  duration_ms: 371.392259
+  type: 'test'
+  ...
+# Subtest: sales: decline offers below the minimum, sign the ready ones with \#185's trial
+ok 10 - sales: decline offers below the minimum, sign the ready ones with \#185's trial
+  ---
+  duration_ms: 377.615451
+  type: 'test'
+  ...
+# Subtest: repairs: rush what has a price, as the Rush repair button would
+ok 11 - repairs: rush what has a price, as the Rush repair button would
+  ---
+  duration_ms: 804.070446
+  type: 'test'
+  ...
+# Subtest: optics: light hot fiber with the optic already in it, at the \#177 batch price
+ok 12 - optics: light hot fiber with the optic already in it, at the \#177 batch price
+  ---
+  duration_ms: 833.202189
+  type: 'test'
+  ...
+# Subtest: decommission: smaller parallel waves go once the bigger link has room, never one a customer needs
+ok 13 - decommission: smaller parallel waves go once the bigger link has room, never one a customer needs
+  ---
+  duration_ms: 385.69746
+  type: 'test'
+  ...
+# Subtest: the monthly budget cap and the cash floor stop the intern; a new month resets the budget
+ok 14 - the monthly budget cap and the cash floor stop the intern; a new month resets the budget
+  ---
+  duration_ms: 387.318745
+  type: 'test'
+  ...
+# Subtest: pause: an order switched off does nothing, and per-POP switches leave a city alone
+ok 15 - pause: an order switched off does nothing, and per-POP switches leave a city alone
+  ---
+  duration_ms: 413.527124
+  type: 'test'
+  ...
+# Subtest: the shift runs inside dayTick, respects a stopped clock, batches its work and recomputes once
+ok 16 - the shift runs inside dayTick, respects a stopped clock, batches its work and recomputes once
+  ---
+  duration_ms: 384.646802
+  type: 'test'
+  ...
+# Subtest: the NOC gets one notice a week, the shift report; the daily lines stay in the Ops sheet
+ok 17 - the NOC gets one notice a week, the shift report; the daily lines stay in the Ops sheet
+  ---
+  duration_ms: 421.866453
+  type: 'test'
+  ...
+# Subtest: the Ops sheet opens with the intern's mood and the weekly shift report, at 360 px, in every language
+ok 18 - the Ops sheet opens with the intern's mood and the weekly shift report, at 360 px, in every language
+  ---
+  duration_ms: 2530.728947
+  type: 'test'
+  ...
+# Subtest: the mood follows the week, with no dice
+ok 19 - the mood follows the week, with no dice
+  ---
+  duration_ms: 486.232252
+  type: 'test'
+  ...
+# Subtest: fat fingers: never under Change Freeze, rare and harmless in On-call and BGP at 3 a.m.
+ok 20 - fat fingers: never under Change Freeze, rare and harmless in On-call and BGP at 3 a.m.
+  ---
+  duration_ms: 379.770691
+  type: 'test'
+  ...
+# Subtest: a new POP from the template costs exactly the clicks it replaces
+ok 21 - a new POP from the template costs exactly the clicks it replaces
+  ---
+  duration_ms: 832.208833
+  type: 'test'
+  ...
+# Subtest: saves: old saves load with no intern and everything off, settings survive a reload, junk is repaired
+ok 22 - saves: old saves load with no intern and everything off, settings survive a reload, junk is repaired
+  ---
+  duration_ms: 366.272633
+  type: 'test'
+  ...
+# Subtest: the Ops sheet works at 360 px in every language, from the NOC tab and the phone tab bar
+ok 23 - the Ops sheet works at 360 px in every language, from the NOC tab and the phone tab bar
+  ---
+  duration_ms: 2369.504686
+  type: 'test'
+  ...
+# Subtest: sales trial at most one offer a shift, and an offer that did not fit waits a week
+ok 24 - sales trial at most one offer a shift, and an offer that did not fit waits a week
+  ---
+  duration_ms: 347.159196
+  type: 'test'
+  ...
+# Subtest: re-hiring in a later month starts on a fresh budget, not last month's spending
+ok 25 - re-hiring in a later month starts on a fresh budget, not last month's spending
+  ---
+  duration_ms: 384.681546
+  type: 'test'
+  ...
+# Subtest: transit never comes from a provider that breaks a promise: no-Cogentle customers, bank covenants, the Spat
+ok 26 - transit never comes from a provider that breaks a promise: no-Cogentle customers, bank covenants, the Spat
+  ---
+  duration_ms: 414.935303
+  type: 'test'
+  ...
+# Subtest: decommission keeps its spare in another trench than the big link
+ok 27 - decommission keeps its spare in another trench than the big link
+  ---
+  duration_ms: 400.88321
+  type: 'test'
+  ...
+# Subtest: decommission sees the traffic of a customer signed earlier in the same shift
+ok 28 - decommission sees the traffic of a customer signed earlier in the same shift
+  ---
+  duration_ms: 420.871989
+  type: 'test'
+  ...
+# Subtest: no recompute on a shift that only declined offers or stopped at a budget
+ok 29 - no recompute on a shift that only declined offers or stopped at a budget
+  ---
+  duration_ms: 402.370031
+  type: 'test'
+  ...
+# Subtest: per-POP exceptions go with the POP: on decommission, and in a save that lost it
+ok 30 - per-POP exceptions go with the POP: on decommission, and in a save that lost it
+  ---
+  duration_ms: 438.436213
+  type: 'test'
+  ...
+# Subtest: one order that throws is paused and noted; the rest of the shift and the day still run
+ok 31 - one order that throws is paused and noted; the rest of the shift and the day still run
+  ---
+  duration_ms: 421.144963
+  type: 'test'
+  ...
+# Subtest: the fat-fingered LAG member respects a paused transit order and per-POP exceptions
+ok 32 - the fat-fingered LAG member respects a paused transit order and per-POP exceptions
+  ---
+  duration_ms: 409.14087
+  type: 'test'
+  ...
+# Subtest: caches: the cash floor and a running-cost budget hold; the panel and the log show what a month costs
+ok 33 - caches: the cash floor and a running-cost budget hold; the panel and the log show what a month costs
+  ---
+  duration_ms: 424.995988
+  type: 'test'
+  ...
+# Subtest: transit: the log line and budget line show the monthly cost a top-up adds
+ok 34 - transit: the log line and budget line show the monthly cost a top-up adds
+  ---
+  duration_ms: 382.045877
+  type: 'test'
+  ...
+# Subtest: \#226 the shift report's Open button in the NOC opens the Ops sheet, and survives a reload
+ok 35 - \#226 the shift report's Open button in the NOC opens the Ops sheet, and survives a reload
+  ---
+  duration_ms: 520.342137
+  type: 'test'
+  ...
+# Subtest: \#228 the intern names the exchanges it peered at, even one that shares its city's id
+ok 36 - \#228 the intern names the exchanges it peered at, even one that shares its city's id
+  ---
+  duration_ms: 396.223079
+  type: 'test'
+  ...
+# Subtest: \#227 transit "Already connected" grows the providers you have, the smallest first, and never signs a new one
+ok 37 - \#227 transit "Already connected" grows the providers you have, the smallest first, and never signs a new one
+  ---
+  duration_ms: 421.818842
+  type: 'test'
+  ...
+# Subtest: \#244 the PNI order counts the traffic the PNI list shows at that POP, not what cache boxes there already serve
+ok 38 - \#244 the PNI order counts the traffic the PNI list shows at that POP, not what cache boxes there already serve
+  ---
+  duration_ms: 417.756446
+  type: 'test'
+  ...
+# Subtest: \#249 a city without a POP opens while the transit order is set to Already connected
+ok 39 - \#249 a city without a POP opens while the transit order is set to Already connected
+  ---
+  duration_ms: 365.384342
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23476.562921

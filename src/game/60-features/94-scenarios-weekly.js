@@ -87,11 +87,11 @@ const wsDef=()=>{const key=pzWeekKey(new Date()),w=UI.wsWk;return w&&w.key===key
 const wsLoading=()=>{const w=UI.wsWk;return !!w&&w.st==='load'&&w.key===pzWeekKey(new Date());};
 function wsRefresh(){const el=$('wsRow');if(el)el.outerHTML=wsRow();}
 // ---------- the player's record: started weeks (for the badge), wins and the streak ----------
-function wsLoad(){let j=null;try{j=JSON.parse(localStorage.getItem('sot-wkscn')||'null');}catch(e){}const o={go:{},w:{},streak:{last:null,n:0,best:0}};if(!pzObj(j))return o;
+function wsLoad(){let j=null;try{j=JSON.parse(localStorage.getItem('soc-sp-wkscn')||'null');}catch(e){}const o={go:{},w:{},streak:{last:null,n:0,best:0}};if(!pzObj(j))return o;
   const K=/^\d{4}-W\d{2}$/;if(pzObj(j.go))for(const k in j.go)if(K.test(k))o.go[k]=1;
   if(pzObj(j.w))for(const k in j.w){const x=j.w[k];if(K.test(k)&&pzObj(x)&&Number.isInteger(x.d)&&x.d>0)o.w[k]={d:x.d,rv:Number.isInteger(x.rv)?x.rv:1};}
   const s=j.streak;if(pzObj(s)){o.streak.last=typeof s.last==='string'&&K.test(s.last)?s.last:null;for(const k of ['n','best'])o.streak[k]=Number.isInteger(s[k])&&s[k]>=0?s[k]:0;}return o;}
-const wsStore=o=>{try{localStorage.setItem('sot-wkscn',JSON.stringify(o));}catch(e){}};
+const wsStore=o=>{try{localStorage.setItem('soc-sp-wkscn',JSON.stringify(o));}catch(e){}};
 // A win counts for its revision: when a week is regenerated (rev), last week's result for it no longer shows.
 const wsWin=(o,d)=>{const x=d&&o.w[d.key];return x&&x.rv===(d.rev||1)?x:null;};
 function wsNew(){try{return !wsLoad().go[pzWeekKey(new Date())];}catch(e){return false;}}
@@ -114,7 +114,7 @@ function wsTick(d){const sc=S.scn,w=sc.wk,G=WS_GOALS[w.goal.t];
 const T_WS=w=>(WS_THEMES[w.theme]||{}).i||'📅';
 // The top row of the Scenarios list.
 function wsRow(){const d=wsDef(),o=wsLoad(),key=pzWeekKey(new Date()),st=wsStreak(o,key),badge=o.go[key]?'':` <span class="pznew">${tr('puzzles.new_this_sunday')}</span>`,cd=`<div class="meta pzcd">⏳ ${wsNext(Date.now())}</div>`;
-  if(!d){const wk=weekly();let best=null;try{best=JSON.parse(localStorage.getItem('sot-weekly')||'{}')[wk.key];}catch(e){}
+  if(!d){const wk=weekly();let best=null;try{best=JSON.parse(localStorage.getItem('soc-sp-weekly')||'{}')[wk.key];}catch(e){}
     return `<div class="scn wk" id="wsRow"><div class="grow"><div class="eyebrow">📅 ${tr('wkscn.weekly_scenario_key',{key:esc(wk.key)})}${badge}</div><div class="nm">${wsLoading()?tr('wkscn.loading_this_week_s_scenario'):tr('features.weekly_challenge_key',{key:esc(wk.key)})}</div><div class="meta">${tr('scenario_progress.start_in_city_mods_one_year',{city:esc(CITY[wk.city].name),mods:wk.mods.map(m=>esc(m.n)).join(' · ')})}${best?' '+tr('scenario_progress.your_best_best',{best:fmtG(best)}):''}</div>${cd}</div>${btn(tr('common.play'),'startWeekly',{},'pink',wsLoading())}</div>`;}
   const x=wsWin(o,d),mods=d.mods.map(m=>esc(WEEK_MODS.find(y=>y.id===m).n));
   return `<div class="scn wk" id="wsRow"><div class="grow"><div class="eyebrow">📅 ${tr('wkscn.weekly_scenario_key',{key:esc(d.key)})}${badge}</div>

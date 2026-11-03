@@ -1,0 +1,476 @@
+[
+  {
+    "id": "RES-AU-CLOUD-001",
+    "title": "Australia cloud assessment and authorisation",
+    "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+    "scope": "AU; government cloud assessment guidance, page reviewed 2024-01-18",
+    "observation": "Cloud consumers assess their own deployed systems and shared responsibilities. Provider assessment evidence supports an authorising officer’s risk decision; it is not an unconditional approval of every customer configuration.",
+    "requirement": "Represent assessment scope, consumer controls, residual risks, conditional authorisation and ongoing changes separately; do not treat IRAP assessment as a blanket platform approval.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "RES-US-CLOUD-001",
+    "title": "FedRAMP agency use of certified cloud services",
+    "url": "https://www.fedramp.gov/2026/agencies/use/",
+    "scope": "US federal; 2026 consolidated rules page, applicability needs reviewer confirmation",
+    "observation": "FedRAMP evidence can be reused while an agency still authorises its own system, configuration and integrations. Customer responsibilities and agency mission risk remain part of that decision.",
+    "requirement": "Separate a fictional cloud offering’s assessment/certification from an agency system authorisation; preserve version-specific terminology and do not infer defence eligibility from civilian evidence.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "RES-JP-CLOUD-001",
+    "title": "ISMAP programme overview",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+    "scope": "JP; official ISMAP overview retrieved 2026-11-03",
+    "observation": "ISMAP evaluates and registers cloud services for government procurement. Its overview distinguishes the main programme from the low-impact SaaS programme and describes procurement from registered service lists in principle.",
+    "requirement": "Model exact service registration scope and distinct low-impact eligibility. Registration is not a universal claim about every integration or information type.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "RES-JP-AI-001",
+    "title": "ISMAP notice concerning generative AI services",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+    "scope": "JP; official ISMAP generative AI notice retrieved 2026-11-03",
+    "observation": "ISMAP registration does not remove the need for government bodies to address risks particular to generative AI services.",
+    "requirement": "Require a separate fictional AI-use risk decision even when an underlying cloud service has an eligible registration; changing processing capability can reopen review.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "RES-EU-TRANSFER-001",
+    "title": "EDPB international data transfers guide",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+    "scope": "EU/EEA; GDPR international-transfer overview, not a national government accreditation scheme",
+    "observation": "The guide distinguishes adequacy decisions, appropriate safeguards and derogations for transfers outside the EEA. Transfer rules involve the parties and protection mechanisms, not only the storage location.",
+    "requirement": "Represent information flows, parties and transfer mechanisms independently of residency; do not grant member-state procurement or defence approval from an EU-wide profile.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Scoped initial observation. Full applicable instruments, effective dates, agency exceptions and implementation review remain outstanding. No legal eligibility is asserted."
+  },
+  {
+    "id": "RES-CISCO-VOIP-001",
+    "title": "SIP Load and Re-Invite",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2011-04-15; product context: CUCM before 8.5 is explicitly discussed; no complete deployed version matrix is stated.",
+    "observation": "Technical explanation in a list discussion, including a cited release-note description; not a controlled reproduction report. A participant explains that hold/resume and supplementary call operations could leave media inactive when a third-party endpoint returned an inactive SDP answer where the older call flow expected send/receive media. The thread also discusses the changed behavior in CUCM 8.5. Outcome noted in the thread: Historical version-dependent interoperability behavior is described; no specific customer call is confirmed as repaired in this thread.",
+    "requirement": "Candidate observable behavior: When both endpoint profiles accept the negotiated resume offer, signalling and both media directions recover after hold/resume. Negative boundary: When the far endpoint returns an incompatible inactive answer, retain successful signalling but report the affected media leg as inactive and identify the profile interaction; do not claim the historical version behavior is universal. Pending mechanisms: The calling pack reports codec, encryption, NAT and quality dimensions. The core can show signalling success with failed media, but does not model hold/resume SDP negotiation or endpoint-specific offer/answer contracts. Candidate source: uc-new:domain:media, uc-new:domain:signalling.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Applies to the described historical offer/answer behavior and counterpart implementations; not a general claim about current SIP endpoints. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/0",
+      "sourceRecordSha256": "4cba3474f4730ea6ae09e0a2e2f05a007fe09dcfab159955018d55535db2e3cb"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-002",
+    "title": "One-way audio after BLIND transfer to SIP Trunk",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2014-04-30; product context: CUCM, CUBE and a Lync interoperation example are mentioned; exact versions are not stated in the initial report.",
+    "observation": "Customer-style incident report plus troubleshooting suggestions and a separate claimed fix. A reported phone-to-phone call transferred blindly through a CUBE/SIP trunk to an external mobile had one-way audio. Replies discuss SDP direction attributes and a SIP-profile option limited to early-offer trunks; one participant says header manipulation fixed a separate instance. Outcome noted in the thread: The archive does not confirm that the original reporter's call was fixed. A reply reports one other instance repaired with SBC header manipulation.",
+    "requirement": "Candidate observable behavior: A compatible early-offer profile completes the blind transfer and both endpoints report media in both directions. Negative boundary: A direction mismatch leaves the destination leg one-way while signalling remains established; the diagnosis names the synthetic leg/profile and does not prescribe header rewriting as universally safe. Pending mechanisms: The core supports blind transfer journeys only in narrow forms and the calling pack models directional media, but not transfer-leg SDP renegotiation or trunk-profile-specific behavior. Candidate source: uc-new:domain:media, uc-new:domain:signalling, uc-new:domain:continuity.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "SDP address appearance alone did not establish working RTP in the report. The proposed profile setting is conditional on early offer and should not become a blanket remedy. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/1",
+      "sourceRecordSha256": "74ea10f0cb44dee08fe2adffebe47aacee708232c4df7942cdaa48b0bf12770e"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-003",
+    "title": "Transfer using BLF Speed Dial on 9.1",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2013-04-02; product context: Thread title identifies CUCM 9.1; a reply identifies phone firmware 9.3.2 as the suspected bug.",
+    "observation": "Reproducible report across two systems and a reply attributing it to a particular firmware bug. A 9951 with expansion module could place calls using a busy-lamp-field speed dial, but using that key during a transfer created another call instead of completing transfer. Manual destination dialing worked. Outcome noted in the thread: Reply recommends an engineering special; archive does not include the reporter's confirmation of the fix.",
+    "requirement": "Candidate observable behavior: With a compatible firmware profile, selecting the monitored destination while transfer is pending completes the original call transfer. Negative boundary: With an incompatible firmware profile, the same key starts a second call and leaves the first transfer pending; manual dialing remains a distinct diagnostic control. Pending mechanisms: The core's transfer flow does not model BLF/presence buttons, endpoint key sequences or firmware-gated transfer behavior. Candidate source: uc-new:domain:continuity, uc-new:family:cisco:dedicated-premises.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The firmware cause and remedy are participant-attributed and bound to an old release; no present-day product claim is implied. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/2",
+      "sourceRecordSha256": "d18ea975879984c2a4a40eb0c3d1364eb9139c9e65093e52353ee7cb7564aedc"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-004",
+    "title": "quick question about sip and CUBE",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2013-04-10; product context: A reply notes that CUCM 8.x and later can accept a SIP trunk on all nodes; the exact customer's version is not identified.",
+    "observation": "Specific error diagnosis and participant-reported configuration resolution. An inbound INVITE reached a CUCM node that was not in the trunk's device-pool call-manager group and received a 503. The thread explains that trunk ingress node membership and dial-peer node preference must align; changing preference resolved calls for the reporter. Outcome noted in the thread: The reporter states that reversing publisher/subscriber dial-peer preference made calls work; the discussion also points to all-node trunk operation in later versions.",
+    "requirement": "Candidate observable behavior: A request arriving at an allowed trunk node matches the configured service and proceeds to dial-plan evaluation. Negative boundary: A request delivered to a disallowed node returns a synthetic device-handler rejection even when the destination number is valid; adjusting preference or enabling a supported all-node mode repairs only after provisioning. Pending mechanisms: The foundation has generic trunk readiness and route matching but does not model ingress-node membership, cluster call-manager groups or SIP device-handler matching. Candidate source: uc-new:domain:signalling, uc-new:domain:directory-dialplan, uc-new:domain:provisioning.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "This is a historical cluster/trunk routing example, not a claim that all 503 responses have this cause. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/3",
+      "sourceRecordSha256": "3c3f1d2fd520bbb263e1c7fc793614892a805503e7eb150c7d03a28cde1a979a"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-005",
+    "title": "UCCX not working after change to SIP",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2019-10-13; product context: CUCM/UCCX/CUBE releases are not stated in the archived post.",
+    "observation": "Incident report plus unconfirmed troubleshooting hypotheses. After replacing an ISDN/H.323 gateway path with centralized SIP, a UCCX IVR call received a 404 despite a reported dial-peer match. A reply suggests CSS/partition visibility or SIP-trunk device-pool context as hypotheses. Outcome noted in the thread: No resolution is present in the sampled post; the proposed causes remain hypotheses.",
+    "requirement": "Candidate observable behavior: A target visible from the new SIP ingress resolves and the IVR continues after staged cutover. Negative boundary: An otherwise existing target outside the new trunk's search scope returns a synthetic not-found result; testing the legacy path separately does not mark the new path healthy. Pending mechanisms: The current dial-plan path has simple ordered routes and permissions but not inherited partition/search-space context or migration comparison between old and new gateway ingress. Candidate source: uc-new:domain:directory-dialplan, uc-new:domain:migration.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The thread is incomplete and does not prove the suggested class-of-service or device-pool cause. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/4",
+      "sourceRecordSha256": "14c679e05da25a3119dc51e5f44e8c90936c0b0ae921e67b0e5b44d1c1f3cd7e"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-006",
+    "title": "7945 phone has wrong time and can't verify config",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2013-11-05; product context: 7945 SCCP firmware and CUCM are discussed; one load predates Olson timezone handling. Exact CUCM release is not stated.",
+    "observation": "Incident report with multiple participant hypotheses; no single cause confirmed in this message. A registered phone displayed the wrong time and did not appear to apply current load or configuration. Replies raise wrong provisioned device type, stale firmware/time-zone compatibility and malformed or incomplete configuration XML as possible causes. Outcome noted in the thread: Possible checks are suggested, but the sampled thread does not confirm the original device was repaired.",
+    "requirement": "Candidate observable behavior: A compatible model/load parses the current configuration and observed time/config generation matches the effective assignment. Negative boundary: An unsupported field or corrupted synthetic config leaves the prior observed generation intact and exposes a parse/model mismatch even though registration remains up. Pending mechanisms: The foundation observes resource readiness and firmware version but does not represent downloaded configuration generations, parsing errors, timezone schema compatibility or observed-vs-effective endpoint settings. Candidate source: uc-new:domain:provisioning, uc-new:domain:discovery.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Several distinct causes are mentioned and must stay separate in a scenario; registration is not evidence that every configuration field took effect. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/5",
+      "sourceRecordSha256": "e93d6fa53b43d934eeb4bb2d0bf7ad61e4a0ef04af725300d8a2e2c79ae16d1f"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-007",
+    "title": "8831 stuck on logo on keypad",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2015-10-28; product context: The report names active phone load 9.3.3.5 and an attempted 10.3.1 SR load; a reply describes a hardware revision requiring the newer load.",
+    "observation": "Specific field report and participant's claimed matching diagnosis based on another recent case. A phone remained registered and reachable while its keypad display was stuck at a logo; the inactive firmware load reported an internal phone error. A responder associated the symptoms with a hardware revision/load requirement. Outcome noted in the thread: The archived response says the hardware-revision requirement explained the symptom in the responder's case; the thread does not establish a universal fix or show final outcome for the original device.",
+    "requirement": "Candidate observable behavior: A compatible target image installs and post-upgrade checks confirm both registration and display capability. Negative boundary: A rejected upgrade leaves the prior active load registered but marks the display capability failed; a ping/registration check alone cannot pass the device acceptance. Pending mechanisms: The estate pack already proposes firmware compatibility and per-device upgrade status; this thread supports separately tracking active-load registration, inactive-load failure and hardware revision. Candidate source: uc-new:domain:provisioning, uc-new:domain:discovery.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Model revision and load compatibility are scenario-specific; registration and reachability do not imply usable display or successful upgrade. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/6",
+      "sourceRecordSha256": "605d8987ade4c6b9105425121da8992063c8732833327067aaba77d51b0da31f"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-008",
+    "title": "webkit fun!",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2018-09-14 to 2018-09-17; product context: A CE 9.3.3 endpoint and an older TC-software room endpoint are distinguished; exact model versions beyond those are not required here.",
+    "observation": "Question plus reply describing the provisioning synchronization flow and supporting SIP traces. A room endpoint's local configuration could be overwritten by CUCM on reset; a participant explains that CUCM-managed provisioning can send supported endpoint changes back through SIP. The report also notes that an endpoint SIP URI changed across reset/registration and affected reachability/interoperation. Outcome noted in the thread: The reply identifies CUCM provisioning mode as the synchronization boundary; the thread does not document a final resolution for the URI/dialing symptom.",
+    "requirement": "Candidate observable behavior: A supported change sent through the configured management path persists after reset and the room endpoint remains reachable by its canonical URI. Negative boundary: An unsupported local change reverts and an alias pointing at the stale URI fails; do not infer feature parity between CE and TC endpoints. Pending mechanisms: The estate package can track provisioning, and the calling package tracks aliases, but neither currently models room-endpoint capability, authoritative configuration source or SIP-URI identity drift. Candidate source: uc-new:domain:provisioning, uc-new:domain:identity, uc-new:family:cisco:dedicated-premises.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The behavior is tied to endpoint model/software and managed-provisioning mode; local GUI edits are not generally authoritative. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/7",
+      "sourceRecordSha256": "0e11731993edd9c9e8228c08406394cce16531a0cc0b62ab96248d528004e70b"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-009",
+    "title": "MRA Onboarding via activation code... phone trust list?",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2021-11-05 to 2021-12-01; product context: An 8845 activation-code onboarding flow is discussed; Jabber MRA worked in the reporter's environment, phone onboarding did not.",
+    "observation": "Incident report, troubleshooting exchange and later participant-reported resolution. The activation-code phone completed cloud handshake but failed TLS to the edge, while Jabber MRA worked. Replies distinguish the phone firmware's CA trust list; a later thread reply reports that adding the needed certificate chain to the phone-edge trust path allowed registration. Outcome noted in the thread: The follow-up reports successful phone registration after trust-chain handling; it is not a statement of current recommended certificate operations.",
+    "requirement": "Candidate observable behavior: A phone whose trust bundle accepts the edge chain enrolls and registers; the client and room phone are evaluated independently. Negative boundary: A client succeeds while the phone fails TLS with an explicit trust-chain reason; adding a compatible synthetic trust anchor and reprovisioning enables retry. Pending mechanisms: The core has generic certificates and external connectivity dependencies but not per-endpoint trust roots, activation-code enrollment or separate client-versus-phone MRA capability. Candidate source: uc-new:domain:provisioning, uc-new:domain:signalling, uc-new:family:cisco:dedicated-premises.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Trust stores and onboarding flows vary by endpoint firmware and service version; never treat one endpoint's success as proof another endpoint trusts the same CA. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/8",
+      "sourceRecordSha256": "f7c27864b5fd2a6f8820250624cecad98d269959376b4261f2d153ed614c383e"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-010",
+    "title": "Expressway Clustering...",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2022-05-12 to 2022-05-14; product context: Expressway-E cluster setup; exact release not stated. The accessible archive item is the original thread's HTML attachment rather than its ordinary message page.",
+    "observation": "Incident report followed by participant-reported packet-capture diagnosis and firewall change. A newly formed cluster was operational but raised a peer-not-responding warning for a LocalZone that was not visible in the expected GUI. The thread later reports packet captures showing RAS UDP traffic without replies and says allowing that traffic cleared the warning. Outcome noted in the thread: The reporter says the error cleared after the firewall allowance; cluster service had been described as operational even while the warning appeared.",
+    "requirement": "Candidate observable behavior: After the required fictional control-plane path is reachable and the inherited object is reconciled, the peer warning clears while service remains available. Negative boundary: A green cluster membership indicator does not hide a failed peer diagnostic; an unconfigured or blocked control path retains a distinct warning and recovery action. Pending mechanisms: Current local infrastructure checks generic DNS/time/certificates, but does not model control-plane packets, cluster peer health, hidden inherited zones or stale provisioned objects. Candidate source: uc-new:domain:signalling, uc-new:domain:continuity, uc-new:family:cisco:dedicated-premises.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The exact cluster build and full network path are absent; do not generalize the port or hidden-zone symptoms beyond the scenario's declared dependency. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/9",
+      "sourceRecordSha256": "574e249b43002e878376f53a7b4bdb9a2b4bf0bd9782626eab4bd03e430eeb89"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-011",
+    "title": "Import on CUCM Several Failed Devices",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2013-10-09; product context: A Business Edition 5000 to 6000 migration at the same software version is stated; device/import tooling version is not specified.",
+    "observation": "Migration incident with participant-reported reduction in failures and further unresolved data-integrity question. A device import had partial failures. A participant reports that moving user identifiers from a legacy field to the owner-user field reduced failures; another remaining unique-constraint issue was tied to inactive numbers in the later reply. Outcome noted in the thread: Some import errors were attributed to inactive entries and addressed in discussion; a duplicate pickup-group line constraint remained a manual or unresolved concern for additional customers.",
+    "requirement": "Candidate observable behavior: Correctly mapped active rows migrate once, preserve ownership, and remain placed only after target verification. Negative boundary: Inactive or conflicting rows fail independently with retained evidence; retrying after data correction does not duplicate successful rows or overwrite a newer target edit. Pending mechanisms: The estate package proposes staged migration and per-item failure/retry. Current product migration has cohort-level checks but not a source-field mapping audit, inactive-record filtering or uniqueness-conflict queue. Candidate source: uc-new:domain:migration, uc-new:domain:discovery, uc-new:domain:identity.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The observed field mapping is specific to the migration/import path and does not establish a universal schema rule. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/10",
+      "sourceRecordSha256": "3162a6cff00337b748ef98deb2dfeb72cbc3f44b8fb1ca8d2863ea825fb4a099"
+    }
+  },
+  {
+    "id": "RES-CISCO-VOIP-012",
+    "title": "CUCM SU release cycle",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+    "scope": "Historical Cisco VoIP mailing-list post dated 2019-08-21; product context: The discussion compares older CUCM releases and virtualization baselines; the post lists legacy phone models that a proposed target release would no longer support.",
+    "observation": "Upgrade-planning discussion and participant-reported compatibility warning, not a complete authoritative compatibility matrix. Participants discuss an upgrade path constrained by a change in supported virtualization baselines and endpoint models that would no longer register after upgrade; a bridge upgrade path is raised as a question. Outcome noted in the thread: The thread signals a need to validate the destination release and endpoint inventory; it does not document one system's completed migration.",
+    "requirement": "Candidate observable behavior: A staged upgrade proceeds only after every in-scope endpoint has a supported target path or an explicitly retained compatible service path. Negative boundary: The upgrade is blocked or leaves an explicit failed cohort when a target release drops a device; a successful publisher upgrade alone cannot mark endpoints migrated. Pending mechanisms: The estate package proposes firmware/platform compatibility and rollback; it does not yet require a target-release support audit across hypervisor baseline and endpoint models before starting migration. Candidate source: uc-new:domain:migration, uc-new:domain:provisioning, uc-new:domain:discovery.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Exact support varies by release, device and compatibility matrix. The archive list is historical and must not be reused as current support data. Historical anecdote or technical discussion only; not current vendor behavior, support policy, or a general product rule.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/cisco-voip-findings.json",
+      "sourcePointer": "research/community/cisco-voip-findings.json#/findings/11",
+      "sourceRecordSha256": "a97354c2d6f46bd02168f883a207a926ebb0fc1938d8c9358812413b208a9da3"
+    }
+  },
+  {
+    "id": "voiceops-2010-08-peer-of-peer",
+    "title": "The peer of my peer is my peer?",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2010-08-10; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator anecdote and peer discussion: A transit provider can connect each customer to the public network while still failing to connect two customers whose media capabilities do not overlap.",
+    "requirement": "Candidate observable behavior: A call between otherwise incompatible tenants succeeds only after selecting an overlapping codec or making a compatible transcoder effective; media evidence names the chosen path. Negative boundary: Both tenants can call a simulated public destination, yet a peer-to-peer call fails with `NO_COMMON_MEDIA` when neither a common codec nor transcoder exists. Pending mechanisms: Current acceptance distinguishes two media directions but does not model codec compatibility across independently administered peer networks or a separately provisioned transcoder.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "One reported interconnect scenario: two customer networks had individually usable trunks but incompatible codec offers when they called each other through a shared upstream. Replies suggest common codec or transcoding paths, but do not establish a universal remedy. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/0",
+      "sourceRecordSha256": "8b7ea6c9311ab8c876872d7d9cbc0fa30a6ae5818f96f74e802fa70ce3e3061d"
+    }
+  },
+  {
+    "id": "voiceops-2010-08-cancel-after-ok",
+    "title": "Ye ole Cisco Cube CM",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2010-08-10; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Single operator troubleshooting report: A successful answer response and a near-simultaneous cancellation can leave the two call legs with different views of whether the call is established.",
+    "requirement": "Candidate observable behavior: A deliberately delayed cancellation produces one deterministic terminal outcome with both legs reconciled and an auditable event trace. Negative boundary: A late response after cancellation must not leave the call marked connected or create a duplicate charge/interaction. Pending mechanisms: The current kernel models call outcomes and traces but not a race between SIP final responses and cancellation across separate legs.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The message describes a timing race in one historical SIP call flow. The archive excerpt does not show a confirmed resolution, so the timing is a scenario seed rather than a verified product rule. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/1",
+      "sourceRecordSha256": "0e857b0d2b1fed325775c8f74cedc41c4bc6c38a86deb24e69b64cab80422755"
+    }
+  },
+  {
+    "id": "voiceops-2010-12-dash-outage",
+    "title": "VoIP - complete outage at DASH Carrier Services",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2010-12-15; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Outage inquiry and customer recollection: A prospective customer must assess a reported outage while the available evidence is incomplete and partly based on historical experience.",
+    "requirement": "Candidate observable behavior: The learner identifies affected services from observed tests, communicates only confirmed facts, routes through an already validated alternate, and closes only after independent recovery checks pass. Negative boundary: A green status page or an unverified cause hypothesis alone cannot close the incident; a stale successful call cannot prove current recovery. Pending mechanisms: Current faults are resource-scoped and do not model cross-service incident timelines, evidence confidence, or customer-support updates.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The sampled replies ask whether the reported service interruption was common and resolved. One participant recalls a previously positive service history. This small exchange does not establish outage duration, scope, cause, or current service quality. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/2",
+      "sourceRecordSha256": "e9acf03fbdc070886727805e8217ccd6c6c276e3093f9c88d25fc3a25368fa44"
+    }
+  },
+  {
+    "id": "voiceops-2011-06-sbc-domain-filter",
+    "title": "SBC's that drop traffic based on domain",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2011-06-17; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Configuration troubleshooting thread: Filtering by request domain can have a different effect from filtering by destination IP, and a configured rejection may still return an unexpected response instead of dropping unwanted traffic.",
+    "requirement": "Candidate observable behavior: A valid synthetic request reaches the intended tenant, while a request matching the configured unwanted host condition is rejected with the selected response. Negative boundary: A rule that only matches an IP literal does not silently satisfy a request-domain policy; an overbroad filter is detected by a valid-traffic regression case. Pending mechanisms: There is no SIP edge filtering model or acceptance for false positives and explicit signaling response semantics.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Operators discuss a specific historical SBC configuration and desired rejection behavior. The filtering behavior and response mapping are product-specific and not general security guidance. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/3",
+      "sourceRecordSha256": "caf08a7683cc1c34d41f04d0c8f3292620f01d78ac56e26b9964cc0256a1dbff"
+    }
+  },
+  {
+    "id": "voiceops-2011-07-followme-media",
+    "title": "Allworx Followme - no audio issue",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2011-07-22; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator report with competing hypotheses: A follow-me flow can succeed through answer confirmation, then lose media after a re-INVITE changes the negotiated path. Seeing packets on multiple legs does not prove the intended endpoint is receiving them.",
+    "requirement": "Candidate observable behavior: A compatible media policy follows the revised endpoint and both directions become reachable after the re-INVITE. Negative boundary: A 200 response and RTP counters on unrelated legs cannot pass when one expected receiver has no inbound media. Pending mechanisms: Current mechanics can represent one-way media but not media-latching behavior changing during a call after a re-INVITE.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The thread contains a proposed media-latching explanation and a later observation that does not confirm it. The cause remains uncertain in the sampled exchange; do not encode one vendor-specific diagnosis as fact. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/4",
+      "sourceRecordSha256": "486dd7fee9701932d57585d7cffb043dbec525dbbc6a14c22f39801dd72d85c9"
+    }
+  },
+  {
+    "id": "voiceops-2012-09-routing-escalation",
+    "title": "Routing and translations contacts",
+    "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2012-09-04; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Single operator support-process question: When a destination is known to work through another route but fails through the current carrier, the operator may not know how to reach the team that can inspect routing or translation data.",
+    "requirement": "Candidate observable behavior: The learner isolates the failing route with a control call, submits normalized synthetic trace evidence to the correct fictional role, and verifies a repaired call. Negative boundary: An escalation without destination, timestamp, route, and observed failure remains incomplete; an alternate is not treated as available until tested. Pending mechanisms: The current interface has no support ticket lifecycle, escalation evidence bundle, or support-chain dependency.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The captured post asks where to escalate a routing/translation failure and does not contain a resolution. It is evidence of a support workflow problem, not evidence about any provider's support quality. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/5",
+      "sourceRecordSha256": "c700c41c7c1b2866b439912fe294bf02bef5ab4eba891e5fe5314f70d2ad76ae"
+    }
+  },
+  {
+    "id": "voiceops-2014-05-canadian-tollfree",
+    "title": "Canadian Toll Free",
+    "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2014-05-06; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator troubleshooting thread with a proposed route workaround: A destination that works from one origin geography can fail from another because the translated carrier identifier, local database, or service-area policy differs along the path.",
+    "requirement": "Candidate observable behavior: A permitted route handles the same synthetic destination from the supported origin region, with the selected carrier and translation visible in the trace. Negative boundary: A route that works from one region cannot be assumed to work from another; unsupported service-area or carrier capability fails with a precise reason. Pending mechanisms: Current route resolution has no origin-region-aware toll-free translation or carrier identifier capability model.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Participants discuss a historical cross-border routing case and describe different behaviors based on originating and terminating network context. The terminology and route details are specific to that environment and are not current regulatory or carrier-routing advice. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/6",
+      "sourceRecordSha256": "91c13c69a49f6a46e52c892af0430ed0dceeb63f146d43343568c3d0ddceaff9"
+    }
+  },
+  {
+    "id": "voiceops-2015-06-softswitch-support",
+    "title": "Which Softswitch?",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2015-06-20; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator procurement discussion and personal recommendations: Softswitch selection includes support availability, geographic redundancy, integration workload, operational skills, and lifecycle cost, not only feature lists or license price.",
+    "requirement": "Candidate observable behavior: A selected design meets the declared recovery and support-window constraints, and the test confirms failover through an independent path. Negative boundary: A low-cost design lacking the required support window or independent failure path fails qualification even if its feature checklist is longer. Pending mechanisms: Current product/offer decisions do not grade support coverage, operational skill requirements, or failover independence.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The thread presents individual preferences and market observations from 2015. It is not a vendor comparison, current product review, or evidence that a named platform is superior. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/7",
+      "sourceRecordSha256": "9e351f6fab47f02b83acdaac7768f6535d629531f3b83ac224fcd53d7a4cad48"
+    }
+  },
+  {
+    "id": "voiceops-2015-11-text-routing-registry",
+    "title": "Upcoming Fees for Text Enabled Telephone Numbers (Bandwidth.com)",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2015-11-24; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator question about a supplier notice and a registry description: Messaging delivery can depend on a portability-aware carrier lookup distinct from voice routing, while price notices and data-source behavior may be unclear to operators.",
+    "requirement": "Candidate observable behavior: A portability-corrected synthetic messaging lookup selects the eligible messaging carrier, delivers the test message, and records only a confirmed cost. Negative boundary: A successful voice route cannot imply messaging delivery; a stale lookup or unconfirmed fee cannot be presented as successful/current. Pending mechanisms: The application lacks a messaging-specific portability lookup, lookup freshness, and uncertain charge-notice model.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The message questions an announced fee and the underlying portability-corrected messaging registry. It does not confirm the final fee, registry completeness, or current routing arrangements. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/8",
+      "sourceRecordSha256": "2715ad6b5fcd6a88893c31b7ef81b83fedb5a29b8b405fe6fcbe86028c473b09"
+    }
+  },
+  {
+    "id": "voiceops-2015-12-sbc-tcp-keepalive",
+    "title": "Perimeta SBC & TCP",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2015-12-17; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Operator migration question with practitioner reply: A firewall can close an idle signaling connection even when the endpoint and server appear configured, leaving registrations stale until an explicit keepalive or re-registration succeeds.",
+    "requirement": "Candidate observable behavior: A chosen keepalive refreshes the synthetic path before expiry and the endpoint remains callable with bounded signaling overhead. Negative boundary: A stale registration cannot be treated as reachable when its observed connection has expired; the learner must recover registration before incoming calls pass. Pending mechanisms: Current endpoints have registration and connectivity states but do not model idle transport expiry, keepalive layers, or reconnect delay.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "The reply outlines possible keepalive layers and its own operational experience. The thread is tied to then-current implementations; timings and mechanisms should not be generalized to current products. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/9",
+      "sourceRecordSha256": "96f8ce8ab2b62c3717852a4a19f223ee5b6631a0504c2c205cbb379928a9c954"
+    }
+  },
+  {
+    "id": "voiceops-2020-03-special-service-geography",
+    "title": "Three Digit Numbers",
+    "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+    "scope": "Historical VoiceOps mailing-list post dated 2020-03-26; version/product context is limited to the source account and is not current guidance.",
+    "observation": "Multi-operator discussion with conflicting local experience: Short service codes may need geography-aware translation, and operators distinguish a synthetic emergency-location check from placing a real emergency call.",
+    "requirement": "Candidate observable behavior: A synthetic service code resolves using the caller's fictional region; the emergency-location test returns the configured synthetic location and callback metadata without contacting a real service. Negative boundary: A missing or stale region mapping fails with an explicit unknown-translation reason; no test input can route to a live emergency destination or be labeled legal compliance. Pending mechanisms: Current emergency handling is an initial synthetic policy and has no dated geography-specific service-code table or isolated location/callback test workflow.",
+    "checkedAt": "2026-11-03",
+    "status": "observed-pending-specification-review",
+    "activeInGameplay": false,
+    "uncertainty": "Participants describe different special-service routing practices and express uncertainty about an authoritative geography-to-destination source. The message's emergency-test anecdote is not a validated procedure or legal guidance; no real special-service route should be inferred from it. Historical anecdote or operator discussion only; it is not a current product, carrier, legal, or support claim.",
+    "section": "Historical operator reports",
+    "historicalEvidence": {
+      "sourceFile": "research/community/voiceops-findings.json",
+      "sourcePointer": "research/community/voiceops-findings.json#/findings/10",
+      "sourceRecordSha256": "eaf087257968391fa070375a77c9defe90080ade3e7035a025d22e42d2a2884f"
+    }
+  }
+]

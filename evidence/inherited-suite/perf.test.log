@@ -1,0 +1,39 @@
+✔ perf bench: the Mann–Whitney p-values match SciPy (0.786606ms)
+✖ perf bench: runs end to end on a small save and compares a version with itself (6772.490562ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7514.809286
+
+✖ failing tests:
+
+test at tests/perf.test.js:21:1
+✖ perf bench: runs end to end on a small save and compares a version with itself (6772.490562ms)
+  <ref *1> Error: spawnSync /usr/bin/node EPERM
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at execFileSync (node:child_process:972:15)
+      at TestContext.<anonymous> (/home/zane-fountylabs/workspace/zefun/series-of-calls/tests/perf.test.js:27:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -1,
+    code: 'EPERM',
+    syscall: 'spawnSync /usr/bin/node',
+    path: '/usr/bin/node',
+    spawnargs: [ '/home/zane-fountylabs/workspace/zefun/series-of-calls/scripts/perf-bench.js', '--save', '/tmp/perf-bx2E6h/save.json', '--base', '/tmp/perf-bx2E6h/base.html', '--runs', '3', '--json', '/tmp/perf-bx2E6h/out.json' ],
+    error: [Circular *1],
+    status: 0,
+    signal: null,
+    output: [ null, '', '' ],
+    pid: 449,
+    stdout: '',
+    stderr: ''
+  }

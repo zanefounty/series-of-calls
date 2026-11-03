@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed JSON-RPC envelopes
+ok 1 - AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed JSON-RPC envelopes
+  ---
+  duration_ms: 1.613943
+  type: 'test'
+  ...
+# Subtest: AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments
+ok 2 - AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments
+  ---
+  duration_ms: 1.758546
+  type: 'test'
+  ...
+# Subtest: AC-SOC-355 new exercises cover all four scenario tracks and round trip through validated export/import
+ok 3 - AC-SOC-355 new exercises cover all four scenario tracks and round trip through validated export/import
+  ---
+  duration_ms: 4.116398
+  type: 'test'
+  ...
+# Subtest: AC-SOC-356 validated commands are atomic, revision checked and idempotent on retry
+ok 4 - AC-SOC-356 validated commands are atomic, revision checked and idempotent on retry
+  ---
+  duration_ms: 2.496505
+  type: 'test'
+  ...
+# Subtest: AC-SOC-357 invalid imports are atomic and tool notifications never execute mutations
+ok 5 - AC-SOC-357 invalid imports are atomic and tool notifications never execute mutations
+  ---
+  duration_ms: 1.17051
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38.981307

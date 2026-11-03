@@ -1046,15 +1046,15 @@ test('an old save with Australian POPs is told once that Australia changed', () 
   start(a.ev);
   a.ev("ACT.buildPop({city:'syd'});for(let d=0;d<3;d++)dayTick();delete S.auV;save()");
   const sv = a.ev("slotRaw(UI.slot)");
-  const { ev, errors } = load({ storage: { 'sot-save-v1': sv } });
+  const { ev, errors } = load({ storage: { 'soc-sp-save-v1': sv } });
   assert.match(ev("S.log.map(e=>e.t).join(' | ')"), /Australia got more Australian/);
   assert.equal(ev("S.auV"), 1);
   assert.equal(ev("S.auNews"), undefined, 'only once');
-  const again = load({ storage: { 'sot-save-v1': ev("save();slotRaw(UI.slot)") } });
+  const again = load({ storage: { 'soc-sp-save-v1': ev("save();slotRaw(UI.slot)") } });
   assert.equal(again.ev("S.log.filter(e=>/Australia got more Australian/.test(e.t)).length"), 1, 'not told twice');
   // a new game never sees it, and neither does a save without Australia
   const b = load(); start(b.ev); b.ev("for(let d=0;d<3;d++)dayTick();delete S.auV;save()");
-  const c = load({ storage: { 'sot-save-v1': b.ev("slotRaw(UI.slot)") } });
+  const c = load({ storage: { 'soc-sp-save-v1': b.ev("slotRaw(UI.slot)") } });
   assert.doesNotMatch(c.ev("S.log.map(e=>e.t).join(' | ')"), /Australia got more/);
   assert.deepEqual(errors, []);
 });

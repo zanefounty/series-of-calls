@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: bulk PNIs add missing shared POPs and upgrade smaller ports once, preserving existing orders and LAGs
+ok 1 - bulk PNIs add missing shared POPs and upgrade smaller ports once, preserving existing orders and LAGs
+  ---
+  duration_ms: 786.840859
+  type: 'test'
+  ...
+# Subtest: bulk PNIs skip router speed, port capacity and policy restrictions with city-specific reasons
+ok 2 - bulk PNIs skip router speed, port capacity and policy restrictions with city-specific reasons
+  ---
+  duration_ms: 415.397039
+  type: 'test'
+  ...
+# Subtest: insufficient funds refuse the entire eligible batch and execution rechecks a stale preview
+ok 3 - insufficient funds refuse the entire eligible batch and execution rechecks a stale preview
+  ---
+  duration_ms: 370.221822
+  type: 'test'
+  ...
+# Subtest: bulk PNI actions reject invalid networks, sizes, minimum ports, traffic thresholds and non-shared locations
+ok 4 - bulk PNI actions reject invalid networks, sizes, minimum ports, traffic thresholds and non-shared locations
+  ---
+  duration_ms: 329.573752
+  type: 'test'
+  ...
+# Subtest: Doitsche 1G bulk orders and 10G augments keep paid-peering fees and conference delivery rules
+ok 5 - Doitsche 1G bulk orders and 10G augments keep paid-peering fees and conference delivery rules
+  ---
+  duration_ms: 394.987442
+  type: 'test'
+  ...
+# Subtest: Traffic row buttons and size selection work by DOM events on phones in every language
+ok 6 - Traffic row buttons and size selection work by DOM events on phones in every language
+  ---
+  duration_ms: 2145.601899
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4770.365606

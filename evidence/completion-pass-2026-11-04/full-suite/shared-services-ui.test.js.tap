@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: AC-SOC-209 shared-services starter and line/presence forms use typed shared dispatch with readonly locking
+ok 1 - AC-SOC-209 shared-services starter and line/presence forms use typed shared dispatch with readonly locking
+  ---
+  duration_ms: 739.675188
+  type: 'test'
+  ...
+# Subtest: AC-SOC-210 shared call controls submit only selected live interaction IDs and never fake call completion
+ok 2 - AC-SOC-210 shared call controls submit only selected live interaction IDs and never fake call completion
+  ---
+  duration_ms: 380.535888
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1440.917651

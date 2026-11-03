@@ -31,7 +31,7 @@ const BASE = opt('--base', null) || (opt('--base-ref', null) && (() => {
 const RUNS = +opt('--runs', 15);
 // A plain save, or a file from the in-game "Export save", which wraps it as {app, version, exported, S}.
 const RAW = JSON.parse(fs.readFileSync(opt('--save', path.join(ROOT, 'tests', 'fixtures', 'big-network.json')), 'utf8'));
-const SAVE = JSON.stringify(RAW && RAW.app === 'series-of-tubes' && RAW.S ? RAW.S : RAW);
+const SAVE = JSON.stringify(RAW && RAW.app === 'series-of-calls-sp' && RAW.S ? RAW.S : RAW);
 
 // What we time. Each body runs inside the game page; panels render two selections in turn, so nothing can be
 // skipped as "unchanged" and every run does the same work.

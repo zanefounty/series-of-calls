@@ -1,5 +1,5 @@
 name: Balance or realism
-description: Something works, but prices, odds or behaviour feel off compared with the real internet.
+description: A synthetic price, outcome, or operational result looks inconsistent with its stated rules.
 title: "[balance] "
 labels: [balance, triage]
 body:
@@ -13,8 +13,8 @@ body:
   - type: textarea
     id: real
     attributes:
-      label: How it is in real life
-      description: Real prices, ratios, links or experience from your own network.
+      label: Public evidence or synthetic rule
+      description: Link dated public material or name the documented rule. Do not provide private network or customer data.
     validations:
       required: true
   - type: textarea
@@ -24,9 +24,9 @@ body:
   - type: input
     id: version
     attributes:
-      label: Game version
-      description: Shown at the bottom of the title screen, and in the menu under "What's new".
-      placeholder: "1.25.1"
+      label: Preview version
+      description: Shown on the training console.
+      placeholder: "0.1.0-preview.1"
     validations:
       required: true
   - type: checkboxes

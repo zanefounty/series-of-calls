@@ -91,7 +91,7 @@ test('the network list shows where you connect to each network', () => {
 test('the map draws a big network at every zoom, with a city or a link selected', () => {
   const { ev, errors } = load();
   bigNet(ev);
-  ev("localStorage.setItem('sot-anim','on');UI.anim='on'");
+  ev("localStorage.setItem('soc-sp-anim','on');UI.anim='on'");
   for (const sel of ['null', "{type:'city',id:'fra'}", "{type:'link',id:S.links[2].id}"]) {
     for (const z of [0.35, 0.6, 1.2, 2.5, 6]) ev(`UI.sel=${sel};cam.z=${z};draw(1000);draw(1016)`);
   }

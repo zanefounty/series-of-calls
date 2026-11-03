@@ -38,15 +38,15 @@ test('scenarios: rules apply, goals complete, deadlines fail, seeds repeat', () 
   assert.equal(a, b);
   ev("S.stats.peak=1234;S.day=364;dayTick()");
   assert.match(ev("document.getElementById('modalCard').textContent"), /score/i);
-  assert.ok(ev("!!JSON.parse(localStorage.getItem('sot-scn')).weekly"));
+  assert.ok(ev("!!JSON.parse(localStorage.getItem('soc-sp-scn')).weekly"));
   assert.deepEqual(errors, []);
 });
 
 test('completing a scenario records it and unlocks a badge', () => {
   const { ev, errors } = load();
-  ev("localStorage.removeItem('sot-scn');ACT.startScn({id:'spat'});R.reach=1;R.served=200;scnTick(10)");
+  ev("localStorage.removeItem('soc-sp-scn');ACT.startScn({id:'spat'});R.reach=1;R.served=200;scnTick(10)");
   assert.equal(ev("S.scn.done"), 10);
-  assert.ok(ev("!!JSON.parse(localStorage.getItem('sot-scn')).spat"));
+  assert.ok(ev("!!JSON.parse(localStorage.getItem('soc-sp-scn')).spat"));
   ev("checkBadges()");
   assert.ok(ev("S.ach.scen1!==undefined"));
   assert.deepEqual(errors, []);
@@ -93,14 +93,14 @@ test('conferences: register, attend, and selective peers get easier for a while'
 test('the guided tutorial walks through the first steps and can be skipped', () => {
   const { ev, dom, errors } = load();
   dom.window.__TUBES_TUT__ = true;
-  ev("localStorage.removeItem('sot-tut');ACT.start({})");
+  ev("localStorage.removeItem('soc-sp-tut');ACT.start({})");
   assert.equal(ev("document.getElementById('coach').hidden"), false);
   assert.match(ev("document.getElementById('coach').textContent"), /Launch broadband/);
   ev("ACT.launchBB({city:S.home});renderAll()");
   assert.match(ev("document.getElementById('coach').textContent"), /Step 2/);
   ev("ACT.tutSkip()");
   assert.equal(ev("document.getElementById('coach').hidden"), true);
-  assert.equal(ev("localStorage.getItem('sot-tut')"), '1');
+  assert.equal(ev("localStorage.getItem('soc-sp-tut')"), '1');
   assert.deepEqual(errors, []);
 });
 
@@ -115,7 +115,7 @@ test('animations can be switched off, on or follow the system, and the choice st
   assert.equal(ev("animOn()"), false);
   ev("floater(0,0,'x','#000')");
   assert.equal(ev("FLOATS.length"), 0, 'no floating text when off');
-  assert.equal(ev("localStorage.getItem('sot-anim')"), 'off');
+  assert.equal(ev("localStorage.getItem('soc-sp-anim')"), 'off');
   ev("ACT.animSet({v:'on'})");
   assert.equal(ev("document.documentElement.classList.contains('anim-force')"), true);
   assert.equal(ev("animOn()"), true);
@@ -390,10 +390,10 @@ test('DKNOG in Copenhagen is on the conference calendar', () => {
   assert.deepEqual(errors, []);
 });
 
-test('the Signal group is linked from the title screen, the menu and How to play, in every language', () => {
+test('the project feedback page is linked from the title screen, the menu and How to play, in every language', () => {
   for (const lang of ['en', 'it', 'pt', 'fr', 'es', 'de']) {
     const { ev, errors } = load(lang === 'en' ? {} : { lang });
-    const links = (setup) => ev(`(()=>{${setup};return [...document.querySelectorAll('#modal a[href^="https://signal.group/#"]')].map(a=>a.target+'|'+a.rel+'|'+a.textContent.trim()).join('\\n');})()`);
+    const links = (setup) => ev(`(()=>{${setup};return [...document.querySelectorAll('#modal a[href="https://github.com/zanefounty/series-of-calls/issues"]')].map(a=>a.target+'|'+a.rel+'|'+a.textContent.trim()).join('\\n');})()`);
     const title = links('showTitle()');
     assert.match(title, /^_blank\|noopener\|/, `${lang}: title footer links the group in a new tab`);
     ev('ACT.start({})');

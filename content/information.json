@@ -1,0 +1,118 @@
+{
+  "pack": "soc-information-1",
+  "schemas": {
+    "pipeline": {
+      "enabled": true,
+      "steps": [
+        "transcription",
+        "diarisation",
+        "summary",
+        "actions",
+        "redaction",
+        "index"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "targetLanguage": "en",
+      "quality": 90,
+      "minimumQuality": 70,
+      "concurrency": 2,
+      "processor": "speech",
+      "archive": "archive",
+      "access": [
+        "supervisor"
+      ],
+      "retentionDays": 30
+    },
+    "boundary": {
+      "processRegions": [
+        "AU"
+      ],
+      "storageRegions": [
+        "AU"
+      ],
+      "administrators": [
+        "supervisor"
+      ],
+      "readers": [
+        "supervisor"
+      ],
+      "holdAuthority": [
+        "supervisor"
+      ],
+      "allowRemoteAdministration": false
+    },
+    "meeting": {
+      "calendarAuthorised": true,
+      "bookingEnabled": true,
+      "platform": "grove",
+      "nativePlatform": "grove",
+      "guestJoin": true,
+      "bridgeLicensed": false,
+      "capacity": 8,
+      "eventLicensed": false,
+      "eventCapacity": 100,
+      "mediaPlacement": "cloud",
+      "captions": false,
+      "recording": false
+    }
+  },
+  "steps": {
+    "transcription": {
+      "inputs": [
+        "recording"
+      ],
+      "work": 2
+    },
+    "diarisation": {
+      "inputs": [
+        "transcription"
+      ],
+      "work": 1
+    },
+    "translation": {
+      "inputs": [
+        "transcription",
+        "diarisation"
+      ],
+      "work": 2
+    },
+    "summary": {
+      "inputs": [
+        "transcription",
+        "diarisation",
+        "translation",
+        "redaction"
+      ],
+      "work": 2
+    },
+    "actions": {
+      "inputs": [
+        "summary"
+      ],
+      "work": 1
+    },
+    "redaction": {
+      "inputs": [
+        "transcription",
+        "diarisation",
+        "translation",
+        "summary",
+        "actions"
+      ],
+      "work": 1
+    },
+    "index": {
+      "inputs": [
+        "redaction"
+      ],
+      "work": 1
+    }
+  },
+  "sourceIds": [
+    "uc-new:domain:information-lineage",
+    "uc-new:domain:room-joining"
+  ]
+}

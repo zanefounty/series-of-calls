@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: cones are built once at load and hold customers of customers
+ok 1 - cones are built once at load and hold customers of customers
+  ---
+  duration_ms: 648.525899
+  type: 'test'
+  ...
+# Subtest: a transit-free network with PNIs to every Tier 1 reaches the long tail through their cones
+ok 2 - a transit-free network with PNIs to every Tier 1 reaches the long tail through their cones
+  ---
+  duration_ms: 394.955048
+  type: 'test'
+  ...
+# Subtest: a network in nobody's cone still needs reaching directly
+ok 3 - a network in nobody's cone still needs reaching directly
+  ---
+  duration_ms: 351.277037
+  type: 'test'
+  ...
+# Subtest: the long tail no longer stands between you and Tier 1
+ok 4 - the long tail no longer stands between you and Tier 1
+  ---
+  duration_ms: 364.237915
+  type: 'test'
+  ...
+# Subtest: a peer's cone comes after direct peering and before transit, so peering widely still pays
+ok 5 - a peer's cone comes after direct peering and before transit, so peering widely still pays
+  ---
+  duration_ms: 399.688673
+  type: 'test'
+  ...
+# Subtest: old saves keep their win: cones only ever add reach
+ok 6 - old saves keep their win: cones only ever add reach
+  ---
+  duration_ms: 373.409908
+  type: 'test'
+  ...
+# Subtest: the Road to Tier 1 card and the network list explain the cone, on a phone too
+ok 7 - the Road to Tier 1 card and the network list explain the cone, on a phone too
+  ---
+  duration_ms: 721.184914
+  type: 'test'
+  ...
+# Subtest: routing with cones costs about what it did: exits are asked once, cones are built at load
+ok 8 - routing with cones costs about what it did: exits are asked once, cones are built at load
+  ---
+  duration_ms: 358.990201
+  type: 'test'
+  ...
+# Subtest: the panel names the peer that really carries a network, not the first Tier 1 it buys from
+ok 9 - the panel names the peer that really carries a network, not the first Tier 1 it buys from
+  ---
+  duration_ms: 343.761905
+  type: 'test'
+  ...
+# Subtest: a traceroute down a two-level cone shows every network on the way
+ok 10 - a traceroute down a two-level cone shows every network on the way
+  ---
+  duration_ms: 342.373581
+  type: 'test'
+  ...
+# Subtest: \#114 Only Spätzle-IX still takes more than the exchange and two Tier 1 PNIs, now that cones count
+ok 11 - \#114 Only Spätzle-IX still takes more than the exchange and two Tier 1 PNIs, now that cones count
+  ---
+  duration_ms: 349.614788
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9844.701423

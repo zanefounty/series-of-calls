@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-03T21:08:50.104694+00:00",
+  "fullSuiteChangesAfterRun": [
+    "spec/acceptance-plan.json"
+  ],
+  "reason": "Added scripts/mcp-smoke.py to the acceptance input inventory after the complete JavaScript run. No runtime, test, build or content inputs changed. The acceptance recorder and accounting gates are rerun separately on the corrected inventory.",
+  "mcpInputDrift": [],
+  "acceptancePlanCurrentSha256": "f23e7b69e1790d65e148be616d5968b4d6e431e0a718605fb2c4d57996c4ff3a"
+}

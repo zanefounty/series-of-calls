@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: Manila: GotchaFIX, Bayanihan-IX and the incumbent-run In-Vitro-IX
+ok 1 - Manila: GotchaFIX, Bayanihan-IX and the incumbent-run In-Vitro-IX
+  ---
+  duration_ms: 799.800028
+  type: 'test'
+  ...
+# Subtest: Manila: PLDTea Time and Globe-Trotter Telecom sell transit; a PLDT PNI also reaches Smarty Pants
+ok 2 - Manila: PLDTea Time and Globe-Trotter Telecom sell transit; a PLDT PNI also reaches Smarty Pants
+  ---
+  duration_ms: 376.93736
+  type: 'test'
+  ...
+# Subtest: Manila: an exchange the player founded there before GotchaFIX existed keeps working
+ok 3 - Manila: an exchange the player founded there before GotchaFIX existed keeps working
+  ---
+  duration_ms: 414.287983
+  type: 'test'
+  ...
+# Subtest: Manila: RISE & Shine peers openly on all three Manila exchanges, across Asia and in Europe
+ok 4 - Manila: RISE & Shine peers openly on all three Manila exchanges, across Asia and in Europe
+  ---
+  duration_ms: 376.662165
+  type: 'test'
+  ...
+# Subtest: Cebu: its own island, GotchaFIX Cebu, reached by two domestic cables, in the typhoon belt
+ok 5 - Cebu: its own island, GotchaFIX Cebu, reached by two domestic cables, in the typhoon belt
+  ---
+  duration_ms: 428.17877
+  type: 'test'
+  ...
+# Subtest: Davao: Mindanao, GotchaFIX Davao, the trans-Pacific landings moved from Manila, and cables from Cebu
+ok 6 - Davao: Mindanao, GotchaFIX Davao, the trans-Pacific landings moved from Manila, and cables from Cebu
+  ---
+  duration_ms: 350.111971
+  type: 'test'
+  ...
+# Subtest: Davao: a saved link on a Bi-Frosted or SEA-US pair that moved keeps working, without the cable
+ok 7 - Davao: a saved link on a Bi-Frosted or SEA-US pair that moved keeps working, without the cable
+  ---
+  duration_ms: 445.368417
+  type: 'test'
+  ...
+# Subtest: Cebu and Davao: RISE & Shine is on GotchaFIX Cebu and GotchaFIX Davao
+ok 8 - Cebu and Davao: RISE & Shine is on GotchaFIX Cebu and GotchaFIX Davao
+  ---
+  duration_ms: 356.351691
+  type: 'test'
+  ...
+# Subtest: the Philippines: transit about 1.9 times the Asian rate, homes pay about US$25 a month
+ok 9 - the Philippines: transit about 1.9 times the Asian rate, homes pay about US$25 a month
+  ---
+  duration_ms: 383.863947
+  type: 'test'
+  ...
+# Subtest: Philippines: waves between the islands cost more than waves out of the country
+ok 10 - Philippines: waves between the islands cost more than waves out of the country
+  ---
+  duration_ms: 342.295203
+  type: 'test'
+  ...
+# Subtest: Philippines: eyeballs at about 40G per million people, like the rest of the map
+ok 11 - Philippines: eyeballs at about 40G per million people, like the rest of the map
+  ---
+  duration_ms: 328.477539
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9499.62992

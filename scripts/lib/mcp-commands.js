@@ -511,6 +511,7 @@ const API_CMD={
 const API_VIEW={
  training:{args:[],doc:'Open the Series of Calls communications training console.'},
  help:{args:[],doc:'Open the how-to-play modal.'},
+ keys:{args:[],doc:'Open the read-only keyboard shortcut reference for the optional network game.'},
  dash:{args:[],doc:'Open the NOC dashboard.'},
  dashClose:{args:[],doc:'Close the NOC dashboard.'},
  dashTab:{args:[['k','dashTab']],doc:'Switch the NOC dashboard tab.'},

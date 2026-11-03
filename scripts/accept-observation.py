@@ -16,7 +16,7 @@ def validate(root,artifact,kind):
   if not p.is_file():continue
   rel=p.relative_to(artifact).as_posix();size+=p.stat().st_size
   need(size<=100_000_000,'Observation artifact too large')
-  allowed=(re.fullmatch(r'(register|commits|tree|comparison|releases)\.json',rel) or re.fullmatch(r'history/[A-Za-z0-9_.:-]+\.json',rel)) if kind=='upstream' else (rel=='reference-check.json' or re.fullmatch(r'reference-history/[A-Za-z0-9_.:-]+\.json',rel))
+  allowed=(re.fullmatch(r'(register|commits|tree|comparison|releases)\.json',rel) or re.fullmatch(r'history/[A-Za-z0-9_.:+-]+\.json',rel)) if kind=='upstream' else (rel=='reference-check.json' or re.fullmatch(r'reference-history/[A-Za-z0-9_.:+-]+\.json',rel))
   need(allowed,'Unsupported observation path: '+rel)
   files[prefix+'/'+rel]=p
   if '/history/' in prefix+'/'+rel or rel.startswith('reference-history/'):

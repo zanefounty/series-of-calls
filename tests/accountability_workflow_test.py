@@ -1,0 +1,128 @@
+"""Portable regression contract for the accountability workflow split.
+
+Uses only Python's standard library. It exercises the actual shell snippets from
+the workflow for missing receipts and aggregate success/failure outcomes.
+"""
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import unittest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+WORKFLOW = ROOT / '.github' / 'workflows' / 'accountability.yml'
+
+
+def job_block(source, name, next_name=None):
+    start_marker = f'  {name}:\n'
+    start = source.index(start_marker)
+    end = source.find(f'  {next_name}:\n', start + len(start_marker)) if next_name else len(source)
+    if end < 0:
+        end = len(source)
+    return source[start:end]
+
+
+def run_block(job, step_name):
+    lines = job.splitlines()
+    marker = f'      - name: {step_name}'
+    start = lines.index(marker)
+    for i in range(start + 1, len(lines)):
+        if lines[i].startswith('      - '):
+            break
+        if lines[i].startswith('        run: ') and lines[i].strip() != 'run: |':
+            return lines[i].strip()[len('run: '):] + '\n'
+        if lines[i].strip() == 'run: |':
+            content = []
+            for line in lines[i + 1:]:
+                if line and not line.startswith('          '):
+                    break
+                content.append(line[10:] if line.startswith('          ') else '')
+            return '\n'.join(content).rstrip() + '\n'
+    raise AssertionError(f'No literal run block for workflow step {step_name}')
+
+
+class AccountabilityWorkflowContract(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source = WORKFLOW.read_text()
+        cls.acceptance = job_block(cls.source, 'acceptance', 'gates')
+        cls.gates = job_block(cls.source, 'gates', 'mutations')
+        cls.mutations = job_block(cls.source, 'mutations', 'accountability')
+        cls.aggregate = job_block(cls.source, 'accountability')
+
+    def test_gate_cleans_checked_in_receipts_before_exact_run_artifact_download(self):
+        clean = self.gates.index('name: Remove checked-in receipts before artifact download')
+        download = self.gates.index('uses: actions/download-artifact@v4')
+        self.assertLess(clean, download)
+        self.assertIn('needs: [acceptance]', self.gates)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.gates)
+        cleanup = run_block(self.gates, 'Remove checked-in receipts before artifact download')
+        required = run_block(self.gates, "Require this run's acceptance receipts")
+        with tempfile.TemporaryDirectory(prefix='soc-workflow-receipts-') as tmp:
+            evidence = Path(tmp) / 'evidence'
+            evidence.mkdir()
+            old_json, old_tap = evidence / 'acceptance.json', evidence / 'communications.tap'
+            old_json.write_text('{"stale":true}')
+            old_tap.write_text('stale TAP\n')
+            subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', cleanup], cwd=tmp, check=True)
+            self.assertFalse(old_json.exists())
+            self.assertFalse(old_tap.exists())
+            # Model a successful artifact action that supplied only its log.
+            (evidence / 'recorder.log').write_text('producer completed without receipts\n')
+            check = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', required], cwd=tmp, capture_output=True)
+            self.assertNotEqual(check.returncode, 0)
+
+    def test_each_work_job_keeps_node_24_npm_ci_and_ten_minute_limit(self):
+        for key, block in [('acceptance', self.acceptance), ('gates', self.gates), ('mutations', self.mutations)]:
+            with self.subTest(job=key):
+                self.assertRegex(block, r'timeout-minutes: 10\b')
+                self.assertIn('node-version: 24', block)
+                self.assertRegex(block, r'(?m)^      - run: npm ci$|\bnpm ci\b')
+        self.assertRegex(self.aggregate, r'timeout-minutes: 10\b')
+
+    def test_setup_failure_cannot_upload_checked_in_receipts_as_current_output(self):
+        clean = self.acceptance.index('name: Remove checked-in receipts before producer execution')
+        install = self.acceptance.index('npm ci')
+        self.assertLess(clean, install)
+        self.assertIn('evidence/acceptance.json evidence/communications.tap evidence/recorder.log', self.acceptance)
+        for block, stale in [(self.gates, ['evidence/gates.log', 'evidence/gates-install.log']),
+                             (self.mutations, ['evidence/gate-mutations.log', 'evidence/mutations-install.log'])]:
+            for path in stale:
+                self.assertIn(path, block)
+            self.assertLess(block.index('Clear '), block.index('npm ci'))
+
+    def test_mutation_job_remains_required_and_artifacts_upload_after_failure(self):
+        self.assertIn("python3 -m unittest discover -s tests -p '*_test.py'", self.mutations)
+        self.assertIn('needs: [acceptance, gates, mutations]', self.aggregate)
+        for block in [self.acceptance, self.gates, self.mutations]:
+            self.assertIn('if: always()', block)
+        self.assertIn('evidence/acceptance.json', self.acceptance)
+        self.assertIn('evidence/communications.tap', self.acceptance)
+        self.assertIn('evidence/recorder.log', self.acceptance)
+
+    def test_actual_aggregate_shell_fails_when_any_required_job_is_not_success(self):
+        self.assertIn('if: always()', self.aggregate)
+        self.assertIn('needs: [acceptance, gates, mutations]', self.aggregate)
+        script = run_block(self.aggregate, 'Require every accountability job to succeed')
+        cases = [
+            ('success', 'success', 'success', True),
+            ('failure', 'success', 'success', False),
+            ('success', 'failure', 'success', False),
+            ('success', 'success', 'failure', False),
+            ('skipped', 'success', 'success', False),
+            ('success', 'skipped', 'success', False),
+            ('success', 'success', 'skipped', False),
+            ('cancelled', 'success', 'success', False),
+        ]
+        for a, g, m, expected in cases:
+            env = os.environ.copy()
+            env.update(ACCEPTANCE_RESULT=a, GATES_RESULT=g, MUTATIONS_RESULT=m)
+            result = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', script], env=env, capture_output=True)
+            with self.subTest(results=(a, g, m)):
+                self.assertEqual(result.returncode == 0, expected, result.stdout.decode() + result.stderr.decode())
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

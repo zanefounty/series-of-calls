@@ -4,6 +4,7 @@ const ACT={
  linkCheck:({id})=>{const l=S.links.find(x=>x.id===id);if(!l||linkDown(l))return;linkCheckModal(l);},
  speed:({v})=>{v=+v;if(pzOn())return;if(![0,0.5,1,2,4,8].includes(v)||(S&&!rule('clock')&&v))return;if(v)UI.lastSpeed=v;UI.speed=v;renderHUD();},
  help:()=>showHelp(),
+ keys:()=>showKeys(),
  dash:()=>{if(!S||pzOn())return;const d=$('dash');d.hidden=!d.hidden;if(!d.hidden)renderDash();},
  dashClose:()=>{$('dash').hidden=true;},
  dashTab:({k})=>{if(!DTABS.includes(k))return;UI.dtab=k;renderDash();const d=$('dash');if(d)d.scrollTop=0;},

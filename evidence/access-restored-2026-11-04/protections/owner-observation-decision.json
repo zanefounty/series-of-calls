@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-11-03T23:04:30.595990+00:00",
+  "source": "owner response in interactive session",
+  "decision": "Approve observation records after checks",
+  "prs": [
+    3,
+    4
+  ],
+  "scope": "observation-only timestamps/history and retrieval attempts; no requirements/dispositions/source packs/accepted claims changed",
+  "condition": "All required checks pass before each merge",
+  "canonicalResearchAcceptance": false
+}

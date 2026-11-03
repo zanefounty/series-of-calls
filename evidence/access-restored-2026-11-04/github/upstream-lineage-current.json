@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-03T23:26:28.787652+00:00",
+  "head": "2ba3406e37b34e21ac8d8979409c2c5991c7fbfc",
+  "checks": {
+    "latest-observed-is-ancestor": {
+      "exitCode": 1,
+      "output": ""
+    },
+    "latest-observed-object-present": {
+      "exitCode": 0,
+      "output": "commit"
+    }
+  },
+  "scope": "Genuine observed upstream object is present, but its newer changes are not yet integrated into main ancestry. Observation and complete-history retention are not adoption."
+}

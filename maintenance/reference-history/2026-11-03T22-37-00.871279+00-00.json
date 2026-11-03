@@ -1,0 +1,888 @@
+[
+  {
+    "id": "REF-ac194430f67b3832",
+    "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description",
+    "contentHash": "cf837f09dc16a8c133008e7e24272f1c9726721be60b047ec6ae83e6c103f041",
+    "changed": false
+  },
+  {
+    "id": "REF-5300ce44d82bd40f",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/pstn-connectivity",
+    "contentHash": "90a62bd450871b559368dd3b729f0fa12d2e2add2b383f346bcd1338d2b02cc9",
+    "changed": false
+  },
+  {
+    "id": "REF-7cec333be41fbfc9",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/rooms/rooms-licensing",
+    "contentHash": "7aed404fc4cbe7737fb6f79ed7883a5fdc0877dc7e6bf4bbb7e8ad4ff0e931b5",
+    "changed": false
+  },
+  {
+    "id": "REF-a8dbb077dacacede",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/overview-meetings-events",
+    "contentHash": "aa57c578c4db47ac64f3c214242aed68d3c8ca2aebc546296fbc91f407216386",
+    "changed": false
+  },
+  {
+    "id": "REF-b8049813b772603e",
+    "url": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/dynamics365/contact-center/implement/overview-contact-center",
+    "contentHash": "5358fdb67381076bbc870b1e9b97deb7e9c40ef4d68971778ac9788faed521e4",
+    "changed": false
+  },
+  {
+    "id": "REF-6041cb9b4e29d0a7",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/teams-contact-center",
+    "contentHash": "e824f612471e20f649e83b6bf8d8833e32256be7af3c5884d6f9535cb1120c86",
+    "changed": false
+  },
+  {
+    "id": "REF-0ab35ad448a8e152",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/m365-local/microsoft-365-local-overview",
+    "contentHash": "bdab675ff635cfee4ffdff609232eaf1eeb22321f61b8b7f9d25a0fc7506fa17",
+    "changed": false
+  },
+  {
+    "id": "REF-ce4086e425fc31ca",
+    "url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc-high-and-dod",
+    "contentHash": "f098bc3843b305f7e74b2b6efa3af8dc4101ea16cf2d1774190219d9b1a146fa",
+    "changed": false
+  },
+  {
+    "id": "REF-994b72cced26fabb",
+    "url": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/azure/communication-services/acs-retirement-and-breaking-changes-guide",
+    "contentHash": "313e579889426f0c08e64a9cc0b1dda52e706a315d48887cee2c6470d7107c0b",
+    "changed": false
+  },
+  {
+    "id": "REF-c6673929705ff2bf",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription",
+    "contentHash": "2667dfe0c682f84faa913da8321a3bac763afb21c8ba728bb4f8ac3ab5a19b78",
+    "changed": false
+  },
+  {
+    "id": "REF-80094745cafb63d6",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/rooms/microsoft-teams-rooms-configure-servicenow",
+    "contentHash": "59693e1885f491f582197b5e439bc8a41f99aa390977b9734328ac3407f1a22c",
+    "changed": false
+  },
+  {
+    "id": "REF-cbb04f2d2c34bccb",
+    "url": "https://www.webex.com/us/en/products/suite.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-f17dabc322d17a54",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-c9e920ec01b6f78b",
+    "url": "https://help.webex.com/article/dk3o5r",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://help.webex.com/article/dk3o5r",
+    "contentHash": "e223b5aab2889601ca378b42ffbed694052108eb434f17aa3423d59bfd65507c",
+    "changed": false
+  },
+  {
+    "id": "REF-e40e11d43985a98d",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-ecd8d4f64aad9f35",
+    "url": "https://help.webexconnect.io/docs/welcome",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://help.webexconnect.io/docs/welcome",
+    "contentHash": "ab93086e5727fb7462d1c44404dbcf50de31cd3b83d525d1fec45d6c3f6a4b99",
+    "changed": false
+  },
+  {
+    "id": "REF-932dc1c63a5b9e08",
+    "url": "https://www.webex.com/us/en/solutions/interoperability.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-fb9dd3e3bcdca8c9",
+    "url": "https://help.webex.com/article/nwwg3w6",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://help.webex.com/article/nwwg3w6",
+    "contentHash": "c93b35cfa1c38ca68cf49a8f301ca9159a75b9ef066600db848eca99e43db820",
+    "changed": false
+  },
+  {
+    "id": "REF-5feedded0d34a197",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-0ddcf6e8a0d3d60c",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-fcdabdb913c10b05",
+    "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-5fb1edff716b861d",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/direct-routing-border-controllers",
+    "contentHash": "bb63fea0a5ec84fa06a25d12adce27736455c4685c2f9fa08d7085af4626eb8f",
+    "changed": false
+  },
+  {
+    "id": "REF-bf74910ae207c4ce",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/rooms/certified-hardware",
+    "contentHash": "54575da315170ad4b723034f8664211ae25e9831f92d0aeb8a0bdfc1743316cf",
+    "changed": false
+  },
+  {
+    "id": "REF-13aa74b705a9e357",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/microsoftteams/teams-recording-compliance",
+    "contentHash": "cfab87f10a7d46583d2bef3b75f160e1d7b5ffead7c41702fdf19b5cba6fa586",
+    "changed": false
+  },
+  {
+    "id": "REF-097413172db36986",
+    "url": "https://apphub.webex.com/partner-solutions",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://apphub.webex.com/partner-solutions",
+    "contentHash": "10b2429a163a2683d2cdc2d9fadbd0863f3232059b9fbf245716f1d285c949f5",
+    "changed": false
+  },
+  {
+    "id": "REF-6ee11627b4e96799",
+    "url": "https://apphub.webex.com/applications/imagicle-uc-suite",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://apphub.webex.com/applications/imagicle-uc-suite",
+    "contentHash": "f19736ea05a9cb4d53ed9d042a67d0fcb20e2165d50558ea37c0a03c5c0fe46d",
+    "changed": false
+  },
+  {
+    "id": "REF-d91db49dd1296a40",
+    "url": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://apphub.webex.com/applications/theta-lake-for-webex-calling-theta-lake",
+    "contentHash": "1d81da79cc5cd008a5aff7899939f8e8d69670f8524f4eee3cd02bac58ec2382",
+    "changed": false
+  },
+  {
+    "id": "REF-81f2bd205e0f66f7",
+    "url": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://apphub.webex.com/applications/wfm-adapter-by-ttec-digital-ttec-digital-inc",
+    "contentHash": "55e17ebb182a35b28b5faa57ea0df7e89b849c8cd3728539795d0c5bbc0c09a4",
+    "changed": false
+  },
+  {
+    "id": "REF-a5f898a484d055da",
+    "url": "https://kurmi-software.com/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://kurmi-software.com/",
+    "contentHash": "4eec48b8e9f95947837f738c8c49cb65b06e100fa1a248a2c918e19e6802d8ba",
+    "changed": false
+  },
+  {
+    "id": "REF-004474965260c809",
+    "url": "https://www.voss-solutions.com/tech-solutions/cisco/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.voss-solutions.com/tech-solutions/cisco/",
+    "contentHash": "3c27a24e5288c49bdcb337fc95a1984149fb25f1b67edb67f9be5e424122af2a",
+    "changed": false
+  },
+  {
+    "id": "REF-d4ab6397cad04761",
+    "url": "https://www.akkadianlabs.com/akkadian-platform/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.akkadianlabs.com/akkadian-platform/",
+    "contentHash": "17604d8a3a41691fc0d5626ac8661ac171686d4ae89738a4fcfe883b9d820c18",
+    "changed": false
+  },
+  {
+    "id": "REF-38feefe35f2f7619",
+    "url": "https://www.vqcomms.com/products/vq-conference-manager/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.vqcomms.com/products/vq-conference-manager/",
+    "contentHash": "48a3f42b2c58e4a371f4998686d0111f6a4710df25ebfd7a2b97aaa0f6a5dc37",
+    "changed": false
+  },
+  {
+    "id": "REF-2c6a952924346c36",
+    "url": "https://docs.mividas.com/docs/documentation/mividas-core/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://docs.mividas.com/docs/documentation/mividas-core/",
+    "contentHash": "2479ed963cc160d577e45a38971449413d442f37cb01e6f87c2831c5ea47ad69",
+    "changed": false
+  },
+  {
+    "id": "REF-b96b46dfea69de93",
+    "url": "https://www.pexip.com/products/connect/microsoft-interoperability",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.pexip.com/products/connect/microsoft-interoperability",
+    "contentHash": "d4274c1dee5cd8270598d1f044e14f5739d0cf17264c370acb5ecc4c7597e04c",
+    "changed": false
+  },
+  {
+    "id": "REF-1503bbaf273629fc",
+    "url": "https://www.synergysky.com/service-description",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.synergysky.com/service-description",
+    "contentHash": "63d091cb5441e53b359b27fa89aa44ec1ca0f2fb2015c491bcf19f82d6dab513",
+    "changed": false
+  },
+  {
+    "id": "REF-7ed8da24bfbaf244",
+    "url": "https://www.ir.com/products/collaborate",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.ir.com/products/collaborate",
+    "contentHash": "012df6fd43f8978bf5d6ce31f0e8958c83d1d5ba8df23aee553ba5908478a4fe",
+    "changed": false
+  },
+  {
+    "id": "REF-db893272c3caa3e6",
+    "url": "https://www.twilio.com/en-us/products",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.twilio.com/en-us/products",
+    "contentHash": "0abdcb67b74ce5ec3c629a04e250b51d28eb37774250b6b370c32bd85a15e665",
+    "changed": false
+  },
+  {
+    "id": "REF-bd36702520ca438c",
+    "url": "https://sinch.com/products/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://sinch.com/products/",
+    "contentHash": "27217c58d486fa0155546c7df816a7817451cb9ea9a74ace07b2bcbcc0f4da4c",
+    "changed": false
+  },
+  {
+    "id": "REF-38e91eec89c3b7f1",
+    "url": "https://www.infobip.com/docs/conversations",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.infobip.com/docs/conversations",
+    "contentHash": "19c3a499bb8a85698d69b34fb0d41459ce571324c26a35913d817b81cdfa5661",
+    "changed": false
+  },
+  {
+    "id": "REF-d57c9265c13dcff5",
+    "url": "https://help.8x8.com/documentation",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://help.8x8.com/documentation",
+    "contentHash": "acd51008c98dfa473fe77d802484b74265f3978822738e5c4362b41113857c73",
+    "changed": false
+  },
+  {
+    "id": "REF-2c126d5591584671",
+    "url": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://help.genesys.cloud/articles/about-workforce-engagement-management-wem/",
+    "contentHash": "eedb0da8182cb740c9ab921cebb2eaea66132d29dbdd6c6c49277954eac8ffa0",
+    "changed": false
+  },
+  {
+    "id": "REF-5847fdf5258de958",
+    "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-52534bbbda04973d",
+    "url": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://guide.fireflies.ai/articles/5365127863-web-conference-platforms-supported",
+    "contentHash": "943ea112392dc1e8d12bb1483a2fd10bfb3a645241cac18afee89d27a133afb0",
+    "changed": false
+  },
+  {
+    "id": "REF-b3027a7b0a74c45d",
+    "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-a4b34e38df123d83",
+    "url": "https://developers.deepgram.com/docs/deployment-options",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://developers.deepgram.com/docs/deployment-options",
+    "contentHash": "a7cc88caa504aeef59a6788a6c1249d06e1f7af3cf183153c8d07f9b85e8b096",
+    "changed": false
+  },
+  {
+    "id": "REF-b774912c2fef487e",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://learn.microsoft.com/en-us/azure/ai-services/containers/disconnected-containers",
+    "contentHash": "795f0fcf6b9830596537e91e08e4632431e4755939fcb6deb720cb486227061b",
+    "changed": false
+  },
+  {
+    "id": "REF-62ae5701eec71289",
+    "url": "https://www.singlewire.com/integrations/redsky",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.singlewire.com/integrations/redsky",
+    "contentHash": "d5d4bd52c2d69015991ee6abb3f0b17b3df79ac9eff043cbbab89084e5d82b97",
+    "changed": false
+  },
+  {
+    "id": "REF-a333ec80b11e26ef",
+    "url": "https://www.asterisk.org/get-started/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-3978de94b73181f0",
+    "url": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://developer.signalwire.com/freeswitch/foundations/introduction/",
+    "contentHash": "e18092e31974e4a8e18cf2b800af931cf0e1d0548df299c61e3143663bc6ac3c",
+    "changed": false
+  },
+  {
+    "id": "REF-effbf81bfc316bd6",
+    "url": "https://www.verint.com/calabrio/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.verint.com/calabrio/",
+    "contentHash": "78cee3ada25e0e53a7ba5c86e873a5afd36aa4a80a3d9000471bef5d1b08f838",
+    "changed": false
+  },
+  {
+    "id": "REF-18b941b71b6c92b7",
+    "url": "https://www.ringcentral.com/au/en/office/product-overview.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.ringcentral.com/au/en/office/product-overview.html",
+    "contentHash": "02dc0c7dc420bbf3ee2e0f69be6d05d540e06ac2e7f916978f37bedcb7aa9ebe",
+    "changed": false
+  },
+  {
+    "id": "REF-29c840ca324ce3fd",
+    "url": "https://www.ringcentral.com/au/en/ringcx.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.ringcentral.com/au/en/ringcx.html",
+    "contentHash": "9e6ca637d91cb97809dbbef5f3e2f72dc07c4ec18b35ad0dac1802f0d23b01ab",
+    "changed": false
+  },
+  {
+    "id": "REF-2c204a90632309fa",
+    "url": "https://www.avaya.com/en/products/aura/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.avaya.com/en/products/aura/",
+    "contentHash": "2bea6c4d7286d4d759c2810c400ed7359969945e54b385224a0f07f26224e506",
+    "changed": false
+  },
+  {
+    "id": "REF-a294a1068b534053",
+    "url": "https://www.avaya.com/en/products/infinity-platform/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.avaya.com/en/products/infinity-platform/",
+    "contentHash": "b8e39364531859700e04c384a924d5acd8e7e86c797ddbacc9d529abfcb91918",
+    "changed": false
+  },
+  {
+    "id": "REF-4494e44133a096ff",
+    "url": "https://www.mitel.com/products/business-phone-systems",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "REF-6b9dd2ca3e9920e5",
+    "url": "https://www.al-enterprise.com/en/solutions/unified-communications",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.al-enterprise.com/en/solutions/unified-communications",
+    "contentHash": "d40557cc554a6c1e288fb13e5dc909e3c8fa2175e2d2b2cc85358a80e785ec2f",
+    "changed": false
+  },
+  {
+    "id": "REF-1454d7ffe209c85b",
+    "url": "https://www.3cx.com/phone-system/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.3cx.com/phone-system/",
+    "contentHash": "e14b317526f63f94eef6af54d485b702ae8dfcb2b9121767e1de9c4467c4112f",
+    "changed": false
+  },
+  {
+    "id": "REF-6974ff2c7027ebb4",
+    "url": "https://business.whatsapp.com/products/platform-pricing",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://whatsappbusiness.com/products/platform-pricing/",
+    "contentHash": "7b5c41c45c3bbc1b61dd2c437a738c2d38c9a2beb4c55ee24af36e372643a645",
+    "changed": false
+  },
+  {
+    "id": "REF-e5bb18ef74fe6ca4",
+    "url": "https://www.zoom.com/en/products/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.zoom.com/en/products/?cms_guid=false",
+    "contentHash": "8cbdf64786c599e55e4415bfcd0674bafd32b86675dc7aeff4e60fb73795330a",
+    "changed": false
+  },
+  {
+    "id": "REF-267d4dda6bb79608",
+    "url": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://github.com/fjaeckel/seriesoftubes/tree/48e6200c532d486f79bc8376de0aecbf6169123b",
+    "contentHash": "3d35723db452218b2b8140d54627e16776b6121f0debd7498429fd157be0a976",
+    "changed": false
+  },
+  {
+    "id": "REF-01c1db3086024441",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/docs/ARCHITECTURE.md",
+    "contentHash": "738d7caccb36709b13bf272bdd21156f23ec39dd641a8be9875710b9857e28b2",
+    "changed": false
+  },
+  {
+    "id": "REF-8af7f0c64e902296",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/91-save.js",
+    "contentHash": "14679d82b9fcebbb794a91756a208b8640ae9bb41bc4f77ca49d7c1096840247",
+    "changed": false
+  },
+  {
+    "id": "REF-31e291b1eee75a7a",
+    "url": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/tests/harness.js",
+    "contentHash": "3c1b72dbbf85fc8168e0c2fe51ca238da3c594b5aa1dfcb6f78467bf9e3f3a8d",
+    "changed": false
+  },
+  {
+    "id": "REF-01234d0db452b257",
+    "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": "unavailable",
+    "error": "The read operation timed out"
+  },
+  {
+    "id": "REF-d8e8c2b149f9b9ab",
+    "url": "https://www.fedramp.gov/2026/agencies/use/",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.fedramp.gov/2026/agencies/use/",
+    "contentHash": "908694231d663d0b1248ba93669cf588a8339c7e7295cbc05a9a7d64e9d3ec51",
+    "changed": false
+  },
+  {
+    "id": "REF-6d84d6a737cf7adf",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0010005",
+    "contentHash": "f778ad57c147df048d0068e35aa7b11369c8f541489ab48ae57205b79af5cc77",
+    "changed": false
+  },
+  {
+    "id": "REF-807e645f0a490d75",
+    "url": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.ismap.go.jp/csm?id=kb_article_view&sysparm_article=KB0011070",
+    "contentHash": "e6bdb6557ef7791820e36590b5317c94860f46ef21c1830a2805cbfc07c4c8d4",
+    "changed": false
+  },
+  {
+    "id": "REF-9ad9e2087bdedc1b",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en",
+    "contentHash": "fd82286c3bfd83a611e0ae14b1ef4de9892820ed7f03b04a8e471df7c94885ea",
+    "changed": false
+  },
+  {
+    "id": "REF-ce4e6c93d4f7f11d",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2011-April/021307.html",
+    "contentHash": "a01672df71ab1af09e83a4e107752328deef8ff17fc93f77c8361f850728203d",
+    "changed": false
+  },
+  {
+    "id": "REF-caf76921eb104f1f",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+    "contentHash": "3a873f0537cb44f976e529c7a3081139c18e145637f1465fd86cb09efb27d601",
+    "changed": false
+  },
+  {
+    "id": "REF-b975a5563a7e48f0",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+    "contentHash": "9b87e0fc3a55b0d4599dfeb44798c10d792fade58ccba68eaebf2d117f657be8",
+    "changed": false
+  },
+  {
+    "id": "REF-a40f3ce6a34d2530",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031839.html",
+    "contentHash": "b2378005e8081a37edfc0113cda503ab2d85d880c50aa06f528b357c00ec9cbf",
+    "changed": false
+  },
+  {
+    "id": "REF-0d42f4b3d7e3d297",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2019-October/048395.html",
+    "contentHash": "6804aed9d930e469ce92ea11d6619c7e7db23951d8cc979893bda1dac1c190a8",
+    "changed": false
+  },
+  {
+    "id": "REF-0bffb652b76883d9",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2013-November/033901.html",
+    "contentHash": "939a1408684b58dea0684a61d9b1aa7ff3ea61c3016166a6db7a9fdb9817a097",
+    "changed": false
+  },
+  {
+    "id": "REF-2985477e6ab52c6f",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2015-October/041045.html",
+    "contentHash": "6cca0056ecbbc057487fe73ca17858e39f46a07aa318f17bd0c0087d9d6ac6db",
+    "changed": false
+  },
+  {
+    "id": "REF-03fc3d994c353069",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2018-September/046676.html",
+    "contentHash": "eef59df9837348fcbc837edac63b013c48a577eba105334db5c50aacea12ef8b",
+    "changed": false
+  },
+  {
+    "id": "REF-b807374341cb4592",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2021-November/050355.html",
+    "contentHash": "f39422be7a52ea4a5e5c3f75f10e93533b5279812ff919ebc14ecd03b561cbf7",
+    "changed": false
+  },
+  {
+    "id": "REF-66f30c9ce62710dc",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/attachments/20220514/1ee03a22/attachment-0001.htm",
+    "contentHash": "62401881b8977fe51189db611e976988f69bf145494452964640055ff91780e4",
+    "changed": false
+  },
+  {
+    "id": "REF-5d4452fa6d915fc5",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2013-October/033565.html",
+    "contentHash": "a674012e28a37630025ae6fd8b8e1142d404177ad69adc401a3dc075aec3d126",
+    "changed": false
+  },
+  {
+    "id": "REF-16fcbb5b2fd59e07",
+    "url": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/cisco-voip/2019-August/048059.html",
+    "contentHash": "7513f498bffbdfec9eabf8ffa7caa19a60ec63216a911f6ef297596dd2e48ebd",
+    "changed": false
+  },
+  {
+    "id": "REF-86107818a4d492f7",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2010-August/001763.html",
+    "contentHash": "f3bf08762a4190aa778c72ccc90dc15fb26693d78ec7a1002889f6fcd77960d2",
+    "changed": false
+  },
+  {
+    "id": "REF-5d951bf30e3c96d3",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+    "contentHash": "fafcedec1949b1af9bbcf9ac69b05037b1fe08ea2d09c50da367f23eaaa602a7",
+    "changed": false
+  },
+  {
+    "id": "REF-f8221f4fdcb2415b",
+    "url": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2010-December/002106.html",
+    "contentHash": "5b25f18c8e8bad533b589eb8c894bd5abfe734617e4bc37fe35c843771bd062a",
+    "changed": false
+  },
+  {
+    "id": "REF-6e6184fda25bddb4",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2011-June/002582.html",
+    "contentHash": "f9842d2827b7510a0c6aa5d10c49e50bf31633091e950ada9e2556bc50ad1334",
+    "changed": false
+  },
+  {
+    "id": "REF-3cc23cc2422be034",
+    "url": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2011-July/002645.html",
+    "contentHash": "c698e39c07916d8def0e0f37f14e146e7827aad2d9a092a41aa1a7e67931ca67",
+    "changed": false
+  },
+  {
+    "id": "REF-bcbd90c63b48817f",
+    "url": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2012-September/003540.html",
+    "contentHash": "5668a5fd9b9d404eaccf2a6f924c26d65789c9d7b1d051f7be4218937c6c7693",
+    "changed": false
+  },
+  {
+    "id": "REF-3c35bbedeac1d5e8",
+    "url": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2014-May/004724.html",
+    "contentHash": "14d46a8aa5c7aac89b7a133b36c0f54902b1b678e8ba9790d25efa77a57e9283",
+    "changed": false
+  },
+  {
+    "id": "REF-92fc12a39434ac75",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2015-June/005619.html",
+    "contentHash": "2ce67a11e5a7bec2280c466a35641493e67d0222eede245d75a16e3a81a03f64",
+    "changed": false
+  },
+  {
+    "id": "REF-625698d2aa90d70c",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2015-November/006074.html",
+    "contentHash": "2286a578f1d436545c7f9a40c5d78856faa437a9445153ea646da09bcf00f1c4",
+    "changed": false
+  },
+  {
+    "id": "REF-0fe3ded413d45133",
+    "url": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2015-December/006244.html",
+    "contentHash": "e737d69a7ae2d8eb869d3a7ff2286f8f7554a6bd90e530864b8343912c8ad26c",
+    "changed": false
+  },
+  {
+    "id": "REF-339fdf527eed6fc1",
+    "url": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+    "observedAt": "2026-11-03T22:37:00.871279+00:00",
+    "acceptedReview": false,
+    "status": 200,
+    "finalUrl": "https://puck.nether.net/pipermail/voiceops/2020-March/008394.html",
+    "contentHash": "395bfb9b552c9054a2868a5ee9344963b533e568bf9a7caa0853e146745847d8",
+    "changed": false
+  }
+]

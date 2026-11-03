@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-11-03T22:03:06.635444+00:00",
+  "endpoint": "repos/zanefounty/series-of-calls/environments/github-pages/deployment-branch-policies",
+  "exitCode": 0,
+  "response": {
+    "total_count": 1,
+    "branch_policies": [
+      {
+        "id": 65416634,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2NTQxNjYzNA==",
+        "name": "main",
+        "type": "branch"
+      }
+    ]
+  }
+}

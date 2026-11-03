@@ -8,16 +8,16 @@ The resumed executor now passes networking and localhost probes. Genuine Git his
 
 The continuation adds explicitly profile-bound measured capacity and renewal consequences, contract-binding save lineage, strict historical resource-sample validation, corrected HTML patterns and import-error recovery. See [access-restored evidence](../evidence/access-restored-2026-11-04/README.md) for current receipts and remaining work. Older checkpoints below are retained as historical observations. No full completion or deployment is claimed.
 
-The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance patches still require the separate owner-reviewed PR; adaptation stays disabled.
+The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance PR #1 is prepared and the owner approved merging after required checks pass; record actual merge/check evidence before treating it as active. Adaptation stays disabled. Main has required Actions checks without bypass and a separate owner-only PR review exception. Pages is configured for Actions, with main-only owner-reviewed deployment, but has not been deployed.
 
 ## Read first
 
 1. `AGENTS.md`, the development skill and [Codex setup](CODEX_SETUP.md).
-2. [Current verification](../evidence/completion-pass-2026-11-04/README.md) and [deployment review](DEPLOYMENT_REVIEW.md).
+2. [Current verification](../evidence/access-restored-2026-11-04/README.md) and [deployment review](DEPLOYMENT_REVIEW.md).
 3. [Delivery index](../maintenance/next-work.json), [specification](../spec/README.md) and [94-addition audit](../spec/audit/additions-behaviour-audit.md).
 4. [Reference review proposals](../research/review-proposals/README.md), which remain unaccepted by the owner.
 
-## Implemented in this continuation
+## Previous completion-pass checkpoint (historical)
 
 - Four independently editable customer requirement profiles: desired/provisioning/effective/observed state, immutable segment/source identity, worker/save/console/MCP integration. They do not yet drive all service-fit or procurement consequences.
 - Observed available/away/offline workforce attendance, independent roster eligibility, BPO attendance authority, duration-qualified skill/language demand forecasts and future shift/break capacity estimates. Internal admission/finish hooks are prohibited as public commands; active assignments must correspond to real interactions.
@@ -27,7 +27,7 @@ The owner designated `zanefounty` as contact and chose GitHub for reporting, def
 - Review proposals for all 91 reference entries and 100 claims: 48 narrowly scoped accept recommendations, 40 revise and three unresolved. Canonical accepted reviews remain zero. Exact pinned upstream files were retrieved through the GitHub connector after web failures; historical mailing-list claims remain historical.
 - Project Codex/MCP configuration, preflight diagnostics, a tested user-config migration preview, and current restart instructions. Global settings and hosted maintenance were not changed.
 
-## First actions after relaunch
+## Previous relaunch instructions (historical)
 
 The final local checkpoint passed 1,314 JavaScript tests in 194 files, 445 registered acceptance cases, 71 Python tests, 63 actual stdio MCP cases and eight setup tests. Development/delivery gates, translation structure and build passed. Release failed at unreviewed reference `REF-ac194430f67b3832`. All application checks used the disclosed diagnostic dependencies; native locked/browser acceptance remains open. See the linked receipts rather than adding overlapping test counts.
 
@@ -39,8 +39,8 @@ The current owner has authorized completing the original plan, source-linked hum
 
 ## Outstanding product work
 
-The canonical index still has 4,787 requirements: 209 partial and 4,578 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
+The canonical index now has 4,839 requirements: 209 partial and 4,630 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
 
 Operational work remains separate: genuine Git history and six historical binaries, clean locked dependencies, native browser/MCP-browser/offline acceptance, owner research decisions, actual GitHub destination/protection/reporting contacts, reviewed governance proposals, enforced API project budget and Pages release. The 75 archive proposals remain outside the core scope until accepted intake.
 
-Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The current tree contains substantial uncommitted work because `.git` is absent. Do not reset, recreate, or blindly replay old commands. Inspect the actual files and latest receipts first.
+Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The preview is committed on genuine upstream history at 3c977ad; later verification receipts and active worktrees may still be uncommitted. Do not reset, recreate, or blindly replay old commands. Inspect actual files, branches, running processes and latest receipts first.

@@ -1,6 +1,14 @@
 # Working milestone — updated 2026-11-04
 
-The full plan is incomplete. This is a local training and initial campaign preview, with no public repository or published release verified.
+The full plan remains incomplete. The independent public [preview repository](https://github.com/zanefounty/series-of-calls) now preserves genuine upstream history. No release or Pages deployment is claimed.
+
+The access-restored continuation passed 1,324 JavaScript tests with clean locked dependencies, 455 registered acceptance cases, 71 Python gate/mutation tests, 64 actual stdio MCP cases and 22 actual browser MCP checks. All three engines passed the 144-case compact browser matrix; the canonical build passed desktop/mobile/offline smoke. Counts overlap. See [fresh receipts](evidence/access-restored-2026-11-04/README.md), including the release rejection at unreviewed reference REF-ac194430f67b3832. Full campaign matrices are still being verified.
+
+The inventory contains 4,839 requirements: 209 partial and 4,630 pending, with no final dispositions. Research acceptance remains deferred. Main has required GitHub Actions checks with no check bypass; owner review and main-only Pages environment rules are configured. [Governance PR #1](https://github.com/zanefounty/series-of-calls/pull/1) has the owner’s conditional approval, awaiting its required checks. Hosted adaptation remains disabled without its dedicated credentials and enforced budget.
+
+## Earlier checkpoints (historical)
+
+The statements below describe prior executions; the fresh receipts above supersede their former access, dependency and repository limitations.
 
 The latest continuation adds editable customer requirements, independent observed attendance, duration-qualified workforce forecasts, synthetic delivery webhooks and current campaign procurement-to-renewal recipes. Its full per-file run passed **1,314 tests in 194 files**; actual stdio MCP passed **63 cases**; eight Codex setup checks passed. The acceptance register now contains **445 cases**. See [the current verification index](evidence/completion-pass-2026-11-04/README.md) for registry checks, source hashes and retained failures. These are diagnostic dependency results, not locked or browser release acceptance.
 

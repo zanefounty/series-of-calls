@@ -30,6 +30,12 @@ The owner designated `zanefounty` as the accountable contact and selected GitHub
 
 Full actor/product/catalogue, specialist workforce/BPO, commercial/public-sector, enterprise migration, SP economy/progression and upstream source obligations remain incomplete. Full browser matrices, final-input gates and hosted protections are separate acceptance work. Release remains blocked by unaccepted research and unfinished requirements; no gate has been weakened and no Pages deployment is claimed.
 
-## Frozen verification in progress
+## Frozen verification checkpoint
 
 The frozen complete JavaScript run passed **1,324 tests** (zero failures/cancellations/skips), using locked local dependencies. [Actual stdio MCP](mcp-final.json) passed **64 cases**, including the new profile-bound renewal failure/repair and the existing campaigns. [Final browser MCP](browser-mcp/2026-11-03T21-45-21-590417Z/report.json) passed **22 bounded checks**, with no source drift or console errors. These counts overlap and must not be added together. The full matrix and remaining gate results are recorded separately when their producers finish.
+
+The [frozen check run](final-checks/results.json) passed all 1,324 tests, 455 registered acceptance cases, 71 Python gate/mutation tests, development/delivery gates, 5,608-label translation structure and build with **no input drift**. Release correctly failed at the unreviewed reference `REF-ac194430f67b3832`. The [canonical browser smoke](../browser.json) passed three viewports and offline reload. Each compact matrix passed 144 cases with no drift: Chromium `matrices/2026-11-03T21-45-03-081Z-b7626c`, Firefox `matrices/2026-11-03T21-45-06-296Z-91a611`, WebKit `matrices/2026-11-03T21-45-09-115Z-31dca9`.
+
+The preview commit `3c977ad654bc2621bae6bbfa422907976a944b36` is pushed to the independent public repository. [Remote receipts](github/) record required checks with no bypass, a separate owner-only PR review exception, private vulnerability reporting, and main-only owner-reviewed Pages environment. Pages configuration is not deployment. [Owner approval](governance-validation/owner-decision.json) covers PR #1 conditional on passing required checks; no merge is inferred. The first three readiness flags now reflect verified repository/history/locked-baseline facts. Remaining flags stay false.
+
+Browser traces are retained locally and hash-indexed rather than adding multiple gigabytes of zip files to Git. A generated browser core dump was removed after recording [its metadata](browser-core-dump.json); it is not test evidence. Full campaign runs and their sharded replacement remain separately recorded, with no full campaign pass inferred from compact results.

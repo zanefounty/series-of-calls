@@ -61,6 +61,17 @@ test('save validation rejects altered destination custody, lowered classificatio
  }
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+test('matching a forged origin receipt cannot downgrade the retained restricted capture contract',()=>{
+ const s=tick(info(record(ready({administration:true})),interfaceCommand(true)));
+ assert.equal(s.boundaries.contracts.find(c=>c.id==='source-environment').effective.flows.find(f=>f.resource==='recorder').informationClass,'restricted');
+ const rebound=tick(bind(s,contract(s,'recorder-rebound','administration',['recorder'],'restricted')));
+ for(const original of [s,rebound]){
+  assert.deepEqual(SOC.restore(JSON.stringify(original)),original);
+  const forged=structuredClone(original),r=forged.records[0];r.classification='internal';r.origin.classification='internal';r.origin.capture.informationClass='internal';forged.information.originReceipts[0].origin=structuredClone(r.origin);
+  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_/);
+ }
+ assert.equal(transfer(s).information.transfers.at(-1).reason,'POLICY_CLASSIFICATION_EXCEEDED');
+});
 test('processing transferred restricted information cannot silently move it to the pipeline original archive',()=>{
  let s=ready();s=SOC.dispatch(s,{type:'configure',id:'speech',config:{licenceLocal:true}});
  s=tick(bind(s,contract(s,'source-environment','restricted-operations',['archive','recorder','room','local','speech'])));

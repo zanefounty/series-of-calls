@@ -2,6 +2,8 @@
 
 All 91 registered reference entries now have an independent review proposal, covering all 100 linked claims. These are proposals for owner review, not accepted research, gameplay changes, legal approvals or release evidence. The canonical `research/reviews.json` remains unchanged with zero accepted reviews.
 
+The owner has deferred these decisions to the next release. The [access-restored follow-up](followup-2026-11-04/README.md) retrieved the three originally unresolved archive pages, audited all 40 revision proposals and rechecked all 48 accept recommendations. It proposes narrowing 47 accept scopes and revising one Teams Rooms licensing claim; it does not grant acceptance. The original proposal records and the historical retrieval failures below are retained.
+
 | Review package | References | Recommendation scope |
 | --- | ---: | --- |
 | [Batch A](references-a-2026-11-04.md) · [records](references-a-2026-11-04.json) | 30 | Collaboration, carrier models, contact centre, governance and specialist integrations |

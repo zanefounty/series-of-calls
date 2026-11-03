@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-11-03T22:11:32.226792+00:00",
+  "endpoint": "repos/zanefounty/series-of-calls/check-runs/126233989215/annotations",
+  "response": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/zanefounty/series-of-calls/blob/40ff9a41907cfe9a0d1a6febb5888a2e7f3fb0e6/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job has exceeded the maximum execution time of 10m0s",
+      "raw_details": ""
+    },
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/zanefounty/series-of-calls/blob/40ff9a41907cfe9a0d1a6febb5888a2e7f3fb0e6/.github",
+      "start_line": 4,
+      "start_column": null,
+      "end_line": 4,
+      "end_column": null,
+      "annotation_level": "warning",
+      "title": "",
+      "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+      "raw_details": ""
+    },
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/zanefounty/series-of-calls/blob/40ff9a41907cfe9a0d1a6febb5888a2e7f3fb0e6/.github",
+      "start_line": 5,
+      "start_column": null,
+      "end_line": 5,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The operation was canceled.",
+      "raw_details": ""
+    },
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/zanefounty/series-of-calls/blob/40ff9a41907cfe9a0d1a6febb5888a2e7f3fb0e6/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "notice",
+      "title": "",
+      "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"",
+      "raw_details": ""
+    }
+  ]
+}

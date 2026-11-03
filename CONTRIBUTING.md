@@ -4,7 +4,7 @@ Series of Calls is an incomplete synthetic communications-training preview. Its 
 
 ## Current contribution status
 
-This workspace is not yet an independent Git repository and has no active public issue tracker. Do not send project reports to the upstream Series of Tubes issue tracker, its Signal group, or its maintainer. The owner must establish and verify the repository, support contact, private security-reporting route, and contribution terms before accepting public contributions. The [publication audit](docs/PUBLISHING_AUDIT.md) records those remaining steps.
+The independent public repository is [zanefounty/series-of-calls](https://github.com/zanefounty/series-of-calls), with genuine upstream history retained. [zanefounty](https://github.com/zanefounty) is the accountable support contact; use the project GitHub issue tracker when public intake opens. Do not send project reports to the upstream Series of Tubes issue tracker, its Signal group, or its maintainer. Private vulnerability reporting is enabled in GitHub. Public contribution intake remains subject to the publication review and contribution terms. The [publication audit](docs/PUBLISHING_AUDIT.md) records those remaining steps.
 
 ## Development
 

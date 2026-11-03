@@ -191,6 +191,59 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def information_interfaces(report):
+    script = """
+const {journey}=require('./tests/lib/information-interface-fixture');
+const rows=[];
+for(const jurisdiction of ['AU','US','JP','EU'])for(const options of [{administration:false},{administration:true},{administration:true,restrictedCapture:false}])
+ rows.push({...journey({jurisdiction,...options}),...options});
+console.log(JSON.stringify(rows));
+"""
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True, timeout=60))
+    client = Client("scripts/calls-mcp.js")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "defence-information-interface", **fixture["options"], "restrictedExport": fixture["administration"] and fixture.get("restrictedCapture", True)}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                for command in fixture["commands"]:
+                    client.tool("command", {"command": command})
+                actual = client.tool("export_exercise")
+                assert actual == fixture["expectedState"], "Information interface MCP differs from direct dispatch"
+                assert actual["information"]["transfers"][-1]["status"] == ("blocked" if fixture["administration"] and fixture.get("restrictedCapture", True) else "complete")
+                if actual["information"]["transfers"][-1]["status"] == "complete":
+                    node = actual["information"]["interfaces"][0]
+                    source_record = actual["records"][0]["id"]
+                    before_records = len(actual["records"])
+                    for command in [{"type": "information", "command": {"action": "revoke-interface", "interfaceId": node["id"]}}, {"type": "advance", "minutes": 1}, {"type": "information", "command": {"action": "transfer", "interfaceId": node["id"], "recordId": source_record, "role": "supervisor"}}]:
+                        client.tool("command", {"command": command})
+                    blocked = client.tool("export_exercise")
+                    assert blocked["information"]["transfers"][-1]["status"] == "blocked" and len(blocked["records"]) == before_records
+                    repair = {"action": "interface", "id": node["id"], **{key: node["desired"][key] for key in ["policyId", "sourceResource", "destinationResource"]}}
+                    for command in [{"type": "information", "command": repair}, {"type": "advance", "minutes": 1}, {"type": "information", "command": {"action": "transfer", "interfaceId": node["id"], "recordId": source_record, "role": "supervisor"}}]:
+                        client.tool("command", {"command": command})
+                    actual = client.tool("export_exercise")
+                    assert actual["information"]["transfers"][-1]["status"] == "complete" and len(actual["records"]) == before_records + 1
+                    row["recovery"] = "revoked-blocked-reprovisioned-complete"
+                inspection = client.tool("inspect")
+                assert len(inspection["packs"]["information"]["interfacePolicies"]) == 2
+                assert client.tool("inspect") == inspection, "Interface inspection mutated state"
+                forged = json.loads(json.dumps(actual))
+                forged["records"][0]["classification"] = "public"
+                client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                assert client.tool("export_exercise") == actual, "Rejected origin tampering changed state"
+                client.tool("new_exercise", fixture["options"])
+                client.tool("import_exercise", {"json": json.dumps(actual)})
+                assert client.tool("export_exercise") == actual, "Interface save restore differs"
+                row.update(status="passed", commands=len(fixture["commands"]), checks=["actual-meeting-capture", "explicit-interface", "restricted-classification", "direct-dispatch-equivalence", "inspection-purity", "tamper-rejection", "save-restore"])
+            except Exception as error:
+                row.update(status="failed", error=str(error))
+            report["results"].append(row)
+    finally:
+        client.close()
+
+
 def completion_packs(report):
     client = Client("scripts/calls-mcp.js")
     row = {"server": "communications-customer-attendance-callback", "status": "running"}
@@ -358,7 +411,7 @@ def main():
         "scope": "Real stdio MCP: 48 compact scenario/profile/mode references and optional SP play. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -368,11 +421,12 @@ def main():
         pack_smoke(report)
         completion_packs(report)
         customer_fit(report)
+        information_interfaces(report)
         if args.campaigns:
             full_campaigns(report)
             report["scope"] = "Real stdio MCP: compact references, optional SP, pack smoke and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (64 if args.campaigns else 52), "Incomplete smoke matrix"
+        assert len(report["results"]) == (76 if args.campaigns else 64), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

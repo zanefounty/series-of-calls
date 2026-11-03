@@ -238,6 +238,7 @@ const SOC = (function socKernel() {
     return {deploymentId:d.id,family:c.family,generation:d.generation,mode:c.mode,offer:c.offer,productVersion:c.productVersion,region:c.region,modelResourceId:c.dependencies['language-model'],integrationResourceId:c.dependencies['integration-version']};
   }
   function productServices(s){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));if(s.products)for(const id of Object.keys(s.resources)){const gate=productGate(s,id);if(gate&&!gate.available)services[id]={ready:false,reasons:['PRODUCT_FEATURE_UNAVAILABLE:'+gate.reason]};}if(s.boundaries)for(const id of Object.keys(s.resources)){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)services[id]={ready:false,reasons:gate.blocking.map(x=>x.code)};}return services;}
+  function informationHooks(s){return {...productServices(s),boundaryCheck:(state,id)=>boundaryCheck(state,id),authorize:(state,id,action)=>business.authorise(state,id,action),speechModelContext:()=>speechModelContext(s)};}
   const estateKind=r=>r.kind==='directory'?'user':['endpoint','room'].includes(r.kind)?'device':['carrier','trunk'].includes(r.kind)?'number':'dependency';
   function estateHooks(s){
     function getResource(state,id){const r=state.resources[id];return r?{...r,estateKind:estateKind(r)}:null;}
@@ -484,7 +485,7 @@ const SOC = (function socKernel() {
     if(s.information){const boundary=s.information.boundary.effective;if(!boundary?.processRegions.includes(r.region)||!boundary.storageRegions.includes(a.region)||a.capacity<Math.ceil((s.records.filter(r=>!r.deleted).length+1)/100)){i.obligations.push('INFORMATION_CAPTURE_BOUNDARY');event(s,i,'record','INFORMATION_CAPTURE_BOUNDARY');return;}}
     const item={id:'record-'+s.nextId++,kind:'recording',interaction:i.id,parents:[],captureRegion:r.region,region:a.region,retentionDays:a.retentionDays,access:[...a.access],createdAt:s.clock};
     s.records.push(item);i.records.push(item.id);event(s,i,'record','RECORDING_STORED',{record:item.id});
-    if(s.information){const productSpeech=productGate(s,'speech');if(productSpeech&&!productSpeech.available){i.obligations.push('PRODUCT_PROCESSOR_UNAVAILABLE');event(s,i,'processing','PRODUCT_FEATURE_BLOCKED',{deployment:productSpeech.deploymentId,feature:productSpeech.feature,resource:'speech',reason:productSpeech.reason});}else information.enqueue(s,item,speechModelContext(s));}
+    if(s.information){const productSpeech=productGate(s,'speech');if(productSpeech&&!productSpeech.available){i.obligations.push('PRODUCT_PROCESSOR_UNAVAILABLE');event(s,i,'processing','PRODUCT_FEATURE_BLOCKED',{deployment:productSpeech.deploymentId,feature:productSpeech.feature,resource:'speech',reason:productSpeech.reason});}else information.enqueue(s,item,speechModelContext(s),informationHooks(s));}
     if(s.scenario==='government'&&!s.information){
       const p=config(s,'speech');
       const productSpeech=productGate(s,'speech');if(productSpeech&&!productSpeech.available){i.obligations.push('PRODUCT_PROCESSOR_UNAVAILABLE');event(s,i,'processing','PRODUCT_FEATURE_BLOCKED',{deployment:productSpeech.deploymentId,feature:productSpeech.feature,resource:'speech',reason:productSpeech.reason});return;}
@@ -755,7 +756,7 @@ const SOC = (function socKernel() {
     s.ledger.push({id:'minute-'+s.clock,minute:s.clock,unit:'minute',usage,revenue,cost,...(s.admissionSecurity?{voiceInteractions:billableVoice.map(i=>i.id)}:{})});s.totals.revenue+=revenue;s.totals.cost+=cost;
     if(s.ledger.length>1440)s.ledger.shift();
     for(const i of billableVoice){const routed=i.trace.find(t=>t.code===(i.direction==='inbound'?'ORDERED_INBOUND_ROUTE':'CALL_REQUEST')&&t.platform);business.meterResource(s,'minute',1,[routed?.platform||'phone']);}
-    if(s.information)information.advance(s,productServices(s),event,business.meterResource,s.speechModels?(context,request)=>speechModels.processingGate(s,{...context,...request},speechHooks(s)):undefined);
+    if(s.information)information.advance(s,informationHooks(s),event,business.meterResource,s.speechModels?(context,request)=>speechModels.processingGate(s,{...context,...request},speechHooks(s)):undefined);
     if(s.business){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));
       const q=config(s,'service'),channel=scenarios[s.scenario].channel==='message'?'digital':'voice';
       const snapshot=s.workforceOps&&s.workforceOps.roster.effective?workforce.effectiveCapacity(s,{channel,skill:q?.skill||'service',language:q?.language||'en'}):null;
@@ -896,9 +897,15 @@ const SOC = (function socKernel() {
       if(c.command?.action==='rollback')for(const id of Object.keys(s.operations?.migrations.find(m=>m.id===c.command.migration)?.checkpoint||{}))if(!business.authorise(s,id,'configure'))fail('DELEGATION_REQUIRED');
       operations.command(s,c.command,productServices(s),event,finish,channelOperationHooks(s));
     }else if(c.type==='information'){
-      const resourceId=['book','cancel','join'].includes(c.command?.action)||c.command?.kind==='meeting'?'room':'archive';
-      if(!business.authorise(s,resourceId,'configure'))fail('DELEGATION_REQUIRED');
-      const informationServices=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));informationServices.speechModelContext=()=>speechModelContext(s);information.command(s,c.command,informationServices,meeting(s),event);
+      if(['interface','revoke-interface','transfer'].includes(c.command?.action)){
+        const node=s.information?.interfaces?.find(n=>n.id===(c.command.interfaceId||c.command.id));
+        const resources=new Set([...(c.command.action==='interface'?[c.command.sourceResource,c.command.destinationResource]:[]),...[node?.desired,node?.effective].flatMap(n=>n?[n.sourceResource,n.destinationResource]:[])]);
+        for(const id of resources)if(typeof id==='string'&&!business.authorise(s,id,'configure'))fail('DELEGATION_REQUIRED');
+      }else{
+        const resourceId=['book','cancel','join'].includes(c.command?.action)||c.command?.kind==='meeting'?'room':'archive';
+        if(!business.authorise(s,resourceId,'configure'))fail('DELEGATION_REQUIRED');
+      }
+      information.command(s,c.command,informationHooks(s),meeting(s),event);
     }else if(c.type==='contact'){
       if(!business.authorise(s,'service','configure'))fail('DELEGATION_REQUIRED');
       if(c.command?.action==='transfer'&&!business.authorise(s,c.command.target,'configure'))fail('DELEGATION_REQUIRED');

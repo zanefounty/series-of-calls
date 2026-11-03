@@ -19,8 +19,9 @@ function ready({jurisdiction='AU',administration=false,restrictedCapture=true,bu
  let s=SOC.create({scenario:'defence',jurisdiction});
  s=apply(s,{type:'configure',id:'local',config:{licensing:true}});
  if(businessBeforeDestination)s=send(s,'business',{action:'start'});
+ s=info(s,{action:'start'});
  s=apply(s,{type:'add',id:'handover-archive',kind:'archive',config:{...s.resources.archive.desired}});
- s=info(s,{action:'start'});s=info(s,{action:'configure',kind:'pipeline',config:{enabled:false}});
+ s=info(s,{action:'configure',kind:'pipeline',config:{enabled:false}});
  s=info(s,{action:'configure',kind:'meeting',config:{recording:true,mediaPlacement:'local'}});
  s=send(s,'boundaries',{action:'start'});
  const source=contract(s,'source-environment',administration?'administration':'restricted-operations',['archive','recorder','room','local'],administration?'internal':'restricted');

@@ -60,3 +60,13 @@ test('interface display and transfer history escape untrusted text without prese
   assert.equal(section.querySelector('[data-info="revoke-interface"]').dataset.id,hostile);
  }finally{h.dom.window.close();}
 });
+test('boundary flow editor removes only draft rows, retains one and respects read-only ownership',()=>{
+ const h=boot(ready());try{
+  const form=()=>h.w.document.querySelector('[data-domain-form="contract"]'),rows=()=>[...form().querySelectorAll('[data-domain-flow-row]')],before=JSON.stringify(h.state());
+  assert.equal(rows().length,4);while(rows().length>1)rows().at(-1).querySelector('[data-domain-remove-flow]').click();assert.equal(rows().length,1);
+  rows()[0].querySelector('[data-domain-remove-flow]').dispatchEvent(new h.w.MouseEvent('click',{bubbles:true}));assert.equal(rows().length,1);
+  rows()[0].querySelector('[name="flowId"]').value='flow-2';form().querySelector('[data-domain-add-flow]').click();const ids=rows().map(r=>r.querySelector('[name="flowId"]').value);assert.equal(new Set(ids).size,2);assert.equal(JSON.stringify(h.state()),before);
+  h.ev('SCT.locked=false;socRender()');const count=rows().length;assert.ok(rows().every(r=>r.querySelector('[data-domain-remove-flow]').disabled));
+  rows().at(-1).querySelector('[data-domain-remove-flow]').dispatchEvent(new h.w.MouseEvent('click',{bubbles:true}));assert.equal(rows().length,count);assert.equal(JSON.stringify(h.state()),before);
+ }finally{h.dom.window.close();}
+});

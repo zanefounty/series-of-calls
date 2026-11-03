@@ -22,6 +22,11 @@ test('administration-to-training cannot declassify restricted capture and retain
  const before=JSON.stringify(s.records),attempts=s.information.transfers.length;s=transfer(s);
  assert.equal(JSON.stringify(s.records),before);assert.equal(s.information.transfers.length,attempts+1);assert.equal(s.information.transfers.at(-1).reason,'POLICY_CLASSIFICATION_EXCEEDED');assert.equal(s.information.audit.at(-1).code,'INFORMATION_TRANSFER_BLOCKED');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+test('administration-to-training accepts a genuinely internal capture without relabelling a restricted recording',()=>{
+ let s=record(ready({administration:true,restrictedCapture:false}));const original=structuredClone(s.records[0]);assert.equal(original.classification,'internal');
+ s=transfer(tick(info(s,interfaceCommand(true))));assert.equal(s.information.transfers.at(-1).status,'complete');assert.deepEqual(s.records[0],original);
+ assert.equal(s.records.at(-1).classification,'internal');assert.equal(s.records.at(-1).storage.workload,'training');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
 test('direction, stale destination generation, revocation and explicit reprovisioning gate actual transfer recovery',()=>{
  let s=tick(info(record(ready()),interfaceCommand()));s=transfer(s);const returned=s.records.at(-1).id;
  const wrong=transfer(s,returned);assert.equal(wrong.information.transfers.at(-1).reason,'SOURCE_STORAGE_LINEAGE_STALE');assert.deepEqual(wrong.records,s.records);s=wrong;

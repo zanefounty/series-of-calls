@@ -8,6 +8,28 @@ function boot(s){
  h.ev("SCT.state=window.__state;SCT.locked=true;SCT.slot='interface-test';window.__commands=[];window.__originalApply=socApply;socApply=command=>{window.__commands.push(JSON.parse(JSON.stringify(command)));return window.__originalApply(command)};socStore=()=>{};socRender();");
  return {...h,w,state:()=>h.ev('SCT.state'),commands:()=>plain(w.__commands),submit:(id)=>w.document.getElementById(id).dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true})),set:(id,key,value)=>{w.document.getElementById(id).elements.namedItem(key).value=value;}};
 }
+test('fresh defence console deploys a typed archive before boundary/interface provisioning and locks its creation form read-only',()=>{
+ const h=boot(info(SOC.create({scenario:'defence'}),{action:'start'}));try{
+  const apply=command=>{h.w.__nextCommand=command;h.ev('socApply(window.__nextCommand)');};
+  assert.equal(h.state().resources['handover-archive'],undefined);
+  h.set('soc-information-archive','capacity','37');h.set('soc-information-archive','retentionDays','14');h.set('soc-information-archive','access','supervisor, auditor');h.submit('soc-information-archive');
+  assert.deepEqual(h.commands().at(-1),{type:'add',id:'handover-archive',kind:'archive',config:{region:'AU',capacity:37,retentionDays:14,access:['supervisor','auditor'],local:true}});
+  const pending=h.state().resources['handover-archive'];assert.equal(pending.kind,'archive');assert.equal(pending.desired.capacity,37);assert.equal(pending.desired.retentionDays,14);assert.deepEqual(plain(pending.desired.access),['supervisor','auditor']);assert.equal(pending.effective,null);assert.equal(pending.provisioning.status,'pending');
+  apply({type:'configure',id:'local',config:{licensing:true}});apply({type:'advance',minutes:1});assert.equal(h.state().resources['handover-archive'].effective.capacity,37);assert.equal(h.state().resources['handover-archive'].provisioning.status,'ready');
+  // Existing public boundary commands establish independently scoped environments;
+  // the new archive and interface are created through their actual visible forms.
+  apply({type:'boundaries',command:{action:'start'}});
+  for(const [id,resources] of [['source-environment',['archive']],['destination-environment',['handover-archive']]]){
+   const c=contract(h.state(),id,'restricted-operations',resources);if(id==='destination-environment'){c.requirements.allowedAccessRoles=['supervisor','auditor'];c.flows[0].accessRoles=['supervisor','auditor'];}apply({type:'boundaries',command:{action:'contract',contract:c}});
+   for(const resource of resources)apply({type:'boundaries',command:{action:'bind',resource,contract:id}});
+   apply({type:'boundaries',command:{action:'observe',contract:id,observed:{connected:true,cloudLicenceAvailable:true,localLicenceGraceActive:true,localLicenceGraceExpiresAt:h.state().clock+100,localServicesAvailable:true,localKeyCustodyAvailable:true,adminPathAvailable:true,adminPathLocation:'AU'}}});
+  }
+  apply({type:'advance',minutes:1});h.set('soc-information-interface','id','ui-created-handover');h.set('soc-information-interface','policyId','defence-restricted-handover-v1');h.set('soc-information-interface','destinationResource','handover-archive');h.submit('soc-information-interface');
+  assert.equal(h.state().information.interfaces[0].effective,null);apply({type:'advance',minutes:1});assert.equal(h.state().information.interfaces[0].provisioning.status,'ready',JSON.stringify({errors:h.state().information.interfaces[0].provisioning.errors,boundary:SOC.calculate(h.state()).boundaries.enforcement['handover-archive'],resource:SOC.observe(h.state(),'handover-archive')}));
+  h.ev('SCT.locked=false;socRender()');const before=JSON.stringify(h.state()),form=h.w.document.getElementById('soc-information-archive');assert.ok([...form.querySelectorAll('button,input,select')].every(x=>x.disabled));
+  h.set('soc-information-archive','id','read-only-archive');h.submit('soc-information-archive');assert.equal(JSON.stringify(h.state()),before);assert.equal(h.state().resources['read-only-archive'],undefined);assert.match(h.ev('SCT.error'),/read.only/i);assert.equal(h.errors.length,0);
+ }finally{h.dom.window.close();}
+});
 test('actual information console provisions a typed archive interface, transfers a real meeting record and revokes it',()=>{
  const h=boot(record(ready()));try{
   const panel=h.w.document.querySelector('#soc-information-interfaces');assert.ok(panel);assert.match(panel.textContent,/scenario|fictional|synthetic/i);

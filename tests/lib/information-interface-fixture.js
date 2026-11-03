@@ -15,7 +15,7 @@ function bind(s,c){
  for(const f of c.flows)s=send(s,'boundaries',{action:'bind',resource:f.resource,contract:c.id});
  return send(s,'boundaries',{action:'observe',contract:c.id,observed:{connected:true,cloudLicenceAvailable:true,localLicenceGraceActive:true,localLicenceGraceExpiresAt:s.clock+100,localServicesAvailable:true,localKeyCustodyAvailable:true,adminPathAvailable:true,adminPathLocation:s.jurisdiction}});
 }
-function ready({jurisdiction='AU',administration=false,businessBeforeDestination=false}={}){
+function ready({jurisdiction='AU',administration=false,restrictedCapture=true,businessBeforeDestination=false}={}){
  let s=SOC.create({scenario:'defence',jurisdiction});
  s=apply(s,{type:'configure',id:'local',config:{licensing:true}});
  if(businessBeforeDestination)s=send(s,'business',{action:'start'});
@@ -25,7 +25,7 @@ function ready({jurisdiction='AU',administration=false,businessBeforeDestination
  s=send(s,'boundaries',{action:'start'});
  const source=contract(s,'source-environment',administration?'administration':'restricted-operations',['archive','recorder','room','local'],administration?'internal':'restricted');
  // A restricted captured item may be in an administrative archive, but must not be declassified by its interface.
- if(administration)source.flows.find(f=>f.resource==='recorder').informationClass='restricted';
+ if(administration&&restrictedCapture)source.flows.find(f=>f.resource==='recorder').informationClass='restricted';
  s=bind(s,source);s=bind(s,contract(s,'destination-environment',administration?'training':'restricted-operations',['handover-archive'],administration?'internal':'restricted'));
  return tick(s);
 }
@@ -33,5 +33,5 @@ function record(s){s=info(s,{action:'book',start:s.clock,end:s.clock+40,attendee
 const interfaceCommand=(administration=false)=>({action:'interface',id:'scenario-handover',policyId:administration?'defence-admin-to-training-v1':'defence-restricted-handover-v1',sourceResource:'archive',destinationResource:'handover-archive'});
 const transfer=(s,recordId=s.records[0].id)=>info(s,{action:'transfer',interfaceId:'scenario-handover',recordId,role:'supervisor'});
 
-function journey(options={}){let state=record(ready(options));state=tick(info(state,interfaceCommand(!!options.administration)));state=transfer(state);return {options:{scenario:'defence',jurisdiction:options.jurisdiction||'AU'},commands:structuredClone(histories.get(state)),expectedState:state};}
+function journey(options={}){let state=record(ready(options));state=tick(info(state,interfaceCommand(!!options.administration)));state=transfer(state);return {fixtureOptions:{...options,restrictedCapture:options.restrictedCapture!==false},options:{scenario:'defence',jurisdiction:options.jurisdiction||'AU'},commands:structuredClone(histories.get(state)),expectedState:state};}
 module.exports={send,info,tick,contract,bind,ready,record,interfaceCommand,transfer,journey};

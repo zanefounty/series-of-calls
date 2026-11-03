@@ -29,7 +29,7 @@ The ready PR triggered another CI run (`41729242689`); its build passed and its 
 
 After capturing the result, PR #2 was closed without merging and the disposable remote branch was deleted. `mergedAt` was null. `main` remained at `3c977ad654bc2621bae6bbfa422907976a944b36`. Existing governance PR #1 remained open and draft at `governance/publication-checks`; it was not edited.
 
-## Observation workflow validator defect and bounded fix proposal
+## Earlier observation validator failure and fix proposal (historical)
 
 Authorized observation runs `41728252702` (upstream) and `41728262745` (references) completed before creating any bot PR. Both trusted persistence jobs rejected the same filename pattern: observer timestamps preserve ISO UTC offsets as `+00-00`, but `scripts/accept-observation.py` allowed only `[A-Za-z0-9_.:-]`. Exact errors were:
 
@@ -43,3 +43,7 @@ The actual upstream history artifact was downloaded from artifact `13275198803` 
 The patch at [observation-validator-fix.patch](observation-validator-fix.patch) changes only those two allow-lists and adds focused tests for timestamped UTC filenames and symlink traversal rejection. Its SHA-256 is `0cf7b7a29056afeecaf747b4a8714b5a2d47f056fd4effba3c0c8e47e9a5d265`. `python3 tests/observations_test.py -v` passed all eight tests in the disposable worktree, and `git apply --check` passed against a clean detached checkout at `origin/main`. The patch remains a proposal for separate integration and governance review; no source, workflow, ruleset or remote repository content was changed by this audit.
 
 The two hosted observation workflows produced no bot-authored PR because they failed before the PR creation step. **Bot-authored PR review enforcement remains unproven.** The proposed validator change has not been pushed, and the observation workflows should be rerun after its separate review and integration.
+
+## Completed bot review check
+
+After the owner-reviewed validator correction, both observation workflows succeeded and created real GitHub Actions bot PRs. Reference PR #4 subsequently passed all 11 hosted checks while remaining non-draft, `BLOCKED`, and `REVIEW_REQUIRED`; auto-merge is disabled. [The captured state](../github/bot-pr-4-all-checks-review-required.json) supplements the earlier failed observer attempts. Combined with the deliberately failing non-draft owner PR and the active ruleset receipts, this supports the branchProtection readiness flag. The owner subsequently approved both observation-only records after checks. All 11 checks passed on each current head, an owner review was recorded, and PR #3 merged at `bf783f99edaed87c0fef24ca63b235f5af865429`, PR #4 at `1678a6d8a3e73afe77801406958373c79de5982a`. This accepts the observation records only; canonical research acceptance remains zero. See [owner scope](owner-observation-decision.json) and [final PR #4 checks](../github/bot-pr-4-pre-merge.json).

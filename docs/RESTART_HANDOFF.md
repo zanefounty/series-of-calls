@@ -1,6 +1,6 @@
 # Restart handoff — 4 November 2026
 
-The owner requested repository/Codex preparation before relaunching with effective access. That is the immediate handoff boundary. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
+The owner requested continued full implementation, verification and deployment. Access and repository preparation are complete; bounded implementation and acceptance work have continued. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
 
 ## Access-restored continuation
 
@@ -8,7 +8,7 @@ The resumed executor now passes networking and localhost probes. Genuine Git his
 
 The continuation adds explicitly profile-bound measured capacity and renewal consequences, contract-binding save lineage, strict historical resource-sample validation, corrected HTML patterns and import-error recovery. See [access-restored evidence](../evidence/access-restored-2026-11-04/README.md) for current receipts and remaining work. Older checkpoints below are retained as historical observations. No full completion or deployment is claimed.
 
-The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance PR #1 is prepared and the owner approved merging after required checks pass; record actual merge/check evidence before treating it as active. Adaptation stays disabled. Main has required Actions checks without bypass and a separate owner-only PR review exception. Pages is configured for Actions, with main-only owner-reviewed deployment, but has not been deployed.
+The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance PR #1 merged at 43135706cfa4fc878b25dd9100a8cbc91111841d after owner approval and all 11 hosted checks passed. Its contact routes, receipt freeze and split accountability workflow are active. Follow-up PR #5 merged at 4a60832c6a430e9bbfecbc728fc7732d4a8f54ba after owner approval and all 11 checks passed; its mutation job now consumes the current acceptance artifact. Observation-only bot PRs #3 and #4 also merged after explicit owner approval and all 11 checks passed. They do not accept research claims. Adaptation stays disabled. Main has required Actions checks without bypass and a separate owner-only PR review exception. Pages is configured for Actions, with main-only owner-reviewed deployment, but has not been deployed.
 
 ## Read first
 
@@ -41,6 +41,12 @@ The current owner has authorized completing the original plan, source-linked hum
 
 The canonical index now has 4,839 requirements: 209 partial and 4,630 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
 
-Operational work remains separate: genuine Git history and six historical binaries, clean locked dependencies, native browser/MCP-browser/offline acceptance, owner research decisions, actual GitHub destination/protection/reporting contacts, reviewed governance proposals, enforced API project budget and Pages release. The 75 archive proposals remain outside the core scope until accepted intake.
+Verified operational work includes genuine Git history and six historical binaries, clean locked dependencies, actual GitHub destination/protections/reporting routes, reviewed governance, 64 stdio MCP cases and 22 browser MCP checks. Native Codex /mcp now connects Calls, SP and pinned browser servers; /skills discovers the local skill. The corrected project stdio cwd is the project root (`.`), verified with CLI 0.166.0. Full current matrices, source-specific implementation, owner research decisions, enforced API project budget and Pages release remain separately gated. The 75 archive proposals remain outside the core scope until accepted intake.
 
 Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The preview is committed on genuine upstream history at 3c977ad; later verification receipts and active worktrees may still be uncommitted. Do not reset, recreate, or blindly replay old commands. Inspect actual files, branches, running processes and latest receipts first.
+
+## Concrete next source obligation
+
+The source-linked defence interface clause (`REQ-da2a84278c7e5855` / `DESIGN-4786b87876e5ef42`, alongside `REQ-16191e04129963b0`) still lacks explicit allowed information flows between administrative/training/restricted workloads. Existing per-resource boundary classification and regional-transfer policy do not provide a workload-interface graph. A bounded implementation must validate source/destination, direction, purpose and current generations; retain blocked attempts; leave the destination untouched on failure; and support provisioned repair through the shared dispatcher, worker/save and visible control paths. This is actionable implementation work, not an external approval blocker or a completed feature.
+
+The newest observed upstream commit is present in the genuine object database but is not yet an ancestor of the implementation branch. [The lineage receipt](../evidence/access-restored-2026-11-04/github/upstream-lineage-current.json) distinguishes retained history from pending adoption. Do not use an empty/ours merge to manufacture adoption evidence.

@@ -1,0 +1,885 @@
+acceptance producer	Set up job	﻿2026-11-03T22:43:34.8778267Z Current runner version: '2.338.2'
+acceptance producer	Set up job	2026-11-03T22:43:34.8803799Z ##[group]Runner Image Provisioner
+acceptance producer	Set up job	2026-11-03T22:43:34.8804665Z Hosted Compute Agent
+acceptance producer	Set up job	2026-11-03T22:43:34.8805312Z Version: 20261021.618
+acceptance producer	Set up job	2026-11-03T22:43:34.8805891Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+acceptance producer	Set up job	2026-11-03T22:43:34.8806601Z Build Date: 2026-10-21T00:45:21Z
+acceptance producer	Set up job	2026-11-03T22:43:34.8807482Z Worker ID: {efad932c-1eb9-4093-bb0b-ec8f85593821}
+acceptance producer	Set up job	2026-11-03T22:43:34.8808132Z Region: westus3
+acceptance producer	Set up job	2026-11-03T22:43:34.8808653Z Cloud: Azure
+acceptance producer	Set up job	2026-11-03T22:43:34.8809150Z ##[endgroup]
+acceptance producer	Set up job	2026-11-03T22:43:34.8810918Z ##[group]Operating System
+acceptance producer	Set up job	2026-11-03T22:43:34.8811589Z Ubuntu
+acceptance producer	Set up job	2026-11-03T22:43:34.8812095Z 26.04.1
+acceptance producer	Set up job	2026-11-03T22:43:34.8812576Z LTS
+acceptance producer	Set up job	2026-11-03T22:43:34.8813035Z ##[endgroup]
+acceptance producer	Set up job	2026-11-03T22:43:34.8813546Z ##[group]Runner Image
+acceptance producer	Set up job	2026-11-03T22:43:34.8814133Z Image: ubuntu-26.04
+acceptance producer	Set up job	2026-11-03T22:43:34.8814640Z Version: 20261025.179.1
+acceptance producer	Set up job	2026-11-03T22:43:34.8815610Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+acceptance producer	Set up job	2026-11-03T22:43:34.8817382Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+acceptance producer	Set up job	2026-11-03T22:43:34.8818280Z ##[endgroup]
+acceptance producer	Set up job	2026-11-03T22:43:34.8819293Z ##[group]GITHUB_TOKEN Permissions
+acceptance producer	Set up job	2026-11-03T22:43:34.8821273Z Contents: read
+acceptance producer	Set up job	2026-11-03T22:43:34.8821837Z Metadata: read
+acceptance producer	Set up job	2026-11-03T22:43:34.8822387Z ##[endgroup]
+acceptance producer	Set up job	2026-11-03T22:43:34.8824508Z Secret source: Actions
+acceptance producer	Set up job	2026-11-03T22:43:34.8825431Z Cache mode: write
+acceptance producer	Set up job	2026-11-03T22:43:34.8826103Z Prepare workflow directory
+acceptance producer	Set up job	2026-11-03T22:43:34.9205278Z Prepare all required actions
+acceptance producer	Set up job	2026-11-03T22:43:34.9256360Z Getting action download info
+acceptance producer	Set up job	2026-11-03T22:43:35.2383894Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+acceptance producer	Set up job	2026-11-03T22:43:35.3630070Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+acceptance producer	Set up job	2026-11-03T22:43:35.4285041Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+acceptance producer	Set up job	2026-11-03T22:43:35.6046496Z Complete job name: acceptance producer
+acceptance producer	Run actions/checkout@v7	﻿2026-11-03T22:43:35.6976058Z ##[group]Run actions/checkout@v7
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6977034Z with:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6977441Z   fetch-depth: 0
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6977867Z   persist-credentials: false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6978360Z   repository: zanefounty/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6981893Z   token: ***
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6982282Z   ssh-strict: true
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6982680Z   ssh-user: git
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6983068Z   clean: true
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6983468Z   sparse-checkout-cone-mode: true
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6983941Z   fetch-tags: false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6984342Z   show-progress: true
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6984742Z   lfs: false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6985118Z   submodules: false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6985530Z   set-safe-directory: true
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6985986Z   allow-unsafe-pr-checkout: false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.6986827Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9550819Z Syncing repository: zanefounty/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9553678Z ##[group]Getting Git version info
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9555067Z Working directory is '/home/runner/work/series-of-calls/series-of-calls'
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9557182Z [command]/usr/bin/git version
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9576589Z git version 2.56.0
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9602910Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9616096Z Temporarily overriding HOME='/home/runner/work/_temp/5632cbb9-0b35-4dcb-9ff6-c663fb5d3ca4' before making global git config changes
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9619049Z Adding repository directory to the temporary git global config as a safe directory
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9624405Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9704751Z Deleting the contents of '/home/runner/work/series-of-calls/series-of-calls'
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9710594Z ##[group]Determining repository object format
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9712435Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9713805Z ##[group]Initializing the repository
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9718228Z [command]/usr/bin/git init /home/runner/work/series-of-calls/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9872164Z hint: Using 'master' as the name for the initial branch. This default branch name
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9874484Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9876272Z hint: to use in all of your new repositories, which will suppress this warning,
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9877883Z hint: call:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9878680Z hint:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9879597Z hint: 	git config --global init.defaultBranch <name>
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9880627Z hint:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9881677Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9883326Z hint: 'development'. The just-created branch can be renamed via this command:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9884683Z hint:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9885509Z hint: 	git branch -m <name>
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9886399Z hint:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9888081Z hint: Disable this message with "git config set advice.defaultBranchName false"
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9890468Z Initialized empty Git repository in /home/runner/work/series-of-calls/series-of-calls/.git/
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9909250Z [command]/usr/bin/git remote add origin https://github.com/zanefounty/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9977750Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9978799Z ##[group]Disabling automatic garbage collection
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:35.9983704Z [command]/usr/bin/git config --local gc.auto 0
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0026264Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0027996Z ##[group]Setting up auth
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0028935Z Removing SSH command configuration
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0040748Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0082936Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0482410Z Removing HTTP extra header
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0488414Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0524398Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0747334Z Removing includeIf entries pointing to credentials config files
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0752345Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.0785810Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1011865Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1044136Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path /home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1070574Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1102038Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1130849Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1157079Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1157931Z ##[group]Fetching the repository
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:36.1164178Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +0f617fca2ae4b30dd35156345b71e52b3aacf516:refs/remotes/pull/5/merge
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4404334Z From https://github.com/zanefounty/series-of-calls
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4407206Z  * [new branch]      bot/references-observation-41732313932   -> origin/bot/references-observation-41732313932
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4410473Z  * [new branch]      bot/upstream-observation-41732306389     -> origin/bot/upstream-observation-41732306389
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4414227Z  * [new branch]      governance/current-mutation-receipts     -> origin/governance/current-mutation-receipts
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4417081Z  * [new branch]      governance/publication-checks            -> origin/governance/publication-checks
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4419124Z  * [new branch]      main                                     -> origin/main
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4421266Z  * [new ref]         0f617fca2ae4b30dd35156345b71e52b3aacf516 -> pull/5/merge
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4424196Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4425084Z ##[group]Determining the checkout info
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4426097Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4426976Z [command]/usr/bin/git sparse-checkout disable
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4467378Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4495434Z ##[group]Checking out the ref
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.4499548Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/5/merge
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7910357Z Note: switching to 'refs/remotes/pull/5/merge'.
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7911567Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7912375Z You are in 'detached HEAD' state. You can look around, make experimental
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7914281Z changes and commit them, and you can discard any commits you make in this
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7916189Z state without impacting any branches by switching back to a branch.
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7917745Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7918504Z If you want to create a new branch to retain commits you create, you may
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7920304Z do so (now or later) by using -c with the switch command. Example:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7921405Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7921889Z   git switch -c <new-branch-name>
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7922903Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7923357Z Or undo this operation with:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7924019Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7924404Z   git switch -
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7924921Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7925850Z Turn off this advice by setting config variable advice.detachedHead to false
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7927329Z 
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7928860Z HEAD is now at 0f617fc Merge c190bcb37fb6f184088cb1cf7e71f96e83a5cce3 into 43135706cfa4fc878b25dd9100a8cbc91111841d
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7939362Z ##[endgroup]
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.7985083Z [command]/usr/bin/git log -1 --format=%H
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8006333Z 0f617fca2ae4b30dd35156345b71e52b3aacf516
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8014565Z ##[group]Removing auth
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8015594Z Removing SSH command configuration
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8018510Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8044099Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8256977Z Removing HTTP extra header
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8260407Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8290539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8504993Z Removing includeIf entries pointing to credentials config files
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8508024Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8528699Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8531627Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8534168Z includeif.gitdir:/github/workspace/.git.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8535893Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8540913Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8555540Z /home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8567320Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-a085df94\-daac\-4f5f\-9ee5\-30b1a232ae81\.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8596978Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8614805Z /home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8624502Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-a085df94\-daac\-4f5f\-9ee5\-30b1a232ae81\.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8658828Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8678118Z /github/runner_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8685163Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-a085df94\-daac\-4f5f\-9ee5\-30b1a232ae81\.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8719248Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8740689Z /github/runner_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8757451Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-a085df94\-daac\-4f5f\-9ee5\-30b1a232ae81\.config
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.8786849Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.9001749Z Removing credentials config '/home/runner/work/_temp/git-credentials-a085df94-daac-4f5f-9ee5-30b1a232ae81.config'
+acceptance producer	Run actions/checkout@v7	2026-11-03T22:43:41.9013645Z ##[endgroup]
+acceptance producer	Remove checked-in receipts before producer execution	﻿2026-11-03T22:43:41.9262976Z ##[group]Run rm -f evidence/acceptance.json evidence/communications.tap evidence/recorder.log
+acceptance producer	Remove checked-in receipts before producer execution	2026-11-03T22:43:41.9265411Z ^[[36;1mrm -f evidence/acceptance.json evidence/communications.tap evidence/recorder.log^[[0m
+acceptance producer	Remove checked-in receipts before producer execution	2026-11-03T22:43:41.9290415Z shell: /usr/bin/bash -e {0}
+acceptance producer	Remove checked-in receipts before producer execution	2026-11-03T22:43:41.9291413Z ##[endgroup]
+acceptance producer	Run actions/setup-node@v7	﻿2026-11-03T22:43:41.9556256Z ##[group]Run actions/setup-node@v7
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9557416Z with:
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9558164Z   node-version: 24
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9558988Z   cache: npm
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9559764Z   check-latest: false
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9567264Z   token: ***
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9568097Z   package-manager-cache: true
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:41.9569020Z ##[endgroup]
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.0857184Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.1528814Z ##[group]Environment details
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.4788730Z node: v24.22.1
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.4789126Z npm: 11.19.1
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.4789355Z yarn: 1.22.22
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.4806579Z ##[endgroup]
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.4807388Z [command]/opt/hostedtoolcache/node/24.22.1/x64/bin/npm config get cache
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.5999508Z /home/runner/.npm
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:42.8355156Z Cache hit for: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:43.8350119Z Received 4248191 of 4248191 (100.0%), 5.4 MBs/sec
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:43.8351211Z Cache Size: ~4 MB (4248191 B)
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:43.8380528Z [command]/usr/bin/tar -xf /home/runner/work/_temp/15e62abf-ee7a-427d-8f30-a84d42aa47de/cache.tzst -P -C /home/runner/work/series-of-calls/series-of-calls --use-compress-program unzstd
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:43.8526443Z Cache restored successfully
+acceptance producer	Run actions/setup-node@v7	2026-11-03T22:43:43.8533191Z Cache restored from key: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+acceptance producer	Run npm ci	﻿2026-11-03T22:43:43.8648886Z ##[group]Run npm ci
+acceptance producer	Run npm ci	2026-11-03T22:43:43.8649167Z ^[[36;1mnpm ci^[[0m
+acceptance producer	Run npm ci	2026-11-03T22:43:43.8677377Z shell: /usr/bin/bash -e {0}
+acceptance producer	Run npm ci	2026-11-03T22:43:43.8677701Z ##[endgroup]
+acceptance producer	Run npm ci	2026-11-03T22:43:44.6260842Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9492283Z 
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9493162Z added 64 packages, and audited 65 packages in 1s
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9493528Z 
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9493710Z 13 packages are looking for funding
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9494220Z   run `npm fund` for details
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9503047Z 
+acceptance producer	Run npm ci	2026-11-03T22:43:44.9503301Z found 0 vulnerabilities
+acceptance producer	Record acceptance evidence	﻿2026-11-03T22:43:44.9615370Z ##[group]Run set -o pipefail
+acceptance producer	Record acceptance evidence	2026-11-03T22:43:44.9615752Z ^[[36;1mset -o pipefail^[[0m
+acceptance producer	Record acceptance evidence	2026-11-03T22:43:44.9616118Z ^[[36;1mpython3 scripts/record-evidence.py 2>&1 | tee evidence/recorder.log^[[0m
+acceptance producer	Record acceptance evidence	2026-11-03T22:43:44.9635290Z shell: /usr/bin/bash -e {0}
+acceptance producer	Record acceptance evidence	2026-11-03T22:43:44.9635605Z ##[endgroup]
+acceptance producer	Record acceptance evidence	2026-11-03T22:47:58.9184585Z Executed 455 acceptance cases; failures=0
+acceptance producer	Run actions/upload-artifact@v4	﻿2026-11-03T22:47:58.9440792Z ##[group]Run actions/upload-artifact@v4
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9441365Z with:
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9441732Z   name: acceptance-41733275530-1
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9442440Z   path: evidence/acceptance.json
+acceptance producer	Run actions/upload-artifact@v4	evidence/communications.tap
+acceptance producer	Run actions/upload-artifact@v4	evidence/recorder.log
+acceptance producer	Run actions/upload-artifact@v4	
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9443194Z   if-no-files-found: warn
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9443721Z   retention-days: 14
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9444135Z   compression-level: 6
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9444509Z   overwrite: false
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9444904Z   include-hidden-files: false
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:58.9445349Z ##[endgroup]
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1147381Z (node:2598) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1148222Z (Use `node --trace-deprecation ...` to show where the warning was created)
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1234646Z Multiple search paths detected. Calculating the least common ancestor of all paths
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1237799Z The least common ancestor is /home/runner/work/series-of-calls/series-of-calls/evidence. This will be the root directory of the artifact
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1239385Z With the provided path, there will be 3 files uploaded
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1240556Z Artifact name is valid!
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.1241271Z Root directory input is valid!
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.4931371Z Beginning upload of artifact content to blob storage
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.5250016Z (node:2598) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.8167138Z Uploaded bytes 47494
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.8743285Z Finished uploading artifact content to blob storage!
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.8745453Z SHA256 digest of uploaded artifact zip is a7546f3dcd85c49697b44587b9b6fe309fec6fdd69d0136126653c8aea4b9067
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:47:59.8747112Z Finalizing artifact upload
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:48:00.3542035Z Artifact acceptance-41733275530-1.zip successfully finalized. Artifact ID 13276768126
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:48:00.3542939Z Artifact acceptance-41733275530-1 has been successfully uploaded! Final size is 47494 bytes. Artifact ID is 13276768126
+acceptance producer	Run actions/upload-artifact@v4	2026-11-03T22:48:00.3547312Z Artifact download URL: https://github.com/zanefounty/series-of-calls/actions/runs/41733275530/artifacts/13276768126
+acceptance producer	Post Run actions/setup-node@v7	﻿2026-11-03T22:48:00.3719604Z Post job cleanup.
+acceptance producer	Post Run actions/setup-node@v7	2026-11-03T22:48:00.4842222Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee, not saving cache.
+acceptance producer	Post Run actions/checkout@v7	﻿2026-11-03T22:48:00.4955771Z Post job cleanup.
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.5881655Z [command]/usr/bin/git version
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.5938019Z git version 2.56.0
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.5968444Z Temporarily overriding HOME='/home/runner/work/_temp/d34ce6ba-134e-45d9-8276-2d16016d887b' before making global git config changes
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.5969799Z Adding repository directory to the temporary git global config as a safe directory
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.5970649Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6037920Z Removing SSH command configuration
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6041844Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6075245Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6394859Z Removing HTTP extra header
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6402454Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6444585Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6827168Z Removing includeIf entries pointing to credentials config files
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6835633Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+acceptance producer	Post Run actions/checkout@v7	2026-11-03T22:48:00.6884526Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+acceptance producer	Complete job	﻿2026-11-03T22:48:00.7292396Z Cleaning up orphan processes
+acceptance producer	Complete job	2026-11-03T22:48:00.7613035Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+development gates	Set up job	﻿2026-11-03T22:48:06.6720652Z Current runner version: '2.338.2'
+development gates	Set up job	2026-11-03T22:48:06.6756920Z ##[group]Runner Image Provisioner
+development gates	Set up job	2026-11-03T22:48:06.6758394Z Hosted Compute Agent
+development gates	Set up job	2026-11-03T22:48:06.6759403Z Version: 20261028.624
+development gates	Set up job	2026-11-03T22:48:06.6760576Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+development gates	Set up job	2026-11-03T22:48:06.6761834Z Build Date: 2026-10-28T21:51:42Z
+development gates	Set up job	2026-11-03T22:48:06.6763158Z Worker ID: {8313af27-617a-4814-857f-b5a859b41a1d}
+development gates	Set up job	2026-11-03T22:48:06.6764502Z Region: eastus2
+development gates	Set up job	2026-11-03T22:48:06.6765409Z Cloud: Azure
+development gates	Set up job	2026-11-03T22:48:06.6766367Z ##[endgroup]
+development gates	Set up job	2026-11-03T22:48:06.6769762Z ##[group]Operating System
+development gates	Set up job	2026-11-03T22:48:06.6770891Z Ubuntu
+development gates	Set up job	2026-11-03T22:48:06.6771961Z 26.04.1
+development gates	Set up job	2026-11-03T22:48:06.6773095Z LTS
+development gates	Set up job	2026-11-03T22:48:06.6774150Z ##[endgroup]
+development gates	Set up job	2026-11-03T22:48:06.6775208Z ##[group]Runner Image
+development gates	Set up job	2026-11-03T22:48:06.6776272Z Image: ubuntu-26.04
+development gates	Set up job	2026-11-03T22:48:06.6777530Z Version: 20261101.186.1
+development gates	Set up job	2026-11-03T22:48:06.6779562Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+development gates	Set up job	2026-11-03T22:48:06.6783069Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+development gates	Set up job	2026-11-03T22:48:06.6784907Z ##[endgroup]
+development gates	Set up job	2026-11-03T22:48:06.6787008Z ##[group]GITHUB_TOKEN Permissions
+development gates	Set up job	2026-11-03T22:48:06.6789896Z Contents: read
+development gates	Set up job	2026-11-03T22:48:06.6791120Z Metadata: read
+development gates	Set up job	2026-11-03T22:48:06.6792153Z ##[endgroup]
+development gates	Set up job	2026-11-03T22:48:06.6795283Z Secret source: Actions
+development gates	Set up job	2026-11-03T22:48:06.6797107Z Cache mode: write
+development gates	Set up job	2026-11-03T22:48:06.6798583Z Prepare workflow directory
+development gates	Set up job	2026-11-03T22:48:06.7290852Z Prepare all required actions
+development gates	Set up job	2026-11-03T22:48:06.7364227Z Getting action download info
+development gates	Set up job	2026-11-03T22:48:06.9581847Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+development gates	Set up job	2026-11-03T22:48:07.0750646Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+development gates	Set up job	2026-11-03T22:48:07.2753803Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+development gates	Set up job	2026-11-03T22:48:07.3403358Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+development gates	Set up job	2026-11-03T22:48:07.5214188Z Complete job name: development gates
+development gates	Run actions/checkout@v7	﻿2026-11-03T22:48:07.6105734Z ##[group]Run actions/checkout@v7
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6106640Z with:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6107074Z   fetch-depth: 0
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6107551Z   persist-credentials: false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6108104Z   repository: zanefounty/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6111856Z   token: ***
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6112288Z   ssh-strict: true
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6112730Z   ssh-user: git
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6113341Z   clean: true
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6113795Z   sparse-checkout-cone-mode: true
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6114328Z   fetch-tags: false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6114774Z   show-progress: true
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6115228Z   lfs: false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6115637Z   submodules: false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6116083Z   set-safe-directory: true
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6116602Z   allow-unsafe-pr-checkout: false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.6117386Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9129400Z Syncing repository: zanefounty/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9131540Z ##[group]Getting Git version info
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9132982Z Working directory is '/home/runner/work/series-of-calls/series-of-calls'
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9134867Z [command]/usr/bin/git version
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9170195Z git version 2.56.0
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9284518Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9292173Z Temporarily overriding HOME='/home/runner/work/_temp/f503e4c1-f29c-4e08-b580-8b355e3ac5c6' before making global git config changes
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9294944Z Adding repository directory to the temporary git global config as a safe directory
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9297197Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9301266Z Deleting the contents of '/home/runner/work/series-of-calls/series-of-calls'
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9303701Z ##[group]Determining repository object format
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9305983Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9307348Z ##[group]Initializing the repository
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9308787Z [command]/usr/bin/git init /home/runner/work/series-of-calls/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9431183Z hint: Using 'master' as the name for the initial branch. This default branch name
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9433562Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9434636Z hint: to use in all of your new repositories, which will suppress this warning,
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9435693Z hint: call:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9436228Z hint:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9436870Z hint: 	git config --global init.defaultBranch <name>
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9437889Z hint:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9438989Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9440464Z hint: 'development'. The just-created branch can be renamed via this command:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9441537Z hint:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9442505Z hint: 	git branch -m <name>
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9443660Z hint:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9444808Z hint: Disable this message with "git config set advice.defaultBranchName false"
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9448627Z Initialized empty Git repository in /home/runner/work/series-of-calls/series-of-calls/.git/
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9459056Z [command]/usr/bin/git remote add origin https://github.com/zanefounty/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9510676Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9512118Z ##[group]Disabling automatic garbage collection
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9516724Z [command]/usr/bin/git config --local gc.auto 0
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9553163Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9555168Z ##[group]Setting up auth
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9556432Z Removing SSH command configuration
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9559390Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+development gates	Run actions/checkout@v7	2026-11-03T22:48:07.9597771Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0060683Z Removing HTTP extra header
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0067286Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0100509Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0370388Z Removing includeIf entries pointing to credentials config files
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0376111Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0409764Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0680771Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0719136Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path /home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0750580Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0786306Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0817177Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0847096Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0848381Z ##[group]Fetching the repository
+development gates	Run actions/checkout@v7	2026-11-03T22:48:08.0853740Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +0f617fca2ae4b30dd35156345b71e52b3aacf516:refs/remotes/pull/5/merge
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0078236Z From https://github.com/zanefounty/series-of-calls
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0082265Z  * [new branch]      bot/references-observation-41732313932   -> origin/bot/references-observation-41732313932
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0086039Z  * [new branch]      bot/upstream-observation-41732306389     -> origin/bot/upstream-observation-41732306389
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0089742Z  * [new branch]      governance/current-mutation-receipts     -> origin/governance/current-mutation-receipts
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0093506Z  * [new branch]      governance/publication-checks            -> origin/governance/publication-checks
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0096396Z  * [new branch]      main                                     -> origin/main
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0098706Z  * [new ref]         0f617fca2ae4b30dd35156345b71e52b3aacf516 -> pull/5/merge
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0103536Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0105120Z ##[group]Determining the checkout info
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0106533Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0107427Z [command]/usr/bin/git sparse-checkout disable
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0148299Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0184776Z ##[group]Checking out the ref
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.0188016Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/5/merge
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4039991Z Note: switching to 'refs/remotes/pull/5/merge'.
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4040864Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4041205Z You are in 'detached HEAD' state. You can look around, make experimental
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4041892Z changes and commit them, and you can discard any commits you make in this
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4042572Z state without impacting any branches by switching back to a branch.
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4043238Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4043532Z If you want to create a new branch to retain commits you create, you may
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4044244Z do so (now or later) by using -c with the switch command. Example:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4044637Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4044854Z   git switch -c <new-branch-name>
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4045460Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4045665Z Or undo this operation with:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4053467Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4053761Z   git switch -
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4054024Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4054452Z Turn off this advice by setting config variable advice.detachedHead to false
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4054897Z 
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4055350Z HEAD is now at 0f617fc Merge c190bcb37fb6f184088cb1cf7e71f96e83a5cce3 into 43135706cfa4fc878b25dd9100a8cbc91111841d
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4147049Z ##[endgroup]
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4150713Z [command]/usr/bin/git log -1 --format=%H
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4177764Z 0f617fca2ae4b30dd35156345b71e52b3aacf516
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4187482Z ##[group]Removing auth
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4188255Z Removing SSH command configuration
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4192090Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4225123Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4500220Z Removing HTTP extra header
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4504001Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4535552Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4801405Z Removing includeIf entries pointing to credentials config files
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4804671Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4829521Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4831349Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4832459Z includeif.gitdir:/github/workspace/.git.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4834030Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4838290Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4863361Z /home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4876078Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-f8575e7c\-12e3\-416b\-9487\-1968e6a9b2b7\.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4920265Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4943738Z /home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4952532Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-f8575e7c\-12e3\-416b\-9487\-1968e6a9b2b7\.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.4994000Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5017699Z /github/runner_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5028217Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-f8575e7c\-12e3\-416b\-9487\-1968e6a9b2b7\.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5061862Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5086478Z /github/runner_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5096045Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-f8575e7c\-12e3\-416b\-9487\-1968e6a9b2b7\.config
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5129237Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5403401Z Removing credentials config '/home/runner/work/_temp/git-credentials-f8575e7c-12e3-416b-9487-1968e6a9b2b7.config'
+development gates	Run actions/checkout@v7	2026-11-03T22:48:10.5412431Z ##[endgroup]
+development gates	Clear gate output paths before installation	﻿2026-11-03T22:48:10.5631197Z ##[group]Run rm -f evidence/gates.log evidence/gates-install.log
+development gates	Clear gate output paths before installation	2026-11-03T22:48:10.5632032Z ^[[36;1mrm -f evidence/gates.log evidence/gates-install.log^[[0m
+development gates	Clear gate output paths before installation	2026-11-03T22:48:10.5685871Z shell: /usr/bin/bash -e {0}
+development gates	Clear gate output paths before installation	2026-11-03T22:48:10.5686385Z ##[endgroup]
+development gates	Remove checked-in receipts before artifact download	﻿2026-11-03T22:48:10.5838614Z ##[group]Run rm -f evidence/acceptance.json evidence/communications.tap
+development gates	Remove checked-in receipts before artifact download	2026-11-03T22:48:10.5839487Z ^[[36;1mrm -f evidence/acceptance.json evidence/communications.tap^[[0m
+development gates	Remove checked-in receipts before artifact download	2026-11-03T22:48:10.5884266Z shell: /usr/bin/bash -e {0}
+development gates	Remove checked-in receipts before artifact download	2026-11-03T22:48:10.5884817Z ##[endgroup]
+development gates	Run actions/download-artifact@v4	﻿2026-11-03T22:48:10.6066859Z ##[group]Run actions/download-artifact@v4
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6067440Z with:
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6067864Z   name: acceptance-41733275530-1
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6068336Z   path: evidence
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6068765Z   merge-multiple: false
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6069233Z   repository: zanefounty/series-of-calls
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6069727Z   run-id: 41733275530
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.6070138Z ##[endgroup]
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.7596760Z Downloading single artifact
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.7770244Z (node:2478) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.7771604Z (Use `node --trace-deprecation ...` to show where the warning was created)
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.8800223Z Preparing to download the following artifacts:
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:10.8801581Z - acceptance-41733275530-1 (ID: 13276768126, Size: 47494, Expected Digest: sha256:a7546f3dcd85c49697b44587b9b6fe309fec6fdd69d0136126653c8aea4b9067)
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0540867Z Redirecting to blob download url: https://productionresultssa9.blob.core.windows.net/actions-results/339c74ff-9ffc-8c94-b6f1-867a2e41912c/workflow-job-run-c5021231-94fc-5309-937a-a2364df9beb0/artifacts/1e74b0f61a0d552e9e136aaa995ae4880ef6a78dd609703bd4b4c95771c5b212.zip
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0542537Z Starting download of artifact to: /home/runner/work/series-of-calls/series-of-calls/evidence
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0802371Z (node:2478) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0881976Z SHA256 digest of downloaded artifact is a7546f3dcd85c49697b44587b9b6fe309fec6fdd69d0136126653c8aea4b9067
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0883692Z Artifact download completed successfully.
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0884682Z Total of 1 artifact(s) downloaded
+development gates	Run actions/download-artifact@v4	2026-11-03T22:48:11.0889079Z Download artifact has finished successfully
+development gates	Run actions/setup-node@v7	﻿2026-11-03T22:48:11.1120254Z ##[group]Run actions/setup-node@v7
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1120579Z with:
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1120788Z   node-version: 24
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1121005Z   cache: npm
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1121211Z   check-latest: false
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1123776Z   token: ***
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1124040Z   package-manager-cache: true
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.1124303Z ##[endgroup]
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.2421909Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.3273797Z ##[group]Environment details
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.7128731Z node: v24.22.2
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.7129486Z npm: 11.19.1
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.7130090Z yarn: 1.22.22
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.7131087Z ##[endgroup]
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.7152324Z [command]/opt/hostedtoolcache/node/24.22.2/x64/bin/npm config get cache
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.8276334Z /home/runner/.npm
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:11.9158665Z Cache hit for: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:12.1432372Z Received 4248191 of 4248191 (100.0%), 27.6 MBs/sec
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:12.1433650Z Cache Size: ~4 MB (4248191 B)
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:12.1469534Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ef47bccb-8399-4896-93db-49060bb1058d/cache.tzst -P -C /home/runner/work/series-of-calls/series-of-calls --use-compress-program unzstd
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:12.1717587Z Cache restored successfully
+development gates	Run actions/setup-node@v7	2026-11-03T22:48:12.1724785Z Cache restored from key: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+development gates	Install locked dependencies for the evidence gate rerun	﻿2026-11-03T22:48:12.1885371Z ##[group]Run set -o pipefail
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:12.1885724Z ^[[36;1mset -o pipefail^[[0m
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:12.1886024Z ^[[36;1mnpm ci 2>&1 | tee evidence/gates-install.log^[[0m
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:12.1945869Z shell: /usr/bin/bash -e {0}
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:12.1946159Z ##[endgroup]
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.0720233Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4612379Z 
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4613370Z added 64 packages, and audited 65 packages in 1s
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4613837Z 
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4614165Z 13 packages are looking for funding
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4614776Z   run `npm fund` for details
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4623586Z 
+development gates	Install locked dependencies for the evidence gate rerun	2026-11-03T22:48:13.4623958Z found 0 vulnerabilities
+development gates	Require this run's acceptance receipts	﻿2026-11-03T22:48:13.5078133Z ##[group]Run test -s evidence/acceptance.json
+development gates	Require this run's acceptance receipts	2026-11-03T22:48:13.5078554Z ^[[36;1mtest -s evidence/acceptance.json^[[0m
+development gates	Require this run's acceptance receipts	2026-11-03T22:48:13.5078903Z ^[[36;1mtest -s evidence/communications.tap^[[0m
+development gates	Require this run's acceptance receipts	2026-11-03T22:48:13.5129131Z shell: /usr/bin/bash -e {0}
+development gates	Require this run's acceptance receipts	2026-11-03T22:48:13.5129399Z ##[endgroup]
+development gates	Run development gates against downloaded acceptance	﻿2026-11-03T22:48:13.5233291Z ##[group]Run set -o pipefail
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:48:13.5233650Z ^[[36;1mset -o pipefail^[[0m
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:48:13.5234005Z ^[[36;1mpython3 scripts/verify.py all 2>&1 | tee evidence/gates.log^[[0m
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:48:13.5280692Z shell: /usr/bin/bash -e {0}
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:48:13.5280967Z ##[endgroup]
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4468999Z PASS source
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4469961Z PASS coverage
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4470330Z PASS mapping
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4470666Z PASS catalogue
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4470935Z PASS evidence
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4471328Z PASS upstream
+development gates	Run development gates against downloaded acceptance	2026-11-03T22:52:33.4471791Z PASS freshness
+development gates	Run actions/upload-artifact@v4	﻿2026-11-03T22:52:33.4669500Z ##[group]Run actions/upload-artifact@v4
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4669807Z with:
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4670018Z   name: gates-41733275530-1
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4670320Z   path: evidence/gates-install.log
+development gates	Run actions/upload-artifact@v4	evidence/gates.log
+development gates	Run actions/upload-artifact@v4	
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4670657Z   if-no-files-found: warn
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4670893Z   retention-days: 14
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4671110Z   compression-level: 6
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4671333Z   overwrite: false
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4671553Z   include-hidden-files: false
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.4671793Z ##[endgroup]
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6371738Z (node:2849) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6372630Z (Use `node --trace-deprecation ...` to show where the warning was created)
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6423460Z Multiple search paths detected. Calculating the least common ancestor of all paths
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6426854Z The least common ancestor is /home/runner/work/series-of-calls/series-of-calls/evidence. This will be the root directory of the artifact
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6428604Z With the provided path, there will be 2 files uploaded
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6433143Z Artifact name is valid!
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.6440555Z Root directory input is valid!
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9380246Z Beginning upload of artifact content to blob storage
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9583078Z (node:2849) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9776571Z Uploaded bytes 511
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9908897Z Finished uploading artifact content to blob storage!
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9910492Z SHA256 digest of uploaded artifact zip is f6814ad90f32b10b147c9d6c795ba3e6daf737c7cfd59ced0d41553b1965a114
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:33.9912048Z Finalizing artifact upload
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:34.4678331Z Artifact gates-41733275530-1.zip successfully finalized. Artifact ID 13276773740
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:34.4680020Z Artifact gates-41733275530-1 has been successfully uploaded! Final size is 511 bytes. Artifact ID is 13276773740
+development gates	Run actions/upload-artifact@v4	2026-11-03T22:52:34.4687387Z Artifact download URL: https://github.com/zanefounty/series-of-calls/actions/runs/41733275530/artifacts/13276773740
+development gates	Post Run actions/setup-node@v7	﻿2026-11-03T22:52:34.4882090Z Post job cleanup.
+development gates	Post Run actions/setup-node@v7	2026-11-03T22:52:34.6067692Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee, not saving cache.
+development gates	Post Run actions/checkout@v7	﻿2026-11-03T22:52:34.6207643Z Post job cleanup.
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7231997Z [command]/usr/bin/git version
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7287747Z git version 2.56.0
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7334124Z Temporarily overriding HOME='/home/runner/work/_temp/04e51425-d01c-4156-b453-5d216679ffc0' before making global git config changes
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7353083Z Adding repository directory to the temporary git global config as a safe directory
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7355477Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7405034Z Removing SSH command configuration
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7419515Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7472044Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7903407Z Removing HTTP extra header
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7905683Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.7967950Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.8332764Z Removing includeIf entries pointing to credentials config files
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.8339840Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+development gates	Post Run actions/checkout@v7	2026-11-03T22:52:34.8375362Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+development gates	Complete job	﻿2026-11-03T22:52:34.8804554Z Cleaning up orphan processes
+development gates	Complete job	2026-11-03T22:52:34.9366952Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+gate mutation tests	Set up job	﻿2026-11-03T22:48:06.1239134Z Current runner version: '2.338.2'
+gate mutation tests	Set up job	2026-11-03T22:48:06.1259923Z ##[group]Runner Image Provisioner
+gate mutation tests	Set up job	2026-11-03T22:48:06.1260675Z Hosted Compute Agent
+gate mutation tests	Set up job	2026-11-03T22:48:06.1261284Z Version: 20261021.618
+gate mutation tests	Set up job	2026-11-03T22:48:06.1261799Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+gate mutation tests	Set up job	2026-11-03T22:48:06.1262374Z Build Date: 2026-10-21T00:45:21Z
+gate mutation tests	Set up job	2026-11-03T22:48:06.1262987Z Worker ID: {d5b0c02d-68d1-4b08-8a5d-98d26da0f1a6}
+gate mutation tests	Set up job	2026-11-03T22:48:06.1263557Z Region: centralus
+gate mutation tests	Set up job	2026-11-03T22:48:06.1264070Z Cloud: Azure
+gate mutation tests	Set up job	2026-11-03T22:48:06.1264530Z ##[endgroup]
+gate mutation tests	Set up job	2026-11-03T22:48:06.1265848Z ##[group]Operating System
+gate mutation tests	Set up job	2026-11-03T22:48:06.1266448Z Ubuntu
+gate mutation tests	Set up job	2026-11-03T22:48:06.1266877Z 26.04.1
+gate mutation tests	Set up job	2026-11-03T22:48:06.1267362Z LTS
+gate mutation tests	Set up job	2026-11-03T22:48:06.1267992Z ##[endgroup]
+gate mutation tests	Set up job	2026-11-03T22:48:06.1268457Z ##[group]Runner Image
+gate mutation tests	Set up job	2026-11-03T22:48:06.1269002Z Image: ubuntu-26.04
+gate mutation tests	Set up job	2026-11-03T22:48:06.1269473Z Version: 20261025.179.1
+gate mutation tests	Set up job	2026-11-03T22:48:06.1270340Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+gate mutation tests	Set up job	2026-11-03T22:48:06.1271802Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+gate mutation tests	Set up job	2026-11-03T22:48:06.1272614Z ##[endgroup]
+gate mutation tests	Set up job	2026-11-03T22:48:06.1273545Z ##[group]GITHUB_TOKEN Permissions
+gate mutation tests	Set up job	2026-11-03T22:48:06.1275070Z Contents: read
+gate mutation tests	Set up job	2026-11-03T22:48:06.1275583Z Metadata: read
+gate mutation tests	Set up job	2026-11-03T22:48:06.1276150Z ##[endgroup]
+gate mutation tests	Set up job	2026-11-03T22:48:06.1278028Z Secret source: Actions
+gate mutation tests	Set up job	2026-11-03T22:48:06.1278790Z Cache mode: write
+gate mutation tests	Set up job	2026-11-03T22:48:06.1279445Z Prepare workflow directory
+gate mutation tests	Set up job	2026-11-03T22:48:06.1546979Z Prepare all required actions
+gate mutation tests	Set up job	2026-11-03T22:48:06.1584908Z Getting action download info
+gate mutation tests	Set up job	2026-11-03T22:48:06.3841834Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+gate mutation tests	Set up job	2026-11-03T22:48:06.5052501Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+gate mutation tests	Set up job	2026-11-03T22:48:06.8951685Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+gate mutation tests	Set up job	2026-11-03T22:48:07.0084506Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+gate mutation tests	Set up job	2026-11-03T22:48:07.2074484Z Complete job name: gate mutation tests
+gate mutation tests	Run actions/checkout@v7	﻿2026-11-03T22:48:07.2798804Z ##[group]Run actions/checkout@v7
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2799605Z with:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2799993Z   fetch-depth: 0
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2800409Z   persist-credentials: false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2800882Z   repository: zanefounty/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2804257Z   token: ***
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2804650Z   ssh-strict: true
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2805044Z   ssh-user: git
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2805424Z   clean: true
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2805814Z   sparse-checkout-cone-mode: true
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2806266Z   fetch-tags: false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2806653Z   show-progress: true
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2807053Z   lfs: false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2807638Z   submodules: false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2808079Z   set-safe-directory: true
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2808531Z   allow-unsafe-pr-checkout: false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.2809209Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4660247Z Syncing repository: zanefounty/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4662700Z ##[group]Getting Git version info
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4663924Z Working directory is '/home/runner/work/series-of-calls/series-of-calls'
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4665800Z [command]/usr/bin/git version
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4666488Z git version 2.56.0
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4668733Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4673744Z Temporarily overriding HOME='/home/runner/work/_temp/eb322753-6d6e-41f2-baa9-285cc70a30ad' before making global git config changes
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4675836Z Adding repository directory to the temporary git global config as a safe directory
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4677122Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4729728Z Deleting the contents of '/home/runner/work/series-of-calls/series-of-calls'
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4739074Z ##[group]Determining repository object format
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4741254Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4743495Z ##[group]Initializing the repository
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4744667Z [command]/usr/bin/git init /home/runner/work/series-of-calls/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4824264Z hint: Using 'master' as the name for the initial branch. This default branch name
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4826413Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4828325Z hint: to use in all of your new repositories, which will suppress this warning,
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4829782Z hint: call:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4830619Z hint:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4831437Z hint: 	git config --global init.defaultBranch <name>
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4832365Z hint:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4833209Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4834543Z hint: 'development'. The just-created branch can be renamed via this command:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4919062Z hint:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4919830Z hint: 	git branch -m <name>
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4920723Z hint:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4921669Z hint: Disable this message with "git config set advice.defaultBranchName false"
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4923463Z Initialized empty Git repository in /home/runner/work/series-of-calls/series-of-calls/.git/
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4926517Z [command]/usr/bin/git remote add origin https://github.com/zanefounty/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4929316Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4930054Z ##[group]Disabling automatic garbage collection
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4930738Z [command]/usr/bin/git config --local gc.auto 0
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4938244Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4939493Z ##[group]Setting up auth
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4940281Z Removing SSH command configuration
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4942462Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.4973851Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5328893Z Removing HTTP extra header
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5331977Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5366743Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5608172Z Removing includeIf entries pointing to credentials config files
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5609792Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5637805Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5876258Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5910418Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path /home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5939024Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5969486Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.5996230Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.6021575Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.6022266Z ##[group]Fetching the repository
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:07.6028429Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +0f617fca2ae4b30dd35156345b71e52b3aacf516:refs/remotes/pull/5/merge
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4127273Z From https://github.com/zanefounty/series-of-calls
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4128319Z  * [new branch]      bot/references-observation-41732313932   -> origin/bot/references-observation-41732313932
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4128998Z  * [new branch]      bot/upstream-observation-41732306389     -> origin/bot/upstream-observation-41732306389
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4129620Z  * [new branch]      governance/current-mutation-receipts     -> origin/governance/current-mutation-receipts
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4130205Z  * [new branch]      governance/publication-checks            -> origin/governance/publication-checks
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4130671Z  * [new branch]      main                                     -> origin/main
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4131090Z  * [new ref]         0f617fca2ae4b30dd35156345b71e52b3aacf516 -> pull/5/merge
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4132691Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4133120Z ##[group]Determining the checkout info
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4133590Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4135728Z [command]/usr/bin/git sparse-checkout disable
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4181084Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4208909Z ##[group]Checking out the ref
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.4213110Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/5/merge
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7499526Z Note: switching to 'refs/remotes/pull/5/merge'.
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7500065Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7500366Z You are in 'detached HEAD' state. You can look around, make experimental
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7500983Z changes and commit them, and you can discard any commits you make in this
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7501562Z state without impacting any branches by switching back to a branch.
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7501877Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7502158Z If you want to create a new branch to retain commits you create, you may
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7502721Z do so (now or later) by using -c with the switch command. Example:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7503042Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7503228Z   git switch -c <new-branch-name>
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7503880Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7504025Z Or undo this operation with:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7504242Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7504364Z   git switch -
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7504529Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7504849Z Turn off this advice by setting config variable advice.detachedHead to false
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7505271Z 
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7505738Z HEAD is now at 0f617fc Merge c190bcb37fb6f184088cb1cf7e71f96e83a5cce3 into 43135706cfa4fc878b25dd9100a8cbc91111841d
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7540319Z ##[endgroup]
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7584145Z [command]/usr/bin/git log -1 --format=%H
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7607126Z 0f617fca2ae4b30dd35156345b71e52b3aacf516
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7614755Z ##[group]Removing auth
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7615126Z Removing SSH command configuration
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7618418Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7645304Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7885010Z Removing HTTP extra header
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7888712Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.7918237Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8150435Z Removing includeIf entries pointing to credentials config files
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8153154Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8176335Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8177379Z includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8178073Z includeif.gitdir:/github/workspace/.git.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8178398Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8184751Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8205835Z /home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8215531Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-fefc7634\-1c80\-4bec\-a55b\-6f0d81804eed\.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8247597Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8268064Z /home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8275578Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/series-of-calls/series-of-calls/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-fefc7634\-1c80\-4bec\-a55b\-6f0d81804eed\.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8310415Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8330278Z /github/runner_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8337155Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-fefc7634\-1c80\-4bec\-a55b\-6f0d81804eed\.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8369178Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8391051Z /github/runner_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8402061Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-fefc7634\-1c80\-4bec\-a55b\-6f0d81804eed\.config
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8431697Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8667287Z Removing credentials config '/home/runner/work/_temp/git-credentials-fefc7634-1c80-4bec-a55b-6f0d81804eed.config'
+gate mutation tests	Run actions/checkout@v7	2026-11-03T22:48:19.8676537Z ##[endgroup]
+gate mutation tests	Clear mutation output paths before installation	﻿2026-11-03T22:48:19.8857033Z ##[group]Run rm -f evidence/gate-mutations.log evidence/mutations-install.log
+gate mutation tests	Clear mutation output paths before installation	2026-11-03T22:48:19.8857760Z ^[[36;1mrm -f evidence/gate-mutations.log evidence/mutations-install.log^[[0m
+gate mutation tests	Clear mutation output paths before installation	2026-11-03T22:48:19.8887187Z shell: /usr/bin/bash -e {0}
+gate mutation tests	Clear mutation output paths before installation	2026-11-03T22:48:19.8887722Z ##[endgroup]
+gate mutation tests	Remove checked-in receipts before artifact download	﻿2026-11-03T22:48:19.8996046Z ##[group]Run rm -f evidence/acceptance.json evidence/communications.tap
+gate mutation tests	Remove checked-in receipts before artifact download	2026-11-03T22:48:19.8996532Z ^[[36;1mrm -f evidence/acceptance.json evidence/communications.tap^[[0m
+gate mutation tests	Remove checked-in receipts before artifact download	2026-11-03T22:48:19.9021450Z shell: /usr/bin/bash -e {0}
+gate mutation tests	Remove checked-in receipts before artifact download	2026-11-03T22:48:19.9021675Z ##[endgroup]
+gate mutation tests	Run actions/download-artifact@v4	﻿2026-11-03T22:48:19.9148742Z ##[group]Run actions/download-artifact@v4
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9149026Z with:
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9149211Z   name: acceptance-41733275530-1
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9149427Z   path: evidence
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9149610Z   merge-multiple: false
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9149821Z   repository: zanefounty/series-of-calls
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9150055Z   run-id: 41733275530
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:19.9150246Z ##[endgroup]
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.0378654Z Downloading single artifact
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.0508964Z (node:2273) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.0509884Z (Use `node --trace-deprecation ...` to show where the warning was created)
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.2168455Z Preparing to download the following artifacts:
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.2169395Z - acceptance-41733275530-1 (ID: 13276768126, Size: 47494, Expected Digest: sha256:a7546f3dcd85c49697b44587b9b6fe309fec6fdd69d0136126653c8aea4b9067)
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.4088691Z Redirecting to blob download url: https://productionresultssa9.blob.core.windows.net/actions-results/339c74ff-9ffc-8c94-b6f1-867a2e41912c/workflow-job-run-c5021231-94fc-5309-937a-a2364df9beb0/artifacts/1e74b0f61a0d552e9e136aaa995ae4880ef6a78dd609703bd4b4c95771c5b212.zip
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.4090045Z Starting download of artifact to: /home/runner/work/series-of-calls/series-of-calls/evidence
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.5523350Z (node:2273) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.5837973Z SHA256 digest of downloaded artifact is a7546f3dcd85c49697b44587b9b6fe309fec6fdd69d0136126653c8aea4b9067
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.5838745Z Artifact download completed successfully.
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.5839124Z Total of 1 artifact(s) downloaded
+gate mutation tests	Run actions/download-artifact@v4	2026-11-03T22:48:20.5843231Z Download artifact has finished successfully
+gate mutation tests	Require this run's acceptance receipts	﻿2026-11-03T22:48:20.5960619Z ##[group]Run test -s evidence/acceptance.json
+gate mutation tests	Require this run's acceptance receipts	2026-11-03T22:48:20.5960934Z ^[[36;1mtest -s evidence/acceptance.json^[[0m
+gate mutation tests	Require this run's acceptance receipts	2026-11-03T22:48:20.5961191Z ^[[36;1mtest -s evidence/communications.tap^[[0m
+gate mutation tests	Require this run's acceptance receipts	2026-11-03T22:48:20.5988046Z shell: /usr/bin/bash -e {0}
+gate mutation tests	Require this run's acceptance receipts	2026-11-03T22:48:20.5988262Z ##[endgroup]
+gate mutation tests	Run actions/setup-node@v7	﻿2026-11-03T22:48:20.6099102Z ##[group]Run actions/setup-node@v7
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6099330Z with:
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6099496Z   node-version: 24
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6099686Z   cache: npm
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6099862Z   check-latest: false
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6101838Z   token: ***
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6102042Z   package-manager-cache: true
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.6102253Z ##[endgroup]
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.7183440Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:20.7736146Z ##[group]Environment details
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.0314559Z node: v24.22.1
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.0314861Z npm: 11.19.1
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.0315070Z yarn: 1.22.22
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.0315581Z ##[endgroup]
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.0329364Z [command]/opt/hostedtoolcache/node/24.22.1/x64/bin/npm config get cache
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.1258773Z /home/runner/.npm
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:21.3135543Z Cache hit for: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:22.0515320Z Received 4248191 of 4248191 (100.0%), 6.8 MBs/sec
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:22.0516158Z Cache Size: ~4 MB (4248191 B)
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:22.0536849Z [command]/usr/bin/tar -xf /home/runner/work/_temp/aa4ddbea-d6dc-481e-b913-79fe3fdca676/cache.tzst -P -C /home/runner/work/series-of-calls/series-of-calls --use-compress-program unzstd
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:22.0723015Z Cache restored successfully
+gate mutation tests	Run actions/setup-node@v7	2026-11-03T22:48:22.0729240Z Cache restored from key: node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee
+gate mutation tests	Install locked dependencies for mutation tests	﻿2026-11-03T22:48:22.0860651Z ##[group]Run set -o pipefail
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.0860926Z ^[[36;1mset -o pipefail^[[0m
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.0861200Z ^[[36;1mnpm ci 2>&1 | tee evidence/mutations-install.log^[[0m
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.0894195Z shell: /usr/bin/bash -e {0}
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.0894426Z ##[endgroup]
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.6883478Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9453575Z 
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9454475Z added 64 packages, and audited 65 packages in 803ms
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9454819Z 
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9472975Z 13 packages are looking for funding
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9473412Z   run `npm fund` for details
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9473707Z 
+gate mutation tests	Install locked dependencies for mutation tests	2026-11-03T22:48:22.9474044Z found 0 vulnerabilities
+gate mutation tests	Run fail-closed gate mutation tests	﻿2026-11-03T22:48:22.9616150Z ##[group]Run set -o pipefail
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:48:22.9616559Z ^[[36;1mset -o pipefail^[[0m
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:48:22.9617125Z ^[[36;1mpython3 -m unittest discover -s tests -p '*_test.py' 2>&1 | tee evidence/gate-mutations.log^[[0m
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:48:22.9654988Z shell: /usr/bin/bash -e {0}
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:48:22.9655545Z ##[endgroup]
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2643737Z ...................................................................................
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2644557Z ----------------------------------------------------------------------
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2645063Z Ran 83 tests in 190.212s
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2645252Z 
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2645374Z OK
+gate mutation tests	Run fail-closed gate mutation tests	2026-11-03T22:51:33.2647048Z {"mappingRecords": 3454, "originalRecords": 3360, "additions": 94, "fileRecords": 217, "distinctReferences": 91, "sourceCitationOccurrences": 72, "additionalResearchItems": 28, "upstreamCommits": 366, "upstreamFileVersions": 461, "sourceItems": 4839, "requirements": 4839}
+gate mutation tests	Run actions/upload-artifact@v4	﻿2026-11-03T22:51:33.2875572Z ##[group]Run actions/upload-artifact@v4
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2875839Z with:
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2876023Z   name: mutations-41733275530-1
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2876318Z   path: evidence/mutations-install.log
+gate mutation tests	Run actions/upload-artifact@v4	evidence/gate-mutations.log
+gate mutation tests	Run actions/upload-artifact@v4	
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2876633Z   if-no-files-found: warn
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2876836Z   retention-days: 14
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2877042Z   compression-level: 6
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2877239Z   overwrite: false
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2877673Z   include-hidden-files: false
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.2877895Z ##[endgroup]
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4242862Z (node:5553) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4243567Z (Use `node --trace-deprecation ...` to show where the warning was created)
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4285350Z Multiple search paths detected. Calculating the least common ancestor of all paths
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4287723Z The least common ancestor is /home/runner/work/series-of-calls/series-of-calls/evidence. This will be the root directory of the artifact
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4288952Z With the provided path, there will be 2 files uploaded
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4297015Z Artifact name is valid!
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.4297896Z Root directory input is valid!
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.7320984Z Beginning upload of artifact content to blob storage
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.7477990Z (node:5553) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.9187076Z Uploaded bytes 673
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.9681998Z Finished uploading artifact content to blob storage!
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.9682702Z SHA256 digest of uploaded artifact zip is 7caa0c8efe593fce8619a44cd1afe273345ce6f5b384f839de85481f6ea1a11c
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:33.9698301Z Finalizing artifact upload
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:34.4831922Z Artifact mutations-41733275530-1.zip successfully finalized. Artifact ID 13277524220
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:34.4832743Z Artifact mutations-41733275530-1 has been successfully uploaded! Final size is 673 bytes. Artifact ID is 13277524220
+gate mutation tests	Run actions/upload-artifact@v4	2026-11-03T22:51:34.4838189Z Artifact download URL: https://github.com/zanefounty/series-of-calls/actions/runs/41733275530/artifacts/13277524220
+gate mutation tests	Post Run actions/setup-node@v7	﻿2026-11-03T22:51:34.5009815Z Post job cleanup.
+gate mutation tests	Post Run actions/setup-node@v7	2026-11-03T22:51:34.5989152Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-888e859b2c5b5f424d7670d19cf6a05ea0782c27abf82046f89d6f171d22adee, not saving cache.
+gate mutation tests	Post Run actions/checkout@v7	﻿2026-11-03T22:51:34.6110764Z Post job cleanup.
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6802639Z [command]/usr/bin/git version
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6842981Z git version 2.56.0
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6873986Z Temporarily overriding HOME='/home/runner/work/_temp/b3e4d525-dc51-42a8-93aa-f950515bbf5e' before making global git config changes
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6875395Z Adding repository directory to the temporary git global config as a safe directory
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6878923Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/series-of-calls/series-of-calls
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6913976Z Removing SSH command configuration
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6920030Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.6954856Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7261316Z Removing HTTP extra header
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7270363Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7320185Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7653410Z Removing includeIf entries pointing to credentials config files
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7659745Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+gate mutation tests	Post Run actions/checkout@v7	2026-11-03T22:51:34.7691228Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+gate mutation tests	Complete job	﻿2026-11-03T22:51:34.8072205Z Cleaning up orphan processes
+gate mutation tests	Complete job	2026-11-03T22:51:34.8377838Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+accountability	Set up job	﻿2026-11-03T22:52:39.4958654Z Current runner version: '2.338.2'
+accountability	Set up job	2026-11-03T22:52:39.4985838Z ##[group]Runner Image Provisioner
+accountability	Set up job	2026-11-03T22:52:39.4986729Z Hosted Compute Agent
+accountability	Set up job	2026-11-03T22:52:39.4987303Z Version: 20261028.624
+accountability	Set up job	2026-11-03T22:52:39.4988042Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+accountability	Set up job	2026-11-03T22:52:39.4988752Z Build Date: 2026-10-28T21:51:42Z
+accountability	Set up job	2026-11-03T22:52:39.4989398Z Worker ID: {288e425d-d5aa-4dd5-affe-5a9fd4506856}
+accountability	Set up job	2026-11-03T22:52:39.4990060Z Region: centralus
+accountability	Set up job	2026-11-03T22:52:39.4990549Z Cloud: Azure
+accountability	Set up job	2026-11-03T22:52:39.4991079Z ##[endgroup]
+accountability	Set up job	2026-11-03T22:52:39.4992553Z ##[group]Operating System
+accountability	Set up job	2026-11-03T22:52:39.4993163Z Ubuntu
+accountability	Set up job	2026-11-03T22:52:39.4993658Z 26.04.1
+accountability	Set up job	2026-11-03T22:52:39.4994141Z LTS
+accountability	Set up job	2026-11-03T22:52:39.4994666Z ##[endgroup]
+accountability	Set up job	2026-11-03T22:52:39.4995190Z ##[group]Runner Image
+accountability	Set up job	2026-11-03T22:52:39.4995748Z Image: ubuntu-26.04
+accountability	Set up job	2026-11-03T22:52:39.4996278Z Version: 20261101.186.1
+accountability	Set up job	2026-11-03T22:52:39.4997273Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+accountability	Set up job	2026-11-03T22:52:39.4998943Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+accountability	Set up job	2026-11-03T22:52:39.4999836Z ##[endgroup]
+accountability	Set up job	2026-11-03T22:52:39.5000850Z ##[group]GITHUB_TOKEN Permissions
+accountability	Set up job	2026-11-03T22:52:39.5003086Z Contents: read
+accountability	Set up job	2026-11-03T22:52:39.5003671Z Metadata: read
+accountability	Set up job	2026-11-03T22:52:39.5004176Z ##[endgroup]
+accountability	Set up job	2026-11-03T22:52:39.5006182Z Secret source: Actions
+accountability	Set up job	2026-11-03T22:52:39.5007055Z Cache mode: write
+accountability	Set up job	2026-11-03T22:52:39.5007722Z Prepare workflow directory
+accountability	Set up job	2026-11-03T22:52:39.5336335Z Prepare all required actions
+accountability	Set up job	2026-11-03T22:52:39.5431664Z Complete job name: accountability
+accountability	Require every accountability job to succeed	﻿2026-11-03T22:52:39.6427234Z ##[group]Run printf 'acceptance: %s, gates: %s, mutations: %s\n' "$ACCEPTANCE_RESULT" "$GATES_RESULT" "$MUTATIONS_RESULT"
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.6429422Z ^[[36;1mprintf 'acceptance: %s, gates: %s, mutations: %s\n' "$ACCEPTANCE_RESULT" "$GATES_RESULT" "$MUTATIONS_RESULT"^[[0m
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.6430601Z ^[[36;1mtest "$ACCEPTANCE_RESULT" = success^[[0m
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.6431504Z ^[[36;1mtest "$GATES_RESULT" = success^[[0m
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.6432165Z ^[[36;1mtest "$MUTATIONS_RESULT" = success^[[0m
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7088634Z shell: /usr/bin/bash -e {0}
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7089569Z env:
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7090072Z   ACCEPTANCE_RESULT: success
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7090690Z   GATES_RESULT: success
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7091263Z   MUTATIONS_RESULT: success
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7091879Z ##[endgroup]
+accountability	Require every accountability job to succeed	2026-11-03T22:52:39.7384057Z acceptance: success, gates: success, mutations: success
+accountability	Complete job	﻿2026-11-03T22:52:39.7570880Z Cleaning up orphan processes

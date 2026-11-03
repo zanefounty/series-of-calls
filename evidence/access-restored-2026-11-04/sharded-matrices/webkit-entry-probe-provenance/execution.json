@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-11-03T23:21:55.770125+00:00",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--ulimit",
+    "core=0",
+    "--ipc=private",
+    "--shm-size=1g",
+    "--mount",
+    "type=bind,src=/usr/bin/node,dst=/usr/local/bin/node,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-browser-review,dst=/work",
+    "--mount",
+    "type=bind,src=/tmp/soc-webkit-entry-repro.js,dst=/tmp/soc-webkit-entry-repro.js,readonly",
+    "--mount",
+    "type=bind,src=/home/zane-fountylabs/workspace/zefun/series-of-calls/evidence/access-restored-2026-11-04/sharded-matrices,dst=/evidence",
+    "--workdir",
+    "/work",
+    "--env",
+    "DEBUG=pw:browser",
+    "mcr.microsoft.com/playwright:v1.56.0-noble",
+    "node",
+    "/tmp/soc-webkit-entry-repro.js"
+  ],
+  "commandRecordTiming": "Recorded after execution from exact launching command; script and debug log copied unchanged.",
+  "report": "../webkit-entry-reproduction/2026-11-03T23-20-00-703Z/report.json",
+  "scriptSha256": "2e85a54444ff52865797ae15a96649d748be5eb648896c1a6ea9b91147e2d9c0",
+  "dockerImage": "sha256:35246d87a7c88ea9b771c65d33171b2611b02a8253b4b12ce6f94376c55f99f2",
+  "scope": "20 isolated Training entry probes only; no full campaign or root cause resolution."
+}

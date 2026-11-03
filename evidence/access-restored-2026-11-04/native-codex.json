@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-03T23:20:24.471161+00:00",
+  "client": "codex-cli 0.166.0",
+  "command": "codex --no-daemon --no-alt-screen --strict-config",
+  "cwd": "/home/zane-fountylabs/workspace/zefun/series-of-calls",
+  "method": "Actual interactive PTY session; /mcp inventory and /skills filtered to series-of-calls. No model prompt sent. Unrelated global connections omitted.",
+  "before": {
+    "series-of-calls": "failed: Cannot find module /home/zane-fountylabs/workspace/zefun/scripts/calls-mcp.js",
+    "series-of-calls-sp": "failed: Cannot find module /home/zane-fountylabs/workspace/zefun/scripts/mcp.js",
+    "series-of-calls-browser": "connected"
+  },
+  "correction": "Project stdio cwd changed from .. to .; installed client resolves from launch project root.",
+  "after": {
+    "series-of-calls": {
+      "status": "connected",
+      "tools": 5
+    },
+    "series-of-calls-sp": {
+      "status": "connected",
+      "tools": 22
+    },
+    "series-of-calls-browser": {
+      "status": "connected",
+      "tools": 29
+    },
+    "openaiDeveloperDocs": {
+      "status": "connected",
+      "tools": 5
+    }
+  },
+  "skillDiscovery": {
+    "query": "series-of-calls",
+    "displayed": "Series of Calls development",
+    "status": "discovered"
+  },
+  "configSha256": "b6d51911639fb4ea736730d867db527dc57f73bd8f280ceaf828a926bebcc7ac",
+  "scope": "Client discovery/startup only; behavioral MCP campaign receipts are separate. User configuration migration was not repeated."
+}

@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "recordType": "proposed-independent-reference-retrieval",
+  "retrievedAt": "2026-11-03T23:03:24Z",
+  "localDate": "2026-11-04",
+  "ownerAcceptance": false,
+  "canonicalReviewChanged": false,
+  "scheduledObserver": {
+    "pullRequest": 4,
+    "attemptedAt": "2026-11-03T22:37:00.871279Z",
+    "attempted": 91,
+    "http200": 79,
+    "unavailable": 12,
+    "unavailableStatus": { "http403": 11, "timeout": 1 },
+    "historyPreserved": true,
+    "lastSuccessfulCheckAdvanced": false
+  },
+  "method": "Manual retrieval using the browser reader for eleven pages and direct shell curl/urllib network requests for the cyber.gov.au page. This is not the scheduled urllib reference probe.",
+  "results": [
+    {
+      "referenceId": "REF-cbb04f2d2c34bccb",
+      "requestedUrl": "https://www.webex.com/us/en/products/suite.html",
+      "resolvedUrl": "https://www.webex.com/us/en/products/suite.html",
+      "title": "Webex Suite | AI-Powered Collaboration",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Page lists Meetings, Messaging, Calling, Webinars, Video Messaging, Events, Whiteboarding and Polling; overview describes AI-powered meetings and enterprise calling.",
+      "scope": "Current marketing overview of Webex Suite.",
+      "limitations": "Does not establish subscription-specific entitlements, region, deployment, limits or feature parity."
+    },
+    {
+      "referenceId": "REF-f17dabc322d17a54",
+      "requestedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+      "resolvedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html",
+      "title": "Cisco Collaboration Flex Plan 3.0 and Webex Suite Data Sheet",
+      "sourceUpdated": "2026-06-18",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page; title and displayed update date confirmed",
+      "evidence": "Cisco data sheet page opened under the registered title.",
+      "scope": "Page availability and identity only for this bounded retrieval note.",
+      "limitations": "Offer-specific prices, quantities, add-ons and entitlements remain subject to applicable detailed terms."
+    },
+    {
+      "referenceId": "REF-e40e11d43985a98d",
+      "requestedUrl": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+      "resolvedUrl": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html",
+      "title": "Cisco Collaboration Flex 3.0 Contact Center Data Sheet",
+      "sourceUpdated": "2026-06-11",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Describes cloud and on-premises platform options, concurrent and named-agent buying models, and agent types; named-agent is specified for Webex Contact Center only.",
+      "scope": "Contact Center 3.0 and the platforms/models described in this data sheet.",
+      "limitations": "Does not support generalizing an entitlement across product families or configurations."
+    },
+    {
+      "referenceId": "REF-932dc1c63a5b9e08",
+      "requestedUrl": "https://www.webex.com/us/en/solutions/interoperability.html",
+      "resolvedUrl": "https://www.webex.com/us/en/solutions/interoperability.html",
+      "title": "Video Conferencing Interoperability",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Describes joining Webex, Microsoft Teams, Zoom and Google Meet meetings using Cisco collaboration devices, including native and interoperable experiences.",
+      "scope": "Webex marketing page overview of device-based meeting interoperability.",
+      "limitations": "Does not prove support for every device, firmware, license, region, feature or interoperability mode."
+    },
+    {
+      "referenceId": "REF-5feedded0d34a197",
+      "requestedUrl": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+      "resolvedUrl": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html",
+      "title": "Cisco AI PODs for Collaboration Datasheet",
+      "sourceUpdated": "2026-06-16",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Overview describes an on-premises appliance for defense, government and regulated enterprise use where cloud AI may be restricted for compliance, sovereignty or security reasons.",
+      "scope": "Product overview in the current data sheet.",
+      "limitations": "Does not establish universal air-gap or zero-external-connectivity behavior; licensing and version-specific conditions need separate source review."
+    },
+    {
+      "referenceId": "REF-0ddcf6e8a0d3d60c",
+      "requestedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+      "resolvedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html",
+      "title": "End-of-Sale and End-of-Life Announcement for Cisco Unified Communications Manager Cloud for Government",
+      "sourceUpdated": "2026-10-14",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Cisco EOL15972 states last order 2027-01-06 and subscription renewal/change and last support dates of 2028-01-31; it lists Webex for Government Calling and on-premises UC Manager transition options.",
+      "scope": "Affected UCM Cloud for Government part numbers and subscriptions listed in EOL15972.",
+      "limitations": "Product positioning does not establish authorization or approval of a customer's deployment."
+    },
+    {
+      "referenceId": "REF-fcdabdb913c10b05",
+      "requestedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+      "resolvedUrl": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html",
+      "title": "End-of-Sale and End-of-Life Announcement for the Cisco Webex WFO",
+      "sourceUpdated": "2026-06-30",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Cisco EOL15916 states last order 2026-07-25, renewal/change 2027-07-30 and last support 2031-07-31; affected part numbers are listed.",
+      "scope": "Listed Webex WFO offers/SKUs in EOL15916.",
+      "limitations": "Does not apply these dates to the full workforce-optimization capability family."
+    },
+    {
+      "referenceId": "REF-5847fdf5258de958",
+      "requestedUrl": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+      "resolvedUrl": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview",
+      "title": "Otter Notetaker Overview",
+      "sourceUpdated": "2026-08-21",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Describes connecting Google or Microsoft calendars, syncing events, and configuring Notetaker to join linked Zoom, Google Meet or Microsoft Teams meetings to record, transcribe and capture notes.",
+      "scope": "Documented user-facing Notetaker workflow.",
+      "limitations": "Does not establish full data processing, retention, privacy or security terms."
+    },
+    {
+      "referenceId": "REF-b3027a7b0a74c45d",
+      "requestedUrl": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+      "resolvedUrl": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams",
+      "title": "Connecting Read AI to Microsoft Teams",
+      "sourceUpdated": "2026-10-26",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Describes Teams summaries/recaps, account prerequisites, connection steps and possible Teams-admin approval for channel features.",
+      "scope": "Integration setup and feature examples in the Help Center article.",
+      "limitations": "Does not establish all data-flow, privacy, retention or tenant-specific permission behavior."
+    },
+    {
+      "referenceId": "REF-a333ec80b11e26ef",
+      "requestedUrl": "https://www.asterisk.org/get-started/",
+      "resolvedUrl": "https://www.asterisk.org/get-started/",
+      "title": "Get Started with Asterisk",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Official page describes Asterisk as a free, open-source communications application framework with IP PBX, VoIP gateway, conference-server and custom-solution uses; it identifies technical knowledge needed for development.",
+      "scope": "Asterisk framework overview.",
+      "limitations": "Does not guarantee features, support or certification for a particular third-party distribution or deployment."
+    },
+    {
+      "referenceId": "REF-4494e44133a096ff",
+      "requestedUrl": "https://www.mitel.com/products/business-phone-systems",
+      "resolvedUrl": "https://www.mitel.com/products/business-phone-systems",
+      "title": "Business Phone Systems Built for How You Work",
+      "observerResult": "HTTP 403 at scheduled probe",
+      "independentResult": "Browser reader loaded expected primary page",
+      "evidence": "Current catalog describes business phone systems across cloud, on-premises and hybrid use and distinct UC, business communications, contact-center, workforce-optimization and device offerings.",
+      "scope": "Portfolio-level product catalog example.",
+      "limitations": "Does not establish equivalence among listed products or a specific deployment feature set."
+    },
+    {
+      "referenceId": "REF-01234d0db452b257",
+      "requestedUrl": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+      "resolvedUrl": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation",
+      "title": "Cloud assessment and authorisation | CGA",
+      "observerResult": "Read operation timed out at scheduled probe",
+      "independentResult": "Browser reader returned no page content; direct shell HEAD returned HTTP/2 200 and direct Python urllib GET returned page body (1,631,228 bytes)",
+      "sourcePublished": "2020-07-27",
+      "sourceLastReviewed": "2024-01-18",
+      "evidence": "Official page describes risk-based assessment against consumer requirements and risk tolerance, documenting shared responsibilities, reviewing assessment evidence before authorisation and continuing monitoring.",
+      "scope": "Australian government cloud-assessment guidance publication.",
+      "limitations": "Not an approval of a specific service/system. Applicable entity, information classification, scope, controls and authorising decision require separate assessment."
+    }
+  ],
+  "interpretation": "The scheduled probe's eleven HTTP 403 results and one timeout are preserved as historical observations at that run's timestamp. Manual retrieval through other tools demonstrates later access but does not rewrite that history, advance lastSuccessfulCheck, accept any claim, or change canonical review state."
+}

@@ -73,6 +73,37 @@ class AccountabilityWorkflowContract(unittest.TestCase):
             (evidence / 'recorder.log').write_text('producer completed without receipts\n')
             check = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', required], cwd=tmp, capture_output=True)
             self.assertNotEqual(check.returncode, 0)
+            old_json.write_text('{"run":"current"}')
+            old_tap.write_text('ok 1 - current producer TAP\n')
+            current = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', required], cwd=tmp, capture_output=True)
+            self.assertEqual(current.returncode, 0, current.stdout.decode() + current.stderr.decode())
+
+    def test_mutations_require_fresh_acceptance_artifact_not_checked_in_receipts(self):
+        self.assertIn('needs: [acceptance]', self.mutations)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.mutations)
+        clean = self.mutations.index('name: Remove checked-in receipts before artifact download')
+        download = self.mutations.index('uses: actions/download-artifact@v4')
+        require = self.mutations.index("name: Require this run's acceptance receipts")
+        run_tests = self.mutations.index('name: Run fail-closed gate mutation tests')
+        self.assertLess(clean, download)
+        self.assertLess(download, require)
+        self.assertLess(require, run_tests)
+        cleanup = run_block(self.mutations, 'Remove checked-in receipts before artifact download')
+        required = run_block(self.mutations, "Require this run's acceptance receipts")
+        with tempfile.TemporaryDirectory(prefix='soc-mutation-receipts-') as tmp:
+            evidence = Path(tmp) / 'evidence'
+            evidence.mkdir()
+            old_json, old_tap = evidence / 'acceptance.json', evidence / 'communications.tap'
+            old_json.write_text('{"stale_register_hash":true}')
+            old_tap.write_text('stale TAP\n')
+            subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', cleanup], cwd=tmp, check=True)
+            self.assertFalse(old_json.exists())
+            self.assertFalse(old_tap.exists())
+            # A same-run artifact with logs but no receipts must fail closed.
+            (evidence / 'recorder.log').write_text('producer completed without receipts\n')
+            check = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', required], cwd=tmp, capture_output=True)
+            self.assertNotEqual(check.returncode, 0)
 
     def test_each_work_job_keeps_node_24_npm_ci_and_ten_minute_limit(self):
         for key, block in [('acceptance', self.acceptance), ('gates', self.gates), ('mutations', self.mutations)]:

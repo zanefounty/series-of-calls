@@ -84,6 +84,8 @@ test('restricted capture cannot use the lower-class admin-to-training interface 
  assert.deepEqual(SOC.information.fingerprint(s),fingerprint);
  const forged=structuredClone(s);forged.records[0].origin.classification='public';forged.records[0].classification='public';
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_/);
+ const downgraded=structuredClone(s),record=downgraded.records[0];record.classification='internal';record.origin.classification='internal';record.origin.capture.informationClass='internal';downgraded.information.originReceipts[0].origin=structuredClone(record.origin);
+ assert.throws(()=>SOC.restore(JSON.stringify(downgraded)),/INVALID_INFORMATION_/);
 });
 
 test('explicitly internal administration records can pass only through the permitted one-way training interface',()=>{

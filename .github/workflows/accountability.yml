@@ -7,7 +7,8 @@ on:
 permissions:
   contents: read
 jobs:
-  accountability:
+  acceptance:
+    name: acceptance producer
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -15,15 +16,120 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Remove checked-in receipts before producer execution
+        run: rm -f evidence/acceptance.json evidence/communications.tap evidence/recorder.log
       - uses: actions/setup-node@v7
         with:
           node-version: 24
+          cache: npm
       - run: npm ci
-      - run: python3 scripts/record-evidence.py
-      - run: python3 scripts/verify.py all
-      - run: python3 -m unittest discover -s tests -p '*_test.py'
+      - name: Record acceptance evidence
+        run: |
+          set -o pipefail
+          python3 scripts/record-evidence.py 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: acceptance-${{ github.sha }}
-          path: evidence/
+          name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            evidence/acceptance.json
+            evidence/communications.tap
+            evidence/recorder.log
+          if-no-files-found: warn
+          retention-days: 14
+
+  gates:
+    name: development gates
+    needs: [acceptance]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Clear gate output paths before installation
+        run: rm -f evidence/gates.log evidence/gates-install.log
+      - name: Remove checked-in receipts before artifact download
+        run: rm -f evidence/acceptance.json evidence/communications.tap
+      - uses: actions/download-artifact@v4
+        with:
+          name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies for the evidence gate rerun
+        run: |
+          set -o pipefail
+          npm ci 2>&1 | tee evidence/gates-install.log
+      - name: Require this run's acceptance receipts
+        run: |
+          test -s evidence/acceptance.json
+          test -s evidence/communications.tap
+      - name: Run development gates against downloaded acceptance
+        run: |
+          set -o pipefail
+          python3 scripts/verify.py all 2>&1 | tee evidence/gates.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gates-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            evidence/gates-install.log
+            evidence/gates.log
+          if-no-files-found: warn
+          retention-days: 14
+
+  mutations:
+    name: gate mutation tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Clear mutation output paths before installation
+        run: rm -f evidence/gate-mutations.log evidence/mutations-install.log
+      # The Python mutation suite re-executes a Node acceptance suite in one upstream-receipt case.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies for mutation tests
+        run: |
+          set -o pipefail
+          npm ci 2>&1 | tee evidence/mutations-install.log
+      - name: Run fail-closed gate mutation tests
+        run: |
+          set -o pipefail
+          python3 -m unittest discover -s tests -p '*_test.py' 2>&1 | tee evidence/gate-mutations.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutations-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            evidence/mutations-install.log
+            evidence/gate-mutations.log
+          if-no-files-found: warn
+          retention-days: 14
+
+  accountability:
+    name: accountability
+    needs: [acceptance, gates, mutations]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Require every accountability job to succeed
+        env:
+          ACCEPTANCE_RESULT: ${{ needs.acceptance.result }}
+          GATES_RESULT: ${{ needs.gates.result }}
+          MUTATIONS_RESULT: ${{ needs.mutations.result }}
+        run: |
+          printf 'acceptance: %s, gates: %s, mutations: %s\n' "$ACCEPTANCE_RESULT" "$GATES_RESULT" "$MUTATIONS_RESULT"
+          test "$ACCEPTANCE_RESULT" = success
+          test "$GATES_RESULT" = success
+          test "$MUTATIONS_RESULT" = success

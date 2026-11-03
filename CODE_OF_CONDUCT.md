@@ -16,8 +16,8 @@ Series of Calls welcomes people who build communications systems, people who are
 
 If public project spaces are opened, these standards apply to issues, pull requests, reviews, discussions, and project events. Project maintainers are responsible for reviewing reports and applying proportionate action, including a request to stop, content removal, or temporary or permanent loss of access. Reports made in good faith must not result in retaliation.
 
-This workspace is not yet a public repository and has no published enforcement contact. Before enabling public participation, the owner must name a private report channel and confirm that someone can receive and act on reports. Do not use the upstream Series of Tubes maintainer or Signal group to report concerns about this independent adaptation.
+The accountable enforcement contact is [zanefounty](https://github.com/zanefounty). The owner has chosen [this project’s GitHub issue tracker](https://github.com/zanefounty/series-of-calls/issues) as the current contact route and has deferred a separate private conduct channel. GitHub issues are public; keep reports suitable for public disclosure. Do not use the upstream Series of Tubes maintainer or Signal group to report concerns about this independent adaptation.
 
 ## Changes
 
-Once a contact channel is established, concerns or suggestions about this policy can be sent there. This file does not represent that a reporting channel is active today.
+Concerns or suggestions about this policy can be raised through the project GitHub contact route. Private security concerns belong in GitHub vulnerability reporting.

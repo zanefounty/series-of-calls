@@ -2,14 +2,10 @@
 
 ## Supported versions
 
-There are no published or supported Series of Calls releases. The current `0.1.0-preview.1` label identifies an incomplete local preview, not a supported deployment. All telephony, messaging, identities, calls, records, and faults in the preview are synthetic.
+No Series of Calls release is currently supported. The `0.1.0-preview.1` development preview is incomplete. All communications, identities, records and faults are synthetic.
 
 ## Reporting a vulnerability
 
-This workspace has no active public repository or verified private security-reporting channel. Do not include exploit details, credentials, personal information, or other sensitive material in a public issue.
+Report suspected vulnerabilities privately through [GitHub vulnerability reporting](https://github.com/zanefounty/series-of-calls/security/advisories/new). GitHub reports that private vulnerability reporting is enabled for this independent repository. The accountable maintainer is [zanefounty](https://github.com/zanefounty). Reporter-to-recipient delivery has not yet been independently tested.
 
-Before opening a public repository, the owner must configure GitHub private vulnerability reporting (or another private contact route), test that maintainers can receive reports, name the route here, and state which versions receive fixes. Until that is done, this file is a publication blocker notice rather than a working report channel. Do not send a report to the upstream Series of Tubes project; it is separate and is not responsible for this adaptation.
-
-## Response expectations
-
-No response-time or remediation commitment is published for this local preview. Set and publish one only after an accountable maintainer and private reporting route are in place.
+Do not send reports to Series of Tubes; its maintainer is not responsible for this adaptation. No response-time commitment is published for the preview.

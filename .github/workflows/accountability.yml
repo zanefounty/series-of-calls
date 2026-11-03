@@ -84,6 +84,7 @@ jobs:
 
   mutations:
     name: gate mutation tests
+    needs: [acceptance]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -93,6 +94,16 @@ jobs:
           persist-credentials: false
       - name: Clear mutation output paths before installation
         run: rm -f evidence/gate-mutations.log evidence/mutations-install.log
+      - name: Remove checked-in receipts before artifact download
+        run: rm -f evidence/acceptance.json evidence/communications.tap
+      - uses: actions/download-artifact@v4
+        with:
+          name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence
+      - name: Require this run's acceptance receipts
+        run: |
+          test -s evidence/acceptance.json
+          test -s evidence/communications.tap
       # The Python mutation suite re-executes a Node acceptance suite in one upstream-receipt case.
       - uses: actions/setup-node@v7
         with:

@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-11-03T22:27:33.307936+00:00",
+  "pr": "https://github.com/zanefounty/series-of-calls/pull/1",
+  "head": "8a46d2caa46222c33ee15ccf453230151dbfb3d8",
+  "source": "owner response in interactive session",
+  "decision": "Approve updated PR after checks",
+  "followup": "also drive that PR's tests green",
+  "condition": "All required checks pass before merge",
+  "researchAcceptance": false,
+  "hostedAdaptationEnablement": false
+}

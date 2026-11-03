@@ -10,3 +10,7 @@ npm-debug.log*
 playwright-report/
 test-results/
 core.[0-9]*
+
+# Large browser traces remain locally retained and hash-indexed in receipts.
+evidence/access-restored-2026-11-04/matrices/**/*.trace.zip
+evidence/access-restored-2026-11-04/sharded-matrices/**/*.trace.zip

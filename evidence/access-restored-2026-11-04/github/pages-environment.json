@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-11-03T22:03:05.886120+00:00",
+  "endpoint": "repos/zanefounty/series-of-calls/environments/github-pages",
+  "exitCode": 0,
+  "response": {
+    "id": 26184581671,
+    "node_id": "EN_kwDOVh60qM8AAAAGGLkCJw",
+    "name": "github-pages",
+    "url": "https://api.github.com/repos/zanefounty/series-of-calls/environments/github-pages",
+    "html_url": "https://github.com/zanefounty/series-of-calls/deployments/activity_log?environments_filter=github-pages",
+    "created_at": "2026-11-03T22:00:43Z",
+    "updated_at": "2026-11-03T22:00:43Z",
+    "can_admins_bypass": true,
+    "protection_rules": [
+      {
+        "id": 71163493,
+        "node_id": "GA_kwDOVh60qM4EPd5l",
+        "type": "required_reviewers",
+        "prevent_self_review": false,
+        "reviewers": [
+          {
+            "type": "User",
+            "reviewer": {
+              "login": "zanefounty",
+              "id": 6007194,
+              "node_id": "MDQ6VXNlcjYwMDcxOTQ=",
+              "avatar_url": "https://avatars.githubusercontent.com/u/6007194?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/zanefounty",
+              "html_url": "https://github.com/zanefounty",
+              "followers_url": "https://api.github.com/users/zanefounty/followers",
+              "following_url": "https://api.github.com/users/zanefounty/following{/other_user}",
+              "gists_url": "https://api.github.com/users/zanefounty/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/zanefounty/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/zanefounty/subscriptions",
+              "organizations_url": "https://api.github.com/users/zanefounty/orgs",
+              "repos_url": "https://api.github.com/users/zanefounty/repos",
+              "events_url": "https://api.github.com/users/zanefounty/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/zanefounty/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            }
+          }
+        ]
+      },
+      {
+        "id": 71163495,
+        "node_id": "GA_kwDOVh60qM4EPd5n",
+        "type": "branch_policy"
+      }
+    ],
+    "deployment_branch_policy": {
+      "protected_branches": false,
+      "custom_branch_policies": true
+    }
+  }
+}

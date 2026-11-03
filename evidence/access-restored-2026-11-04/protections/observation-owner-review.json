@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-03T23:00:26Z",
+  "repository": "zanefounty/series-of-calls",
+  "main": "4a60832c6a430e9bbfecbc728fc7732d4a8f54ba",
+  "ownerReviewState": "deferred; this file is evidence and a recommendation, not acceptance",
+  "pullRequests": [
+    {
+      "number": 3,
+      "title": "Review upstream observations",
+      "url": "https://github.com/zanefounty/series-of-calls/pull/3",
+      "author": "app/github-actions",
+      "state": "OPEN",
+      "draft": false,
+      "baseSha": "4a60832c6a430e9bbfecbc728fc7732d4a8f54ba",
+      "headSha": "ab36dbc1fb80a3f8249beb3132023c986fd525fb",
+      "reviewDecision": "REVIEW_REQUIRED",
+      "files": [
+        "maintenance/upstream/register.json",
+        "maintenance/upstream/history/2026-11-03T22-36-56.456384+00-00-b2366ed26018f957309292d04adf5d6e76a89c65.json"
+      ],
+      "observation": {
+        "upstreamHead": "b2366ed26018f957309292d04adf5d6e76a89c65",
+        "observedAt": "2026-11-03T22:36:56.456384+00:00",
+        "latestObservedUnchanged": true,
+        "registeredCommits": 366,
+        "registeredFiles": 372,
+        "registeredFileVersions": 461,
+        "newCommitOrFileDisposition": false,
+        "registerChangedTopLevelFields": [
+          "lastSuccessfulCheck",
+          "latestReleaseCheck",
+          "observations"
+        ]
+      },
+      "checksAtReview": {
+        "ciTest": "success",
+        "translations": "success",
+        "build": "success",
+        "gateMutationTests": "in_progress",
+        "developmentGates": "in_progress",
+        "reviewDecision": "REVIEW_REQUIRED"
+      },
+      "recommendation": "Review as observation metadata only. It records a fresh successful inventory at the already registered upstream head; it does not classify or resolve adoption rows."
+    },
+    {
+      "number": 4,
+      "title": "Review references observations",
+      "url": "https://github.com/zanefounty/series-of-calls/pull/4",
+      "author": "app/github-actions",
+      "state": "OPEN",
+      "draft": false,
+      "baseSha": "4a60832c6a430e9bbfecbc728fc7732d4a8f54ba",
+      "headSha": "d8037e9603c56508d8275aac6fd99c9dcb2abbbd",
+      "reviewDecision": "REVIEW_REQUIRED",
+      "files": [
+        "maintenance/reference-check.json",
+        "maintenance/reference-history/2026-11-03T22-37-00.871279+00-00.json"
+      ],
+      "observation": {
+        "attemptedAt": "2026-11-03T22:37:00.871279+00:00",
+        "referencesAttempted": 91,
+        "http200": 79,
+        "unavailable": 12,
+        "changedContentHashes": 0,
+        "acceptedReviewRows": 0,
+        "lastSuccessfulCheck": null,
+        "historyRowsMatchCurrentObservation": true,
+        "unavailableReferences": [
+          { "id": "REF-cbb04f2d2c34bccb", "url": "https://www.webex.com/us/en/products/suite.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-f17dabc322d17a54", "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/collaboration-flex-plan3-data-sheet.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-e40e11d43985a98d", "url": "https://www.cisco.com/c/en/us/products/collateral/customer-collaboration/collab-flex-3-contact-center-ds.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-932dc1c63a5b9e08", "url": "https://www.webex.com/us/en/solutions/interoperability.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-5feedded0d34a197", "url": "https://www.cisco.com/c/en/us/products/collateral/conferencing/ai-pods-collaboration/ai-pods-collaboration-ds.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-0ddcf6e8a0d3d60c", "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/unified-communication-manager-cloud-gov-eol.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-fcdabdb913c10b05", "url": "https://www.cisco.com/c/en/us/products/collateral/unified-communications/cisco-collaboration-flex-plan/webex-wfo-eol.html", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-5847fdf5258de958", "url": "https://help.otter.ai/hc/en-us/articles/4425393298327-Otter-Notetaker-Overview", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-b3027a7b0a74c45d", "url": "https://support.read.ai/hc/en-us/articles/44022838331667-Connecting-Read-AI-to-Microsoft-Teams", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-a333ec80b11e26ef", "url": "https://www.asterisk.org/get-started/", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-4494e44133a096ff", "url": "https://www.mitel.com/products/business-phone-systems", "error": "HTTP Error 403: Forbidden" },
+          { "id": "REF-01234d0db452b257", "url": "https://www.cyber.gov.au/publication/cloud-assessment-and-authorisation", "error": "The read operation timed out" }
+        ]
+      },
+      "checksAtReview": {
+        "ciTest": "success",
+        "translations": "success",
+        "build": "success",
+        "gateMutationTests": "in_progress",
+        "developmentGates": "in_progress",
+        "reviewDecision": "REVIEW_REQUIRED"
+      },
+      "recommendation": "Review only as an append-only record of retrieval outcomes. Because 12 references were unavailable, the attempt correctly does not advance lastSuccessfulCheck. Re-retrieve those references through suitable sources; do not accept claims from the 79 HTTP 200 observations."
+    }
+  ],
+  "unchangedCanonicalState": {
+    "requirements": 4839,
+    "requirementsBlob": "08baf3bee060214cf60e43ebf427f80d98974ea7",
+    "canonicalReviewRecords": 0,
+    "canonicalReviewsBlob": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+    "acceptedReviews": 0,
+    "sourcePack": [
+      { "path": "research/source/Series of Calls communications ecosystem design.md", "blob": "b2ab42efaaf2582b02a73ecfbc479874f2fc325d", "bytes": 50465 },
+      { "path": "research/source/series-of-calls-full-mapping.json", "blob": "5c4513c74cbfdd39bdf3272f231153b39ca3ea3a", "bytes": 5170825 }
+    ],
+    "sameBlobAt": ["main", "PR #3", "PR #4"]
+  },
+  "protection": {
+    "noApprovalOrMergePerformed": true,
+    "noBranchOrReviewDataChanged": true,
+    "governancePR1Untouched": true
+  }
+}

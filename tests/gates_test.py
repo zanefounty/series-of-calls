@@ -57,11 +57,26 @@ class Gates(unittest.TestCase):
   with self.assertRaisesRegex(V.GateError,'original source changed'):V.catalogue(self.root)
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.root=pathlib.Path(self.tmp.name)
-  for name in ['research','spec','content','maintenance','scripts','src','tests','evidence','artwork','site']:shutil.copytree(ROOT/name,self.root/name)
+  for name in ['research','spec','content','maintenance','scripts','src','tests','artwork','site']:shutil.copytree(ROOT/name,self.root/name)
+  self.copy_evidence_inputs()
   mapping=json.loads((ROOT/'research/source/series-of-calls-full-mapping.json').read_text())
   for name in {f['path'] for f in mapping['files']}|{r['source_file'] for r in mapping['rows']}|set(json.loads((ROOT/'spec/acceptance-plan.json').read_text())['inputs']):
    if name and (ROOT/name).is_file() and not (self.root/name).exists():
     (self.root/name).parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/name,self.root/name)
+ def copy_evidence_inputs(self):
+  """Copy only evidence read by verify.py; skip unrelated browser captures/traces."""
+  destination=self.root/'evidence';destination.mkdir()
+  def copy(path):
+   source=ROOT/path;target=destination/pathlib.Path(path).relative_to('evidence')
+   target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)
+  for path in ['evidence/acceptance.json','evidence/browser.json']:copy(path)
+  register=json.loads((ROOT/'maintenance/upstream/register.json').read_text())
+  for collection in ['commits','files','fileVersions']:
+   for item in register[collection]:
+    if item['status']!='verified':continue
+    for receipt_path in item['evidence']:
+     copy(receipt_path);receipt=json.loads((ROOT/receipt_path).read_text())
+     for suite in receipt['suites']:copy(suite['log']['path'])
  def tearDown(self):self.tmp.cleanup()
  def change(self,path,fn):
   p=self.root/path;d=json.loads(p.read_text());fn(d);p.write_text(json.dumps(d))

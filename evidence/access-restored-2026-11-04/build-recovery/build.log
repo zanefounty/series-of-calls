@@ -1,0 +1,3 @@
+npm notice run series-of-calls@0.1.0-preview.1 build
+npm notice run node scripts/build.js
+Built Series of Calls 0.1.0-preview.1 (2026-11-03) into _site/

@@ -51,7 +51,8 @@ class Setup(unittest.TestCase):
         config = tomllib.loads((config_dir/'config.toml').read_text())
         for name in ['series-of-calls', 'series-of-calls-sp']:
             server = config['mcp_servers'][name]
-            cwd = (config_dir/server['cwd']).resolve()
+            # Native Codex 0.166.0 resolves stdio cwd from the project root.
+            cwd = (root/server['cwd']).resolve()
             self.assertEqual(cwd, root)
             self.assertTrue((cwd/server['args'][0]).is_file())
         self.assertNotIn('sandbox_mode', config)

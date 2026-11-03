@@ -29,3 +29,7 @@ The [40-reference amendment audit](revise-audit.md) and its [structured record](
 ## Audit of existing accept recommendations
 
 The [48-reference accept audit](accept-audit.md) and its [structured records](accept-audit.json) check for compound-claim overreach. They propose 47 narrowly scoped accept dispositions and one bounded wording revision. Webex Wholesale and 3CX repeat fetches timed out and remain explicitly flagged. No owner acceptance is recorded; canonical reviews remain unchanged.
+
+## Scheduled-probe retrieval follow-up
+
+[Independent retrieval](observer-retrieval.md) and [structured records](observer-retrieval.json) cover the exact twelve URLs unavailable to the later hosted observer. All twelve were subsequently retrieved through independent browser/shell tools. The scheduled79/12 availability record, immutable failures and unadvanced success clock are preserved; canonical claim acceptance remains unchanged.

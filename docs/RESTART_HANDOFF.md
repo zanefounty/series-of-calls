@@ -1,6 +1,6 @@
 # Restart handoff — 4 November 2026
 
-The owner requested repository/Codex preparation before relaunching with effective access. That is the immediate handoff boundary. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
+The owner requested continued full implementation, verification and deployment. Access and repository preparation are complete; bounded implementation and acceptance work have continued. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
 
 ## Access-restored continuation
 
@@ -8,16 +8,16 @@ The resumed executor now passes networking and localhost probes. Genuine Git his
 
 The continuation adds explicitly profile-bound measured capacity and renewal consequences, contract-binding save lineage, strict historical resource-sample validation, corrected HTML patterns and import-error recovery. See [access-restored evidence](../evidence/access-restored-2026-11-04/README.md) for current receipts and remaining work. Older checkpoints below are retained as historical observations. No full completion or deployment is claimed.
 
-The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance patches still require the separate owner-reviewed PR; adaptation stays disabled.
+The owner designated `zanefounty` as contact and chose GitHub for reporting, deferring a separate private conduct route. Research proposals are retained for next-release review; no individual claims are canonically accepted. Governance PR #1 merged at 43135706cfa4fc878b25dd9100a8cbc91111841d after owner approval and all 11 hosted checks passed. Its contact routes, receipt freeze and split accountability workflow are active. Follow-up PR #5 merged at 4a60832c6a430e9bbfecbc728fc7732d4a8f54ba after owner approval and all 11 checks passed; its mutation job now consumes the current acceptance artifact. Observation-only bot PRs #3 and #4 also merged after explicit owner approval and all 11 checks passed. They do not accept research claims. Adaptation stays disabled. Main has required Actions checks without bypass and a separate owner-only PR review exception. Pages is configured for Actions, with main-only owner-reviewed deployment, but has not been deployed.
 
 ## Read first
 
 1. `AGENTS.md`, the development skill and [Codex setup](CODEX_SETUP.md).
-2. [Current verification](../evidence/completion-pass-2026-11-04/README.md) and [deployment review](DEPLOYMENT_REVIEW.md).
+2. [Current verification](../evidence/access-restored-2026-11-04/README.md) and [deployment review](DEPLOYMENT_REVIEW.md).
 3. [Delivery index](../maintenance/next-work.json), [specification](../spec/README.md) and [94-addition audit](../spec/audit/additions-behaviour-audit.md).
 4. [Reference review proposals](../research/review-proposals/README.md), which remain unaccepted by the owner.
 
-## Implemented in this continuation
+## Previous completion-pass checkpoint (historical)
 
 - Four independently editable customer requirement profiles: desired/provisioning/effective/observed state, immutable segment/source identity, worker/save/console/MCP integration. They do not yet drive all service-fit or procurement consequences.
 - Observed available/away/offline workforce attendance, independent roster eligibility, BPO attendance authority, duration-qualified skill/language demand forecasts and future shift/break capacity estimates. Internal admission/finish hooks are prohibited as public commands; active assignments must correspond to real interactions.
@@ -27,7 +27,7 @@ The owner designated `zanefounty` as contact and chose GitHub for reporting, def
 - Review proposals for all 91 reference entries and 100 claims: 48 narrowly scoped accept recommendations, 40 revise and three unresolved. Canonical accepted reviews remain zero. Exact pinned upstream files were retrieved through the GitHub connector after web failures; historical mailing-list claims remain historical.
 - Project Codex/MCP configuration, preflight diagnostics, a tested user-config migration preview, and current restart instructions. Global settings and hosted maintenance were not changed.
 
-## First actions after relaunch
+## Previous relaunch instructions (historical)
 
 The final local checkpoint passed 1,314 JavaScript tests in 194 files, 445 registered acceptance cases, 71 Python tests, 63 actual stdio MCP cases and eight setup tests. Development/delivery gates, translation structure and build passed. Release failed at unreviewed reference `REF-ac194430f67b3832`. All application checks used the disclosed diagnostic dependencies; native locked/browser acceptance remains open. See the linked receipts rather than adding overlapping test counts.
 
@@ -39,8 +39,16 @@ The current owner has authorized completing the original plan, source-linked hum
 
 ## Outstanding product work
 
-The canonical index still has 4,787 requirements: 209 partial and 4,578 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
+The canonical index now has 4,839 requirements: 209 partial and 4,630 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
 
-Operational work remains separate: genuine Git history and six historical binaries, clean locked dependencies, native browser/MCP-browser/offline acceptance, owner research decisions, actual GitHub destination/protection/reporting contacts, reviewed governance proposals, enforced API project budget and Pages release. The 75 archive proposals remain outside the core scope until accepted intake.
+Verified operational work includes genuine Git history and six historical binaries, clean locked dependencies, actual GitHub destination/protections/reporting routes, reviewed governance, 64 stdio MCP cases and 22 browser MCP checks. Native Codex /mcp now connects Calls, SP and pinned browser servers; /skills discovers the local skill. The corrected project stdio cwd is the project root (`.`), verified with CLI 0.166.0. Full current matrices, source-specific implementation, owner research decisions, enforced API project budget and Pages release remain separately gated. The 75 archive proposals remain outside the core scope until accepted intake.
 
-Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The current tree contains substantial uncommitted work because `.git` is absent. Do not reset, recreate, or blindly replay old commands. Inspect the actual files and latest receipts first.
+Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The preview is committed on genuine upstream history at 3c977ad; later verification receipts and active worktrees may still be uncommitted. Do not reset, recreate, or blindly replay old commands. Inspect actual files, branches, running processes and latest receipts first.
+
+## Concrete next source obligation
+
+The source-linked defence interface clause (`REQ-da2a84278c7e5855` / `DESIGN-4786b87876e5ef42`, alongside `REQ-16191e04129963b0`) still lacks explicit allowed information flows between administrative/training/restricted workloads. Existing per-resource boundary classification and regional-transfer policy do not provide a workload-interface graph. A bounded implementation must validate source/destination, direction, purpose and current generations; retain blocked attempts; leave the destination untouched on failure; and support provisioned repair through the shared dispatcher, worker/save and visible control paths. This is actionable implementation work, not an external approval blocker or a completed feature.
+
+The newest observed upstream commit is present in the genuine object database but is not yet an ancestor of the implementation branch. [The lineage receipt](../evidence/access-restored-2026-11-04/github/upstream-lineage-current.json) distinguishes retained history from pending adoption. Do not use an empty/ours merge to manufacture adoption evidence.
+
+The frozen integrated checkpoint now passes 1,331 JavaScript tests, 455 registered acceptance cases and 83 Python gate/mutation tests, with no input drift. Six complete 144-case compact/campaign aggregates pass; WebKit required an explicit complete-shard retry after an unresolved entry crash. The local build recovered after correcting generated `_site` ownership, with original failed attempts retained. Release still fails at deferred research. Draft verification PR #6 contains this checkpoint; inspect its live checks before any merge. New information-interface and keyboard-help work is isolated in `/tmp/soc-interface-implementation` and `/tmp/soc-keyboard-adoption` and is not included in these frozen results.

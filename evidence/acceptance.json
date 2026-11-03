@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-03T21:52:08.587603+00:00",
+  "runAt": "2026-11-03T22:12:38.584183+00:00",
   "command": [
     "node",
     "--test",
@@ -601,7 +601,7 @@
     "package.json": "bf795d491fdf1f9c12f01126cfede9af5ad723474203502af684b76686569c41",
     "research/community/cisco-voip-findings.json": "6d6dd30ac5b564c00b877661a1ca43d447301da038a66c98d3bcc991dcac28b8",
     "research/community/voiceops-findings.json": "b06235d9753fa079bc59cb1531ec5ea96d68bde6078a1a3185eb4ba989a042b8",
-    "scripts/browser-campaigns.js": "d451cdddddc718989cca490f6971e4d44791939b56feff758452e8b40d914aac",
+    "scripts/browser-campaigns.js": "2343434ea751238c28c804428a071f19bae7ec5b8bac3b6427348e65a19fc51a",
     "scripts/browser-mcp-smoke.py": "4ef7c67d87c6b39be856dfe57b4e3b8b37c33b76dd2599583e807db24d13df7e",
     "scripts/build.js": "157201c93199b042dfa456cd4d9f0b886d26851c022197e3fd5bc20193fe97bd",
     "scripts/calls-mcp.js": "ec9671c2bf2e729806b697200afe48ea634e6238969a1fe86483844b78388eb4",
@@ -980,6 +980,8 @@
     "tests/workforce-bpo-ui.test.js": "95c6942b79974240337c9a8dbddd879dae5b6bdb17365d79247e2ef08846e0a5",
     "tests/workforce-bpo.test.js": "e2196fcc1e2e4dbf067e314af9ca4c9db8ebfdf419c00eb0663953bbcc83f13e",
     "tests/workforce-operations.test.js": "322b5b033556ec388aef69d43ca174a3e4614ae8be8afe36cd555f720a770fc6",
-    "spec/acceptance-plan.json": "648f20cc106dc4532d03034932708046a6cb8497ddf9244ae770954306b4df5d"
+    "scripts/aggregate-browser-campaigns.js": "e21185d4e5f9c9c4ad0a29fba4247d98af7729536a3cb964d8e91f672016de23",
+    "tests/browser-sharding.test.js": "5dee39547155f2b0b2ecf917d611dd905294603940d2ea53b478a2bd10c4d225",
+    "spec/acceptance-plan.json": "4c6d5e04f5e22a2f45b3e9f64fe39896c99ebb291c4dc22d1242ae6c70d698c9"
   }
 }

@@ -20,15 +20,21 @@ function referenceUiAction(command){
 }
 function mappedReference(s){return SOC.reference(s).map(command=>({command,ui:referenceUiAction(command)}));}
 function advanceButtonPlan(minutes){if(!Number.isSafeInteger(minutes)||minutes<1||minutes>1440)throw new Error('INVALID_ADVANCE_MINUTES');return {five:Math.floor(minutes/5),minute:minutes%5};}
+function caseMatrix(profiles=matrix()){return profiles.flatMap(profile=>VIEWPORTS.map(viewport=>({profile,viewport,key:`${profile.scenario}-${profile.jurisdiction.toLowerCase()}-${profile.mode}-${viewport.id}`})));}
+function parseShard(value){const m=/^([1-9][0-9]*)\/([1-9][0-9]*)$/.exec(value||'');if(!m)throw new Error('SHARD_MUST_BE_INDEX_COUNT');const index=Number(m[1]),count=Number(m[2]);if(!Number.isSafeInteger(index)||!Number.isSafeInteger(count)||count>144||index>count)throw new Error('SHARD_MUST_BE_INDEX_COUNT');return {index,count};}
+function shardCases(cases,shard){if(!shard)return cases;if(!Number.isInteger(shard.index)||!Number.isInteger(shard.count)||shard.index<1||shard.index>shard.count||shard.count>144)throw new Error('SHARD_MUST_BE_INDEX_COUNT');return cases.filter((_,index)=>index%shard.count===shard.index-1);}
 function classifyReport(report){
- if(report.status==='blocked')return 'blocked';if(report.status==='failed'||report.sourceDrift?.length)return 'failed';
- const executed=report.results?.length===report.profileCount*VIEWPORTS.length&&report.results.every(row=>row.status==='passed'&&!row.errors?.length);
- if(report.results?.length&&!executed)return 'failed';
- if(report.profileCount!==48||!executed||report.browser?.playwright!==report.browser?.playwrightLockfile||report.versions?.source!==report.versions?.lockfile||!report.browser?.version)return 'diagnostic';return 'passed';
+ if(report.status==='blocked')return 'blocked';if(report.status==='failed'||report.sourceDrift?.length||report.errors?.length)return 'failed';
+ let cases;try{cases=shardCases(caseMatrix(matrix().slice(0,report.profileCount)),report.shard);}catch{return 'failed';}
+ const executed=cases.length>0&&report.results?.length===cases.length&&report.results.every((row,index)=>row.status==='passed'&&!row.errors?.length&&(!report.plannedCaseKeys||row.key===cases[index].key));
+ if(!executed)return 'failed';
+ if(report.plannedCaseKeys&&JSON.stringify(report.plannedCaseKeys)!==JSON.stringify(cases.map(c=>c.key)))return 'failed';
+ if(report.profileCount!==48||report.browser?.playwright!==report.browser?.playwrightLockfile||report.versions?.source!==report.versions?.lockfile||!report.browser?.version)return 'diagnostic';
+ return report.shard?'shard-passed':'passed';
 }
 function parseArgs(argv){
  const out={list:false,browser:process.env.SOC_BROWSER_ENGINE||'chromium',limit:48};
- for(let i=0;i<argv.length;i++){const arg=argv[i];if(arg==='--list')out.list=true;else if(arg==='--journey')out.journey=argv[++i];else if(arg.startsWith('--journey='))out.journey=arg.slice(10);else if(arg==='--browser')out.browser=argv[++i];else if(arg.startsWith('--browser='))out.browser=arg.slice(10);else if(arg==='--limit')out.limit=Number(argv[++i]);else if(arg.startsWith('--limit='))out.limit=Number(arg.slice(8));else if(arg==='--help'||arg==='-h')out.help=true;else throw new Error(`UNKNOWN_ARGUMENT:${arg}`);}
+ for(let i=0;i<argv.length;i++){const arg=argv[i];if(arg==='--list')out.list=true;else if(arg==='--journey')out.journey=argv[++i];else if(arg.startsWith('--journey='))out.journey=arg.slice(10);else if(arg==='--browser')out.browser=argv[++i];else if(arg.startsWith('--browser='))out.browser=arg.slice(10);else if(arg==='--shard')out.shard=parseShard(argv[++i]);else if(arg.startsWith('--shard='))out.shard=parseShard(arg.slice(8));else if(arg==='--limit')out.limit=Number(argv[++i]);else if(arg.startsWith('--limit='))out.limit=Number(arg.slice(8));else if(arg==='--help'||arg==='-h')out.help=true;else throw new Error(`UNKNOWN_ARGUMENT:${arg}`);}
  if(out.journey!==undefined&&!['compact','campaign'].includes(out.journey))throw new Error('JOURNEY_MUST_BE_COMPACT_OR_CAMPAIGN');
  if(!['chromium','firefox','webkit'].includes(out.browser))throw new Error('BROWSER_MUST_BE_CHROMIUM_FIREFOX_OR_WEBKIT');
  if(!Number.isInteger(out.limit)||out.limit<1||out.limit>48)throw new Error('LIMIT_MUST_BE_1_TO_48');
@@ -37,7 +43,7 @@ function parseArgs(argv){
 function sha(value){return crypto.createHash('sha256').update(value).digest('hex');}
 function fileHash(file){return sha(fs.readFileSync(file));}
 function treeManifest(directory){const rows=[];const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else rows.push([path.relative(directory,file).split(path.sep).join('/'),fileHash(file)]);}};walk(directory);return {files:rows.length,sha256:sha(JSON.stringify(rows)),manifest:rows};}
-function sourceManifest(){const files=['package.json','package-lock.json','scripts/browser-campaigns.js','scripts/lib/campaign-journey.js','scripts/lib/campaign-ui.js','scripts/build.js','scripts/serve.js','scripts/lib/page.js','scripts/lib/dict.js'];for(const base of ['src','site','content']){const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else files.push(path.relative(ROOT,file).split(path.sep).join('/'));}};walk(path.join(ROOT,base));}return Object.fromEntries([...new Set(files)].sort().map(rel=>[rel,fileHash(path.join(ROOT,rel))]));}
+function sourceManifest(){const files=['package.json','package-lock.json','scripts/browser-campaigns.js','scripts/aggregate-browser-campaigns.js','scripts/lib/campaign-journey.js','scripts/lib/campaign-ui.js','scripts/build.js','scripts/serve.js','scripts/lib/page.js','scripts/lib/dict.js'];for(const base of ['src','site','content']){const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else files.push(path.relative(ROOT,file).split(path.sep).join('/'));}};walk(path.join(ROOT,base));}return Object.fromEntries([...new Set(files)].sort().map(rel=>[rel,fileHash(path.join(ROOT,rel))]));}
 function inputDrift(initial,final){return [...new Set([...Object.keys(initial||{}),...Object.keys(final||{})])].sort().filter(file=>initial[file]!==final[file]).map(file=>({file,before:initial[file]||null,after:final[file]||null}));}
 function runId(){return new Date().toISOString().replace(/[:.]/g,'-')+'-'+crypto.randomBytes(3).toString('hex');}
 async function withinBudget(promise,ms){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`CASE_RUNTIME_LIMIT:${ms}`)),ms);})]);}finally{clearTimeout(timer);}}
@@ -97,20 +103,20 @@ function outputDirectory(id){return path.resolve(process.env.SOC_BROWSER_CAMPAIG
 function maxRuntime(){const value=Number(process.env.SOC_BROWSER_CAMPAIGN_MAX_MS||1200000);return Number.isFinite(value)?Math.max(60000,Math.min(1800000,value)):1200000;}
 async function main(argv=process.argv.slice(2)){
  let args;try{args=parseArgs(argv);}catch(error){console.error(error.message);process.exitCode=2;return;}
- if(args.help){console.log('Usage: node scripts/browser-campaigns.js [--list] [--journey compact|campaign] [--browser chromium|firefox|webkit] [--limit 1..48]');return;}
+ if(args.help){console.log('Usage: node scripts/browser-campaigns.js [--list] [--journey compact|campaign] [--browser chromium|firefox|webkit] [--limit 1..48] [--shard index/count]');return;}
  const scope=args.journey==='campaign'?CAMPAIGN_SCOPE:SCOPE;
- const profiles=matrix().slice(0,args.limit);if(args.list){console.log(JSON.stringify({scope,profiles:profiles.length,viewports:VIEWPORTS,matrix:profiles},null,2));return;}
+ const profiles=matrix().slice(0,args.limit),cases=shardCases(caseMatrix(profiles),args.shard);if(!cases.length){console.error('EMPTY_SHARD');process.exitCode=2;return;}if(args.list){console.log(JSON.stringify({scope,profiles:profiles.length,viewports:VIEWPORTS,matrix:profiles,shard:args.shard||null,cases:cases.map(c=>c.key)},null,2));return;}
  const id=runId(),out=outputDirectory(id),started=Date.now(),timeout=maxRuntime(),buildDir=path.join(os.tmpdir(),'soc-browser-campaigns',id,'site');
- const lockfile=JSON.parse(fs.readFileSync(path.join(ROOT,'package-lock.json'),'utf8')),appPackage=require('../package.json'),initialInputs=sourceManifest(),report={id,checkedAt:new Date().toISOString(),status:'running',scope,journey:args.journey||'compact',profileCount:profiles.length,partial:profiles.length!==48,profileMatrix:profiles,viewports:VIEWPORTS,versions:{source:appPackage.version,lockfile:lockfile.packages?.['']?.version||null},browser:{engine:args.browser,version:null,playwright:packageVersion('playwright-core'),playwrightLockfile:lockfile.packages?.['node_modules/playwright-core']?.version||null},node:process.version,lockfileSha256:fileHash(path.join(ROOT,'package-lock.json')),inputs:initialInputs,inputSha256:sha(JSON.stringify(initialInputs)),results:[],errors:[],stage:'initialise',maxRuntimeMs:timeout};
+ const lockfile=JSON.parse(fs.readFileSync(path.join(ROOT,'package-lock.json'),'utf8')),appPackage=require('../package.json'),initialInputs=sourceManifest(),report={id,checkedAt:new Date().toISOString(),status:'running',scope,journey:args.journey||'compact',profileCount:profiles.length,partial:profiles.length!==48||!!args.shard,shard:args.shard||null,plannedCaseKeys:cases.map(c=>c.key),caseRuntimeLimitMs:args.journey==='campaign'?240000:60000,profileMatrix:profiles,viewports:VIEWPORTS,versions:{source:appPackage.version,lockfile:lockfile.packages?.['']?.version||null},browser:{engine:args.browser,version:null,playwright:packageVersion('playwright-core'),playwrightLockfile:lockfile.packages?.['node_modules/playwright-core']?.version||null},node:process.version,lockfileSha256:fileHash(path.join(ROOT,'package-lock.json')),inputs:initialInputs,inputSha256:sha(JSON.stringify(initialInputs)),results:[],errors:[],stage:'initialise',maxRuntimeMs:timeout};
  let browser,server;
  try{
   report.stage='build';require('./build').build({out:buildDir});const artifact=treeManifest(buildDir);fs.mkdirSync(out,{recursive:true});const artifactManifestPath=path.join(out,'artifact-manifest.json');fs.writeFileSync(artifactManifestPath,JSON.stringify({artifactDirectory:buildDir,files:artifact.manifest},null,2)+'\n');report.artifact={directory:buildDir,version:require('../package.json').version,files:artifact.files,sha256:artifact.sha256,manifestPath:artifactManifestPath,manifestSha256:fileHash(artifactManifestPath)};
   report.stage='listen';server=http.createServer(require('./serve').handler(buildDir));await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
   let playwright;try{playwright=require('playwright-core');}catch{throw new Error('PLAYWRIGHT_CORE_MISSING: install the lockfile dependencies before a real browser run.');}
   const browserType=playwright[args.browser],bin=process.env.SOC_BROWSER_PATH;report.stage='launch';browser=await browserType.launch({headless:true,...(bin?{executablePath:bin}:{}),...(args.browser==='chromium'?{args:['--no-sandbox']}: {})});report.browser.version=browser.version();
-  outer:for(const profile of profiles)for(const viewport of VIEWPORTS){
-   if(Date.now()-started>timeout){report.status='failed';report.errors.push({stage:'runtime-budget',message:`MAX_RUNTIME_EXCEEDED:${timeout}`});break outer;}
-   const key=`${profile.scenario}-${profile.jurisdiction.toLowerCase()}-${profile.mode}-${viewport.id}`,context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height}}),row={profile,viewport,status:'running',key,errors:[]};let page;
+  for(const {profile,viewport,key} of cases){
+   if(Date.now()-started>timeout){report.status='failed';report.errors.push({stage:'runtime-budget',message:`MAX_RUNTIME_EXCEEDED:${timeout}`});break;}
+   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height}}),row={profile,viewport,status:'running',key,errors:[]};let page;
    const trace=path.join(out,`${key}.trace.zip`),shot=path.join(out,`${key}.png`);fs.mkdirSync(out,{recursive:true});
    try{
     const caseBudget=Math.max(1000,Math.min(args.journey==='campaign'?240000:60000,timeout-(Date.now()-started)));await withinBudget((async()=>{
@@ -133,8 +139,8 @@ async function main(argv=process.argv.slice(2)){
   report.finishedAt=new Date().toISOString();report.elapsedMs=Date.now()-started;
   try{report.sourceDrift=inputDrift(initialInputs,sourceManifest());if(report.sourceDrift.length&&report.status!=='blocked')report.status='failed';report.status=classifyReport(report);fs.mkdirSync(out,{recursive:true});report.artifactDirectory=out;report.reportPath=path.join(out,'browser-campaigns.json');fs.writeFileSync(report.reportPath,JSON.stringify(report,null,2)+'\n');}catch(error){report.errors.push({stage:'report',message:error.message});report.status='failed';}
   console.log(JSON.stringify({status:report.status,stage:report.stage,browser:report.browser,profiles:profiles.length,viewports:VIEWPORTS.length,results:report.results.length,report:report.reportPath,error:report.error?.split('\n')[0]}));
-  if(report.status!=='passed')process.exitCode=1;
+  if(!['passed','shard-passed'].includes(report.status))process.exitCode=1;
  }
 }
 if(require.main===module)main();
-module.exports={SCENARIOS,JURISDICTIONS,MODES,VIEWPORTS,SCOPE,matrix,referenceUiAction,mappedReference,advanceButtonPlan,classifyReport,pageIsIdle,pageRevisionPast,inputDrift,parseArgs,main};
+module.exports={caseMatrix,parseShard,shardCases,sourceManifest,SCENARIOS,JURISDICTIONS,MODES,VIEWPORTS,SCOPE,matrix,referenceUiAction,mappedReference,advanceButtonPlan,classifyReport,pageIsIdle,pageRevisionPast,inputDrift,parseArgs,main};

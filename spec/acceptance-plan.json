@@ -1060,6 +1060,8 @@
     "tests/workforce-bpo-integration.test.js",
     "tests/workforce-bpo-ui.test.js",
     "tests/workforce-bpo.test.js",
-    "tests/workforce-operations.test.js"
+    "tests/workforce-operations.test.js",
+    "scripts/aggregate-browser-campaigns.js",
+    "tests/browser-sharding.test.js"
   ]
 }

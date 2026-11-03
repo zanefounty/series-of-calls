@@ -1,6 +1,9 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const {load}=require('./harness');
+const {createSession,TOOLS}=require('../scripts/lib/mcp-game');
+
+const mcpTools=(session)=>(name,args={})=>TOOLS.find((tool)=>tool.name===name).run(session,args);
 
 // Source trace: upstream fix 48ba0048dab7c1e11ded28daf3526a32109ab69f (keys blob
 // d2a708780f4a454f41a6c6297d5c891005345f73) handled title Help and '?' close. SOC's
@@ -63,4 +66,19 @@ test('the shortcut key ignores repeat, modifiers, editable controls and other mo
  assert.doesNotMatch(ev("document.getElementById('modalCard').textContent"),/Keyboard shortcuts/);
  assert.equal(ev('S'),null);
  assert.deepEqual(errors,[]);
+});
+
+test('the MCP keys action is a read-only view and helpClose returns to the game',()=>{
+ const session=createSession();const call=mcpTools(session);
+ const before=call('state');
+ const opened=call('act',{action:'keys'});
+ assert.equal(opened.outcome,'shown');
+ assert.equal(opened.screen.where,'modal');
+ assert.match(opened.screen.text,/Keyboard shortcuts/);
+ assert.deepEqual(call('state'),before,'opening the shortcut reference does not mutate saved gameplay state');
+ const closed=call('act',{action:'helpClose'});
+ assert.equal(closed.outcome,'shown');
+ assert.notEqual(closed.screen.where,'modal');
+ assert.deepEqual(call('state'),before,'closing the reference also leaves gameplay state unchanged');
+ assert.deepEqual(session.errors(),[]);
 });

@@ -11,14 +11,14 @@ concurrency:
   cancel-in-progress: false
 jobs:
   review:
-    # Activation requires owner review and verified entitlement, $25 monthly
+    # Activation requires owner review and verified OpenAI key, $25 monthly
     # provider hard stop and branch protection. A variable is not proof.
     if: ${{ false && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    environment: maintenance-agent
     timeout-minutes: 20
     permissions:
       contents: read
-      copilot-requests: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -36,13 +36,17 @@ jobs:
           copilot --version
       - name: Review and propose one bounded fix
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SOC_COPILOT_MODEL: ${{ vars.SOC_COPILOT_MODEL }}
+          COPILOT_PROVIDER_TYPE: openai
+          COPILOT_PROVIDER_BASE_URL: https://api.openai.com/v1
+          COPILOT_PROVIDER_WIRE_API: responses
+          COPILOT_PROVIDER_API_KEY: ${{ secrets.SOC_OPENAI_API_KEY }}
+          SOC_OPENAI_MODEL: ${{ vars.SOC_OPENAI_MODEL }}
         run: |
-          test -n "$SOC_COPILOT_MODEL"
+          test -n "$COPILOT_PROVIDER_API_KEY"
+          test -n "$SOC_OPENAI_MODEL"
           copilot --no-auto-update --no-ask-user --disable-builtin-mcps \
-            --no-custom-instructions --secret-env-vars=GITHUB_TOKEN \
-            --model "$SOC_COPILOT_MODEL" --max-ai-credits 100 \
+            --no-custom-instructions --secret-env-vars=COPILOT_PROVIDER_API_KEY \
+            --model "$SOC_OPENAI_MODEL" \
             --allow-tool='write' --allow-tool='shell(git log:*)' \
             --allow-tool='shell(git diff:*)' --allow-tool='shell(git status:*)' \
             --allow-tool='shell(npm test:*)' --allow-tool='shell(node --test:*)' \

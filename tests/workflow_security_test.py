@@ -2,6 +2,7 @@
 
 These tests inspect repository files only. They do not establish the effective
 GitHub fork-approval setting or prove how an outside contributor's PR ran.
+They also do not inspect the server-side `maintenance-agent` environment rules.
 Manual dispatch guards are workflow-code contracts, not server-enforced ref
 restrictions: GitHub runs the selected ref's workflow version.
 """
@@ -205,18 +206,26 @@ class WorkflowSecurityContracts(unittest.TestCase):
         self.assertFalse(evaluate_condition(review_if, ref="refs/heads/main"))
         self.assertFalse(evaluate_condition(review_if, ref="refs/heads/topic"))
 
-        # Inference gets repository read and Copilot request access only. The
-        # write scopes belong to the separate publisher job.
+        # The BYOK review gets repository read only; all repository write scopes
+        # belong to the separate publisher job.
         self.assertEqual(workflow_permissions(text), {"contents": "read"})
-        self.assertEqual(job_permissions(review), {"contents": "read", "copilot-requests": "write"})
+        self.assertEqual(job_permissions(review), {"contents": "read"})
         self.assertEqual(
             job_permissions(publish),
             {"contents": "write", "pull-requests": "write", "actions": "write"},
         )
-        self.assertNotRegex(review, r"(?m)^\s+(?:GH_TOKEN|GH_PAT|COPILOT_GITHUB_TOKEN|OPENAI_API_KEY|SOC_OPENAI_API_KEY):")
-        self.assertEqual(len(re.findall(r"(?m)^          GITHUB_TOKEN:\s*\$\{\{ github\.token \}\}$", review)), 1)
-        self.assertIn("--secret-env-vars=GITHUB_TOKEN", review)
-        self.assertIn("--max-ai-credits 100", review)
+        self.assertIn("    environment: maintenance-agent\n", review)
+        self.assertNotIn("copilot-requests:", text)
+        self.assertNotRegex(review, r"(?m)^\s+(?:GITHUB_TOKEN|GH_TOKEN|GH_PAT|COPILOT_GITHUB_TOKEN|OPENAI_API_KEY):")
+        self.assertEqual(len(re.findall(r"(?m)^          COPILOT_PROVIDER_API_KEY:\s*\$\{\{ secrets\.SOC_OPENAI_API_KEY \}\}$", review)), 1)
+        self.assertEqual(len(re.findall(r"(?m)^          COPILOT_PROVIDER_TYPE: openai$", review)), 1)
+        self.assertEqual(len(re.findall(r"(?m)^          COPILOT_PROVIDER_BASE_URL: https://api\.openai\.com/v1$", review)), 1)
+        self.assertEqual(len(re.findall(r"(?m)^          COPILOT_PROVIDER_WIRE_API: responses$", review)), 1)
+        self.assertEqual(len(re.findall(r"(?m)^          SOC_OPENAI_MODEL: \$\{\{ vars\.SOC_OPENAI_MODEL \}\}$", review)), 1)
+        self.assertIn("--secret-env-vars=COPILOT_PROVIDER_API_KEY", review)
+        self.assertIn('--model "$SOC_OPENAI_MODEL"', review)
+        self.assertNotIn("--max-ai-credits", review)
+        self.assertNotRegex(publish, r"(?i)SOC_OPENAI|COPILOT_PROVIDER|copilot-requests")
 
         # The only agent outputs uploaded are the candidate patch and usage
         # metadata; generated prose is neither uploaded nor copied into the PR.

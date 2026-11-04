@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-04T00:29:08.856858+00:00",
+  "reason": "After initial shards completed, increase orchestration concurrency from three to six without changing cases, inputs or deadlines. Preserve incomplete attempts; rerun only shards lacking verified completed receipts.",
+  "process": 635854,
+  "interruptedContainers": [],
+  "retainedReceipts": [
+    "/home/zane-fountylabs/workspace/zefun/series-of-calls/evidence/defence-interface-pass-2026-11-04/sharded-matrices/firefox-campaign-01-of-12/2026-11-04T00-12-04-184Z-93c278/browser-campaigns.json",
+    "/home/zane-fountylabs/workspace/zefun/series-of-calls/evidence/defence-interface-pass-2026-11-04/sharded-matrices/chromium-campaign-01-of-12/2026-11-04T00-12-04-265Z-946e74/browser-campaigns.json",
+    "/home/zane-fountylabs/workspace/zefun/series-of-calls/evidence/defence-interface-pass-2026-11-04/sharded-matrices/webkit-campaign-01-of-12/2026-11-04T00-12-04-298Z-210490/browser-campaigns.json"
+  ]
+}

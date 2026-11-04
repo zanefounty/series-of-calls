@@ -80,6 +80,8 @@ A `git ls-remote --heads` scan of the remaining 29 forks surfaced, but did not f
 
 The pinned revocation (9), headroom (12), cache (10), and route-server/scenario (19) tests subsequently passed with locked installs. See [executed fork tests](executed-tests.md). Statements above about unexecuted tests describe the initial inspection; the later table names exactly which slices were run.
 
+The follow-up also executed Alex's full repository test script (219), Tanner's eight focused realism suites (35), Yeled's stale-tab/persistence (13) and route-reuse (3) suites, and Wnagele's selected HTTP/relay/core MCP suites (6/16/37). [Exact commands, pins and limits](executed-tests.md#additional-top-ten-source-tests) preserve the distinction between source tests, real browsers and SOC implementation.
+
 ## Local semantic overlap check
 
 The coordinator compared route-server placement, city cache shares and optic selection with the current retained SP implementation. All three concepts already have implementation and tests locally; the city-cache implementation also normalizes its local shares. See [the local comparison](README.md#comparison-with-the-current-optional-sp-implementation). Commit ancestry alone had not established this overlap. No duplicate patch was applied.

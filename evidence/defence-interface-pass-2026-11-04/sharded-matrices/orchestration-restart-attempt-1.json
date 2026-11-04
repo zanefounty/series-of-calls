@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-04T00:29:07.872741+00:00",
+  "status": "failed",
+  "scope": "Orchestration controller, not an application test",
+  "script": "/tmp/soc-resume-interface-browser-shards.py",
+  "error": "TypeError: argument of type 'NoneType' is not a container or iterable",
+  "location": "line 47: container Config.Cmd was null during read-only filtering",
+  "impact": "The previous orchestration parent had received SIGSTOP; already running browser containers continued. No unrelated container was stopped. The corrected controller will resume replacement orchestration and retain completed receipts.",
+  "correction": "Treat null container Cmd as an empty list; keep exact script and worktree predicates."
+}

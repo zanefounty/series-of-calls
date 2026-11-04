@@ -25,11 +25,13 @@ test('AC-SOC-576 quality console repairs an observed integration failure then su
  assert.ok(recording);assert.equal(i.phase,'resolved');assert.equal(section().querySelector('[data-workforce-quality="review"] fieldset').disabled,true);
  let observe=w.document.querySelector('[data-workforce-quality="observe"]');observe.elements.supplierAvailable.value='false';observe.elements.applicationAvailable.value='true';h.submit('[data-workforce-quality="observe"]');section().querySelector('[data-workforce-quality-action="test"]').click();
  assert.equal(h.state().workforceQuality.integration.tests.at(-1).status,'failed');assert.match(section().textContent,/Failed/);
- observe=w.document.querySelector('[data-workforce-quality="observe"]');observe.elements.supplierAvailable.value='true';observe.elements.applicationAvailable.value='true';h.submit('[data-workforce-quality="observe"]');section().querySelector('[data-workforce-quality-action="test"]').click();
+ observe=w.document.querySelector('[data-workforce-quality="observe"]');observe.elements.supplierAvailable.value='true';observe.elements.applicationAvailable.value='true';h.submit('[data-workforce-quality="observe"]');
+ const currentTestLine=[...section().querySelectorAll('p')].find(p=>p.textContent.includes('Current')&&p.textContent.includes('Test'));assert.ok(currentTestLine);assert.match(currentTestLine.textContent,/Failed.*Stale/);assert.equal(SOC.calculate(h.state()).workforceQuality.currentTest.current,false);
+ section().querySelector('[data-workforce-quality-action="test"]').click();
  assert.equal(h.state().workforceQuality.integration.tests.at(-1).status,'passed');const form=w.document.querySelector('[data-workforce-quality="review"]');assert.equal(form.querySelector('fieldset').disabled,false);
  for(const input of form.querySelectorAll('[name^="score-"]'))input.value='4';h.submit('[data-workforce-quality="review"]');
  const review=h.state().workforceQuality.reviews.at(-1);assert.equal(review.interactionId,i.id);assert.equal(review.caseId,i.caseId);assert.equal(review.recording.id,recording.id);assert.equal(review.total,80);assert.equal(review.passed,true);assert.ok(review.billingReceipt);assert.deepEqual(Object.keys(h.commands().at(-1).command).sort(),['action','interactionId','reviewer','scores']);
- assert.match(section().textContent,/80 \/ 100/);assert.deepEqual(h.h.errors,[]);h.close();
+ assert.match(section().textContent,/80 \/ 100/);assert.ok(review.billingReceipt.entryId);assert.match(section().textContent,new RegExp(review.billingReceipt.entryId));if(review.billingReceipt.costEntryId)assert.match(section().textContent,new RegExp(review.billingReceipt.costEntryId));assert.doesNotMatch(section().textContent,/\[object Object\]/);assert.deepEqual(h.h.errors,[]);h.close();
 });
 
 test('AC-SOC-577 low score recommendation is shown without starting coaching or changing the workforce roster',()=>{

@@ -681,6 +681,45 @@
       "AC-SOC-495",
       "AC-SOC-496",
       "AC-SOC-497"
+    ],
+    "tests/workforce-offers.test.js": [
+      "AC-SOC-498",
+      "AC-SOC-499",
+      "AC-SOC-500",
+      "AC-SOC-501",
+      "AC-SOC-502",
+      "AC-SOC-503",
+      "AC-SOC-504",
+      "AC-SOC-505",
+      "AC-SOC-506",
+      "AC-SOC-507",
+      "AC-SOC-508",
+      "AC-SOC-509",
+      "AC-SOC-510",
+      "AC-SOC-511"
+    ],
+    "tests/workforce-offers-integration.test.js": [
+      "AC-SOC-512",
+      "AC-SOC-513",
+      "AC-SOC-514",
+      "AC-SOC-515",
+      "AC-SOC-516",
+      "AC-SOC-517",
+      "AC-SOC-518",
+      "AC-SOC-519",
+      "AC-SOC-520",
+      "AC-SOC-521",
+      "AC-SOC-522",
+      "AC-SOC-523",
+      "AC-SOC-524",
+      "AC-SOC-525",
+      "AC-SOC-526",
+      "AC-SOC-527",
+      "AC-SOC-530"
+    ],
+    "tests/workforce-offers-ui.test.js": [
+      "AC-SOC-528",
+      "AC-SOC-529"
     ]
   },
   "inputs": [
@@ -1111,6 +1150,12 @@
     "tests/upstream-keyboard-help.test.js",
     "tests/lib/information-interface-fixture.js",
     "src/game/93-ui/82-keys.js",
-    "tests/information-interface-import-policy.test.js"
+    "tests/information-interface-import-policy.test.js",
+    "src/game/38-workforce-offers.js",
+    "src/game/87-workforce-offers-ui.js",
+    "tests/workforce-offers.test.js",
+    "tests/workforce-offers-integration.test.js",
+    "tests/workforce-offers-ui.test.js",
+    "tests/lib/workforce-offer-fixture.js"
   ]
 }

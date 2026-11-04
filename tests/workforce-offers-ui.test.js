@@ -20,7 +20,7 @@ function boot(state){
  return {h,w,dispatch,render,submit,state:()=>JSON.parse(JSON.stringify(h.ev('SCT.state'))),commands:()=>JSON.parse(JSON.stringify(w.__commands)),error:()=>w.__uiError};
 }
 
-test('workforce-offer UI provisions the fictional offer, repairs a failed integration, binds real roster coverage and forecasts through SOC dispatch',()=>{
+test('AC-SOC-528 workforce-offer UI provisions the fictional offer, repairs a failed integration, binds real roster coverage and forecasts through SOC dispatch',()=>{
  const h=boot(rootFixture()),w=h.w,initial=h.state(),beforePeople=structuredClone(initial.resources.people.effective),beforeRoutes=structuredClone(initial.resources.phone.desired.routes);
  const panel=()=>w.document.querySelector('#soc-workforce-offers');
  assert.ok(panel());assert.match(panel().textContent,/Queueberry/);
@@ -40,7 +40,7 @@ test('workforce-offer UI provisions the fictional offer, repairs a failed integr
  assert.deepEqual(h.commands().filter(x=>x.type==='workforce-offers').map(x=>x.command.action),['start','order','integrate','observe-integration','test-integration','observe-integration','test-integration','bind-person','bind-person','forecast']);assert.equal(h.error(),null);assert.deepEqual(h.h.errors,[]);w.close();
 });
 
-test('workforce-offer UI is read-only when the save is unlocked and rendering does not mutate state',()=>{
+test('AC-SOC-529 workforce-offer UI is read-only when the save is unlocked and rendering does not mutate state',()=>{
  const h=boot(rootFixture()),w=h.w;h.w.document.querySelector('[data-workforce-offers-action="start"]').click();
  const before=JSON.stringify(h.state());h.render(false);assert.equal(JSON.stringify(h.state()),before);const section=w.document.querySelector('#soc-workforce-offers');
  for(const control of section.querySelectorAll('button,input,select'))assert.equal(control.disabled,true);

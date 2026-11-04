@@ -6,58 +6,58 @@ const WFM=require('../src/game/38-workforce-offers');
 function context(s,overrides={}){return {tenant:s.tenant,clock:s.clock,resourceGeneration:1,resourceReady:true,people:['agent-01','agent-02'],knownPeople:['agent-01','agent-02'],...overrides};}
 function provisioned(){const s=WFM.create({tenant:'customer',clock:0});WFM.command(s,{action:'order',tenant:'customer',units:2});WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'people'});WFM.advance(s,1);const c=context(s);WFM.command(s,{action:'observe-integration',supplierAvailable:true,applicationAvailable:true},c);WFM.command(s,{action:'test-integration'},c);WFM.command(s,{action:'bind-person',person:'agent-01'},c);WFM.command(s,{action:'bind-person',person:'agent-02'},c);return {s,c};}
 
-test('proposed synthetic offer stages effective agent units and exact tenant integration separately',()=>{
+test('AC-SOC-498 proposed synthetic offer stages effective agent units and exact tenant integration separately',()=>{
  const s=WFM.create({tenant:'customer',clock:0});assert.equal(s.effective,null);WFM.command(s,{action:'order',tenant:'customer',units:2});WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'people'});assert.equal(s.effective,null);assert.equal(s.provisioning.status,'pending');assert.equal(s.integration.effective,null);WFM.advance(s,1);assert.equal(s.effective.units,2);assert.equal(s.effective.unit,'agent');assert.equal(s.integration.effective.resource,'people');assert.equal(s.integration.effective.tenant,'customer');assert.equal(WFM.inspect(s).aliasStatus,'proposed-owner-review-required');assert.equal(WFM.inspect(s).offer.currency,'AUD');assert.equal(WFM.inspect(s).offer.periodMinutes,60);
 });
 
-test('safe-integer portfolio clocks above one hundred thousand can start the pack',()=>{
+test('AC-SOC-499 safe-integer portfolio clocks above one hundred thousand can start the pack',()=>{
  const s=WFM.create({tenant:'portfolio-customer',clock:250000});WFM.command(s,{action:'order',tenant:'portfolio-customer',units:1});const invoice=WFM.advance(s,250001);assert.equal(invoice[0].periodStart,250001);assert.equal(s.clock,250001);assert.equal(s.nextInvoiceAt,250061);assert.equal(WFM.validate(s),true);
 });
 
-test('strict commands reject extra fields, wrong tenant, unrelated resource and invented offer versions',()=>{
+test('AC-SOC-500 strict commands reject extra fields, wrong tenant, unrelated resource and invented offer versions',()=>{
  const s=WFM.create({tenant:'customer',clock:0});assert.throws(()=>WFM.command(s,{action:'order',tenant:'customer',units:2,costCents:1}),/INVALID_WORKFORCE_OFFER_ORDER/);assert.throws(()=>WFM.command(s,{action:'order',tenant:'other',units:2}),/INVALID_WORKFORCE_OFFER_ORDER/);assert.throws(()=>WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'9.9',resource:'people'}),/INVALID_WORKFORCE_OFFER_INTEGRATION/);assert.throws(()=>WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'routing'}),/INVALID_WORKFORCE_OFFER_INTEGRATION/);
 });
 
-test('a pending desired revision keeps old effective offer and tested integration until due',()=>{
+test('AC-SOC-501 a pending desired revision keeps old effective offer and tested integration until due',()=>{
  const {s,c}=provisioned(),oldOffer=s.effective.generation,oldIntegration=s.integration.effective.generation;WFM.command(s,{action:'order',tenant:'customer',units:1});assert.equal(s.provisioning.due,61,'a positive paid term changes only at its next boundary');const earlyCancellation=structuredClone(s);earlyCancellation.provisioning.due=s.clock+1;assert.throws(()=>WFM.validate(earlyCancellation),/INVALID_WORKFORCE_OFFER_SAVE/);assert.equal(s.effective.units,2);assert.equal(s.integration.effective.generation,oldIntegration);assert.equal(WFM.eligible(s,'agent-01',c).eligible,true);assert.equal(s.effective.generation,oldOffer);WFM.advance(s,60);assert.equal(s.effective.units,2);WFM.advance(s,61);assert.equal(s.effective.units,1);assert.equal(WFM.eligible(s,'agent-01',context(s)).eligible,false,'offer generation changes require a fresh scoped test');
 });
 
-test('integration tests derive from separately observed state and unique observation IDs prevent stale pass revival',()=>{
+test('AC-SOC-502 integration tests derive from separately observed state and unique observation IDs prevent stale pass revival',()=>{
  const s=WFM.create({tenant:'customer',clock:0});WFM.command(s,{action:'order',tenant:'customer',units:1});WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'people'});WFM.advance(s,1);const c=context(s,{people:['agent-01']});WFM.command(s,{action:'test-integration'},c);assert.equal(s.integration.tests[0].status,'failed','missing observed state cannot be asserted as a pass');WFM.command(s,{action:'observe-integration',supplierAvailable:true,applicationAvailable:false},c);WFM.command(s,{action:'test-integration'},c);assert.equal(s.integration.tests[1].status,'failed');WFM.command(s,{action:'observe-integration',supplierAvailable:true,applicationAvailable:true},c);WFM.command(s,{action:'test-integration'},c);assert.equal(s.integration.tests[2].status,'passed');assert.notEqual(s.integration.tests[1].observationId,s.integration.tests[2].observationId);WFM.command(s,{action:'observe-integration',supplierAvailable:false,applicationAvailable:true},c);assert.equal(WFM.eligible(s,'agent-01',c).eligible,false);assert.throws(()=>WFM.command(s,{action:'bind-person',person:'agent-01'},c),/WORKFORCE_OFFER_INTEGRATION_STALE/);assert.equal(s.integration.tests[2].status,'passed','historical evidence is retained');
 });
 
-test('named Queueberry seats require a real current roster member and stay separate from contact capacity',()=>{
+test('AC-SOC-503 named Queueberry seats require a real current roster member and stay separate from contact capacity',()=>{
  const {s,c}=provisioned();assert.throws(()=>WFM.command(s,{action:'bind-person',person:'agent-03'},c),/WORKFORCE_OFFER_PERSON_NOT_IN_TENANT_ROSTER/);assert.equal(WFM.eligible(s,'agent-01',c).eligible,true);assert.equal(WFM.eligible(s,'agent-02',c).eligible,true);assert.throws(()=>WFM.command(s,{action:'bind-person',person:'agent-01'},c),/DUPLICATE_WORKFORCE_OFFER_PERSON/);assert.throws(()=>WFM.command(s,{action:'bind-person',person:'agent-03'},context(s,{people:['agent-03']})),/WORKFORCE_OFFER_UNITS_EXCEEDED/);const before=JSON.stringify(s);WFM.inspect(s,c);WFM.eligible(s,'agent-01',c);assert.equal(JSON.stringify(s),before);
 });
 
-test('people resource generation invalidates current entitlement; repair retests and rebinds without losing history',()=>{
+test('AC-SOC-504 people resource generation invalidates current entitlement; repair retests and rebinds without losing history',()=>{
  const {s,c}=provisioned(),changed=context(s,{resourceGeneration:2});assert.equal(WFM.eligible(s,'agent-01',changed).eligible,false);assert.throws(()=>WFM.command(s,{action:'bind-person',person:'agent-01'},changed),/WORKFORCE_OFFER_INTEGRATION_STALE/);WFM.command(s,{action:'observe-integration',supplierAvailable:true,applicationAvailable:true},changed);WFM.command(s,{action:'test-integration'},changed);WFM.command(s,{action:'bind-person',person:'agent-01'},changed);assert.equal(s.integration.bindingHistory.length,1);assert.equal(s.integration.bindings.find(b=>b.person==='agent-01').resourceGeneration,2);assert.equal(WFM.eligible(s,'agent-01',changed).eligible,true);assert.equal(WFM.eligible(s,'agent-01',context(s,{resourceReady:false})).eligible,false);
 });
 
-test('forecast snapshots only current named WFM coverage and never mutates the real roster or routing capacity',()=>{
+test('AC-SOC-505 forecast snapshots only current named WFM coverage and never mutates the real roster or routing capacity',()=>{
  const {s,c}=provisioned(),before=JSON.stringify(s),seen=[];const request={action:'forecast',channel:'voice',skill:'billing',language:'en',horizon:60,method:'mean'},ctx={...c,forecast:input=>{seen.push(input);return {samples:2,arrivals:5,projectedCapacity:3,projectedGap:2};}};WFM.command(s,request,ctx);assert.deepEqual(seen[0].people,['agent-01','agent-02']);assert.deepEqual({arrivals:s.integration.forecasts[0].arrivals,projectedCapacity:s.integration.forecasts[0].projectedCapacity,projectedGap:s.integration.forecasts[0].projectedGap},{arrivals:5,projectedCapacity:3,projectedGap:2});assert.deepEqual(s.integration.forecasts[0].coveredPeople,['agent-01','agent-02']);assert.equal(JSON.stringify(s).includes('peopleCreated'),false);assert.notEqual(JSON.stringify(s),before,'only explicit forecast command appends a scoped forecast record');const saved=JSON.stringify(s);WFM.inspect(s,ctx);assert.equal(JSON.stringify(s),saved);
 });
 
-test('synthetic prepaid 60-minute invoices are typed, deterministic, and emitted once per activation or renewal',()=>{
+test('AC-SOC-506 synthetic prepaid 60-minute invoices are typed, deterministic, and emitted once per activation or renewal',()=>{
  const {s}=provisioned();assert.equal(s.costRecords.length,1);assert.equal(s.costRecords[0].id,'queueberry-wfm-invoice-1');assert.equal(s.costRecords[0].periodStart,1);assert.equal(s.costRecords[0].units,2);assert.equal(s.costRecords[0].unit,'agent');assert.equal(s.costRecords[0].currency,'AUD');assert.equal(s.costRecords[0].periodMinutes,60);assert.equal(s.costRecords[0].cents,8400);assert.deepEqual(WFM.advance(s,60),[]);const invoices=WFM.advance(s,61);assert.equal(invoices.length,1);assert.equal(invoices[0].id,'queueberry-wfm-invoice-2');assert.equal(invoices[0].units,2);assert.deepEqual(WFM.advance(s,61),[]);assert.equal(s.costRecords.length,2);assert.equal(WFM.advance(s,121)[0].id,'queueberry-wfm-invoice-3');
 });
 
-test('unit amendments and cancellation apply only at a paid boundary; restart gets a monotonic invoice identity',()=>{
+test('AC-SOC-507 unit amendments and cancellation apply only at a paid boundary; restart gets a monotonic invoice identity',()=>{
  const {s}=provisioned();WFM.command(s,{action:'order',tenant:'customer',units:0});assert.equal(WFM.advance(s,60).length,0);assert.equal(s.effective.units,2);assert.equal(WFM.advance(s,61).length,0);assert.equal(s.effective.units,0);assert.equal(s.nextInvoiceAt,null);WFM.command(s,{action:'order',tenant:'customer',units:1});const emitted=WFM.advance(s,62);assert.equal(emitted.length,1);assert.equal(emitted[0].id,'queueberry-wfm-invoice-2');assert.equal(emitted[0].units,1);assert.equal(emitted[0].periodStart,62);
 });
 
-test('validation retains failed and stale evidence but rejects cross-tenant or contradictory effective saves',()=>{
+test('AC-SOC-508 validation retains failed and stale evidence but rejects cross-tenant or contradictory effective saves',()=>{
  const {s,c}=provisioned();WFM.command(s,{action:'observe-integration',supplierAvailable:false,applicationAvailable:true},c);WFM.command(s,{action:'test-integration'},c);assert.equal(WFM.validate(structuredClone(s)),true);const bad=structuredClone(s);bad.effective.tenant='other';assert.throws(()=>WFM.validate(bad),/INVALID_WORKFORCE_OFFER_SAVE/);const badTest=structuredClone(s);badTest.integration.tests.at(-1).status='passed';assert.throws(()=>WFM.validate(badTest),/INVALID_WORKFORCE_OFFER_TEST_SAVE/);const badGeneration=structuredClone(s);badGeneration.integration.bindings[0].tenant='other';assert.throws(()=>WFM.validate(badGeneration),/INVALID_WORKFORCE_OFFER_BINDING_SAVE/);
 });
 
-test('save chronology and prepaid renewal schedule cannot be rewritten to erase the audit trail',()=>{
+test('AC-SOC-509 save chronology and prepaid renewal schedule cannot be rewritten to erase the audit trail',()=>{
  const {s}=provisioned();const futureObservation=structuredClone(s);futureObservation.integration.observations[0].observedAt=s.clock+1;assert.throws(()=>WFM.validate(futureObservation),/INVALID_WORKFORCE_OFFER_OBSERVATION_SAVE/);const futureTest=structuredClone(s);futureTest.integration.tests[0].testedAt=s.clock+1;assert.throws(()=>WFM.validate(futureTest),/INVALID_WORKFORCE_OFFER_TEST_SAVE/);const earlyBinding=structuredClone(s);earlyBinding.integration.bindings[0].boundAt=0;assert.throws(()=>WFM.validate(earlyBinding),/INVALID_WORKFORCE_OFFER_BINDING_SAVE/);const delayedRenewal=structuredClone(s);delayedRenewal.nextInvoiceAt+=999;assert.throws(()=>WFM.validate(delayedRenewal),/INVALID_WORKFORCE_OFFER_BILLING_SCHEDULE/);const erasedFailure=structuredClone(s);erasedFailure.integration.tests=[];assert.throws(()=>WFM.validate(erasedFailure),/INVALID_WORKFORCE_OFFER_SAVE/);
 });
 
-test('ready offer and integration imports must agree with desired effective generations',()=>{
+test('AC-SOC-510 ready offer and integration imports must agree with desired effective generations',()=>{
  const {s}=provisioned();const desiredMismatch=structuredClone(s);desiredMismatch.desired.units=3;assert.throws(()=>WFM.validate(desiredMismatch),/INVALID_WORKFORCE_OFFER_SAVE/);const missingIntegration=structuredClone(s);missingIntegration.integration.effective=null;assert.throws(()=>WFM.validate(missingIntegration),/INVALID_WORKFORCE_OFFER_SAVE/);const missingOffer=structuredClone(s);missingOffer.effective=null;assert.throws(()=>WFM.validate(missingOffer),/INVALID_WORKFORCE_OFFER_SAVE/);
 });
 
-test('worker source reconstructs the same scoped inspection and eligibility result',()=>{
+test('AC-SOC-511 worker source reconstructs the same scoped inspection and eligibility result',()=>{
  const {s,c}=provisioned(),sandbox={};vm.createContext(sandbox);vm.runInContext(WFM.source()+';globalThis.K=SOC_WORKFORCE_OFFERS;',sandbox);assert.equal(sandbox.K.PACK,WFM.PACK);assert.deepEqual(JSON.parse(JSON.stringify(sandbox.K.inspect(structuredClone(s),c))),WFM.inspect(s,c));assert.deepEqual(JSON.parse(JSON.stringify(sandbox.K.eligible(structuredClone(s),'agent-01',c))),WFM.eligible(s,'agent-01',c));
 });

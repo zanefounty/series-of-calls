@@ -6587,6 +6587,59 @@
       ],
       "status": "partial",
       "scope": "Adapts the upstream keyboard-help title allowlist and helpClose return behavior to the optional network simulation. The visible reference lists only supported shortcuts; keyboard guards and MCP view classification prevent unintended simulation mutation. Other obligations in the upstream commit and later file versions remain pending."
+    },
+    {
+      "id": "BEH-SOC-378",
+      "sources": [
+        "uc-new:actor:genesys",
+        "uc-new:domain:workforce"
+      ],
+      "implementation": [
+        "src/game/38-workforce-offers.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/87-workforce-offers-ui.js",
+        "src/game/97-training.js",
+        "scripts/calls-mcp.js",
+        "scripts/mcp-smoke.py"
+      ],
+      "testIds": [
+        "AC-SOC-498",
+        "AC-SOC-499",
+        "AC-SOC-500",
+        "AC-SOC-501",
+        "AC-SOC-502",
+        "AC-SOC-503",
+        "AC-SOC-504",
+        "AC-SOC-505",
+        "AC-SOC-506",
+        "AC-SOC-507",
+        "AC-SOC-508",
+        "AC-SOC-509",
+        "AC-SOC-510",
+        "AC-SOC-511",
+        "AC-SOC-512",
+        "AC-SOC-513",
+        "AC-SOC-514",
+        "AC-SOC-515",
+        "AC-SOC-516",
+        "AC-SOC-517",
+        "AC-SOC-518",
+        "AC-SOC-519",
+        "AC-SOC-520",
+        "AC-SOC-521",
+        "AC-SOC-522",
+        "AC-SOC-523",
+        "AC-SOC-524",
+        "AC-SOC-525",
+        "AC-SOC-526",
+        "AC-SOC-527",
+        "AC-SOC-528",
+        "AC-SOC-529",
+        "AC-SOC-530"
+      ],
+      "status": "partial",
+      "scope": "One proposed fictional Queueberry WFM offer binds named forecast coverage to exact tenant, offer version, current workforce resource generation and observed/tested integration. Delayed activation, supplier failure and repair, duration-qualified forecasts, prepaid synthetic agent costs, boundary cancellation, delegated administration, saves and worker equivalence are exercised. WFM coverage neither creates people nor limits independently licensed contact routing. Other contact-centre offers, CRM/Teams integrations, quality evaluation and complete source-specific vendor fidelity remain pending; the proposed alias and research claims are not owner acceptance."
     }
   ]
 }

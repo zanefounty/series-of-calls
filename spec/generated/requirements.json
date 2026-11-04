@@ -51796,13 +51796,23 @@
     ],
     "statement": "Model contact routing, digital engagement, agent operations, workforce and quality as selectable offer capabilities. Scope any Teams or CRM integration to its documented model.",
     "representation": "actor:genesys",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/calls-mcp.js",
+      "scripts/mcp-smoke.py",
+      "src/game/38-workforce-offers.js",
+      "src/game/54-business.js",
+      "src/game/55-communications.js",
+      "src/game/87-workforce-offers-ui.js",
+      "src/game/97-training.js"
+    ],
     "acceptance": [
       "AC-98ba1bedb8589fa1"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-378"
+    ]
   },
   {
     "id": "REQ-265c8e23a1512646",
@@ -53132,6 +53142,9 @@
     "representation": "domain:workforce",
     "status": "partial",
     "implementation": [
+      "scripts/calls-mcp.js",
+      "scripts/mcp-smoke.py",
+      "src/game/38-workforce-offers.js",
       "src/game/44-campaign.js",
       "src/game/48-estate.js",
       "src/game/49-workforce.js",
@@ -53140,7 +53153,9 @@
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/71-workforce-presence-ui.js",
+      "src/game/87-workforce-offers-ui.js",
       "src/game/90-service-admin-ui.js",
+      "src/game/97-training.js",
       "tests/campaign.test.js",
       "tests/estate-lifecycle-integration.test.js"
     ],
@@ -53164,7 +53179,8 @@
       "BEH-SOC-110",
       "BEH-SOC-116",
       "BEH-SOC-363",
-      "BEH-SOC-370"
+      "BEH-SOC-370",
+      "BEH-SOC-378"
     ]
   },
   {

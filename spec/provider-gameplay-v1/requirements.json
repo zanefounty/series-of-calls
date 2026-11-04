@@ -1,0 +1,1030 @@
+{
+  "metadata": {
+    "spec_version": "1.0-proposed",
+    "date": "2026-11-04",
+    "port_head": "4d354ddb6118caccee9c4eea10ff8d879bc0be4c",
+    "upstream_head": "b2366ed26018f957309292d04adf5d6e76a89c65",
+    "behavioural_audit_head": "365861e70460a91cfb42c63fe1dd7a3460913207",
+    "mapping_baseline": "48e6200c532d486f79bc8376de0aecbf6169123b",
+    "status": "proposed_specification_not_implemented",
+    "currency": "AUD cents, fictional",
+    "period_minutes": 60,
+    "initial_seconds_per_sim_minute_at_1x": 2
+  },
+  "requirements": [
+    {
+      "id": "PLAY-001",
+      "phase": 1,
+      "priority": "required",
+      "title": "Default provider campaign",
+      "behaviour": "Play and Continue open a management campaign. Training, Lab and the retained SP game are separate experiences.",
+      "acceptance": [
+        "A fresh normal run requires only a provider name, home market and difficulty, all with defaults.",
+        "The first view contains an objective, finite capital, a customer opportunity and a costed action. No JSON or pack-start buttons are required.",
+        "Existing training and SP saves remain separately accessible."
+      ],
+      "implementation_owners": [
+        "src/index.html",
+        "src/game/95-modals/40-title.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "source_ids": [
+        "view:title"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-002",
+      "phase": 1,
+      "priority": "required",
+      "title": "Campaign authority boundary",
+      "behaviour": "Separate player actions, scenario authorship and evaluation at the shared dispatcher, including nested customer commands.",
+      "acceptance": [
+        "Campaign attempts to set supplier cost, arbitrary capacity, customer requirements, fault events, task success or quality grades fail atomically through UI, worker and MCP paths.",
+        "Retail quotation is permitted only through authored customer acceptance rules.",
+        "No public system:true or arbitrary-command escape hatch is added; Lab editing remains available on a custom copy."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-003",
+      "phase": 1,
+      "priority": "required",
+      "title": "Purchased starting estate",
+      "behaviour": "Start with one home market, a finite team and purchasable capability. Canonical resource IDs may exist as dormant internal blueprints.",
+      "acceptance": [
+        "Uncommissioned blueprints supply no usable entitlement, service, capacity or revenue.",
+        "Buying a supported plan creates its necessary dependencies through validated commands without asking the player to start internal packs.",
+        "Ownership and entitlement gate later capacity changes."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-004",
+      "phase": 1,
+      "priority": "required",
+      "title": "One explicit clock",
+      "behaviour": "Retain integer simulation minutes and 60-minute billing periods. Initial pacing is 1 simulation minute per 2 real seconds at 1x.",
+      "acceptance": [
+        "Pause and 0.5x/1x/2x/4x/8x are available. Prices use /period, never an unexplained /month.",
+        "Equal simulation-time commands at different speeds yield identical demand, outcomes, balances and rewards.",
+        "Decision modals, hidden tabs, lost editing ownership and terminal outcomes pause; no undisclosed offline catch-up occurs."
+      ],
+      "implementation_owners": [
+        "src/game/99-provider-runtime.js",
+        "src/game/55-communications.js"
+      ],
+      "source_ids": [
+        "action:speed"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-005",
+      "phase": 1,
+      "priority": "required",
+      "title": "Atomic quotes and purchases",
+      "behaviour": "A pure quote explains upfront cost, recurring commitments, lead time, labour, capacity and consequences. Commit recalculates against the current revision.",
+      "acceptance": [
+        "Stale or unaffordable quotes cannot double-spend or create partial inventory.",
+        "Repeating the same request ID does not charge, reserve or reward twice.",
+        "The client supplies offer and recipe identifiers, not authoritative wholesale cost or success."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-006",
+      "phase": 1,
+      "priority": "required",
+      "title": "One provider treasury",
+      "behaviour": "All customers share one parent cash balance, credit agreement and provider team. Customer views are attributed subledgers.",
+      "acceptance": [
+        "Creating a second customer does not create opening cash.",
+        "Internal transfers do not become external revenue, and settlement receipts post once.",
+        "Cash available excludes reservations; cash, commitments, liabilities and operating profit remain distinguishable."
+      ],
+      "implementation_owners": [
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [
+        "view:bank"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-007",
+      "phase": 1,
+      "priority": "required",
+      "title": "Funding and insolvency",
+      "behaviour": "Enforce upfront affordability and authored credit limits, and model unpaid posted obligations as visible arrears/default states.",
+      "acceptance": [
+        "The unfunded 20-engineer, 1,440-minute project repro cannot start without an explicit funded or credit-backed commitment.",
+        "An unavoidable bill can enter grace/default without crashing the engine or enabling unlimited discretionary spending.",
+        "Forecast recurring exposure before commitment; do not escrow every future cost unless the scenario requires it."
+      ],
+      "implementation_owners": [
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-008",
+      "phase": 1,
+      "priority": "required",
+      "title": "Separate success states",
+      "behaviour": "Tutorial, service readiness, contract delivery, operating profit, progression and mission victory use distinct state and labels.",
+      "acceptance": [
+        "Passing the four-command foundation SMB repair cannot complete a provider campaign.",
+        "A probe or manually generated test cannot mint earned customer revenue or commercial progression.",
+        "Every mission authors arrivals, deadlines, activation, service/credit/renewal rules, grace/default and a sustained victory predicate.",
+        "The proposed SMB reference requires two consecutive full periods with at least 22 of 24 due cases completed on time and positive provider operating result, no overdue critical obligations, and a funded next contract. A quiet or partial period cannot satisfy it."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-009",
+      "phase": 1,
+      "priority": "required",
+      "title": "Versioned experience and saves",
+      "behaviour": "Add a versioned experience discriminator without repurposing guided/assessed/sandbox or the existing SOC_CAMPAIGN training scheduler.",
+      "acceptance": [
+        "Legacy guided/assessed imports remain Training and legacy sandbox imports remain Lab.",
+        "A campaign exported to Lab is custom; changing a label does not restore earned campaign status.",
+        "Validate with the known old schema before migration, preserve the original, and reject unknown versions clearly."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/44-campaign.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-010",
+      "phase": 2,
+      "priority": "required",
+      "title": "Autonomous customer work",
+      "behaviour": "Seeded campaign demand produces customer jobs through the authoritative simulation and drives visible service flows.",
+      "acceptance": [
+        "Calls, messages and CC arrivals appear without Generate test interaction.",
+        "Sampled particles and traces do not create or bill additional work.",
+        "Offered, admitted, pending, completed, failed and abandoned totals conserve jobs across handoff and retry."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/46-outcomes.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-011",
+      "phase": 2,
+      "priority": "required",
+      "title": "Period-history settlement",
+      "behaviour": "Accumulate service, usage and obligation history throughout the period and settle each contract from that history.",
+      "acceptance": [
+        "An evenly distributed test workload with 57 minutes of outage cannot become a perfect period after a last-minute repair.",
+        "A final-minute outage cannot erase completed service from the prior 59 minutes.",
+        "Credits, usage, renewal evidence and visible bill explanations agree with the same recorded facts."
+      ],
+      "implementation_owners": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-012",
+      "phase": 2,
+      "priority": "required",
+      "title": "Duration-bearing ordinary calls",
+      "behaviour": "Ordinary calls occupy the appropriate capacity over a connected phase; probes are separate.",
+      "acceptance": [
+        "An endpoint call with a declared duration produces the expected occupancy and metered usage.",
+        "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
+        "Waiting, talk time, connected carrier-leg occupancy and customer-billed units have explicit definitions."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/50-calling.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-013",
+      "phase": 2,
+      "priority": "required",
+      "title": "Live media consequences",
+      "behaviour": "Active ordinary calls and meetings continuously evaluate their effective media path and supported fallback.",
+      "acceptance": [
+        "Loss of both media directions during a call cannot silently yield a successful conversation.",
+        "One-way media produces its declared degraded/failed outcome.",
+        "Loss of signalling alone does not automatically destroy surviving established media; local fallback must be provisioned."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/30-media-negotiation.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-014",
+      "phase": 2,
+      "priority": "required",
+      "title": "Admission and reservations",
+      "behaviour": "Use consistent admission, reservation and exactly-once release for constrained sessions, recording, meetings, people and processors.",
+      "acceptance": [
+        "Capacity-one recording cannot capture four simultaneous recording-required sessions.",
+        "No available room/meeting capacity prevents an additional admission.",
+        "Cancellation, timeout, failure, normal completion and migration each release reservations once under a declared policy."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "src/game/51-contact.js",
+        "src/game/52-information.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-015",
+      "phase": 2,
+      "priority": "required",
+      "title": "Scarce provider labour",
+      "behaviour": "Deployment, migration, investigation, repair and bulk administration consume finite provider work capacity.",
+      "acceptance": [
+        "Two simultaneous jobs cannot allocate the same engineer or reserved money twice.",
+        "Reduced support capacity increases eligible backlog/response time; reducing staff is not an identical-outcome cost saving.",
+        "Cost coherent operations, not each field write; inspection and planning stay free."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js",
+        "src/game/29-managed-operations.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-016",
+      "phase": 2,
+      "priority": "required",
+      "title": "Two viable opening plans",
+      "behaviour": "Author at least two sustainable opening solutions with different cost, lead time, margin, resilience or flexibility.",
+      "acceptance": [
+        "A player can afford each reference plan individually but cannot buy every advantage without sacrificing another opportunity.",
+        "A changed supported seed/constraint changes a relevant investment or response.",
+        "The evaluator accepts outcomes and constraints, not only one exact recipe."
+      ],
+      "implementation_owners": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-017",
+      "phase": 3,
+      "priority": "required",
+      "title": "Upstream game frame",
+      "behaviour": "Reuse upstream hierarchy and visual language: full-screen world, compact HUD, goals/deals/incidents navigation and contextual inspector.",
+      "acceptance": [
+        "At 1366x768, cash, clock, objective, map and primary actions are reachable without scrolling through setup.",
+        "The default opening has no oversized hero or stacked module forms.",
+        "Match the bright map, white sticker panels, ink outlines, yellow actions and pink player selection with readable states."
+      ],
+      "implementation_owners": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/97-provider-shell.js",
+        "src/styles/98-provider.css"
+      ],
+      "source_ids": [
+        "view:hud",
+        "view:left_goals",
+        "view:left_deals",
+        "view:left_noc"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-018",
+      "phase": 3,
+      "priority": "required",
+      "title": "Playable service map",
+      "behaviour": "Project actual purchased suppliers, tenants, sites, platforms, integrations and workload paths into a selectable map.",
+      "acceptance": [
+        "Purchasing, commissioning, losing and retiring a service visibly changes the correct nodes/paths.",
+        "Drag or click-connect opens a compatible costed plan; a keyboard/menu action does the same.",
+        "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability."
+      ],
+      "implementation_owners": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "source_ids": [
+        "view:city_links",
+        "view:city_infra",
+        "view:link_detail"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-019",
+      "phase": 3,
+      "priority": "required",
+      "title": "Contextual decision cards",
+      "behaviour": "Expose a few relevant verbs for the selected scope, using supported choices and readable consequences.",
+      "acceptance": [
+        "A purchase card names the cost now, /period commitment, work, lead time, limits and expected outcome.",
+        "An incident card names affected customers, cause confidence, response options and each cost/delay.",
+        "Blocked actions explain prerequisites and a way forward; no silent disabled button."
+      ],
+      "implementation_owners": [
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-020",
+      "phase": 3,
+      "priority": "required",
+      "title": "Stable UI during ticks",
+      "behaviour": "Retain DOM identity or use keyed updates so simulation updates do not reset user work.",
+      "acceptance": [
+        "An unfinished purchase draft retains values, focus, selection, scroll and expanded details during ticks.",
+        "Camera and selected customer persist across ordinary events.",
+        "Revalidate a changed quote at commit and explain any difference without silently accepting it."
+      ],
+      "implementation_owners": [
+        "src/game/97-provider-shell.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-021",
+      "phase": 3,
+      "priority": "required",
+      "title": "Accessible equivalent controls",
+      "behaviour": "Provide keyboard and screen-reader operation alongside the canvas, plus touch and reduced-motion support.",
+      "acceptance": [
+        "The opening can be completed without drag, hover or colour-only information.",
+        "At 390x844, bottom navigation/context sheets preserve the same actions without horizontal page overflow.",
+        "Use visible focus, labelled status, restrained live announcements and at least 44px primary touch targets."
+      ],
+      "implementation_owners": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/styles/98-provider.css",
+        "src/i18n/en.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-022",
+      "phase": 3,
+      "priority": "required",
+      "title": "Readable consequences",
+      "behaviour": "Show service results, customer impact, reservations, progress and earned money at the action location and in a short event feed.",
+      "acceptance": [
+        "Provisioning, effective readiness and observed success are visibly distinct.",
+        "A player can open a bill or failure explanation without raw trace codes.",
+        "Optional sound and sampled animations reflect real events; both can be disabled."
+      ],
+      "implementation_owners": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "source_ids": [
+        "view:notifications"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-023",
+      "phase": 3,
+      "priority": "required",
+      "title": "Six-step coaching",
+      "behaviour": "Guide actual play using state-based goals and highlights; show alternatives instead of prescribing every field.",
+      "acceptance": [
+        "The six steps cover launch, external connection, partner capability, operation, expansion and a larger contract.",
+        "Coaching can be dismissed/resumed and recognises valid states reached out of order. An accepted order may satisfy an ordering milestone; it cannot satisfy commissioned service. Highlight Resume as soon as pending delivery is needed.",
+        "First costed choice within 2 minutes and first delivered work within 5 minutes are measured design targets, not claims of current performance."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "source_ids": [
+        "progress.tutorial-step.1",
+        "progress.tutorial-step.2",
+        "progress.tutorial-step.3",
+        "progress.tutorial-step.4",
+        "progress.tutorial-step.5",
+        "progress.tutorial-step.6"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-024",
+      "phase": 3,
+      "priority": "required",
+      "title": "Optional diagnosis",
+      "behaviour": "Translate traces and dependencies into service explanations; keep raw records behind an advanced diagnostics view.",
+      "acceptance": [
+        "The main inspector answers what is happening, who is affected, the likely cause and useful actions.",
+        "Experts can inspect detailed interaction paths, desired/effective state and evidence without editing world facts.",
+        "Diagnosis can consume time/effort when the scenario makes it a decision; looking at public information is free."
+      ],
+      "implementation_owners": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-training.js"
+      ],
+      "source_ids": [
+        "view:trace_modal",
+        "view:help"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-025",
+      "phase": 4,
+      "priority": "required",
+      "title": "Consequential incidents",
+      "behaviour": "Seed incidents from owned dependencies and scenario risk with meaningful recovery or mitigation choices.",
+      "acceptance": [
+        "At least one mission incident has two sensible responses with different cost, time or customer loss.",
+        "Earlier redundancy, staffing or architecture changes impact or available responses.",
+        "A Repair action creates an eligible costed job; it cannot directly declare the service recovered."
+      ],
+      "implementation_owners": [
+        "src/game/25-provider-campaign.js",
+        "src/game/53-service-operations.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-026",
+      "phase": 4,
+      "priority": "required",
+      "title": "Renewal, price and customer choice",
+      "behaviour": "Customers consider authored service needs, price, delivered outcomes and switching friction.",
+      "acceptance": [
+        "The player may quote retail prices but cannot force willingness to pay or contract acceptance.",
+        "Repeated poor service triggers bounded credits, lost demand, refusal/exit or scenario failure under visible terms.",
+        "An unavailable arbitrarily expensive offer cannot create an indefinitely repeatable profit strategy."
+      ],
+      "implementation_owners": [
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/26-customer-needs.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-027",
+      "phase": 4,
+      "priority": "required",
+      "title": "Commercial progression",
+      "behaviour": "Success unlocks new contracts, capabilities, supplier terms, markets or useful automation.",
+      "acceptance": [
+        "The first sustainable customer changes the next available decision.",
+        "Training badges/credits remain separate from earned commercial money and progress.",
+        "Next-goal requirements and blocked opportunities are visible with reasons."
+      ],
+      "implementation_owners": [
+        "src/game/41-progression.js",
+        "src/game/31-capability-progression.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [
+        "view:left_goals"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-028",
+      "phase": 4,
+      "priority": "required",
+      "title": "Automation with tradeoffs",
+      "behaviour": "Let mastered work become templates, scoped policy and scheduled operations that consume appropriate capacity and cost.",
+      "acceptance": [
+        "A bulk joiner or migration template reduces repeated effort without bypassing entitlement or delegation.",
+        "Standing orders respect cash floors, budgets and capacity caps.",
+        "Automation shows a preview, commits once and can be suspended."
+      ],
+      "implementation_owners": [
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [
+        "view:policy_editor"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-029",
+      "phase": 4,
+      "priority": "required",
+      "title": "Portfolio continuity",
+      "behaviour": "All active customers advance on one provider clock regardless of which customer is selected.",
+      "acceptance": [
+        "Changing the inspector does not pause a tenant, reset a bill or move world revision.",
+        "An incident at one tenant competes with other work for shared staff and funds while preserving tenant authority.",
+        "Cancellation and decommission respect outstanding obligations and show the consequences before commitment."
+      ],
+      "implementation_owners": [
+        "src/game/37-portfolio.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [
+        "view:decommission"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-030",
+      "phase": 4,
+      "priority": "required",
+      "title": "Workload substitution",
+      "behaviour": "Model WhatsApp/Messenger, workplace chat/Slack and video as eligible workload alternatives and competing propositions.",
+      "acceptance": [
+        "A supported customer preference change alters a quote, channel investment, capacity plan or margin.",
+        "Substitution cannot remove PSTN, emergency, identity, information-boundary or other mandatory requirements.",
+        "Voice-to-digital handoff preserves one customer case; it cannot claim two independent resolutions."
+      ],
+      "implementation_owners": [
+        "src/game/47-channels.js",
+        "src/game/46-outcomes.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-031",
+      "phase": 4,
+      "priority": "required",
+      "title": "Finance and operating report",
+      "behaviour": "Present period revenue, usage, wholesale costs, payroll, credits, commitments and net operating result separately.",
+      "acceptance": [
+        "A player can reconcile the displayed bill and cash movement to named economic events.",
+        "Borrowing/investment changes cash and debt, not operating profit.",
+        "Diagnostic/core counters are never labelled as commercial treasury."
+      ],
+      "implementation_owners": [
+        "src/game/54-business.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "source_ids": [
+        "view:dash_overview",
+        "view:bank"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-032",
+      "phase": 5,
+      "priority": "required",
+      "title": "SMB campaign",
+      "behaviour": "A complete SMB mission makes capital, price, delivery speed and a small workforce matter.",
+      "acceptance": [
+        "Includes a costed calling/contact service, demand, an incident, settlement, renewal/exit and a second opportunity.",
+        "Two plans or operating responses are viable and differ in margin, flexibility or risk.",
+        "A remembered tutorial recipe is not the only accepted solution."
+      ],
+      "implementation_owners": [
+        "content/provider-campaigns.json"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-033",
+      "phase": 5,
+      "priority": "required",
+      "title": "Enterprise campaign",
+      "behaviour": "A complete enterprise mission covers mixed estate migration and continuity with rooms/interoperability and contact-centre work.",
+      "acceptance": [
+        "Staged coexistence and a more consolidated rollout create different staffing, time and compatibility consequences.",
+        "Actual number/identity/room dependencies affect work during cutover and recovery.",
+        "Settlement and renewal reflect the delivered migration and service outcomes."
+      ],
+      "implementation_owners": [
+        "content/provider-campaigns.json",
+        "src/game/32-site-operations.js",
+        "src/game/34-specialist-lifecycle.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-034",
+      "phase": 5,
+      "priority": "required",
+      "title": "Government campaign",
+      "behaviour": "A complete government mission imposes authored processing, storage, retention, administration/support and delegated-access constraints.",
+      "acceptance": [
+        "Eligibility follows actual paths and versioned evidence, not only a country field.",
+        "Two compliant architecture/operating plans differ in cost, lead time or workload.",
+        "A boundary or evidence change produces a visible service/procurement consequence and a valid repair."
+      ],
+      "implementation_owners": [
+        "content/provider-campaigns.json",
+        "src/game/43-boundaries.js",
+        "src/game/28-product-evidence.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-035",
+      "phase": 5,
+      "priority": "required",
+      "title": "Defence campaign",
+      "behaviour": "A complete defence mission requires declared local operation, dependency survival and controlled reconnection.",
+      "acceptance": [
+        "Pre-provisioned local identity, licensing, media, storage and processing determine supported survival during isolation.",
+        "Spares, staffing, autonomy duration and deferred synchronisation create real choices.",
+        "Reconnection applies scoped synchronisation and retained obligations; no real security accreditation is implied."
+      ],
+      "implementation_owners": [
+        "content/provider-campaigns.json",
+        "src/game/43-boundaries.js",
+        "src/game/27-speech-models.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-036",
+      "phase": 5,
+      "priority": "required",
+      "title": "Microsoft family pathways",
+      "behaviour": "Connect the existing six Microsoft-oriented family profiles to playable offers, dependencies and customer outcomes.",
+      "acceptance": [
+        "Each of workplace calling, meetings/rooms, contact centre, communications APIs, government profiles and local deployment has at least one representative playable path tested through the campaign UI for this revision.",
+        "A family is not counted complete because its name appears in a menu.",
+        "Supplier-owned capabilities, third-party additions and scenario fiction remain distinguishable."
+      ],
+      "implementation_owners": [
+        "src/game/45-products.js",
+        "content/products.json"
+      ],
+      "source_ids": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:microsoft:contact-center",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:microsoft:local"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-037",
+      "phase": 5,
+      "priority": "required",
+      "title": "Cisco family pathways",
+      "behaviour": "Connect the existing eight Cisco-oriented profiles to playable cloud, dedicated/premises, CC, CPaaS, device, provider, government and local-speech choices.",
+      "acceptance": [
+        "Each of the eight families has at least one representative playable path tested through the campaign UI, with meaningful eligibility, cost, operating or compatibility behaviour linked to its source requirement.",
+        "Cloud, dedicated and on-premises resources are not interchangeable labels.",
+        "Remaining source obligations stay visible; shared implementation is not proof of every distinctive feature."
+      ],
+      "implementation_owners": [
+        "src/game/45-products.js",
+        "content/products.json"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-038",
+      "phase": 5,
+      "priority": "required",
+      "title": "Channel and partner roles",
+      "behaviour": "Supplier, carrier/SP, distributor, reseller, MSP, integrator, BPO and customer roles change authority, cost, workload or commercial access.",
+      "acceptance": [
+        "Each role appears in at least one playable procurement or operating decision.",
+        "An MSP has shared staff/capital; an SP has numbering/interconnect capacity; a BPO supplies skills/schedules and people, not just licences.",
+        "A distributor/partner qualification changes a term or accessible offer; a logo alone is insufficient."
+      ],
+      "implementation_owners": [
+        "src/game/54-business.js",
+        "src/game/29-managed-operations.js",
+        "src/game/36-market-qualification.js"
+      ],
+      "source_ids": [
+        "uc-new:domain:commercial-roles"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-039",
+      "phase": 5,
+      "priority": "required",
+      "title": "Third-party ecosystem",
+      "behaviour": "Make compatibility, operating effort and specialist capabilities determine useful third-party purchases.",
+      "acceptance": [
+        "Provisioning, assurance, room interop, SBC/carrier, recording/compliance, WFM/quality and AI/API categories each have at least one costed, outcome-changing path.",
+        "Preserve all 51 actor records and stable mappings; list each actor as implemented, shared with evidence, or pending.",
+        "Do not create a separate setup screen for every supplier or treat distinct behaviours as a name reskin."
+      ],
+      "implementation_owners": [
+        "content/products.json",
+        "src/game/45-products.js",
+        "src/game/28-product-evidence.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-040",
+      "phase": 5,
+      "priority": "required",
+      "title": "CC people and quality",
+      "behaviour": "Keep licences, people, skills, schedules, presence and digital concurrency independent. Preserve current costed coaching and quality receipts.",
+      "acceptance": [
+        "A licensed queue without eligible people cannot handle the same workload as a staffed queue.",
+        "Coaching temporarily removes useful capacity, costs the authored amount once, and changes capability only after completion.",
+        "Quality review is evaluated from evidence in Campaign; authoring raw rubric scores remains Training/Lab."
+      ],
+      "implementation_owners": [
+        "src/game/49-workforce.js",
+        "src/game/38-workforce-offers.js",
+        "src/game/38-workforce-quality.js",
+        "src/game/54-business.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-041",
+      "phase": 5,
+      "priority": "required",
+      "title": "Meetings, rooms and video",
+      "behaviour": "Room/calendar/identity/device/interop/codec dependencies affect joining and supported quality.",
+      "acceptance": [
+        "Native, interop and browser joining have declared feature subsets and capacity/cost consequences.",
+        "Implement scheduled, active and completed/failed meeting sessions with duration, occupancy, effective media and capture. The existing lastMeeting join check is an explicit probe and cannot satisfy actual video delivery.",
+        "A licence alone cannot create a physical room, staffed support or compatible media.",
+        "Local media resources change supported load or resilience without becoming an unrestricted substitute for a cloud service."
+      ],
+      "implementation_owners": [
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-042",
+      "phase": 5,
+      "priority": "required",
+      "title": "Information and transcription",
+      "behaviour": "Capture, processing, quality/language, storage, access, retention and locality are separate obligations.",
+      "acceptance": [
+        "A transcript requires eligible source capture, processor/model capacity and an allowed data path.",
+        "Cloud and local processing create a cost, delay, language/quality or dependency tradeoff.",
+        "Storage/backup/keys/admin/support boundaries remain independently inspectable; a transcript cannot be typed into success."
+      ],
+      "implementation_owners": [
+        "src/game/52-information.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-043",
+      "phase": 5,
+      "priority": "required",
+      "title": "CPaaS and digital journeys",
+      "behaviour": "Offer purchasable workflows with channel accounts, rate limits, per-use cost, retry behaviour and human handoff.",
+      "acceptance": [
+        "One campaign job crosses an asynchronous channel/API workflow and resolves or fails from actual execution.",
+        "A retry cannot charge or resolve the customer twice outside explicit provider billing terms.",
+        "A human handoff retains customer context and uses genuine CC capacity."
+      ],
+      "implementation_owners": [
+        "src/game/47-channels.js",
+        "src/game/46-outcomes.js",
+        "src/game/51-contact.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-044",
+      "phase": 5,
+      "priority": "required",
+      "title": "On-premises and physical dependencies",
+      "behaviour": "Retain real transport, local platforms, power, hardware and survivability when they change UC outcomes.",
+      "acceptance": [
+        "Local/on-premises choices have setup, capacity, support and lifecycle costs.",
+        "A dependency outage changes only the workloads that depend on it; a supported local path can continue.",
+        "Keep the optional SP game separate; do not force carrier-network construction before the first SMB service."
+      ],
+      "implementation_owners": [
+        "src/game/42-transport.js",
+        "src/game/32-site-operations.js",
+        "src/game/43-boundaries.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-045",
+      "phase": 6,
+      "priority": "required",
+      "title": "Pure rendering and shared dispatch",
+      "behaviour": "UI, worker, automation and MCP use the same validated rules; rendering is a read-only projection.",
+      "acceptance": [
+        "Repeated render/inspect/select operations do not alter model revision, time, cash or randomness.",
+        "All campaign intents pass the shared validator and retain tenant authority and expectedRevision checks.",
+        "A new factory is included in browser, Node and worker assembly with matching behaviour."
+      ],
+      "implementation_owners": [
+        "src/game/55-communications.js",
+        "scripts/lib/page.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-046",
+      "phase": 6,
+      "priority": "required",
+      "title": "Exactly-once time and persistence",
+      "behaviour": "Save committed state and guard worker replies, time batches and cross-tab editing ownership.",
+      "acceptance": [
+        "A stale worker result cannot replace a newer command or charge an interval twice.",
+        "Save/restore during a call, project, incident and pending bill reproduces the next outcome.",
+        "Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run."
+      ],
+      "implementation_owners": [
+        "src/game/99-provider-runtime.js",
+        "src/game/97-provider-shell.js",
+        "src/game/55-communications.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-047",
+      "phase": 6,
+      "priority": "required",
+      "title": "Bounded long-play histories",
+      "behaviour": "Replace the portfolio hard-stop at 2,000 journal entries with bounded history and durable summaries/checkpoints.",
+      "acceptance": [
+        "A 2,001-minute multi-customer run does not hit the old journal limit and restores correctly.",
+        "A documented 20-active-customer, 10,000-minute headless fixture has nonzero sustained workload, recurring settlement and at least one change/incident. It preserves totals, obligations, monotonic IDs and deterministic continuation; inactive roots do not qualify.",
+        "Bound case, record, trace and receipt histories as well as the portfolio journal using valid archival summaries/checkpoints or tombstones; retain active obligations and required lineage.",
+        "UI sampling may be reduced under load; simulation outcomes and billing cannot be dropped."
+      ],
+      "implementation_owners": [
+        "src/game/37-portfolio.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-048",
+      "phase": 6,
+      "priority": "required",
+      "title": "Static build and usable deployment path",
+      "behaviour": "Keep the browser-only static build and existing internationalisation/offline structure.",
+      "acceptance": [
+        "The intended /series-of-calls/ path loads its own assets and language strings.",
+        "After successful cache installation, a supported offline reload preserves the available game.",
+        "No mandatory backend, login, external AI/API call or new framework is introduced for this rebuild."
+      ],
+      "implementation_owners": [
+        "scripts/build.js",
+        "scripts/lib/page.js",
+        "site/sw.js",
+        "src/i18n/en.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-049",
+      "phase": 6,
+      "priority": "required",
+      "title": "Source and requirement accounting",
+      "behaviour": "Preserve immutable source packs, MIT notices, history, stable mapping IDs and outstanding obligations.",
+      "acceptance": [
+        "All 25 existing view mappings and six tutorial mappings receive an explicit new placement.",
+        "The 3,454-row catalogue remains intact; each implemented distinctive behaviour links to executed evidence.",
+        "No release/gate weakening or exclusion approval is bundled into the UI change."
+      ],
+      "implementation_owners": [
+        "spec/",
+        "research/source/",
+        "maintenance/upstream/"
+      ],
+      "source_ids": [
+        "view:hud",
+        "view:title"
+      ],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-050",
+      "phase": 6,
+      "priority": "required",
+      "title": "Visible-UI commercial journeys",
+      "behaviour": "Exercise real controls on the actual candidate build, not only DOM strings or direct dispatch.",
+      "acceptance": [
+        "Record fresh start, alternative plan, incident, bill, renewal/exit and shared-resource expansion for the SMB opening.",
+        "Record one complete journey for enterprise, government and defence with distinct constraints.",
+        "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes."
+      ],
+      "implementation_owners": [
+        "tests/",
+        "scripts/browser-smoke.js"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-051",
+      "phase": 6,
+      "priority": "required",
+      "title": "Behavioural regression and gates",
+      "behaviour": "Run the existing verification ladder on the changed behaviours and declared candidate.",
+      "acceptance": [
+        "Include positive, meaningful failure and recovery cases for each new mechanic plus targeted lifecycle/economy repros.",
+        "Run required worker/save/communications, evidence, coverage, gate mutation, translation and build checks according to repository policy.",
+        "Report exact results and current blockers; never rename a failed full-release gate to a pass."
+      ],
+      "implementation_owners": [
+        "tests/",
+        "spec/acceptance-plan.json",
+        "evidence/"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "PLAY-052",
+      "phase": 6,
+      "priority": "required",
+      "title": "Human pilot and honest handoff",
+      "behaviour": "Prepare an exploratory upstream/port comparison and report implementation evidence separately from human evidence.",
+      "acceptance": [
+        "Provide a 6–8-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
+        "Do not claim people tested the game unless they actually did; human evidence stays pending until then.",
+        "Handoff distinguishes playable UI revision, remaining full-conversion obligations, browser verification and publication status."
+      ],
+      "implementation_owners": [
+        "docs/",
+        "STATUS.md"
+      ],
+      "source_ids": [],
+      "status": "proposed_not_implemented"
+    }
+  ]
+}

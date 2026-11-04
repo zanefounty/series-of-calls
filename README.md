@@ -1,14 +1,16 @@
 # Series of Calls
 
-Series of Calls is a synthetic communications configuration and operations simulator. You configure fictional services, advance a deterministic clock, observe what became effective, and diagnose failures through the same validated commands used by the browser and local communications MCP server.
+Run a fictional communications provider: compare a customer plan, commit cash and staff, commission service, handle real simulated demand, repair incidents and expand from earned income. Provider campaign is the default experience in this branch. Training and Lab remain separate, with the same validated simulation and no live communications services.
 
 **Status: incomplete preview.** The current application is a bounded training and campaign milestone, not the full Series of Tubes conversion or a release. Its specification tracks 4,839 requirements; at the 4 November 2026 verification checkpoint, 216 were partial, 4,623 pending and none had a final disposition. The full-release gate currently rejects deferred source review `REF-ac194430f67b3832`.
 
-[Play the incomplete preview](https://zanefounty.github.io/series-of-calls/). See the [Pages workflow](https://github.com/zanefounty/series-of-calls/actions/workflows/release.yml) for publication status.
+[Play the published incomplete preview (may precede this branch)](https://zanefounty.github.io/series-of-calls/). See the [Pages workflow](https://github.com/zanefounty/series-of-calls/actions/workflows/release.yml) for publication status.
 
 All calls, messages, incidents, customers, providers, policies and evidence are fictional. AU/US/JP/EU are exercise profiles, not legal or regulatory approvals. No live telephony or provider credentials are used.
 
 ## What is implemented
+
+The provider rebuild adds two costed SMB openings, four directly selectable segment missions, actual scheduled calls/messages/meetings, shared treasury and staff, history-based settlement, customer credits/renewal/exit, paid supplier products and scoped automation. The full-screen map shows purchased services and observed dependencies, with compact HUD, costed contextual actions and pause/speed controls. See [rebuild notes and reference strategies](docs/PROVIDER_REBUILD.md), [source accounting](docs/PROVIDER_SOURCE_ACCOUNTING.md), and the [supplied specification](spec/provider-gameplay-v1/implementation-prompt.txt).
 
 The preview supports identity, routing, calling, media negotiation, workforce and queues, messaging, CRM continuity, rooms, recording, information handling and local infrastructure. Its core separates desired configuration, provisioning, effective configuration and observed readiness. Optional packs add typed contracts and billing, carrier onboarding and number ports, delivery receipts and retries, migration, processing and retention, workforce operations, site continuity, customer portfolios and bounded campaign progression.
 
@@ -23,14 +25,14 @@ npm ci
 npm run dev
 ```
 
-Open the URL printed by the server (by default `http://127.0.0.1:8080/`) and choose **Communications training**. The development server assembles the page from `src/` and serves local assets. To build and preview the compiled site under its project path:
+Open the URL printed by the server (by default `http://127.0.0.1:8080/`) and choose **Play / Continue**. A new provider career starts paused. **Training** and **Lab** remain available separately. The development server assembles the page from `src/` and serves local assets. To build and preview the compiled site under its project path:
 
 ```sh
 npm run build
 npm run serve
 ```
 
-The compiled preview defaults to `http://127.0.0.1:8080/series-of-calls/`. Both servers are local only; neither publishes the site. Browser training saves use their own Series of Calls slots, require Web Locks for editing, and are separate from the optional inherited SP game's saves.
+The compiled preview defaults to `http://127.0.0.1:8080/series-of-calls/`. Both servers are local only; neither publishes the site. Provider, Training/Lab and the optional inherited SP game use separate save slots and editing locks. Provider decisions pause the clock; hidden tabs and lost editing ownership also pause. There is no offline catch-up.
 
 ## Develop and verify
 

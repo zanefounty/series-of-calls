@@ -56,6 +56,12 @@ test('visible plan and operation quotes disclose engine forecast scope and valid
  }finally{ui.w.close();}
 });
 
+test('idle inspector omits stale family-count claims and deals humanize eligibility blockers',()=>{
+ const {w}=boot();try{const model={revision:1,clock:0,period:1,minute:0,cash:2000000,forecast:{},customers:[],offers:[{id:'next-1',name:'Next customer',available:false,blockers:['QUALIFYING_PERIODS_REQUIRED'],expiresAt:180}],events:[],unimplemented:{status:'pending',families:['representative-family']}};w.SOC_PROVIDER_UI.render({revision:1,clock:0},model);
+  assert.doesNotMatch(w.document.querySelector('.provider-inspector').textContent,/family paths remain pending/);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');const text=w.document.querySelector('.provider-rail-body').textContent;assert.match(text,/qualifying periods required/);assert.doesNotMatch(text,/QUALIFYING_PERIODS_REQUIRED/);
+ }finally{w.close();}
+});
+
 test('provider rerenders preserve launch draft focus and use compact responsive layout classes',()=>{
  const {w}=boot();const model={revision:1,clock:1,period:1,minute:1,cash:0,forecast:{},customers:[],offers:[],events:[],staff:{engineers:2,support:1}};w.SOC_PROVIDER_UI.render({revision:1,clock:1},model);click(w,'[data-provider-action="drawer"][data-provider-value="team"]');const input=w.document.querySelector('[name="engineers"]');input.focus();input.value='3';input.dispatchEvent(new w.Event('input',{bubbles:true}));
  w.SOC_PROVIDER_UI.render({revision:2,clock:2},{...model,revision:2,clock:2,minute:2});

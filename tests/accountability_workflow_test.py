@@ -53,7 +53,7 @@ class AccountabilityWorkflowContract(unittest.TestCase):
 
     def test_gate_cleans_checked_in_receipts_before_exact_run_artifact_download(self):
         clean = self.gates.index('name: Remove checked-in receipts before artifact download')
-        download = self.gates.index('uses: actions/download-artifact@v4')
+        download = self.gates.index('uses: actions/download-artifact@')
         self.assertLess(clean, download)
         self.assertIn('needs: [acceptance]', self.gates)
         self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
@@ -83,7 +83,7 @@ class AccountabilityWorkflowContract(unittest.TestCase):
         self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
         self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.mutations)
         clean = self.mutations.index('name: Remove checked-in receipts before artifact download')
-        download = self.mutations.index('uses: actions/download-artifact@v4')
+        download = self.mutations.index('uses: actions/download-artifact@')
         require = self.mutations.index("name: Require this run's acceptance receipts")
         run_tests = self.mutations.index('name: Run fail-closed gate mutation tests')
         self.assertLess(clean, download)

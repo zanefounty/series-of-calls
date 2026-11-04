@@ -55,3 +55,17 @@ The eight Tanner suites specifically test these rules:
 - Remote IX membership does not imply foreign PNI access; restrictive incumbent volume criteria and bilateral route-server opt-outs remain separate policies.
 
 Retained SP modules already contain customer-cone/city shares (`30-networks/40-traffic-shares.js`), destination reach and Tier 1 rounding rules (`70-rules/10-helpers.js`, `80-hot-ports-and-rank.js`), and city-specific interconnection/policy (`20-exchanges.js`, `30-pnis.js`, `40-peering-desk.js`, `50-peering-policy.js`). This is concept overlap, not proof of parity with the fork's expanded country/IPv6/access-market dataset or a communications-game adaptation. These source-specific differences remain proposals; no requirement or owner research decision was closed by the test results.
+
+## Non-top-ten focused execution
+
+A later pass executed the additional [three-fork research](non-top-ten-followup.md) on exact isolated snapshots. Each used `env -u NODE_PATH npm ci`, Node 24.22.2/npm 12.2.1 and its own lockfile. All three installed jsdom 24.1.3; Wesley also installed playwright-core 1.56.0. Tracked source and lockfiles remained clean after execution; the coordinator verified the recorded log hashes, final test counts and Git pins.
+
+| Pinned source | Executed command (with `NODE_PATH` unset) | Result |
+| --- | --- | --- |
+| [Wesley redundancy manager](https://github.com/wesleymarquesnetworks/seriesoftubes/commit/5dc81b38f6432cf102f15dca2e13de46101ab3d9) | `node --test --test-isolation=none tests/redundancy.test.js` | 2/2 passed |
+| [Flol0 extension snapshot](https://github.com/Flol0/seriesoftubes/commit/1abd783e435c27a5a76e076f86e67fb9ec978948) | `node --test --test-concurrency=1 tests/operations.test.js tests/submarine.test.js tests/service-fabric.test.js tests/scaling.test.js` | 36/36 passed |
+| [LookedPath responsiveness](https://github.com/LookedPath/seriesoftubes/commit/c0e76085504eeb4da9dc890be4bb4417fb57e38e) | `timeout 300s node --test --test-isolation=none tests/performance.test.js` | 6/6 passed |
+
+There were zero failed or skipped tests in these final runs. The initial partial-clone checkouts lacked promised blobs; their test attempts stopped on missing files. The required paths were verified in each pinned Git tree and restored from that fork's origin before the successful runs. The initial test logs were overwritten and are **not** separately retained; checkout/restore diagnostics and final test logs remain outside Git. No files were invented or copied from another revision. These focused source tests do not establish full fork suites, browser performance, SOC compatibility or accepted source dispositions.
+
+Raw output and a compact hashed summary are under `soc-runtime-artifacts/fork-source-tests/2026-11-04/followup/` in the parent workspace. The final summary SHA-256 is `cb80700e33dd419662027257270bd47a74fa5eedcf07976c736a5e7fa26add33`.

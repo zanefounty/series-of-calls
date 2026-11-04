@@ -1,10 +1,11 @@
 {
   "status": "bounded-verification-passed-release-blocked",
-  "scope": "coaching implementation; not full product or full current-input browser acceptance",
-  "finishedAt": "2026-11-04T03:20:42.514245+00:00",
+  "scope": "Fork-inspired transport recovery/headroom and current implemented browser recipes; full source-specific product acceptance remains incomplete.",
+  "finishedAt": "2026-11-04T06:38:25.875203+00:00",
+  "sourceCommit": "f1ff38f1d5239ebacdf8b6fb49db52d1107af065",
   "javascript": {
-    "tests": 1458,
-    "pass": 1458,
+    "tests": 1482,
+    "pass": 1482,
     "fail": 0,
     "cancelled": 0,
     "skipped": 0
@@ -17,7 +18,7 @@
         "test"
       ],
       "exitCode": 0,
-      "seconds": 385.82
+      "seconds": 538.08
     },
     {
       "name": "acceptance",
@@ -27,7 +28,7 @@
         "evidence"
       ],
       "exitCode": 0,
-      "seconds": 160.82
+      "seconds": 334.59
     },
     {
       "name": "gates-mutations",
@@ -37,7 +38,7 @@
         "test:gates"
       ],
       "exitCode": 0,
-      "seconds": 134.23
+      "seconds": 195.6
     },
     {
       "name": "development",
@@ -47,7 +48,7 @@
         "check:all"
       ],
       "exitCode": 0,
-      "seconds": 162.21
+      "seconds": 408.99
     },
     {
       "name": "delivery",
@@ -57,7 +58,7 @@
         "check:delivery"
       ],
       "exitCode": 0,
-      "seconds": 0.23
+      "seconds": 0.66
     },
     {
       "name": "translations",
@@ -67,7 +68,7 @@
         "i18n:check"
       ],
       "exitCode": 0,
-      "seconds": 0.88
+      "seconds": 2.16
     },
     {
       "name": "build",
@@ -77,7 +78,7 @@
         "build"
       ],
       "exitCode": 0,
-      "seconds": 0.27
+      "seconds": 0.61
     },
     {
       "name": "release",
@@ -87,28 +88,261 @@
         "check:release"
       ],
       "exitCode": 1,
-      "seconds": 165.53
+      "seconds": 334.39
     }
   ],
   "inputDrift": [],
-  "testedInputDigest": "b1123bde9e080a4df7d71f628266fb6c3a338aa411823a6cc9594de1c6139eae",
+  "testedInputDigest": "9947b732c2e677d6d34379f1e3d9d07696c058fbbf7e274defe14c6e80d13cbe",
+  "acceptanceCases": 603,
+  "pythonGateMutationTests": 83,
+  "canonicalAcceptanceSha256": "ef3d652ded97a5cbed8bf9464cf166fe5214154465c8d5e6bfcab0c5581dec79",
   "stdioMcp": {
     "status": "passed",
-    "cases": 92
+    "cases": 94,
+    "receiptSha256": "df75e23651d6effc8c94a263537f4cdde86c5bef1ed6ee2490a6e523432c827c"
+  },
+  "canonicalBrowser": {
+    "status": "passed",
+    "viewports": 3,
+    "offline": "passed",
+    "receiptSha256": "0974b3834ed5e6cc4e9ab33594dd6fc8c6acb9b0fc43a6c229857ec89184f838",
+    "driverSha256": "3f70ea5d68ea51c37f29bea6172748376681050e2d877137326a8d216a07aabc"
+  },
+  "mobileOverflowRegression": {
+    "positive": "passed at all three viewports",
+    "oldGeneratedCss": "failed at expected mobile overflow assertion",
+    "negativeReceiptSha256": "ffa28ad870af944373939834658307071c3a05148a32af9d4057e23efa2512f8"
   },
   "browserMcp": {
     "checks": 22,
-    "status": "passed"
+    "featureJourneys": 2,
+    "status": "passed",
+    "server": "0.0.84",
+    "serverPlaywright": "1.65.0-alpha-2026-10-30",
+    "serverChromium": "157.0.8103.15",
+    "appPlaywright": "1.56.0"
   },
   "featureBrowser": {
-    "cases": 6,
-    "status": "passed",
-    "scope": "AU enterprise, Chromium/Firefox/WebKit desktop and mobile"
+    "transport": {
+      "status": "passed",
+      "cases": 6,
+      "receiptSha256": "d26d89ac905e8fad075d9cad0b2a1b513efc2ee4e7a923d96ad211f52dcb91e9"
+    },
+    "quality": {
+      "status": "passed",
+      "cases": 9,
+      "receiptSha256": "608bcfcb29581f5a7f1e93318a436c93657feb62ef0d4034a5deaff2cd9d655e"
+    },
+    "coaching": {
+      "status": "passed",
+      "cases": 9,
+      "receiptSha256": "779dcfe41277a29df10ba50e745cdfe86efeaa9c86fd58b1924e5c1a192281e0"
+    }
+  },
+  "featureIndependentAuditSha256": "2d3ea0555a3bcb7908025dea7f96386369c5e5089fc14f06c39c177097086e98",
+  "supplementalBrowser": {
+    "ownedRouteCases": 6,
+    "alternativeCampaignProfiles": 12,
+    "alternativeScope": "Chromium desktop, all four jurisdictions and three modes; each traverses all four campaign tracks. Failed attempts retained; exact successful retry receipts independently audited."
+  },
+  "campaignMatrices": [
+    {
+      "journey": "compact",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "chromium",
+        "version": "141.0.7390.37",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "e1bc03cd71e3f105e39cc21277d250d57eb5a99efe082415a507b7a61f7a975a"
+    },
+    {
+      "journey": "compact",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "firefox",
+        "version": "142.0.1",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "f513903fd7e6a2d409ef6ab639f48ce00c06e550d6a8c6b4dc55f87d83c4e6c7"
+    },
+    {
+      "journey": "compact",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "webkit",
+        "version": "26.0",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "3c01676172581eb53a6613c45aea2856399d248c56c4aef09369eb4e89debc7a"
+    },
+    {
+      "journey": "campaign",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "chromium",
+        "version": "141.0.7390.37",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "666036cc55eb2c2e49ad33021aacb71eb1c4961151cc3ccab2b5ee5f0c4f9f75"
+    },
+    {
+      "journey": "campaign",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "firefox",
+        "version": "142.0.1",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "da0e6f125db45e3228e3c9dd1a30438eeb74c38bef86063a45ac79dcaeb59ffa"
+    },
+    {
+      "journey": "campaign",
+      "profileCount": 48,
+      "caseCount": 144,
+      "browser": {
+        "engine": "webkit",
+        "version": "26.0",
+        "playwright": "1.56.0",
+        "playwrightLockfile": "1.56.0"
+      },
+      "inputSha256": "ac13afa0b597037ae6f9321a4a9f72f97465f703053d2d3d1481239922debb6c",
+      "lockfileSha256": "7b0424991f699c2fc7b8501fbe5dbfc2d076ed452d1a48c5320d633f24d226da",
+      "artifactSha256": "adcf1fac3eac0de5f979183410077647aa2f082f23417a2035047f2e5b8975a2",
+      "sourceDrift": [],
+      "status": "passed",
+      "receiptSha256": "76d4cd5b86588e5aaf04e330eef0f41281ce23c2ac24d8d5217c58cd531ed1d7"
+    }
+  ],
+  "browserCoverageAudit": {
+    "sha256": "00718042d92e08144faa995fd2c54528eda13fd3daad7c601ae77be21efbecd5",
+    "completedAudits": {
+      "canonicalSmoke": "f66571153ca7f28126940b9742009caa23d17bc9d1cf73ed6dccb7e1dad57fd9",
+      "overflowRegressionSensitivity": "ffa28ad870af944373939834658307071c3a05148a32af9d4057e23efa2512f8",
+      "actualPinnedBrowserMCP": "2154f5458060857ccaa924296565f4cafb5caf73b8c1e4ce63e66613ce343006",
+      "administrationRendering": "b06ed01eb35ae18a57ba8609ee1d6b8270bc353976cda1ab29e4f625b686372b",
+      "visualInspection": "21df770b071f2117bf7fa2c0de8ca61bb60d89d8a9c7cfa2b0531efe14187a4e",
+      "ownedRouteContinuity": "4f5d3a816d8c1bca51f9650f0848d80217cd1a0ad22133da85427071b312443c",
+      "recentFeatureMatrices": "2d3ea0555a3bcb7908025dea7f96386369c5e5089fc14f06c39c177097086e98",
+      "networkTraceReview": "67672009a50b5e323b62c477eaa42eaa32a05310bd0d9b60f88ca24d7b00168e",
+      "alternativeCampaignUnion": "118d9102d45e0cf8d724e9c6afc49be638a3e28a67fc256f5c40b1234c6194e2",
+      "defaultBrowserMatrices": "12b2eec9dd9e97642a51aac982ddb756ad296719432f34498c8daf53504e3bc7",
+      "webkitFullShardReplacement": "b165040b5baa12e8bb79f18190ce98c7557f4d9c9a0994f67b62f5a4b9f57596",
+      "matrixContainerProvenance": "8046fd78620c5b8f6ae05384a75165fa59930ad5bfbd07b9532bf60d6577fbe7"
+    },
+    "mapping": [
+      {
+        "requirement": "Served artifact, keyboard, topology/inspector, save/import/replay, worker fallback, tab lock and offline reload",
+        "evidence": "canonicalSmoke + actualPinnedBrowserMCP; fallback deliberately substitutes Worker environment, no synthetic gameplay state"
+      },
+      {
+        "requirement": "Pinned browser MCP independent from application dependency",
+        "evidence": "MCP0.0.84 uses own1.65.0-alpha-2026-10-30/Chromium157; app1.56.0 usesChromium141/Firefox142/WebKit26"
+      },
+      {
+        "requirement": "All six illustrations and administration families in desktop, portrait and landscape",
+        "evidence": "administrationRendering:15resource consoles+32families across3viewports;9conditional upperform cases;198PNG structural checks;18illustration PNGs and4upperform representative PNGs separately viewed"
+      },
+      {
+        "requirement": "Alternative valid designs",
+        "evidence": "Owned-route continuity passed six engine/viewport cases. Alternative campaigns independently verified all 12 distinct jurisdiction/mode endpoints, traversing four tracks each, with 223 exact public commands and 40 passed checkpoints per endpoint. Eight original passes plus four same-driver, same-limit successful retries form the explicit bounded union; original timeouts remain retained."
+      },
+      {
+        "requirement": "Full compact and campaign recipes across all three engines, with 144 cases per matrix",
+        "evidence": "All six current-input aggregates independently verified: exact 48 profiles \u00d7 three viewports each, expected success/failure/recovery or campaign checkpoints, matching source/lock/browser/build hashes, zero errors/drift in selected passing runs, and 1,728 retained PNG/trace hashes. WebKit campaign shard6 uses an explicit complete 12-case replacement; its original failed report remains retained and excluded."
+      },
+      {
+        "requirement": "Recent transport, quality and coaching visible workflows including landscape supplements",
+        "evidence": "Fresh transport6+quality9+coaching9 independently verified; transport external instrumentation retains same6journeys as compactreport (no count inflation). All raw and independently adapted public-command replays match,99artifact hashes; quality/coaching include landscape."
+      }
+    ],
+    "limitations": [
+      "Browser acceptance covers the defined current implemented runtime; it does not establish complete product/source fidelity or release readiness.",
+      "The administration sweep checks rendering, accessible names and bounds, with representative screenshots visually inspected. It does not exercise every possible workflow or manually inspect every pixel.",
+      "Alternative campaigns ran in Chromium desktop across four jurisdictions and three modes. Default matrices cover all three engines and three viewports; owned-route recovery also ran across all three engines at desktop/mobile.",
+      "The initial owned-route termination has strong Docker signal15/operator-stop timing correlation, but the removed container mount mapping was not retained. It is not established as a Firefox defect; the complete named repeat passed.",
+      "Initial alternative adapter failures and four later case timeouts remain retained. The final 12-profile union uses eight original passes and four fresh same-driver, same-limit passes, with explicit supersession.",
+      "One original WebKit campaign case suffered a native renderer crash with matching kernel SIGILL evidence. Its underlying trigger remains unknown. The complete same-input shard replacement passed all12cases and its browser exited normally; this is a successful rerun, not a claim that the native cause was fixed.",
+      "The compact orchestrator exit143 incident remains retained with unknown termination source. Actual selected shard reports completed successfully and the exact complete case unions were independently verified."
+    ]
   },
   "releaseOutput": "npm notice run series-of-calls@0.1.0-preview.1 check:release\nnpm notice run python3 scripts/verify.py release\nFAIL Unreviewed research reference: REF-ac194430f67b3832",
-  "rawArtifactPolicy": "Raw runs removed at owner request; do not commit screenshots, traces, logs, duplicate manifests or copied builds.",
-  "sourceCommit": "f421caeb19939ff220f7e09731836b79c9876863",
-  "canonicalAcceptanceSha256": "db3c5d320529644de0964575326ee13a9b8cfdc23acaec57b10ae8ad470152a4",
-  "acceptanceCases": 582,
-  "sourceAndReleaseLimit": "4839 requirements remain partial/pending; canonical source acceptance is zero; full browser readiness remains false."
+  "inventory": {
+    "requirements": 4839,
+    "partial": 216,
+    "pending": 4623,
+    "finalDispositions": 0,
+    "canonicalResearchAcceptance": 0
+  },
+  "retainedFailedAttemptAudits": [
+    {
+      "file": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts/fork-post-css-browser/owned-route/operator-interruption-correlation.json",
+      "sha256": "9d493e74d3cd8bd3a5922d112f6c321eb6cc6767459740dabb20e58fa08dac64"
+    },
+    {
+      "file": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts/fork-post-css-browser/alternatives/shard-1/2026-11-04T04-51-43-497Z-c1c663/browser-campaigns.json",
+      "sha256": "de4566692df87ffebe0ac40f3d79268602f45333556b905b540cd04affecd140"
+    },
+    {
+      "file": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts/fork-post-css-browser/alternatives/shard-2/2026-11-04T04-51-45-687Z-f62add/browser-campaigns.json",
+      "sha256": "96f135d589aaf86e689e5277b64758bea7e9a2e418e17c1b98a83190408a2475"
+    },
+    {
+      "file": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts/fork-post-css-browser/alternatives/shard-3/2026-11-04T04-51-48-301Z-58852a/browser-campaigns.json",
+      "sha256": "0a96c2552cba7a000e95e2d988471b21fb90ab3fbde53c5a8eb7dc5c62aebf40"
+    },
+    {
+      "file": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts/fork-post-css-browser/diagnostics/webkit-campaign-shard6-original/diagnosis.json",
+      "sha256": "a1a2f4e1dd064eb3b0ea8515e95bf520d116d30716273b600711cfde0a88b69c",
+      "kind": "native-WebKit-renderer-crash",
+      "retryOutcome": "Complete same-input WebKit campaign shard6/12 replacement passed all12cases in682376ms; original excluded from aggregation.",
+      "replacementAudit": {
+        "file": "/tmp/soc-fork-post-css-matrices/webkit6-replacement-independent-audit.json",
+        "sha256": "b165040b5baa12e8bb79f18190ce98c7557f4d9c9a0994f67b62f5a4b9f57596"
+      }
+    },
+    {
+      "file": "/tmp/soc-fork-post-css-matrices/controller-incident.json",
+      "sha256": "1271857a1b6b0ec8775e57ee7caa079fc7a0b2c01468feaa3eb80a410bcd4b1f",
+      "kind": "compact-orchestrator-exit143"
+    }
+  ],
+  "externalArtifactRoot": "/home/zane-fountylabs/workspace/zefun/soc-runtime-artifacts",
+  "rawArtifactPolicy": "Only compact canonical receipts are versioned. Screenshots, traces, logs, copied builds, duplicate reports and failed/interrupted attempts remain outside Git.",
+  "sourceAndReleaseLimit": "Current implemented-runtime browser coverage is verified. Remaining source-specific implementation/review, enforced API budget and maintenance activation still block full completion/release. No Pages deployment."
 }

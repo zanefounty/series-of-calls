@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-11-03T23:51:26.484068+00:00",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--ulimit",
+    "core=0",
+    "--ipc=private",
+    "--shm-size=1g",
+    "--mount",
+    "type=bind,src=/usr/bin/node,dst=/usr/local/bin/node,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-implementation,dst=/work",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-ui-browser.js,dst=/tmp/soc-interface-ui-browser.js,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-browser-prototype,dst=/out",
+    "--workdir",
+    "/work",
+    "--env",
+    "SOC_INTERFACE_LIMIT=2",
+    "mcr.microsoft.com/playwright:v1.56.0-noble",
+    "node",
+    "/tmp/soc-interface-ui-browser.js"
+  ],
+  "imageId": "sha256:35246d87a7c88ea9b771c65d33171b2611b02a8253b4b12ce6f94376c55f99f2",
+  "driverSha256": "4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2",
+  "driver": "/tmp/soc-interface-ui-browser-4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2.js",
+  "report": "2026-11-03T23-50-44-462Z/report.json",
+  "note": "Prototype command provenance recorded immediately after execution; not final frozen evidence."
+}

@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-04T00:27:10.480271+00:00",
+  "status": "verified-diagnostic",
+  "checks": {
+    "diagnosticStatus": true,
+    "offlinePassed": true,
+    "exactViewports": true,
+    "allPassed": true,
+    "sourceDriftEmpty": true,
+    "scriptInputsMatch": true,
+    "expectedCommit": true,
+    "lockedPlaywright": true,
+    "tempBuild": true,
+    "threeScreenshots": true
+  },
+  "browser": "141.0.7390.37",
+  "artifacts": [
+    {
+      "file": "browser.json",
+      "bytes": 33847,
+      "sha256": "eddefaaae02e4374f5e6e52a099beaa055cc8d6acb34c7a7d48cdb62979f5d8f"
+    },
+    {
+      "file": "training-1440.png",
+      "bytes": 67353,
+      "sha256": "20753bed2f7b8ced4a97b9b4cba14ab6197a27857ef8d4df4696df58e10c666c"
+    },
+    {
+      "file": "training-390.png",
+      "bytes": 188301,
+      "sha256": "71319557f13c7576b7665fef44fcb87e776c18a50fe4f74c6fcbe9f50fb6f4e9"
+    },
+    {
+      "file": "training-844.png",
+      "bytes": 387859,
+      "sha256": "023a6bcd21564a50e7237978ba19072ec5f79bb4155121d98ff1dfc9198a0295"
+    }
+  ],
+  "scope": "Compiled consoles, configuration, topology, keyboard, save/export/import, tab ownership, worker execution and offline reload at a project path. Full scenario acceptance remains separate.",
+  "limitation": "The canonical script intentionally labels a temporary build diagnostic-passed; this does not replace the release _site receipt."
+}

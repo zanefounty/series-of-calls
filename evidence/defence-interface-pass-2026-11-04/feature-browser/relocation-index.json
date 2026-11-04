@@ -1,0 +1,1562 @@
+{
+  "recordedAt": "2026-11-04T00:28:16.762356+00:00",
+  "method": "Byte-preserving copy. Original receipt content and absolute paths intentionally unchanged. Resolve paths using this relocation index.",
+  "prefixMappings": [
+    {
+      "original": "/tmp/soc-interface-browser-final-v2",
+      "relocated": "."
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final",
+      "relocated": "pre-fix"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype",
+      "relocated": "prototypes"
+    }
+  ],
+  "files": [
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-internal-training.trace.zip",
+      "bytes": 44278580,
+      "sha256": "d63fe0eacc6cae6fef65ac799b995bf53bacc85ae0429798fe2bbc8b58847e1c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 43240434,
+      "sha256": "26e029bdebd51bba62ad9e0ddae04a00d94ff9b651ab50c56124f5a91e9ae185"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 22002304,
+      "sha256": "03920e7e31ee8ff1029c6588703928521d219409294483b03edb7a909c185279"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-internal-training.trace.zip",
+      "bytes": 7213229,
+      "sha256": "b31093678cb7e3b9eccd00c8619378df0b3757b7f9a78136bea693c0da1c1358"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 7010936,
+      "sha256": "b039a81ca7679317e9da91ba5f406c9b6644b030c98b7fb2fde091d1e4129764"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/AU-mobile-restricted-handover.trace.zip",
+      "bytes": 7146240,
+      "sha256": "75e4b0ae3c47901e4a27c3428130d707788d2cb2f38e87b5b2ad7a9047ca3bff"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-internal-training.trace.zip",
+      "bytes": 37249263,
+      "sha256": "bef63e30603ac139dbd84d8fa5b7362ba3f33e67e2ba20595792c37d74930330"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 40666166,
+      "sha256": "f4c96e65f2ca9f136295c25b3f05f33cf1739a672c959a2be9c318370b833c7e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-desktop-restricted-handover.trace.zip",
+      "bytes": 32807857,
+      "sha256": "269c673bd3c53b08c12ccb7103f3cbb29aba0bbee2291dbe76e6814612a883ac"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-internal-training.trace.zip",
+      "bytes": 7126126,
+      "sha256": "dd139c6a8edd207bd78e80546cc2323b11c2cd260397da1ed9eddeba9a4ef80b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 7308620,
+      "sha256": "fcaf1f328b8cf87aa70bd71d05197acfed0ecbfe6318b69dd5994b5e507f3ec7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/EU-mobile-restricted-handover.trace.zip",
+      "bytes": 7384768,
+      "sha256": "d66b663cb83a67a4e4c2d4c545f26071f6a6adcbd52b70790fe92b0cd93949d8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-internal-training.trace.zip",
+      "bytes": 44824019,
+      "sha256": "d9b8bc7200df44247965f3b4bb94d9686fbcad3ab3ca64cdaa2396a3a02ea1bb"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 42374997,
+      "sha256": "dfa74a118fb08b8653c1cc8ff73dd680da87378a7df70b3614a8aa38bc2c40b6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-desktop-restricted-handover.trace.zip",
+      "bytes": 40906357,
+      "sha256": "f47cf5cfd6fab3fdf885e35a6de8b46b15cfcc86efe4cd79aa402df62682b8bf"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-internal-training.trace.zip",
+      "bytes": 7231038,
+      "sha256": "fd44d4fe7c85d8275a7eab4257dd029657ba5622f2491284c7181819bf7a054b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 7291128,
+      "sha256": "f3166d26110cd30a5c18750fa189e9d8cd5f6869eb85de09b3c76a83530bee85"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/JP-mobile-restricted-handover.trace.zip",
+      "bytes": 7641722,
+      "sha256": "27dafe3a79c9bd08814c39c89b2702801ebbec34c0242982675f985d3716e7e6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-internal-training.trace.zip",
+      "bytes": 43218751,
+      "sha256": "ac6eced5142d251f87c3c7ca89fb4cb2d77afb8c7af331213ed460072d51a9f0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 42916326,
+      "sha256": "f2f89e0ac8d1468a2e243e579997cc370c319835d1f5b5d5aaacb51c54905496"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-desktop-restricted-handover.trace.zip",
+      "bytes": 41700083,
+      "sha256": "72073be78296ad809bac8b1a76943be9e46952e0416b97460eaa090389fa3211"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-internal-training.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-internal-training.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-internal-training.trace.zip",
+      "bytes": 7116415,
+      "sha256": "e783297c8f6891119656914be7dffb8d455794f0d57a972400d9aba03fe2eada"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-export-blocked.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 7597304,
+      "sha256": "f3c0501240fe2b3002ea24db6a2a1f2d92c92cf2a9d5067b56e63fde10c8dda7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-handover.png",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-handover.trace.zip",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/US-mobile-restricted-handover.trace.zip",
+      "bytes": 7405454,
+      "sha256": "08852622899be3d04f6a670fa112c41758acafafd1ec264b71c795f207c7c168"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/report.json",
+      "relocated": "chromium/2026-11-04T00-11-49-659Z/report.json",
+      "bytes": 891095,
+      "sha256": "e7384f0561af2bce8968e5b6f6bb67586d6ba0d86d3c73a1edfa1f35a616e6f8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/interface.log",
+      "relocated": "chromium/interface.log",
+      "bytes": 1308,
+      "sha256": "11f35b7d161856f250c852a366c1797a5e2e316f89da0a387c9e8d083583dfba"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/desktop.png",
+      "relocated": "chromium/keyboard-2026-11-04T00-23-03-064Z/desktop.png",
+      "bytes": 401766,
+      "sha256": "12964e382c270dbb990a6299ec966392e404fd81ecb6b40d2f48dede61b72a3e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/desktop.trace.zip",
+      "relocated": "chromium/keyboard-2026-11-04T00-23-03-064Z/desktop.trace.zip",
+      "bytes": 6797754,
+      "sha256": "6a13eb6851d5ec45cdbfcb58b4b40e298afd87d8e7d8972d443cd5fe9f860024"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/mobile.png",
+      "relocated": "chromium/keyboard-2026-11-04T00-23-03-064Z/mobile.png",
+      "bytes": 99346,
+      "sha256": "a57ad7149cd7e7b820dec5833c4856083be88b4cb7767637885659d4389f594d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/mobile.trace.zip",
+      "relocated": "chromium/keyboard-2026-11-04T00-23-03-064Z/mobile.trace.zip",
+      "bytes": 3210351,
+      "sha256": "45bce818c15e4bf52e0c5274a6be691475ef855aef53045d88c132ff925672eb"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/report.json",
+      "relocated": "chromium/keyboard-2026-11-04T00-23-03-064Z/report.json",
+      "bytes": 35658,
+      "sha256": "e92b972f5acd7aefa70ec3f9628d0c622909204f8b1e67185d1206e99ee0d82b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/chromium/keyboard.log",
+      "relocated": "chromium/keyboard.log",
+      "bytes": 93,
+      "sha256": "eb698baf83e0100ee6b59a4519cee263abd00acd0ca383c0f2b0a544016285f8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/delivery-index.json",
+      "relocated": "delivery-index.json",
+      "bytes": 13918,
+      "sha256": "cca6027eec4fc15d598efaac486d03db87d327e4385735ae3d77f96cf2b98229"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/execution.json",
+      "relocated": "execution.json",
+      "bytes": 7680,
+      "sha256": "56098c3667fdba6a91de3e75efc58e9fd1838498b6a5668cf3ce99107b4d5db0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-internal-training.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-internal-training.trace.zip",
+      "bytes": 24013223,
+      "sha256": "cfa7390c6552f98a709a48367f34c5dce8425e304310caa52014cabcef892c4c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-export-blocked.png",
+      "bytes": 130503,
+      "sha256": "9d39b8a2908d2207d7008f2accb18e5dc5280de75f3a5f94c597084266db1106"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 24465421,
+      "sha256": "7a33eb955cb622da177fefaa8f8cadd8aa1876921550856b34a092034fbcab9d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-handover.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 16165007,
+      "sha256": "3b84f4b619ba80d417c78b7655b2e81f857a03090d96a9faf700fa8cf1b42385"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-internal-training.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-internal-training.trace.zip",
+      "bytes": 17976174,
+      "sha256": "f2c13f831652f88fcefac243e0a8365d7fbb0bd3a9e016ccdc19961c83e97ecf"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-export-blocked.png",
+      "bytes": 84688,
+      "sha256": "7bfcb868cb3e7ac3bbe4241a40bc89d3a70b1513d6de8f2f187710af23019e3e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 15679277,
+      "sha256": "cc369d28ab22d603ef3f11f929ed6cc60036a44e2edc6f544815409049372ab5"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-handover.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/AU-mobile-restricted-handover.trace.zip",
+      "bytes": 16969958,
+      "sha256": "d98dec27db168497648850b176e7f88f8688486df79beaff35125af552beb1a9"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-internal-training.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-internal-training.trace.zip",
+      "bytes": 20150753,
+      "sha256": "17a00d0c0e5830bda9a041561966804ea309028142d90e87afd02c4044605cc2"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-export-blocked.png",
+      "bytes": 130503,
+      "sha256": "9d39b8a2908d2207d7008f2accb18e5dc5280de75f3a5f94c597084266db1106"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 20455432,
+      "sha256": "d2eb5ee66e84a16c3cbf0a54bd9a905f1656a69ab2ecf7330d1be3218941742a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-handover.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-desktop-restricted-handover.trace.zip",
+      "bytes": 21924445,
+      "sha256": "e2de42b75a0bb201c77ee1bae9415788f2770fccfecec4d7774f7435e0d66155"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-internal-training.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-internal-training.trace.zip",
+      "bytes": 13411592,
+      "sha256": "ddca2f8b5e4b6da2e768a7a2239297eeda6ab2c0ed7923b73b0dc359d2933ba9"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-export-blocked.png",
+      "bytes": 84688,
+      "sha256": "7bfcb868cb3e7ac3bbe4241a40bc89d3a70b1513d6de8f2f187710af23019e3e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 12813315,
+      "sha256": "fe0aee4142909107bda246548072b521eda78cec7050cc348ec27d51df0ac74b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-handover.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/EU-mobile-restricted-handover.trace.zip",
+      "bytes": 13320669,
+      "sha256": "16297952eaa0e8c1cb37596a2aa62014f22a45497249f464e9bca743b7d810dc"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-internal-training.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-internal-training.trace.zip",
+      "bytes": 20903012,
+      "sha256": "12ec169e10e060be36a7881b52c9d6e6ba3dd4def622e8628e1395ef1c61e08c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-export-blocked.png",
+      "bytes": 130503,
+      "sha256": "9d39b8a2908d2207d7008f2accb18e5dc5280de75f3a5f94c597084266db1106"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 23011162,
+      "sha256": "113cd3081d6db1c21fd257019325e5e69d6369f9716672d1112c2ce5d49ebfc7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-handover.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-desktop-restricted-handover.trace.zip",
+      "bytes": 24611704,
+      "sha256": "f254af0226ff32370289e5ce965b8063b0afd527110c96f6b92cfb337a6332e4"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-internal-training.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-internal-training.trace.zip",
+      "bytes": 16148541,
+      "sha256": "12eebaf902fcc6d27ab7db3ab07a02ab6c603c0e5c4568d81877a130debec64b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-export-blocked.png",
+      "bytes": 84688,
+      "sha256": "7bfcb868cb3e7ac3bbe4241a40bc89d3a70b1513d6de8f2f187710af23019e3e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 17296148,
+      "sha256": "09dddbe654eb309e3e7b5ab68764fdc9500768b9b307155236259547cefa4d91"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-handover.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/JP-mobile-restricted-handover.trace.zip",
+      "bytes": 14778347,
+      "sha256": "8e131599617f9f2d43e8ac86686ef0108444c14354c520f8336f64d1bf7487d3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-internal-training.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-internal-training.trace.zip",
+      "bytes": 24238374,
+      "sha256": "0c5ed5f6e093a6c225bf626cf67e0382364935644a41c484ee8eb3dde97d72a8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-export-blocked.png",
+      "bytes": 130503,
+      "sha256": "9d39b8a2908d2207d7008f2accb18e5dc5280de75f3a5f94c597084266db1106"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 21928637,
+      "sha256": "9d56cc72101eaf03d3e8325c36199e86def6c43d9b48cf256664944658f656a7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-handover.png",
+      "bytes": 127586,
+      "sha256": "a7b28c0bb78711009e83dda40357e6336f569a566ab6663ac3d653bc6d080421"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-desktop-restricted-handover.trace.zip",
+      "bytes": 23307712,
+      "sha256": "b73dcc97f79603b84bdee96fd69d2be76d5ec776c346e781173f79e85521f1ff"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-internal-training.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-internal-training.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-internal-training.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-internal-training.trace.zip",
+      "bytes": 16853282,
+      "sha256": "a0be2175d8b9136bfaeb290437a63488ab7ab9fae7d881d6c7c57cf9dca48d52"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-export-blocked.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-export-blocked.png",
+      "bytes": 84688,
+      "sha256": "7bfcb868cb3e7ac3bbe4241a40bc89d3a70b1513d6de8f2f187710af23019e3e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 16675534,
+      "sha256": "9476889545a1eb6423099ba68a1d074bfb443026fed10b7362d95bce39aa9c22"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-handover.png",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-handover.png",
+      "bytes": 83150,
+      "sha256": "b1d69b10cdf802dc5a2ff4b90a0f92ec0e54d5b2bb18f98925e0630bf6688d05"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-handover.trace.zip",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/US-mobile-restricted-handover.trace.zip",
+      "bytes": 15282889,
+      "sha256": "e428ae47963199dff9ab61a7d40e5c609d9aa1616741865c688678a41adbe0fd"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/report.json",
+      "relocated": "firefox/2026-11-04T00-11-49-606Z/report.json",
+      "bytes": 891112,
+      "sha256": "4c0f196b0283b30f3ac16e1ab71255653f889b230a18fd3924594fc6efffc25c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/interface.log",
+      "relocated": "firefox/interface.log",
+      "bytes": 1308,
+      "sha256": "5e9988fdf5bfa1ee977360ea44ebac577d8a7758f377f2d8e336716ae4d3e7f7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/desktop.png",
+      "relocated": "firefox/keyboard-2026-11-04T00-24-35-528Z/desktop.png",
+      "bytes": 459815,
+      "sha256": "c9e3ec7185eb4df7b19bdb0ab964de0247f61176a35588c7fd2a3ec0dfa5ba5a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/desktop.trace.zip",
+      "relocated": "firefox/keyboard-2026-11-04T00-24-35-528Z/desktop.trace.zip",
+      "bytes": 3590409,
+      "sha256": "d66f4a1470b5eeacce8c81ca4ba4bc573f7426a3bf48da4a3b5a2723657b5ffd"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/mobile.png",
+      "relocated": "firefox/keyboard-2026-11-04T00-24-35-528Z/mobile.png",
+      "bytes": 112531,
+      "sha256": "dacc5a25990547d4195a634f6a3ad4c6da5db32280e7ce583d44e5564555a50f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/mobile.trace.zip",
+      "relocated": "firefox/keyboard-2026-11-04T00-24-35-528Z/mobile.trace.zip",
+      "bytes": 1805528,
+      "sha256": "5c40aa0efbfbbbc8d202999b3e494bb86977b71f1c66b950ce265fcfb7c7bde7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/report.json",
+      "relocated": "firefox/keyboard-2026-11-04T00-24-35-528Z/report.json",
+      "bytes": 35652,
+      "sha256": "3f41552110a3ab6d298dcec31175e33943ae7eb70ad9fa3a42c604a812088839"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/firefox/keyboard.log",
+      "relocated": "firefox/keyboard.log",
+      "bytes": 93,
+      "sha256": "abb8bd88bb7a5891e9b1cc01a7b9d3006702b90e4f44e85cc9c1618f6e41c1fa"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/soc-interface-save-audit.md",
+      "relocated": "soc-interface-save-audit.md",
+      "bytes": 6318,
+      "sha256": "b61c41d1b36e0176132fc01a4241d495b6c3ab47ffd883b77b6f4364999b29ed"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/soc-interface-ui-browser.js",
+      "relocated": "soc-interface-ui-browser.js",
+      "bytes": 11676,
+      "sha256": "110df28af1628e89c43c009944fb1c58b99ce8bd055d1ea50571b1b57305e75c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/soc-keyboard-ui-browser.js",
+      "relocated": "soc-keyboard-ui-browser.js",
+      "bytes": 4449,
+      "sha256": "a88b14a5c4e9a8dc44f9dd6d26238c06e3ed0593f10dffe6beda99a4c943a779"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/soc-run-interface-final-v2.py",
+      "relocated": "soc-run-interface-final-v2.py",
+      "bytes": 2778,
+      "sha256": "85e8050f4002f0f9141addb15bb800c230fa5dc77aed595dd849624cef592966"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/soc-verify-interface-browsers.py",
+      "relocated": "soc-verify-interface-browsers.py",
+      "bytes": 3254,
+      "sha256": "7d841c4652494c7eed81e3eb9337217309bec5071189c575f3b176671b4dc0e7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/verification.json",
+      "relocated": "verification.json",
+      "bytes": 2825,
+      "sha256": "6955116395b47b47f9c840f148a64fce941b68457c4cac45f4fa76d9cc0b6976"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-internal-training.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-internal-training.trace.zip",
+      "bytes": 8710915,
+      "sha256": "d098834c813ed16d6ed72410cac1a61dd9e5bd368f84d798abede1d7929539ed"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-export-blocked.png",
+      "bytes": 112618,
+      "sha256": "76f3770087cc5fb396a5da7cfe6060fcbcc953ad4b00188197e44fb10fab4d31"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 8876711,
+      "sha256": "05bd8e037eb60f4df39f7c5c1037730c85b0bae865896186181117559fc0f2b4"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-handover.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 7030361,
+      "sha256": "d3b0fe47689747ad7270dab60f47bfe6706f7c5d40deae14c2558e3ed355b438"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-internal-training.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-internal-training.trace.zip",
+      "bytes": 5280900,
+      "sha256": "bdc2df5398a3177082467960b1df3ddd7023e64e0f5358cb6e49a07793fc6be6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-export-blocked.png",
+      "bytes": 81616,
+      "sha256": "d57496b2447c9d2d8baddd4dc0aed7fada140100c8925cb35429b4a92e9583ec"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 5198817,
+      "sha256": "b57d54b65e668a3ab5cb43fc6325859cbce7ce36fef2eae7b1c147a399a45559"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-handover.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/AU-mobile-restricted-handover.trace.zip",
+      "bytes": 5158262,
+      "sha256": "6c478cdbf1fd0650bba3bb0e732880448f3d87de4ba01c199ec9bc6911495de6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-internal-training.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-internal-training.trace.zip",
+      "bytes": 8002272,
+      "sha256": "455e91358f573940722ca04c809135ca8b4241f373085aec1496558a8afd8b66"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-export-blocked.png",
+      "bytes": 112618,
+      "sha256": "76f3770087cc5fb396a5da7cfe6060fcbcc953ad4b00188197e44fb10fab4d31"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 8193458,
+      "sha256": "ff59cc61ae7afe3fc008be05ee3cac9051d43d35047cc5c957eac84a24ae4383"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-handover.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-desktop-restricted-handover.trace.zip",
+      "bytes": 8430095,
+      "sha256": "f619f29504f409ecf6a7827ade10637c56979a34816d498a094df253d995aab0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-internal-training.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-internal-training.trace.zip",
+      "bytes": 5138610,
+      "sha256": "339f5144e27300df6d6f55d5ed344c49f6e4ea9b3a50c0970af858c70275fe0b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-export-blocked.png",
+      "bytes": 81616,
+      "sha256": "d57496b2447c9d2d8baddd4dc0aed7fada140100c8925cb35429b4a92e9583ec"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 4915557,
+      "sha256": "b8162da11f4a85dc79eca6c75955eb9b42495cd9b0644f019ddde0de8c8bdb92"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-handover.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/EU-mobile-restricted-handover.trace.zip",
+      "bytes": 4941713,
+      "sha256": "690b314e0d49716f11421a13d68363f153d5bdcb19809067685ce457c234ce0d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-internal-training.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-internal-training.trace.zip",
+      "bytes": 7950663,
+      "sha256": "a27905475acd2745d818ba8229f12105436f97e53ceb119004e608b5d86d988d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-export-blocked.png",
+      "bytes": 112618,
+      "sha256": "76f3770087cc5fb396a5da7cfe6060fcbcc953ad4b00188197e44fb10fab4d31"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 8318307,
+      "sha256": "cc7b708c82a25b32afce28d5ba2233549e6496eadd4aef370448ddbc0c43e8bd"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-handover.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-desktop-restricted-handover.trace.zip",
+      "bytes": 9419009,
+      "sha256": "1724777ba9f0ace56717b50c574e85fdc732dd5bdd35b088359b8e2446764fbc"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-internal-training.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-internal-training.trace.zip",
+      "bytes": 4805768,
+      "sha256": "fddd31a8aeecbddc8e06f3217b80d87b25d4dce85adfd379f6285d58810ac8f7"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-export-blocked.png",
+      "bytes": 81616,
+      "sha256": "d57496b2447c9d2d8baddd4dc0aed7fada140100c8925cb35429b4a92e9583ec"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 5016015,
+      "sha256": "c3c83516a053087831d86fe816314b855751ff43b09e6175f0dc29b2ccb10e22"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-handover.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/JP-mobile-restricted-handover.trace.zip",
+      "bytes": 4933797,
+      "sha256": "73a8655dd61f0151fdc1d0fcf5df09cff5739f1481efc831d76156c8e9d73605"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-internal-training.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-internal-training.trace.zip",
+      "bytes": 8665680,
+      "sha256": "6d49ab2aa9cd56c6b0cab0c23850f70a28c5bda664311fc318f4b5e7060fe3c3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-export-blocked.png",
+      "bytes": 112618,
+      "sha256": "76f3770087cc5fb396a5da7cfe6060fcbcc953ad4b00188197e44fb10fab4d31"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 8940294,
+      "sha256": "9e8e57c87fd975e959639e42468d81c2eec03f78477fa9cb234c16e4fa7dc53c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-handover.png",
+      "bytes": 110355,
+      "sha256": "bdb983a920508dfbe870d3ab2eda00ac18aaf4bf785211f360d18a36f814ef67"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-desktop-restricted-handover.trace.zip",
+      "bytes": 9063915,
+      "sha256": "0e8b7c34020b06da43d895e168c80412de2c20ae880883647f5765292680a2d9"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-internal-training.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-internal-training.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-internal-training.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-internal-training.trace.zip",
+      "bytes": 5142328,
+      "sha256": "3f8cfb8c4a05855a2df81da1bbfe4eaa008df0b435e527ab4f8644afd12d217d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-export-blocked.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-export-blocked.png",
+      "bytes": 81616,
+      "sha256": "d57496b2447c9d2d8baddd4dc0aed7fada140100c8925cb35429b4a92e9583ec"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 5132920,
+      "sha256": "44e8b33101f87327aa033c654bc2eed6f59b74b2545ab223b201a2d463090744"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-handover.png",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-handover.png",
+      "bytes": 79904,
+      "sha256": "ba711bf5bd48ee691f714c8403ad9431ec5ce1391052ff4fc2a0c827f77e3027"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-handover.trace.zip",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/US-mobile-restricted-handover.trace.zip",
+      "bytes": 5201193,
+      "sha256": "cdfb43bef5b6322dc7e7d5b694ba9f0dc3f52df13dd65d70ccaf170490475a80"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/report.json",
+      "relocated": "webkit/2026-11-04T00-11-49-634Z/report.json",
+      "bytes": 891084,
+      "sha256": "303e01e4225753e7a267cc1a9d889d6dc524c0b32332a8ecd5e00fce865c78ac"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/interface.log",
+      "relocated": "webkit/interface.log",
+      "bytes": 1308,
+      "sha256": "da49c13a7b62264db17aa1a9bfcb46abfa8f4d65273decc95f18a09318f6f34a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/desktop.png",
+      "relocated": "webkit/keyboard-2026-11-04T00-24-25-771Z/desktop.png",
+      "bytes": 363150,
+      "sha256": "5132fa5f17e6b7d841007b4c7f85b11916a811e116744a829a12f41cdb62a324"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/desktop.trace.zip",
+      "relocated": "webkit/keyboard-2026-11-04T00-24-25-771Z/desktop.trace.zip",
+      "bytes": 4893777,
+      "sha256": "da3e9f02c03f541b7b345034d3cbc8a002a8bd5077ec8401f1c406e47a518eeb"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/mobile.png",
+      "relocated": "webkit/keyboard-2026-11-04T00-24-25-771Z/mobile.png",
+      "bytes": 99751,
+      "sha256": "484d60d34803866779fe471b975b6bf92ccc0e2176592c88171b47c854da7906"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/mobile.trace.zip",
+      "relocated": "webkit/keyboard-2026-11-04T00-24-25-771Z/mobile.trace.zip",
+      "bytes": 1780550,
+      "sha256": "15cba98178bc65b556e71b2f8b19b11401e41b6ab1ace43b2e9fd471fbdf0dc0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/report.json",
+      "relocated": "webkit/keyboard-2026-11-04T00-24-25-771Z/report.json",
+      "bytes": 35643,
+      "sha256": "2efa7a6630b18d2798bce645b2a7c10fb10a5ab0e885424c9581817bc59f01a0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final-v2/webkit/keyboard.log",
+      "relocated": "webkit/keyboard.log",
+      "bytes": 93,
+      "sha256": "deb99b7a22a29cfcc80bdf5ec654bb88a55622c909fe4a8424bf8cf08a42a65a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-internal-training.trace.zip",
+      "bytes": 16016077,
+      "sha256": "3a8596082c7810fecf8fd59db63b9b9bd1e78372299b1e16ce2a1b933b464af1"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 15026659,
+      "sha256": "ce3c878064ddd6c37638cea27a5f74e74a82e913b52d3473ebca494428dc2f8c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 14892042,
+      "sha256": "e92d12355be2c54536fc9596fa335df2807e21009b661074e5da4751c872bb0d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-internal-training.trace.zip",
+      "bytes": 6200492,
+      "sha256": "3dbde93e1439565daceb77ab936320b6c45d9ed719b43c5cef1d04158f476d5c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 5976384,
+      "sha256": "e68c8fd62d967dcb2fcba0f42e73e1a914c12c49248d072a57e48465c8708244"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/AU-mobile-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/AU-mobile-restricted-handover.trace.zip",
+      "bytes": 6189248,
+      "sha256": "12c2baf67473ed154bd838fc5826737cc2f778884291b329f960533784b22fc6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-internal-training.trace.zip",
+      "bytes": 16684209,
+      "sha256": "80f28b518b461c4a789f99b2df0d81016f1df76467119be2671a6ac42588cd93"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 15845715,
+      "sha256": "2f2a67b94fe36410e38f21e819af41df9d5c9d080e71e99a0764f44d52655175"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-desktop-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-desktop-restricted-handover.trace.zip",
+      "bytes": 18870754,
+      "sha256": "a9884213492569094c62c2c9ccaa98a8b883cf4d42926ac0dd2e39f1a9377e60"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-internal-training.trace.zip",
+      "bytes": 5922390,
+      "sha256": "94dda095de185efc44bc136be1eed74248bc26f1fdd102df11c7d96595fda429"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 6107399,
+      "sha256": "d6348d6f5c2da1804a7e6791dfc51fe55a186e03e5bad93fbcfd1ef8d45aaf48"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/EU-mobile-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/EU-mobile-restricted-handover.trace.zip",
+      "bytes": 6053456,
+      "sha256": "de63a5b173d49668f915cd3ee7eaab19378530426456c8980519f3749b7f6bb5"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-internal-training.trace.zip",
+      "bytes": 17223391,
+      "sha256": "641bc01c8582290f44a05efee748353505d2940f94ab0ba3ae924ca050bc3c7a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 16897154,
+      "sha256": "633c73ebe8110f1acc2ec22621b65a6761fd71ade29aabed183a5e299a39fe44"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-desktop-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-desktop-restricted-handover.trace.zip",
+      "bytes": 19389305,
+      "sha256": "572541aa22e892006b021983819854f742d885451b2677b475c0abda4d0b760e"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-internal-training.trace.zip",
+      "bytes": 5961280,
+      "sha256": "945988213bcdefa605e96b73ff92769d800efd7d2b18c02fca46bb6ce0b88990"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 6063409,
+      "sha256": "889173569c0257e5d9aa8f6a6d61eec921e953266a1732aabf0ed9664fc11fa8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/JP-mobile-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/JP-mobile-restricted-handover.trace.zip",
+      "bytes": 6022102,
+      "sha256": "0fd142fe10f53ab36ecebf8a91b41859ad8e578d853083ee3dee1897066f6b97"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-internal-training.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-internal-training.trace.zip",
+      "bytes": 17987453,
+      "sha256": "e236a69a02b93dbc2728765748f5f03371f3636d19fb53421c1d7ff5d63f33c1"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 16761586,
+      "sha256": "90858a9420c7baed6af0e7a665804d1ab26efa9475f63bc08ed57ab5039a6731"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-desktop-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-desktop-restricted-handover.trace.zip",
+      "bytes": 17109433,
+      "sha256": "0e6f3b3ac29a134eae38836547bd80ae056101310dbd3116e54417771410d9a0"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-internal-training.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-internal-training.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-internal-training.trace.zip",
+      "bytes": 5887993,
+      "sha256": "b30a68e76670cd7747e0e4966fa53e55d60b84ba50189fa36d8a1bd6babc4ff6"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-restricted-export-blocked.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-restricted-export-blocked.png",
+      "bytes": 62210,
+      "sha256": "3fa34dc00dfeb2a2cc0f85f83f5a8121a4ee71dc7003b82ddfdaee1c874fbcc3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-restricted-export-blocked.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-restricted-export-blocked.trace.zip",
+      "bytes": 6183470,
+      "sha256": "5025f3e4b1a82a66e9ad47b74686dc1dead316005a2c596fa0a2eb0f115a5c7b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-restricted-handover.png",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-restricted-handover.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/US-mobile-restricted-handover.trace.zip",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/US-mobile-restricted-handover.trace.zip",
+      "bytes": 5773994,
+      "sha256": "0b283f9b8c6c2b4c9cdd718c156da0c9cd8f98fae679722e7beaf9086274a5be"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/report.json",
+      "relocated": "pre-fix/2026-11-03T23-58-38-489Z/report.json",
+      "bytes": 891087,
+      "sha256": "4fa94cf7ff24002a482a8c1829ba5096e5bd1153be22ab1107ee895be895445d"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/execution.json",
+      "relocated": "pre-fix/execution.json",
+      "bytes": 1211,
+      "sha256": "79f35cb86945df71e6e673944f6d24e5a8bbf02c3e5cd8a1f38639b3bae1f345"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/execution.log",
+      "relocated": "pre-fix/execution.log",
+      "bytes": 1308,
+      "sha256": "31ef76ed58ef08a4a8b1860854538ec1cba9b0cd37dbd03c322db11954799a2f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-03T23-59-16-229Z/desktop.trace.zip",
+      "relocated": "pre-fix/keyboard-2026-11-03T23-59-16-229Z/desktop.trace.zip",
+      "bytes": 28582456,
+      "sha256": "723845253476c31262dedea6872f054064a1bade1153f776c7393432bcd1136b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-03T23-59-16-229Z/mobile.png",
+      "relocated": "pre-fix/keyboard-2026-11-03T23-59-16-229Z/mobile.png",
+      "bytes": 99343,
+      "sha256": "069c1ec98ad1f759a7f13d301f917fb3484694701c99c8dbf984388a482ccd3a"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-03T23-59-16-229Z/mobile.trace.zip",
+      "relocated": "pre-fix/keyboard-2026-11-03T23-59-16-229Z/mobile.trace.zip",
+      "bytes": 5530296,
+      "sha256": "283510d79e1abb6d27291980eb2616dd32235f16129d449f06d6265af9ec74f1"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-03T23-59-16-229Z/report.json",
+      "relocated": "pre-fix/keyboard-2026-11-03T23-59-16-229Z/report.json",
+      "bytes": 35901,
+      "sha256": "b6c86dee3d7b496129b6867a2340dcb4a2e2929aae05d86c23e1d65de6ec4a28"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/desktop.png",
+      "relocated": "pre-fix/keyboard-2026-11-04T00-00-20-052Z/desktop.png",
+      "bytes": 401861,
+      "sha256": "4ddbe930087c8779141bf33cc35ee24874a3631b5fb9619efa145ccfff2ddc95"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/desktop.trace.zip",
+      "relocated": "pre-fix/keyboard-2026-11-04T00-00-20-052Z/desktop.trace.zip",
+      "bytes": 4770497,
+      "sha256": "1331bb1cf429e9714891348f9514ac6b23e0e7a085f8fcd7753b7f5da9c7fca3"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/mobile.png",
+      "relocated": "pre-fix/keyboard-2026-11-04T00-00-20-052Z/mobile.png",
+      "bytes": 99336,
+      "sha256": "75f8faa62c7ac1be1b7822baaf159bc5f1012c71898f80a7e4525a3b525805b8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/mobile.trace.zip",
+      "relocated": "pre-fix/keyboard-2026-11-04T00-00-20-052Z/mobile.trace.zip",
+      "bytes": 2295928,
+      "sha256": "4f1ca693c09dc6c1d2935928c4db8243376c0858f3bf9cedcdc8312c684443ea"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/report.json",
+      "relocated": "pre-fix/keyboard-2026-11-04T00-00-20-052Z/report.json",
+      "bytes": 35658,
+      "sha256": "37bd7b83d75628785afe6d2bd02374e516156497dfdfd52e40e9d1424a47cff5"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/keyboard-execution.json",
+      "relocated": "pre-fix/keyboard-execution.json",
+      "bytes": 1152,
+      "sha256": "715ea85e064c97f6cafef49b4ec503053cb81396f6722fcb0a373ce9f8910937"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/soc-interface-ui-browser.js",
+      "relocated": "pre-fix/soc-interface-ui-browser.js",
+      "bytes": 11538,
+      "sha256": "1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/soc-keyboard-ui-browser.js",
+      "relocated": "pre-fix/soc-keyboard-ui-browser.js",
+      "bytes": 4311,
+      "sha256": "22394a1a29b39fa2bdda9efa67605a0a1cc2f20010197cd848916236f4e13ccf"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-final/verification.json",
+      "relocated": "pre-fix/verification.json",
+      "bytes": 1152,
+      "sha256": "a69f7ed71af53a5296c24cb8f2bb0c60b4d53550282da9f8621bffe8af0a2a5b"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-49-55-118Z/AU-desktop-restricted-handover-failed.png",
+      "relocated": "prototypes/2026-11-03T23-49-55-118Z/AU-desktop-restricted-handover-failed.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-49-55-118Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "prototypes/2026-11-03T23-49-55-118Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 16775437,
+      "sha256": "69af0f52b6a12a80e90a0b08924c498db8f8a5e1b0e619f896ab65cbd5c0651c"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-49-55-118Z/report.json",
+      "relocated": "prototypes/2026-11-03T23-49-55-118Z/report.json",
+      "bytes": 60247,
+      "sha256": "669aaf380017d3f262bdcd6c643ee6eaaf0beb5493efff75b909518c8188c1c1"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/AU-desktop-restricted-export-blocked.png",
+      "relocated": "prototypes/2026-11-03T23-50-44-462Z/AU-desktop-restricted-export-blocked.png",
+      "bytes": 88754,
+      "sha256": "5807c393abc934060d5c1a129296f9b05e7527db0f4186a3fba0f1715dcfb794"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "relocated": "prototypes/2026-11-03T23-50-44-462Z/AU-desktop-restricted-export-blocked.trace.zip",
+      "bytes": 14774739,
+      "sha256": "685f5fd094a1a41ef1264b75bf7b167cf738536e7ff4210da8f0a6af6e3539bb"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/AU-desktop-restricted-handover.png",
+      "relocated": "prototypes/2026-11-03T23-50-44-462Z/AU-desktop-restricted-handover.png",
+      "bytes": 86448,
+      "sha256": "af26cabd3eb770553281458b95da7bc216dd26838dce298d671c456fdd6c5b65"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/AU-desktop-restricted-handover.trace.zip",
+      "relocated": "prototypes/2026-11-03T23-50-44-462Z/AU-desktop-restricted-handover.trace.zip",
+      "bytes": 15539033,
+      "sha256": "8744a55c6a32f0b1a4cd634e4acea55525e148fd1e19d7e06a17cad70a0e8bf8"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/report.json",
+      "relocated": "prototypes/2026-11-03T23-50-44-462Z/report.json",
+      "bytes": 108649,
+      "sha256": "747da08473b3c87515a5f9e56622ad66b69382c3341a9a3df6b472ed05498812"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-57-25-611Z/JP-mobile-internal-training.png",
+      "relocated": "prototypes/2026-11-03T23-57-25-611Z/JP-mobile-internal-training.png",
+      "bytes": 60241,
+      "sha256": "bd17e0d61dd12a88217ddaa2197495ea7be1c28e344047363e8cde74a18f644f"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-57-25-611Z/JP-mobile-internal-training.trace.zip",
+      "relocated": "prototypes/2026-11-03T23-57-25-611Z/JP-mobile-internal-training.trace.zip",
+      "bytes": 6028675,
+      "sha256": "c1cd4eacb230d1f0b4b601a715c23bf043e53c217a52200adaf6e767f6d8d921"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/2026-11-03T23-57-25-611Z/report.json",
+      "relocated": "prototypes/2026-11-03T23-57-25-611Z/report.json",
+      "bytes": 75900,
+      "sha256": "7a776afe485539c9caab2221a390f24fe3fe8580cb72b087fbf1c2e631bae4ca"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/provenance-2026-11-03T23-50-44-462Z.json",
+      "relocated": "prototypes/provenance-2026-11-03T23-50-44-462Z.json",
+      "bytes": 1183,
+      "sha256": "80f0a4d17c2c3f196042b99a5e86ec21d6f9d95fd878ef40362498836bff6a10"
+    },
+    {
+      "original": "/tmp/soc-interface-browser-prototype/provenance-2026-11-03T23-57-25-611Z.json",
+      "relocated": "prototypes/provenance-2026-11-03T23-57-25-611Z.json",
+      "bytes": 1201,
+      "sha256": "333b726c7ae47aeb62ac7e1cc27735d3224c2ca37fcf0302b7444f05b80743b7"
+    },
+    {
+      "original": "/tmp/soc-interface-ui-browser-246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f.js",
+      "relocated": "historical-drivers/soc-interface-ui-browser-246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f-246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f.js",
+      "bytes": 10630,
+      "sha256": "246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f"
+    },
+    {
+      "original": "/tmp/soc-interface-ui-browser-4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2.js",
+      "relocated": "historical-drivers/soc-interface-ui-browser-4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2-4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2.js",
+      "bytes": 11069,
+      "sha256": "4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2"
+    },
+    {
+      "original": "/tmp/soc-interface-ui-browser-1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012.js",
+      "relocated": "historical-drivers/soc-interface-ui-browser-1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012-1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012.js",
+      "bytes": 11538,
+      "sha256": "1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012"
+    },
+    {
+      "original": "/tmp/soc-keyboard-ui-browser-d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79.js",
+      "relocated": "historical-drivers/soc-keyboard-ui-browser-d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79-d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79.js",
+      "bytes": 3813,
+      "sha256": "d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79"
+    }
+  ]
+}

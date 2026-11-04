@@ -2,6 +2,10 @@
 
 The owner requested continued full implementation, verification and deployment. Access and repository preparation are complete; bounded implementation and acceptance work have continued. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
 
+## Current bounded implementation
+
+PR #6 merged at `5c0d87090f23ef9f73109d9809a38a01b6594344` after all 11 checks passed. Its runtime passed 1,331 JavaScript tests, 455 registered acceptance cases and all six complete browser matrices. The current defence-interface and keyboard-help additions are tracked in [their evidence index](../evidence/defence-interface-pass-2026-11-04/README.md). Their source requirements remain partial. Independent save auditing corrected imported origin/policy, retention and access contradictions. Matching-input full-suite, acceptance, gate, MCP and three-engine feature-browser receipts now pass; broad compact/campaign matrices remain in progress. Full-browser readiness is reset for the changed runtime.
+
 ## Access-restored continuation
 
 The resumed executor now passes networking and localhost probes. Genuine Git history is attached, clean locked npm dependencies are installed, and the independent public repository exists with no fork relationship. Six original binary assets are archived from verified Git objects. Current upstream observation adds 17 pending commits and 35 file versions, bringing the source inventory to 4,839 requirements.
@@ -39,7 +43,7 @@ The current owner has authorized completing the original plan, source-linked hum
 
 ## Outstanding product work
 
-The canonical index now has 4,839 requirements: 209 partial and 4,630 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
+The canonical index now has 4,839 requirements: 214 partial and 4,625 pending, with no final dispositions. Remaining work includes actor/product-specific portfolios and workflow distinctions; customer requirement consequences; complete specialist contact-centre/BPO/workforce behavior; full commercial/public-sector procurement; source-specific progression/SP economy; and upstream adoption. Generic shared mechanics and generated rows cannot close these obligations.
 
 Verified operational work includes genuine Git history and six historical binaries, clean locked dependencies, actual GitHub destination/protections/reporting routes, reviewed governance, 64 stdio MCP cases and 22 browser MCP checks. Native Codex /mcp now connects Calls, SP and pinned browser servers; /skills discovers the local skill. The corrected project stdio cwd is the project root (`.`), verified with CLI 0.166.0. Full current matrices, source-specific implementation, owner research decisions, enforced API project budget and Pages release remain separately gated. The 75 archive proposals remain outside the core scope until accepted intake.
 

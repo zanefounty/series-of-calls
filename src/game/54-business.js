@@ -99,6 +99,28 @@ function socBusinessKernel(){
   post(b,s,costInternal?'internal':'cost',wholesale,{contract:c.id,period,unit:p.unit,quantity:c.quantity,usageUnit:p.usageUnit,usage:c.usage,reason:'wholesale'});
   c.billedRetail+=c.sell?retail:0;c.billedPeriods++;c.termBilled++;c.usage=0;c.nextBill+=PERIOD;
  }
+ function validateWorkforceCoachingReceipt(s,job){
+  const b=s.business,r=job?.commercialReceipt,keys=['status','coachingId','person','skill','startedAt','unit','currency','cents','entryId'];
+  if(!b||!r||Object.keys(r).sort().join(',')!==keys.sort().join(',')||r.coachingId!==job.id||r.person!==job.person||r.skill!==job.skill||r.startedAt!==job.startedAt||r.unit!=='AUD-cent'||r.currency!==CURRENCY||r.cents!==job.costCents||!integer(r.cents,0,10000000))return false;
+  const w=s.workforceOps,jobNumber=/^coaching-([1-9]\d*)$/.exec(job.id),eventNumber=jobNumber?Number(jobNumber[1])+1:NaN;
+  if(!w||!Array.isArray(w.costEvents)||!Number.isSafeInteger(w.nextId)||!Number.isSafeInteger(eventNumber)||eventNumber>=w.nextId)return false;
+  const event=w.costEvents.find(e=>e.id===`workforce-cost-${eventNumber}`),related=w.costEvents.filter(e=>e.job===job.id);
+  if(event){if(related.length!==1||related[0]!==event||event.code!=='COACHING_COST'||event.minute!==job.startedAt||event.cents!==job.costCents||event.unit!=='AUD-cent')return false;}
+  else if(related.length||w.costEvents.length!==500||eventNumber>(w.costEventsPrunedThrough||0)||eventNumber>=Number((w.costEvents[0]?.id||'').replace('workforce-cost-','')))return false;
+  const rows=b.ledger.filter(row=>row.reason==='workforce-coaching'&&row.coachingId===job.id);
+  if(r.cents===0)return r.status==='zero'&&r.entryId===null&&rows.length===0;
+  if(r.status!=='posted'||!/^entry-[1-9]\d*$/.test(r.entryId)||Number(r.entryId.slice(6))>=b.nextId||rows.length>1)return false;
+  const row=b.ledger.find(row=>row.id===r.entryId);
+  if(!row){const first=Number((b.ledger[0]?.id||'entry-'+b.nextId).slice(6));return rows.length===0&&Number(r.entryId.slice(6))<first&&Number(r.entryId.slice(6))<=(b.ledgerPrunedThrough||0);}
+  return rows.length===1&&rows[0].id===row.id&&row.category==='cost'&&row.currency===CURRENCY&&row.cents===r.cents&&row.at===job.startedAt&&row.reason==='workforce-coaching'&&row.coachingId===job.id&&row.person===job.person&&row.skill===job.skill&&row.minutes===job.minutes&&row.unit==='AUD-cent';
+ }
+ function workforceCoachingCost(s,job){
+  const b=s.business,w=s.workforceOps;if(!b||!w||!w.coaching.includes(job)||!id(job.id)||!id(job.person)||!id(job.skill)||!integer(job.minutes,1,1440)||!integer(job.costCents,0,10000000))fail('INVALID_COACHING_COST');
+  if(job.commercialReceipt){if(!validateWorkforceCoachingReceipt(s,job))fail('COACHING_COST_IDEMPOTENCY_CONFLICT');return copy(job.commercialReceipt);}
+  if(job.startedAt!==s.clock||job.status!=='in-progress'||!authorise(s,'people','configure')||!w.costEvents.some(e=>e.code==='COACHING_COST'&&e.job===job.id&&e.minute===job.startedAt&&e.cents===job.costCents&&e.unit==='AUD-cent')||b.ledger.some(row=>row.reason==='workforce-coaching'&&row.coachingId===job.id))fail('COACHING_COST_PROOF_REQUIRED');
+  const entryId=job.costCents?post(b,s,'cost',job.costCents,{reason:'workforce-coaching',coachingId:job.id,person:job.person,skill:job.skill,minutes:job.minutes,unit:'AUD-cent'}):null;
+  return {status:job.costCents?'posted':'zero',coachingId:job.id,person:job.person,skill:job.skill,startedAt:job.startedAt,unit:'AUD-cent',currency:CURRENCY,cents:job.costCents,entryId};
+ }
  function qualityUsage(s,q,pendingReview){
   const keys=['usageId','reviewId','tenant','contractId','reviewer','interactionId','recordingId','offerGeneration','integrationGeneration','unit','quantity','at'];
   const b=s.business,p=offers['queueberry-quality'];
@@ -329,6 +351,8 @@ function socBusinessKernel(){
   if(b.loans.reduce((n,l)=>n+l.principal,0)!==b.balance.funding-b.balance.repaid)fail('UNRECONCILED_DEBT');
   if(b.ledgerPrunedThrough!==undefined&&(!integer(b.ledgerPrunedThrough,0,b.nextId-1)||b.ledgerPrunedThrough>0&&(b.ledger.length!==1000||b.ledger.some(r=>!/^entry-[1-9]\d*$/.test(r.id)||Number(r.id.slice(6))<=b.ledgerPrunedThrough))))fail('INVALID_CAMPAIGN_LEDGER_PRUNING');
   if(b.externalInvoices!==undefined&&(!Array.isArray(b.externalInvoices)||b.externalInvoices.length>2000||new Set(b.externalInvoices.map(x=>x?.id)).size!==b.externalInvoices.length||b.externalInvoices.some(x=>!x||!id(x.id)||!integer(x.cents,1,1000000)||x.source!==undefined&&!['transport','workforce-offers'].includes(x.source)||x.source==='workforce-offers'&&(!/^entry-[1-9]\d*$/.test(x.entryId)||Number(x.entryId.slice(6))>=b.nextId))))fail('INVALID_EXTERNAL_INVOICES');
+  const coaching=s.workforceOps?.coaching||[];
+  if(coaching.some(job=>job.commercialReceipt!==undefined&&!validateWorkforceCoachingReceipt(s,job))||b.ledger.some(row=>row.reason==='workforce-coaching'&&!coaching.some(job=>job.commercialReceipt?.entryId===row.id&&validateWorkforceCoachingReceipt(s,job)))||b.balance.cost<coaching.reduce((sum,job)=>sum+(job.commercialReceipt?.cents||0),0))fail('INVALID_COACHING_COMMERCIAL_LINEAGE');
   if(b.ledger.some(row=>['quality-review','quality-review-wholesale'].includes(row.reason)&&!b.qualityCharges?.some(charge=>charge.reviewId===row.reviewId&&charge.usageId===row.usageId&&(charge.entryId===row.id||charge.costEntryId===row.id))))fail('QUALITY_CHARGE_PROOF_MISSING');
   if(b.qualityCharges!==undefined&&(!Array.isArray(b.qualityCharges)||b.qualityCharges.length>500||new Set(b.qualityCharges.map(r=>r?.usageId)).size!==b.qualityCharges.length||new Set(b.qualityCharges.map(r=>r?.reviewId)).size!==b.qualityCharges.length||b.qualityCharges.some(r=>!validateQualityReceipt(s,r))))fail('INVALID_QUALITY_CHARGE');
   if(b.managedCharges!==undefined){if(!Array.isArray(b.managedCharges)||b.managedCharges.length>1000||new Set(b.managedCharges.map(x=>x.usageId)).size!==b.managedCharges.length)fail('INVALID_MANAGED_CHARGES');const first=Number((b.ledger[0]?.id||'entry-'+b.nextId).split('-')[1]);for(const r of b.managedCharges){const c=b.contracts.find(x=>x.id===r.contractId);if(!r||Object.keys(r).sort().join(',')!=='appliedGeneration,at,cents,contractId,costCategory,costCents,costEntryId,currency,customerId,entryId,jobId,operator,quantity,resource,status,unit,usageId'||r.status!=='posted'||!s.estate?.jobs.some(j=>j.id===r.jobId&&(['joiner','mover'].includes(j.operation)||j.operation==='leaver'&&j.managedApproval?.tenant===s.tenant&&j.managedApproval.contractId===r.contractId&&j.managedApproval.operator===r.operator)&&j.items.some(i=>i.resource===r.resource&&i.appliedGeneration===r.appliedGeneration&&i.status==='complete'))||!id(r.usageId)||!id(r.customerId)||!c||c.offer!=='managed-operations'||c.supportOwner!==r.operator||!c.resources.includes(r.resource)||!integer(r.appliedGeneration,1)||!s.resources[r.resource]||r.appliedGeneration>s.resources[r.resource].generation||r.unit!=='managed-operation'||r.quantity!==1||r.currency!=='AUD'||r.cents!==offers['managed-operations'].overage||r.costCents!==Math.ceil(r.cents/2)||!['cost','internal'].includes(r.costCategory)||!integer(r.at)||r.at>s.clock)fail('INVALID_MANAGED_CHARGE');for(const [key,category,cents] of [[r.entryId,'revenue',r.cents],[r.costEntryId,r.costCategory,r.costCents]]){if(!/^entry-[1-9]\d*$/.test(key)||Number(key.split('-')[1])>=b.nextId)fail('INVALID_MANAGED_CHARGE_LEDGER');const row=b.ledger.find(x=>x.id===key);if(!row){if(Number(key.split('-')[1])>=first)fail('MANAGED_CHARGE_LEDGER_MISSING');}else if(row.category!==category||row.cents!==cents||row.contract!==r.contractId||row.usageId!==r.usageId||row.resource!==r.resource||row.appliedGeneration!==r.appliedGeneration||row.unit!==r.unit||row.quantity!==1||row.currency!==r.currency||row.at!==r.at)fail('MANAGED_CHARGE_LEDGER_MISMATCH');}}}
@@ -354,7 +378,7 @@ function socBusinessKernel(){
   return {pack:b.pack,currency:b.currency,cash:b.balance.cash,profit:b.balance.revenue-b.balance.cost,debt:b.loans.reduce((n,l)=>n+l.principal,0),consolidatedOrganisations:Object.keys(b.organisations).filter(id=>group(b,id)),handled:b.metrics.handled,offered:b.metrics.offered,completion:b.achievements.includes('service-operator')&&!!assessment?.passed&&b.balance.cash>=0&&!outstanding.length&&tracks[s.scenario].offers.every(offer=>b.contracts.some(c=>c.offer===offer&&c.sell&&c.status==='active')),outstanding};
  }
  const source=()=>`const SOC_BUSINESS=(${socBusinessKernel.toString()})();`;
- return {PACK,PERIOD,CURRENCY,offers,tracks,organisations,create,command,advance,meter,meterResource,qualityUsage,validateQualityReceipt,managedUsage,externalCost,authorise,migrateLegacy,validate,calculate,source};
+ return {PACK,PERIOD,CURRENCY,offers,tracks,organisations,create,command,advance,meter,meterResource,workforceCoachingCost,validateWorkforceCoachingReceipt,qualityUsage,validateQualityReceipt,managedUsage,externalCost,authorise,migrateLegacy,validate,calculate,source};
 }
 const SOC_BUSINESS=socBusinessKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_BUSINESS;

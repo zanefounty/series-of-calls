@@ -37,7 +37,7 @@ test('AC-SOC-576 quality console repairs an observed integration failure then su
 test('AC-SOC-577 low score recommendation is shown without starting coaching or changing the workforce roster',()=>{
  const state=journey({variant:'low-score'}).expectedState,h=boot(state),w=h.w,roster=structuredClone(state.workforceOps.roster),section=w.document.querySelector('#soc-workforce-quality');
  assert.equal(state.workforceQuality.reviews.at(-1).passed,false);assert.ok(SOC.calculate(state).workforceQuality.recommendations.length);
- assert.match(section.textContent,/coaching recommendation only/i);assert.match(section.textContent,/agent-01/);assert.deepEqual(h.state().workforceOps.roster,roster);assert.equal(h.commands().length,0);assert.deepEqual(h.h.errors,[]);h.close();
+ assert.match(section.textContent,/coaching recommendation only/i);const recommendation=SOC.calculate(state).workforceQuality.recommendations[0],row=[...section.querySelectorAll('li')].find(li=>li.textContent.includes(recommendation.id));assert.ok(row);assert.match(row.textContent,new RegExp(recommendation.agentId));assert.match(row.textContent,new RegExp(recommendation.reviewId));assert.deepEqual(h.state().workforceOps.roster,roster);assert.equal(h.commands().length,0);assert.deepEqual(h.h.errors,[]);h.close();
 });
 
 test('AC-SOC-578 quality history labels partial-call coverage and held recordings from captured evidence',()=>{

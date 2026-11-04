@@ -260,6 +260,105 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def workforce_offers(report):
+    script = """
+const {SOC,journey}=require('./tests/lib/workforce-offer-fixture');
+const rows=[];
+for(const jurisdiction of ['AU','US','JP','EU']){
+ const fixture=journey({jurisdiction});let activeState=SOC.create(fixture.options);
+ for(const command of fixture.commands){
+  if(command.type==='workforce-offers'&&command.command.action==='order'&&command.command.units===0)break;
+  activeState=SOC.dispatch(activeState,command);
+ }
+ rows.push({...fixture,activeState});
+}
+console.log(JSON.stringify(rows));
+"""
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True, timeout=60))
+    client = Client("scripts/calls-mcp.js")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "workforce-offer", **fixture["options"],
+                   "scope": "Synthetic Queueberry forecast coverage, real staffing independence, prepaid billing and import integrity"}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                inspected = client.tool("inspect")
+                assert inspected["packs"]["workforceOffers"]["version"] == "soc-workforce-offers-1"
+                negative_checks = []
+                active_checked = False
+                for command in fixture["commands"]:
+                    if command["type"] == "workforce-offers" and command["command"]["action"] == "order" and command["command"]["units"] == 0:
+                        active = client.tool("export_exercise")
+                        assert active == fixture["activeState"], "Active workforce MCP differs from direct dispatch"
+                        assert active["workforceOffers"]["effective"]["units"] == 1
+                        inspected = client.tool("inspect")
+                        assert inspected["observed"]["workforceOffers"]["integration"]["currentTest"]["status"] == "passed"
+                        assert client.tool("inspect") == inspected, "Workforce inspection mutated state"
+                        for label, invalid in [
+                            ("wrong-tenant", {"action": "order", "tenant": "unrelated-customer", "units": 1}),
+                            ("wrong-offer-version", {"action": "integrate", "id": "queueberry-wfm-workforce",
+                                "tenant": active["workforceOffers"]["tenant"], "offerId": "queueberry-wfm-standard",
+                                "offerVersion": "9.9", "resource": "people"}),
+                        ]:
+                            error = client.tool("command", {"command": {"type": "workforce-offers", "command": invalid}}, error=True)
+                            assert "INVALID_WORKFORCE_OFFER" in error, label + " failed outside the offer validator"
+                            assert client.tool("export_exercise") == active, label + " rejection mutated state"
+                            negative_checks.append(label)
+                        for label in ("deferred-renewal", "future-observation", "future-test", "pre-test-binding", "changed-ledger-amount", "deleted-ledger-row"):
+                            forged = json.loads(json.dumps(active))
+                            pack = forged["workforceOffers"]
+                            if label == "deferred-renewal":
+                                pack["nextInvoiceAt"] = forged["clock"] + 999
+                            elif label == "future-observation":
+                                pack["integration"]["observations"][0]["observedAt"] = forged["clock"] + 1
+                            elif label == "future-test":
+                                pack["integration"]["tests"][-1]["testedAt"] = forged["clock"] + 1
+                            elif label == "pre-test-binding":
+                                pack["integration"]["bindings"][0]["boundAt"] = 0
+                            else:
+                                invoice_id = pack["costRecords"][0]["id"]
+                                entry = next(entry for entry in forged["business"]["ledger"] if entry.get("externalId") == invoice_id)
+                                if label == "changed-ledger-amount":
+                                    entry["cents"] += 1
+                                else:
+                                    forged["business"]["ledger"].remove(entry)
+                            error = client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                            assert "INVALID_WORKFORCE_OFFER" in error, label + " failed outside the workforce save validator"
+                            assert client.tool("export_exercise") == active, label + " rejected import replaced state"
+                            negative_checks.append(label)
+                        active_checked = True
+                    client.tool("command", {"command": command})
+                assert active_checked, "Fixture did not reach its live billing checkpoint"
+                actual = client.tool("export_exercise")
+                assert actual == fixture["expectedState"], "Workforce journey MCP differs from direct dispatch"
+                pack = actual["workforceOffers"]
+                assert [test["status"] for test in pack["integration"]["tests"]] == ["failed", "passed"]
+                assert pack["integration"]["forecasts"][0]["coveredPeople"] == ["agent-01"]
+                assert pack["integration"]["forecasts"][0]["projectedCapacity"] == 15
+                assert actual["workforceOps"]["forecasts"][0]["projectedCapacity"] == 30
+                calls = [call for call in actual["interactions"] if call["caseId"] in ("wfm-first", "wfm-second")]
+                assert len(calls) == 2 and all(call["phase"] == "resolved" for call in calls)
+                assert {assignment["person"] for assignment in actual["workforceOps"]["assignments"]} == {"agent-01", "agent-02"}
+                assert pack["effective"]["units"] == 0 and pack["nextInvoiceAt"] is None
+                assert len(pack["costRecords"]) == 2 and all(invoice["cents"] == 4200 and invoice["periodMinutes"] == 60 for invoice in pack["costRecords"])
+                inspected = client.tool("inspect")
+                assert client.tool("inspect") == inspected, "Cancelled workforce inspection mutated state"
+                client.tool("new_exercise", fixture["options"])
+                client.tool("import_exercise", {"json": json.dumps(actual)})
+                assert client.tool("export_exercise") == actual, "Workforce save restore differs"
+                row.update(status="passed", commands=len(fixture["commands"]), rejectedMutations=negative_checks,
+                           checks=["failed-supplier-observation", "failed-integration-test", "explicit-observation-retest-rebind",
+                                   "named-person-forecast-coverage", "independent-real-call-staffing", "one-prepaid-renewal",
+                                   "paid-boundary-cancellation", "direct-dispatch-equivalence", "inspection-purity",
+                                   "command-atomicity", "chronology-import-atomicity", "ledger-import-atomicity", "save-restore"])
+            except Exception as error:
+                row.update(status="failed", error=str(error))
+            report["results"].append(row)
+    finally:
+        client.close()
+
+
 def completion_packs(report):
     client = Client("scripts/calls-mcp.js")
     row = {"server": "communications-customer-attendance-callback", "status": "running"}
@@ -424,10 +523,10 @@ def main():
     parser.add_argument("--campaigns", action="store_true", help="Also execute all four campaign tracks through renewal in every jurisdiction and mode")
     args = parser.parse_args()
     report = {"checkedAt": datetime.now(timezone.utc).isoformat(), "status": "running", "results": [],
-        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references and optional SP play. Not full campaign/source or browser acceptance.",
+        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces and four workforce-offer journeys. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -438,11 +537,12 @@ def main():
         completion_packs(report)
         customer_fit(report)
         information_interfaces(report)
+        workforce_offers(report)
         if args.campaigns:
             full_campaigns(report)
-            report["scope"] = "Real stdio MCP: compact references, optional SP, pack smoke and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
+            report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (76 if args.campaigns else 64), "Incomplete smoke matrix"
+        assert len(report["results"]) == (80 if args.campaigns else 68), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

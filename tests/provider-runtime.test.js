@@ -50,3 +50,23 @@ test('opening a costed quote invalidates a delayed worker tick and still permits
   w.document.querySelector('[data-provider-action="confirm-quote"]').click();assert.ok(w.__SCP.state.providerCampaign.projects.some(x=>x.kind==='stage'&&x.stage==='base'));assert.equal(w.__SCP.state.clock,0);assert.equal(JSON.parse(w.localStorage.getItem('series-of-calls:provider:v1')).state.revision,w.__SCP.state.revision);
  }finally{dom.window.close();}
 });
+
+test('providerFrame keeps canonical paid opening economics and demand equal at every advertised speed',()=>{
+ let state=SOC.create({experience:'campaign',providerName:'Speed Equivalence MSP',scenario:'smb',market:'au-sydney',difficulty:'normal'}),sequence=1;
+ const command=cmd=>{state=SOC.dispatch(state,{type:'provider',requestId:`provider-${sequence++}`,command:{...cmd,quoteRevision:state.revision}});};
+ const purchase=(stage,customerId)=>{const request={action:'purchase',offerId:'starter',planId:'swift',stage,...(customerId?{customerId}:{})},quote=SOC.provider.quote(state,request);assert.deepEqual(quote.blockers,[]);command(request);};
+ purchase('base');while(state.providerCampaign.customers[0].stages.base?.status!=='effective')state=SOC.dispatch(state,{type:'advance',minutes:1});
+ purchase('carrier','starter-customer');while(state.providerCampaign.customers[0].stages.carrier?.status!=='effective')state=SOC.dispatch(state,{type:'advance',minutes:1});
+ purchase('partner','starter-customer');while(state.providerCampaign.customers[0].stages.partner?.status!=='effective')state=SOC.dispatch(state,{type:'advance',minutes:1});
+ const seed=structuredClone(state),canonical=[];
+ for(const speed of [.5,1,2,4,8]){
+  const {dom,w}=boot();try{
+   w.requestAnimationFrame=()=>0;w.Worker=undefined;const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();const runtime=w.__SCP;runtime.state=structuredClone(seed);runtime.seq=1;runtime.locked=true;runtime.atHome=false;runtime.speed=0;w.providerRender();
+   const control=w.document.querySelector(`[data-provider-action="speed"][data-provider-value="${speed}"]`);assert.ok(control,`${speed}× control should be visible`);control.click();let now=Math.ceil(w.performance.now());runtime.last=now;let frames=0;
+   while(runtime.state.clock<120&&frames<20000){now+=250;w.providerFrame(now);frames++;if(runtime.speed===0&&runtime.state.clock<120){w.document.querySelector(`[data-provider-action="speed"][data-provider-value="${speed}"]`).click();runtime.last=now;}}
+   assert.equal(runtime.state.clock,120,`${speed}× reached the same canonical clock`);assert.ok(runtime.state.providerCampaign.periodHistory.some(x=>x.to===120),'a full actual customer work period settled');canonical.push({speed,state:JSON.parse(JSON.stringify(runtime.state)),frames});
+  }finally{dom.window.close();}
+ }
+ const expected=JSON.stringify(canonical[0].state);for(const result of canonical.slice(1)){assert.equal(JSON.stringify(result.state),expected,`${result.speed}× must preserve identical dispatch, demand, cash and settlement state`);}
+ assert.ok(canonical[0].state.business.balance.cash<seed.business.balance.cash,'the comparison includes actual period cash reconciliation');assert.equal(canonical[0].state.providerCampaign.periodHistory.find(x=>x.to===120).due,24,'the comparison includes authored full-period customer demand');
+});

@@ -21,9 +21,9 @@ Checked 2026-11-04 at `thesysadmindev/SeriesOfTubesAU` HEAD `c650d84d0f79219e8b2
 
 ## Results
 
-- Full test suite: `TEST_JOBS=4 npm test` — **528 passed, 0 failed**, Node test-runner duration 168.965 seconds. Raw output: [au-full-test.log](au-full-test.log).
-- Build: `npm run build` — **passed**, built Series of Tubes: Australia 3.0.0 for 2026-11-04 into ignored `_site/` (2.4 MB). Raw output: [au-build.log](au-build.log).
-- Translation check: `npm run i18n:check` — **passed**, English 2,709 labels with 0 problems; de/es/fr/it/pt each 100.0%, 0 missing/unused/broken labels. Raw output: [au-i18n.log](au-i18n.log).
-- Map consistency: `node scripts/build-au-map.js --check` — **passed**, “map files are up to date.” Raw output: [au-map-check.log](au-map-check.log).
+- Full test suite: `TEST_JOBS=4 npm test` — **528 passed, 0 failed**, Node test-runner duration 168.965 seconds. Raw output: `/tmp/soc-fork-survey/au-full-test.log` (local diagnostic).
+- Build: `npm run build` — **passed**, built Series of Tubes: Australia 3.0.0 for 2026-11-04 into ignored `_site/` (2.4 MB). Raw output: `/tmp/soc-fork-survey/au-build.log` (local diagnostic).
+- Translation check: `npm run i18n:check` — **passed**, English 2,709 labels with 0 problems; de/es/fr/it/pt each 100.0%, 0 missing/unused/broken labels. Raw output: `/tmp/soc-fork-survey/au-i18n.log` (local diagnostic).
+- Map consistency: `node scripts/build-au-map.js --check` — **passed**, “map files are up to date.” Raw output: `/tmp/soc-fork-survey/au-map-check.log` (local diagnostic).
 
 Dependencies were already installed from the pinned lockfile using `npm ci --ignore-scripts` in the earlier bounded survey. Runtime versions: Node v24.22.2, npm 12.2.1. The tracked clone worktree is clean after verification; no foreign source or scripts were edited and no commits were made. `_site/` is build output under the temporary clone.

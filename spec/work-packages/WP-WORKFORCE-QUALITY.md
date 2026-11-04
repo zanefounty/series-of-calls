@@ -1,5 +1,7 @@
 # Queueberry recorded quality review
 
+`BEH-SOC-380`, acceptance cases `AC-SOC-553`–`579`, remains a partial source-linked implementation.
+
 ## Contract
 
 The optional synthetic Queueberry quality-review offer is a separate business offer from workforce planning. It licenses one typed `quality-review` usage per completed review. One immutable versioned rubric scores opening, verification, resolution and documentation (weights 20/30/30/20; each criterion is an integer from 0–5). The kernel computes the total and the 80-point threshold result. A low score creates a linked coaching recommendation only; it never changes a person's skills, availability, roster or routing entitlement.
@@ -17,3 +19,5 @@ The existing manual contact-review path remains available and is not billed by t
 Source mapping: `uc-new:actor:genesys`, `uc-new:domain:workforce`, and `uc-new:domain:recording`. The fictional Queueberry alias remains proposed and owner review is pending. No original source joke was identified for this addition, so the package does not invent source attribution or attach a new joke. The existing source comparison remains in its current source-linked location.
 
 The rubric is a bounded gameplay example, not an objective assessment standard. Supervisor and information-access authority are checked through the root SOC integration. Manual reviews, additional rubric versions, calibration, appeals, quality sampling, compliance certification and vendor-specific quality-management workflows remain outside this slice. Root dispatch, commercial ledger, save and worker integration acceptance is owned and verified separately from isolated kernel tests.
+
+Separately initiated coaching currently records its existing typed workforce cost event and timed unavailability. It does not yet reconcile that coaching cost into the commercial ledger; that remaining workforce/commercial obligation is not satisfied by the quality-review receipt.

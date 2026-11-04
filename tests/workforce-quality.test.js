@@ -35,7 +35,7 @@ function ready() {
   return { ...h, state };
 }
 
-test('quality integration has desired, pending and effective stages and requires a current observation test', () => {
+test('AC-SOC-553 quality integration has desired, pending and effective stages and requires a current observation test', () => {
   const { root, hooks } = harness();
   const state = quality.create({ tenant: 'tenant-1', clock: 0 });
   quality.command(state, { action: 'integrate', contractId: 'contract-1' }, root, hooks);
@@ -51,7 +51,7 @@ test('quality integration has desired, pending and effective stages and requires
   quality.validate(state, root, hooks);
 });
 
-test('review computes rubric score, records a typed receipt and recommends without changing workforce state', () => {
+test('AC-SOC-554 review computes rubric score, records a typed receipt and recommends without changing workforce state', () => {
   const { root, hooks, state } = ready();
   const before = JSON.stringify({ integration: state.integration, reviews: state.reviews });
   const review = quality.command(state, { action: 'review', interactionId: 'interaction-1', reviewer: 'supervisor', scores }, root, hooks);
@@ -66,7 +66,7 @@ test('review computes rubric score, records a typed receipt and recommends witho
   assert.equal(quality.inspect(state, root, hooks).eligibleInteractions[0].captureScope, 'complete');
 });
 
-test('low scores add a linked recommendation and supersession keeps the first review immutable', () => {
+test('AC-SOC-555 low scores add a linked recommendation and supersession keeps the first review immutable', () => {
   const { root, hooks, state } = ready();
   const first = quality.command(state, { action: 'review', interactionId: 'interaction-1', reviewer: 'supervisor', scores: { opening: 2, verification: 2, resolution: 3, documentation: 3 } }, root, hooks);
   assert.equal(first.total, 50);
@@ -80,7 +80,7 @@ test('low scores add a linked recommendation and supersession keeps the first re
   assert.equal(state.reviews[1].supersedesReviewId, first.id);
 });
 
-test('commands reject caller totals and inspection remains pure', () => {
+test('AC-SOC-556 commands reject caller totals and inspection remains pure', () => {
   const { root, hooks, state } = ready();
   assert.throws(() => quality.command(state, { action: 'review', interactionId: 'interaction-1', reviewer: 'supervisor', scores, total: 100 }, root, hooks), /INVALID_QUALITY_REVIEW_COMMAND/);
   const before = JSON.stringify(state);

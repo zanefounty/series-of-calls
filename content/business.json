@@ -206,6 +206,27 @@
         "government",
         "defence"
       ]
+    },
+    "queueberry-quality": {
+      "name": "Queueberry Recorded Quality Review",
+      "vendor": "queueberry",
+      "unit": "quality-review",
+      "usageUnit": null,
+      "retail": 0,
+      "wholesale": 0,
+      "setup": 0,
+      "allowance": 0,
+      "overage": 100,
+      "minimum": 1,
+      "kinds": [
+        "queue",
+        "recorder",
+        "archive"
+      ],
+      "sectors": [
+        "enterprise",
+        "government"
+      ]
     }
   },
   "sourceIds": [

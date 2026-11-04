@@ -51798,12 +51798,15 @@
     "representation": "actor:genesys",
     "status": "partial",
     "implementation": [
+      "content/business.json",
       "scripts/calls-mcp.js",
       "scripts/mcp-smoke.py",
       "src/game/38-workforce-offers.js",
+      "src/game/38-workforce-quality.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/87-workforce-offers-ui.js",
+      "src/game/89-workforce-quality-ui.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -51811,7 +51814,8 @@
     ],
     "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
     "behaviours": [
-      "BEH-SOC-378"
+      "BEH-SOC-378",
+      "BEH-SOC-380"
     ]
   },
   {
@@ -53142,9 +53146,11 @@
     "representation": "domain:workforce",
     "status": "partial",
     "implementation": [
+      "content/business.json",
       "scripts/calls-mcp.js",
       "scripts/mcp-smoke.py",
       "src/game/38-workforce-offers.js",
+      "src/game/38-workforce-quality.js",
       "src/game/44-campaign.js",
       "src/game/48-estate.js",
       "src/game/49-workforce.js",
@@ -53154,6 +53160,7 @@
       "src/game/55-communications.js",
       "src/game/71-workforce-presence-ui.js",
       "src/game/87-workforce-offers-ui.js",
+      "src/game/89-workforce-quality-ui.js",
       "src/game/90-service-admin-ui.js",
       "src/game/97-training.js",
       "tests/campaign.test.js",
@@ -53180,7 +53187,8 @@
       "BEH-SOC-116",
       "BEH-SOC-363",
       "BEH-SOC-370",
-      "BEH-SOC-378"
+      "BEH-SOC-378",
+      "BEH-SOC-380"
     ]
   },
   {
@@ -53670,9 +53678,13 @@
     "representation": "domain:recording",
     "status": "partial",
     "implementation": [
+      "content/business.json",
+      "src/game/38-workforce-quality.js",
       "src/game/50-calling.js",
       "src/game/52-information.js",
-      "src/game/55-communications.js"
+      "src/game/54-business.js",
+      "src/game/55-communications.js",
+      "src/game/89-workforce-quality-ui.js"
     ],
     "acceptance": [
       "AC-5a5e46aedc11c26c"
@@ -53683,7 +53695,8 @@
       "BEH-SOC-033",
       "BEH-SOC-034",
       "BEH-SOC-049",
-      "BEH-SOC-349"
+      "BEH-SOC-349",
+      "BEH-SOC-380"
     ]
   },
   {

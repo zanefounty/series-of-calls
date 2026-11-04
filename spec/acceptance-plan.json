@@ -750,6 +750,39 @@
       "AC-SOC-550",
       "AC-SOC-551",
       "AC-SOC-552"
+    ],
+    "tests/workforce-quality.test.js": [
+      "AC-SOC-553",
+      "AC-SOC-554",
+      "AC-SOC-555",
+      "AC-SOC-556"
+    ],
+    "tests/workforce-quality-integration.test.js": [
+      "AC-SOC-557",
+      "AC-SOC-558",
+      "AC-SOC-559",
+      "AC-SOC-560",
+      "AC-SOC-561",
+      "AC-SOC-562",
+      "AC-SOC-563",
+      "AC-SOC-564",
+      "AC-SOC-565",
+      "AC-SOC-566",
+      "AC-SOC-567",
+      "AC-SOC-568",
+      "AC-SOC-569",
+      "AC-SOC-570",
+      "AC-SOC-571",
+      "AC-SOC-572",
+      "AC-SOC-573",
+      "AC-SOC-574"
+    ],
+    "tests/workforce-quality-ui.test.js": [
+      "AC-SOC-575",
+      "AC-SOC-576",
+      "AC-SOC-577",
+      "AC-SOC-578",
+      "AC-SOC-579"
     ]
   },
   "inputs": [
@@ -1191,6 +1224,12 @@
     "tests/managed-leaver-integration.test.js",
     "tests/managed-operations-leaver-ui.test.js",
     "tests/lib/managed-leaver-fixture.js",
-    "tests/business-managed-scope-ui.test.js"
+    "tests/business-managed-scope-ui.test.js",
+    "tests/workforce-quality.test.js",
+    "tests/workforce-quality-integration.test.js",
+    "tests/workforce-quality-ui.test.js",
+    "tests/lib/workforce-quality-fixture.js",
+    "src/game/38-workforce-quality.js",
+    "src/game/89-workforce-quality-ui.js"
   ]
 }

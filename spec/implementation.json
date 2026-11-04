@@ -6681,6 +6681,52 @@
       ],
       "status": "partial",
       "scope": "Contract-scoped managed identity leavers retire exactly one identity and entitlement through the existing estate child dispatcher. Actual accepted history survives, new caller attempts fail, effective observed completion bills once, and delayed contract/authority/scope failures require an explicit bounded retry. Parent/child approval, resource generations and save/worker lineage are validated. This does not complete device/number/group retirement automation, arbitrary new operator grants, actor-specific product portfolios or full provisioning-source fidelity."
+    },
+    {
+      "id": "BEH-SOC-380",
+      "sources": [
+        "uc-new:actor:genesys",
+        "uc-new:domain:workforce",
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "src/game/38-workforce-quality.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/89-workforce-quality-ui.js",
+        "content/business.json"
+      ],
+      "testIds": [
+        "AC-SOC-553",
+        "AC-SOC-554",
+        "AC-SOC-555",
+        "AC-SOC-556",
+        "AC-SOC-557",
+        "AC-SOC-558",
+        "AC-SOC-559",
+        "AC-SOC-560",
+        "AC-SOC-561",
+        "AC-SOC-562",
+        "AC-SOC-563",
+        "AC-SOC-564",
+        "AC-SOC-565",
+        "AC-SOC-566",
+        "AC-SOC-567",
+        "AC-SOC-568",
+        "AC-SOC-569",
+        "AC-SOC-570",
+        "AC-SOC-571",
+        "AC-SOC-572",
+        "AC-SOC-573",
+        "AC-SOC-574",
+        "AC-SOC-575",
+        "AC-SOC-576",
+        "AC-SOC-577",
+        "AC-SOC-578",
+        "AC-SOC-579"
+      ],
+      "status": "partial",
+      "scope": "Separate fictional Queueberry recorded-quality offer with provisioned scoped integration, independent observations/tests, actual voice/case/assigned-agent/recording evidence, calculated versioned rubric, append-only review/coaching recommendation and paired typed billing. Assigned failed calls can retain explicitly partial capture only when recording policy permits. Historical save/worker evidence survives legitimate pruning, holds, deletion and cancellation. Existing manual reviews and separately initiated coaching remain independent; full actor, recording and workforce/commercial fidelity stays open."
     }
   ]
 }

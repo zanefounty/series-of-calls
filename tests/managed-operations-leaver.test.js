@@ -49,7 +49,7 @@ test('AC-SOC-533 managed leaver contracts must cover every concrete indirect res
  assert.equal(child(root,'managed-sydney').estate.jobs.length,0);assert.deepEqual(child(root,'managed-sydney').resources.identity.desired.identities,['alex','bea']);
 });
 
-test('managed estate approval caps standalone retries and rejects imported attempt three',()=>{
+test('AC-SOC-549 managed estate approval caps standalone retries and rejects imported attempt three',()=>{
  const fixture=require('./lib/managed-leaver-fixture');let root=fixture.setup({history:false,workforce:true,scopes:['identity','people']});
  root=fixture.nested(root,'leaver-a',{type:'interact',channel:'voice',from:'bea',to:'+61255500201',caseId:'retry-cap-active-work'});root=fixture.tick(root);
  assert.equal(fixture.child(root).workforceOps.assignments[0].status,'voice');root=fixture.submit(root);root=fixture.tick(root);

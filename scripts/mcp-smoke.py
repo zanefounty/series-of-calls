@@ -233,10 +233,26 @@ console.log(JSON.stringify(rows));
                 forged["records"][0]["classification"] = "public"
                 client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
                 assert client.tool("export_exercise") == actual, "Rejected origin tampering changed state"
+                forged_policy = json.loads(json.dumps(actual))
+                interface = forged_policy["information"]["interfaces"][0]
+                wrong_policy = "defence-restricted-handover-v1" if fixture["administration"] else "defence-admin-to-training-v1"
+                for configuration in ("desired", "effective"):
+                    interface[configuration]["policyId"] = wrong_policy
+                client.tool("import_exercise", {"json": json.dumps(forged_policy)}, error=True)
+                assert client.tool("export_exercise") == actual, "Rejected interface policy tampering changed state"
+                copied = next((record for record in actual["records"] if record.get("interfaceTransfer")), None)
+                if copied:
+                    parent = next(record for record in actual["records"] if record["id"] == copied["parents"][0])
+                    for field, value in [("expiresAt", parent["expiresAt"] + 10000), ("access", copied["access"] + ["admin"])]:
+                        forged_copy = json.loads(json.dumps(actual))
+                        next(record for record in forged_copy["records"] if record["id"] == copied["id"])[field] = value
+                        client.tool("import_exercise", {"json": json.dumps(forged_copy)}, error=True)
+                        assert client.tool("export_exercise") == actual, "Rejected copied-record tampering changed state"
+                    row["copiedRecordChecks"] = ["parent-retention-bound", "parent-access-bound"]
                 client.tool("new_exercise", fixture["options"])
                 client.tool("import_exercise", {"json": json.dumps(actual)})
                 assert client.tool("export_exercise") == actual, "Interface save restore differs"
-                row.update(status="passed", commands=len(fixture["commands"]), checks=["actual-meeting-capture", "explicit-interface", "restricted-classification", "direct-dispatch-equivalence", "inspection-purity", "tamper-rejection", "save-restore"])
+                row.update(status="passed", commands=len(fixture["commands"]), checks=["actual-meeting-capture", "explicit-interface", "restricted-classification", "direct-dispatch-equivalence", "inspection-purity", "tamper-rejection", "interface-policy-import-rejection", "save-restore"])
             except Exception as error:
                 row.update(status="failed", error=str(error))
             report["results"].append(row)

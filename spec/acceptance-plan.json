@@ -658,7 +658,9 @@
       "AC-SOC-478",
       "AC-SOC-479",
       "AC-SOC-480",
-      "AC-SOC-481"
+      "AC-SOC-481",
+      "AC-SOC-491",
+      "AC-SOC-492"
     ],
     "tests/information-interfaces-ui.test.js": [
       "AC-SOC-482",
@@ -672,6 +674,13 @@
       "AC-SOC-488",
       "AC-SOC-489",
       "AC-SOC-490"
+    ],
+    "tests/information-interface-import-policy.test.js": [
+      "AC-SOC-493",
+      "AC-SOC-494",
+      "AC-SOC-495",
+      "AC-SOC-496",
+      "AC-SOC-497"
     ]
   },
   "inputs": [
@@ -1101,6 +1110,7 @@
     "tests/information-interfaces-ui.test.js",
     "tests/upstream-keyboard-help.test.js",
     "tests/lib/information-interface-fixture.js",
-    "src/game/93-ui/82-keys.js"
+    "src/game/93-ui/82-keys.js",
+    "tests/information-interface-import-policy.test.js"
   ]
 }

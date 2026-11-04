@@ -8,7 +8,7 @@ function endpoint(s,resourceId,contractId){
  return {resourceId,resourceGeneration:r.generation,boundaryContractId:c.id,boundaryGeneration:c.generation,flowId:f.id,workload:c.effective.workload,profile:c.effective.profile,informationClass:f.informationClass,accessRoles:structuredClone(f.accessRoles),eligible:true};
 }
 
-test('imported interface snapshots cannot redirect a named policy to a different workload',()=>{
+test('AC-SOC-493 imported interface snapshots cannot redirect a named policy to a different workload',()=>{
  let s=record(ready({administration:true,restrictedCapture:false}));s=tick(info(s,interfaceCommand(true)));
  assert.equal(s.information.interfaces[0].effective.destination.workload,'training');
  const changed=contract(s,'destination-environment','administration',['handover-archive'],'internal');
@@ -20,7 +20,7 @@ test('imported interface snapshots cannot redirect a named policy to a different
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_INTERFACE_CONFIG/);
 });
 
-test('historical saves remain importable but stale capture evidence cannot authorize a new transfer or lower classification',()=>{
+test('AC-SOC-494 historical saves remain importable but stale capture evidence cannot authorize a new transfer or lower classification',()=>{
  let s=ready({administration:true,restrictedCapture:true});
  s=tick(bind(s,contract(s,'archive-environment','administration',['archive'],'internal')));
  s=record(s);s=tick(info(s,interfaceCommand(true)));
@@ -38,7 +38,7 @@ test('historical saves remain importable but stale capture evidence cannot autho
  assert.equal(recovered.information.transfers.at(-1).status,'complete');
 });
 
-test('imported completed transfers cannot extend parent retention or broaden access',()=>{
+test('AC-SOC-495 imported completed transfers cannot extend parent retention or broaden access',()=>{
  const complete=transfer(tick(info(record(ready({administration:true,restrictedCapture:false})),interfaceCommand(true))));
  assert.equal(complete.information.transfers.at(-1).status,'complete');
  assert.deepEqual(SOC.restore(JSON.stringify(complete)),complete);
@@ -55,7 +55,7 @@ test('imported completed transfers cannot extend parent retention or broaden acc
  assert.throws(()=>SOC.restore(JSON.stringify(relabelled)),/INVALID_INFORMATION_TRANSFER_LINEAGE/);
 });
 
-test('transfer copies intersect all access evidence and ordinary derived records cannot broaden it',()=>{
+test('AC-SOC-496 transfer copies intersect all access evidence and ordinary derived records cannot broaden it',()=>{
  let s=ready({administration:true,restrictedCapture:false});
  s=SOC.dispatch(s,{type:'configure',id:'archive',config:{access:['supervisor','admin']}});s=tick(s);
  const source=contract(s,'source-environment','administration',['archive','recorder','room','local'],'internal');
@@ -70,7 +70,7 @@ test('transfer copies intersect all access evidence and ordinary derived records
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_/);
 });
 
-test('a previously completed transfer remains valid evidence after later recorder contract changes',()=>{
+test('AC-SOC-497 a previously completed transfer remains valid evidence after later recorder contract changes',()=>{
  let s=transfer(tick(info(record(ready({administration:true,restrictedCapture:false})),interfaceCommand(true))));
  const revised=contract(s,'source-environment','administration',['archive','recorder','room','local'],'internal');
  revised.flows.find(x=>x.resource==='recorder').informationClass='internal';

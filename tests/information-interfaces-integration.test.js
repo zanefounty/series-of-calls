@@ -54,7 +54,7 @@ test('AC-SOC-476 source storage generation changes require new capture evidence 
  s=info(s,{action:'cancel',booking:s.information.bookings[0].id});s=record(s);const captured=s.records.at(-1).id;
  s=transfer(s,captured);assert.equal(s.information.transfers.at(-1).status,'complete');assert.equal(s.records.at(-1).parents[0],captured);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
-test('historical transferred records survive recorder reconfiguration while new copies require fresh capture lineage',()=>{
+test('AC-SOC-491 historical transferred records survive recorder reconfiguration while new copies require fresh capture lineage',()=>{
  let s=ready();s=bind(s,contract(s,'capture-environment','restricted-operations',['recorder']));s=bind(s,contract(s,'source-environment','restricted-operations',['archive','room','local']));s=tick(s);
  s=transfer(tick(info(record(s),interfaceCommand())));const original=s.records[0].id,receipt=structuredClone(s.information.transfers.at(-1)),copied=structuredClone(s.records.at(-1));
  s=SOC.dispatch(s,{type:'configure',id:'recorder',config:{capacity:8}});s=tick(bind(s,contract(s,'capture-environment','restricted-operations',['recorder'],'internal')));
@@ -70,7 +70,7 @@ test('AC-SOC-477 save validation rejects altered destination custody, lowered cl
  }
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
-test('retained transfer policy cannot be relabelled and survives legitimate interface revocation or policy reconfiguration',()=>{
+test('AC-SOC-492 retained transfer policy cannot be relabelled and survives legitimate interface revocation or policy reconfiguration',()=>{
  const complete=transfer(tick(info(record(ready()),interfaceCommand()))),revoked=tick(info(complete,{action:'revoke-interface',interfaceId:'scenario-handover'}));
  let reconfigured=bind(revoked,contract(revoked,'source-environment','administration',['archive','recorder','room','local'],'internal'));
  reconfigured=tick(bind(reconfigured,contract(reconfigured,'destination-environment','training',['handover-archive'],'internal')));reconfigured=tick(info(reconfigured,interfaceCommand(true)));

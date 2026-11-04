@@ -32,13 +32,28 @@ After the milestone, **Continue operating** commissions the funded customer with
 | Segment | Reference build beyond base/carrier/partner | Distinct service evidence |
 |---|---|---|
 | SMB | Repair or capacity mitigation; optional BPO, channels or assurance | Actual calls/digital cases, service credits, profitable settled delivery |
-| Enterprise | Meeting room, consented recording and migration | Duration-bearing room sessions, identity/number dependencies, completed migration and continuity |
+| Enterprise | Meeting room, consented recording and a choice of coexistence or consolidated migration | Duration-bearing room sessions, identity/number dependencies, real cutover and changed platform compatibility |
 | Government | Recording, transcription and scoped compliance contracts | Captured source, actual processing and versioned workload-boundary evidence; both opening plans are tested |
-| Defence | Pre-provisioned local dependencies, room and recording | Actual completed work during external disconnection, retained work, reconnection and settled delivery |
+| Defence | Pre-provisioned local dependencies, optional autonomy spares, room and recording | Actual work during disconnection, exhausted autonomy, retained work, paid scoped reconciliation and settled delivery |
+
+Enterprise can retain the original platform and migrate Bea onto a coexistence target (A$1,250 setup, 16 minutes, one engineer, A$140/period), or replace the original platform generation and cut over both identities to a dedicated target (A$1,600 setup, eight minutes, two engineers and one support person, A$80/period). Consolidation has an actual commissioning interruption and changes platform compatibility; it is not a renamed coexistence job.
+
+Defence's funded local deployment supplies 30 minutes of offline autonomy. A$480 of spares plus A$40/period extends that to 60 minutes and reserves staff for six minutes. Exhaustion makes the local dependency unavailable to real work. Reconnection leaves delivered work awaiting reconciliation: captured records alone cost A$120 and four support minutes; all retained record/case work costs A$220 and eight support minutes. These jobs reconcile existing outcomes without creating another completion or invoice. The mission requires reconciled work before qualifying for victory.
 
 All conditions are fictional exercise requirements. Country and deployment labels confer no real regulatory or security approval.
 
 Fourteen Microsoft/Cisco family recipes are paid operations with actual prerequisites and product readiness. Social messaging, workplace chat and supported video change eligible work in the following period while conserving 24 customer cases and mandatory calling floors. Channel delivery uses actual asynchronous attempts, receipts, quotas and case-preserving human handoff. Provider assurance has a capped repair budget and can be suspended; suspension leaves already funded jobs and support commitments payable. Paid BPO cover adds named people, and coaching removes its assigned person from service until completion. Quality findings are derived from a consented service record rather than authored grades.
+
+## Six-phase delivery
+
+1. Versioned Campaign authority, paid starting estate and shared treasury.
+2. Autonomous service work, duration/capture/meeting admission and period-history economics.
+3. Default playable map, compact HUD, contextual quotes and six state-based coach steps.
+4. Costed incident choices, scoped assurance, earned progression and shared growth.
+5. Four segment missions, fourteen representative family paths and partner/BPO roles.
+6. Save/worker/browser/MCP checks, long-run fixtures, source accounting and a prepared human pilot.
+
+See [the verification handoff](PROVIDER_VERIFICATION.md) for executed results and remaining boundaries.
 
 ## Verification policy
 

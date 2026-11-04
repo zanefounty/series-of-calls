@@ -26,8 +26,8 @@
     "playRequirements": {
       "total": 52,
       "byStatus": {
-        "shared-partial": 50,
-        "pending": 2
+        "shared-partial": 51,
+        "pending": 1
       }
     },
     "mechanics": {
@@ -76,80 +76,14 @@
     }
   },
   "implementationEvidenceSnapshot": {
+    "verificationHandoff": "docs/PROVIDER_VERIFICATION.md",
+    "candidateBranch": "feature/provider-gameplay-rebuild",
+    "reviewUrl": "https://github.com/zanefounty/series-of-calls/pull/20",
     "recordedAcceptance": "evidence/acceptance.json",
-    "recordedAcceptanceAt": "2026-11-04T07:29:43.867731+00:00",
-    "recordedAcceptanceSummary": "603 tests, 0 failures in that dated receipt; it predates the provider campaign rebuild and is not current rebuild acceptance evidence.",
-    "releaseVerification": "evidence/verification.json",
-    "releaseState": "older checked-in candidate receipt; release remains blocked and does not include current provider diagnostics.",
+    "recordedAcceptanceSummary": "Historical committed receipt; regenerate its producer for the current checkout. Current externally retained results and exact inputs are summarized in the verification handoff.",
+    "releaseState": "Full conversion/research/readiness obligations remain enforced; no release or source disposition inferred.",
     "currentDiagnosticsDate": "2026-11-04",
-    "currentDiagnostics": [
-      {
-        "kind": "provider-focused-tests",
-        "log": "/tmp/soc-provider-all.log",
-        "tests": 74,
-        "passed": 73,
-        "failed": 0,
-        "skipped": 1,
-        "limitation": "The opt-in 20-customer/10,000-minute provider soak was skipped."
-      },
-      {
-        "kind": "full-javascript-suite",
-        "log": "/tmp/soc-provider-full-js-2026-11-04.log",
-        "tests": 1537,
-        "passed": 1536,
-        "failed": 0,
-        "skipped": 1,
-        "limitation": "The opt-in provider soak was skipped; this log is outside Git and is not a regenerated evidence receipt."
-      },
-      {
-        "kind": "provider-channel-integration",
-        "command": "rtk node --test --test-isolation=none tests/provider-demand-integration.test.js",
-        "tests": 3,
-        "passed": 3,
-        "failed": 0,
-        "skipped": 0,
-        "limitation": "Focused actual-dispatch integration only; not full UI acceptance."
-      },
-      {
-        "kind": "static-build",
-        "command": "npm run build",
-        "status": "passed",
-        "log": "/tmp/soc-provider-build.log"
-      },
-      {
-        "kind": "translations",
-        "command": "npm run i18n:check",
-        "status": "passed",
-        "summary": "5,818 English labels; five translation dictionaries reported no missing, unused or broken labels.",
-        "log": "/tmp/soc-provider-i18n.log"
-      },
-      {
-        "kind": "provider-browser",
-        "report": "/tmp/soc-provider-gameplay-browser/provider-browser.json",
-        "status": "passed",
-        "browser": "Chromium 141.0.7390.37",
-        "playwright": "1.56.0",
-        "journeys": [
-          {
-            "id": "mission-defence",
-            "steps": [
-              "career-paused",
-              "base-effective",
-              "mission-incident",
-              "disconnected-work-resolved",
-              "two-period-evidence",
-              "mission-won"
-            ],
-            "viewport": 1366,
-            "documentWidth": 1366
-          }
-        ],
-        "errors": 0,
-        "limitation": "One defence desktop journey only; no four-mission desktop/mobile acceptance set or in-repository raw artifacts."
-      }
-    ],
-    "inspectionOnly": true,
-    "testsRunForThisAccounting": false
+    "rawArtifactsPolicy": "External logs, screenshots, traces and saves; no raw artifacts committed."
   },
   "playRequirements": [
     {
@@ -661,7 +595,9 @@
         "content/provider-campaigns.json",
         "src/game/32-site-operations.js",
         "src/game/34-specialist-lifecycle.js",
-        "tests/provider-campaign-kernel.test.js"
+        "tests/provider-campaign-kernel.test.js",
+        "tests/provider-strategy-options.test.js",
+        "scripts/provider-browser.js"
       ],
       "acceptanceCount": 3,
       "obligationRef": "play"
@@ -693,7 +629,11 @@
         "content/provider-campaigns.json",
         "src/game/27-speech-models.js",
         "src/game/43-boundaries.js",
-        "tests/provider-campaign-kernel.test.js"
+        "tests/provider-campaign-kernel.test.js",
+        "tests/provider-strategy-options.test.js",
+        "scripts/provider-browser.js",
+        "src/game/23-provider-continuity.js",
+        "tests/provider-continuity.test.js"
       ],
       "acceptanceCount": 3,
       "obligationRef": "play"
@@ -739,7 +679,9 @@
         "src/game/29-managed-operations.js",
         "src/game/36-market-qualification.js",
         "src/game/54-business.js",
-        "tests/provider-campaign-kernel.test.js"
+        "tests/provider-campaign-kernel.test.js",
+        "tests/provider-strategy-options.test.js",
+        "scripts/provider-browser.js"
       ],
       "acceptanceCount": 3,
       "obligationRef": "play"
@@ -926,7 +868,7 @@
       "title": "Visible-UI commercial journeys",
       "phase": 6,
       "priority": "required",
-      "status": "pending",
+      "status": "shared-partial",
       "behaviour": "Exercise real controls on the actual candidate build, not only DOM strings or direct dispatch.",
       "evidencePaths": [
         "scripts/browser-smoke.js",

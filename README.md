@@ -41,15 +41,16 @@ Run the main local checks with:
 ```sh
 npm run test:communications
 npm run test:mcp
+npm run evidence
 npm run check:all
 npm run i18n:check
 npm run build
 npm test
 ```
 
-`check:all` checks development accounting while preserving pending work. `check:release` is the full-release gate; it remains unchanged and currently fails on unreviewed research. A passing preview workflow or selected suite does not satisfy it. The latest frozen verification at runtime `f1ff38f` recorded 1,482 JavaScript tests, 603 registered acceptance cases, 83 Python gate/mutation tests and 94 actual communications/SP stdio MCP cases. These counts overlap and apply to that frozen runtime; inspect [the verification receipt](evidence/verification.json) for exact inputs, browser results and limits.
+`check:all` checks development accounting while preserving pending work. `check:release` is the full-release gate; a passing preview workflow does not satisfy it. The [provider verification handoff](docs/PROVIDER_VERIFICATION.md) records the tested revisions, separate browser and long-run fixtures, failures and remaining limitations. Test counts overlap and are not source-completion counts. Older files in `evidence/` retain their original inputs; they are not receipts for this rebuild.
 
-The current browser receipt covers the implemented runtime: three-viewport canonical/offline smoke, 22 browser-MCP checks plus two feature journeys, and all six 144-case compact/campaign engine matrices. This does not establish complete source fidelity or remove the release blockers. To rerun local browser acceptance, install the pinned browsers described in [browser acceptance](docs/BROWSER_ACCEPTANCE.md), then use `npm run test:browser` for smoke or `npm run test:browser:campaigns` for the registered matrix. Inspect the generated receipt and artifacts; a DOM test alone is not browser acceptance.
+Use `npm run test:provider` for campaign behaviour, `npm run test:provider:stdio` for the actual communications MCP journeys, and `npm run test:provider:browser` for visible-control provider journeys. The browser driver covers both SMB plans at desktop/mobile sizes, four missions, 14 paid product-family paths, keyboard operation, persistence, ownership and offline reload. Install the locked browsers described in [browser acceptance](docs/BROWSER_ACCEPTANCE.md). `npm run test:browser` and `npm run test:browser:campaigns` separately check the retained Training experience. Raw screenshots, traces, saved states and test logs belong outside Git.
 
 ## MCP interfaces
 

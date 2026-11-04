@@ -36,6 +36,7 @@ test('zero-cost coaching has explicit zero receipt and no ledger row; declared m
 
 test('coaching imports require consistent safe start, due and completion timestamps',()=>{
  const pending=coach(start(),100);
+ // Imported time above the old local counter cap remains valid against the root safe-integer clock.
  const lateClock=coach(start({business:false}),0);lateClock.clock=1000001;const lateJob=lateClock.workforceOps.coaching.at(-1);lateJob.startedAt=lateClock.clock;lateJob.due=lateClock.clock+lateJob.minutes;lateClock.workforceOps.costEvents.find(e=>e.job===lateJob.id).minute=lateJob.startedAt;assert.deepEqual(SOC.restore(JSON.stringify(lateClock)),lateClock);
  for(const mutate of [
   x=>{x.workforceOps.coaching.at(-1).startedAt=x.clock+1;x.workforceOps.coaching.at(-1).due=x.clock+3;},
@@ -59,8 +60,8 @@ test('SOC request replay posts one coaching charge and worker command matches pu
 test('customer-controlled and BPO coaching without current scoped coach authority fail atomically',()=>{
  let customer=start({operator:'customer'});unchangedFailure(customer,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_CUSTOMER_CONTROLLED/);
  let bpo=start({operator:'bpo'});unchangedFailure(bpo,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_DELEGATION_REQUIRED/);
- bpo=send(bpo,'workforce',{action:'agreement',id:'coach-config-only',resources:['workforce'],actions:['configure'],expires:bpo.clock+2});bpo.workforceOps.operator='bpo';unchangedFailure(bpo,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_DELEGATION_REQUIRED/);
- bpo=send(bpo,'workforce',{action:'agreement',id:'coach-scoped',resources:['workforce'],actions:['coach'],expires:bpo.clock+1});bpo.workforceOps.operator='bpo';bpo=tick(bpo);unchangedFailure(bpo,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_DELEGATION_REQUIRED/);
+ bpo=send(bpo,'workforce',{action:'agreement',id:'coach-config-only',resources:['workforce'],actions:['configure'],expires:bpo.clock+2});unchangedFailure(bpo,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_DELEGATION_REQUIRED/);
+ bpo=send(bpo,'workforce',{action:'agreement',id:'coach-scoped',resources:['workforce'],actions:['coach'],expires:bpo.clock+1});bpo=tick(bpo);unchangedFailure(bpo,{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:100}},/WORKFORCE_DELEGATION_REQUIRED/);
 });
 
 test('current business people ownership grant remains required for commercial coaching',()=>{
@@ -80,11 +81,25 @@ test('recent missing or contradictory receipts and ledger rows are rejected; gen
   x=>{x.workforceOps.coaching.at(-1).commercialReceipt.cents=399;},
   x=>{x.workforceOps.coaching.at(-1).commercialReceipt.entryId='entry-999';},
   x=>{x.business.ledger.find(row=>row.id===entry).cents=399;},
-  x=>{x.business.ledger=x.business.ledger.filter(row=>row.id!==entry);}
+  x=>{x.business.ledger=x.business.ledger.filter(row=>row.id!==entry);},
+  x=>{x.workforceOps.costEvents=[];},
+  x=>{x.workforceOps.costEvents[0].cents=399;},
+  x=>{x.workforceOps.costEvents[0].minute+=1;},
+  x=>{x.workforceOps.costEvents[0].job='coaching-999';},
+  x=>{x.workforceOps.costEvents[0].id='workforce-cost-999';}
  ];
  for(const mutate of corruptions){const bad=structuredClone(s);mutate(bad);assert.throws(()=>SOC.restore(JSON.stringify(bad)),/COACHING|INVALID_CAMPAIGN|INVALID_WORKFORCE/);}
  const receipt=structuredClone(s.workforceOps.coaching.at(-1).commercialReceipt);
  s=send(s,'business',{action:'loan',cents:2000});const loan=s.business.loans.at(-1);
  for(let n=0;n<999;n++)s=send(s,'business',{action:'repay',loan:loan.id,cents:1});
  assert.equal(s.business.ledger.length,1000);assert.ok(s.business.ledgerPrunedThrough>=Number(entry.slice(6)));assert.ok(!s.business.ledger.some(row=>row.id===entry));assert.deepEqual(s.workforceOps.coaching.at(-1).commercialReceipt,receipt);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+
+
+test('501 public coaching commands prune exact old event IDs and preserve the initial receipt',()=>{
+ let s=coach(start(),100),firstJob=structuredClone(s.workforceOps.coaching[0]),firstEvent=structuredClone(s.workforceOps.costEvents[0]);
+ for(let n=0;n<500;n++)s=coach(s,0);
+ assert.equal(s.workforceOps.coaching.length,501);assert.equal(s.workforceOps.costEvents.length,500);assert.equal(s.workforceOps.costEventsPrunedThrough,Number(firstEvent.id.slice('workforce-cost-'.length)));assert.equal(s.workforceOps.costEventsPrunedThrough,Number(firstJob.id.slice('coaching-'.length))+1);assert.notEqual(s.workforceOps.costEvents[0].id,firstEvent.id);
+ assert.equal(costRows(s).length,1);assert.deepEqual(s.workforceOps.coaching[0].commercialReceipt,firstJob.commercialReceipt);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const forged=structuredClone(s);forged.workforceOps.costEventsPrunedThrough++ ;assert.throws(()=>SOC.restore(JSON.stringify(forged)),/COST_EVENT|COACHING/);
 });

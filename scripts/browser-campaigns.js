@@ -122,7 +122,7 @@ async function main(argv=process.argv.slice(2)){
     const caseBudget=Math.max(1000,Math.min(args.journey==='campaign'?240000:60000,timeout-(Date.now()-started)));await withinBudget((async()=>{
      await context.tracing.start({screenshots:true,snapshots:true,sources:true});page=await context.newPage();page.setDefaultTimeout(10000);page.on('pageerror',error=>row.errors.push(`pageerror:${error.message}`));page.on('console',message=>{if(message.type()==='error')row.errors.push(`console:${message.text()}`);});
      await page.goto(`http://127.0.0.1:${server.address().port}/series-of-calls/`,{waitUntil:'domcontentloaded',timeout:15000});
-     await page.locator('[data-provider-action="training"]').click({timeout:10000});await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:15000});
+     await page.locator('.provider-launch-actions [data-provider-action="training"]').click({timeout:10000});await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:15000});
      row.outcomes=await (args.journey==='campaign'?exerciseCampaign:exerciseProfile)(page,profile);row.status='passed';
     })(),caseBudget);
    }catch(error){row.status='failed';row.error=String(error.stack||error);row.errors.push(String(error.message||error));}

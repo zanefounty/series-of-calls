@@ -1,21 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
-const SOC=require('../src/game/55-communications');
-const send=(s,type,command)=>SOC.dispatch(s,{type,command});
-const offer=(s,action,fields={})=>send(s,'workforce-offers',{action,...fields});
-const tick=(s,minutes=1)=>SOC.dispatch(s,{type:'advance',minutes});
+const {SOC,send,offer,tick,forecast,base,pending,observed,licensed,journey}=require('./lib/workforce-offer-fixture');
 const report=s=>SOC.calculate(s).workforceOffers;
 const integration={id:'queueberry-wfm-workforce',tenant:'wfm-customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'people'};
-const forecast={channel:'voice',skill:'service',language:'en',horizon:60,method:'mean'};
-function base(scenario='enterprise',operator='player'){
- let s=SOC.create({scenario,tenant:'wfm-customer'});
- for(const c of SOC.reference(s))s=SOC.dispatch(s,c);
- s=SOC.dispatch(s,{type:'configure',id:'people',config:{operator,people:2,entitlements:2,skills:['service'],languages:['en'],shiftStart:0,shiftEnd:1440}});
- s=SOC.dispatch(s,{type:'configure',id:'phone',config:{routes:[{prefix:'+61',target:'service'}]}});
- s=tick(s);s=send(s,'business',{action:'start'});s=send(s,'workforce',{action:'start'});return tick(s);
-}
-function pending(s=base(),units=1){s=offer(s,'start');s=offer(s,'order',{tenant:s.tenant,units});return offer(s,'integrate',integration);}
-function observed(s,available=true){return offer(s,'observe-integration',{supplierAvailable:true,applicationAvailable:available});}
-function licensed(s=base(),units=1){s=tick(pending(s,units));s=observed(s);s=offer(s,'test-integration');return offer(s,'bind-person',{person:'agent-01'});}
 function unchangedFailure(s,command,error){const before=JSON.stringify(s);assert.throws(()=>SOC.dispatch(s,command),error);assert.equal(JSON.stringify(s),before);}
 function rejectsSave(s,edit,error){const original=JSON.stringify(s),bad=structuredClone(s);edit(bad);assert.throws(()=>SOC.restore(JSON.stringify(bad)),error);assert.equal(JSON.stringify(s),original);}
 function twoCalls(s){for(const caseId of ['wfm-first','wfm-second'])s=SOC.dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId});s=tick(s);const calls=s.interactions.filter(i=>i.caseId==='wfm-first'||i.caseId==='wfm-second');assert.deepEqual(calls.map(i=>i.phase),['handling','handling']);assert.deepEqual(calls.map(i=>i.agent),['agent-01','agent-02']);assert.equal(new Set(calls.map(i=>i.workforceAssignment)).size,2);s=tick(s,6);assert.ok(s.interactions.filter(i=>i.caseId==='wfm-first'||i.caseId==='wfm-second').every(i=>i.phase==='resolved'));return s;}
@@ -143,4 +129,32 @@ test('actual business ledger eviction preserves an older workforce invoice and i
  assert.equal(s.business.ledger.length,1000);assert.ok(s.business.ledgerPrunedThrough>=Number(invoice.entryId.slice(6)));assert.equal(s.business.ledger.some(r=>r.id===invoice.entryId),false);
  assert.deepEqual(s.workforceOffers.costRecords[0],retained);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  rejectsSave(s,x=>{delete x.business.ledgerPrunedThrough;},/INVOICE|BILLING/);
+});
+
+
+test('BPO delegation expiry blocks offer administration and explicit renewed authority restores it',()=>{
+ let s=base();s=send(s,'workforce',{action:'agreement',id:'wfm-initial-authority',resources:['workforce'],actions:['configure'],expires:s.clock+2});
+ s=send(s,'workforce',{action:'roster',people:s.workforceOps.roster.desired,operator:'bpo'});s=tick(s);s=tick(pending(s));
+ assert.equal(s.workforceOps.operator,'bpo');unchangedFailure(s,{type:'workforce-offers',command:{action:'observe-integration',supplierAvailable:true,applicationAvailable:true}},/WORKFORCE_DELEGATION_REQUIRED/);
+ s=send(s,'workforce',{action:'agreement',id:'wfm-renewed-authority',resources:['workforce'],actions:['configure'],expires:s.clock+60});s=observed(s);s=offer(s,'test-integration');s=offer(s,'bind-person',{person:'agent-01'});assert.equal(report(s).integration.bindings[0].eligible,true);
+});
+
+
+test('ready workforce offer imports require consistent desired and effective snapshots',()=>{
+ const s=licensed();for(const edit of [
+  x=>{x.workforceOffers.desired.units=2;},
+  x=>{x.workforceOffers.integration.effective=null;},
+  x=>{x.workforceOffers.effective=null;}
+ ])rejectsSave(s,edit,/INVALID_WORKFORCE_OFFER/);
+ const pendingChange=offer(s,'order',{tenant:s.tenant,units:2});assert.equal(pendingChange.workforceOffers.desired.units,2);assert.equal(pendingChange.workforceOffers.effective.units,1);assert.deepEqual(SOC.restore(JSON.stringify(pendingChange)),pendingChange,'pending state legitimately keeps a different older effective generation');
+});
+
+
+test('public workforce journey replays four jurisdictions without injected poststate',()=>{
+ for(const jurisdiction of ['AU','US','JP','EU'])for(const variant of ['success','recovery']){
+  const j=journey({jurisdiction,variant});assert.equal(Object.hasOwn(j.options,'tenant'),false);let replay=SOC.create(j.options);for(const command of j.commands)replay=SOC.dispatch(replay,command);assert.deepEqual(replay,j.expectedState);
+  assert.equal(replay.workforceOffers.effective.units,0);assert.equal(replay.workforceOffers.costRecords.length,2);assert.equal(replay.workforceOffers.integration.tests.some(t=>t.status==='failed'),variant==='recovery');assert.equal(replay.workforceOffers.integration.tests.at(-1).status,'passed');
+  assert.deepEqual(replay.workforceOps.assignments.map(a=>a.person),['agent-01','agent-02']);assert.ok(replay.interactions.filter(i=>i.caseId==='wfm-first'||i.caseId==='wfm-second').every(i=>i.phase==='resolved'));assert.equal(replay.workforceOffers.integration.forecasts[0].projectedCapacity,15);assert.equal(replay.workforceOps.forecasts[0].projectedCapacity,30);
+ }
+ const explicit=journey({tenant:'explicit-customer',units:2,variant:'success',includeCalls:false,includeBilling:false});assert.equal(explicit.options.tenant,'explicit-customer');assert.equal(explicit.expectedState.workforceOffers.tenant,'explicit-customer');assert.equal(explicit.expectedState.workforceOffers.effective.units,2);assert.deepEqual(explicit.expectedState.workforceOffers.integration.forecasts[0].coveredPeople,['agent-01','agent-02']);assert.equal(explicit.expectedState.workforceOffers.integration.forecasts[0].projectedCapacity,30);
 });

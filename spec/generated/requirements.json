@@ -53103,6 +53103,7 @@
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/76-managed-operations-ui.js",
+      "src/game/90-service-admin-ui.js",
       "src/game/97-training.js",
       "tests/campaign.test.js",
       "tests/domain-integration.test.js",
@@ -53134,7 +53135,8 @@
       "BEH-SOC-310",
       "BEH-SOC-311",
       "BEH-SOC-312",
-      "BEH-SOC-313"
+      "BEH-SOC-313",
+      "BEH-SOC-381"
     ]
   },
   {
@@ -53188,7 +53190,8 @@
       "BEH-SOC-363",
       "BEH-SOC-370",
       "BEH-SOC-378",
-      "BEH-SOC-380"
+      "BEH-SOC-380",
+      "BEH-SOC-381"
     ]
   },
   {
@@ -54107,9 +54110,11 @@
       "scripts/mcp-smoke.py",
       "src/game/26-customer-needs.js",
       "src/game/45-products.js",
+      "src/game/49-workforce.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/72-customer-needs-ui.js",
+      "src/game/90-service-admin-ui.js",
       "src/game/98-business-ui.js",
       "tests/products.test.js"
     ],
@@ -54125,7 +54130,8 @@
       "BEH-SOC-364",
       "BEH-SOC-368",
       "BEH-SOC-372",
-      "BEH-SOC-374"
+      "BEH-SOC-374",
+      "BEH-SOC-381"
     ]
   },
   {

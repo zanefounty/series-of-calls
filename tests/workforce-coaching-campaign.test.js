@@ -4,7 +4,7 @@ const dispatch=(s,type,fields={})=>SOC.dispatch(s,{type,...fields});
 const campaign=(s,action,fields={})=>dispatch(s,'campaign',{command:{action,...fields}});
 const tick=(s,minutes=1)=>dispatch(s,'advance',{minutes});
 
-test('active coaching invalidates passed campaign evidence until fresh service windows pass',()=>{
+test('AC-SOC-592 active coaching invalidates passed campaign evidence until fresh service windows pass',()=>{
  let s=SOC.create({scenario:'smb',mode:'assessed'});
  s=campaign(s,'start');
  for(const command of SOC.reference(s))s=SOC.dispatch(s,command);

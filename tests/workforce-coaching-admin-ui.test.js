@@ -24,7 +24,7 @@ function coach(h,{costCents,skill='billing',minutes=2}={}){
 }
 function jobRow(h,id){const row=h.w.document.querySelector(`[data-coaching-job="${id}"]`);assert.ok(row,`missing coaching row ${id}`);return row;}
 
-test('coaching admin history shows typed posted charge and one ledger receipt through delayed completion',()=>{
+test('AC-SOC-590 coaching admin history shows typed posted charge and one ledger receipt through delayed completion',()=>{
  const h=boot(prepared()),beforeBalance=h.state().business.balance.cash;
  coach(h,{costCents:125});
  let s=h.state(),job=s.workforceOps.coaching.at(-1),rows=s.business.ledger.filter(x=>x.reason==='workforce-coaching');
@@ -36,7 +36,7 @@ test('coaching admin history shows typed posted charge and one ledger receipt th
  h.advance(1);s=h.state();job=s.workforceOps.coaching.at(-1);rows=s.business.ledger.filter(x=>x.reason==='workforce-coaching');assert.equal(job.status,'complete');assert.equal(job.completedAt,job.due);assert.equal(rows.length,1);assert.equal(rows[0].id,job.commercialReceipt.entryId);assert.equal(s.business.balance.cost,125);row=jobRow(h,job.id);assert.match(row.textContent,/Complete/);assert.match(row.textContent,/Completed at clock minute 3/);assert.match(row.textContent,new RegExp(job.commercialReceipt.entryId));assert.deepEqual(h.h.errors,[]);h.close();
 });
 
-test('zero receipts are explicit while standalone coaching stays visibly unbilled after business starts',()=>{
+test('AC-SOC-591 zero receipts are explicit while standalone coaching stays visibly unbilled after business starts',()=>{
  const charged=boot(prepared());coach(charged,{costCents:0,minutes:1});
  let s=charged.state(),zero=s.workforceOps.coaching.at(-1),row=jobRow(charged,zero.id);
  assert.equal(zero.commercialReceipt.status,'zero');assert.equal(zero.commercialReceipt.cents,0);assert.equal(zero.commercialReceipt.entryId,null);assert.equal(s.business.ledger.filter(x=>x.reason==='workforce-coaching').length,0);assert.match(row.textContent,/Explicit zero charge: 0 AUD-cent/);assert.match(row.textContent,/Business cost ledger entry: None/);assert.deepEqual(charged.h.errors,[]);charged.close();

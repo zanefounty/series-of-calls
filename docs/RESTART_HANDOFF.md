@@ -1,5 +1,8 @@
 # Restart handoff — 4 November 2026
 
+Publication/security [PR #15](https://github.com/zanefounty/series-of-calls/pull/15) merged after all 12 checks passed. Security is a required check. Keep current supported Actions major tags with Dependabot updates, per owner review; do not replace them with commit-SHA pins. Preview publishing is separate from the unchanged full-product release gate.
+
+
 The owner requested continued full implementation, verification and deployment. Access and repository preparation are complete; bounded implementation and acceptance work have continued. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
 
 ## Fork survey and current runtime — 4 November 2026
@@ -14,7 +17,7 @@ Frozen runtime `f1ff38f` passed 1,482 JavaScript tests, 603 registered acceptanc
 
 Failed and interrupted attempts remain outside Git, including the mobile overflow discovery, harness corrections, supplemental timeouts and retries, the native WebKit crash and the container-stop correlation. Screenshots, traces, logs, copied builds and duplicate reports are not committed. The existing four-file evidence allowlist remains in effect.
 
-The inventory contains 4,839 requirements: 216 partial, 4,623 pending and zero final dispositions. Canonical research acceptance remains zero. Release still rejects deferred `REF-ac194430f67b3832`; source-specific implementation/review, the provider-enforced API budget and maintenance activation remain outstanding. Hosted adaptation remains disabled and no Pages deployment is claimed.
+The inventory contains 4,839 requirements: 216 partial, 4,623 pending and zero final dispositions. Canonical research acceptance remains zero. Release still rejects deferred `REF-ac194430f67b3832`; source-specific implementation/review, the provider-enforced API budget and maintenance activation remain outstanding. Hosted adaptation remains disabled. Pages preview publishing uses the [main-only protected workflow](https://github.com/zanefounty/series-of-calls/blob/main/.github/workflows/release.yml); follow its [current run status](https://github.com/zanefounty/series-of-calls/actions/runs/41796717064).
 
 The checkpoints below are historical; inspect the current receipts and live PR state before resuming work.
 

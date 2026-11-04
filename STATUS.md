@@ -1,6 +1,6 @@
 # Working milestone — updated 2026-11-04
 
-The full plan remains incomplete. The independent public [preview repository](https://github.com/zanefounty/series-of-calls) now preserves genuine upstream history. No release or Pages deployment is claimed.
+The full plan remains incomplete. The independent public [preview repository](https://github.com/zanefounty/series-of-calls) preserves genuine upstream history. Pages preview publishing uses the [main-only protected workflow](https://github.com/zanefounty/series-of-calls/blob/main/.github/workflows/release.yml); follow its [current run status](https://github.com/zanefounty/series-of-calls/actions/runs/41796717064). Full release remains blocked by incomplete source-specific implementation and review.
 
 ## Fork survey and current runtime — 4 November 2026
 
@@ -14,7 +14,7 @@ Frozen runtime `f1ff38f` passed 1,482 JavaScript tests, 603 registered acceptanc
 
 Failed and interrupted attempts remain outside Git, including the mobile overflow discovery, harness corrections, supplemental timeouts and retries, the native WebKit crash and the container-stop correlation. Screenshots, traces, logs, copied builds and duplicate reports are not committed. The existing four-file evidence allowlist remains in effect.
 
-The inventory contains 4,839 requirements: 216 partial, 4,623 pending and zero final dispositions. Canonical research acceptance remains zero. Release still rejects deferred `REF-ac194430f67b3832`; source-specific implementation/review, the provider-enforced API budget and maintenance activation remain outstanding. Hosted adaptation remains disabled and no Pages deployment is claimed.
+The inventory contains 4,839 requirements: 216 partial, 4,623 pending and zero final dispositions. Canonical research acceptance remains zero. Release still rejects deferred `REF-ac194430f67b3832`; source-specific implementation/review, the provider-enforced API budget and maintenance activation remain outstanding. Hosted adaptation remains disabled. Pages preview and full-release workflow status are linked above; preview publication does not clear the full-release gate.
 
 The checkpoints below are historical; inspect the current receipts and live PR state before resuming work.
 

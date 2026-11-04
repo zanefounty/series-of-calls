@@ -4,7 +4,7 @@ Series of Calls is a synthetic communications configuration and operations simul
 
 **Status: incomplete preview.** The current application is a bounded training and campaign milestone, not the full Series of Tubes conversion or a release. Its specification tracks 4,839 requirements; at the 4 November 2026 verification checkpoint, 216 were partial, 4,623 pending and none had a final disposition. The full-release gate currently rejects deferred source review `REF-ac194430f67b3832`.
 
-[Play the preview](https://zanefounty.github.io/series-of-calls/) (available after the first deployment). The site will be labeled as a preview; the existing full-release gate remains required for a full release.
+[Play the incomplete preview](https://zanefounty.github.io/series-of-calls/). See the [Pages workflow](https://github.com/zanefounty/series-of-calls/actions/workflows/release.yml) for publication status.
 
 All calls, messages, incidents, customers, providers, policies and evidence are fictional. AU/US/JP/EU are exercise profiles, not legal or regulatory approvals. No live telephony or provider credentials are used.
 
@@ -75,4 +75,4 @@ On Linux x64, `bash scripts/install-gitleaks.sh /absolute/path/to/gitleaks` inst
 
 The optional physical-network game and preserved assets derive from [Series of Tubes](https://github.com/fjaeckel/seriesoftubes) by Frederic Jung. Its [MIT license](LICENSE) is retained byte-for-byte. This independent adaptation does not imply upstream endorsement; the source pack and third-party research remain attributed under their respective terms.
 
-The accountable contact is `zanefounty`. The upstream project's issue tracker and Signal group are not contacts for this adaptation. Publication and full conversion remain incomplete; see the publishing audit for current prerequisites.
+The accountable contact is `zanefounty`. The upstream project's issue tracker and Signal group are not contacts for this adaptation. Full conversion remains incomplete; see the publishing audit for the publication workflow.

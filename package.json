@@ -1,7 +1,7 @@
 {
   "name": "series-of-calls",
   "version": "0.1.0-preview.1",
-  "description": "Synthetic communications configuration training — incomplete foundation preview",
+  "description": "Synthetic communications provider campaign and training \u2014 incomplete conversion preview",
   "private": true,
   "license": "MIT",
   "homepage": "https://zanefounty.github.io/series-of-calls/",
@@ -41,7 +41,10 @@
     "narrative:generate": "python3 scripts/generate-narrative.py",
     "test:mcp": "python3 scripts/mcp-smoke.py",
     "check:delivery": "python3 scripts/delivery-inventory.py --check",
-    "test:browser:campaigns": "node scripts/browser-campaigns.js"
+    "test:browser:campaigns": "node scripts/browser-campaigns.js",
+    "test:provider": "node --test tests/provider-*.test.js",
+    "test:provider:browser": "node scripts/provider-browser.js",
+    "test:provider:mcp-browser": "python3 scripts/provider-mcp-smoke.py"
   },
   "engines": {
     "node": ">=24"

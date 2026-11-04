@@ -190,10 +190,51 @@
             "AC-SOC-529",
             "AC-SOC-530"
           ]
+        },
+        {
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-380",
+          "implementedSurface": "Separate optional recorded-quality review: actual voice/case/agent/media lineage, current scoped integration tests, manual criterion scores calculated by a fixed rubric, authorized held reads, partial failed-call coverage, immutable history and one typed review receipt. Coaching remains a separate controlled action.",
+          "implementation": [
+            "src/game/38-workforce-quality.js",
+            "src/game/54-business.js",
+            "src/game/55-communications.js",
+            "src/game/89-workforce-quality-ui.js",
+            "content/business.json"
+          ],
+          "testIds": [
+            "AC-SOC-553",
+            "AC-SOC-554",
+            "AC-SOC-555",
+            "AC-SOC-556",
+            "AC-SOC-557",
+            "AC-SOC-558",
+            "AC-SOC-559",
+            "AC-SOC-560",
+            "AC-SOC-561",
+            "AC-SOC-562",
+            "AC-SOC-563",
+            "AC-SOC-564",
+            "AC-SOC-565",
+            "AC-SOC-566",
+            "AC-SOC-567",
+            "AC-SOC-568",
+            "AC-SOC-569",
+            "AC-SOC-570",
+            "AC-SOC-571",
+            "AC-SOC-572",
+            "AC-SOC-573",
+            "AC-SOC-574",
+            "AC-SOC-575",
+            "AC-SOC-576",
+            "AC-SOC-577",
+            "AC-SOC-578",
+            "AC-SOC-579"
+          ]
         }
       ],
       "remainingGaps": [
-        "Contact routing, digital engagement, agent quality evaluation, CRM/Teams integrations and other distinct actor offers remain unimplemented.",
+        "Contact routing, digital engagement, broader quality management, CRM/Teams integrations and other distinct actor offers remain incomplete.",
         "No current real-vendor evidence or legal/certification claim is established by the fictional training offer. Proposed alias and flavour await owner review.",
         "Complete actor-specific customer, deployment, support and commercial lifecycle fidelity remains partial."
       ],
@@ -515,7 +556,7 @@
       "fictionalRepresentation": {
         "name": "Anywhere Next",
         "status": "proposed synthetic alias; owner review required",
-        "roleSpecificSatiricalFlavour": "“Anywhere” describes the scenario name, not universal availability."
+        "roleSpecificSatiricalFlavour": "\u201cAnywhere\u201d describes the scenario name, not universal availability."
       },
       "configurationSurface": "Fictional organization identity; role relationships; ownership; referenced family/offer IDs; agreement parties; support owner; scope and dated evidence. Record the applicable Anywhere365 or Anywhere Now product identity, integration model, deployment and lifecycle rather than assuming all names are one interchangeable offer.",
       "dependencies": [
@@ -5289,11 +5330,53 @@
             "AC-SOC-525",
             "AC-SOC-530"
           ]
+        },
+        {
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-380",
+          "implementedSurface": "Separate optional recorded-quality review: actual voice/case/agent/media lineage, current scoped integration tests, manual criterion scores calculated by a fixed rubric, authorized held reads, partial failed-call coverage, immutable history and one typed review receipt. Coaching remains a separate controlled action.",
+          "implementation": [
+            "src/game/38-workforce-quality.js",
+            "src/game/54-business.js",
+            "src/game/55-communications.js",
+            "src/game/89-workforce-quality-ui.js",
+            "content/business.json"
+          ],
+          "testIds": [
+            "AC-SOC-553",
+            "AC-SOC-554",
+            "AC-SOC-555",
+            "AC-SOC-556",
+            "AC-SOC-557",
+            "AC-SOC-558",
+            "AC-SOC-559",
+            "AC-SOC-560",
+            "AC-SOC-561",
+            "AC-SOC-562",
+            "AC-SOC-563",
+            "AC-SOC-564",
+            "AC-SOC-565",
+            "AC-SOC-566",
+            "AC-SOC-567",
+            "AC-SOC-568",
+            "AC-SOC-569",
+            "AC-SOC-570",
+            "AC-SOC-571",
+            "AC-SOC-572",
+            "AC-SOC-573",
+            "AC-SOC-574",
+            "AC-SOC-575",
+            "AC-SOC-576",
+            "AC-SOC-577",
+            "AC-SOC-578",
+            "AC-SOC-579"
+          ]
         }
       ],
       "remainingGaps": [
         "Domain behavior remains incomplete; linked behaviors are only shared mechanics.",
-        "Source-specific behavior still needs the distinct fields and outcomes above plus dedicated acceptance evidence."
+        "Source-specific behavior still needs the distinct fields and outcomes above plus dedicated acceptance evidence.",
+        "Separately initiated coaching records workforce cost events; commercial ledger reconciliation of those coaching costs remains outstanding."
       ],
       "status": "pending full implementation and dated evidence",
       "objectClass": "domain-capability",
@@ -6622,6 +6705,47 @@
           "implementedSurface": "Bounded acceptance case; full source adaptation remains pending.",
           "testIds": [
             "AC-SOC-049"
+          ]
+        },
+        {
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-380",
+          "implementedSurface": "Separate optional recorded-quality review: actual voice/case/agent/media lineage, current scoped integration tests, manual criterion scores calculated by a fixed rubric, authorized held reads, partial failed-call coverage, immutable history and one typed review receipt. Coaching remains a separate controlled action.",
+          "implementation": [
+            "src/game/38-workforce-quality.js",
+            "src/game/54-business.js",
+            "src/game/55-communications.js",
+            "src/game/89-workforce-quality-ui.js",
+            "content/business.json"
+          ],
+          "testIds": [
+            "AC-SOC-553",
+            "AC-SOC-554",
+            "AC-SOC-555",
+            "AC-SOC-556",
+            "AC-SOC-557",
+            "AC-SOC-558",
+            "AC-SOC-559",
+            "AC-SOC-560",
+            "AC-SOC-561",
+            "AC-SOC-562",
+            "AC-SOC-563",
+            "AC-SOC-564",
+            "AC-SOC-565",
+            "AC-SOC-566",
+            "AC-SOC-567",
+            "AC-SOC-568",
+            "AC-SOC-569",
+            "AC-SOC-570",
+            "AC-SOC-571",
+            "AC-SOC-572",
+            "AC-SOC-573",
+            "AC-SOC-574",
+            "AC-SOC-575",
+            "AC-SOC-576",
+            "AC-SOC-577",
+            "AC-SOC-578",
+            "AC-SOC-579"
           ]
         }
       ],

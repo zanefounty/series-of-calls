@@ -145187,7 +145187,8 @@
       "historicalSource": "https://chatgpt.com/space/page_c4d155bcfb248191a93207a10e4bf73f",
       "attributeStrings": [],
       "behaviours": [
-        "BEH-SOC-378"
+        "BEH-SOC-378",
+        "BEH-SOC-380"
       ],
       "semanticReview": "pending",
       "narrative": {
@@ -146804,7 +146805,8 @@
         "BEH-SOC-116",
         "BEH-SOC-363",
         "BEH-SOC-370",
-        "BEH-SOC-378"
+        "BEH-SOC-378",
+        "BEH-SOC-380"
       ],
       "semanticReview": "pending",
       "narrative": {
@@ -147254,7 +147256,8 @@
         "BEH-SOC-033",
         "BEH-SOC-034",
         "BEH-SOC-049",
-        "BEH-SOC-349"
+        "BEH-SOC-349",
+        "BEH-SOC-380"
       ],
       "semanticReview": "pending",
       "narrative": {

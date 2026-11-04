@@ -11,7 +11,7 @@ function chooseOffer(form,value){form.elements.offer.value=value;form.elements.o
 
 test('AC-SOC-550 managed-operations order requires explicit resource scope and submits selected IDs through business dispatch',()=>{
  const h=boot();try{
-  const d=h.dom.window.document,form=d.querySelector('#soc-order'),scope=form.querySelector('[data-managed-resource-scope]');assert.ok(scope);assert.equal(scope.hidden,false);
+  const d=h.dom.window.document,form=d.querySelector('#soc-order'),scope=form.querySelector('[data-managed-resource-scope]');assert.ok(scope);chooseOffer(form,'managed-operations');assert.equal(scope.hidden,false);
   chooseOffer(form,'workplace');assert.equal(scope.hidden,true);chooseOffer(form,'managed-operations');assert.equal(scope.hidden,false);assert.equal(form.elements.managedResources.required,true);
   const before=h.ev('JSON.stringify(SCT.state)');form.dispatchEvent(new h.dom.window.Event('submit',{bubbles:true,cancelable:true}));assert.equal(h.ev('SCT.state.business.contracts.length'),0);assert.equal(h.ev('SCT.state.revision'),JSON.parse(before).revision);assert.equal(h.ev('SCT.error'),'MANAGED_CONTRACT_RESOURCE_REQUIRED');
   h.ev("SCT.error=''");form.elements.managedResources.options[Array.from(form.elements.managedResources.options).findIndex(x=>x.value==='identity')].selected=true;form.dispatchEvent(new h.dom.window.Event('submit',{bubbles:true,cancelable:true}));

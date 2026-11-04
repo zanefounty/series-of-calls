@@ -359,6 +359,90 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def quality_reviews(report):
+    script = """
+const {SOC,journey}=require('./tests/lib/workforce-quality-fixture');
+const rows=['AU','US','JP','EU'].map(jurisdiction=>journey({jurisdiction,variant:'integration-recovery'}));
+console.log(JSON.stringify(rows));
+"""
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True, timeout=60))
+    client = Client("scripts/calls-mcp.js")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "recorded-quality-review", **fixture["options"], "scope": "Synthetic scoped recording review; manually scored rubric, independent integration recovery, typed billing and no automatic coaching"}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                assert client.tool("inspect")["packs"]["workforceQuality"]["version"] == "soc-workforce-quality-1"
+                blocked_checked = False
+                negatives = []
+                for command in fixture["commands"]:
+                    if command["type"] == "workforce-quality" and command["command"]["action"] == "review":
+                        before = client.tool("export_exercise")
+                        invalid = json.loads(json.dumps(command))
+                        invalid["command"]["total"] = 100
+                        client.tool("command", {"command": invalid}, error=True)
+                        assert client.tool("export_exercise") == before, "Caller total changed quality state"
+                        negatives.append("caller-total")
+                    client.tool("command", {"command": command})
+                    if command["type"] == "workforce-quality" and command["command"]["action"] == "test-integration":
+                        before = client.tool("export_exercise")
+                        test = before["workforceQuality"]["integration"]["tests"][-1]
+                        if test["status"] == "failed":
+                            attempt = {"type": "workforce-quality", "command": {"action": "review", "interactionId": before["interactions"][-1]["id"], "reviewer": "supervisor", "scores": {"opening": 5, "verification": 5, "resolution": 5, "documentation": 5}}}
+                            client.tool("command", {"command": attempt}, error=True)
+                            assert client.tool("export_exercise") == before, "Failed integration review changed root"
+                            assert not before["workforceQuality"]["reviews"] and not before["business"].get("qualityCharges")
+                            blocked_checked = True
+                            negatives.append("failed-integration-review")
+                actual = client.tool("export_exercise")
+                assert blocked_checked, "Recovery fixture never exercised failed integration"
+                assert actual == fixture["expectedState"], "Quality MCP differs from direct dispatch"
+                review = actual["workforceQuality"]["reviews"][-1]
+                assert not review["passed"] and review["recommendation"]["agentId"] == review["agent"]["id"]
+                assert actual["workforceOps"]["coaching"] == [], "Review started coaching"
+                assert len(actual["business"]["qualityCharges"]) == 1
+                receipt = review["billingReceipt"]
+                assert receipt["unit"] == "quality-review" and receipt["quantity"] == 1 and receipt["currency"] == "AUD"
+                assert receipt["cents"] == 100 and receipt["costCents"] == 50
+                assert sum(x["id"] in (receipt["entryId"], receipt["costEntryId"]) for x in actual["business"]["ledger"]) == 2
+                inspected = client.tool("inspect")
+                assert client.tool("inspect") == inspected, "Quality inspection mutated state"
+                assert inspected["observed"]["workforceQuality"]["reviews"][-1] == review
+                for label in ("computed-score", "case-lineage", "recording-lineage", "assignment-lineage", "test-lineage", "billing-cents", "missing-both-proofs"):
+                    forged = json.loads(json.dumps(actual))
+                    saved = forged["workforceQuality"]["reviews"][-1]
+                    if label == "computed-score":
+                        saved["total"] = 100
+                    elif label == "case-lineage":
+                        saved["caseIdentity"] = "bea"
+                    elif label == "recording-lineage":
+                        saved["recording"]["id"] = "record-99999"
+                    elif label == "assignment-lineage":
+                        saved["agent"]["personSnapshot"]["id"] = "agent-99"
+                    elif label == "test-lineage":
+                        saved["testId"] = "quality-test-99999"
+                    elif label == "billing-cents":
+                        saved["billingReceipt"]["cents"] += 1
+                    else:
+                        forged["workforceQuality"]["reviews"] = []
+                        forged["workforceQuality"]["nextReviewId"] = 1
+                        forged["business"]["qualityCharges"] = []
+                    client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                    assert client.tool("export_exercise") == actual, label + " rejected import changed root"
+                    negatives.append(label)
+                client.tool("import_exercise", {"json": json.dumps(actual)})
+                assert client.tool("export_exercise") == actual, "Valid quality restore differs"
+                row.update({"status": "passed", "commands": len(fixture["commands"]), "negativeChecks": negatives, "reviewId": review["id"], "recordingId": review["recording"]["id"], "score": review["total"], "retailCents": receipt["cents"], "costCents": receipt["costCents"], "stateSha256": hashlib.sha256(json.dumps(actual, sort_keys=True).encode()).hexdigest()})
+                report["results"].append(row)
+            except Exception as error:
+                row.update({"status": "failed", "error": str(error)})
+                report["results"].append(row)
+                raise
+    finally:
+        client.close()
+
+
 def managed_leavers(report):
     script = """
 const {SOC,journey}=require('./tests/lib/managed-leaver-fixture');const rows=[];
@@ -649,10 +733,10 @@ def main():
     parser.add_argument("--campaigns", action="store_true", help="Also execute all four campaign tracks through renewal in every jurisdiction and mode")
     args = parser.parse_args()
     report = {"checkedAt": datetime.now(timezone.utc).isoformat(), "status": "running", "results": [],
-        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys. Not full campaign/source or browser acceptance.",
+        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys and four recorded-quality reviews. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "tests/lib/workforce-quality-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -665,11 +749,12 @@ def main():
         information_interfaces(report)
         workforce_offers(report)
         managed_leavers(report)
+        quality_reviews(report)
         if args.campaigns:
             full_campaigns(report)
-            report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer and managed-leaver journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
+            report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer, managed-leaver and quality-review journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (84 if args.campaigns else 72), "Incomplete smoke matrix"
+        assert len(report["results"]) == (88 if args.campaigns else 76), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

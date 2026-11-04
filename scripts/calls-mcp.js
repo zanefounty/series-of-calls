@@ -64,7 +64,7 @@ function inspect(){
   contact:{version:E.contact.PACK,configuration:E.contact.defaults},
   calling:{version:E.calling.PACK,configuration:E.calling.defaults},
   customerNeeds:{version:E.customerNeeds.PACK,segments:E.customerNeeds.sourceRows},
-  workforce:{version:E.workforce.PACK,presenceStates:E.workforce.presenceStates},workforceOffers:{version:E.workforceOffers.PACK,offer:E.workforceOffers.offer},estate:{version:E.estate.PACK},
+  workforce:{version:E.workforce.PACK,presenceStates:E.workforce.presenceStates},workforceOffers:{version:E.workforceOffers.PACK,offer:E.workforceOffers.offer},workforceQuality:{version:E.workforceQuality.PACK},estate:{version:E.estate.PACK},
   products:{version:E.products.PACK,families:E.products.families,units:E.products.units},
   channels:{version:E.channels.PACK,accounts:E.channels.channels,configuration:E.channels.defaults},
   outcomes:{version:E.outcomes.PACK,configuration:E.outcomes.defaults},

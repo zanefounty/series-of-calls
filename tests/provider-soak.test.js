@@ -101,7 +101,7 @@ test('provider career supports twenty active customers through 10,000 minutes of
  assert.equal(campaign().customers.length,20);
  assert.ok(campaign().customers.every(x=>x.status==='active'), 'all twenty customers are active before the soak window');
  progressUntil(()=>campaign().incidents.length===20&&campaign().incidents.every(x=>x.status==='resolved'));
- const soakStart=state.clock,initialOffered=campaign().customers.reduce((n,x)=>n+x.metrics.offered,0),initialCompleted=campaign().customers.reduce((n,x)=>n+x.metrics.completed,0),initialSettlements=campaign().historyCheckpoint.periods+campaign().periodHistory.length;
+ const soakStart=state.clock,initialOffered=campaign().customers.reduce((n,x)=>n+x.metrics.offered,0),initialCompleted=campaign().customers.reduce((n,x)=>n+x.metrics.completed,0),initialFailed=campaign().customers.reduce((n,x)=>n+x.metrics.failed,0),initialOpenJobs=campaign().jobs.filter(x=>x.status==='pending'&&!x.settled).length,initialSettlements=campaign().historyCheckpoint.periods+campaign().periodHistory.length;
  const initialRevenue=state.business.balance.revenue,initialCost=state.business.balance.cost;
  const soakEnd=soakStart+10000;
 
@@ -112,14 +112,16 @@ test('provider career supports twenty active customers through 10,000 minutes of
  assert.ok(campaign().customers.every(x=>x.status==='active'||x.status==='renewal'),'customers remain active or have an earned renewal decision');
  settleDecisions();
  assert.ok(campaign().customers.every(x=>x.status==='active'));
- const offered=campaign().customers.reduce((n,x)=>n+x.metrics.offered,0),completed=campaign().customers.reduce((n,x)=>n+x.metrics.completed,0);
- assert.ok(offered-initialOffered>=20*24*Math.floor(10000/60)-20*24,'each active customer received real recurring campaign demand');
- assert.ok(completed>initialCompleted,'actual customer interactions completed during the soak');
+ const offered=campaign().customers.reduce((n,x)=>n+x.metrics.offered,0),completed=campaign().customers.reduce((n,x)=>n+x.metrics.completed,0),failed=campaign().customers.reduce((n,x)=>n+x.metrics.failed,0),openJobs=campaign().jobs.filter(x=>x.status==='pending'&&!x.settled).length;
+ const offeredDelta=offered-initialOffered,completedDelta=completed-initialCompleted,failedDelta=failed-initialFailed;
+ assert.ok(offeredDelta>=20*24*Math.floor(10000/60)-20*24,'each active customer received real recurring campaign demand');
+ assert.ok(completedDelta>0,'actual customer interactions completed during the soak');
+ assert.equal(offeredDelta,completedDelta+failedDelta+openJobs-initialOpenJobs,'every offered case is accounted as completed, failed or still open at both horizon boundaries');
  assert.ok(campaign().historyCheckpoint.periods+campaign().periodHistory.length-initialSettlements>=Math.floor(10000/60)-1,'provider periods settled repeatedly');
  assert.ok(state.business.balance.revenue>0&&state.business.balance.cost>0,'shared treasury records actual recurring revenue and cost');
  assert.equal(campaign().incidents.length,20);
  assert.ok(campaign().incidents.every(x=>x.status==='resolved'&&x.receipt),'each authored incident was observed and repaired');
- const report={startedAt,endedAt:new Date().toISOString(),inputHashes:hashes,soakStartClock:soakStart,soakEndClock:state.clock,elapsedMinutes:state.clock-soakStart,customers:campaign().customers.length,offeredDelta:offered-initialOffered,completedDelta:completed-initialCompleted,settlementsDelta:campaign().historyCheckpoint.periods+campaign().periodHistory.length-initialSettlements,revenueDelta:state.business.balance.revenue-initialRevenue,costDelta:state.business.balance.cost-initialCost,incidents:campaign().incidents.length,allIncidentsResolved:campaign().incidents.every(x=>x.status==='resolved')};
+ const saveClock=state.clock,report={startedAt,endedAt:null,inputHashes:hashes,soakStartClock:soakStart,soakEndClock:saveClock,elapsedMinutes:saveClock-soakStart,customers:campaign().customers.length,offeredDelta,completedDelta,failedDelta,openJobsAtStart:initialOpenJobs,openJobsAtEnd:openJobs,settlementsDelta:campaign().historyCheckpoint.periods+campaign().periodHistory.length-initialSettlements,revenueDelta:state.business.balance.revenue-initialRevenue,costDelta:state.business.balance.cost-initialCost,incidents:campaign().incidents.length,allIncidentsResolved:campaign().incidents.every(x=>x.status==='resolved')};
 
  // A real serialized save continues identically on both copies through a further settlement.
  const save=JSON.stringify(state),restored=SOC.restore(save),target=state.clock+60;
@@ -130,7 +132,7 @@ test('provider career supports twenty active customers through 10,000 minutes of
  state=restored;requestSequence=controlSequence;advanceTo(target);
  assert.equal(JSON.stringify(state),JSON.stringify(expected),'restored campaign has deterministic workload, renewals, incidents and ledger continuation');
  state=control;
- report.saveContinuationMinutes=state.clock-soakEnd;
+ report.saveContinuationMinutes=target-saveClock;report.saveContinuationMatched=true;report.endedAt=new Date().toISOString();
  if(process.env.SOC_PROVIDER_SOAK_REPORT)fs.writeFileSync(process.env.SOC_PROVIDER_SOAK_REPORT,JSON.stringify(report,null,2)+'\n');
  t.diagnostic(`SOC_PROVIDER_SOAK_METADATA ${JSON.stringify(report)}`);
 });

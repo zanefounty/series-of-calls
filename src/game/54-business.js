@@ -14,6 +14,7 @@ function socBusinessKernel(){
   'level-tree':{name:'Level Tree',roles:['carrier','wholesaler'],parent:null},
   'branch-distribution':{name:'Branch Distribution',roles:['distributor'],parent:null},
   'people-orchard':{name:'People Orchard',roles:['bpo'],parent:null},
+  queueberry:{name:'Queueberry',roles:['vendor'],parent:null,sourceId:'uc-new:actor:genesys',fictional:true,aliasStatus:'proposed-owner-review-required'},
   'twig-integrations':{name:'Twig Integrations',roles:['integrator','reseller'],parent:null,valuation:20000},
   customer:{name:'Customer organisation',roles:['customer'],parent:null}
  };
@@ -61,7 +62,7 @@ function socBusinessKernel(){
   else if(category==='repayment'){b.balance.repaid+=cents;b.balance.cash-=cents;}
   else if(category!=='internal')fail('INVALID_LEDGER_CATEGORY');
   if(!Object.values(b.balance).every(Number.isSafeInteger))fail('MONEY_OVERFLOW');
-  b.ledger.push(row);if(b.ledger.length>1000)b.ledger.shift();return row.id;
+  b.ledger.push(row);if(b.ledger.length>1000){const removed=b.ledger.shift();b.ledgerPrunedThrough=Math.max(b.ledgerPrunedThrough||0,Number(removed.id.slice(6)));}return row.id;
  }
  function readiness(s,c,services){
   const reasons=[],p=offers[c.offer];
@@ -137,11 +138,11 @@ function socBusinessKernel(){
   if(matches.length)meter(s,unit,amount,matches[0].id,afterBilling);
  }
  function externalCost(s,invoice){
-  const b=s.business;if(!b||!invoice||!id(invoice.id)||invoice.currency!==CURRENCY||!integer(invoice.cents,1,1000000))fail('INVALID_EXTERNAL_INVOICE');
+  const b=s.business,source=invoice?.source===undefined?'transport':invoice.source;if(!b||!invoice||!id(invoice.id)||invoice.currency!==CURRENCY||!integer(invoice.cents,1,1000000)||!['transport','workforce-offers'].includes(source))fail('INVALID_EXTERNAL_INVOICE');
   b.externalInvoices=b.externalInvoices||[];const prior=b.externalInvoices.find(x=>x.id===invoice.id);
-  if(prior){if(prior.cents!==invoice.cents)fail('EXTERNAL_INVOICE_CONFLICT');return;}
+  if(prior){if(prior.cents!==invoice.cents||(prior.source||'transport')!==source)fail('EXTERNAL_INVOICE_CONFLICT');return;}
   if(b.externalInvoices.length>=2000)fail('EXTERNAL_INVOICE_CAPACITY');
-  post(b,s,'cost',invoice.cents,{reason:'transport:'+invoice.reason,externalId:invoice.id,unit:'AUD-cent'});b.externalInvoices.push({id:invoice.id,cents:invoice.cents});
+  const entryId=post(b,s,'cost',invoice.cents,{reason:source+':'+invoice.reason,externalId:invoice.id,unit:'AUD-cent'});b.externalInvoices.push({id:invoice.id,cents:invoice.cents,...(source==='workforce-offers'?{source,entryId}:{})});
  }
  function demand(s,services,workforceSnapshot=null,transportSnapshot=null){
   const b=s.business,t=tracks[s.scenario];b.seed=(b.seed*16807)%2147483647;
@@ -296,7 +297,8 @@ function socBusinessKernel(){
   for(const p of b.projects)if(!id(p.id)||!Array.isArray(p.resources)||!p.resources.length||p.resources.some(r=>!own(s.resources,r))||!integer(p.engineers,1,20)||!integer(p.duration,1,1440)||!integer(p.due,0,Number.MAX_SAFE_INTEGER)||!['running','blocked','complete'].includes(p.status))fail('INVALID_SAVED_PROJECT');
   for(const l of b.loans)if(!id(l.id)||!integer(l.principal,0,200000)||l.rateBps!==100)fail('INVALID_SAVED_LOAN');
   if(b.loans.reduce((n,l)=>n+l.principal,0)!==b.balance.funding-b.balance.repaid)fail('UNRECONCILED_DEBT');
-  if(b.externalInvoices!==undefined&&(!Array.isArray(b.externalInvoices)||b.externalInvoices.length>2000||new Set(b.externalInvoices.map(x=>x?.id)).size!==b.externalInvoices.length||b.externalInvoices.some(x=>!x||!id(x.id)||!integer(x.cents,1,1000000))))fail('INVALID_EXTERNAL_INVOICES');
+  if(b.ledgerPrunedThrough!==undefined&&(!integer(b.ledgerPrunedThrough,0,b.nextId-1)||b.ledgerPrunedThrough>0&&(b.ledger.length!==1000||b.ledger.some(r=>!/^entry-[1-9]\d*$/.test(r.id)||Number(r.id.slice(6))<=b.ledgerPrunedThrough))))fail('INVALID_CAMPAIGN_LEDGER_PRUNING');
+  if(b.externalInvoices!==undefined&&(!Array.isArray(b.externalInvoices)||b.externalInvoices.length>2000||new Set(b.externalInvoices.map(x=>x?.id)).size!==b.externalInvoices.length||b.externalInvoices.some(x=>!x||!id(x.id)||!integer(x.cents,1,1000000)||x.source!==undefined&&!['transport','workforce-offers'].includes(x.source)||x.source==='workforce-offers'&&(!/^entry-[1-9]\d*$/.test(x.entryId)||Number(x.entryId.slice(6))>=b.nextId))))fail('INVALID_EXTERNAL_INVOICES');
   if(b.managedCharges!==undefined){if(!Array.isArray(b.managedCharges)||b.managedCharges.length>1000||new Set(b.managedCharges.map(x=>x.usageId)).size!==b.managedCharges.length)fail('INVALID_MANAGED_CHARGES');const first=Number((b.ledger[0]?.id||'entry-'+b.nextId).split('-')[1]);for(const r of b.managedCharges){const c=b.contracts.find(x=>x.id===r.contractId);if(!r||Object.keys(r).sort().join(',')!=='appliedGeneration,at,cents,contractId,costCategory,costCents,costEntryId,currency,customerId,entryId,jobId,operator,quantity,resource,status,unit,usageId'||r.status!=='posted'||!s.estate?.jobs.some(j=>j.id===r.jobId&&j.items.some(i=>i.resource===r.resource&&i.appliedGeneration===r.appliedGeneration&&i.status==='complete'))||!id(r.usageId)||!id(r.customerId)||!c||c.offer!=='managed-operations'||c.supportOwner!==r.operator||!c.resources.includes(r.resource)||!integer(r.appliedGeneration,1)||!s.resources[r.resource]||r.appliedGeneration>s.resources[r.resource].generation||r.unit!=='managed-operation'||r.quantity!==1||r.currency!=='AUD'||r.cents!==offers['managed-operations'].overage||r.costCents!==Math.ceil(r.cents/2)||!['cost','internal'].includes(r.costCategory)||!integer(r.at)||r.at>s.clock)fail('INVALID_MANAGED_CHARGE');for(const [key,category,cents] of [[r.entryId,'revenue',r.cents],[r.costEntryId,r.costCategory,r.costCents]]){if(!/^entry-[1-9]\d*$/.test(key)||Number(key.split('-')[1])>=b.nextId)fail('INVALID_MANAGED_CHARGE_LEDGER');const row=b.ledger.find(x=>x.id===key);if(!row){if(Number(key.split('-')[1])>=first)fail('MANAGED_CHARGE_LEDGER_MISSING');}else if(row.category!==category||row.cents!==cents||row.contract!==r.contractId||row.usageId!==r.usageId||row.resource!==r.resource||row.appliedGeneration!==r.appliedGeneration||row.unit!==r.unit||row.quantity!==1||row.currency!==r.currency||row.at!==r.at)fail('MANAGED_CHARGE_LEDGER_MISMATCH');}}}
   if(!b.workforce||!integer(b.workforce.engineers,0,20)||!integer(b.workforce.support,0,20)||!['player','bpo','customer'].includes(b.workforce.operator)||b.workforce.hourlyCents!==100)fail('INVALID_CAMPAIGN_WORKFORCE');
   if(!b.qualifications||Object.entries(b.qualifications).some(([org,sectors])=>!own(b.organisations,org)||!sectors||Object.entries(sectors).some(([sector,expires])=>!own(tracks,sector)||!integer(expires,0,Number.MAX_SAFE_INTEGER))))fail('INVALID_QUALIFICATIONS');

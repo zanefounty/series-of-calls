@@ -145186,7 +145186,9 @@
       "sourcePathStatus": "research-addition",
       "historicalSource": "https://chatgpt.com/space/page_c4d155bcfb248191a93207a10e4bf73f",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-378"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -146801,7 +146803,8 @@
         "BEH-SOC-110",
         "BEH-SOC-116",
         "BEH-SOC-363",
-        "BEH-SOC-370"
+        "BEH-SOC-370",
+        "BEH-SOC-378"
       ],
       "semanticReview": "pending",
       "narrative": {

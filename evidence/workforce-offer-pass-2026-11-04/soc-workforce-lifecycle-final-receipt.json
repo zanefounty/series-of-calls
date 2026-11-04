@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-11-04T01:00:10.609103+00:00",
+  "commit": "f6ab055",
+  "command": "rtk node /tmp/soc-workforce-lifecycle-audit.js > /tmp/soc-workforce-lifecycle-final.json",
+  "cwd": "/tmp/soc-queueberry-implementation",
+  "status": "passed",
+  "positiveRestores": 9,
+  "typedNegativeRejections": 8,
+  "zeroCostBeforeActivation": {
+    "name": "cancelBeforeFirstActivation",
+    "status": "passed",
+    "invoices": 0,
+    "cents": 0
+  },
+  "retainedCostAfterCancelledRestart": {
+    "name": "cancelRestartBeforeActivation",
+    "status": "passed",
+    "invoices": 1,
+    "cents": 4200
+  },
+  "inputs": {
+    "src/game/38-workforce-offers.js": "dcebd56a4204d490e42fd5b69d3e3564cb5d8eebe87ca43656e63fa25c70a9f4",
+    "src/game/55-communications.js": "c7c351366610ddc3f015e00ea4fe1fa506339a915bc371c65e1cec32b14df330",
+    "tests/lib/workforce-offer-fixture.js": "d2571067680fee8e8ea7673798c561abc7e3dbf67c97e0a0a141c761f50a0824"
+  },
+  "inputDrift": [],
+  "report": "/tmp/soc-workforce-lifecycle-final.json",
+  "reportSHA256": "ded2c426d52f3ab2d6c0027fc2c9aed51117e8c5ce39996fbb1d6e2059e984f6",
+  "auditScriptSHA256": "2124ad97af640903a497de36f6f6f3587318102a775a0a89d060847c6cf62603",
+  "preFixReport": "/tmp/soc-workforce-lifecycle-pre-fix.json",
+  "intermediateRegressionReport": "/tmp/soc-workforce-lifecycle-in-progress.json",
+  "scope": "Bounded structural save audit; no source edits, no full product acceptance"
+}

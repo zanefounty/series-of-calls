@@ -143,18 +143,59 @@
           "Organization presence alone does not provision or deliver a service and confers no customer or workforce authority."
         ]
       },
-      "currentMechanicLinkType": "no current mechanic",
+      "currentMechanicLinkType": "bounded partial actor-specific mechanic",
       "currentMechanicLinks": [
         {
-          "relationship": "none",
-          "implementedSurface": "No exact organization-profile behavior is registered; the profile is not a playable supplier capability.",
-          "testIds": []
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-378",
+          "implementedSurface": "Proposed fictional Queueberry WFM1.0 offer; tenant/version/resource/test-scoped named forecast coverage, visible administration, synthetic prepaid billing, failure/recovery and actual routing independence.",
+          "implementation": [
+            "src/game/38-workforce-offers.js",
+            "src/game/54-business.js",
+            "src/game/55-communications.js",
+            "src/game/87-workforce-offers-ui.js"
+          ],
+          "testIds": [
+            "AC-SOC-498",
+            "AC-SOC-499",
+            "AC-SOC-500",
+            "AC-SOC-501",
+            "AC-SOC-502",
+            "AC-SOC-503",
+            "AC-SOC-504",
+            "AC-SOC-505",
+            "AC-SOC-506",
+            "AC-SOC-507",
+            "AC-SOC-508",
+            "AC-SOC-509",
+            "AC-SOC-510",
+            "AC-SOC-511",
+            "AC-SOC-512",
+            "AC-SOC-513",
+            "AC-SOC-514",
+            "AC-SOC-515",
+            "AC-SOC-516",
+            "AC-SOC-517",
+            "AC-SOC-518",
+            "AC-SOC-519",
+            "AC-SOC-520",
+            "AC-SOC-521",
+            "AC-SOC-522",
+            "AC-SOC-523",
+            "AC-SOC-524",
+            "AC-SOC-525",
+            "AC-SOC-526",
+            "AC-SOC-527",
+            "AC-SOC-528",
+            "AC-SOC-529",
+            "AC-SOC-530"
+          ]
         }
       ],
       "remainingGaps": [
-        "No playable fictional organization/catalogue row for this ID.",
-        "No per-offer evidence for features, versions, prices, regions, certification, lifecycle or support; proposed name/flavour awaits owner review.",
-        "No actor-specific scenario proves supply, delivery or failure."
+        "Contact routing, digital engagement, agent quality evaluation, CRM/Teams integrations and other distinct actor offers remain unimplemented.",
+        "No current real-vendor evidence or legal/certification claim is established by the fictional training offer. Proposed alias and flavour await owner review.",
+        "Complete actor-specific customer, deployment, support and commercial lifecycle fidelity remains partial."
       ],
       "status": "pending full implementation and dated evidence",
       "objectClass": "organization",
@@ -5235,6 +5276,18 @@
           "implementedSurface": "Bounded acceptance case; full source adaptation remains pending.",
           "testIds": [
             "AC-SOC-067"
+          ]
+        },
+        {
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-378",
+          "implementedSurface": "Independent WFM forecast coverage with exact offer/integration scope; actual skills, shifts, presence and contact seats remain separately authoritative.",
+          "testIds": [
+            "AC-SOC-514",
+            "AC-SOC-516",
+            "AC-SOC-523",
+            "AC-SOC-525",
+            "AC-SOC-530"
           ]
         }
       ],

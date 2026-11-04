@@ -12,7 +12,15 @@ The next bounded implementation adds two explicitly permitted fictional defence 
 
 Current matching-input verification passed 1,363 JavaScript tests, 487 registered acceptance cases, 83 Python gate/mutation tests, 76 actual stdio MCP cases, 72 feature-browser interface cases and six keyboard viewport checks across three engines, plus 22 browser-MCP checks and three-viewport canonical smoke. Counts overlap. [Current evidence](evidence/defence-interface-pass-2026-11-04/README.md) retains the save audit findings, corrections and interrupted attempts. Full compact/campaign matrices for the changed runtime remain in progress, so fullBrowserAcceptance is false. Release still rejects deferred research; no deployment is claimed.
 
-The source inventory is 4,839 requirements: 214 partial and 4,625 pending, with no final dispositions. A separate isolated worktree is developing a proposed Queueberry workforce offer; it is not part of these verification counts.
+The source inventory is 4,839 requirements: 214 partial and 4,625 pending, with no final dispositions. That defence checkpoint predates the workforce-offer results below.
+
+## Workforce offer
+
+The proposed Queueberry WFM offer now has tenant/version/resource-scoped integration, named forecast coverage, observed failure and explicit retest/rebind recovery, and prepaid synthetic agent costs. WFM licences do not create people or limit independently staffed contact routing. Cancellation before activation is unbilled; active cancellation waits for the paid boundary.
+
+Current verification passed 1,396 JavaScript tests, 520 acceptance cases, 83 Python gate/mutation tests, 80 actual stdio MCP cases, 22 browser-MCP checks and six real feature-browser cases across three engines and desktop/mobile. Development, delivery, translation and build checks passed; the stale generated mapping audit and initial browser-fixture mismatch are retained with their corrections. [Evidence and limits](evidence/workforce-offer-pass-2026-11-04/README.md) distinguish these bounded results from full browser acceptance. Counts overlap. Release still rejects deferred research and no Pages deployment is claimed.
+
+The current inventory is 4,839 requirements: 215 partial and 4,624 pending, with no final dispositions. PR #7 merged at `4c5a2061a567d953fe9cab4493fcb36b9d03dee4` after all 12 checks passed. Managed identity-leaver work is isolated in `/tmp/soc-managed-leaver-implementation` and is not included in this checkpoint.
 
 ## Earlier checkpoints (historical)
 

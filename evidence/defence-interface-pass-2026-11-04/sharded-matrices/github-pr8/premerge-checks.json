@@ -1,0 +1,132 @@
+{
+  "observedAt": "2026-11-04T01:40:18.390315+00:00",
+  "pullRequest": {
+    "headRefOid": "794fa255381e9415d821d980541c6db2e8db2316",
+    "mergeStateStatus": "BLOCKED",
+    "number": 8,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:34:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379420/job/126326920490",
+        "name": "acceptance producer",
+        "startedAt": "2026-11-04T01:29:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Accountability"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:33:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921460",
+        "name": "test 1/4",
+        "startedAt": "2026-11-04T01:29:18Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:30:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379478/job/126326920693",
+        "name": "bench",
+        "startedAt": "2026-11-04T01:29:18Z",
+        "status": "COMPLETED",
+        "workflowName": "Performance"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:32:46Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921377",
+        "name": "test 2/4",
+        "startedAt": "2026-11-04T01:29:19Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:31:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921345",
+        "name": "test 3/4",
+        "startedAt": "2026-11-04T01:29:19Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:31:38Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921462",
+        "name": "test 4/4",
+        "startedAt": "2026-11-04T01:29:18Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:39:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379420/job/126328734524",
+        "name": "development gates",
+        "startedAt": "2026-11-04T01:34:13Z",
+        "status": "COMPLETED",
+        "workflowName": "Accountability"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:29:33Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921053",
+        "name": "build",
+        "startedAt": "2026-11-04T01:29:19Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:38:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379420/job/126328734395",
+        "name": "gate mutation tests",
+        "startedAt": "2026-11-04T01:34:13Z",
+        "status": "COMPLETED",
+        "workflowName": "Accountability"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:29:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126326921395",
+        "name": "translations",
+        "startedAt": "2026-11-04T01:29:19Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:39:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379420/job/126330502703",
+        "name": "accountability",
+        "startedAt": "2026-11-04T01:39:04Z",
+        "status": "COMPLETED",
+        "workflowName": "Accountability"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-04T01:33:38Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/zanefounty/series-of-calls/actions/runs/41754379521/job/126328497487",
+        "name": "test",
+        "startedAt": "2026-11-04T01:33:34Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      }
+    ],
+    "url": "https://github.com/zanefounty/series-of-calls/pull/8"
+  }
+}

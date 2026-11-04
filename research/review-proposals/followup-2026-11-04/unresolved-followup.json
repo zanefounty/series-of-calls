@@ -1,0 +1,191 @@
+{
+  "title": "Unresolved historical references: retrieval and bounded owner decision follow-up",
+  "checkedAt": "2026-11-04",
+  "status": "retrieval-resolved; owner-decision-deferred; canonical-acceptance-zero",
+  "scope": "Three unresolved Cisco-VoIP/VoiceOps references only. No edits were made. Historical sources remain historical.",
+  "ownerAcceptance": false,
+  "canonicalReviewsChanged": false,
+  "referenceCount": 3,
+  "references": [
+    {
+      "referenceId": "REF-caf76921eb104f1f",
+      "claimId": "CLAIM-2b2d832208d9f39c",
+      "requirementId": "REQ-2b2d832208d9f39c",
+      "sourceIds": [
+        "s2014a",
+        "s2014b",
+        "cisco_admin_115",
+        "cisco_cube_doc"
+      ],
+      "established": "The 2014-04-30 report says a blind transfer from IP-phone to IP-phone, then off-net mobile via SIP trunk/CUBE, resulted in remote audio but no audio at the IP phone, with Stream=Not Ready. It says SDP connection IP looked correct; configuration changes were tried, but no reporter fix is recorded. The preceding reply quotes the Send send-receive SDP in mid-call INVITE option and scopes it to early-offer SIP trunks; says it has no effect on SIP-line calls. Cisco 11.5 SU3 doc independently confirms the option only applies to early-offer/best-effort early-offer SIP trunks and has no impact on SIP-line calls. A Cisco UBE note describes related SDP profile interactions, not this reporter’s root cause. A different participant’s described SBC header-manipulation fix was for another instance, not the original case.",
+      "revision": "Accept only the historical report and attributed option scope: “A 30 April 2014 Cisco VoIP list thread reports one-way audio after a blind transfer through a CUBE/SIP trunk to an off-net mobile; the remote party heard audio while the IP phone did not. A reply cites a SIP-profile send/receive SDP option limited to early-offer SIP trunks and not SIP-line calls. Another participant describes header manipulation fixing a separate case. The archive does not report a fix for the original incident.”",
+      "decision": "Owner may accept the narrowed historical claim. Keep as unaccepted until owner records decision. Do not accept the profile change as a generally safe remedy or claim it fixed the original case.",
+      "uncertainty": "No exact deployed CUCM/CUBE versions in original; reported SDP address does not prove RTP; quoted configuration guidance is historical and deployment-dependent. Current Cisco guide is contextual, not proof of 2014 behavior or original cause."
+    },
+    {
+      "referenceId": "REF-b975a5563a7e48f0",
+      "claimId": "CLAIM-2f08185dc79f23ef",
+      "requirementId": "REQ-2f08185dc79f23ef",
+      "sourceIds": [
+        "s2013a",
+        "s2013b",
+        "s2013c",
+        "cisco_forum",
+        "release_mirror",
+        "cisco_bst"
+      ],
+      "established": "On 2013-04-02 a 9951/CKEM BLF speed-dial key used while a transfer was pending created a new call; manual dialing worked and the reporter said the issue reproduced on two systems. A participant attributed it to 9.3(2) firmware, named CSCud07738 and said fixed in ES5; the same participant said ES12 was the latest they knew and other on-hook-dialing issues might favor newer code. Reporter follow-up says TAC case was open, not fixed. Cisco Community exposes a public bug summary titled “99XX - 9.3(2) Transfer fails if the transferor uses BLF Speed Dials” with reproduction conditions involving 9-3-2-10. Cisco-authored release notes for 9.3(2)SR1 list CSCud07738 among resolved caveats, corroborating that the defect ID was tracked and included in that release’s resolved list. This does not validate ES5 claim or prove the reporter upgraded/resolved. The same Cisco forum contains a separate 8961/KEM report later fixed after a 9.4(1)-9 upgrade; do not merge its model/version/outcome with the 9951 report.",
+      "revision": "Accept only with attribution and release distinction: “A 2 April 2013 Cisco VoIP thread reports a 9951/CKEM transfer using BLF speed dial creating a new call while manual dialing worked. Participants attributed the behavior to firmware 9.3(2), identified CSCud07738, and stated it was fixed in ES5; the reporter later said TAC was involved, with no reported installation or resolution. Cisco Community published the same defect title/conditions, and Cisco-authored 9.3(2)SR1 release notes list CSCud07738 as a resolved caveat. This is a historical firmware incident; neither the ES5 statement nor resolution of the reporter’s system is independently established.”",
+      "decision": "Owner can accept the revised dated record with the ES5 claim explicitly participant-attributed and 9.3(2)SR1 caveat separate. Leave canonical review unaccepted pending owner decision. Do not derive an implementation requirement that a particular ES fixes it.",
+      "uncertainty": "Cisco Bug Search itself is unavailable in this retrieval (410); Cisco Community raw shell fetch is 403 though web reader exposes the public Cisco Community text/link. Cisco-authored release-note PDF was retrieved from a mirror, not current Cisco-hosted original. Date of document publication not confirmed. Specific ES5 release note not found. A later 8961 case has different hardware/version and cannot prove 9951 outcome."
+    },
+    {
+      "referenceId": "REF-5d951bf30e3c96d3",
+      "claimId": "CLAIM-86b1025e597d449d",
+      "requirementId": "REQ-86b1025e597d449d",
+      "sourceIds": [
+        "s2010a",
+        "s2010b",
+        "rfc3261"
+      ],
+      "established": "The 2010-08-10 original shows a 200 OK response to INVITE and a near-simultaneous CANCEL, with Reason cause=16; the poster says CCM sees SIP/481 and logs CC 16/SIP 481. The reply says Cisco call-logic debug is needed and tentatively suggests the local router ended the call before receiving or acknowledging 200 OK due to user action or timeout. It does not verify this cause. RFC 3261 (July 2002, §§9.1-9.2) says a matched CANCEL after a final response has no effect on that original request/session and receives 200; if no matching transaction exists, UAS should return 481 to CANCEL. This contextual protocol rule does not identify which transaction/hop the observed 481 belongs to, nor explain CUBE/CCM processing in this trace.",
+      "revision": "Accept only the dated trace and explicitly tentative hypothesis: “A 10 August 2010 VoiceOps post shows an INVITE 200 OK and near-simultaneous CANCEL with Reason cause 16; the operator says CCM reported SIP cause 481. A responder requested Cisco call-logic debug and tentatively suggested local clearing before receipt/acknowledgement of the 200 OK, perhaps after user action or timeout. The post and reply confirm neither root cause nor resolution, and do not establish inconsistent state across two call legs.”",
+      "decision": "Owner may accept this narrowed historical claim. If retaining the fictional race mechanic, label state reconciliation as invented gameplay abstraction, not as source-observed fact. Keep owner decision deferred.",
+      "uncertainty": "Only one sanitized operator report and responder hypothesis. RFC behavior is generic and cannot map the shown log to a specific leg/transaction. No packet/debug data, cause verification, or resolution supplied. Preserve existing authored comparison “The Scenic Route to a Cancelled Call” as gameplay text; do not present the reporter’s Buffett signature quote as source humor."
+    }
+  ],
+  "sources": [
+    {
+      "id": "s2014a",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035734.html",
+      "kind": "historical mailing-list original",
+      "published": "2014-04-30 09:25:36 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell; HTTP 200; web reader also opened",
+      "bytes": 6041,
+      "sha256": "353864d3cb2eb1b2951821b885aca54651448093622ffa45fab9ca749f39dc4b"
+    },
+    {
+      "id": "s2014b",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2014-April/035733.html",
+      "kind": "historical mailing-list reply",
+      "published": "2014-04-30 08:37:04 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell; HTTP 200; web reader also opened",
+      "bytes": 5052,
+      "sha256": "c342a318e65dbfe40e6ebf5a0b560c392ce4ef456621fbf178a835e49f1c04ea"
+    },
+    {
+      "id": "s2013a",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031722.html",
+      "kind": "historical mailing-list original",
+      "published": "2013-04-02 12:32:34 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell and web reader; HTTP 200",
+      "bytes": 4310,
+      "sha256": "4d1db50c809b91f0c7016f457be320f46b18c33a124ffc948b08674df5a35f7c"
+    },
+    {
+      "id": "s2013b",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031721.html",
+      "kind": "historical mailing-list reply",
+      "published": "2013-04-02 12:40 EDT (as quoted and timestamped by 031720)",
+      "retrieved": "2026-11-04 by HTTPS shell; HTTP 200. Prior web-reader attempt failed; repeat direct HTTP is a new route and succeeded.",
+      "bytes": 3562,
+      "sha256": "41d7af20f956d2e8f0fafce7f54036228c04ffbda0508b763f5bc6421ad87015"
+    },
+    {
+      "id": "s2013c",
+      "url": "https://puck.nether.net/pipermail/cisco-voip/2013-April/031720.html",
+      "kind": "historical reporter follow-up quoting prior reply",
+      "published": "2013-04-02 12:57:11 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell and web reader; HTTP 200",
+      "bytes": 8052,
+      "sha256": "e98fc753b0c1405a40ca169d2c3be13466da920c30abfaf8341c23ef3c237268"
+    },
+    {
+      "id": "s2010a",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001764.html",
+      "kind": "historical mailing-list original",
+      "published": "2010-08-10 17:05 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell and web reader; HTTP 200",
+      "bytes": 6604,
+      "sha256": "d671f312c00860149587da01b0199369a5b4d42bf5fc3bdedc5a4fc8e6dcd0b2"
+    },
+    {
+      "id": "s2010b",
+      "url": "https://puck.nether.net/pipermail/voiceops/2010-August/001765.html",
+      "kind": "historical mailing-list reply",
+      "published": "2010-08-10 18:59:52 EDT",
+      "retrieved": "2026-11-04 by HTTPS shell; HTTP 200. Prior web-reader attempt failed; direct HTTP shell succeeded.",
+      "bytes": 7753,
+      "sha256": "5dcb2e807e9c74a7ccdd896e8b7b41e02479fa6c5a2095a89e666ae6377083bd"
+    },
+    {
+      "id": "cisco_bst",
+      "url": "https://bst.cloudapps.cisco.com/bugsearch/bug/CSCud07738",
+      "kind": "Cisco Bug Search Tool record route",
+      "published": "Not applicable",
+      "retrieved": "2026-11-04 shell HTTP 410 Gone; linked route via Cisco Community web-reader redirected to https://bst.cloudapps.cisco.com/bugsearch?BugID=CSCud07738&page=bstBugDetail&searchType=bstbugidsearch and was inaccessible. No source bytes/hash."
+    },
+    {
+      "id": "cisco_forum",
+      "url": "https://community.cisco.com/t5/ip-telephony-and-phones/blf-sd-button-cannot-be-used-to-transfer-calls/m-p/2310393/highlight/true",
+      "kind": "Cisco Community thread with linked bug details",
+      "published": "2013-08-15 initial public bug-description reply; page includes later replies through 2014-02-07",
+      "retrieved": "2026-11-04 web reader fetched directly, but shell request HTTP 403. Browser representation has no retrievable raw-byte hash."
+    },
+    {
+      "id": "release_mirror",
+      "url": "https://www.voipinfo.net/docs/cisco/P567_BK_R2E856AF_00_rn-9_3_2sr1-8961-9951-9971.pdf",
+      "kind": "Cisco-authored phone firmware release notes, hosted by third-party archive",
+      "published": "Firmware Release 9.3(2)SR1; publication date not visible in retrieved record. Host Last-Modified 2017-02-14 (not asserted as document publication date).",
+      "retrieved": "2026-11-04 shell HTTP 200; 2,126,242 bytes",
+      "bytes": 2126242,
+      "sha256": "25abfc3bc63816107d58a92b579c7792004d33ab78c3bdec936f0671ace13c4d"
+    },
+    {
+      "id": "rfc3261",
+      "url": "https://www.rfc-editor.org/rfc/rfc3261.txt",
+      "kind": "IETF SIP standard, contextual source only for 2010 SIP semantics",
+      "published": "July 2002",
+      "retrieved": "2026-11-04 shell HTTP 200; 647,976 bytes",
+      "bytes": 647976,
+      "sha256": "d513777f77fea01a4de9c0a2d9d6713cb53b8231f1b7a2ab56705f8d51b066dc"
+    },
+    {
+      "id": "cisco_admin_115",
+      "url": "https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucm/rel_notes/11_5_1/SU3/cucm_b_release-notes-cucm-imp-1151su3.pdf",
+      "kind": "Cisco CUCM release notes, contextual SIP profile setting source",
+      "published": "Release 11.5(1)SU3; retrieved metadata reports document was crawled approx. 5.9 years ago",
+      "retrieved": "2026-11-04 web reader opened official Cisco PDF and returned relevant text; shell HTTP 403, so no raw-byte hash."
+    },
+    {
+      "id": "cisco_cube_doc",
+      "url": "https://www.cisco.com/c/en/us/support/docs/unified-communications/unified-border-element/116392-technote-product-00.pdf",
+      "kind": "Cisco UBE support note, contextual only",
+      "published": "Exact publication date not verified in this retrieval",
+      "retrieved": "2026-11-04 web search/open indexed official PDF and returned context; shell HTTP 403, no hash."
+    }
+  ],
+  "sourcePackHashCheck": [
+    {
+      "path": "research/community/cisco-voip-findings.json",
+      "bytes": 26994,
+      "sha256": "6d6dd30ac5b564c00b877661a1ca43d447301da038a66c98d3bcc991dcac28b8"
+    },
+    {
+      "path": "research/community/voiceops-findings.json",
+      "bytes": 25526,
+      "sha256": "b06235d9753fa079bc59cb1531ec5ea96d68bde6078a1a3185eb4ba989a042b8"
+    },
+    {
+      "path": "research/additions.json",
+      "bytes": 53987,
+      "sha256": "7ba426285cd12a5bb306d8427c24eae0b567a6355e9df35720554212a0285f68"
+    }
+  ],
+  "limitations": [
+    "No Cisco bug database details for CSCud07738 could be retrieved; current direct route returns 410.",
+    "No current/relevant root-cause or remedy is established for the 2014 or 2010 reports.",
+    "Cisco 9.3(2)SR1 release notes were available from a third-party mirror, not an official Cisco-hosted URL in this attempt; this source is used only to corroborate the defect ID appears in the resolved-caveat list.",
+    "Source pack hash verification covers the local curated records, not an archived-byte identity relation to each historical webpage."
+  ]
+}

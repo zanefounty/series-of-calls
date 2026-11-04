@@ -39,3 +39,7 @@ Without that adapter, completed work remains explicitly `deferred` and is never 
 The focused tests cover partial cross-customer submissions, exact child dispatch, contract/resource/connector/authority denial, meaningful joiner and entitlement-only mover changes, no-op rejection, mixed item outcomes, one retry without replaying prior successes, delayed effective provisioning, live and retained charge receipt binding, tampered save rejection, worker serialization, read purity, and real shared-SOC portfolio/estate/business settlement. The portfolio blocks customer deactivation while a managed-operation participant still has an unfinished job, even if that customer's accepted contract is later canceled; posted completed history does not by itself block deactivation.
 
 This mechanic is a narrow candidate adaptation to the mapped VOSS lifecycle/service-assurance row (`uc-new:actor:voss`) and provider-operations family. It does not claim live integrations, provider compatibility, inventory parity, external support or general assurance behavior.
+
+## Managed identity leaver extension
+
+The later [managed identity-retirement contract](WP-MANAGED-LEAVER.md) supersedes this baseline’s statement that every managed leaver is unsupported. It adds one explicitly approved identity item, current delegated scope, retained history and settlement after effective readiness. Device/number/group and broader lifecycle coverage remain open.

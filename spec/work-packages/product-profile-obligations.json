@@ -7451,6 +7451,32 @@
           "testIds": [
             "AC-SOC-097"
           ]
+        },
+        {
+          "relationship": "partial",
+          "behaviourId": "BEH-SOC-379",
+          "implementedSurface": "Managed identity-only leaver with exact tenant/contract/operator/resource approval, delayed authorization checks, explicit bounded retry, retained customer history and observed once-only settlement. Wider app/device lifecycle and distinct actor portfolios remain open.",
+          "testIds": [
+            "AC-SOC-531",
+            "AC-SOC-532",
+            "AC-SOC-533",
+            "AC-SOC-534",
+            "AC-SOC-535",
+            "AC-SOC-536",
+            "AC-SOC-537",
+            "AC-SOC-538",
+            "AC-SOC-539",
+            "AC-SOC-540",
+            "AC-SOC-541",
+            "AC-SOC-542",
+            "AC-SOC-543",
+            "AC-SOC-544",
+            "AC-SOC-545",
+            "AC-SOC-546",
+            "AC-SOC-547",
+            "AC-SOC-548",
+            "AC-SOC-549"
+          ]
         }
       ],
       "remainingGaps": [

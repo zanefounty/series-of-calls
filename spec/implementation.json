@@ -6640,6 +6640,47 @@
       ],
       "status": "partial",
       "scope": "One proposed fictional Queueberry WFM offer binds named forecast coverage to exact tenant, offer version, current workforce resource generation and observed/tested integration. Delayed activation, supplier failure and repair, duration-qualified forecasts, prepaid synthetic agent costs, boundary cancellation, delegated administration, saves and worker equivalence are exercised. WFM coverage neither creates people nor limits independently licensed contact routing. Other contact-centre offers, CRM/Teams integrations, quality evaluation and complete source-specific vendor fidelity remain pending; the proposed alias and research claims are not owner acceptance."
+    },
+    {
+      "id": "BEH-SOC-379",
+      "sources": [
+        "uc-new:domain:provisioning"
+      ],
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/76-managed-operations-ui.js",
+        "content/managed-operations.json",
+        "src/game/98-business-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-531",
+        "AC-SOC-532",
+        "AC-SOC-533",
+        "AC-SOC-534",
+        "AC-SOC-535",
+        "AC-SOC-536",
+        "AC-SOC-537",
+        "AC-SOC-538",
+        "AC-SOC-539",
+        "AC-SOC-540",
+        "AC-SOC-541",
+        "AC-SOC-542",
+        "AC-SOC-543",
+        "AC-SOC-544",
+        "AC-SOC-545",
+        "AC-SOC-546",
+        "AC-SOC-547",
+        "AC-SOC-548",
+        "AC-SOC-549",
+        "AC-SOC-550",
+        "AC-SOC-551",
+        "AC-SOC-552"
+      ],
+      "status": "partial",
+      "scope": "Contract-scoped managed identity leavers retire exactly one identity and entitlement through the existing estate child dispatcher. Actual accepted history survives, new caller attempts fail, effective observed completion bills once, and delayed contract/authority/scope failures require an explicit bounded retry. Parent/child approval, resource generations and save/worker lineage are validated. This does not complete device/number/group retirement automation, arbitrary new operator grants, actor-specific product portfolios or full provisioning-source fidelity."
     }
   ]
 }

@@ -5,7 +5,11 @@
     "CONTENT": "managed-operations-content-1",
     "OFFER": "managed-operations",
     "UNIT": "managed-operation",
-    "OPERATIONS": ["joiner", "mover"]
+    "OPERATIONS": [
+      "joiner",
+      "mover",
+      "leaver"
+    ]
   },
   "scope": "Synthetic cross-customer orchestration of validated user lifecycle estate jobs. It does not claim a complete provisioning, inventory, assurance or supplier profile.",
   "sourceIds": [
@@ -22,13 +26,13 @@
   },
   "uiLabels": {
     "managed_operations_ui.title": "Managed operations",
-    "managed_operations_ui.scope": "Coordinate synthetic joiner and mover work across active customers. Completion and charges wait for effective resource readiness.",
+    "managed_operations_ui.scope": "Coordinate synthetic joiner, mover and identity-leaver work across active customers. Completion and charges wait for effective resource readiness.",
     "managed_operations_ui.start": "Start managed operations",
     "managed_operations_ui.submit": "Submit selected work",
     "managed_operations_ui.customers": "Customers",
     "managed_operations_ui.include": "Include this customer",
     "managed_operations_ui.contract": "Accepted managed-operations contract",
-    "managed_operations_ui.connector": "Provisioning connector",
+    "managed_operations_ui.connector": "Lifecycle connector",
     "managed_operations_ui.operation": "Operation",
     "managed_operations_ui.joiner": "Add user identity",
     "managed_operations_ui.mover": "Update calling entitlement",
@@ -42,7 +46,7 @@
     "managed_operations_ui.retry": "Retry incomplete customer work",
     "managed_operations_ui.no_customers": "No active customers with the required setup are available.",
     "managed_operations_ui.no_contracts": "No active managed-operations contract is available.",
-    "managed_operations_ui.no_connectors": "No ready, reachable user provisioning connector is available.",
+    "managed_operations_ui.no_connectors": "No ready, reachable user connector supports the selected operation.",
     "managed_operations_ui.no_resources": "No conflict-free canonical user resource is available.",
     "managed_operations_ui.jobs": "Managed jobs",
     "managed_operations_ui.no_jobs": "No managed jobs have been submitted.",
@@ -60,6 +64,10 @@
     "managed_operations_ui.failed": "Failed",
     "managed_operations_ui.deferred": "Not billed; settlement hook unavailable",
     "managed_operations_ui.pending": "Settlement pending",
-    "managed_operations_ui.posted": "Posted once"
+    "managed_operations_ui.posted": "Posted once",
+    "managed_operations_ui.leaver": "Leaver",
+    "managed_operations_ui.identity_revocation": "I intend to revoke this identity",
+    "managed_operations_ui.leaver_scope": "This retires the identity and its entitlements; assigned devices require their own revocation items.",
+    "managed_operations_ui.revocation_required": "Explicit identity revocation intent is required."
   }
 }

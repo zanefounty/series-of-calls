@@ -720,6 +720,36 @@
     "tests/workforce-offers-ui.test.js": [
       "AC-SOC-528",
       "AC-SOC-529"
+    ],
+    "tests/managed-operations-leaver.test.js": [
+      "AC-SOC-531",
+      "AC-SOC-532",
+      "AC-SOC-533",
+      "AC-SOC-549"
+    ],
+    "tests/managed-leaver-integration.test.js": [
+      "AC-SOC-534",
+      "AC-SOC-535",
+      "AC-SOC-536",
+      "AC-SOC-537",
+      "AC-SOC-538",
+      "AC-SOC-539",
+      "AC-SOC-540",
+      "AC-SOC-541",
+      "AC-SOC-542",
+      "AC-SOC-543",
+      "AC-SOC-544",
+      "AC-SOC-545",
+      "AC-SOC-546"
+    ],
+    "tests/managed-operations-leaver-ui.test.js": [
+      "AC-SOC-547",
+      "AC-SOC-548"
+    ],
+    "tests/business-managed-scope-ui.test.js": [
+      "AC-SOC-550",
+      "AC-SOC-551",
+      "AC-SOC-552"
     ]
   },
   "inputs": [
@@ -1156,6 +1186,11 @@
     "tests/workforce-offers.test.js",
     "tests/workforce-offers-integration.test.js",
     "tests/workforce-offers-ui.test.js",
-    "tests/lib/workforce-offer-fixture.js"
+    "tests/lib/workforce-offer-fixture.js",
+    "tests/managed-operations-leaver.test.js",
+    "tests/managed-leaver-integration.test.js",
+    "tests/managed-operations-leaver-ui.test.js",
+    "tests/lib/managed-leaver-fixture.js",
+    "tests/business-managed-scope-ui.test.js"
   ]
 }

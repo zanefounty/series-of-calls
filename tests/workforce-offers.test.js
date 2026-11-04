@@ -15,7 +15,7 @@ test('strict commands reject extra fields, wrong tenant, unrelated resource and 
 });
 
 test('a pending desired revision keeps old effective offer and tested integration until due',()=>{
- const {s,c}=provisioned(),oldOffer=s.effective.generation,oldIntegration=s.integration.effective.generation;WFM.command(s,{action:'order',tenant:'customer',units:1});assert.equal(s.provisioning.due,61,'a positive paid term changes only at its next boundary');assert.equal(s.effective.units,2);assert.equal(s.integration.effective.generation,oldIntegration);assert.equal(WFM.eligible(s,'agent-01',c).eligible,true);assert.equal(s.effective.generation,oldOffer);WFM.advance(s,60);assert.equal(s.effective.units,2);WFM.advance(s,61);assert.equal(s.effective.units,1);assert.equal(WFM.eligible(s,'agent-01',context(s)).eligible,false,'offer generation changes require a fresh scoped test');
+ const {s,c}=provisioned(),oldOffer=s.effective.generation,oldIntegration=s.integration.effective.generation;WFM.command(s,{action:'order',tenant:'customer',units:1});assert.equal(s.provisioning.due,61,'a positive paid term changes only at its next boundary');const earlyCancellation=structuredClone(s);earlyCancellation.provisioning.due=s.clock+1;assert.throws(()=>WFM.validate(earlyCancellation),/INVALID_WORKFORCE_OFFER_SAVE/);assert.equal(s.effective.units,2);assert.equal(s.integration.effective.generation,oldIntegration);assert.equal(WFM.eligible(s,'agent-01',c).eligible,true);assert.equal(s.effective.generation,oldOffer);WFM.advance(s,60);assert.equal(s.effective.units,2);WFM.advance(s,61);assert.equal(s.effective.units,1);assert.equal(WFM.eligible(s,'agent-01',context(s)).eligible,false,'offer generation changes require a fresh scoped test');
 });
 
 test('integration tests derive from separately observed state and unique observation IDs prevent stale pass revival',()=>{
@@ -44,6 +44,10 @@ test('unit amendments and cancellation apply only at a paid boundary; restart ge
 
 test('validation retains failed and stale evidence but rejects cross-tenant or contradictory effective saves',()=>{
  const {s,c}=provisioned();WFM.command(s,{action:'observe-integration',supplierAvailable:false,applicationAvailable:true},c);WFM.command(s,{action:'test-integration'},c);assert.equal(WFM.validate(structuredClone(s)),true);const bad=structuredClone(s);bad.effective.tenant='other';assert.throws(()=>WFM.validate(bad),/INVALID_WORKFORCE_OFFER_SAVE/);const badTest=structuredClone(s);badTest.integration.tests.at(-1).status='passed';assert.throws(()=>WFM.validate(badTest),/INVALID_WORKFORCE_OFFER_TEST_SAVE/);const badGeneration=structuredClone(s);badGeneration.integration.bindings[0].tenant='other';assert.throws(()=>WFM.validate(badGeneration),/INVALID_WORKFORCE_OFFER_BINDING_SAVE/);
+});
+
+test('save chronology and prepaid renewal schedule cannot be rewritten to erase the audit trail',()=>{
+ const {s}=provisioned();const futureObservation=structuredClone(s);futureObservation.integration.observations[0].observedAt=s.clock+1;assert.throws(()=>WFM.validate(futureObservation),/INVALID_WORKFORCE_OFFER_OBSERVATION_SAVE/);const futureTest=structuredClone(s);futureTest.integration.tests[0].testedAt=s.clock+1;assert.throws(()=>WFM.validate(futureTest),/INVALID_WORKFORCE_OFFER_TEST_SAVE/);const earlyBinding=structuredClone(s);earlyBinding.integration.bindings[0].boundAt=0;assert.throws(()=>WFM.validate(earlyBinding),/INVALID_WORKFORCE_OFFER_BINDING_SAVE/);const delayedRenewal=structuredClone(s);delayedRenewal.nextInvoiceAt+=999;assert.throws(()=>WFM.validate(delayedRenewal),/INVALID_WORKFORCE_OFFER_BILLING_SCHEDULE/);const erasedFailure=structuredClone(s);erasedFailure.integration.tests=[];assert.throws(()=>WFM.validate(erasedFailure),/INVALID_WORKFORCE_OFFER_SAVE/);
 });
 
 test('worker source reconstructs the same scoped inspection and eligibility result',()=>{

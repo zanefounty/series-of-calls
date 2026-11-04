@@ -29,6 +29,7 @@ These contracts refine the full specification into independently reviewable work
 | [Media negotiation](WP-MEDIA-NEGOTIATION.md) | Independent offers, directional media, typed transcoder sessions and live rerouting | Module, real calling integration and console cases |
 | [Product evidence](WP-PRODUCT-EVIDENCE.md) | Delayed, scoped, expiring qualification, boundary and lifecycle evidence | Synthetic eligibility only; research acceptance remains separate |
 | [Managed operations](WP-MANAGED-OPERATIONS.md) | Cross-customer meaningful identity changes, partial outcomes, provisioning and actual typed billing | Module, portfolio integration and console cases |
+| [Recorded quality review](WP-WORKFORCE-QUALITY.md) | Current recorded voice/case/agent evidence, versioned manual rubric, integration failure/retest and separate per-review billing | AC-SOC-553–579; bounded proposed Queueberry offer, not full actor quality management |
 | WP-BOUNDARIES | Dated AU/US/JP/EU rule packs; processing/storage/backup/key/admin/export boundaries; eligibility independent of feature availability | Research plus implementation; no invented approval |
 | WP-SP-COMMERCE | Purchased connectivity versus operated infrastructure; explicit capacity/failure dependencies; consolidated external costs and owned-group elimination | Preserve optional SP simulation and typed units |
 | WP-CATALOGUE | Every original row/file, distinct proposed identity, narrative treatment, relationships, source parameters and new-upstream additions accounted for | Parent mapping review |

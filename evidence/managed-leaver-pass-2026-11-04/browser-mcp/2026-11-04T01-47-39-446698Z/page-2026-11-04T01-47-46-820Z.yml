@@ -1,0 +1,698 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - 'heading "Series of Calls: synthetic communications training" [level=1] [ref=e3]'
+    - paragraph [ref=e4]: Learn to configure fictional calling, messaging, contact centres, rooms and information services. Diagnose synthetic failures and manage customer communications, with an optional physical-network expansion. This preview does not yet implement the full design.
+  - generic "World map of your network" [ref=e5]
+  - banner:
+    - 'button "Network menu: save, load or start over" [ref=e6] [cursor=pointer]':
+      - generic [ref=e11]:
+        - generic [ref=e12]: Series of Calls
+        - generic [ref=e13]: AS —
+      - generic [aria-hidden] [ref=e14]: ▾
+    - button "Cash and bank" [ref=e15] [cursor=pointer]:
+      - generic [ref=e16]: Cash · Bank
+      - generic [ref=e17]: $0
+      - generic [ref=e18]: —
+    - generic [ref=e19]:
+      - generic [ref=e20]: Traffic served
+      - generic [ref=e21]: "0"
+    - generic [ref=e23]:
+      - generic [ref=e24]: Reach
+      - generic [ref=e25]: 0%
+    - generic [ref=e26]:
+      - generic [ref=e27]: Rank
+      - generic [ref=e28]: Tier 3
+    - button "NOC All quiet" [ref=e29] [cursor=pointer]:
+      - generic [ref=e30]: NOC
+      - generic [ref=e31]: All quiet
+    - generic [ref=e33]:
+      - generic [ref=e34]: Date
+      - generic [ref=e35]: Y1 · Jan 1
+    - button "Find a city" [ref=e36] [cursor=pointer]:
+      - generic [aria-hidden] [ref=e37]: 🔍
+    - group "Game speed" [ref=e38]:
+      - button "Pause" [ref=e39] [cursor=pointer]: ❚❚
+      - button "Half speed" [ref=e40] [cursor=pointer]: ½×
+      - button "1×" [ref=e41] [cursor=pointer]
+      - button "2×" [ref=e42] [cursor=pointer]
+      - button "4×" [ref=e43] [cursor=pointer]
+      - button "8×" [ref=e44] [cursor=pointer]
+      - button "NOC dashboard" [ref=e45] [cursor=pointer]
+      - button "How to play" [ref=e48] [cursor=pointer]: "?"
+      - button "Toggle sound" [ref=e49] [cursor=pointer]: ♪
+  - text: 🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘🐘
+  - dialog [ref=e51]:
+    - generic [ref=e52]:
+      - generic [ref=e53]: Language
+      - combobox "Language" [ref=e54] [cursor=pointer]:
+        - option "English" [selected]
+        - option "Italiano"
+        - option "Português"
+        - option "Français"
+        - option "Español"
+        - option "Deutsch"
+    - figure [ref=e55]:
+      - img "Engineers investigate a communications network with a cable taking the scenic route." [ref=e56]
+    - heading "Series of Calls" [level=1] [ref=e64]: Seriesof Calls
+    - button "Open communications training" [ref=e66] [cursor=pointer]
+    - paragraph [ref=e67]: The original network game is retained below as an optional SP expansion.
+    - figure [ref=e68]:
+      - img "Engineers discover that two network routes share the same bridge." [ref=e69]
+    - paragraph [ref=e70]: Build an internet. Lay fiber between cities, buy transit, peer at exchanges, sign up businesses, and keep the eyeballs happy while backhoes, sharks and route leaks do their best to stop you.
+    - generic [ref=e71]: Name your network
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - textbox "Name your network" [ref=e74]: Bits Please
+        - button "Another one" [ref=e75] [cursor=pointer]: ↻
+      - generic [ref=e76]:
+        - generic [aria-hidden] [ref=e77]: AS
+        - textbox "AS number" [ref=e78]:
+          - /placeholder: "207381"
+    - generic [ref=e79]: Pick a door
+    - generic [ref=e80]:
+      - button "Puzzles One network, one knot to untie. No clock. New this Sunday!" [ref=e81] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e82]: 🧩
+        - generic [ref=e83]: Puzzles
+        - generic [ref=e84]: One network, one knot to untie. No clock.
+        - emphasis [ref=e85]: New this Sunday!
+      - button "Sandbox A billion dollars and every toy in the shop." [ref=e86] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e87]: 🏖️
+        - generic [ref=e88]: Sandbox
+        - generic [ref=e89]: A billion dollars and every toy in the shop.
+      - 'button "Normal The real game: climb from Tier 3 to Tier 1. ✓" [ref=e90] [cursor=pointer]':
+        - generic [aria-hidden] [ref=e91]: 📟
+        - generic [ref=e92]: Normal
+        - generic [ref=e93]: "The real game: climb from Tier 3 to Tier 1."
+        - text: ✓
+      - button "Scenarios & weekly Hand-built crises, and one world for everyone each week. New this Sunday!" [ref=e94] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e95]: 🏆
+        - generic [ref=e96]: Scenarios & weekly
+        - generic [ref=e97]: Hand-built crises, and one world for everyone each week.
+        - emphasis [ref=e98]: New this Sunday!
+    - generic [ref=e99]:
+      - generic [ref=e100]: How much trouble?
+      - generic [ref=e101]:
+        - button "Best Effort" [ref=e102] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e103]: ☕
+        - button "Change Freeze" [ref=e105] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e106]: 🧊
+        - button "On-call" [pressed] [ref=e108] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e109]: 📟
+        - button "BGP at 3 a.m." [ref=e111] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e112]: 🔥
+      - paragraph [ref=e114]: The real thing. Your pager has opinions. Real lead times, real outages, a real market. The classic game.
+    - text: ✓
+    - paragraph [ref=e115]: 🔒 The rules are picked once and locked for this network. No changing the deal mid-game.
+    - generic [ref=e116]: Pick your home city
+    - combobox "Pick your home city" [ref=e117] [cursor=pointer]:
+      - option "Frankfurt" [selected]
+      - option "New York"
+      - option "Singapore"
+      - option "São Paulo"
+      - option "Sydney"
+      - option "Anchorage"
+      - option "Ashburn"
+      - option "Atlanta"
+      - option "Bermuda"
+      - option "Boston"
+      - option "Bridgetown"
+      - option "Calgary"
+      - option "Chicago"
+      - option "Dallas"
+      - option "Denver"
+      - option "Fort-de-France"
+      - option "Guadalajara"
+      - option "Guatemala City"
+      - option "Halifax"
+      - option "Havana"
+      - option "Houston"
+      - option "Juneau"
+      - option "Kansas City"
+      - option "Kingston"
+      - option "Los Angeles"
+      - option "Mexico City"
+      - option "Miami"
+      - option "Monterrey"
+      - option "Montreal"
+      - option "Nassau"
+      - option "Nome"
+      - option "Ottawa"
+      - option "Panama City"
+      - option "Phoenix"
+      - option "Port of Spain"
+      - option "Querétaro"
+      - option "Salt Lake City"
+      - option "San Jose"
+      - option "San José"
+      - option "San Juan"
+      - option "Santo Domingo"
+      - option "Seattle"
+      - option "Toronto"
+      - option "Unalaska"
+      - option "Utqiaġvik"
+      - option "Vancouver"
+      - option "Willemstad"
+      - option "Asunción"
+      - option "Belém"
+      - option "Belo Horizonte"
+      - option "Boa Vista"
+      - option "Bogotá"
+      - option "Brasília"
+      - option "Buenos Aires"
+      - option "Campinas"
+      - option "Campo Grande"
+      - option "Caracas"
+      - option "Córdoba"
+      - option "Cuiabá"
+      - option "Curitiba"
+      - option "Fortaleza"
+      - option "Goiânia"
+      - option "La Paz"
+      - option "Lima"
+      - option "Londrina"
+      - option "Macapá"
+      - option "Manaus"
+      - option "Medellín"
+      - option "Montevideo"
+      - option "Natal"
+      - option "Palmas"
+      - option "Porto Alegre"
+      - option "Porto Velho"
+      - option "Quito"
+      - option "Recife"
+      - option "Rio Branco"
+      - option "Rio de Janeiro"
+      - option "Salvador"
+      - option "Santiago"
+      - option "São Luís"
+      - option "Teresina"
+      - option "Vitória"
+      - option "Amsterdam"
+      - option "Athens"
+      - option "Barcelona"
+      - option "Belgrade"
+      - option "Berlin"
+      - option "Bettembourg"
+      - option "Brussels"
+      - option "Bucharest"
+      - option "Budapest"
+      - option "Bude"
+      - option "Copenhagen"
+      - option "Dublin"
+      - option "Düsseldorf"
+      - option "Edinburgh"
+      - option "Esbjerg"
+      - option "Hamburg"
+      - option "Helsinki"
+      - option "Istanbul"
+      - option "Kristiansand"
+      - option "Kyiv"
+      - option "Lisbon"
+      - option "London"
+      - option "Madrid"
+      - option "Manchester"
+      - option "Marseille"
+      - option "Milan"
+      - option "Moscow"
+      - option "Munich"
+      - option "Murmansk"
+      - option "Oostkamp"
+      - option "Oslo"
+      - option "Palermo"
+      - option "Paris"
+      - option "Ponta Delgada"
+      - option "Prague"
+      - option "Reykjavik"
+      - option "Riga"
+      - option "Rome"
+      - option "Sofia"
+      - option "Stavanger"
+      - option "Stockholm"
+      - option "Tallinn"
+      - option "Tenerife"
+      - option "Vienna"
+      - option "Warsaw"
+      - option "Zurich"
+      - option "Abidjan"
+      - option "Accra"
+      - option "Addis Ababa"
+      - option "Algiers"
+      - option "Antananarivo"
+      - option "Cairo"
+      - option "Cape Town"
+      - option "Casablanca"
+      - option "Dakar"
+      - option "Dar es Salaam"
+      - option "Djibouti"
+      - option "Douala"
+      - option "Durban"
+      - option "Gaborone"
+      - option "Harare"
+      - option "Johannesburg"
+      - option "Kampala"
+      - option "Kigali"
+      - option "Kinshasa"
+      - option "Lagos"
+      - option "Luanda"
+      - option "Lusaka"
+      - option "Maputo"
+      - option "Mombasa"
+      - option "Nairobi"
+      - option "Port Louis"
+      - option "Praia"
+      - option "Saint-Denis"
+      - option "St Helena"
+      - option "Tunis"
+      - option "Victoria"
+      - option "Windhoek"
+      - option "Abu Dhabi"
+      - option "Anadyr"
+      - option "Bangkok"
+      - option "Bengaluru"
+      - option "Cebu"
+      - option "Chennai"
+      - option "Colombo"
+      - option "Davao"
+      - option "Delhi"
+      - option "Dhaka"
+      - option "Dikson"
+      - option "Doha"
+      - option "Dubai"
+      - option "Fujairah"
+      - option "Fukuoka"
+      - option "Ho Chi Minh City"
+      - option "Hong Kong"
+      - option "Hyderabad"
+      - option "Jakarta"
+      - option "Jeddah"
+      - option "Karachi"
+      - option "Kuala Lumpur"
+      - option "Magadan"
+      - option "Malé"
+      - option "Manila"
+      - option "Mumbai"
+      - option "Muscat"
+      - option "Osaka"
+      - option "Petropavlovsk"
+      - option "Pevek"
+      - option "Riyadh"
+      - option "Seoul"
+      - option "Taipei"
+      - option "Tiksi"
+      - option "Tokyo"
+      - option "Vladivostok"
+      - option "Yuzhno-Sakhalinsk"
+      - option "Adelaide"
+      - option "Alice Springs"
+      - option "Apia"
+      - option "Auckland"
+      - option "Brisbane"
+      - option "Canberra"
+      - option "Christchurch"
+      - option "Darwin"
+      - option "Guam"
+      - option "Hobart"
+      - option "Honiara"
+      - option "Honolulu"
+      - option "Koror"
+      - option "Majuro"
+      - option "Melbourne"
+      - option "Nouméa"
+      - option "Nuku’alofa"
+      - option "Pago Pago"
+      - option "Papeete"
+      - option "Perth"
+      - option "Port Hedland"
+      - option "Port Moresby"
+      - option "Suva"
+      - option "Townsville"
+    - paragraph [ref=e118]: Crossroads of Europe. DE-KICKS IX, cheap transit.
+    - generic [ref=e119]:
+      - button "Start building" [ref=e120] [cursor=pointer]
+      - button "How to play" [ref=e121] [cursor=pointer]
+      - button "Import a save" [ref=e122] [cursor=pointer]
+      - button "Settings" [ref=e123] [cursor=pointer]
+    - paragraph [ref=e124]:
+      - text: v0.1.0-preview.1 ·
+      - link "Source on GitHub" [ref=e125] [cursor=pointer]:
+        - /url: https://github.com/zanefounty/series-of-calls
+      - text: ·
+      - link "Project feedback" [ref=e126] [cursor=pointer]:
+        - /url: https://github.com/zanefounty/series-of-calls/issues
+      - text: · Cookieless stats, no tracking
+  - region "Series of Calls" [ref=e127]:
+    - generic [ref=e747]:
+      - generic [ref=e748]:
+        - text: Synthetic training environment
+        - heading "Series of Calls" [level=1] [ref=e749]
+        - paragraph [ref=e750]: Foundation preview · Full ecosystem conversion remains in progress
+      - button "Physical network expansion" [ref=e751] [cursor=pointer]
+    - figure [ref=e752]:
+      - img "A small repair shop coordinates calls, service requests and appointments." [ref=e753]
+    - generic [ref=e754]:
+      - generic [ref=e755]:
+        - text: Training exercise
+        - combobox "Training exercise" [ref=e756]:
+          - option "SMB · Orchard Repairs" [selected]
+          - option "Enterprise · Canopy Group"
+          - option "Government · Civic Grove"
+          - option "Defence · Wattle Training Centre"
+      - generic [ref=e757]:
+        - text: Fictional jurisdiction profile
+        - combobox "Fictional jurisdiction profile" [ref=e758]:
+          - option "AU" [selected]
+          - option "US"
+          - option "JP"
+          - option "EU"
+      - generic [ref=e759]:
+        - text: Mode
+        - combobox "Mode" [ref=e760]:
+          - option "Guided lesson" [selected]
+          - option "Assessed challenge"
+          - option "Sandbox"
+      - button "Start exercise" [ref=e761] [cursor=pointer]
+      - button "Export exercise" [ref=e762] [cursor=pointer]
+      - generic [ref=e763]:
+        - text: Import exercise
+        - button "Import exercise" [ref=e764]
+    - status [ref=e765]: Minute 0 · revision 1 · Editing this slot · Operating result $0.00
+    - generic [ref=e766]:
+      - heading "Customer portfolio" [level=2] [ref=e767]
+      - paragraph [ref=e768]: Concurrent synthetic customer workspaces. Geography is not a legal approval.
+      - button "Start portfolio" [ref=e769] [cursor=pointer]
+    - generic [ref=e770]:
+      - navigation "Administration consoles" [ref=e771]:
+        - button "Microsnoft Identity Grove identity · Unavailable" [ref=e772] [cursor=pointer]:
+          - text: Microsnoft Identity Grove
+          - generic [ref=e773]: identity · Unavailable
+        - button "Level Tree Access access · Unavailable" [ref=e774] [cursor=pointer]:
+          - text: Level Tree Access
+          - generic [ref=e775]: access · Unavailable
+        - button "Microsnoft Workplace Phone phone · Unavailable" [ref=e776] [cursor=pointer]:
+          - text: Microsnoft Workplace Phone
+          - generic [ref=e777]: phone · Unavailable
+        - button "Bellwether Interconnect carrier · Unavailable" [ref=e778] [cursor=pointer]:
+          - text: Bellwether Interconnect
+          - generic [ref=e779]: carrier · Unavailable
+        - button "Disco Desk desk · Unavailable" [ref=e780] [cursor=pointer]:
+          - text: Disco Desk
+          - generic [ref=e781]: desk · Unavailable
+        - button "People Orchard people · Unavailable" [ref=e782] [cursor=pointer]:
+          - text: People Orchard
+          - generic [ref=e783]: people · Unavailable
+        - button "Disco Service Desk service · Unavailable" [ref=e784] [cursor=pointer]:
+          - text: Disco Service Desk
+          - generic [ref=e785]: service · Unavailable
+        - button "Chatterleaf Business messages · Unavailable" [ref=e786] [cursor=pointer]:
+          - text: Chatterleaf Business
+          - generic [ref=e787]: messages · Unavailable
+        - button "Casebook cases · Unavailable" [ref=e788] [cursor=pointer]:
+          - text: Casebook
+          - generic [ref=e789]: cases · Unavailable
+        - button "Disco Connective engage · Unavailable" [ref=e790] [cursor=pointer]:
+          - text: Disco Connective
+          - generic [ref=e791]: engage · Unavailable
+        - button "Disco Room Garden room · Unavailable" [ref=e792] [cursor=pointer]:
+          - text: Disco Room Garden
+          - generic [ref=e793]: room · Unavailable
+        - button "Echo Vault Archive archive · Unavailable" [ref=e794] [cursor=pointer]:
+          - text: Echo Vault Archive
+          - generic [ref=e795]: archive · Unavailable
+        - button "Echo Vault Capture recorder · Unavailable" [ref=e796] [cursor=pointer]:
+          - text: Echo Vault Capture
+          - generic [ref=e797]: recorder · Unavailable
+        - button "Disco Speech Orchard speech · Unavailable" [ref=e798] [cursor=pointer]:
+          - text: Disco Speech Orchard
+          - generic [ref=e799]: speech · Unavailable
+        - button "Clockwork Local Services local · Unavailable" [ref=e800] [cursor=pointer]:
+          - text: Clockwork Local Services
+          - generic [ref=e801]: local · Unavailable
+      - main [ref=e802]:
+        - generic [ref=e803]: workforce · agent
+        - heading "People Orchard" [level=2] [ref=e804]
+        - paragraph [ref=e805]: "Provisioning: pending"
+        - generic [ref=e806]:
+          - generic [ref=e807]:
+            - generic [ref=e808]:
+              - checkbox "Enabled" [checked] [ref=e809]
+              - text: Enabled
+            - generic [ref=e810]:
+              - text: Operator
+              - textbox "Operator" [ref=e811]: player
+            - generic [ref=e812]:
+              - text: People
+              - spinbutton "People" [ref=e813]: "2"
+            - generic [ref=e814]:
+              - text: Entitlements
+              - spinbutton "Entitlements" [ref=e815]: "2"
+            - generic [ref=e816]:
+              - text: Skills
+              - textbox "Skills" [ref=e817]: "[ \"service\" ]"
+            - generic [ref=e818]:
+              - text: Languages
+              - textbox "Languages" [ref=e819]: "[ \"en\" ]"
+            - generic [ref=e820]:
+              - text: Shift Start
+              - spinbutton "Shift Start" [ref=e821]: "0"
+            - generic [ref=e822]:
+              - text: Shift End
+              - spinbutton "Shift End" [ref=e823]: "1440"
+            - generic [ref=e824]:
+              - text: Handling Minutes
+              - spinbutton "Handling Minutes" [ref=e825]: "3"
+            - generic [ref=e826]:
+              - text: Wrap Minutes
+              - spinbutton "Wrap Minutes" [ref=e827]: "1"
+            - generic [ref=e828]:
+              - text: Digital Concurrency
+              - spinbutton "Digital Concurrency" [ref=e829]: "2"
+            - generic [ref=e830]:
+              - checkbox "Local" [checked] [ref=e831]
+              - text: Local
+            - generic [ref=e832]:
+              - text: Region
+              - textbox "Region" [ref=e833]: AU
+          - generic [ref=e834]:
+            - button "Submit configuration" [ref=e835] [cursor=pointer]
+            - button "Save recovery point" [ref=e836] [cursor=pointer]
+            - button "Restore recovery point" [disabled] [ref=e837]
+            - button "Inject outage" [ref=e838] [cursor=pointer]
+        - group [ref=e839]:
+          - generic "Effective configuration" [ref=e840] [cursor=pointer]
+        - paragraph [ref=e841]: NOT_PROVISIONED
+        - 'group "Service topology. Use left and right arrow keys to select a service. Selected: people" [ref=e842]'
+      - complementary [ref=e843]:
+        - heading "Interaction inspector" [level=2] [ref=e844]
+        - paragraph [ref=e845]: Resolve a digital enquiry with retained case context.
+        - generic [ref=e846]:
+          - button "Advance 1 minute" [ref=e847] [cursor=pointer]
+          - button "Advance 5 minutes" [ref=e848] [cursor=pointer]
+          - button "Run synthetic interaction" [ref=e849] [cursor=pointer]
+          - button "Test room join" [ref=e850] [cursor=pointer]
+          - button "Disconnect external services" [ref=e851] [cursor=pointer]
+        - paragraph [ref=e852]: Evidence still required
+        - paragraph [ref=e853]: resolved, context
+        - group [ref=e854]:
+          - generic "Lesson" [ref=e855] [cursor=pointer]
+          - paragraph [ref=e856]: More sessions do not create trained people. Open People Orchard, provision people and agent entitlements, then send an enquiry. Advance time through handling and wrap-up. Check the case context.
+        - generic [ref=e857]:
+          - heading "Test a customer journey" [level=3] [ref=e858]
+          - paragraph [ref=e859]: Incoming calls require a provisioned carrier and an assigned number. Reuse a case only for the same caller.
+          - group [ref=e861]:
+            - generic [ref=e862]:
+              - text: Channel
+              - combobox "Channel" [ref=e863]:
+                - option "Voice call" [selected]
+                - option "Message"
+            - generic [ref=e864]:
+              - text: Call direction
+              - combobox "Call direction" [ref=e865]:
+                - option "Outgoing or internal" [selected]
+                - option "Incoming from carrier"
+            - generic [ref=e866]:
+              - text: Caller identity or incoming E.164 number
+              - textbox "Caller identity or incoming E.164 number" [ref=e867]: alex
+            - generic [ref=e868]:
+              - text: Dialled number or destination
+              - textbox "Dialled number or destination" [ref=e869]: "+61255500201"
+            - generic [ref=e870]:
+              - text: Case identity
+              - textbox "Case identity" [ref=e871]: journey-case
+            - generic [ref=e872]:
+              - checkbox "Encrypted media" [checked] [ref=e873]
+              - text: Encrypted media
+            - button "Run synthetic journey" [ref=e874] [cursor=pointer]
+        - heading "Synthetic transition trace" [level=3] [ref=e875]
+        - paragraph [ref=e876]: Run an interaction to inspect its decisions.
+        - group [ref=e877]:
+          - generic "Generated records and lineage" [ref=e878] [cursor=pointer]
+        - group [ref=e879]:
+          - generic "Recent operating ledger (cents)" [ref=e880] [cursor=pointer]
+    - generic [ref=e881]:
+      - heading "Customer needs" [level=2] [ref=e882]
+      - paragraph [ref=e883]: Describe customer needs independently of the services you buy. Sector labels confer no approval, licence or administration authority.
+      - button "Start customer planning" [ref=e885] [cursor=pointer]
+      - status
+    - generic [ref=e886]:
+      - heading "Local speech models" [level=2] [ref=e887]
+      - paragraph [ref=e888]: Start Products and Information first.
+      - paragraph [ref=e889]: Scenario-only model and integration evidence. This does not claim external product support, certification, licensing approval, or an actual AI service.
+    - generic [ref=e890]:
+      - heading "Product evidence" [level=2] [ref=e891]
+      - paragraph [ref=e892]: Start product administration and create a product deployment first.
+      - paragraph [ref=e893]: This workflow never asserts external approval, certification, accreditation, or legal status.
+    - generic [ref=e894]:
+      - heading "Endpoint and carrier media negotiation" [level=2] [ref=e895]
+      - paragraph [ref=e896]: Synthetic scenario controls only. No real carrier compatibility or certification is asserted.
+      - paragraph [ref=e897]: Start the optional profile pack before configuring offers.
+      - generic [ref=e898]:
+        - paragraph [ref=e899]: Profiles remain inactive until observed ready and the next synthetic minute advances.
+        - button "Start media profiles" [ref=e900] [cursor=pointer]
+    - generic [ref=e901]:
+      - heading "Managed operations" [level=2] [ref=e902]
+      - paragraph [ref=e903]: Coordinate synthetic joiner, mover and identity-leaver work across active customers. Completion and charges wait for effective resource readiness.
+      - paragraph [ref=e904]: Start the customer portfolio before submitting managed work.
+    - generic [ref=e905]:
+      - heading "Site operations" [level=2] [ref=e906]
+      - paragraph [ref=e907]: Bind real resources and transport sites before testing continuity. Each exercise checks a baseline call, continued service during a fault, and restoration from a captured configuration backup.
+      - paragraph [ref=e908]: Start transport operations and provision transport sites first.
+    - generic [ref=e909]:
+      - heading "Specialist product lifecycle evidence" [level=2] [ref=e910]
+      - paragraph [ref=e911]: Track scenario-only sale, renewal and support evidence against an effective product version and its current support owner.
+      - paragraph [ref=e912]: Scenario evidence only; this does not establish real product availability, certification or vendor support.
+      - button "Start lifecycle evidence" [disabled] [ref=e913]
+    - generic [ref=e914]:
+      - heading "Shared line and call controls" [level=2] [ref=e915]
+      - paragraph [ref=e916]: Configure fictional shared-line appearances, presence and park/retrieve controls. These rules do not place real calls.
+      - paragraph [ref=e917]: Shared lines, presence, pickup and park/retrieve are design-level decompositions. They do not establish complete source mapping or vendor parity.
+      - button "Start shared services" [disabled] [ref=e919]
+      - paragraph [ref=e920]: Start the calling directory and provision canonical identities first.
+    - generic [ref=e921]:
+      - heading "Admission and abuse controls" [level=2] [ref=e922]
+      - paragraph [ref=e923]: Fictional controls for simulated packet admission, SIP signalling, and destination spend. They do not send network traffic.
+      - button "Start security controls" [ref=e925] [cursor=pointer]
+    - generic [ref=e926]:
+      - heading "Sustained service observation" [level=2] [ref=e927]
+      - paragraph [ref=e928]: Minute-sampled training evidence from real synthetic customer journeys, staffing, meetings and service paths.
+      - group [ref=e929]:
+        - generic "Source boundaries" [ref=e930] [cursor=pointer]
+      - generic [ref=e931]:
+        - button "Start observation pack" [ref=e932] [cursor=pointer]
+        - article [ref=e933]:
+          - heading "Transport continuity (rd)" [level=3] [ref=e934]
+          - paragraph [ref=e935]:
+            - text: "Status:"
+            - strong [ref=e936]: Not started
+          - group [ref=e937]:
+            - generic "Selected fictional thresholds" [ref=e938] [cursor=pointer]
+          - group [ref=e939]:
+            - generic "Guided setup" [ref=e940] [cursor=pointer]
+            - paragraph [ref=e941]: Create two independent transport paths and resolve a real two-way human voice journey to the service queue before opening. Inject a validated domain failure, hold it through a complete sample minute, complete the same case and identity on an alternate path, recover, then complete a fresh journey after recovery.
+          - button "Open observation window" [disabled] [ref=e942]
+        - article [ref=e943]:
+          - heading "Sustained service (tb)" [level=3] [ref=e944]
+          - paragraph [ref=e945]:
+            - text: "Status:"
+            - strong [ref=e946]: Not started
+          - group [ref=e947]:
+            - generic "Selected fictional thresholds" [ref=e948] [cursor=pointer]
+          - group [ref=e949]:
+            - generic "Guided setup" [ref=e950] [cursor=pointer]
+            - paragraph [ref=e951]: Provision two named people with individual seats, then open this window without changing configuration. Over ten consecutive minutes, complete at least twelve human case journeys across eight minute buckets; retain two concurrent staffed assignments in three samples and keep completion at or above 90 percent.
+          - button "Open observation window" [disabled] [ref=e952]
+        - article [ref=e953]:
+          - heading "Mixed service floor (t10)" [level=3] [ref=e954]
+          - paragraph [ref=e955]:
+            - text: "Status:"
+            - strong [ref=e956]: Not started
+          - group [ref=e957]:
+            - generic "Selected fictional thresholds" [ref=e958] [cursor=pointer]
+          - group [ref=e959]:
+            - generic "Guided setup" [ref=e960] [cursor=pointer]
+            - paragraph [ref=e961]: Provision four named people and required service, digital, meeting and product dependencies before opening. Over fifteen consecutive minutes, complete at least thirty human case journeys, including eight voice and eight digital, across twelve minute buckets; retain four concurrent assignments in five samples and dispatch two successful meetings.
+          - button "Open observation window" [disabled] [ref=e962]
+      - generic [ref=e963]:
+        - heading "Closed windows" [level=3] [ref=e964]
+        - paragraph [ref=e965]: None recorded yet.
+      - generic [ref=e966]:
+        - heading "Retained proofs" [level=3] [ref=e967]
+        - paragraph [ref=e968]: None recorded yet.
+    - generic [ref=e969]:
+      - generic [ref=e970]:
+        - heading "Calling policy" [level=2] [ref=e971]
+        - paragraph [ref=e972]: Start this optional synthetic pack to configure its controls and inspect desired, effective and observed state.
+        - button "Start pack" [ref=e974] [cursor=pointer]
+      - generic [ref=e975]:
+        - heading "Workforce operations" [level=2] [ref=e976]
+        - paragraph [ref=e977]: Start this optional synthetic pack to configure its controls and inspect desired, effective and observed state.
+        - button "Start pack" [ref=e979] [cursor=pointer]
+      - generic [ref=e980]:
+        - heading "Estate discovery and lifecycle" [level=2] [ref=e981]
+        - paragraph [ref=e982]: Start this optional synthetic pack to configure its controls and inspect desired, effective and observed state.
+        - button "Start pack" [ref=e984] [cursor=pointer]
+    - generic [ref=e985]:
+      - heading "Queueberry workforce offer" [level=2] [ref=e986]
+      - paragraph [ref=e987]: Configure a fictional workforce offer for this tenant.
+      - paragraph [ref=e988]: Synthetic training offer; no external service is contacted.
+      - paragraph [ref=e989]: "Requires business and workforce packs plus people configuration authority.: — Business pack · — Workforce pack · — People configuration authority"
+      - button "Start offer console" [disabled] [ref=e990]
+    - generic [ref=e991]:
+      - heading "Disco Contact Operations" [level=2] [ref=e992]
+      - paragraph [ref=e993]: Configure IVR routing, queue priorities, callbacks, transfers and synthetic supervisor reviews. Callback scheduling releases the original call session.
+      - button "Enable contact operations" [ref=e994] [cursor=pointer]
+    - generic [ref=e995]:
+      - heading "Echo Vault and Room Garden" [level=2] [ref=e996]
+      - paragraph [ref=e997]: Configure synthetic processing, information boundaries and scheduled meetings. One training GB holds 100 record objects; processing uses processor-minutes. Region choices are fictional exercise constraints.
+      - button "Enable information and meeting operations" [ref=e998] [cursor=pointer]
+    - generic [ref=e999]:
+      - heading "Service operations" [level=2] [ref=e1000]
+      - paragraph [ref=e1001]: Enable advanced synthetic carrier onboarding, number porting, contact-centre integrations, delivery receipts and cohort migration. Each configuration change provisions separately; no real carrier or vendor is contacted.
+      - button "Enable service operations" [ref=e1002] [cursor=pointer]
+    - generic [ref=e1003]:
+      - heading "Communications business" [level=2] [ref=e1004]
+      - paragraph [ref=e1005]: "Operate the service as a business: buy connectivity, sell typed offers, provision deployments and reconcile the contract ledger. Starting a campaign keeps this exercise and its configuration."
+      - button "Start campaign" [ref=e1006] [cursor=pointer]
+    - generic [ref=e1007]:
+      - generic [ref=e1008]:
+        - heading "Transport" [level=2] [ref=e1009]
+        - paragraph [ref=e1010]: Intro
+        - button "Start" [ref=e1012] [cursor=pointer]
+      - generic [ref=e1013]:
+        - heading "Boundaries" [level=2] [ref=e1014]
+        - paragraph [ref=e1015]: Intro
+        - button "Start" [ref=e1017] [cursor=pointer]
+      - generic [ref=e1018]:
+        - heading "Training campaign" [level=2] [ref=e1019]
+        - paragraph [ref=e1020]: Intro
+        - paragraph [ref=e1021]: Track changes save a paused snapshot of this workspace. These are not four simultaneous businesses or a cumulative group result.
+        - button "Start" [ref=e1023] [cursor=pointer]
+    - generic [ref=e1024]:
+      - heading "Practice and achievements" [level=2] [ref=e1025]
+      - paragraph [ref=e1026]: Synthetic practice. Achievements use service evidence and never add seats, people or money.
+      - heading "Incident practice" [level=3] [ref=e1027]
+      - button "Start" [ref=e1029] [cursor=pointer]
+      - heading "Service achievements" [level=3] [ref=e1030]
+      - generic [ref=e1031]:
+        - paragraph [ref=e1032]: Start an SMB campaign to track achievements.
+        - button "Start" [disabled] [ref=e1033]
+    - generic [ref=e1034]:
+      - heading "Advanced service scenarios" [level=2] [ref=e1035]
+      - paragraph [ref=e1036]: Fictional scenario controls only. Account settings, receipts, task evidence, and product compatibility results are synthetic and do not establish real provider support.
+      - generic [ref=e1037]:
+        - heading "Channel Accounts" [level=2] [ref=e1038]
+        - button "Start optional pack" [ref=e1040] [cursor=pointer]
+      - generic [ref=e1041]:
+        - heading "Outcomes" [level=2] [ref=e1042]
+        - button "Start optional pack" [ref=e1044] [cursor=pointer]
+      - generic [ref=e1045]:
+        - heading "Products" [level=2] [ref=e1046]
+        - button "Start optional pack" [ref=e1048] [cursor=pointer]
+    - group [ref=e1049]:
+      - generic "Switchboard folklore" [ref=e1050] [cursor=pointer]
+    - paragraph [ref=e1052]:
+      - text: Series of Calls contributors · based on Series of Tubes by Frederic Jung ·
+      - link "MIT licence" [ref=e1053] [cursor=pointer]:
+        - /url: LICENSE
+      - text: ·
+      - link "Attribution and third-party notices" [ref=e1054] [cursor=pointer]:
+        - /url: THIRD_PARTY_NOTICES.md

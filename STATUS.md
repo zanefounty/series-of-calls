@@ -72,6 +72,10 @@ An earlier backlog pass added shared-line ringing, pickup, independent member pe
 
 The continuation adds typed consoles for media negotiation, product evidence, managed customer changes, site operations and inbound interactions. Successful submission remains separate from effective service and billable delivery. The [94-addition behaviour audit](spec/audit/additions-behaviour-audit.md) maps the newly verified mechanics and the distinctive behaviour still missing in each source addition. This does not close the full catalogue or research backlog.
 
+## Queueberry quality review — 4 November 2026
+
+The bounded quality-review implementation has passed 1,445 JavaScript tests, 569 registered acceptance cases, 83 Python gate/mutation tests, 88 actual stdio MCP cases, 22 browser-MCP checks and six desktop/mobile feature-browser journeys across three engines. Counts overlap. The versioned rubric, failed/retest recovery and once-only review billing use the shared dispatcher. Full source-specific fidelity and current complete browser matrices remain outstanding. See the compact `evidence/verification.json` summary and `evidence/acceptance.json` input hashes. Raw execution artifacts are excluded from Git at the owner’s request. Release remains blocked on deferred research and incomplete product requirements; no deployment is claimed.
+
 ## Workforce coaching cost — 4 November 2026
 
 The bounded coaching-cost implementation has passed 1,458 JavaScript tests, 582 registered acceptance cases, 83 Python gate/mutation tests, 92 actual stdio MCP cases, 22 browser-MCP checks and six desktop/mobile feature-browser journeys across three engines. Counts overlap. Explicit coaching posts one typed cost, delays skill readiness and invalidates current workforce observations while retaining history. Full source-specific fidelity and current complete browser matrices remain outstanding. See the compact `evidence/verification.json` summary and `evidence/acceptance.json` input hashes. Raw execution artifacts are excluded from Git at the owner’s request. Release remains blocked on deferred research and incomplete product requirements; no deployment is claimed.

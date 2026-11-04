@@ -1,0 +1,750 @@
+{
+  "schemaVersion": 1,
+  "selection": "All39forks atlookup had0stars; top10pushed_at descending, full_name descending tie; named SeriesOfTubesAU separately. Push recency is not originality.",
+  "upstream": "b2366ed26018f957309292d04adf5d6e76a89c65",
+  "forks": [
+    {
+      "full_name": "Lambro-codes/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-04T02:01:28Z",
+      "updated_at": "2026-11-04T03:31:46Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/Lambro-codes/seriesoftubes"
+    },
+    {
+      "full_name": "wnagele/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-04T00:22:57Z",
+      "updated_at": "2026-11-03T03:57:18Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/wnagele/seriesoftubes"
+    },
+    {
+      "full_name": "thesysadmindev/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-03T11:59:17Z",
+      "updated_at": "2026-11-03T10:20:33Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/thesysadmindev/seriesoftubes"
+    },
+    {
+      "full_name": "pcn/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-03T11:54:34Z",
+      "updated_at": "2026-11-03T16:16:05Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/pcn/seriesoftubes"
+    },
+    {
+      "full_name": "yeled/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-03T10:55:00Z",
+      "updated_at": "2026-11-03T10:55:04Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/yeled/seriesoftubes"
+    },
+    {
+      "full_name": "alexgn100/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-02T19:27:23Z",
+      "updated_at": "2026-11-02T19:27:41Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/alexgn100/seriesoftubes"
+    },
+    {
+      "full_name": "tannerryan/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-02T03:14:42Z",
+      "updated_at": "2026-11-02T03:14:46Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/tannerryan/seriesoftubes"
+    },
+    {
+      "full_name": "hdecreis/seriesoftubes-hdc",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-11-02T00:52:31Z",
+      "updated_at": "2026-11-01T23:29:39Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/hdecreis/seriesoftubes-hdc"
+    },
+    {
+      "full_name": "ddryden/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-31T14:59:16Z",
+      "updated_at": "2026-10-31T14:51:33Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/ddryden/seriesoftubes"
+    },
+    {
+      "full_name": "cookiesowns/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-31T06:51:58Z",
+      "updated_at": "2026-10-31T07:11:54Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/cookiesowns/seriesoftubes"
+    },
+    {
+      "full_name": "wesleymarquesnetworks/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-30T20:13:53Z",
+      "updated_at": "2026-10-30T18:52:12Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/wesleymarquesnetworks/seriesoftubes"
+    },
+    {
+      "full_name": "fmcglinn/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-30T05:42:10Z",
+      "updated_at": "2026-10-30T03:46:25Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/fmcglinn/seriesoftubes"
+    },
+    {
+      "full_name": "johanvdm/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-29T10:44:42Z",
+      "updated_at": "2026-10-29T14:39:22Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/johanvdm/seriesoftubes"
+    },
+    {
+      "full_name": "Columbo818/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T16:03:56Z",
+      "updated_at": "2026-10-28T09:51:02Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/Columbo818/seriesoftubes"
+    },
+    {
+      "full_name": "JMF-Alex/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T16:02:59Z",
+      "updated_at": "2026-10-28T16:03:04Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/JMF-Alex/seriesoftubes"
+    },
+    {
+      "full_name": "luckylucab0/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T12:25:17Z",
+      "updated_at": "2026-10-28T11:04:40Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/luckylucab0/seriesoftubes"
+    },
+    {
+      "full_name": "Logfro/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T11:06:40Z",
+      "updated_at": "2026-10-28T11:06:48Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/Logfro/seriesoftubes"
+    },
+    {
+      "full_name": "LookedPath/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T09:06:20Z",
+      "updated_at": "2026-10-25T17:25:33Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/LookedPath/seriesoftubes"
+    },
+    {
+      "full_name": "rahul05ranjan/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-28T06:50:18Z",
+      "updated_at": "2026-10-28T06:49:58Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/rahul05ranjan/seriesoftubes"
+    },
+    {
+      "full_name": "FHRNet/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T13:21:56Z",
+      "updated_at": "2026-10-27T13:10:25Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/FHRNet/seriesoftubes"
+    },
+    {
+      "full_name": "FlorianGH/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T13:04:34Z",
+      "updated_at": "2026-10-25T23:09:55Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/FlorianGH/seriesoftubes"
+    },
+    {
+      "full_name": "huguesdelamure/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T13:04:02Z",
+      "updated_at": "2026-10-26T22:48:47Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/huguesdelamure/seriesoftubes"
+    },
+    {
+      "full_name": "Flol0/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T06:45:59Z",
+      "updated_at": "2026-10-27T06:46:03Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/Flol0/seriesoftubes"
+    },
+    {
+      "full_name": "lungustefan/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T06:39:57Z",
+      "updated_at": "2026-10-25T21:27:58Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/lungustefan/seriesoftubes"
+    },
+    {
+      "full_name": "mxhob1/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T03:05:35Z",
+      "updated_at": "2026-10-26T11:36:27Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/mxhob1/seriesoftubes"
+    },
+    {
+      "full_name": "andrewnyr/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-27T01:33:29Z",
+      "updated_at": "2026-10-27T01:32:39Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/andrewnyr/seriesoftubes"
+    },
+    {
+      "full_name": "MurphysHub/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-26T20:05:05Z",
+      "updated_at": "2026-10-26T19:16:18Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/MurphysHub/seriesoftubes"
+    },
+    {
+      "full_name": "clayberF/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-26T13:29:01Z",
+      "updated_at": "2026-10-26T00:36:00Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/clayberF/seriesoftubes"
+    },
+    {
+      "full_name": "SK0RPIA/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-26T11:21:22Z",
+      "updated_at": "2026-10-26T11:18:16Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/SK0RPIA/seriesoftubes"
+    },
+    {
+      "full_name": "kovitking/imperva-bgp",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-26T09:28:30Z",
+      "updated_at": "2026-10-26T11:00:22Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/kovitking/imperva-bgp"
+    },
+    {
+      "full_name": "dkraklan/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T20:56:23Z",
+      "updated_at": "2026-10-26T00:00:32Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/dkraklan/seriesoftubes"
+    },
+    {
+      "full_name": "panascais-forks/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T17:40:05Z",
+      "updated_at": "2026-10-25T15:37:20Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/panascais-forks/seriesoftubes"
+    },
+    {
+      "full_name": "arcelo12/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T11:36:14Z",
+      "updated_at": "2026-10-25T12:58:53Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/arcelo12/seriesoftubes"
+    },
+    {
+      "full_name": "aulmaru/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T10:18:05Z",
+      "updated_at": "2026-10-25T10:18:08Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/aulmaru/seriesoftubes"
+    },
+    {
+      "full_name": "PieterWentzel/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T08:01:42Z",
+      "updated_at": "2026-10-25T08:42:45Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/PieterWentzel/seriesoftubes"
+    },
+    {
+      "full_name": "marshyonline/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-25T02:53:58Z",
+      "updated_at": "2026-10-25T02:52:27Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/marshyonline/seriesoftubes"
+    },
+    {
+      "full_name": "daniloctdev/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-24T19:54:24Z",
+      "updated_at": "2026-10-24T16:18:55Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/daniloctdev/seriesoftubes"
+    },
+    {
+      "full_name": "NickBouwhuis/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-24T16:23:07Z",
+      "updated_at": "2026-10-23T17:11:05Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/NickBouwhuis/seriesoftubes"
+    },
+    {
+      "full_name": "altoplano/seriesoftubes",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-10-23T16:47:43Z",
+      "updated_at": "2026-10-23T17:40:07Z",
+      "default_branch": "main",
+      "archived": false,
+      "html_url": "https://github.com/altoplano/seriesoftubes"
+    }
+  ],
+  "selected": [
+    {
+      "rank": 1,
+      "full_name": "Lambro-codes/seriesoftubes",
+      "pushed_at": "2026-11-04T02:01:28Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 0,
+      "refs": [
+        {
+          "branch": "main",
+          "sha": "b2366ed26018f957309292d04adf5d6e76a89c65"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "full_name": "wnagele/seriesoftubes",
+      "pushed_at": "2026-11-04T00:22:57Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 33,
+      "refs": [
+        {
+          "branch": "main",
+          "sha": "da1a4e2f3c9f7fac12c94eefb8d35bd6b1e4ae16"
+        },
+        {
+          "branch": "mcp-browser-mode",
+          "sha": "7438fd106562506f5e6ab774d9d04905c5cd4d58"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "full_name": "thesysadmindev/seriesoftubes",
+      "pushed_at": "2026-11-03T11:59:17Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "66aaaec5f1cca7e2efd834b1d3d89ef7193ec704",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "66aaaec5f1cca7e2efd834b1d3d89ef7193ec704",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 68,
+      "refs": [
+        {
+          "branch": "glowball-sakura-lager",
+          "sha": "cc7ebe1ad50018901082640ca893cfcc2b42e40f"
+        },
+        {
+          "branch": "intern-port-headroom",
+          "sha": "44c587221a8ee5f81c70173334c8d4b10fb1bbe4"
+        },
+        {
+          "branch": "lease-revocation",
+          "sha": "949c311c8ea390521c3c7ac6a3baae85217d0aa8"
+        },
+        {
+          "branch": "main",
+          "sha": "66aaaec5f1cca7e2efd834b1d3d89ef7193ec704"
+        },
+        {
+          "branch": "own-carrier-egress",
+          "sha": "eb78d7104e7e2f33c26606fbe928aeca7f56cc1e"
+        },
+        {
+          "branch": "sea-optic-hint",
+          "sha": "54f40221d54cb945369d8262ee17a463e07e47e2"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "full_name": "pcn/seriesoftubes",
+      "pushed_at": "2026-11-03T11:54:34Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "41d5bc8b2118d3de49df59dc35a522eb12b17227",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "41d5bc8b2118d3de49df59dc35a522eb12b17227",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 6,
+      "refs": [
+        {
+          "branch": "main",
+          "sha": "41d5bc8b2118d3de49df59dc35a522eb12b17227"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "full_name": "yeled/seriesoftubes",
+      "pushed_at": "2026-11-03T10:55:00Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "de4a750cdd8231e24efddb2d59c5c07b2f767fa8",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "de4a750cdd8231e24efddb2d59c5c07b2f767fa8",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 31,
+      "refs": [
+        {
+          "branch": "architect",
+          "sha": "dbc801169cd32576e1afe60edc24b9bf43f9b5d9"
+        },
+        {
+          "branch": "claude/city-markers",
+          "sha": "cb90e735fdd4ad76c054afbc1d55f711ea8904b1"
+        },
+        {
+          "branch": "claude/faster-ci",
+          "sha": "2cb22ad3c4c54e9b01ff0d4f01a9b684676be6b5"
+        },
+        {
+          "branch": "claude/fix-198",
+          "sha": "816de9b5ecde24c4d028b105c3a98263bf8b5a23"
+        },
+        {
+          "branch": "claude/fix-200",
+          "sha": "39ccb64f982c8dd5f57589cfc39169e23c0681df"
+        },
+        {
+          "branch": "claude/fix-201",
+          "sha": "41e1a629834448532dba714ac18202dbf90738c1"
+        },
+        {
+          "branch": "claude/fix-210",
+          "sha": "928d6f01114d930035405fe0fb110ce33d3b2d2f"
+        },
+        {
+          "branch": "claude/fix-219",
+          "sha": "97c328dce66af289e4186d6cde1fbcf85f78ab0a"
+        },
+        {
+          "branch": "claude/fix-226",
+          "sha": "198c636442244cd7cbfafc65c24524e839bb56a9"
+        },
+        {
+          "branch": "claude/fix-227",
+          "sha": "0402cf584545b5c2099718597f9aa899a82695b3"
+        },
+        {
+          "branch": "claude/fix-228",
+          "sha": "caa979a6714c2bb6a1933d133bc08c6036287c58"
+        },
+        {
+          "branch": "claude/fix-229",
+          "sha": "2b31bd56321f785b6aec5211df13801b717905d7"
+        },
+        {
+          "branch": "claude/fix-231",
+          "sha": "11d6d195e7ae92ecc5714c59e397f5f09e2d9942"
+        },
+        {
+          "branch": "claude/fix-244",
+          "sha": "48356c01793e4f23b10eaebbcf056a21188b4425"
+        },
+        {
+          "branch": "claude/fix-265",
+          "sha": "260f014e1159d75825df380900bcf4d4281da737"
+        },
+        {
+          "branch": "claude/intern-optics-262",
+          "sha": "22549676026a866ca1662a926db661fac4db8488"
+        },
+        {
+          "branch": "claude/noc-open",
+          "sha": "2c60af18cc039552e5a6c720016ddb9abc8b6644"
+        },
+        {
+          "branch": "ddos-rework",
+          "sha": "3e7bbdffad592a3e6acac331e3cafc13cfbad93b"
+        },
+        {
+          "branch": "feat/backbone-tech",
+          "sha": "99c18bdf7ada2cc580c8d0fa0bc7a01c4de8c1e2"
+        },
+        {
+          "branch": "fix-traceroute-cache-hop",
+          "sha": "a47fc0735fdc7bfc039fefdce2fc51274a8d370a"
+        },
+        {
+          "branch": "keyboard-shortcuts",
+          "sha": "c5c5aac9704546d06c3de4538a05b1d485036b50"
+        },
+        {
+          "branch": "main",
+          "sha": "de4a750cdd8231e24efddb2d59c5c07b2f767fa8"
+        },
+        {
+          "branch": "perf/1-merge-flows",
+          "sha": "f61c199b3a67af887a206c5d937cd6d1b7053d8b"
+        },
+        {
+          "branch": "perf/2-typed-arrays",
+          "sha": "b6c2fe677bb4208c165bec7b6701162ecb504c27"
+        },
+        {
+          "branch": "perf/3-worker",
+          "sha": "fde4279633aa048a67539ea9135fe7c2a72dafd6"
+        },
+        {
+          "branch": "perf/4-incremental",
+          "sha": "13165b951879a63d555a9fdf1285968f15bbded7"
+        },
+        {
+          "branch": "perf/5-route-less-at-speed",
+          "sha": "12eb96c618cb4014b7f4d352d54640647c1530ce"
+        },
+        {
+          "branch": "perf/6-routing-design",
+          "sha": "640b65ce9a38abd33a83c8e1a06c3903f3158f58"
+        },
+        {
+          "branch": "v2",
+          "sha": "abd55c084683351b2e3478b0304869aff2d1865b"
+        },
+        {
+          "branch": "v2-doors",
+          "sha": "39ef7c13bbe40138ffdb18a241f9391ff9a74c30"
+        },
+        {
+          "branch": "v2-orders",
+          "sha": "fa4e30692ef02cd0318f318687e3364683ede8d6"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "full_name": "alexgn100/seriesoftubes",
+      "pushed_at": "2026-11-02T19:27:23Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "48bb34e61f4c325e1bd59437f8bc90897602cfc5",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "15dc5741d4b40ae1517e84834f647ac3e5d1e025",
+      "branch_commits_after_merge_base": 16,
+      "comparison_commits_after_merge_base": 35,
+      "refs": [
+        {
+          "branch": "claude/great-goldberg-f2za8c",
+          "sha": "48bb34e61f4c325e1bd59437f8bc90897602cfc5"
+        },
+        {
+          "branch": "development",
+          "sha": "48bb34e61f4c325e1bd59437f8bc90897602cfc5"
+        },
+        {
+          "branch": "main",
+          "sha": "48bb34e61f4c325e1bd59437f8bc90897602cfc5"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "full_name": "tannerryan/seriesoftubes",
+      "pushed_at": "2026-11-02T03:14:42Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "10e5ff0073eef8f630592ce1d07c945892898907",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "add3d67e48b701289be661c44d70ddf3a14031a4",
+      "branch_commits_after_merge_base": 3,
+      "comparison_commits_after_merge_base": 37,
+      "refs": [
+        {
+          "branch": "main",
+          "sha": "10e5ff0073eef8f630592ce1d07c945892898907"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "full_name": "hdecreis/seriesoftubes-hdc",
+      "pushed_at": "2026-11-02T00:52:31Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "add3d67e48b701289be661c44d70ddf3a14031a4",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "add3d67e48b701289be661c44d70ddf3a14031a4",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 37,
+      "refs": [
+        {
+          "branch": "cache-city-shares",
+          "sha": "528fdb6184ec3a1ff6ec7c29ff46a9967fda8819"
+        },
+        {
+          "branch": "main",
+          "sha": "add3d67e48b701289be661c44d70ddf3a14031a4"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "full_name": "ddryden/seriesoftubes",
+      "pushed_at": "2026-10-31T14:59:16Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "20c70f16e684fe76e3c9ee60b5e5adc75f4b9a37",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "20c70f16e684fe76e3c9ee60b5e5adc75f4b9a37",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 93,
+      "refs": [
+        {
+          "branch": "focus-link-on-inspect",
+          "sha": "29a5859354789a48825a67bda0eb692f989922f9"
+        },
+        {
+          "branch": "main",
+          "sha": "20c70f16e684fe76e3c9ee60b5e5adc75f4b9a37"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "full_name": "cookiesowns/seriesoftubes",
+      "pushed_at": "2026-10-31T06:51:58Z",
+      "stars": 0,
+      "default_branch": "main",
+      "default_sha": "664dd24bbd1d013ad5fe290c49287fba5b64135a",
+      "comparison_sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+      "merge_base": "664dd24bbd1d013ad5fe290c49287fba5b64135a",
+      "branch_commits_after_merge_base": 0,
+      "comparison_commits_after_merge_base": 130,
+      "refs": [
+        {
+          "branch": "main",
+          "sha": "664dd24bbd1d013ad5fe290c49287fba5b64135a"
+        }
+      ]
+    }
+  ],
+  "namedRepository": {
+    "repository": "https://github.com/thesysadmindev/SeriesOfTubesAU",
+    "default_branch": "main",
+    "head": "c650d84d0f79219e8b2249bae9bac3bbfe3b2d5e",
+    "head_url": "https://github.com/thesysadmindev/SeriesOfTubesAU/tree/c650d84d0f79219e8b2249bae9bac3bbfe3b2d5e",
+    "author": "Christopher Hawker",
+    "commit_date": "2026-11-03T21:27:43+11:00",
+    "merge_base_with_upstream_main": "b9183f1178bff126be9180824059d6bf45ad04e3"
+  },
+  "status": "owner-requested research and compatible implementation; canonical research reviews unchanged",
+  "observedOn": "2026-11-04"
+}

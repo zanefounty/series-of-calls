@@ -1,9 +1,0 @@
-{
-  "recordedAt": "2026-11-03T22:10:22.134013+00:00",
-  "endpoint": "repos/zanefounty/series-of-calls/actions/permissions/workflow",
-  "exitCode": 0,
-  "response": {
-    "default_workflow_permissions": "read",
-    "can_approve_pull_request_reviews": true
-  }
-}

@@ -1,3 +1,0 @@
-npm notice run series-of-calls@0.1.0-preview.1 evidence
-npm notice run python3 scripts/record-evidence.py
-Executed 455 acceptance cases; failures=0

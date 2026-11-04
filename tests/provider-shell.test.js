@@ -41,8 +41,8 @@ test('visible plan and operation quotes disclose engine forecast scope and valid
   w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');
   for(const [planId,expected] of [['swift',45000],['steady',75000]]){
    click(w,`[data-provider-action="quote"][data-offer="starter"][data-plan="${planId}"]`);const q=w.SOC_PROVIDER_UI.view().quote,text=w.document.querySelector('.provider-modal').textContent;
-   assert.equal(q.forecast.conditionalFullPlan.operatingResult,expected);assert.match(text,/Current operating forecast/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);
-   assert.ok(text.includes(w.SOCProviderHud.money(q.forecast.operatingResult)),'current forecast is still shown with its own label');assert.ok(text.includes(w.SOCProviderHud.money(expected)),'conditional full-plan value comes from the engine quote');assert.match(text,/Minimum term\s*3 periods/);assert.equal(calls.commands.length,0);
+   assert.equal(q.forecast.conditionalFullPlan.operatingResult,expected);assert.match(text,/With this commitment · before usage/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);
+   assert.ok(text.includes(w.SOCProviderHud.money(q.forecast.operatingResult)),'quoted-commitment forecast is shown with its own label');assert.ok(text.includes(w.SOCProviderHud.money(expected)),'conditional full-plan value comes from the engine quote');assert.match(text,/Minimum term\s*3 periods/);assert.equal(calls.commands.length,0);
    click(w,'[data-provider-action="cancel-quote"]');
   }
  }finally{w.close();}

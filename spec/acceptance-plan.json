@@ -745,6 +745,11 @@
     "tests/managed-operations-leaver-ui.test.js": [
       "AC-SOC-547",
       "AC-SOC-548"
+    ],
+    "tests/business-managed-scope-ui.test.js": [
+      "AC-SOC-550",
+      "AC-SOC-551",
+      "AC-SOC-552"
     ]
   },
   "inputs": [
@@ -1185,6 +1190,7 @@
     "tests/managed-operations-leaver.test.js",
     "tests/managed-leaver-integration.test.js",
     "tests/managed-operations-leaver-ui.test.js",
-    "tests/lib/managed-leaver-fixture.js"
+    "tests/lib/managed-leaver-fixture.js",
+    "tests/business-managed-scope-ui.test.js"
   ]
 }

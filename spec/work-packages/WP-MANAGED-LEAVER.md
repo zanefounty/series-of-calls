@@ -1,6 +1,6 @@
 # Managed identity retirement
 
-`BEH-SOC-379` and `AC-SOC-531`–`549` implement a bounded part of `uc-new:domain:provisioning` (`REQ-3ec2c90c193eeca4`). The Kurmi and VOSS source profiles provide broader context, but this shared workflow does not establish either distinct product portfolio. No original source joke is attached to this domain; existing narrative comparisons remain in their mapped roles.
+`BEH-SOC-379` and `AC-SOC-531`–`552` implement a bounded part of `uc-new:domain:provisioning` (`REQ-3ec2c90c193eeca4`). The Kurmi and VOSS source profiles provide broader context, but this shared workflow does not establish either distinct product portfolio. No original source joke is attached to this domain; existing narrative comparisons remain in their mapped roles.
 
 A managed participant can retire exactly one canonical identity and its entitlement. The player selects a customer, active managed-operations contract and effective user-deprovision connector, then explicitly confirms identity revocation. The complete configuration is a snapshot. The child estate dispatcher applies the change; completion and one typed managed-operation charge wait for the exact resulting resource generation to become effective and observed ready.
 
@@ -11,3 +11,5 @@ Active workforce assignments block retirement without modifying them. Connector 
 Real accepted channel history and delivery receipts remain inspectable after retirement. A subsequent attempt from the retired caller fails `UNKNOWN_CALLER`. Tests cover independent customers, delayed authority loss, exact contract expiry, new dependencies, actual active work and recovery, unobserved readiness, once-only settlement, save tampering, worker parity and pure inspection. A billed standalone child save cannot discard its managed approval while retaining the charge.
 
 This slice does not automate assigned-device, number or group-token retirement through the managed console. Such dependencies remain explicit requirements of the existing direct estate path. Public creation of arbitrary new operator grants is also outstanding: the executable journeys use the existing Orchard delegation and do not manufacture an alternative integrator grant in a fixture. Approval workflows, wider application offboarding, migration, source-specific supplier offers and full provisioning fidelity remain open.
+
+The business order console requires an explicit selection of covered resources for a managed-operations contract. Empty scope is rejected before dispatch, read-only tabs cannot submit, and other offer kinds retain their existing derived resource scope.

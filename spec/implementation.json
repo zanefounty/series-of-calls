@@ -6674,7 +6674,10 @@
         "AC-SOC-546",
         "AC-SOC-547",
         "AC-SOC-548",
-        "AC-SOC-549"
+        "AC-SOC-549",
+        "AC-SOC-550",
+        "AC-SOC-551",
+        "AC-SOC-552"
       ],
       "status": "partial",
       "scope": "Contract-scoped managed identity leavers retire exactly one identity and entitlement through the existing estate child dispatcher. Actual accepted history survives, new caller attempts fail, effective observed completion bills once, and delayed contract/authority/scope failures require an explicit bounded retry. Parent/child approval, resource generations and save/worker lineage are validated. This does not complete device/number/group retirement automation, arbitrary new operator grants, actor-specific product portfolios or full provisioning-source fidelity."

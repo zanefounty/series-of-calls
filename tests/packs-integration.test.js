@@ -1,6 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
 const E=require('../src/game/55-communications');
 const dispatch=(s,c)=>E.dispatch(s,c),advance=(s,minutes=1)=>dispatch(s,{type:'advance',minutes}),pack=(s,type,command)=>dispatch(s,{type,command});
+const completeVoice=s=>{const i=s.interactions.at(-1);return i?.phase==='connected'?advance(s,i.durationMinutes):s;};
 const ready=()=>advance(E.create(),1);
 const agent=(id,seat,skills=['service'],languages=['en'])=>({id,employer:'orchard-msp',skills,languages,shiftStart:0,shiftEnd:1440,available:true,digitalConcurrency:1,entitlements:[seat]});
 
@@ -45,8 +46,8 @@ test('AC-SOC-068 calling resolves tenants and forwarding, reports directional me
  const emergency={jurisdiction:'AU',routes:[{id:'route-one',tenant:'orchard-repairs',site:'main',carrier:'carrier',localDependency:'local',eligible:true}],notifications:[{route:'route-one',target:'phone'}]};
  for(const [node,config] of Object.entries({directory,services,media,emergency}))s=pack(s,'calling',{type:'configure',node,config});s=advance(s,1);
  s=dispatch(s,{type:'fault',id:'desk2',fault:'OUTAGE'});
- s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'forward-case'});assert.equal(s.interactions.at(-1).outcome,'CONNECTED');assert.ok(s.interactions.at(-1).trace.some(x=>x.code==='FORWARDED'));
- s=dispatch(s,{type:'interact',channel:'voice',from:'101',to:'202',caseId:'alias-entitlement-case'});assert.equal(s.interactions.at(-1).outcome,'CONNECTED');
+ s=completeVoice(dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'forward-case'}));assert.equal(s.interactions.at(-1).outcome,'CONNECTED');assert.ok(s.interactions.at(-1).trace.some(x=>x.code==='FORWARDED'));
+ s=completeVoice(dispatch(s,{type:'interact',channel:'voice',from:'101',to:'202',caseId:'alias-entitlement-case'}));assert.equal(s.interactions.at(-1).outcome,'CONNECTED');
  const identityConfig=structuredClone(s.resources.identity.desired);identityConfig.entitled=identityConfig.entitled.filter(x=>x!=='alex');s=dispatch(s,{type:'configure',id:'identity',config:identityConfig});s=advance(s,1);
  s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'unentitled-caller-case'});assert.equal(s.interactions.at(-1).outcome,'IDENTITY_OR_ENTITLEMENT');
  identityConfig.entitled.push('alex');s=dispatch(s,{type:'configure',id:'identity',config:identityConfig});s=advance(s,1);
@@ -55,7 +56,7 @@ test('AC-SOC-068 calling resolves tenants and forwarding, reports directional me
  s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'casey',caseId:'direct-federation-required'});assert.equal(s.interactions.at(-1).outcome,'FEDERATION_REQUIRED');
  const directoryConfig=structuredClone(s.calling.nodes.directory.desired);directoryConfig.federation.push({from:'orchard-repairs',to:'canopy-group'});s=pack(s,'calling',{type:'configure',node:'directory',config:directoryConfig});s=advance(s,1);
  s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'canopy-reception',caseId:'federated-group-case'});assert.equal(s.interactions.at(-1).outcome,'VOICEMAIL_STORED');assert.equal(s.calling.voicemail.length,messagesBefore+1);
- s=dispatch(s,{type:'fault',id:'carrier',fault:'OUTAGE'});s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'internal-carrier-independent'});assert.equal(s.interactions.at(-1).outcome,'CONNECTED');
+ s=dispatch(s,{type:'fault',id:'carrier',fault:'OUTAGE'});s=completeVoice(dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'internal-carrier-independent'}));assert.equal(s.interactions.at(-1).outcome,'CONNECTED');
  assert.throws(()=>dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'media-path-policy',media:{out:true,in:true}}),/INVALID_INTERACTION/);
  s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'bea',caseId:'quality-case',media:{jitterMs:40}});assert.equal(s.interactions.at(-1).outcome,'CALLING_MEDIA_JITTER_THRESHOLD');assert.equal(s.interactions.at(-1).callingMedia.outbound,false);
  s=dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'reception',caseId:'voicemail-case'});assert.equal(s.interactions.at(-1).phase,'failed');assert.equal(s.interactions.at(-1).outcome,'VOICEMAIL_STORED');assert.equal(s.calling.voicemail.filter(x=>x.mailbox==='mailbox-one').length,1);

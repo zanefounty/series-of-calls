@@ -5,7 +5,8 @@
     "channels": [
       "chatterleaf",
       "letterbox",
-      "casechat"
+      "casechat",
+      "workplace"
     ],
     "defaults": {
       "chatterleaf": {
@@ -54,12 +55,27 @@
         ],
         "sessionMinutes": 30,
         "localDependencyAvailable": true
+      },
+      "workplace": {
+        "workspace": "orchard-collaboration",
+        "authenticated": true,
+        "reachScope": "same-tenant",
+        "purposes": [
+          "service",
+          "transactional"
+        ],
+        "templates": [
+          "case-update",
+          "handoff-note"
+        ],
+        "retentionDays": 30,
+        "localDependencyAvailable": true
       }
     },
     "witty": {
-      "chatterleaf": "Chatterleaf Business — the reply window is a polite knock, not a battering ram.",
-      "letterbox": "Letterbox Service — the letter can arrive later; it does not become a read receipt by optimism.",
-      "casechat": "Casechat Web — a session key matters; a familiar case number is not one."
+      "chatterleaf": "Chatterleaf Business \u2014 the reply window is a polite knock, not a battering ram.",
+      "letterbox": "Letterbox Service \u2014 the letter can arrive later; it does not become a read receipt by optimism.",
+      "casechat": "Casechat Web \u2014 a session key matters; a familiar case number is not one."
     }
   },
   "sourceIds": [

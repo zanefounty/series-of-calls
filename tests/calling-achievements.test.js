@@ -24,7 +24,7 @@ test('AC-SOC-276 local speech goal needs retained recording lineage, completed w
  let s=provisions(SOC.create({scenario:'government'}));
  s=SOC.dispatch(s,{type:'configure',id:'speech',config:{region:'AU',licenceLocal:true,local:true}});
  s=advance(s);s=SOC.dispatch(s,{type:'information',command:{action:'start'}});s=advance(s);
- s=interact(s);assert.equal(s.records[0].kind,'recording');assert.equal(A.evaluate(s).goals['progress.goal.ca'].status,'incomplete');
+ s=interact(s);assert.equal(s.interactions.at(-1).phase,'connected');assert.equal(s.records.length,0);s=advance(s,3);assert.equal(s.records[0].kind,'recording');assert.equal(A.evaluate(s).goals['progress.goal.ca'].status,'incomplete');
  s=advance(s,12);assert.equal(s.information.jobs[0].status,'complete');
  assert.equal(A.evaluate(s).goals['progress.goal.ca'].status,'ready');
  const proof=A.evidence(s,'progress.goal.ca');assert.equal(proof.kind,'completed-local-speech-processing');assert.equal(A.validateEvidence(s,'progress.goal.ca',proof),true);
@@ -51,6 +51,7 @@ test('AC-SOC-277 gateway goal cannot pass on configuration or 200 OK alone; both
  assert.equal(A.evidence(bad,'progress.goal.pn'),null);
  s=SOC.dispatch(s,{type:'interact',channel:'voice',direction:'outbound',from:'alex',to:'+61255500201',caseId:'gateway-out'});
  s=SOC.dispatch(s,{type:'interact',channel:'voice',direction:'inbound',from:'+12125550199',to:'+61255500201',caseId:'gateway-in'});
+ s=advance(s,3);
  const proof=A.evidence(s,'progress.goal.pn');assert.ok(proof);assert.equal(proof.interactions.length,2);
  assert.equal(A.validateEvidence(s,'progress.goal.pn',proof),true);
 });

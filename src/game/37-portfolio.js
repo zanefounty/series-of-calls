@@ -1,7 +1,7 @@
 /* Concurrent customer portfolio over independently validated SOC roots. */
 function socPortfolioKernel(){
  'use strict';
- const PACK='soc-portfolio-1',VERSION=1,CONTENT='soc-portfolio-content-1',MAX_CUSTOMERS=20,MAX_CATCHUP_MINUTES=1440;
+ const PACK='soc-portfolio-1',VERSION=1,CONTENT='soc-portfolio-content-1',MAX_CUSTOMERS=20,MAX_CATCHUP_MINUTES=1440,MAX_JOURNAL=256;
  const copy=x=>JSON.parse(JSON.stringify(x)),own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
  const fail=code=>{throw new Error(code);},id=x=>typeof x==='string'&&/^[a-z][a-z0-9-]{0,47}$/.test(x),integer=x=>Number.isSafeInteger(x)&&x>=0;
  const markets=Object.freeze({
@@ -15,7 +15,21 @@ function socPortfolioKernel(){
  const forbiddenChildPacks=['portfolio','campaign','progression','marketQualification','managedOperations'];
  const childCommandTypes=['configure','add','interact','fault','connect','meeting','migrate','restore','business','operations','information','contact','estate','workforce','calling','products','channels','outcomes','transport','boundaries','issue-exercises','service-observation','specialist-lifecycle','site-operations','product-evidence','media-negotiation','shared-services','admission-security'];
  function pack(s){if(!s||s.pack!==PACK)fail('PORTFOLIO_NOT_STARTED');return s;}
- function create({clock=0}={}){if(!integer(clock))fail('INVALID_PORTFOLIO_CLOCK');return {pack:PACK,version:VERSION,contentVersion:CONTENT,clock,revision:0,selectedCustomer:null,customers:[],journal:[],nextId:1};}
+ function create({clock=0}={}){if(!integer(clock))fail('INVALID_PORTFOLIO_CLOCK');return {pack:PACK,version:VERSION,contentVersion:CONTENT,clock,revision:0,selectedCustomer:null,customers:[],journal:[],nextId:1,checkpoint:emptyCheckpoint()};}
+ function emptyCheckpoint(){return {throughId:0,throughAt:0,count:0,facts:{},digest:digest({throughId:0,throughAt:0,count:0,facts:{}})};}
+ function digest(x){let h=2166136261;const text=JSON.stringify(x);for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(16).padStart(8,'0');}
+ function sealCheckpoint(cp){const body={throughId:cp.throughId,throughAt:cp.throughAt,count:cp.count,facts:cp.facts};cp.digest=digest(body);return cp;}
+ function migrateKnown(s){
+  if(!s||typeof s!=='object'||Array.isArray(s))fail('INVALID_PORTFOLIO_STATE');
+  const out=copy(s);
+  if(!own(out,'checkpoint')){
+   if(Object.keys(out).some(k=>!['pack','version','contentVersion','clock','revision','nextId','selectedCustomer','customers','journal'].includes(k)))fail('INVALID_PORTFOLIO_STATE');
+   if(!integer(out.clock)||!Array.isArray(out.journal)||out.journal.length>2000||out.revision!==out.journal.length||out.nextId!==out.journal.length+1)fail('INVALID_PORTFOLIO_STATE');
+   if(out.journal.some((e,i)=>!e||e.id!==`portfolio-event-${i+1}`||!integer(e.at)||e.at>out.clock||typeof e.kind!=='string'||i>0&&e.at<out.journal[i-1].at))fail('INVALID_PORTFOLIO_JOURNAL');
+   const cp=emptyCheckpoint();for(const e of out.journal.slice(0,-MAX_JOURNAL))fold(cp,e);out.journal=out.journal.slice(-MAX_JOURNAL);out.checkpoint=cp;
+  }
+  return out;
+ }
  function exactFields(value,fields,code){if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).some(k=>!fields.includes(k)))fail(code);}
  function customer(s,key){const c=s.customers.find(x=>x.id===key);if(!c)fail('UNKNOWN_CUSTOMER');return c;}
  function verifyChild(root,config,hooks){
@@ -23,7 +37,7 @@ function socPortfolioKernel(){
   if(typeof hooks.validateCustomer==='function'&&hooks.validateCustomer(root)!==true)fail('PORTFOLIO_CUSTOMER_VALIDATION_FAILED');
  }
  function hasObligations(root,customerId,hooks={}){
-  if(root.interactions?.some(x=>['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked'].includes(x.phase)))return true;
+  if(root.interactions?.some(x=>['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked','connected'].includes(x.phase)))return true;
   if(root.business?.contracts?.some(x=>!['cancelled'].includes(x.status)))return true;
   if(root.business?.projects?.some(x=>['running','blocked'].includes(x.status)))return true;
   if(root.business?.loans?.some(x=>x.principal>0))return true;
@@ -34,7 +48,8 @@ function socPortfolioKernel(){
   if(typeof hooks.managedOperationsObligations==='function'){const pending=hooks.managedOperationsObligations(customerId);if(typeof pending!=='boolean')fail('CUSTOMER_OBLIGATIONS_UNAVAILABLE');if(pending)return true;}
   return false;
  }
- function append(s,kind,details={}){if(s.journal.length>=2000)fail('PORTFOLIO_JOURNAL_LIMIT');s.journal.push({id:`portfolio-event-${s.nextId++}`,at:s.clock,kind,...copy(details)});}
+ function fold(cp,e){cp.throughId=Number(e.id.slice('portfolio-event-'.length));cp.throughAt=e.at;cp.count++;cp.facts[e.kind]=(cp.facts[e.kind]||0)+1;sealCheckpoint(cp);}
+ function append(s,kind,details={}){s.journal.push({id:`portfolio-event-${s.nextId++}`,at:s.clock,kind,...copy(details)});if(s.journal.length>MAX_JOURNAL)fold(s.checkpoint,s.journal.shift());}
  function assertCommandEnvelope(s,next,command,oldClock){
   if(!next||next===s||!Array.isArray(next.commands)||!integer(next.revision)||next.clock!==oldClock)fail('PORTFOLIO_CUSTOMER_DISPATCH_INVALID');
   const delta=next.revision-s.revision,action=command.command?.action,derived=command.type==='service-observation'&&['inject-incident','recover-incident'].includes(action);
@@ -46,7 +61,7 @@ function socPortfolioKernel(){
  }
 
  function command(s,c,hooks={}){
-  pack(s);if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.action!=='string')fail('INVALID_PORTFOLIO_COMMAND');
+  if(s&&!own(s,'checkpoint')){const upgraded=migrateKnown(s);for(const k of Object.keys(s))delete s[k];Object.assign(s,upgraded);}pack(s);if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.action!=='string')fail('INVALID_PORTFOLIO_COMMAND');
   if(c.action==='addcustomer'){
    exactFields(c,['action','id','tenant','name','market','scenario'],'INVALID_PORTFOLIO_COMMAND');
    if(!id(c.id)||!id(c.tenant)||typeof c.name!=='string'||!c.name.trim()||c.name.length>100||!own(markets,c.market)||!scenarios.includes(c.scenario)||s.customers.length>=MAX_CUSTOMERS||s.customers.some(x=>x.id===c.id||x.tenant===c.tenant))fail('INVALID_PORTFOLIO_CUSTOMER');
@@ -77,17 +92,21 @@ function socPortfolioKernel(){
   s.revision++;return validate(s,hooks);
  }
  function advance(s,hooks={}){
-  pack(s);if(typeof hooks.dispatchCustomer!=='function')fail('PORTFOLIO_CUSTOMER_DISPATCH_REQUIRED');
+  if(s&&!own(s,'checkpoint')){const upgraded=migrateKnown(s);for(const k of Object.keys(s))delete s[k];Object.assign(s,upgraded);}pack(s);if(typeof hooks.dispatchCustomer!=='function')fail('PORTFOLIO_CUSTOMER_DISPATCH_REQUIRED');
   for(const row of s.customers.filter(x=>x.active)){
    const old=row.root,cmd={type:'advance',minutes:1},next=hooks.dispatchCustomer(old,cmd);
    if(!next||next===old||next.clock!==s.clock+1||!integer(next.revision)||next.revision!==old.revision+1||!Array.isArray(next.commands)||JSON.stringify(next.commands.at(-1)?.command)!==JSON.stringify(cmd))fail('PORTFOLIO_CUSTOMER_TICK_INVALID');
-   const cfg={...row,clock:s.clock+1};verifyChild(next,cfg,hooks);row.root=copy(next);row.clock=next.clock;
+   const cfg={...row,clock:s.clock+1};verifyChild(next,cfg,hooks);row.root=typeof hooks.adoptAdvancedCustomer==='function'?hooks.adoptAdvancedCustomer(next):copy(next);row.clock=next.clock;
   }
   s.clock++;s.revision++;append(s,'PORTFOLIO_TICK',{activeCustomers:s.customers.filter(x=>x.active).length});return validate(s,hooks);
  }
  function validate(s,hooks={}){
-  exactFields(s,['pack','version','contentVersion','clock','revision','nextId','selectedCustomer','customers','journal'],'INVALID_PORTFOLIO_STATE');
-  if(!s||s.pack!==PACK||s.version!==VERSION||s.contentVersion!==CONTENT||!integer(s.clock)||!integer(s.revision)||!integer(s.nextId)||!Array.isArray(s.customers)||s.customers.length>MAX_CUSTOMERS||!Array.isArray(s.journal)||s.journal.length>2000||s.revision!==s.journal.length||s.nextId!==s.journal.length+1)fail('INVALID_PORTFOLIO_STATE');
+  if(s&&own(s,'checkpoint'))exactFields(s,['pack','version','contentVersion','clock','revision','nextId','selectedCustomer','customers','journal','checkpoint'],'INVALID_PORTFOLIO_STATE');
+  else exactFields(s,['pack','version','contentVersion','clock','revision','nextId','selectedCustomer','customers','journal'],'INVALID_PORTFOLIO_STATE');
+  if(s&&!own(s,'checkpoint')){const old=migrateKnown(s);return validate(old,hooks);}
+  if(!s||s.pack!==PACK||s.version!==VERSION||s.contentVersion!==CONTENT||!integer(s.clock)||!integer(s.revision)||!integer(s.nextId)||!Array.isArray(s.customers)||s.customers.length>MAX_CUSTOMERS||!Array.isArray(s.journal)||s.journal.length>MAX_JOURNAL||s.revision!==s.nextId-1)fail('INVALID_PORTFOLIO_STATE');
+  const cp=s.checkpoint;if(!cp||typeof cp!=='object'||Array.isArray(cp)||Object.keys(cp).sort().join(',')!=='count,digest,facts,throughAt,throughId'||!integer(cp.throughId)||!integer(cp.throughAt)||cp.throughAt>s.clock||!integer(cp.count)||cp.count!==cp.throughId||!cp.facts||typeof cp.facts!=='object'||Array.isArray(cp.facts)||Object.entries(cp.facts).some(([k,v])=>!k||!integer(v)||v===0)||Object.values(cp.facts).reduce((a,b)=>a+b,0)!==cp.count||cp.digest!==digest({throughId:cp.throughId,throughAt:cp.throughAt,count:cp.count,facts:cp.facts}))fail('INVALID_PORTFOLIO_CHECKPOINT');
+  if(s.journal.length!==Math.min(MAX_JOURNAL,s.revision-cp.count)||s.nextId!==cp.throughId+s.journal.length+1)fail('INVALID_PORTFOLIO_STATE');
   const ids=new Set(),tenants=new Set();
   for(const c of s.customers){
    exactFields(c,['id','tenant','name','market','scenario','jurisdiction','clock','active','root'],'INVALID_PORTFOLIO_CUSTOMER_STATE');
@@ -97,7 +116,7 @@ function socPortfolioKernel(){
    if(typeof hooks.validateCustomer==='function'&&hooks.validateCustomer(c.root)!==true)fail('PORTFOLIO_CUSTOMER_VALIDATION_FAILED');
   }
   if(s.selectedCustomer!==null&&!ids.has(s.selectedCustomer))fail('INVALID_PORTFOLIO_SELECTION');
-  if(s.journal.some((e,i)=>!e||e.id!==`portfolio-event-${i+1}`||!integer(e.at)||e.at>s.clock||typeof e.kind!=='string'))fail('INVALID_PORTFOLIO_JOURNAL');
+  if(s.journal.some((e,i)=>!e||e.id!==`portfolio-event-${cp.throughId+i+1}`||!integer(e.at)||e.at>s.clock||typeof e.kind!=='string'||i===0&&e.at<cp.throughAt||i>0&&e.at<s.journal[i-1].at))fail('INVALID_PORTFOLIO_JOURNAL');
   return s;
  }
  function financials(s){
@@ -107,12 +126,12 @@ function socPortfolioKernel(){
   return {currency:'AUD',customers:rows,externalRevenueCents:sum('externalRevenueCents'),externalCostCents:sum('externalCostCents'),externalProfitCents:sum('externalProfitCents'),openingCapitalCents:sum('openingCapitalCents'),cashIncludingOpeningCapitalCents:sum('cashIncludingOpeningCapitalCents'),externalFundingCents:sum('externalFundingCents'),externalRepaidCents:sum('externalRepaidCents'),externalDebtCents:sum('externalDebtCents'),internalLedgerNetCents:sum('internalLedgerNetCents'),coreOperationalRevenueCents:sum('coreOperationalRevenueCents'),coreOperationalCostCents:sum('coreOperationalCostCents'),portfolioInternalCash:{tracked:false,cents:null}};
  }
  function inspect(s){
-  pack(s);return {pack:PACK,clock:s.clock,selectedCustomer:s.selectedCustomer,customers:s.customers.map(c=>({id:c.id,tenant:c.tenant,name:c.name,market:c.market,geography:markets[c.market].geography,jurisdiction:c.jurisdiction,scenario:c.scenario,active:c.active,rootClock:c.root.clock,revision:c.root.revision,acceptedContracts:(c.root.business?.contracts||[]).map(x=>({id:`${c.id}:${x.id}`,offer:x.offer,status:x.status,reasons:copy(x.reasons||[]),billedPeriods:x.billedPeriods})),openInteractions:(c.root.interactions||[]).filter(x=>['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked'].includes(x.phase)).map(x=>`${c.id}:${x.id}`)})),financials:financials(s)};
+  pack(s);return {pack:PACK,clock:s.clock,selectedCustomer:s.selectedCustomer,customers:s.customers.map(c=>({id:c.id,tenant:c.tenant,name:c.name,market:c.market,geography:markets[c.market].geography,jurisdiction:c.jurisdiction,scenario:c.scenario,active:c.active,rootClock:c.root.clock,revision:c.root.revision,acceptedContracts:(c.root.business?.contracts||[]).map(x=>({id:`${c.id}:${x.id}`,offer:x.offer,status:x.status,reasons:copy(x.reasons||[]),billedPeriods:x.billedPeriods})),openInteractions:(c.root.interactions||[]).filter(x=>['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked','connected'].includes(x.phase)).map(x=>`${c.id}:${x.id}`)})),financials:financials(s)};
  }
  function calculate(s){pack(s);const f=financials(s);return {pack:PACK,clock:s.clock,customerCount:s.customers.length,activeCustomerCount:s.customers.filter(x=>x.active).length,contractCount:s.customers.reduce((n,c)=>n+(c.root.business?.contracts||[]).filter(x=>x.status!=='cancelled').length,0),financials:f};}
  function fingerprint(s){return JSON.stringify({clock:s.clock,customers:s.customers.map(c=>({id:c.id,tenant:c.tenant,market:c.market,scenario:c.scenario,active:c.active,rootRevision:c.root.revision,rootClock:c.root.clock,config:Object.fromEntries(Object.entries(c.root.resources||{}).map(([id,r])=>[id,{generation:r.generation,desired:r.desired,effective:r.effective,fault:r.fault}]))}))});}
  const source=()=>`const SOC_PORTFOLIO=(${socPortfolioKernel.toString()})();`;
- return {PACK,VERSION,CONTENT,MAX_CUSTOMERS,MAX_CATCHUP_MINUTES,markets,scenarios,create,command,advance,validate,inspect,calculate,fingerprint,source,hasObligations};
+ return {PACK,VERSION,CONTENT,MAX_CUSTOMERS,MAX_CATCHUP_MINUTES,MAX_JOURNAL,markets,scenarios,create,command,advance,validate,migrateKnown,inspect,calculate,fingerprint,source,hasObligations};
 }
 const SOC_PORTFOLIO=socPortfolioKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PORTFOLIO;

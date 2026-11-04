@@ -15,7 +15,7 @@ async function main(){
   for(const viewport of [{width:1440,height:1000},{width:390,height:844},{width:844,height:390}]){
    report.stage='viewport-'+viewport.width;const context=await browser.newContext({viewport,acceptDownloads:true}),errors=[];
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>navigator.serviceWorker.controller);
-   await page.locator('[data-act=training]').click();await page.waitForFunction(()=>SCT.locked);
+   await page.locator('.provider-launch-actions [data-provider-action=training]').click();await page.waitForFunction(()=>SCT.locked);
    // Expanded failed requirements must remain readable without widening mobile pages.
    await page.locator('[data-biz=start]').click();await page.locator('[data-domain-start=campaign] button').click();
    const requirements=page.locator('#soc-domain-campaign > details').filter({has:page.locator('summary').filter({hasText:/^Requirements$/})});await requirements.locator('summary').click();
@@ -41,9 +41,9 @@ async function main(){
    assert.equal(await page.evaluate(()=>document.querySelector('#soc-console').scrollWidth<=innerWidth),true);
    const saved=await page.evaluate(()=>JSON.stringify(SCT.state));const downloadPromise=page.waitForEvent('download');await page.locator('[data-soc=export]').click();const download=await downloadPromise,exported=fs.readFileSync(await download.path(),'utf8');assert.deepEqual(JSON.parse(exported),JSON.parse(saved));
    const beforeImport=await page.evaluate(()=>SCT.seq);await page.locator('#soc-import').setInputFiles({name:'exercise.json',mimeType:'application/json',buffer:Buffer.from(exported)});await page.waitForFunction(before=>SCT.seq>before,beforeImport);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
-   const second=await context.newPage();await second.goto(url);await second.locator('[data-act=training]').click();await second.waitForFunction(()=>!!SCT.state);assert.equal(await second.evaluate(()=>SCT.locked),false);await second.close();
-   await page.reload();await page.locator('[data-act=training]').click();await page.waitForFunction(()=>SCT.locked);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
-   await context.setOffline(true);await page.reload();await page.locator('[data-act=training]').click();await page.waitForFunction(()=>SCT.locked);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
+   const second=await context.newPage();await second.goto(url);await second.locator('.provider-launch-actions [data-provider-action=training]').click();await second.waitForFunction(()=>!!SCT.state);assert.equal(await second.evaluate(()=>SCT.locked),false);await second.close();
+   await page.reload();await page.locator('.provider-launch-actions [data-provider-action=training]').click();await page.waitForFunction(()=>SCT.locked);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
+   await context.setOffline(true);await page.reload();await page.locator('.provider-launch-actions [data-provider-action=training]').click();await page.waitForFunction(()=>SCT.locked);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
    assert.equal(await page.evaluate(()=>!!navigator.serviceWorker.controller),true);await context.setOffline(false);
    fs.mkdirSync(out,{recursive:true});await page.screenshot({path:path.join(out,`training-${viewport.width}.png`),fullPage:true});assert.deepEqual(errors,[]);
    report.results.push({viewport,status:'passed',checks:['expanded-campaign-requirements-fit','configuration','worker','assessment','calling-workforce-estate-consoles','portfolio-market-products-lifecycle-consoles','transport-product-evidence-media-site-managed-shared-security-observation-consoles','responsive','save-reload','export-import','tab-lock','keyboard-topology','offline-reload']});await context.close();

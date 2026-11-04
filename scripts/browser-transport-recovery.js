@@ -61,7 +61,7 @@ async function visibleCommand(page,command){
  throw Error(`NO_VISIBLE_TRANSPORT_ACTION:${c.action}`);
 }
 async function setupPage(page,port,options){
- page.setDefaultTimeout(15000);await page.goto(`http://127.0.0.1:${port}/series-of-calls/`,{waitUntil:'domcontentloaded',timeout:20000});await page.locator('[data-act="training"]').click();await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:20000});
+ page.setDefaultTimeout(15000);await page.goto(`http://127.0.0.1:${port}/series-of-calls/`,{waitUntil:'domcontentloaded',timeout:20000});await page.locator('.provider-launch-actions [data-provider-action="training"]').click();await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:20000});
  await page.locator('#soc-scenario').selectOption(options.scenario);await page.locator('#soc-jurisdiction').selectOption(options.jurisdiction);await page.locator('#soc-mode').selectOption(options.mode||'guided');await page.locator('[data-soc="new"]').click();await page.waitForFunction(o=>SCT.state.scenario===o.scenario&&SCT.state.jurisdiction===o.jurisdiction&&SCT.state.clock===0,options,{timeout:15000});await waitIdle(page);
 }
 async function applyFixture(page,fixture){const expected=expandFixture(fixture);for(let i=0;i<expected.commands.length;i++){await visibleCommand(page,expected.commands[i]);const actual=await state(page);assert.deepEqual(actual,expected.states[i],`fixture command ${i+1} visible UI state`);}return expected;}
@@ -95,7 +95,7 @@ async function runHeadroomJourney(page,fixture){
 async function roundTrip(page,expected){
  const saved=await state(page);assert.deepEqual(saved,expected.state);const downloadPromise=page.waitForEvent('download');await page.locator('[data-soc="export"]').click();const download=await downloadPromise,raw=fs.readFileSync(await download.path(),'utf8');assert.deepEqual(JSON.parse(raw),saved,'visible export must match expected state');
  const before=await page.evaluate(()=>SCT.seq);await page.locator('#soc-import').setInputFiles({name:'transport-recovery.json',mimeType:'application/json',buffer:Buffer.from(raw)});await page.waitForFunction(seq=>SCT.seq>seq,before,{timeout:20000});await waitIdle(page);assert.deepEqual(await state(page),saved,'visible import must restore the exact state');
- await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-act="training"]').click();await page.waitForFunction(()=>SCT.locked,null,{timeout:20000});assert.deepEqual(await state(page),saved,'reload must retain the saved checkpoint');return {revision:saved.revision,stateSha256:sha(JSON.stringify(saved)),commands:saved.commands.length};
+ await page.reload({waitUntil:'domcontentloaded'});await page.locator('.provider-launch-actions [data-provider-action="training"]').click();await page.waitForFunction(()=>SCT.locked,null,{timeout:20000});assert.deepEqual(await state(page),saved,'reload must retain the saved checkpoint');return {revision:saved.revision,stateSha256:sha(JSON.stringify(saved)),commands:saved.commands.length};
 }
 function selectedMatrix(args){const engines=args.engine?[args.engine]:ENGINES,viewports=args.viewport?VIEWPORTS.filter(v=>v.id===args.viewport):VIEWPORTS;return engines.flatMap(engine=>viewports.map(viewport=>({engine,viewport})));}
 function outputPath(args,id){return path.resolve(args.output||process.env.SOC_TRANSPORT_BROWSER_OUTPUT||path.join(OUT_ROOT,id));}

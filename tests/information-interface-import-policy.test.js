@@ -41,7 +41,7 @@ test('AC-SOC-494 historical saves remain importable but stale capture evidence c
 test('AC-SOC-495 imported completed transfers cannot extend parent retention or broaden access',()=>{
  const complete=transfer(tick(info(record(ready({administration:true,restrictedCapture:false})),interfaceCommand(true))));
  assert.equal(complete.information.transfers.at(-1).status,'complete');
- assert.deepEqual(SOC.restore(JSON.stringify(complete)),complete);
+ assert.deepEqual(JSON.parse(JSON.stringify(SOC.restore(JSON.stringify(complete)))),JSON.parse(JSON.stringify(complete)));
  for(const mutate of [
   s=>{const [parent,copy]=[s.records[0],s.records.at(-1)];copy.expiresAt=parent.expiresAt+10000;},
   s=>s.records.at(-1).access.push('admin'),
@@ -75,5 +75,5 @@ test('AC-SOC-497 a previously completed transfer remains valid evidence after la
  const revised=contract(s,'source-environment','administration',['archive','recorder','room','local'],'internal');
  revised.flows.find(x=>x.resource==='recorder').informationClass='internal';
  s=observed(send(s,'boundaries',{action:'contract',contract:revised}),revised);s=tick(s);
- assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ assert.deepEqual(JSON.parse(JSON.stringify(SOC.restore(JSON.stringify(s)))),JSON.parse(JSON.stringify(s)));
 });

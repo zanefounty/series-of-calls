@@ -25,7 +25,7 @@ function boot(state){
 }
 function submitPageForm(h){h.submit('[data-managed-submit]');if(h.w.__uiError)throw Error(h.w.__uiError);}
 
-test('AC-SOC-314 managed leaver UI requires explicit identity revocation and submits only the captured identity retirement',()=>{
+test('managed leaver UI requires explicit identity revocation and submits only the captured identity retirement',()=>{
  const root=rootWithManagedPack(),before=root.portfolio.customers.find(x=>x.id==='managed-sydney').root.resources.identity.desired,h=boot(root),w=h.w,card=w.document.querySelector('[data-managed-customer="managed-sydney"]');
  assert.ok(card);assert.equal(card.querySelector('[data-managed-include]').disabled,false);
  const operation=card.querySelector('[data-managed-operation]');assert.deepEqual(Array.from(operation.options,x=>x.value),['joiner','mover','leaver']);operation.value='leaver';operation.dispatchEvent(new w.Event('change',{bubbles:true}));
@@ -40,7 +40,7 @@ test('AC-SOC-314 managed leaver UI requires explicit identity revocation and sub
  assert.equal(h.state().managedOperations.jobs[0].participants[0].operation,'leaver');assert.equal(w.__uiError,null);assert.deepEqual(h.errors,[]);w.close();
 });
 
-test('AC-SOC-315 managed leaver UI retries only a blocked unfinished item through the root dispatcher',()=>{
+test('managed leaver UI retries only a blocked unfinished item through the root dispatcher',()=>{
  let root=rootWithManagedPack();root=dispatch(root,{type:'managed-operations',command:{action:'submit',id:'managed-leaver-ui-retry',participants:[leaverParticipant(root)]}});
  root=dispatchChild(root,'managed-sydney',{type:'estate',command:{action:'fault',connector:'orchard-sync',fault:'OUTAGE'}});root=advance(root,1);root=dispatchChild(root,'managed-sydney',{type:'estate',command:{action:'fault',connector:'orchard-sync',fault:null}});
  const h=boot(root),w=h.w,job=w.document.querySelector('[data-managed-job="managed-leaver-ui-retry"]'),part=job.querySelector('[data-managed-participant="managed-sydney"]'),retry=part.querySelector('[data-managed-action="retry"]');

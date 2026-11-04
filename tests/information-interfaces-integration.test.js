@@ -54,12 +54,31 @@ test('AC-SOC-476 source storage generation changes require new capture evidence 
  s=info(s,{action:'cancel',booking:s.information.bookings[0].id});s=record(s);const captured=s.records.at(-1).id;
  s=transfer(s,captured);assert.equal(s.information.transfers.at(-1).status,'complete');assert.equal(s.records.at(-1).parents[0],captured);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+test('historical transferred records survive recorder reconfiguration while new copies require fresh capture lineage',()=>{
+ let s=ready();s=bind(s,contract(s,'capture-environment','restricted-operations',['recorder']));s=bind(s,contract(s,'source-environment','restricted-operations',['archive','room','local']));s=tick(s);
+ s=transfer(tick(info(record(s),interfaceCommand())));const original=s.records[0].id,receipt=structuredClone(s.information.transfers.at(-1)),copied=structuredClone(s.records.at(-1));
+ s=SOC.dispatch(s,{type:'configure',id:'recorder',config:{capacity:8}});s=tick(bind(s,contract(s,'capture-environment','restricted-operations',['recorder'],'internal')));
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);assert.deepEqual(s.records.find(r=>r.id===copied.id),copied);assert.deepEqual(s.information.transfers.find(r=>r.id===receipt.id),receipt);
+ const enforcement=SOC.calculate(s).boundaries.enforcement;assert.equal(enforcement.archive.eligible,true);assert.equal(enforcement['handover-archive'].eligible,true);
+ const before=JSON.stringify(s.records);s=transfer(s,original);assert.equal(s.information.transfers.at(-1).status,'blocked');assert.equal(s.information.transfers.at(-1).reason,'SOURCE_CAPTURE_LINEAGE_STALE');assert.equal(JSON.stringify(s.records),before);
+ s=info(s,{action:'cancel',booking:s.information.bookings[0].id});s=record(s);s=transfer(s,s.records.at(-1).id);assert.equal(s.information.transfers.at(-1).status,'complete');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
 test('AC-SOC-477 save validation rejects altered destination custody, lowered classification and removed successful transfer receipts',()=>{
  const s=transfer(tick(info(record(ready()),interfaceCommand())));
  for(const mutate of [x=>x.records.at(-1).storage.resourceId='archive',x=>x.records.at(-1).classification='internal',x=>x.information.transfers.pop()]){
   const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_/);
  }
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+test('retained transfer policy cannot be relabelled and survives legitimate interface revocation or policy reconfiguration',()=>{
+ const complete=transfer(tick(info(record(ready()),interfaceCommand()))),revoked=tick(info(complete,{action:'revoke-interface',interfaceId:'scenario-handover'}));
+ let reconfigured=bind(revoked,contract(revoked,'source-environment','administration',['archive','recorder','room','local'],'internal'));
+ reconfigured=tick(bind(reconfigured,contract(reconfigured,'destination-environment','training',['handover-archive'],'internal')));reconfigured=tick(info(reconfigured,interfaceCommand(true)));
+ assert.equal(reconfigured.information.interfaces[0].effective.policyId,'defence-admin-to-training-v1');
+ for(const original of [complete,revoked,reconfigured]){
+  assert.deepEqual(SOC.restore(JSON.stringify(original)),original);assert.equal(original.records.at(-1).interfaceTransfer.policyId,'defence-restricted-handover-v1');
+  const forged=structuredClone(original);forged.records.at(-1).interfaceTransfer.policyId='defence-admin-to-training-v1';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_TRANSFER_LINEAGE/);
+ }
 });
 test('AC-SOC-478 matching a forged origin receipt cannot downgrade the retained restricted capture contract',()=>{
  const s=tick(info(record(ready({administration:true})),interfaceCommand(true)));

@@ -48,7 +48,7 @@ test('AC-SOC-399 reference clock mapping preserves every minute for 1 through 14
  assert.throws(()=>runner.advanceButtonPlan(0),/INVALID_ADVANCE_MINUTES/);assert.throws(()=>runner.advanceButtonPlan(1441),/INVALID_ADVANCE_MINUTES/);
 });
 
-test('AC-SOC-399a interaction form commits its last field before the visible enabled pointer submit',async()=>{
+test('interaction form commits its last field before the visible enabled pointer submit',async()=>{
  const order=[],submit={waitFor:async options=>{order.push(`wait:${options.state}`);},isEnabled:async()=>{order.push('enabled');return true;},click:async options=>{order.push(`pointer:${options.timeout}`);}};
  const form={locator:selector=>selector==='button[type="submit"]'?submit:{press:async(key,options)=>{order.push(`key:${key}:${options.timeout}`);}}};
  const ready=await runner.prepareJourneySubmit(form,{channel:'voice',from:'alex',to:'+61255500201',caseId:'browser-case'});

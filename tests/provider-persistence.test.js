@@ -99,6 +99,12 @@ test('provider campaign saves and worker continuation preserve real projects, in
  s=SOC.dispatch(s,{type:'provider',requestId:`provider-${s.providerRequestSequence+1}`,command:{...repair,quoteRevision:s.revision}});
  const repairProject=s.providerCampaign.projects.findLast(x=>x.operationId==='repair');
  assert.equal(repairProject.status,'running');
+ const coachingRequest={action:'operation',operationId:'coaching',customerId:'starter-customer'},coachingQuote=SOC.provider.quote(s,coachingRequest);
+ assert.ok(coachingQuote.blockers.includes('SUPPORT_CAPACITY'),'repair reserves the only support seat while it is running');
+ const team=coachingQuote.commercial.staffing,resize={action:'staff',engineers:team.currentEngineers,support:team.currentSupport+1},resizeQuote=SOC.provider.quote(s,resize);
+ assert.deepEqual(resizeQuote.blockers,[]);
+ s=SOC.dispatch(s,{type:'provider',requestId:`provider-${s.providerRequestSequence+1}`,command:resize});
+ assert.equal(s.business.workforce.support,team.currentSupport+1,'player adds a real support seat to run concurrent repair and coaching work');
  sendOperation('coaching');
  const coachingProject=s.providerCampaign.projects.findLast(x=>x.operationId==='coaching');
  assert.equal(coachingProject.status,'running');

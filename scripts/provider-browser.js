@@ -5,6 +5,8 @@ const fs=require('node:fs');
 const path=require('node:path');
 const http=require('node:http');
 const assert=require('node:assert/strict');
+const crypto=require('node:crypto');
+const {execFileSync}=require('node:child_process');
 const productRecipes=require(path.resolve(__dirname,'../src/game/23-provider-products.js')).recipes;
 
 const ROOT=path.resolve(__dirname,'..');
@@ -13,6 +15,8 @@ const OUT=path.resolve(process.env.SOC_PROVIDER_BROWSER_OUT||'/tmp/soc-provider-
 const plans=[{plan:'swift',viewport:{width:1366,height:768},id:'swift-desktop'},{plan:'steady',viewport:{width:390,height:844},id:'steady-mobile'},{plan:'swift',viewport:{width:390,height:844},id:'swift-mobile'},{plan:'steady',viewport:{width:1366,height:768},id:'steady-desktop'}];
 const report={startedAt:new Date().toISOString(),runId:new Date().toISOString().replace(/[^0-9]/g,''),status:'running',browser:null,playwright:require('playwright-core/package.json').version,journeys:[],errors:[],scope:'Visible-control provider careers using the actual browser clock at 8x. State reads are observational; no state or clock mutation from evaluate.'};
 let server=null,browser=null,serverLog='';
+const SOURCES=['content/provider-campaigns.json','src/game/23-provider-products.js','src/game/24-provider-rules.js','src/game/25-provider-campaign.js','src/game/55-communications.js','src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js','src/game/98-provider-runtime.js','src/styles/98-provider.css','scripts/provider-browser.js','tests/provider-runtime.test.js'];
+function sourceManifest(){const hashes=Object.fromEntries(SOURCES.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,file))).digest('hex')]));return {head:execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT,encoding:'utf8'}).trim(),hashes};}
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function startServer(){
  const site=path.join(OUT,'provider-browser-site');fs.rmSync(site,{recursive:true,force:true});fs.cpSync(path.join(ROOT,'site'),site,{recursive:true});
@@ -146,8 +150,8 @@ async function runKeyboardJourney(baseUrl){
 }
 async function main(){
  fs.mkdirSync(OUT,{recursive:true});let baseUrl;
- try{baseUrl=await startServer();browser=await chromium.launch({executablePath:BROWSER,headless:true,args:['--no-sandbox']});report.browser=browser.version();report.baseUrl=baseUrl;const selected=process.env.SOC_PROVIDER_BROWSER_JOURNEYS?.split(',');for(const spec of plans.filter(x=>!selected||selected.includes(x.id)))await runJourney(baseUrl,spec);for(const scenario of ['enterprise','government','defence'])if(!selected||selected.includes(`mission-${scenario}`))await runMissionJourney(baseUrl,scenario);if(!selected||selected.includes('ownership-persistence'))await runOwnershipAndPersistence(baseUrl);if(!selected||selected.includes('keyboard-smb-opening'))await runKeyboardJourney(baseUrl);const productSelection=process.env.SOC_PROVIDER_BROWSER_PRODUCTS?.split(',');if(productSelection||!selected)for(const recipeId of productSelection||Object.keys(productRecipes))await runProductJourney(baseUrl,recipeId);report.status='passed';}
+ try{report.source=sourceManifest();baseUrl=await startServer();browser=await chromium.launch({executablePath:BROWSER,headless:true,args:['--no-sandbox']});report.browser=browser.version();report.baseUrl=baseUrl;const selected=process.env.SOC_PROVIDER_BROWSER_JOURNEYS?.split(',');for(const spec of plans.filter(x=>!selected||selected.includes(x.id)))await runJourney(baseUrl,spec);for(const scenario of ['enterprise','government','defence'])if(!selected||selected.includes(`mission-${scenario}`))await runMissionJourney(baseUrl,scenario);if(!selected||selected.includes('ownership-persistence'))await runOwnershipAndPersistence(baseUrl);if(!selected||selected.includes('keyboard-smb-opening'))await runKeyboardJourney(baseUrl);const productSelection=process.env.SOC_PROVIDER_BROWSER_PRODUCTS?.split(',');if(productSelection||!selected)for(const recipeId of productSelection||Object.keys(productRecipes))await runProductJourney(baseUrl,recipeId);report.status='passed';}
  catch(error){report.status='failed';report.error=String(error.stack||error);process.exitCode=1;}
- finally{if(browser)await browser.close();if(server?.listening)await new Promise(resolve=>server.close(resolve));report.serverLog=serverLog;report.finishedAt=new Date().toISOString();report.reportFile=path.join(OUT,`provider-browser-${report.runId}.json`);fs.writeFileSync(report.reportFile,JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(OUT,'provider-browser-latest.txt'),report.reportFile+'\n');console.log(JSON.stringify({status:report.status,output:OUT,report:report.reportFile,error:report.error?.split('\n')[0],journeys:report.journeys.map(x=>({id:x.id,status:x.status}))}));}
+ finally{if(browser)await browser.close();if(server?.listening)await new Promise(resolve=>server.close(resolve));report.serverLog=serverLog;report.finishedAt=new Date().toISOString();if(report.source){const after=sourceManifest();report.source.headAfter=after.head;report.source.hashesAfter=after.hashes;report.source.noSourceDrift=JSON.stringify(report.source.hashes)===JSON.stringify(after.hashes);}report.reportFile=path.join(OUT,`provider-browser-${report.runId}.json`);fs.writeFileSync(report.reportFile,JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(OUT,'provider-browser-latest.txt'),report.reportFile+'\n');console.log(JSON.stringify({status:report.status,output:OUT,report:report.reportFile,sourceDrift:report.source?.noSourceDrift,error:report.error?.split('\n')[0],journeys:report.journeys.map(x=>({id:x.id,status:x.status}))}));}
 }
 main();

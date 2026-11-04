@@ -1308,6 +1308,7 @@
     "tests/workforce-operations.test.js",
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
-    "tests/workforce-quality.test.js"
+    "tests/workforce-quality.test.js",
+    "src/game/23-provider-continuity.js"
   ]
 }

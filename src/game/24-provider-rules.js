@@ -730,6 +730,90 @@ function socProviderRulesKernel(){
         "uc-new:domain:commercial-roles",
         "uc-new:family:cisco:meetings-devices"
       ]
+    },
+    {
+      "id": "migration-consolidated",
+      "name": "Canopy consolidated cutover",
+      "description": "Replace the existing platform with a dedicated shared target and migrate both identities in one wave. Eight minutes and two engineers; the old platform generation retires, with a commissioning interruption and changed platform compatibility. Lower recurring support than coexistence.",
+      "setupCents": 160000,
+      "periodCents": 8000,
+      "workMinutes": 8,
+      "engineers": 2,
+      "support": 1,
+      "resources": [
+        "phone",
+        "desk"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:dedicated-premises",
+        "uc-new:domain:journeys"
+      ]
+    },
+    {
+      "id": "local-spares",
+      "name": "Wattle autonomy spares",
+      "description": "Fund local licensing and power spares: extend the authored offline autonomy from 30 to 60 minutes. Reserves an engineer and support person; cannot repair an external connection.",
+      "setupCents": 48000,
+      "periodCents": 4000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "local"
+      ],
+      "config": {},
+      "requirements": [
+        "local-deployment"
+      ],
+      "sourceIds": [
+        "uc-new:family:cisco:dedicated-premises"
+      ]
+    },
+    {
+      "id": "sync-records",
+      "name": "Reconcile captured records",
+      "description": "After reconnection, reconcile only captured service records. Unrecorded case work remains pending; synchronization never bills the same customer work again.",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "local",
+        "archive"
+      ],
+      "config": {},
+      "requirements": [
+        "local-deployment",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:journeys"
+      ]
+    },
+    {
+      "id": "sync-all",
+      "name": "Reconcile records and case work",
+      "description": "After reconnection, reconcile all retained captured records and case work for this customer. Costs more support time; no duplicate service revenue.",
+      "setupCents": 22000,
+      "periodCents": 0,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "local",
+        "archive"
+      ],
+      "config": {},
+      "requirements": [
+        "local-deployment",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:journeys"
+      ]
     }
   ],
   "families": [

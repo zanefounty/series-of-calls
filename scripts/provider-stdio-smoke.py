@@ -65,6 +65,12 @@ def journey(scenario, plan):
                     assert any(i['phase'] == 'resolved' and i.get('providerContext', {}).get('connected') is False for i in state['portfolio']['customers'][0]['root']['interactions'])
                 intent({'action': 'acknowledge-incident', 'incidentId': incident['id']})
                 operation('repair')
+                if scenario == 'defence':
+                    for _ in range(12):
+                        if state['portfolio']['customers'][0]['root']['connected']: break
+                        tick()
+                    assert state['portfolio']['customers'][0]['root']['connected'], 'repair must actually reconnect before synchronization'
+                    operation('sync-all')
             tick()
         periods = [h for h in state['providerCampaign']['periodHistory'] if h['qualified']][-2:]
         assert len(periods) == 2 and all(h['due'] == 24 and h['completedOnTime'] >= 22 and h['operatingResult'] > 0 for h in periods)

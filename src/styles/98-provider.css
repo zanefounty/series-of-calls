@@ -20,7 +20,7 @@
  .provider-hud{height:170px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:44px 48px 62px;gap:0;padding:4px;overflow:visible}
  .provider-brand{grid-column:1/-1;min-width:0!important;width:100%;min-height:44px;text-align:left;overflow:hidden}
  .provider-brand b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.provider-brand small{display:none}
- .provider-stat{min-width:0;height:48px;padding:0 4px}.provider-stat small{font-size:8px}.provider-stat strong{font-size:12px}
+ .provider-stat{min-width:0;height:48px;padding:0 4px}.provider-stat small{font-size:8px}.provider-stat strong{font-size:12px;white-space:normal;overflow-wrap:anywhere}
  .provider-time{grid-column:1/-1;align-items:stretch;gap:2px}.provider-time>strong{text-align:center}
  .provider-speed{display:grid;grid-template-columns:minmax(60px,1.3fr) repeat(5,minmax(44px,1fr));gap:3px}
  .provider-speed button{min-width:0;min-height:44px;padding:2px;font-size:11px}

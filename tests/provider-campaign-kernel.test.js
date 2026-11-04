@@ -148,6 +148,11 @@ test('enterprise, government and defence win only after their actual mission evi
   }
   send({action:'acknowledge-incident',incidentId:incident.id});
   operation('repair');
+  if(scenario==='defence'){
+   for(let minute=0;minute<12&&!s.portfolio.customers[0].root.connected;minute++)s=advance(s,1);
+   assert.equal(s.portfolio.customers[0].root.connected,true,'funded repair reconnects before reconciliation');
+   operation('sync-all');
+  }
   s=advance(s,180-s.clock);
   const periods=s.providerCampaign.periodHistory.filter(x=>x.qualified).slice(-2);
   assert.equal(periods.length,2,scenario+' two complete qualifying periods');

@@ -36,8 +36,14 @@ test('AC-SOC-528 workforce-offer UI provisions the fictional offer, repairs a fa
  for(const person of ['agent-a','agent-b']){const form=w.document.querySelector('[data-workforce-offers="bind"]');form.elements.person.value=person;h.submit('[data-workforce-offers="bind"]');}
  const forecast=w.document.querySelector('[data-workforce-offers="forecast"]');assert.equal(forecast.querySelector('fieldset').disabled,false);h.submit('[data-workforce-offers="forecast"]');
  const result=SOC.calculate(h.state()).workforceOffers.integration.forecasts.at(-1);assert.deepEqual(result.coveredPeople,['agent-a','agent-b']);assert.equal(result.arrivals,8);assert.equal(result.stale,false);
+ observe=w.document.querySelector('[data-workforce-offers="observe"]');observe.elements.supplierAvailable.value='true';observe.elements.applicationAvailable.value='true';h.submit('[data-workforce-offers="observe"]');
+ assert.equal(SOC.calculate(h.state()).workforceOffers.integration.bindings.every(binding=>!binding.eligible),true);
+ panel().querySelector('[data-workforce-offers-action="test"]').click();assert.equal(h.state().workforceOffers.integration.tests.at(-1).status,'passed');
+ const rebound=w.document.querySelector('[data-workforce-offers="bind"]');assert.equal(rebound.elements.person.querySelector('option[value="agent-a"]').textContent,'agent-a');rebound.elements.person.value='agent-a';h.submit('[data-workforce-offers="bind"]');
+ assert.equal(SOC.calculate(h.state()).workforceOffers.integration.bindings.find(binding=>binding.person==='agent-a').eligible,true);assert.equal(h.state().workforceOffers.integration.bindingHistory.some(binding=>binding.person==='agent-a'&&binding.reason==='replaced-stale-binding'),true);
+ const recoveredForecast=w.document.querySelector('[data-workforce-offers="forecast"]');h.submit('[data-workforce-offers="forecast"]');assert.deepEqual(SOC.calculate(h.state()).workforceOffers.integration.forecasts.at(-1).coveredPeople,['agent-a']);
  assert.deepEqual(h.state().resources.people.effective,beforePeople);assert.deepEqual(h.state().resources.phone.desired.routes,beforeRoutes);assert.deepEqual(h.state().workforceOps.roster.effective.map(x=>x.id),['agent-a','agent-b']);
- assert.deepEqual(h.commands().filter(x=>x.type==='workforce-offers').map(x=>x.command.action),['start','order','integrate','observe-integration','test-integration','observe-integration','test-integration','bind-person','bind-person','forecast']);assert.equal(h.error(),null);assert.deepEqual(h.h.errors,[]);w.close();
+ assert.deepEqual(h.commands().filter(x=>x.type==='workforce-offers').map(x=>x.command.action),['start','order','integrate','observe-integration','test-integration','observe-integration','test-integration','bind-person','bind-person','forecast','observe-integration','test-integration','bind-person','forecast']);assert.equal(h.error(),null);assert.deepEqual(h.h.errors,[]);w.close();
 });
 
 test('AC-SOC-529 workforce-offer UI is read-only when the save is unlocked and rendering does not mutate state',()=>{

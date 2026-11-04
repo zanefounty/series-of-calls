@@ -12,7 +12,7 @@ function leaverParticipant(root,customerId,options={}){
 }
 const submit=(root,participants,id='managed-identity-leaver')=>SOC.dispatch(root,{type:'managed-operations',command:{action:'submit',id,participants}});
 
-test('managed leaver uses one explicit identity revocation, waits for effective readiness, and settles once',()=>{
+test('AC-SOC-531 managed leaver uses one explicit identity revocation, waits for effective readiness, and settles once',()=>{
  let root=start(setup()),participant=leaverParticipant(root,'managed-sydney');
  root=submit(root,[participant]);
  const part=root.managedOperations.jobs[0].participants[0],row=root.portfolio.customers.find(x=>x.id==='managed-sydney');
@@ -26,7 +26,7 @@ test('managed leaver uses one explicit identity revocation, waits for effective 
  root=advance(root,1);assert.equal(child(root,'managed-sydney').business.managedCharges.length,1);assert.equal(SOC.validateState(root),root);
 });
 
-test('managed leaver rejects missing, extra, or multiple revocations without child mutation',()=>{
+test('AC-SOC-532 managed leaver rejects missing, extra, or multiple revocations without child mutation',()=>{
  const root=start(setup());
  for(const [revocations,id] of [[undefined,'missing'],[['identity','number'],'extra'],[['identity','identity'],'duplicate']]){
   const participant=leaverParticipant(root,'managed-sydney',{revocations});
@@ -39,7 +39,7 @@ test('managed leaver rejects missing, extra, or multiple revocations without chi
  assert.equal(child(root,'managed-sydney').estate.jobs.length,0);
 });
 
-test('managed leaver contracts must cover every concrete indirect resource returned by the hook',()=>{
+test('AC-SOC-533 managed leaver contracts must cover every concrete indirect resource returned by the hook',()=>{
  let root=start(setup());root=dispatchChild(root,'managed-sydney',{type:'calling',command:{action:'start'}});
  const row=root.portfolio.customers.find(x=>x.id==='managed-sydney');
  // A calling pack makes the child leaver hook require phone authority as well as identity.
@@ -47,4 +47,18 @@ test('managed leaver contracts must cover every concrete indirect resource retur
  root=submit(root,[participant],'leaver-indirect-scope');const submitted=root.managedOperations.jobs[0].participants[0];
  assert.equal(submitted.status,'blocked');assert.equal(submitted.reason,'MANAGED_CONTRACT_RESOURCE_SCOPE');
  assert.equal(child(root,'managed-sydney').estate.jobs.length,0);assert.deepEqual(child(root,'managed-sydney').resources.identity.desired.identities,['alex','bea']);
+});
+
+test('managed estate approval caps standalone retries and rejects imported attempt three',()=>{
+ const fixture=require('./lib/managed-leaver-fixture');let root=fixture.setup({history:false,workforce:true,scopes:['identity','people']});
+ root=fixture.nested(root,'leaver-a',{type:'interact',channel:'voice',from:'bea',to:'+61255500201',caseId:'retry-cap-active-work'});root=fixture.tick(root);
+ assert.equal(fixture.child(root).workforceOps.assignments[0].status,'voice');root=fixture.submit(root);root=fixture.tick(root);
+ let part=root.managedOperations.jobs[0].participants[0],job=fixture.child(root).estate.jobs.find(x=>x.id===part.childJobId);
+ assert.equal(part.items[0].reason,'WORKFORCE_ASSIGNMENT_ACTIVE');assert.equal(job.attempts,1);
+ root=fixture.retry(root);part=root.managedOperations.jobs[0].participants[0];job=fixture.child(root).estate.jobs.find(x=>x.id===part.childJobId);
+ assert.equal(part.retryCount,1);assert.equal(job.attempts,2);assert.equal(part.items[0].reason,'WORKFORCE_ASSIGNMENT_ACTIVE');
+ const command={type:'portfolio',command:{action:'dispatchcustomer',customerId:'leaver-a',command:{type:'estate',command:{action:'retry',job:job.id,managedApproval:structuredClone(job.managedApproval)}}}},before=JSON.stringify(root);
+ assert.throws(()=>fixture.apply(root,command),/MANAGED_LEAVER_RETRY_LIMIT/);assert.equal(JSON.stringify(root),before);
+ const standalone=structuredClone(fixture.child(root));standalone.estate.jobs.find(x=>x.id===job.id).attempts=3;
+ assert.throws(()=>SOC.restore(JSON.stringify(standalone)),/INVALID_JML_SAVE/);
 });

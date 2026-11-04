@@ -98,7 +98,7 @@ function socAdmissionSecurityKernel(){
   const e=event(root,'call-admission','SECURITY_CALL_ADMITTED',{interactionId:interaction.id,destination:ctx.destination,peerId:ctx.peerId,policyGenerations:generations(p)});p.admissions.push({interactionId:interaction.id,destination:ctx.destination,peerId:ctx.peerId,policyGenerations:generations(p),eventId:e.id,at:root.clock});return {...result,reservation:copy(reservation),eventId:e.id};
  }
  function admitUsage(root,interactionId,seconds=0){
-  const p=pack(root),r=p.reservations.find(x=>x.interactionId===interactionId),i=root.interactions?.find(x=>x.id===interactionId);if(!id(interactionId)||!r||!i||i.channel!=='voice'||!['queued','handling'].includes(i.phase)||!int(seconds,0,59))return {allowed:false,reason:'SECURITY_RESERVATION_REQUIRED'};
+  const p=pack(root),r=p.reservations.find(x=>x.interactionId===interactionId),i=root.interactions?.find(x=>x.id===interactionId);if(!id(interactionId)||!r||!i||i.channel!=='voice'||!['queued','handling','connected'].includes(i.phase)||!int(seconds,0,59))return {allowed:false,reason:'SECURITY_RESERVATION_REQUIRED'};
   if(r.usage.some(x=>x.minute===root.clock))return {allowed:false,reason:'SECURITY_DUPLICATE_MINUTE_USAGE'};
   const cfg=p.controls.destination.effective;if(!cfg?.enabled||!p.controls.destination.observed.available)return {allowed:false,reason:'DESTINATION_CONTROL_NOT_READY'};
   const callUsed=r.usage.reduce((n,x)=>n+x.cents,0);if(callUsed+2>cfg.perCallMaxCents){event(root,'call-usage','SECURITY_USAGE_BLOCKED',{interactionId,reason:'DESTINATION_CALL_LIMIT',destinationGeneration:p.controls.destination.effectiveGeneration});return {allowed:false,reason:'DESTINATION_CALL_LIMIT'};}

@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const E=require('../src/game/55-communications');
 const run=(s,cs)=>cs.reduce(E.dispatch,s);
+const finishCall=(s)=>{const i=s.interactions.at(-1);return i?.phase==='connected'?E.dispatch(s,{type:'advance',minutes:i.durationMinutes}):s;};
 const ready=(scenario='smb')=>E.dispatch(E.create({scenario}),{type:'advance',minutes:1});
 const cfg=(s,id,config)=>run(s,[{type:'configure',id,config},{type:'advance',minutes:1}]);
 const call=(s,extra={})=>E.dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'case-one',...extra});
@@ -17,8 +18,8 @@ test('AC-SOC-001 desired, provisioning, effective and observed state remain dist
 });
 test('AC-SOC-002 ordered routes, scoped extensions, identity and directional media',()=>{
  let s=ready();s=cfg(s,'phone',{routes:[{prefix:'+61',target:'desk'}]});
- assert.equal(call(s).interactions.at(-1).outcome,'CONNECTED');
- assert.equal(call(s,{to:'201'}).interactions.at(-1).outcome,'CONNECTED');
+ assert.equal(finishCall(call(s)).interactions.at(-1).outcome,'CONNECTED');
+ assert.equal(finishCall(call(s,{to:'201'})).interactions.at(-1).outcome,'CONNECTED');
  assert.equal(call(s,{from:'intruder'}).interactions.at(-1).outcome,'IDENTITY_OR_ENTITLEMENT');
  s=cfg(s,'carrier',{mediaIn:false});let i=call(s).interactions.at(-1);
  assert.equal(i.outcome,'ONE_WAY_MEDIA');assert.ok(i.trace.some(t=>t.code==='200_OK'));assert.deepEqual(i.media,{out:true,in:false});

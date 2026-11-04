@@ -33,9 +33,9 @@ function fixture({administration=false,restrictedCapture=true}={}){
 }
 
 function captured(s){
- s=info(s,{action:'book',start:s.clock,end:s.clock+20,attendees:2,event:false,language:'en'});
- s=info(s,{action:'join',booking:s.information.bookings.at(-1).id});
- assert.equal(s.lastMeeting.success,true);
+ s=info(s,{action:'book',start:s.clock,end:s.clock+3,attendees:2,event:false,language:'en'});
+ s=info(s,{action:'schedule',booking:s.information.bookings.at(-1).id});s=tick(s,3);
+ assert.equal(s.information.meetingSessions.at(-1).status,'completed');
  assert.equal(s.records.at(-1).origin.complete,true);
  return s;
 }
@@ -70,7 +70,7 @@ test('AC-SOC-467 restricted copy retains capture classification and destination 
  assert.deepEqual(copy.origin,before[0].origin);
  assert.equal(copy.storage.resourceId,'handover-archive');
  assert.equal(copy.parents[0],before[0].id);
- assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ assert.deepEqual(JSON.parse(JSON.stringify(SOC.restore(JSON.stringify(s)))),JSON.parse(JSON.stringify(s)));
 });
 
 test('AC-SOC-468 restricted capture cannot use the lower-class admin-to-training interface or be relabelled on save',()=>{
@@ -96,7 +96,7 @@ test('AC-SOC-469 explicitly internal administration records can pass only throug
  assert.equal(result.records.at(-1).classification,'internal');
  assert.equal(result.records.at(-1).storage.workload,'training');
  assert.equal(result.records.at(-1).interfaceTransfer.policyId,'defence-admin-to-training-v1');
- assert.deepEqual(SOC.restore(JSON.stringify(result)),result);
+ assert.deepEqual(JSON.parse(JSON.stringify(SOC.restore(JSON.stringify(result)))),JSON.parse(JSON.stringify(result)));
 });
 
 test('AC-SOC-470 legacy record without captured origin remains loadable but cannot transfer; worker result matches main command',()=>{

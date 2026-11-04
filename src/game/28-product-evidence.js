@@ -39,6 +39,7 @@ function socProductEvidenceKernel(){
   fail('INVALID_PRODUCT_EVIDENCE_COMMAND');
  }
  function businessQualification(root,resourceId){
+  const q=root.providerQualification;if(root.providerCustomer&&q&&q.scenario===root.scenario&&q.expires>root.clock&&q.expires===q.at+600)return {organisation:q.organisation,scenario:q.scenario,expires:q.expires,resourceId,eventId:q.eventId};
   const b=root.business,org=b?.player,sector=root.scenario,expires=b?.qualifications?.[org]?.[sector];if(!id(org)||!int(expires)||expires<=root.clock)return null;
   const rows=(b.events||[]).filter(e=>e.code==='QUALIFICATION_RECORDED'&&e.sector===sector&&e.fictional===true),last=rows.at(-1);if(!last||!int(last.clock)||expires!==last.clock+600)return null;
   return {organisation:org,scenario:sector,expires,resourceId,eventId:last.id};

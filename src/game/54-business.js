@@ -44,7 +44,7 @@ function socBusinessKernel(){
    grants:[{id:'customer-service',grantor:'customer',grantee:'orchard-msp',resources:Object.keys(s.resources).filter(x=>x!=='people'),actions:['configure','fault','migrate'],expires:s.clock+10000}],
    ownership:Object.fromEntries(Object.keys(s.resources).map(x=>[x,x==='people'?'orchard-msp':'customer'])),
    qualifications:{'orchard-msp':{smb:s.clock+10000,enterprise:s.clock+10000}},contracts:[],allowancePools:[],projects:[],loans:[],ledger:[],nextId:1,
-   balance:{opening:100000,cash:100000,revenue:0,cost:0,funding:0,repaid:0},workforce:{engineers:2,support:1,operator:'player',hourlyCents:100},
+   balance:{opening:100000,cash:100000,revenue:0,cost:0,funding:0,repaid:0},solvency:{status:'current',payable:0,firstArrearsAt:null,deadline:null,defaultedAt:null},workforce:{engineers:2,support:1,operator:'player',hourlyCents:100},
    metrics:{periods:0,offered:0,handled:0,repeated:0,credits:0},demand:{carry:0,multiplier:100},market:[],events:[],achievements:[],lastPeriod:s.clock,seed:s.seed};
  }
  function group(b,org){const seen=new Set();while(org){if(seen.has(org))fail('OWNERSHIP_CYCLE');if(org===b.player)return true;seen.add(org);org=b.organisations[org]?.parent;}return false;}
@@ -62,9 +62,23 @@ function socBusinessKernel(){
   else if(category==='funding'){b.balance.funding+=cents;b.balance.cash+=cents;}
   else if(category==='repayment'){b.balance.repaid+=cents;b.balance.cash-=cents;}
   else if(category!=='internal')fail('INVALID_LEDGER_CATEGORY');
+  if(category!=='internal')syncSolvency(b,s);
   if(!Object.values(b.balance).every(Number.isSafeInteger))fail('MONEY_OVERFLOW');
   b.ledger.push(row);if(b.ledger.length>1000){const removed=b.ledger.shift();b.ledgerPrunedThrough=Math.max(b.ledgerPrunedThrough||0,Number(removed.id.slice(6)));}return row.id;
  }
+ function postProvider(s,category,cents,details={}){
+  const b=s?.business;if(!s?.providerCampaign||!b||!['revenue','cost','funding','repayment'].includes(category)||!Number.isSafeInteger(cents)||cents<0||!details||typeof details!=='object'||Array.isArray(details)||['id','at','category','cents','currency'].some(k=>own(details,k)))fail('INVALID_PROVIDER_POSTING');
+  return post(b,s,category,cents,details);
+ }
+ function syncSolvency(b,s){
+  b.solvency??={status:'current',payable:0,firstArrearsAt:null,deadline:null,defaultedAt:null};
+  if(b.balance.cash<0){
+   b.solvency.payable=-b.balance.cash;
+   if(b.solvency.status==='current'){b.solvency.status='grace';b.solvency.firstArrearsAt=s.clock;b.solvency.deadline=s.clock+PERIOD;event(b,s.clock,'PAYMENT_ARREARS',{cents:b.solvency.payable,deadline:b.solvency.deadline});}
+  }else if(b.solvency.status==='default')b.solvency.payable=0;
+  else Object.assign(b.solvency,{status:'current',payable:0,firstArrearsAt:null,deadline:null,defaultedAt:null});
+ }
+ function ensureFunds(b,cents){if(!integer(cents,0)||b.solvency?.status!=='current'||b.balance.cash<cents)fail('INSUFFICIENT_FUNDS');}
  function readiness(s,c,services){
   const reasons=[],p=offers[c.offer];
   for(const kind of p.kinds){const matches=c.resources.filter(id=>s.resources[id]?.kind===kind);if(!matches.length)reasons.push('MISSING_PRODUCT:'+kind);}
@@ -94,10 +108,15 @@ function socBusinessKernel(){
   const shared=c.allowancePool?b.allowancePools.find(x=>x.id===c.allowancePool):null;
   const included=shared?c.sharedIncluded:p.allowance*c.quantity,overage=Math.max(0,c.usage-included);
   const retail=c.price+overage*p.overage,wholesale=p.wholesale*c.quantity+Math.max(0,c.usage)*Math.ceil(p.overage/2);
-  const internal=group(b,c.customer),costInternal=group(b,c.vendor);
-  if(c.sell)post(b,s,internal?'internal':'revenue',retail,{contract:c.id,period,unit:p.unit,quantity:c.quantity,usageUnit:p.usageUnit,usage:c.usage,included,overage});
-  post(b,s,costInternal?'internal':'cost',wholesale,{contract:c.id,period,unit:p.unit,quantity:c.quantity,usageUnit:p.usageUnit,usage:c.usage,reason:'wholesale'});
-  c.billedRetail+=c.sell?retail:0;c.billedPeriods++;c.termBilled++;c.usage=0;c.nextBill+=PERIOD;
+  const internal=group(b,c.customer),costInternal=group(b,c.vendor),history=c.periodHistory||{minutes:0,readyMinutes:0,usage:0};
+  const serviceMinutes=history.minutes||0,readyMinutes=history.readyMinutes||0,unavailableMinutes=Math.max(0,serviceMinutes-readyMinutes);
+  const baseCredit=c.sell&&serviceMinutes?Math.floor((c.price*unavailableMinutes)/serviceMinutes):0;
+  const netRetail=Math.max(0,retail-baseCredit);
+  if(c.sell)post(b,s,internal?'internal':'revenue',netRetail,{contract:c.id,period,unit:p.unit,quantity:c.quantity,usageUnit:p.usageUnit,usage:c.usage,included,overage,grossRetail:retail,serviceMinutes,readyMinutes,unavailableMinutes,serviceCredit:baseCredit,settlementBasis:'period-history-v1'});
+  post(b,s,costInternal?'internal':'cost',wholesale,{contract:c.id,period,unit:p.unit,quantity:c.quantity,usageUnit:p.usageUnit,usage:c.usage,reason:'wholesale',serviceMinutes,readyMinutes,unavailableMinutes,settlementBasis:'period-history-v1'});
+  c.settlements??=[];c.settlements.push({period,from:c.periodHistory?.from??s.clock-PERIOD,to:s.clock,serviceMinutes,readyMinutes,unavailableMinutes,usage:c.usage,included,overage,retail,serviceCredit:baseCredit,netRetail,wholesale,settledAt:s.clock,basis:'period-history-v1'});
+  if(c.settlements.length>100)c.settlements.shift();
+  c.billedRetail+=c.sell?retail:0;c.billedPeriods++;c.termBilled++;c.usage=0;c.periodHistory={from:s.clock,minutes:0,readyMinutes:0,usage:0};c.nextBill+=PERIOD;
  }
  function validateWorkforceCoachingReceipt(s,job){
   const b=s.business,r=job?.commercialReceipt,keys=['status','coachingId','person','skill','startedAt','unit','currency','cents','entryId'];
@@ -171,7 +190,7 @@ function socBusinessKernel(){
   const b=s.business;
   const c=b.contracts.find(c=>c.status==='active'&&offers[c.offer].usageUnit===unit&&(contractId===null||c.id===contractId));
   if(!c)return;
-  c.usage+=amount;
+  c.usage+=amount;c.periodHistory??={from:c.nextBill-PERIOD,minutes:0,readyMinutes:0,usage:0};c.periodHistory.usage=(c.periodHistory.usage||0)+amount;
   if(c.allowancePool){
    const pool=b.allowancePools.find(x=>x.id===c.allowancePool);
    if(!pool||!pool.everActivated)return;
@@ -225,10 +244,12 @@ function socBusinessKernel(){
    c.reasons=readiness(s,c,services);
    if(['provisioning','blocked'].includes(c.status)&&s.clock>=c.readyAt){c.reasons=readiness(s,c,services);c.status=c.reasons.length?'blocked':'active';if(c.status==='active')event(b,s.clock,'CONTRACT_READY',{contract:c.id});}
    if(['cancelled','renewal'].includes(c.status))continue;
+   c.periodHistory??={from:c.nextBill-PERIOD,minutes:0,readyMinutes:0,usage:0};
+   if(s.clock>c.periodHistory.from&&s.clock<=c.nextBill){c.periodHistory.minutes++;if(c.status==='active'&&!c.reasons.length)c.periodHistory.readyMinutes++;}
    if(s.clock>=c.nextBill){
     // Wholesale commitments remain payable while service is being repaired.
     bill(s,c);
-    if(c.sell&&(c.status!=='active'||c.reasons.length)){const credit=Math.floor(c.price/2);post(b,s,group(b,c.customer)?'internal':'revenue',-credit,{contract:c.id,reason:'service-credit'});c.credits+=credit;b.metrics.credits+=credit;}
+    const settled=c.settlements?.at(-1);if(c.sell&&settled?.serviceCredit){c.credits+=settled.serviceCredit;b.metrics.credits+=settled.serviceCredit;}
    }
    if(c.status==='active'&&s.clock>=c.renewAt){c.status='renewal';event(b,s.clock,'RENEWAL_DUE',{contract:c.id});}
   }
@@ -250,6 +271,7 @@ function socBusinessKernel(){
    if(w.operator!=='customer')post(b,s,'cost',(w.engineers+w.support)*w.hourlyCents,{reason:w.operator==='bpo'?'bpo-service':'staff',unit:'person-hour',quantity:w.engineers+w.support});
    for(const loan of b.loans)if(loan.principal>0)post(b,s,'cost',Math.ceil(loan.principal*loan.rateBps/10000),{reason:'interest',loan:loan.id,unit:'period'});
   }
+  if(b.solvency.status==='grace'&&s.clock>=b.solvency.deadline){b.solvency.status='default';b.solvency.defaultedAt=s.clock;event(b,s.clock,'PAYMENT_DEFAULT',{cents:b.solvency.payable,firstArrearsAt:b.solvency.firstArrearsAt});}
    if(assessment.passed&&tracks[s.scenario].offers.every(offer=>b.contracts.some(c=>c.offer===offer&&c.sell&&c.status==='active'&&c.billedPeriods>0))&&b.metrics.handled>0&&!b.achievements.includes('service-operator'))b.achievements.push('service-operator');
  }
  const fields={start:[],allowancePool:['id','customer','owner','currency','unit','periodMinutes','allowance'],amendAllowancePool:['pool','allowance'],order:['offer','quantity','unit','currency','resources','customer','supportOwner','price','sell','via','allowancePool','customerProfile'],cancel:['contract'],renew:['contract'],credit:['contract','cents'],qualify:['sector'],staff:['engineers','support','operator'],loan:['cents'],repay:['loan','cents'],acquire:['organisation'],transfer:['organisation','cents'],project:['resources','engineers','duration'],retryProject:['project'],revoke:['grant'],market:['event']};
@@ -277,17 +299,17 @@ function socBusinessKernel(){
    if(!integer(order.price)||!own(b.organisations,order.customer)||!own(b.organisations,order.supportOwner))fail('INVALID_CONTRACT');
    if(b.contracts.some(x=>x.offer===c.offer&&x.status!=='cancelled'&&(!pool||x.allowancePool!==pool.id)))fail('DUPLICATE_OFFER');
    if(p.usageUnit&&b.contracts.some(x=>x.status!=='cancelled'&&offers[x.offer].usageUnit===p.usageUnit&&x.resources.some(r=>c.resources.includes(r))))fail('OVERLAPPING_USAGE_CONTRACT');
-   const reasons=procurement(s,order,services);if(reasons.length)fail('PROCUREMENT:'+reasons.join(','));
+   const reasons=procurement(s,order,services);if(reasons.length)fail('PROCUREMENT:'+reasons.join(','));ensureFunds(b,p.setup);
    b.contracts.push(order);post(b,s,'cost',p.setup,{contract:order.id,reason:'implementation'});event(b,s.clock,'ORDER_ACCEPTED',{contract:order.id,readiness:false});
   }else if(['cancel','renew','credit'].includes(c.action)){
    const contract=b.contracts.find(x=>x.id===c.contract);if(!contract)fail('UNKNOWN_CONTRACT');
-   if(c.action==='cancel'){if(contract.status==='cancelled')fail('ALREADY_CANCELLED');if(contract.termBilled<3)post(b,s,'cost',(3-contract.termBilled)*offers[contract.offer].wholesale*contract.quantity,{contract:contract.id,reason:'minimum-term-exit'});contract.status='cancelled';}
-   if(c.action==='renew'){if(contract.status!=='renewal')fail('RENEWAL_NOT_DUE');if(b.market.some(e=>e.event==='vendor-retirement'&&e.offer===contract.offer))fail('OFFER_RETIRED');if(contract.price>tracks[s.scenario].budget*b.demand.multiplier/100)fail('RENEWAL_BUDGET');contract.renewAt=s.clock+PERIOD*3;contract.nextBill=s.clock+PERIOD;contract.termBilled=0;contract.status='provisioning';contract.readyAt=s.clock+1;if(contract.customerProfile)contract.customerProfileGeneration=s.customerNeeds.profiles.find(p=>p.id===contract.customerProfile).effective.generation;}
+   if(c.action==='cancel'){if(contract.status==='cancelled')fail('ALREADY_CANCELLED');if(contract.termBilled<3){const exitCost=(3-contract.termBilled)*offers[contract.offer].wholesale*contract.quantity;ensureFunds(b,exitCost);post(b,s,'cost',exitCost,{contract:contract.id,reason:'minimum-term-exit'});}contract.status='cancelled';}
+   if(c.action==='renew'){ensureFunds(b,0);if(contract.status!=='renewal')fail('RENEWAL_NOT_DUE');if(b.market.some(e=>e.event==='vendor-retirement'&&e.offer===contract.offer))fail('OFFER_RETIRED');if(contract.price>tracks[s.scenario].budget*b.demand.multiplier/100)fail('RENEWAL_BUDGET');contract.renewAt=s.clock+PERIOD*3;contract.nextBill=s.clock+PERIOD;contract.termBilled=0;contract.status='provisioning';contract.readyAt=s.clock+1;if(contract.customerProfile)contract.customerProfileGeneration=s.customerNeeds.profiles.find(p=>p.id===contract.customerProfile).effective.generation;}
    if(c.action==='credit'){if(!integer(c.cents,1)||c.cents>contract.billedRetail-contract.credits)fail('INVALID_CREDIT');post(b,s,group(b,contract.customer)?'internal':'revenue',-c.cents,{contract:contract.id,reason:'service-credit'});contract.credits+=c.cents;b.metrics.credits+=c.cents;}
   }else if(c.action==='qualify'){
    if(!['government','defence'].includes(c.sector)||c.sector!==s.scenario)fail('INVALID_QUALIFICATION');
    if(!assessment.passed)fail('QUALIFICATION_EVIDENCE_REQUIRED');
-   b.qualifications[b.player][c.sector]=s.clock+PERIOD*10;post(b,s,'cost',1000,{reason:'fictional-procurement-review'});event(b,s.clock,'QUALIFICATION_RECORDED',{sector:c.sector,fictional:true});
+   ensureFunds(b,1000);b.qualifications[b.player][c.sector]=s.clock+PERIOD*10;post(b,s,'cost',1000,{reason:'fictional-procurement-review'});event(b,s.clock,'QUALIFICATION_RECORDED',{sector:c.sector,fictional:true});
   }else if(c.action==='staff'){
    if(b.workforce.operator==='customer')fail('WORKFORCE_CUSTOMER_CONTROLLED');
    if(!integer(c.engineers,0,20)||!integer(c.support,0,20)||!['player','bpo','customer'].includes(c.operator))fail('INVALID_STAFF');
@@ -299,13 +321,13 @@ function socBusinessKernel(){
   }else if(c.action==='repay'){
    const loan=b.loans.find(l=>l.id===c.loan);if(!loan||!integer(c.cents,1)||c.cents>loan.principal||c.cents>b.balance.cash)fail('INVALID_REPAYMENT');loan.principal-=c.cents;post(b,s,'repayment',c.cents,{loan:loan.id});
   }else if(c.action==='acquire'){
-   const org=b.organisations[c.organisation];if(!org?.valuation||group(b,c.organisation)||b.balance.cash<org.valuation)fail('INVALID_ACQUISITION');post(b,s,'cost',org.valuation,{reason:'acquisition',organisation:c.organisation});org.parent=b.player;event(b,s.clock,'ACQUIRED',{organisation:c.organisation,obligationsPreserved:true});
+   const org=b.organisations[c.organisation];if(!org?.valuation||group(b,c.organisation))fail('INVALID_ACQUISITION');ensureFunds(b,org.valuation);post(b,s,'cost',org.valuation,{reason:'acquisition',organisation:c.organisation});org.parent=b.player;event(b,s.clock,'ACQUIRED',{organisation:c.organisation,obligationsPreserved:true});
   }else if(c.action==='transfer'){
    if(!group(b,c.organisation)||c.organisation===b.player||!integer(c.cents,1))fail('INVALID_INTERNAL_TRANSFER');post(b,s,'internal',c.cents,{organisation:c.organisation,reason:'consolidation-elimination'});
   }else if(c.action==='project'){
    if(!Array.isArray(c.resources)||!c.resources.length||c.resources.some(id=>!own(s.resources,id)||!authorise(s,id,'migrate'))||!integer(c.engineers,1,20)||!integer(c.duration,1,1440))fail('INVALID_PROJECT');
-   const allocated=b.projects.filter(p=>p.status==='running').reduce((n,p)=>n+p.engineers,0);if(allocated+c.engineers>b.workforce.engineers)fail('ENGINEER_CAPACITY');
-   b.projects.push({id:'project-'+b.nextId++,resources:[...c.resources],engineers:c.engineers,duration:c.duration,due:s.clock+c.duration,status:'running',checkpoint:Object.fromEntries(c.resources.map(id=>[id,copy(s.resources[id].desired)]))});post(b,s,'cost',c.engineers*c.duration*10,{reason:'project',unit:'engineer-minute',quantity:c.engineers*c.duration});
+   const allocated=b.projects.filter(p=>p.status==='running').reduce((n,p)=>n+p.engineers,0);if(allocated+c.engineers>b.workforce.engineers)fail('ENGINEER_CAPACITY');const projectCost=c.engineers*c.duration*10;ensureFunds(b,projectCost);
+   b.projects.push({id:'project-'+b.nextId++,resources:[...c.resources],engineers:c.engineers,duration:c.duration,due:s.clock+c.duration,status:'running',checkpoint:Object.fromEntries(c.resources.map(id=>[id,copy(s.resources[id].desired)]))});post(b,s,'cost',projectCost,{reason:'project',unit:'engineer-minute',quantity:c.engineers*c.duration});
   }else if(c.action==='retryProject'){
    const p=b.projects.find(x=>x.id===c.project);if(!p||p.status!=='blocked')fail('PROJECT_NOT_BLOCKED');const allocated=b.projects.filter(x=>x.status==='running').reduce((n,x)=>n+x.engineers,0);if(allocated+p.engineers>b.workforce.engineers)fail('ENGINEER_CAPACITY');p.status='running';p.due=s.clock+p.duration;
   }else if(c.action==='revoke'){
@@ -321,6 +343,8 @@ function socBusinessKernel(){
   if(!b||typeof b!=='object'||Array.isArray(b))fail('INVALID_CAMPAIGN');
   if(!own(b,'allowancePools'))b.allowancePools=[];
   else if(!Array.isArray(b.allowancePools))fail('INVALID_CAMPAIGN_COLLECTION');
+  if(!own(b,'solvency'))b.solvency={status:b.balance?.cash<0?'grace':'current',payable:Math.max(0,-(b.balance?.cash||0)),firstArrearsAt:b.balance?.cash<0?s.clock:null,deadline:b.balance?.cash<0?s.clock+PERIOD:null,defaultedAt:null};
+  else if(!b.solvency||typeof b.solvency!=='object'||Array.isArray(b.solvency))fail('INVALID_CAMPAIGN_SOLVENCY');
   if(!Array.isArray(b.contracts))fail('INVALID_CAMPAIGN_COLLECTION');
   for(const c of b.contracts){
    if(!c||typeof c!=='object'||Array.isArray(c))fail('INVALID_SAVED_CONTRACT');
@@ -328,6 +352,8 @@ function socBusinessKernel(){
    else if(c.allowancePool!==null&&typeof c.allowancePool!=='string')fail('INVALID_SAVED_CONTRACT');
    if(!own(c,'sharedIncluded'))c.sharedIncluded=0;
    else if(!integer(c.sharedIncluded))fail('INVALID_SAVED_CONTRACT');
+   if(!own(c,'periodHistory'))c.periodHistory={from:s.clock,minutes:0,readyMinutes:0,usage:0};
+   if(!own(c,'settlements'))c.settlements=[];
   }
   return s;
  }
@@ -335,7 +361,8 @@ function socBusinessKernel(){
   const b=s?.business;if(b===undefined||b===null||!b||typeof b!=='object'||Array.isArray(b))return s;
   const view={...b};
   if(!own(b,'allowancePools'))view.allowancePools=[];
-  if(Array.isArray(b.contracts))view.contracts=b.contracts.map(c=>c&&typeof c==='object'&&!Array.isArray(c)?{...c,...(!own(c,'allowancePool')?{allowancePool:null}:{}),...(!own(c,'sharedIncluded')?{sharedIncluded:0}:{})}:c);
+  if(!own(b,'solvency'))view.solvency={status:b.balance?.cash<0?'grace':'current',payable:Math.max(0,-(b.balance?.cash||0)),firstArrearsAt:b.balance?.cash<0?s.clock:null,deadline:b.balance?.cash<0?s.clock+PERIOD:null,defaultedAt:null};
+  if(Array.isArray(b.contracts))view.contracts=b.contracts.map(c=>c&&typeof c==='object'&&!Array.isArray(c)?{...c,...(!own(c,'allowancePool')?{allowancePool:null}:{}),...(!own(c,'sharedIncluded')?{sharedIncluded:0}:{}),...(!own(c,'periodHistory')?{periodHistory:{from:s.clock,minutes:0,readyMinutes:0,usage:0}}:{}),...(!own(c,'settlements')?{settlements:[]}:{})}:c);
   return {...s,business:view};
  }
  function validate(s,options={}){
@@ -359,13 +386,14 @@ function socBusinessKernel(){
   if(b.ledger.some(row=>['quality-review','quality-review-wholesale'].includes(row.reason)&&!b.qualityCharges?.some(charge=>charge.reviewId===row.reviewId&&charge.usageId===row.usageId&&(charge.entryId===row.id||charge.costEntryId===row.id))))fail('QUALITY_CHARGE_PROOF_MISSING');
   if(b.qualityCharges!==undefined&&(!Array.isArray(b.qualityCharges)||b.qualityCharges.length>500||new Set(b.qualityCharges.map(r=>r?.usageId)).size!==b.qualityCharges.length||new Set(b.qualityCharges.map(r=>r?.reviewId)).size!==b.qualityCharges.length||b.qualityCharges.some(r=>!validateQualityReceipt(s,r))))fail('INVALID_QUALITY_CHARGE');
   if(b.managedCharges!==undefined){if(!Array.isArray(b.managedCharges)||b.managedCharges.length>1000||new Set(b.managedCharges.map(x=>x.usageId)).size!==b.managedCharges.length)fail('INVALID_MANAGED_CHARGES');const first=Number((b.ledger[0]?.id||'entry-'+b.nextId).split('-')[1]);for(const r of b.managedCharges){const c=b.contracts.find(x=>x.id===r.contractId);if(!r||Object.keys(r).sort().join(',')!=='appliedGeneration,at,cents,contractId,costCategory,costCents,costEntryId,currency,customerId,entryId,jobId,operator,quantity,resource,status,unit,usageId'||r.status!=='posted'||!s.estate?.jobs.some(j=>j.id===r.jobId&&(['joiner','mover'].includes(j.operation)||j.operation==='leaver'&&j.managedApproval?.tenant===s.tenant&&j.managedApproval.contractId===r.contractId&&j.managedApproval.operator===r.operator)&&j.items.some(i=>i.resource===r.resource&&i.appliedGeneration===r.appliedGeneration&&i.status==='complete'))||!id(r.usageId)||!id(r.customerId)||!c||c.offer!=='managed-operations'||c.supportOwner!==r.operator||!c.resources.includes(r.resource)||!integer(r.appliedGeneration,1)||!s.resources[r.resource]||r.appliedGeneration>s.resources[r.resource].generation||r.unit!=='managed-operation'||r.quantity!==1||r.currency!=='AUD'||r.cents!==offers['managed-operations'].overage||r.costCents!==Math.ceil(r.cents/2)||!['cost','internal'].includes(r.costCategory)||!integer(r.at)||r.at>s.clock)fail('INVALID_MANAGED_CHARGE');for(const [key,category,cents] of [[r.entryId,'revenue',r.cents],[r.costEntryId,r.costCategory,r.costCents]]){if(!/^entry-[1-9]\d*$/.test(key)||Number(key.split('-')[1])>=b.nextId)fail('INVALID_MANAGED_CHARGE_LEDGER');const row=b.ledger.find(x=>x.id===key);if(!row){if(Number(key.split('-')[1])>=first)fail('MANAGED_CHARGE_LEDGER_MISSING');}else if(row.category!==category||row.cents!==cents||row.contract!==r.contractId||row.usageId!==r.usageId||row.resource!==r.resource||row.appliedGeneration!==r.appliedGeneration||row.unit!==r.unit||row.quantity!==1||row.currency!==r.currency||row.at!==r.at)fail('MANAGED_CHARGE_LEDGER_MISMATCH');}}}
-  if(!b.workforce||!integer(b.workforce.engineers,0,20)||!integer(b.workforce.support,0,20)||!['player','bpo','customer'].includes(b.workforce.operator)||b.workforce.hourlyCents!==100)fail('INVALID_CAMPAIGN_WORKFORCE');
+  if(!b.workforce||!integer(b.workforce.engineers,0,20)||!integer(b.workforce.support,0,20)||!['player','bpo','customer'].includes(b.workforce.operator)||b.workforce.hourlyCents!==(s.providerCampaign?10000:100))fail('INVALID_CAMPAIGN_WORKFORCE');
   if(!b.qualifications||Object.entries(b.qualifications).some(([org,sectors])=>!own(b.organisations,org)||!sectors||Object.entries(sectors).some(([sector,expires])=>!own(tracks,sector)||!integer(expires,0,Number.MAX_SAFE_INTEGER))))fail('INVALID_QUALIFICATIONS');
   if(!b.balance||!Object.values(b.balance).every(Number.isSafeInteger)||b.balance.cash!==b.balance.opening+b.balance.revenue-b.balance.cost+b.balance.funding-b.balance.repaid)fail('UNRECONCILED_CAMPAIGN_LEDGER');
+  if(!b.solvency||Object.keys(b.solvency).sort().join(',')!=='deadline,defaultedAt,firstArrearsAt,payable,status'||!['current','grace','default'].includes(b.solvency.status)||!Number.isSafeInteger(b.solvency.payable)||b.solvency.payable<0||b.solvency.payable!==Math.max(0,-b.balance.cash)||b.solvency.status==='current'&&(b.solvency.payable!==0||b.solvency.firstArrearsAt!==null||b.solvency.deadline!==null||b.solvency.defaultedAt!==null)||b.solvency.status==='grace'&&(!integer(b.solvency.firstArrearsAt)||b.solvency.firstArrearsAt>s.clock||!integer(b.solvency.deadline)||b.solvency.deadline!==b.solvency.firstArrearsAt+PERIOD||b.solvency.deadline<=s.clock||b.solvency.defaultedAt!==null)||b.solvency.status==='default'&&(!integer(b.solvency.defaultedAt)||b.solvency.defaultedAt<b.solvency.deadline||b.solvency.defaultedAt>s.clock||!integer(b.solvency.firstArrearsAt)||b.solvency.firstArrearsAt>s.clock||!integer(b.solvency.deadline)||b.solvency.deadline!==b.solvency.firstArrearsAt+PERIOD))fail('INVALID_CAMPAIGN_SOLVENCY');
   for(const p of b.allowancePools)if(!id(p.id)||!own(b.organisations,p.customer)||!b.organisations[p.customer].roles.includes('customer')&&!group(b,p.customer)||!own(b.organisations,p.owner)||!b.organisations[p.owner].roles.some(r=>['msp','integrator','bpo'].includes(r))||p.currency!==b.currency||!id(p.unit)||p.periodMinutes!==PERIOD||!integer(p.allowance,1,1000000)||!integer(p.effectiveAllowance,1,1000000)||!integer(p.desiredAllowance,1,1000000)||!['provisioning','active'].includes(p.status)||!integer(p.readyAt)||!integer(p.periodAnchor)||p.periodAnchor>p.readyAt||p.pendingEffectiveAt!==null&&!integer(p.pendingEffectiveAt)||typeof p.everActivated!=='boolean'||!integer(p.periodIndex)||!integer(p.remaining,0,p.allowance)||!integer(p.consumed,0,p.effectiveAllowance)||p.remaining+p.consumed!==p.effectiveAllowance||p.allowance!==p.effectiveAllowance||new Set(b.allowancePools.map(x=>x.id)).size!==b.allowancePools.length||p.status==='active'&&p.pendingEffectiveAt!==null||p.everActivated===false&&p.status!=='provisioning')fail('INVALID_SAVED_ALLOWANCE_POOL');
   for(const p of b.allowancePools)if(b.contracts.filter(c=>c.allowancePool===p.id).reduce((n,c)=>n+c.sharedIncluded,0)!==p.consumed||b.contracts.filter(c=>c.allowancePool===p.id).some(c=>c.sharedIncluded>c.usage))fail('INVALID_SAVED_ALLOWANCE_USAGE');
   for(const c of b.contracts)if(c.offer==='queueberry-quality'&&(c.price!==0||c.quantity!==1||c.sell!==true||c.customer!=='customer'))fail('INVALID_SAVED_QUALITY_CONTRACT');
-  for(const c of b.contracts)if(!id(c.id)||!own(offers,c.offer)||c.unit!==offers[c.offer].unit||c.currency!==b.currency||!integer(c.quantity,1,10000)||!integer(c.price)||!Array.isArray(c.resources)||c.resources.some(id=>!own(s.resources,id))||!['provisioning','blocked','active','renewal','cancelled'].includes(c.status)||!['usage','termBilled','billedPeriods','billedRetail','credits','nextBill','renewAt','readyAt'].every(k=>integer(c[k],0,Number.MAX_SAFE_INTEGER))||c.termBilled>c.billedPeriods||c.vendor!==offers[c.offer].vendor||!own(b.organisations,c.customer)||!own(b.organisations,c.supportOwner)||typeof c.sell!=='boolean'||!integer(c.sharedIncluded)||c.allowancePool!==null&&(!b.allowancePools.some(p=>p.id===c.allowancePool&&p.customer===c.customer&&p.owner===c.supportOwner&&p.currency===c.currency&&p.unit===offers[c.offer].usageUnit&&p.periodMinutes===PERIOD)))fail('INVALID_SAVED_CONTRACT');
+  for(const c of b.contracts)if(!id(c.id)||!own(offers,c.offer)||c.unit!==offers[c.offer].unit||c.currency!==b.currency||!integer(c.quantity,1,10000)||!integer(c.price)||!Array.isArray(c.resources)||c.resources.some(id=>!own(s.resources,id))||!['provisioning','blocked','active','renewal','cancelled'].includes(c.status)||!['usage','termBilled','billedPeriods','billedRetail','credits','nextBill','renewAt','readyAt'].every(k=>integer(c[k],0,Number.MAX_SAFE_INTEGER))||c.termBilled>c.billedPeriods||c.vendor!==offers[c.offer].vendor||!own(b.organisations,c.customer)||!own(b.organisations,c.supportOwner)||typeof c.sell!=='boolean'||!integer(c.sharedIncluded)||!c.periodHistory||!['from','minutes','readyMinutes','usage'].every(k=>integer(c.periodHistory[k],0,Number.MAX_SAFE_INTEGER))||c.periodHistory.readyMinutes>c.periodHistory.minutes||c.periodHistory.from>s.clock||!Array.isArray(c.settlements)||c.settlements.length>100||c.settlements.some(x=>!x||Object.keys(x).sort().join(',')!=='basis,from,included,netRetail,overage,period,readyMinutes,retail,serviceCredit,serviceMinutes,settledAt,to,unavailableMinutes,usage,wholesale'||x.basis!=='period-history-v1'||!['from','to','period','included','netRetail','overage','readyMinutes','retail','serviceCredit','serviceMinutes','settledAt','unavailableMinutes','usage','wholesale'].every(k=>integer(x[k],0,Number.MAX_SAFE_INTEGER))||x.readyMinutes>x.serviceMinutes||x.unavailableMinutes!==x.serviceMinutes-x.readyMinutes||x.netRetail!==Math.max(0,x.retail-x.serviceCredit)||x.settledAt>x.to||x.from>x.to)||c.allowancePool!==null&&(!b.allowancePools.some(p=>p.id===c.allowancePool&&p.customer===c.customer&&p.owner===c.supportOwner&&p.currency===c.currency&&p.unit===offers[c.offer].usageUnit&&p.periodMinutes===PERIOD)))fail('INVALID_SAVED_CONTRACT');
   const bindings=b.customerProfileBindings||[];
   if(!Array.isArray(bindings)||bindings.length>b.contracts.length||new Set(bindings.map(x=>x?.contract)).size!==bindings.length)fail('INVALID_CUSTOMER_PROFILE_BINDINGS');
   for(const binding of bindings){const c=b.contracts.find(c=>c.id===binding?.contract),profile=s.customerNeeds?.profiles.find(p=>p.id===binding?.profile);if(!binding||Object.keys(binding).sort().join(',')!=='contract,orderedGeneration,orderedRevision,profile'||!c||c.customerProfile!==binding.profile||!profile?.effective||!integer(binding.orderedGeneration,1)||binding.orderedGeneration>c.customerProfileGeneration||!integer(binding.orderedRevision,1,options.pendingRevision??s.revision))fail('INVALID_CUSTOMER_PROFILE_BINDINGS');const command=s.commands?.find(row=>row.revision===binding.orderedRevision)?.command;if(command&&(command.type!=='business'||command.command?.action!=='order'||command.command.customerProfile!==binding.profile||command.command.offer!==c.offer))fail('INVALID_CUSTOMER_PROFILE_BINDING_LINEAGE');}
@@ -378,10 +406,13 @@ function socBusinessKernel(){
  function calculate(s,assessment,services){
   const b=s.business;if(!b)return null;
   const outstanding=b.contracts.filter(c=>c.status!=='cancelled').map(c=>({id:c.id,status:c.status,reasons:services?readiness(s,c,services):c.reasons})).filter(c=>c.status!=='active'||c.reasons.length);
-  return {pack:b.pack,currency:b.currency,cash:b.balance.cash,profit:b.balance.revenue-b.balance.cost,debt:b.loans.reduce((n,l)=>n+l.principal,0),consolidatedOrganisations:Object.keys(b.organisations).filter(id=>group(b,id)),handled:b.metrics.handled,offered:b.metrics.offered,completion:b.achievements.includes('service-operator')&&!!assessment?.passed&&b.balance.cash>=0&&!outstanding.length&&tracks[s.scenario].offers.every(offer=>b.contracts.some(c=>c.offer===offer&&c.sell&&c.status==='active')),outstanding};
+  const recurringContracts=b.contracts.filter(c=>!['cancelled','renewal'].includes(c.status)),recurring=recurringContracts.reduce((sum,c)=>{const p=offers[c.offer];return {revenue:sum.revenue+(c.sell?c.price:0),wholesale:sum.wholesale+p.wholesale*c.quantity};},{revenue:0,wholesale:0});
+  const forecastVariableUsage=recurringContracts.filter(c=>offers[c.offer].usageUnit).map(c=>({contract:c.id,offer:c.offer,unit:offers[c.offer].usageUnit,includedAllowance:offers[c.offer].allowance*c.quantity,retailOveragePerUnit:offers[c.offer].overage,wholesaleOveragePerUnit:Math.ceil(offers[c.offer].overage/2)}));
+  const forecastStaff=b.workforce.operator==='customer'?0:(b.workforce.engineers+b.workforce.support)*b.workforce.hourlyCents,forecastOperatingCost=recurring.wholesale+forecastStaff;
+  return {pack:b.pack,currency:b.currency,cash:b.balance.cash,solvency:copy(b.solvency),profit:b.balance.revenue-b.balance.cost,debt:b.loans.reduce((n,l)=>n+l.principal,0),forecastRecurringRevenue:recurring.revenue,forecastRecurringWholesale:recurring.wholesale,forecastRecurringStaff:forecastStaff,forecastRecurringOperatingCost:forecastOperatingCost,forecastRecurringOperatingResult:recurring.revenue-forecastOperatingCost,forecastVariableUsage,consolidatedOrganisations:Object.keys(b.organisations).filter(id=>group(b,id)),handled:b.metrics.handled,offered:b.metrics.offered,completion:b.achievements.includes('service-operator')&&!!assessment?.passed&&b.balance.cash>=0&&!outstanding.length&&tracks[s.scenario].offers.every(offer=>b.contracts.some(c=>c.offer===offer&&c.sell&&c.status==='active')),outstanding};
  }
  const source=()=>`const SOC_BUSINESS=(${socBusinessKernel.toString()})();`;
- return {PACK,PERIOD,CURRENCY,offers,tracks,organisations,create,command,advance,meter,meterResource,workforceCoachingCost,validateWorkforceCoachingReceipt,qualityUsage,validateQualityReceipt,managedUsage,externalCost,authorise,migrateLegacy,validate,calculate,source};
+ return {PACK,PERIOD,CURRENCY,offers,tracks,organisations,create,command,advance,meter,meterResource,postProvider,workforceCoachingCost,validateWorkforceCoachingReceipt,qualityUsage,validateQualityReceipt,managedUsage,externalCost,authorise,migrateLegacy,validate,calculate,source};
 }
 const SOC_BUSINESS=socBusinessKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_BUSINESS;

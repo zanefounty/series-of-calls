@@ -119,7 +119,7 @@ def communications(report):
     client = Client("scripts/calls-mcp.js")
     try:
         names = client.initialize("series-of-calls")
-        assert names == {"new_exercise", "inspect", "command", "export_exercise", "import_exercise"}
+        assert names == {"new_provider_campaign", "provider_quote", "new_exercise", "inspect", "command", "export_exercise", "import_exercise"}
         for fixture in fixture_matrix():
             row = {"server": "communications", **fixture["options"]}
             try:

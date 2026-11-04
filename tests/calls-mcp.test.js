@@ -26,10 +26,10 @@ test('AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed J
  assert.equal(MCP.handle([]).error.code,-32600);
 });
 
-test('AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments',()=>{
+test('AC-SOC-354 tool list schemas describe the implemented tools and reject invalid arguments',()=>{
  const listed=request('tools/list',{},'list').result.tools;
- assert.deepEqual(listed.map(t=>t.name),['new_exercise','inspect','command','export_exercise','import_exercise']);
- MCP.tools[0].name='mutated-export';assert.deepEqual(request('tools/list',{},'list-after-mutation').result.tools.map(t=>t.name),['new_exercise','inspect','command','export_exercise','import_exercise']);
+ assert.deepEqual(listed.map(t=>t.name),['new_provider_campaign','provider_quote','new_exercise','inspect','command','export_exercise','import_exercise']);
+ MCP.tools[0].name='mutated-export';assert.deepEqual(request('tools/list',{},'list-after-mutation').result.tools.map(t=>t.name),['new_provider_campaign','provider_quote','new_exercise','inspect','command','export_exercise','import_exercise']);
  const create=listed.find(t=>t.name==='new_exercise').inputSchema;
  assert.equal(create.additionalProperties,false);assert.equal(create.properties.scenario.type,'string');assert.deepEqual(create.properties.scenario.enum,['smb','enterprise','government','defence']);
  assert.equal(listed.find(t=>t.name==='command').inputSchema.required.includes('command'),true);
@@ -80,4 +80,14 @@ test('AC-SOC-406 MCP discovers the speech pack and enforces its prerequisite and
  for(const type of ['products','information','speech-models'])assert.equal(tool('command',{command:{type,command:{action:'start'}}}).isError,undefined);
  const saved=state();assert.equal(saved.speechModels.pack,'soc-speech-models-1');assert.equal(value(tool('inspect')).observed.speechModels.pack,saved.speechModels.pack);
  assert.equal(tool('import_exercise',{json:JSON.stringify(saved)}).isError,undefined);assert.deepEqual(state(),saved);
+});
+
+
+test('PLAY-002 MCP provider quotes and commands share campaign authority and real treasury',()=>{
+ value(tool('new_provider_campaign',{providerName:'MCP Orchard',scenario:'smb'}));const before=state();
+ const q=value(tool('provider_quote',{request:{action:'purchase',offerId:'starter',planId:'swift',stage:'base'}}));assert.deepEqual(state(),before);
+ const bought=value(tool('command',{command:{type:'provider',requestId:'provider-1',command:{...q.request,quoteRevision:q.atRevision}}}));
+ assert.equal(bought.state.business.balance.cash,before.business.balance.cash-q.setupCents);
+ for(const command of [{type:'configure',id:'people',config:{people:99}},{type:'provider',command:{action:'purchase',offerId:'starter',planId:'swift',stage:'base',price:1}}])assert.equal(tool('command',{command}).isError,true);
+ assert.equal(state().business.balance.cash,bought.state.business.balance.cash);
 });

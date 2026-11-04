@@ -359,6 +359,132 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def managed_leavers(report):
+    script = """
+const {SOC,journey}=require('./tests/lib/managed-leaver-fixture');const rows=[];
+for(const jurisdiction of ['AU','US','JP','EU']){
+ const fixture=journey({jurisdiction,variant:'connector-recovery'});let blockedState=SOC.create(fixture.options);
+ for(const command of fixture.commands){if(command.type==='managed-operations'&&command.command.action==='retry')break;blockedState=SOC.dispatch(blockedState,command);}
+ rows.push({...fixture,blockedState});
+}
+console.log(JSON.stringify(rows));
+"""
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True, timeout=60))
+    client = Client("scripts/calls-mcp.js")
+    def selected_child(state):
+        return next(row["root"] for row in state["portfolio"]["customers"] if row["id"] == "leaver-a")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "managed-identity-leaver", **fixture["options"],
+                   "scope": "Synthetic identity-only managed leaver over two real portfolio customers; existing Orchard delegation only"}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                assert "leaver" in client.tool("inspect")["packs"]["managedOperations"]["operations"]
+                negatives = []
+                history = None
+                blocked_checked = False
+                for command in fixture["commands"]:
+                    if command["type"] == "managed-operations" and command["command"]["action"] == "submit":
+                        before = client.tool("export_exercise")
+                        child = selected_child(before)
+                        history = {"case": child["cases"]["historic-alex"], "acceptances": child["channels"]["acceptances"], "receipts": child["channels"]["receipts"]}
+                        invalid = json.loads(json.dumps(command))
+                        invalid["command"]["participants"][0]["items"][0]["revocations"] = ["number"]
+                        error = client.tool("command", {"command": invalid}, error=True)
+                        assert "INVALID_MANAGED_ITEM" in error
+                        assert client.tool("export_exercise") == before, "Wrong revocation changed root"
+                        negatives.append("wrong-revocation-command")
+                    if command["type"] == "managed-operations" and command["command"]["action"] == "retry":
+                        blocked = client.tool("export_exercise")
+                        assert blocked == fixture["blockedState"], "Blocked managed MCP differs from direct dispatch"
+                        part = blocked["managedOperations"]["jobs"][0]["participants"][0]
+                        child = selected_child(blocked)
+                        job = next(job for job in child["estate"]["jobs"] if job["id"] == part["childJobId"])
+                        assert part["items"][0]["status"] == "blocked" and part["items"][0]["reason"] == "CONNECTOR_FAULT"
+                        assert part["retryCount"] == 0 and job["attempts"] == 1
+                        assert "alex" in child["resources"]["identity"]["desired"]["identities"]
+                        assert not child["business"].get("managedCharges")
+                        inspected = client.tool("inspect")
+                        assert inspected["observed"]["managedOperations"]["jobs"][0]["status"] == "blocked"
+                        assert client.tool("inspect") == inspected, "Blocked managed inspection mutated state"
+                        for supplied in (False, True):
+                            retry_command = {"action": "retry", "job": job["id"]}
+                            if supplied:
+                                retry_command["managedApproval"] = job["managedApproval"]
+                            invalid = {"type": "portfolio", "command": {"action": "dispatchcustomer", "customerId": "leaver-a", "command": {"type": "estate", "command": retry_command}}}
+                            error = client.tool("command", {"command": invalid}, error=True)
+                            assert "MANAGED" in error
+                            assert client.tool("export_exercise") == blocked, "Child retry bypass changed root"
+                            negatives.append("direct-child-retry-with-approval" if supplied else "direct-child-retry-without-approval")
+                        for label in ("approval-tenant", "approval-operator", "approval-scope", "missing-approval", "child-attempt-counter", "parent-retry-counter"):
+                            forged = json.loads(json.dumps(blocked))
+                            forged_part = forged["managedOperations"]["jobs"][0]["participants"][0]
+                            forged_job = next(job for job in selected_child(forged)["estate"]["jobs"] if job["id"] == forged_part["childJobId"])
+                            if label == "approval-tenant":
+                                forged_job["managedApproval"]["tenant"] = "other-customer"
+                            elif label == "approval-operator":
+                                forged_job["managedApproval"]["operator"] = "grove-vendor"
+                            elif label == "approval-scope":
+                                forged_job["managedApproval"]["requiredResources"] = ["identity", "phone"]
+                            elif label == "missing-approval":
+                                del forged_job["managedApproval"]
+                            elif label == "child-attempt-counter":
+                                forged_job["attempts"] += 1
+                            else:
+                                forged_part["retryCount"] = 1
+                            error = client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                            assert "MANAGED" in error or "JML" in error, label + " failed outside managed lineage validation"
+                            assert client.tool("export_exercise") == blocked, label + " rejected import replaced root"
+                            negatives.append(label)
+                        client.tool("import_exercise", {"json": json.dumps(blocked)})
+                        assert client.tool("export_exercise") == blocked, "Valid blocked managed restore differs"
+                        blocked_checked = True
+                    client.tool("command", {"command": command})
+                assert blocked_checked and history is not None, "Managed recovery checkpoints were not reached"
+                actual = client.tool("export_exercise")
+                assert actual == fixture["expectedState"], "Managed leaver MCP differs from direct dispatch"
+                child = selected_child(actual)
+                part = actual["managedOperations"]["jobs"][0]["participants"][0]
+                assert part["status"] == "complete" and part["retryCount"] == 1
+                assert part["items"][0]["billingStatus"] == "posted"
+                assert "alex" not in child["resources"]["identity"]["effective"]["identities"]
+                assert "alex" not in child["resources"]["identity"]["effective"]["entitled"]
+                assert child["cases"]["historic-alex"] == history["case"]
+                assert child["channels"]["acceptances"] == history["acceptances"]
+                assert child["channels"]["receipts"] == history["receipts"]
+                assert child["interactions"][-1]["outcome"] == "UNKNOWN_CALLER"
+                assert "retired-alex" not in child["cases"]
+                charges = child["business"]["managedCharges"]
+                assert len(charges) == 1 and charges[0]["unit"] == "managed-operation" and charges[0]["quantity"] == 1
+                assert charges[0]["cents"] == 50 and charges[0]["costCents"] == 25
+                other = next(row["root"] for row in actual["portfolio"]["customers"] if row["id"] == "leaver-b")
+                assert "alex" in other["resources"]["identity"]["effective"]["identities"] and not other["business"].get("managedCharges")
+                inspected = client.tool("inspect")
+                assert inspected["observed"]["managedOperations"]["jobs"][0]["status"] == "complete"
+                assert inspected["observed"]["managedOperations"]["deferredUsage"] == []
+                assert client.tool("inspect") == inspected, "Completed managed inspection mutated state"
+                forged_child = json.loads(json.dumps(child))
+                del next(job for job in forged_child["estate"]["jobs"] if job["id"] == part["childJobId"])["managedApproval"]
+                error = client.tool("import_exercise", {"json": json.dumps(forged_child)}, error=True)
+                assert "MANAGED" in error
+                assert client.tool("export_exercise") == actual, "Standalone approval removal replaced portfolio root"
+                negatives.append("standalone-billed-child-missing-approval")
+                client.tool("new_exercise", fixture["options"])
+                client.tool("import_exercise", {"json": json.dumps(actual)})
+                assert client.tool("export_exercise") == actual, "Completed managed save restore differs"
+                row.update(status="passed", commands=len(fixture["commands"]), rejectedMutations=negatives,
+                           checks=["two-customer-isolation", "historic-accepted-case-and-delivery-retained", "connector-outage-hold",
+                                   "explicit-single-managed-retry", "effective-identity-and-entitlement-removal", "new-unknown-caller",
+                                   "one-observed-managed-charge", "direct-dispatch-equivalence", "inspection-purity",
+                                   "wrong-revocation-atomicity", "approval-and-retry-import-atomicity", "standalone-billing-approval-bound", "save-restore"])
+            except Exception as error:
+                row.update(status="failed", error=str(error))
+            report["results"].append(row)
+    finally:
+        client.close()
+
+
 def completion_packs(report):
     client = Client("scripts/calls-mcp.js")
     row = {"server": "communications-customer-attendance-callback", "status": "running"}
@@ -523,10 +649,10 @@ def main():
     parser.add_argument("--campaigns", action="store_true", help="Also execute all four campaign tracks through renewal in every jurisdiction and mode")
     args = parser.parse_args()
     report = {"checkedAt": datetime.now(timezone.utc).isoformat(), "status": "running", "results": [],
-        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces and four workforce-offer journeys. Not full campaign/source or browser acceptance.",
+        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -538,11 +664,12 @@ def main():
         customer_fit(report)
         information_interfaces(report)
         workforce_offers(report)
+        managed_leavers(report)
         if args.campaigns:
             full_campaigns(report)
-            report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
+            report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer and managed-leaver journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (80 if args.campaigns else 68), "Incomplete smoke matrix"
+        assert len(report["results"]) == (84 if args.campaigns else 72), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

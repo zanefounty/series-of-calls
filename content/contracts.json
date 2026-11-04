@@ -10,7 +10,8 @@
     "room",
     "GB",
     "processor-minute",
-    "managed-operation"
+    "managed-operation",
+    "quality-review"
   ],
   "products": [
     {

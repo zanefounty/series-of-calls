@@ -49,3 +49,5 @@ The user's explicit direction is to transpose the original witty comparisons, no
 Names, incident flavour, offers and descriptions may be witty; diagnostics must still expose the exact synthetic dependency, decision, unit and recovery option. Avoid jokes about real customers, protected groups, government eligibility or actual emergencies. Preserve original prose in the source pack and register new wording alongside its source, rationale and review status. Do not mark every joke transposed merely because the source text is present in an appendix.
 
 Research additions: [Cisco VoIP issues](WP-CISCO-VOIP-ISSUES.md), [VoiceOps issues](WP-VOICEOPS-ISSUES.md), [all 94 proposed product/actor/domain profiles](WP-PRODUCT-PROFILES.md). These are specified proposals and obligations, not completion dispositions.
+
+The [fork-inspired transport contract](WP-FORK-TRANSPORT.md) adds explicit leased-IP recovery and measured capacity upgrades with independent seeded gameplay and campaign-scope checks. Pinned fork concepts and pending adaptations are indexed in [the fork research](../../research/forks/README.md).

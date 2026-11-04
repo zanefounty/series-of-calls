@@ -54109,11 +54109,14 @@
       "scripts/lib/campaign-ui.js",
       "scripts/mcp-smoke.py",
       "src/game/26-customer-needs.js",
+      "src/game/37-transport-headroom.js",
+      "src/game/42-transport.js",
       "src/game/45-products.js",
       "src/game/49-workforce.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/72-customer-needs-ui.js",
+      "src/game/86-domain-admin-ui.js",
       "src/game/90-service-admin-ui.js",
       "src/game/98-business-ui.js",
       "tests/products.test.js"
@@ -54131,7 +54134,8 @@
       "BEH-SOC-368",
       "BEH-SOC-372",
       "BEH-SOC-374",
-      "BEH-SOC-381"
+      "BEH-SOC-381",
+      "BEH-SOC-383"
     ]
   },
   {
@@ -60005,13 +60009,21 @@
     ],
     "statement": "- Network bandwidth and quality.",
     "representation": "REP-c1d4005520cc3d2d",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/37-transport-headroom.js",
+      "src/game/42-transport.js",
+      "src/game/55-communications.js",
+      "src/game/86-domain-admin-ui.js"
+    ],
     "acceptance": [
       "AC-c1d4005520cc3d2d"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-382",
+      "BEH-SOC-383"
+    ]
   },
   {
     "id": "REQ-56999348230bde2c",

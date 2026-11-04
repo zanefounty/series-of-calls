@@ -10,11 +10,13 @@ const SOC_SERVICE_ADMIN_LABELS={
 const socServiceAdminT=(key,vars)=>tr(SOC_SERVICE_ADMIN_LABELS[key]||key,vars);
 const socServiceAdminEscape=x=>esc(String(x??''));
 const socServiceAdminClone=x=>JSON.parse(JSON.stringify(x));
+const SOC_SERVICE_ADMIN_FIELD_LABELS={newPersonId:'personId',newEmployer:'employer',newSkills:'skills',newLanguages:'languages',newShiftStart:'shiftStart',newShiftEnd:'shiftEnd',newBreakStart:'breakStart',newBreakEnd:'breakEnd',newConcurrency:'concurrency',newEntitlements:'entitlements',newAvailable:'available'};
+const socServiceAdminFieldLabel=key=>SOC_SERVICE_ADMIN_FIELD_LABELS[key]||key;
 const socServiceAdminOptions=(values,chosen,labels={})=>(values||[]).map(v=>`<option value="${socServiceAdminEscape(v)}"${String(v)===String(chosen)?' selected':''}>${socServiceAdminEscape(labels[v]||v)}</option>`).join('');
-const socServiceAdminText=(key,value='',attrs='')=>`<label>${socServiceAdminT(key)}<input name="${key}" value="${socServiceAdminEscape(value)}" ${attrs}></label>`;
-const socServiceAdminNumber=(key,value,min=0,max=100000)=>`<label>${socServiceAdminT(key)}<input name="${key}" type="number" min="${min}" max="${max}" step="1" value="${value}" required></label>`;
-const socServiceAdminOptionalNumber=(key,value,min=0,max=100000)=>`<label>${socServiceAdminT(key)}<input name="${key}" type="number" min="${min}" max="${max}" step="1" value="${value??''}"></label>`;
-const socServiceAdminCheck=(key,checked=false)=>`<label class="soc-toggle"><input name="${key}" type="checkbox"${checked?' checked':''}>${socServiceAdminT(key)}</label>`;
+const socServiceAdminText=(key,value='',attrs='')=>`<label>${socServiceAdminT(socServiceAdminFieldLabel(key))}<input name="${key}" value="${socServiceAdminEscape(value)}" ${attrs}></label>`;
+const socServiceAdminNumber=(key,value,min=0,max=100000)=>`<label>${socServiceAdminT(socServiceAdminFieldLabel(key))}<input name="${key}" type="number" min="${min}" max="${max}" step="1" value="${value}" required></label>`;
+const socServiceAdminOptionalNumber=(key,value,min=0,max=100000)=>`<label>${socServiceAdminT(socServiceAdminFieldLabel(key))}<input name="${key}" type="number" min="${min}" max="${max}" step="1" value="${value??''}"></label>`;
+const socServiceAdminCheck=(key,checked=false)=>`<label class="soc-toggle"><input name="${key}" type="checkbox"${checked?' checked':''}>${socServiceAdminT(socServiceAdminFieldLabel(key))}</label>`;
 const socServiceAdminSelect=(key,values,chosen,labels={})=>`<label>${socServiceAdminT(key)}<select name="${key}">${socServiceAdminOptions(values,chosen,labels)}</select></label>`;
 const socServiceAdminButton=(key,action,disabled=false)=>`<button type="submit" data-sa-action="${action}"${disabled?' disabled':''}>${socServiceAdminT(key)}</button>`;
 const socServiceAdminList=x=>String(x||'').split(',').map(v=>v.trim()).filter(Boolean);

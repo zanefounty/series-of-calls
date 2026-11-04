@@ -26,6 +26,9 @@ function jobRow(h,id){const row=h.w.document.querySelector(`[data-coaching-job="
 
 test('AC-SOC-590 coaching admin history shows typed posted charge and one ledger receipt through delayed completion',()=>{
  const h=boot(prepared()),beforeBalance=h.state().business.balance.cash;
+ const addPerson=[...h.w.document.querySelectorAll('[data-sa-form="roster"] fieldset fieldset')].find(x=>x.querySelector('legend')?.textContent==='Add person');assert.ok(addPerson,'add-person editor should be visible');
+ const addPersonLabels={newPersonId:'Person ID',newEmployer:'Employer organisation',newSkills:'Skills (comma separated)',newLanguages:'Languages (comma separated)',newShiftStart:'Shift start minute of day',newShiftEnd:'Shift end minute of day',newBreakStart:'Break start minute of day',newBreakEnd:'Break end minute of day',newConcurrency:'Digital concurrency',newEntitlements:'Named seat entitlements (comma separated)',newAvailable:'Available for assignment'};
+ for(const [name,labelText] of Object.entries(addPersonLabels)){const input=addPerson.querySelector(`[name="${name}"]`),label=input?.closest('label')?.textContent||'';assert.ok(label.includes(labelText),`${name} should display its localized human label`);assert.ok(!label.includes(name),`${name} must not be shown as an implementation field name`);}
  coach(h,{costCents:125});
  let s=h.state(),job=s.workforceOps.coaching.at(-1),rows=s.business.ledger.filter(x=>x.reason==='workforce-coaching');
  assert.deepEqual(h.commands(),[{type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:125}}]);

@@ -10,7 +10,7 @@ At the access-restored checkpoint, the inventory contained 4,839 requirements: 2
 
 The next bounded implementation adds two explicitly permitted fictional defence information interfaces with separate archive/boundary provisioning, immutable capture classification, retained custody and validated transfer/import recovery. The Help shortcut reference now opens and closes safely from the optional network title. Five newly touched source obligations remain partial.
 
-Current matching-input verification passed 1,363 JavaScript tests, 487 registered acceptance cases, 83 Python gate/mutation tests, 76 actual stdio MCP cases, 72 feature-browser interface cases and six keyboard viewport checks across three engines, plus 22 browser-MCP checks and three-viewport canonical smoke. Counts overlap. [Current evidence](evidence/defence-interface-pass-2026-11-04/README.md) retains the save audit findings, corrections and interrupted attempts. Full compact/campaign matrices for the changed runtime remain in progress, so fullBrowserAcceptance is false. Release still rejects deferred research; no deployment is claimed.
+Current matching-input verification passed 1,363 JavaScript tests, 487 registered acceptance cases, 83 Python gate/mutation tests, 76 actual stdio MCP cases, 72 feature-browser interface cases and six keyboard viewport checks across three engines, plus 22 browser-MCP checks and three-viewport canonical smoke. Counts overlap. [Current evidence](evidence/defence-interface-pass-2026-11-04/README.md) retains the save audit findings, corrections and interrupted attempts. All six historical defence compact/campaign matrices subsequently passed with independent verification of all 1,728 artifacts. FullBrowserAcceptance remains false because later workforce and managed-leaver inputs differ. Release still rejects deferred research; no deployment is claimed.
 
 The source inventory is 4,839 requirements: 214 partial and 4,625 pending, with no final dispositions. That defence checkpoint predates the workforce-offer results below.
 
@@ -20,7 +20,13 @@ The proposed Queueberry WFM offer now has tenant/version/resource-scoped integra
 
 Current verification passed 1,396 JavaScript tests, 520 acceptance cases, 83 Python gate/mutation tests, 80 actual stdio MCP cases, 22 browser-MCP checks and six real feature-browser cases across three engines and desktop/mobile. Development, delivery, translation and build checks passed; the stale generated mapping audit and initial browser-fixture mismatch are retained with their corrections. [Evidence and limits](evidence/workforce-offer-pass-2026-11-04/README.md) distinguish these bounded results from full browser acceptance. Counts overlap. Release still rejects deferred research and no Pages deployment is claimed.
 
-The current inventory is 4,839 requirements: 215 partial and 4,624 pending, with no final dispositions. PR #7 merged at `4c5a2061a567d953fe9cab4493fcb36b9d03dee4` after all 12 checks passed. Managed identity-leaver work is isolated in `/tmp/soc-managed-leaver-implementation` and is not included in this checkpoint.
+The current inventory is 4,839 requirements: 215 partial and 4,624 pending, with no final dispositions. PR #7 merged at `4c5a2061a567d953fe9cab4493fcb36b9d03dee4` after all 12 checks passed. PR #8 merged at `e886d51b98ecd4f18c5caffd5391b39a3a309561` after all 12 hosted checks passed. Managed identity-leaver results are recorded below.
+
+## Managed identity retirement
+
+Managed customer jobs can now retire one identity and entitlement with an explicit scoped contract and connector. Effective observed completion posts one managed-operation charge; delayed loss of authority, scope changes or connector outages block application. Repair requires an explicit retry. Accepted cases and delivery receipts remain, and new attempts from the retired identity fail. The business console now requires an explicit managed-contract resource selection.
+
+Frozen verification passed 1,418 JavaScript tests, 542 acceptance cases, 83 Python gate/mutation tests, 84 actual stdio MCP cases, 22 browser-MCP checks and six independently audited desktop/mobile feature journeys across three engines. Counts overlap. [Current evidence](evidence/managed-leaver-pass-2026-11-04/README.md) records the remaining gate results and all earlier failed browser attempts. Full source-specific provisioning, wider retirement operations and distinct actor portfolios remain open; this is a bounded partial implementation.
 
 ## Earlier checkpoints (historical)
 

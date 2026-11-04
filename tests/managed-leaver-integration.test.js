@@ -55,6 +55,7 @@ test('stale identity generations cannot be refreshed by retrying an old leaver s
 test('pending and completed leaver saves validate exact child approval and revocation lineage',()=>{
  for(const completed of [false,true]){let s=submit(setup({history:false}));if(completed)s=tick(s,2);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
   const childJob=x=>child(x).estate.jobs.find(j=>j.id===part(x).childJobId);
+  if(completed){const isolated=structuredClone(child(s));assert.equal(isolated.business.managedCharges.length,1);assert.deepEqual(SOC.restore(JSON.stringify(isolated)),isolated);delete isolated.estate.jobs.find(j=>j.id===part(s).childJobId).managedApproval;assert.throws(()=>SOC.restore(JSON.stringify(isolated)),/MANAGED|ESTATE|LEAVER|JML/);}
   for(const edit of [x=>part(x).items[0].revocations=[],x=>childJob(x).items[0].revocations=['number'],x=>{delete childJob(x).managedApproval;},x=>childJob(x).managedApproval.tenant='other-tenant',x=>childJob(x).managedApproval.operator='grove-vendor',x=>childJob(x).managedApproval.requiredResources=['identity','phone']])badSave(s,edit,/MANAGED|ESTATE|LEAVER|JML/);
  }
 });
@@ -70,4 +71,12 @@ test('direct customer estate leaver is a valid alternative with no managed usage
 test('full-root leaver dispatch is worker-equivalent and repeated inspection stays pure',()=>{
  const s=submit(setup()),before=JSON.stringify(s);assert.deepEqual(SOC.calculate(s),SOC.calculate(s));SOC.managedOperations.inspect(s);SOC.validateState(s);assert.equal(JSON.stringify(s),before);
  const command={type:'advance',minutes:2},expected=apply(SOC.restore(before),command),sandbox={};vm.createContext(sandbox);vm.runInContext(SOC.workerSource()+';globalThis.E=SOC;',sandbox);assert.equal(JSON.stringify(sandbox.E.dispatch(SOC.restore(before),command)),JSON.stringify(expected));assert.equal(part(expected).status,'complete');assert.equal(charges(expected).length,1);
+});
+
+
+test('a repaired connector outage requires explicit managed retry and child retry cannot bypass its counter',()=>{
+ let s=submit(setup({history:false}));s=pack(s,'leaver-a','estate',{action:'fault',connector:'leaver-sync',fault:'OUTAGE'});const before=structuredClone(identity(s));s=tick(s);assert.equal(part(s).items[0].status,'blocked');assert.equal(part(s).items[0].reason,'CONNECTOR_FAULT');assert.equal(child(s).estate.jobs[0].attempts,1);assert.deepEqual(identity(s),before);assert.equal(charges(s).length,0);
+ s=pack(s,'leaver-a','estate',{action:'fault',connector:'leaver-sync',fault:null});s=tick(s,3);assert.equal(part(s).items[0].status,'blocked');assert.equal(child(s).estate.jobs[0].attempts,1);assert.equal(part(s).retryCount,0);assert.deepEqual(identity(s),before);
+ const job=child(s).estate.jobs.find(j=>j.id===part(s).childJobId);for(const supplied of [false,true]){const command={type:'portfolio',command:{action:'dispatchcustomer',customerId:'leaver-a',command:{type:'estate',command:{action:'retry',job:job.id,...(supplied?{managedApproval:structuredClone(job.managedApproval)}:{})}}}};untouchedFailure(s,command,/MANAGED/);}
+ s=retry(s);assert.equal(part(s).retryCount,1);assert.equal(child(s).estate.jobs[0].attempts,2);assert.equal(identity(s).desired.identities.includes('alex'),false);assert.equal(charges(s).length,0);s=tick(s);assert.equal(part(s).status,'complete');assert.equal(charges(s).length,1);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });

@@ -6727,6 +6727,38 @@
       ],
       "status": "partial",
       "scope": "Separate fictional Queueberry recorded-quality offer with provisioned scoped integration, independent observations/tests, actual voice/case/assigned-agent/recording evidence, calculated versioned rubric, append-only review/coaching recommendation and paired typed billing. Assigned failed calls can retain explicitly partial capture only when recording policy permits. Historical save/worker evidence survives legitimate pruning, holds, deletion and cancellation. Existing manual reviews and separately initiated coaching remain independent; full actor, recording and workforce/commercial fidelity stays open."
+    },
+    {
+      "id": "BEH-SOC-381",
+      "sources": [
+        "uc-new:domain:workforce",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/49-workforce.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/90-service-admin-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-580",
+        "AC-SOC-581",
+        "AC-SOC-582",
+        "AC-SOC-583",
+        "AC-SOC-584",
+        "AC-SOC-585",
+        "AC-SOC-586",
+        "AC-SOC-587",
+        "AC-SOC-588",
+        "AC-SOC-589",
+        "AC-SOC-574",
+        "AC-SOC-590",
+        "AC-SOC-591",
+        "AC-SOC-592"
+      ],
+      "status": "partial",
+      "scope": "Explicit authorized coaching posts one typed commercial cost receipt before delayed skill effectiveness; independent quality review and workforce subscriptions are not rebilled. Zero-cost and historical standalone jobs remain valid, while commercial/event lineage, exact timing, real bounded pruning, worker and MCP inspection are validated. Broader workforce, BPO and commercial source obligations remain open. Active training changes the service fingerprint and makes prior campaign windows stale; explicit fresh observations restore current evidence."
     }
   ]
 }

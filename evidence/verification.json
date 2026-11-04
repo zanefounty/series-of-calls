@@ -1,10 +1,10 @@
 {
   "status": "bounded-verification-passed-release-blocked",
-  "scope": "quality implementation; not full product or full current-input browser acceptance",
-  "finishedAt": "2026-11-04T03:19:45.782744+00:00",
+  "scope": "coaching implementation; not full product or full current-input browser acceptance",
+  "finishedAt": "2026-11-04T03:20:42.514245+00:00",
   "javascript": {
-    "tests": 1445,
-    "pass": 1445,
+    "tests": 1458,
+    "pass": 1458,
     "fail": 0,
     "cancelled": 0,
     "skipped": 0
@@ -17,7 +17,7 @@
         "test"
       ],
       "exitCode": 0,
-      "seconds": 393.48
+      "seconds": 385.82
     },
     {
       "name": "acceptance",
@@ -27,7 +27,7 @@
         "evidence"
       ],
       "exitCode": 0,
-      "seconds": 157.56
+      "seconds": 160.82
     },
     {
       "name": "gates-mutations",
@@ -37,7 +37,7 @@
         "test:gates"
       ],
       "exitCode": 0,
-      "seconds": 133.24
+      "seconds": 134.23
     },
     {
       "name": "development",
@@ -47,7 +47,7 @@
         "check:all"
       ],
       "exitCode": 0,
-      "seconds": 156.18
+      "seconds": 162.21
     },
     {
       "name": "delivery",
@@ -57,7 +57,7 @@
         "check:delivery"
       ],
       "exitCode": 0,
-      "seconds": 0.21
+      "seconds": 0.23
     },
     {
       "name": "translations",
@@ -67,7 +67,7 @@
         "i18n:check"
       ],
       "exitCode": 0,
-      "seconds": 0.82
+      "seconds": 0.88
     },
     {
       "name": "build",
@@ -87,14 +87,14 @@
         "check:release"
       ],
       "exitCode": 1,
-      "seconds": 164.5
+      "seconds": 165.53
     }
   ],
   "inputDrift": [],
-  "testedInputDigest": "5c9607f77e36c336f42913ae167daf030db7830ee3a348fd9dc18844753e1b2e",
+  "testedInputDigest": "b1123bde9e080a4df7d71f628266fb6c3a338aa411823a6cc9594de1c6139eae",
   "stdioMcp": {
     "status": "passed",
-    "cases": 88
+    "cases": 92
   },
   "browserMcp": {
     "checks": 22,
@@ -107,8 +107,8 @@
   },
   "releaseOutput": "npm notice run series-of-calls@0.1.0-preview.1 check:release\nnpm notice run python3 scripts/verify.py release\nFAIL Unreviewed research reference: REF-ac194430f67b3832",
   "rawArtifactPolicy": "Raw runs removed at owner request; do not commit screenshots, traces, logs, duplicate manifests or copied builds.",
-  "sourceCommit": "41e9a684ad8bf02c50c021bc5677ae3500bfa849",
-  "canonicalAcceptanceSha256": "3d170a93f90b4b748aabb182ee392981d2d8fddd6220f2e5fbc5c62d529bef72",
-  "acceptanceCases": 569,
+  "sourceCommit": "f421caeb19939ff220f7e09731836b79c9876863",
+  "canonicalAcceptanceSha256": "db3c5d320529644de0964575326ee13a9b8cfdc23acaec57b10ae8ad470152a4",
+  "acceptanceCases": 582,
   "sourceAndReleaseLimit": "4839 requirements remain partial/pending; canonical source acceptance is zero; full browser readiness remains false."
 }

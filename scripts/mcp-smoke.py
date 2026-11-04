@@ -359,6 +359,74 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def workforce_coaching(report):
+    script = "const {journey}=require('./tests/lib/workforce-coaching-fixture');console.log(JSON.stringify(['AU','US','JP','EU'].map(jurisdiction=>journey({jurisdiction}))));"
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True, timeout=60))
+    client = Client("scripts/calls-mcp.js")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "workforce-coaching-cost", **fixture["options"], "scope": "Explicit BPO coaching scope, one accepted typed commercial cost, delayed skill and expiry; not full workforce acceptance"}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                for index, command in enumerate(fixture["commands"], 1):
+                    client.tool("command", {"command": command})
+                    for attempt in fixture["rejectedAttempts"]:
+                        if attempt["afterCommandCount"] != index:
+                            continue
+                        before = client.tool("export_exercise")
+                        error = client.tool("command", {"command": attempt["command"]}, error=True)
+                        assert attempt["expectedError"] in error
+                        assert client.tool("export_exercise") == before
+                        assert not before["workforceOps"]["coaching"] and before["business"]["balance"]["cost"] == 0
+                    if command.get("command", {}).get("action") == "coach":
+                        accepted = client.tool("export_exercise")
+                        job = accepted["workforceOps"]["coaching"][0]
+                        assert job["status"] == "in-progress" and job["startedAt"] == 1 and job["due"] == 3
+                        assert "billing" not in accepted["workforceOps"]["roster"]["effective"][0]["skills"]
+                        assert accepted["business"]["balance"]["cost"] == 125
+                saved = client.tool("export_exercise")
+                assert saved == fixture["expectedState"]
+                job = saved["workforceOps"]["coaching"][0]
+                rows = [r for r in saved["business"]["ledger"] if r.get("reason") == "workforce-coaching"]
+                assert job["status"] == "complete" and job["completedAt"] == 3
+                assert len(rows) == 1 and rows[0]["id"] == job["commercialReceipt"]["entryId"] and rows[0]["cents"] == 125 and rows[0]["at"] == 1
+                inspected = client.tool("inspect")
+                assert inspected["observed"]["workforce"]["coaching"][0]["commercialReceipt"] == job["commercialReceipt"]
+                assert client.tool("inspect") == inspected and client.tool("export_exercise") == saved
+                error = client.tool("command", {"command": fixture["rejectedAttempts"][0]["command"]}, error=True)
+                assert "WORKFORCE_DELEGATION_REQUIRED" in error and client.tool("export_exercise") == saved
+                for label in ("receipt-amount", "missing-receipt", "missing-cost-row", "missing-cost-event", "completed-too-early", "paired-proof-removal", "missing-boundary"):
+                    forged = json.loads(json.dumps(saved))
+                    if label == "receipt-amount":
+                        forged["workforceOps"]["coaching"][0]["commercialReceipt"]["cents"] += 1
+                    elif label == "missing-receipt":
+                        del forged["workforceOps"]["coaching"][0]["commercialReceipt"]
+                    elif label == "missing-cost-row":
+                        forged["business"]["ledger"] = [r for r in forged["business"]["ledger"] if r.get("reason") != "workforce-coaching"]
+                    elif label == "missing-cost-event":
+                        forged["workforceOps"]["costEvents"] = []
+                    elif label == "paired-proof-removal":
+                        del forged["workforceOps"]["coaching"][0]["commercialReceipt"]
+                        forged["business"]["ledger"] = [r for r in forged["business"]["ledger"] if r.get("reason") != "workforce-coaching"]
+                    elif label == "missing-boundary":
+                        del forged["workforceOps"]["commercialCoachingFrom"]
+                    else:
+                        forged["workforceOps"]["coaching"][0]["completedAt"] = 2
+                    client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                    assert client.tool("export_exercise") == saved, label
+                client.tool("import_exercise", {"json": json.dumps(saved)})
+                assert client.tool("export_exercise") == saved
+                row.update(status="passed", checks=["scope-rejection-atomicity", "explicit-grant-recovery", "one-cost-before-delayed-skill", "grant-expiry-no-rebill", "exact-dispatch-replay", "pure-inspection-receipt", "seven-negative-imports", "valid-save-restore"])
+            except Exception as error:
+                row.update(status="failed", error=str(error))
+                report["results"].append(row)
+                raise
+            report["results"].append(row)
+    finally:
+        client.close()
+
+
 def quality_reviews(report):
     script = """
 const {SOC,journey}=require('./tests/lib/workforce-quality-fixture');
@@ -733,10 +801,10 @@ def main():
     parser.add_argument("--campaigns", action="store_true", help="Also execute all four campaign tracks through renewal in every jurisdiction and mode")
     args = parser.parse_args()
     report = {"checkedAt": datetime.now(timezone.utc).isoformat(), "status": "running", "results": [],
-        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys and four recorded-quality reviews. Not full campaign/source or browser acceptance.",
+        "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys and four recorded-quality reviews and four coaching cost journeys. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "tests/lib/workforce-quality-fixture.js", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "tests/lib/workforce-quality-fixture.js", "tests/lib/workforce-coaching-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -750,11 +818,12 @@ def main():
         workforce_offers(report)
         managed_leavers(report)
         quality_reviews(report)
+        workforce_coaching(report)
         if args.campaigns:
             full_campaigns(report)
             report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer, managed-leaver and quality-review journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (88 if args.campaigns else 76), "Incomplete smoke matrix"
+        assert len(report["results"]) == (92 if args.campaigns else 80), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

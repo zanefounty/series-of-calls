@@ -1,8 +1,8 @@
 name: Performance
 
 # Times the PR against its base on a very large network, headless and in Chrome (desktop and a throttled phone),
-# and uploads the tables. A separate workflow
-# (perf-comment.yml) posts it on the PR: runs for pull requests from forks have no write access.
+# and uploads the tables as reviewable artifacts. Fork runs require maintainer approval
+# in repository settings, then run with read-only permissions.
 on:
   pull_request:
     paths:

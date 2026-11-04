@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-11-04T00:56:27.482Z",
+  "scope": "Read-only independent lifecycle save audit; positive roots reached by SOC.dispatch only",
+  "inputs": {
+    "src/game/38-workforce-offers.js": "c0cc570b9a33c017176cee6daff3b393e1f61fefa226fb3228b25dfccc31e72d",
+    "src/game/55-communications.js": "c7c351366610ddc3f015e00ea4fe1fa506339a915bc371c65e1cec32b14df330",
+    "tests/lib/workforce-offer-fixture.js": "d2571067680fee8e8ea7673798c561abc7e3dbf67c97e0a0a141c761f50a0824"
+  },
+  "clock": 9,
+  "observations": 0,
+  "tests": 0,
+  "positive": [
+    {
+      "name": "initialPending",
+      "status": "passed"
+    },
+    {
+      "name": "activatedBeforeObservations",
+      "status": "passed"
+    },
+    {
+      "name": "pendingAmendment",
+      "status": "passed"
+    },
+    {
+      "name": "renewed",
+      "status": "passed"
+    },
+    {
+      "name": "pendingIntegration",
+      "status": "passed"
+    },
+    {
+      "name": "cancelled",
+      "status": "passed"
+    },
+    {
+      "name": "restarted",
+      "status": "passed"
+    },
+    {
+      "name": "cancelBeforeFirstActivation",
+      "status": "failed",
+      "error": "INVALID_WORKFORCE_OFFER_BILLING_SCHEDULE"
+    },
+    {
+      "name": "cancelRestartBeforeActivation",
+      "status": "failed",
+      "error": "INVALID_WORKFORCE_OFFER_BILLING_SCHEDULE"
+    }
+  ],
+  "negative": [
+    {
+      "name": "offerFutureActivation",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "integrationFutureActivation",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "offerReadyDuePast",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "offerReadyDueFuture",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "integrationReadyDuePast",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "integrationReadyDueFuture",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "offerPastActivation",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    },
+    {
+      "name": "integrationPastActivation",
+      "status": "typed-rejection",
+      "error": "INVALID_WORKFORCE_OFFER_SAVE"
+    }
+  ],
+  "status": "failed"
+}

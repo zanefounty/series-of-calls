@@ -1,0 +1,254 @@
+{
+  "copiedAt": "2026-11-04T01:07:02.729822+00:00",
+  "originalContainerOutput": "/out",
+  "originalHostOutput": "/tmp/soc-workforce-offers-ui-final-v2",
+  "localOutput": "feature-browser",
+  "receipt": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/report.json",
+  "receiptSha256": "aec955d5373b592783a4832a0b666220e2d3af6716e387ff5dbbcd632ca42da1",
+  "caseCount": 6,
+  "status": "diagnostic-passed",
+  "sourceDrift": [],
+  "artifacts": [
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop.png",
+      "sha256": "076045e85c72f99c509e63d10e54050924b91366962bbe3417f65a0ac2c53dbb",
+      "bytes": 140917
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop.trace.zip",
+      "sha256": "71b3ed69636fc73f409692f84db60d8cb3b427c2094b1167e5097eef4bfbf2f5",
+      "bytes": 48925496
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-integration-failed.png",
+      "sha256": "1f90e7b6b3fa477f4e60fbbcab104fdcb1f3542b89b534af6a1dd6d2825a1b8c",
+      "bytes": 84670
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-forecast-recovered.png",
+      "sha256": "092da5d9bdbb4ef13732147df70c409ddbd521e8aad7ffaeab34b3c7d6af5aa9",
+      "bytes": 94411
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-forecast-rebound.png",
+      "sha256": "f9ca0a97dda7c7bdd27f6470bdb3ff2276204d18ff910c274fe49af9afc4ccd3",
+      "bytes": 104257
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-desktop-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile.png",
+      "sha256": "9b0d8e8ed6bc870c5e5d68327663069021ee32da3b9de83927d28afbfaf78acd",
+      "bytes": 62145
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile.trace.zip",
+      "sha256": "84aec11de5d80f77155dfbc84b1db4fc6811db49363c50332116a5ece45d7fbc",
+      "bytes": 7624647
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-integration-failed.png",
+      "sha256": "788319c5672058974e0340b9b09801302dbdeb6ed0b1685803675ec9068fb546",
+      "bytes": 61906
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-forecast-recovered.png",
+      "sha256": "a339e4f6d1fe2257c904dbb2cffcbeab136d90a60de53a9620605e193adce642",
+      "bytes": 66615
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-forecast-rebound.png",
+      "sha256": "77442a581649ad5fecadeda85487ec2660e6bc71ff4ce42063c22e1e16a4b143",
+      "bytes": 66533
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/chromium-mobile-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop.png",
+      "sha256": "f55d080bfe14dc32e8d4cc869b490ff53da9edda5485840332f66fbfbe756525",
+      "bytes": 202792
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop.trace.zip",
+      "sha256": "423effb1355ab83bc4ed6376aaf8dd8628c44fd281cba6254bba0abff2e1c58b",
+      "bytes": 24487547
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-integration-failed.png",
+      "sha256": "17b6e368c9000141a6bb69fb29f2428e3d6de6cfacef66423503df8e077b03c6",
+      "bytes": 123375
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-forecast-recovered.png",
+      "sha256": "36cd0dfdc2864ea1ffd9a2eab054dc6ad4e7a499e233f12ea496de87ba69b0a1",
+      "bytes": 134871
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-forecast-rebound.png",
+      "sha256": "03dfeeac2c38382d6dfe9553d098246babbd0add8200bb9a92a29070980087ec",
+      "bytes": 145789
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-desktop-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile.png",
+      "sha256": "0c92ab150b5ce51c28b198ac0efa47617b25b84deb1829e17ee09bba61def65c",
+      "bytes": 85256
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile.trace.zip",
+      "sha256": "c3db033a4c559d4a37f5670cbc7e9cadcbafed37f0ae5cad189bf2061b2bd617",
+      "bytes": 16434276
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-integration-failed.png",
+      "sha256": "14261103452e4e5940bd37cb23eec1f4aa46c7e189d24ec4589199d4aac8464f",
+      "bytes": 86034
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-forecast-recovered.png",
+      "sha256": "47231ac129bd7f0c8c7233d1a9fb1ae29dd16c81af1b4260c46c7e80ee0ba9ef",
+      "bytes": 90840
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-forecast-rebound.png",
+      "sha256": "e2f083348a8016ddf9a842f8eb069b214cc4f1b0bad07f758dff8aa3158fd939",
+      "bytes": 91144
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/firefox-mobile-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop.png",
+      "sha256": "3cac87ec76137b107cfe00da8d18f6a1bb958b541e742bce864108be43dcbfbb",
+      "bytes": 165219
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop.trace.zip",
+      "sha256": "beb0b038e39d6b15ede0f27dcef31d9afdf546973f866197b3ca4228a495d95c",
+      "bytes": 14061178
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-integration-failed.png",
+      "sha256": "9e0e2ffa11ee111d9fafe5957058efadcbd2630fc54a14dc2176168aa009c0d7",
+      "bytes": 96866
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-forecast-recovered.png",
+      "sha256": "f965dbdb7e04bb8fbd72a4c69aab575f4c4c3306d1f5ade09caf1da98be0f83c",
+      "bytes": 107333
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-forecast-rebound.png",
+      "sha256": "7d23ae21deb1e0b47ce1c8e5b738bd81ebacfdba62842716ffd50c649cd3d60e",
+      "bytes": 118385
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-desktop-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile.png",
+      "sha256": "6f95fe5c57cdd52dabf144651e3041c268cf63a9afc37b6436eae65200c2b60e",
+      "bytes": 77476
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile.trace.zip",
+      "sha256": "66ae77c920701850e3abc89d8671e8cf87968f6c95641ae871d660853ba761ac",
+      "bytes": 8043455
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-integration-failed.png",
+      "sha256": "4a618ae3b7192ae013ad2f23bb5962e74a174cbe443acef8992b388a661efe85",
+      "bytes": 73709
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-forecast-recovered.png",
+      "sha256": "30d5bfee033e276a2771095753197de07a5fec3fb6bf71eb181f278aff922295",
+      "bytes": 75852
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-forecast-rebound.png",
+      "sha256": "df2167dd241fad49c699a266f2b523f120223295bd6f04059a50e218ff1ac076",
+      "bytes": 75858
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-actual-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-replay-state.json",
+      "sha256": "3d3a81bf9365e5f937492fe43a5f271ea63ff4f0b1e558b53ba01324eb93223a",
+      "bytes": 84366
+    },
+    {
+      "path": "feature-browser/2026-11-04T01-04-16-351Z-d969b7/webkit-mobile-fixture-state.json",
+      "sha256": "bc7e0249648a2f32bb08092a20810bc8c40fc9797e9df70c1bedc5dac38b737f",
+      "bytes": 80181
+    }
+  ],
+  "note": "Receipts copied byte-for-byte. Container /out paths resolve relative to the copied report directory. Trace archives retained locally and ignored by Git."
+}

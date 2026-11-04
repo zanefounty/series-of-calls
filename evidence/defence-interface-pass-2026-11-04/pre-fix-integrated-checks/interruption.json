@@ -1,0 +1,16 @@
+{
+  "interruptedAt": "2026-11-04T00:03:31.308288+00:00",
+  "status": "interrupted",
+  "reason": "Independent read-only audit confirmed imported interface policy contradiction; freeze released for correction before final acceptance. Partial logs retained and not claimed as passing full suite.",
+  "processIds": [
+    532174,
+    534965,
+    535397,
+    535414,
+    494164,
+    494157,
+    494156,
+    494145,
+    494142
+  ]
+}

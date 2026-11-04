@@ -1,0 +1,17 @@
+npm notice run series-of-calls@0.1.0-preview.1 check:delivery
+npm notice run python3 scripts/delivery-inventory.py --check
+Validated assignment: 4839 requirements across 24 families and 8 stages.
+Requirement status snapshot (not completion): partial=214, pending=4625
+Structural/source counts: mappings=3454; files=217; clauses=932; source items=4839; requirements=4839.
+Upstream accounting: 366 commits, 461 historical file versions.
+Reference register: 91 entries, 0 with a canonical accepted review, 91 without one.
+Disposition register records: 0; archive proposals: 75, outside core.
+No implementation completion, disposition, legal approval, provider certification, or release readiness is inferred.
+Stage 1 foundation-provenance: Foundation, provenance and upstream adoption (1044 requirements)
+Stage 2 source-semantics-and-research: Source meaning, references and dated research (341 requirements)
+Stage 3 calling-and-communications: Calling and communications fidelity (2339 requirements)
+Stage 4 workforce-and-commercial: Workforce, channel and commercial fidelity (104 requirements)
+Stage 5 enterprise-and-ecosystem: Enterprise coexistence, lifecycle and ecosystem (466 requirements)
+Stage 6 jurisdiction-and-public-sector: Jurisdiction and public-sector obligations (16 requirements)
+Stage 7 campaign-progression-and-full-catalogue: Campaign, progression, source catalogue and adoption (529 requirements)
+Stage 8 release-and-operational-acceptance: Full acceptance, operations and release (0 requirements)

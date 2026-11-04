@@ -1,0 +1,164 @@
+{
+  "recordedAt": "2026-11-04T00:25:25.111845+00:00",
+  "scope": "Bounded feature browser evidence delivery. Final72 interface cases plus6 keyboard viewport checks; not full app/release acceptance.",
+  "finalVerification": "/tmp/soc-interface-browser-final-v2/verification.json",
+  "finalExecution": "/tmp/soc-interface-browser-final-v2/execution.json",
+  "auditNote": "/tmp/soc-interface-browser-final-v2/soc-interface-save-audit.md",
+  "drivers": [
+    {
+      "file": "/tmp/soc-interface-browser-final-v2/soc-keyboard-ui-browser.js",
+      "sha256": "a88b14a5c4e9a8dc44f9dd6d26238c06e3ed0593f10dffe6beda99a4c943a779"
+    },
+    {
+      "file": "/tmp/soc-interface-browser-final-v2/soc-interface-ui-browser.js",
+      "sha256": "110df28af1628e89c43c009944fb1c58b99ce8bd055d1ea50571b1b57305e75c"
+    }
+  ],
+  "runners": [
+    {
+      "file": "/tmp/soc-interface-browser-final-v2/soc-verify-interface-browsers.py",
+      "sha256": "7d841c4652494c7eed81e3eb9337217309bec5071189c575f3b176671b4dc0e7"
+    },
+    {
+      "file": "/tmp/soc-interface-browser-final-v2/soc-run-interface-final-v2.py",
+      "sha256": "85e8050f4002f0f9141addb15bb800c230fa5dc77aed595dd849624cef592966"
+    }
+  ],
+  "receipts": [
+    {
+      "phase": "prototype",
+      "status": "failed",
+      "report": "/tmp/soc-interface-browser-prototype/2026-11-03T23-49-55-118Z/report.json",
+      "sha256": "669aaf380017d3f262bdcd6c643ee6eaaf0beb5493efff75b909518c8188c1c1",
+      "cases": 1,
+      "driverSha256": "246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f",
+      "retainedDriver": "/tmp/soc-interface-ui-browser-246bef3f01274a595322416460fdd8a545bdc178ff537ae1a3714a3d6937974f.js",
+      "failures": [
+        {
+          "case": "AU-desktop-restricted-handover",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    app: 'series-of-calls',\n    boundaries: {\n      bindings: {\n        'handover-archive': 'destination-environment',\n...\n          config: {\n+           backup: true,\n+           certificates: true,\n+           dns: true,\n+           enabled: true,\n+           identity: true,\n            licensing: true,\n+           local: true,\n+           region: 'AU',\n+           time: true\n          },\n+         expectedRevision: 0,\n          id: 'local',\n          type: 'configure'\n        },\n        revision: 1\n      },\n...\n          },\n+         expectedRevision: 1,\n          type: 'information'\n        },\n        revision: 2\n      },\n      {\n...\n            capacity: 20,\n-           enabled: true,\n            local: true,\n            region: 'AU',\n            retentionDays: 30\n          },\n+         expectedRevision: 2,\n          id: 'handover-archive',\n          kind: 'archive',\n          type: 'add'\n        },\n        revision: 3\n...\n            config: {\n+             access: [\n+               'supervisor'\n+             ],\n+             archive: 'archive',\n+             concurrency: 2,\n              enabled: false,\n+             languages: [\n+               'en',\n+               'ja'\n+             ],\n+             minimumQuality: 70,\n+             processor: 'speech',\n+             quality: 90,\n+             retentionDays: 30,\n+             steps: [\n+               'transcription',\n+               'diarisation',\n+               'summary',\n+               'actions',\n+               'redaction',\n+               'index'\n+             ],\n+             targetLanguage: 'en'\n            },\n            kind: 'pipeline'\n          },\n+         expectedRevision: 3,\n          type: 'information'\n        },\n        revision: 4\n      },\n      {\n...\n            config: {\n+             bookingEnabled: true,\n+             bridgeLicensed: false,\n+             calendarAuthorised: true,\n+             capacity: 8,\n+             captions: false,\n+             eventCapacity: 100,\n+             eventLicensed: false,\n+             guestJoin: true,\n              mediaPlacement: 'local',\n+             nativePlatform: 'grove',\n+             platform: 'grove',\n              recording: true\n            },\n            kind: 'meeting'\n          },\n+         expectedRevision: 4,\n          type: 'information'\n        },\n        revision: 5\n      },\n      {\n...\n          },\n+         expectedRevision: 5,\n          type: 'boundaries'\n        },\n        revision: 6\n      },\n      {\n...\n          },\n+         expectedRevision: 6,\n          type: 'boundaries'\n        },\n        revision: 7\n      },\n      {\n...\n          },\n+         expectedRevision: 7,\n          type: 'boundaries'\n        },\n        revision: 8\n      },\n      {\n...\n          },\n+         expectedRevision: 8,\n          type: 'boundaries'\n        },\n        revision: 9\n      },\n      {\n...\n          },\n+         expectedRevision: 9,\n          type: 'boundaries'\n        },\n        revision: 10\n      },\n      {\n...\n          },\n+         expectedRevision: 10,\n          type: 'boundaries'\n        },\n        revision: 11\n      },\n      {\n...\n          },\n+         expectedRevision: 11,\n          type: 'boundaries'\n        },\n        revision: 12\n      },\n      {\n...\n          },\n+         expectedRevision: 12,\n          type: 'boundaries'\n        },\n        revision: 13\n      },\n      {\n...\n          },\n+         expectedRevision: 13,\n          type: 'boundaries'\n        },\n        revision: 14\n      },\n      {\n...\n          },\n+         expectedRevision: 14,\n          type: 'boundaries'\n        },\n        revision: 15\n      },\n      {\n        at: 1,\n        command: {\n+         expectedRevision: 15,\n          minutes: 1,\n          type: 'advance'\n        },\n        revision: 16\n      },\n...\n          },\n+         expectedRevision: 16,\n          type: 'information'\n        },\n        revision: 17\n      },\n      {\n...\n          },\n+         expectedRevision: 17,\n          type: 'information'\n        },\n        revision: 18\n      },\n      {\n...\n          },\n+         expectedRevision: 18,\n          type: 'information'\n        },\n        revision: 19\n      },\n      {\n        at: 2,\n        command: {\n+         expectedRevision: 19,\n          minutes: 1,\n          type: 'advance'\n        },\n        revision: 20\n      },\n...\n          },\n+         expectedRevision: 20,\n          type: 'information'\n        },\n        revision: 21\n      }\n    ],\n\n    at /tmp/soc-interface-ui-browser.js:52:152\n    at async /tmp/soc-interface-ui-browser.js:46:6"
+        }
+      ]
+    },
+    {
+      "phase": "prototype",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-prototype/2026-11-03T23-50-44-462Z/report.json",
+      "sha256": "747da08473b3c87515a5f9e56622ad66b69382c3341a9a3df6b472ed05498812",
+      "cases": 2,
+      "driverSha256": "4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2",
+      "retainedDriver": "/tmp/soc-interface-ui-browser-4917129c0a35e450428d9c0ee27847671fe876c132c65b0246bdda78b28506e2.js",
+      "failures": []
+    },
+    {
+      "phase": "prototype",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-prototype/2026-11-03T23-57-25-611Z/report.json",
+      "sha256": "7a776afe485539c9caab2221a390f24fe3fe8580cb72b087fbf1c2e631bae4ca",
+      "cases": 1,
+      "driverSha256": "1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012",
+      "retainedDriver": "/tmp/soc-interface-ui-browser-1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012.js",
+      "failures": []
+    },
+    {
+      "phase": "pre-final-policy-fix",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/report.json",
+      "sha256": "4fa94cf7ff24002a482a8c1829ba5096e5bd1153be22ab1107ee895be895445d",
+      "cases": 24,
+      "driverSha256": "1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012",
+      "retainedDriver": "/tmp/soc-interface-browser-final/soc-interface-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "pre-final-policy-fix",
+      "status": "failed",
+      "report": "/tmp/soc-interface-browser-final/keyboard-2026-11-03T23-59-16-229Z/report.json",
+      "sha256": "b6c86dee3d7b496129b6867a2340dcb4a2e2929aae05d86c23e1d65de6ec4a28",
+      "cases": 2,
+      "driverSha256": "d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79",
+      "retainedDriver": "/tmp/soc-keyboard-ui-browser-d31597d01c9dfd147e5ba101dd1df3af2e604e6d370c644fa84ae15b1320ae79.js",
+      "failures": [
+        {
+          "case": "desktop",
+          "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('[data-act=\"help\"]:visible').first()\n    - locator resolved to <button data-act=\"help\" aria-label=\"How to play\" data-i18n-aria-label=\"vr\">?</button>\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"\" id=\"modal\">\u2026</div> intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"\" id=\"modal\">\u2026</div> intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    18 \u00d7 waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <div class=\"\" id=\"modal\">\u2026</div> intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n\n    at /tmp/soc-keyboard-ui-browser.js:5:829"
+        },
+        {
+          "case": "mobile",
+          "error": "page.waitForFunction: Timeout 10000ms exceeded.\n    at /tmp/soc-keyboard-ui-browser.js:5:1254"
+        }
+      ]
+    },
+    {
+      "phase": "pre-final-policy-fix",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/report.json",
+      "sha256": "37bd7b83d75628785afe6d2bd02374e516156497dfdfd52e40e9d1424a47cff5",
+      "cases": 2,
+      "driverSha256": "22394a1a29b39fa2bdda9efa67605a0a1cc2f20010197cd848916236f4e13ccf",
+      "retainedDriver": "/tmp/soc-interface-browser-final/soc-keyboard-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/report.json",
+      "sha256": "e7384f0561af2bce8968e5b6f6bb67586d6ba0d86d3c73a1edfa1f35a616e6f8",
+      "cases": 24,
+      "driverSha256": "110df28af1628e89c43c009944fb1c58b99ce8bd055d1ea50571b1b57305e75c",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-interface-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/report.json",
+      "sha256": "e92b972f5acd7aefa70ec3f9628d0c622909204f8b1e67185d1206e99ee0d82b",
+      "cases": 2,
+      "driverSha256": "a88b14a5c4e9a8dc44f9dd6d26238c06e3ed0593f10dffe6beda99a4c943a779",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-keyboard-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/report.json",
+      "sha256": "4c0f196b0283b30f3ac16e1ab71255653f889b230a18fd3924594fc6efffc25c",
+      "cases": 24,
+      "driverSha256": "110df28af1628e89c43c009944fb1c58b99ce8bd055d1ea50571b1b57305e75c",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-interface-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/report.json",
+      "sha256": "3f41552110a3ab6d298dcec31175e33943ae7eb70ad9fa3a42c604a812088839",
+      "cases": 2,
+      "driverSha256": "a88b14a5c4e9a8dc44f9dd6d26238c06e3ed0593f10dffe6beda99a4c943a779",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-keyboard-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/report.json",
+      "sha256": "303e01e4225753e7a267cc1a9d889d6dc524c0b32332a8ecd5e00fce865c78ac",
+      "cases": 24,
+      "driverSha256": "110df28af1628e89c43c009944fb1c58b99ce8bd055d1ea50571b1b57305e75c",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-interface-ui-browser.js",
+      "failures": []
+    },
+    {
+      "phase": "final-frozen",
+      "status": "diagnostic-passed",
+      "report": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/report.json",
+      "sha256": "2efa7a6630b18d2798bce645b2a7c10fb10a5ab0e885424c9581817bc59f01a0",
+      "cases": 2,
+      "driverSha256": "a88b14a5c4e9a8dc44f9dd6d26238c06e3ed0593f10dffe6beda99a4c943a779",
+      "retainedDriver": "/tmp/soc-interface-browser-final-v2/soc-keyboard-ui-browser.js",
+      "failures": []
+    }
+  ],
+  "versionedEvidenceGuidance": "Retain receipt JSON, command/environment provenance, driver sources, logs and audit note. Screenshot/trace binaries remain local ignored artifacts; retain their recorded hashes and paths. Preserve original failed and pre-fix receipts without relabelling them final."
+}

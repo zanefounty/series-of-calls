@@ -1,0 +1,1306 @@
+npm notice run series-of-calls@0.1.0-preview.1 test
+npm notice run node scripts/test.js
+✔ AC-SOC-197 independent abuse controls gate actual calls and usage reconciles once against the core ledger (17.02763ms)
+✔ AC-SOC-198 rolling spend includes a live calls previous minutes and a blocked call retains already billed costs (23.878669ms)
+✔ AC-SOC-169 source rows, original reward and unit distinctions remain explicit (2.39579ms)
+✔ AC-SOC-170 each control stages desired, provisioning, effective and observed state separately (0.589388ms)
+✔ AC-SOC-171 packet batches use PPS by explicit second and reads never consume or reset the bucket (1.012961ms)
+✔ AC-SOC-172 SIP authentication, methods, validity and attempts per second are independent of PPS (0.415179ms)
+✔ AC-SOC-173 outbound preflight checks all controls and destination prefixes without mutating state (0.302709ms)
+✔ AC-SOC-174 per-minute spend is reserved before core billing and settles only against attributable minute rows (2.685977ms)
+✔ AC-SOC-175 validators reject invalid linked usage, restore exact saves and serialize worker code (15.01886ms)
+✔ AC-SOC-176 synthetic attacks cannot stand in for an admitted, resolved and reconciled voice call (0.656807ms)
+✔ advanced admin renders optional starters and disables every control in read-only mode (730.717708ms)
+✔ channel UI configures accounts and permissions without fabricating acceptance or receipt events (442.805302ms)
+✔ channel attempt form passes account, purpose, template, and selected need through the ordinary interaction command (393.529787ms)
+✔ outcomes UI configures policy and task evidence separately from a bot reply (428.35486ms)
+✔ product UI submits structured offers, lifecycle, and referenced deployment setup (413.821163ms)
+✔ product integration setup and test are directional and visibly synthetic (386.851815ms)
+✔ AC-SOC-099 outcomes preserve explicit task failure, case identity, and unresolved history (2.24163ms)
+✔ AC-SOC-100 outcomes reject a saved open need whose retry was silently removed (0.465051ms)
+✔ AC-SOC-101 channels require current permission before opening or retrying a new delivery (3.66483ms)
+✔ AC-SOC-102 channels preserve purpose and case binding across pause, expiry, and resume (1.016661ms)
+✔ AC-SOC-103 channel retry windows remain purpose and case specific after the first window closes (1.114075ms)
+✔ AC-SOC-104 products separate lifecycle-effective existing service from new sale eligibility (1.321654ms)
+✔ AC-SOC-105 product provisioning failures retain prior effective version and validators reject stale-ready saves (0.936234ms)
+✔ AC-SOC-106 product save cannot retain a verified label after directional evidence is removed (0.643404ms)
+✔ the title screen has one drawer for the home city: the five suggested first, then every city by continent (679.335292ms)
+✔ picking any city starts the network there, and the line under the drawer follows the choice (457.241921ms)
+✔ a home that cannot work is refused, and the game falls back to Frankfurt (346.671996ms)
+✔ the title screen works on a phone in every language: language first, the name on top, compact presets (2287.171421ms)
+✔ architect runs: every reference passes each brief, on plan and within budget (1191.010749ms)
+✔ architect runs: the chaos monkey finds a shared trench, edits clear the cut, old builds are paid for (530.31544ms)
+✔ architect runs: a latency brief needs the fast path, and normal puzzles are untouched (454.319382ms)
+✔ architect runs: Play on the title screen's puzzle list starts a run (379.330028ms)
+✔ architect runs: a ring goal needs one cycle through its cities (490.765517ms)
+✔ architect runs: the detour needs room, and a roomy but pricey build misses the budget star (572.814779ms)
+✔ architect runs: a bigger tube brings a bigger router, and changing an old tube is a new lease (342.195508ms)
+✔ architect runs: the map tells two tubes in one trench from two separate paths (338.950439ms)
+✔ #231 the puzzle list counts each section's own stars: runs above, packs next to the packs (298.652736ms)
+✔ AC-SOC-393 training opens from the real title button before any SP game exists (778.079732ms)
+✔ AC-SOC-394 artwork provenance and exported icons match the actual files and install manifest (21.377241ms)
+✔ completed handling and wrap do not invalidate their own assessment evidence (11.752762ms)
+✔ caller aliases keep canonical case identity and ambiguous cross-tenant aliases are rejected (4.861167ms)
+✔ #255 Port Hedland, Townsville and Alice Springs are on the map and playable (656.221412ms)
+✔ #255 the wet season doubles the time to reach a cut in the tropical north, and only there (458.773107ms)
+✔ the sales order signs ready offers once per shift, and pausing it stops it (729.11029ms)
+✔ the trial includes new bandwidth and later offers cannot overbook earlier accepted sales (406.07186ms)
+✔ the sales order checks actual circuits, latency and NNI capacity (425.409157ms)
+✔ new circuits do not take service away from healthy signed customers (379.926628ms)
+✔ fiber sales check live equipment and free spectrum, and repeated carrier orders still merge (386.030777ms)
+✔ capacity pair sales need completed infrastructure and reserve it for the accepted contract (387.711208ms)
+✔ future event demand is tested before signing, with booked events reserving headroom (321.531446ms)
+✔ failed capacity trials restore game, routing and map state even when compute throws (343.563336ms)
+✔ the repair order rushes affordable repairs once, skips unaffordable and expired incidents, and obeys its pause (352.166841ms)
+✔ the sales order leaves unready and expired offers alone without failure notifications (334.497651ms)
+✔ the #185 toggles in old saves become the sales and repair orders, malformed ones stay off (329.527667ms)
+✔ every router is classed by the highest backbone it runs (547.59786ms)
+✔ a new network runs plain IGP: no Auto-TE until the backbone is upgraded, one step at a time (409.072734ms)
+✔ running a lower level is free, and Auto-TE and RouteScript pause below RSVP-TE (395.142948ms)
+✔ the core costs router CPU, less the higher it goes; POPs whose router cannot run it stay outside (404.28734ms)
+✔ label switching: traffic passing through a POP costs its router less from LDP up (929.661508ms)
+✔ interop failures: only with mixed vendors at the top of what some router can do (463.996121ms)
+✔ a new game never gets interop incidents or CPU costs: the classic game is unchanged (363.781704ms)
+✔ saves: an old save with Auto-TE keeps it on the old rules, scenarios ignore the core, garbage is repaired (337.509637ms)
+✔ the backbone panel and the router panels, on a phone too (772.038341ms)
+✔ an upgraded backbone brings its own customers: L3VPN from LDP, flex-algo from SR-MPLS, slices from SRv6 (416.6473ms)
+✔ fast reroute: from RSVP-TE up, customers lose half as much happiness while a link is cut (1159.0568ms)
+✔ an interop lab cuts interop incidents, is bought once, and survives a save (431.217224ms)
+✔ badges for the backbone: label switcher, bleeding edge, single-vendor shop, vendor zoo (512.933538ms)
+✔ every save without a preset plays On-call and earns the standard badge (599.027855ms)
+✔ Change Freeze earns frosted badges and BGP at 3 a.m. fiery ones, shown in the toast and the list (803.26771ms)
+✔ Sandbox and puzzles earn no badges (1093.67094ms)
+✔ a harder preset upgrades a badge, an easier one never downgrades it (376.148074ms)
+✔ the collection counts badges per variant on this device, and fits a phone (371.702478ms)
+✔ old saves and old halls of fame keep loading, as standard badges (362.381798ms)
+✔ the share card rings the variant badges (353.040541ms)
+✔ a variant named after an Object prototype key is not a variant (339.516011ms)
+✔ "Badge upgraded" means the collection on this device got a better variant (418.146513ms)
+✔ Best Effort is a Normal preset with its own rules, kept through save and load (649.143013ms)
+✔ Best Effort: a subsea cut mends on its own clock, with no cable ship (754.907265ms)
+✔ Best Effort: no conference season (468.307699ms)
+✔ Best Effort: customers sour half as fast (727.606581ms)
+✔ Best Effort: deep in the red, a rescue loan instead of game over (496.451154ms)
+✔ quiet notifications: on by default in Best Effort, a setting everywhere, and the NOC log keeps everything (375.463998ms)
+✔ the title screen offers Best Effort first, and it earns Freeze-dried badges (346.545539ms)
+✔ Best Effort: PNIs and their augments are up the moment they are ordered (405.018123ms)
+✔ no "attracts attacks" warning where nobody attacks (316.409244ms)
+✔ Series of Calls SP preferences ignore the original game storage identity (707.668623ms)
+✔ AC-SOC-119 contract staging keeps desired, effective, provisioning, and observed state independent (3.629908ms)
+✔ AC-SOC-120 four fictional profiles have distinct explicit runtime rules and useful valid examples (0.589203ms)
+✔ AC-SOC-121 US offering, customer, and agency authorization, and JP service and AI decisions, remain separate (1.375757ms)
+✔ AC-SOC-122 information flows bind declared classifications, locations, roles, and resource generations (0.370714ms)
+✔ AC-SOC-123 key custody and administration are independently checked; EU transfer paths need declared parties and mechanism (0.425094ms)
+✔ AC-SOC-124 disconnected local continuity requires local services, keys, unexpired local grace, and an admin path (0.398262ms)
+✔ AC-SOC-125 evaluation reports all blockers with precise paths and reads do not mutate state (0.517411ms)
+✔ AC-SOC-126 saves validate, fingerprints track staged and observed policy, content matches source, and worker source is reproducible (3.630807ms)
+✔ AC-SOC-395 compact browser matrix includes every scenario, jurisdiction and mode exactly once (1.013758ms)
+✔ AC-SOC-396 each SOC.reference command has a visible browser action mapping for all 48 profiles (6.219757ms)
+✔ AC-SOC-397 core reference paths satisfy SOC.assess across the full profile matrix without hidden pack setup (39.277926ms)
+✔ AC-SOC-398 browser selection and diagnostic limit are configurable but bounded (0.602962ms)
+✔ AC-SOC-399 reference clock mapping preserves every minute for 1 through 1440 minute advances (0.227768ms)
+✔ AC-SOC-400 only a complete error-free locked-version browser matrix can report passed (0.537836ms)
+✔ AC-SOC-401 page wait predicates use the lexical SCT binding and the mapped config submits through real UI dispatch (782.21591ms)
+✔ deterministic uneven shards preserve every full-matrix key once and retain scenario/profile/viewport assignments (1.862779ms)
+✔ one successful shard is partial evidence and cannot report full passed (3.672029ms)
+✔ aggregator accepts exactly 144 unique matching cases for each journey, including uneven partitions (22.087095ms)
+✔ aggregator rejects missing shards, missing cases, duplicated shards and duplicated or misassigned cases (13.241109ms)
+✔ aggregator rejects cross-input, cross-artifact, browser, journey, lock and version mixtures (5.359043ms)
+✔ aggregator fails closed on failed cases, errors, drift, weakened deadlines and missing campaign checkpoints (4.689262ms)
+✔ artifact verification uses receipt-relative files across container roots and rejects missing or modified artifacts (3.179159ms)
+✔ build stamps version and date into the site (192.616602ms)
+✔ project hosting uses scoped application URLs and has no upstream publisher (10.801117ms)
+✔ version.json carries the release notes from the changelog (122.327893ms)
+✔ head carries the SEO and social metadata (18.343763ms)
+✔ a release build refuses to ship without release notes (100.298779ms)
+✔ src: partials follow the layout rules (docs/adr/0002-one-page-assembled-at-build.md) (15.466481ms)
+✔ distribution preserves upstream MIT and includes accurate attribution notices (4.372596ms)
+✔ AC-SOC-362 build output validation protects the repository and its source inputs (2.776348ms)
+✔ AC-SOC-402 live voice minutes consume the routed contract pool and replay in the worker (31.520719ms)
+✔ AC-SOC-403 direct and delayed message acceptance charge only bound resources once (11.289401ms)
+✔ AC-SOC-404 processing work meters its actual processor and survives faults without billing blocked work (7.73578ms)
+✔ AC-SOC-405 legacy portfolio and campaign roots migrate only on owned saves and successful dispatch (7.643595ms)
+✔ AC-SOC-369 SOC commands provision shared allowances and the boundary bill retains wholesale charges once (15.5054ms)
+✔ AC-SOC-370 worker advance, save restore and rejected scope commands preserve pool state (22.212462ms)
+✔ AC-SOC-371 business console creates and amends scoped pools, then selects only a compatible pool on an order (871.085148ms)
+✔ AC-SOC-372 pool selectors stay scoped to chosen customer and usage unit; rejected form command leaves state unchanged (459.015865ms)
+✔ AC-SOC-373 pool commands from a selected portfolio customer stay on that customer root (473.193058ms)
+✔ AC-SOC-374 shared contract allowance is consumed once across eligible contracts and wholesale usage remains charged (18.492885ms)
+✔ AC-SOC-375 shared pool rejects incompatible dimensions, customers, and unauthorized owners without mutation (1.235765ms)
+✔ AC-SOC-376 resource-priority metering selects one matching contract and overlapping contract assignments are rejected (2.277816ms)
+✔ AC-SOC-377 mid-period amendment keeps the old effective pool until the next billing boundary (3.094836ms)
+✔ AC-SOC-378 saved shared consumption rejects allowance counter tampering and canceled contracts cannot consume late usage (2.053203ms)
+✔ AC-SOC-379 new pool amendment before first activation is included in its initial provisioning (0.927877ms)
+✔ AC-SOC-380 legacy validation is pure; explicit migration normalizes only omitted pool fields (1.495786ms)
+✔ AC-SOC-381 rejected SOC business commands leave a legacy save byte-for-byte unchanged (1.725912ms)
+✔ AC-SOC-015 organisation roles and delegated authority control configuration (6.907409ms)
+✔ AC-SOC-016 typed contracts reject mismatched units and distinguish acceptance from readiness (3.468655ms)
+✔ AC-SOC-017 recurring allowances, wholesale costs, credits and replay reconcile exactly once (8.917763ms)
+✔ AC-SOC-018 government procurement requires outcome evidence and approved fictional boundaries (5.077583ms)
+✔ AC-SOC-019 engineers, support staff and skilled contact-centre people are independent (2.400121ms)
+✔ AC-SOC-020 financing and acquired subsidiaries do not manufacture consolidated profit (1.935092ms)
+✔ AC-SOC-021 renewal, cancellation commitments and market events retain contract history (13.05467ms)
+✔ AC-SOC-038 imported commercial authority and financial obligations retain validated relationships (1.566121ms)
+✔ AC-SOC-022 all business tracks require their services and run identically in worker and replay (172.179973ms)
+✔ cable names never sit on top of each other (535.507869ms)
+✔ a selected city's cables are always named (387.941673ms)
+✔ a subsea cut sends the nearest free club ship, and lasts until it has sailed out and spliced (569.602329ms)
+✔ with every club ship out the cut waits; a private charter jumps the queue, for millions (411.173929ms)
+✔ a waiting cut gets the first club ship home (330.594596ms)
+✔ a charter while a club ship is on its way turns that ship round (371.629144ms)
+✔ repairs in slow-permit waters wait for the paperwork; deep water takes longer on site (301.955329ms)
+✔ fireFailure on a subsea wave calls a ship; a cut on land does not (315.494485ms)
+✔ ships and their jobs survive a save; broken or old saves are repaired (326.760818ms)
+✔ ships are drawn where their voyage puts them, and tapping one says what it does (366.268785ms)
+✔ the link panel and the NOC say where the ship is, on a phone too (345.988017ms)
+✔ your own subsea cable: survey and factory first, then a lay ship; a second one can be booked, crews cannot help (359.165863ms)
+✔ a second lay ship moves pending subsea upgrades with the finish (387.520019ms)
+✔ the NOC intern’s rush-repair order pays a charter only within its budget (339.546025ms)
+✔ cache boxes share a router port, as many as its speed holds (#252) (593.090115ms)
+✔ the share follows the router: 16 on 1.6T, one each on 100G, and a downgrade counts its ports (399.546668ms)
+✔ requesting caches only needs the ports the boxes really take (368.349356ms)
+✔ 400G cache boxes behind 400G or faster ports: fewer boxes, cheaper per Gbps, packed by speed (366.706395ms)
+✔ #257 the calendar has real months and leap years (738.718099ms)
+✔ #257 a calendar month costs its monthly price, whatever its length (383.861717ms)
+✔ #257 loan statements and the intern budget follow calendar months (341.617725ms)
+✔ #257 conferences fall on the 10th of their month (324.658038ms)
+✔ AC-SOC-275 calling goal report is pure, source-scoped and never accepts a raw success assertion (3.407064ms)
+✔ AC-SOC-276 local speech goal needs retained recording lineage, completed work and effective local dependencies (18.720811ms)
+✔ AC-SOC-277 gateway goal cannot pass on configuration or 200 OK alone; both call directions and media are required (5.945269ms)
+✔ AC-SOC-278 external reach needs the owned-number inbound path as well as outbound and a current guest join (593.554652ms)
+✔ AC-SOC-350 trace eviction watermark advances only for evicted terminal calls while an older live call remains retained (260.248896ms)
+✔ AC-SOC-279 five partner-service goal counts distinct current directional tests with supported ownership (27.419789ms)
+✔ AC-SOC-280 security achievement delegates to the validated three-control engine and requires an actual settled call (1.220256ms)
+✔ AC-SOC-281 security goal passes only after independently configured abuse samples and an actual core settlement (269.33158ms)
+✔ AC-SOC-282 worker serialization has the same source-scoped pure report (1.857409ms)
+✔ AC-SOC-045 tenant scoped aliases and directed federation do not leak same short extensions (1.899415ms)
+✔ AC-SOC-046 forwarding loops stop, while permission denial cannot be bypassed by fallback (1.785361ms)
+✔ AC-SOC-047 configured fallback runs only for its declared trigger (0.408822ms)
+✔ AC-SOC-048 reception picks a deterministic available tenant member then mailbox, with owner access (0.436112ms)
+✔ AC-SOC-049 full and unavailable voicemail are distinct from conversation resolution (0.362211ms)
+✔ AC-SOC-050 media failure preserves signalling and reports directional quality dimensions (0.291935ms)
+✔ AC-SOC-051 emergency route requires synthetic intent, eligible location, dependencies and notification (0.467486ms)
+✔ AC-SOC-052 failed per-node provisioning preserves effective policy; saves, worker source and inspection are deterministic (3.530309ms)
+✔ AC-SOC-353 MCP initializes by protocol negotiation and rejects malformed JSON-RPC envelopes (1.43216ms)
+✔ AC-SOC-354 tool list schemas describe the five implemented tools and reject invalid arguments (1.75549ms)
+✔ AC-SOC-355 new exercises cover all four scenario tracks and round trip through validated export/import (8.542482ms)
+✔ AC-SOC-356 validated commands are atomic, revision checked and idempotent on retry (3.271167ms)
+✔ AC-SOC-357 invalid imports are atomic and tool notifications never execute mutations (0.595014ms)
+✔ AC-SOC-406 MCP discovers the speech pack and enforces its prerequisite and save boundaries (4.611308ms)
+✔ project-scoped cache serves navigation offline and preserves other application caches (23.459688ms)
+✔ AC-SOC-137 all four assessed tracks earn once-only awards through shared dispatch across AU US JP EU (4097.971785ms)
+✔ AC-SOC-138 campaign assessment accepts alternate voice and interoperable meeting configurations (180.047766ms)
+✔ AC-SOC-139 closed evidence becomes stale after endpoint changes and outages cannot be hidden by recovery (10.268717ms)
+✔ AC-SOC-140 campaign commands retain worker save replay and pure calculation equivalence (36.543508ms)
+✔ AC-SOC-107 campaign content, source serialization and optional save compatibility are explicit (4.860258ms)
+✔ AC-SOC-108 observation windows sample every minute and make configuration changes and skipped samples sticky (10.360428ms)
+✔ AC-SOC-109 recovery requires the real validated fault, time under fault, recovery and a new successful journey (12.888472ms)
+✔ AC-SOC-110 service assessment needs a newly resolved interaction with retained case context (9.777342ms)
+✔ AC-SOC-111 sandbox track switching preserves full root snapshots and does not grant progression rewards (3.527996ms)
+✔ AC-SOC-112 jurisdiction and workload constraints stay track-specific and unsupported source objectives remain pending (123.471774ms)
+✔ AC-SOC-113 save validation binds awards, incident and window structures; inspection and fingerprints are pure (3.420901ms)
+✔ AC-SOC-114 campaign readiness is not an award: all four distinct windows and current service readiness are required (137.174735ms)
+✔ AC-SOC-334 capability overlay declares only the assigned progression rows and preserves partial scope (1.128386ms)
+✔ AC-SOC-335 real reference roots do not unlock capabilities from names, defaults, or incomplete configuration (10.358965ms)
+✔ AC-SOC-336 stale or missing typed source records cannot support a derived capability (3.173155ms)
+✔ AC-SOC-337 inspection, fingerprint, restore shape, and worker source remain pure and deterministic (7.803507ms)
+✔ AC-SOC-338 trusted hooks can narrow eligibility but cannot fill missing local evidence (0.982855ms)
+✔ AC-SOC-339 wholesaler and delegated administration levels require real multi-tenant contracts and ledgers (284.941463ms)
+✔ AC-SOC-340 national provider evidence needs separately scoped billed tenants, wholesale cost and resolved voice cases (25027.90663ms)
+✔ AC-SOC-341 UC and contact centre integration level needs tested supported deployments, resolved human work and a joined meeting (353.860218ms)
+✔ AC-SOC-342 omnichannel capability needs two human-resolved channel journeys on one canonical case (5.748426ms)
+✔ AC-SOC-343 government capability needs the assessed government track, eligible boundary, processed in-region record and case (2165.405546ms)
+✔ AC-SOC-344 major acceptance needs all four awarded tracks plus billed enterprise and public customers and real site recovery (5306.930339ms)
+✔ AC-SOC-345 enterprise service level accepts completed site migration plus fault, continuity and restore receipts (26.497305ms)
+✔ AC-SOC-346 critical-service level requires a retained processed record with an actual authorised read (27.950537ms)
+✔ AC-SOC-347 multi-region level requires four effective deployment modes with live directional integrations and scoped evidence (953.002682ms)
+✔ AC-SOC-348 AI operator level combines sustained measured workload, human task resolution and effective assistance processing (331.425719ms)
+✔ #168 only some conferences sell sponsorships, and a sponsor gets more local customers (667.151744ms)
+✔ #168 a capacity conference brings big deals you can sign before you build (556.524014ms)
+✔ #168 missing the delivery date costs a penalty and the deal (435.650244ms)
+✔ #168 saves keep sponsorships and pending deals, and old saves still load (411.69358ms)
+✔ AC-SOC-422 webhook policy provisions separately from observed state and stays effective during amendment (4.331636ms)
+✔ AC-SOC-417 synthetic callback authenticates and delivers from the accepted channel conversation with case context (0.984209ms)
+✔ AC-SOC-418 authentication rejection is an application failure, not supplier downtime, and does not retry (0.450927ms)
+✔ AC-SOC-419 transient application and supplier failures back off and recover; duplicate channel receipts keep one idempotency key (1.187453ms)
+✔ AC-SOC-420 rate limits retry with bounded exponential delay and exhausted jobs fail explicitly before later recovery (1.467584ms)
+✔ AC-SOC-421 webhook state validates across JSON save replay and worker source with transactional command rejection (4.335128ms)
+✔ AC-SOC-423 webhook validation rejects receipt and acceptance lineage tampering (2.365861ms)
+✔ AC-SOC-424 webhook validation rejects nonmonotonic attempts and terminal status mismatches (0.902238ms)
+✔ AC-SOC-072 three fictional channels have distinct account and eligibility rules (5.793641ms)
+✔ AC-SOC-073 permissions are per tenant, canonical person, channel and purpose; revoked queued sends fail fresh checks (1.832275ms)
+✔ AC-SOC-074 Chatterleaf has finite reply windows and approved outside-window templates; Letterbox has no universal window (1.364774ms)
+✔ AC-SOC-075 Casechat requires an authenticated case owner session with tenant and expiry binding (1.710112ms)
+✔ AC-SOC-076 paused conversations allocate no work and resume rechecks current permission and identity (1.431969ms)
+✔ AC-SOC-077 delivery and read receipts are distinct, ordered, idempotent, and do not resolve a conversation (1.6262ms)
+✔ AC-SOC-078 failed provisioning preserves effective accounts; validation, purity and worker source are deterministic (3.733566ms)
+✔ the chaos monkey visits On-call and BGP at 3 a.m., never Change Freeze or Sandbox (2654.529584ms)
+✔ a visit lasts 120 to 240 days, snips every couple of weeks and pauses the usual failures (730.279366ms)
+✔ weak spots are tubes with no other way round (500.693626ms)
+✔ outlasting it unnoticed pays a bonus and earns the badge; going home hurt pays nothing (510.231712ms)
+✔ a banana sends it home early, for a price (542.493926ms)
+✔ saves keep the monkey; old and broken saves are repaired (563.911603ms)
+✔ "Met the Chaos Monkey" comes from a visit, not from an ordinary fiber cut (501.760092ms)
+✔ #226 the monkey's notice in the NOC has no Open button that would open the NOC again (487.340236ms)
+✔ five city sizes from eyeballs: megacities are rare, outposts are huts (634.537531ms)
+✔ crowded small cities give way to bigger ones as dots; your POPs and the selected city never do (441.125668ms)
+✔ zooming in gives every city its skyline back; zoomed out the map is dots sized by eyeballs (401.197468ms)
+✔ a city shown as a dot is still there to tap (387.443634ms)
+✔ phones draw cities a little smaller, so more of them keep their skyline (438.086245ms)
+✔ CLI capture returns exact stdout and stderr from a real child (21.718594ms)
+✔ CLI capture throws with status and both streams for a nonzero child (20.133683ms)
+✔ CLI capture reports timeout and preserves output written before timeout (2003.520561ms)
+✔ AC-SOC-001 desired, provisioning, effective and observed state remain distinct (6.606902ms)
+✔ AC-SOC-002 ordered routes, scoped extensions, identity and directional media (4.163803ms)
+✔ AC-SOC-003 more trunks do not create skilled people or agent entitlements (3.098314ms)
+✔ AC-SOC-004 session admission is independent of queue staffing (0.670004ms)
+✔ AC-SOC-005 messaging preserves case identity across channels and retries are idempotent (1.901326ms)
+✔ AC-SOC-006 successful voice can fail mandatory recording (0.719637ms)
+✔ AC-SOC-007 healthy room device does not establish calendar or interop readiness (0.820207ms)
+✔ AC-SOC-008 information lineage and forbidden processing boundary (1.873993ms)
+✔ AC-SOC-009 local devices still depend on identity, time and licensing during isolation (1.311594ms)
+✔ AC-SOC-010 all foundation exercises have reference and meaningful failing solutions in every region (14.695479ms)
+✔ AC-SOC-011 repeatable calculation, integer economic reconciliation, save and deterministic replay (4.522508ms)
+✔ AC-SOC-012 worker serialization produces the synchronous command result (16.332036ms)
+✔ AC-SOC-013 invalid references fail provisioning and command validation is atomic (0.928982ms)
+✔ AC-SOC-014 cohort migration requires ready target and supports configuration recovery (1.906726ms)
+✔ AC-SOC-446 customer profiles retain jurisdiction, independent quantities, provisioning and worker/save equivalence through dispatch (38.390673ms)
+✔ AC-SOC-447 attendance constrains real queue handling and revoked delegation rejects changes atomically (7.885913ms)
+✔ AC-SOC-448 staffing forecasts scale explicit sample durations and respect upcoming shift boundaries (2.929395ms)
+✔ AC-SOC-449 actual message delivery queues one callback and application recovery does not charge another message (16.546428ms)
+✔ AC-SOC-454 external commands cannot fabricate workforce assignments or bypass roster provisioning (2.392206ms)
+✔ AC-SOC-455 imported customer profiles reject changed source lineage and impossible application times (1.682313ms)
+✔ AC-SOC-450 customer planning UI submits editable independent needs and displays effective state (668.453931ms)
+✔ AC-SOC-451 attendance and webhook controls use real dispatch and translate their visible labels (575.13436ms)
+✔ AC-SOC-452 speech console renders translated text rather than source or compiled label identifiers (333.552561ms)
+✔ 95th percentile: a recompute later in the day bills the same 30 days as the day tick did (614.148796ms)
+✔ compute() is a pure function of the game: a second call right after a day changes nothing (953.437127ms)
+✔ scenic circuits keep the last path unless a new one is clearly better, so two calls converge (564.623506ms)
+✔ AC-SOC-039 IVR choices select language and skill while provisioning preserves prior effective menus (12.784078ms)
+✔ AC-SOC-040 callbacks release the original session and preserve identity with bounded retries (7.860167ms)
+✔ AC-SOC-041 warm transfers require another agent and preserve source wrap-up load (4.048552ms)
+✔ AC-SOC-042 cold transfers reset queue waiting, retain the journey and change required skill (2.321113ms)
+✔ AC-SOC-043 queue priority and quality assessment remain independent of delivery success (3.144064ms)
+✔ AC-SOC-044 scheduled contact work survives reload and agrees with worker execution (20.556915ms)
+✔ AC-SOC-462 explicit customer profile binding rejects pending, wrong-segment and non-retail scope atomically (15.539415ms)
+✔ AC-SOC-463 measured customer capacity shortfall blocks renewal, provisioned requirement repair recovers without rewriting invoices (47.923386ms)
+✔ AC-SOC-464 bound contracts reject forged save scope and reproduce worker command results (23.912992ms)
+✔ AC-SOC-465 historical availability rejects inconsistent resource summaries, missing dimensions and non-boolean observations (14.010992ms)
+✔ AC-SOC-456 source-linked customer fit leaves unbound and incomplete evidence explicitly unproven (6.26003ms)
+✔ AC-SOC-457 directly bound recurring subscriptions and effective typed resources meet seat, agent and room needs (24.494499ms)
+✔ AC-SOC-458 alternative typed offers count unique effective resources and cap capacity by purchased quantity (16.1219ms)
+✔ AC-SOC-459 known shortage blocks supported fit and a provisioned profile revision reevaluates against current resources (13.88116ms)
+✔ AC-SOC-460 observed service unavailability is an unmet dependency outcome, not a passing configured capacity (11.267269ms)
+✔ AC-SOC-461 fit inspection is pure and serialized worker evaluator matches the same dispatched root (26.523621ms)
+✔ AC-SOC-438 all four source-linked segment seeds keep scale, sector, geography, sensitivity, people and workloads distinct (3.129792ms)
+✔ AC-SOC-439 independent edits provision before becoming effective and do not cross-edit unrelated dimensions (1.427616ms)
+✔ AC-SOC-440 invalid need edits fail atomically; correct dimensions recover through a later revision (0.737168ms)
+✔ AC-SOC-441 scale, seats, agents and personas stay independent with non-blocking planning observations (0.765432ms)
+✔ AC-SOC-442 save validation rejects forged segment sources, approvals and effective snapshots (1.161346ms)
+✔ AC-SOC-443 inspection and fingerprint are pure and stable (0.744396ms)
+✔ AC-SOC-444 serialized worker factory reproduces create, transition, validation and inspection (2.848809ms)
+✔ AC-SOC-445 restored legacy roots may omit the optional pack; start and profile commands are explicit (0.334403ms)
+✔ AC-SOC-453 customer-needs UI uses translated labels, shows state layers and submits typed shared-dispatch commands (62.432963ms)
+✔ a flood loads the backbone and the victim as on main, whatever order the POPs were built in (1048.192214ms)
+✔ an attack is held or lost at its victim; other POPs and their DDoS-protected customers are not charged (363.57023ms)
+✔ fourteen attacks on a big network keep the save small, and 2.0 saves with entry ports still load (583.250867ms)
+✔ spicy chaos stretches exactly the attack (or outage) an incident is about, and saves keep it (419.474548ms)
+✔ an imported save cannot put HTML in a Flood Season attacker's name (384.840662ms)
+✔ the China licence arrives in a tenth of the time with quick lead times, and the button says so (714.740374ms)
+✔ Flood Season escalates from ordinary floods to monsters, and goes for the people you serve (572.684075ms)
+✔ sizes come from the world: the same draws give the same floods however big you are (745.694479ms)
+✔ a flood bigger than its port fills it and slows everyone on it; Flowspec behind the port cannot help (400.278554ms)
+✔ RTBH saves everyone else and sends only the target dark (432.014635ms)
+✔ the same flood spread over eight POPs fills no port (585.941199ms)
+✔ Flowspec rules are finite on each router: the third flood on a two-rule router passes unfiltered (381.447377ms)
+✔ an engaged scrubbing center pulls the flood off your ports; what it cannot clean hurts only the target (408.399136ms)
+✔ Auto-RTBH pulls the plug when a flood fills ports and hurts others (450.097047ms)
+✔ held, sacrificed and got through are scored at the end (362.878175ms)
+✔ how often: never in Change Freeze, Sandbox or puzzles; BGP at 3 a.m. about twice On-call (1378.2427ms)
+✔ saves before 2.2 load: an attack on a city finds its target, and an IX blackhole is dropped (390.64399ms)
+✔ the NOC card fits a phone and the sandbox can send a test flood (461.811776ms)
+✔ a DDoS-protection customer under attack who goes down, or is blackholed, is paid out once per attack (449.156045ms)
+✔ overlapping attacks have their own cards and buttons and end on their own (403.617367ms)
+✔ Hackback 3000 is still a gamble (405.638991ms)
+✔ a sacrificial PNI takes all of its peer's junk, and a clean pipe scrubs a transit upstream (391.431612ms)
+✔ several scrubbing centers share a flood by size, and a far one costs the target latency (417.825345ms)
+✔ RackNet and TeamSpooked need gaming customers and slip past Flowspec; amplification floods do not (357.569209ms)
+✔ an attack started during the day is announced and scored after the day's routing (365.194403ms)
+✔ at its own POP a carrier's port takes the traffic bound for that carrier, not an even split (634.344319ms)
+✔ traffic for a carrier's customers prefers that carrier too, and a carrier beats its own customers' other upstreams (429.166054ms)
+✔ when the carrier's own port is full, the rest spills onto the other transit ports (395.257565ms)
+✔ Prefer, Backup only and RouteScript keep the say they had (1145.888371ms)
+✔ a Prefer-marked port keeps the say at its own POP only; the other POPs still use their own carrier ports (518.478724ms)
+✔ from a POP without the carrier's port, traffic uses the nearest port, or crosses your network when the port carries (447.187182ms)
+✔ traceroute shows the exit that routing uses, and says why (409.905989ms)
+✔ the carry setting is saved, repaired and optional (1359.598078ms)
+✔ each port offers the choice when it can matter, on a desktop and a phone (892.225899ms)
+✔ the control reads right in every language (2124.004153ms)
+✔ domain administration start buttons and read-only locks use shared dispatch only (580.853577ms)
+✔ transport form dispatches viable synthetic site and purchased or owned link configs (413.244986ms)
+✔ boundary form stages typed requirements and flows, records observations, and binds a real resource (412.401794ms)
+✔ domain panel renders actual enforcement separately from declared evaluation and is pure (335.466614ms)
+✔ campaign panel exposes named progression windows and dispatches only the campaign module API (331.094017ms)
+✔ campaign starter stays disabled outside the SMB scenario (364.431044ms)
+✔ campaign UI displays authoritative assessment and gates incident controls by the real observation window (404.445952ms)
+✔ AC-SOC-133 real call admission and room joins require independent transport capacity and reroute after shared faults (25.395096ms)
+✔ AC-SOC-134 transport invoices reconcile once into real business cash, with save/worker/repeated calculation equivalence (25.033488ms)
+✔ AC-SOC-135 actual information resources, custody and bound contracts gate government service in all four profiles (35.494594ms)
+✔ AC-SOC-136 disconnected operation derives real connectivity and expires local licence grace without mutating reads (5.523143ms)
+✔ AC-SOC-115 leaver stages explicit identity, number, group and device revocations while retaining accepted history (35.339178ms)
+✔ AC-SOC-116 leaver retries honor connector authority and per-resource generations; active work remains assigned until safe (14.097131ms)
+✔ AC-SOC-117 native room firmware requires current room product binding and observed room prerequisites (6.080311ms)
+✔ AC-SOC-118 leaver and device state survive worker execution and validated save replay (24.925171ms)
+✔ AC-SOC-059 discovery reconciles idempotently and retains unresolved identity evidence (2.221773ms)
+✔ AC-SOC-060 effective connector scope and observed authority gate exact actions (3.957413ms)
+✔ AC-SOC-061 batch JML can partly fail and retry only the failed item once (0.668445ms)
+✔ AC-SOC-062 stale mover preserves newer state and unsupported leavers stay blocked (0.45856ms)
+✔ AC-SOC-063 device project checks platform support, generation and rollback checkpoint (0.514207ms)
+✔ AC-SOC-064 export and backup independently check hold, access, region, administrator, key and local dependencies (3.018605ms)
+✔ American eyeballs follow PeeringDB, and the ones with upstreams are reached through their Tier 1s (#155) (592.371308ms)
+✔ Coax gets Spectre-um’d a year in, and Final Frontear joins Very-Zone a year later (#155) (907.375178ms)
+✔ Australian eyeballs: Neptoon on every exchange family, Lawn-tel in Hobart, Internope behind its parent (#154) (348.523186ms)
+✔ a route's market follows the eyeballs at both ends, and a landing town counts the city it serves (541.102399ms)
+✔ a listing sells over time, never past the market, and rent from a road to nowhere stays small (478.540388ms)
+✔ a listing is kept in the save, checked, and can be taken off the market (384.008072ms)
+✔ a consortium seat regenerates in the landing stations along its cable, so early optics can light it (455.886985ms)
+✔ find a city by its name, without accents, by country or by its exchange (#218) (584.40574ms)
+✔ the search box opens with / or the HUD button, Enter jumps to the first city, Escape closes (407.137257ms)
+✔ in German, a German country name finds the city, and the search works on a phone (353.414293ms)
+✔ Inspect on a congested link moves the map to that link (578.279353ms)
+✔ a long link zooms out to fit, and stays clear of a bottom sheet (375.015368ms)
+✔ a puzzle keeps its own framing when a link is opened (287.070617ms)
+✔ AC-SOC-433 all campaign tracks procure required offers, recover incidents, bill and renew across jurisdictions and modes (22183.781702ms)
+✔ AC-SOC-434 campaign checkpoints reject pending provisioning and forged renewal readiness (194.945307ms)
+✔ AC-SOC-435 alternate voice and interoperable room designs complete the extended campaign (422.154335ms)
+✔ AC-SOC-436 every campaign recipe command maps to visible controls with no evaluation fallback (1783.62894ms)
+✔ AC-SOC-437 visible campaign controls execute procurement through renewal for all four tracks (14296.703863ms)
+✔ page boots to the title screen without errors (553.828496ms)
+✔ every city sits on its landmass (381.506804ms)
+✔ every cable lands at two known cities and has a length (392.908173ms)
+✔ a year of scripted play stays healthy (1161.57722ms)
+✔ every incident and event type fires and clears cleanly (824.278778ms)
+✔ every panel, tab and the dashboard render (486.438799ms)
+✔ saves never resurrect a bankrupt game (334.595168ms)
+✔ LAGs add members, capacity and cost to transit, IX ports and PNIs (410.744373ms)
+✔ goal rewards are paid once, even for goals finished on day 0 (368.898781ms)
+✔ Stuttgart has only the Spätzle-IX: no transit, no PNIs (332.516632ms)
+✔ bank: offers arrive, loans pay out, cost money monthly and get paid off (601.297475ms)
+✔ bank: broke players get emergency offers, broken conditions cost a penalty (307.473707ms)
+✔ bank: the venture vultures take a share of revenue instead of payments (394.348227ms)
+✔ old saves load, and a stale flat DDoS object is repaired away (320.96156ms)
+✔ DDoS goal and badges unlock from the right state (354.964975ms)
+✔ #52 loan offers stop once you have half a billion in the bank, and come back if you lose it (362.183339ms)
+✔ loans: good terms need good credit, big loans want revenue, and the weird lenders do weird things (600.451334ms)
+✔ notifications: the NOC keeps the last ten minutes, folds repeats and opens what each is about (532.516161ms)
+✔ the broadband panel shows what homes in that city really pay, not the base rate (410.65489ms)
+✔ a custom multiplier routes exactly like the matching preset (515.288312ms)
+✔ an absolute custom cost steers the path, and switching modes keeps the cost (538.750147ms)
+✔ custom metric input is validated and clamped (466.75748ms)
+✔ custom metrics survive a save, and broken ones are repaired (500.337487ms)
+✔ preset buttons stay plain, and Custom explains the numbers, also on phones (513.489606ms)
+✔ a custom metric belongs to the city pair, like the presets, and a standby link keeps it (449.894228ms)
+✔ overlapping DDoS saves round trip and legacy attacks migrate safely (321.043431ms)
+✔ W1: every city has a country code, a region and real coordinates (1.462393ms)
+✔ W2: every country on the map has at least two consumer networks of its own (3.58796ms)
+✔ W3: every city can buy transit from someone, or is a documented exception (0.74999ms)
+✔ W4: cables are consistent: real cities, two distinct ends, a length and unique ids (0.61224ms)
+✔ W5: every island city can be reached: it shares its land, has a cable, or a beach to land one (0.975887ms)
+✔ N1: network ids and ASNs are unique, ASNs are valid (0.557ms)
+✔ N2: names are puns: no network, cable, exchange, data center, router, optic or cable ship carries a real name (1.84112ms)
+✔ N3: every network sits in a founding Tier 1’s customer cone, or is a documented island (0.610031ms)
+✔ N4: no upstream cycles (0.517949ms)
+✔ N5: traffic shares are sane (0.693175ms)
+✔ N6: every network has a type, a peering policy and a translated blurb (0.38478ms)
+✔ N7: presence is real: PoPs are cities, exchange ports only where the network is (0.906967ms)
+✔ M1: On-call is the classic game: the default rules, and what old saves load as (0.393597ms)
+✔ M2: presets are ordered: Best Effort never harsher than Change Freeze, Change Freeze never harsher than On-call, BGP at 3 a.m. never gentler (2699.732129ms)
+✔ M3: every subsystem that can annoy the player reads a rule (591.930919ms)
+✔ M4: scenarios and the weekly challenge always run On-call (623.129904ms)
+✔ M5: Sandbox has no locked feature (349.739248ms)
+✔ C1: every scenario has a goal its card checks, and none is won on day 0 (620.352503ms)
+✔ C2: every puzzle has a 1-star and a 3-star reference solution (tests/puzzles.test.js) (0.697501ms)
+✔ C3: every player-facing string is translated in every language (693.523829ms)
+✔ F1: new players get a gentle start: nothing breaks for 45 days, no sold-out routes for 90, no hardware inflation for 180 (315.424042ms)
+✔ F2: a simple build in a start city makes money within three months on On-call (2062.647325ms)
+✔ F3: a specialist path only brings customers you can already serve (356.277958ms)
+✔ F4: the chaos monkey only visits On-call and BGP at 3 a.m., late, for 120 to 240 days, instead of the ordinary failures (1751.438485ms)
+✔ F5: rented capacity never outgrows the route's market (#203) (410.331198ms)
+✔ D1: attack sizes come from the world, never from your network (445.253421ms)
+✔ D2: a full port slows everyone on it (506.422992ms)
+✔ D3: only upstream tools and scrubbing keep a flood off your ports; Flowspec works behind them, within its budget (427.295159ms)
+✔ D4: RTBH costs only the target (582.920637ms)
+✔ no page errors while checking the rules (0.171034ms)
+✔ sender pays: fee on Seoul transit, incumbents only over a paid PNI, cheap broadband (702.045849ms)
+✔ sender pays: Korean users mind a haul to Tokyo even over peering (509.16087ms)
+✔ Korea outside the scenario keeps its usual prices (412.800922ms)
+✔ an older Gangnam save picks up the sender-pays rule (364.519589ms)
+✔ Glowball Sakura Lager is a Tier 2 in the big hubs, not everywhere (577.834481ms)
+✔ it sells transit only where it is, and never to Australians, but peers on the big Australian exchanges (379.618762ms)
+✔ far from home it costs more than the locals, so it is never the cheap way in (393.384511ms)
+✔ buying transit from it reaches the whole internet (403.745562ms)
+✔ it takes a PNI and open peering at an exchange, and carries its own traffic over them (407.416949ms)
+✔ networks in its own regions buy their transit from it, so a PNI with it reaches them; none in Australia (379.03045ms)
+✔ a game saved before it existed gets the courtesy route to it (737.72778ms)
+✔ the city panel offers it as a transit provider, on a desktop and a phone (668.976157ms)
+✔ the game starts in English unless the player or the browser asks for another language (3901.771638ms)
+✔ missing translations fall back to the English, with placeholders filled (305.112557ms)
+✔ text that old saves stored in English is still translated (642.302319ms)
+✔ every translation keeps the placeholders, HTML tags and plural forms of its English (49.443765ms)
+✔ the static markup is translated by label (371.002539ms)
+✔ the language dropdown on the title screen works before any game exists (362.191805ms)
+✔ picking a language saves the choice and the game, then reloads (338.363752ms)
+✔ a scenario started in English shows its Italian name after switching (650.568496ms)
+✔ en: every screen, failure and event renders without errors or unfilled placeholders (1769.353413ms)
+✔ it: every screen, failure and event renders without errors or unfilled placeholders (1689.533174ms)
+✔ pt: every screen, failure and event renders without errors or unfilled placeholders (1543.693244ms)
+✔ fr: every screen, failure and event renders without errors or unfilled placeholders (1548.457318ms)
+✔ es: every screen, failure and event renders without errors or unfilled placeholders (1617.023985ms)
+✔ de: every screen, failure and event renders without errors or unfilled placeholders (1745.197615ms)
+✔ the translation check catches labels the build could not see, and English-keyed calls (5.12319ms)
+✔ AC-SOC-250 inbound calling resolves an owned number through actual carrier, media and staffed handling (8.684183ms)
+✔ AC-SOC-251 inbound number ownership and supplier state precede ordered routing (3.711665ms)
+✔ AC-SOC-252 inbound carrier onboarding, directional media and route ordering remain independent (3.936373ms)
+✔ AC-SOC-253 inbound identity scope, entitlements and case separation reject false local identity (5.752583ms)
+✔ AC-SOC-254 inbound admission uses network and SIP controls without treating incoming calls as outbound spend (6.5365ms)
+✔ AC-SOC-255 inbound sessions cannot bypass capacity and workers preserve replay and trace lineage (20.922547ms)
+✔ AC-SOC-471 restricted recording transfer requires a delayed explicit archive interface and preserves classification and custody (58.555266ms)
+✔ AC-SOC-472 administration-to-training cannot declassify restricted capture and retains its blocked attempt without changing records (7.988774ms)
+✔ AC-SOC-473 administration-to-training accepts a genuinely internal capture without relabelling a restricted recording (8.664081ms)
+✔ AC-SOC-474 direction, stale destination generation, revocation and explicit reprovisioning gate actual transfer recovery (25.449113ms)
+✔ AC-SOC-475 worker, save and pure inspection agree for successful and blocked interface transfers (60.724572ms)
+✔ AC-SOC-476 source storage generation changes require new capture evidence even after interface reprovisioning (19.36428ms)
+✔ AC-SOC-477 save validation rejects altered destination custody, lowered classification and removed successful transfer receipts (12.04175ms)
+✔ AC-SOC-478 matching a forged origin receipt cannot downgrade the retained restricted capture contract (10.392713ms)
+✔ AC-SOC-479 processing transferred restricted information cannot silently move it to the pipeline original archive (16.896529ms)
+✔ AC-SOC-480 defence-specific interfaces do not break government meeting capture under its own boundary contract (4.866423ms)
+✔ AC-SOC-481 outer dispatcher authority covers each endpoint independently and rejects denied commands atomically (26.840928ms)
+✔ AC-SOC-482 fresh defence console deploys a typed archive before boundary/interface provisioning and locks its creation form read-only (1086.556045ms)
+✔ AC-SOC-483 actual information console provisions a typed archive interface, transfers a real meeting record and revokes it (659.969005ms)
+✔ AC-SOC-484 read-only information controls cannot mutate through click or programmatic form submission (497.235243ms)
+✔ AC-SOC-485 interface display and transfer history escape untrusted text without presenting it as executable markup (373.386132ms)
+✔ AC-SOC-486 boundary flow editor removes only draft rows, retains one and respects read-only ownership (438.058578ms)
+✔ AC-SOC-466 fictional defence interface policies are immutable, explicit, directional and bounded (0.869009ms)
+✔ AC-SOC-467 restricted copy retains capture classification and destination storage; failed attempts change neither records nor config fingerprint (24.880407ms)
+✔ AC-SOC-468 restricted capture cannot use the lower-class admin-to-training interface or be relabelled on save (10.556905ms)
+✔ AC-SOC-469 explicitly internal administration records can pass only through the permitted one-way training interface (8.360755ms)
+✔ AC-SOC-470 legacy record without captured origin remains loadable but cannot transfer; worker result matches main command (30.290974ms)
+✔ AC-SOC-031 information work is delayed, capacity typed, lineage retained and reads pure (16.367057ms)
+✔ AC-SOC-032 processing boundaries, language and quality fail independently of calling (8.590687ms)
+✔ AC-SOC-033 permissions narrow along lineage and held descendants prevent deletion (5.109657ms)
+✔ AC-SOC-034 retention expiry, hold release and replay preserve tombstones (18.933846ms)
+✔ AC-SOC-035 bookings, native and interop joins, events and recording dependencies differ (6.225128ms)
+✔ AC-SOC-036 disconnected local processing and meeting media require local licences and services (4.354684ms)
+✔ AC-SOC-037 pipeline plans persist across configuration changes and worker execution matches (19.418248ms)
+✔ AC-SOC-349 information history records actual bounded evictions without changing lineage or read purity (2534.854117ms)
+✔ AC-SOC-256 typed journey controls dispatch inbound calls and enforce read-only and busy states (694.559634ms)
+✔ #262 by default the intern lights new fiber with the most Gbps per dollar, as before (686.362671ms)
+✔ #262 told to go big, the intern lights new fiber with the most Gbps per channel (451.195016ms)
+✔ #262 the biggest optic that fits the budget, and it never swaps what is already lit (808.709471ms)
+✔ #262 the setting is saved, an unknown value falls back, and it shows on the phone (434.669863ms)
+✔ the Caribbean: islands on their own landmass, real landings, exchanges only where one runs (#125) (721.278536ms)
+✔ the south-west Indian Ocean: Réunion on SAFE, Mauritius, Madagascar and the Seychelles (#152) (369.7929ms)
+✔ Pitcairn: no cable and no network, but you may land your own, and the UK pays while the islanders are online (#124) (584.806836ms)
+✔ Alaska and northern British Columbia: towns with no road in are islands, and the Arctic fiber breaks in the ice (#145) (338.847271ms)
+✔ Russia's Arctic and Pacific: government boxes, real cables only, beaches where Polar Express never arrived (#145) (421.771898ms)
+✔ saves with POPs in the new places survive a save and reload (426.789178ms)
+✔ AC-SOC-149 retains source attribution, caveats and explicitly pending issue gaps (4.705352ms)
+✔ AC-SOC-150 reference directional-media commands produce the modeled one-way media failure (6.33877ms)
+✔ AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure (2.077422ms)
+✔ AC-SOC-152 unknown commands and out-of-order steps fail without state changes (1.395668ms)
+✔ AC-SOC-153 carrier-outage reference commands create an observed signalling failure (1.522605ms)
+✔ AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery (7.376936ms)
+✔ AC-SOC-155 exercise save state validates and progress fingerprint excludes root call evidence (8.028554ms)
+✔ AC-SOC-156 worker source serializes the same source-bounded command policy (1.418287ms)
+✔ #4 several transits in one city share the load instead of filling one by one (672.683089ms)
+✔ #5 export writes a file and import restores it, with checks (428.524931ms)
+✔ #6 full transit, IX, caches and routers show up in the NOC and on the map (371.040768ms)
+✔ some routers take forever to boot, PacketOinkers most of all (399.436335ms)
+✔ the network name opens a menu with save, load and start over (350.673994ms)
+✔ a rare global outage shows a banner, dents traffic and only happens once (428.227624ms)
+✔ badges unlock with a rarity, persist across games, and secret ones stay hidden (378.337337ms)
+✔ Auto-TE spills overflow onto an alternate path when the shortest one is full (433.224471ms)
+✔ rare badges hook into incidents and deals (319.519129ms)
+✔ #7 NOC legend, sortable network table and transit destinations (610.761622ms)
+✔ #11 pausing freezes the dots on the links (370.06922ms)
+✔ #16 shark-averse customers only ask for routes that can stay on land (634.997093ms)
+✔ #28 scenic routing stays put, and splits over two equally quiet paths (535.071135ms)
+✔ #17 #30 very long dark fiber runs in long-haul mode, and regen sites bring full speed back (476.930299ms)
+✔ LACP trouble, partial packet loss and PMTUD black holes fire, hurt and clear (465.922881ms)
+✔ an optical control plane meltdown darkens every leased wave in a region, not your own fiber (476.358291ms)
+✔ decommissioning POPs, one or several, removes what is there and charges for the customers (433.313471ms)
+✔ #19 parallel waves draw as one line, dark fiber can add parallel links, NLNOG Day exists (395.125758ms)
+✔ #40 overland between continents costs ten times subsea or more, and has no dark fiber (334.178102ms)
+✔ #39 caches are limited by router ports, not by a fixed count (323.182156ms)
+✔ #31 #33 #38 connections overview lists every port, filters it and jumps to it (505.376355ms)
+✔ #13 #15 unhappy customers warn early, furious ones pause the game (optional) (338.650536ms)
+✔ #14 customers overview lists everyone with happiness, reasons and a jump (354.588372ms)
+✔ settings screen holds every option and opens from the menu and the title screen (354.221448ms)
+✔ #42 the share card draws links across the date line on both edges of the map (337.892667ms)
+✔ #45 unplugged optics go on a spares shelf, get reused for free, or sold for 40% (385.592008ms)
+✔ #35 your own trench can light another fiber pair once a ROADMaster is full (405.556744ms)
+✔ #64 your own subsea cable runs beside the route, however many waves share it (396.857398ms)
+✔ #64 leased and own land fiber stay near their route next to a trench full of waves (590.811835ms)
+✔ buttons behind an open modal stay quiet, and a declined PNI clears its stale button (547.154436ms)
+✔ #66 #68 subsea optics: engineered glass reaches further, and the same limit caps leased waves (801.309297ms)
+✔ #67 a subsea cable can be laid between landing stations that also share a landmass (975.180376ms)
+✔ #49 subsea cables stay on the map when you zoom in (307.482146ms)
+✔ #20 local PNIs satisfy local breakout only while Tier 1, without changing transit or IX rules (331.697675ms)
+✔ deal navigation visits the first missing POP, including second endpoints and multi-site offers (331.783716ms)
+✔ NOC leased lines tab prices leased dark fiber, own fiber and cables against the leases (1182.507295ms)
+✔ connections in the NOC dashboard can be cancelled right there, after a confirm (450.406645ms)
+✔ connections in the NOC dashboard can be upgraded and grown into LAGs right there (427.088671ms)
+✔ leased-line savings only count when your own glass has room, and include the optics (365.290876ms)
+✔ cancelling from the Connections list confirms once, without forging the panel state (359.569052ms)
+✔ diversity offers respect buildable cable routes, not current infrastructure (372.536662ms)
+✔ mandatory and optional diversity requirements skip impossible city pairs (379.644732ms)
+✔ save migration checks diversity using the imported cable unlock (345.965119ms)
+✔ NOC link navigation replaces the phone and tablet sheet immediately (1140.329709ms)
+✔ opening a link on desktop keeps the NOC sidebar available (443.296091ms)
+✔ #77 waves can join any route already dug between two cities (460.816425ms)
+✔ #73 losing Tier 1 to a sliver of reach is visible and explained (393.413237ms)
+✔ #69 embedded caches can sit in either metro building, so one dark building leaves the rest serving (485.750466ms)
+✔ #63 incidents you can fix with one click sit above hot ports in the NOC (468.699606ms)
+✔ #82 router swaps trade in the old gear, one swap a day, and requirements name the speed (448.658828ms)
+✔ fiber between nearby cities bends gently instead of looping around the neighbourhood (497.8723ms)
+✔ #105 swapping the only router in an empty POP needs no maintenance window (385.610334ms)
+✔ #104 declining a loan offer clears the bank badge while paused (461.089075ms)
+✔ #88 no subsea cable longer than any optic can light, and a refund for calling one off (1236.014737ms)
+✔ #50 a city without a cable landing points to the nearest one (361.133978ms)
+✔ #36 your own IX moves between buildings, or runs a switch in both (424.2753ms)
+✔ #56 parallel waves of different sizes are labelled per size, not as N times the total (444.668902ms)
+✔ #107 a bigger optic never carries less than a smaller one at the same distance (388.76825ms)
+✔ #110 PNI buttons show the monthly port fee, not just the one-off setup (420.655381ms)
+✔ #111 #121 #12 the road to Tier 1: what is missing, and where to meet each network (661.60613ms)
+✔ #113 Red Sea Crisis wants traffic into Asia for a month, not broadband and a thin path on day 0 (2046.855098ms)
+✔ #84 Luxembourg has its own eyeball ISP at LU-SICK; no real company names among wave sellers (352.14225ms)
+✔ #51 a dark fiber shows what is rented out, and spare capacity can be listed with a broker (447.733442ms)
+✔ #126 you can zoom in far enough, and pick a short link between two close cities (354.815341ms)
+✔ #134 an exchange named after its city does not repeat the city in messages (411.389673ms)
+✔ #166 every Brazilian exchange is named after its city, São Paulo included (359.014341ms)
+✔ link redundancy trials distinguish a bridge, a full fallback and a healthy alternate path without changing the game (407.75865ms)
+✔ #219 splitting a one-member PNI across both sites splits it when the augment lands (355.315424ms)
+✔ #219 choosing one site again while the augment is on order keeps the LAG in that site (578.55606ms)
+✔ #210 candidate exits on saturated shortest paths are skipped to avoid fallback churn (392.383683ms)
+✔ AC-SOC-093 consent is checked before each acceptance and an accepted send keeps its delivery receipt after revocation (26.097426ms)
+✔ AC-SOC-094 business purpose stays separate from channel purpose; bot containment is unresolved and repeat reserves a new usage token (14.956994ms)
+✔ AC-SOC-095 bot-resolved transport is not task success; supported task evidence can resolve the need (6.2976ms)
+✔ AC-SOC-096 outcomes reject forged case, tenant, person and non-live task result bindings (5.511018ms)
+✔ AC-SOC-097 a successful result cannot resolve when its configured task resource is unavailable (15.922399ms)
+✔ AC-SOC-098 worker, save validation, and pure calculations preserve outcome and channel state (26.875215ms)
+✔ language is one dropdown on the title screen and in Settings, in every language, with the current one selected (2430.627537ms)
+✔ changing the dropdown in Settings switches language and keeps the game (380.014018ms)
+✔ the dropdown fits a phone (305.071263ms)
+✔ broadband backhauled to transit far away is slow, and slow is bad service (796.738051ms)
+✔ the penalty is on a curve, and traffic that needs no transit is never penalised (439.773172ms)
+✔ the slow-city warning box does not restyle the yellow progress bars (420.992553ms)
+✔ AC-SOC-157 shared dispatch executes both real incident exercises and preserves restart history (20.888153ms)
+✔ AC-SOC-158 achievements use current product bindings and once-only explicit claims without financial reward conversion (29.955135ms)
+✔ AC-SOC-159 learning packs share worker commands and validate saved progress without mutating inspection (51.869679ms)
+✔ AC-SOC-160 learning controls respect locks and execute actual issue and achievement commands (538.302633ms)
+✔ thirteen customer levels, each harder than the last (590.820415ms)
+✔ traffic eras raise the eyeball ceiling as you level up (412.665391ms)
+✔ new routers: the 3.2T main line, side-grades, and 3.2T ports only once unlocked (367.780357ms)
+✔ C+L line systems double the channels; level 12 trenches hold eight pairs (469.11347ms)
+✔ paid-peering giants give you a free PNI once you are big enough (455.688561ms)
+✔ the new customer types turn up at their levels (674.358578ms)
+✔ old saves keep their level; nonsense levels are clamped (564.372362ms)
+✔ a big old network that jumps several levels hears about each one in the event log (348.803995ms)
+✔ #122 the routing metric belongs to the city pair (775.627293ms)
+✔ #122 a link on standby idles while the others have room and takes over when they fail (495.515438ms)
+✔ #122 a standby link takes the overflow when the active links are full (433.240627ms)
+✔ #122 the order links are built in does not change where traffic goes (1802.086677ms)
+✔ #122 a new link between the same cities adds capacity and keeps the pair metric (367.750564ms)
+✔ #122 old saves keep routing as before: per-link metrics become the pair metric (361.377868ms)
+✔ #122 traceroute shows an active link, not one on standby (424.177382ms)
+✔ #122 the standby button shows next to another link, on desktop and phone (518.88561ms)
+✔ #62 a redundancy check computes only the trial, and matches comparing two fresh routings (615.840065ms)
+✔ diversity map: the indexed graph answers like disjointRoutes() over every possible link (22137.082049ms)
+✔ link curves: skipping far-away cities gives the same bend around the ones in the way (7455.329488ms)
+✔ land test: the bounding box shortcut agrees with walking every coastline (3347.560475ms)
+✔ AC-SOC-306 two real portfolio customers retain independent JML outcomes, delayed readiness, retry, and one typed charge each (46.731519ms)
+✔ AC-SOC-307 stale per-resource generations block before charge and worker/save replay keeps bounded state deterministic (41.53856ms)
+✔ AC-SOC-308 managed-operation history and portfolio clock survive sandbox campaign track changes without impure reads (19.501562ms)
+✔ AC-SOC-309 posted managed history remains valid while an inactive portfolio child pauses and later catches up (22.926ms)
+✔ AC-SOC-310 global managed obligations block portfolio deactivation after the child contract is canceled (20.376338ms)
+✔ AC-SOC-311 managed operations UI is a typed root-scoped form and forwards full selected desired configurations (618.520088ms)
+✔ AC-SOC-312 managed operations retry control targets one blocked customer and disabled/read-only controls do not dispatch (490.233268ms)
+✔ AC-SOC-313 mover UI changes one existing calling entitlement without changing canonical identity (354.085847ms)
+✔ AC-SOC-299 cross-customer jobs keep tenant and per-resource outcomes, then retry only unfinished work once (4.747461ms)
+✔ AC-SOC-300 contract, connector, canonical inventory, resource scope, and child authority fail closed per customer (0.854531ms)
+✔ AC-SOC-301 joiner and mover jobs require a meaningful supported identity change instead of billing a no-op (0.761751ms)
+✔ AC-SOC-302 stale generations and forged job results cannot become delivered or billed evidence (0.555403ms)
+✔ AC-SOC-303 settlement is typed, idempotent per completed item, and never invents a price when no hook exists (0.882039ms)
+✔ AC-SOC-304 estate completion waits for matching effective provisioned and observed resource state before settlement (0.668678ms)
+✔ AC-SOC-305 read, fingerprints, saves and worker factory are deterministic and mutation resistant (1.381327ms)
+✔ AC-SOC-225 market qualification shared dispatch preserves sampled proof through worker, restore and campaign clocks (2181.507045ms)
+✔ AC-SOC-211 market IDs are geography keys and cannot be inferred from jurisdiction labels (67.905063ms)
+✔ AC-SOC-212 c3 needs 60 actual samples, new customer billing, support and eligible information flow (2838.934628ms)
+✔ AC-SOC-213 c5 requires all five active market identities, including the two separate AU markets (1932.122979ms)
+✔ AC-SOC-214 t2 requires three customers, two markets, support, new billing and current tested integrations (1192.815334ms)
+✔ AC-SOC-215 portfolio profit is sampled from external business ledgers only (31.58574ms)
+✔ AC-SOC-216 level 2 and 7 preserve customer, human-case, market-language, carrier and distributor distinctions (147.647853ms)
+✔ AC-SOC-217 observed cohort and configuration changes are sticky and cannot recover into a pass (879.602981ms)
+✔ AC-SOC-218 inspection purity, worker serialization, restore-compatible state shape and proof deletion checks (53.443718ms)
+✔ AC-SOC-226 market controls act on the portfolio while a customer is selected and remain read only without a lock (747.643824ms)
+✔ every action in the game is in exactly one class, so a new one forces a decision (727.640439ms)
+✔ every declared argument is one the action really reads (466.96966ms)
+✔ the state and results references cover every field (880.20704ms)
+✔ typed text reaches the game: rename, RouteScript, the custom metric, traceroute (538.393343ms)
+✔ multi-step builds take their choices as arguments: waves, dark fiber, own cable, circuits, closing POPs (867.929418ms)
+✔ confirmations are given in one call; a click still arms them as in the game (512.470375ms)
+✔ the utilities sheet's one-call buttons work without a quote in hand (418.669615ms)
+✔ arguments are checked before anything runs, with what would fit (395.74063ms)
+✔ the outcome says what happened (470.255114ms)
+✔ dry runs do not use up the dice: the seeded game plays on exactly as without them (989.625459ms)
+✔ a dry run prices every command that has a price, and changes nothing (832.567293ms)
+✔ everything an action needs can be read: loan offers, conference keys, recipes, reference tables (460.015119ms)
+✔ the dashboard, the bank, the left drawer and the puzzle box read as text; long text comes in pages (900.474098ms)
+✔ new_game takes your own ASN and the sandbox chaos dial (361.261636ms)
+✔ every button the panels, drawers, dashboard and windows render is classified, and typed ones pass their domains (794.145233ms)
+✔ AC-SOC-361 SP MCP reports the same initial customer level before and after save restoration (820.177992ms)
+✔ speaks MCP over stdio: initialize, list tools, call one, and errors as errors (816.845721ms)
+✔ plays like a player: buy, answer the quote by its button, and run time forward (771.58028ms)
+✔ the same seed and the same moves give the same game (1004.572202ms)
+✔ reads the world and the network: networks, cities, search, traceroute, peering and hot spots (381.649979ms)
+✔ panels and the network list read as text with buttons (406.3059ms)
+✔ saves go out and come back, and a bug report save loads as the game loads it (440.399233ms)
+✔ only game actions: files, slots, settings and the clock stay out of reach (318.766503ms)
+✔ AC-SOC-323 actual carrier and caller offers drive direct media, directional failure and synthetic offer traces (19.053533ms)
+✔ AC-SOC-324 transcoding consumes explicit live sessions independently from agents and releases before wrap-up (9.238715ms)
+✔ AC-SOC-325 incoming media uses carrier offers while optional codec negotiation replaces the legacy single-codec gate (7.706939ms)
+✔ AC-SOC-326 media observation loss ends a real active call and worker execution matches synchronous commands (22.201058ms)
+✔ AC-SOC-327 an active session renegotiates when an effective endpoint codec offer changes (4.152382ms)
+✔ AC-SOC-328 an active transferred call atomically reroutes its media target to the destination queue (5.996179ms)
+✔ AC-SOC-314 independent endpoint and carrier offers choose the first end-to-end codec and preserve directional media (2.642969ms)
+✔ AC-SOC-315 no common codec fails without a transcoder even when profiles and signalling are healthy (0.277736ms)
+✔ AC-SOC-316 an explicit effective transcoder bridges offers and its session capacity is independent of other resources (0.983421ms)
+✔ AC-SOC-317 internal and inbound route shapes do not require a carrier for internal calls or an internal source for inbound calls (0.290418ms)
+✔ AC-SOC-318 pending and failed generations keep prior effective offers; observations do not consume on reads (1.777028ms)
+✔ AC-SOC-319 save validation binds reserved sessions to live calls and valid configured resources (0.512206ms)
+✔ AC-SOC-320 event and released-session rings stay bounded and preserve monotonic identifiers (36.975002ms)
+✔ AC-SOC-321 active calls reroute atomically, exclude their own transcoder session, and retain bounded history (1.436189ms)
+✔ AC-SOC-322 worker source reproduces inspection and routes while source IDs remain content-linked (2.473857ms)
+✔ AC-SOC-329 media console is visibly synthetic and every control is disabled in read-only mode (559.607207ms)
+✔ AC-SOC-330 starter and typed endpoint, carrier, transcoder, and observation forms dispatch validated shapes (345.441436ms)
+✔ AC-SOC-331 read-only path preflight reports codec, signaling, directions, and synthetic offer trace without dispatching a call (323.539983ms)
+✔ #131 switching the custom metric mode re-renders even while the field has focus (604.770133ms)
+✔ #131 the daily re-render still keeps a half-typed value (408.454858ms)
+✔ sandbox: endless money, every unlock, nothing breaks, no badges (628.696681ms)
+✔ scenarios: rules apply, goals complete, deadlines fail, seeds repeat (428.510441ms)
+✔ completing a scenario records it and unlocks a badge (345.902815ms)
+✔ traceroute shows hops, the exit and the AS path (425.880195ms)
+✔ conferences: register, attend, and selective peers get easier for a while (354.642009ms)
+✔ the guided tutorial walks through the first steps and can be skipped (359.102469ms)
+✔ animations can be switched off, on or follow the system, and the choice sticks (372.887687ms)
+✔ half speed and deeper zoom (338.694213ms)
+✔ the map draws at every zoom, with and without animations, without throwing (411.812841ms)
+✔ RouteScript: parses safely, reports errors helpfully, and changes routing (444.50983ms)
+✔ RouteScript BGP: local-pref and prepending move transit, protected customers go first, the optimizer drafts a script (397.093963ms)
+✔ #27 new networks get a random name, and "Another one" never repeats it (318.504077ms)
+✔ iPhone home-screen app fills the screen when iOS reports a short viewport (326.245031ms)
+✔ phones in the browser get the install pitch before a new game, then can still play (423.235602ms)
+✔ the installed app and desktop browsers start straight away (960.855253ms)
+✔ #34 scenario goal, progress and customer level are always in view (765.252286ms)
+✔ NOC dashboard has a tab bar for its sections (378.43022ms)
+✔ a brand-new phone player can click through the install pitch and the title screen buttons (344.119295ms)
+✔ Flood Season: attacks keep coming, grow, and only count when service held (350.157437ms)
+✔ DKNOG in Copenhagen is on the conference calendar (356.170656ms)
+✔ the project feedback page is linked from the title screen, the menu and How to play, in every language (2103.841157ms)
+✔ #114 Only Spätzle-IX can be won by peering alone (741.328994ms)
+✔ RouteScript: help, ready-made scripts and the AI button (524.834758ms)
+✔ Flood Season keeps attacking and escalating after both success and timeout (763.76685ms)
+✔ tampered JML source lineage is rejected on restore validation (1.825798ms)
+✔ inventory identity cannot be linked to a resource of a different estate kind (0.172842ms)
+✔ repeated discovery preserves the reviewed canonical resource link (0.302806ms)
+✔ authority revoked after submit blocks background work without aborting simulation advance (0.44579ms)
+✔ connector fault is independent of desired and effective configuration and recover flags (0.618783ms)
+✔ retry rechecks connector resource-kind scope captured by a pending job (0.26039ms)
+✔ failed connector provisioning keeps prior effective capabilities in place (0.283555ms)
+✔ estate fingerprint ignores job and transfer progress but tracks control and inventory changes (0.495643ms)
+✔ JML desired configuration may be pending while the old effective configuration stays active (0.257844ms)
+✔ firmware cannot claim native meeting compatibility without an explicit compatibility hook (0.355877ms)
+✔ transfer save validation binds lineage and access metadata to the captured policy (0.343701ms)
+✔ restored workforce assignment cannot invent a person and entitlement snapshot (0.568599ms)
+✔ restored assignments cannot exceed one person’s voice or digital concurrency (3.824196ms)
+✔ calling save validation rejects mailbox-message owner and tenant mismatches (0.809668ms)
+✔ calling provisioning keeps prior effective policy until the new generation is ready (0.567633ms)
+✔ calling fingerprint tracks policy generations but ignores voicemail and event progress (0.25245ms)
+✔ the North Sea and the Baltic: new landings, real cables, and anchors on the Baltic ones (715.235279ms)
+✔ the Indian Ocean and Asia-Pacific: the big real cables, Muscat, the Maldives and Fukuoka (955.065276ms)
+✔ #195 China Telecomet sells its premium crossing in Moscow, and nothing else there (688.794433ms)
+✔ #195 it costs the same in Moscow as in Hong Kong, and the bill agrees with the panel (430.806095ms)
+✔ #195 European traffic hauled to Moscow crosses into China with far less loss on the premium port (806.362367ms)
+✔ #195 Hong Kong still works as before, and premium is not offered where it is not sold (385.775226ms)
+✔ #195 saves: a Moscow port stays premium, a bogus premium elsewhere is dropped, and it meets the China requirement (405.20945ms)
+✔ AC-SOC-071 source-linked humour preserves role boundaries and cannot determine simulation outcomes (705.488576ms)
+✔ the Networks list shows 100 networks at a time, with a button for the rest (889.286902ms)
+✔ #186 a new network starts at half speed, even after a game at 8× (693.833086ms)
+✔ #186 on a phone, play after pause resumes at half speed, not the old game's speed (363.073704ms)
+✔ #186 a saved game still continues at the speed it was saved at (674.305726ms)
+✔ AC-SOC-249 pending supplier orders prevent customer suspension and share the global clock and worker paths (108.677768ms)
+✔ AC-SOC-247 port order form sends the typed version 2 supplier lead and synthetic cutover (955.853106ms)
+✔ AC-SOC-248 supplier response form sends explicit accept or rejection details (362.642979ms)
+✔ AC-SOC-239 legacy number-port actions and version 1 rows keep their original behavior (43.48461ms)
+✔ AC-SOC-240 supplier lead business days use pinned weekday calendar and preserve minute-of-day (0.115638ms)
+✔ AC-SOC-241 order creation snapshots provider and rejects a cutover before supplier due time (1.235911ms)
+✔ AC-SOC-242 supplier cannot respond before due time and acceptance waits for planned cutover (26.207556ms)
+✔ AC-SOC-243 supplier rejection records its reason and leaves number routing unchanged (19.908723ms)
+✔ AC-SOC-244 missing supplier response at cutover fails without silently changing provider (17.619436ms)
+✔ AC-SOC-245 recovery restores the captured previous provider after a completed supplier order (19.14598ms)
+✔ AC-SOC-246 supplier order history validates, saves, runs in worker, and inspects without mutation (43.343076ms)
+✔ AC-SOC-195 observation controls start a real pack and window; thresholds, guides, live counts and closure are visible (577.457515ms)
+✔ AC-SOC-196 continuity controls only dispatch after a real baseline, sampled fault and recovery gate (438.282925ms)
+✔ observation checks use readable labels and source notes preserve bandwidth units (320.698034ms)
+✔ typed counts buy and remove optics on land fiber (674.751742ms)
+✔ typed counts buy and remove optics on subsea fiber (442.491769ms)
+✔ batch price matches individual channel purchases with spares, regen cards and tariffs (459.097044ms)
+✔ unaffordable batches, port limits and invalid input never partially change state (342.787999ms)
+✔ channel reservations and reach, line-system, level and router compatibility still apply (415.593215ms)
+✔ plus and minus buttons work alongside typed counts (387.034887ms)
+✔ draft counts and quotes stay together when reopening a panel or using shortcuts (419.557993ms)
+✔ #229 giving up a fiber puts its optics on the spares shelf, and so does decommissioning its POP (367.994866ms)
+✔ #256 a 1.6T optic takes two 800G router ports at each end, one 1.6T port (655.350887ms)
+✔ #256 a full 800G router has no room for a 1.6T optic that needs two ports (405.029442ms)
+✔ AC-SOC-079 optional pack configures deterministically and keeps reads pure (2.732006ms)
+✔ AC-SOC-080 explicit task evidence resolves the need; bot containment without task success does not (0.625805ms)
+✔ AC-SOC-081 repeat uses the canonical parent hook, retains case identity and deduplicates only original replay charges (0.403507ms)
+✔ AC-SOC-082 unsupported intent, missing task integration and stale identity context escalate explicitly (0.612858ms)
+✔ AC-SOC-083 unavailable channel delays; cross-channel context loss adds effort; attempt cap stops repeats (0.773906ms)
+✔ AC-SOC-084 duplicate settlement is idempotent; forged evaluations and saves fail; worker output matches (2.98287ms)
+✔ pick your own AS number next to the name, or leave it empty for a random one (#135) (591.053693ms)
+✔ an AS number that would not route is refused before the game starts (390.35467ms)
+✔ AC-SOC-065 optional packs start on validated dispatch and absent packs preserve old saves (7.437755ms)
+✔ AC-SOC-066 per-person queue assignment uses same-person skills, language and licensed-seat cap (8.460396ms)
+✔ AC-SOC-067 workforce warm transfer reserves a different person and retains source wrap (3.933194ms)
+✔ AC-SOC-068 calling resolves tenants and forwarding, reports directional media and synthetic emergency outcome (26.619658ms)
+✔ AC-SOC-069 estate changes use central generation/config hooks; unsupported leaver fields remain rejected (4.596971ms)
+✔ AC-SOC-070 combined packs validate, inspect purely, restore, and serialize to the same worker result (23.064321ms)
+✔ pages: the build is plain static files within GitHub Pages limits (1.55569ms)
+✔ pages: the repository has no hosting configuration for anywhere else (0.29813ms)
+✔ pages: every local file the site refers to is in the build (13.581005ms)
+✔ pages: only the release workflow deploys, and only with the GitHub Pages actions (0.585099ms)
+✔ pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things (1512.557912ms)
+✔ peering requests are answered by policy: Open accepts all, Selective the worthwhile ones, Closed none (674.026549ms)
+✔ once a week the NOC log gets one folded peering desk line (477.876838ms)
+✔ old saves with inbox, max-prefix and Large Peering Model state load and play (472.061224ms)
+✔ max-prefix incidents can no longer fire (494.25542ms)
+✔ Rackstar requests require enough Crowdflare traffic and a free router port (912.109146ms)
+✔ Rackstar serves cacheable Crowdflare traffic locally and overflow uses transit (411.30124ms)
+✔ Rackstar boxes survive save migration and appear on phone peering panels in every language (2390.411846ms)
+✔ big selective peers refuse in some cities, with a reason, and only for a while (318.758243ms)
+✔ a snubbing peer tears down an existing session and the Request button explains why (360.0767ms)
+✔ Change Freeze never refuses or tears down a session at an exchange; On-call does (345.171766ms)
+✔ remote peering is offered but costs more, gives less and gets refused more (415.642715ms)
+✔ DE-KICKS hides prices, haggles, harmonises upwards, auto-enrolls add-ons and fights to keep you (485.279834ms)
+✔ a peer at a rival exchange can de-peer you without stopping the game (351.651988ms)
+✔ an IX meltdown at a rival exchange names it, and a failing day tick does not stop the game (378.508046ms)
+✔ Amsterdam has FRIES-IX, with free 10G and 100G ports and paid larger ports (450.003191ms)
+✔ community exchanges are wired up in every city, and Barcelona has Catnip-IX (527.304032ms)
+✔ perf bench: the Mann–Whitney p-values match SciPy (0.650318ms)
+✔ perf bench: runs end to end on a small save and compares a version with itself (6749.892726ms)
+✔ a reload drops you straight back into your saved network (921.905679ms)
+✔ leaving the page saves the game (331.298045ms)
+✔ a save too big for the browser is not retried every few seconds, but leaving still tries (337.67896ms)
+✔ customer names already used are remembered once each, and old saves shrink on load (476.72396ms)
+✔ returning players see what is new after an update, once (1251.224138ms)
+✔ version comparison for the update banner (330.178327ms)
+✔ #46 an update that adds networks gives a courtesy route, and Tier 1 is shown only while it is true (380.339108ms)
+✔ in-app release notes stay short and link to the full notes on GitHub (299.062577ms)
+✔ the big-network benchmark save loads cleanly and routes traffic (432.725108ms)
+✔ Manila: GotchaFIX, Bayanihan-IX and the incumbent-run In-Vitro-IX (654.479391ms)
+✔ Manila: PLDTea Time and Globe-Trotter Telecom sell transit; a PLDT PNI also reaches Smarty Pants (407.783991ms)
+✔ Manila: an exchange the player founded there before GotchaFIX existed keeps working (392.095251ms)
+✔ Manila: RISE & Shine peers openly on all three Manila exchanges, across Asia and in Europe (385.803427ms)
+✔ Cebu: its own island, GotchaFIX Cebu, reached by two domestic cables, in the typhoon belt (450.689712ms)
+✔ Davao: Mindanao, GotchaFIX Davao, the trans-Pacific landings moved from Manila, and cables from Cebu (415.738876ms)
+✔ Davao: a saved link on a Bi-Frosted or SEA-US pair that moved keeps working, without the cable (464.833432ms)
+✔ Cebu and Davao: RISE & Shine is on GotchaFIX Cebu and GotchaFIX Davao (320.940131ms)
+✔ the Philippines: transit about 1.9 times the Asian rate, homes pay about US$25 a month (366.459674ms)
+✔ Philippines: waves between the islands cost more than waves out of the country (337.710078ms)
+✔ Philippines: eyeballs at about 40G per million people, like the rest of the map (325.364216ms)
+✔ bulk PNIs add missing shared POPs and upgrade smaller ports once, preserving existing orders and LAGs (717.61303ms)
+✔ bulk PNIs skip router speed, port capacity and policy restrictions with city-specific reasons (447.320696ms)
+✔ insufficient funds refuse the entire eligible batch and execution rechecks a stale preview (412.279918ms)
+✔ bulk PNI actions reject invalid networks, sizes, minimum ports, traffic thresholds and non-shared locations (358.205526ms)
+✔ Doitsche 1G bulk orders and 10G augments keep paid-peering fees and conference delivery rules (415.048274ms)
+✔ Traffic row buttons and size selection work by DOM events on phones in every language (2193.047442ms)
+✔ global PNIs cover every eligible network and shared POP, including the long tail, in one transaction (672.252219ms)
+✔ global PNIs share the available router ports, including four 10G breakouts per slot (798.410085ms)
+✔ global planning reserves ports for pending speed and LAG augments without mutating the save (735.793461ms)
+✔ global PNIs require the full budget and reject unsupported sizes and an empty POP list (368.580171ms)
+✔ the global batch, now in the Ops sheet, preserves scope, keyboard focus and translations on phones (1925.627913ms)
+✔ bulk PNIs follow each network's own minimum port and lead time (pniMin, pniLead) (324.75443ms)
+✔ one status chip per network, most direct first (652.215571ms)
+✔ the value line matches the transit bill by hand, and the worth-it rule (417.186157ms)
+✔ the PNI list: worth it first, filters, groups by type folded when idle, phones (639.876509ms)
+✔ the same chip in the Networks tab and the bulk PNI preview (380.740704ms)
+✔ every language renders the PNI list without raw labels (1929.927001ms)
+✔ PNIs with the big networks take a month, now and then 6 to 12, and start at 100G; small ones take weeks (683.570199ms)
+✔ Doitsche Telekomm sells 1G PNIs; nobody else does (415.200933ms)
+✔ Microsnoft has no capacity on the US east coast, at any price (381.91259ms)
+✔ saves: PNIs on order survive, and garbage is repaired (354.938103ms)
+✔ now and then a route is sold out of a wave size, for a while, and asking again does not reroll it (401.871102ms)
+✔ #201 a sold-out wave size cannot be reached by upgrading a smaller wave on the route (375.903279ms)
+✔ a standard POP: new POPs get its router model and count at once, without downtime (#240) (602.586134ms)
+✔ without the cash or the level, a new POP gets what fits; clearing and saves (407.120556ms)
+✔ the price of a new POP includes the standard routers, on the button and in the template (#261) (362.225324ms)
+✔ POPs built by a link, dark fiber or a consortium seat get the standard too, at the quoted price (#261) (427.627935ms)
+✔ AC-SOC-185 tenant birth clock and calling plus outcome canonical identity remain consistent (13.305305ms)
+✔ AC-SOC-188 portfolio shared dispatch advances all real roots and worker save replay agrees (39.433324ms)
+✔ AC-SOC-189 concurrent portfolio survives campaign track switching without rewind or duplication (6.61112ms)
+✔ AC-SOC-186 portfolio controls use locked shared dispatch to add, select, activate and deactivate customers (546.356913ms)
+✔ AC-SOC-187 portfolio panel displays actual business finance and separates opening capital from profit (403.775881ms)
+✔ AC-SOC-194 assembled training console configures the selected child, ticks every child, returns to root view, and restores save (477.321221ms)
+✔ AC-SOC-161 five geographic markets keep geography distinct from jurisdiction (3.851062ms)
+✔ AC-SOC-162 two real child journeys and accepted contracts stay isolated by customer (18.51298ms)
+✔ AC-SOC-163 every active child ticks once independent of selected view; inactive roots pause (2.142395ms)
+✔ AC-SOC-164 deactivation respects live contracts and obligations (4.189589ms)
+✔ AC-SOC-165 portfolio finance aggregates actual child ledger and excludes internal cash/profit (57.935322ms)
+✔ AC-SOC-166 forwarding is strict and rejects nested packs, child time changes and cross-customer swaps (0.856467ms)
+✔ AC-SOC-167 customer identity, market, root, and customer bounds are save-validated (5.012214ms)
+✔ AC-SOC-168 inspect and calculate are pure and deterministic through worker source serialization (4.367119ms)
+✔ project preview serves compiled files under its base path, including notices and HEAD (1.482198ms)
+✔ AC-SOC-294 shared dispatch provisions qualification, boundary, and lifecycle evidence only for their real scoped inputs (108.483318ms)
+✔ AC-SOC-295 proof availability follows scope change, explicit revocation, expiry, save restore, and worker dispatch (256.667315ms)
+✔ AC-SOC-296 evidence controls remain read only and clearly scope synthetic evidence (565.518163ms)
+✔ AC-SOC-297 evidence request derives resource from selected feature dependency and dispatches scoped command (410.723375ms)
+✔ AC-SOC-298 evidence revocation offers only active effective proofs and uses an explicit reason (377.53814ms)
+✔ AC-SOC-288 eligibility evidence requires a real retained qualification event, authorization, current expiry, and explicit effective tick (2.666336ms)
+✔ AC-SOC-289 jurisdiction evidence needs an effective current boundary contract and trusted resource enforcement (0.620589ms)
+✔ AC-SOC-290 lifecycle evidence is scoped to the actual offer lifecycle and deployment version/mode (0.529844ms)
+✔ AC-SOC-291 explicit revocation, stale deployment scope, and forged approvals cannot satisfy dependencies (1.731671ms)
+✔ AC-SOC-292 requests reject undeclared dependencies, wrong features, and nonexistent resource references (0.28694ms)
+✔ AC-SOC-293 save validation and worker source preserve scoped evidence while inspection stays pure (2.715975ms)
+✔ AC-SOC-091 shared dispatch, optional save compatibility and bound product features gate calling, meeting and processing (30.982914ms)
+✔ AC-SOC-092 bindings reject wrong core kind and out-of-scope cloud modes; stale directional proof blocks a newly generated route (5.267566ms)
+✔ AC-SOC-332 explicit integration scope updates preserve historical results and require a fresh successful test (34.586912ms)
+✔ AC-SOC-333 product console exposes explicit integration scope update through the same validated command (909.021045ms)
+✔ AC-SOC-352 historical deployment generations retain their own offer scope through pending and completed offer switches (5.964905ms)
+✔ AC-SOC-085 each mapped product family has distinct scenario slots and modes; real target example strings do not become capabilities (19.866675ms)
+✔ AC-SOC-086 offer sale and support lifecycle are independent and effective only after provisioning (1.720427ms)
+✔ AC-SOC-087 deployment mode, feature subset and dependency gates preserve prior effective configuration (0.994383ms)
+✔ AC-SOC-088 compatibility is directional, feature-scoped and bound to exact deployment generations and versions (0.916216ms)
+✔ AC-SOC-089 family-specific conflicts, jurisdiction evidence and local licensing remain explicit prerequisites (2.150718ms)
+✔ AC-SOC-090 save validation, deterministic inspection and source-serialized worker behavior match (2.461511ms)
+✔ AC-SOC-283 calling progression routes scrub awards through actual shared dispatch evidence and preserves a strict historical proof (44.386316ms)
+✔ AC-SOC-284 site continuity goal is awarded only from the validated site exercise receipt and remains historically verifiable (40.06695ms)
+✔ AC-SOC-285 capability overlay level is claimable through progression only from the supported customer portfolio evidence (287.800379ms)
+✔ AC-SOC-286 claiming a progression achievement does not change the current synthetic meeting fingerprint (4.984554ms)
+✔ AC-SOC-219 c3, c5 and t2 market goals award only after real sampled commercial evidence (4642.96205ms)
+✔ AC-SOC-220 c5/t2/level-2/level-7 reject missing markets, deployment and human journeys (4198.263816ms)
+✔ AC-SOC-221 t1 and level 13 require four customer scenarios, continuity, profit and three provider roles (15136.25528ms)
+✔ AC-SOC-222 market awards are durable, bounded, once-only, worker-equivalent and inspection is pure (1357.091869ms)
+✔ AC-SOC-190 progression exposes the three source-linked observations as partial mechanics only (22.286537ms)
+✔ AC-SOC-191 a real closed tb window can be claimed, while missing or forged proof is rejected (77.045566ms)
+✔ AC-SOC-192 t10 requires the full mixed-service proof before an award (223.562474ms)
+✔ AC-SOC-193 rd award needs the same case and tenant across a live independent path, with historical evidence retained (45.401447ms)
+✔ AC-SOC-141 progression rows preserve original source attributes, witty adaptations and pending boundaries (1.350629ms)
+✔ AC-SOC-142 an empty or sandbox campaign cannot unlock level or goal milestones (8.409696ms)
+✔ AC-SOC-143 first managed contract requires accepted player order, active service, support role and actual billing (34.74574ms)
+✔ AC-SOC-144 first customer live requires the assessed SMB award and retained resolved case lineage (6497.736923ms)
+✔ AC-SOC-145 milestone claims are explicit, one-time and do not convert source cash rewards (145.158083ms)
+✔ AC-SOC-146 ecosystem integration requires current tested versions, successful directional checks and scoped support (56.120744ms)
+✔ AC-SOC-147 progression inspection, fingerprint and worker serialization are deterministic and pure (26.700861ms)
+✔ AC-SOC-148 save validation rejects forged awards, altered source IDs and invented pending completions (119.537829ms)
+✔ a new star sets the monkey loose, then the stars show; skipping goes straight to them (631.580448ms)
+✔ the monkey snips each trench in turn, and an edit sends it away (449.815344ms)
+# star evaluation on ports (18 failure units): 16.6 ms
+✔ puzzle data: every puzzle is valid, carries traffic, and its references earn their stars through the real routing (2415.1442ms)
+✔ budgets follow the teaching curve, and each 3-star reference is the cheapest build nearby (4073.404293ms)
+✔ stars come from traffic: capacity, latency caps, best effort and N-1 under load (576.692822ms)
+✔ parallel links say how many they are and where they run; diversity from the link panel (399.364447ms)
+✔ routers in a puzzle: ports, wave sizes and capacity as in the main game, priced into the budget (432.83245ms)
+✔ the whole world is open: an off-plan city can get a POP and links, and it counts in the budget (391.415256ms)
+✔ determinism and speed: the same build always gets the same stars, fast enough on the biggest puzzle (1887.974999ms)
+✔ progress: the puzzle set with traffic starts the stars again once, with the old ones framed (375.094559ms)
+✔ results card: stars, the next puzzle, a retry, a share line and stars left in the pack (460.987782ms)
+✔ best spend: kept for the best star count, and a cheaper build at the same stars counts (397.733948ms)
+✔ weekly puzzle (seeded stand-in): stable per week, carries traffic, its reference ring earns three stars, streak (1161.249421ms)
+✔ puzzle HUD and panels fit a 360 px phone, portrait and landscape (348.653493ms)
+✔ puzzles in every language (1971.893635ms)
+✔ no clock in a puzzle: days never pass, nothing breaks, no bills (402.444047ms)
+✔ the main save is byte-identical before and after playing and solving a puzzle (496.333423ms)
+✔ leaving a puzzle with no game goes back to the title screen (451.887787ms)
+✔ main-game toasts and leftover buttons do nothing in a puzzle (457.160098ms)
+✔ a city to avoid reads as a rule, not a goal that can fail (466.42911ms)
+✔ a POP in a thin market costs its higher monthly rent too, and the panel says so (346.824553ms)
+✔ each pack's idea is needed: three stars without it fail, and the one-star builds are not secretly three (1548.081737ms)
+✔ every puzzle tells two tubes in one trench from two separate paths, zoomed out too (439.092108ms)
+✔ new cities exist, sit on land and have sellers, cables and IX members (614.90826ms)
+✔ South America: no land route over the Darién Gap, the Andes cost double, IX.brrr is cheap (448.086786ms)
+✔ Brazilian POPs attract provedores (358.688595ms)
+✔ UAE: duopoly fiber only, no dark fiber, free-zone license (380.854194ms)
+✔ regional incidents: Taiwan anchors, Andes landslides, load shedding (752.80703ms)
+✔ every new city panel renders (354.999392ms)
+✔ Asia-Pacific and Eastern Europe POPs exist with sellers (342.99039ms)
+✔ metro diversity: a second site keeps half the POP up and uplinks follow their site (453.444816ms)
+✔ the giants ask for AI WANs, multi-site training, ingests and hundreds of fiber pairs (450.814318ms)
+✔ #8 ports can be split across both buildings, so one dark site only halves them (429.402772ms)
+✔ routers: wave and port sizes match what the box can actually take (319.878899ms)
+✔ London–Amsterdam: many cheap cables and dark fiber you can lease under the sea (369.866143ms)
+✔ #10 your own IX fabric can be upgraded, and grows (417.873862ms)
+✔ wave prices follow regional markets and fall over time (334.061749ms)
+✔ the Gulf: Saudi licences, and a spat that cuts Qatar off from its neighbours (400.52625ms)
+✔ Italy, Portugal, Greece and more US cities are on the map and wired up (338.591513ms)
+✔ network ids are unique, and the long tail is small and spread over exchanges (429.492234ms)
+✔ several exchanges per city: overlapping members, cheaper challengers, separate ports (400.397938ms)
+✔ Voda-Phony only peers for money now, and EU price wars cut port prices (357.942788ms)
+✔ router ports are finite: plugging in fills them, more routers or bigger models add room (436.477571ms)
+✔ Barcelona is wired up: a coastal cable, CDNs and a proper Tokyo challenger (311.196242ms)
+✔ Korea: sender pays, pricey transit, Glitch leaves and Faceplant detours (360.832078ms)
+✔ Sparkly Seabone is a Tier 1 now, but old saves keep the five they played for (338.228449ms)
+✔ more UK and Norway: Manchester, Edinburgh, Bude and Stavanger with North Sea and Atlantic cables (316.416414ms)
+✔ #41 real coastlines: every city is on land, and the far view drops tiny islands but keeps every city (345.748643ms)
+✔ #47 Cairo reaches Asia overland across the Sinai, priced like the Bosporus (325.693083ms)
+✔ #22 Tier 1 networks can lay their own subsea cable (802.636997ms)
+✔ #76 Kansas City, Calgary, Vancouver and Ottawa, with two more Canadian giants and their beavers (471.534171ms)
+✔ #70 Goggle throttling in Russia no longer counts as traffic you failed to deliver (496.236467ms)
+✔ #79 Benelux: Brussels red tape, the Flanders duopoly, Oostkamp trawlers and a wood-fired Bettembourg (509.839307ms)
+✔ Stuttgart sits between Frankfurt and Zurich, and Hamburg, Munich and Düsseldorf are on the map (365.028998ms)
+✔ Brazil has every IX.brrr location, in the right order on the map (429.504283ms)
+✔ the Amazon doubles overland fiber, and there is a national-operator scenario (423.918371ms)
+✔ a Tier 1 reaches every Latin American and African network through the carriers they buy transit from (511.720712ms)
+✔ Africa: more countries, cables along both coasts, border costs and Cape to Cairo (434.830329ms)
+✔ Australia: hard mode start in Sydney, dear transit and waves, cheap IX ports, NBN takes its cut (553.418682ms)
+✔ Australia: new cities, Hobart only by cable, and the biggest local networks by users (330.629421ms)
+✔ Fibre to the Basement: own fibre skips the wholesale cut but pays the levy, and the goal needs five cities and two cables out (564.993206ms)
+✔ Australian failures: cockatoos, kangaroos and emus cut land fiber, and routers meet spiders and upgrades (405.945814ms)
+✔ Australian peering follows PeeringDB: IX Straya and At-The-Edge IX in Sydney, incumbents peer only privately (344.924862ms)
+✔ Pacific islands: real landings, real exchanges only, and island hops carry more per wave (429.615394ms)
+✔ Atlantic islands and Halifax: real landings, real exchanges only, and island hops carry more per wave (#120) (551.617399ms)
+✔ subsea cable designs trade construction cost and time for previewed latency (717.434386ms)
+✔ old owned cables keep their latency and premium designs work without a leased route (951.995428ms)
+✔ submarine terminal and engineering upgrades commission independently and combine for Pacific reach (344.75435ms)
+✔ new subsea builds include chosen transmission packages in the quote and saved order (872.685279ms)
+✔ submarine upgrades reject invalid purchases and preserve baseline and terrestrial optics (318.398861ms)
+✔ own subsea cables after #78: refunds of what was paid, upgrades a route needs, fresh choices (1220.146384ms)
+✔ Down Under: routers upside down, BrisVegas, Next-Door-DC and everything trying to kill you (329.413653ms)
+✔ South Island: Christchurch and Invercargill, Cook Strait, the ring cable and the local hazards (388.479751ms)
+✔ an old save with Australian POPs is told once that Australia changed (1634.779884ms)
+✔ city density: no small city crowds a bigger one, Brazil is slimmer than Europe, and old saves keep retired cities (357.971334ms)
+✔ prices follow real connectivity: thin markets cost more, hubs stay put (334.262604ms)
+✔ #213 Clarovision sells peering only as a paid PNI, free only for the biggest (457.202468ms)
+
+Interrupted while running:
+
+⚠ tests/regions.test.js (tests/regions.test.js:1:1)
+⚠ tests/release-story.test.js (tests/release-story.test.js:1:1)
+⚠ tests/report-link.test.js (tests/report-link.test.js:1:1)
+⚠ tests/route-cache.test.js (tests/route-cache.test.js:1:1)
+⚠ tests/route-fuzz.test.js (tests/route-fuzz.test.js:1:1)
+⚠ tests/route-server-peers.test.js (tests/route-server-peers.test.js:1:1)
+⚠ tests/route-skip.test.js (tests/route-skip.test.js:1:1)
+✖ tests/regions.test.js (26966.253306ms)
+✔ the release notes script reads a story and the bullets apart (63.784238ms)
+✔ "What's new" tells the story in full, with every change one tap away (586.15427ms)
+✔ bugs and ideas point to GitHub from the menu and How to play, and the chat no longer asks for bug reports (2512.348695ms)
+✔ the GitHub link fits a phone: a small link next to the chat link in the menu (379.125927ms)
+✔ a change to links, POPs, ports, peering, events or RouteScript rebuilds what routing keeps; demand alone does not (5473.614159ms)
+✔ days in a row reuse the kept tables and route like a fresh start every day (1154.796365ms)
+✔ random games route the same as main, with and without the routing cache, move for move (8037.847709ms)
+✖ tests/route-fuzz.test.js (8614.700349ms)
+✔ #265 peering desk leaves route-server networks on the route server (651.506932ms)
+✖ tests/route-server-peers.test.js (5608.25948ms)
+✖ tests/route-skip.test.js (1598.224596ms)
+✖ tests/route-worker.test.js
+✖ tests/router-art.test.js
+✖ tests/routers-per-pop.test.js
+✖ tests/routing-modal.test.js
+✖ tests/routing-reference.test.js
+✖ tests/rules-locked.test.js
+✖ tests/rules.test.js
+✖ tests/sales-trial.test.js
+✖ tests/save-size.test.js
+✖ tests/save-slots.test.js
+✖ tests/scenarios-playtest.test.js
+✖ tests/sea-optic-hint.test.js
+✖ tests/sea-routing.test.js
+✖ tests/sea-rush.test.js
+✖ tests/security-ui.test.js
+✖ tests/service-admin-ui.test.js
+✖ tests/service-observation.test.js
+✖ tests/service-operations.test.js
+✖ tests/services.test.js
+✖ tests/shared-services-integration.test.js
+✖ tests/shared-services-ui.test.js
+✖ tests/shared-services.test.js
+✖ tests/site-integration.test.js
+✖ tests/site-operations.test.js
+✖ tests/site-ui.test.js
+✖ tests/sp-mcp-protocol.test.js
+✖ tests/specialist-lifecycle-integration.test.js
+✖ tests/specialist-lifecycle-ui.test.js
+✖ tests/specialist-lifecycle.test.js
+✖ tests/specialist.test.js
+✖ tests/speech-models-integration.test.js
+✖ tests/speech-models-ui.test.js
+✖ tests/speech-models.test.js
+✖ tests/speed.test.js
+✖ tests/standing-orders.test.js
+✖ tests/subsea-upgrade-timing.test.js
+✖ tests/supply.test.js
+✖ tests/tier1-cone.test.js
+✖ tests/tier1-incumbents.test.js
+✖ tests/traceroute.test.js
+✖ tests/training-console.test.js
+✖ tests/transport-boundaries.test.js
+✖ tests/transport.test.js
+✖ tests/upstream-keyboard-help.test.js
+✖ tests/useless-subsea-upgrades.test.js
+✖ tests/utilities-caches.test.js
+✖ tests/utilities.test.js
+✖ tests/weekly-architect.test.js
+✖ tests/weekly-puzzle.test.js
+✖ tests/weekly-scenario.test.js
+✖ tests/workforce-adherence.test.js
+✖ tests/workforce-bpo-integration.test.js
+✖ tests/workforce-bpo-ui.test.js
+✖ tests/workforce-bpo.test.js
+✖ tests/workforce-operations.test.js
+ℹ tests 1047
+ℹ suites 0
+ℹ pass 988
+ℹ fail 0
+ℹ cancelled 59
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 219090.853784
+
+✖ failing tests:
+
+test at tests/regions.test.js:1:1
+✖ tests/regions.test.js (26966.253306ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-fuzz.test.js:1:1
+✖ tests/route-fuzz.test.js (8614.700349ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-server-peers.test.js:1:1
+✖ tests/route-server-peers.test.js (5608.25948ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-skip.test.js:1:1
+✖ tests/route-skip.test.js (1598.224596ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/route-worker.test.js:1:1
+✖ tests/route-worker.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/router-art.test.js:1:1
+✖ tests/router-art.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routers-per-pop.test.js:1:1
+✖ tests/routers-per-pop.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routing-modal.test.js:1:1
+✖ tests/routing-modal.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/routing-reference.test.js:1:1
+✖ tests/routing-reference.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/rules-locked.test.js:1:1
+✖ tests/rules-locked.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/rules.test.js:1:1
+✖ tests/rules.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sales-trial.test.js:1:1
+✖ tests/sales-trial.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/save-size.test.js:1:1
+✖ tests/save-size.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/save-slots.test.js:1:1
+✖ tests/save-slots.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/scenarios-playtest.test.js:1:1
+✖ tests/scenarios-playtest.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-optic-hint.test.js:1:1
+✖ tests/sea-optic-hint.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-routing.test.js:1:1
+✖ tests/sea-routing.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sea-rush.test.js:1:1
+✖ tests/sea-rush.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/security-ui.test.js:1:1
+✖ tests/security-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-admin-ui.test.js:1:1
+✖ tests/service-admin-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-observation.test.js:1:1
+✖ tests/service-observation.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/service-operations.test.js:1:1
+✖ tests/service-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/services.test.js:1:1
+✖ tests/services.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services-integration.test.js:1:1
+✖ tests/shared-services-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services-ui.test.js:1:1
+✖ tests/shared-services-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/shared-services.test.js:1:1
+✖ tests/shared-services.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-integration.test.js:1:1
+✖ tests/site-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-operations.test.js:1:1
+✖ tests/site-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-ui.test.js:1:1
+✖ tests/site-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/sp-mcp-protocol.test.js:1:1
+✖ tests/sp-mcp-protocol.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle-integration.test.js:1:1
+✖ tests/specialist-lifecycle-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle-ui.test.js:1:1
+✖ tests/specialist-lifecycle-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist-lifecycle.test.js:1:1
+✖ tests/specialist-lifecycle.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/specialist.test.js:1:1
+✖ tests/specialist.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/speech-models-integration.test.js:1:1
+✖ tests/speech-models-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/speech-models-ui.test.js:1:1
+✖ tests/speech-models-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/speech-models.test.js:1:1
+✖ tests/speech-models.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/speed.test.js:1:1
+✖ tests/speed.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/standing-orders.test.js:1:1
+✖ tests/standing-orders.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/subsea-upgrade-timing.test.js:1:1
+✖ tests/subsea-upgrade-timing.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/supply.test.js:1:1
+✖ tests/supply.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tier1-cone.test.js:1:1
+✖ tests/tier1-cone.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tier1-incumbents.test.js:1:1
+✖ tests/tier1-incumbents.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/traceroute.test.js:1:1
+✖ tests/traceroute.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/training-console.test.js:1:1
+✖ tests/training-console.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/transport-boundaries.test.js:1:1
+✖ tests/transport-boundaries.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/transport.test.js:1:1
+✖ tests/transport.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/upstream-keyboard-help.test.js:1:1
+✖ tests/upstream-keyboard-help.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/useless-subsea-upgrades.test.js:1:1
+✖ tests/useless-subsea-upgrades.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/utilities-caches.test.js:1:1
+✖ tests/utilities-caches.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/utilities.test.js:1:1
+✖ tests/utilities.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-architect.test.js:1:1
+✖ tests/weekly-architect.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-puzzle.test.js:1:1
+✖ tests/weekly-puzzle.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/weekly-scenario.test.js:1:1
+✖ tests/weekly-scenario.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-adherence.test.js:1:1
+✖ tests/workforce-adherence.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-bpo-integration.test.js:1:1
+✖ tests/workforce-bpo-integration.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-bpo-ui.test.js:1:1
+✖ tests/workforce-bpo-ui.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-bpo.test.js:1:1
+✖ tests/workforce-bpo.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/workforce-operations.test.js:1:1
+✖ tests/workforce-operations.test.js
+  'Promise resolution is still pending but the event loop has already resolved'

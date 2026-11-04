@@ -28065,16 +28065,74 @@
   {
     "id": "AC-16191e04129963b0",
     "requirement": "REQ-16191e04129963b0",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Government and defence contracts need jurisdiction-specific content packs. US cloud labels are not universal approvals for Australia, Europe or other regions. Public-service external channels and restricted internal workloads may belong in different service environments within the same organisation.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-466",
+      "AC-SOC-467",
+      "AC-SOC-468",
+      "AC-SOC-469",
+      "AC-SOC-470",
+      "AC-SOC-471",
+      "AC-SOC-472",
+      "AC-SOC-473",
+      "AC-SOC-474",
+      "AC-SOC-475",
+      "AC-SOC-476",
+      "AC-SOC-477",
+      "AC-SOC-478",
+      "AC-SOC-479",
+      "AC-SOC-480",
+      "AC-SOC-481",
+      "AC-SOC-482",
+      "AC-SOC-483",
+      "AC-SOC-484",
+      "AC-SOC-485",
+      "AC-SOC-486",
+      "AC-SOC-491",
+      "AC-SOC-492",
+      "AC-SOC-493",
+      "AC-SOC-494",
+      "AC-SOC-495",
+      "AC-SOC-496",
+      "AC-SOC-497"
+    ]
   },
   {
     "id": "AC-da2a84278c7e5855",
     "requirement": "REQ-da2a84278c7e5855",
-    "status": "pending",
+    "status": "partial",
     "outcome": "A defence scenario should distinguish administrative and training workloads from more restricted services. Restricted information should only traverse explicit, scenario-permitted interfaces. The game can explore continuity, access and approved workflows without modelling real operational secrets.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-466",
+      "AC-SOC-467",
+      "AC-SOC-468",
+      "AC-SOC-469",
+      "AC-SOC-470",
+      "AC-SOC-471",
+      "AC-SOC-472",
+      "AC-SOC-473",
+      "AC-SOC-474",
+      "AC-SOC-475",
+      "AC-SOC-476",
+      "AC-SOC-477",
+      "AC-SOC-478",
+      "AC-SOC-479",
+      "AC-SOC-480",
+      "AC-SOC-481",
+      "AC-SOC-482",
+      "AC-SOC-483",
+      "AC-SOC-484",
+      "AC-SOC-485",
+      "AC-SOC-486",
+      "AC-SOC-491",
+      "AC-SOC-492",
+      "AC-SOC-493",
+      "AC-SOC-494",
+      "AC-SOC-495",
+      "AC-SOC-496",
+      "AC-SOC-497"
+    ]
   },
   {
     "id": "AC-c8993f088746e65a",
@@ -32226,9 +32284,14 @@
   {
     "id": "AC-6eaa968940f44b95",
     "requirement": "REQ-6eaa968940f44b95",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Reconcile upstream commit 48ba0048dab7c1e11ded28daf3526a32109ab69f: Keyboard shortcuts: the Help button works on the title screen; MCP knows the new actions. Preserve applicable behaviour and verify the recorded adoption disposition.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-487",
+      "AC-SOC-488",
+      "AC-SOC-489",
+      "AC-SOC-490"
+    ]
   },
   {
     "id": "AC-b31f453c72373af0",
@@ -35432,9 +35495,14 @@
   {
     "id": "AC-55ba5f177becfc86",
     "requirement": "REQ-55ba5f177becfc86",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Account for upstream src/game/93-ui/82-keys.js at Git blob c10975662971d1e2237262ee039fc15d82f80ea3. Preserve its applicable distinct behaviour, source attribution and compatibility through adaptation; retain historical versions and acceptance evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-487",
+      "AC-SOC-488",
+      "AC-SOC-489",
+      "AC-SOC-490"
+    ]
   },
   {
     "id": "AC-2cfca2d86db8007d",
@@ -35446,9 +35514,14 @@
   {
     "id": "AC-9c4751b5f7ef285e",
     "requirement": "REQ-9c4751b5f7ef285e",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Account for upstream src/game/96-map/95-clicks.js at Git blob 85479d9867858d2db08a9f370857d963175984e6. Preserve its applicable distinct behaviour, source attribution and compatibility through adaptation; retain historical versions and acceptance evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-487",
+      "AC-SOC-488",
+      "AC-SOC-489",
+      "AC-SOC-490"
+    ]
   },
   {
     "id": "AC-4646add8f5d32c87",

@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-04T00:03:43.227486+00:00",
+  "status": "verified-diagnostic",
+  "checks": {
+    "status": true,
+    "exact24": true,
+    "allPassed": true,
+    "all21commands": true,
+    "noDrift": true,
+    "driver": true,
+    "artifacts": true,
+    "expectedOutcomes": true
+  },
+  "caseCount": 24,
+  "artifactCount": 48,
+  "report": "/tmp/soc-interface-browser-final/2026-11-03T23-58-38-489Z/report.json",
+  "reportSha256": "4fa94cf7ff24002a482a8c1829ba5096e5bd1153be22ab1107ee895be895445d",
+  "elapsedMs": 283513,
+  "browser": {
+    "engine": "chromium",
+    "version": "141.0.7390.37"
+  },
+  "versions": {
+    "node": "v24.22.2",
+    "playwright": "1.56.0"
+  },
+  "scope": "Bounded visible-UI defence information interface journeys; archive creation, boundary contracts, actual meeting capture, delayed provisioning and classification control. Diagnostic feature evidence, not full app or release acceptance.",
+  "limitations": [
+    "Bounded feature matrix only, not full application or release acceptance.",
+    "Potential subsequent imported-interface policy fix requires fresh affected verification; this receipt is immutable."
+  ]
+}

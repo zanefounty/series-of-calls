@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-11-04T00:24:46.387289+00:00",
+  "status": "verified-diagnostic",
+  "scope": "72 bounded visible interface cases and6 title keyboard viewport checks, not full application acceptance.",
+  "interfaceCases": 72,
+  "keyboardCases": 6,
+  "artifacts": 156,
+  "matchingInputManifests": true,
+  "matchingBuiltArtifactSha256": "b340a37e47bd852de57ac4768a251ba0cf8b95123a4fc36cd8145c9ef96a869e",
+  "receipts": [
+    {
+      "engine": "chromium",
+      "kind": "interface",
+      "cases": 24,
+      "report": "/tmp/soc-interface-browser-final-v2/chromium/2026-11-04T00-11-49-659Z/report.json",
+      "sha256": "e7384f0561af2bce8968e5b6f6bb67586d6ba0d86d3c73a1edfa1f35a616e6f8",
+      "browser": {
+        "engine": "chromium",
+        "version": "141.0.7390.37"
+      },
+      "sourceDrift": []
+    },
+    {
+      "engine": "chromium",
+      "kind": "keyboard",
+      "cases": 2,
+      "report": "/tmp/soc-interface-browser-final-v2/chromium/keyboard-2026-11-04T00-23-03-064Z/report.json",
+      "sha256": "e92b972f5acd7aefa70ec3f9628d0c622909204f8b1e67185d1206e99ee0d82b",
+      "browser": {
+        "engine": "chromium",
+        "version": "141.0.7390.37"
+      },
+      "sourceDrift": []
+    },
+    {
+      "engine": "firefox",
+      "kind": "interface",
+      "cases": 24,
+      "report": "/tmp/soc-interface-browser-final-v2/firefox/2026-11-04T00-11-49-606Z/report.json",
+      "sha256": "4c0f196b0283b30f3ac16e1ab71255653f889b230a18fd3924594fc6efffc25c",
+      "browser": {
+        "engine": "firefox",
+        "version": "142.0.1"
+      },
+      "sourceDrift": []
+    },
+    {
+      "engine": "firefox",
+      "kind": "keyboard",
+      "cases": 2,
+      "report": "/tmp/soc-interface-browser-final-v2/firefox/keyboard-2026-11-04T00-24-35-528Z/report.json",
+      "sha256": "3f41552110a3ab6d298dcec31175e33943ae7eb70ad9fa3a42c604a812088839",
+      "browser": {
+        "engine": "firefox",
+        "version": "142.0.1"
+      },
+      "sourceDrift": []
+    },
+    {
+      "engine": "webkit",
+      "kind": "interface",
+      "cases": 24,
+      "report": "/tmp/soc-interface-browser-final-v2/webkit/2026-11-04T00-11-49-634Z/report.json",
+      "sha256": "303e01e4225753e7a267cc1a9d889d6dc524c0b32332a8ecd5e00fce865c78ac",
+      "browser": {
+        "engine": "webkit",
+        "version": "26.0"
+      },
+      "sourceDrift": []
+    },
+    {
+      "engine": "webkit",
+      "kind": "keyboard",
+      "cases": 2,
+      "report": "/tmp/soc-interface-browser-final-v2/webkit/keyboard-2026-11-04T00-24-25-771Z/report.json",
+      "sha256": "2efa7a6630b18d2798bce645b2a7c10fb10a5ab0e885424c9581817bc59f01a0",
+      "browser": {
+        "engine": "webkit",
+        "version": "26.0"
+      },
+      "sourceDrift": []
+    }
+  ],
+  "executionSha256": "56098c3667fdba6a91de3e75efc58e9fd1838498b6a5668cf3ce99107b4d5db0"
+}

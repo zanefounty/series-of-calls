@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-11-04T00:00:46.702493+00:00",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--ulimit",
+    "core=0",
+    "--ipc=private",
+    "--shm-size=1g",
+    "--mount",
+    "type=bind,src=/usr/bin/node,dst=/usr/local/bin/node,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-implementation,dst=/work",
+    "--mount",
+    "type=bind,src=/tmp/soc-keyboard-ui-browser.js,dst=/tmp/soc-keyboard-ui-browser.js,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-browser-final,dst=/out",
+    "--workdir",
+    "/work",
+    "mcr.microsoft.com/playwright:v1.56.0-noble",
+    "node",
+    "/tmp/soc-keyboard-ui-browser.js"
+  ],
+  "driverSha256": "22394a1a29b39fa2bdda9efa67605a0a1cc2f20010197cd848916236f4e13ccf",
+  "imageId": "sha256:35246d87a7c88ea9b771c65d33171b2611b02a8253b4b12ce6f94376c55f99f2",
+  "report": "/tmp/soc-interface-browser-final/keyboard-2026-11-04T00-00-20-052Z/report.json",
+  "reportSha256": "37bd7b83d75628785afe6d2bd02374e516156497dfdfd52e40e9d1424a47cff5",
+  "note": "Command provenance recorded after execution; initial failed harness attempt retained separately."
+}

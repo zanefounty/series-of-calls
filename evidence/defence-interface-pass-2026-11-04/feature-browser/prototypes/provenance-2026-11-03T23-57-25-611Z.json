@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-11-03T23:57:51.917177+00:00",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--ulimit",
+    "core=0",
+    "--ipc=private",
+    "--shm-size=1g",
+    "--mount",
+    "type=bind,src=/usr/bin/node,dst=/usr/local/bin/node,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-implementation,dst=/work",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-ui-browser.js,dst=/tmp/soc-interface-ui-browser.js,readonly",
+    "--mount",
+    "type=bind,src=/tmp/soc-interface-browser-prototype,dst=/out",
+    "--workdir",
+    "/work",
+    "--env",
+    "SOC_INTERFACE_ONLY=JP-mobile-internal-training",
+    "mcr.microsoft.com/playwright:v1.56.0-noble",
+    "node",
+    "/tmp/soc-interface-ui-browser.js"
+  ],
+  "imageId": "sha256:35246d87a7c88ea9b771c65d33171b2611b02a8253b4b12ce6f94376c55f99f2",
+  "driverSha256": "1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012",
+  "driver": "/tmp/soc-interface-ui-browser-1c93e9bd2f6749cf49e736ad42d5e3cc945c91031018624c0613734708a51012.js",
+  "report": "2026-11-03T23-57-25-611Z/report.json",
+  "note": "Prototype provenance recorded after execution; final combined artifact freeze pending."
+}

@@ -59514,13 +59514,22 @@
     ],
     "statement": "Government and defence contracts need jurisdiction-specific content packs. US cloud labels are not universal approvals for Australia, Europe or other regions. Public-service external channels and restricted internal workloads may belong in different service environments within the same organisation.",
     "representation": "REP-16191e04129963b0",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/calls-mcp.js",
+      "scripts/mcp-smoke.py",
+      "src/game/52-information.js",
+      "src/game/55-communications.js",
+      "src/game/86-domain-admin-ui.js",
+      "src/game/95-information-ui.js"
+    ],
     "acceptance": [
       "AC-16191e04129963b0"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-376"
+    ]
   },
   {
     "id": "REQ-da2a84278c7e5855",
@@ -59529,13 +59538,22 @@
     ],
     "statement": "A defence scenario should distinguish administrative and training workloads from more restricted services. Restricted information should only traverse explicit, scenario-permitted interfaces. The game can explore continuity, access and approved workflows without modelling real operational secrets.",
     "representation": "REP-da2a84278c7e5855",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/calls-mcp.js",
+      "scripts/mcp-smoke.py",
+      "src/game/52-information.js",
+      "src/game/55-communications.js",
+      "src/game/86-domain-admin-ui.js",
+      "src/game/95-information-ui.js"
+    ],
     "acceptance": [
       "AC-da2a84278c7e5855"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-376"
+    ]
   },
   {
     "id": "REQ-c8993f088746e65a",
@@ -68269,13 +68287,21 @@
     ],
     "statement": "Reconcile upstream commit 48ba0048dab7c1e11ded28daf3526a32109ab69f: Keyboard shortcuts: the Help button works on the title screen; MCP knows the new actions. Preserve applicable behaviour and verify the recorded adoption disposition.",
     "representation": "REP-6eaa968940f44b95",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/lib/mcp-commands.js",
+      "src/game/90-actions/10-interface.js",
+      "src/game/93-ui/82-keys.js",
+      "src/game/95-modals/60-help.js",
+      "src/game/96-map/95-clicks.js"
+    ],
     "acceptance": [
       "AC-6eaa968940f44b95"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-377"
+    ]
   },
   {
     "id": "REQ-b31f453c72373af0",
@@ -75139,13 +75165,21 @@
     ],
     "statement": "Account for upstream src/game/93-ui/82-keys.js at Git blob c10975662971d1e2237262ee039fc15d82f80ea3. Preserve its applicable distinct behaviour, source attribution and compatibility through adaptation; retain historical versions and acceptance evidence.",
     "representation": "REP-55ba5f177becfc86",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/lib/mcp-commands.js",
+      "src/game/90-actions/10-interface.js",
+      "src/game/93-ui/82-keys.js",
+      "src/game/95-modals/60-help.js",
+      "src/game/96-map/95-clicks.js"
+    ],
     "acceptance": [
       "AC-55ba5f177becfc86"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-377"
+    ]
   },
   {
     "id": "REQ-2cfca2d86db8007d",
@@ -75169,13 +75203,21 @@
     ],
     "statement": "Account for upstream src/game/96-map/95-clicks.js at Git blob 85479d9867858d2db08a9f370857d963175984e6. Preserve its applicable distinct behaviour, source attribution and compatibility through adaptation; retain historical versions and acceptance evidence.",
     "representation": "REP-9c4751b5f7ef285e",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "scripts/lib/mcp-commands.js",
+      "src/game/90-actions/10-interface.js",
+      "src/game/93-ui/82-keys.js",
+      "src/game/95-modals/60-help.js",
+      "src/game/96-map/95-clicks.js"
+    ],
     "acceptance": [
       "AC-9c4751b5f7ef285e"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-377"
+    ]
   },
   {
     "id": "REQ-4646add8f5d32c87",

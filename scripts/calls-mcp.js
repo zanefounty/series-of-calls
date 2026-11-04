@@ -60,7 +60,7 @@ function inspect(){
   specialistLifecycle:{version:E.specialistLifecycle.PACK,asOfDate:E.specialistLifecycle.AS_OF_DATE},
   business:{version:E.business.PACK,offers:E.business.offers,tracks:E.business.tracks},
   operations:{version:E.operations.PACK,schemas:E.operations.schemas,features:E.operations.features},
-  information:{version:E.information.PACK,schemas:E.information.schemas,steps:E.information.steps},
+  information:{version:E.information.PACK,schemas:E.information.schemas,steps:E.information.steps,interfacePolicies:E.information.interfacePolicies},
   contact:{version:E.contact.PACK,configuration:E.contact.defaults},
   calling:{version:E.calling.PACK,configuration:E.calling.defaults},
   customerNeeds:{version:E.customerNeeds.PACK,segments:E.customerNeeds.sourceRows},

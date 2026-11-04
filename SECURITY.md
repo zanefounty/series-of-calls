@@ -12,7 +12,7 @@ Do not send reports to Series of Tubes; its maintainer is not responsible for th
 
 ## Routine safeguards
 
-GitHub secret scanning and push protection are enabled, and Dependabot alerts are enabled. CI runs Gitleaks against Git history, the current source tree and the built Pages site, plus `npm audit`. Findings fail the security check. Active Actions are pinned to reviewed commits; ordinary test jobs have read-only permissions and do not retain checkout credentials. Hosted agent workflows stay disabled.
+GitHub secret scanning and push protection are enabled, and Dependabot alerts are enabled. CI runs Gitleaks against Git history, the current source tree and the built Pages site, plus `npm audit`. Findings fail the security check. Active Actions use current major-version tags, with Dependabot proposing updates; ordinary test jobs have read-only permissions and do not retain checkout credentials. Hosted agent workflows stay disabled.
 
 After `npm ci` and `npm run build`, run these checks locally (the installer supports Linux x64):
 

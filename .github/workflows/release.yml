@@ -24,11 +24,11 @@ jobs:
           PUBLICATION: ${{ inputs.publication }}
         run: |
           case "$PUBLICATION" in preview|release) ;; *) exit 1 ;; esac
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -48,7 +48,7 @@ jobs:
         env:
           PUBLICATION: ${{ inputs.publication }}
         run: echo "Publishing $PUBLICATION from $GITHUB_SHA. Preview publication does not certify full product completion." >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./_site
   deploy:
@@ -62,4 +62,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+        uses: actions/deploy-pages@v5

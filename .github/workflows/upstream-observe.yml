@@ -15,14 +15,14 @@ jobs:
     outputs:
       observed: ${{ steps.observation.outcome }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
       - id: observation
         run: python3 scripts/observe-upstream.py
       - run: python3 scripts/verify.py upstream
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: upstream-observation-${{ github.run_id }}
@@ -46,11 +46,11 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       BRANCH: bot/upstream-observation-${{ github.run_id }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+      - uses: actions/download-artifact@v8
         with:
           name: upstream-observation-${{ github.run_id }}
           path: /tmp/observation

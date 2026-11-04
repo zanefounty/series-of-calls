@@ -1,0 +1,21 @@
+npm notice run series-of-calls@0.1.0-preview.1 test:gates
+npm notice run python3 -m unittest discover -s tests -p '*_test.py'
+............................................F......................................
+======================================================================
+FAIL: test_narrative_false_source (gates_test.Gates.test_narrative_false_source)
+----------------------------------------------------------------------
+verify.GateError: Mapping audit omitted or changed a source obligation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/soc-queueberry-implementation/tests/gates_test.py", line 127, in test_narrative_false_source
+    with self.assertRaisesRegex(V.GateError,'Narrative source hash'):V.mapping(self.root)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Narrative source hash" does not match "Mapping audit omitted or changed a source obligation"
+
+----------------------------------------------------------------------
+Ran 83 tests in 41.142s
+
+FAILED (failures=1)
+{"mappingRecords": 3454, "originalRecords": 3360, "additions": 94, "fileRecords": 217, "distinctReferences": 91, "sourceCitationOccurrences": 72, "additionalResearchItems": 28, "upstreamCommits": 366, "upstreamFileVersions": 461, "sourceItems": 4839, "requirements": 4839}

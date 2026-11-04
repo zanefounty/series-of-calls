@@ -10,6 +10,10 @@ test('proposed synthetic offer stages effective agent units and exact tenant int
  const s=WFM.create({tenant:'customer',clock:0});assert.equal(s.effective,null);WFM.command(s,{action:'order',tenant:'customer',units:2});WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'people'});assert.equal(s.effective,null);assert.equal(s.provisioning.status,'pending');assert.equal(s.integration.effective,null);WFM.advance(s,1);assert.equal(s.effective.units,2);assert.equal(s.effective.unit,'agent');assert.equal(s.integration.effective.resource,'people');assert.equal(s.integration.effective.tenant,'customer');assert.equal(WFM.inspect(s).aliasStatus,'proposed-owner-review-required');assert.equal(WFM.inspect(s).offer.currency,'AUD');assert.equal(WFM.inspect(s).offer.periodMinutes,60);
 });
 
+test('safe-integer portfolio clocks above one hundred thousand can start the pack',()=>{
+ const s=WFM.create({tenant:'portfolio-customer',clock:250000});WFM.command(s,{action:'order',tenant:'portfolio-customer',units:1});const invoice=WFM.advance(s,250001);assert.equal(invoice[0].periodStart,250001);assert.equal(s.clock,250001);assert.equal(s.nextInvoiceAt,250061);assert.equal(WFM.validate(s),true);
+});
+
 test('strict commands reject extra fields, wrong tenant, unrelated resource and invented offer versions',()=>{
  const s=WFM.create({tenant:'customer',clock:0});assert.throws(()=>WFM.command(s,{action:'order',tenant:'customer',units:2,costCents:1}),/INVALID_WORKFORCE_OFFER_ORDER/);assert.throws(()=>WFM.command(s,{action:'order',tenant:'other',units:2}),/INVALID_WORKFORCE_OFFER_ORDER/);assert.throws(()=>WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'9.9',resource:'people'}),/INVALID_WORKFORCE_OFFER_INTEGRATION/);assert.throws(()=>WFM.command(s,{action:'integrate',id:'queueberry-wfm-workforce',tenant:'customer',offerId:'queueberry-wfm-standard',offerVersion:'1.0',resource:'routing'}),/INVALID_WORKFORCE_OFFER_INTEGRATION/);
 });
@@ -48,6 +52,10 @@ test('validation retains failed and stale evidence but rejects cross-tenant or c
 
 test('save chronology and prepaid renewal schedule cannot be rewritten to erase the audit trail',()=>{
  const {s}=provisioned();const futureObservation=structuredClone(s);futureObservation.integration.observations[0].observedAt=s.clock+1;assert.throws(()=>WFM.validate(futureObservation),/INVALID_WORKFORCE_OFFER_OBSERVATION_SAVE/);const futureTest=structuredClone(s);futureTest.integration.tests[0].testedAt=s.clock+1;assert.throws(()=>WFM.validate(futureTest),/INVALID_WORKFORCE_OFFER_TEST_SAVE/);const earlyBinding=structuredClone(s);earlyBinding.integration.bindings[0].boundAt=0;assert.throws(()=>WFM.validate(earlyBinding),/INVALID_WORKFORCE_OFFER_BINDING_SAVE/);const delayedRenewal=structuredClone(s);delayedRenewal.nextInvoiceAt+=999;assert.throws(()=>WFM.validate(delayedRenewal),/INVALID_WORKFORCE_OFFER_BILLING_SCHEDULE/);const erasedFailure=structuredClone(s);erasedFailure.integration.tests=[];assert.throws(()=>WFM.validate(erasedFailure),/INVALID_WORKFORCE_OFFER_SAVE/);
+});
+
+test('ready offer and integration imports must agree with desired effective generations',()=>{
+ const {s}=provisioned();const desiredMismatch=structuredClone(s);desiredMismatch.desired.units=3;assert.throws(()=>WFM.validate(desiredMismatch),/INVALID_WORKFORCE_OFFER_SAVE/);const missingIntegration=structuredClone(s);missingIntegration.integration.effective=null;assert.throws(()=>WFM.validate(missingIntegration),/INVALID_WORKFORCE_OFFER_SAVE/);const missingOffer=structuredClone(s);missingOffer.effective=null;assert.throws(()=>WFM.validate(missingOffer),/INVALID_WORKFORCE_OFFER_SAVE/);
 });
 
 test('worker source reconstructs the same scoped inspection and eligibility result',()=>{

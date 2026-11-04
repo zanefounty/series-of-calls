@@ -19,7 +19,7 @@ The continuation adds inbound routing through real assigned numbers; independent
 
 The selected implementation run passed 466 tests. The current acceptance plan registers 352 cases. See `evidence/verification.json` for the selected test count and final gate, mutation, translation and build outcomes, and `evidence/acceptance.json` for executed case IDs and tested input hashes. These runs overlap and must not be added together.
 
-The earlier targeted upstream run passed 126 of 127 tests; its remaining C3 test cannot spawn Node under this sandbox. The equivalent direct translation command passed, but the blocked subprocess path is not declared passed. Original-game save rejection also passed separately. `evidence/upstream-v260/test-report.json` retains that exact scope. Local tests use the available dependency tree, not the uninstalled locked baseline.
+The earlier targeted upstream run passed 126 of 127 tests; its remaining C3 test cannot spawn Node under this sandbox. The equivalent direct translation command passed, but the blocked subprocess path is not declared passed. Original-game save rejection also passed separately. [historical evidence/upstream-v260/test-report.json](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/upstream-v260/test-report.json) retains that exact scope. Local tests use the available dependency tree, not the uninstalled locked baseline.
 
 ## Still open
 

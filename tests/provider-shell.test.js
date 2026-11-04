@@ -3,15 +3,16 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const {JSDOM}=require('jsdom');
+const SOC=require('../src/game/55-communications');
 const root=path.join(__dirname,'..','src');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 
-function boot({map=false}={}){
+function boot({map=false,quoteHandler=null}={}){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true});const w=dom.window;
  if(map){w.W=2000;w.H=1000;w.COAST=[[[0,0],[100,0],[100,100],[0,100]]];w.CITY={syd:{x:1860,y:790}};}
  w.eval(read('game/93-ui/10-dom.js'));
  for(const file of ['game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
- const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>calls.commands.push(x),quote:x=>{calls.quotes.push(x);return {accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
+ const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>calls.commands.push(x),quote:x=>{calls.quotes.push(x);return quoteHandler?quoteHandler(x):{accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
  w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),callbacks);w.SOC_PROVIDER_UI.render(null,null);return {dom,w,calls};
 }
 function click(w,selector){const el=w.document.querySelector(selector);assert.ok(el,selector);el.click();return el;}
@@ -33,6 +34,26 @@ test('provider plan requires an engine quote and explicit commit; map selection 
  click(w,'[data-provider-action="select-customer"]');assert.equal(w.SOC_PROVIDER_UI.view().selection.customerId,'orchard');assert.equal(calls.commands.length,1);
  assert.match(w.document.querySelector('.provider-inspector').textContent,/Provisioning/);assert.doesNotMatch(w.document.querySelector('.provider-inspector').textContent,/Due\s*0/);
  w.close();
+});
+
+test('visible plan and operation quotes disclose engine forecast scope and validated minimum term',()=>{
+ const state=SOC.create({experience:'campaign'}),{w,calls}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});try{
+  w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');
+  for(const [planId,expected] of [['swift',45000],['steady',75000]]){
+   click(w,`[data-provider-action="quote"][data-offer="starter"][data-plan="${planId}"]`);const q=w.SOC_PROVIDER_UI.view().quote,text=w.document.querySelector('.provider-modal').textContent;
+   assert.equal(q.forecast.conditionalFullPlan.operatingResult,expected);assert.match(text,/Current operating forecast/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);
+   assert.ok(text.includes(w.SOCProviderHud.money(q.forecast.operatingResult)),'current forecast is still shown with its own label');assert.ok(text.includes(w.SOCProviderHud.money(expected)),'conditional full-plan value comes from the engine quote');assert.match(text,/Minimum term\s*3 periods/);assert.equal(calls.commands.length,0);
+   click(w,'[data-provider-action="cancel-quote"]');
+  }
+ }finally{w.close();}
+
+ const buy=(s,request)=>{const q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[]);return SOC.dispatch(s,{type:'provider',command:{...q.request,quoteRevision:q.atRevision}});},advance=(s,minutes)=>SOC.dispatch(s,{type:'advance',minutes});let active=SOC.create({experience:'campaign'});
+ for(const [stage,minutes] of [['base',3],['carrier',2],['partner',3]]){active=buy(active,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});active=advance(active,minutes);}
+ const operationQuote=SOC.provider.quote(active,{action:'operation',operationId:'expand',customerId:'starter-customer'});assert.deepEqual(operationQuote.blockers,[]);assert.equal(operationQuote.minimumPeriods,undefined);assert.equal(operationQuote.commercial.minimumTermPeriods,3);
+ const ui=boot({quoteHandler:request=>SOC.provider.quote(active,request)});try{
+  ui.w.SOC_PROVIDER_UI.render(active,SOC.provider.inspect(active));click(ui.w,'[data-provider-action="drawer"][data-provider-value="operations"]');click(ui.w,'[data-provider-action="operation"][data-operation="expand"]');const text=ui.w.document.querySelector('.provider-modal').textContent;
+  assert.match(text,/Minimum term\s*3 periods/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);assert.ok(text.includes(ui.w.SOCProviderHud.money(operationQuote.forecast.conditionalFullPlan.operatingResult)));
+ }finally{ui.w.close();}
 });
 
 test('provider rerenders preserve launch draft focus and use compact responsive layout classes',()=>{

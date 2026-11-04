@@ -44,7 +44,8 @@
     "test:browser:campaigns": "node scripts/browser-campaigns.js",
     "test:provider": "node --test tests/provider-*.test.js",
     "test:provider:browser": "node scripts/provider-browser.js",
-    "test:provider:mcp-browser": "python3 scripts/provider-mcp-smoke.py"
+    "test:provider:mcp-browser": "python3 scripts/provider-mcp-smoke.py",
+    "test:provider:stdio": "python3 scripts/provider-stdio-smoke.py"
   },
   "engines": {
     "node": ">=24"

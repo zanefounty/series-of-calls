@@ -14,7 +14,7 @@ async function providerAcquire(){
  }));
 }
 function providerSavedView(value=SOC_PROVIDER_UI.view()){
- const result={coachDismissed:value?.coachDismissed===true,drawer:['goals','deals','incidents','operations','suppliers','team','finance','automation','help','settings'].includes(value?.drawer)?value.drawer:'goals',layer:['services','workloads','costs'].includes(value?.layer)?value.layer:'services',camera:{x:0,y:0,zoom:1},selection:null};
+ const result={coachDismissed:value?.coachDismissed===true,drawer:['goals','deals','incidents','operations','suppliers','team','finance','automation','help','settings'].includes(value?.drawer)?value.drawer:'goals',layer:['geography','services','workloads','costs'].includes(value?.layer)?value.layer:'services',camera:{x:0,y:0,zoom:1},selection:null};
  if(value?.camera&&['x','y','zoom'].every(k=>Number.isFinite(value.camera[k]))){result.camera={x:Math.max(-10000,Math.min(10000,value.camera.x)),y:Math.max(-10000,Math.min(10000,value.camera.y)),zoom:Math.max(.75,Math.min(1.8,value.camera.zoom))};}
  if(SCP.state?.providerCampaign.customers.some(c=>c.id===value?.selection?.customerId)){result.selection={customerId:value.selection.customerId};const child=SCP.state.portfolio.customers.find(c=>c.id===value.selection.customerId)?.root;if(child?.resources[value.selection.serviceId])result.selection.serviceId=value.selection.serviceId;}
  return result;

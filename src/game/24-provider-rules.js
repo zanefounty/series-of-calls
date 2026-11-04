@@ -920,7 +920,34 @@ function socProviderRulesKernel(){
     "normal": 2000000,
     "hard": 1600000
   },
-  "offerValidityMinutes": 180
+  "offerValidityMinutes": 180,
+  "marketTerms": {
+    "au-sydney": {
+      "retailBps": 10000,
+      "rival": "Direct Desk"
+    },
+    "au-melbourne": {
+      "retailBps": 9800,
+      "rival": "Harbour Bundle"
+    },
+    "us-seattle": {
+      "retailBps": 9500,
+      "rival": "Rainy Day Direct"
+    },
+    "jp-tokyo": {
+      "retailBps": 9700,
+      "rival": "Station Direct"
+    },
+    "eu-dublin": {
+      "retailBps": 9600,
+      "rival": "Green Lane Bundle"
+    }
+  },
+  "rivalPressure": {
+    "startsAfterPeriods": 6,
+    "discountBps": 300,
+    "description": "Fictional rival bundles reduce willingness for new contracts; existing agreed terms are protected."
+  }
 };
  function deepFreeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))deepFreeze(child);}return value;}
  deepFreeze(data);

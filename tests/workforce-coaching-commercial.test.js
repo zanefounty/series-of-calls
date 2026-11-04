@@ -34,6 +34,22 @@ test('zero-cost coaching has explicit zero receipt and no ledger row; declared m
  const beforeBad=JSON.stringify(s);assert.throws(()=>coach(s,10000001),/INVALID_COACHING/);assert.equal(JSON.stringify(s),beforeBad);assert.throws(()=>SOC.business.externalCost(structuredClone(s),{id:'invoice-over-cap',currency:'AUD',cents:1000001,reason:'test',source:'workforce-offers'}),/INVALID_EXTERNAL_INVOICE/);
 });
 
+test('coaching imports require consistent safe start, due and completion timestamps',()=>{
+ const pending=coach(start(),100);
+ const lateClock=coach(start({business:false}),0);lateClock.clock=1000001;const lateJob=lateClock.workforceOps.coaching.at(-1);lateJob.startedAt=lateClock.clock;lateJob.due=lateClock.clock+lateJob.minutes;lateClock.workforceOps.costEvents.find(e=>e.job===lateJob.id).minute=lateJob.startedAt;assert.deepEqual(SOC.restore(JSON.stringify(lateClock)),lateClock);
+ for(const mutate of [
+  x=>{x.workforceOps.coaching.at(-1).startedAt=x.clock+1;x.workforceOps.coaching.at(-1).due=x.clock+3;},
+  x=>{x.workforceOps.coaching.at(-1).due+=1;},
+  x=>{x.workforceOps.coaching.at(-1).due=x.clock;},
+  x=>{x.workforceOps.coaching.at(-1).startedAt=Number.MAX_SAFE_INTEGER+1;},
+  x=>{x.workforceOps.coaching.at(-1).completedAt=x.clock+1;}
+ ]){const bad=structuredClone(pending);mutate(bad);assert.throws(()=>SOC.restore(JSON.stringify(bad)),/COACHING/);}
+ let complete=tick(pending,2);assert.equal(complete.workforceOps.coaching.at(-1).status,'complete');
+ const beforeDue=structuredClone(complete);beforeDue.workforceOps.coaching.at(-1).completedAt=beforeDue.workforceOps.coaching.at(-1).due-1;assert.throws(()=>SOC.restore(JSON.stringify(beforeDue)),/INVALID_COACHING_RECORD/);
+ const afterClock=structuredClone(complete);afterClock.workforceOps.coaching.at(-1).completedAt=afterClock.clock+1;assert.throws(()=>SOC.restore(JSON.stringify(afterClock)),/INVALID_COACHING_RECORD/);
+ const late=coach(start({business:false}),0);late.clock+=5;SOC.workforce.advance(late);assert.equal(late.workforceOps.coaching.at(-1).completedAt,late.clock);assert.ok(late.workforceOps.coaching.at(-1).completedAt>late.workforceOps.coaching.at(-1).due);SOC.workforce.validate(late);
+});
+
 test('SOC request replay posts one coaching charge and worker command matches public dispatch',()=>{
  const s=start(),command={type:'workforce',command:{action:'coach',person:'agent-01',skill:'billing',minutes:2,costCents:500},requestId:'coach-request-once'};
  const dispatched=SOC.dispatch(s,command),replayed=SOC.dispatch(dispatched,command);assert.deepEqual(replayed,dispatched);assert.equal(dispatched.workforceOps.coaching.length,1);assert.equal(costRows(dispatched).length,1);assert.equal(dispatched.receipts.filter(r=>r.id==='coach-request-once').length,1);

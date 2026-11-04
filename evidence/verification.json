@@ -1,55 +1,114 @@
 {
-  "status": "historical-summary",
-  "scope": "Foundation and selected inherited persistence/build checks; not full conversion acceptance",
-  "checkedAt": "2026-11-03T19:51:37.318474+00:00",
-  "dependencyOverrideUsed": true,
-  "results": [
+  "status": "bounded-verification-passed-release-blocked",
+  "scope": "coaching implementation; not full product or full current-input browser acceptance",
+  "finishedAt": "2026-11-04T03:20:42.514245+00:00",
+  "javascript": {
+    "tests": 1458,
+    "pass": 1458,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "checks": [
     {
-      "step": "foundation-tests",
+      "name": "full-suite",
+      "command": [
+        "npm",
+        "test"
+      ],
       "exitCode": 0,
-      "status": "passed",
-      "counts": {
-        "tests": 471,
-        "pass": 471,
-        "fail": 0,
-        "skipped": 0
-      }
+      "seconds": 385.82
     },
     {
-      "step": "acceptance",
+      "name": "acceptance",
+      "command": [
+        "npm",
+        "run",
+        "evidence"
+      ],
       "exitCode": 0,
-      "status": "passed"
+      "seconds": 160.82
     },
     {
-      "step": "gates",
+      "name": "gates-mutations",
+      "command": [
+        "npm",
+        "run",
+        "test:gates"
+      ],
+      "exitCode": 0,
+      "seconds": 134.23
+    },
+    {
+      "name": "development",
+      "command": [
+        "npm",
+        "run",
+        "check:all"
+      ],
+      "exitCode": 0,
+      "seconds": 162.21
+    },
+    {
+      "name": "delivery",
+      "command": [
+        "npm",
+        "run",
+        "check:delivery"
+      ],
+      "exitCode": 0,
+      "seconds": 0.23
+    },
+    {
+      "name": "translations",
+      "command": [
+        "npm",
+        "run",
+        "i18n:check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.88
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 0.27
+    },
+    {
+      "name": "release",
+      "command": [
+        "npm",
+        "run",
+        "check:release"
+      ],
       "exitCode": 1,
-      "status": "failed"
-    },
-    {
-      "step": "gate-mutations",
-      "exitCode": 1,
-      "status": "failed"
-    },
-    {
-      "step": "translations",
-      "exitCode": 0,
-      "status": "passed"
-    },
-    {
-      "step": "build",
-      "exitCode": 0,
-      "status": "passed"
+      "seconds": 165.53
     }
   ],
-  "browser": {
-    "status": "blocked",
-    "details": "maintenance/browser-access.md"
+  "inputDrift": [],
+  "testedInputDigest": "b1123bde9e080a4df7d71f628266fb6c3a338aa411823a6cc9594de1c6139eae",
+  "stdioMcp": {
+    "status": "passed",
+    "cases": 92
   },
-  "release": {
-    "status": "blocked",
-    "reason": "FAIL Mapping audit omitted or changed a source obligation"
+  "browserMcp": {
+    "checks": 22,
+    "status": "passed"
   },
-  "originalReportSha256": "ccc6042a4657fe89b52538aac5729804ea5ddfbbc472fecbaa298b564f03c646",
-  "originalReportUrl": "https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/verification.json",
-  "note": "Historical foundation execution only. Raw output and duplicate input inventories were removed at the owner request. This is not current acceptance or release approval."
+  "featureBrowser": {
+    "cases": 6,
+    "status": "passed",
+    "scope": "AU enterprise, Chromium/Firefox/WebKit desktop and mobile"
+  },
+  "releaseOutput": "npm notice run series-of-calls@0.1.0-preview.1 check:release\nnpm notice run python3 scripts/verify.py release\nFAIL Unreviewed research reference: REF-ac194430f67b3832",
+  "rawArtifactPolicy": "Raw runs removed at owner request; do not commit screenshots, traces, logs, duplicate manifests or copied builds.",
+  "sourceCommit": "f421caeb19939ff220f7e09731836b79c9876863",
+  "canonicalAcceptanceSha256": "db3c5d320529644de0964575326ee13a9b8cfdc23acaec57b10ae8ad470152a4",
+  "acceptanceCases": 582,
+  "sourceAndReleaseLimit": "4839 requirements remain partial/pending; canonical source acceptance is zero; full browser readiness remains false."
 }

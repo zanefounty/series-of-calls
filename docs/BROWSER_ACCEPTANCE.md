@@ -1,6 +1,6 @@
 # Browser and MCP acceptance
 
-> Access-restored continuation: genuine history, independent repository and locked local dependencies are now established; real browser smoke and actual browser MCP runs have executed. The historical limitations below are superseded only where fresh receipts in [the continuation evidence](../evidence/access-restored-2026-11-04/README.md) demonstrate it. Full product/release readiness remains incomplete.
+> Access-restored continuation: genuine history, independent repository and locked local dependencies are now established; real browser smoke and actual browser MCP runs have executed. The historical limitations below are superseded only where fresh receipts in [the continuation evidence](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/access-restored-2026-11-04/README.md) demonstrate it. Full product/release readiness remains incomplete.
 
 The access-restored environment supports listeners and actual browser MCP. Full release acceptance remains separate from the bounded browser receipts. A configuration example or DOM rehearsal is not a browser result.
 

@@ -25740,7 +25740,19 @@
       "AC-SOC-589",
       "AC-SOC-590",
       "AC-SOC-591",
-      "AC-SOC-592"
+      "AC-SOC-592",
+      "AC-SOC-601",
+      "AC-SOC-602",
+      "AC-SOC-603",
+      "AC-SOC-604",
+      "AC-SOC-605",
+      "AC-SOC-606",
+      "AC-SOC-607",
+      "AC-SOC-608",
+      "AC-SOC-609",
+      "AC-SOC-610",
+      "AC-SOC-611",
+      "AC-SOC-612"
     ]
   },
   {
@@ -28537,9 +28549,31 @@
   {
     "id": "AC-c1d4005520cc3d2d",
     "requirement": "REQ-c1d4005520cc3d2d",
-    "status": "pending",
+    "status": "partial",
     "outcome": "- Network bandwidth and quality.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-593",
+      "AC-SOC-594",
+      "AC-SOC-595",
+      "AC-SOC-596",
+      "AC-SOC-597",
+      "AC-SOC-598",
+      "AC-SOC-599",
+      "AC-SOC-600",
+      "AC-SOC-601",
+      "AC-SOC-602",
+      "AC-SOC-603",
+      "AC-SOC-604",
+      "AC-SOC-605",
+      "AC-SOC-606",
+      "AC-SOC-607",
+      "AC-SOC-608",
+      "AC-SOC-609",
+      "AC-SOC-610",
+      "AC-SOC-611",
+      "AC-SOC-612",
+      "AC-SOC-613"
+    ]
   },
   {
     "id": "AC-56999348230bde2c",

@@ -6759,6 +6759,59 @@
       ],
       "status": "partial",
       "scope": "Explicit authorized coaching posts one typed commercial cost receipt before delayed skill effectiveness; independent quality review and workforce subscriptions are not rebilled. Zero-cost and historical standalone jobs remain valid, while commercial/event lineage, exact timing, real bounded pruning, worker and MCP inspection are validated. Broader workforce, BPO and commercial source obligations remain open. Active training changes the service fingerprint and makes prior campaign windows stale; explicit fresh observations restore current evidence."
+    },
+    {
+      "id": "BEH-SOC-382",
+      "sources": [
+        "DESIGN-5fd1c25706b12388"
+      ],
+      "implementation": [
+        "src/game/42-transport.js",
+        "src/game/55-communications.js",
+        "src/game/86-domain-admin-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-593",
+        "AC-SOC-594",
+        "AC-SOC-595",
+        "AC-SOC-596",
+        "AC-SOC-597",
+        "AC-SOC-598",
+        "AC-SOC-599",
+        "AC-SOC-600",
+        "AC-SOC-604",
+        "AC-SOC-613"
+      ],
+      "status": "partial",
+      "scope": "Explicit leased-IP withdrawal on an effective purchased link, independently composed faults, timed renumbering and alternate-path actual calls. Typed history/counter, retained command proofs, saves, workers, visible controls and independent seeded long-play checks. Adapted from thesysadmindev branch77776c855724ed407a7b18bde1ee22c3e5da8046; rare random day-gated incident spawning remains pending. Lease events and retained command receipts carry tenant/scenario scope and original link generation, preserving independent active/completed campaign snapshots."
+    },
+    {
+      "id": "BEH-SOC-383",
+      "sources": [
+        "DESIGN-5fd1c25706b12388",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/37-transport-headroom.js",
+        "src/game/42-transport.js",
+        "src/game/86-domain-admin-ui.js"
+      ],
+      "testIds": [
+        "AC-SOC-601",
+        "AC-SOC-602",
+        "AC-SOC-603",
+        "AC-SOC-604",
+        "AC-SOC-605",
+        "AC-SOC-606",
+        "AC-SOC-607",
+        "AC-SOC-608",
+        "AC-SOC-609",
+        "AC-SOC-610",
+        "AC-SOC-611",
+        "AC-SOC-612"
+      ],
+      "status": "partial",
+      "scope": "Pure measured reserved-bandwidth advice and explicit validated capacity upgrade, typed Kbps/Mbps and basis-point bounds, active contract allocation, single setup charge and preservation of old effective capacity until provisioning completes. Inspired by pinned fork port-headroom and AU NNI upgrade tests. Autonomous standing orders, real PNI/IX portfolios and per-subscriber wholesale access remain pending."
     }
   ]
 }

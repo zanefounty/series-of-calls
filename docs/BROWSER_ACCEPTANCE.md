@@ -1,5 +1,7 @@
 # Browser and MCP acceptance
 
+The current fork implementation's matching-input browser results are summarized in [verification.json](../evidence/verification.json), with the canonical served-artifact receipt in [browser.json](../evidence/browser.json). They cover the implemented recipes and explicitly scoped supplemental journeys. The mobile campaign requirement overflow has a permanent positive browser regression and an independently exercised old-CSS negative case. Broad source fidelity and release acceptance remain separate. Raw artifacts stay outside Git; the historical paths below describe earlier executions.
+
 > Access-restored continuation: genuine history, independent repository and locked local dependencies are now established; real browser smoke and actual browser MCP runs have executed. The historical limitations below are superseded only where fresh receipts in [the continuation evidence](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/access-restored-2026-11-04/README.md) demonstrate it. Full product/release readiness remains incomplete.
 
 The access-restored environment supports listeners and actual browser MCP. Full release acceptance remains separate from the bounded browser receipts. A configuration example or DOM rehearsal is not a browser result.
@@ -12,7 +14,7 @@ The access-restored environment supports listeners and actual browser MCP. Full 
 
 The campaign driver uses `scripts/lib/campaign-journey.js` for deterministic public commands and checkpoints and `scripts/lib/campaign-ui.js` to map commands to visible controls. It does not inject a completed state or invoke dispatch through page evaluation. Direct-kernel tests exercise all jurisdictions and modes; a DOM rehearsal follows the visible controls. Neither result is a real-browser execution. The same recipes can be checked through actual gameplay MCP with `python3 scripts/mcp-smoke.py --campaigns --output <receipt.json>`.
 
-Run clean `npm ci` without external `NODE_PATH` before release checks. Capture installed dependency and browser versions. A runtime/lockfile mismatch, missing browser, denied listener or incomplete matrix cannot establish acceptance. The browser campaign runner retains timestamped reports, screenshots, traces, input hashes and an artifact manifest under `evidence/browser-campaigns/`; it does not replace the canonical release receipt.
+Run clean `npm ci` without external `NODE_PATH` before release checks. Capture installed dependency and browser versions. A runtime/lockfile mismatch, missing browser, denied listener or incomplete matrix cannot establish acceptance. Set `SOC_BROWSER_CAMPAIGN_EVIDENCE_DIR` to an external directory for timestamped reports, screenshots, traces, input hashes and the artifact manifest. The ignored default is `evidence/browser-campaigns/`; raw output must not be committed or replace the canonical release receipt.
 
 ## Browser MCP setup and exploration
 
@@ -33,9 +35,9 @@ The serial full-campaign attempts exceeded the unchanged 30-minute run deadline.
 For each engine and journey, run every shard using the same source and locked browser build, then aggregate the exact report paths:
 
 ```bash
-npm run test:browser:campaigns -- --browser chromium --journey campaign --shard 1/12
+SOC_BROWSER_CAMPAIGN_EVIDENCE_DIR=/tmp/soc-browser-runs npm run test:browser:campaigns -- --browser chromium --journey campaign --shard 1/12
 # Repeat through 12/12, then provide all twelve generated report paths:
-node scripts/aggregate-browser-campaigns.js --output evidence/campaign-aggregate.json <shard-report-paths>
+node scripts/aggregate-browser-campaigns.js --output /tmp/soc-browser-runs/campaign-aggregate.json <shard-report-paths>
 ```
 
 The aggregator requires all 144 distinct scenario/jurisdiction/mode/viewport cases, matching input/lock/browser/artifact hashes, exact shard assignment, successful checkpoints and zero errors or drift. It verifies retained screenshots/traces and hashes current inputs before emitting a full pass. Repeat independently for Chromium, Firefox and WebKit and both compact/campaign journeys. Failed attempts remain alongside any explicit rerun. Large traces are retained locally and hash-indexed in receipts; they are not silently discarded or committed as multi-gigabyte blobs. These matrices cover implemented recipes, not all remaining source-specific requirements.

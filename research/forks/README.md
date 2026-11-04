@@ -5,6 +5,7 @@ The owner requested investigation of [SeriesOfTubesAU](https://github.com/thesys
 - [Pinned catalogue and ranking](catalogue.json)
 - [Ten-fork branch, gameplay and test review](top-ten.md)
 - [Australian adaptation and existing SOC overlap](australia.md)
+- [Additional pinned review of three non-top-ten forks](non-top-ten-followup.md)
 - [Executed fork test slices](executed-tests.md)
 - [Upstream testing techniques and executed upstream suite](testing.md)
 

@@ -16,6 +16,13 @@ async function main(){
    report.stage='viewport-'+viewport.width;const context=await browser.newContext({viewport,acceptDownloads:true}),errors=[];
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>navigator.serviceWorker.controller);
    await page.locator('[data-act=training]').click();await page.waitForFunction(()=>SCT.locked);
+   // Expanded failed requirements must remain readable without widening mobile pages.
+   await page.locator('[data-biz=start]').click();await page.locator('[data-domain-start=campaign] button').click();
+   const requirements=page.locator('#soc-domain-campaign > details').filter({has:page.locator('summary').filter({hasText:/^Requirements$/})});await requirements.locator('summary').click();
+   assert.ok(await requirements.locator('li').filter({hasText:'CURRENT_SERVICE:'}).count()>0,'exercise must expose actual unmet service requirements');
+   assert.equal(await requirements.locator('ul').evaluate(el=>el.scrollWidth<=el.clientWidth),true,'campaign requirement codes overflow their list');
+   assert.equal(await page.evaluate(()=>document.querySelector('#soc-console').scrollWidth<=innerWidth),true,'expanded campaign requirements widen the viewport');
+   await page.locator('[data-soc=new]').click();await page.waitForFunction(()=>SCT.locked&&!SCT.state.business&&!SCT.state.campaign);
    await page.locator('[data-soc=select][data-id=people]').click();await page.locator('#soc-config [name=people]').fill('2');await page.locator('#soc-config button[type=submit]').click();
    await page.locator('[data-soc=minute]').click();await page.waitForFunction(()=>!SCT.busy&&SCT.state.clock===1);
    await page.locator('[data-soc=interaction]').click();await page.locator('[data-soc=five]').click();await page.waitForFunction(()=>!SCT.busy&&SOC.assess(SCT.state).passed);
@@ -39,7 +46,7 @@ async function main(){
    await context.setOffline(true);await page.reload();await page.locator('[data-act=training]').click();await page.waitForFunction(()=>SCT.locked);assert.equal(await page.evaluate(()=>JSON.stringify(SCT.state)),saved);
    assert.equal(await page.evaluate(()=>!!navigator.serviceWorker.controller),true);await context.setOffline(false);
    fs.mkdirSync(out,{recursive:true});await page.screenshot({path:path.join(out,`training-${viewport.width}.png`),fullPage:true});assert.deepEqual(errors,[]);
-   report.results.push({viewport,status:'passed',checks:['configuration','worker','assessment','calling-workforce-estate-consoles','portfolio-market-products-lifecycle-consoles','transport-product-evidence-media-site-managed-shared-security-observation-consoles','responsive','save-reload','export-import','tab-lock','keyboard-topology','offline-reload']});await context.close();
+   report.results.push({viewport,status:'passed',checks:['expanded-campaign-requirements-fit','configuration','worker','assessment','calling-workforce-estate-consoles','portfolio-market-products-lifecycle-consoles','transport-product-evidence-media-site-managed-shared-security-observation-consoles','responsive','save-reload','export-import','tab-lock','keyboard-topology','offline-reload']});await context.close();
   }
   // A temporary artifact is useful diagnostic evidence, but cannot satisfy the
   // release gate's receipt for the canonical _site artifact.

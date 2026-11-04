@@ -68,7 +68,7 @@ function inspect(){
   products:{version:E.products.PACK,families:E.products.families,units:E.products.units},
   channels:{version:E.channels.PACK,accounts:E.channels.channels,configuration:E.channels.defaults},
   outcomes:{version:E.outcomes.PACK,configuration:E.outcomes.defaults},
-  transport:{version:E.transport.PACK,profiles:E.transport.profiles},
+  transport:{version:E.transport.PACK,profiles:E.transport.profiles,recoveryActions:['lease-revoke','headroom-upgrade']},
   boundaries:{version:E.boundaries.PACK,profiles:E.boundaries.profiles},
   progression:{version:E.progression.PACK,content:E.progression.CONTENT},
   issueExercises:{version:E.issueExercises.PACK,definitions:E.issueExercises.definitions},

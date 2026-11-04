@@ -2,7 +2,7 @@
 
 **Snapshot:** [fork inventory](catalogue.json), complete 39-repository GitHub fork-list snapshot. Selected by `pushed_at` descending, `full_name` descending tie-break; every snapshot star count is zero, so stars do not distinguish these forks. All are public forks of `fjaeckel/seriesoftubes`, the original JavaScript/Node network-management game. Upstream comparison pin: `b2366ed26018f957309292d04adf5d6e76a89c65` (the repo's `maintenance/upstream/register.json` latest successful observation, 2026-11-03T22:36:56Z).
 
-This is a branch/revision inventory, not an adoption decision. Default-branch ancestry and fork-only branch commits are reported separately. “No unique commits” means no commits reachable from the pinned branch that are absent from this comparison pin; it does not establish that no edits were ever made or that a feature is semantically covered. Check-run results are GitHub-hosted observations for the named SHA and are not local verification. Tests were not run for this research task.
+This is a branch/revision inventory, not an adoption decision. Default-branch ancestry and fork-only branch commits are reported separately. “No unique commits” means no commits reachable from the pinned branch that are absent from this comparison pin; it does not establish that no edits were ever made or that a feature is semantically covered. Check-run results are GitHub-hosted observations for the named SHA and are not local verification. The statements below about tests not run describe the initial inspection. [Subsequent execution results](executed-tests.md) record the exact later test slices and their outcomes.
 
 ## Ranked inventory
 
@@ -80,6 +80,12 @@ A `git ls-remote --heads` scan of the remaining 29 forks surfaced, but did not f
 
 The pinned revocation (9), headroom (12), cache (10), and route-server/scenario (19) tests subsequently passed with locked installs. See [executed fork tests](executed-tests.md). Statements above about unexecuted tests describe the initial inspection; the later table names exactly which slices were run.
 
+The follow-up also executed Alex's full repository test script (219), Tanner's eight focused realism suites (35), Yeled's stale-tab/persistence (13) and route-reuse (3) suites, and Wnagele's selected HTTP/relay/core MCP suites (6/16/37). [Exact commands, pins and limits](executed-tests.md#additional-top-ten-source-tests) preserve the distinction between source tests, real browsers and SOC implementation.
+
 ## Local semantic overlap check
 
 The coordinator compared route-server placement, city cache shares and optic selection with the current retained SP implementation. All three concepts already have implementation and tests locally; the city-cache implementation also normalizes its local shares. See [the local comparison](README.md#comparison-with-the-current-optional-sp-implementation). Commit ancestry alone had not established this overlap. No duplicate patch was applied.
+
+## Subsequent non-top-ten inspection
+
+The [bounded follow-up](non-top-ten-followup.md) inspects immutable feature code and tests for the three leads above. It records additional power/hosting/capacity, manual redundancy-review and performance concepts, alongside local PNI, saturated-path and subsea timing overlaps. No tests were executed in that follow-up and no source acceptance or exclusion follows. Earlier statements about uninvestigated leads describe the initial scan.

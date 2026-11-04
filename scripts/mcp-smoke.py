@@ -637,6 +637,43 @@ console.log(JSON.stringify(rows));
         client.close()
 
 
+def transport_recovery(report):
+    """Run source-inspired recovery/headroom through actual stdio dispatch."""
+    script = "const S=require('./src/game/55-communications'),F=require('./tests/lib/transport-lease-fixture');console.log(JSON.stringify(['lease','headroom'].map(kind=>{const f=kind==='lease'?F.fixture():F.saturated(),commands=[...f.commands,kind==='lease'?F.revoke:F.upgrade,{type:'advance',minutes:kind==='lease'?7:3}],expected=commands.reduce(S.dispatch,S.create(f.options));return {kind,options:f.options,commands,expected};})))"
+    fixtures = json.loads(subprocess.check_output(["node", "-e", script], cwd=ROOT, text=True))
+    client = Client("scripts/calls-mcp.js")
+    try:
+        client.initialize("series-of-calls")
+        for fixture in fixtures:
+            row = {"server": "communications-transport-"+fixture["kind"], "status": "running"}
+            try:
+                client.tool("new_exercise", fixture["options"])
+                for command in fixture["commands"]:
+                    client.tool("command", {"command": command})
+                actual = client.tool("export_exercise")
+                assert actual == fixture["expected"], "MCP/direct transport replay differs"
+                view = client.tool("inspect")
+                assert client.tool("inspect") == view, "Transport inspection mutated state"
+                client.tool("import_exercise", {"json": json.dumps(actual)})
+                assert client.tool("export_exercise") == actual
+                if fixture["kind"] == "lease":
+                    forged = json.loads(json.dumps(actual))
+                    forged["transport"]["leaseRevocations"] = []
+                    client.tool("import_exercise", {"json": json.dumps(forged)}, error=True)
+                    assert client.tool("export_exercise") == actual, "Bad history import changed state"
+                    assert actual["transport"]["leaseRevocations"][0]["status"] == "renumbered"
+                else:
+                    assert actual["transport"]["links"]["leased-path"]["effective"]["capacityMbps"] == 2
+                    client.tool("command", {"command": {"type": "transport", "command": {"action": "headroom-upgrade", "link": "leased-path", "triggerBps": 8000, "targetBps": 5000, "maxCapacityMbps": 10}}}, error=True)
+                    assert client.tool("export_exercise") == actual, "Unneeded repeat upgrade changed state"
+                row.update(status="passed", commands=len(fixture["commands"]), checks=["actual-stdio-dispatch", "direct-replay-equivalence", "timed-effective-state", "pure-inspection", "save-restore", "atomic-rejection"])
+            except Exception as error:
+                row.update(status="failed", error=str(error))
+            report["results"].append(row)
+    finally:
+        client.close()
+
+
 def completion_packs(report):
     client = Client("scripts/calls-mcp.js")
     row = {"server": "communications-customer-attendance-callback", "status": "running"}
@@ -804,7 +841,7 @@ def main():
         "scope": "Real stdio MCP: 48 compact scenario/profile/mode references, SP play, pack checks, defence interfaces, four workforce-offer journeys and four managed-leaver journeys and four recorded-quality reviews and four coaching cost journeys. Not full campaign/source or browser acceptance.",
         "dependencyOverride": os.environ.get("NODE_PATH"), "inputs": {}}
     files = [p for folder in ("src", "scripts/lib", "content") for p in (ROOT / folder).rglob("*") if p.is_file()]
-    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "tests/lib/workforce-quality-fixture.js", "tests/lib/workforce-coaching-fixture.js", "package.json", "package-lock.json")]
+    files += [ROOT / p for p in ("scripts/calls-mcp.js", "scripts/mcp.js", "scripts/mcp-smoke.py", "tests/lib/information-interface-fixture.js", "tests/lib/workforce-offer-fixture.js", "tests/lib/managed-leaver-fixture.js", "tests/lib/workforce-quality-fixture.js", "tests/lib/workforce-coaching-fixture.js", "tests/lib/transport-lease-fixture.js", "package.json", "package-lock.json")]
     report["inputs"] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
     try:
         report["nodeVersion"] = subprocess.check_output(["node", "--version"], text=True).strip()
@@ -819,11 +856,12 @@ def main():
         managed_leavers(report)
         quality_reviews(report)
         workforce_coaching(report)
+        transport_recovery(report)
         if args.campaigns:
             full_campaigns(report)
             report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer, managed-leaver and quality-review journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (92 if args.campaigns else 80), "Incomplete smoke matrix"
+        assert len(report["results"]) == (94 if args.campaigns else 82), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

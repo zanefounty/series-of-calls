@@ -2,7 +2,23 @@
 
 The owner requested continued full implementation, verification and deployment. Access and repository preparation are complete; bounded implementation and acceptance work have continued. The original full-app plan remains active and **incomplete**; do not describe this preparation or its passing bounded tests as deployment readiness.
 
-## Current bounded implementation
+## Fork survey and current runtime — 4 November 2026
+
+[Research PR #13](https://github.com/zanefounty/series-of-calls/pull/13) merged after all 11 hosted checks passed. It pins the named Australian adaptation and ten forks selected by push activity from the 39-fork snapshot, where every fork had zero stars. [The research](../research/forks/README.md) distinguishes original feature branches, existing local overlap, executed source tests and pending adaptations. Source packs and canonical owner research acceptance remain unchanged.
+
+[Implementation PR #14](https://github.com/zanefounty/series-of-calls/pull/14) adds explicit leased-IP withdrawal/renumbering, owned-route continuity and measured capacity upgrades with delayed effective capacity and once-only existing charges. It also fixes long campaign requirement codes overflowing mobile layouts. The new browser regression fails when only the generated CSS is reverted and passes with the fix. These are bounded adaptations; random fork incident eligibility, autonomous standing orders, Australian wholesale/hosting geography and the other distinct fork proposals remain open.
+
+Quality-review [PR #11](https://github.com/zanefounty/series-of-calls/pull/11) and coaching [PR #12](https://github.com/zanefounty/series-of-calls/pull/12) have also merged after their hosted checks passed. Their visible workflows are included in the current feature-browser reruns.
+
+Frozen runtime `f1ff38f` passed 1,482 JavaScript tests, 603 registered acceptance cases, 83 Python gate/mutation tests and 94 actual stdio MCP cases. Current browser coverage includes all six 144-case compact/campaign matrices, 22 pinned browser-MCP checks plus two feature journeys, three-viewport canonical/offline smoke, transport six-case and quality/coaching nine-case feature matrices, six owned-route alternatives and twelve alternative campaign endpoints. Counts overlap. See the compact [verification receipt](../evidence/verification.json) and its exact input/artifact hashes. Full current-runtime browser acceptance is verified; it does not establish full source-specific product acceptance.
+
+Failed and interrupted attempts remain outside Git, including the mobile overflow discovery, harness corrections, supplemental timeouts and retries, the native WebKit crash and the container-stop correlation. Screenshots, traces, logs, copied builds and duplicate reports are not committed. The existing four-file evidence allowlist remains in effect.
+
+The inventory contains 4,839 requirements: 216 partial, 4,623 pending and zero final dispositions. Canonical research acceptance remains zero. Release still rejects deferred `REF-ac194430f67b3832`; source-specific implementation/review, the provider-enforced API budget and maintenance activation remain outstanding. Hosted adaptation remains disabled and no Pages deployment is claimed.
+
+The checkpoints below are historical; inspect the current receipts and live PR state before resuming work.
+
+## Earlier bounded implementation
 
 PR #6 merged at `5c0d87090f23ef9f73109d9809a38a01b6594344` after all 11 checks passed. Its runtime passed 1,331 JavaScript tests, 455 registered acceptance cases and all six complete browser matrices. The current defence-interface and keyboard-help additions are tracked in [their evidence index](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/defence-interface-pass-2026-11-04/README.md). Their source requirements remain partial. Independent save auditing corrected imported origin/policy, retention and access contradictions. Matching-input full-suite, acceptance, gate, MCP and three-engine feature-browser receipts now pass; all six historical defence compact/campaign matrices subsequently passed, with independent verification of all 1,728 artifacts. Full-browser readiness is reset for the changed runtime.
 
@@ -21,7 +37,7 @@ The owner designated `zanefounty` as contact and chose GitHub for reporting, def
 ## Read first
 
 1. `AGENTS.md`, the development skill and [Codex setup](CODEX_SETUP.md).
-2. [Current verification](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/access-restored-2026-11-04/README.md) and [deployment review](DEPLOYMENT_REVIEW.md).
+2. [Current verification](../evidence/verification.json) and [deployment review](DEPLOYMENT_REVIEW.md).
 3. [Delivery index](../maintenance/next-work.json), [specification](../spec/README.md) and [94-addition audit](../spec/audit/additions-behaviour-audit.md).
 4. [Reference review proposals](../research/review-proposals/README.md), which remain unaccepted by the owner.
 
@@ -53,7 +69,7 @@ Verified operational work includes genuine Git history and six historical binari
 
 Preserve all original source-pack bytes, MIT licensing and attribution, historical receipts and failed attempts. The preview is committed on genuine upstream history at 3c977ad; later verification receipts and active worktrees may still be uncommitted. Do not reset, recreate, or blindly replay old commands. Inspect actual files, branches, running processes and latest receipts first.
 
-## Current isolated continuation
+## Earlier isolated continuation
 
 `/tmp/soc-managed-leaver-implementation` contains the next bounded domain implementation: contract-scoped identity retirement through child estate dispatch, retained customer history, exact delayed authorization and once-only settlement. Its source requirement remains partial. Inspect its branch, current tests and in-progress browser/MCP evidence before accepting any status claim. It is separate from the frozen workforce-offer counts above.
 
@@ -70,3 +86,5 @@ The bounded quality-review implementation has passed 1,445 JavaScript tests, 569
 ## Workforce coaching cost — 4 November 2026
 
 The bounded coaching-cost implementation has passed 1,458 JavaScript tests, 582 registered acceptance cases, 83 Python gate/mutation tests, 92 actual stdio MCP cases, 22 browser-MCP checks and six desktop/mobile feature-browser journeys across three engines. Counts overlap. Explicit coaching posts one typed cost, delays skill readiness and invalidates current workforce observations while retaining history. Full source-specific fidelity and current complete browser matrices remain outstanding. See the compact `evidence/verification.json` summary and `evidence/acceptance.json` input hashes. Raw execution artifacts are excluded from Git at the owner’s request. Release remains blocked on deferred research and incomplete product requirements; no deployment is claimed.
+
+The separate `/tmp/soc-bpo-outcomes-implementation` worktree still contains an unintegrated BPO outcomes kernel, tests and work-package draft. Preserve that work; it has no shared-dispatch/UI/MCP registration or completed acceptance in this stack.

@@ -33,3 +33,7 @@ The [48-reference accept audit](accept-audit.md) and its [structured records](ac
 ## Scheduled-probe retrieval follow-up
 
 [Independent retrieval](observer-retrieval.md) and [structured records](observer-retrieval.json) cover the exact twelve URLs unavailable to the later hosted observer. All twelve were subsequently retrieved through independent browser/shell tools. The scheduled79/12 availability record, immutable failures and unadvanced success clock are preserved; canonical claim acceptance remains unchanged.
+
+## Historical-reference retrieval update
+
+The [later read-only retrieval report](unresolved-followup.md) and [structured retrieval receipt](unresolved-followup.json) use an alternate shell HTTPS route for the previously unavailable adjacent Cisco-VoIP reply, add public Cisco Community and release-note evidence for the historical BLF report, and use RFC 3261 only as context for the 2010 SIP trace. Exact fetched-response hashes and persistent retrieval failures are recorded. The report proposes narrowly scoped owner decisions; all three original recommendations remain unresolved pending owner review, canonical acceptance remains zero, and no source pack or gameplay record was changed.

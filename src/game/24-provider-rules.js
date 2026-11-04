@@ -413,7 +413,7 @@ function socProviderRulesKernel(){
       "periodCents": 0,
       "workMinutes": 3,
       "engineers": 1,
-      "support": 0,
+      "support": 1,
       "resources": [
         "carrier",
         "room",

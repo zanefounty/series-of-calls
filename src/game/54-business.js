@@ -268,7 +268,7 @@ function socBusinessKernel(){
   if(s.clock-b.lastPeriod>=PERIOD){
    b.lastPeriod+=PERIOD;b.metrics.periods++;demand(s,services,workforceSnapshot,transportSnapshot);
    const w=b.workforce;
-   if(w.operator!=='customer')post(b,s,'cost',(w.engineers+w.support)*w.hourlyCents,{reason:w.operator==='bpo'?'bpo-service':'staff',unit:'person-hour',quantity:w.engineers+w.support});
+   if(s.providerCampaign){const payroll=s.providerCampaign.payroll,total=Math.floor(payroll.personMinutes*w.hourlyCents/PERIOD),cost=total-payroll.costCents;if(cost)post(b,s,'cost',cost,{reason:'staff',unit:'person-minute',quantity:payroll.personMinutes-payroll.billedMinutes});payroll.billedMinutes=payroll.personMinutes;payroll.costCents=total;}else if(w.operator!=='customer')post(b,s,'cost',(w.engineers+w.support)*w.hourlyCents,{reason:w.operator==='bpo'?'bpo-service':'staff',unit:'person-hour',quantity:w.engineers+w.support});
    for(const loan of b.loans)if(loan.principal>0)post(b,s,'cost',Math.ceil(loan.principal*loan.rateBps/10000),{reason:'interest',loan:loan.id,unit:'period'});
   }
   if(b.solvency.status==='grace'&&s.clock>=b.solvency.deadline){b.solvency.status='default';b.solvency.defaultedAt=s.clock;event(b,s.clock,'PAYMENT_DEFAULT',{cents:b.solvency.payable,firstArrearsAt:b.solvency.firstArrearsAt});}

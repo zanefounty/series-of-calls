@@ -1,8 +1,0 @@
-npm notice run series-of-calls@0.1.0-preview.1 i18n:check
-npm notice run node scripts/i18n-check.js
-en.js: 5722 labels, 0 problems
-de.js: 0 missing, 0 unused, 0 broken (100.0% of 5722 labels)
-es.js: 0 missing, 0 unused, 0 broken (100.0% of 5722 labels)
-fr.js: 0 missing, 0 unused, 0 broken (100.0% of 5722 labels)
-it.js: 0 missing, 0 unused, 0 broken (100.0% of 5722 labels)
-pt.js: 0 missing, 0 unused, 0 broken (100.0% of 5722 labels)

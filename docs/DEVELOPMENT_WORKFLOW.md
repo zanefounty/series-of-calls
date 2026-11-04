@@ -34,7 +34,7 @@ Use Node 24 or later and the exact dependencies in `package-lock.json` for relea
 
 `check:all` and the release check are different: development accounting can pass while release readiness fails. Evidence commands can rerun registered suites; read scripts before combining them into a costly repeated loop. Do not shorten required checks merely to produce green output.
 
-The latest continuation passed 1,314 JavaScript tests across all 194 files, 63 actual stdio MCP cases and eight separate Codex setup checks. The acceptance plan registers 445 cases; inspect the [current verification index](../evidence/completion-pass-2026-11-04/README.md) for final input/accounting checks and retained failures. These runs use the disclosed external dependency tree. Clean locked-dependency and real-browser acceptance remain outstanding. Use [Codex setup](CODEX_SETUP.md) and [the handoff](RESTART_HANDOFF.md) when relaunching.
+The latest continuation passed 1,314 JavaScript tests across all 194 files, 63 actual stdio MCP cases and eight separate Codex setup checks. The acceptance plan registers 445 cases; inspect the [current verification index](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/completion-pass-2026-11-04/README.md) for final input/accounting checks and retained failures. These runs use the disclosed external dependency tree. Clean locked-dependency and real-browser acceptance remain outstanding. Use [Codex setup](CODEX_SETUP.md) and [the handoff](RESTART_HANDOFF.md) when relaunching.
 
 ## Browser and publishing handoff
 

@@ -1,1 +1,0 @@
-{"status":"failed","stage":"launch","browser":{"engine":"firefox","version":"142.0.1","playwright":"1.56.0","playwrightLockfile":"1.56.0"},"profiles":48,"viewports":3,"results":2,"report":"/evidence/firefox-campaign-02-of-12/2026-11-04T00-26-02-539Z-d428bc/browser-campaigns.json","error":"browser.newContext: Target page, context or browser has been closed"}

@@ -1,7 +1,0 @@
-{
-  "command": "gh pr merge 7 --merge --admin --match-head-commit 86f6c8cbde4e8cd2ecf21413c20de3efe9e13cd3",
-  "exitCode": 0,
-  "stdout": "",
-  "stderr": "",
-  "scope": "Ordinary implementation; existing owner-only PR review exception. All12 exact-head checks successful. No required status bypass."
-}

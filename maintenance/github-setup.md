@@ -1,6 +1,6 @@
 # GitHub setup for Series of Calls
 
-> Current continuation: the independent public repository, genuine history, required-check rulesets, owner review, GitHub reporting routes and Pages environment are configured and exercised. Governance PRs #1/#5 and observation records #3/#4 merged after approval and green checks. The older setup limitations below are historical. See [current receipts](../evidence/access-restored-2026-11-04/README.md). Hosted adaptation still lacks its dedicated credential and provider-enforced budget receipt and stays disabled; Pages has not been published.
+> Current continuation: the independent public repository, genuine history, required-check rulesets, owner review, GitHub reporting routes and Pages environment are configured and exercised. Governance PRs #1/#5 and observation records #3/#4 merged after approval and green checks. The older setup limitations below are historical. See [current receipts](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/access-restored-2026-11-04/README.md). Hosted adaptation still lacks its dedicated credential and provider-enforced budget receipt and stays disabled; Pages has not been published.
 
 Prepared 3 November 2026. The local preview is not a release. Repository creation, authentication, protections and publication have not been completed.
 

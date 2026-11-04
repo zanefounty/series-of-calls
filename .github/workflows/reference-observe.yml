@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   observe:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
@@ -30,7 +31,7 @@ jobs:
             maintenance/reference-history/
   persist:
     needs: observe
-    if: ${{ always() && (needs.observe.outputs.observed == 'success' || needs.observe.outputs.observed == 'failure') }}
+    if: ${{ github.ref == 'refs/heads/main' && always() && (needs.observe.outputs.observed == 'success' || needs.observe.outputs.observed == 'failure') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -38,13 +39,13 @@ jobs:
       pull-requests: write
       actions: write
     env:
-      GH_TOKEN: ${{ github.token }}
       BRANCH: bot/references-observation-${{ github.run_id }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/download-artifact@v8
         with:
           name: reference-observation-${{ github.run_id }}
@@ -52,12 +53,15 @@ jobs:
       - name: Validate observation data with trusted code
         run: python3 scripts/accept-observation.py references /tmp/observation
       - name: Propose observation persistence
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git switch -c "$BRANCH"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- maintenance/
           git -c core.hooksPath=/dev/null commit -m 'Record references observations for owner review'
+          gh auth setup-git
           git push origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" --title 'Review references observations' --body-file maintenance/observation-pr.md
           gh workflow run accountability.yml --ref "$BRANCH"

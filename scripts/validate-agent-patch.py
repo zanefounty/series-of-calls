@@ -23,7 +23,7 @@ def validate(raw):
  if not headers:raise ValueError('Missing diff headers')
  for name in paths:
   if not re.fullmatch(r'[a-zA-Z0-9_./-]+',name) or any(x in ('','..','.') for x in name.split('/')):raise ValueError('Unsafe patch path')
-  if not name.startswith(('src/','site/','tests/')) or name in PROTECTED:raise ValueError('Governance or unsupported path: '+name)
+  if not name.startswith(('src/','site/','tests/')) or name in PROTECTED or (name.startswith('tests/') and name.endswith('_test.py')):raise ValueError('Governance or unsupported path: '+name)
  return paths
 if __name__=='__main__':
  p=pathlib.Path(sys.argv[1]);validate(p.read_bytes())

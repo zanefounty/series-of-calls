@@ -1,0 +1,108 @@
+name: Weekly Copilot maintenance (pending budget verification)
+on:
+  schedule:
+    # Wednesday 09:15 AEDT / 08:15 AEST.
+    - cron: '15 22 * * 2'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: weekly-copilot-maintenance
+  cancel-in-progress: false
+jobs:
+  review:
+    # Activation requires owner review and verified entitlement, $25 monthly
+    # provider hard stop and branch protection. A variable is not proof.
+    if: ${{ false && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      copilot-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install and identify native CLI
+        run: |
+          npm install -g @github/copilot
+          copilot --version
+      - name: Review and propose one bounded fix
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SOC_COPILOT_MODEL: ${{ vars.SOC_COPILOT_MODEL }}
+        run: |
+          test -n "$SOC_COPILOT_MODEL"
+          copilot --no-auto-update --no-ask-user --disable-builtin-mcps \
+            --no-custom-instructions --secret-env-vars=GITHUB_TOKEN \
+            --model "$SOC_COPILOT_MODEL" --max-ai-credits 100 \
+            --allow-tool='write' --allow-tool='shell(git log:*)' \
+            --allow-tool='shell(git diff:*)' --allow-tool='shell(git status:*)' \
+            --allow-tool='shell(npm test:*)' --allow-tool='shell(node --test:*)' \
+            --allow-tool='shell(python3 -m unittest:*)' \
+            --usage-output-file "$RUNNER_TEMP/maintenance-usage.json" \
+            -p "$(cat maintenance/copilot-maintenance-prompt.md)"
+      - name: Collect candidate without publishing
+        run: |
+          git add -N -- src site tests
+          git diff --binary HEAD -- src site tests > "$RUNNER_TEMP/maintenance.patch"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: maintenance-candidate
+          path: |
+            ${{ runner.temp }}/maintenance.patch
+            ${{ runner.temp }}/maintenance-usage.json
+          retention-days: 7
+  publish:
+    needs: review
+    if: ${{ github.ref == 'refs/heads/main' && needs.review.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: maintenance-candidate
+          path: ${{ runner.temp }}/candidate
+      - name: Validate with trusted code without executing candidate
+        id: candidate
+        run: |
+          if test -s "$RUNNER_TEMP/candidate/maintenance.patch"; then
+            python3 scripts/validate-agent-patch.py "$RUNNER_TEMP/candidate/maintenance.patch"
+            echo 'present=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open draft for human review
+        if: steps.candidate.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: bot/weekly-maintenance-${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          git switch -c "$BRANCH"
+          git apply "$RUNNER_TEMP/candidate/maintenance.patch"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- src site tests
+          git -c core.hooksPath=/dev/null commit -m 'Propose bounded weekly maintenance fix'
+          gh auth setup-git
+          git push origin "$BRANCH"
+          printf 'Weekly maintenance candidate; owner review required. Agent output is untrusted. Required checks must pass before review. No merge or deployment is authorized.\n\nRun and usage artifact: %s\n' "$RUN_URL" > "$RUNNER_TEMP/pr-body.md"
+          gh pr create --draft --base main --head "$BRANCH" --title 'Review weekly maintenance fix' --body-file "$RUNNER_TEMP/pr-body.md"
+          gh workflow run ci.yml --ref "$BRANCH"
+          gh workflow run accountability.yml --ref "$BRANCH"
+          gh workflow run security.yml --ref "$BRANCH"

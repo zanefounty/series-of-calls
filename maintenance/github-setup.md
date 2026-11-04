@@ -1,6 +1,6 @@
 # GitHub setup for Series of Calls
 
-> Current continuation: the independent public repository, genuine history, required-check rulesets, owner review, GitHub reporting routes and Pages environment are configured and exercised. Governance PRs #1/#5 and observation records #3/#4 merged after approval and green checks. The older setup limitations below are historical. See [current receipts](https://github.com/zanefounty/series-of-calls/blob/11e16893a9598f96f340aa07322497219bf2c019/evidence/access-restored-2026-11-04/README.md). Hosted adaptation still lacks its dedicated credential and provider-enforced budget receipt and stays disabled; Pages has not been published.
+> Current continuation (4 November 2026): the independent public repository, genuine history, required checks, owner review and reporting routes are configured. The [incomplete preview is live on Pages](https://zanefounty.github.io/series-of-calls/), deployed by PR #15 and verified in desktop/mobile browsers. All outside/fork contributors now require CI approval; trusted repository PRs run automatically. The automatic performance commenter is disabled; its reports remain artifacts. Hosted adaptation remains disabled. The [weekly native Copilot job](weekly-maintenance.md) is prepared pending verified billing and owner review. The bootstrap limitations below are historical.
 
 Prepared 3 November 2026. The local preview is not a release. Repository creation, authentication, protections and publication have not been completed.
 
@@ -29,9 +29,25 @@ Before the first push, verify the pinned ancestry, recover the six outstanding u
 
 Enable Actions. Keep default workflow permissions read-only; trusted publisher jobs request their explicit write permissions. Allow Actions to create pull requests for the prepared observation workflows.
 
+Current fork policy: **Require approval for all external contributors**
+(`all_external_contributors`, verified through the repository Actions API).
+Review proposed workflow changes before approving an outside run. Approval permits
+the run; it does not grant secrets or a write token to ordinary fork CI. Trusted
+repository PRs keep automatic required checks. Observer publishers are main-only,
+and their checkout credentials are not persisted. GitHub couples Actions PR
+creation and approval in one setting; it stays enabled for bot draft creation,
+while CODEOWNERS, human review and the no-bypass required checks govern merging.
+See [GitHub's Actions settings guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository).
+
+Secret scanning, push protection, Dependabot alerts/fixes, full-history Gitleaks
+and dependency audit remain enabled. Use current supported Action major tags and
+Dependabot updates, as requested by the owner. Performance reports are artifacts;
+the automatic privileged commenter is disabled. An API setting readback verifies
+configuration, not an actual outside-account PR exercise.
+
 After the first CI run establishes check names, use separate active rules on `main`:
 
-1. Required status checks **`test`**, **`translations`** and **`accountability`**, with no bypass actors. Require the expected GitHub Actions source. Block deletion and force pushes.
+1. Required status checks **`test`**, **`translations`**, **`accountability`** and **`security`**, with no bypass actors. Require the expected GitHub Actions source. Block deletion and force pushes.
 2. Pull requests with one approval, CODEOWNER review and dismissed stale approvals. Bot changes require `zanefounty`'s review. If owner-authored PRs need a review exception, put the owner's narrowly scoped PR bypass on this review rule only; never on the required-check rule. Verify that a deliberately failing owner PR still cannot merge and that a bot PR cannot merge without owner approval.
 
 Keep the bot identity without administrator/bypass permissions. `test` aggregates the four test shards and build; `translations` checks dictionary structure; `accountability` reruns evidence and all coverage gates. Governance/workflow changes require a separate owner-reviewed PR. GitHub combines applicable protections, so validate the actual effective rules rather than relying on their names. [Ruleset rules](https://docs.github.com/en/repositories/configuring-branches-and-merges/managing-rulesets/available-rules-for-rulesets), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges/managing-protected-branches/about-protected-branches).

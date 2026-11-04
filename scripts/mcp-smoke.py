@@ -754,7 +754,7 @@ def main():
             full_campaigns(report)
             report["scope"] = "Real stdio MCP: compact references, SP, pack checks, defence interfaces, workforce-offer, managed-leaver and quality-review journeys and four-track procurement-to-renewal campaigns in every jurisdiction/mode. Not browser acceptance or full source fidelity."
         assert all(digest(ROOT / p) == h for p, h in report["inputs"].items()), "Inputs changed during execution"
-        assert len(report["results"]) == (84 if args.campaigns else 72), "Incomplete smoke matrix"
+        assert len(report["results"]) == (88 if args.campaigns else 76), "Incomplete smoke matrix"
         report["status"] = "passed" if all(row["status"] == "passed" for row in report["results"]) else "failed"
     except Exception as error:
         report.update(status="failed", error=str(error))

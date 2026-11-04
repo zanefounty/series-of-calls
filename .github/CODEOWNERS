@@ -114,3 +114,13 @@
 /tests/number-porting-integration.test.js @zanefounty
 
 /tests/progression-market.test.js @zanefounty
+
+# Publication and credential safeguards
+/.gitleaks.toml @zanefounty
+/scripts/check-secrets.py @zanefounty
+/scripts/install-gitleaks.sh @zanefounty
+/scripts/check-pages-artifact.py @zanefounty
+/tests/security_scan_test.py @zanefounty
+/tests/pages_artifact_test.py @zanefounty
+/SECURITY.md @zanefounty
+/tests/pages.test.js @zanefounty

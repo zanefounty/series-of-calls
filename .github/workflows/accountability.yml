@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: Remove checked-in receipts before producer execution
         run: rm -f evidence/acceptance.json evidence/communications.tap evidence/recorder.log
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
           cache: npm
@@ -27,7 +27,7 @@ jobs:
         run: |
           set -o pipefail
           python3 scripts/record-evidence.py 2>&1 | tee evidence/recorder.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -52,11 +52,11 @@ jobs:
         run: rm -f evidence/gates.log evidence/gates-install.log
       - name: Remove checked-in receipts before artifact download
         run: rm -f evidence/acceptance.json evidence/communications.tap
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
           path: evidence
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
           cache: npm
@@ -72,7 +72,7 @@ jobs:
         run: |
           set -o pipefail
           python3 scripts/verify.py all 2>&1 | tee evidence/gates.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: gates-${{ github.run_id }}-${{ github.run_attempt }}
@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -96,7 +96,7 @@ jobs:
         run: rm -f evidence/gate-mutations.log evidence/mutations-install.log
       - name: Remove checked-in receipts before artifact download
         run: rm -f evidence/acceptance.json evidence/communications.tap
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
           path: evidence
@@ -105,7 +105,7 @@ jobs:
           test -s evidence/acceptance.json
           test -s evidence/communications.tap
       # The Python mutation suite re-executes a Node acceptance suite in one upstream-receipt case.
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
           cache: npm
@@ -117,7 +117,7 @@ jobs:
         run: |
           set -o pipefail
           python3 -m unittest discover -s tests -p '*_test.py' 2>&1 | tee evidence/gate-mutations.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: mutations-${{ github.run_id }}-${{ github.run_attempt }}

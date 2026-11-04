@@ -22,8 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
           cache: npm
@@ -36,19 +38,22 @@ jobs:
           git fetch --depth=1 origin "$BASE_SHA"
           # The base's page, assembled by the base's own scripts (or its site/index.html from before the split).
           node scripts/lib/page.js --ref FETCH_HEAD -o "$RUNNER_TEMP/base.html"
-          echo "BASE_ARG=--base $RUNNER_TEMP/base.html" >> "$GITHUB_ENV"
+          echo "BASE_HTML=$RUNNER_TEMP/base.html" >> "$GITHUB_ENV"
       - name: Benchmark
         # The runner image ships Google Chrome; playwright-core (a dev dependency) drives it, no browser download.
         run: |
-          export PERF_CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)"
+          PERF_CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)"
+          export PERF_CHROME
           echo "Chrome: $PERF_CHROME ($("$PERF_CHROME" --version))"
-          node scripts/perf-bench.js $BASE_ARG --browser --md perf.md --summary "$GITHUB_STEP_SUMMARY"
+          base_args=()
+          if [ -n "${BASE_HTML:-}" ]; then base_args=(--base "$BASE_HTML"); fi
+          node scripts/perf-bench.js "${base_args[@]}" --browser --md perf.md --summary "$GITHUB_STEP_SUMMARY"
       - name: Remember the PR number
         if: github.event_name == 'pull_request'
         env:
           PR: ${{ github.event.pull_request.number }}
         run: echo "$PR" > pr-number.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: github.event_name == 'pull_request'
         with:
           name: perf

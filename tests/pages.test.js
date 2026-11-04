@@ -70,6 +70,15 @@ test('pages: only the release workflow deploys, and only with the GitHub Pages a
   assert.match(rel, /actions\/upload-pages-artifact@/);
   assert.match(rel, /actions\/deploy-pages@/);
   assert.match(rel, /path: \.\/_site/);
+  assert.match(rel, /if: github\.ref == 'refs\/heads\/main'/, 'publication is main-only');
+  assert.match(rel, /environment:\s+name: github-pages/, 'deployment retains the reviewed environment');
+  assert.match(rel, /if: inputs\.publication == 'release'\s+run: npm run check:release/, 'full releases still require product completion');
+  assert.match(rel, /case "\$PUBLICATION" in preview\|release\)/, 'unexpected publication choices fail');
+  for (const check of ['npm test', 'npm run evidence', 'npm run check:all', 'npm audit --audit-level=low',
+    'scripts/check-pages-artifact.py _site', 'scripts/check-secrets.py']) {
+    assert.ok(rel.includes(check) && rel.indexOf(check) < rel.indexOf('actions/upload-pages-artifact@'), `${check} precedes upload`);
+  }
+
 });
 
 test('pages: the shipped page and dictionaries, with labels shrunk to ids, still say the right things', () => {

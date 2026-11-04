@@ -1,0 +1,39 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Repository-relative file paths mapped to SHA-256 digests in evidence JSON are integrity metadata."
+condition = "AND"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+paths = ["(?:^|/)evidence/.*\\.json$"]
+regexes = [
+  "^\\s*\"(?:src|site|spec|content|research|maintenance|tests|docs|scripts|evidence)/[A-Za-z0-9_./-]+\"\\s*:\\s*\"[a-fA-F0-9]{64}\"[,]?\\s*$",
+]
+[[allowlists]]
+description = "Exact IndexNow key declared public by adjacent source comment and served from key.txt."
+condition = "AND"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+paths = ["(?:^|/)maintenance/upstream/workflows/release\\.yml$"]
+regexes = [
+  "^\\s*KEY:\\s*d000727792a2ac2fdaa24ec953ed6d2b\\s*$",
+]
+[[allowlists]]
+description = "Exact IndexNow key declared public by adjacent source comment and served from key.txt."
+condition = "AND"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+paths = ["(?:^|/)\\.github/workflows/release\\.yml$"]
+regexes = [
+  "^\\s*KEY:\\s*d000727792a2ac2fdaa24ec953ed6d2b\\s*$",
+]
+[[allowlists]]
+description = "Exact source audit prose row describing an API family; not an API credential."
+condition = "AND"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+paths = ["(?:^|/)spec/audit/additions-behaviour-audit\\.md$"]
+regexes = [
+  "^\\s*\\|\\ `uc\\-new:family:microsoft:communication\\-apis`\\ \\|\\ Embedded\\ communications\\ and\\ generic\\ API\\ access\\ \\|\\ Versioned\\ API\\ architecture,\\ deprecation/successor\\ and\\ independent\\ sale/support\\ lifecycle\\.\\ Positive:\\ only\\ a\\ current\\ supported\\ architecture\\ test\\ is\\ usable;\\ negative:\\ ended\\ API\\ offer\\ cannot\\ be\\ revived\\ by\\ a\\ generic\\ dependency\\.\\ \\|\\s*$",
+]

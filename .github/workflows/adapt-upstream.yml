@@ -39,7 +39,7 @@ jobs:
           git add -N -- src site tests
           git diff --binary -- src site tests > adaptation.patch
           git rev-parse HEAD > adaptation-base.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: adaptation-candidate
@@ -65,7 +65,7 @@ jobs:
         with:
           ref: ${{ env.BASE_SHA }}
           fetch-depth: 0
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: adaptation-candidate
           path: /tmp/candidate

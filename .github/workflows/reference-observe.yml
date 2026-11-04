@@ -21,7 +21,7 @@ jobs:
       - id: observation
         continue-on-error: true
         run: python3 scripts/observe-references.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: reference-observation-${{ github.run_id }}
@@ -45,7 +45,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: reference-observation-${{ github.run_id }}
           path: /tmp/observation

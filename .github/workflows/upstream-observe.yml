@@ -22,7 +22,7 @@ jobs:
       - id: observation
         run: python3 scripts/observe-upstream.py
       - run: python3 scripts/verify.py upstream
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: upstream-observation-${{ github.run_id }}
@@ -50,7 +50,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: upstream-observation-${{ github.run_id }}
           path: /tmp/observation

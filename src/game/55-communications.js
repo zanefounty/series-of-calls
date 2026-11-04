@@ -241,17 +241,36 @@ const SOC = (function socKernel() {
   function productServices(s){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));if(s.products)for(const id of Object.keys(s.resources)){const gate=productGate(s,id);if(gate&&!gate.available)services[id]={ready:false,reasons:['PRODUCT_FEATURE_UNAVAILABLE:'+gate.reason]};}if(s.boundaries)for(const id of Object.keys(s.resources)){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)services[id]={ready:false,reasons:gate.blocking.map(x=>x.code)};}return services;}
   function informationHooks(s){return {...productServices(s),boundaryCheck:(state,id)=>boundaryCheck(state,id),authorize:(state,id,action)=>business.authorise(state,id,action),speechModelContext:()=>speechModelContext(s)};}
   const estateKind=r=>r.kind==='directory'?'user':['endpoint','room'].includes(r.kind)?'device':['carrier','trunk'].includes(r.kind)?'number':'dependency';
+  function managedLeaverResources(child,resourceId,completeConfig,revocations){
+    const r=child?.resources?.[resourceId];
+    if(resourceId!=='identity'||r?.kind!=='directory'||JSON.stringify(revocations)!==JSON.stringify(['identity'])||!Array.isArray(completeConfig?.identities)||!Array.isArray(r.desired.identities))fail('MANAGED_LEAVER_SCOPE_UNSUPPORTED');
+    const removed=r.desired.identities.filter(person=>!completeConfig.identities.includes(person));
+    if(removed.length!==1)fail('MANAGED_LEAVER_SCOPE_UNSUPPORTED');
+    const resources=['identity'];
+    if(child.calling)resources.push('phone');
+    const person=child.workforceOps?.roster.desired.find(person=>person.id===removed[0]);
+    if(person?.available)resources.push('people');
+    return resources.sort();
+  }
   function estateHooks(s){
     function getResource(state,id){const r=state.resources[id];return r?{...r,estateKind:estateKind(r)}:null;}
     function applyResource(state,id,completeConfig,expectedGeneration){const r=state.resources[id];if(!r)fail('RESOURCE_UNAVAILABLE');if(r.generation!==expectedGeneration)fail('STALE_GENERATION');if(!business.authorise(state,id,'configure'))fail('DELEGATION_REQUIRED');validateConfig(r.kind,completeConfig);r.desired=clone(completeConfig);r.generation++;r.provisioning={status:'pending',due:state.clock+1,generation:r.generation};return r;}
     const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
     const same=(a,b)=>JSON.stringify(stable(a))===JSON.stringify(stable(b));
-    function applyLeaver(state,id,completeConfig,revocations,expectedGeneration){
+    function applyLeaver(state,id,completeConfig,revocations,expectedGeneration,jobId){
       if(!Array.isArray(revocations)||!revocations.length||new Set(revocations).size!==revocations.length||revocations.some(x=>!['identity','group-token','number','device'].includes(x)))fail('LEAVER_REVOCATION_INTENT_REQUIRED');
       const trial=clone(state),r=trial.resources[id];if(!r)fail('RESOURCE_UNAVAILABLE');if(r.generation!==expectedGeneration)fail('STALE_GENERATION');
       const row=trial.estate.inventory.find(x=>x.resourceId===id&&x.canonicalId===id&&!x.conflicts.length&&!x.unknowns.length);if(!row)fail('IDENTITY_LINK_REQUIRED');
       const profile=trial.resources.identity?.effective?.identities||trial.resources.identity?.desired?.identities||[];
-      const job=trial.estate.jobs.find(j=>j.operation==='leaver'&&j.items.some(item=>item.resource===id&&item.expectedGeneration===expectedGeneration));
+      const job=trial.estate.jobs.find(j=>j.id===jobId&&j.operation==='leaver'&&j.items.some(item=>item.resource===id&&item.expectedGeneration===expectedGeneration));
+      if(!job)fail('LEAVER_JOB_LINEAGE_REQUIRED');
+      if(job.managedApproval){
+        const approval=job.managedApproval,contract=trial.business?.contracts.find(c=>c.id===approval.contractId),resources=managedLeaverResources(trial,id,completeConfig,revocations);
+        if(approval.tenant!==trial.tenant||JSON.stringify(resources)!==JSON.stringify(approval.requiredResources))fail('MANAGED_LEAVER_SCOPE_CHANGED');
+        if(!contract||contract.status!=='active'||contract.renewAt<=trial.clock||contract.offer!=='managed-operations'||contract.unit!=='managed-operation'||contract.currency!=='AUD'||contract.sell!==true||contract.customer!=='customer'||contract.supportOwner!==approval.operator||!trial.business.organisations[approval.operator]?.roles.some(role=>['msp','integrator'].includes(role))||resources.some(resource=>!contract.resources.includes(resource)))fail('MANAGED_SUPPORT_CONTRACT_REQUIRED');
+        const acting={...trial,business:{...trial.business,player:approval.operator}};
+        for(const resource of resources)if(!business.authorise(acting,resource,'configure'))fail('MANAGED_AUTHORITY_DENIED');
+      }
       let principal=null,change;
       if(revocations.includes('device')){
         if(revocations.length!==1||!['endpoint','room'].includes(r.kind))fail('LEAVER_REVOCATION_RESOURCE_MISMATCH');
@@ -319,6 +338,7 @@ const SOC = (function socKernel() {
   function progressionHooks(s){return {portfolioHooks:portfolioHooks(s),siteHooks:siteHooks(),boundaryAssessment:(state,id)=>boundaries.evaluate(state,id),integrationStatus:(state,id)=>{const edge=state.products?.integrations.find(e=>e.id===id);if(!edge)return {status:'missing'};const report=products.compatibilityStatus(state,id);if(report.status!=='scenario-verified')return report;for(const [deploymentId,featureKey] of [[edge.source,'sourceFeature'],[edge.target,'targetFeature']]){const deployment=state.products.deployments.find(d=>d.id===deploymentId);for(const pair of edge.features){const feature=pair[featureKey],binding=deployment.effective?.bindings.find(b=>b.feature===feature);if(!binding||binding.resources.some(resourceId=>!productServices(state)[resourceId]?.ready||!products.bindingStatus(state,deploymentId,feature,resourceId,productHooks(state)).available))return {status:'unavailable'};}}return report;},marketQualificationHooks:()=>marketHooks(),productBindingAvailable:(state,deploymentId,feature,resourceId)=>productServices(state)[resourceId]?.ready===true&&products.bindingStatus(state,deploymentId,feature,resourceId,productHooks(state)).available,observeResource:(state,id)=>{const observation=observe(state,id),gate=productGate(state,id),boundary=boundaryCheck(state,id);return {...observation,ready:observation.ready&&(!gate||gate.available)&&(!boundary||boundary.eligible)};}};}
   function serviceObservationHooks(){const domains=(s,edges)=>[...new Set(edges.map(id=>s.transport?.links[id]?.effective?.domain).filter(Boolean))];return {observeResource:(s,id)=>productServices(s)[id],dispatchRootCommand:(s,c)=>dispatch(s,c),observeTransportPath:(s,q)=>{const p=transport.resourcePath(s,q.from,q.to,q.profile);return {...p,domains:domains(s,p.edges||[])};},transportDomainsForEdges:domains,transportDomainFailed:(s,id)=>s.transport?.domains[id]===true};}
   function managedHooks(){return {
+    leaverResources:(state,q)=>{const child=state.portfolio?.customers.find(c=>c.id===q.customerId)?.root;return managedLeaverResources(child,q.resource,q.config,q.revocations);},
     authorizeCustomer:(state,q)=>{const row=state.portfolio?.customers.find(c=>c.id===q.customerId),b=row?.root.business,c=b?.contracts.find(c=>c.id===q.contractId);return !!row?.active&&c?.status==='active'&&c.supportOwner===q.operator&&c.resources.includes(q.resource)&&business.authorise({...row.root,business:{...b,player:q.operator}},q.resource,q.action);},
     dispatchCustomer:(state,customerId,command)=>{portfolio.command(state.portfolio,{action:'dispatchcustomer',customerId,command},portfolioHooks(state));return state.portfolio.customers.find(c=>c.id===customerId).root;},
     resourceReadiness:(state,q)=>{const child=state.portfolio?.customers.find(c=>c.id===q.customerId)?.root,r=child?.resources[q.resource];return !!r&&r.generation===q.generation&&r.provisioning.status==='ready'&&JSON.stringify(r.effective)===JSON.stringify(q.config)&&productServices(child)[q.resource]?.ready===true;},

@@ -1,8 +1,0 @@
-{
-  "recordedAt": "2026-11-03T22:03:08.242299+00:00",
-  "endpoint": "repos/zanefounty/series-of-calls/private-vulnerability-reporting",
-  "exitCode": 0,
-  "response": {
-    "enabled": true
-  }
-}

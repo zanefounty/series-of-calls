@@ -25,7 +25,7 @@ test('AC-SOC-017 recurring allowances, wholesale costs, credits and replay recon
  let s=advance(start(),1);s=command(s,order('messaging',s));s=advance(s,2);
  const before=structuredClone(s),due=s.business.contracts[0].nextBill,minutes=due-s.clock;
  B.meter(s,'message',100);const expected=structuredClone(s);s=advance(s,minutes);
- const bill=s.business.ledger.find(l=>l.category==='revenue');assert.equal(bill.overage,0);assert.equal(bill.cents,1000);
+ const bill=s.business.ledger.find(l=>l.category==='revenue');assert.equal(bill.overage,0);assert.equal(bill.settlementBasis,'period-history-v1');assert.equal(bill.serviceMinutes,60);assert.equal(bill.cents,s.business.contracts[0].price-bill.serviceCredit);
  const second=advance(expected,minutes);assert.deepEqual(second,s);assert.deepEqual(E.restore(JSON.stringify(s)),s);
  const snapshot=JSON.stringify(s);E.calculate(s);E.calculate(s);assert.equal(JSON.stringify(s),snapshot);
  const contract=s.business.contracts[0];s=command(s,{action:'credit',contract:contract.id,cents:500});assert.throws(()=>command(s,{action:'credit',contract:contract.id,cents:501}),/INVALID_CREDIT/);

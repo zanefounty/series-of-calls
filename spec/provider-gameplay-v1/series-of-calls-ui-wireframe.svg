@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860" role="img" aria-labelledby="title desc">
+<title id="title">Proposed Series of Calls campaign screen</title>
+<desc id="desc">An illustrative game screen with a persistent treasury and service HUD, goals and deals on the left, a customer service map in the centre, and a costed incident decision on the right. This is a specification wireframe, not a running game. All figures are fictional.</desc>
+<defs>
+ <pattern id="waves" width="100" height="70" patternUnits="userSpaceOnUse"><path d="M10 36q18 9 36 0m18 18q12 6 24 0" fill="none" stroke="#9BE2F2" stroke-width="3" opacity=".6"/></pattern>
+ <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1E2640"/></marker>
+ <style>
+  text{font-family:Arial,sans-serif;fill:#1E2640}.small{font-size:13px}.body{font-size:15px}.label{font-size:12px;font-weight:bold;letter-spacing:.5px}.title{font-family:'Trebuchet MS',Arial,sans-serif;font-size:22px;font-weight:bold}.num{font-size:23px;font-weight:bold}.card{fill:white;stroke:#1E2640;stroke-width:3}.muted{fill:#55608A}.button{fill:#FFD23F;stroke:#1E2640;stroke-width:2.5}.divider{stroke:#D5DEEC;stroke-width:1.5}.route{fill:none;stroke:#1E2640;stroke-width:6;stroke-linejoin:round;stroke-linecap:round}.voice{fill:none;stroke:#FFD23F;stroke-width:3;stroke-linecap:round}.digital{fill:none;stroke:#7B61FF;stroke-width:4;stroke-linecap:round}
+ </style>
+</defs>
+<rect width="1440" height="860" fill="#57C4E5"/>
+<rect width="1440" height="860" fill="url(#waves)"/>
+<path d="M280 180Q352 105 435 157L514 135Q561 163 561 225L650 251Q723 275 731 348L827 363Q932 426 1020 524L1087 636Q1033 725 898 727L760 767Q680 732 615 684L500 710Q390 664 366 570L300 504Q256 446 298 381L274 281Z" fill="#F8E6A8" stroke="#1E2640" stroke-width="3"/>
+<path d="M299 192Q365 130 432 176L512 155Q541 174 541 237L640 272Q700 291 713 363L811 382Q918 443 1004 536L1063 630Q1009 703 894 705L765 743Q688 713 620 659L502 686Q406 647 387 559L318 492Q282 445 318 380L294 280Z" fill="#9BDA6C"/>
+<path d="M337 339q92 29 132 108t194 59q149-2 198 83" fill="none" stroke="#7FC455" stroke-width="24" opacity=".7"/>
+<rect x="18" y="18" width="1412" height="74" rx="17" fill="#1E2640"/><rect x="14" y="14" width="1412" height="74" rx="17" class="card"/>
+<text x="31" y="44" class="title">Series of Calls</text><text x="31" y="66" class="small muted">Busy Signal MSP</text>
+<path d="M223 27V75M410 27V75M625 27V75M784 27V75M951 27V75M1132 27V75" class="divider"/>
+<text x="241" y="38" class="label muted">CASH AVAILABLE</text><text x="241" y="67" class="num">A$14,000</text>
+<text x="429" y="38" class="label muted">FORECAST / PERIOD</text><text x="429" y="67" class="num">+A$450</text>
+<text x="644" y="38" class="label muted">CUSTOMERS</text><text x="644" y="67" class="num">1 active</text>
+<text x="802" y="38" class="label muted">JOBS COMPLETED</text><text x="802" y="67" class="num">94%</text>
+<text x="969" y="38" class="label muted">PERIOD 1</text><text x="969" y="66" class="body">Minute 42 / 60</text>
+<rect x="1148" y="28" width="82" height="44" rx="10" class="button"/><text x="1164" y="55" class="body" font-weight="bold">Paused</text>
+<text x="1246" y="55" class="body">1x</text><text x="1287" y="55" class="body">2x</text><text x="1327" y="55" class="body">4x</text><text x="1370" y="55" class="body">8x</text>
+<rect x="22" y="113" width="250" height="509" rx="17" fill="#1E2640"/><rect x="18" y="109" width="250" height="509" rx="17" class="card"/>
+<rect x="29" y="121" width="74" height="35" rx="9" fill="#FFD23F" stroke="#1E2640" stroke-width="2"/><text x="44" y="144" class="body" font-weight="bold">Goals</text>
+<text x="115" y="144" class="body">Deals 2</text><text x="197" y="144" class="body">NOC 1</text>
+<text x="34" y="186" class="label muted">OPENING CONTRACT</text>
+<text x="34" y="213" class="title">Keep calls moving</text>
+<text x="34" y="240" class="body">Lunch rush has arrived.</text>
+<text x="34" y="263" class="body">Choose how to protect</text><text x="34" y="285" class="body">your service promise.</text>
+<rect x="34" y="306" width="216" height="11" rx="5" fill="#EEF5FB"/><rect x="34" y="306" width="164" height="11" rx="5" fill="#16854C"/>
+<text x="34" y="339" class="small muted">Coach 4 of 6 complete</text>
+<path d="M34 356H250" class="divider"/>
+<text x="34" y="385" class="label">NEXT DEAL</text><text x="34" y="412" class="body" font-weight="bold">Harbour office</text><text x="34" y="436" class="small">12 seats + one meeting room</text><text x="34" y="460" class="small">Expires in 2 periods</text>
+<rect x="34" y="481" width="216" height="39" rx="10" class="button"/><text x="77" y="506" class="body" font-weight="bold">Compare the deal</text>
+<path d="M34 539H250" class="divider"/><text x="34" y="566" class="small muted">Provider team</text><text x="34" y="591" class="body">1 of 2 engineers available</text>
+<rect x="22" y="644" width="250" height="137" rx="17" fill="#1E2640"/><rect x="18" y="640" width="250" height="137" rx="17" class="card"/>
+<text x="34" y="671" class="label">MAP LAYERS</text><rect x="33" y="689" width="217" height="29" rx="7" fill="#FFE3F0"/><text x="46" y="709" class="small" font-weight="bold">Services and customers</text><text x="46" y="741" class="small">Regions  |  Workloads  |  Costs</text><text x="46" y="764" class="small">Suppliers  |  Finance  |  Help</text>
+<path d="M470 253L470 380L575 421" class="route"/><path d="M470 253L470 380L575 421" class="voice"/>
+<path d="M799 260L799 366L722 421" class="route"/><path d="M799 260L799 366L722 421" class="digital"/>
+<path d="M667 562L667 646L854 646" fill="none" stroke="#55608A" stroke-width="3" stroke-dasharray="9 8"/>
+<circle cx="470" cy="317" r="8" fill="#FFD23F" stroke="#1E2640" stroke-width="2"/><circle cx="502" cy="392" r="8" fill="#FFD23F" stroke="#1E2640" stroke-width="2"/>
+<rect x="791" y="310" width="16" height="16" rx="4" fill="#7B61FF" stroke="#1E2640" stroke-width="2"/>
+<rect x="358" y="179" width="232" height="91" rx="16" fill="#1E2640"/><rect x="354" y="175" width="232" height="91" rx="16" class="card"/><text x="372" y="206" class="label muted">PSTN SUPPLIER</text><text x="372" y="235" class="title">Level Tree</text><text x="372" y="255" class="small">3 of 4 sessions in use</text>
+<rect x="684" y="181" width="239" height="91" rx="16" fill="#1E2640"/><rect x="680" y="177" width="239" height="91" rx="16" class="card"/><text x="698" y="207" class="label muted">UC PLATFORM</text><text x="698" y="236" class="title">Microsnoft</text><text x="698" y="257" class="small">20 seats + supported queue</text>
+<rect x="491" y="402" width="359" height="185" rx="19" fill="#1E2640"/><rect x="487" y="398" width="359" height="185" rx="19" fill="#FFFFFF" stroke="#FF4F9A" stroke-width="5"/>
+<text x="507" y="432" class="title">Bells &amp; Beans</text><text x="507" y="456" class="body">20 people  |  2 customer agents</text>
+<rect x="507" y="475" width="142" height="34" rx="9" fill="#DFFBEA" stroke="#16854C" stroke-width="2"/><text x="522" y="498" class="small" font-weight="bold">Calling: working</text>
+<rect x="663" y="475" width="162" height="34" rx="9" fill="#FFF3C4" stroke="#8A5700" stroke-width="2"/><text x="677" y="498" class="small" font-weight="bold">Queue: 6 waiting</text>
+<text x="507" y="539" class="body">Wait 2 sim min  /  Target 1 sim min</text><text x="507" y="564" class="small muted">Select the queue to compare responses</text>
+<rect x="789" y="622" width="282" height="98" rx="16" fill="#FFFFFF" fill-opacity=".86" stroke="#55608A" stroke-width="3" stroke-dasharray="8 6"/>
+<text x="807" y="652" class="label muted">NEW SITE OPPORTUNITY</text><text x="807" y="681" class="title">Harbour office</text><text x="807" y="704" class="small">Connect or open a costed build plan</text>
+<rect x="372" y="681" width="343" height="66" rx="13" fill="#FFF3C4" stroke="#1E2640" stroke-width="2.5"/><text x="388" y="706" class="small" font-weight="bold">Choose a response, then resume time.</text><text x="388" y="729" class="small">Your other customer work keeps its place.</text>
+<rect x="1124" y="113" width="302" height="668" rx="17" fill="#1E2640"/><rect x="1120" y="109" width="302" height="668" rx="17" class="card"/>
+<text x="1139" y="140" class="label muted">SELECTED: BELLS &amp; BEANS</text><text x="1139" y="171" class="title">Lunch rush</text>
+<rect x="1138" y="188" width="264" height="70" rx="10" fill="#FFF3C4"/><text x="1150" y="212" class="body" font-weight="bold">6 customers are waiting</text><text x="1150" y="236" class="small">2 agents busy. Wait: 2 sim min.</text>
+<text x="1139" y="285" class="label">CHOOSE A RESPONSE</text>
+<rect x="1138" y="301" width="264" height="155" rx="12" fill="#EEF5FB" stroke="#1E2640" stroke-width="2"/>
+<text x="1151" y="327" class="body" font-weight="bold">Add an overflow BPO agent</text><text x="1151" y="352" class="small">A$240 / period, ready in 2 minutes</text><text x="1151" y="375" class="small">Adds human handling capacity.</text><text x="1151" y="399" class="small">Forecast margin: A$450 → A$210</text><rect x="1151" y="413" width="237" height="30" rx="8" class="button"/><text x="1201" y="434" class="small" font-weight="bold">Review and order</text>
+<rect x="1138" y="472" width="264" height="142" rx="12" fill="#FFFFFF" stroke="#D5DEEC" stroke-width="2"/>
+<text x="1151" y="499" class="body" font-weight="bold">Offer callbacks</text><text x="1151" y="524" class="small">A$100 once, 1 engineer-minute</text><text x="1151" y="547" class="small">Spreads work across quieter time.</text><text x="1151" y="570" class="small">Customers still need an agent.</text><text x="1151" y="596" class="small" text-decoration="underline">Compare the effect</text>
+<path d="M1139 636H1403" class="divider"/><text x="1139" y="663" class="body" font-weight="bold">Why is this happening?</text><text x="1139" y="687" class="small">Demand rose at lunch. Licences</text><text x="1139" y="708" class="small">do not supply people to answer.</text><text x="1139" y="743" class="small" text-decoration="underline">Inspect one customer journey</text>
+<rect x="18" y="797" width="1404" height="45" rx="13" class="card"/><text x="34" y="826" class="body">12 calls completed · 2 messages waiting · Next bill in 18 sim minutes</text><text x="900" y="826" class="small muted">Illustrative screen · fictional prices · no live service</text>
+</svg>

@@ -4041,7 +4041,7 @@
 "page.hosting_customers_patching_at_3_a":"Hosting customers patching at 3 a.m.",
 "page.network_menu_save_load_or_start":"Network menu: save, load or start over",
 "page.security_team_asks_are_we_on":"Security team asks: “are we on PHP?” Everyone: “define we”",
-"page.series_of_tubes_build_the_internet":"Series of Calls: synthetic communications training",
+"page.series_of_tubes_build_the_internet":"Series of Calls: communications provider game",
 "page.world_map_of_your_network":"World map of your network",
 "page.x":"<?php echo \"sorry\"; ?>",
 "peering_desk.closed_desc":"Every peering request is declined, and no route servers. Customers hear that you are hard to reach, so fewer of them call.",

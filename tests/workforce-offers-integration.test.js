@@ -124,6 +124,7 @@ test('AC-SOC-523 customer-controlled workforce rejects vendor administration wit
 
 test('AC-SOC-524 actual business ledger eviction preserves an older workforce invoice and import history',()=>{
  let s=licensed(base('government'));for(const c of SOC.reference(s))s=SOC.dispatch(s,c);assert.equal(SOC.assess(s).passed,true);
+ s=send(s,'business',{action:'qualify',sector:'government'});s=send(s,'business',{action:'order',offer:'contact',quantity:1,unit:'agent',currency:'AUD',resources:['people','service'],customer:'customer',supportOwner:'orchard-msp',price:22000,sell:true});const contract=s.business.contracts.at(-1).id;for(let cycle=0;cycle<20;cycle++){if(s.business.contracts.find(x=>x.id===contract).status==='renewal')s=send(s,'business',{action:'renew',contract});for(let period=0;period<3;period++)s=tick(s,60);}s=send(s,'business',{action:'renew',contract});s=tick(s,60);assert.ok(s.business.balance.cash>1100000,'recurring synthetic government contract revenue funds later qualification costs');
  const retained=structuredClone(s.workforceOffers.costRecords[0]),invoice=s.business.externalInvoices.find(r=>r.id===retained.id);
  assert.ok(s.business.ledger.some(r=>r.id===invoice.entryId));for(let n=0;n<1001;n++)s=send(s,'business',{action:'qualify',sector:'government'});
  assert.equal(s.business.ledger.length,1000);assert.ok(s.business.ledgerPrunedThrough>=Number(invoice.entryId.slice(6)));assert.equal(s.business.ledger.some(r=>r.id===invoice.entryId),false);

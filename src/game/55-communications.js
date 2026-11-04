@@ -3,6 +3,12 @@
 const SOC = (function socKernel() {
   'use strict';
   const APP='series-of-calls', PACK='soc-foundation-1', SCHEMA=1;
+  const providerDemand=typeof SOC_PROVIDER_DEMAND!=='undefined'?SOC_PROVIDER_DEMAND:require('./22-provider-demand.js');
+  const providerContinuity=typeof SOC_PROVIDER_CONTINUITY!=='undefined'?SOC_PROVIDER_CONTINUITY:require('./23-provider-continuity.js');
+  const providerHistory=typeof SOC_PROVIDER_HISTORY!=='undefined'?SOC_PROVIDER_HISTORY:require('./23-provider-history.js');
+  const providerProducts=typeof SOC_PROVIDER_PRODUCTS!=='undefined'?SOC_PROVIDER_PRODUCTS:require('./23-provider-products.js');
+  const providerRules=typeof SOC_PROVIDER_RULES!=='undefined'?SOC_PROVIDER_RULES:require('./24-provider-rules.js');
+  const providerCampaign=typeof SOC_PROVIDER_CAMPAIGN!=='undefined'?SOC_PROVIDER_CAMPAIGN:require('./25-provider-campaign.js');
   const business=typeof SOC_BUSINESS!=='undefined'?SOC_BUSINESS:require('./54-business.js');
   const operations=typeof SOC_OPERATIONS!=='undefined'?SOC_OPERATIONS:require('./53-service-operations.js');
   const information=typeof SOC_INFORMATION!=='undefined'?SOC_INFORMATION:require('./52-information.js');
@@ -92,7 +98,7 @@ const SOC = (function socKernel() {
     const desired={...clone(catalogue[kind].defaults),...clone(config)};validateConfig(kind,desired);
     return {id,kind,desired,effective:null,generation:1,provisioning:{status:'pending',due:1,generation:1},fault:null};
   }
-  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName}={}){
+  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName,experience,providerName='Busy Signal MSP',market='au-sydney',difficulty='normal'}={}){
     if(!ownKey(scenarios,scenario)||!jurisdictions.includes(jurisdiction)||!['guided','assessed','sandbox'].includes(mode)||!Number.isSafeInteger(seed)||seed<1||seed>2147483646||!Number.isSafeInteger(clock)||clock<0||clock>100000000||tenant!==undefined&&(!isId(tenant)||tenant.length>48)||customerName!==undefined&&(typeof customerName!=='string'||!customerName.trim()||customerName.length>100))fail('INVALID_EXERCISE');
     const resources={};
     const add=(id,kind,c={})=>resources[id]=resource(id,kind,{region:jurisdiction,...c});
@@ -110,7 +116,19 @@ const SOC = (function socKernel() {
       resources.local.desired.licensing=false;
     }
     for(const r of Object.values(resources))r.provisioning.due=clock+1;
-    return {app:APP,v:SCHEMA,pack:PACK,rules:'fictional-boundaries-1',scenario,jurisdiction,mode,seed,...(tenant!==undefined?{tenant}:{}),...(customerName!==undefined?{customerName}:{}),clock,revision:0,nextId:1,tracePrunedThrough:0,connected:true,resources,interactions:[],cases:{},records:[],ledger:[],totals:{revenue:0,cost:0},commands:[],receipts:[],lastMeeting:null};
+    const root={app:APP,v:SCHEMA,pack:PACK,rules:'fictional-boundaries-1',scenario,jurisdiction,mode,seed,...(tenant!==undefined?{tenant}:{}),...(customerName!==undefined?{customerName}:{}),clock,revision:0,nextId:1,tracePrunedThrough:0,connected:true,resources,interactions:[],cases:{},records:[],ledger:[],totals:{revenue:0,cost:0},commands:[],receipts:[],lastMeeting:null};
+    root.experience={version:1,kind:experience|| (mode==='sandbox'?'lab':'training'),custom:mode==='sandbox'};
+    if(root.experience.kind==='campaign'){
+      if(!ownKey(portfolio.markets,market))fail('INVALID_PROVIDER_MARKET');
+      root.jurisdiction=portfolio.markets[market].jurisdiction;
+      for(const r of Object.values(resources)){r.desired.enabled=false;r.desired.region=root.jurisdiction;}
+      root.experience.custom=false;root.providerRequestSequence=0;
+      root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
+      Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
+      root.portfolio=portfolio.create({clock});
+      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed},providerHooks());
+    }
+    return validateState(root);
   }
   const links={uc:{directory:['directory'],connectivity:['connectivity']},dedicated:{directory:['directory'],connectivity:['connectivity']},queue:{workforce:['workforce']},workflow:{channel:['channel'],queue:['queue'],crm:['crm']},room:{directory:['directory']},recorder:{archive:['archive']}};
   function dependencies(s,r,c){
@@ -129,6 +147,7 @@ const SOC = (function socKernel() {
     const next=new Set(visited);next.add(id);const reasons=[];
     if(!c.enabled)reasons.push('DISABLED');if(r.fault)reasons.push(r.fault);
     if(!s.connected&&!c.local)reasons.push('EXTERNAL_DEPENDENCY');
+    if(id==='local'&&s.providerContinuity&&providerContinuity.observe(s.providerContinuity,s.clock,s.connected).expired)reasons.push('LOCAL_AUTONOMY_EXHAUSTED');
     for(const e of dependencies(s,r,c))reasons.push(e.code+':'+e.field);
     for(const field of Object.keys(links[r.kind]||{})){
       if(!observe(s,c[field],next).ready)reasons.push('DEPENDENCY_UNAVAILABLE:'+field);
@@ -147,7 +166,7 @@ const SOC = (function socKernel() {
     'multitenant-calling':{kinds:{phone:['uc']},modes:['multitenant'],coreDeployment:'multitenant'},
     'carrier-interconnect':{kinds:{carrier:['trunk']},modes:['multitenant','dedicated','premises']},
     'pstn-supply':{kinds:{carrier:['trunk']},modes:['multitenant','dedicated','premises']},
-    'unified-communications':{kinds:{phone:['dedicated']},modes:['dedicated','premises'],coreDeployment:['dedicated','premises']},
+    'unified-communications':{kinds:{phone:['dedicated'],'dedicated-platform':['dedicated']},modes:['dedicated','premises'],coreDeployment:['dedicated','premises']},
     meetings:{kinds:{room:['room']},modes:['room-deployment','native-room']},
     events:{kinds:{room:['room']},modes:['room-deployment','native-room']},
     'room-devices':{kinds:{room:['room']},modes:['room-deployment','native-room']},
@@ -167,6 +186,16 @@ const SOC = (function socKernel() {
     recording:{kinds:{recorder:['recorder']},modes:['cloud','customer-operated','multitenant','premises']},
     'quality-review':{kinds:{recorder:['recorder']},modes:['multitenant','hosted','premises']}
   };
+  Object.assign(productBindingKinds,{
+    'omnichannel-routing':{kinds:{service:['queue']},modes:['cloud','customer-operated']},
+    'customer-records':{kinds:{cases:['crm']},modes:['cloud','customer-operated']},
+    'customer-workflows':{kinds:{engage:['workflow']},modes:['cloud','customer-operated']},
+    ...Object.fromEntries(['embedded-communications','supported-architecture','teams-aligned-integration'].map(feature=>[feature,{kinds:{engage:['workflow']},modes:['cloud','embedded']}])),
+    ...Object.fromEntries(['workflow-flows','api-execution','webhook-delivery'].map(feature=>[feature,{kinds:{engage:['workflow']},modes:['cloud','provider-operated']}])),
+    'channel-accounts':{kinds:{messages:['channel']},modes:['cloud','provider-operated']},
+    'tenant-administration':{kinds:{identity:['directory']},modes:['provider-operated','multi-tenant']},
+    ...Object.fromEntries(['wholesale-billing','order-fulfilment'].map(feature=>[feature,{kinds:{engage:['workflow']},modes:['provider-operated','multi-tenant']}]))
+  });
   function productBindingInScope(s,deployment,binding,strict=true){
     const model=productBindingKinds[binding.feature],cfg=deployment.effective||deployment.desired;
     if(!model||!model.modes.includes(cfg.mode)||binding.resources.some(id=>!ownKey(model.kinds,id)||!s.resources[id]||!model.kinds[id].includes(s.resources[id].kind)))return false;
@@ -183,7 +212,7 @@ const SOC = (function socKernel() {
   }
   function productEvidenceHooks(){return {
     authorize:(state,r)=>business.authorise(state,r.desired.resourceId,'configure'),
-    qualification:(state,resourceId)=>{const b=state.business,organisation=b?.player,expires=b?.qualifications?.[organisation]?.[state.scenario]||0;return {eligible:expires>state.clock,organisation,scenario:state.scenario,expires,resourceId,authorised:business.authorise(state,resourceId,'configure')};},
+    qualification:(state,resourceId)=>{const b=state.business,organisation=state.providerQualification?.organisation||b?.player,expires=state.providerQualification?.expires||b?.qualifications?.[organisation]?.[state.scenario]||0;return {eligible:expires>state.clock,organisation,scenario:state.scenario,expires,resourceId,authorised:business.authorise(state,resourceId,'configure')};},
     boundaryAssessment:(state,resourceId)=>{const b=boundaryCheck(state,resourceId);return b?{...b,resourceBindings:(b.resourceBindings||[]).map(x=>x.resource)}:{eligible:false,resourceBindings:[]};},
     lifecycle:(state,resourceId,context)=>{const d=state.products?.deployments.find(x=>x.id===context.deploymentId),o=state.products?.offers.find(x=>x.id===context.offer),life=o?.effectiveLifecycle;return {eligible:!!d&&d.generation===context.generation&&o?.lifecycleProvisioning.status==='ready'&&life?.sale==='available'&&life?.support==='supported'&&business.authorise(state,resourceId,'configure'),offerId:o?.id,offerGeneration:o?.lifecycleGeneration,axes:life?{sale:life.sale,support:life.support}:null,deploymentId:d?.id,productVersion:d?.desired.productVersion,family:d?.desired.family,mode:d?.desired.mode,synthetic:true,externalApprovalClaim:false};}
   };}
@@ -240,7 +269,18 @@ const SOC = (function socKernel() {
     return {deploymentId:d.id,family:c.family,generation:d.generation,mode:c.mode,offer:c.offer,productVersion:c.productVersion,region:c.region,modelResourceId:c.dependencies['language-model'],integrationResourceId:c.dependencies['integration-version']};
   }
   function productServices(s){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));if(s.products)for(const id of Object.keys(s.resources)){const gate=productGate(s,id);if(gate&&!gate.available)services[id]={ready:false,reasons:['PRODUCT_FEATURE_UNAVAILABLE:'+gate.reason]};}if(s.boundaries)for(const id of Object.keys(s.resources)){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)services[id]={ready:false,reasons:gate.blocking.map(x=>x.code)};}return services;}
-  function informationHooks(s){return {...productServices(s),boundaryCheck:(state,id)=>boundaryCheck(state,id),authorize:(state,id,action)=>business.authorise(state,id,action),speechModelContext:()=>speechModelContext(s)};}
+  function informationHooks(s){return {...productServices(s),boundaryCheck:(state,id)=>boundaryCheck(state,id),authorize:(state,id,action)=>business.authorise(state,id,action),speechModelContext:()=>speechModelContext(s),
+    meetingSnapshot:(state,booking)=>{const result=meeting(state),profile=state.information?.meeting.effective,phone=config(state,'phone');return {...result,roomSlots:observe(state,'room').ready?1:0,participantCapacity:booking.event?profile?.eventCapacity||0:profile?.capacity||0,media:{out:!!phone?.mediaOut,in:!!phone?.mediaIn}};},
+    reserveMeeting:(state,request)=>request.recording?reserveCapture(state,request.sessionId,'meeting'):{accepted:true},
+    releaseMeeting:(state,sessionId)=>releaseCapture(state,sessionId),
+    completeMeetingCapture:(state,session)=>{
+      const recorder=config(state,'recorder'),archive=config(state,recorder?.archive);
+      if(!state.captureReservations?.some(r=>r.id===session.id&&r.kind==='meeting')||!observe(state,'recorder').ready||!observe(state,'archive').ready||!recorder?.consent||!archive?.access.includes('supervisor')||state.records.length>=500)return {accepted:false,reasons:['MEETING_CAPTURE_UNAVAILABLE']};
+      for(const id of ['recorder','archive']){const gate=boundaryCheck(state,id);if(gate&&!gate.eligible)return {accepted:false,reasons:['INFORMATION_BOUNDARY_FAILED']};}
+      const item={id:'record-'+state.nextId++,kind:'recording',interaction:session.bookingId,parents:[],captureRegion:recorder.region,region:archive.region,retentionDays:archive.retentionDays,access:[...archive.access],createdAt:state.clock,meetingSessionId:session.id};
+      state.records.push(item);information.enqueue(state,item,speechModelContext(state),informationHooks(state));return {accepted:true,recordId:item.id};
+    }
+  };}
   const estateKind=r=>r.kind==='directory'?'user':['endpoint','room'].includes(r.kind)?'device':['carrier','trunk'].includes(r.kind)?'number':'dependency';
   function managedLeaverResources(child,resourceId,completeConfig,revocations){
     const r=child?.resources?.[resourceId];
@@ -345,7 +385,201 @@ const SOC = (function socKernel() {
     resourceReadiness:(state,q)=>{const child=state.portfolio?.customers.find(c=>c.id===q.customerId)?.root,r=child?.resources[q.resource];return !!r&&r.generation===q.generation&&r.provisioning.status==='ready'&&JSON.stringify(r.effective)===JSON.stringify(q.config)&&productServices(child)[q.resource]?.ready===true;},
     settleUsage:(state,q)=>{const row=state.portfolio?.customers.find(c=>c.id===q.customerId);if(!row?.active||!productServices(row.root)[q.resource]?.ready)fail('MANAGED_USAGE_RESOURCE_UNAVAILABLE');return business.managedUsage(row.root,q);}
   };}
-  function portfolioHooks(s){return {managedOperationsObligations:customerId=>!!s.managedOperations?.jobs.some(job=>job.participants.some(p=>p.customerId===customerId&&p.childJobId&&(p.status!=='complete'||p.items.some(item=>item.status!=='complete'||item.billingStatus!=='posted')))),createCustomer:(_,c)=>create({scenario:c.scenario,jurisdiction:c.jurisdiction,tenant:c.tenant,customerName:c.name,clock:c.clock,mode:s.mode,seed:s.seed}),dispatchCustomer:(state,command)=>dispatch(state,command),validateCustomer:state=>{if(state.mode!==s.mode||state.seed!==s.seed)fail('PORTFOLIO_CUSTOMER_CONTEXT_MISMATCH');validateState(state);return true;}};}
+  function portfolioHooks(s,advancing=false){return {...(advancing?{adoptAdvancedCustomer:state=>state}:{}),managedOperationsObligations:customerId=>!!s.managedOperations?.jobs.some(job=>job.participants.some(p=>p.customerId===customerId&&p.childJobId&&(p.status!=='complete'||p.items.some(item=>item.status!=='complete'||item.billingStatus!=='posted')))),createCustomer:(_,c)=>create({scenario:c.scenario,jurisdiction:c.jurisdiction,tenant:c.tenant,customerName:c.name,clock:c.clock,mode:s.mode,seed:s.seed}),dispatchCustomer:(state,command)=>state.providerCustomer?dispatchInternal(state,command,true,advancing):dispatch(state,command),validateCustomer:state=>{if(state.mode!==s.mode||state.seed!==s.seed)fail('PORTFOLIO_CUSTOMER_CONTEXT_MISMATCH');if(!advancing)validateState(state);return true;}};}
+  // Only authored campaign rules can reach these capabilities. They are never exported.
+  function providerHooks(){
+    const row=(s,id)=>{const value=s.portfolio?.customers.find(x=>x.id===id);if(!value)fail('UNKNOWN_PROVIDER_CUSTOMER');return value;};
+    const apply=(s,id,command)=>{const target=row(s,id);target.root=dispatchInternal(target.root,command,true,true);target.clock=target.root.clock;return target.root;};
+    const configure=(s,id,configs)=>{for(const [resourceId,config] of Object.entries(configs))apply(s,id,{type:'configure',id:resourceId,config});return row(s,id).root;};
+    return {
+      repayCredit:(s,loan,cents)=>{business.command(s,{action:'repay',loan,cents},{},assess(s));return true;},
+      credit:s=>{business.command(s,{action:'loan',cents:100000},{},assess(s));return clone(s.business.loans.at(-1));},
+      automationControl:(s,id,enabled)=>{const policy=s.providerAutomation?.find(p=>p.customerId===id);if(!policy)fail('PROVIDER_POLICY_REQUIRED');if(enabled&&policy.spentCents>=policy.budgetCents)fail('PROVIDER_POLICY_BUDGET_EXHAUSTED');policy.status=enabled?'active':'suspended';},
+      business:s=>s.business,setStaff:(s,team)=>{Object.assign(s.business.workforce,team);return {at:s.clock,...team};},
+      forecast:s=>{const p=s.providerCampaign,b=s.business,active=p.customers.filter(c=>!['exited','default'].includes(c.status)),recurringRevenue=active.filter(c=>c.status==='active').reduce((n,c)=>n+c.retailCents,0),recurringCost=p.customers.reduce((n,c)=>n+Object.values(c.stages).filter(Boolean).reduce((t,x)=>t+(['exited','default'].includes(c.status)?Math.floor(x.periodCents*Math.min(60,Math.max(0,x.acceptedAt+providerRules.data.plans[c.planId].minimumPeriods*60-s.clock))/60):x.periodCents),0),0)+(b.workforce.engineers+b.workforce.support)*b.workforce.hourlyCents+p.projects.filter(x=>x.kind==='operation'&&x.status==='complete'&&active.some(c=>c.id===x.customerId)).reduce((n,x)=>n+x.periodCents,0);return {recurringRevenue,recurringCost,operatingResult:recurringRevenue-recurringCost,variableUsage:active.map(c=>({customerId:c.id,voiceCentsPerMinute:providerRules.data.plans[c.planId].voiceCents,messageCents:providerRules.data.plans[c.planId].messageCents}))};},post:(s,category,cents,details)=>business.postProvider(s,category,cents,details),
+      customer:(s,id)=>row(s,id).root,
+      addCustomer:(s,c)=>{
+        const hooks=portfolioHooks(s);hooks.createCustomer=(_,config)=>{
+          const child=create({scenario:config.scenario,jurisdiction:config.jurisdiction,tenant:config.tenant,customerName:config.name,clock:config.clock,mode:s.mode,seed:s.seed});
+          child.experience={version:1,kind:'campaign',custom:false};
+          child.providerCustomer={version:1,id:c.id,recording:providerRules.data.missions[c.scenario].requirements.recording,planId:c.planId};
+          if(c.scenario==='defence')child.resources.phone=resource('phone','uc',{region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]});
+          for(const resource of Object.values(child.resources)){resource.desired.enabled=false;resource.effective=null;}
+          return child;
+        };
+        portfolio.command(s.portfolio,{action:'addcustomer',id:c.id,tenant:c.id,name:c.name,market:c.market,scenario:c.scenario},hooks);
+        return row(s,c.id).root;
+      },
+      configureCustomer:configure,
+      channelEligibility:child=>{const ready=id=>child.products?.deployments.some(d=>d.id==='d-'+id&&d.provisioning.status==='ready'&&d.effective.features.every(f=>products.featureStatus(child,d.id,f,productHooks(child)).available));const accountReady=id=>child.channels?.accounts[id]?.provisioning.status==='ready'&&child.channels.accounts[id].observed.authenticated&&child.channels.accounts[id].observed.providerAvailable;return {socialMessaging:!!ready('cisco-programmable-engagement')&&!!accountReady('chatterleaf'),workplaceChat:!!ready('ms-communications-api')&&!!accountReady('workplace'),video:!!ready('cisco-meetings-interoperability')};},
+      operationBlockers:(s,id,definition)=>{const child=row(s,id).root,p=s.providerCampaign,op=definition.id,blockers=[];
+        if(op==='quality'&&!providerReviewCandidate(child))blockers.push('CONSENTED_CASE_RECORDING_REQUIRED');
+        if(op==='partner-qualification'&&!p.customers.find(c=>c.id===id).history.some(h=>h.qualified))blockers.push('OBSERVED_QUALIFIED_SERVICE_PERIOD_REQUIRED');
+        if(['migration','migration-consolidated'].includes(op)&&p.projects.some(x=>x.customerId===id&&['migration','migration-consolidated'].includes(x.operationId)&&!['cancelled','blocked'].includes(x.status)))blockers.push('MIGRATION_ALREADY_ORDERED');
+        if(['local-spares','sync-records','sync-all'].includes(op)){const c=child.providerContinuity;if(child.scenario!=='defence'||!c)blockers.push('DEFENCE_LOCAL_DEPLOYMENT_REQUIRED');
+          if(op==='local-spares'&&p.projects.some(x=>x.customerId===id&&x.operationId===op&&!['cancelled','blocked'].includes(x.status)))blockers.push('LOCAL_SPARES_ALREADY_ORDERED');
+          if(op.startsWith('sync-')){if(!child.connected)blockers.push('RECONNECTION_REQUIRED');if(c&&!(op==='sync-records'?c.pending.filter(x=>x.recordId!==null).length+c.pendingCheckpoint.recorded:c.pending.length+c.pendingCheckpoint.total))blockers.push('NO_RETAINED_WORK_IN_SCOPE');if(p.projects.some(x=>x.customerId===id&&['sync-records','sync-all'].includes(x.operationId)&&['running','commissioning'].includes(x.status)))blockers.push('RECONCILIATION_BUSY');}}
+        return blockers;},
+      continuity:child=>child.providerContinuity?{...clone(child.providerContinuity),...providerContinuity.observe(child.providerContinuity,child.clock,child.connected)}:null,
+      operationReady:(child,definition)=>definition.id==='coaching'?child.workforceOps?.coaching.some(j=>j.providerReceipt&&j.status==='complete'):definition.id==='bpo'?child.workforceOps?.providerCover?.people.every(id=>child.workforceOps.roster.effective?.some(p=>p.id===id)):definition.kind!=='product'||child.products?.deployments.some(d=>d.id==='d-'+definition.id&&d.provisioning.status==='ready'),
+      operation:(s,id,definition)=>{
+        if(definition.kind==='product')return providerProductOrder(s,id,definition,apply);
+        const configs=Object.fromEntries((definition.resources||[]).map(resourceId=>[resourceId,{enabled:true,...(definition.config?.[resourceId]||{})}]));
+        for(const [resourceId,config] of Object.entries(definition.config||{}))configs[resourceId]={...configs[resourceId],...config};
+        const child=row(s,id).root;
+        if(['repair','mitigate'].includes(definition.id)){
+          const affected=[];
+          for(const incident of s.providerCampaign.incidents.filter(x=>x.customerId===id&&['active','acknowledged'].includes(x.status))){
+            const resourceId=({processor:'speech',connectivity:'access'})[incident.resource]||incident.resource;
+            affected.push(resourceId);
+            if(incident.kind==='disconnection')apply(s,id,{type:'connect',connected:true});
+            else if(incident.fault==='CAPACITY'&&resourceId==='room')apply(s,id,{type:'information',command:{action:'configure',kind:'meeting',config:{capacity:incident.receipt.previousCapacity}}});
+            else apply(s,id,{type:'fault',id:resourceId,fault:null});
+            if(definition.id==='mitigate'){if(resourceId==='room')apply(s,id,{type:'information',command:{action:'configure',kind:'meeting',config:{capacity:(incident.receipt.previousCapacity||row(s,id).root.information.meeting.capacity)+1}}});else configure(s,id,{[resourceId]:{capacity:row(s,id).root.resources[resourceId].desired.capacity+1}});}
+          }
+          return {kind:definition.id,resources:affected,at:child.clock,revision:row(s,id).root.revision};
+        }
+        if(['local-spares','sync-records','sync-all'].includes(definition.id)){
+          const project=s.providerCampaign.projects.findLast(p=>p.customerId===id&&p.operationId===definition.id&&p.status==='running');if(!project||!child.providerContinuity)fail('PROVIDER_PAID_CONTINUITY_REQUIRED');
+          const receipt={projectId:project.id,postingId:project.postingId,at:child.clock};
+          if(definition.id==='local-spares')providerContinuity.installSpares(child.providerContinuity,child.clock,receipt);
+          else return {kind:definition.id,...providerContinuity.synchronise(child,definition.id==='sync-records'?'records':'all',receipt)};
+          return {kind:definition.id,...receipt};
+        }
+        if(definition.id==='quality'){
+          const candidate=providerReviewCandidate(child);if(!candidate)fail('CONSENTED_CASE_RECORDING_REQUIRED');const project=s.providerCampaign.projects.findLast(p=>p.customerId===id&&p.operationId==='quality'&&p.status==='running');if(!project)fail('PROVIDER_PAID_REVIEW_REQUIRED');
+          child.providerReviews??=[];const review={projectId:project.id,postingId:project.postingId,at:child.clock,reviewer:'supervisor',...candidate};child.providerReviews.push(review);return clone(review);
+        }
+        if(definition.id==='automation'){
+          const project=s.providerCampaign.projects.findLast(p=>p.customerId===id&&p.operationId==='automation'&&p.status==='running');if(!project)fail('PROVIDER_PAID_POLICY_REQUIRED');
+          s.providerAutomation??=[];s.providerAutomation.push({projectId:project.id,customerId:id,budgetCents:16000,spentCents:0,status:'active',actions:[]});return {kind:'assurance-policy',projectId:project.id,budgetCents:16000};
+        }
+        if(['bpo','coaching'].includes(definition.id)){
+          const project=s.providerCampaign.projects.findLast(p=>p.customerId===id&&p.operationId===definition.id&&p.status==='running');if(!project)fail('PROVIDER_PAID_WORKFORCE_REQUIRED');
+          if(definition.id==='bpo'){const count=child.workforceOps.roster.desired.length+2;configure(s,id,{people:{enabled:true,people:count,entitlements:count}});return workforce.providerCover(row(s,id).root,{projectId:project.id,postingId:project.postingId});}
+          return workforce.providerCoach(child,{projectId:project.id,postingId:project.postingId,costCents:definition.setupCents});
+        }
+        if(definition.id==='recording'){configs.recorder={...configs.recorder,identityMapping:true};child.providerCustomer.recording=true;}
+        if(definition.id==='transcription')configs.speech={...configs.speech,region:child.jurisdiction,local:true,licenceLocal:true};
+        if(definition.id==='local-deployment'){
+          if(child.scenario==='defence'&&!child.providerContinuity)child.providerContinuity=providerContinuity.create(child.clock);
+          // The authored change replaces the platform blueprint; callers cannot set kinds.
+          const old=child.resources.phone,desired={...old.desired,...configs.phone,deployment:'dedicated',local:true};
+          const replacement=resource('phone','dedicated',desired);replacement.generation=old.generation+1;replacement.provisioning={status:'pending',due:child.clock+1,generation:replacement.generation};
+          child.resources.phone=replacement;delete configs.phone;
+          for(const key of ['identity','access','carrier','messages','engage'])configs[key]={...configs[key],local:true};
+        }
+        configure(s,id,configs);
+        if(['room','distributor-room','recording','transcription','local-deployment','compliance'].includes(definition.id)&&!row(s,id).root.information)apply(s,id,{type:'information',command:{action:'start'}});
+        if(['room','distributor-room','local-deployment'].includes(definition.id))apply(s,id,{type:'information',command:{action:'configure',kind:'meeting',config:{mediaPlacement:row(s,id).root.resources.phone.desired.local?'local':'cloud',platform:child.providerCustomer.planId==='steady'?'disco':'grove',nativePlatform:child.providerCustomer.planId==='steady'?'disco':'grove'}}});
+        if(definition.id==='transcription')apply(s,id,{type:'information',command:{action:'configure',kind:'pipeline',config:{steps:['transcription'],languages:['en','ja'],quality:90,minimumQuality:70}}});
+        if(definition.id==='compliance'){
+          if(!row(s,id).root.boundaries)apply(s,id,{type:'boundaries',command:{action:'start'}});
+          const root=row(s,id).root,region=root.jurisdiction,resources=Object.keys(root.resources).filter(id=>root.resources[id].desired.enabled);
+          const contract={id:'provider-public-service',workload:'public-service-records',profile:region,sensitivity:'internal',edition:'standard',productVersion:'provider-1',offeringEvidence:region==='US'?'eligible':'pending',customerAuthorization:'approved',agencyAuthorizationRequired:region==='US',agencyAuthorization:region==='US'?'approved':'not-required',serviceRegistration:region==='JP'?'registered':'not-registered',serviceRegistrationId:region==='JP'?'scenario-jp-public-service':null,usesAi:false,aiUseDecision:'not-required',language:region==='JP'?'ja':'en',supportLanguage:region==='JP'?'ja':'en',requirements:{processingRegions:[region],storageRegions:[region],backupRegions:[region],keyRegions:[region],adminRegions:[region],supportRegions:[region],allowedAccessRoles:['supervisor'],adminAuthorization:'customer-approved',continuity:'cloud',allowedTransferMechanisms:[]},flows:resources.map(resource=>({id:resource+'-flow',resource,informationClass:'internal',processingRegions:[region],storageRegions:[region],backupRegions:[region],keyCustodyRegions:[region],adminLocations:[region],supportRegions:[region],adminAuthorization:'customer-approved',accessRoles:['supervisor'],connectivity:'cloud',continuity:'cloud',licenceMode:'cloud',transfer:{parties:[],mechanism:null}}))};
+          for(const [group,members] of Object.entries({calling:resources.filter(x=>!['archive','recorder','speech'].includes(x)),capture:['archive','recorder'],processing:['speech']})){const scoped={...contract,id:contract.id+'-'+group,flows:contract.flows.filter(f=>members.includes(f.resource))};apply(s,id,{type:'boundaries',command:{action:'contract',contract:scoped}});for(const resource of members)apply(s,id,{type:'boundaries',command:{action:'bind',resource,contract:scoped.id}});}
+          providerBoundaryObservations(row(s,id).root);
+        }
+        if(['migration','migration-consolidated'].includes(definition.id)){
+          const consolidated=definition.id==='migration-consolidated';
+          if(consolidated){const current=row(s,id).root,old=current.resources.phone,replacement=resource('phone','dedicated',{...old.desired,deployment:'dedicated',local:true,extensionScope:'site'});replacement.generation=old.generation+1;replacement.provisioning={status:'pending',due:current.clock+1,generation:replacement.generation};current.resources.phone=replacement;}
+          if(!consolidated&&!row(s,id).root.resources['migration-phone'])apply(s,id,{type:'add',id:'migration-phone',kind:'dedicated',config:{region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]}});
+          if(!row(s,id).root.operations)apply(s,id,{type:'operations',command:{action:'start'}});
+          const target=row(s,id).root;target.providerTasks=target.providerTasks||[];target.providerTasks.push({kind:'migration',status:'waiting',createdAt:target.clock,migrationId:null,...(consolidated?{mode:'consolidated'}:{})});
+        }
+        return {kind:'operation',operationId:definition.id,at:row(s,id).root.clock,revision:row(s,id).root.revision};
+      },
+      interact:(s,id,command)=>{const child=apply(s,id,{type:'interact',...command});return child.interactions.at(-1)?.id;},
+      interaction:(child,id)=>child.interactions.find(x=>x.id===id),observe:(child,id)=>{const observed=observe(child,id),gate=productGate(child,id),boundary=boundaryCheck(child,id);const roomCapacity=id!=='room'||!child.information||child.information.meeting.effective?.capacity>0;return {...observed,reasons:[...observed.reasons,...(!roomCapacity?['MEETING_CAPACITY']:[])],ready:observed.ready&&roomCapacity&&(!gate||gate.available)&&(!boundary||boundary.eligible)};},
+      meeting:(s,id,request)=>{try{if(!row(s,id).root.information)return {blocked:'MEETING_SERVICE_NOT_COMMISSIONED'};const root=apply(s,id,{type:'information',command:{action:'book',...request,event:false,language:'en'}}),bookingId=root.information.bookings.at(-1).id;const next=apply(s,id,{type:'information',command:{action:'schedule',booking:bookingId}});return {bookingId,sessionId:next.information.meetingSessions.at(-1).id};}catch(error){return {blocked:error.message};}},
+      missionEvidence:(s,id,window)=>{const child=row(s,id).root,from=window.from,to=window.to;
+        return {meetingSessions:(child.information?.meetingSessions||[]).filter(x=>x.status==='completed'&&x.startedAt>=from&&x.endedAt<=to).map(x=>({id:x.id,startedAt:x.startedAt,endedAt:x.endedAt,recordId:x.captureRecordId})),transcripts:child.records.filter(x=>x.kind==='transcription'&&!x.deleted&&x.createdAt>=from&&x.createdAt<=to).map(x=>x.id),boundaryEligible:['recorder','archive','speech'].every(id=>boundaryCheck(child,id)?.eligible===true),migrationComplete:!!child.operations?.migrations.some(x=>x.status==='complete'),reconciliationComplete:!!child.providerContinuity&&child.connected&&child.providerContinuity.syncedCheckpoint.total>0&&child.providerContinuity.pending.length+child.providerContinuity.pendingCheckpoint.total===0,localReady:['identity','access','phone','local','carrier','messages','engage'].every(id=>child.resources[id]?.effective?.local&&observe(child,id).ready),disconnectedDelivered:child.interactions.filter(x=>!x.probe&&x.providerContext?.connected===false&&x.phase==='resolved'&&x.finishedAt>=from&&x.finishedAt<=to).length};
+      },
+      setIncident:(s,id,incident)=>{if(incident.fault==='CAPACITY'&&incident.resource==='room'){const previousCapacity=row(s,id).root.information?.meeting.effective?.capacity;if(!Number.isSafeInteger(previousCapacity))fail('PROVIDER_MEETING_CAPACITY_REQUIRED');apply(s,id,{type:'information',command:{action:'configure',kind:'meeting',config:{capacity:0}}});return {at:row(s,id).root.clock,resource:'room',previousCapacity,revision:row(s,id).root.revision};}if(incident.connected!==undefined)apply(s,id,{type:'connect',connected:incident.connected});const resourceId=({processor:'speech',connectivity:'access'})[incident.resource]||incident.resource;if(incident.resource&&incident.connected===undefined)apply(s,id,{type:'fault',id:resourceId,fault:incident.fault===null?null:'OUTAGE'});return {at:row(s,id).root.clock,resource:resourceId,revision:row(s,id).root.revision};}
+    };
+  }
+  function validateProviderContinuityLineage(s){
+    for(const customer of s.portfolio.customers){const c=customer.root.providerContinuity;if(!c)continue;const projects=s.providerCampaign.projects.filter(p=>p.customerId===customer.id),deployment=projects.find(p=>p.operationId==='local-deployment'&&p.configSubmittedAt===c.installedAt+1);if(!deployment||customer.root.scenario!=='defence')fail('INVALID_PROVIDER_CONTINUITY_LINEAGE');
+      if(c.sparesReceipt){const r=c.sparesReceipt,p=projects.find(p=>p.id===r.projectId);if(!p||p.operationId!=='local-spares'||p.postingId!==r.postingId||p.configSubmittedAt!==r.at+1)fail('INVALID_PROVIDER_SPARES_LINEAGE');}
+      const receipts=projects.filter(p=>['sync-records','sync-all'].includes(p.operationId)&&p.operationReceipt).map(p=>{const r=p.operationReceipt;if(r.projectId!==p.id||r.postingId!==p.postingId||r.at+1!==p.configSubmittedAt||r.scope!==(p.operationId==='sync-records'?'records':'all')||!Number.isSafeInteger(r.total)||r.total!==r.recorded+r.unrecorded)fail('INVALID_PROVIDER_SYNC_LINEAGE');return r;});
+      for(const key of ['total','recorded','unrecorded'])if(c.syncedCheckpoint[key]!==receipts.reduce((n,r)=>n+r[key],0))fail('INVALID_PROVIDER_SYNC_TOTALS');
+      if(c.lastSyncReceipt&&!receipts.some(r=>r.projectId===c.lastSyncReceipt.projectId&&r.postingId===c.lastSyncReceipt.postingId&&r.total===c.lastSyncReceipt.total&&r.scope===c.lastSyncReceipt.scope))fail('INVALID_PROVIDER_SYNC_LINEAGE');
+      const m=s.providerCampaign.customers.find(x=>x.id===customer.id).metrics;if(c.pending.length+c.pendingCheckpoint.total+c.syncedCheckpoint.total>m.completed)fail('INVALID_PROVIDER_RETAINED_WORK_TOTAL');
+    }
+  }
+  function providerReviewCandidate(child){
+    for(const interaction of [...child.interactions].reverse()){
+      if(interaction.probe||interaction.channel!=='voice'||!['resolved','failed'].includes(interaction.phase)||!interaction.agent||!interaction.caseId||child.providerReviews?.some(r=>r.interactionId===interaction.id))continue;
+      const record=child.records.find(r=>r.kind==='recording'&&r.interaction===interaction.id&&!r.deleted&&r.access.includes('supervisor')&&(!r.expiresAt||r.expiresAt>child.clock||r.held));if(!record)continue;
+      const linked=child.cases[interaction.caseId];if(!linked)continue;
+      return {interactionId:interaction.id,caseId:interaction.caseId,recordingId:record.id,agent:interaction.agent,criteria:{completeCapture:record.captureScope!=='partial',caseContinuity:linked.interactions.includes(interaction.id),delivered:interaction.phase==='resolved',noOutstandingObligation:interaction.obligations.length===0},basis:'observed-service-review-v1'};
+    }return null;
+  }
+  function providerAutomationAdvance(s){
+    if(!s.providerCampaign||s.providerCampaign.status!=='operating')return;
+    for(const policy of s.providerAutomation||[]){if(policy.status!=='active')continue;
+      const incident=s.providerCampaign.incidents.find(i=>i.customerId===policy.customerId&&['active','acknowledged'].includes(i.status));if(!incident||policy.actions.some(a=>a.incidentId===incident.id))continue;
+      if(policy.spentCents+8000>policy.budgetCents){policy.status='budget-exhausted';continue;}
+      if(incident.status==='active')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}},true,true,true));
+      const intent={action:'operation',operationId:'repair',customerId:policy.customerId},q=providerCampaign.quote(s,intent,providerHooks());if(q.blockers.length)continue;
+      Object.assign(s,dispatchInternal(s,{type:'provider',command:{...intent,quoteRevision:q.atRevision}},true,true,true));
+      policy.spentCents+=q.setupCents;policy.actions.push({incidentId:incident.id,projectId:s.providerCampaign.projects.at(-1).id,at:s.clock,cents:q.setupCents});
+    }
+  }
+  function providerProductOrder(parent,customerId,definition,apply){
+    const recipe=providerProducts.recipes[definition.id];if(!recipe)fail('UNKNOWN_PROVIDER_PRODUCT');
+    const child=()=>parent.portfolio.customers.find(c=>c.id===customerId).root;
+    if(!child().products)apply(parent,customerId,{type:'products',command:{action:'start'}});
+    for(const command of recipe.preparation?.commands||[]){if(command.type==='add'&&child().resources[command.id])continue;if(command.command?.action==='start'&&((command.type==='information'&&child().information)||(command.type==='speech-models'&&child().speechModels)))continue;apply(parent,customerId,clone(command));}
+    for(const resourceId of recipe.quote.resources){if(!child().resources[resourceId])fail('PROVIDER_PRODUCT_RESOURCE_MISSING');const patch={enabled:true,...recipe.quote.config?.[resourceId]};if(Object.entries(patch).some(([k,v])=>JSON.stringify(child().resources[resourceId].desired[k])!==JSON.stringify(v)))apply(parent,customerId,{type:'configure',id:resourceId,config:patch});}
+    if(['ms-meetings-room','cisco-meetings-interoperability'].includes(recipe.id)){
+      if(!child().information)apply(parent,customerId,{type:'information',command:{action:'start'}});
+      apply(parent,customerId,{type:'information',command:{action:'configure',kind:'meeting',config:{bridgeLicensed:recipe.id==='cisco-meetings-interoperability',recording:child().providerCustomer.recording,mediaPlacement:child().resources.phone.desired.local?'local':'cloud'}}});
+    }
+    if(recipe.id==='cisco-contact-centre'){
+      child().providerCustomer.recording=true;
+      apply(parent,customerId,{type:'configure',id:'speech',config:{region:child().jurisdiction}});
+      if(!child().information)apply(parent,customerId,{type:'information',command:{action:'start'}});
+    }
+    if(['cisco-programmable-engagement','ms-communications-api','cisco-provider-operations'].includes(recipe.id)){
+      if(!child().operations)apply(parent,customerId,{type:'operations',command:{action:'start'}});
+      apply(parent,customerId,{type:'operations',command:{action:'configure',kind:'workflow',config:{authenticated:true,endpointAvailable:true,callbackVerified:true,transientFailures:1,retries:2,backoff:1,timeout:10,deliveryReceipts:true}}});
+      apply(parent,customerId,{type:'configure',id:'messages',config:{rateLimit:5}});
+      if(!child().channels)apply(parent,customerId,{type:'channels',command:{action:'start'}});
+      for(const account of ['chatterleaf',...(recipe.id==='ms-communications-api'?['workplace']:[])]){
+        apply(parent,customerId,{type:'channels',command:{action:'configure',channel:account,config:clone(channels.defaults[account])}});
+        apply(parent,customerId,{type:'channels',command:{action:'permission',tenant:child().tenant,person:'alex',channel:account,purpose:'service',granted:true,expiresAt:null}});
+      }
+      apply(parent,customerId,{type:'channels',command:{action:'webhook-configure',config:{enabled:true,rateLimit:5,retries:3,backoff:1}}});
+
+    }
+    if(!child().products)apply(parent,customerId,{type:'products',command:{action:'start'}});
+    if(recipe.preparation?.requests){
+      const root=child();if(root.scenario!=='government'||!['phone','recorder','archive','speech'].every(id=>boundaryCheck(root,id)?.eligible))fail('PROVIDER_SCOPED_ELIGIBILITY_REQUIRED');
+      const project=parent.providerCampaign.projects.findLast(p=>p.customerId===customerId&&p.operationId===definition.id&&p.status==='running');if(!project)fail('PROVIDER_PAID_REVIEW_REQUIRED');
+      root.providerQualification={organisation:'orchard-msp',scenario:root.scenario,at:root.clock,expires:root.clock+600,eventId:project.id,postingId:project.postingId};
+      if(!root.productEvidence)apply(parent,customerId,{type:'product-evidence',command:{action:'start'}});
+    }
+    apply(parent,customerId,{type:'products',command:{action:'offer',offer:{id:recipe.id,family:recipe.family,edition:recipe.edition,unit:recipe.unit,quantity:recipe.quantity,features:clone(recipe.features),dependencies:clone(recipe.dependencies)}}});
+    child().providerProductTasks??=[];child().providerProductTasks.push({recipeId:recipe.id,createdAt:child().clock,status:'waiting',deploymentId:'d-'+recipe.id});
+    return {kind:'product',recipeId:recipe.id,at:child().clock};
+  }
+  function providerProductsAdvance(s){
+    const apply=command=>Object.assign(s,dispatchInternal(s,command,true,true,true));
+    for(const task of s.providerProductTasks||[]){if(task.status!=='waiting'||s.products?.offers.find(o=>o.id===task.recipeId)?.lifecycleProvisioning?.status!=='ready')continue;
+      const recipe=providerProducts.recipes[task.recipeId];
+      apply({type:'products',command:{action:'deploy',id:task.deploymentId,offer:recipe.id,productVersion:'scenario-1',mode:recipe.mode,region:s.jurisdiction,features:clone(recipe.features),dependencies:clone(recipe.dependencies),bindings:clone(recipe.bindings)}});
+      for(const request of recipe.preparation?.requests||[])apply({type:'product-evidence',command:{action:'request',id:recipe.id+'-'+request.feature,deploymentId:task.deploymentId,...request}});
+      if(recipe.preparation?.install){apply({type:'speech-models',command:{...clone(recipe.preparation.install),deploymentId:task.deploymentId,region:s.jurisdiction}});apply({type:'speech-models',command:clone(recipe.preparation.integrationTest)});}
+      s.providerProductTasks.find(t=>t.recipeId===task.recipeId).status='submitted';
+    }
+  }
+  const provider={rules:providerRules.data,quote:(s,q)=>providerCampaign.quote(s,q,providerHooks()),inspect:s=>{const model=providerCampaign.inspect(s,providerHooks());if(!model)return null;return {...model,accruedPayrollCents:Math.floor(s.providerCampaign.payroll.personMinutes*s.business.workforce.hourlyCents/60)-s.providerCampaign.payroll.costCents,debt:s.business.loans.reduce((n,l)=>n+l.principal,0),automation:clone(s.providerAutomation||[]),customers:model.customers.map(c=>{const child=s.portfolio.customers.find(x=>x.id===c.id).root;return {...c,demandMix:clone(s.providerCampaign.customers.find(x=>x.id===c.id).period.demandPlan?.result||null),workforce:workforce.inspect(child),reviews:clone(child.providerReviews||[]),products:child.products?products.inspect(child,productHooks(child)):null};})};}};
+  function providerBoundaryObservations(s){
+    if(!s.providerCustomer||!s.boundaries)return;
+    const local=config(s,'local'),localReady=observe(s,'local').ready&&!!local?.licensing;
+    for(const contract of s.boundaries.contracts.filter(c=>c.id.startsWith('provider-public-service-')))boundaries.command(s,{action:'observe',contract:contract.id,observed:{connected:s.connected,cloudLicenceAvailable:s.connected&&localReady,localLicenceGraceActive:false,localLicenceGraceExpiresAt:null,localServicesAvailable:localReady,localKeyCustodyAvailable:localReady&&!!local.certificates,adminPathAvailable:localReady&&observe(s,'identity').ready,adminPathLocation:s.jurisdiction}});
+  }
   function lifecycleHooks(){return {
     inspectDeployment:(state,id)=>{const d=state.products?.deployments.find(x=>x.id===id);return {exists:!!d,effective:!!d?.effective&&d.provisioning.status==='ready',offerId:d?.effective?.offer,version:d?.effective?.productVersion,generation:d?.generation,features:d?.effective?.features||[],dependenciesReady:!!d?.effective&&d.effective.features.every(f=>products.featureStatus(state,id,f,productHooks(state)).available)};},
     authorizeSupportOwner:(state,ownerId,id)=>{const b=state.business,d=state.products?.deployments.find(x=>x.id===id),org=b?.organisations[ownerId];if(!org?.roles.some(r=>['msp','integrator','bpo'].includes(r))||!d?.effective)return false;const refs=[...new Set([...Object.values(d.effective.dependencies),...d.effective.bindings.flatMap(x=>x.resources)])];return refs.length>0&&refs.every(resource=>business.authorise(state,resource,'configure')&&business.authorise({...state,business:{...b,player:ownerId}},resource,'configure'));}
@@ -428,7 +662,7 @@ const SOC = (function socKernel() {
     const result=mediaNegotiation.preflight(s,path,mediaHooks());for(const code of result.negotiation.offerTrace||[])event(s,i,'media-offer',code,{path:clone(path)});return result;
   }
   function carrierAdmitted(i){return i?.trace?.some(t=>t.code==='CARRIER_PATH_ADMITTED'&&['inbound','outbound'].includes(t.direction)||t.code==='CARRIER_MODEL_SELECTED'&&(!t.direction||t.direction==='inbound'))===true;}
-  function carrierOccupancy(s,except){return s.interactions.filter(x=>x!==except&&x.channel==='voice'&&['queued','handling','ringing','shared-active','parked'].includes(x.phase)&&carrierAdmitted(x)).length;}
+  function carrierOccupancy(s,except){return s.interactions.filter(x=>x!==except&&x.channel==='voice'&&['queued','handling','ringing','shared-active','parked','connected'].includes(x.phase)&&carrierAdmitted(x)).length;}
   function admitMedia(s,i,result){
     if(!result)return true;
     i.media.out=i.media.out&&result.media?.fromTo===true;i.media.in=i.media.in&&result.media?.toFrom===true;event(s,i,'media','MEDIA_PATHS',i.media);
@@ -449,7 +683,7 @@ const SOC = (function socKernel() {
       clearFault:(s,id)=>{transport.command(s,{action:'domain',id,failed:false},transportHooks(s));return s.transport.domains[id]===false;},
       edgeInDomain:(s,id,domain)=>s.transport?.links[id]?.effective?.domain===domain,
       restore:(s,q)=>{const restore=resourceView(s,q.restoreResource);if(!restore?.ready||s.resources[q.restoreResource].kind!=='infrastructure'||!restore.config.backup||!restore.config.local)fail('SITE_RESTORE_UNAVAILABLE');for(const snap of q.resources){const r=s.resources[snap.id];if(!r||!business.authorise(s,snap.id,'configure'))fail('DELEGATION_REQUIRED');validateConfig(r.kind,snap.config);r.desired=clone(snap.config);r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}return {accepted:true,receiptId:'restore-receipt-'+s.nextId++,backupSnapshotId:q.backupSnapshotId,restoreResource:q.restoreResource,due:s.clock+1};},
-      journey:(s,q)=>{const target=q.toResources[0],endpoint=config(s,target);if(s.resources[target]?.kind!=='endpoint'||!endpoint?.number)return {success:false};let from='+12125550199',direction='inbound',sourceResource='carrier';if(q.phase==='baseline'){const source=q.fromResources[0],conf=config(s,source);if(s.resources[source]?.kind!=='endpoint'||!conf?.identity)return {success:false};from=conf.identity;direction='outbound';sourceResource=s.transport.bindings[from]?from:'identity';}const sourceSite=s.transport.bindings[sourceResource],targetSite=s.transport.bindings[target];startInteraction(s,{channel:'voice',direction,from,to:endpoint.number,caseId:'site-probe-'+s.nextId,media:{encrypted:true}});const i=s.interactions.at(-1),path=i.trace.find(t=>t.code==='MEDIA_TRANSPORT_ADMITTED');return {success:i.phase==='resolved'&&i.outcome==='CONNECTED'&&i.destination===target,interactionId:i.id,sourceSite,targetSite,targetResource:i.destination,edges:path?.edges||[],interaction:clone(i)};},
+      journey:(s,q)=>{const target=q.toResources[0],endpoint=config(s,target);if(s.resources[target]?.kind!=='endpoint'||!endpoint?.number)return {success:false};let from='+12125550199',direction='inbound',sourceResource='carrier';if(q.phase==='baseline'){const source=q.fromResources[0],conf=config(s,source);if(s.resources[source]?.kind!=='endpoint'||!conf?.identity)return {success:false};from=conf.identity;direction='outbound';sourceResource=s.transport.bindings[from]?from:'identity';}const sourceSite=s.transport.bindings[sourceResource],targetSite=s.transport.bindings[target];startInteraction(s,{channel:'voice',direction,from,to:endpoint.number,caseId:'site-probe-'+s.nextId,media:{encrypted:true}},{probe:true});const i=s.interactions.at(-1),path=i.trace.find(t=>t.code==='MEDIA_TRANSPORT_ADMITTED');return {success:i.phase==='resolved'&&i.outcome==='CONNECTED'&&i.destination===target,interactionId:i.id,sourceSite,targetSite,targetResource:i.destination,edges:path?.edges||[],interaction:clone(i)};},
       migrateResource:(s,q)=>{const from=s.siteOperations.sites[q.fromSite],to=s.siteOperations.sites[q.toSite];if(!business.authorise(s,q.resource,'migrate')||s.transport.bindings[q.resource]!==from.effective.transportSite||!siteView(s,to.effective.transportSite)?.ready)return {success:false};transport.command(s,{action:'bind',resource:q.resource,site:to.effective.transportSite},transportHooks(s));const person=config(s,q.resource)?.identity;if(person&&canonicalInfo(s,person))transport.command(s,{action:'bind',resource:person,site:to.effective.transportSite},transportHooks(s));return {success:true,receiptId:'migration-receipt-'+s.nextId++,...q};}
     };
   }
@@ -474,7 +708,7 @@ const SOC = (function socKernel() {
   function trustedCase(s,caseId){const entry=s.cases?.[caseId];if(!entry)return null;const identity=canonicalInfo(s,entry.identity);if(!identity||identity.person!==entry.identity||entry.tenant&&identity.tenant!==entry.tenant)return null;return {person:identity.person,tenant:entry.tenant||identity.tenant,caseId};}
   function channelContext(s,i,overrides={}){
     const bound=trustedCase(s,i.caseId),who=canonicalInfo(s,i.from),person=who?.person,tenant=who?.tenant;
-    const account=overrides.account||i.account||'chatterleaf',purpose=overrides.purpose||i.purpose||'service',template=overrides.template||i.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[account]);
+    const account=overrides.account||i.account||'chatterleaf',purpose=overrides.purpose||i.purpose||'service',template=overrides.template||i.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update',workplace:'case-update'}[account]);
     if(!person||!tenant||!bound||bound.person!==person||bound.tenant!==tenant)return null;
     return {tenant,person,canonicalPerson:person,channel:'message',account,purpose,caseId:i.caseId,caseIdentity:bound.person,caseTenant:bound.tenant,authenticatedIdentity:person,template,at:s.clock};
   }
@@ -489,7 +723,7 @@ const SOC = (function socKernel() {
     const bound=trustedCase(s,i.caseId),who=canonicalInfo(s,i.from),identity=bound&&who&&bound.person===who.person&&bound.tenant===(i.tenant||who.tenant);
     return {actor:i.botAnswered?'bot':'human',technicalSuccess:!!technicalSuccess,taskIntegrationReady:taskIntegrationReady(s,need),contextRetained:!!bound&&!!identity,tenant:bound?.tenant||i.tenant||who?.tenant||need.tenant,person:bound?.person||who?.person||need.person,caseId:i.caseId,purpose:need.purpose,businessIntent:need.intent,identityVerified:!!identity};
   }
-  function hasCustomerResolution(i){return i.phase==='resolved'&&(!i.needId||i.needOutcome?.outcome==='resolved');}
+  function hasCustomerResolution(i){return !i.probe&&i.phase==='resolved'&&(!i.needId||i.needOutcome?.outcome==='resolved');}
   function qualityContract(s,contractId,historical=false){
     const c=s.business?.contracts.find(x=>x.id===contractId);if(!c)fail('QUALITY_CONTRACT_REQUIRED');
     const actor={...s,business:{...s.business,player:c.supportOwner}},scope=c.resources;
@@ -549,16 +783,50 @@ const SOC = (function socKernel() {
     if(s.workforceOps.operator==='bpo'&&!s.workforceOps.agreements.some(a=>a.grantee==='orchard-msp'&&a.expires>s.clock&&a.resources.includes('workforce')&&a.actions.includes('configure')))fail('WORKFORCE_DELEGATION_REQUIRED');
   }
   function workforceHandle(s,i){return s.workforceOps.assignments.some(a=>a.interaction===i.id)?`${i.id}-assignment-${s.workforceOps.nextId}`:i.id;}
-  const fingerprint=s=>JSON.stringify([s.connected,Object.values(s.resources).map(r=>[r.id,r.generation,r.effective,r.fault]),...(s.operations?[operations.fingerprint(s)]:[]),...(s.information?[information.fingerprint(s)]:[]),...(s.contact?[contact.fingerprint(s)]:[]),...(s.estate?[estate.fingerprint(s)]:[]),...(s.workforceOps?[workforce.fingerprint(s)]:[]),...(s.calling?[calling.fingerprint(s.calling)]:[]),...(s.products?[products.fingerprint(s)]:[]),...(s.channels?[channels.fingerprint(s.channels)]:[]),...(s.outcomes?[outcomes.fingerprint(s)]:[]),...(s.transport?[transport.fingerprint(s)]:[]),...(s.boundaries?[boundaries.fingerprint(s)]:[]),...(s.campaign?[campaign.fingerprint(s)]:[]),...(s.issueExercises?[issueExercises.fingerprint(s)]:[]),...(s.sharedServices?[sharedServices.fingerprint(s)]:[]),...(s.siteOperations?[siteOperations.configurationFingerprint(s)]:[]),...(s.mediaNegotiation?[mediaNegotiation.fingerprint(s)]:[]),...(s.productEvidence?[productEvidence.fingerprint(s)]:[]),...(s.speechModels?[speechModels.fingerprint(s)]:[]),...(s.customerNeeds?[customerNeeds.fingerprint(s)]:[]),...(s.workforceOffers?[workforceOffers.fingerprint(s.workforceOffers)]:[]),...(s.workforceQuality?[workforceQuality.fingerprint(s.workforceQuality)]:[])]);
+  function fingerprint(s){const text=JSON.stringify([s.connected,Object.values(s.resources).map(r=>[r.id,r.generation,r.effective,r.fault]),...(s.operations?[operations.fingerprint(s)]:[]),...(s.information?[information.fingerprint(s)]:[]),...(s.contact?[contact.fingerprint(s)]:[]),...(s.estate?[estate.fingerprint(s)]:[]),...(s.workforceOps?[workforce.fingerprint(s)]:[]),...(s.calling?[calling.fingerprint(s.calling)]:[]),...(s.products?[products.fingerprint(s)]:[]),...(s.channels?[channels.fingerprint(s.channels)]:[]),...(s.outcomes?[outcomes.fingerprint(s)]:[]),...(s.transport?[transport.fingerprint(s)]:[]),...(s.boundaries?[boundaries.fingerprint(s)]:[]),...(s.campaign?[campaign.fingerprint(s)]:[]),...(s.issueExercises?[issueExercises.fingerprint(s)]:[]),...(s.sharedServices?[sharedServices.fingerprint(s)]:[]),...(s.siteOperations?[siteOperations.configurationFingerprint(s)]:[]),...(s.mediaNegotiation?[mediaNegotiation.fingerprint(s)]:[]),...(s.productEvidence?[productEvidence.fingerprint(s)]:[]),...(s.speechModels?[speechModels.fingerprint(s)]:[]),...(s.customerNeeds?[customerNeeds.fingerprint(s)]:[]),...(s.workforceOffers?[workforceOffers.fingerprint(s.workforceOffers)]:[]),...(s.workforceQuality?[workforceQuality.fingerprint(s.workforceQuality)]:[])]);if(!s.providerCustomer)return text;let a=2166136261,b=2246822519;for(let n=0;n<text.length;n++){const c=text.charCodeAt(n);a=Math.imul(a^c,16777619);b=Math.imul(b^c,3266489917);}return 'provider-config-v1:'+ (a>>>0).toString(16).padStart(8,'0')+(b>>>0).toString(16).padStart(8,'0');}
   function calculate(s){
     const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));
-    const assessment=assess(s);return {revision:s.revision,clock:s.clock,services,profit:s.totals.revenue-s.totals.cost,queue:s.interactions.filter(i=>['queued','handling','wrap'].includes(i.phase)).length,resolved:s.interactions.filter(hasCustomerResolution).length,assessment,productEvidence:s.productEvidence?productEvidence.inspect(s,productEvidenceHooks()):null,speechModels:s.speechModels?speechModels.inspect(s,speechHooks(s)):null,customerNeeds:s.customerNeeds?customerNeeds.inspect(s,services):null,managedOperations:s.managedOperations?managedOperations.inspect(s):null,mediaNegotiation:s.mediaNegotiation?mediaNegotiation.inspect(s):null,siteOperations:s.siteOperations?siteOperations.inspect(s,siteHooks()):null,specialistLifecycle:s.specialistLifecycle?specialistLifecycle.inspect(s,lifecycleHooks()):null,sharedServices:s.sharedServices?sharedServices.inspect(s):null,marketQualification:s.marketQualification?marketQualification.inspect(s,marketHooks()):null,admissionSecurity:s.admissionSecurity?admissionSecurity.inspect(s):null,serviceObservation:s.serviceObservation?serviceObservation.inspect(s,serviceObservationHooks()):null,portfolio:s.portfolio?portfolio.inspect(s.portfolio):null,business:business.calculate(s,assessment,services),operations:operations.inspect(s),information:information.inspect(s),contact:contact.inspect(s),estate:estate.inspect(s),workforce:workforce.inspect(s),workforceOffers:s.workforceOffers?workforceOffers.inspect(s.workforceOffers,workforceOfferContext(s)):null,workforceQuality:s.workforceQuality?workforceQuality.inspect(s.workforceQuality,s,workforceQualityHooks()):null,calling:s.calling?calling.inspect(s.calling):null,products:s.products?products.inspect(s):null,channels:s.channels?channels.inspect(s.channels):null,outcomes:s.outcomes?outcomes.inspect(s):null,transport:transport.inspect(s),campaign:s.campaign?campaign.inspect(s,campaignHooks()):null,progression:s.progression?progression.inspect(s,progressionHooks(s)):null,issueExercises:s.issueExercises?issueExercises.inspect(s):null,boundaries:s.boundaries?{...boundaries.inspect(s),enforcement:Object.fromEntries(Object.keys(s.boundaries.bindings).map(id=>[id,boundaryCheck(s,id)]))}:null};
+    const assessment=assess(s);return {revision:s.revision,clock:s.clock,services,providerCampaign:s.providerCampaign?provider.inspect(s):null,profit:s.totals.revenue-s.totals.cost,queue:s.interactions.filter(i=>['queued','handling','wrap'].includes(i.phase)).length,resolved:s.interactions.filter(hasCustomerResolution).length,assessment,productEvidence:s.productEvidence?productEvidence.inspect(s,productEvidenceHooks()):null,speechModels:s.speechModels?speechModels.inspect(s,speechHooks(s)):null,customerNeeds:s.customerNeeds?customerNeeds.inspect(s,services):null,managedOperations:s.managedOperations?managedOperations.inspect(s):null,mediaNegotiation:s.mediaNegotiation?mediaNegotiation.inspect(s):null,siteOperations:s.siteOperations?siteOperations.inspect(s,siteHooks()):null,specialistLifecycle:s.specialistLifecycle?specialistLifecycle.inspect(s,lifecycleHooks()):null,sharedServices:s.sharedServices?sharedServices.inspect(s):null,marketQualification:s.marketQualification?marketQualification.inspect(s,marketHooks()):null,admissionSecurity:s.admissionSecurity?admissionSecurity.inspect(s):null,serviceObservation:s.serviceObservation?serviceObservation.inspect(s,serviceObservationHooks()):null,portfolio:s.portfolio?portfolio.inspect(s.portfolio):null,business:business.calculate(s,assessment,services),operations:operations.inspect(s),information:information.inspect(s),contact:contact.inspect(s),estate:estate.inspect(s),workforce:workforce.inspect(s),workforceOffers:s.workforceOffers?workforceOffers.inspect(s.workforceOffers,workforceOfferContext(s)):null,workforceQuality:s.workforceQuality?workforceQuality.inspect(s.workforceQuality,s,workforceQualityHooks()):null,calling:s.calling?calling.inspect(s.calling):null,products:s.products?products.inspect(s):null,channels:s.channels?channels.inspect(s.channels):null,outcomes:s.outcomes?outcomes.inspect(s):null,transport:transport.inspect(s),campaign:s.campaign?campaign.inspect(s,campaignHooks()):null,progression:s.progression?progression.inspect(s,progressionHooks(s)):null,issueExercises:s.issueExercises?issueExercises.inspect(s):null,boundaries:s.boundaries?{...boundaries.inspect(s),enforcement:Object.fromEntries(Object.keys(s.boundaries.bindings).map(id=>[id,boundaryCheck(s,id)]))}:null};
   }
   function event(s,i,stage,code,detail={}){i.trace.push({at:s.clock,stage,code,synthetic:true,...detail});if(i.trace.length>80)i.trace.shift();}
-  function finish(s,i,code,success=false){if(['resolved','failed'].includes(i.phase))return i;if(!success&&i.channel==='voice'&&['handling','wrap'].includes(i.phase)&&i.agent&&i.media?.out===true&&i.media?.in===true&&!i.records.some(id=>s.records.some(r=>r.id===id&&r.kind==='recording')))record(s,i,'partial');if(s.mediaNegotiation)mediaNegotiation.release(s,i.id);if(!success&&s.workforceOps&&i.agent)workforce.finish(s,i.workforceAssignment||i.id,config(s,i.worker)?.wrapMinutes||0);if(s.transport)transport.release(s,i.id);i.phase=success?'resolved':'failed';i.outcome=code;i.finishedAt=s.clock;event(s,i,'outcome',code);if(s.sharedServices)sharedServices.release(s,i.id,code,sharedHooks());if(s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id)){const settlement=admissionSecurity.settle(s,i.id);event(s,i,'security','SECURITY_CALL_SETTLED',{cents:settlement.record.cents});}if(s.outcomes&&i.needId&&!i.needOutcome){const need=s.outcomes.needs.find(n=>n.id===i.needId);if(!need)fail('OUTCOMES_NEED_UNAVAILABLE');const interaction={id:i.id,needId:i.needId,caseId:i.caseId,channel:i.channel==='message'?'message':'voice',idempotencyKey:i.outcomeIdempotencyKey||i.id};const evaluation=outcomes.evaluate(s,interaction,outcomeContext(s,i,need,success));if(evaluation){const attempt=outcomes.settle(s,interaction,evaluation);if(attempt){i.needOutcome={outcome:attempt.outcome,reason:attempt.reason,attemptId:attempt.id};event(s,i,'customer-need',attempt.reason,{needId:need.id,attemptId:attempt.id,customerOutcome:attempt.outcome,technicalSuccess:attempt.technicalSuccess,...(attempt.handoffDestination?{handoffDestination:attempt.handoffDestination}:{})});}}}return i;}
+  function finish(s,i,code,success=false){if(['resolved','failed'].includes(i.phase))return i;if(!success&&i.channel==='voice'&&['handling','wrap'].includes(i.phase)&&i.agent&&i.media?.out===true&&i.media?.in===true&&!i.records.some(id=>s.records.some(r=>r.id===id&&r.kind==='recording')))record(s,i,'partial');releaseCapture(s,i.id);if(i.capture?.status==="reserved"){i.capture.status="released";i.capture.endedAt=s.clock;}if(s.mediaNegotiation)mediaNegotiation.release(s,i.id);if(!success&&s.workforceOps&&i.agent)workforce.finish(s,i.workforceAssignment||i.id,config(s,i.worker)?.wrapMinutes||0);if(s.transport)transport.release(s,i.id);i.phase=success?'resolved':'failed';i.outcome=code;i.finishedAt=s.clock;event(s,i,'outcome',code);if(s.sharedServices)sharedServices.release(s,i.id,code,sharedHooks());if(s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id)){const settlement=admissionSecurity.settle(s,i.id);event(s,i,'security','SECURITY_CALL_SETTLED',{cents:settlement.record.cents});}if(s.outcomes&&i.needId&&!i.needOutcome){const need=s.outcomes.needs.find(n=>n.id===i.needId);if(!need)fail('OUTCOMES_NEED_UNAVAILABLE');const interaction={id:i.id,needId:i.needId,caseId:i.caseId,channel:i.channel==='message'?'message':'voice',idempotencyKey:i.outcomeIdempotencyKey||i.id};const evaluation=outcomes.evaluate(s,interaction,outcomeContext(s,i,need,success));if(evaluation){const attempt=outcomes.settle(s,interaction,evaluation);if(attempt){i.needOutcome={outcome:attempt.outcome,reason:attempt.reason,attemptId:attempt.id};event(s,i,'customer-need',attempt.reason,{needId:need.id,attemptId:attempt.id,customerOutcome:attempt.outcome,technicalSuccess:attempt.technicalSuccess,...(attempt.handoffDestination?{handoffDestination:attempt.handoffDestination}:{})});}}}return i;}
+  function captureRequired(s){return ['enterprise','government'].includes(s.scenario)||s.providerCustomer?.recording===true;}
+  function reserveCapture(s,id,kind='interaction'){
+    const rows=s.captureReservations||(s.captureReservations=[]),existing=rows.find(r=>r.id===id);
+    if(existing)return {accepted:existing.kind===kind};
+    const recorder=config(s,'recorder');
+    if(['recorder','archive'].some(id=>{const gate=productGate(s,id);return gate&&!gate.available;}))return {accepted:false,reasons:['CAPTURE_PRODUCT_UNAVAILABLE']};
+    if(!recorder||!observe(s,'recorder').ready||!recorder.consent||!recorder.identityMapping)return {accepted:false,reasons:['RECORDING_FAILED']};
+    if(rows.length>=recorder.capacity)return {accepted:false,reasons:['RECORDING_CAPACITY']};
+    rows.push({id,kind,startedAt:s.clock,resource:'recorder'});return {accepted:true};
+  }
+  function releaseCapture(s,id){if(s.captureReservations)s.captureReservations=s.captureReservations.filter(r=>r.id!==id);}
+  function beginCapture(s,i){
+    if(i.probe||!captureRequired(s)||i.capture)return;
+    const result=reserveCapture(s,i.id);i.capture={status:result.accepted?'reserved':'denied',startedAt:s.clock};
+    if(!result.accepted){i.capture.reason=result.reasons[0];i.obligations.push(i.capture.reason);event(s,i,'capture',i.capture.reason);}
+  }
+  function connectEndpoint(s,i){
+    if(i.probe)return finish(s,i,'CONNECTED',true);
+    beginCapture(s,i);i.phase='connected';i.connectedAt=s.clock;i.due=s.clock+i.durationMinutes;
+    event(s,i,'conversation','CONVERSATION_STARTED',{durationMinutes:i.durationMinutes});return i;
+  }
+  function liveVoiceMedia(s,i){
+    const path=i.voicePath;if(!path)return true;
+    const phone=config(s,path.platform),carrier=path.carrier?config(s,path.carrier):null;
+    // Established media does not require a fresh signalling handshake.
+    const base=!!phone&&observe(s,path.platform).ready&&observe(s,i.destination).ready&&(!path.carrier||observe(s,path.carrier).ready);
+    const callingMedia=s.calling?calling.media(s.calling,i):{outbound:true,inbound:true};
+    i.media={...i.media,out:base&&phone.mediaOut&&(!carrier||carrier.mediaOut)&&callingMedia.outbound,in:base&&phone.mediaIn&&(!carrier||carrier.mediaIn)&&callingMedia.inbound};
+    if(!i.media.out||!i.media.in){finish(s,i,i.phase==='shared-active'?'SHARED_MEDIA_OR_ENDPOINT_UNAVAILABLE':!i.media.out&&!i.media.in?'MEDIA_LOST':'ONE_WAY_MEDIA');return false;}
+    return true;
+  }
   function record(s,i,captureScope='complete'){
-    const mandatory=['enterprise','government'].includes(s.scenario),r=config(s,'recorder'),a=config(s,r?.archive);
+    if(i.channel!=='voice')return;
+    const mandatory=captureRequired(s),r=config(s,'recorder'),a=config(s,r?.archive);
     if(!mandatory)return;
+    if(i.probe)return;
+    if(i.capture?.status!=='reserved'||!s.captureReservations?.some(x=>x.id===i.id)){if(!i.obligations.includes('RECORDING_CAPACITY')&&!i.obligations.includes('RECORDING_FAILED'))i.obligations.push('RECORDING_FAILED');event(s,i,'record','CAPTURE_NOT_RESERVED');return;}
     for(const id of ['recorder','archive',...(s.scenario==='government'?['speech']:[])]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible){i.obligations.push('INFORMATION_BOUNDARY_FAILED');event(s,i,'boundary','INFORMATION_BOUNDARY_FAILED',{resource:id,blocking:gate.blocking});return;}}
     if(s.information&&s.records.length>=500){i.obligations.push('RECORD_CAPACITY');event(s,i,'record','RECORD_CAPACITY');return;}
     if(!observe(s,'recorder').ready||!r.consent||!r.identityMapping||r.capacity<1||!a||a.retentionDays<30||a.capacity<1||!a.access.includes('supervisor')||r.region!==s.jurisdiction||a.region!==s.jurisdiction){i.obligations.push('RECORDING_FAILED');event(s,i,'record','RECORDING_FAILED');return;}
@@ -579,6 +847,7 @@ const SOC = (function socKernel() {
     const callerIdentity=callingDirectory?.identities.find(x=>x.canonical===i.from);
     const canonicalCaller=callerIdentity?.canonical||i.from;
     const platform=operations.platform(s,canonicalCaller),phone=config(s,platform),directory=config(s,phone?.directory),trunk=config(s,'carrier');
+    for(const resourceId of [platform,'identity','carrier']){const gate=productGate(s,resourceId);if(gate&&!gate.available)return finish(s,i,'PRODUCT_FEATURE_UNAVAILABLE');}
     event(s,i,'intent','CALL_REQUEST',{from:i.from,dialled:i.dialled||i.to,platform,...(s.operations?{normalised:i.to}:{})});
     if(i.intent&&!s.calling)return finish(s,i,'CALLING_PACK_REQUIRED');
     const emitCalling=(detail)=>event(s,i,'calling',detail.code,detail);
@@ -640,11 +909,11 @@ const SOC = (function socKernel() {
     for(const id of [platform,...(carrierRequired?['carrier']:[])]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible){event(s,i,'boundary','CALL_BOUNDARY_FAILED',{resource:id,blocking:gate.blocking});return finish(s,i,'CALL_BOUNDARY_FAILED');}}
     if(s.transport){const from=s.transport.bindings[i.from]?i.from:'identity',path=transport.admit(s,i.id,from,target,'voice');event(s,i,'transport',path.ready?'MEDIA_TRANSPORT_ADMITTED':path.reason,{...path,sourceSite:s.transport.bindings[from],targetSite:s.transport.bindings[target]});if(!path.ready)return finish(s,i,path.reason);}
     if(carrierRequired&&!carrierAdmitted(i))event(s,i,'carrier','CARRIER_PATH_ADMITTED',{direction:'outbound',carrier:'carrier'});
-    i.destination=target;
+    i.destination=target;i.voicePath={platform,carrier:carrierRequired?'carrier':null};beginCapture(s,i);
     if(i.sharedLine){const decision=sharedServices.ringing(s,i,i.sharedLine,{},sharedHooks());event(s,i,'shared-service',decision.code,{line:i.sharedLine,members:decision.members||[]});if(!decision.allowed)return finish(s,i,decision.code);i.phase='ringing';i.due=decision.due;event(s,i,'signalling','180_RINGING');return;}
     if(s.resources[target].kind==='endpoint'){
       if(!config(s,target).registered)return finish(s,i,'ENDPOINT_UNREGISTERED');
-      record(s,i);return finish(s,i,'CONNECTED',true);
+      return connectEndpoint(s,i);
     }
     i.phase='queued';event(s,i,'queue','ENQUEUED',{queue:target});
   }
@@ -677,18 +946,19 @@ const SOC = (function socKernel() {
     for(const id of [platform,'carrier',target]){const gate=boundaryCheck(s,id);if(gate&&!gate.eligible)return finish(s,i,'CALL_BOUNDARY_FAILED');}
     if(s.transport){const path=transport.admit(s,i.id,'carrier',target,'voice');event(s,i,'transport',path.ready?'MEDIA_TRANSPORT_ADMITTED':path.reason,{...path,sourceSite:s.transport.bindings.carrier,targetSite:s.transport.bindings[target]});if(!path.ready)return finish(s,i,path.reason);}
     if(!carrierAdmitted(i))event(s,i,'carrier','CARRIER_PATH_ADMITTED',{direction:'inbound',carrier:'carrier'});
-    i.destination=target;
-    if(s.resources[target].kind==='endpoint'){const endpoint=config(s,target);if(!endpoint.registered)return finish(s,i,'ENDPOINT_UNREGISTERED');if(!directory.identities.includes(endpoint.identity)||!directory.entitled.includes(endpoint.identity))return finish(s,i,'DESTINATION_ENTITLEMENT');record(s,i);return finish(s,i,'CONNECTED',true);}
+    i.destination=target;i.voicePath={platform,carrier:'carrier'};beginCapture(s,i);
+    if(s.resources[target].kind==='endpoint'){const endpoint=config(s,target);if(!endpoint.registered)return finish(s,i,'ENDPOINT_UNREGISTERED');if(!directory.identities.includes(endpoint.identity)||!directory.entitled.includes(endpoint.identity))return finish(s,i,'DESTINATION_ENTITLEMENT');return connectEndpoint(s,i);}
     i.phase='queued';event(s,i,'queue','ENQUEUED',{queue:target});
   }
   function startInteraction(s,c,internal={}){
+    if(c.durationMinutes!==undefined&&(!Number.isInteger(c.durationMinutes)||c.durationMinutes<1||c.durationMinutes>120))fail('INVALID_CALL_DURATION');
     if(c.direction!==undefined&&(!['inbound','outbound'].includes(c.direction)||c.channel!=='voice')||c.direction==='inbound'&&(!/^\+[1-9]\d{5,14}$/.test(c.from)||!/^\+[1-9]\d{5,14}$/.test(c.to)||c.intent!==undefined||c.needId!==undefined))fail('INVALID_CALL_DIRECTION');
     if(c.choice!==undefined&&(typeof c.choice!=='string'||!/^\d?$/.test(c.choice)))fail('INVALID_IVR_CHOICE');
     if(!['voice','message'].includes(c.channel)||typeof c.from!=='string'||c.from.length>80||typeof c.to!=='string'||c.to.length>80||!isId(c.caseId)||!['en','ja','fr','de'].includes(c.language||'en')||c.intent!==undefined&&(c.intent!=='test-emergency'||c.channel!=='voice')||c.media!==undefined&&!validMediaInput(c.media)||c.account!==undefined&&(!channels.channels.includes(c.account)||c.channel!=='message')||c.purpose!==undefined&&!['service','transactional','promotional','appointment'].includes(c.purpose)||c.template!==undefined&&!isId(c.template)||c.needId!==undefined&&!isId(c.needId))fail('INVALID_INTERACTION');
     let need=null;if(c.needId){if(!s.outcomes)fail('OUTCOMES_NOT_STARTED');need=s.outcomes.needs.find(n=>n.id===c.needId);if(!need||need.status!=='open'||need.caseId!==c.caseId)fail('OUTCOMES_NEED_UNAVAILABLE');const resolved=canonicalInfo(s,c.from);const canonical=resolved?.canonical||resolved?.person,tenant=resolved?.tenant;if(!canonical||canonical!==need.person||tenant!==need.tenant)fail('OUTCOMES_NEED_IDENTITY_MISMATCH');const active=s.interactions.some(x=>x.needId===need.id&&!['resolved','failed'].includes(x.phase));if(active)fail('OUTCOMES_NEED_BUSY');if(internal.repeat){if(need.repeat.status!=='emitted'||need.repeat.pendingInteractionId!==internal.id||need.repeat.pendingKey!==internal.idempotencyKey)fail('REPEAT_SETTLEMENT_MISMATCH');}else if(need.repeat.status!=='none')fail('OUTCOMES_NEED_BUSY');}
-    const account=c.account||'chatterleaf',purpose=c.purpose||'service',template=c.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[account]);
+    const account=c.account||'chatterleaf',purpose=c.purpose||'service',template=c.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update',workplace:'case-update'}[account]);
     const interactionId=internal.id||`interaction-${s.nextId++}`;
-    const i={id:interactionId,channel:c.channel,...(c.direction?{direction:c.direction}:{}),from:c.from,to:c.channel==='voice'&&!s.calling?operations.normalise(s,c.to):c.to,...(s.operations?{dialled:c.to}:{}),...(c.intent?{intent:c.intent}:{}),...(c.media?{mediaInputs:clone(c.media)}:{}),...(c.channel==='message'?{account,purpose,template}:{}),...(c.needId?{needId:c.needId,purpose}:{}),...(internal.repeat?{outcomeIdempotencyKey:internal.idempotencyKey,usageToken:internal.usageToken}:{}),scope:c.scope||'tenant',caseId:c.caseId,language:c.language||'en',phase:'arrival',startedAt:s.clock,fingerprint:fingerprint(s),trace:[],records:[],obligations:[],context:false};
+    const i={id:interactionId,channel:c.channel,...(c.channel==='voice'?{durationMinutes:c.durationMinutes||3}:{}),...(internal.probe?{probe:true}:{}),...(c.direction?{direction:c.direction}:{}),from:c.from,to:c.channel==='voice'&&!s.calling?operations.normalise(s,c.to):c.to,...(s.operations?{dialled:c.to}:{}),...(c.intent?{intent:c.intent}:{}),...(c.media?{mediaInputs:clone(c.media)}:{}),...(c.channel==='message'?{account,purpose,template}:{}),...(c.needId?{needId:c.needId,purpose}:{}),...(internal.repeat?{outcomeIdempotencyKey:internal.idempotencyKey,usageToken:internal.usageToken}:{}),scope:c.scope||'tenant',caseId:c.caseId,language:c.language||'en',phase:'arrival',startedAt:s.clock,fingerprint:fingerprint(s),trace:[],records:[],obligations:[],context:false};
     if(s.contact)i.choice=c.choice||'';
     if(s.interactions.length>=200){const j=s.interactions.findIndex(x=>['resolved','failed'].includes(x.phase));if(j<0)fail('TRACE_CAPACITY');const [removed]=s.interactions.splice(j,1),match=/^interaction-([1-9]\d*)$/.exec(removed?.id||'');if(match)s.tracePrunedThrough=Math.max(s.tracePrunedThrough||0,Number(match[1]));}
     s.interactions.push(i);
@@ -701,6 +971,7 @@ const SOC = (function socKernel() {
       i.from=matches[0].canonical;i.tenant=matches[0].tenant;
     }else{const identity=canonicalInfo(s,i.from);if(identity){i.from=identity.person;i.tenant=identity.tenant;}else if(s.channels||s.outcomes)return finish(s,i,'UNKNOWN_CALLER');}
     if(need&&(i.from!==need.person||i.tenant!==need.tenant))fail('OUTCOMES_NEED_IDENTITY_MISMATCH');
+    if(s.providerCustomer)i.providerContext={connected:s.connected};
     const crm=config(s,'cases');
     if(crm&&observe(s,'cases').ready&&crm.identityMapping){
       const prior=s.cases[c.caseId];
@@ -709,7 +980,9 @@ const SOC = (function socKernel() {
       s.cases[c.caseId]={identity:i.from,...(i.tenant?{tenant:i.tenant}:{}),interactions:[...(prior?.interactions||[]),i.id].slice(-30)};i.context=true;
     }
     event(s,i,'context',i.context?'CASE_LINKED':'CONTEXT_LOST',{caseId:c.caseId});
+    if(s.providerCustomer&&i.channel==='message'&&i.account==='workplace'&&i.context&&s.channels)Object.assign(s,dispatchInternal(s,{type:'channels',command:{action:'open',tenant:i.tenant,person:i.from,channel:'workplace',purpose:i.purpose,caseId:i.caseId}},true,true,true));
     if(c.channel==='voice'){if(i.direction==='inbound')inboundRoute(s,i);else route(s,i);return;}
+    for(const resourceId of ['engage','messages','cases','service']){const gate=productGate(s,resourceId);if(gate&&!gate.available)return finish(s,i,'PRODUCT_FEATURE_UNAVAILABLE');}
     const w=config(s,'engage'),ch=config(s,w?.channel);
     if(!w||!observe(s,'engage').ready||!ch?.approved||!s.operations&&!ch.templates.includes(w.template))return finish(s,i,'CHANNEL_OR_TEMPLATE');
     if(s.operations&&operations.enqueue(s,i,event,channelOperationHooks(s),finish))return;
@@ -723,7 +996,7 @@ const SOC = (function socKernel() {
   function validMediaInput(m){return !!m&&typeof m==='object'&&!Array.isArray(m)&&!Object.keys(m).some(k=>!['codec','encrypted','natOutbound','natInbound','latencyMs','jitterMs','lossPct'].includes(k))&&!Object.entries(m).some(([k,v])=>['encrypted','natOutbound','natInbound'].includes(k)?typeof v!=='boolean':k==='codec'?typeof v!=='string'||v.length>20:typeof v!=='number'||!Number.isFinite(v)||v<0||v>(k==='latencyMs'?5000:k==='jitterMs'?1000:100));}
   function channelAdminContext(s,person,caseId,channel,purpose){
     const info=canonicalInfo(s,person),bound=trustedCase(s,caseId);if(!info||!bound||info.person!==bound.person||info.tenant!==bound.tenant)return null;
-    return {tenant:info.tenant,person:info.person,canonicalPerson:info.person,account:channel,channel,purpose,caseId,caseIdentity:bound.person,caseTenant:bound.tenant,authenticatedIdentity:info.person,template:({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[channel]),at:s.clock};
+    return {tenant:info.tenant,person:info.person,canonicalPerson:info.person,account:channel,channel,purpose,caseId,caseIdentity:bound.person,caseTenant:bound.tenant,authenticatedIdentity:info.person,template:({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update',workplace:'case-update'}[channel]),at:s.clock};
   }
   function channelCommand(s,c){
     const q=c.command;if(!q||typeof q.action!=='string')fail('INVALID_CHANNEL_COMMAND');
@@ -760,22 +1033,29 @@ const SOC = (function socKernel() {
   }
   function advanceMinute(s){
     s.clock++;
+    if(s.providerCampaign)providerCampaign.beforeMinute(s,providerHooks());
     if(s.admissionSecurity)admissionSecurity.advance(s);
     for(const r of Object.values(s.resources))if(r.provisioning.status==='pending'&&r.provisioning.due<=s.clock){
       const errors=dependencies(s,r,r.desired);
       r.provisioning={...r.provisioning,status:errors.length?'failed':'ready',errors};
       if(!errors.length)r.effective=clone(r.desired);
     }
+    if(s.providerCustomer&&!s.workforceOps&&s.resources.people.effective?.enabled)s.workforceOps=workforce.create(s);
     if(s.boundaries)boundaries.advance(s,s.clock);
+    providerBoundaryObservations(s);
     if(s.productEvidence)productEvidence.advance(s,productEvidenceHooks());
     if(s.mediaNegotiation)mediaNegotiation.advance(s);
     if(s.customerNeeds)customerNeeds.advance(s);
     if(s.speechModels)speechModels.advance(s,speechHooks(s));
     if(s.products)products.advance(s,productHooks(s));
+    if(s.providerCustomer)providerProductsAdvance(s);
     if(s.specialistLifecycle)specialistLifecycle.advance(s,lifecycleHooks());
     if(s.transport)transport.advance(s,transportHooks(s));
     if(s.channels)channels.advance(s.channels,s.clock);
+    if(s.providerCustomer&&s.channels)for(const account of ['chatterleaf','workplace'])if(s.channels.accounts[account]?.provisioning.status==='ready')channels.command(s.channels,{action:'observe',channel:account,authenticated:observe(s,'identity').ready,providerAvailable:observe(s,'engage').ready&&observe(s,'messages').ready&&(s.connected||!!s.resources.messages.effective?.local),fault:null});
+
     if(s.operations)operations.advance(s,productServices(s),event,finish,(state,unit,amount)=>business.meterResource(state,unit,amount,['engage',config(state,'engage')?.channel,'cases'].filter(Boolean)),business.authorise,channelOperationHooks(s));
+    for(const task of s.providerTasks||[])if(task.kind==='migration'&&task.status==='waiting'){const consolidated=task.mode==='consolidated',target=consolidated?'phone':'migration-phone';if(observe(s,target).ready){operations.command(s,{action:'migration',identities:consolidated?['alex','bea']:['bea'],target,cutoverAt:s.clock+(consolidated?1:2)},productServices(s),event,finish,channelOperationHooks(s));task.status='submitted';task.migrationId=s.operations.migrations.at(-1).id;}}
     if(s.contact)contact.advance(s,Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)])),event,startInteraction);
     if(s.workforceOps)workforce.advance(s);
     if(s.workforceQuality)workforceQuality.advance(s.workforceQuality,s.clock,s,workforceQualityHooks());
@@ -806,14 +1086,21 @@ const SOC = (function socKernel() {
     }
     if(s.estate)estate.advance(s,estateHooks(s));
     if(s.sharedServices){const step=sharedServices.advance(s,s.clock,sharedHooks());for(const expired of step.expired){const i=s.interactions.find(x=>x.id===expired.interactionId);if(i)finish(s,i,expired.reason);}}
+    for(const reservation of [...(s.captureReservations||[])]){
+      const recorder=config(s,'recorder');if(observe(s,'recorder').ready&&recorder?.consent&&recorder.identityMapping)continue;
+      const interaction=s.interactions.find(i=>i.id===reservation.id);
+      if(interaction){interaction.capture.status='interrupted';interaction.capture.endedAt=s.clock;interaction.obligations.push('CAPTURE_INTERRUPTED');event(s,interaction,'capture','CAPTURE_INTERRUPTED');}
+      releaseCapture(s,reservation.id);
+    }
     for(const i of s.interactions){
+      if(i.channel==='voice'&&['queued','handling','connected','shared-active'].includes(i.phase)&&!liveVoiceMedia(s,i))continue;
       if(i.phase==='shared-active'){if(!sharedReady(s,i,i.sharedActor))finish(s,i,'SHARED_MEDIA_OR_ENDPOINT_UNAVAILABLE');else if(s.clock>=i.due){record(s,i);finish(s,i,'CONNECTED',true);}}
       if(i.phase==='handling'&&s.clock>=i.due){if(s.mediaNegotiation)mediaNegotiation.release(s,i.id);i.phase='wrap';const wrap=config(s,i.worker)?.wrapMinutes||0;i.due=s.clock+wrap;if(s.workforceOps)workforce.finish(s,i.workforceAssignment||i.id,wrap);event(s,i,'handling','WRAP_UP',{...(i.agent?{agent:i.agent}:{})});}
       if(i.phase==='wrap'&&s.clock>=i.due){record(s,i);finish(s,i,'RESOLVED',true);}
     }
     for(const i of contact.queued(s)){
       const q=config(s,i.destination),w=config(s,q?.workforce);
-      if(!q||!w||!observe(s,i.destination).ready){event(s,i,'queue','SERVICE_UNAVAILABLE');continue;}
+      if(!q||!w||!observe(s,i.destination).ready||[i.destination,q.workforce].some(id=>{const gate=productGate(s,id);return gate&&!gate.available;})){event(s,i,'queue','SERVICE_UNAVAILABLE');continue;}
       if(s.clock-(i.queueEnteredAt??i.startedAt)>q.maxWait){finish(s,i,q.callback?'CALLBACK_REQUIRED':'ABANDONED');continue;}
       const busy=s.interactions.filter(x=>x.worker===q.workforce&&['handling','wrap'].includes(x.phase));
       if(s.workforceOps){
@@ -830,14 +1117,15 @@ const SOC = (function socKernel() {
       i.phase='handling';i.worker=q.workforce;i.due=s.clock+w.handlingMinutes+(i.context?0:2);event(s,i,'handling','AGENT_ASSIGNED',{...(i.agent?{agent:i.agent}:{})});
     }
     // Integer cents; one usage entry per simulation minute, never in calculate().
-    const billableVoice=s.interactions.filter(i=>['handling','queued','shared-active','parked'].includes(i.phase)&&i.channel==='voice').filter(i=>{if(!s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id))return true;const gate=admissionSecurity.admitUsage(s,i.id);event(s,i,'security',gate.allowed?'SECURITY_USAGE_ADMITTED':'SECURITY_USAGE_BLOCKED',{reason:gate.reason||null,cents:gate.cents||0});if(!gate.allowed)finish(s,i,gate.reason);return gate.allowed;});
+    const billableVoice=s.interactions.filter(i=>['handling','queued','shared-active','parked','connected'].includes(i.phase)&&i.channel==='voice').filter(i=>{if(!s.admissionSecurity?.reservations.some(r=>r.interactionId===i.id))return true;const gate=admissionSecurity.admitUsage(s,i.id);event(s,i,'security',gate.allowed?'SECURITY_USAGE_ADMITTED':'SECURITY_USAGE_BLOCKED',{reason:gate.reason||null,cents:gate.cents||0});if(!gate.allowed)finish(s,i,gate.reason);return gate.allowed;});
     const usage=billableVoice.length;
     const people=config(s,'people'),staff=people&&people.operator!=='customer'?people.people:0;
     const cost=usage*2+staff+Object.values(s.resources).filter(r=>r.effective?.enabled).length;
     const revenue=s.interactions.filter(i=>hasCustomerResolution(i)&&i.finishedAt===s.clock).length*150;
     s.ledger.push({id:'minute-'+s.clock,minute:s.clock,unit:'minute',usage,revenue,cost,...(s.admissionSecurity?{voiceInteractions:billableVoice.map(i=>i.id)}:{})});s.totals.revenue+=revenue;s.totals.cost+=cost;
     if(s.ledger.length>1440)s.ledger.shift();
-    for(const i of billableVoice){const routed=i.trace.find(t=>t.code===(i.direction==='inbound'?'ORDERED_INBOUND_ROUTE':'CALL_REQUEST')&&t.platform);business.meterResource(s,'minute',1,[routed?.platform||'phone']);}
+    for(const i of billableVoice){i.usageMinutes=(i.usageMinutes||0)+1;const routed=i.trace.find(t=>t.code===(i.direction==='inbound'?'ORDERED_INBOUND_ROUTE':'CALL_REQUEST')&&t.platform);business.meterResource(s,'minute',1,[routed?.platform||'phone']);}
+    for(const i of s.interactions)if(i.phase==='connected'&&s.clock>=i.due){record(s,i);finish(s,i,'CONNECTED',true);if(hasCustomerResolution(i)){s.ledger.at(-1).revenue+=150;s.totals.revenue+=150;}}
     if(s.information)information.advance(s,informationHooks(s),event,business.meterResource,s.speechModels?(context,request)=>speechModels.processingGate(s,{...context,...request},speechHooks(s)):undefined);
     if(s.business){const services=Object.fromEntries(Object.keys(s.resources).map(id=>[id,observe(s,id)]));
       const q=config(s,'service'),channel=scenarios[s.scenario].channel==='message'?'digital':'voice';
@@ -851,10 +1139,11 @@ const SOC = (function socKernel() {
     },emitRepeat:(state,request)=>{
       const original=state.interactions.find(i=>i.id===request.repeatOfInteraction);if(!original)return null;const id=`interaction-${state.nextId++}`;scheduled.push({id,request,original});return {interactionId:id};
     }});
-      for(const {id,request,original} of scheduled){const c={channel:request.channel,from:request.person,to:request.channel==='voice'?original.to:'service',caseId:request.caseId,language:original.language||'en',purpose:original.purpose||'service',needId:request.needId,...(request.channel==='message'?{account:original.account||'chatterleaf',template:original.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update'}[original.account||'chatterleaf'])}:{})};startInteraction(s,c,{id,repeat:true,idempotencyKey:request.idempotencyKey,usageToken:request.usageToken});}
+      for(const {id,request,original} of scheduled){const c={channel:request.channel,from:request.person,to:request.channel==='voice'?original.to:'service',caseId:request.caseId,language:original.language||'en',purpose:original.purpose||'service',needId:request.needId,...(request.channel==='message'?{account:original.account||'chatterleaf',template:original.template||({chatterleaf:'service-outside-window',letterbox:'transaction-update',casechat:'case-update',workplace:'case-update'}[original.account||'chatterleaf'])}:{})};startInteraction(s,c,{id,repeat:true,idempotencyKey:request.idempotencyKey,usageToken:request.usageToken});}
     }
     if(s.serviceObservation)serviceObservation.advance(s,serviceObservationHooks());
-    if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s));
+    if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s,!!s.providerCampaign));
+    if(s.providerCampaign){providerCampaign.afterMinute(s,providerHooks());providerAutomationAdvance(s);}
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());
@@ -879,6 +1168,15 @@ const SOC = (function socKernel() {
   }
   function validateState(s){
     if(!s||s.app!==APP||s.v!==SCHEMA)fail('INCOMPATIBLE_SAVE','Original ISP saves are not communications exercises');
+    if(s.experience!==undefined&&(!s.experience||Object.keys(s.experience).sort().join(',')!=='custom,kind,version'||s.experience.version!==1||!['campaign','training','lab'].includes(s.experience.kind)||typeof s.experience.custom!=='boolean'))fail('INVALID_EXPERIENCE');
+    if(s.experience?.kind==='campaign'&&!s.providerCampaign&&!s.providerCustomer)fail('CAMPAIGN_STATE_REQUIRED');
+    if(s.providerCustomer&&(!isId(s.providerCustomer.id)||s.providerCustomer.version!==1||typeof s.providerCustomer.recording!=='boolean'||s.business||s.providerCampaign||s.experience?.kind!=='campaign'))fail('INVALID_PROVIDER_CUSTOMER');
+    if(s.providerReviews!==undefined){if(!s.providerCustomer||!Array.isArray(s.providerReviews)||s.providerReviews.length>100||new Set(s.providerReviews.map(r=>r.interactionId)).size!==s.providerReviews.length)fail('INVALID_PROVIDER_REVIEWS');for(const r of s.providerReviews){const i=s.interactions.find(i=>i.id===r.interactionId),record=s.records.find(x=>x.id===r.recordingId),linked=s.cases[r.caseId];if(Object.keys(r).sort().join(',')!=='agent,at,basis,caseId,criteria,interactionId,postingId,projectId,recordingId,reviewer'||!i||!record||!linked||record.interaction!==i.id||record.kind!=='recording'||!record.access.includes('supervisor')||r.caseId!==i.caseId||r.agent!==i.agent||r.reviewer!=='supervisor'||r.basis!=='observed-service-review-v1'||!Number.isSafeInteger(r.at)||r.at<record.createdAt||r.at>s.clock||JSON.stringify(r.criteria)!==JSON.stringify({completeCapture:record.captureScope!=='partial',caseContinuity:linked.interactions.includes(i.id),delivered:i.phase==='resolved',noOutstandingObligation:i.obligations.length===0}))fail('INVALID_PROVIDER_REVIEWS');}}
+    if(s.providerAutomation!==undefined){if(!s.providerCampaign||!Array.isArray(s.providerAutomation)||s.providerAutomation.length>20||new Set(s.providerAutomation.map(p=>p.customerId)).size!==s.providerAutomation.length)fail('INVALID_PROVIDER_AUTOMATION');for(const p of s.providerAutomation){const project=s.providerCampaign.projects.find(x=>x.id===p.projectId);if(Object.keys(p).sort().join(',')!=='actions,budgetCents,customerId,projectId,spentCents,status'||!project||project.customerId!==p.customerId||project.operationId!=='automation'||p.budgetCents!==16000||!['active','suspended','budget-exhausted'].includes(p.status)||!Array.isArray(p.actions)||p.actions.length>2||p.spentCents!==p.actions.reduce((n,a)=>n+a.cents,0)||p.spentCents>p.budgetCents)fail('INVALID_PROVIDER_AUTOMATION');for(const a of p.actions){const repair=s.providerCampaign.projects.find(x=>x.id===a.projectId);if(Object.keys(a).sort().join(',')!=='at,cents,incidentId,projectId'||!repair||repair.operationId!=='repair'||repair.customerId!==p.customerId||a.cents!==repair.setupCents||a.at!==repair.acceptedAt||!s.providerCampaign.incidents.some(i=>i.id===a.incidentId&&i.customerId===p.customerId))fail('INVALID_PROVIDER_AUTOMATION_LINEAGE');}}}
+    if(s.providerProductTasks!==undefined&&(!s.providerCustomer||!Array.isArray(s.providerProductTasks)||s.providerProductTasks.length>14||new Set(s.providerProductTasks.map(t=>t.recipeId)).size!==s.providerProductTasks.length||s.providerProductTasks.some(t=>!t||Object.keys(t).sort().join(',')!=='createdAt,deploymentId,recipeId,status'||!providerProducts.recipes[t.recipeId]||t.deploymentId!=='d-'+t.recipeId||!['waiting','submitted'].includes(t.status)||!Number.isSafeInteger(t.createdAt)||t.createdAt>s.clock||t.status==='submitted'&&!s.products?.deployments.some(d=>d.id===t.deploymentId))))fail('INVALID_PROVIDER_PRODUCT_TASKS');
+    if(s.providerQualification!==undefined){const q=s.providerQualification;if(!s.providerCustomer||Object.keys(q).sort().join(',')!=='at,eventId,expires,organisation,postingId,scenario'||q.organisation!=='orchard-msp'||q.scenario!==s.scenario||q.scenario!=='government'||!Number.isSafeInteger(q.at)||q.at>s.clock||q.expires!==q.at+600||!/^provider-project-[1-9]\d*$/.test(q.eventId)||!/^entry-[1-9]\d*$/.test(q.postingId))fail('INVALID_PROVIDER_QUALIFICATION');}
+    if(s.providerTasks!==undefined&&(!s.providerCustomer||!Array.isArray(s.providerTasks)||s.providerTasks.length>20||s.providerTasks.some(t=>!t||Object.keys(t).sort().join(',')!==(t.mode===undefined?'createdAt,kind,migrationId,status':'createdAt,kind,migrationId,mode,status')||t.mode!==undefined&&t.mode!=='consolidated'||t.kind!=='migration'||!['waiting','submitted'].includes(t.status)||!Number.isSafeInteger(t.createdAt)||t.createdAt>s.clock||t.status==='submitted'&&!s.operations?.migrations.some(m=>m.id===t.migrationId))))fail('INVALID_PROVIDER_TASKS');
+    if(s.providerCampaign&&(s.experience?.kind!=='campaign'||s.experience.custom||!s.business||!s.portfolio||!Number.isSafeInteger(s.providerRequestSequence)||s.providerRequestSequence<0))fail('INVALID_PROVIDER_ROOT');
     if(s.pack!==PACK||s.rules!=='fictional-boundaries-1')fail('CONTENT_PACK_UNAVAILABLE');
     if(!ownKey(scenarios,s.scenario)||!jurisdictions.includes(s.jurisdiction)||!['guided','assessed','sandbox'].includes(s.mode)||s.tenant!==undefined&&(!isId(s.tenant)||s.tenant.length>48)||s.customerName!==undefined&&(typeof s.customerName!=='string'||!s.customerName.trim()||s.customerName.length>100))fail('INVALID_SAVE_PROFILE');
     for(const k of ['clock','revision','nextId','seed'])if(!Number.isSafeInteger(s[k])||s[k]<0)fail('INVALID_SAVE_NUMBER',k);
@@ -895,8 +1193,11 @@ const SOC = (function socKernel() {
     for(const [k,max] of Object.entries({interactions:200,records:500,ledger:1440,commands:1000,receipts:1000}))if(!Array.isArray(s[k])||s[k].length>max)fail('INVALID_SAVE_COLLECTION',k);
     if(!s.cases||typeof s.cases!=='object'||Array.isArray(s.cases)||Object.keys(s.cases).length>1000)fail('INVALID_CASES');
     if(!s.totals||!['revenue','cost'].every(k=>Number.isSafeInteger(s.totals[k])&&s.totals[k]>=0))fail('INVALID_TOTALS');
-    for(const i of s.interactions)if(!i||!['voice','message'].includes(i.channel)||!['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked','resolved','failed'].includes(i.phase)||!Array.isArray(i.trace)||i.trace.length>80||!Array.isArray(i.records)||!Array.isArray(i.obligations)||!Number.isSafeInteger(i.startedAt)||typeof i.caseId!=='string'||i.mediaInputs!==undefined&&!validMediaInput(i.mediaInputs)||i.intent!==undefined&&!s.calling)fail('INVALID_INTERACTION_STATE');
+    for(const i of s.interactions)if(!i||!['voice','message'].includes(i.channel)||!['arrival','delivery','queued','handling','wrap','ringing','shared-active','parked','connected','resolved','failed'].includes(i.phase)||!Array.isArray(i.trace)||i.trace.length>80||!Array.isArray(i.records)||!Array.isArray(i.obligations)||!Number.isSafeInteger(i.startedAt)||typeof i.caseId!=='string'||i.mediaInputs!==undefined&&!validMediaInput(i.mediaInputs)||i.intent!==undefined&&!s.calling)fail('INVALID_INTERACTION_STATE');
     for(const i of s.interactions){
+      if(i.probe!==undefined&&typeof i.probe!=='boolean')fail('INVALID_PROBE');
+      if(i.phase==='connected'&&(i.channel!=='voice'||i.probe||!Number.isInteger(i.durationMinutes)||i.durationMinutes<1||i.durationMinutes>120||!Number.isSafeInteger(i.connectedAt)||i.connectedAt<i.startedAt||i.due!==i.connectedAt+i.durationMinutes||s.resources[i.destination]?.kind!=='endpoint'))fail('INVALID_CONNECTED_SESSION');
+      if(i.usageMinutes!==undefined&&(!Number.isSafeInteger(i.usageMinutes)||i.usageMinutes<0))fail('INVALID_USAGE_HISTORY');
       if(!isId(i.id)||typeof i.from!=='string'||typeof i.to!=='string'||typeof i.fingerprint!=='string'||!isId(i.caseId)||i.records.some(x=>!isId(x))||i.obligations.some(x=>typeof x!=='string')||i.trace.some(t=>!t||!Number.isSafeInteger(t.at)||typeof t.stage!=='string'||typeof t.code!=='string'||t.synthetic!==true))fail('INVALID_INTERACTION_STATE');
       if(['ringing','shared-active','parked'].includes(i.phase)&&(!s.sharedServices||!isId(i.sharedLine)||!Number.isSafeInteger(i.due)||!s.sharedServices.occupancy.some(o=>o.interactionId===i.id)))fail('INVALID_SHARED_INTERACTION');
       if(i.agent!==undefined&&(!isId(i.agent)||!s.workforceOps))fail('INVALID_WORKFORCE_ASSIGNMENT');
@@ -911,6 +1212,14 @@ const SOC = (function socKernel() {
       if(i.needOutcome){const n=s.outcomes?.needs.find(x=>x.id===i.needId),a=n?.attempts.find(x=>x.id===i.needOutcome.attemptId&&x.interactionId===i.id);if(!a||i.needOutcome.outcome!==a.outcome||i.needOutcome.reason!==a.reason)fail('INVALID_INTERACTION_NEED_OUTCOME');}
     }
     for(const [id,c] of Object.entries(s.cases))if(!isId(id)||!c||typeof c.identity!=='string'||c.tenant!==undefined&&!isId(c.tenant)||!Array.isArray(c.interactions)||c.interactions.length>30||c.interactions.some(x=>!isId(x)))fail('INVALID_CASES');
+    if(s.captureReservations!==undefined){
+      if(!Array.isArray(s.captureReservations)||s.captureReservations.length>400||new Set(s.captureReservations.map(x=>x.id)).size!==s.captureReservations.length)fail('INVALID_CAPTURE_RESERVATIONS');
+      for(const row of s.captureReservations){if(!row||!isId(row.id)||row.resource!=='recorder'||!['interaction','meeting'].includes(row.kind)||!Number.isSafeInteger(row.startedAt)||row.startedAt>s.clock)fail('INVALID_CAPTURE_RESERVATION');
+        if(row.kind==='interaction'&&!s.interactions.some(i=>i.id===row.id&&!['resolved','failed'].includes(i.phase)&&i.capture?.status==='reserved'))fail('ORPHAN_CAPTURE_RESERVATION');
+        if(row.kind==='meeting'&&!s.information?.meetingSessions?.some(x=>x.id===row.id&&x.status==='active'))fail('ORPHAN_MEETING_CAPTURE');
+      }
+    }
+    for(const i of s.interactions)if(i.capture?.status==='reserved'&&!s.captureReservations?.some(r=>r.id===i.id&&r.kind==='interaction'))fail('MISSING_CAPTURE_RESERVATION');
     for(const r of s.records){
       const interaction=s.interactions.find(i=>i.id===r.interaction);
       if(r.captureScope!==undefined&&(r.captureScope!=='partial'||r.kind!=='recording'))fail('INVALID_CAPTURE_SCOPE');
@@ -935,7 +1244,7 @@ const SOC = (function socKernel() {
     if(s.channels!==undefined){if(!s.operations||s.channels.clock!==s.clock)fail('CHANNEL_OPERATIONS_REQUIRED');channels.validate(s.channels);for(const a of s.channels.acceptances){const job=s.operations.jobs.find(j=>j.id===a.parentJob);if(job&&(job.interaction!==a.interaction||job.status!=='accepted'&&job.status!=='delivered'||job.acceptedAt!==a.authorizedAt))fail('INVALID_CHANNEL_PARENT_ACCEPTANCE');}for(const receipt of s.channels.receipts.filter(r=>r.kind==='delivery')){const a=s.channels.acceptances.find(x=>x.interaction===receipt.interaction),job=a&&s.operations.jobs.find(j=>j.id===a.parentJob);if(!a||a.conversation!==null&&a.conversation!==receipt.conversation||a.caseId!==s.channels.conversations.find(c=>c.id===receipt.conversation)?.caseId||job&&(job.status!=='delivered'||job.receiptAt>receipt.at))fail('INVALID_CHANNEL_PARENT_DELIVERY');}}
     if(s.outcomes!==undefined){outcomes.validate(s);for(const n of s.outcomes.needs){const bound=s.cases[n.caseId];if(!bound||bound.identity!==n.person||bound.tenant!==n.tenant)fail('INVALID_OUTCOMES_CASE_LINK');if(n.repeat.status==='emitted'){const pending=s.interactions.find(i=>i.id===n.repeat.pendingInteractionId);if(!pending||pending.needId!==n.id||pending.caseId!==n.caseId||pending.from!==n.person||pending.tenant!==n.tenant||pending.outcomeIdempotencyKey!==n.repeat.pendingKey)fail('INVALID_REPEAT_INTERACTION_LINK');}}}
     transport.validateLeaseHistory(s);
-    if(s.transport){transport.validate(s);if(!s.business)fail('TRANSPORT_BUSINESS_REQUIRED');for(const l of s.transport.ledger)if(!s.business.externalInvoices?.some(x=>(x.source===undefined||x.source==='transport')&&x.id===l.id&&x.cents===l.cents))fail('TRANSPORT_INVOICE_NOT_RECONCILED');if(s.business.externalInvoices?.some(x=>(x.source===undefined||x.source==='transport')&&!s.transport.ledger.some(l=>l.id===x.id&&l.cents===x.cents)))fail('TRANSPORT_INVOICE_NOT_RECONCILED');for(const r of s.transport.reservations)if(!s.interactions.some(i=>i.id===r.id&&['queued','handling','wrap','ringing','shared-active','parked'].includes(i.phase)))fail('TRANSPORT_RESERVATION_ORPHAN');}
+    if(s.transport){transport.validate(s);if(!s.business)fail('TRANSPORT_BUSINESS_REQUIRED');for(const l of s.transport.ledger)if(!s.business.externalInvoices?.some(x=>(x.source===undefined||x.source==='transport')&&x.id===l.id&&x.cents===l.cents))fail('TRANSPORT_INVOICE_NOT_RECONCILED');if(s.business.externalInvoices?.some(x=>(x.source===undefined||x.source==='transport')&&!s.transport.ledger.some(l=>l.id===x.id&&l.cents===x.cents)))fail('TRANSPORT_INVOICE_NOT_RECONCILED');for(const r of s.transport.reservations)if(!s.interactions.some(i=>i.id===r.id&&['queued','handling','wrap','ringing','shared-active','parked','connected'].includes(i.phase)))fail('TRANSPORT_RESERVATION_ORPHAN');}
     if(s.boundaries){boundaries.validate(s);if(s.boundaries.clock!==s.clock)fail('BOUNDARY_CLOCK_MISMATCH');}
     if(s.admissionSecurity){admissionSecurity.validate(s);for(const row of s.ledger)if(row.voiceInteractions!==undefined&&(!Array.isArray(row.voiceInteractions)||row.voiceInteractions.length!==row.usage||new Set(row.voiceInteractions).size!==row.usage||row.voiceInteractions.some(x=>!isId(x))))fail('INVALID_VOICE_LEDGER');}
     if(s.specialistLifecycle){if(!s.products||!s.business)fail('SPECIALIST_LIFECYCLE_DEPENDENCIES_REQUIRED');specialistLifecycle.validate(s);for(const contract of s.business.contracts)if(!Array.isArray(contract.lifecycleDeployments)||new Set(contract.lifecycleDeployments).size!==contract.lifecycleDeployments.length||contract.lifecycleDeployments.some(id=>!s.products.deployments.some(d=>d.id===id)))fail('INVALID_CONTRACT_LIFECYCLE_LINEAGE');}
@@ -950,27 +1259,44 @@ const SOC = (function socKernel() {
     if(s.siteOperations){if(!s.transport||!s.business)fail('SITE_OPERATIONS_DEPENDENCIES_REQUIRED');siteOperations.validate(s);}
     if(s.progression){if(!s.campaign)fail('PROGRESSION_CAMPAIGN_REQUIRED');progression.validate(s);}
     if(s.campaign){campaign.validate(s);for(const snap of Object.values(s.campaign.snapshots))validateState(snap.root);}
+    providerContinuity.validate(s);
+    providerHistory.validate(s);
+    if(s.providerCampaign){providerCampaign.validate(s,providerHooks());validateProviderContinuityLineage(s);for(const c of s.portfolio.customers){for(const [receipt,operation] of [[c.root.workforceOps?.providerCover,'bpo'],...(c.root.workforceOps?.coaching||[]).map(j=>[j.providerReceipt,'coaching']),...(c.root.providerReviews||[]).map(r=>[r,'quality'])])if(receipt&&!s.providerCampaign.projects.some(p=>p.id===receipt.projectId&&p.postingId===receipt.postingId&&p.customerId===c.id&&p.operationId===operation))fail('INVALID_PROVIDER_WORKFORCE_LINEAGE');const q=c.root.providerQualification;if(q&&!s.providerCampaign.projects.some(p=>p.id===q.eventId&&p.customerId===c.id&&p.postingId===q.postingId&&providerProducts.recipes[p.operationId]?.preparation?.requests&&p.configSubmittedAt===q.at+1))fail('INVALID_PROVIDER_QUALIFICATION_LINEAGE');}}
     return s;
   }
-  const commandFields={configure:['id','config'],add:['id','kind','config'],advance:['minutes'],interact:['channel','direction','from','to','caseId','language','scope','choice','intent','media','account','purpose','template','needId'],fault:['id','fault'],connect:['connected'],meeting:[],migrate:['identities','target'],restore:['resources'],business:['command'],operations:['command'],information:['command'],contact:['command'],calling:['command'],estate:['command'],workforce:['command'],products:['command'],channels:['command'],outcomes:['command'],transport:['command'],boundaries:['command'],campaign:['command'],portfolio:['command'],'product-evidence':['command'],'media-negotiation':['command'],'managed-operations':['command'],'site-operations':['command'],'specialist-lifecycle':['command'],'shared-services':['command'],'market-qualification':['command'],'service-observation':['command'],'admission-security':['command'],progression:['command'],'issue-exercises':['command'],'speech-models':['command'],'customer-needs':['command'],'workforce-offers':['command'],'workforce-quality':['command']};
-  function dispatch(state,command){
-    validateState(state);
+  const commandFields={configure:['id','config'],add:['id','kind','config'],advance:['minutes'],interact:['durationMinutes','channel','direction','from','to','caseId','language','scope','choice','intent','media','account','purpose','template','needId'],fault:['id','fault'],connect:['connected'],meeting:[],migrate:['identities','target'],restore:['resources'],business:['command'],operations:['command'],information:['command'],contact:['command'],calling:['command'],estate:['command'],workforce:['command'],products:['command'],channels:['command'],outcomes:['command'],transport:['command'],boundaries:['command'],campaign:['command'],portfolio:['command'],'product-evidence':['command'],'media-negotiation':['command'],'managed-operations':['command'],'site-operations':['command'],'specialist-lifecycle':['command'],'shared-services':['command'],'market-qualification':['command'],'service-observation':['command'],'admission-security':['command'],progression:['command'],'issue-exercises':['command'],'speech-models':['command'],'customer-needs':['command'],'workforce-offers':['command'],'workforce-quality':['command']};
+  commandFields['copy-to-lab']=['customerId'];commandFields.probe=commandFields.interact;commandFields.provider=['command'];
+  function dispatch(state,command){return dispatchInternal(state,command,false);}
+  function dispatchInternal(state,command,trusted,owned=false,inTick=false){
+    if(inTick&&(!trusted||!owned||command?.requestId))fail('INVALID_INTERNAL_TICK_COMMAND');
+    if(!owned)validateState(state);
+    if(!trusted&&(state.providerCustomer||state.providerCampaign&&!['provider','advance','copy-to-lab'].includes(command?.type)))fail('CAMPAIGN_AUTHORING_FORBIDDEN');
     if(!command||!ownKey(commandFields,command.type)||Object.keys(command).some(k=>!['type','expectedRevision','requestId',...commandFields[command.type]].includes(k)))fail('INVALID_COMMAND');
     if(command.requestId!==undefined&&(!isId(command.requestId)))fail('INVALID_REQUEST_ID');
     if(command.requestId){const prior=state.receipts.find(x=>x.id===command.requestId);if(prior){if(prior.command!==JSON.stringify({...command,expectedRevision:undefined}))fail('IDEMPOTENCY_CONFLICT');return clone(state);}}
     if(command.expectedRevision!==undefined&&command.expectedRevision!==state.revision)fail('STALE_COMMAND');
-    const s=migrateBusinessSaves(clone(state)),c=command;
+    if(state.providerCampaign&&command.requestId){const n=/^provider-(\d+)$/.exec(command.requestId);if(!n||!Number.isSafeInteger(Number(n[1]))||Number(n[1])<=state.providerRequestSequence)fail('EXPIRED_PROVIDER_REQUEST');}
+    if(command.type==='copy-to-lab'){
+      if(!state.providerCampaign||!isId(command.customerId))fail('PROVIDER_CUSTOMER_REQUIRED');const row=state.portfolio.customers.find(c=>c.id===command.customerId);if(!row)fail('UNKNOWN_PROVIDER_CUSTOMER');const lab=clone(row.root);lab.experience={version:1,kind:'lab',custom:true};lab.mode='sandbox';lab.labSource={kind:'provider-customer',customerId:row.id,at:state.clock,parentRevision:state.revision};
+      for(const key of ['providerCustomer','providerArchive','providerContinuity','providerTasks','providerProductTasks','providerQualification','providerReviews'])delete lab[key];
+      if(lab.workforceOps){delete lab.workforceOps.providerCover;for(const job of lab.workforceOps.coaching)delete job.providerReceipt;}
+      lab.revision++;lab.commands.push({at:lab.clock,revision:lab.revision,command:clone(command)});return validateState(lab);
+    }
+    const s=owned?{...state}:migrateBusinessSaves(clone(state)),c=command;
+    if(s.providerCampaign&&c.requestId)s.providerRequestSequence=Number(c.requestId.slice(9));
     if(c.type==='configure'){
       const r=s.resources[c.id];if(!r||!c.config||typeof c.config!=='object'||Array.isArray(c.config))fail('UNKNOWN_RESOURCE');
       if(!business.authorise(s,c.id,'configure'))fail('DELEGATION_REQUIRED');
-      if(r.kind==='workforce'&&r.desired.operator==='customer'&&Object.keys(c.config).some(k=>k!=='enabled'))fail('WORKFORCE_CUSTOMER_CONTROLLED');
+      if(!trusted&&r.kind==='workforce'&&r.desired.operator==='customer'&&Object.keys(c.config).some(k=>k!=='enabled'))fail('WORKFORCE_CUSTOMER_CONTROLLED');
       const desired={...r.desired,...clone(c.config)};validateConfig(r.kind,desired);r.desired=desired;r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};
       if(s.operations&&r.id==='phone'&&c.config.carrierModel){const n=s.operations.carrier,mode={managed:'managed',direct:'operator',mobile:'mobile',gateway:'gateway'}[c.config.carrierModel];if(n.desired.mode!==mode){n.desired.mode=mode;n.generation++;n.provisioning={status:'pending',due:s.clock+1,generation:n.generation,errors:[]};}}
     }else if(c.type==='add'){
       if(s.resources[c.id]||Object.keys(s.resources).length>=500)fail('DUPLICATE_OR_LIMIT');s.resources[c.id]=resource(c.id,c.kind,c.config);s.resources[c.id].provisioning.due=s.clock+1;if(s.business)s.business.ownership[c.id]=s.business.player;
     }else if(c.type==='advance'){
-      if(!Number.isInteger(c.minutes)||c.minutes<1||c.minutes>1440)fail('INVALID_DURATION');for(let n=0;n<c.minutes;n++)advanceMinute(s);
-    }else if(c.type==='interact')startInteraction(s,c);
+      if(!Number.isInteger(c.minutes)||c.minutes<1||c.minutes>1440)fail('INVALID_DURATION');for(let n=0;n<c.minutes;n++){const p=s.providerCampaign,status=p?.status,incidents=new Set(p?.incidents.filter(i=>i.status==='active').map(i=>i.id)||[]),renewals=new Set(p?.customers.filter(x=>x.status==='renewal').map(x=>x.id)||[]);advanceMinute(s);if(p&&(p.status!==status||p.incidents.some(i=>i.status==='active'&&!incidents.has(i.id))||p.customers.some(x=>x.status==='renewal'&&!renewals.has(x.id))))break;}
+    }else if(c.type==='provider'){if(!s.providerCampaign)fail('PROVIDER_CAMPAIGN_REQUIRED');providerCampaign.command(s,c.command,providerHooks());}
+    else if(c.type==='interact')startInteraction(s,c);
+    else if(c.type==='probe'){if(c.channel!=='voice')fail('INVALID_PROBE_CHANNEL');startInteraction(s,c,{probe:true});}
     else if(c.type==='fault'){
       if(!s.resources[c.id]||![null,'OUTAGE','CERTIFICATE_EXPIRED'].includes(c.fault))fail('INVALID_FAULT');if(!business.authorise(s,c.id,'fault'))fail('DELEGATION_REQUIRED');s.resources[c.id].fault=c.fault;
     }else if(c.type==='connect'){
@@ -996,7 +1322,7 @@ const SOC = (function socKernel() {
         const resources=new Set([...(c.command.action==='interface'?[c.command.sourceResource,c.command.destinationResource]:[]),...[node?.desired,node?.effective].flatMap(n=>n?[n.sourceResource,n.destinationResource]:[])]);
         for(const id of resources)if(typeof id==='string'&&!business.authorise(s,id,'configure'))fail('DELEGATION_REQUIRED');
       }else{
-        const resourceId=['book','cancel','join'].includes(c.command?.action)||c.command?.kind==='meeting'?'room':'archive';
+        const resourceId=['book','cancel','join','schedule','cancel-session'].includes(c.command?.action)||c.command?.kind==='meeting'?'room':'archive';
         if(!business.authorise(s,resourceId,'configure'))fail('DELEGATION_REQUIRED');
       }
       information.command(s,c.command,informationHooks(s),meeting(s),event);
@@ -1054,10 +1380,12 @@ const SOC = (function socKernel() {
     else if(c.type==='transport'){if(!business.authorise(s,'access','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(s.transport)fail('TRANSPORT_ALREADY_STARTED');if(!s.business)s.business=business.create(s);s.transport=transport.create(s);}else transport.command(s,c.command,transportHooks(s));}
     else if(c.type==='boundaries'){if(!business.authorise(s,'archive','configure'))fail('DELEGATION_REQUIRED');if(c.command?.action==='start'){if(s.boundaries)fail('BOUNDARIES_ALREADY_STARTED');s.boundaries=boundaries.create(s);}else boundaries.command(s,c.command);}
     if(s.marketQualification)marketQualification.observe(s,marketHooks());
-    s.revision++;
-    s.commands.push({at:s.clock,revision:s.revision,command:clone(c),...(c.type==='transport'&&c.command?.action==='lease-revoke'?{scope:s.tenant||s.scenario,transportGeneration:s.transport.links[c.command.link].generation}:{})});if(s.commands.length>1000)s.commands.shift();
+    if(!inTick){s.revision++;
+    s.commands.push({at:s.clock,revision:s.revision,command:clone(c),...(c.type==='transport'&&c.command?.action==='lease-revoke'?{scope:s.tenant||s.scenario,transportGeneration:s.transport.links[c.command.link].generation}:{})});if(s.commands.length>1000)s.commands.shift();}
     if(c.requestId){s.receipts.push({id:c.requestId,command:JSON.stringify({...c,expectedRevision:undefined})});if(s.receipts.length>1000)s.receipts.shift();}
-    return validateState(s);
+    if(s.providerContinuity)providerContinuity.advance(s);
+    providerHistory.compact(s);
+    return owned?s:validateState(s);
   }
   function reference(s){
     const commands=[];
@@ -1069,9 +1397,9 @@ const SOC = (function socKernel() {
     return commands;
   }
   // Migrate only owned, structurally validated roots; validation itself stays read-only.
-  function migrateBusinessSaves(s){business.migrateLegacy(s);for(const row of s.portfolio?.customers||[])migrateBusinessSaves(row.root);for(const snap of Object.values(s.campaign?.snapshots||{}))migrateBusinessSaves(snap.root);return s;}
+  function migrateBusinessSaves(s){if(s.experience===undefined)s.experience={version:1,kind:s.mode==='sandbox'?'lab':'training',custom:s.mode==='sandbox'};business.migrateLegacy(s);if(s.portfolio)s.portfolio=portfolio.migrateKnown(s.portfolio);for(const row of s.portfolio?.customers||[])migrateBusinessSaves(row.root);for(const snap of Object.values(s.campaign?.snapshots||{}))migrateBusinessSaves(snap.root);return s;}
   function restore(text){if(typeof text!=='string'||text.length>8e6)fail('INVALID_SAVE_SIZE');const s=validateState(JSON.parse(text));return validateState(migrateBusinessSaves(s));}
-  const workerSource=()=>workforceQuality.source()+workforceOffers.source()+customerNeeds.source()+speechModels.source()+productEvidence.source()+managedOperations.source()+mediaNegotiation.source()+capabilityProgression.source()+siteOperations.source()+callingAchievements.source()+specialistLifecycle.source()+sharedServices.source()+marketQualification.source()+admissionSecurity.source()+serviceObservation.source()+portfolio.source()+issueExercises.source()+progression.source()+campaign.source()+transport.source()+boundaries.source()+estate.source()+workforce.source()+calling.source()+products.source()+channels.source()+outcomes.source()+contact.source()+information.source()+operations.source()+business.source()+`const SOC=(${socKernel.toString()})();onmessage=e=>{const {id,state,command}=e.data;try{postMessage({id,revision:state.revision,state:SOC.dispatch(state,command)});}catch(error){postMessage({id,revision:state.revision,error:error.message});}};`;
-  return {APP,PACK,SCHEMA,units,catalogue,scenarios,jurisdictions,create,resource,validateConfig,validateState,observe,calculate,dispatch,assess,reference,restore,meeting,workerSource,business,operations,information,contact,estate,workforce,workforceOffers,workforceQuality,calling,products,channels,outcomes,transport,boundaries,campaign,progression,issueExercises,portfolio,serviceObservation,admissionSecurity,sharedServices,marketQualification,specialistLifecycle,siteOperations,capabilityProgression,callingAchievements,productEvidence,managedOperations,mediaNegotiation,speechModels,customerNeeds};
+  const workerSource=()=>providerContinuity.source()+providerDemand.source()+providerHistory.source()+providerProducts.source()+providerRules.source()+providerCampaign.source()+workforceQuality.source()+workforceOffers.source()+customerNeeds.source()+speechModels.source()+productEvidence.source()+managedOperations.source()+mediaNegotiation.source()+capabilityProgression.source()+siteOperations.source()+callingAchievements.source()+specialistLifecycle.source()+sharedServices.source()+marketQualification.source()+admissionSecurity.source()+serviceObservation.source()+portfolio.source()+issueExercises.source()+progression.source()+campaign.source()+transport.source()+boundaries.source()+estate.source()+workforce.source()+calling.source()+products.source()+channels.source()+outcomes.source()+contact.source()+information.source()+operations.source()+business.source()+`const SOC=(${socKernel.toString()})();onmessage=e=>{const {id,state,command}=e.data;try{postMessage({id,revision:state.revision,state:SOC.dispatch(state,command)});}catch(error){postMessage({id,revision:state.revision,error:error.message});}};`;
+  return {APP,PACK,SCHEMA,provider,units,catalogue,scenarios,jurisdictions,create,resource,validateConfig,validateState,observe,calculate,dispatch,assess,reference,restore,meeting,workerSource,business,operations,information,contact,estate,workforce,workforceOffers,workforceQuality,calling,products,channels,outcomes,transport,boundaries,campaign,progression,issueExercises,portfolio,serviceObservation,admissionSecurity,sharedServices,marketQualification,specialistLifecycle,siteOperations,capabilityProgression,callingAchievements,productEvidence,managedOperations,mediaNegotiation,speechModels,customerNeeds};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC;

@@ -5,14 +5,15 @@ const start=()=>advance(op(E.create(),{action:'start'}));
 const cfg=(s,kind,config)=>advance(op(s,{action:'configure',kind,config}));
 const res=(s,id,config)=>advance(E.dispatch(s,{type:'configure',id,config}));
 const interact=(s,extra={})=>E.dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'case-one',...extra});
+const completedInteract=(s,extra={})=>{s=interact(s,extra);const i=s.interactions.at(-1);return i.phase==='connected'?advance(s,i.durationMinutes):s;};
 test('AC-SOC-023 four carrier models have distinct prerequisites and mobile number restrictions',()=>{
  let s=start();s=cfg(s,'carrier',{planLicensed:false});assert.equal(interact(s).interactions.at(-1).outcome,'CALLING_PLAN_ENTITLEMENT');
  s=cfg(s,'carrier',{mode:'operator'});assert.equal(interact(s).interactions.at(-1).outcome,'OPERATOR_ONBOARDING');
  s=cfg(s,'carrier',{operatorApproved:true,operatorContract:true,delegation:true});assert.equal(interact(s).interactions.at(-1).phase,'queued');
  s=cfg(s,'carrier',{mode:'mobile',simAssigned:true,mobileEligible:true});assert.equal(interact(s).interactions.at(-1).outcome,'MOBILE_SERVICE_NUMBER_UNSUPPORTED');
- s=res(s,'phone',{routes:[{prefix:'+61',target:'desk'}]});assert.equal(interact(s).interactions.at(-1).outcome,'CONNECTED');
+ s=res(s,'phone',{routes:[{prefix:'+61',target:'desk'}]});assert.equal(completedInteract(s).interactions.at(-1).outcome,'CONNECTED');
  s=cfg(s,'carrier',{mode:'gateway'});assert.equal(interact(s).interactions.at(-1).outcome,'GATEWAY_SBCCERTIFIED');
- s=cfg(s,'carrier',{sbcCertified:true,tlsTrusted:true,hostnameValid:true,peerAuthenticated:true});assert.equal(interact(s).interactions.at(-1).outcome,'CONNECTED');
+ s=cfg(s,'carrier',{sbcCertified:true,tlsTrusted:true,hostnameValid:true,peerAuthenticated:true});assert.equal(completedInteract(s).interactions.at(-1).outcome,'CONNECTED');
  s=cfg(s,'carrier',{codec:'g729'});assert.equal(interact(s).interactions.at(-1).outcome,'CODEC_NEGOTIATION');
 });
 test('AC-SOC-024 number reservations, port lead times, cutover and recovery retain supplier history',()=>{
@@ -25,10 +26,10 @@ test('AC-SOC-024 number reservations, port lead times, cutover and recovery reta
 });
 test('AC-SOC-025 dial normalisation, permissions and internal extension signalling are independent of PSTN',()=>{
  let s=res(start(),'phone',{routes:[{prefix:'+61',target:'desk'},{prefix:'+1',target:'desk'}]});
- assert.equal(interact(s,{to:'02 5550 0201'}).interactions.at(-1).outcome,'CONNECTED');
+ assert.equal(completedInteract(s,{to:'02 5550 0201'}).interactions.at(-1).outcome,'CONNECTED');
  assert.equal(interact(s,{to:'+12125550101'}).interactions.at(-1).outcome,'DIALLING_PERMISSION');
- s=op(s,{action:'policy',identity:'alex',allowInternational:true,allowedPrefixes:['+61'],callerId:'+61255500101'});assert.equal(interact(s,{to:'+12125550101'}).interactions.at(-1).outcome,'CONNECTED');
- s=E.dispatch(s,{type:'fault',id:'carrier',fault:'OUTAGE'});assert.equal(interact(s,{to:'201'}).interactions.at(-1).outcome,'CONNECTED');assert.equal(interact(s).interactions.at(-1).outcome,'SIGNALLING_FAILED');
+ s=op(s,{action:'policy',identity:'alex',allowInternational:true,allowedPrefixes:['+61'],callerId:'+61255500101'});assert.equal(completedInteract(s,{to:'+12125550101'}).interactions.at(-1).outcome,'CONNECTED');
+ s=E.dispatch(s,{type:'fault',id:'carrier',fault:'OUTAGE'});assert.equal(completedInteract(s,{to:'201'}).interactions.at(-1).outcome,'CONNECTED');assert.equal(interact(s).interactions.at(-1).outcome,'SIGNALLING_FAILED');
 });
 test('AC-SOC-026 contact integration models scope authentication, cloud and features separately',()=>{
  let s=cfg(start(),'integration',{model:'extend'});assert.equal(interact(s).interactions.at(-1).outcome,'CONTACT_APP_AUTH_REQUIRED');

@@ -15,6 +15,7 @@ function advance(s,minutes=1){return SOC.dispatch(s,{type:'advance',minutes});}
 function offer(s,id,family,features,dependencies){return products(s,{action:'offer',offer:{id,family,edition:'scenario-edition',unit:'seat',quantity:20,features,dependencies}});}
 function deploy(s,id,offerId,mode,version='scenario-1',region='AU',bindings=[]){return products(s,{action:'deploy',id,offer:offerId,productVersion:version,mode,region,bindings});}
 function call(s,caseId='product-call'){return SOC.dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId});}
+function completedCall(s,caseId='product-call'){s=call(s,caseId);const i=s.interactions.at(-1);return i.phase==='connected'?advance(s,i.durationMinutes):s;}
 
 test('AC-SOC-091 shared dispatch, optional save compatibility and bound product features gate calling, meeting and processing',()=>{
  let legacy=SOC.create();assert.equal(SOC.validateState(SOC.restore(JSON.stringify(legacy))).products,undefined);
@@ -22,7 +23,7 @@ test('AC-SOC-091 shared dispatch, optional save compatibility and bound product 
  s=offer(s,'phone-offer','microsoft:workplace-phone',['telephony'],{identity:'identity'});s=advance(s);
  s=deploy(s,'phone-deployment','phone-offer','multitenant','scenario-1','AU',[{feature:'telephony',resources:['phone']}]);s=advance(s);
  assert.equal(SOC.calculate(s).products.deployments[0].effective.features[0],'telephony');
- assert.equal(call(s).interactions.at(-1).outcome,'CONNECTED');
+ assert.equal(completedCall(s).interactions.at(-1).outcome,'CONNECTED');
  let blocked=SOC.dispatch(s,{type:'configure',id:'phone',config:{signalling:false}});blocked=advance(blocked);
  assert.equal(call(blocked,'catalogue-is-not-routing').interactions.at(-1).outcome,'SIGNALLING_FAILED');
 
@@ -36,9 +37,9 @@ test('AC-SOC-091 shared dispatch, optional save compatibility and bound product 
  let processing=start('government');processing=SOC.dispatch(processing,{type:'configure',id:'phone',config:{routes:[{prefix:'+61',target:'desk'}]}});processing=SOC.dispatch(processing,{type:'configure',id:'speech',config:{region:'AU'}});processing=advance(processing);
  processing=offer(processing,'assist-offer','cisco:contact-center',['ai-assistance'],{identity:'identity',processing:'speech'});processing=advance(processing);
  processing=deploy(processing,'assist-deployment','assist-offer','multitenant','scenario-1','AU',[{feature:'ai-assistance',resources:['speech']}]);processing=advance(processing);
- const processed=call(processing,'product-processing');assert.equal(processed.interactions.at(-1).outcome,'CONNECTED');assert.ok(processed.interactions.at(-1).records.some(id=>processed.records.find(r=>r.id===id)?.kind==='transcription'));
+ const processed=completedCall(processing,'product-processing');assert.equal(processed.interactions.at(-1).outcome,'CONNECTED');assert.ok(processed.interactions.at(-1).records.some(id=>processed.records.find(r=>r.id===id)?.kind==='transcription'));
  processing=products(processing,{action:'lifecycle',offer:'assist-offer',sale:'ended',support:'ended'});processing=advance(processing);
- const stopped=call(processing,'product-processing-blocked').interactions.at(-1);
+ let stoppedState=call(processing,'product-processing-blocked');assert.equal(stoppedState.interactions.at(-1).phase,'connected');stoppedState=advance(stoppedState,stoppedState.interactions.at(-1).durationMinutes);const stopped=stoppedState.interactions.at(-1);
  assert.ok(stopped.obligations.includes('PRODUCT_PROCESSOR_UNAVAILABLE'));
  assert.ok(stopped.trace.some(x=>x.code==='PRODUCT_FEATURE_BLOCKED'));
 
@@ -59,9 +60,9 @@ test('AC-SOC-092 bindings reject wrong core kind and out-of-scope cloud modes; s
  s=products(s,{action:'integration',id:'suite-to-phone',source:'suite-deployment',target:'phone-deployment',features:[{sourceFeature:'multitenant-calling',targetFeature:'telephony'}]});
  s=products(s,{action:'test-integration',id:'suite-to-phone'});
  assert.equal(SOC.products.compatibilityStatus(s,'suite-to-phone').status,'scenario-verified');
- assert.equal(call(s,'valid-compatible-product').interactions.at(-1).outcome,'CONNECTED');
+ assert.equal(completedCall(s,'valid-compatible-product').interactions.at(-1).outcome,'CONNECTED');
  s=products(s,{action:'configure',id:'phone-deployment',config:{productVersion:'scenario-3'}});
  assert.equal(SOC.products.compatibilityStatus(s,'suite-to-phone').status,'stale');
- const staleCall=call(s,'stale-product-proof').interactions.at(-1);assert.equal(staleCall.outcome,'PRODUCT_DEPLOYMENT_UNAVAILABLE');
- assert.ok(staleCall.trace.some(x=>x.code==='PRODUCT_FEATURE_BLOCKED'&&x.reason==='COMPATIBILITY_SCOPE_STALE'));
+ const staleCall=call(s,'stale-product-proof').interactions.at(-1);assert.equal(staleCall.outcome,'PRODUCT_FEATURE_UNAVAILABLE');
+ assert.ok(staleCall.trace.some(x=>x.code==='PRODUCT_FEATURE_UNAVAILABLE'),'the stale directional proof blocks the route before connection');
 });

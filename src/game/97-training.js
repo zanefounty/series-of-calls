@@ -68,7 +68,7 @@ function socRender(){
   const s=socViewState();if(!s)return;const results=SOC.calculate(s),r=s.resources[SCT.selected]||s.resources.phone,p=SOC.catalogue[r.kind];
   const options=(obj,chosen)=>Object.entries(obj).map(([id,v])=>`<option value="${id}"${id===chosen?' selected':''}>${esc(v.name||v)}</option>`).join('');
   const i=s.interactions.at(-1);
-  el.innerHTML=`<header class="soc-header"><div><span class="soc-kicker">${socT('synthetic')}</span><h1>${socT('title')}</h1><p>${socT('milestone')}</p></div><button data-soc="close">${socT('sp')}</button></header>${socArtwork(s.scenario,true)}
+  el.innerHTML=`<header class="soc-header"><div><span class="soc-kicker">${socT('synthetic')}</span><h1>${socT('title')}</h1><p>${socT('milestone')}</p></div><button data-soc="provider-home">Play / Continue</button><button data-soc="close">${socT('sp')}</button></header>${socArtwork(s.scenario,true)}
   <div class="soc-toolbar"><label>${socT('exercise')}<select id="soc-scenario">${options(SOC.scenarios,s.scenario)}</select></label><label>${socT('jurisdiction')}<select id="soc-jurisdiction">${SOC.jurisdictions.map(j=>`<option${j===s.jurisdiction?' selected':''}>${j}</option>`).join('')}</select></label><label>${socT('mode')}<select id="soc-mode">${['guided','assessed','sandbox'].map(m=>`<option value="${m}"${m===s.mode?' selected':''}>${socT(m)}</option>`).join('')}</select></label><button data-soc="new">${socT('new')}</button><button data-soc="export">${socT('export')}</button><label class="soc-file">${socT('import')}<input type="file" id="soc-import" accept="application/json"></label></div>
   <div class="soc-status" role="status">${SCT.error?`<strong>${esc(SCT.error)}</strong>`:esc(socT('clock',{n:s.clock,rev:s.revision}))} · ${SCT.locked?socT('editable'):socT('read_only')} · ${socT('profit',{n:(results.profit/100).toFixed(2)})}</div>
   ${typeof socPortfolioPanel==='function'?socPortfolioPanel():''}<div class="soc-layout"><nav class="soc-nav" aria-label="${socT('consoles')}">${Object.values(s.resources).map(x=>`<button data-soc="select" data-id="${x.id}" class="${x.id===r.id?'selected':''}" aria-current="${x.id===r.id?'page':'false'}"><span>${esc(SOC.catalogue[x.kind].name)}</span><small>${esc(x.id)} · ${socT(results.services[x.id].ready?'ready':'unavailable')}</small></button>`).join('')}</nav>
@@ -109,7 +109,7 @@ function socDraw(results){
   canvas.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const at=Math.max(0,ids.indexOf(SCT.selected)),n=e.key==='Home'?0:e.key==='End'?ids.length-1:(at+(e.key==='ArrowRight'?1:ids.length-1))%ids.length;select(ids[n]);};
 }
 function socClick(action,id){
-  if(action==='close')return socClose();if(action==='select'){SCT.selected=id;return socRender();}
+  if(action==='provider-home'){socClose();return providerHome();}if(action==='close')return socClose();if(action==='select'){SCT.selected=id;return socRender();}
   if(action==='new'){
     if(!SCT.locked)throw new Error(socT('read_only'));
     const scenario=document.getElementById('soc-scenario').value,jurisdiction=document.getElementById('soc-jurisdiction').value,mode=document.getElementById('soc-mode').value;

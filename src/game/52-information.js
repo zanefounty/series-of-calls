@@ -30,17 +30,17 @@ function socInformationKernel(){
    if(c.quality>100||c.minimumQuality>100||c.concurrency<1||c.concurrency>20||c.retentionDays<1||!id(c.processor)||!id(c.archive)||!['en','ja','fr','de'].includes(c.targetLanguage)||c.languages.some(x=>!['en','ja','fr','de'].includes(x)))fail('INVALID_PIPELINE_POLICY');
   }
   if(kind==='boundary'&&[...c.processRegions,...c.storageRegions].some(r=>!regions.includes(r)))fail('INVALID_INFORMATION_REGION');
-  if(kind==='meeting'&&(!['grove','disco'].includes(c.platform)||!['grove','disco'].includes(c.nativePlatform)||!['local','cloud'].includes(c.mediaPlacement)||c.capacity<1||c.eventCapacity<1))fail('INVALID_MEETING_PROFILE');
+  if(kind==='meeting'&&(!['grove','disco'].includes(c.platform)||!['grove','disco'].includes(c.nativePlatform)||!['local','cloud'].includes(c.mediaPlacement)||c.capacity<0||c.eventCapacity<0))fail('INVALID_MEETING_PROFILE');
  }
  function create(s){
-  const result={pack:PACK,jobs:[],bookings:[],audit:[],interfaces:[],transfers:[],originReceipts:[],nextTransferId:1,nextId:1,jobPrunedThrough:0,nextAuditId:1,auditPrunedThrough:0};
+  const result={pack:PACK,jobs:[],bookings:[],meetingSessions:[],nextMeetingSessionId:1,audit:[],interfaces:[],transfers:[],originReceipts:[],nextTransferId:1,nextId:1,jobPrunedThrough:0,nextAuditId:1,auditPrunedThrough:0};
   for(const [kind,defaults] of Object.entries(schemas)){const c=copy(defaults);if(kind==='boundary'){c.processRegions=[s.jurisdiction];c.storageRegions=[s.jurisdiction];}result[kind]={desired:c,effective:null,generation:1,provisioning:{status:'pending',due:s.clock+1,generation:1}};}
   return result;
  }
  function audit(s,code,detail={}){const info=s.information;info.nextAuditId=info.nextAuditId||info.audit.length+1;const entry={at:s.clock,code,synthetic:true,...detail,auditId:info.nextAuditId++};info.audit.push(entry);if(info.audit.length>500){const removed=info.audit.shift();if(removed.auditId)info.auditPrunedThrough=Math.max(info.auditPrunedThrough||0,removed.auditId);}return entry;}
  function transferReceipt(o,receipt){if(o.transfers.length>=200){const removed=o.transfers.shift();o.transferPrunedThrough=Math.max(o.transferPrunedThrough||0,Number(removed.id.slice('transfer-'.length)));}o.transfers.push(receipt);}
  function fingerprint(s){if(!s.information)return null;const o=s.information,base=Object.keys(schemas).map(k=>[k,o[k].generation,o[k].effective]);if(!o.interfaces?.length)return base;return [...base,['interfaces',o.interfaces.map(x=>[x.id,x.generation,x.desired,x.effective])]];}
- function inspect(s){if(!s.information)return null;return {pack:PACK,jobs:copy(s.information.jobs),bookings:copy(s.information.bookings),interfaces:copy(s.information.interfaces||[]),transfers:copy(s.information.transfers||[]),audit:copy(s.information.audit),records:s.records.map(r=>({id:r.id,kind:r.kind,parents:r.parents,region:r.region,processRegion:r.processRegion,expiresAt:r.expiresAt,held:!!r.held,deleted:!!r.deleted,quality:r.quality,...(r.origin?{origin:copy(r.origin),classification:r.classification,storage:copy(r.storage)}:{})}))};}
+ function inspect(s){if(!s.information)return null;return {pack:PACK,jobs:copy(s.information.jobs),bookings:copy(s.information.bookings),meetingSessions:copy(s.information.meetingSessions||[]),interfaces:copy(s.information.interfaces||[]),transfers:copy(s.information.transfers||[]),audit:copy(s.information.audit),records:s.records.map(r=>({id:r.id,kind:r.kind,parents:r.parents,region:r.region,processRegion:r.processRegion,expiresAt:r.expiresAt,held:!!r.held,deleted:!!r.deleted,quality:r.quality,...(r.origin?{origin:copy(r.origin),classification:r.classification,storage:copy(r.storage)}:{})}))};}
  function boundarySnapshot(s,resourceId,hooks){
   const resource=s.resources?.[resourceId],contractId=s.boundaries?.bindings?.[resourceId],contract=s.boundaries?.contracts?.find(x=>x.id===contractId),effective=contract?.effective;
   const flow=effective?.flows?.find(x=>x.resource===resourceId),result=typeof hooks?.boundaryCheck==='function'?hooks.boundaryCheck(s,resourceId):null;
@@ -148,8 +148,31 @@ function socInformationKernel(){
  }
  function advance(s,services,emit,meter,speechGate){
   const o=s.information;if(!o)return;
+  o.meetingSessions=o.meetingSessions||[];o.nextMeetingSessionId=o.nextMeetingSessionId||1;
   for(const kind of Object.keys(schemas)){const n=o[kind];if(n.provisioning.status==='pending'&&n.provisioning.due<=s.clock){n.effective=copy(n.desired);n.provisioning.status='ready';}}
   for(const node of o.interfaces||[])if(node.provisioning.status==='pending'&&node.provisioning.due<=s.clock)provisionInterface(s,node,services);
+  for(const session of o.meetingSessions){
+   if(meetingSessionTerminal(session))continue;
+   const booking=o.bookings.find(b=>b.id===session.bookingId);
+   if(!booking||booking.cancelled){endMeetingSession(s,session,'cancelled',['BOOKING_CANCELLED'],services);continue;}
+   const snapshot=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):{at:s.clock,success:true,reasons:[]};
+   if(session.status==='scheduled'&&s.clock>=session.scheduledAt)startMeetingSession(s,session,booking,services,snapshot);
+   if(session.status!=='active')continue;
+   const reasons=[...meetingReasons(s,booking,snapshot,services,false,s.clock>=session.endsAt),...capacityBlockers(s,booking,snapshot)];
+   if(reasons.length){endMeetingSession(s,session,'failed',reasons,services);continue;}
+   if(s.clock>=session.endsAt){
+    if(session.features.recording){
+     if(typeof services?.completeMeetingCapture!=='function'){
+      endMeetingSession(s,session,'failed',['MEETING_CAPTURE_UNAVAILABLE'],services);continue;
+     }
+     const capture=services.completeMeetingCapture(s,copy(session));
+     const record=capture?.recordId&&s.records.find(r=>r.id===capture.recordId&&r.kind==='recording'&&!r.deleted&&r.interaction===booking.id);
+     if(capture?.accepted!==true||!record){endMeetingSession(s,session,'failed',capture?.reasons?.length?capture.reasons:['MEETING_CAPTURE_FAILED'],services);continue;}
+     session.captureRecordId=record.id;
+    }
+    endMeetingSession(s,session,'completed',[],services);
+   }
+  }
   for(const r of s.records)if(r.expiresAt!==undefined&&!r.held&&!r.deleted&&r.expiresAt<=s.clock){r.deleted=true;r.deletedAt=s.clock;audit(s,'RETENTION_EXPIRED',{record:r.id});}
   const budgets={},active={};
   for(const j of o.jobs){
@@ -172,29 +195,94 @@ function socInformationKernel(){
    if(j.stage===p.steps.length)j.status='complete';else{j.remaining=steps[p.steps[j.stage]].work;j.status='queued';}
   }
  }
- function join(s,booking,baseMeeting,services,emit){
+ function meetingReasons(s,booking,baseMeeting,services,allowFuture=false,allowEnd=false){
   const o=s.information,p=o.meeting.effective,c=s.resources.room.effective,errors=[...baseMeeting.reasons];
   if(!p||!c)errors.push('MEETING_NOT_PROVISIONED');
   else{
    if(!p.calendarAuthorised||!p.bookingEnabled)errors.push('CALENDAR_AUTHORISATION');
-   if(s.clock<booking.start||s.clock>=booking.end)errors.push('BOOKING_WINDOW');
+   if((!allowFuture&&s.clock<booking.start)||(!allowEnd&&s.clock>=booking.end))errors.push('BOOKING_WINDOW');
    if(booking.attendees>(booking.event?p.eventCapacity:p.capacity))errors.push('MEETING_CAPACITY');
    if(booking.event&&!p.eventLicensed)errors.push('EVENT_ENTITLEMENT');
    if(p.platform!==p.nativePlatform&&(c.mode==='native'||c.mode==='guest'&&!p.guestJoin||c.mode==='bridge'&&!p.bridgeLicensed))errors.push('JOIN_METHOD_UNSUPPORTED');
    if(!s.connected&&p.mediaPlacement==='cloud')errors.push('MEETING_CLOUD_MEDIA');
    const boundary=o.boundary.effective,speech=s.resources.speech.effective,archive=s.resources.archive.effective,recorder=s.resources.recorder.effective;
    if(p.captions&&(!services.speech?.ready||speech.capacity<1||!o.pipeline.effective?.languages.includes(booking.language)||!boundary?.processRegions.includes(speech.region)))errors.push('CAPTIONS_DEPENDENCY');
+   if(baseMeeting?.media&&(!baseMeeting.media.in||!baseMeeting.media.out))errors.push('MEETING_MEDIA_UNAVAILABLE');
    if(p.recording&&(!services.recorder?.ready||!recorder.consent||!recorder.identityMapping||!services.archive?.ready||!boundary?.processRegions.includes(recorder.region)||!boundary?.storageRegions.includes(archive.region)||archive.capacity<Math.ceil((s.records.filter(r=>!r.deleted).length+1)/100)||s.records.length>=500))errors.push('MEETING_RECORDING_DEPENDENCY');
   }
-  const result={...baseMeeting,at:s.clock,success:!errors.length,reasons:[...new Set(errors)],booking:booking.id,mediaPlacement:p?.mediaPlacement,features:{captions:!!p?.captions&&!errors.length,recording:!!p?.recording&&!errors.length}};
-  if(result.success&&p.recording&&!booking.record){
-   const recorder=s.resources.recorder.effective,archive=s.resources.archive.effective;
-   const r={id:'record-'+s.nextId++,kind:'recording',interaction:booking.id,parents:[],captureRegion:recorder.region,region:archive.region,retentionDays:archive.retentionDays,access:[...archive.access],createdAt:s.clock,language:booking.language};
-   s.records.push(r);booking.record=r.id;enqueue(s,r,null,services);audit(s,'MEETING_RECORDED',{booking:booking.id,record:r.id});
-  }
-  const receipt=audit(s,result.success?'MEETING_JOINED':'MEETING_JOIN_FAILED',{booking:booking.id,reasons:result.reasons,features:copy(result.features),record:booking.record||null});result.auditId=receipt.auditId;booking.lastJoin=copy(result);return result;
+  return [...new Set(errors)];
  }
- const fields={start:[],configure:['kind','config'],interface:['id','policyId','sourceResource','destinationResource'], 'revoke-interface':['interfaceId'],transfer:['interfaceId','recordId','role'],process:['record'],read:['record','role','region'],hold:['record','role','held'],remove:['record','role'],book:['start','end','attendees','event','language'],cancel:['booking'],join:['booking']};
+ function join(s,booking,baseMeeting,services,emit){
+  const o=s.information,p=o.meeting.effective,errors=meetingReasons(s,booking,baseMeeting,services);
+  const result={...baseMeeting,at:s.clock,success:!errors.length,reasons:[...new Set(errors)],booking:booking.id,mediaPlacement:p?.mediaPlacement,features:{captions:!!p?.captions&&!errors.length,recording:!!p?.recording&&!errors.length}};
+  // `join` is retained as a diagnostic/training probe. It checks today's
+  // effective dependencies, but it does not occupy capacity or capture media.
+  if(result.success&&p.recording&&!booking.probeEvidence){
+   const r={id:'record-'+s.nextId++,kind:'meeting-probe',interaction:booking.id,parents:[],region:s.jurisdiction,retentionDays:1,access:[],createdAt:s.clock,language:booking.language,synthetic:true,nonCommercial:true};
+   s.records.push(r);booking.probeEvidence=r.id;
+  }
+  result.probe=true;result.nonCommercial=true;result.recordingObserved=false;
+  const receipt=audit(s,result.success?'MEETING_JOINED':'MEETING_JOIN_FAILED',{booking:booking.id,reasons:result.reasons,features:copy(result.features),record:booking.probeEvidence||null,probe:true,nonCommercial:true});result.auditId=receipt.auditId;booking.lastJoin=copy(result);return result;
+ }
+ function meetingSession(s,idValue){return s.information.meetingSessions?.find(x=>x.id===idValue);}
+ function meetingSessionTerminal(session){return ['completed','failed','cancelled'].includes(session.status);}
+ function releaseMeeting(s,session,services){
+  if(!session.reservationHeld||session.reservationReleased)return;
+  if(typeof services?.releaseMeeting==='function')services.releaseMeeting(s,session.id);
+  session.reservationHeld=false;session.reservationReleased=true;
+ }
+ function endMeetingSession(s,session,status,reasons,services){
+  if(meetingSessionTerminal(session))return;
+  session.status=status;session.endedAt=s.clock;session.reasons=[...new Set(reasons||[])];
+  releaseMeeting(s,session,services);
+  audit(s,`MEETING_SESSION_${status.toUpperCase()}`,{session:session.id,booking:session.bookingId,reasons:session.reasons,captureRecordId:session.captureRecordId});
+ }
+ function capacityBlockers(s,booking,snapshot){
+  const profile=s.information.meeting.effective,room=s.resources.room?.effective,reasons=[];
+  if(!room||!s.resources.room?.effective?.enabled)reasons.push('MEETING_ROOM_UNAVAILABLE');
+  const participantLimits=[booking.event?profile?.eventCapacity:profile?.capacity,snapshot?.participantCapacity].filter(x=>x!==undefined);
+  if(participantLimits.some(x=>!integer(x,0)))reasons.push('MEETING_CAPACITY_ZERO');
+  else if(participantLimits.length&&Math.min(...participantLimits)===0)reasons.push('MEETING_CAPACITY_ZERO');
+  else if(booking.attendees>Math.min(...participantLimits))reasons.push('MEETING_CAPACITY');
+  if(snapshot?.roomSlots!==undefined&&!integer(snapshot.roomSlots,1))reasons.push('MEETING_ROOM_CAPACITY_ZERO');
+  if(snapshot?.platformSessions!==undefined&&!integer(snapshot.platformSessions,1))reasons.push('MEETING_PLATFORM_CAPACITY_ZERO');
+  for(const other of s.information.meetingSessions||[]){
+   if(other.status==='scheduled'||other.status==='active'){
+    const prior=s.information.bookings.find(x=>x.id===other.bookingId);
+    if(prior&&prior.id!==booking.id&&prior.start<booking.end&&prior.end>booking.start&&other.roomId==='room')reasons.push('MEETING_ROOM_OCCUPIED');
+   }
+  }
+  const concurrent=(s.information.meetingSessions||[]).filter(x=>x.id!==booking.sessionId&&(x.status==='scheduled'||x.status==='active')&&s.information.bookings.some(b=>b.id===x.bookingId&&b.start<booking.end&&b.end>booking.start)).length;
+  if(snapshot?.roomSlots!==undefined&&concurrent>=snapshot.roomSlots)reasons.push('MEETING_ROOM_OCCUPIED');
+  if(snapshot?.platformSessions!==undefined&&concurrent>=snapshot.platformSessions)reasons.push('MEETING_PLATFORM_OCCUPIED');
+  return [...new Set(reasons)];
+ }
+ function scheduleMeeting(s,booking,services,baseMeeting){
+  const o=s.information;o.meetingSessions=o.meetingSessions||[];o.nextMeetingSessionId=o.nextMeetingSessionId||1;
+  if(booking.sessionId){const prior=meetingSession(s,booking.sessionId);if(prior&&!meetingSessionTerminal(prior))fail('MEETING_SESSION_ALREADY_ACTIVE');}
+  if(o.meetingSessions.length>=200)fail('MEETING_SESSION_CAPACITY');
+  const session={id:`meeting-session-${o.nextMeetingSessionId++}`,bookingId:booking.id,status:'scheduled',scheduledAt:booking.start,startedAt:null,endsAt:booking.end,endedAt:null,attendees:booking.attendees,roomId:'room',platform:o.meeting.effective?.platform||null,mediaPlacement:o.meeting.effective?.mediaPlacement||null,features:{captions:!!o.meeting.effective?.captions,recording:!!o.meeting.effective?.recording},reasons:[],reservationHeld:false,reservationReleased:false,captureRecordId:null};
+  const snapshot=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):baseMeeting;
+  const blockers=[...meetingReasons(s,booking,snapshot||baseMeeting,services,true),...capacityBlockers(s,booking,snapshot)];
+  if(blockers.length){session.status='failed';session.endedAt=s.clock;session.reasons=[...new Set(blockers)];session.reservationReleased=true;audit(s,'MEETING_SESSION_FAILED',{session:session.id,booking:booking.id,reasons:session.reasons});}
+  else if(session.features.recording){
+   if(typeof services?.reserveMeeting!=='function'||typeof services?.releaseMeeting!=='function')blockers.push('MEETING_CAPTURE_RESERVATION_UNAVAILABLE');
+   else {const reserved=services.reserveMeeting(s,{sessionId:session.id,bookingId:booking.id,attendees:booking.attendees,recording:true});if(reserved?.accepted!==true)blockers.push(...(Array.isArray(reserved?.reasons)&&reserved.reasons.length?reserved.reasons:['MEETING_CAPTURE_CAPACITY']));else session.reservationHeld=true;}
+   if(blockers.length){session.status='failed';session.endedAt=s.clock;session.reasons=[...new Set(blockers)];releaseMeeting(s,session,services);audit(s,'MEETING_SESSION_FAILED',{session:session.id,booking:booking.id,reasons:session.reasons});}
+  }
+  o.meetingSessions.push(session);booking.sessionId=session.id;
+  if(session.status==='scheduled'&&s.clock>=booking.start)startMeetingSession(s,session,booking,services,snapshot||baseMeeting);
+  return copy(session);
+ }
+ function startMeetingSession(s,session,booking,services,snapshot){
+  if(session.status!=='scheduled')return;
+  const current=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):snapshot;
+  const reasons=[...meetingReasons(s,booking,current,services),...capacityBlockers(s,booking,current)];
+  if(reasons.length){endMeetingSession(s,session,'failed',reasons,services);return;}
+  session.status='active';session.startedAt=s.clock;session.platform=s.information.meeting.effective.platform;session.mediaPlacement=s.information.meeting.effective.mediaPlacement;
+  audit(s,'MEETING_SESSION_STARTED',{session:session.id,booking:booking.id,attendees:session.attendees,platform:session.platform,mediaPlacement:session.mediaPlacement});
+ }
+ const fields={start:[],configure:['kind','config'],interface:['id','policyId','sourceResource','destinationResource'], 'revoke-interface':['interfaceId'],transfer:['interfaceId','recordId','role'],process:['record'],read:['record','role','region'],hold:['record','role','held'],remove:['record','role'],book:['start','end','attendees','event','language','caseId'],cancel:['booking'],join:['booking'],schedule:['booking'], 'cancel-session':['sessionId']};
  function command(s,c,services,baseMeeting,emit){
   if(!c||!own(fields,c.action)||Object.keys(c).some(k=>!['action',...fields[c.action]].includes(k)))fail('INVALID_INFORMATION_COMMAND');
   if(c.action==='start'){if(s.information)fail('INFORMATION_ALREADY_STARTED');s.information=create(s);return;}
@@ -233,13 +321,18 @@ function socInformationKernel(){
     for(const item of affected){item.deleted=true;item.deletedAt=s.clock;audit(s,'RECORD_REMOVED',{record:item.id,role:c.role});}
    }
   }else if(c.action==='book'){
-   if(!integer(c.start,s.clock)||!integer(c.end,c.start+1)||!integer(c.attendees,1,10000)||typeof c.event!=='boolean'||!['en','ja','fr','de'].includes(c.language))fail('INVALID_BOOKING');
+   if(c.caseId!==undefined&&!id(c.caseId)||!integer(c.start,s.clock)||!integer(c.end,c.start+1)||!integer(c.attendees,1,10000)||typeof c.event!=='boolean'||!['en','ja','fr','de'].includes(c.language))fail('INVALID_BOOKING');
    if(!o.meeting.effective?.calendarAuthorised||!o.meeting.effective.bookingEnabled||!s.resources.room.effective?.calendar)fail('CALENDAR_AUTHORISATION');
    if(o.bookings.some(b=>!b.cancelled&&b.start<c.end&&b.end>c.start))fail('ROOM_BOOKING_CONFLICT');
-   if(o.bookings.length>=200)fail('BOOKING_CAPACITY');o.bookings.push({id:'booking-'+o.nextId++,start:c.start,end:c.end,attendees:c.attendees,event:c.event,language:c.language,cancelled:false,lastJoin:null});
+   if(o.bookings.length>=200)fail('BOOKING_CAPACITY');o.bookings.push({id:'booking-'+o.nextId++,start:c.start,end:c.end,attendees:c.attendees,event:c.event,language:c.language,...(c.caseId?{caseId:c.caseId}:{}),cancelled:false,lastJoin:null});
+  }else if(c.action==='cancel-session'){
+   if(!id(c.sessionId))fail('INVALID_MEETING_SESSION_ID');const session=meetingSession(s,c.sessionId);if(!session||meetingSessionTerminal(session))fail('MEETING_SESSION_UNAVAILABLE');endMeetingSession(s,session,'cancelled',['PLAYER_CANCELLED'],services);
   }else{
    const b=o.bookings.find(b=>b.id===c.booking);if(!b||b.cancelled)fail('BOOKING_UNAVAILABLE');
-   if(c.action==='cancel')b.cancelled=true;else if(c.action==='join')s.lastMeeting=join(s,b,baseMeeting,services,emit);
+   if(c.action==='cancel'){
+    b.cancelled=true;const session=meetingSession(s,b.sessionId);if(session&&!meetingSessionTerminal(session))endMeetingSession(s,session,'cancelled',['BOOKING_CANCELLED'],services);
+   }else if(c.action==='join')s.lastMeeting=join(s,b,baseMeeting,services,emit);
+   else if(c.action==='schedule')return scheduleMeeting(s,b,services,baseMeeting);
   }
  }
  function validate(s){
@@ -280,11 +373,22 @@ function socInformationKernel(){
   }
   for(const j of o.jobs){config('pipeline',j.plan);if(!id(j.id)||!recordIds.has(j.source)||!recordIds.has(j.parent)||!integer(j.stage,0,j.plan.steps.length)||!integer(j.remaining,0,2)||!['queued','processing','blocked','complete','failed'].includes(j.status)||j.speechModel!==undefined&&(!j.speechModel||Object.keys(j.speechModel).sort().join(',')!=='deploymentId,family,generation,integrationResourceId,mode,modelResourceId,offer,productVersion,region'||!id(j.speechModel.deploymentId)||!id(j.speechModel.modelResourceId)||!id(j.speechModel.integrationResourceId)||j.speechModel.family!=='cisco:local-speech'||!integer(j.speechModel.generation,1)||j.speechModel.mode!=='customer-operated-local'||!id(j.speechModel.offer)||typeof j.speechModel.productVersion!=='string'||!j.speechModel.productVersion||!regions.includes(j.speechModel.region)))fail('INVALID_PROCESSING_JOB');}
   for(const b of o.bookings){
-   if(!id(b.id)||!integer(b.start)||!integer(b.end,b.start+1)||!integer(b.attendees,1,10000)||typeof b.event!=='boolean'||typeof b.cancelled!=='boolean')fail('INVALID_SAVED_BOOKING');
+   if(b.caseId!==undefined&&!id(b.caseId)||!id(b.id)||!integer(b.start)||!integer(b.end,b.start+1)||!integer(b.attendees,1,10000)||typeof b.event!=='boolean'||typeof b.cancelled!=='boolean'||b.sessionId!==undefined&&!id(b.sessionId)||b.probeEvidence!==undefined&&!id(b.probeEvidence))fail('INVALID_SAVED_BOOKING');
    const j=b.lastJoin;if(j&&(j.at!==undefined||j.auditId!==undefined)){
     if(!integer(j.at,0,s.clock)||!integer(j.auditId,1,(o.nextAuditId||1)-1)||typeof j.success!=='boolean'||!j.features||typeof j.features.captions!=='boolean'||typeof j.features.recording!=='boolean')fail('INVALID_MEETING_RECEIPT');
     const receipt=o.audit.find(a=>a.auditId===j.auditId);
     if(receipt?(receipt.at!==j.at||receipt.booking!==b.id||receipt.code!==(j.success?'MEETING_JOINED':'MEETING_JOIN_FAILED')||JSON.stringify(receipt.features)!==JSON.stringify(j.features)):j.auditId>(o.auditPrunedThrough||0))fail('INVALID_MEETING_RECEIPT');
+   }
+  }
+  if(o.meetingSessions!==undefined){
+   if(!Array.isArray(o.meetingSessions)||o.meetingSessions.length>200||!integer(o.nextMeetingSessionId,1))fail('INVALID_MEETING_SESSION_HISTORY');
+   const sessionIds=new Set();let sequence=0;
+   for(const session of o.meetingSessions){
+    const keys='attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status';
+    if(!session||Object.keys(session).sort().join(',')!==keys||!/^meeting-session-[1-9]\d*$/.test(session.id)||sessionIds.has(session.id)||Number(session.id.slice('meeting-session-'.length))<=sequence||Number(session.id.slice('meeting-session-'.length))>=o.nextMeetingSessionId||!id(session.bookingId)||!integer(session.attendees,1,10000)||!integer(session.scheduledAt)||!integer(session.endsAt,session.scheduledAt+1)||!['scheduled','active','completed','failed','cancelled'].includes(session.status)||session.startedAt!==null&&!integer(session.startedAt,session.scheduledAt,session.endsAt-1)||session.endedAt!==null&&!integer(session.endedAt,session.scheduledAt)||session.roomId!=='room'||session.platform!==null&&!['grove','disco'].includes(session.platform)||session.mediaPlacement!==null&&!['local','cloud'].includes(session.mediaPlacement)||!session.features||Object.keys(session.features).sort().join(',')!=='captions,recording'||typeof session.features.captions!=='boolean'||typeof session.features.recording!=='boolean'||!Array.isArray(session.reasons)||session.reasons.some(x=>typeof x!=='string')||typeof session.reservationHeld!=='boolean'||typeof session.reservationReleased!=='boolean'||session.captureRecordId!==null&&!id(session.captureRecordId))fail('INVALID_MEETING_SESSION');
+    sessionIds.add(session.id);sequence=Number(session.id.slice('meeting-session-'.length));
+    const booking=o.bookings.find(b=>b.id===session.bookingId);if(!booking||booking.sessionId!==session.id||session.scheduledAt!==booking.start||session.endsAt!==booking.end||session.attendees!==booking.attendees)fail('INVALID_MEETING_SESSION_BOOKING');
+    if(session.status==='scheduled'&&(session.startedAt!==null||session.endedAt!==null)||session.status==='active'&&(session.startedAt===null||session.endedAt!==null)||meetingSessionTerminal(session)&&(session.endedAt===null||session.reservationHeld)||session.reservationHeld&&session.reservationReleased||session.captureRecordId!==null&&(!session.features.recording||!s.records.some(r=>r.id===session.captureRecordId&&r.kind==='recording'&&r.interaction===session.bookingId)))fail('INVALID_MEETING_SESSION_STATE');
    }
   }
   let auditId=0;for(const a of o.audit){if(!integer(a.at)||typeof a.code!=='string'||a.synthetic!==true||a.auditId!==undefined&&(!integer(a.auditId,auditId+1,(o.nextAuditId||1)-1)||a.auditId<=(o.auditPrunedThrough||0)))fail('INVALID_INFORMATION_AUDIT');if(a.auditId!==undefined)auditId=a.auditId;}

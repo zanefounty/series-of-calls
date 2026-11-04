@@ -54,6 +54,15 @@ async function waitIdle(page){await page.waitForFunction(pageIsIdle,null,{timeou
 async function waitRevision(page,oldRevision){await page.waitForFunction(pageRevisionPast,oldRevision,{timeout:15000});await waitIdle(page);}
 async function clickCommand(page,selector){const rev=await page.evaluate(()=>SCT.state.revision);await page.locator(selector).click({timeout:10000});await waitRevision(page,rev);}
 async function fillVisibleField(form,field,value){const control=form.locator(`[name="${field}"]`);await control.waitFor({state:'visible',timeout:10000});const kind=await control.evaluate(el=>({tag:el.tagName.toLowerCase(),type:el.type}));if(kind.type==='checkbox')await control.setChecked(Boolean(value));else if(kind.tag==='select')await control.selectOption(String(value));else await control.fill(Array.isArray(value)?JSON.stringify(value):String(value));}
+async function prepareJourneySubmit(form,fields){
+ const lastField=Object.keys(fields).at(-1);if(!lastField)throw new Error('JOURNEY_FORM_FIELDS_REQUIRED');
+ const control=form.locator(`[name="${lastField}"]`);
+ // Commit the final typed value and dismiss browser-native suggestion UI before the pointer click.
+ await control.press('Escape',{timeout:10000});await control.press('Tab',{timeout:10000});
+ const submit=form.locator('button[type="submit"]');await submit.waitFor({state:'visible',timeout:10000});
+ if(!await submit.isEnabled())throw new Error('JOURNEY_FORM_SUBMIT_DISABLED');
+ return submit;
+}
 async function runReferenceCommand(page,command){
  const ui=referenceUiAction(command);
  if(ui.kind==='resource-form'){
@@ -61,14 +70,14 @@ async function runReferenceCommand(page,command){
  }else if(ui.kind==='clock-buttons'){
   let minutes=ui.minutes;while(minutes>=60&&await page.locator('[data-biz="period"]').count()){await clickCommand(page,'[data-biz="period"]');minutes-=60;}if(minutes){const plan=advanceButtonPlan(minutes);for(let n=0;n<plan.five;n++)await clickCommand(page,ui.buttons[0]);for(let n=0;n<plan.minute;n++)await clickCommand(page,ui.buttons[1]);}
  }else if(ui.kind==='interaction-form'){
-  const form=page.locator(ui.form);for(const [field,value] of Object.entries(ui.fields))await fillVisibleField(form,field,value);await clickCommand(page,`${ui.form} button[type="submit"]`);
+  const form=page.locator(ui.form);for(const [field,value] of Object.entries(ui.fields))await fillVisibleField(form,field,value);await prepareJourneySubmit(form,ui.fields);await clickCommand(page,`${ui.form} button[type="submit"]`);
  }else await clickCommand(page,ui.selector);
 }
 async function setProfile(page,profile){
  await page.locator('#soc-scenario').selectOption(profile.scenario);await page.locator('#soc-jurisdiction').selectOption(profile.jurisdiction);await page.locator('#soc-mode').selectOption(profile.mode);
  const revision=await page.evaluate(()=>SCT.state.revision);await page.locator('[data-soc="new"]').click();await page.waitForFunction(p=>SCT.state.scenario===p.scenario&&SCT.state.jurisdiction===p.jurisdiction&&SCT.state.mode===p.mode&&SCT.state.clock===0,profile,{timeout:10000});await waitIdle(page);return revision;
 }
-async function enterInteraction(page,channel,caseId){const form=page.locator('#soc-journey-controls form');await fillVisibleField(form,'channel',channel);await fillVisibleField(form,'from','alex');await fillVisibleField(form,'to','+61255500201');await fillVisibleField(form,'caseId',caseId);await clickCommand(page,'#soc-journey-controls form button[type="submit"]');}
+async function enterInteraction(page,channel,caseId){const form=page.locator('#soc-journey-controls form'),fields={channel,from:'alex',to:'+61255500201',caseId};for(const [field,value] of Object.entries(fields))await fillVisibleField(form,field,value);await prepareJourneySubmit(form,fields);await clickCommand(page,'#soc-journey-controls form button[type="submit"]');}
 async function phase(page){return page.evaluate(()=>SCT.state.interactions.at(-1)?.phase||null);}
 async function assessment(page){return page.evaluate(()=>SOC.assess(SCT.state));}
 async function exerciseProfile(page,profile){
@@ -94,7 +103,7 @@ async function exerciseCampaign(page,profile){
   const clock=await page.evaluate(()=>SCT.state.clock),ui=campaignUiAction(step.command,clock);
   if(!ui){await runReferenceCommand(page,step.command);continue;}
   if(ui.kind==='button'){await clickCommand(page,ui.selector);continue;}
-  const form=page.locator(ui.form);for(const [name,value] of Object.entries(ui.fields))await fillVisibleField(form,name,value);
+  const form=page.locator(ui.form);for(const [name,value] of Object.entries(ui.fields))await fillVisibleField(form,name,value);if(ui.form==='#soc-journey-controls form')await prepareJourneySubmit(form,ui.fields);
   await clickCommand(page,`${ui.form} button[type="submit"]`);
  }
  return {scope:CAMPAIGN_SCOPE,tracks:recipe.tracks.map(t=>t.track),commands:recipe.steps.filter(s=>s.command).length,checkpoints};
@@ -122,7 +131,7 @@ async function main(argv=process.argv.slice(2)){
     const caseBudget=Math.max(1000,Math.min(args.journey==='campaign'?240000:60000,timeout-(Date.now()-started)));await withinBudget((async()=>{
      await context.tracing.start({screenshots:true,snapshots:true,sources:true});page=await context.newPage();page.setDefaultTimeout(10000);page.on('pageerror',error=>row.errors.push(`pageerror:${error.message}`));page.on('console',message=>{if(message.type()==='error')row.errors.push(`console:${message.text()}`);});
      await page.goto(`http://127.0.0.1:${server.address().port}/series-of-calls/`,{waitUntil:'domcontentloaded',timeout:15000});
-     await page.locator('[data-act="training"]').click({timeout:10000});await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:15000});
+     await page.locator('.provider-launch-actions [data-provider-action="training"]').click({timeout:10000});await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:15000});
      row.outcomes=await (args.journey==='campaign'?exerciseCampaign:exerciseProfile)(page,profile);row.status='passed';
     })(),caseBudget);
    }catch(error){row.status='failed';row.error=String(error.stack||error);row.errors.push(String(error.message||error));}
@@ -143,4 +152,4 @@ async function main(argv=process.argv.slice(2)){
  }
 }
 if(require.main===module)main();
-module.exports={caseMatrix,parseShard,shardCases,sourceManifest,SCENARIOS,JURISDICTIONS,MODES,VIEWPORTS,SCOPE,matrix,referenceUiAction,mappedReference,advanceButtonPlan,classifyReport,pageIsIdle,pageRevisionPast,inputDrift,parseArgs,main};
+module.exports={caseMatrix,parseShard,shardCases,sourceManifest,SCENARIOS,JURISDICTIONS,MODES,VIEWPORTS,SCOPE,matrix,referenceUiAction,mappedReference,advanceButtonPlan,classifyReport,pageIsIdle,pageRevisionPast,inputDrift,prepareJourneySubmit,parseArgs,main};

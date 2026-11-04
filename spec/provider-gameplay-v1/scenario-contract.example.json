@@ -1,0 +1,92 @@
+{
+  "status": "proposed_design_example_not_a_runtime_schema_or_executed_balance_test",
+  "id": "provider-smb-first-contract",
+  "version": 1,
+  "purpose": "Make the first mission's service, money and victory conditions executable. Adapt to the actual repository schema and prove both reference plans before claiming balance.",
+  "units": {
+    "clock": "integer simulation minute",
+    "period_minutes": 60,
+    "money": "fictional AUD cents",
+    "real_seconds_per_sim_minute_at_1x": 2
+  },
+  "start": {
+    "paused": true,
+    "provider_cash_cents": 2000000,
+    "provider_engineers": 2,
+    "provider_support_roles": 1,
+    "customer_uc_users": 20,
+    "customer_supplied_cc_agents": 2,
+    "customer_agent_payroll_owner": "customer",
+    "free_commissioned_service_capacity": 0,
+    "note": "Agent availability is a customer fact. Licences and supported queues still require procurement. Staffing eligibility and permissions remain validated."
+  },
+  "contract": {
+    "retail_cents_per_full_period": 180000,
+    "activation": "Purchased entitlements, required identity/carrier/queue/context/digital dependencies and funded implementation are effective. Activation alone does not prove delivery.",
+    "settlement": "Global 60-minute provider boundaries. First partial period is explicitly prorated under authored retail/supplier terms; metered usage follows actual work. Partial periods do not count towards victory.",
+    "service_deadline_minutes": 8,
+    "queue_wait_warning_minutes": 1,
+    "queue_wait_warning_is_not_automatically_a_failed_case": true,
+    "late_or_failed_case_credit_cents": 5000,
+    "credit_cap": "Actual charged retail amount for that period; never create a negative customer invoice.",
+    "renewal_review_after_full_periods": 3,
+    "renewal": "At least two qualifying full periods among the last three, retained required context/evidence and no unresolved critical obligation. A failed renewal can trigger an authored corrective proposal or exit; the player cannot force acceptance.",
+    "exit": "Three consecutive failed full periods terminate this starter contract. Complete or explicitly transfer retained work and information obligations. No repeated signing bonus or reset of history."
+  },
+  "steady_period_demand": {
+    "due_cases": 24,
+    "voice_cases": 16,
+    "digital_cases": 8,
+    "voice_arrival_minutes": [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49],
+    "digital_arrival_minutes": [5, 11, 17, 23, 29, 35, 41, 47],
+    "voice_handling_minutes": 3,
+    "digital_handling_minutes": 2,
+    "voice_and_digital_need_customer_context": true,
+    "handoff_and_retry": "Retain a single customer case and deadline. Do not count repeated attempts as extra resolved cases.",
+    "peak_variant": "A supported seed clusters a declared subset of arrivals into a busy window while preserving the case count and explicit deadlines. Prove feasible responses before publishing the seed.",
+    "calibration_note": "These are synthetic game units. They are not a model of real CC staffing performance."
+  },
+  "balance_targets": {
+    "plan_a": {
+      "setup_total_cents": 600000,
+      "forecast_total_operating_cost_cents_per_healthy_period": 135000,
+      "initial_position": "Preserve capital and delivery speed; expose a declared dependency, term or operating-cost tradeoff."
+    },
+    "plan_b": {
+      "setup_total_cents": 1000000,
+      "forecast_total_operating_cost_cents_per_healthy_period": 105000,
+      "initial_position": "Commit more capital and/or implementation time for a declared ongoing-cost or capability advantage. Retain a meaningful limitation that makes the other plan preferable for some supported opportunities."
+    },
+    "required_quote_decomposition": ["platform", "identity", "carrier and numbering", "queue and contact entitlements", "customer context/CRM", "digital channel", "deployment labour", "shared provider operating costs"],
+    "do_not": "Do not hardcode the target margin, double-charge these aggregate totals alongside their component charges, make required dependencies free, or assume the illustrative balance has been tested."
+  },
+  "incident": {
+    "scheduler": "Engine-owned, seeded and attached to a dependency actually used by this customer. Trigger after initial observed service; retain the seed and command history.",
+    "required_responses": "At least two sensible responses with distinct money/time/service consequences. Prior redundancy must protect only its actual failure domain.",
+    "scope": "Carrier, identity or digital-connector incident variants must not all be solved by the same second-carrier purchase.",
+    "repair": "Funded validated work, duration and dependencies; no unconditional recovered=true action."
+  },
+  "insolvency": {
+    "unfunded_discretionary_commitment": "Reject atomically unless an authored credit offer is explicitly accepted.",
+    "unpaid_posted_obligation": "Record arrears and expose a one-period grace window with no new discretionary commitment.",
+    "default": "If still overdue at the next boundary, enter the mission's explicit failure state. Financing or a rescue, if offered by difficulty, has a disclosed receipt and cannot create operating profit."
+  },
+  "victory": {
+    "consecutive_qualifying_full_periods": 2,
+    "due_cases_each_period": 24,
+    "minimum_completed_on_time_each_period": 22,
+    "provider_operating_result_each_period": "greater than zero, after actual supplier costs, provider operating costs and service credits; financing and opening capital are excluded",
+    "cash_available_cents": "at least zero",
+    "overdue_critical_obligations": 0,
+    "next_contract": "An additional real customer opportunity is accepted with funded implementation, valid capacity/staff reservations and visible remaining obligations.",
+    "excluded_evidence": ["partial period", "zero-demand period", "diagnostic probe", "manual task-success flag", "training assessment", "unearned lab import", "uncommitted quote"]
+  },
+  "acceptance": [
+    "Both costed reference plans complete the mission through visible UI controls under documented supported seeds.",
+    "At least one changed deadline, available offer, demand pattern or dependency exposure changes a useful plan or response; neither plan dominates every supported case.",
+    "An unstaffed/unconnected service fails for its real cause and can recover by legitimate work.",
+    "The bill reconciles observed workload and contractual terms. The last readiness snapshot cannot rewrite the period.",
+    "A second customer uses the same provider cash and staff. The creation event adds no capital.",
+    "Save/restore and worker/speed execution preserve the same future events and accounting."
+  ]
+}

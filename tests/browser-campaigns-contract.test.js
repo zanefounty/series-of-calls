@@ -48,6 +48,16 @@ test('AC-SOC-399 reference clock mapping preserves every minute for 1 through 14
  assert.throws(()=>runner.advanceButtonPlan(0),/INVALID_ADVANCE_MINUTES/);assert.throws(()=>runner.advanceButtonPlan(1441),/INVALID_ADVANCE_MINUTES/);
 });
 
+test('interaction form commits its last field before the visible enabled pointer submit',async()=>{
+ const order=[],submit={waitFor:async options=>{order.push(`wait:${options.state}`);},isEnabled:async()=>{order.push('enabled');return true;},click:async options=>{order.push(`pointer:${options.timeout}`);}};
+ const form={locator:selector=>selector==='button[type="submit"]'?submit:{press:async(key,options)=>{order.push(`key:${key}:${options.timeout}`);}}};
+ const ready=await runner.prepareJourneySubmit(form,{channel:'voice',from:'alex',to:'+61255500201',caseId:'browser-case'});
+ assert.equal(ready,submit);await ready.click({timeout:10000});
+ assert.deepEqual(order,['key:Escape:10000','key:Tab:10000','wait:visible','enabled','pointer:10000']);
+ const disabled={...submit,isEnabled:async()=>false};
+ await assert.rejects(()=>runner.prepareJourneySubmit({locator:selector=>selector==='button[type="submit"]'?disabled:{press:async()=>{}}},{caseId:'browser-case'}),/JOURNEY_FORM_SUBMIT_DISABLED/);
+});
+
 test('AC-SOC-400 only a complete error-free locked-version browser matrix can report passed',()=>{
  const all=Array.from({length:48*runner.VIEWPORTS.length},()=>({status:'passed',errors:[]}));
  const complete={status:'running',profileCount:48,results:all,versions:{source:'1.0.0',lockfile:'1.0.0'},browser:{playwright:'1.56.0',playwrightLockfile:'1.56.0',version:'Chromium 140'}};

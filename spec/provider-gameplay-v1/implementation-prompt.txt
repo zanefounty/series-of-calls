@@ -1,0 +1,200 @@
+Implement the Series of Calls gameplay and UI rebuild
+
+Repository: https://github.com/zanefounty/series-of-calls
+Gameplay reference: https://github.com/fjaeckel/seriesoftubes and https://seriesoftub.es/
+Specification date: 4 November 2026
+Reviewed port revision: 4d354ddb6118caccee9c4eea10ff8d879bc0be4c
+Reviewed upstream revision: b2366ed26018f957309292d04adf5d6e76a89c65
+
+Your task is to implement a playable UC/CC provider management game using the upstream game structure. Make the default UI look and play like Series of Tubes, with the mechanics replaced by communications services, customer outcomes, provider operations and commercial growth.
+
+Work through the complete UI/gameplay revision. An attractive mockup, renamed forms, a catalogue browser or one SMB demo is an intermediate checkpoint. Continue through the four segment missions and verification. Make ordinary reversible implementation choices autonomously. Preserve existing owner decisions, governance, source obligations and release requirements.
+
+1. Read the concrete specification and current repository
+
+Unpack the accompanying spec pack if needed. Read:
+- series-of-calls-gameplay-ui-spec.html
+- requirements.json
+- gameplay-crosswalk.json
+- scenario-contract.example.json
+- series-of-calls-ui-wireframe.svg
+
+The HTML contains the design, opening session, mechanics, architecture and acceptance. The JSON files provide stable requirement IDs, upstream mappings and proposed executable SMB mission conditions. The SVG is a proposed screen composition, not a working implementation or pixel-perfect constraint.
+
+In the checkout, read AGENTS.md, spec/README.md, docs/RESTART_HANDOFF.md, docs/CODEX_SETUP.md, docs/DEVELOPMENT_WORKFLOW.md, relevant architecture documents and .agents/skills/series-of-calls-development/SKILL.md. Use the repository's actual preflight and verification workflow. Inspect current source before trusting dated STATUS/evidence claims. Reconcile changes since the reviewed revision; do not overwrite concurrent work or blindly apply an old patch.
+
+Use an isolated branch or worktree when appropriate. Preserve LICENSE, NOTICE, third-party notices, source-pack bytes, source-linked humour, contributor identity and real Git history. Do not weaken release gates, approve exclusions, enable unattended adaptation, merge or publish as a shortcut. All services and integrations remain synthetic.
+
+2. The player experience to build
+
+The player runs a communications provider. The repeated activity is:
+
+Choose a customer opportunity -> compare viable plans -> commit cash and staff -> build and connect the service -> serve autonomous customer demand -> respond to a capacity problem or incident -> settle earned income and contractual loss -> renew, improve or expand.
+
+The useful verbs are choose, buy, connect, assign, schedule, diagnose, repair, migrate, automate, renew and expand. Routine identity, licence, route and resource prerequisites belong inside transparent, priced service blueprints. Players should see what they bought and why it matters without manually editing every prerequisite.
+
+Make Play / Continue the main entry. A new career needs only provider name, home market and difficulty, with sensible defaults. Start paused. Give the player finite capital, a bounded provider team, one authored SMB opportunity and one actionable objective. Put seed and detailed options behind an optional control. Expose all four authored segment scenarios directly as well as through career progression, so government and defence can be reviewed without grinding the whole career.
+
+Keep Training and Lab as separate experiences. Existing guided/assessed lessons remain useful. Lab retains world editing and diagnostics. Keep the optional physical SP game with separate state and saves. Do not append a new campaign panel beneath the current training console.
+
+3. Reuse the upstream game frame and interaction grammar
+
+Use the full-screen map/world, compact persistent HUD, floating panels, short state-based coach, costed construction, visible workload, expiring offers, incidents, goal feedback and pause/speed controls.
+
+Preserve the existing bright visual language: cyan/green world, white sticker panels with dark ink outlines, yellow primary actions, pink player selection, clear service-state text and restrained animation. Use existing assets, typography and source-linked humour where suitable. Remove the oversized in-game introduction and stacked setup-page hierarchy.
+
+Desktop layout:
+- Top HUD: cash available, forecast operating result /period, active/at-risk customers, delivered-work result with an honest denominator, a capacity warning, period/progress and pause/speed.
+- Left: Goals, Deals and Incidents/Operations. Suppliers, Team, Finance and Automation open focused drawers.
+- Centre: actual purchased provider hubs, platforms, customers/sites and typed service dependencies. Pan/zoom and switch geography, service, workload or cost layers. Collapse tenant details at portfolio scale.
+- Right: a contextual inspector for the selected customer, service, path, offer or incident. It explains what is happening, who is affected, available actions, cost and expected consequences.
+- Bottom: a short material-event feed with links to affected objects.
+
+Click selects; it does not buy. Drag or click-connect opens a compatible quote. Provide the same action through a keyboard/menu path. A committed plan changes real game state only through the shared validated command path. Show provisioning, effective readiness and observed delivery separately.
+
+A quote must explain setup cost, recurring/usage exposure, minimum term, staff effort, delivery time, capacity/feature limits, prerequisites, cash after commitment and forecast margin impact. Revalidate at commit. Explain stale or blocked choices. Never trust a client-supplied wholesale price or success value.
+
+Retain focus, scroll, camera, selection, expanded sections and unfinished drafts when time advances. Use stable DOM nodes or keyed/morph updates rather than replacing the complete UI innerHTML every tick. Use the upstream focus-preserving approach where it fits.
+
+At 1366x768, the world, cash, next goal, clock and primary actions must be reachable without scrolling through setup. At 390x844, use compact navigation and context sheets without horizontal page overflow. Provide a DOM equivalent for canvas actions, visible focus, labelled status, reduced motion, optional sound and 44px primary touch targets. No essential action may depend on colour, hover or dragging alone.
+
+4. Replace mechanics by their gameplay purpose
+
+- Company/home city -> provider business and home market.
+- POP -> a purchased provider service hub or deployment footprint; tenant, customer and site remain distinct.
+- Router -> UC/CC platform or edge/media instance with typed capacity and compatible upgrades.
+- Transit -> PSTN/carrier/wholesale communications supply, numbering, reach, sessions and usage costs.
+- IX/peering -> supported federation, interoperability or shared channel connectivity. Do not imply universal free telephony.
+- Dedicated link/PNI -> a supported carrier/SBC/interconnect/integration relationship with commitment and capacity.
+- Build links -> costed customer/site/service connections with work and provisioning delay.
+- Cache/locality -> local meeting media or information processing where it changes a real dependency, load or permitted path. Never suggest cached conversations.
+- Broadband -> recurring managed UC customers and their actual workload.
+- Business offers -> expiring UC/CC/video/managed-service contracts with requirements, terms, budgets and delivery obligations.
+- Traffic/congestion -> calls, messages, meetings, queues, human work and processing, each with its own unit.
+- NOC -> observable incidents, affected customers and funded diagnosis/repair/mitigation.
+- Bank -> one shared provider treasury, credit, commitments and insolvency rules.
+- Levels/goals -> new customer classes, supplier terms, capabilities, markets and useful automation.
+- Standing orders/templates -> scoped managed provisioning, migration, assurance and headroom policies with cost/budget limits.
+- Market changes -> competing bundles, vendor-direct offers, channel substitution and lifecycle changes governed by scenario rules.
+
+Retain literal transport and local infrastructure where they affect service. Do not force players to build a carrier network before their first SMB customer. Preserve all existing source IDs and the full mapping register. Reconcile all 25 view mappings, six tutorial mappings, 19 goals and 13 progression levels. Give the 193 existing player-action mappings a contextual home or an explicit outstanding disposition. A renamed company or menu item does not prove its distinctive behaviour is implemented.
+
+5. Establish the campaign boundary in the engine
+
+Existing SOC.mode is guided/assessed/sandbox, and SOC_CAMPAIGN already means the training-track scheduler. Add a versioned experience discriminator and a distinct providerCampaign concept. Do not silently repurpose existing meanings.
+
+Campaign players may make legitimate purchases, retail quotations, staffing decisions, changes, policies, migrations and repairs. They may not author customer needs, willingness to pay, supplier/world prices, supplier availability, market shocks, incident injection, arbitrary resource capacity, task success or quality grades.
+
+Enforce that boundary through SOC.dispatch, nested portfolio dispatch, worker and MCP/automation paths. Hiding buttons is insufficient. High-level intents select authored offers/recipes and quantities. The engine derives and validates economics, eligibility and outcomes. Do not add public system:true or arbitrary-command bypasses.
+
+The current validator requires 15 canonical resources. It is acceptable to keep them internally as disabled, uncommissioned blueprints while preserving fixed-ID contracts. They must supply no free capacity, licence, service, asset or income, and must not appear as fifteen initial tasks. Alternatively implement sparse roots after auditing every dependent lookup and validator.
+
+6. Make time, money and service outcomes credible
+
+Keep canonical integer simulation minutes and the current 60-minute billing period initially. Label time as Period N and prices /period. Initial pacing is one simulation minute per two real seconds at 1x, subject to recorded balance tuning. Provide pause, 0.5x, 1x, 2x, 4x and 8x.
+
+Start paused. Pause consistently for blocking decisions, hidden tabs, lost editing ownership and terminal states. Restore the previous speed after a decision unless the player changed it. Do not add undisclosed offline catch-up. One controller advances the authoritative engine. Equal simulation-time commands at different speeds must give equal outcomes. Fast-forward processes relevant intervals/events and stops for required decisions.
+
+Use one parent treasury, credit agreement and implementation/support team. Customer ledgers attribute costs and revenue; adding a customer creates no opening capital. Keep external revenue separate from internal transfers, financing and diagnostic counters. Reserve money and work atomically. Repeated request IDs cannot charge or create capacity twice.
+
+Cost coherent operations such as deployment, migration, bulk joiners, investigation and repair. Bounded engineers/support determine throughput and backlog. CC agents, customer staff, BPO staff, licences, skills and schedules remain distinct. The contract states who supplies and pays for each workforce. Preserve the latest costed coaching implementation and its once-only receipts; Campaign selects an authored course/price.
+
+Block unfunded discretionary commitments or require a disclosed credit choice. Forecast future recurring exposure. Posted bills that exceed available cash must produce an explicit payable/arrears/grace/default state, not a crash or indefinite unrestricted negative balance.
+
+Create seeded customer demand through the existing simulation. The map displays samples of actual work; animations and diagnostic probes cannot create retail income or achievements. Preserve case continuity across voice, digital, callbacks and human handoff. Cohort aggregation must use the same admission/outcome rules and cannot bill sampled traces again.
+
+Fix these gameplay-critical behaviours before tuning profit:
+- Billing, credits and renewal use actual period history, not final readiness. Under a controlled workload, 57 minutes of outage plus a last-minute repair cannot become a perfect period; a final-minute outage cannot erase earlier delivered work.
+- Ordinary endpoint calls have a duration-bearing connected phase and defined occupancy/usage. Instant probes remain separate.
+- Migrate synchronous consumers such as siteHooks.journey to explicit probes or asynchronous evidence. Do not preserve instant paid-call behaviour just to keep an old fixture passing.
+- Active calls use current effective media. Loss of both directions cannot silently resolve as a successful conversation. Distinguish signalling loss from media loss and supported local survivability.
+- Reserve recording capacity during capture. Capacity one cannot record four simultaneous required sessions. Meetings/rooms, people, sessions, processors and other constrained resources admit and release exactly once under their own units and policies.
+- Add scheduled, active and completed/failed meeting sessions with duration, room occupancy, effective media and capture. The current lastMeeting readiness result is a join probe; it cannot prove an actual meeting was delivered.
+- Staff reduction must affect eligible work, response or backlog, not merely improve margin at unchanged outcomes.
+- Repeated non-service cannot become an indefinitely profitable strategy because an arbitrary high retail price exceeds a fixed credit. Authored willingness, terms, service history and renewal/exit constrain it.
+- Replace the portfolio's 2,000-entry journal hard stop with bounded history/checkpoints, retained facts and monotonic IDs.
+- Bound case, recording, trace and receipt lifecycles too. Preserve active obligations, holds/retention and required lineage in valid summaries or tombstones. Do not silently discard outcomes or raise every limit indefinitely.
+
+Shared service-truth fixes apply to every supported path claiming those outcomes. Campaign-only authority restrictions, automatic demand, one treasury and costed operating workflows must not disable intended Training/Lab authoring. Keep desired, provisioning, effective and observed state distinct. Keep tutorial completion, service readiness, contract delivery, operating profit, progression and mission victory distinct. The current foundation assessment is not commercial campaign victory.
+
+7. Build the opening as a real game
+
+Implement the six-step coach from the spec:
+1) Launch the starter managed service from an authored SMB brief and a costed plan.
+2) Connect external calling with a purchased carrier/numbering/session choice.
+3) Add a required supported partner capability, such as queue/CRM or digital integration.
+4) Run the service, observe demand, make a capacity/incident choice and settle real results.
+5) Expand a site or capability through another funded build.
+6) Win the next larger contract using shared resources and new capacity.
+
+The coach observes state, recognises valid work done out of order and can be dismissed/resumed. It must not execute a solver recipe. An accepted order may satisfy an ordering milestone while its service is pending. Highlight Resume immediately whenever delivery is needed; do not strand the paused player until step 4 or equate purchase with commissioning. Show a goal and useful control, not a single sequence of checkbox answers.
+
+Provide two viable opening plans with different capital, lead time, recurring economics, risk or flexibility. Show complete cost decomposition, including required identity, case context, carrier, channel and staffing dependencies. Fictional example prices in the spec are balance candidates, not hardcoded profit or real vendor prices. Test meaningful failure and recovery as well as success. If one plan dominates all supported seeds, change the scenario.
+
+Aim for a consequential choice within two minutes, visible delivered service within five minutes, and investment-operation-incident-settlement-expansion within 20–30 minutes. Measure these as proposed product targets. Avoid forced waiting without another useful decision or a clear fast-forward control.
+
+Author explicit arrivals, deadlines, activation, service/credit/renewal rules, grace/default and sustained victory predicates for every mission. Use the companion SMB example as a proposed starting fixture: 24 due cases per full period, including 16 voice and eight digital; at least 22 completed on time in each of two consecutive full periods; positive provider operating result in both; no overdue critical obligation; and a funded next contract. Partial/empty periods and probes cannot count. Prove both plans and record any tuning as a versioned scenario change. Keep displayed queue times at the model's actual minute resolution.
+
+8. Deliver all four segments and the requested ecosystem
+
+SMB: budget, short lead time, calling plus small voice/digital service desk, price/channel pressure and margin.
+Enterprise: mixed estate, staged migration/coexistence, numbers/identity, meeting rooms and interoperability, contact continuity and implementation/support load.
+Government: workload-scoped processing, storage, backup, keys, retention, administration/support and delegation constraints with versioned evidence.
+Defence: pre-provisioned local dependencies, disconnection/autonomy, controlled support, retained work and reconciliation after reconnection.
+
+Each mission needs a clear brief, meaningful alternatives, a costed build, actual demand, an incident, settlement, renewal/exit and another opportunity. A local-only defence brief may offer staffing/resilience choices instead of two vendors. Country or on-premises checkboxes do not establish compliance. Use fictional scenario conditions; do not infer legal or security certification.
+
+Connect all existing 14 Microsoft/Cisco family groups to meaningful campaign choices: workplace calling; meetings/rooms; contact centre; communications APIs/programmable engagement; provider operations; cloud/dedicated/premises/local deployment; government/sovereign profiles; and local speech. Require one representative end-to-end playable campaign path per family for this revision. Track remaining distinctive feature-level obligations honestly; a pending catalogue row cannot substitute for the required representative path.
+
+Cover MSP, SP/carrier, reseller, distributor, integrator, partner and BPO roles through authority, cost, qualification, staffing or supply decisions. Integrate the third-party categories for provisioning/lifecycle, assurance, recording/compliance, WFM/quality, CRM/IAM, SBCs, room/AV interoperability, endpoint hardware, speech/AI and CPaaS. Preserve all 51 actor records and their source IDs.
+
+WhatsApp/Messenger, Slack/workplace chat and video must change eligible customer demand, price pressure, integration opportunity or operating economics. They cannot remove mandatory calling, identity or information requirements. CPaaS workflows need real delivery, quotas, retries, usage costs and context-preserving handoff. Transcription/AI requires capture, processing capacity, model/language/quality eligibility, storage and permitted paths. On-premises and sovereign choices incur capacity, lifecycle and support work as well as their supported control/resilience benefits.
+
+A supplier counts as gameplay only when it changes an action, cost, dependency, capacity, failure, opportunity or customer outcome. Do not create fifty interchangeable cards or fifty compulsory setup pages.
+
+9. Implementation structure and work order
+
+Retain vanilla JavaScript, the ordered static assembler, existing Canvas/DOM controls, labels, shared domain factories and worker serialization. Do not introduce React, a backend, mandatory login, a second simulator or live external communications services to complete this task.
+
+Suggested new owners, subject to actual source-order review:
+- 24-provider-rules.js and 25-provider-campaign.js for authored rules and commercial orchestration.
+- 93-ui/70-provider-hud.js and 75-provider-panels.js for focused views.
+- 96-map/95-provider-canvas.js for actual scene projection and selection.
+- 97-provider-shell.js and 99-provider-runtime.js for stable view state, locks and one scheduler.
+- styles/98-provider.css and content/provider-campaigns.json.
+
+Integrate with 55-communications.js, 54-business.js, 37-portfolio.js and the actual workforce/contact/media/information/boundary/product owners. Do not calculate business rules in the renderer. Include every new domain factory/data source in browser, Node and worker paths.
+
+Implement in order: campaign boundary and treasury; honest headless service/economic loop; default upstream-style shell and coaching; incidents/progression/automation/shared growth; four segment missions and ecosystem choices; verification and handoff. Work in reviewable behaviour slices. Delegate disjoint files when useful; one coordinator owns schema, dispatch and registries.
+
+10. Persistence and verification
+
+Version experience, saves and content. Validate known legacy envelopes before migration; preserve exportable originals. Existing training remains Training and sandbox remains Lab. Campaign copied to Lab becomes custom. Keep campaign, training and SP storage/locks separate. Save only committed state; stale worker replies, fallback or another tab must not double-advance or overwrite newer work.
+
+Tests must prove behaviour, economics and consequences. Keep existing validations and source/evidence/release gates effective. Use the repository verification ladder, focused checks during development and required integrated checks on the declared candidate. Do not repeatedly run the whole matrix for trivial visual edits, but do not omit a required final gate.
+
+Required checks include:
+- Campaign authoring mutation rejected through UI/dispatch, worker, MCP and nested customers.
+- Two feasible opening strategies plus failure/recovery.
+- Period-history billing, live media, ordinary-call duration, capture/meeting admission and release.
+- Shared cash/staff, atomic refusal, idempotency and visible insolvency.
+- Equal-seed/equal-command outcomes across speed, worker and save/restore.
+- Save during active calls, queueing, coaching, projects and incidents.
+- A 2,001-minute journal regression and declared 20-active-customer/10,000-minute headless fixture with nonzero sustained demand, recurring settlement, at least one change/incident and deterministic continuation. Empty or inactive roots do not qualify.
+- Stable drafts/focus/selection during time advancement.
+- Four complete mission journeys and the relevant source/requirement evidence.
+- Translation, static build, deployment prefix and offline reload after cache installation.
+
+Use a real supported browser on the actual candidate URL. Play via visible controls at desktop and mobile sizes, including keyboard-only operation and reduced motion. Record new-game, quote, active-service, incident and post-billing-expansion screenshots with step logs, seed, commit, viewport, browser version and console errors. Direct dispatch and DOM tests alone do not establish playability.
+
+If browser access or another external dependency is unavailable, complete independent implementation, record the exact blocked operation and leave that evidence pending. Do not fabricate a browser pass or evade an access restriction.
+
+Prepare the spec's 6–8-person exploratory upstream/port pilot. Measure clarity, tradeoffs, causes, adapted plans and voluntary continuation. Do not claim human testing occurred unless humans actually participated; the pilot can remain explicitly pending at engineering handoff.
+
+11. Definition of done and final handoff
+
+The candidate must let a fresh player choose a viable plan, pay and commit staff, construct a real service, serve autonomous work, handle a consequential incident, understand a history-based bill, renew/exit and expand using shared resources through the visible UI. A different viable plan must work. All four segment missions must have distinct meaningful decisions. Campaign authoring controls must be unavailable beneath every normal interface. Persistence, worker parity, current coaching behaviour, source traceability and required checks must remain sound.
+
+Do not call the task complete because the page looks better, buttons exist, a training assessment passes or the first SMB slice works. Do not claim the full source-catalogue conversion or public release if its broader obligations are still pending.
+
+Deliver the implementation, a reviewable change summary, the actual build/commit, run instructions or the available playable URL, two reference strategies, four mission results, exact checks and failures, browser evidence, known limitations and outstanding full-conversion/human-testing/publication work. Explain what changed for the player and why the changes create decisions and consequences. Keep working until this requested revision is implemented or a concrete external blocker prevents a remaining step.

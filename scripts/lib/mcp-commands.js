@@ -611,6 +611,9 @@ const API_BOUND={
 /* Starting, retrying and leaving scenarios, puzzles and architect runs, and the screens a player dismisses. They run
    as their buttons run them; new_game, load_save and export_save are the other half of the session (mcp-page.js). */
 const API_SESSION={
+ provider:{args:[],doc:'Open or resume the synthetic provider campaign, acquiring its single-tab save lock.'},
+ providerHome:{args:[],doc:'Leave the provider campaign and release its save lock.'},
+ providerLab:{args:[],doc:'Open the isolated provider training lab experience.'},
  startScn:{args:[['id','scnId']],doc:'Start a scenario (ids from catalog SCN), replacing the current game.'},
  startWeekly:{args:[],doc:'Start this week\'s weekly scenario, replacing the current game. The week follows the real date.'},
  pzStart:{args:[['id','string']],doc:'Start a puzzle by id (the puzzle list, view.puzzleMenu, shows them), replacing the current game.'},

@@ -30,7 +30,7 @@ function ready({jurisdiction='AU',administration=false,restrictedCapture=true,bu
  s=bind(s,source);s=bind(s,contract(s,'destination-environment',administration?'training':'restricted-operations',['handover-archive'],administration?'internal':'restricted'));
  return tick(s);
 }
-function record(s){s=info(s,{action:'book',start:s.clock,end:s.clock+40,attendees:2,event:false,language:'en'});s=info(s,{action:'join',booking:s.information.bookings.at(-1).id});assert.equal(s.lastMeeting.success,true,JSON.stringify(s.lastMeeting.reasons));assert.equal(s.records.at(-1).kind,'recording');assert.equal(s.records.at(-1).origin.complete,true);return s;}
+function record(s){s=info(s,{action:'book',start:s.clock,end:s.clock+3,attendees:2,event:false,language:'en'});s=info(s,{action:'schedule',booking:s.information.bookings.at(-1).id});s=tick(s,3);assert.equal(s.information.meetingSessions.at(-1).status,'completed');assert.equal(s.records.at(-1).kind,'recording');assert.equal(s.records.at(-1).origin.complete,true);return s;}
 const interfaceCommand=(administration=false)=>({action:'interface',id:'scenario-handover',policyId:administration?'defence-admin-to-training-v1':'defence-restricted-handover-v1',sourceResource:'archive',destinationResource:'handover-archive'});
 const transfer=(s,recordId=s.records[0].id)=>info(s,{action:'transfer',interfaceId:'scenario-handover',recordId,role:'supervisor'});
 

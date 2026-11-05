@@ -4,7 +4,7 @@ Engineering status as of 5 November 2026. This is not acceptance closure or a fu
 
 ## Published for review
 
-Six draft PRs cover versioned demand/economy, mission operations, shared Provider/Training map, measured progression/responsibility, UC/contact integration and external reach, then storage recovery and transport observations. See `GAMEPLAY_REBUILD_PR_STACK.md` for exact drafts and candidate evidence. The latest published candidate `e6d85ae` passed all 13 GitHub checks, 603 registered acceptance cases, 94 actual stdio MCP cases, development gates and gate mutation tests. These results apply to that candidate, not subsequent work.
+Seven PRs cover versioned demand/economy, mission operations, shared Provider/Training map, measured progression/responsibility, UC/contact integration and external reach, then storage recovery, transport resilience, local continuity and meeting choices. See `GAMEPLAY_REBUILD_PR_STACK.md` for exact drafts and candidate evidence. The latest published candidate `e6d85ae` passed all 13 GitHub checks, 603 registered acceptance cases, 94 actual stdio MCP cases, development gates and gate mutation tests. These results apply to that candidate, not subsequent work.
 
 ## Current implementation chunk
 
@@ -24,3 +24,11 @@ Every gameplay acceptance assertion still needs final individual implementation/
 Real counterbalanced pilot participation and applicable owner/environment review remain external dependencies. Automated browser runs are not human playability evidence. Source catalogue and research acceptance remain separate and unchanged.
 
 Current development checks include 23 resilience/room/rules cases, 22 local/progression/UI cases, and 19 repaired meeting/segment regressions. An earlier full development run failed on missing optional domain-fixture resource generations and a segment fixture that scheduled capture too late; both affected groups now pass. Frozen full-suite verification remains required. Visual review also found unreadable narrow comparison columns, a scrolling mobile heading and undersized desktop clock controls; fixes and geometry assertions require a fresh browser pass.
+
+## Merge-readiness verification and owner deferral
+
+Frozen `8930cde` passed 2,031 JavaScript tests (2 skipped), 603 registered acceptance cases, 94 actual stdio MCP cases and five Provider-specific MCP journeys. Development/source/coverage/mapping/catalogue/translation checks and gate mutation tests passed. Its browser run passed the three mission alternatives and resilience desktop/mobile, but failed guest desktop on a selector and did not reach guest mobile. These are retained as actual outcomes.
+
+The follow-up changes only repair browser selectors and inspector CSS: ordinary room nodes use a raw resource ID, funded project nodes use their scoped scene ID; meeting feature labels stack above values; mobile sticky headings match the sheet padding. Fresh desktop and mobile guest journeys both pass with no runtime input drift. They exercise actual browser guest limitations, retained supplier charges, paid native replacement and fresh recording evidence. Geometry checks require readable label width, 44px actions, visible heading/close controls and no horizontal sheet overflow. These focused runs supplement rather than relabel the failed frozen run.
+
+The owner parked additional long-play runs and prioritized merging the stack. The remaining engineering and evidence scope is recorded in [the backlog and continuation prompt](GAMEPLAY_REBUILD_BACKLOG.md); no deferred or unexecuted assertion is marked passed.

@@ -859,6 +859,18 @@
     ],
     "tests/provider-owned-site-quotes-ui.test.js": [
       "AC-SOC-633"
+    ],
+    "tests/provider-finance-view.test.js": [
+      "AC-SOC-623",
+      "AC-SOC-624",
+      "AC-SOC-625",
+      "AC-SOC-626"
+    ],
+    "tests/provider-finance-ui.test.js": [
+      "AC-SOC-627",
+      "AC-SOC-628",
+      "AC-SOC-629",
+      "AC-SOC-630"
     ]
   },
   "inputs": [
@@ -984,6 +996,7 @@
     "src/game/23-provider-configuration-authority.js",
     "src/game/23-provider-continuity.js",
     "src/game/23-provider-external-reach.js",
+    "src/game/23-provider-finance-view.js",
     "src/game/23-provider-government.js",
     "src/game/23-provider-history.js",
     "src/game/23-provider-local-progression.js",
@@ -1169,6 +1182,7 @@
     "src/game/93-ui/79-provider-comparisons.js",
     "src/game/93-ui/79-provider-context-actions.js",
     "src/game/93-ui/79-provider-external-reach.js",
+    "src/game/93-ui/79-provider-finance.js",
     "src/game/93-ui/79-provider-integration.js",
     "src/game/93-ui/79-provider-lifecycle.js",
     "src/game/93-ui/79-provider-meetings.js",
@@ -1337,6 +1351,8 @@
     "tests/progression-market.test.js",
     "tests/progression-observation.test.js",
     "tests/progression.test.js",
+    "tests/provider-finance-ui.test.js",
+    "tests/provider-finance-view.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",

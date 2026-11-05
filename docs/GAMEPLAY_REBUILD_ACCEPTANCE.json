@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Per-assertion reconciliation of the gameplay rebuild at e492349 using actual hosted tests and scoped current browser evidence. This is not full-source disposition, research acceptance or complete-game certification.",
+  "scope": "Per-assertion reconciliation across explicitly named candidates; each verification records its actual tested revision. Not full-source disposition, research acceptance or complete-game certification.",
   "remainingNotesAsOfCommit": "e49234902abb3f273aad8645baad1ef0766389d1",
   "preliminaryFamilyDiagnostics": {
     "scope": "Executed against mutable shared sources; supporting diagnosis only, not frozen candidate acceptance or visible-control evidence.",
@@ -469,6 +469,66 @@
         "Paid Provider stages commission and an actual job completes after upgrade"
       ],
       "scope": "Published eb0e88 preview only; not proof that later e492349 application bytes have been deployed or upgraded offline."
+    },
+    "finance-4bc9d20": {
+      "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+      "scope": "Twelve real SMB journeys: Swift/Steady at desktop/mobile across Chromium, Firefox and WebKit. Source and build hashes independently compared before/after; bill arithmetic recomputed from retained postings. No human pilot or delivered second-tenant service claim.",
+      "browserReceipts": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.80",
+          "playwright": "1.64.1",
+          "receipt": "/tmp/soc-finance-r3-chromium/provider-browser-20261105125805044.json",
+          "receiptSha256": "d1bd0ce5b29c9cb87ca16ff97c0f3c6f1c9fd09fe8cb9c66571b3006a824d11f",
+          "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+          "sourceInputs": 372,
+          "noSourceDrift": true,
+          "artifactFiles": 47,
+          "driverSha256": "5f6128b92e3d160def9d9f57126f77faf9bc8c16617f33e4a6dbdab90fbd207b"
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "playwright": "1.64.1",
+          "receipt": "/tmp/soc-finance-r3-firefox/provider-browser-20261105125805057.json",
+          "receiptSha256": "13aa1b696665a75f20ac53ccc16a4455210fd105494fdc4cd90469b7d1ae40a9",
+          "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+          "sourceInputs": 372,
+          "noSourceDrift": true,
+          "artifactFiles": 47,
+          "driverSha256": "5f6128b92e3d160def9d9f57126f77faf9bc8c16617f33e4a6dbdab90fbd207b"
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "playwright": "1.64.1",
+          "receipt": "/tmp/soc-finance-r3-webkit/provider-browser-20261105125805032.json",
+          "receiptSha256": "7d49e9778f2a73b7dbc6073c3d3447f0183763ab1b077e5ba2a94fd5f9ea4d92",
+          "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+          "sourceInputs": 372,
+          "noSourceDrift": true,
+          "artifactFiles": 47,
+          "driverSha256": "5f6128b92e3d160def9d9f57126f77faf9bc8c16617f33e4a6dbdab90fbd207b"
+        }
+      ],
+      "registeredAcceptance": {
+        "ids": [
+          "AC-SOC-623",
+          "AC-SOC-624",
+          "AC-SOC-625",
+          "AC-SOC-626",
+          "AC-SOC-627",
+          "AC-SOC-628",
+          "AC-SOC-629",
+          "AC-SOC-630"
+        ],
+        "producer": "https://github.com/zanefounty/series-of-calls/actions/runs/42031601906",
+        "result": "passed"
+      },
+      "independentReview": {
+        "path": "/tmp/soc-finance-final-acceptance-review.json",
+        "sha256": "442269582a5d0414bb8c5fe286d70e0b1b4d5eeaa61e668b891bbdcc51b16650"
+      }
     }
   },
   "tests": {
@@ -6070,7 +6130,7 @@
       "requirement": "PLAY-011",
       "sourceIndex": 2,
       "assertion": "Credits, usage, renewal evidence and visible bill explanations agree with the same recorded facts.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B014",
         "B015",
@@ -6094,24 +6154,44 @@
       "reviewTestCandidates": [
         "R012"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+        "run": "finance-4bc9d20",
         "implementation": [
-          "src/game/54-business.js",
-          "src/game/55-communications.js",
+          "src/game/23-provider-finance-view.js",
+          "src/game/93-ui/79-provider-finance.js",
+          "src/game/97-provider-shell.js",
           "src/game/25-provider-campaign.js"
         ],
         "tests": [
-          "C046",
-          "C065",
-          "C057",
-          "C041"
+          "AC-SOC-623",
+          "AC-SOC-624",
+          "AC-SOC-625",
+          "AC-SOC-626",
+          "AC-SOC-627",
+          "AC-SOC-628",
+          "AC-SOC-629",
+          "AC-SOC-630"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "Credits and usage agree with recorded facts",
+            "evidence": "AC623/626; browser financeEvidence.periods customer credit and voice/message quantities compared with same retained customer history and exact named posting sums."
+          },
+          {
+            "text": "Renewal evidence agrees with those facts",
+            "evidence": "Same journey two-period-settlement snapshot retains two full24-due qualified positive periods, customer renewal offered at180, visible-renewal makes same customer active without altering prior history."
+          },
+          {
+            "text": "Visible bill explanations agree",
+            "evidence": "period0 credited bill and period1 recovered bill shown text, posting IDs, cash amounts and screenshots from actual Finance sheet."
+          }
+        ],
+        "scope": "Original assertion only; no human comprehension claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Settlements/history/credits/renewals are covered in model tests. Provider browser opens Finance for export, but does not compare rendered bill line totals and nonzero credits against exact period posting/history facts. Keep visible bill reconciliation open."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Original assertion only; no human comprehension claim."
     },
     {
       "id": "PLAY-012-A01",
@@ -7829,7 +7909,7 @@
       "requirement": "PLAY-022",
       "sourceIndex": 1,
       "assertion": "A player can open a bill or failure explanation without raw trace codes.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -7858,30 +7938,36 @@
       "reviewTestCandidates": [
         "B058"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+        "run": "finance-4bc9d20",
         "implementation": [
-          "src/game/93-ui/65-service-preferences.js",
-          "src/game/93-ui/70-provider-hud.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
+          "src/game/23-provider-finance-view.js",
+          "src/game/93-ui/79-provider-finance.js",
           "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/25-provider-campaign.js"
         ],
         "tests": [
-          "C118",
-          "C119",
-          "C120",
-          "C121",
-          "C122"
+          "AC-SOC-623",
+          "AC-SOC-624",
+          "AC-SOC-625",
+          "AC-SOC-626",
+          "AC-SOC-627",
+          "AC-SOC-628",
+          "AC-SOC-629",
+          "AC-SOC-630"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "A player can open a bill without raw trace codes",
+            "evidence": "Actual Finance button, billing-period select and human-readable summary/bridge/posting names. Technical posting identifiers are behind optional Posting references details."
+          }
+        ],
+        "scope": "The bill branch of the assertion is met; this does not certify every failure explanation elsewhere.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: A player can open a bill or failure explanation without raw trace codes."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. The bill branch of the assertion is met; this does not certify every failure explanation elsewhere."
     },
     {
       "id": "PLAY-022-A03",
@@ -9212,7 +9298,7 @@
       "requirement": "PLAY-031",
       "sourceIndex": 0,
       "assertion": "A player can reconcile the displayed bill and cash movement to named economic events.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B014",
         "B015",
@@ -9233,23 +9319,44 @@
       "reviewTestCandidates": [
         "R012"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+        "run": "finance-4bc9d20",
         "implementation": [
-          "src/game/54-business.js",
-          "src/game/55-communications.js",
-          "src/game/93-ui/75-provider-panels.js"
+          "src/game/23-provider-finance-view.js",
+          "src/game/93-ui/79-provider-finance.js",
+          "src/game/97-provider-shell.js",
+          "src/game/25-provider-campaign.js"
         ],
         "tests": [
-          "C120",
-          "C178",
-          "C121"
+          "AC-SOC-623",
+          "AC-SOC-624",
+          "AC-SOC-625",
+          "AC-SOC-626",
+          "AC-SOC-627",
+          "AC-SOC-628",
+          "AC-SOC-629",
+          "AC-SOC-630"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "Displayed bill reconciles to named economic events",
+            "evidence": "Same real ledger slice: retail revenue, service credits, supplier/operating commitments, voice/message usage, paid setup and shared payroll. AC623/626."
+          },
+          {
+            "text": "Cash movement reconciles",
+            "evidence": "Opening+operating result+borrowed principal-principal repaid=closing; actual bridge text matches values and exactpostingIDs. AC624 excludes same-minute later repair/repayment from preceding bill."
+          },
+          {
+            "text": "Unavailable history stays honest",
+            "evidence": "AC625/628 require summary-only unavailable bridge when needed boundary/postings are pruned or do not reconcile."
+          }
+        ],
+        "scope": "Browser paths show zero borrowing/repayment; nonzero finance cases are public-dispatch AC623/624, not browser evidence.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: A player can reconcile the displayed bill and cash movement to named economic events."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Browser paths show zero borrowing/repayment; nonzero finance cases are public-dispatch AC623/624, not browser evidence."
     },
     {
       "id": "PLAY-031-A02",
@@ -12648,7 +12755,7 @@
       "requirement": "PLAY-050",
       "sourceIndex": 0,
       "assertion": "Record fresh start, alternative plan, incident, bill, renewal/exit and shared-resource expansion for the SMB opening.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-scene",
@@ -12668,26 +12775,48 @@
         "B008",
         "B011"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+        "run": "finance-4bc9d20",
         "implementation": [
-          "scripts/browser-smoke.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
+          "src/game/23-provider-finance-view.js",
+          "src/game/93-ui/79-provider-finance.js",
           "src/game/97-provider-shell.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/25-provider-campaign.js"
         ],
         "tests": [
-          "C017",
-          "C023",
-          "C041"
+          "AC-SOC-623",
+          "AC-SOC-624",
+          "AC-SOC-625",
+          "AC-SOC-626",
+          "AC-SOC-627",
+          "AC-SOC-628",
+          "AC-SOC-629",
+          "AC-SOC-630"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "Fresh start and alternative plan",
+            "evidence": "Four journeys swift-desktop/steady-desktop/swift-mobile/steady-mobile actual paid stage quotes and delayed delivery."
+          },
+          {
+            "text": "Consequential incident and bill",
+            "evidence": "Actual carrier incident paused, acknowledged, paidrepair completed, credited first bill and recovered bill opened through Finance."
+          },
+          {
+            "text": "Renewal/exit",
+            "evidence": "steady-desktop and bothmobile journeys continuecareer\u2192visible-renewal\u2192visible-exit; Swift desktop continues to next segment."
+          },
+          {
+            "text": "Shared-resource expansion",
+            "evidence": "Same treasury pays next-1 base setup; second customer is provisioning and original mission reaches won. Root driver intentionally asserts funded next base, not delivered second service."
+          }
+        ],
+        "scope": "Original recorded SMB-opening scope. Broader owner milestone demanding fully delivered next-customer service remains separate.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Attach a complete current SMB visible journey covering both investment strategies, incidents, bill explanation, renewal/exit and shared-resource expansion."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Original recorded SMB-opening scope. Broader owner milestone demanding fully delivered next-customer service remains separate."
     },
     {
       "id": "PLAY-050-A02",
@@ -13451,13 +13580,26 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 86,
-      "pending-current-candidate-verification": 69,
+      "verified-current-candidate": 90,
+      "pending-current-candidate-verification": 65,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
     "publicPreviewIsSeparateCandidate": true,
     "fullEcosystemReleaseGate": "unchanged and separate",
-    "researchAcceptanceOrExclusions": "none"
+    "researchAcceptanceOrExclusions": "none",
+    "incrementalReviews": [
+      {
+        "candidate": "4bc9d2005f9886d21b001d3d4f7c3f68c4becb88",
+        "run": "finance-4bc9d20",
+        "assertions": [
+          "PLAY-011-A03",
+          "PLAY-022-A02",
+          "PLAY-031-A01",
+          "PLAY-050-A01"
+        ],
+        "scope": "Only these four assertions promoted; earlier assertions retain their own historical candidate and require affected revalidation after further runtime changes."
+      }
+    ]
   }
 }

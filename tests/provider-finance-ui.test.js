@@ -1,0 +1,26 @@
+"use strict";
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
+const SOC=require('../src/game/55-communications'),finance=require('../src/game/23-provider-finance-view');
+function paid(){let s=SOC.create({experience:'campaign',scenario:'smb',seed:73,difficulty:'easy'});for(const stage of ['base','carrier','partner']){const c={action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})},q=SOC.provider.quote(s,c);assert.deepEqual(q.blockers,[]);s=SOC.dispatch(s,{type:'provider',command:{...c,quoteRevision:q.atRevision}});}for(let i=0;i<120;i++)s=SOC.dispatch(s,{type:'advance',minutes:1});return s;}
+let cached;const state=()=>cached??(cached=paid());
+function boot(){const dom=new JSDOM('<main id="app"></main>',{runScripts:'dangerously',pretendToBeVisual:true}),w=dom.window,calls=[];w.N_=x=>x;
+ for(const file of ['93-ui/10-dom.js','23-provider-finance-view.js','23-provider-variants.js','93-ui/65-service-preferences.js','93-ui/70-provider-hud.js','93-ui/75-provider-panels.js','93-ui/79-provider-finance.js','96-map/90-service-scene.js','96-map/95-provider-canvas.js','97-provider-shell.js'])w.eval(fs.readFileSync(path.join(__dirname,'../src/game',file),'utf8'));
+ w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),{command:c=>calls.push(c)});return {dom,w,calls};}
+test('AC-SOC-627 Finance selects a retained bill through actual shell input and preserves focus, period and simulation state across ticks',()=>{
+ const {w,calls}=boot();try{const s=state(),before=JSON.stringify(s);w.SOC_PROVIDER_UI.render(s,SOC.provider.inspect(s));w.document.querySelector('[data-provider-value="finance"]').click();
+ let select=w.document.querySelector('[data-provider-finance-period]');assert.ok(select);assert.equal(select.value,'1');select.focus();select.value='0';select.dispatchEvent(new w.Event('input',{bubbles:true}));
+ assert.equal(w.SOC_PROVIDER_UI.view().financePeriod,0);assert.equal(w.document.querySelector('[data-finance-period]').dataset.financePeriod,'0');assert.equal(JSON.stringify(s),before);assert.deepEqual(calls,[]);const details=w.document.querySelector('[data-finance-posting] details');details.open=true;const posting=details.parentElement.dataset.financePosting;w.document.querySelector('.provider-rail-body').scrollTop=120;
+ const next=SOC.dispatch(s,{type:'advance',minutes:1});w.SOC_PROVIDER_UI.render(next,SOC.provider.inspect(next));assert.equal(w.document.querySelector('[data-provider-finance-period]').value,'0');assert.equal(w.document.activeElement.dataset.providerFinancePeriod,'');assert.ok([...w.document.querySelectorAll('[data-finance-posting] details[open]')].some(x=>x.parentElement.dataset.financePosting===posting));assert.equal(w.document.querySelector('.provider-rail-body').scrollTop,120);
+ assert.equal(w.document.querySelectorAll('[data-finance-posting]').length,finance.inspect(s).rows[0].postings.length);assert.match(w.document.querySelector('.provider-finance-history').textContent,/Borrowing is not revenue/);assert.match(w.document.querySelector('.provider-finance-history').textContent,/Shared provider payroll/);
+ }finally{w.close();}
+});
+test('AC-SOC-628 Finance distinguishes unretained selection from latest period and never invents a pruned cash bridge',()=>{
+ const {w}=boot();try{const model=finance.inspect(state());let html=w.SOCProviderFinance.render(model,{financePeriod:999});w.document.body.innerHTML=html;assert.match(w.document.body.textContent,/selected period is no longer retained/);assert.equal(w.document.querySelector('.provider-finance-bridge'),null);
+ const copy=JSON.parse(JSON.stringify(state()));copy.business.ledgerPrunedThrough=1;copy.business.ledger.shift();w.document.body.innerHTML=w.SOCProviderFinance.render(finance.inspect(copy),{financePeriod:0});assert.match(w.document.body.textContent,/no cash bridge has been invented/);assert.ok(w.document.querySelector('[data-finance-value="profit"]'));assert.equal(w.document.querySelector('.provider-finance-bridge'),null);
+ }finally{w.close();}
+});
+test('AC-SOC-629 Finance labels use static translation keys and customer names remain escaped',()=>{
+ const {w}=boot();try{w.tr=k=>k==='provider.finance.title'?'Translated bill':k;const model=finance.inspect(state());model.rows[0].customers[0].name='<img src=x onerror=alert(1)>';const before=JSON.stringify(model);w.document.body.innerHTML=w.SOCProviderFinance.render(model,{financePeriod:0});assert.equal(w.document.querySelector('h3').textContent,'Translated bill');assert.equal(w.document.querySelector('img'),null);assert.equal(JSON.stringify(model),before);}finally{w.close();}
+});
+
+test('AC-SOC-630 the initially displayed latest bill stays selected when another actual period settles',()=>{const {w}=boot();try{let s=state();w.SOC_PROVIDER_UI.render(s,SOC.provider.inspect(s));w.document.querySelector('[data-provider-value="finance"]').click();assert.equal(w.SOC_PROVIDER_UI.view().financePeriod,1);while(s.clock<180)s=SOC.dispatch(s,{type:'advance',minutes:1});w.SOC_PROVIDER_UI.render(s,SOC.provider.inspect(s));assert.equal(w.document.querySelector('[data-provider-finance-period]').value,'1');assert.equal(w.document.querySelectorAll('[data-provider-finance-period] option').length,3);}finally{w.close();}});

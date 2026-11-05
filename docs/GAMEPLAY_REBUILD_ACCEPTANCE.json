@@ -592,7 +592,7 @@
         "rawArtifact": "/tmp/soc-legacy-visible-check.js",
         "sha256": "b6597b0def56e57edaff660e603d073236eb5a0612c97abaeec19372c3e17244"
       },
-      "scope": "Synthetic legacy single-key SP fixture, desktop Chromium, service workers blocked. Visible SPload/resume day30\u219231; original slot bytes and separate Training/Provider states retained. Earlier harness-selector/navigation failures retained outside Git. Not all legacy schemas, browser engines or human evidence."
+      "scope": "Synthetic legacy single-key SP fixture, desktop Chromium, service workers blocked. Visible SPload/resume day30→31; original slot bytes and separate Training/Provider states retained. Earlier harness-selector/navigation failures retained outside Git. Not all legacy schemas, browser engines or human evidence."
     },
     "governance-dd7a3dd": {
       "candidate": "dd7a3ddc9aadc2bf18315cbd7257642f907ac11a",
@@ -723,6 +723,39 @@
       "rawArtifact": "/tmp/soc-family-visible-0ac9430-three-engine-independent-review.json",
       "sha256": "34148d29b531f69619067f9670166a534c0b46de42ca60280d757e2a5eaa8394",
       "scope": "Fourteen family-specific capabilities/limitations plus paid retirement/recommissioning in Chromium, Firefox and WebKit;373 source inputs and47 built files per engine independently reconciled. Desktop1366x768 only; no full mission victory, per-family save-restore, catalogue approval or mobile inference."
+    },
+    "runtime-storage-lock-c0568a0-three-engine": {
+      "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+      "status": "three-desktop-journeys-passed",
+      "rawArtifact": "/tmp/soc-lock-review-map_scene.json",
+      "sha256": "448332b6b9310c81043bc66f8a5f917cc5c433e75d52cf88fc1b07b8a9c59188",
+      "reports": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.4",
+          "path": "/tmp/soc-lock-final-chromium/provider-browser-20261105232231872.json",
+          "sha256": "8eb1eb961fbadb87e4038f74090396041699f06171aa33eb2556c99234a7d60e",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "path": "/tmp/soc-lock-final-firefox/provider-browser-20261105232348423.json",
+          "sha256": "0cb5f50350708fee4c9f7f68e3fa3c25a1efa0984bf45347349decc563893737",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "path": "/tmp/soc-lock-final-webkit/provider-browser-20261105232158040.json",
+          "sha256": "b4cacc3ad2c065af1fd1d420c842861bce0c5209874f1b70035ce08bd3b31796",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        }
+      ],
+      "scope": "Actual native Web Locks revocation and storage quota failure around one visible paid purchase; exact export, pause/read-only state and explicit recovery in Chromium, Firefox and WebKit at1366x768. Explicit environment fault injection; no simulation state writes. Not a full persistence, mobile, mission or deployment matrix."
     }
   },
   "tests": {
@@ -4620,7 +4653,7 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-preferences",
         "candidate-product-compatibility",
@@ -4628,8 +4661,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-047": {
@@ -8690,7 +8723,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Automated timing measurements exist in older browser receipts. Attach exact current first-choice and first-delivery times without presenting them as human comprehension or 20\u201330-minute loop evidence."
+      "remaining": "Automated timing measurements exist in older browser receipts. Attach exact current first-choice and first-delivery times without presenting them as human comprehension or 20–30-minute loop evidence."
     },
     {
       "id": "PLAY-024-A01",
@@ -12800,7 +12833,7 @@
       "requirement": "PLAY-046",
       "sourceIndex": 2,
       "assertion": "Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B030",
         "B051",
@@ -12829,33 +12862,23 @@
       "reviewTestCandidates": [
         "B051"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+        "run": "runtime-storage-lock-c0568a0-three-engine",
         "implementation": [
-          "src/game/23-provider-history.js",
-          "src/game/23-provider-products.js",
-          "src/game/25-provider-campaign.js",
-          "src/game/37-portfolio.js",
-          "src/game/54-business.js",
-          "src/game/55-communications.js",
-          "src/game/93-ui/65-service-preferences.js",
-          "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/98-provider-runtime.js",
+          "src/game/97-provider-shell.js"
         ],
-        "tests": [
-          "C001",
-          "C024",
-          "C252",
-          "C253",
-          "C251",
-          "C254"
+        "testIds": [
+          "AC-SOC-677",
+          "AC-SOC-678"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "A real committed A$3,800 order survives injected storage quota failure, remains one project and exports exactly. After native lock takeover the original tab becomes visibly read-only/paused, cancels pending work and cannot advance; explicit reopen restores ownership and continuation. Before-fix Chromium reproduced continued unauthorised clock advancement.",
+        "scope": "Exact lock-loss and exportable-storage-failure assertion at the named candidate. Desktop three-engine scope; no blanket persistence or full gameplay closure.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final integrated candidate, mobile and broader persistence remain separately tracked."
     },
     {
       "id": "PLAY-047-A01",
@@ -12898,7 +12921,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A02",
@@ -12944,7 +12967,7 @@
         ],
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A03",
@@ -12990,7 +13013,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A04",
@@ -13043,7 +13066,7 @@
         ],
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-048-A01",
@@ -13338,7 +13361,7 @@
           },
           {
             "text": "Renewal/exit",
-            "evidence": "steady-desktop and bothmobile journeys continuecareer\u2192visible-renewal\u2192visible-exit; Swift desktop continues to next segment."
+            "evidence": "steady-desktop and bothmobile journeys continuecareer→visible-renewal→visible-exit; Swift desktop continues to next segment."
           },
           {
             "text": "Shared-resource expansion",
@@ -13588,7 +13611,7 @@
       "id": "PLAY-052-A01",
       "requirement": "PLAY-052",
       "sourceIndex": 0,
-      "assertion": "Provide a 6\u20138-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
+      "assertion": "Provide a 6–8-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
       "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
@@ -13611,16 +13634,16 @@
           "docs/GAMEPLAY_PILOT_PROTOCOL.md"
         ],
         "tests": [],
-        "evidence": "Manual clause audit of prepared protocol:6\u20138 empty slots; counterbalanced game/plan/device order; clarity/choice/failure/change measures; consent/anonymized notes;2/5min targets,20\u201330min loop; observed failure\u2192fix\u2192affected retest.",
+        "evidence": "Manual clause audit of prepared protocol:6–8 empty slots; counterbalanced game/plan/device order; clarity/choice/failure/change measures; consent/anonymized notes;2/5min targets,20–30min loop; observed failure→fix→affected retest.",
         "scope": "Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
         "result": "passed-exact-assertion",
         "protocolClauses": [
-          "Candidate+recruitment6\u20138 adults",
-          "Counterbalanced assignment tableP01\u2013P08 empty slots",
+          "Candidate+recruitment6–8 adults",
+          "Counterbalanced assignment tableP01–P08 empty slots",
           "Neutral primary/changedconstraint taskcards",
           "Measurement definitions goal/tradeoff/failure/adaptedplan/continue",
           "Consent/datahandling",
-          "Observed failures\u2192fix\u2192affectedretest"
+          "Observed failures→fix→affectedretest"
         ]
       },
       "remaining": "No remaining criterion identified for this exact clause at its named candidate. Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
@@ -14117,7 +14140,7 @@
       {
         "item": "Real pilot participation",
         "status": "pending",
-        "scope": "6\u20138 actual participants, consent, counterbalanced sessions, observed results and affected retesting; no human outcomes claimed."
+        "scope": "6–8 actual participants, consent, counterbalanced sessions, observed results and affected retesting; no human outcomes claimed."
       },
       {
         "item": "Long-play verification",
@@ -14156,8 +14179,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 105,
-      "pending-current-candidate-verification": 50,
+      "verified-current-candidate": 106,
+      "pending-current-candidate-verification": 49,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14229,6 +14252,19 @@
           "PLAY-037-A02"
         ],
         "scope": "Two new exact closures and one refreshed distinction proof; all45 desktop family/retirement journeys passed. No new human, long-play, source/research or mobile acceptance."
+      },
+      {
+        "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+        "runs": [
+          "runtime-storage-lock-c0568a0-three-engine"
+        ],
+        "assertions": [
+          "PLAY-046-A03"
+        ],
+        "newlyVerified": [
+          "PLAY-046-A03"
+        ],
+        "scope": "One exact closure only; native lock loss and injected storage failure verified through actual browser controls. No owner exclusions, human participation or long-play result."
       }
     ]
   }

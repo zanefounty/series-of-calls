@@ -62023,6 +62023,7 @@
       "src/game/96-map/95-provider-canvas.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
       "src/styles/98-provider.css",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
@@ -62088,7 +62089,8 @@
       "BEH-SOC-375",
       "BEH-SOC-385",
       "BEH-SOC-386",
-      "BEH-SOC-387"
+      "BEH-SOC-387",
+      "BEH-SOC-392"
     ]
   },
   {

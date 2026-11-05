@@ -7,7 +7,12 @@ self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise
 self.addEventListener('fetch',e=>{
  const req=e.request,url=new URL(req.url);if(req.method!=='GET'||!url.href.startsWith(BASE)||url.pathname.endsWith('/version.json'))return;
  e.respondWith(caches.open(CACHE).then(async cache=>{
+  const cached=await cache.match(req);if(cached)return cached;
+  if(req.mode==='navigate'){
+   const shell=await cache.match(new URL('index.html',BASE).href)||await cache.match(BASE);
+   if(shell)return shell;
+  }
   try{const response=await fetch(req);if(response.ok)await cache.put(req,response.clone());return response;}
-  catch(error){return (await cache.match(req))||(req.mode==='navigate'&&await cache.match(new URL('index.html',BASE).href))||Response.error();}
+  catch(error){return Response.error();}
  }));
 });

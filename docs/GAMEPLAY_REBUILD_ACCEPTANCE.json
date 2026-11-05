@@ -484,6 +484,331 @@
       "name": "coach distinguishes funded expansion from settled operations and mission victory",
       "result": "passed",
       "run": "baseline-60f009d"
+    },
+    "R001": {
+      "file": "tests/training-map.test.js",
+      "name": "legacy sandbox experience remains the Lab authoring surface",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R002": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "retail quotation is a player decision while willingness and supplier costs stay authored",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R003": {
+      "file": "tests/provider-local-product.test.js",
+      "name": "paid Microsoft local product refuses missing and commissioning prerequisites without charging",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R004": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "stale quote preserves draft, refuses duplicate commitment and requires fresh explicit review",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R005": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "standing policy review preserves drafts through ticks and stale refusal, then enables through dispatch without immediate purchase",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R006": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "eligible expansion selects a distinct market with shared cash, local terms and continuing tenants",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R007": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "home markets and seeded rival terms change new quotes without rewriting existing contract economics",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R008": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "operating forecasts retain existing suppliers and usage when quoting an additional capability",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R009": {
+      "file": "tests/provider-product-compatibility.test.js",
+      "name": "legacy dedicated project ${explicit?'explicit v1':'without recipeVersion'} restores and completes without fabricated caller migration",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R010": {
+      "file": "tests/provider-demand-integration.test.js",
+      "name": "SMB social connector substitutes exactly four eligible calls and preserves 24 unique case obligations",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R011": {
+      "file": "tests/provider-demand-integration.test.js",
+      "name": "enterprise workplace account and video meetings retain 24 distinct scheduled cases with real session lineage",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R012": {
+      "file": "tests/provider-wholesale-statement.test.js",
+      "name": "paid wholesale statement reconciles retained fixed, voice and message costs to exact customer settlement postings",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R013": {
+      "file": "tests/issue-exercises.test.js",
+      "name": "AC-SOC-150 reference directional-media commands produce the modeled one-way media failure",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R014": {
+      "file": "tests/issue-exercises.test.js",
+      "name": "AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R015": {
+      "file": "tests/provider-enterprise-continuity.test.js",
+      "name": "Enterprise consolidated delivery occupies the shared engineers and a refused competing order cannot create free work",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R016": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "reducing provider support removes the ordinary repair option until staff are restored",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R017": {
+      "file": "tests/provider-variant-campaign.test.js",
+      "name": "${variant}: unchanged opening workforce fails while a paid response changes actual period results",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R018": {
+      "file": "tests/provider-variant-campaign.test.js",
+      "name": "${variant}/${plan}: paid eligible cover, real domain repair and shared-treasury expansion win with 24 due cases",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R019": {
+      "file": "tests/provider-scene.test.js",
+      "name": "shared scene projection preserves actual estate states and separates funded product project status",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R020": {
+      "file": "tests/provider-scene.test.js",
+      "name": "Provider map shows funded product objects and marks dependency paths as keyboard actions",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R021": {
+      "file": "tests/provider-comparisons.test.js",
+      "name": "comparison renderer uses real engine quotes and exposes the complete Swift and Steady tradeoff without changing state",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R022": {
+      "file": "tests/provider-comparisons.test.js",
+      "name": "operation alternatives route to the existing scoped operation quote action and show real blockers",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R023": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "map actions retain a blocked costed quote while shared engineers are occupied",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R024": {
+      "file": "tests/provider-shell.test.js",
+      "name": "mobile sheet remains explicitly open through focus changes, ticks and closes on request",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R025": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider preferences validate storage independently and rendering does not change simulation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R026": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "capacity mitigation repairs the incident and provisions extra actual carrier capacity",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R027": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "unaccepted renewal has no demand and earns no further retail revenue",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R028": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "expired customer offers reject purchase while accepted stage commitments stay actionable",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R029": {
+      "file": "tests/provider-progression-facts.test.js",
+      "name": "AC-PROVIDER-PROGRESSION-FACTS-002 rejects Training and roots without Provider campaign authority",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R030": {
+      "file": "tests/provider-progression-ui.test.js",
+      "name": "AC-PROVIDER-PROGRESSION-UI-001 renders all 13 levels and 19 goals as compact collapsed readiness groups without mutating Provider state",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R031": {
+      "file": "tests/provider-standing-policy.test.js",
+      "name": "migration standing order uses actual placements and preserves worker and saved continuation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R032": {
+      "file": "tests/provider-standing-policy.test.js",
+      "name": "policy budget counters and scope are authority checked; cash and staff ceilings refuse without buying",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R033": {
+      "file": "tests/provider-standing-policy.test.js",
+      "name": "configured assurance remains suspendable and preserves each paid incident receipt",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R034": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "credit is financing, posts real interest and can be repaid from shared cash exactly once",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R035": {
+      "file": "tests/provider-commercial-choices.test.js",
+      "name": "operation cancellation previews retained cost, releases unstarted delivery and preserves active service obligations",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R036": {
+      "file": "tests/provider-demand.test.js",
+      "name": "unconnected preference channels preserve all 24 authored case obligations and voice floor",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R037": {
+      "file": "tests/provider-demand.test.js",
+      "name": "eligible authored SMB social preference converts four calls without crossing the compulsory voice floor",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R038": {
+      "file": "tests/provider-demand.test.js",
+      "name": "a channel connector cannot manufacture an unauthored preference or lower the scenario voice floor",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R039": {
+      "file": "tests/provider-demand-integration.test.js",
+      "name": "a message retry uses the same case context and its accepted usage is charged once",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R040": {
+      "file": "tests/provider-enterprise-continuity.test.js",
+      "name": "paid Enterprise ${operationId} preserves identities, number assignments and actual contact work around its cutover",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R041": {
+      "file": "tests/provider-government.test.js",
+      "name": "PLAY-034/PLAY-042 both plans evaluate from actual configured paths and preserve separate boundary fields",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R042": {
+      "file": "tests/provider-government-campaign.test.js",
+      "name": "PLAY-034/042 real Government campaign funds both architecture choices and repairs a seeded support-boundary incident",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R043": {
+      "file": "tests/provider-local-product.test.js",
+      "name": "funded Microsoft local product carries actual autonomous Defence voice during authored isolation and restores exactly",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R044": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "${recipeId}: actual room session depends on ${dependency} and a failed join cannot become delivered work",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R045": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "${recipeId}: authored carrier binding delivers duration-bearing voice, blocks carrier loss, and recovers",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R046": {
+      "file": "tests/provider-operations-product.test.js",
+      "name": "paid provider operations fulfils a measured capacity order with its actual shared-cash receipt and delayed capacity",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R047": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "cisco-dedicated-uc: effective dedicated platform needs an explicit cohort migration before carrying its calls",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R048": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "paid dedicated UC carries autonomous Alex work on its funded platform and copied Lab faults preserve the limitation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R049": {
+      "file": "tests/provider-operations-product.test.js",
+      "name": "paid provider tenant policy requires explicit valid authority and migrates the selected tenant through a paid order",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R050": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "ms-contact-centre: family seat entitlements do not replace eligible humans or mapped customer context",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R051": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "ms-local-deployment: local calling survives isolation only while local licensing remains available",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R052": {
+      "file": "tests/provider-family-capabilities.test.js",
+      "name": "cisco-local-speech: exact recipe output stops after a pipeline scope change until model evidence is reprovisioned",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R053": {
+      "file": "tests/provider-government.test.js",
+      "name": "PLAY-034/PLAY-042 cloud processing depends on connectivity while local processing remains eligible offline",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R054": {
+      "file": "tests/provider-enterprise-continuity.test.js",
+      "name": "copied paid Enterprise coexistence routes Bea inbound number through its own platform and a target outage fails only that path",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R055": {
+      "file": "tests/provider-variants.test.js",
+      "name": "worker source serializes the same pure, versioned variant API",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R056": {
+      "file": "tests/provider-policy.test.js",
+      "name": "disabled, suspended and no-trigger policies are pure no-ops",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R057": {
+      "file": "tests/provider-policy.test.js",
+      "name": "serialized policy kernel reproduces validation and deterministic previews",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R058": {
+      "file": "tests/provider-portfolio-history.test.js",
+      "name": "portfolio journal checkpoints bounded history while active roots survive save and worker continuation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R059": {
+      "file": "tests/provider-soak.test.js",
+      "name": "provider career supports twenty active customers through 10,000 minutes of actual workload, renewal and deterministic save continuation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R060": {
+      "file": "tests/provider-channel-history.test.js",
+      "name": "provider channel compaction archives old terminal receipts while preserving a live conversation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R061": {
+      "file": "tests/provider-channel-history.test.js",
+      "name": "provider compaction retains recent and in-flight channel lineage until terminal and old",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R062": {
+      "file": "tests/provider-wholesale-retention.test.js",
+      "name": "wholesale history and ledger pruning preserve bounded statements and restored continuation",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R063": {
+      "file": "tests/provider-progression-facts.test.js",
+      "name": "AC-PROVIDER-PROGRESSION-FACTS-001 lists all canonical source IDs and exact fictional names",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R064": {
+      "file": "tests/provider-product-retirement.test.js",
+      "name": "paid product retirement previews active work, refuses stale commitment, fails actual bound calls and retains recordings",
+      "result": "candidate-only-not-current-execution"
+    },
+    "R065": {
+      "file": "tests/provider-product-retirement.test.js",
+      "name": "forged retirement receipts fail restore and pending retirement continues equally in worker and fallback",
+      "result": "candidate-only-not-current-execution"
     }
   },
   "requirements": {
@@ -1365,7 +1690,21 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/95-modals/40-title.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/index.html",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B051"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-001-A02",
@@ -1391,7 +1730,21 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/95-modals/40-title.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/index.html",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-001-A03",
@@ -1417,7 +1770,22 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/95-modals/40-title.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/index.html",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B003",
+        "R001"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-002-A01",
@@ -1435,7 +1803,18 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "B001"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-002-A02",
@@ -1453,7 +1832,18 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "R002"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-002-A03",
@@ -1471,7 +1861,18 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "B004"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-003-A01",
@@ -1496,7 +1897,16 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B002"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-003-A02",
@@ -1521,7 +1931,16 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B007"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-003-A03",
@@ -1546,7 +1965,17 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B039",
+        "R003"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-004-A01",
@@ -1560,7 +1989,15 @@
         "B053",
         "B054"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/55-communications.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B060"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-004-A02",
@@ -1574,7 +2011,15 @@
         "B053",
         "B054"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/55-communications.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B054"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-004-A03",
@@ -1588,7 +2033,15 @@
         "B053",
         "B054"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/55-communications.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B053"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-005-A01",
@@ -1616,7 +2069,23 @@
         "candidate-comparisons",
         "candidate-standing-policy",
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B006",
+        "B002",
+        "R004",
+        "R005"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-005-A02",
@@ -1644,7 +2113,20 @@
         "candidate-comparisons",
         "candidate-standing-policy",
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B002"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-005-A03",
@@ -1672,7 +2154,20 @@
         "candidate-comparisons",
         "candidate-standing-policy",
         "candidate-product-compatibility"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B006"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-006-A01",
@@ -1700,7 +2195,20 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R006"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-006-A02",
@@ -1728,7 +2236,20 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "B019"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-006-A03",
@@ -1756,7 +2277,21 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R007",
+        "B002"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-007-A01",
@@ -1773,7 +2308,15 @@
         "B019",
         "B020"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "B016"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-007-A02",
@@ -1790,7 +2333,15 @@
         "B019",
         "B020"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "B018"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-007-A03",
@@ -1807,7 +2358,16 @@
         "B019",
         "B020"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "R008",
+        "B016"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-008-A01",
@@ -1825,7 +2385,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B011"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-008-A02",
@@ -1843,7 +2412,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B021"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-008-A03",
@@ -1861,7 +2439,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B010"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-008-A04",
@@ -1879,7 +2466,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B011"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-009-A01",
@@ -1905,7 +2501,22 @@
         "candidate-training-map",
         "candidate-product-compatibility",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/23-training-lessons.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B003"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-009-A02",
@@ -1931,7 +2542,22 @@
         "candidate-training-map",
         "candidate-product-compatibility",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/23-training-lessons.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B004"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-009-A03",
@@ -1957,7 +2583,22 @@
         "candidate-training-map",
         "candidate-product-compatibility",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/23-training-lessons.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/44-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "R009"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-010-A01",
@@ -1975,7 +2616,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B007"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-010-A02",
@@ -1993,7 +2643,16 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-010-A03",
@@ -2011,7 +2670,17 @@
         "B012",
         "B013"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R010",
+        "R011"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-011-A01",
@@ -2031,7 +2700,18 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B014"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-011-A02",
@@ -2051,7 +2731,18 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B015"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-011-A03",
@@ -2071,7 +2762,18 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R012"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-012-A01",
@@ -2086,7 +2788,15 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/50-calling.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B021"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-012-A02",
@@ -2101,7 +2811,15 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/50-calling.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B021"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-012-A03",
@@ -2116,7 +2834,15 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/50-calling.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B021"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-013-A01",
@@ -2131,7 +2857,15 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B022"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-013-A02",
@@ -2146,7 +2880,16 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R013",
+        "R014"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-013-A03",
@@ -2161,7 +2904,15 @@
         "B024",
         "B025"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B022"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-014-A01",
@@ -2180,7 +2931,16 @@
         "B028",
         "B029"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/51-contact.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B023"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-014-A02",
@@ -2199,7 +2959,16 @@
         "B028",
         "B029"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/51-contact.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B027"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-014-A03",
@@ -2218,7 +2987,16 @@
         "B028",
         "B029"
       ],
-      "candidateDiscoveryRefs": []
+      "candidateDiscoveryRefs": [],
+      "reviewImplementation": [
+        "src/game/51-contact.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B027"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-015-A01",
@@ -2236,7 +3014,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R015"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-015-A02",
@@ -2254,7 +3044,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R016"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-015-A03",
@@ -2272,7 +3074,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "B046"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-016-A01",
@@ -2299,7 +3113,18 @@
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B008"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-016-A02",
@@ -2326,7 +3151,18 @@
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "R017"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-016-A03",
@@ -2353,7 +3189,18 @@
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "R018"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-017-A01",
@@ -2375,7 +3222,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/98-provider.css"
+      ],
+      "reviewTestCandidates": [
+        "B059"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-017-A02",
@@ -2397,7 +3257,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/98-provider.css"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-017-A03",
@@ -2419,7 +3292,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/98-provider.css"
+      ],
+      "reviewTestCandidates": [
+        "B061"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-018-A01",
@@ -2441,7 +3327,21 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/45-products.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R019",
+        "R020"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-018-A02",
@@ -2463,7 +3363,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/45-products.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B056"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-018-A03",
@@ -2485,7 +3398,21 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/45-products.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B061",
+        "R020"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-019-A01",
@@ -2507,7 +3434,18 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-comparisons"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "reviewTestCandidates": [
+        "R021"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-019-A02",
@@ -2529,7 +3467,18 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-comparisons"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "reviewTestCandidates": [
+        "R022"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-019-A03",
@@ -2551,7 +3500,18 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-comparisons"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "reviewTestCandidates": [
+        "R023"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-020-A01",
@@ -2578,7 +3538,22 @@
         "candidate-scene",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B059",
+        "R004",
+        "R005"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-020-A02",
@@ -2605,7 +3580,20 @@
         "candidate-scene",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B056"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-020-A03",
@@ -2632,7 +3620,20 @@
         "candidate-scene",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R004"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-021-A01",
@@ -2656,7 +3657,27 @@
         "candidate-training-map",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js",
+        "src/styles/98-provider.css",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B060",
+        "B062",
+        "R020"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-021-A02",
@@ -2680,7 +3701,25 @@
         "candidate-training-map",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js",
+        "src/styles/98-provider.css",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "R024"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-021-A03",
@@ -2704,7 +3743,27 @@
         "candidate-training-map",
         "candidate-preferences",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-training-lessons.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js",
+        "src/styles/98-provider.css",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B060",
+        "B062",
+        "R020"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-022-A01",
@@ -2726,7 +3785,21 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R019"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-022-A02",
@@ -2748,7 +3821,21 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B058"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-022-A03",
@@ -2770,7 +3857,21 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R025"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-023-A01",
@@ -2792,7 +3893,16 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B063"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-023-A02",
@@ -2814,7 +3924,16 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B063"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-023-A03",
@@ -2836,7 +3955,16 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B051"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-024-A01",
@@ -2857,7 +3985,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-scene"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "B058"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-024-A02",
@@ -2878,7 +4017,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-scene"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "B061"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-024-A03",
@@ -2899,7 +4049,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-scene"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-025-A01",
@@ -2927,7 +4088,21 @@
         "candidate-comparisons",
         "candidate-government",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "R026"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-025-A02",
@@ -2955,7 +4130,22 @@
         "candidate-comparisons",
         "candidate-government",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B034",
+        "B036"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-025-A03",
@@ -2983,7 +4173,21 @@
         "candidate-comparisons",
         "candidate-government",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/53-service-operations.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js"
+      ],
+      "reviewTestCandidates": [
+        "B048"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-026-A01",
@@ -3003,7 +4207,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/26-customer-needs.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "R002"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-026-A02",
@@ -3023,7 +4238,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/26-customer-needs.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "R027"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-026-A03",
@@ -3043,7 +4269,18 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/26-customer-needs.js",
+        "src/game/54-business.js"
+      ],
+      "reviewTestCandidates": [
+        "R028"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-027-A01",
@@ -3058,7 +4295,18 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "proposal-progression-adapter"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js"
+      ],
+      "reviewTestCandidates": [
+        "B044"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-027-A02",
@@ -3073,7 +4321,18 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "proposal-progression-adapter"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js"
+      ],
+      "reviewTestCandidates": [
+        "R029"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-027-A03",
@@ -3088,7 +4347,18 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "proposal-progression-adapter"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/31-capability-progression.js",
+        "src/game/41-progression.js"
+      ],
+      "reviewTestCandidates": [
+        "R030"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-028-A01",
@@ -3105,7 +4375,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R031"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-028-A02",
@@ -3122,7 +4404,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R032"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-028-A03",
@@ -3139,7 +4433,20 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-standing-policy"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-policy.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "B050",
+        "R033"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-029-A01",
@@ -3156,7 +4463,24 @@
         "candidate-standing-policy",
         "candidate-commercial-growth",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-policy.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/45-products.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-029-A02",
@@ -3173,7 +4497,25 @@
         "candidate-standing-policy",
         "candidate-commercial-growth",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-policy.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/45-products.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js"
+      ],
+      "reviewTestCandidates": [
+        "R034",
+        "R006"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-029-A03",
@@ -3190,7 +4532,24 @@
         "candidate-standing-policy",
         "candidate-commercial-growth",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-policy.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/45-products.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js"
+      ],
+      "reviewTestCandidates": [
+        "R035"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-030-A01",
@@ -3202,7 +4561,20 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-products.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R010"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-030-A02",
@@ -3214,7 +4586,22 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-products.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R036",
+        "R037",
+        "R038"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-030-A03",
@@ -3226,7 +4613,20 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-commercial-growth"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-products.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R039"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-031-A01",
@@ -3245,7 +4645,16 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R012"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-031-A02",
@@ -3264,7 +4673,16 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R034"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-031-A03",
@@ -3283,7 +4701,16 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B019"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-032-A01",
@@ -3305,7 +4732,20 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B007"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-032-A02",
@@ -3327,7 +4767,20 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R018"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-032-A03",
@@ -3349,7 +4802,20 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R017"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-033-A01",
@@ -3371,7 +4837,23 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/53-service-operations.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B031"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-033-A02",
@@ -3393,7 +4875,23 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/53-service-operations.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R040"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-033-A03",
@@ -3415,7 +4913,23 @@
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/34-specialist-lifecycle.js",
+        "src/game/53-service-operations.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B010"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-034-A01",
@@ -3438,7 +4952,24 @@
         "candidate-government",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R041"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-034-A02",
@@ -3461,7 +4992,24 @@
         "candidate-government",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R042"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-034-A03",
@@ -3484,7 +5032,24 @@
         "candidate-government",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-comparisons.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R042"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-035-A01",
@@ -3503,7 +5068,20 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R043"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-035-A02",
@@ -3522,7 +5100,20 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B036"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-035-A03",
@@ -3541,7 +5132,20 @@
       "candidateDiscoveryRefs": [
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B034"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-036-A01",
@@ -3563,7 +5167,25 @@
         "candidate-family-capabilities",
         "candidate-product-compatibility",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R044",
+        "B043",
+        "R043"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-036-A02",
@@ -3585,7 +5207,27 @@
         "candidate-family-capabilities",
         "candidate-product-compatibility",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B039",
+        "B040",
+        "R045",
+        "B043",
+        "R043"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-036-A03",
@@ -3607,7 +5249,23 @@
         "candidate-family-capabilities",
         "candidate-product-compatibility",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B037"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-037-A01",
@@ -3631,7 +5289,28 @@
         "candidate-product-compatibility",
         "candidate-wholesale",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "R046",
+        "R044",
+        "B043"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-037-A02",
@@ -3655,7 +5334,28 @@
         "candidate-product-compatibility",
         "candidate-wholesale",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B042",
+        "R047",
+        "R048"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-037-A03",
@@ -3679,7 +5379,26 @@
         "candidate-product-compatibility",
         "candidate-wholesale",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-policy-controls.js",
+        "src/game/93-ui/79-provider-lifecycle.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B037"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-038-A01",
@@ -3703,7 +5422,20 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/36-market-qualification.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B032"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-038-A02",
@@ -3727,7 +5459,20 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/36-market-qualification.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B046"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-038-A03",
@@ -3751,7 +5496,20 @@
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-wholesale"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/29-managed-operations.js",
+        "src/game/36-market-qualification.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "B032"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-039-A01",
@@ -3775,7 +5533,28 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R046",
+        "R049",
+        "R048",
+        "B046",
+        "B048",
+        "B049",
+        "B050",
+        "B032"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-039-A02",
@@ -3799,7 +5578,19 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-039-A03",
@@ -3823,7 +5614,26 @@
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/products.json",
+        "src/game/23-provider-policy.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/28-product-evidence.js",
+        "src/game/45-products.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "reviewTestCandidates": [
+        "R046",
+        "R044",
+        "B046",
+        "B048",
+        "B031",
+        "B032"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-040-A01",
@@ -3840,7 +5650,20 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/38-workforce-offers.js",
+        "src/game/38-workforce-quality.js",
+        "src/game/49-workforce.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R050"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-040-A02",
@@ -3857,7 +5680,20 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/38-workforce-offers.js",
+        "src/game/38-workforce-quality.js",
+        "src/game/49-workforce.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B046"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-040-A03",
@@ -3874,7 +5710,20 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/38-workforce-offers.js",
+        "src/game/38-workforce-quality.js",
+        "src/game/49-workforce.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B049"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-041-A01",
@@ -3896,7 +5745,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R044"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-041-A02",
@@ -3918,7 +5779,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B026"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-041-A03",
@@ -3940,7 +5813,19 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B027"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-041-A04",
@@ -3962,7 +5847,20 @@
       ],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R051",
+        "R052"
+      ],
+      "reviewGapClass": "engineering-and-verification-gap"
     },
     {
       "id": "PLAY-042-A01",
@@ -3981,7 +5879,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R052"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-042-A02",
@@ -4000,7 +5912,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R053"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-042-A03",
@@ -4019,7 +5945,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R041"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-043-A01",
@@ -4030,7 +5970,19 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R039"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-043-A02",
@@ -4041,7 +5993,19 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R039"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-043-A03",
@@ -4052,7 +6016,19 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/46-outcomes.js",
+        "src/game/47-channels.js",
+        "src/game/51-contact.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R039"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-044-A01",
@@ -4071,7 +6047,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R043"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-044-A02",
@@ -4090,7 +6080,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "R054"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-044-A03",
@@ -4109,7 +6113,21 @@
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities"
-      ]
+      ],
+      "reviewImplementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-government.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/32-site-operations.js",
+        "src/game/42-transport.js",
+        "src/game/43-boundaries.js",
+        "src/game/55-communications.js"
+      ],
+      "reviewTestCandidates": [
+        "B003"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-045-A01",
@@ -4139,7 +6157,25 @@
         "candidate-training-map",
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/lib/page.js",
+        "src/game/23-training-lessons.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "R055",
+        "R056"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-045-A02",
@@ -4169,7 +6205,24 @@
         "candidate-training-map",
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/lib/page.js",
+        "src/game/23-training-lessons.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B001"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-045-A03",
@@ -4199,7 +6252,25 @@
         "candidate-training-map",
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/lib/page.js",
+        "src/game/23-training-lessons.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "R055",
+        "R057"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-046-A01",
@@ -4219,7 +6290,23 @@
         "candidate-product-compatibility",
         "candidate-long-play",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B053"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-046-A02",
@@ -4239,7 +6326,23 @@
         "candidate-product-compatibility",
         "candidate-long-play",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B030"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-046-A03",
@@ -4259,7 +6362,23 @@
         "candidate-product-compatibility",
         "candidate-long-play",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-products.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/65-service-preferences.js",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "reviewTestCandidates": [
+        "B051"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-047-A01",
@@ -4271,7 +6390,19 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R058"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-047-A02",
@@ -4283,7 +6414,19 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R059"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-047-A03",
@@ -4295,7 +6438,20 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R060",
+        "R061"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-047-A04",
@@ -4307,7 +6463,21 @@
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
-      ]
+      ],
+      "reviewImplementation": [
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "reviewTestCandidates": [
+        "R059",
+        "R062",
+        "R058"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-048-A01",
@@ -4318,7 +6488,19 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/build.js",
+        "scripts/lib/page.js",
+        "site/sw.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js"
+      ],
+      "reviewTestCandidates": [
+        "B055"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-048-A02",
@@ -4329,7 +6511,19 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/build.js",
+        "scripts/lib/page.js",
+        "site/sw.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js"
+      ],
+      "reviewTestCandidates": [
+        "B052"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-048-A03",
@@ -4340,7 +6534,20 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/build.js",
+        "scripts/lib/page.js",
+        "site/sw.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js"
+      ],
+      "reviewTestCandidates": [
+        "B055",
+        "B060"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-049-A01",
@@ -4352,7 +6559,20 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "maintenance/upstream/",
+        "research/source/",
+        "spec/",
+        "src/game/23-training-lessons.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "R063"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-049-A02",
@@ -4364,7 +6584,20 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "maintenance/upstream/",
+        "research/source/",
+        "spec/",
+        "src/game/23-training-lessons.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B037"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-049-A03",
@@ -4376,7 +6609,20 @@
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "maintenance/upstream/",
+        "research/source/",
+        "spec/",
+        "src/game/23-training-lessons.js",
+        "src/game/96-map/96-training-map.js",
+        "src/game/97-training.js",
+        "src/styles/99-training-map.css"
+      ],
+      "reviewTestCandidates": [
+        "B037"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-050-A01",
@@ -4388,7 +6634,22 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/browser-smoke.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [
+        "B007",
+        "B008",
+        "B011"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-050-A02",
@@ -4400,7 +6661,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/browser-smoke.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [
+        "B010"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-050-A03",
@@ -4412,7 +6686,20 @@
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
-      ]
+      ],
+      "reviewImplementation": [
+        "scripts/browser-smoke.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [
+        "B008"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-051-A01",
@@ -4424,7 +6711,19 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "evidence/",
+        "spec/acceptance-plan.json",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [
+        "R064"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-051-A02",
@@ -4436,7 +6735,20 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "evidence/",
+        "spec/acceptance-plan.json",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [
+        "R065",
+        "B001"
+      ],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-051-A03",
@@ -4448,18 +6760,35 @@
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
-      ]
+      ],
+      "reviewImplementation": [
+        "evidence/",
+        "spec/acceptance-plan.json",
+        "src/game/97-provider-shell.js",
+        "src/game/97-training.js",
+        "src/game/98-provider-runtime.js",
+        "tests/"
+      ],
+      "reviewTestCandidates": [],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-052-A01",
       "requirement": "PLAY-052",
       "sourceIndex": 0,
-      "assertion": "Provide a 6–8-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
+      "assertion": "Provide a 6\u20138-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
       "status": "pending-current-candidate-verification",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "STATUS.md",
+        "docs/",
+        "docs/GAMEPLAY_PILOT_PROTOCOL.md"
+      ],
+      "reviewTestCandidates": [],
+      "reviewGapClass": "verification-gap"
     },
     {
       "id": "PLAY-052-A02",
@@ -4470,7 +6799,14 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "STATUS.md",
+        "docs/",
+        "docs/GAMEPLAY_PILOT_PROTOCOL.md"
+      ],
+      "reviewTestCandidates": [],
+      "reviewGapClass": "external-and-verification-gap"
     },
     {
       "id": "PLAY-052-A03",
@@ -4481,7 +6817,14 @@
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
-      ]
+      ],
+      "reviewImplementation": [
+        "STATUS.md",
+        "docs/",
+        "docs/GAMEPLAY_PILOT_PROTOCOL.md"
+      ],
+      "reviewTestCandidates": [],
+      "reviewGapClass": "verification-gap"
     }
   ],
   "candidateDiscovery": {
@@ -4872,7 +7215,7 @@
       {
         "item": "Real pilot participation",
         "status": "pending",
-        "scope": "6–8 actual independent participants, consent, sessions, observed results and affected retesting. The protocol is prepared; no human outcomes claimed."
+        "scope": "6\u20138 actual independent participants, consent, sessions, observed results and affected retesting. The protocol is prepared; no human outcomes claimed."
       },
       {
         "item": "Applicable publication owner/environment review",
@@ -4880,5 +7223,11 @@
         "scope": "Complete engineering and prepare reviewable candidate before seeking any required review; no blanket permission block on current work."
       }
     ]
+  },
+  "supportingReview": {
+    "reviewedAt": "2026-11-05T00:01:14.735825+00:00",
+    "specSha256": "fde4da061e778a94dbaec28abcb42173b97b98b336f863420f31002d4c9e11c4",
+    "scope": "Bounded supporting-evidence review at the map-foundations checkpoint. Implementation and test links are discovery candidates, not complete assertion coverage or current execution. Subsequent lifecycle/progression changes require fresh affected verification. No assertion status or source disposition is promoted.",
+    "assertionsLinked": 159
   }
 }

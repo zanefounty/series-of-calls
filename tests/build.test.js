@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { build, validateOutputPath } = require('../scripts/build');
+const { build, validateOutputPath, stampServiceWorker } = require('../scripts/build');
 
 const OUT = require('node:fs').mkdtempSync(require('node:path').join(require('node:os').tmpdir(), 'tubes-build-'));
 const root = path.join(__dirname, '..');
@@ -26,6 +26,25 @@ test('project hosting uses scoped application URLs and has no upstream publisher
  assert.ok(!html.includes('cdn.jsdelivr.net/npm/ridiculytics'));
  assert.ok(html.includes("fetch('version.json'"));
  assert.ok(html.includes("register('sw.js'"));
+});
+
+test('same-version builds refresh the offline worker when shipped page or locale bytes change',()=>{
+ const out=fs.mkdtempSync(path.join(os.tmpdir(),'soc-cache-build-'));
+ try {
+  build({out,version:'9.9.9',date:'2030-01-01'});
+  const first=fs.readFileSync(path.join(out,'sw.js'),'utf8');
+  assert.match(first,/series-of-calls-9\.9\.9-[a-f0-9]{64}/);
+  build({out,version:'9.9.9',date:'2030-01-01'});
+  assert.equal(fs.readFileSync(path.join(out,'sw.js'),'utf8'),first,'identical builds do not churn caches');
+  const template=fs.readFileSync(path.join(root,'site/sw.js'),'utf8').replaceAll('__VERSION__','9.9.9');
+  for(const [file,change] of [['index.html','<!-- updated map -->'],['i18n/de.js','\n// updated labels']]){
+   fs.writeFileSync(path.join(out,'sw.js'),template);
+   fs.appendFileSync(path.join(out,file),change);
+   stampServiceWorker(out);
+   assert.notEqual(fs.readFileSync(path.join(out,'sw.js'),'utf8'),first,`${file} changes trigger an actual worker update`);
+   assert.ok(!fs.readFileSync(path.join(out,'sw.js'),'utf8').includes('__BUILD_HASH__'));
+  }
+ } finally {fs.rmSync(out,{recursive:true,force:true});}
 });
 
 test('version.json carries the release notes from the changelog', () => {

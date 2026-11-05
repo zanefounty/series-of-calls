@@ -54,3 +54,15 @@ test('AC-PROVIDER-PROGRESSION-UI-003 translates every source name and visible re
  assert.equal(host.querySelector('img,svg'),null);assert.ok(host.textContent.includes('<img src=x onerror=alert(1)>'));assert.ok(host.textContent.includes('<svg onload=alert(1)>'));
  dom.window.close();
 });
+
+test('support-window explanations stay compact, preserve exact evidence and expose each earned purchase scope',()=>{
+ const {dom,w}=ui(),report=FACTS.evaluate(SOC.create({experience:'campaign'}),hooks),row=report.levels['progress.progression-level.2'];
+ row.missing=Array.from({length:60},(_,i)=>`Customer next-1-customer lacked an eligible supported boundary at minute ${i+1}.`);
+ report.claims={rows:[],unlockProposals:[{request:{operationId:'managed-carrier-headroom',customerId:'starter-customer'}},{request:{operationId:'integrator-room',customerId:'next-1-customer'}},{request:{operationId:'regional-provisioning',customerId:'next-2-customer'}}]};
+ const host=w.document.createElement('div');host.innerHTML=w.SOCProviderProgression.render(report);
+ const missing=host.querySelector('[data-progression-id="progress.progression-level.2"] .provider-progression-missing');
+ assert.equal(missing.querySelectorAll('li').length,6,'a minute history does not fill the inspector with expanded rows');
+ assert.match(missing.textContent,/eligible reviewed boundary at minute 1/);assert.match(missing.querySelector('pre').textContent,/minute 60/);assert.equal(missing.querySelector('details').open,false);
+ assert.deepEqual([...host.querySelectorAll('button[data-provider-action="operation"]')].map(b=>[b.dataset.operation,b.dataset.id]),[['managed-carrier-headroom','starter-customer'],['integrator-room','next-1-customer'],['regional-provisioning','next-2-customer']]);
+ dom.window.close();
+});

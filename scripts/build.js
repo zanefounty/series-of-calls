@@ -55,16 +55,37 @@ if (!html.includes(PS)) die('release-story placeholder missing from the page');
 fs.writeFileSync(page, html.replace(PH, () => notes.replace(/</g, '\\u003c')).replace(PS, () => story.replace(/</g, '\\u003c')));
 fs.writeFileSync(path.join(OUT, 'version.json'), JSON.stringify({ version: VERSION, date: BUILD_DATE, notes: JSON.parse(notes), story: JSON.parse(story) }, null, 2) + '\n');
 
+// Preview builds can share a version. Change the worker whenever shipped bytes
+// change so installation refreshes every offline entry point and locale together.
+stampServiceWorker(OUT);
+
 // Nothing may ship half-stamped.
 const left = [];
 const scan = (dir) => { for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
   const p = path.join(dir, e.name);
   if (e.isDirectory()) scan(p);
-  else if (/__VERSION__|__BUILD_DATE__/.test(fs.readFileSync(p, 'latin1'))) left.push(path.relative(OUT, p));
+  else if (/__VERSION__|__BUILD_DATE__|__BUILD_HASH__/.test(fs.readFileSync(p, 'latin1'))) left.push(path.relative(OUT, p));
 } };
 scan(OUT);
 if (left.length) die(`unreplaced placeholders left in ${left.join(', ')}`);
 return {version:VERSION,date:BUILD_DATE,out:OUT};
+}
+function stampServiceWorker(out) {
+  const hash = require('node:crypto').createHash('sha256');
+  const visit = (dir) => {
+    for (const name of fs.readdirSync(dir).sort()) {
+      const file = path.join(dir, name);
+      if (fs.statSync(file).isDirectory()) visit(file);
+      else hash.update(path.relative(out, file).split(path.sep).join('/')).update('\0').update(fs.readFileSync(file)).update('\0');
+    }
+  };
+  const worker = path.join(out, 'sw.js'), template = fs.readFileSync(worker, 'utf8');
+  if (!template.includes('__BUILD_HASH__')) throw new Error('service-worker build hash placeholder missing');
+  // Hash the unstamped template too: worker logic changes create a new cache.
+  visit(out);
+  const digest = hash.digest('hex');
+  fs.writeFileSync(worker, template.replaceAll('__BUILD_HASH__', digest));
+  return digest;
 }
 // Validate both the spelled path and its filesystem-resolved destination before
 // build() removes anything. Existing symlinks in an ancestor are resolved so
@@ -119,5 +140,5 @@ function canonicalPath(target) {
   }
 }
 
-module.exports={build, validateOutputPath};
+module.exports={build, validateOutputPath, stampServiceWorker};
 if(require.main===module){try{const r=build();console.log(`Built Series of Calls ${r.version} (${r.date}) into ${path.relative(ROOT,r.out)}/`);}catch(error){console.error(error.message);process.exitCode=1;}}

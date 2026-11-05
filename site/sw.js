@@ -1,5 +1,5 @@
 /* Every URL is scoped to this application, including project-path hosting. */
-const CACHE='series-of-calls-__VERSION__';
+const CACHE='series-of-calls-__VERSION__-__BUILD_HASH__';
 const BASE=self.registration.scope;
 const CORE=['./','index.html','site.webmanifest','favicon.svg','images/launch-640.webp','images/launch-1280.webp','images/smb-640.webp','images/smb-1280.webp','images/enterprise-640.webp','images/enterprise-1280.webp','images/government-640.webp','images/government-1280.webp','images/defence-640.webp','images/defence-1280.webp','images/sp-640.webp','images/sp-1280.webp','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png','favicon.ico','i18n/it.js?v=__VERSION__','i18n/pt.js?v=__VERSION__','i18n/fr.js?v=__VERSION__','i18n/es.js?v=__VERSION__','i18n/de.js?v=__VERSION__'].map(p=>new URL(p,BASE).href);
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));

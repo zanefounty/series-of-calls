@@ -11,11 +11,24 @@ function boot({map=false,quoteHandler=null}={}){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true});const w=dom.window;
  if(map){w.W=2000;w.H=1000;w.COAST=[[[0,0],[100,0],[100,100],[0,100]]];w.CITY={syd:{x:1860,y:790}};}
  w.eval(read('game/93-ui/10-dom.js'));
- for(const file of ['game/23-provider-variants.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/78-provider-policy-controls.js','game/93-ui/79-provider-comparisons.js','game/93-ui/79-provider-lifecycle.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
+ for(const file of ['game/23-provider-variants.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/78-provider-policy-controls.js','game/93-ui/79-provider-comparisons.js','game/93-ui/79-provider-context-actions.js','game/93-ui/79-provider-lifecycle.js','game/93-ui/79-provider-integration.js','game/93-ui/79-provider-progression.js','game/93-ui/79-provider-service-retirement.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
  const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>{calls.commands.push(x);return {ok:true};},quote:x=>{calls.quotes.push(x);return quoteHandler?quoteHandler(x):{accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
  w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),callbacks);w.SOC_PROVIDER_UI.render(null,null);return {dom,w,calls};
 }
 function click(w,selector){const el=w.document.querySelector(selector);assert.ok(el,selector);el.click();return el;}
+
+test('achievement controls preserve revision and source identity at the dispatch boundary',()=>{
+ const {w,calls}=boot();try{
+  const state=SOC.create({experience:'campaign'}),model=SOC.provider.inspect(state),sourceId='progress.goal.bb';
+  model.progression.goals[sourceId]={...model.progression.goals[sourceId],status:'ready',evidence:{customerId:'starter-customer'}};
+  model.progression.claims.rows.find(row=>row.sourceId===sourceId).status='ready';
+  w.SOC_PROVIDER_UI.render(state,model);const before=JSON.stringify(state);
+  click(w,'[data-provider-action="claim-progression"]');
+  assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'claim-progression',sourceId,quoteRevision:state.revision}}));
+  assert.equal(JSON.stringify(state),before,'rendered eligibility cannot alter simulation evidence');
+  assert.throws(()=>SOC.dispatch(state,JSON.parse(JSON.stringify(calls.commands.at(-1)))),/PROVIDER_PROGRESSION_EVIDENCE_REQUIRED/,'the engine refuses a falsely ready view');
+ }finally{w.close();}
+});
 
 test('provider shell launches through callbacks and does not write simulation state',()=>{
  const {w,calls}=boot();click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');assert.ok(form.classList.contains('is-open'));
@@ -127,5 +140,18 @@ test('map product retirement preserves the project quote and submits only its re
   w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="select-customer"][data-id="starter-customer"]');click(w,'[data-provider-action="select-service"][data-id="starter-customer:project:provider-project-4"]');click(w,'[data-provider-action="retire-project"]');
   assert.equal(JSON.stringify(calls.quotes.at(-1)),JSON.stringify({action:'retire-project',projectId:project.id}));assert.equal(calls.commands.length,0);assert.match(w.document.querySelector('.provider-modal').textContent,/interaction-4/);
   click(w,'[data-provider-action="confirm-quote"]');assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'retire-project',projectId:project.id,quoteRevision:44}}));
+ }finally{w.close();}
+});
+
+
+test('map integration test control sends only its funded project and current revision',()=>{
+ const {w,calls}=boot({map:true});try{
+  const state=SOC.create({experience:'campaign'}),model=SOC.provider.inspect(state),customerId='starter-customer',projectId='provider-project-9';
+  model.customers=[{id:customerId,name:'Orchard',market:'au-sydney',stages:{},services:[],serviceIntegration:{projects:[{projectId,status:'commissioning',testAvailable:true,observation:{status:'awaiting-test',captureAvailable:false}}]}}];
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="select-customer"]');
+  const before=JSON.stringify(state);click(w,'[data-provider-action="test-service-integration"]');
+  const command=JSON.parse(JSON.stringify(calls.commands.at(-1)));
+  assert.deepEqual(command,{type:'provider',command:{action:'test-service-integration',projectId,quoteRevision:state.revision}});
+  assert.equal(JSON.stringify(state),before);assert.throws(()=>SOC.dispatch(state,command),/PAID_UC_CC_COMMISSIONING_PROJECT_REQUIRED/);
  }finally{w.close();}
 });

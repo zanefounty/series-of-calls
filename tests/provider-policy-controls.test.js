@@ -25,6 +25,34 @@ test('template helper returns validated v2 assurance, provisioning, migration an
  w.close();
 });
 
+test('regional provisioning policy presents and submits an explicit owned-customer market scope',()=>{
+ const {w}=boot(),policy=oldPolicy(),context={regionalProvisioning:true,eligibleMarkets:['au-sydney','au-melbourne'],eligibleCustomers:[{id:'orchard-customer',name:'Orchard Repairs',market:'au-sydney'},{id:'harbor-customer',name:'Harbor Repairs',market:'au-melbourne'}]},html=w.SOCProviderPolicyControls.render(policy,{...context,customerId:'orchard-customer',customerName:'Orchard Repairs'}),host=w.document.createElement('div');host.innerHTML=html;
+ assert.equal(host.querySelector('[name="template"]'),null,'regional paid policy cannot select unrelated templates');
+ assert.deepEqual([...host.querySelectorAll('[name="scopeCustomerId"]')].map(x=>x.value),['orchard-customer','harbor-customer']);
+ assert.equal(host.querySelector('[name="scopeCustomerId"][value="orchard-customer"]').checked,true);
+ assert.equal(host.querySelector('[name="scopeCustomerId"][value="harbor-customer"]').checked,false);
+ assert.match(host.textContent,/Only markets demonstrated by the Regional MSP achievement/);
+ host.querySelector('[name="scopeCustomerId"][value="harbor-customer"]').checked=true;
+ const config=w.SOCProviderPolicyControls.configFromForm(policy,new w.FormData(host.querySelector('form[data-provider-form="policy"]')),context);
+ assert.deepEqual(JSON.parse(JSON.stringify(config.customerIds)),['orchard-customer','harbor-customer']);
+ assert.deepEqual(JSON.parse(JSON.stringify(config.rules.map(r=>r.customerIds))),[['orchard-customer','harbor-customer'],['orchard-customer','harbor-customer']]);
+ assert.deepEqual(JSON.parse(JSON.stringify(config.rules.map(r=>r.kind))),['provisioning','provisioning']);
+ assert.equal(w.SOCProviderPolicy.validate(config),true);
+ w.close();
+});
+
+test('regional scope keeps empty drafts empty and accepts eligible customers other than the purchase customer',()=>{
+ const {w}=boot(),policy=oldPolicy(),context={regionalProvisioning:true,eligibleCustomers:[{id:'orchard-customer',name:'Orchard Repairs',market:'au-sydney'},{id:'harbor-customer',name:'Harbor Repairs',market:'au-melbourne'}]},empty=w.SOCProviderPolicyControls.render(policy,{...context,customerId:'orchard-customer',draft:{scopeCustomerId:[]}}),host=w.document.createElement('div');host.innerHTML=empty;
+ assert.equal(host.querySelectorAll('[name="scopeCustomerId"]:checked').length,0);
+ assert.throws(()=>w.SOCProviderPolicyControls.configFromForm(policy,fields('provisioning',{scopeCustomerId:[]}),context),/REGIONAL_SCOPE_REQUIRED/);
+ assert.throws(()=>w.SOCProviderPolicyControls.configFromForm(policy,fields('provisioning',{scopeCustomerId:['orchard-customer','unowned-customer']}),context),/REGIONAL_SCOPE_INVALID/);
+ const crossCustomer=w.SOCProviderPolicyControls.configFromForm(policy,fields('provisioning',{scopeCustomerId:['harbor-customer']}),context);assert.deepEqual(JSON.parse(JSON.stringify(crossCustomer.customerIds)),['harbor-customer']);
+ host.innerHTML=w.SOCProviderPolicyControls.render(policy,{customerId:'orchard-customer',customerName:'Orchard Repairs'});
+ assert.equal(host.querySelector('[name="scopeCustomerId"]'),null,'generic paid policies keep their existing scope controls');
+ assert.ok(host.querySelector('[name="template"]'),'generic policy templates remain available');
+ w.close();
+});
+
 test('form helper rejects malformed money, unknown templates and reductions below existing counters',()=>{
  const {w}=boot(),policy=oldPolicy();
  assert.throws(()=>w.SOCProviderPolicyControls.configFromForm(policy,fields('assurance',{cashFloor:'1,000'})),/INVALID_POLICY_AMOUNT/);

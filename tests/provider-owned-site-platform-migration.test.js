@@ -241,7 +241,7 @@ test('AC-SOC-638 paid owned-site state validates consolidated migration and serv
   assertPaidOwnedSiteAfterMigration('migration-consolidated');
 });
 
-test('paid recovery snapshots remain historical across both later platform migration modes', () => {
+test('AC-SOC-639 paid recovery snapshots remain historical across both later platform migration modes', () => {
   for (const platformMigration of ['migration', 'migration-consolidated']) {
     const state = reverseOrderState(platformMigration, true);
     const root = child(state), earlier = root.siteOperations.exercises.find(row => row.kind === 'power' && row.status === 'complete');

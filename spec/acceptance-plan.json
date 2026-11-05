@@ -879,7 +879,8 @@
     ],
     "tests/provider-owned-site-platform-migration.test.js": [
       "AC-SOC-637",
-      "AC-SOC-638"
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   "inputs": [

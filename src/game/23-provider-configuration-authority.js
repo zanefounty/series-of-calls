@@ -124,19 +124,27 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const task of child.providerTasks||[]){
    if(task.kind!=='migration'||task.status!=='submitted')continue;
    const project=task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
-   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled')continue;
+   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled'||!Number.isSafeInteger(migration.cutoverAt)||migration.cutoverAt>child.clock)continue;
    const targetId=migration.target,target=configs[targetId]?.extensionScope;if(typeof target!=='string')continue;
     for(const resource of Object.values(child.resources)){
     if(resource.kind!=='endpoint'||!migration.identities?.includes(resource.desired.identity)||!configs[resource.id])continue;
     const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete';skipTiming.add(resource.id);
    }
   }
+  function configsAt(at){
+   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild=clone(child);
+   historicalChild.clock=at;
+   historicalChild.providerTasks=(historicalChild.providerTasks||[]).filter(task=>task.createdAt<=at);
+   if(historicalChild.siteOperations)historicalChild.siteOperations.exercises=[];
+   return expectedModel(historicalProvider,customer,historicalChild,catalogue).configs;
+  }
   for(const exercise of child.siteOperations?.exercises||[]){
    const project=projects.find(p=>['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
    const restore=exercise.restoration;
    if(!restore)continue;
    if(!project||project.operationReceipt.projectId!==project.id||project.config.targetSite!==exercise.targetSite||project.config.kind!==exercise.kind)fail('UNFUNDED_SITE_RESTORE');
-   for(const snap of exercise.backupSnapshot.resources){if(!configs[snap.id]||stable(snap.config)!==stable(configs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
+   const snapshotConfigs=configsAt(exercise.startedAt);
+   for(const snap of exercise.backupSnapshot.resources){if(!snapshotConfigs[snap.id]||stable(snap.config)!==stable(snapshotConfigs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
   }
   return {configs,known,projects,accepted,transitional,latestWriteAt,skipTiming};
  }

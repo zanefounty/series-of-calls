@@ -529,6 +529,79 @@
         "path": "/tmp/soc-finance-final-acceptance-review.json",
         "sha256": "442269582a5d0414bb8c5fe286d70e0b1b4d5eeaa61e668b891bbdcc51b16650"
       }
+    },
+    "public-92ac7bc-preview": {
+      "candidate": "92ac7bc19724e5466dc2f021fcac7ed492b0b822",
+      "url": "https://github.com/zanefounty/series-of-calls/actions/runs/42041484761",
+      "origin": "https://zanefounty.github.io/series-of-calls/",
+      "status": "passed",
+      "receipts": [
+        {
+          "rawArtifact": "/tmp/soc-public-42041484761/verify-report.json",
+          "sha256": "7614e56b04cc512e4b199e1df6d464b62f85b990d3ceb1a657b10ff0897a4123"
+        },
+        {
+          "rawArtifact": "/tmp/soc-public-42041484761/cold-report.json",
+          "sha256": "5d459ad54915a1b55264b0377aaf4ff0993eacd70ee3a36ea75bdef6fe4985bc"
+        },
+        {
+          "rawArtifact": "/tmp/soc-public-42041484761/assets-report.json",
+          "sha256": "ba4126efaa23b99b35cd97d3f1a2426b5eb83678e8dd9ef3ea8463012c0ea478"
+        },
+        {
+          "rawArtifact": "/tmp/soc-public-42041484761/language-r2-report.json",
+          "sha256": "467a0b028b7b1ca395c93829752f2a4af10226dc419e4cbb9ec9fd40d3cf480d"
+        },
+        {
+          "rawArtifact": "/tmp/soc-public-42041484761-independent-review.json",
+          "sha256": "df30d4c2676aa822cf9ca19fcc982bd0883ceaa478cf1dac9d851d505dca14a9"
+        }
+      ],
+      "artifactHashes": {
+        "index.html": "1d2fca245f1505a84af6a09a44ae3df874ed9db259ead5ccb877c01678f527e5",
+        "sw.js": "f7922c2ebe41c18565ba1be492ef5d5656ca29964a98833d8d88ceaf4fa6b7cf",
+        "version.json": "025c2083eeef6514c0a9bd01cffe00f0fa8e3b56851fc9a37cc0509fb3c4f63a"
+      },
+      "observations": [
+        "All 47 published files including five locale assets match downloaded protected deployment artifact.",
+        "Actual Portuguese locale loaded from the project prefix; translated title content and the rendered settings label were inspected.",
+        "Persistent old cache replaced; root/index reload offline with exact separate Training/Provider saves.",
+        "Cold restart with Docker network none loads updated root/index and saved runs.",
+        "Actual paid Provider stages deliver completed customer work after upgrade."
+      ],
+      "scope": "Published 92ac7bc only. Later PR #35 application bytes are not claimed deployed by this run."
+    },
+    "legacy-visible-bb9a0d2": {
+      "candidate": "bb9a0d2ba2bd56c9f91df51832eee345d3a1e0e8",
+      "status": "passed",
+      "receipts": [
+        {
+          "rawArtifact": "/tmp/soc-legacy-visible-check-r5/report.json",
+          "sha256": "04f3b2fce140adc374ad8948dd5938ea886d16deeddab7bb6280cf36519ad60c"
+        },
+        {
+          "rawArtifact": "/tmp/soc-play001-a03-legacy-visible-review.json",
+          "sha256": "e04719741de74fdbfb0706025902b79c04c173e4f513b91b69b810969f696687"
+        },
+        {
+          "rawArtifact": "/tmp/soc-pr35-dd7-browser-equivalence.json",
+          "sha256": "72934cfd6940bfe563c0788e7e241eab85681f4bf6b8aac929951bd6d5ab9022"
+        }
+      ],
+      "driver": {
+        "rawArtifact": "/tmp/soc-legacy-visible-check.js",
+        "sha256": "b6597b0def56e57edaff660e603d073236eb5a0612c97abaeec19372c3e17244"
+      },
+      "scope": "Synthetic legacy single-key SP fixture, desktop Chromium, service workers blocked. Visible SPload/resume day30\u219231; original slot bytes and separate Training/Provider states retained. Earlier harness-selector/navigation failures retained outside Git. Not all legacy schemas, browser engines or human evidence."
+    },
+    "governance-dd7a3dd": {
+      "candidate": "dd7a3ddc9aadc2bf18315cbd7257642f907ac11a",
+      "status": "passed",
+      "receipt": {
+        "rawArtifact": "/tmp/soc-play049-a03-governance-review.json",
+        "sha256": "3d4e7cd37ffddc439b06b6f9e04bf2388350d7da2ccb808214840792a24f3996"
+      },
+      "scope": "Exact no-bundled-gate-weakening/exclusion clause. Core gates and decision records unchanged since 60f009d; all 603 baseline acceptance IDs retained. Separate PR #28 workflow change has explicit conversation owner approval, not a GitHub review. No research or full release approval."
     }
   },
   "tests": {
@@ -3432,14 +3505,13 @@
       "sourceIds": [
         "view:title"
       ],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-002": {
@@ -3605,14 +3677,14 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-012": {
@@ -3807,14 +3879,14 @@
       "sourceIds": [
         "view:notifications"
       ],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-023": {
@@ -3987,13 +4059,12 @@
         "view:dash_overview",
         "view:bank"
       ],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-wholesale"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-032": {
@@ -4315,13 +4386,12 @@
         "src/i18n/en.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-049": {
@@ -4336,13 +4406,14 @@
         "view:hud",
         "view:title"
       ],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-lab-fixture-separation"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "pending-current-candidate-verification": 2,
+        "verified-current-candidate": 1
       }
     },
     "PLAY-050": {
@@ -4353,13 +4424,14 @@
         "scripts/browser-smoke.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "verified-current-candidate": 1,
+        "pending-current-candidate-verification": 2
       }
     },
     "PLAY-051": {
@@ -4624,7 +4696,7 @@
       "requirement": "PLAY-001",
       "sourceIndex": 2,
       "assertion": "Existing training and SP saves remain separately accessible.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B051",
         "B052",
@@ -4658,22 +4730,20 @@
         "B003",
         "R001"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "bb9a0d2ba2bd56c9f91df51832eee345d3a1e0e8",
+        "run": "legacy-visible-bb9a0d2",
         "implementation": [
-          "src/game/98-provider-runtime.js",
+          "src/game/91-slots.js",
           "src/game/97-training.js",
-          "src/game/95-modals/40-title.js"
+          "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C005",
-          "C006"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named tested candidate. Later changed inputs require affected verification.",
+        "evidence": "Pre-existing single-key SP save loaded exactly and visibly resumed after independently loading retained Training and Provider saves.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Training/Lab ownership has executed tests. A pre-existing physical SP save still needs an exact visible load-and-resume check alongside the new experiences."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final-candidate compatibility, full source conversion and external pilot remain separate."
     },
     {
       "id": "PLAY-002-A01",
@@ -12493,7 +12563,7 @@
       "requirement": "PLAY-048",
       "sourceIndex": 0,
       "assertion": "The intended /series-of-calls/ path loads its own assets and language strings.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
@@ -12509,35 +12579,26 @@
       "reviewTestCandidates": [
         "B055"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "92ac7bc19724e5466dc2f021fcac7ed492b0b822",
+        "run": "public-92ac7bc-preview",
         "implementation": [
           "scripts/build.js",
-          "scripts/lib/page.js",
-          "site/sw.js",
-          "src/game/97-provider-shell.js",
-          "src/game/98-provider-runtime.js",
-          "src/i18n/en.js",
-          "scripts/browser-cache-upgrade.js"
+          "site/sw.js"
         ],
-        "tests": [
-          "C002"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "supportingRuns": [
-          "public-eb0e88-preview"
-        ],
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named tested candidate. Later changed inputs require affected verification.",
+        "evidence": "All 47 deployed files match artifact at intended project prefix; Portuguese language asset loaded and visible translated settings rendered.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Actual public eb0e88 preview passed project-prefix/cache-upgrade/offline verification (public-eb0e88-preview). Later e492349 application bytes differ; this does not establish publication/offline behavior of that later candidate."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final-candidate compatibility, full source conversion and external pilot remain separate."
     },
     {
       "id": "PLAY-048-A02",
       "requirement": "PLAY-048",
       "sourceIndex": 1,
       "assertion": "After successful cache installation, a supported offline reload preserves the available game.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
@@ -12553,29 +12614,18 @@
       "reviewTestCandidates": [
         "B052"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "92ac7bc19724e5466dc2f021fcac7ed492b0b822",
+        "run": "public-92ac7bc-preview",
         "implementation": [
-          "scripts/build.js",
-          "scripts/lib/page.js",
-          "site/sw.js",
-          "src/game/97-provider-shell.js",
-          "src/game/98-provider-runtime.js",
-          "src/i18n/en.js",
-          "scripts/browser-cache-upgrade.js"
+          "site/sw.js"
         ],
-        "tests": [
-          "C032",
-          "C260"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "supportingRuns": [
-          "public-eb0e88-preview"
-        ],
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named tested candidate. Later changed inputs require affected verification.",
+        "evidence": "After old-cache upgrade, warm offline and cold network-isolated root/index reload preserve separate runs and actual paid gameplay.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Actual public eb0e88 preview passed project-prefix/cache-upgrade/offline verification (public-eb0e88-preview). Later e492349 application bytes differ; this does not establish publication/offline behavior of that later candidate."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final-candidate compatibility, full source conversion and external pilot remain separate."
     },
     {
       "id": "PLAY-048-A03",
@@ -12713,7 +12763,7 @@
       "requirement": "PLAY-049",
       "sourceIndex": 2,
       "assertion": "No release/gate weakening or exclusion approval is bundled into the UI change.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-training-map",
@@ -12731,24 +12781,19 @@
       "reviewTestCandidates": [
         "B037"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "dd7a3ddc9aadc2bf18315cbd7257642f907ac11a",
+        "run": "governance-dd7a3dd",
         "implementation": [
-          "src/game/23-training-lessons.js",
-          "src/game/96-map/96-training-map.js",
-          "src/game/97-training.js",
-          "src/styles/99-training-map.css"
+          "scripts/verify.py",
+          ".github/workflows/release.yml"
         ],
-        "tests": [
-          "C212",
-          "C265",
-          "C215"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named tested candidate. Later changed inputs require affected verification.",
+        "evidence": "Commit/file audit and executed workflow contract preserve gates and existing acceptanceIDs; no bundled exclusion or research approval.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: No release/gate weakening or exclusion approval is bundled into the UI change."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final-candidate compatibility, full source conversion and external pilot remain separate."
     },
     {
       "id": "PLAY-050-A01",
@@ -13466,7 +13511,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 86,
+    "assertionsClosed": 94,
     "phaseClusters": [
       {
         "phase": 1,
@@ -13474,8 +13519,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 21,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 22,
+          "pending-current-candidate-verification": 6
         }
       },
       {
@@ -13484,8 +13529,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 10
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 9
         }
       },
       {
@@ -13494,8 +13539,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 8,
-          "pending-current-candidate-verification": 16
+          "verified-current-candidate": 9,
+          "pending-current-candidate-verification": 15
         }
       },
       {
@@ -13504,8 +13549,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 14,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 15,
+          "pending-current-candidate-verification": 6
         }
       },
       {
@@ -13524,17 +13569,18 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 5,
-          "pending-current-candidate-verification": 16,
+          "verified-current-candidate": 9,
+          "pending-current-candidate-verification": 12,
           "parked-owner-request": 4
         }
       }
     ],
     "additionalOwnerItems": 7,
     "knownUnclosedEngineeringScopes": [
-      "Twenty canonical Provider progression adapters and useful earned choices remain; preserve canonical endgame.",
-      "Blocked contextual offers need useful visible prerequisite/refusal explanations, including managed local spares before qualification.",
-      "Remaining mission/family/Training/current-input interaction and accessibility evidence must be individually reconciled; generic completed work is insufficient.",
+      "Remaining canonical Provider progression adapters and useful earned choices must be completed while preserving the canonical endgame.",
+      "Regional-support historical authority, retained work lineage and measured claims remain in implementation; historical configuration must not be replaced by current state.",
+      "Bounded managed local-spares and bill-presentation repairs have landed; exact follow-on paid delivery and assertion reconciliation remain required where not already evidenced.",
+      "Remaining mission/family/Training/current-input interaction, accessibility and persistence evidence must be individually reconciled; generic completed work is insufficient.",
       "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged."
     ],
     "externalDependencies": [
@@ -13551,12 +13597,12 @@
       {
         "item": "Later candidate publication",
         "status": "not-established",
-        "scope": "eb0e88 protected preview is deployed and verified; later e492349 application bytes require their own publication/upgrade evidence."
+        "scope": "Protected preview 92ac7bc is deployed and verified. The later dc34fbc candidate is being published in run 42108386366; its public upgrade/offline evidence remains pending until executed."
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 86,
-      "pending-current-candidate-verification": 69,
+      "verified-current-candidate": 94,
+      "pending-current-candidate-verification": 61,
       "parked-owner-request": 4
     }
   },
@@ -13580,8 +13626,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 90,
-      "pending-current-candidate-verification": 65,
+      "verified-current-candidate": 94,
+      "pending-current-candidate-verification": 61,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -13599,6 +13645,21 @@
           "PLAY-050-A01"
         ],
         "scope": "Only these four assertions promoted; earlier assertions retain their own historical candidate and require affected revalidation after further runtime changes."
+      },
+      {
+        "candidate": "dd7a3ddc9aadc2bf18315cbd7257642f907ac11a",
+        "runs": [
+          "public-92ac7bc-preview",
+          "legacy-visible-bb9a0d2",
+          "governance-dd7a3dd"
+        ],
+        "assertions": [
+          "PLAY-001-A03",
+          "PLAY-048-A01",
+          "PLAY-048-A02",
+          "PLAY-049-A03"
+        ],
+        "scope": "Four exact clauses only; public preview remains 92ac7bc, local legacy check uses bb9 inputs equivalent to dd7. No blanket final-candidate or entire-gameplay closure."
       }
     ]
   }

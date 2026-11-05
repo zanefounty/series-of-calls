@@ -105,3 +105,19 @@ test('pending same-profile product reconfiguration retains its prior effective g
  assert.deepEqual(pending.effective,oldEffective);
  assert.equal(SOC.restore(JSON.stringify(state)).portfolio.customers[0].root.products.deployments[0].effective.productVersion,oldEffective.productVersion);
 });
+
+// A customer can be accepted after the shared campaign clock has advanced.
+test('Defence accepted after opening time keeps disabled pending resources and legacy imports unavailable',()=>{
+ let state=SOC.create({experience:'campaign',scenario:'defence',seed:73});
+ state=SOC.dispatch(state,{type:'advance',minutes:2});
+ const request={action:'purchase',offerId:'starter',planId:'swift',stage:'base'},quote=SOC.provider.quote(state,request);
+ assert.deepEqual(quote.blockers,[]);
+ state=SOC.dispatch(state,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});
+ const root=state.portfolio.customers[0].root;
+ assert.equal(root.resources.phone.provisioning.due,root.clock+1);
+ assert.equal(root.resources.phone.desired.enabled,false);assert.equal(SOC.observe(root,'phone').ready,false);
+ assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ const legacy=structuredClone(state);legacy.portfolio.customers[0].root.resources.phone.provisioning.due=1;
+ const restored=SOC.restore(JSON.stringify(legacy));assert.equal(SOC.observe(restored.portfolio.customers[0].root,'phone').ready,false);
+ const next=SOC.dispatch(restored,{type:'advance',minutes:1});assert.equal(SOC.observe(next.portfolio.customers[0].root,'phone').ready,false,'old overdue pending defaults cannot deliver before the paid blueprint');
+});

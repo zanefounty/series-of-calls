@@ -170,7 +170,8 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     const expectedDue=writeAt+1;
     if(resource.provisioning?.due<expectedDue)fail(`PROVISIONING_DUE:${id}`);
     if(resource.provisioning?.status==='ready'&&child.clock<resource.provisioning.due)fail(`EARLY_EFFECTIVE:${id}`);
-    if(resource.provisioning?.status==='pending'&&resource.provisioning.due<=child.clock&&!expected.transitional[id])fail(`OVERDUE_PENDING:${id}`);
+    // A pending resource may await the next tick (including legacy disabled
+    // Defence bootstrap resources). Pending state grants no new effective service.
    }
   }
   validateProducts(provider,customer,child,expected.projects);

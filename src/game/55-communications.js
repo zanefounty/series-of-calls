@@ -418,7 +418,7 @@ const SOC = (function socKernel() {
           const child=create({scenario:config.scenario,jurisdiction:config.jurisdiction,tenant:config.tenant,customerName:config.name,clock:config.clock,mode:s.mode,seed:s.seed});
           child.experience={version:1,kind:'campaign',custom:false};
           child.providerCustomer={version:1,id:c.id,recording:providerRules.data.missions[c.scenario].requirements.recording,planId:c.planId};
-          if(c.scenario==='defence')child.resources.phone=resource('phone','uc',{region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]});
+          if(c.scenario==='defence'){child.resources.phone=resource('phone','uc',{region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]});child.resources.phone.provisioning.due=child.clock+1;}
           for(const resource of Object.values(child.resources)){resource.desired.enabled=false;resource.effective=null;}
           return child;
         };

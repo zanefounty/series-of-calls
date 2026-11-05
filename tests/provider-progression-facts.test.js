@@ -164,7 +164,7 @@ test('support observation v2 interns configuration strings losslessly, preserves
 
 test('support observation codec rejects unknown versions, invalid dictionary references, duplicate configurations, and malformed samples',()=>{
  const encoded=FACTS.encodeSupportObservation(syntheticSupportWindow());
- assert.throws(()=>FACTS.decodeSupportObservation({version:3,configurations:[],samples:[]}),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ assert.throws(()=>FACTS.decodeSupportObservation({version:4,configurations:[],samples:[]}),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
  const badIndex=structuredClone(encoded);badIndex.samples[0].participants[0].configurationIndex=999;assert.throws(()=>FACTS.decodeSupportObservation(badIndex),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
  const duplicate=structuredClone(encoded);duplicate.configurations.push(duplicate.configurations[0]);assert.throws(()=>FACTS.decodeSupportObservation(duplicate),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
  const orphan=structuredClone(encoded);orphan.configurations.push('unused');assert.throws(()=>FACTS.decodeSupportObservation(orphan),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);

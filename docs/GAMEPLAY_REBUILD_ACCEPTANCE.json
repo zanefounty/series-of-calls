@@ -708,6 +708,14 @@
       "sha256": "709cc04f17f9945b2f030a5011e28649be6f9cf5dab720cbc587c2c1f565372f",
       "observedOutput": "FAIL Unreviewed research reference: REF-ac194430f67b3832",
       "scope": "The correctly provisioned retry reached the unchanged research gate and failed. No research approval, exclusion or full-release readiness is claimed. The prior module-loading failure remains separately recorded."
+    },
+    "public-499fa172-preview": {
+      "candidate": "499fa17264eeb1fbd435550662e6fd2c76a4f220",
+      "url": "https://github.com/zanefounty/series-of-calls/actions/runs/42115372988",
+      "status": "published-bounded-verification-passed",
+      "rawArtifact": "/tmp/soc-public-usage-quotes-independent-review.json",
+      "sha256": "d4ce38e2cb48647f03c24d30240218eae6075e1bf9da7b0af7d82925438f340a",
+      "scope": "Actual protected public preview: index/service-worker/version match downloaded artifact; persistent old-cache controller upgrade; separate paused Training and Provider saves; paid three-stage opening and resolved voice at minute12; warm offline and cold network-none root/index reload. Chromium only; does not establish all47 network assets, every language, full missions/families or regional integration."
     }
   },
   "tests": {

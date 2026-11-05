@@ -22,8 +22,16 @@ async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requi
   const keys={opening:'openingCash',profit:'operatingResult',funding:'funding',repayment:'repayment',change:'cashChange',closing:'closingCash'};
   for(const item of amounts.bridge)assert.equal(item.text,amounts.expected[keys[item.key]]);
   assert.equal(bill.bridge.closingCash,bill.bridge.openingCash+bill.bridge.operatingResult+bill.bridge.funding-bill.bridge.repayment);
+  const panel=page.locator('.provider-rail-body');await panel.hover();await page.mouse.wheel(0,-10000);await page.waitForFunction(()=>document.querySelector('.provider-rail-body').scrollTop===0);
+  await page.locator('[data-provider-finance-period]').scrollIntoViewIfNeeded();await snap(page,row,'finance-period-'+bill.period+'-overview');
+  const bridge=page.locator('.provider-finance-bridge');await bridge.scrollIntoViewIfNeeded();
+  const beforeBridge=await page.evaluate(()=>({header:document.querySelector('.provider-sheet-header').getBoundingClientRect().bottom,bridge:document.querySelector('.provider-finance-bridge').getBoundingClientRect().top}));
+  if(beforeBridge.bridge<beforeBridge.header+8){await panel.hover();await page.mouse.wheel(0,beforeBridge.bridge-beforeBridge.header-8);await page.waitForFunction(()=>document.querySelector('.provider-finance-bridge').getBoundingClientRect().top>=document.querySelector('.provider-sheet-header').getBoundingClientRect().bottom+7);}
+  const geometry=await page.evaluate(()=>{const bounds=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height};};const panel=document.querySelector('.provider-rail-body');return {header:bounds('.provider-sheet-header'),close:bounds('.provider-sheet-close'),bridge:bounds('.provider-finance-bridge'),panel:bounds('.provider-rail-body'),overflow:panel.scrollWidth-panel.clientWidth,viewport:innerWidth};});
+  assert.ok(geometry.header.top>=geometry.panel.top&&geometry.header.bottom<=geometry.panel.bottom,'persistent panel heading remains inside its sheet');assert.ok(geometry.close.height>=44&&geometry.close.width>=44,'primary close target remains accessible');assert.ok(geometry.bridge.top>=geometry.header.bottom&&geometry.bridge.bottom<=geometry.panel.bottom,'full cash bridge is visible below the heading');assert.ok(geometry.overflow<=1,'bill content fits its sheet');
+  await snap(page,row,'finance-period-'+bill.period+'-cash-bridge');
   await page.locator('[data-finance-posting] summary').first().click();assert.ok(await page.locator('[data-finance-posting] details[open]').count());
-  await snap(page,row,'finance-period-'+bill.period);evidence.push({period:bill.period,bill,shown,amounts});
+  await snap(page,row,'finance-period-'+bill.period+'-postings');evidence.push({period:bill.period,bill,shown,amounts,geometry});
  }
  const period=selected.at(-1).period,at=await page.evaluate(()=>SCP.state.clock);
  await page.locator('[data-provider-finance-period]').focus();

@@ -13511,7 +13511,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 86,
+    "assertionsClosed": 94,
     "phaseClusters": [
       {
         "phase": 1,
@@ -13519,8 +13519,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 21,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 22,
+          "pending-current-candidate-verification": 6
         }
       },
       {
@@ -13529,8 +13529,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 10
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 9
         }
       },
       {
@@ -13539,8 +13539,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 8,
-          "pending-current-candidate-verification": 16
+          "verified-current-candidate": 9,
+          "pending-current-candidate-verification": 15
         }
       },
       {
@@ -13549,8 +13549,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 14,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 15,
+          "pending-current-candidate-verification": 6
         }
       },
       {
@@ -13569,17 +13569,18 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 5,
-          "pending-current-candidate-verification": 16,
+          "verified-current-candidate": 9,
+          "pending-current-candidate-verification": 12,
           "parked-owner-request": 4
         }
       }
     ],
     "additionalOwnerItems": 7,
     "knownUnclosedEngineeringScopes": [
-      "Twenty canonical Provider progression adapters and useful earned choices remain; preserve canonical endgame.",
-      "Blocked contextual offers need useful visible prerequisite/refusal explanations, including managed local spares before qualification.",
-      "Remaining mission/family/Training/current-input interaction and accessibility evidence must be individually reconciled; generic completed work is insufficient.",
+      "Remaining canonical Provider progression adapters and useful earned choices must be completed while preserving the canonical endgame.",
+      "Regional-support historical authority, retained work lineage and measured claims remain in implementation; historical configuration must not be replaced by current state.",
+      "Bounded managed local-spares and bill-presentation repairs have landed; exact follow-on paid delivery and assertion reconciliation remain required where not already evidenced.",
+      "Remaining mission/family/Training/current-input interaction, accessibility and persistence evidence must be individually reconciled; generic completed work is insufficient.",
       "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged."
     ],
     "externalDependencies": [
@@ -13596,12 +13597,12 @@
       {
         "item": "Later candidate publication",
         "status": "not-established",
-        "scope": "eb0e88 protected preview is deployed and verified; later e492349 application bytes require their own publication/upgrade evidence."
+        "scope": "Protected preview 92ac7bc is deployed and verified. The later dc34fbc candidate is being published in run 42108386366; its public upgrade/offline evidence remains pending until executed."
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 86,
-      "pending-current-candidate-verification": 69,
+      "verified-current-candidate": 94,
+      "pending-current-candidate-verification": 61,
       "parked-owner-request": 4
     }
   },

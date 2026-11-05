@@ -15,6 +15,14 @@ test('AC-SOC-396 each SOC.reference command has a visible browser action mapping
   const state=SOC.create(profile),mapped=runner.mappedReference(state);
   assert.deepEqual(mapped.map(x=>x.command),SOC.reference(state));
   for(const {command,ui} of mapped){
+   if(state.experience.kind==='training'){
+    if(command.type==='configure'){assert.equal(ui.kind,'map-resource');assert.equal(ui.fields,command.config);assert.match(ui.select,/data-training="select"/);assert.match(ui.selector,/data-training="guided-setting"/);}
+    else if(command.type==='advance'){assert.equal(ui.kind,'clock-buttons');assert.ok(ui.buttons.every(x=>x.startsWith('[data-training=')));}
+    else if(command.type==='interact'){assert.equal(ui.kind,'map-interaction');assert.equal(ui.channel,command.channel);assert.equal(ui.caseId,'training-map-case');assert.equal(ui.selector,'[data-training="interaction"]');}
+    else if(command.type==='meeting'||command.type==='connect'){assert.equal(ui.kind,'button');assert.match(ui.selector,/data-training/);}
+    else assert.fail(`unmapped Training reference command ${command.type}`);
+    continue;
+   }
    if(command.type==='configure'){assert.equal(ui.kind,'resource-form');assert.equal(ui.fields,command.config);assert.match(ui.select,/data-soc="select"/);assert.equal(ui.form,'#soc-config');}
    else if(command.type==='advance'){assert.equal(ui.kind,'clock-buttons');assert.ok(ui.buttons.every(x=>x.startsWith('[data-soc=')));}
    else if(command.type==='interact'){assert.equal(ui.kind,'interaction-form');assert.equal(ui.form,'#soc-journey-controls form');assert.equal(ui.fields.caseId,command.caseId);}
@@ -73,16 +81,49 @@ test('AC-SOC-400 only a complete error-free locked-version browser matrix can re
 test('AC-SOC-401 page wait predicates use the lexical SCT binding and the mapped config submits through real UI dispatch',()=>{
  const h=load(),{dom,ev}=h,w=dom.window;
  try{
-  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'});SCT.locked=true;socRender();`);
+  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'});SCT.locked=true;socRender();`);
   assert.equal(ev('typeof window.SCT'),'undefined');assert.equal(ev('('+runner.pageIsIdle.toString()+')()'),true);
   assert.equal(ev('('+runner.pageRevisionPast.toString()+')(-1)'),true);assert.equal(ev('('+runner.pageRevisionPast.toString()+')(0)'),false);
   ev('SCT.busy=true');assert.equal(ev('('+runner.pageIsIdle.toString()+')()'),false);ev('SCT.busy=false');
-  const state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'}),command=SOC.reference(state).find(x=>x.type==='configure'),ui=runner.referenceUiAction(command);
-  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'});SCT.locked=true;socRender();`);
+  const state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'}),command=SOC.reference(state).find(x=>x.type==='configure'),ui=runner.referenceUiAction(command);
+  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'});SCT.locked=true;socRender();`);
   w.document.querySelector(ui.select).click();const form=w.document.querySelector(ui.form);
   for(const [name,value] of Object.entries(ui.fields)){const control=form.elements[name];assert.ok(control,`missing visible field ${name}`);control.value=String(value);}
   form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   const submitted=JSON.parse(ev('JSON.stringify(SCT.state.commands.at(-1).command)'));
   assert.equal(submitted.type,command.type);assert.equal(submitted.id,command.id);assert.equal(submitted.config.people,command.config.people);assert.equal(submitted.config.operator,'player');assert.ok(submitted.config.enabled,'UI submits the visible full desired configuration through the shared dispatcher');
  }finally{dom.window.close();}
+});
+
+
+test('Training compact mapped controls deliver, interrupt and recover every guided/assessed scenario without authoring forms',()=>{
+ const h=load(),{dom,ev}=h,d=dom.window.document;
+ try{
+  for(const scenario of Object.keys(SOC.scenarios))for(const mode of ['guided','assessed']){
+   ev(`SCT.state=SOC.create(${JSON.stringify({scenario,mode,jurisdiction:'AU',experience:'training'})});SCT.locked=true;SCT.error='';socRender();`);
+   const press=selector=>{const node=d.querySelector(selector);assert.ok(node,selector);assert.equal(node.disabled,false);node.click();assert.equal(ev('SCT.error'),'');};
+   const ticks=minutes=>{const plan=runner.advanceButtonPlan(minutes);for(let i=0;i<plan.five;i++)press('[data-training="five"]');for(let i=0;i<plan.minute;i++)press('[data-training="minute"]');};
+   const initial=JSON.parse(ev('JSON.stringify(SCT.state)'));
+   for(const {command,ui} of runner.mappedReference(initial)){
+    assert.equal(d.querySelector('#soc-config'),null);assert.ok(d.querySelector('#soc-training-map'));
+    if(ui.kind==='map-resource'){
+     press(ui.select);const state=JSON.parse(ev('JSON.stringify(SCT.state)')),index=SOC.reference(state).filter(c=>c.type==='configure'&&c.id===command.id).findIndex(c=>JSON.stringify(c.config)===JSON.stringify(command.config));assert.ok(index>=0);
+     press(`${ui.selector}[data-suggestion="${index}"]`);
+     const submitted=JSON.parse(ev('JSON.stringify(SCT.state.commands.at(-1).command)'));assert.equal(submitted.expectedRevision,state.revision);delete submitted.expectedRevision;assert.deepEqual(submitted,command);
+    }else if(ui.kind==='clock-buttons')ticks(ui.minutes);else press(ui.selector);
+   }
+   assert.equal(ev('SOC.assess(SCT.state).passed'),true,scenario+'/'+mode+' baseline');
+   const resource=SOC.scenarios[scenario].channel==='message'?'messages':'phone';press(`[data-training="select"][data-id="${resource}"]`);press(`[data-training="toggle-enabled"][data-id="${resource}"]`);ticks(1);press('[data-training="interaction"]');ticks(15);
+   assert.equal(ev('SOC.assess(SCT.state).passed'),false,scenario+'/'+mode+' interruption');assert.notEqual(ev('SCT.state.interactions.at(-1).phase'),'resolved');
+   press(`[data-training="toggle-enabled"][data-id="${resource}"]`);ticks(1);press('[data-training="interaction"]');ticks(5);press('[data-training="meeting"]');
+   assert.equal(ev('SOC.assess(SCT.state).passed'),true,scenario+'/'+mode+' recovery '+ev('JSON.stringify(SOC.assess(SCT.state))'));assert.equal(ev('SCT.state.experience.kind'),'training');assert.equal(ev('SCT.state.providerCampaign'),undefined);
+  }
+  assert.deepEqual(h.errors,[]);
+ }finally{dom.window.close();}
+});
+
+test('browser profiles keep all sandbox authoring cases explicitly in Lab and Training modes separate',()=>{
+ const profiles=runner.matrix();assert.equal(profiles.filter(p=>runner.profileExperience(p)==='lab').length,16);assert.equal(profiles.filter(p=>runner.profileExperience(p)==='training').length,32);
+ for(const p of profiles)assert.equal(runner.profileExperience(p),p.mode==='sandbox'?'lab':'training');
+ assert.throws(()=>runner.referenceUiAction({type:'configure'},'campaign'),/REFERENCE_EXPERIENCE_REQUIRED/);
 });

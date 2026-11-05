@@ -4,7 +4,7 @@ const {load}=require('./harness');
 
 function boot({locked=true}={}){
  const h=load();
- h.ev(`SCT.state=SOC.create({scenario:'enterprise',jurisdiction:'AU'});SCT.state=SOC.dispatch(SCT.state,{type:'business',command:{action:'start'}});SCT.locked=${locked};socRender();socBindBusiness();`);
+ h.ev(`SCT.state=SOC.create({experience:'lab',mode:'sandbox',scenario:'enterprise',jurisdiction:'AU'});SCT.state=SOC.dispatch(SCT.state,{type:'business',command:{action:'start'}});SCT.locked=${locked};socRender();socBindBusiness();`);
  return h;
 }
 function chooseOffer(form,value){form.elements.offer.value=value;form.elements.offer.dispatchEvent(new form.ownerDocument.defaultView.Event('change',{bubbles:true}));}

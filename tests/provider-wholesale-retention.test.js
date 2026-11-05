@@ -27,6 +27,9 @@ test('wholesale history and ledger pruning preserve bounded statements and resto
  assert.equal(shown.ledgerPrunedThrough,s.business.ledgerPrunedThrough);assert.equal(s.business.ledger.length,1000);assert.equal(shown.rows.some(r=>r.period===earlyPeriod),false);
  assert.ok(earlyPostingIds.some(id=>Number(id.slice(6))<=shown.ledgerPrunedThrough));assert.ok(earlyPostingIds.some(id=>!s.business.ledger.some(p=>p.id===id)));
  const reasons=['provider-wholesale-period','provider-operation-period','provider-voice-usage','provider-message-usage'];
+ const responsibility=SOC.provider.inspect(s).responsibility.responsibilities.find(r=>r.role==='msp'&&r.customerId===customer.id);
+ assert.ok(responsibility,'retaining a validated paid project preserves current MSP responsibility after setup postings are pruned');
+ assert.ok(responsibility.evidence.stageProjects.every(p=>!s.business.ledger.some(row=>row.id===p.postingId)&&Number(p.postingId.slice(6))<=s.business.ledgerPrunedThrough));
  for(const row of shown.rows){
   const history=customer.history.find(h=>h.period===row.period),postings=s.business.ledger.filter(p=>p.customerId===customer.id&&p.period===row.period&&reasons.includes(p.reason));
   assert.ok(history);assert.equal(row.fixedCents,history.wholesale);assert.equal(row.voiceCents,history.voiceCost);assert.equal(row.messageCents,history.messageCost);
@@ -34,5 +37,6 @@ test('wholesale history and ledger pruning preserve bounded statements and resto
   assert.ok(row.postingIds.every(id=>Number(id.slice(6))>shown.ledgerPrunedThrough));
  }
  const restored=SOC.restore(JSON.stringify(s));assert.deepEqual(SOC.provider.inspect(restored).customers[0].wholesaleStatement,shown);
+ assert.deepEqual(SOC.provider.inspect(restored).responsibility.responsibilities.find(r=>r.id===responsibility.id),responsibility);
  assert.deepEqual(SOC.dispatch(restored,{type:'advance',minutes:1}),SOC.dispatch(s,{type:'advance',minutes:1}));
 });

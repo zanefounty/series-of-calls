@@ -10,8 +10,8 @@ const EN=window.I18N.en,DICT=Object.assign(Object.create(null),EN,LANG!=='en'&&w
 // Saves from before labels (1.34 and older) hold English text where newer ones hold a label: map it on first use.
 let EN_TEXT=null;
 function trKey(k){const o=DICT[k];if(o!==undefined)return o;
-  if(!EN_TEXT){EN_TEXT=new Map();for(const l in EN){const e=EN[l],t=DICT[l];if(typeof e==='string')EN_TEXT.set(e,t);else{EN_TEXT.set(e.one,t.one||e.one);EN_TEXT.set(e.other,t.other||e.other);}}}
-  return EN_TEXT.get(k)??k;}
+  if(!EN_TEXT){EN_TEXT=new Map();for(const l in EN){const e=EN[l],t=DICT[l];if(typeof e==='string'){EN_TEXT.set(e,typeof t==='string'?t:e);continue;}if(!e||typeof e!=='object')continue;const target=t&&typeof t==='object'?t:null;if(typeof e.one==='string')EN_TEXT.set(e.one,typeof target?.one==='string'?target.one:e.one);if(typeof e.other==='string')EN_TEXT.set(e.other,typeof target?.other==='string'?target.other:e.other);}}
+  const source=EN[k];return EN_TEXT.get(k)??(typeof source==='string'||source&&typeof source==='object'&&(typeof source.one==='string'||typeof source.other==='string')?source:k);}
 const fillIn=(o,v)=>v?o.replace(/\{(\w+)\}/g,(m,k)=>k in v?v[k]:m):o;
 function tr(k,v){const o=trKey(k);return fillIn(typeof o==='string'?o:o.other,v);}
 function trn(k,n,v){const o=trKey(k);return fillIn(typeof o==='string'?o:n===1?o.one:o.other,{n,...v});}

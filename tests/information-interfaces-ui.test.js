@@ -4,7 +4,7 @@ const SOC=require('../src/game/55-communications');
 const {send,info,tick,contract,bind,ready,record,interfaceCommand,transfer}=require('./lib/information-interface-fixture');
 const plain=value=>JSON.parse(JSON.stringify(value));
 function boot(s){
- const h=load(),w=h.dom.window;w.__state=s;
+ const h=load(),w=h.dom.window;const authored=structuredClone(s);authored.experience={version:1,kind:'lab',custom:true};authored.mode='sandbox';w.__state=SOC.restore(JSON.stringify(authored));
  h.ev("SCT.state=window.__state;SCT.locked=true;SCT.slot='interface-test';window.__commands=[];window.__originalApply=socApply;socApply=command=>{window.__commands.push(JSON.parse(JSON.stringify(command)));return window.__originalApply(command)};socStore=()=>{};socRender();");
  return {...h,w,state:()=>h.ev('SCT.state'),commands:()=>plain(w.__commands),submit:(id)=>w.document.getElementById(id).dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true})),set:(id,key,value)=>{w.document.getElementById(id).elements.namedItem(key).value=value;}};
 }

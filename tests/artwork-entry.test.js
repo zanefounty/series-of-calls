@@ -7,7 +7,7 @@ test('AC-SOC-393 training opens from the real title button before any SP game ex
  assert.equal(x.ev('S'),null);assert.ok(d.querySelector('#modalCard img[src="images/launch-640.webp"]'));
  d.querySelector('#modalCard [data-act="training"]').click();await flush();await flush();
  assert.ok(d.querySelector('#soc-console'));assert.equal(x.ev('SCT.locked'),true);assert.equal(x.ev('S'),null);
- assert.ok(d.querySelector('#soc-console img[src="images/smb-640.webp"]'));assert.deepEqual(x.errors,[]);
+ assert.equal(x.ev('SCT.state.experience.kind'),'training');assert.ok(d.querySelector('#soc-console .soc-training-map'));assert.ok(d.querySelector('#soc-console [data-training="select"]'));assert.equal(d.querySelector('#soc-config'),null);assert.deepEqual(x.errors,[]);
 });
 test('AC-SOC-394 artwork provenance and exported icons match the actual files and install manifest',()=>{
  const m=JSON.parse(fs.readFileSync(path.join(root,'artwork/manifest.json')));

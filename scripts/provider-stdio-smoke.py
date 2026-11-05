@@ -50,11 +50,11 @@ def journey(scenario, plan):
             purchase({'action': 'purchase', 'offerId': 'starter', 'planId': plan, 'stage': stage, 'customerId': 'starter-customer'})
         for _ in range(3): tick()
         if scenario == 'enterprise':
-            operation('recording'); operation('migration')
+            operation('recording'); operation('bpo'); operation('migration')
         elif scenario == 'government':
             operation('transcription'); operation('compliance')
         elif scenario == 'defence':
-            operation('local-deployment'); operation('room'); operation('recording')
+            operation('bpo'); operation('local-deployment'); operation('room'); operation('recording')
         while state['clock'] < 180:
             incident = next((i for i in state['providerCampaign']['incidents'] if i['status'] == 'active'), None)
             if incident:

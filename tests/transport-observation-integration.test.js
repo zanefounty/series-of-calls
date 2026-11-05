@@ -1,0 +1,50 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const SOC=require('../src/game/55-communications');
+const send=(state,command)=>SOC.dispatch(state,command);
+const transport=(state,command)=>send(state,{type:'transport',command});
+function liveCall(){
+ let state=SOC.create({experience:'lab',scenario:'enterprise',seed:71});
+ for(const command of SOC.reference(state))state=send(state,command);
+ state=send(state,{type:'configure',id:'people',config:{handlingMinutes:12,wrapMinutes:0}});
+ state=transport(state,{action:'start'});
+ for(const id of ['origin','destination'])state=transport(state,{action:'site',id,config:{name:id,region:'AU',domain:id+'-site'}});
+ for(const [id,latencyMs,domain] of [['primary',10,'primary-trench'],['alternate',20,'alternate-trench']])state=transport(state,{action:'link',id,config:{from:'origin',to:'destination',mode:'owned',capacityMbps:1,latencyMs,domain,leadMinutes:1,setupCents:100,periodCents:30,contract:null}});
+ for(const [resource,site] of [['identity','origin'],['service','destination'],['desk','destination']])state=transport(state,{action:'bind',resource,site});
+ state=send(state,{type:'advance',minutes:2});
+ state=send(state,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'continuity-case',language:'en',durationMinutes:12});
+ return send(state,{type:'advance',minutes:2});
+}
+test('actual in-flight route observations survive restore and retain failure, alternate and recovered paths',()=>{
+ let state=liveCall();const id=state.interactions.at(-1).id;
+ assert.equal(state.interactions.at(-1).phase,'handling');
+ const before=JSON.stringify(state);SOC.calculate(state);assert.equal(JSON.stringify(state),before);
+ state=transport(state,{action:'domain',id:'primary-trench',failed:true});
+ const restored=SOC.restore(JSON.stringify(state)),worker=new Function(`${SOC.workerSource()}\nreturn SOC;`)();
+ const command={type:'advance',minutes:2};
+ state=send(restored,command);assert.deepEqual(worker.dispatch(SOC.restore(JSON.stringify(restored)),command),state);
+ const during=state.interactions.find(row=>row.id===id).trace.find(row=>row.code==='MEDIA_TRANSPORT_OBSERVED'&&row.observation.phase==='rerouted');
+ assert.ok(during);assert.deepEqual(during.observation.previous.edges.map(edge=>edge.id),['primary']);
+ assert.deepEqual(during.observation.selected.edges.map(edge=>edge.id),['alternate']);
+ assert.deepEqual(during.observation.failedDomains,['primary-trench']);
+ assert.equal(during.observation.kbps,160);assert.equal(during.observation.selected.latencyMs,20);
+ state=transport(state,{action:'domain',id:'primary-trench',failed:false});
+ state=send(state,{type:'advance',minutes:15});
+ const call=state.interactions.find(row=>row.id===id),samples=call.trace.filter(row=>row.code==='MEDIA_TRANSPORT_OBSERVED');
+ assert.equal(call.phase,'resolved');assert.equal(call.caseId,'continuity-case');assert.equal(state.transport.reservations.length,0);
+ assert.ok(samples.some(row=>row.observation.phase==='rerouted'&&row.observation.selected.edges[0].id==='primary'&&row.observation.previous.edges[0].id==='alternate'));
+ assert.ok(samples.every(row=>row.observation.ready&&row.observedMinutes===row.observedTo-row.observedFrom+1));
+ assert.ok(samples.some(row=>row.observedMinutes>1),'unchanged consecutive observations use a compact actual span');
+ assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ const forged=structuredClone(state);forged.interactions.find(row=>row.id===id).trace.find(row=>row.code==='MEDIA_TRANSPORT_OBSERVED').observedMinutes++;
+ assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_TRANSPORT_OBSERVATION_TRACE/);
+});
+test('shared site failure records a failed route before releasing the actual call reservation',()=>{
+ let state=liveCall();const id=state.interactions.at(-1).id;
+ state=transport(state,{action:'domain',id:'destination-site',failed:true});
+ state=send(state,{type:'advance',minutes:1});
+ const call=state.interactions.find(row=>row.id===id),failure=call.trace.find(row=>row.code==='MEDIA_TRANSPORT_OBSERVED'&&row.observation.phase==='failed');
+ assert.equal(call.phase,'failed');assert.ok(failure);assert.equal(failure.observation.ready,false);
+ assert.ok(failure.observation.failedDomains.includes('destination-site'));assert.equal(state.transport.reservations.length,0);
+ assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+});

@@ -1,6 +1,7 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const SOC=require('../src/game/55-communications');
+const providerRules=require('../src/game/24-provider-rules').data;
 
 function start(){return SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',difficulty:'normal'});}
 function provider(s,command,sequence){return SOC.dispatch(s,{type:'provider',requestId:`provider-${sequence}`,command});}
@@ -10,6 +11,21 @@ function buy(s,stage,planId='swift',customerId,sequence=1){
  return provider(s,{...request,quoteRevision:s.revision},sequence);
 }
 function advance(s,minutes){for(let minute=0;minute<minutes;minute++)s=SOC.dispatch(s,{type:'advance',minutes:1});return s;}
+
+test('PLAY-010/016 authored campaign content changes demand timing and usage exposure while version-one saves retain their opening recipe',()=>{
+ const expected={smb:3000,enterprise:4600,government:3800,defence:3800};
+ const profiles=Object.fromEntries(Object.entries(providerRules.missions).map(([id,mission])=>[id,mission.demand]));
+ assert.ok(Object.values(profiles).every(d=>d.voiceMinutes.length===16&&d.digitalMinutes.length===8),'mission variants preserve the 24-case contract');
+ for(const [scenario,usage] of Object.entries(expected)){
+  const state=SOC.create({experience:'campaign',scenario}),quote=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+  assert.equal(quote.forecast.conditionalFullPlan.usageForecast,usage,`${scenario} complete-plan usage forecast follows its authored call duration`);
+ }
+ assert.notDeepEqual(profiles.smb.voiceMinutes,profiles.enterprise.voiceMinutes,'enterprise arrival timing is distinct from the SMB service desk');
+ assert.notDeepEqual(profiles.government.digitalMinutes,profiles.defence.digitalMinutes,'records and disconnected-site workload do not reuse the same digital schedule');
+ const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';
+ const restored=SOC.restore(JSON.stringify(legacy)),quote=SOC.provider.quote(restored,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+ assert.equal(quote.forecast.conditionalFullPlan.usageForecast,3000,'a validated version-one save keeps its historical 16 three-minute calls and eight messages');
+});
 
 test('provider quotes expose complete authored commitment and reject stale or unaffordable acceptance atomically',()=>{
  let s=start();
@@ -82,6 +98,21 @@ test('both authored SMB opening plans reach effective service through real stage
   assert.equal(s.providerCampaign.customers[0].status,'active',planId);
   assert.ok(Object.values(s.providerCampaign.customers[0].stages).every(x=>x.status==='effective'),planId);
  }
+});
+
+test('PLAY-018 purchased project resources and period-denominated workload are visible in a pure campaign inspection',()=>{
+ let s=start(),sequence=1;
+ for(const stage of ['base','carrier','partner'])s=buy(s,stage,'swift',stage==='base'?undefined:'starter-customer',sequence++);
+ for(let minute=0;minute<30&&s.providerCampaign.customers[0].status!=='active';minute++)s=advance(s,1);
+ assert.equal(s.providerCampaign.customers[0].status,'active');
+ const request={action:'operation',operationId:'room',customerId:'starter-customer'},quote=SOC.provider.quote(s,request);
+ assert.deepEqual(quote.blockers,[]);s=provider(s,{...request,quoteRevision:s.revision},sequence++);
+ const before=JSON.stringify(s),scene=SOC.provider.inspect(s),customer=scene.customers[0],room=customer.services.find(x=>x.id==='room');
+ assert.equal(JSON.stringify(s),before,'scene projection does not change simulation state');
+ assert.deepEqual({name:room.name,kind:room.kind},{name:'Meeting room',kind:'room'});
+ assert.equal(customer.periodOutcome.periodIndex,s.providerCampaign.customers[0].period.index);
+ assert.equal(customer.periodOutcome.due,s.providerCampaign.jobs.filter(x=>x.customerId===customer.id&&x.periodIndex===customer.periodOutcome.periodIndex).length);
+ assert.equal(customer.periodOutcome.completedOnTime+customer.periodOutcome.late+customer.periodOutcome.failed+customer.periodOutcome.open,customer.periodOutcome.due);
 });
 
 test('enterprise meeting evidence comes from a scheduled and completed child session',()=>{

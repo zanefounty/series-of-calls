@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-1",
+  "id": "provider-campaigns-2",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -91,34 +91,34 @@ function socProviderRulesKernel(){
       "demand": {
         "voiceMinutes": [
           4,
-          7,
-          10,
-          13,
-          16,
-          19,
-          22,
-          25,
-          28,
-          31,
-          34,
-          37,
-          40,
-          43,
-          46,
-          49
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30,
+          33,
+          36,
+          39,
+          42,
+          45,
+          48
         ],
         "digitalMinutes": [
           5,
-          11,
+          10,
           17,
-          23,
+          22,
           29,
-          35,
+          34,
           41,
-          47
+          46
         ],
-        "voiceDuration": 3,
-        "digitalDuration": 2,
+        "voiceDuration": 5,
+        "digitalDuration": 3,
         "deadlineMinutes": 12
       },
       "requirements": {
@@ -173,16 +173,16 @@ function socProviderRulesKernel(){
         ],
         "digitalMinutes": [
           5,
-          11,
+          8,
+          14,
           17,
           23,
-          29,
-          35,
-          41,
-          47
+          26,
+          32,
+          35
         ],
-        "voiceDuration": 3,
-        "digitalDuration": 2,
+        "voiceDuration": 4,
+        "digitalDuration": 4,
         "deadlineMinutes": 12
       },
       "requirements": {
@@ -219,34 +219,34 @@ function socProviderRulesKernel(){
       "demand": {
         "voiceMinutes": [
           4,
-          7,
+          5,
+          9,
           10,
-          13,
-          16,
+          14,
+          15,
           19,
-          22,
+          20,
+          24,
           25,
-          28,
-          31,
+          29,
+          30,
           34,
-          37,
-          40,
-          43,
-          46,
-          49
+          35,
+          39,
+          40
         ],
         "digitalMinutes": [
-          5,
+          6,
+          7,
           11,
+          12,
+          16,
           17,
-          23,
-          29,
-          35,
-          41,
-          47
+          21,
+          22
         ],
-        "voiceDuration": 3,
-        "digitalDuration": 2,
+        "voiceDuration": 4,
+        "digitalDuration": 4,
         "deadlineMinutes": 12
       },
       "requirements": {

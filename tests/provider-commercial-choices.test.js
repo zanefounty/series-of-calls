@@ -25,3 +25,21 @@ test('operating forecasts retain existing suppliers and usage when quoting an ad
 test('provider payroll follows actual staffed minutes and cannot be dodged by resizing before settlement',()=>{let s=SOC.create({experience:'campaign'});s=tick(s,30);s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:0,support:0}});s=tick(s,30);assert.equal(s.business.balance.cost,15000);assert.equal(s.providerCampaign.payroll.personMinutes,90);assert.equal(s.business.ledger.find(x=>x.reason==='staff').quantity,90);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);});
 
 test('reducing provider support removes the ordinary repair option until staff are restored',()=>{let s=service();while(!s.providerCampaign.incidents.some(i=>i.status==='active'))s=tick(s);const incident=s.providerCampaign.incidents.find(i=>i.status==='active');s=SOC.dispatch(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:1,support:0}});assert.ok(SOC.provider.quote(s,{action:'operation',customerId:incident.customerId,operationId:'repair'}).blockers.includes('SUPPORT_CAPACITY'));assert.deepEqual(SOC.provider.quote(s,{action:'operation',customerId:incident.customerId,operationId:'mitigate'}).blockers,[]);s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:1,support:1}});assert.deepEqual(SOC.provider.quote(s,{action:'operation',customerId:incident.customerId,operationId:'repair'}).blockers,[]);});
+
+
+test('eligible expansion selects a distinct market with shared cash, local terms and continuing tenants',()=>{
+ let s=service();while(s.clock<180){if(s.providerCampaign.incidents.some(i=>i.status==='active'))s=repair(s);s=tick(s);}
+ assert.equal(s.providerCampaign.mission.nextOpportunityAvailable,true);
+ s=SOC.dispatch(s,{type:'provider',command:{action:'renew',customerId:'starter-customer'}});
+ const request={action:'purchase',offerId:'next-1',stage:'base',planId:'swift'},home=SOC.provider.quote(s,request),away=SOC.provider.quote(s,{...request,market:'us-seattle'});
+ assert.deepEqual(away.blockers,[]);assert.notEqual(away.commercial.retailCents,home.commercial.retailCents);
+ const cash=s.business.balance.cash,firstRoot=s.portfolio.customers[0].root.clock;
+ s=buy(s,away.request);assert.equal(s.business.balance.cash,cash-away.setupCents);
+ assert.equal(s.providerCampaign.customers[1].market,'us-seattle');assert.equal(s.portfolio.customers[1].root.jurisdiction,'US');
+ assert.equal(s.portfolio.customers[1].root.business,undefined,'new customer owns no treasury');
+ s=tick(s,3);assert.equal(s.portfolio.customers[0].root.clock,firstRoot+3);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const forged=structuredClone(s);forged.providerCampaign.customers[1].market='au-sydney';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_CUSTOMER/);
+ assert.throws(()=>SOC.provider.quote(s,{...request,offerId:'next-2',market:'unknown'}),/INVALID_PROVIDER_MARKET/);
+ assert.throws(()=>SOC.provider.quote(s,{...request,stage:'carrier',customerId:'next-1-customer',market:'jp-tokyo'}),/MARKET_ONLY_FOR_NEW_CUSTOMER/);
+});

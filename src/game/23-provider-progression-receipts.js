@@ -4,15 +4,17 @@ function socProviderProgressionReceiptsKernel(){
  const PACK='soc-provider-progression-receipts-1',VERSION=1,CONTENT='provider-progression-receipts-content-1',FIELD='progressionReceipts';
  const FIRST_LIVE=['progress','goal','bb'].join('.'),SUSTAINABLE=['progress','progression-level','1'].join('.');
  const NONSTARTER=['progress','goal','bz'].join('.');
+ const EXTERNAL_REACH=['progress','goal','tr'].join('.');
  const LEVEL_TWO=['progress','progression-level','2'].join('.');
  const IX=['progress','goal','ix'].join('.'),LEVEL_THREE=['progress','progression-level','3'].join('.');
- const NAMES=Object.freeze({[FIRST_LIVE]:'First customer live',[SUSTAINABLE]:'Local UC reseller',[NONSTARTER]:'First managed business contract',[LEVEL_TWO]:'Regional communications MSP',[IX]:'First ecosystem integration',[LEVEL_THREE]:'UC and CC integrator'});
+ const NAMES=Object.freeze({[FIRST_LIVE]:'First customer live',[SUSTAINABLE]:'Local UC reseller',[NONSTARTER]:'First managed business contract',[LEVEL_TWO]:'Regional communications MSP',[IX]:'First ecosystem integration',[LEVEL_THREE]:'UC and CC integrator',[EXTERNAL_REACH]:'External calling operational'});
  const fail=code=>{throw new Error(code);},copy=x=>JSON.parse(JSON.stringify(x)),own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
  const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x,same=(a,b)=>JSON.stringify(stable(a))===JSON.stringify(stable(b));
  const integer=(x,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(x)&&x>=min&&x<=max,id=x=>typeof x==='string'&&/^[a-z0-9][a-z0-9._:-]{0,159}$/i.test(x);
  const exact=(x,keys)=>!!x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).sort().join(',')===keys.slice().sort().join(',');
  function factsApi(){return typeof SOC_PROVIDER_PROGRESSION_FACTS!=='undefined'?SOC_PROVIDER_PROGRESSION_FACTS:require('./23-provider-progression.js');}
  function ucCcApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:(typeof SOCProviderUcCcIntegration!=='undefined'?SOCProviderUcCcIntegration:require('./23-provider-uc-cc-integration.js'));}
+ function externalReachApi(){return typeof SOC_PROVIDER_EXTERNAL_REACH!=='undefined'?SOC_PROVIDER_EXTERNAL_REACH:require('./23-provider-external-reach.js');}
  function factsHooks(hooks,s){const base=hooks.factsHooks||hooks;if(Array.isArray(base.supportSamples))return base;if(base.supportSamples)return {...base,supportSamples:factsApi().decodeSupportObservation(base.supportSamples)};return {...base,supportSamples:factsApi().decodeSupportObservation(s?.providerCampaign?.supportObservation)};}
  function regionalSamples(value){const A=factsApi();if(Array.isArray(value))return copy(value);return A.decodeSupportObservation(value);}
  function paidPosting(s,project,reason){if(!project||!s.providerCampaign.projects.includes(project))return false;const row=s.business?.ledger?.find(x=>x.id===project.postingId);if(row)return row.category==='cost'&&row.reason===reason&&row.customerId===project.customerId&&row.projectId===project.id&&row.cents===project.setupCents;const match=/^entry-([1-9]\d*)$/.exec(project.postingId||'');return !!match&&Number(match[1])<=(s.business?.ledgerPrunedThrough||0);}
@@ -27,7 +29,7 @@ function socProviderProgressionReceiptsKernel(){
  function seal(receipt){return {...receipt,integrity:digest(withoutDigest(receipt))};}
  function knownIds(){const A=factsApi();return [...A.LEVELS,...A.GOALS];}
  function rowFor(report,sourceId){return report.levels?.[sourceId]||report.goals?.[sourceId]||null;}
- function supportedPredicate(sourceId){return [FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE].includes(sourceId);}
+ function supportedPredicate(sourceId){return [FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,EXTERNAL_REACH].includes(sourceId);}
  function regionalEvidenceFor(s,evidence,hooks){
   const A=factsApi(),samples=Array.isArray(hooks.supportSamples)?copy(hooks.supportSamples):hooks.supportSamples?A.decodeSupportObservation(hooks.supportSamples):A.decodeSupportObservation(s.providerCampaign.supportObservation),window=A.qualifySupportWindow(samples),facts=A.evaluate(s,factsHooks(hooks,s));
   if(window.status!=='ready'||!A.validateSupportSamples(s,samples,factsHooks(hooks,s)))return {missing:window.missing?.length?window.missing:['VALIDATED_CURRENT_SUPPORT_SAMPLES_REQUIRED']};
@@ -71,6 +73,7 @@ function socProviderProgressionReceiptsKernel(){
   if(sourceId===LEVEL_THREE){
    if(!factsApi().validateUcCcCapabilityEvidence(s,customer.id,evidence.task,evidence.capability,hooks))return {missing:['SAME_CUSTOMER_RESOLVED_PROVIDER_CASE_AND_REAL_MEETING_REQUIRED']};
   }
+  if(sourceId===EXTERNAL_REACH){if(row.status!=='ready'||!row.evidence)return {sourceId,name:row.name,status:'incomplete',missing:copy(row.missing||['PROVIDER_EXTERNAL_REACH_EVIDENCE_REQUIRED']),evidence:null};if(!externalReachApi().validateEvidence(s,row.evidence.customerId,row.evidence,hooks,{current:true,at:s.clock}))return {sourceId,name:row.name,status:'incomplete',missing:['RETAINED_EXTERNAL_REACH_LINEAGE_REQUIRED'],evidence:null};return {sourceId,name:row.name,status:'ready',missing:[],evidence:copy(row.evidence)};}
   return {evidence:copy(evidence)};
  }
  function eligibility(s,sourceId,hooks={},preparedReport=null,stateValidated=false){
@@ -160,7 +163,7 @@ function socProviderProgressionReceiptsKernel(){
  }
  function portfolioIdsFor(s,customerIds){return [...new Set(customerIds.map(id=>s.providerCampaign.customers.find(c=>c.id===id)?.portfolioId).filter(x=>typeof x==='string'))].sort();}
  function agreementWasAccepted(s,customer,at){return at===customer?.customerAcceptedAt||at===customer?.retailAgreement?.at||(s.providerCampaign.events||[]).some(event=>event.customerId===customer?.id&&event.code==='CUSTOMER_RENEWED'&&event.at===at);}
- function unlockFor(sourceId,customerId,evidence){return sourceId===SUSTAINABLE?{id:'provider-managed-carrier-headroom-v1',kind:'paid-operation',action:'operation',operationId:'managed-carrier-headroom',customerId,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===NONSTARTER?{id:'provider-integrator-room-v1',kind:'paid-operation',action:'operation',operationId:'integrator-room',customerId,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===LEVEL_TWO?{id:'provider-regional-provisioning-v1',kind:'paid-operation',action:'operation',operationId:'regional-provisioning',customerId,allowedMarkets:[...(evidence?.markets||[])].sort(),scope:'provisioning',quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===IX?{id:'provider-uc-cc-retest-options-v1',kind:'paid-operation-alternatives',action:'operation',operationIds:['uc-cc-retest','managed-uc-cc-retest'],customerId,requiresCurrentEdgeToBeStale:true,requiresFreshTestAndQualityReview:true,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===LEVEL_THREE?{id:'provider-managed-uc-cc-integration-v1',kind:'paid-operation-alternatives',action:'operation',operationIds:['uc-cc-integration','managed-uc-cc-integration'],customerId,allowedMarkets:[...(evidence?.markets||[])].sort(),sameProductPair:['d-ms-workplace-calling','d-cisco-contact-centre'],quoteRequired:true,quoteSource:'SOC.provider.quote'}:null;}
+ function unlockFor(sourceId,customerId,evidence){return sourceId===SUSTAINABLE?{id:'provider-managed-carrier-headroom-v1',kind:'paid-operation',action:'operation',operationId:'managed-carrier-headroom',customerId,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===NONSTARTER?{id:'provider-integrator-room-v1',kind:'paid-operation',action:'operation',operationId:'integrator-room',customerId,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===LEVEL_TWO?{id:'provider-regional-provisioning-v1',kind:'paid-operation',action:'operation',operationId:'regional-provisioning',customerId,allowedMarkets:[...(evidence?.markets||[])].sort(),scope:'provisioning',quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===IX?{id:'provider-uc-cc-retest-options-v1',kind:'paid-operation-alternatives',action:'operation',operationIds:['uc-cc-retest','managed-uc-cc-retest'],customerId,requiresCurrentEdgeToBeStale:true,requiresFreshTestAndQualityReview:true,quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===LEVEL_THREE?{id:'provider-managed-uc-cc-integration-v1',kind:'paid-operation-alternatives',action:'operation',operationIds:['uc-cc-integration','managed-uc-cc-integration'],customerId,allowedMarkets:[...(evidence?.markets||[])].sort(),sameProductPair:['d-ms-workplace-calling','d-cisco-contact-centre'],quoteRequired:true,quoteSource:'SOC.provider.quote'}:sourceId===EXTERNAL_REACH?{id:'provider-managed-external-reach-v1',kind:'paid-operation',action:'operation',operationId:'managed-external-reach',customerId,allowedMarkets:[evidence.market],scope:'same-market',quoteRequired:true,quoteSource:'SOC.provider.quote'}:null;}
  function makeReceipt(s,sourceId,name,evidence,hooks){
   const summary=collect(evidence),customerIds=summary.customerIds;
   if(!customerIds.length)fail('PROVIDER_PROGRESSION_CUSTOMER_SCOPE_REQUIRED');
@@ -172,9 +175,10 @@ function socProviderProgressionReceiptsKernel(){
   if(sourceId===SUSTAINABLE&&(!exact(evidence,['firstLive','sustainable','supportResponsibility'])||!exact(evidence.firstLive,['customerId','portfolioId','from','to','agreementAt','projectIds','postingIds','jobs'])||!exact(evidence.sustainable,['customerId','interval','period','globalOperatingResultCents','revenuePostingId','costPostingIds'])||!exact(evidence.supportResponsibility,['customerId','role','organisationId','projectId','postingId','effectiveAt','scope','record'])))fail('INVALID_PROVIDER_PROGRESSION_SOURCE_EVIDENCE');
   if(sourceId===NONSTARTER&&(!exact(evidence,['business'])||!exact(evidence.business,['customerId','portfolioId','from','to','agreementAt','projectIds','postingIds','jobs','settlement','supportResponsibility'])||!exact(evidence.business.settlement,['customerId','period','from','to','settledAt','qualified','grossRetailCents','netRetailCents','globalOperatingResultCents','revenuePostingId','costPostingIds'])))fail('INVALID_PROVIDER_PROGRESSION_SOURCE_EVIDENCE');
   if(sourceId===LEVEL_TWO&&(!exact(evidence,['customerIds','markets','interval','minutes','humanJobIds','settlements','supportSamples','stageProjects'])||!(Array.isArray(evidence.supportSamples)||evidence.supportSamples&&typeof evidence.supportSamples==='object')||!Array.isArray(evidence.stageProjects)))fail('INVALID_PROVIDER_PROGRESSION_SOURCE_EVIDENCE');
+  if(sourceId===EXTERNAL_REACH&&!exact(evidence,['kind','version','customerId','portfolioId','tenant','market','agreementAt','from','to','scenarioVersion','paidProjects','outbound','inbound','meeting','interval']))fail('INVALID_PROVIDER_PROGRESSION_SOURCE_EVIDENCE');
   const customer=s.providerCampaign.customers.find(c=>c.id===customerIds[0]);if([IX,LEVEL_THREE].includes(sourceId)){if(!customer||customer.portfolioId!==evidence.portfolioId||customer.market!==evidence.market||!['active','renewal'].includes(customer.status))fail('PROVIDER_PROGRESSION_CUSTOMER_SCOPE_MISMATCH');}else if(sourceId!==LEVEL_TWO&&(customerIds.length!==1||!customer||!customer.retailAgreement||!agreementWasAccepted(s,customer,liveEvidence(evidence).agreementAt)||liveEvidence(evidence).portfolioId!==customer.portfolioId))fail('PROVIDER_PROGRESSION_CUSTOMER_SCOPE_MISMATCH');
   if(sourceId===LEVEL_TWO&&(!customerIds.length||customerIds.length<2||customerIds.some(id=>!s.providerCampaign.customers.some(c=>c.id===id))))fail('PROVIDER_PROGRESSION_CUSTOMER_SCOPE_MISMATCH');
-  const workProofs=[IX,LEVEL_THREE].includes(sourceId)?[]:workProofsFor(s,evidence,hooks),settlementProof=settlementProofFor(s,evidence);
+  const workProofs=[IX,LEVEL_THREE,EXTERNAL_REACH].includes(sourceId)?[]:workProofsFor(s,evidence,hooks),settlementProof=settlementProofFor(s,evidence);
   const record={
    id:`provider-progression-receipt:${sourceId}`,contentVersion:CONTENT,sourceId,name,at:s.clock,
    customerIds,portfolioIds:portfolioIdsFor(s,customerIds),evidenceInterval:summary.evidenceInterval,
@@ -263,6 +267,7 @@ function socProviderProgressionReceiptsKernel(){
  function verifyReferences(s,receipt,hooks={}){
   if(receipt.sourceId===IX||receipt.sourceId===LEVEL_THREE)return verifyUcCcReferences(s,receipt,hooks);
   if(receipt.sourceId===LEVEL_TWO)return verifyRegionalReferences(s,receipt,hooks);
+  if(receipt.sourceId===EXTERNAL_REACH){const e=receipt.sourceEvidence,customer=s.providerCampaign.customers.find(row=>row.id===receipt.customerIds[0]);return !!customer&&receipt.name===NAMES[EXTERNAL_REACH]&&receipt.customerIds.length===1&&receipt.portfolioIds.length===1&&receipt.portfolioIds[0]===customer.portfolioId&&e.customerId===customer.id&&e.portfolioId===customer.portfolioId&&e.market===customer.market&&e.agreementAt<=e.from&&e.to<=receipt.at&&receipt.at<=s.clock&&receipt.workProofs.length===0&&receipt.settlementProof===null&&externalReachApi().validateEvidence(s,customer.id,e,hooks,{historical:true,at:receipt.at});}
   const customers=s.providerCampaign.customers||[],customerIds=receipt.customerIds,customer=customers.find(c=>c.id===customerIds[0]),live=liveEvidence(receipt.sourceEvidence);
   if(!supportedPredicate(receipt.sourceId)||receipt.name!==NAMES[receipt.sourceId]||customerIds.length!==1||!customer||!receipt.portfolioIds.includes(customer.portfolioId)||live.customerId!==customer.id||live.portfolioId!==customer.portfolioId||!agreementWasAccepted(s,customer,live.agreementAt)||live.agreementAt>live.from||live.from>live.to||live.to>receipt.at||!Array.isArray(live.jobs)||live.jobs.length!==2||new Set(live.jobs.map(x=>x.channel)).size!==2||!live.jobs.some(x=>x.channel==='voice')||!live.jobs.some(x=>x.channel==='message'))return false;
   if(!Array.isArray(live.projectIds)||live.projectIds.length!==3||!Array.isArray(live.postingIds)||live.postingIds.length!==3)return false;
@@ -327,10 +332,11 @@ function socProviderProgressionReceiptsKernel(){
  }
  function unlockProposal(s,sourceId,hooks={}){
   validate(s,hooks);
-  if(![SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE].includes(sourceId))return {sourceId,status:'unavailable',missing:['NO_COSTED_UNLOCK_AUTHORED_FOR_SOURCE'],quotes:[]};
+  if(![SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,EXTERNAL_REACH].includes(sourceId))return {sourceId,status:'unavailable',missing:['NO_COSTED_UNLOCK_AUTHORED_FOR_SOURCE'],quotes:[]};
   const receipt=receiptStore(s)?.receipts?.find(x=>x.sourceId===sourceId);
-  if(!receipt)return {sourceId,status:'locked',missing:[sourceId===SUSTAINABLE?'SUSTAINABLE_PROVIDER_RECEIPT_REQUIRED':sourceId===NONSTARTER?'MANAGED_BUSINESS_RECEIPT_REQUIRED':sourceId===LEVEL_TWO?'REGIONAL_MSP_RECEIPT_REQUIRED':sourceId===IX?'FIRST_INTEGRATION_RECEIPT_REQUIRED':'UC_CC_INTEGRATOR_RECEIPT_REQUIRED'],quotes:[]};
+  if(!receipt)return {sourceId,status:'locked',missing:[sourceId===SUSTAINABLE?'SUSTAINABLE_PROVIDER_RECEIPT_REQUIRED':sourceId===NONSTARTER?'MANAGED_BUSINESS_RECEIPT_REQUIRED':sourceId===LEVEL_TWO?'REGIONAL_MSP_RECEIPT_REQUIRED':sourceId===IX?'FIRST_INTEGRATION_RECEIPT_REQUIRED':sourceId===LEVEL_THREE?'UC_CC_INTEGRATOR_RECEIPT_REQUIRED':'EXTERNAL_REACH_RECEIPT_REQUIRED'],quotes:[]};
   if(typeof hooks.providerQuote!=='function')return {sourceId,status:'unavailable',missing:['SOC_PROVIDER_QUOTE_HOOK_REQUIRED'],quotes:[]};
+  if(sourceId===EXTERNAL_REACH){const customerId=hooks.customerId||receipt.unlock.customerId,target=s.providerCampaign.customers.find(x=>x.id===customerId);if(!target)return {sourceId,status:'awaiting-customer',missing:['EXTERNAL_REACH_UNLOCK_CUSTOMER_REQUIRED'],unlock:copy(receipt.unlock),quotes:[]};if(!receipt.unlock.allowedMarkets.includes(target.market))return {sourceId,status:'blocked',missing:['EXTERNAL_REACH_UNLOCK_MARKET_OUT_OF_SCOPE'],unlock:copy(receipt.unlock),quotes:[]};const request={action:'operation',operationId:receipt.unlock.operationId,customerId};let quote;try{quote=copy(hooks.providerQuote(s,request));}catch(error){return {sourceId,status:'unavailable',missing:[`UNLOCK_OPERATION_NOT_AUTHORED:${String(error?.message||error)}`],unlock:copy(receipt.unlock),request,quotes:[]};}const available=Array.isArray(quote?.blockers)&&quote.blockers.length===0;return {sourceId,status:available?'available':'blocked',missing:available?[]:[...(quote?.blockers||['PROVIDER_QUOTE_UNAVAILABLE'])],unlock:copy(receipt.unlock),request,quote,quoteSource:'SOC.provider.quote'};}
   if(sourceId===IX||sourceId===LEVEL_THREE){
    const customerId=sourceId===IX?receipt.unlock.customerId:hooks.customerId,target=s.providerCampaign.customers.find(x=>x.id===customerId);
    if(!customerId||sourceId===LEVEL_THREE&&!target)return {sourceId,status:'awaiting-customer',missing:['UC_CC_UNLOCK_TARGET_CUSTOMER_REQUIRED'],unlock:copy(receipt.unlock),quotes:[]};
@@ -352,11 +358,11 @@ function socProviderProgressionReceiptsKernel(){
   const rows=[...A.LEVELS,...A.GOALS].map(sourceId=>{
    const result=eligibility(s,sourceId,hooks,facts,true);return {...result,receipt:result.receipt||null};
   });
-  const unlockProposals=[SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE].map(sourceId=>unlockProposal(s,sourceId,hooks));
+  const unlockProposals=[SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,EXTERNAL_REACH].map(sourceId=>unlockProposal(s,sourceId,hooks));
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,asOf:s.clock,receipts,rows,unlockProposal:unlockProposals.find(x=>x.sourceId===SUSTAINABLE),unlockProposals};
  }
  function source(){return `const SOC_PROVIDER_PROGRESSION_RECEIPTS=(${socProviderProgressionReceiptsKernel.toString()})();`;}
- return {PACK,VERSION,CONTENT,FIELD,FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,empty,eligibility,claim,unlockProposal,inspect,validate,source};
+ return {PACK,VERSION,CONTENT,FIELD,FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,EXTERNAL_REACH,empty,eligibility,claim,unlockProposal,inspect,validate,source};
 }
 const SOC_PROVIDER_PROGRESSION_RECEIPTS=socProviderProgressionReceiptsKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_PROGRESSION_RECEIPTS;

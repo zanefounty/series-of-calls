@@ -4,6 +4,7 @@ function socProviderProgressionFactsKernel(){
  const VERSION=1,CONTENT='provider-progression-facts-content-1',PACK='soc-provider-progression-facts-1';
  function responsibilityApi(){return typeof SOC_PROVIDER_RESPONSIBILITY!=='undefined'?SOC_PROVIDER_RESPONSIBILITY:require('./23-provider-responsibility.js');}
  function ucCcApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:(typeof SOCProviderUcCcIntegration!=='undefined'?SOCProviderUcCcIntegration:require('./23-provider-uc-cc-integration.js'));}
+ function externalReachApi(){return typeof SOC_PROVIDER_EXTERNAL_REACH!=='undefined'?SOC_PROVIDER_EXTERNAL_REACH:require('./23-provider-external-reach.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -366,7 +367,7 @@ function socProviderProgressionFactsKernel(){
  function blockedRows(rows){return Object.fromEntries(rows.map(([id,name,...req])=>[id,{id,name,status:'incomplete',missing:req.map(k=>MISSING[k]||`Required evidence is not evaluated: ${k}.`)}]));}
  function evaluate(s,hooks={}){
   if(!s||s.experience?.version!==1||s.experience?.kind!=='campaign'||s.experience?.custom!==false)fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
-  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
+  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
   if(!Array.isArray(p.customers)||!Array.isArray(p.projects)||!Array.isArray(p.jobs)||!Array.isArray(p.periodHistory)||!s.business||!Array.isArray(s.business.ledger))fail('INVALID_PROVIDER_PROGRESSION_FACTS_INPUT');
   const fullLive=[];
   for(const c of p.customers){const ready=customerReady(s,c,hooks);if(ready.ok)fullLive.push({customer:c,ready});}
@@ -417,6 +418,11 @@ function socProviderProgressionFactsKernel(){
   if(!levelThree){if(!integrated)levelThreeMissing.push(...integrationMissing);if(!integrationCandidates.length)levelThreeMissing.push(MISSING['paid-uc-cc-integration']);levelThreeMissing.push(MISSING['same-customer-integrated-needs'],MISSING['same-customer-integrated-meeting']);}
   levels[levelId(3)]={id:levelId(3),name:'UC and CC integrator',status:levelThree?'ready':'incomplete',missing:levelThree?[]:[...new Set(levelThreeMissing)],evidence:levelThree};
   goals[goalId('bb')]={id:goalId('bb'),name:'First customer live',status:firstLive.status,missing:[...firstLive.missing],evidence:firstLive.status==='ready'?liveEvidence:null};
+  const externalCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>({customer:c,result:externalReachApi().evaluate(s,c.id,{...hooks,mission:hooks.missionRules?.[c.scenario]||hooks.mission})}));
+  const external=externalCandidates.find(row=>row.result.status==='ready')||null,externalMissing=external?[]:[...new Set(externalCandidates.flatMap(row=>row.result.missing||[]))];
+  const externalEvidence=external?.result.evidence||null;
+  goals[goalId('tr')]={id:goalId('tr'),name:'External calling operational',status:externalEvidence?'ready':'incomplete',missing:externalEvidence?[]:(externalMissing.length?externalMissing:[MISSING['inbound-demand'],MISSING['external-collaboration-acceptance']]),evidence:externalEvidence};
+  proofRequirements.externalReach=fact(externalEvidence?'ready':'incomplete',externalEvidence?[]:goals[goalId('tr')].missing,externalEvidence||{});
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,sourceContentVersion:p.contentVersion,experience:{...s.experience},asOf:s.clock,levels,goals,facts:proofRequirements};

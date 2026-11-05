@@ -6,6 +6,7 @@ const SOC=require('../src/game/55-communications.js');
 const FACTS=require('../src/game/23-provider-progression.js');
 const RESPONSIBILITY=require('../src/game/23-provider-responsibility.js');
 const UC_CC=require('../src/game/23-provider-uc-cc-integration.js');
+const EXTERNAL_REACH=require('../src/game/23-provider-external-reach.js');
 const CONTENT=require('../content/progression.json');
 
 const buy=(s,request)=>{
@@ -117,9 +118,9 @@ test('current MSP responsibility is same-customer paid evidence and fails at zer
 });
 
 test('legacy responsibility version is unavailable and worker facts match host evaluation',()=>{
- const state=paidOpening(120),legacy=structuredClone(state);delete legacy.providerCampaign.commercialResponsibilityVersion;legacy.providerCampaign.contentVersion='provider-campaigns-2';
+ const state=paidOpening(120),legacy=structuredClone(state);delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.externalCollaborationVersion;legacy.providerCampaign.contentVersion='provider-campaigns-2';for(const customer of legacy.portfolio.customers)delete customer.root.providerCustomer.externalCollaborationVersion;
  const legacyReport=FACTS.evaluate(legacy,hooks);assert.equal(RESPONSIBILITY.responsibilities(legacy,'starter-customer',hooks).status,'unavailable');assert.equal(legacyReport.facts.supportResponsibility.status,'incomplete');assert.equal(legacyReport.levels['progress.progression-level.1'].status,'incomplete');
- const context={input:state,helpers:hooks};vm.createContext(context);vm.runInContext(RESPONSIBILITY.source()+UC_CC.source()+FACTS.source(),context);
+ const context={input:state,helpers:hooks};vm.createContext(context);vm.runInContext(RESPONSIBILITY.source()+UC_CC.source()+EXTERNAL_REACH.source()+FACTS.source(),context);
  const worker=vm.runInContext('SOC_PROVIDER_PROGRESSION_FACTS.evaluate(input,helpers)',context);
  assert.deepEqual(JSON.parse(JSON.stringify(worker)),FACTS.evaluate(state,hooks),'worker and main facts derive the same current support proof');
 });

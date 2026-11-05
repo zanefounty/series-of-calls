@@ -26,11 +26,18 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const command of commands)if(command.type==='add'&&typeof command.id==='string'&&!configs[command.id]){
    const kind=command.kind,base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${command.id}`);configs[command.id]={...clone(base),enabled:false,region:child.jurisdiction};merge(configs[command.id],command.config||{});
   }
-  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]};}
+  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:[{prefix:'+61',target:'service'},...(configs.phone?.routes?.some(route=>route.prefix==='+44'&&route.target==='service')?[{prefix:'+44',target:'service'}]:[])]};}
   if(project.operationId==='migration'&&configs['migration-phone'])configs['migration-phone'].enabled=true;
  }
  function operationPatch(provider,project,definition,configs,child){
   const id=project.operationId;
+  if(['direct-external-reach','managed-external-reach'].includes(id)){
+   const receipt=project.operationReceipt;
+   validateReachReceipt(project);
+   const patch={carrier:{capacity:receipt.capacity}};
+   for(const resource of ['phone','migration-phone'])if(configs[resource])patch[resource]={routes:[...clone(configs[resource].routes).filter(route=>route.prefix!=='+44'),{prefix:'+44',target:'service'}]};
+   return patch;
+  }
   // These handlers return before the generic configure call in 55. Their capacity
   // deltas and incident effects have separate paid validators.
   if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
@@ -153,6 +160,29 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   return true;
  }
+ const reachOperations=['direct-external-reach','managed-external-reach'];
+ const reachAliases=[{number:'+6125550191',holder:'alex'},{number:'+6125550192',holder:'bea'}];
+ function validateReachReceipt(project){
+  const receipt=project.operationReceipt;
+  if(!receipt||stable(Object.keys(receipt).sort())!==stable(['kind','resource','previousCapacity','capacity','unit','at','aliases','allowedPrefix'].sort())||receipt.kind!==project.operationId||receipt.resource!=='carrier'||!Number.isSafeInteger(receipt.previousCapacity)||receipt.previousCapacity<0||receipt.capacity!==receipt.previousCapacity+2||receipt.unit!=='concurrent sessions'||receipt.at!==project.configSubmittedAt-1||stable(receipt.aliases)!==stable(reachAliases)||receipt.allowedPrefix!=='+44')fail('EXTERNAL_REACH_RECEIPT');
+ }
+ function validateCallingOperations(provider,customer,child,projects){
+  const funded=projects.filter(project=>reachOperations.includes(project.operationId));
+  if(funded.length>1)fail('DUPLICATE_EXTERNAL_REACH');
+  if(funded.length&&(customer.scenario!=='enterprise'||provider.externalCollaborationVersion!==1||child.providerCustomer?.externalCollaborationVersion!==1))fail('EXTERNAL_REACH_SCOPE');
+  for(const project of funded)validateReachReceipt(project);
+  for(const project of provider.projects||[])if(project.customerId===customer.id&&reachOperations.includes(project.operationId)&&project.configSubmittedAt==null&&project.operationReceipt!=null)fail('UNSUBMITTED_EXTERNAL_REACH_RECEIPT');
+  const operations=child.operations;
+  if(!operations){if(funded.length)fail('EXTERNAL_REACH_OPERATIONS_REQUIRED');return;}
+  // Provider purchases do not author arbitrary port orders or replace caller IDs.
+  // Dedicated and staged migrations move identity placement, keeping these numbers.
+  const numbers=[{number:'+61255500101',holder:'alex',type:'user',provider:'level-tree',status:'active'},{number:'+61255500201',holder:'bea',type:'user',provider:'level-tree',status:'active'}];
+  if(funded.length)for(const alias of reachAliases)numbers.push({...alias,type:'user',provider:'level-tree',status:'active'});
+  if(stable(operations.numbers)!==stable(numbers))fail('NUMBER_OWNERSHIP');
+  const policies=Object.fromEntries(numbers.slice(0,2).map(number=>[number.holder,{allowInternational:false,allowedPrefixes:funded.length?['+61','+44']:['+61'],callerId:number.number}]));
+  if(stable(operations.policies)!==stable(policies))fail('DIALLING_POLICY');
+  if(operations.ports?.length||operations.portOrders?.length)fail('UNPAID_NUMBER_PORT');
+ }
  function validateCustomer(provider,customer,child,hooks={}){
   if(!provider||!customer||!child?.resources||!hooks.catalogue)fail('INPUT');
   const expected=expectedModel(provider,customer,child,hooks.catalogue);
@@ -175,6 +205,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    }
   }
   validateProducts(provider,customer,child,expected.projects);
+  validateCallingOperations(provider,customer,child,expected.projects);
   return true;
  }
  function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),source:()=>load().source()};})();`;}

@@ -45,6 +45,12 @@ function socProviderCapacityAuthorityKernel(rules,products,government){
    if(!receipt||receipt.kind!==op.id||receipt.resource!=='carrier'||receipt.previousCapacity!==previous||receipt.capacity!==previous+4||receipt.unit!=='concurrent sessions')fail();
    patch.carrier={...(patch.carrier||{}),capacity:previous+4};
   }
+  if(['direct-external-reach','managed-external-reach'].includes(op.id)){
+   const previous=target.carrier?.capacity??4,receipt=project.operationReceipt;
+   const aliases=[{number:'+6125550191',holder:'alex'},{number:'+6125550192',holder:'bea'}];
+   if(!receipt||receipt.kind!==op.id||receipt.resource!=='carrier'||receipt.previousCapacity!==previous||receipt.capacity!==previous+2||receipt.unit!=='concurrent sessions'||receipt.at!==project.configSubmittedAt-1||receipt.allowedPrefix!=='+44'||JSON.stringify(receipt.aliases)!==JSON.stringify(aliases))fail('EXTERNAL_REACH_RECEIPT');
+   patch.carrier={...(patch.carrier||{}),capacity:previous+2};
+  }
   if(op.id==='capture-headroom'){
    const previous=target.recorder?.capacity??4,receipt=project.operationReceipt;
    if(!receipt||receipt.kind!=='capture-headroom'||receipt.resource!=='recorder'||receipt.previousCapacity!==previous||receipt.capacity!==previous+4||receipt.unit!=='concurrent capture reservations')fail();

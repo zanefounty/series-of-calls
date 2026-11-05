@@ -82,6 +82,8 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
   c.send({action:'acknowledge-incident',incidentId:fault.id});c.operation('repair',enterprise.id);
   c.advance(SOC.provider.rules.operations.find(x=>x.id==='repair').workMinutes);
  }
+ // Five-minute conversations require funded customer handling cover at this peak.
+ c.operationEventually('bpo',enterprise.id);
  c.operationEventually('migration',enterprise.id);
  if(c.state.providerCampaign.customers[0].status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
  c.advance(60-c.state.clock%60);

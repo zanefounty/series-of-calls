@@ -129,3 +129,16 @@ test('scenario-owned requirements surface missing paid capture and rooms before 
  assert.deepEqual(result.primary.find(g=>g.key==='service-prerequisites').operations.map(o=>o.id),['recording','room']);assert.equal(JSON.stringify(input),before);
  input.customer.services.push({id:'room',observed:{ready:true}});assert.deepEqual(A.project(input).primary.find(g=>g.key==='service-prerequisites').operations.map(o=>o.id),['recording']);
 });
+
+
+test('external reach alternatives are offered on the Enterprise carrier and cease after either is funded',()=>{
+ const operations=[op('direct-external-reach',['carrier']),op('managed-external-reach',['carrier'],{available:false,blockers:['EARNED_EXTERNAL_REACH_MARKET_REQUIRED']})];
+ const model=input(customer('enterprise'),operations,{resource:{id:'carrier',kind:'trunk'}}),before=JSON.stringify(model),result=A.project(model);
+ assert.deepEqual(group(result.primary,'scenario-alternatives'),['direct-external-reach']);
+ assert.ok(ids(result.locked).includes('managed-external-reach'));
+ assert.equal(JSON.stringify(model),before);
+ const eligible=A.project({...model,operations:operations.map(o=>({...o,available:true,blockers:[]}))});
+ assert.deepEqual(group(eligible.primary,'scenario-alternatives'),['direct-external-reach','managed-external-reach']);
+ const funded=A.project({...model,projects:[{id:'funded-reach',customerId:'customer-one',operationId:'direct-external-reach',status:'complete'}]});
+ assert.deepEqual([...ids(funded.primary),...ids(funded.secondary),...ids(funded.locked)],[]);
+});

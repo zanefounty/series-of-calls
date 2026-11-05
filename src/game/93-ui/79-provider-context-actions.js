@@ -4,16 +4,16 @@ function socProviderContextActionsKernel(){
  const VERSION=1;
  const copy=x=>x==null?x:JSON.parse(JSON.stringify(x)),plain=x=>!!x&&typeof x==='object'&&!Array.isArray(x),
   repeatablePrimary=new Set(['quality','coaching','repair','mitigate','service-repair','carrier-headroom','managed-carrier-headroom','capture-headroom','sync-records','sync-all','uc-cc-retest','managed-uc-cc-retest']),
-  singlePurchase=new Set(['bpo','automation','local-spares']),
+  singlePurchase=new Set(['bpo','automation','local-spares','direct-external-reach','managed-external-reach']),
   integrationIds=new Set(['uc-cc-integration','managed-uc-cc-integration','uc-cc-retest','managed-uc-cc-retest']),
   integrationInitial=new Set(['uc-cc-integration','managed-uc-cc-integration']),integrationRetest=new Set(['uc-cc-retest','managed-uc-cc-retest']),
   incidentIds=new Set(['repair','mitigate','service-repair']),
-  govIds=new Set(['compliance','compliance-local']),enterpriseIds=new Set(['migration','migration-consolidated']),defenceIds=new Set(['local-deployment','local-spares','sync-records','sync-all']);
+  govIds=new Set(['compliance','compliance-local']),enterpriseIds=new Set(['migration','migration-consolidated','direct-external-reach','managed-external-reach']),defenceIds=new Set(['local-deployment','local-spares','sync-records','sync-all']);
  function activeProject(x){return x&&x.status!=='cancelled'&&x.status!=='blocked'&&!x.retirement&&!x.serviceRetirement;}
  function projectMatches(projects,customerId,id){return projects.some(x=>activeProject(x)&&x.customerId===customerId&&(x.operationId===id||x.productId===id));}
  function paidComplete(projects,customerId,id){return projects.some(x=>activeProject(x)&&x.customerId===customerId&&(x.operationId===id||x.productId===id)&&x.status==='complete');}
  function inProgress(projects,customerId,id){return projects.some(x=>activeProject(x)&&x.customerId===customerId&&(x.operationId===id||x.productId===id)&&x.status!=='complete');}
- function fundedOnce(projects,customerId,operation){if(operation.kind==='product')return projectMatches(projects,customerId,operation.id);if(operation.id==='migration'||operation.id==='migration-consolidated')return projects.some(x=>activeProject(x)&&x.customerId===customerId&&['migration','migration-consolidated'].includes(x.operationId));return singlePurchase.has(operation.id)&&projectMatches(projects,customerId,operation.id);}
+ function fundedOnce(projects,customerId,operation){if(['direct-external-reach','managed-external-reach'].includes(operation.id))return projects.some(p=>activeProject(p)&&p.customerId===customerId&&['direct-external-reach','managed-external-reach'].includes(p.operationId));if(operation.kind==='product')return projectMatches(projects,customerId,operation.id);if(operation.id==='migration'||operation.id==='migration-consolidated')return projects.some(x=>activeProject(x)&&x.customerId===customerId&&['migration','migration-consolidated'].includes(x.operationId));return singlePurchase.has(operation.id)&&projectMatches(projects,customerId,operation.id);}
  function edgeFor(customer){const edges=customer?.products?.integrations||customer?.serviceIntegration?.integrations||[];return edges.find(x=>x?.id==='workplace-to-contact-quality')||null;}
  function serviceIntegrationState(customer){const row=customer?.serviceIntegration;if(typeof row?.status==='string')return row.status;const edge=edgeFor(customer);if(!edge)return 'missing';if(edge.result?.status==='blocked')return 'blocked';if(edge.result?.status==='scenario-verified')return 'ready';return 'awaiting-test';}
  function paidProductPair(projects,customerId){return paidComplete(projects,customerId,'ms-workplace-calling')&&paidComplete(projects,customerId,'cisco-contact-centre');}
@@ -53,6 +53,7 @@ function socProviderContextActionsKernel(){
   for(const [requirement,operationId,resourceId] of requiredServices)if(required[requirement]===true&&!customer.services?.some(s=>s.id===resourceId&&s.observed?.ready===true))pushPrimary('service-prerequisites',operationId);
 
   if(scenario==='enterprise'){
+   if(!projects.some(p=>activeProject(p)&&p.customerId===customerId&&['direct-external-reach','managed-external-reach'].includes(p.operationId))&&(!resource||['carrier','phone','migration-phone'].includes(resource.id))){pushPrimary('scenario-alternatives','direct-external-reach');pushPrimary('scenario-alternatives','managed-external-reach');}
    if(!projectMatches(projects,customerId,'migration')&&!projectMatches(projects,customerId,'migration-consolidated')){
     pushPrimary('scenario-alternatives','migration');pushPrimary('scenario-alternatives','migration-consolidated');
    }

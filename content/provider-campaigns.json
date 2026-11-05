@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "id": "provider-campaigns-3",
+  "id": "provider-campaigns-4",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -124,6 +124,14 @@
         "transcript": false,
         "meeting": true,
         "local": false
+      },
+      "externalCollaboration": {
+        "version": 1,
+        "minute": 20,
+        "durationMinutes": 4,
+        "attendees": 2,
+        "guestId": "partner-jules",
+        "guestTenant": "synthetic-partner"
       },
       "incident": {
         "afterDelivered": 8,
@@ -662,6 +670,28 @@
       ]
     },
     {
+      "id": "after-call-assistance",
+      "name": "After-call workflow assistance",
+      "description": "Fund CRM and workflow assistance to remove after-call wrap delay. Conversation duration, customer people, licences and carrier sessions remain unchanged.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "people"
+      ],
+      "config": {
+        "people": {
+          "wrapMinutes": 0
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:journeys"
+      ]
+    },
+    {
       "id": "compliance",
       "name": "Scoped public-service procurement",
       "description": "Commission a workload-specific regional processing, retention, key-custody and delegated support contract. This is a fictional scenario decision, not real authorization.",
@@ -867,6 +897,45 @@
       "requirements": [],
       "sourceIds": [
         "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "direct-external-reach",
+      "name": "Direct external reach",
+      "description": "Fund direct carrier work for two authored number aliases and scoped international calling. Higher setup and provider engineering reduce recurring exposure.",
+      "setupCents": 30000,
+      "periodCents": 5000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-external-reach",
+      "name": "Supplier-managed external reach",
+      "description": "After earning external calling operational in this market, fund supplier-managed carrier work for two authored aliases and scoped international calling. Lower setup and no provider engineering trade against higher recurring cost and longer delivery.",
+      "setupCents": 15000,
+      "periodCents": 8000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles"
       ]
     },
     {

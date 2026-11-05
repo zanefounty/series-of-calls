@@ -1,0 +1,11 @@
+# Provider mission victory retention
+
+Provider mission status records an earned campaign outcome. `mission.consecutiveQualifying` continues to report the current streak and can return to zero after a later poor period; it does not revoke an earlier victory.
+
+When the campaign records `MISSION_WON`, it also stores `mission.victoryProof`: the event ID and time, scenario, focus and expansion customers, the authored victory-period count, and compact evidence for the final qualifying global settlements. Validation cross-checks the event, funded expansion base project, resolved incident, authored on-time threshold, positive operating results, customer focus, and every settlement row still retained in `periodHistory`. Once a referenced event or settlement has been pruned, the proof is accepted only when the corresponding event or period checkpoint covers that ID.
+
+`advance-segment` requires a valid proof for the current scenario and writes the existing `segmentHistory` record shape using its earned qualifying-period count. A later failure therefore resets only the live streak. The current `cancel-project` command is restricted to running operations, so it refuses a funded expansion stage; `continue-career` can change the live focus while retaining the earlier proof. The next segment still starts with a fresh streak and retains the shared treasury, staff and customer portfolio.
+
+Legacy campaign saves without `mission.victoryProof` remain restorable. Before advancing a legacy save, the command attempts to reconstruct the proof from its retained `MISSION_WON` event and qualifying period records. If those records no longer establish the win, advancement is refused with `MISSION_VICTORY_EVIDENCE_REQUIRED`; it does not infer victory from the current `status` field or fabricate settlement history.
+
+The behavioral regression `tests/provider-mission-victory-retention.test.js` exercises an earned SMB win, a later unstaffed 24-case failed period, truthful streak reset, restore, forged-proof refusal, expansion-cancel refusal, continuation focus changes, legacy proof reconstruction and segment advancement. `tests/provider-segments.test.js` continues to cover the four-mission progression and the unchanged segment-history shape.

@@ -65,8 +65,12 @@ test('AC-SOC-491 historical transferred records survive recorder reconfiguration
 });
 test('AC-SOC-477 save validation rejects altered destination custody, lowered classification and removed successful transfer receipts',()=>{
  const s=transfer(tick(info(record(ready()),interfaceCommand())));
- for(const mutate of [x=>x.records.at(-1).storage.resourceId='archive',x=>x.records.at(-1).classification='internal',x=>x.information.transfers.pop()]){
-  const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_INFORMATION_/);
+ for(const [mutate,error] of [
+  [x=>x.records.at(-1).storage.resourceId='archive',/^Error: INVALID_RECORD_STORE_DESTINATION$/],
+  [x=>x.records.at(-1).classification='internal',/INVALID_INFORMATION_/],
+  [x=>x.information.transfers.pop(),/INVALID_INFORMATION_/]
+ ]){
+  const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),error);
  }
  assert.deepEqual(JSON.parse(JSON.stringify(SOC.restore(JSON.stringify(s)))),JSON.parse(JSON.stringify(s)));
 });

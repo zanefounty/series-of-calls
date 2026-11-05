@@ -6916,6 +6916,21 @@
       ],
       "status": "partial",
       "scope": "Provider operation quotes disclose the selected customer plan voice-minute and delivered-message unit rates through the existing cost comparison. Real paid Swift and Steady openings reconcile displayed rates against actual settled usage postings; purchase terms, operation fixed commitments and charges remain unchanged. Insufficient-cash quotes retain rates while atomic commitment refuses. An isolated distinct-rate content fixture detects accidental cross-customer tariff reuse; it is not campaign balance or playable delivery evidence. This bounded disclosure repair does not certify every operation cost, full ecosystem acceptance or human comprehension."
+    },
+    {
+      "id": "BEH-SOC-392",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/98-provider-runtime.js"
+      ],
+      "testIds": [
+        "AC-SOC-677",
+        "AC-SOC-678"
+      ],
+      "status": "partial",
+      "scope": "Native Web Locks revocation drops Provider editing authority, pauses its clock, cancels the pending worker, keeps the live run exportable and requires explicit reopen. Stale lock acquisition/rejection cannot invalidate a newer owner. Browser environment-failure coverage commits one real paid order under injected localStorage quota failure, exports that exact result, restores storage, steals the native lock from another tab and verifies stopped state plus explicit recovery. This does not establish all persistence, browser or gameplay acceptance."
     }
   ]
 }

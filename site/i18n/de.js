@@ -5352,6 +5352,7 @@
 "provider.shell.campaign":"Provider campaign",
 "provider.shell.import_save":"Import save",
 "provider.shell.save_data":"Save data",
+"provider.lock_lost":"Career save ownership was lost. This view is read-only and paused. Reopen it to continue; export remains available.",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

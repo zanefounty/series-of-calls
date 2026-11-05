@@ -7,15 +7,47 @@ const SOC=require('../src/game/55-communications.js');
 
 const ROOT=path.join(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(ROOT,file),'utf8');
-function boot(){
+function boot(locks){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div><div id="modal" hidden></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true,url:'http://localhost/'}),w=dom.window;
  w.__TUBES_TEST__=true;w.SOC=SOC;w.SOCProviderPolicy=require('../src/game/23-provider-policy');w.ACT={};w.UI={speed:0};w.SCT={};w.socClose=()=>{};
- let acquired=0;Object.defineProperty(w.navigator,'locks',{value:{request:async(_name,_options,callback)=>{acquired++;await callback({name:'provider'});}}});
+ let acquired=0;Object.defineProperty(w.navigator,'locks',{value:locks||{request:async(_name,_options,callback)=>{acquired++;await callback({name:'provider'});}}});
  w.eval(read('src/game/93-ui/10-dom.js'));
  for(const file of ['src/game/23-provider-variants.js','src/game/93-ui/65-service-preferences.js','src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/93-ui/78-provider-policy-controls.js','src/game/93-ui/79-provider-comparisons.js','src/game/96-map/90-service-scene.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js'])w.eval(read(file));
  w.eval(read('src/game/98-provider-runtime.js')+';globalThis.__SCP=SCP;');
  return {dom,w,acquired:()=>acquired};
 }
+
+test('AC-SOC-677 native career lock revocation pauses, cancels delayed work and preserves the exportable state',async()=>{
+ const requests=[],locks={request:(_name,_options,callback)=>new Promise((resolve,reject)=>{requests.push({reject});Promise.resolve(callback({name:'provider'})).then(resolve,reject);})};
+ const {dom,w}=boot(locks);try{
+  w.providerHome();await w.providerNew({providerName:'Revocation MSP'});
+  const state=JSON.stringify(w.__SCP.state),disk=w.localStorage.getItem('series-of-calls:provider:v1');
+  let pending;w.URL.createObjectURL=()=> 'blob:delayed-worker';w.URL.revokeObjectURL=()=>{};
+  w.Worker=class{postMessage(message){this.message=message;pending=this;}terminate(){this.terminated=true;}};
+  w.providerSpeed(8);w.providerTick();assert.equal(w.__SCP.busy,true);
+  requests[0].reject(new w.DOMException('Native lock stolen','AbortError'));
+  await new Promise(resolve=>setTimeout(resolve,0));
+  assert.equal(w.__SCP.locked,false);assert.equal(w.__SCP.speed,0);assert.equal(w.__SCP.busy,false);assert.equal(pending.terminated,true);
+  assert.match(w.document.querySelector('[data-provider-error]').textContent,/read-only.*paused/i);
+  pending.onmessage({data:{id:pending.message.id,revision:pending.message.state.revision,state:SOC.dispatch(pending.message.state,pending.message.command)}});
+  w.providerTick();w.providerSpeed(8);
+  assert.equal(JSON.stringify(w.__SCP.state),state);assert.equal(w.localStorage.getItem('series-of-calls:provider:v1'),disk);
+  assert.equal(w.__SCP.speed,0);assert.deepEqual(SOC.restore(state),w.__SCP.state);
+  await w.providerOpen();assert.equal(w.__SCP.locked,true);assert.equal(JSON.stringify(w.__SCP.state),state);
+ }finally{w.providerRelease();dom.window.close();}
+});
+
+test('AC-SOC-678 obsolete lock acquisition and rejection cannot overwrite a later owner',async()=>{
+ const requests=[],locks={request:(_name,_options,callback)=>new Promise((resolve,reject)=>requests.push({callback,resolve,reject}))};
+ const {dom,w}=boot(locks);try{
+  const old=w.providerAcquire();w.providerRelease();const current=w.providerAcquire();
+  const held=requests[1].callback({name:'current'});assert.equal(await current,true);
+  await requests[0].callback({name:'obsolete'});assert.equal(await old,false);assert.equal(w.__SCP.locked,true);
+  requests[0].reject(new Error('Obsolete native request rejected'));await new Promise(resolve=>setTimeout(resolve,0));
+  assert.equal(w.__SCP.locked,true);assert.equal(w.__SCP.error,'');
+  w.providerRelease();await held;assert.equal(w.__SCP.locked,false);
+ }finally{w.providerRelease();dom.window.close();}
+});
 
 test('provider runtime creates campaigns through visible new-game controls and stores an owned save',async()=>{
  const {dom,w}=boot();try{

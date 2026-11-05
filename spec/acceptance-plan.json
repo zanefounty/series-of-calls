@@ -882,6 +882,12 @@
       "AC-SOC-638",
       "AC-SOC-639"
     ],
+    "tests/provider-operation-usage-quotes.test.js": [
+      "AC-SOC-640",
+      "AC-SOC-641",
+      "AC-SOC-642",
+      "AC-SOC-643"
+    ],
     "tests/provider-journey-explanation.test.js": [
       "AC-SOC-644",
       "AC-SOC-645"
@@ -1391,6 +1397,7 @@
     "tests/provider-incident-inspector.test.js",
     "tests/provider-integration-assurance.test.js",
     "tests/provider-journey-explanation.test.js",
+    "tests/provider-operation-usage-quotes.test.js",
     "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",

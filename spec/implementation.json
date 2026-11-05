@@ -6900,6 +6900,26 @@
     {
       "id": "BEH-SOC-387",
       "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-640",
+        "AC-SOC-641",
+        "AC-SOC-642",
+        "AC-SOC-643"
+      ],
+      "status": "partial",
+      "scope": "Provider operation quotes disclose the selected customer plan voice-minute and delivered-message unit rates through the existing cost comparison. Real paid Swift and Steady openings reconcile displayed rates against actual settled usage postings; purchase terms, operation fixed commitments and charges remain unchanged. Insufficient-cash quotes retain rates while atomic commitment refuses. An isolated distinct-rate content fixture detects accidental cross-customer tariff reuse; it is not campaign balance or playable delivery evidence. This bounded disclosure repair does not certify every operation cost, full ecosystem acceptance or human comprehension."
+    },
+    {
+      "id": "BEH-SOC-388",
+      "sources": [
         "progress.goal.t2",
         "uc-new:domain:commercial-roles"
       ],
@@ -6918,7 +6938,7 @@
       "scope": "Priced earned integration assurance with immutable claim scope, explicit editable policy subsets and current edge/boundary suspension. Public unearned orders and worker orders refuse atomically; isolated planner and retained-action counterexamples cover scope, action kind, commissioning time and changed integrations. These bounded tests do not establish a genuinely earned T2 claim, paid delivery or automatic action after that claim; those remain pending."
     },
     {
-      "id": "BEH-SOC-388",
+      "id": "BEH-SOC-389",
       "sources": [
         "DEC-011",
         "uc-new:domain:pricing"
@@ -6937,7 +6957,7 @@
       "scope": "Pure Provider journey explanations derived from retained queue, assignment, connection, wrap and outcome events, with actual supplier usage counters and current carrier occupancy. Customer period pricing and delivery credits are distinguished from supplier units. A real autonomous delivered voice job, transfer timing, missing history, repeated pure rendering and worker/save continuation are covered. This does not prove new handoff mechanics, every media failure or final browser acceptance."
     },
     {
-      "id": "BEH-SOC-389",
+      "id": "BEH-SOC-390",
       "sources": [
         "DEC-011",
         "uc-new:domain:pricing"

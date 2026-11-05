@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "id": "provider-campaigns-4",
+  "id": "provider-campaigns-5",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -1173,6 +1173,136 @@
       "sourceIds": [
         "uc-new:family:cisco:contact-center"
       ]
+    },
+    {
+      "id": "primary-upstream",
+      "name": "Primary inter-site service",
+      "description": "Fund two customer sites and a 20 Mbps primary path. The next complete demand period includes one case with two follow-up calls and a primary-path incident.",
+      "setupCents": 48000,
+      "periodCents": 5000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.ln",
+        "progress.goal.rd"
+      ]
+    },
+    {
+      "id": "diverse-upstream",
+      "name": "Independent upstream",
+      "description": "Fund a second 20 Mbps link in an independent failure domain. Customer staffing, carrier sessions and shared sites remain separate constraints.",
+      "setupCents": 32000,
+      "periodCents": 7000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.ln",
+        "progress.goal.rd"
+      ]
+    },
+    {
+      "id": "managed-diverse-upstream",
+      "name": "Supplier-managed independent upstream",
+      "description": "Use earned resilience in this market to buy a lower-setup supplier-managed backup with higher recurring cost and longer delivery.",
+      "setupCents": 16000,
+      "periodCents": 11000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.ln",
+        "progress.goal.rd"
+      ]
+    },
+    {
+      "id": "upstream-binding-extension",
+      "name": "Connect purchased endpoints",
+      "description": "Connect newly purchased endpoints to the existing branch. This does not add site or link capacity.",
+      "setupCents": 8000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 0,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.ln",
+        "progress.goal.rd"
+      ]
+    },
+    {
+      "id": "transport-repair",
+      "name": "Repair primary upstream",
+      "description": "Restore the acknowledged primary-path failure through a funded engineering job. Failed work remains in service history.",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.ln",
+        "progress.goal.rd"
+      ]
+    },
+    {
+      "id": "managed-local-spares",
+      "name": "Managed local autonomy spares",
+      "description": "Use earned local continuity in this market to buy supplier-installed autonomy spares: lower setup and no implementation engineer, with higher recurring cost and longer delivery. Extends autonomy to 60 minutes; does not repair the external connection.",
+      "setupCents": 28000,
+      "periodCents": 8000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "local"
+      ],
+      "config": {},
+      "requirements": [
+        "local-deployment"
+      ],
+      "sourceIds": [
+        "progress.goal.ca"
+      ]
+    },
+    {
+      "id": "browser-guest-room",
+      "name": "Browser guest meeting room",
+      "description": "A two-person browser room with external guest join and cloud media. No captions, recording or event capacity; recorded Enterprise meetings need a funded native or bridge replacement.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 4,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "room"
+      ],
+      "config": {
+        "room": {
+          "calendar": true,
+          "mode": "guest",
+          "interop": true
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ]
     }
   ],
   "families": [
@@ -1390,5 +1520,13 @@
     "startsAfterPeriods": 6,
     "discountBps": 300,
     "description": "Fictional rival bundles reduce willingness for new contracts; existing agreed terms are protected."
+  },
+  "resilienceSequence": {
+    "version": 1,
+    "sourceCaseIndex": 0,
+    "followupDurationMinutes": 3,
+    "deadlineMinutes": 24,
+    "windowMinutes": 10,
+    "maximumLatencyMs": 500
   }
 }

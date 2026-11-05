@@ -2,7 +2,7 @@
 function socProviderServiceRetirementKernel(){
  'use strict';
  const VERSION=1,RETAINED_RECORD_STORAGE_CENTS=3000;
- const definitions=Object.freeze({room:{resources:['room'],retainedResources:[]},'distributor-room':{resources:['room'],retainedResources:[]},'integrator-room':{resources:['room'],retainedResources:[]},transcription:{resources:['speech'],retainedResources:['archive']},recording:{resources:['recorder'],retainedResources:['archive'],retainedStorage:{resourceId:'archive',periodCents:RETAINED_RECORD_STORAGE_CENTS,basis:'retained-record-storage-v1'}}});
+ const definitions=Object.freeze({'browser-guest-room':{resources:['room'],retainedResources:[]},room:{resources:['room'],retainedResources:[]},'distributor-room':{resources:['room'],retainedResources:[]},'integrator-room':{resources:['room'],retainedResources:[]},transcription:{resources:['speech'],retainedResources:['archive']},recording:{resources:['recorder'],retainedResources:['archive'],retainedStorage:{resourceId:'archive',periodCents:RETAINED_RECORD_STORAGE_CENTS,basis:'retained-record-storage-v1'}}});
  const fail=code=>{throw new Error(code);},copy=x=>JSON.parse(JSON.stringify(x)),integer=x=>Number.isSafeInteger(x)&&x>=0;
  const rulesFor=hooks=>hooks.rules?.data||hooks.rules||(typeof SOC_PROVIDER_RULES!=='undefined'?SOC_PROVIDER_RULES.data:typeof require==='function'?require('./24-provider-rules.js').data:null);
  function validateVersion(parent){const version=parent?.providerCampaign?.serviceRetirementVersion;if(version===undefined)return false;if(version!==VERSION)fail('INVALID_PROVIDER_SERVICE_RETIREMENT_VERSION');return true;}

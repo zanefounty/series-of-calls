@@ -125,15 +125,15 @@ function socInformationKernel(){
   return store.admission(s,{resourceId,region,capacityUnits:config.capacity,additional,store:s.recordStore});
  }
  function pendingAdmissions(s){return s.records.filter(r=>r.processingAdmission).sort((a,b)=>a.processingAdmission.refusedAt-b.processingAdmission.refusedAt||a.processingAdmission.refusalAuditId-b.processingAdmission.refusalAuditId);}
- function removeTerminalJob(info){
+ function removeTerminalJob(info,protectedJobs=[]){
   if(info.jobs.length<200)return true;
-  const removable=info.jobs.findIndex(j=>['complete','failed'].includes(j.status));if(removable<0)return false;
+  const removable=info.jobs.findIndex(j=>['complete','failed'].includes(j.status)&&!protectedJobs.includes(j.id));if(removable<0)return false;
   const removed=info.jobs.splice(removable,1)[0],number=Number(String(removed.id).slice('processing-'.length));
   if(Number.isSafeInteger(number))info.jobPrunedThrough=Math.max(info.jobPrunedThrough||0,number);
   return true;
  }
  function createJob(s,record,plan,speechModel){
-  const info=s.information;if(!removeTerminalJob(info))return false;
+  const info=s.information;if(!removeTerminalJob(info,s.providerProgressionPins?.pins?.processingJobIds||[]))return false;
   info.jobs.push({id:'processing-'+info.nextId++,source:record.id,parent:record.id,interaction:record.interaction,status:'queued',stage:0,remaining:steps[plan.steps[0]].work,plan:copy(plan),...(speechModel?{speechModel:copy(speechModel)}:{}),reason:null,createdAt:s.clock});
   audit(s,'PROCESSING_QUEUED',{record:record.id});return info.jobs.at(-1);
  }
@@ -317,6 +317,7 @@ function socInformationKernel(){
    if((!allowFuture&&s.clock<booking.start)||(!allowEnd&&s.clock>=booking.end))errors.push('BOOKING_WINDOW');
    if(booking.attendees>(booking.event?p.eventCapacity:p.capacity))errors.push('MEETING_CAPACITY');
    if(booking.event&&!p.eventLicensed)errors.push('EVENT_ENTITLEMENT');
+   if(c.mode==='guest'&&(p.recording||p.captions||booking.event))errors.push('BROWSER_GUEST_FEATURE_UNAVAILABLE');
    if(p.platform!==p.nativePlatform&&(c.mode==='native'||c.mode==='guest'&&!p.guestJoin||c.mode==='bridge'&&!p.bridgeLicensed))errors.push('JOIN_METHOD_UNSUPPORTED');
    if(!s.connected&&p.mediaPlacement==='cloud')errors.push('MEETING_CLOUD_MEDIA');
    const boundary=o.boundary.effective,speech=s.resources.speech.effective,archive=s.resources.archive.effective,recorder=s.resources.recorder.effective;
@@ -377,6 +378,7 @@ function socInformationKernel(){
   if(booking.sessionId){const prior=meetingSession(s,booking.sessionId);if(prior&&!meetingSessionTerminal(prior))fail('MEETING_SESSION_ALREADY_ACTIVE');}
   if(o.meetingSessions.length>=200)fail('MEETING_SESSION_CAPACITY');
   const session={id:`meeting-session-${o.nextMeetingSessionId++}`,bookingId:booking.id,status:'scheduled',scheduledAt:booking.start,startedAt:null,endsAt:booking.end,endedAt:null,attendees:booking.attendees,roomId:'room',platform:o.meeting.effective?.platform||null,mediaPlacement:o.meeting.effective?.mediaPlacement||null,features:{captions:!!o.meeting.effective?.captions,recording:!!o.meeting.effective?.recording},reasons:[],reservationHeld:false,reservationReleased:false,captureRecordId:null};
+  if(s.resources.room.effective&&Number.isSafeInteger(s.resources.room.generation)&&s.resources.room.provisioning&&o.meeting.effective)Object.assign(session,{joinMethod:s.resources.room.effective.mode==='guest'?'browser':s.resources.room.effective.mode==='bridge'?'bridge':'native',joinProfileGeneration:o.meeting.provisioning.status==='ready'?o.meeting.generation:o.meeting.generation-1,joinRoomGeneration:s.resources.room.provisioning.status==='ready'?s.resources.room.generation:s.resources.room.generation-1});
   const snapshot=meetingSnapshot(s,booking,services,baseMeeting);
   const dependency=meetingDependencyStatus(s,booking,snapshot,meetingDependency(s));if(dependency.proof)session.platformDependency=dependency.proof;
   if(booking.externalGuest)session.externalGuest={version:1,admissionId:null,guestId:booking.externalGuest.guestId,guestTenant:booking.externalGuest.guestTenant,hostTenant:booking.externalGuest.hostTenant,admittedAt:null,lastPresentAt:null,observedMinutes:0,policyGeneration:o.meeting.generation,platformResourceId:session.platformDependency?.resourceId||null,platformGeneration:session.platformDependency?.generation??null,media:{in:false,out:false},status:'scheduled',reason:null};
@@ -533,7 +535,10 @@ function socInformationKernel(){
    if(!Array.isArray(o.meetingSessions)||o.meetingSessions.length>200||!integer(o.nextMeetingSessionId,1))fail('INVALID_MEETING_SESSION_HISTORY');
    const sessionIds=new Set();let sequence=0;
    for(const session of o.meetingSessions){
-    const keys='attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status';
+    const hasJoin=session&&own(session,'joinMethod');
+    const keys=('attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status'+(hasJoin?',joinMethod,joinProfileGeneration,joinRoomGeneration':'')).split(',').sort().join(',');
+    if(hasJoin&&(!['native','browser','bridge'].includes(session.joinMethod)||!integer(session.joinProfileGeneration,1,o.meeting.generation)||!integer(session.joinRoomGeneration,1,s.resources.room.generation)||session.joinMethod==='browser'&&['scheduled','active','completed'].includes(session.status)&&(session.features?.recording||session.features?.captions)))fail('INVALID_MEETING_JOIN_ADMISSION');
+    if(hasJoin&&session.joinRoomGeneration===s.resources.room.generation&&s.resources.room.provisioning.status==='ready'&&session.joinMethod!==(s.resources.room.effective.mode==='guest'?'browser':s.resources.room.effective.mode==='bridge'?'bridge':'native'))fail('INVALID_MEETING_JOIN_ADMISSION');
     const extendedKeys=[...keys.split(','),'platformDependency'].sort().join(',');
     const guestKeys=[...keys.split(','),'externalGuest'].sort().join(',');
     const guestAndDependencyKeys=[...keys.split(','),'externalGuest','platformDependency'].sort().join(',');
@@ -541,6 +546,7 @@ function socInformationKernel(){
     const hasExternalGuest=session&&own(session,'externalGuest');
     const guest=session?.externalGuest;
     const proof=session?.platformDependency;
+    if(hasJoin&&(proof&&session.joinProfileGeneration!==proof.profileGeneration||guest&&session.joinProfileGeneration!==guest.policyGeneration))fail('INVALID_MEETING_JOIN_ADMISSION');
     const invalidProofGeneration=!!proof&&proof.generation===null&&proof.ready===false&&Array.isArray(proof.reasons)&&proof.reasons.length===1&&proof.reasons[0]==='MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID'&&!!proof.media&&proof.media.in===false&&proof.media.out===false;
     if(!session||Object.keys(session).sort().join(',')!==keys&&Object.keys(session).sort().join(',')!==extendedKeys&&Object.keys(session).sort().join(',')!==guestKeys&&Object.keys(session).sort().join(',')!==guestAndDependencyKeys||hasDependency&&(!proof||Object.keys(proof).sort().join(',')!=='generation,media,profileGeneration,ready,reasons,resourceId,version'||proof.version!==1||!id(proof.resourceId)||!integer(proof.profileGeneration,1,o.meeting.generation)||proof.generation!==null&&!integer(proof.generation,1)||proof.generation===null&&!invalidProofGeneration||typeof proof.ready!=='boolean'||!Array.isArray(proof.reasons)||proof.reasons.length>30||proof.reasons.some(x=>typeof x!=='string'||!x.length||x.length>96)||!proof.media||Object.keys(proof.media).sort().join(',')!=='in,out'||typeof proof.media.in!=='boolean'||typeof proof.media.out!=='boolean'||proof.generation!==null&&(!proof.ready||proof.reasons.length||!proof.media.in||!proof.media.out)&&['scheduled','active','completed'].includes(session.status))||!/^meeting-session-[1-9]\d*$/.test(session.id)||sessionIds.has(session.id)||Number(session.id.slice('meeting-session-'.length))<=sequence||Number(session.id.slice('meeting-session-'.length))>=o.nextMeetingSessionId||!id(session.bookingId)||!integer(session.attendees,1,10000)||!integer(session.scheduledAt)||!integer(session.endsAt,session.scheduledAt+1)||!['scheduled','active','completed','failed','cancelled'].includes(session.status)||session.startedAt!==null&&!integer(session.startedAt,session.scheduledAt,session.endsAt-1)||session.endedAt!==null&&!integer(session.endedAt,0,s.clock)||session.status==='completed'&&session.endedAt<session.scheduledAt||session.roomId!=='room'||session.platform!==null&&!['grove','disco'].includes(session.platform)||session.mediaPlacement!==null&&!['local','cloud'].includes(session.mediaPlacement)||!session.features||Object.keys(session.features).sort().join(',')!=='captions,recording'||typeof session.features.captions!=='boolean'||typeof session.features.recording!=='boolean'||!Array.isArray(session.reasons)||session.reasons.some(x=>typeof x!=='string')||typeof session.reservationHeld!=='boolean'||typeof session.reservationReleased!=='boolean'||session.captureRecordId!==null&&!id(session.captureRecordId))fail('INVALID_MEETING_SESSION');
     const sessionNumber=Number(session.id.slice('meeting-session-'.length));if(dependencyEpoch&&(sessionNumber>=dependencyEpoch.firstSessionNumber&&!hasDependency||hasDependency&&sessionNumber<dependencyEpoch.firstSessionNumber||hasDependency&&proof.profileGeneration<dependencyEpoch.profileGeneration))fail('INVALID_MEETING_SESSION_DEPENDENCY_EPOCH');

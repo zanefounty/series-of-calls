@@ -62,9 +62,10 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  assert.equal(c.state.providerCampaign.customers.at(-1).scenario,'enterprise');
  assert.equal(c.state.providerCampaign.customers.at(-1).status,'provisioning');
  c.advance(SOC.provider.rules.plans.swift.base.workMinutes);
+ // Reserve both available engineers so capture is effective before the first recorded meeting.
+ c.operation('recording','next-2-customer');
  c.operation('room','next-2-customer');
  c.advance(SOC.provider.rules.operations.find(x=>x.id==='room').workMinutes);
- c.operation('recording','next-2-customer');
  c.purchase('next-2','carrier','next-2-customer');
  c.purchase('next-2','partner','next-2-customer');
  c.advance(60-c.state.clock%60);
@@ -72,6 +73,7 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  assert.equal(enterprise.status,'active');
  const session=c.state.portfolio.customers.find(x=>x.id==='next-2-customer').root.information.meetingSessions.find(x=>x.status==='completed');
  assert.ok(session,'enterprise service completes an actual scheduled child meeting');
+ assert.ok(session.captureRecordId,'the recorded Enterprise requirement has actual capture evidence');
  const evidence=enterprise.history[0]?.evidence?.meetingSessions||[];
  assert.ok(evidence.some(x=>x.id===session.id),'settlement links the real meeting session as mission evidence');
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'enterprise activation interval cannot inherit SMB qualification');

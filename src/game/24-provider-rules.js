@@ -1547,9 +1547,34 @@ function socProviderRulesKernel(){
           "workMinutes": 6,
           "engineers": 0,
           "support": 1
+        },
+        "distributor-extended": {
+          "setupCents": 24000,
+          "periodCents": 12000,
+          "workMinutes": 8,
+          "engineers": 0,
+          "support": 1
         }
       }
     }
+,
+{
+  "id": "integration-assurance",
+  "name": "Integration-aware assurance policy",
+  "description": "Fund a reusable incident-response policy for the customers and tested product integrations in the earned integration-support milestone. Every repair remains quoted and paid; changed integrations or missing boundary evidence suspend the policy.",
+  "setupCents": 30000,
+  "periodCents": 9000,
+  "workMinutes": 6,
+  "engineers": 0,
+  "support": 1,
+  "resources": [],
+  "config": {},
+  "requirements": [],
+  "sourceIds": [
+    "progress.goal."+"t2",
+    "uc-new:domain:commercial-roles"
+  ]
+}
   ],
   "families": [
     {

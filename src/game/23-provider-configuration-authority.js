@@ -60,7 +60,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(['ms-communications-api','cisco-programmable-engagement'].includes(project.productId)||(project.productId==='cisco-provider-operations'&&(project.recipeVersion??1)===1))patch.messages={...(patch.messages||{}),rateLimit:5};
    if(['ms-meetings-room','cisco-meetings-interoperability'].includes(project.productId)){
     const current=child.information?.meeting?.desired||{};
-    patch.__meeting={...clone(current),...(child.providerCampaign?.meetingDependencyVersion===1?{platformDependency:{version:1,resourceId:'phone'}}:{}),bridgeLicensed:project.productId==='cisco-meetings-interoperability',...(project.productId==='cisco-meetings-interoperability'?{platform:'grove',nativePlatform:'disco'}:{})};
+    patch.__meeting={...clone(current),...(provider.meetingDependencyVersion===1?{platformDependency:{version:1,resourceId:'phone'}}:{}),bridgeLicensed:project.productId==='cisco-meetings-interoperability',...(project.productId==='cisco-meetings-interoperability'?{platform:'grove',nativePlatform:'disco'}:{})};
    }
    if(project.productId==='cisco-contact-centre')patch.speech={...(patch.speech||{}),region:child.jurisdiction};
    return patch;
@@ -72,7 +72,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    patch.phone={...(patch.phone||{}),deployment:'dedicated',local:true};
    for(const resource of ['identity','access','carrier','messages','engage'])patch[resource]={...(patch[resource]||{}),local:true};
   }
-  if(['migration','migration-consolidated'].includes(project.operationId)&&child.providerCampaign?.meetingDependencyVersion===1){delete patch.phone;delete patch.desk;}
+  if(['migration','migration-consolidated'].includes(project.operationId)&&provider.meetingDependencyVersion===1){delete patch.phone;delete patch.desk;}
   if(project.operationId==='compliance'||project.operationId==='compliance-local'){
    if(provider.contentVersion!=='provider-campaigns-1'&&government?.plan){
     const architecture=government.plan(project.operationId==='compliance-local'?'local-processing':'regional-cloud',{jurisdiction:child.jurisdiction,resources:['recorder','archive','speech'],contractId:'provider-public-service-processing'});
@@ -83,7 +83,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
  }
  function expectedModel(provider,customer,child,catalogue){
   const plan=data?.plans?.[customer.planId];if(!plan)fail('PLAN');
-  const configs=initialConfigs(customer,child,catalogue),known=new Set(Object.keys(configs)),accepted=Object.create(null),transitional=Object.create(null),latestWriteAt=Object.create(null),writesByProject=Object.create(null),skipTiming=new Set();
+  const configs=initialConfigs(customer,child,catalogue),known=new Set(Object.keys(configs)),accepted=Object.create(null),transitional=Object.create(null),latestWriteAt=Object.create(null),writesByProject=Object.create(null),migrationWrites=[],skipTiming=new Set();
   for(const id of Object.keys(configs))latestWriteAt[id]=0;
   for(const [id,config] of Object.entries(configs))accepted[id]=[clone(config)];
   const projects=authorizedProjects(provider,customer);
@@ -125,11 +125,22 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const task of child.providerTasks||[]){
    if(task.kind!=='migration'||task.status!=='submitted')continue;
    const project=task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
-   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled'||!Number.isSafeInteger(migration.cutoverAt)||migration.cutoverAt>child.clock)continue;
+   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled')continue;
+   if(!Number.isSafeInteger(task.createdAt)||project.configSubmittedAt!==task.createdAt+1||!Number.isSafeInteger(migration.cutoverAt))fail(`MIGRATION_TASK:${project.id}`);
+   if(migration.cutoverAt>child.clock)continue;
+   if(!['verifying','complete','failed','rolled-back'].includes(migration.status)||migration.verifyAt!==migration.cutoverAt+1)fail(`MIGRATION_STATUS:${migration.id}`);
    const targetId=migration.target,target=configs[targetId]?.extensionScope;if(typeof target!=='string')continue;
-    for(const resource of Object.values(child.resources)){
-    if(resource.kind!=='endpoint'||!migration.identities?.includes(resource.desired.identity)||!configs[resource.id])continue;
+   const identities=task.mode==='consolidated'?['alex','bea']:task.mode==='product-dedicated'?['alex']:['bea'];
+   if(!Array.isArray(migration.identities)||stable(migration.identities)!==stable(identities))fail(`MIGRATION_IDENTITIES:${migration.id}`);
+   const endpoints=Object.values(child.resources).filter(resource=>resource.kind==='endpoint'&&identities.includes(resource.desired?.identity));
+   if(!endpoints.length||!migration.checkpoint||stable(Object.keys(migration.checkpoint).sort())!==stable(endpoints.map(resource=>resource.id).sort()))fail(`MIGRATION_CHECKPOINT:${migration.id}`);
+   if(!migration.appliedGenerations||stable(Object.keys(migration.appliedGenerations).sort())!==stable(Object.keys(migration.checkpoint).sort()))fail(`MIGRATION_GENERATIONS:${migration.id}`);
+   for(const resource of endpoints){
+    const saved=migration.checkpoint[resource.id],applied=migration.appliedGenerations[resource.id];
+    if(!saved||!Number.isSafeInteger(saved.generation)||saved.generation<1||saved.desired?.identity!==resource.desired.identity||applied!==saved.generation+1)fail(`MIGRATION_GENERATION:${migration.id}:${resource.id}`);
+    if(!configs[resource.id])fail(`MIGRATION_RESOURCE:${migration.id}:${resource.id}`);
     const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete';skipTiming.add(resource.id);
+    migrationWrites.push({projectId:project.id,migrationId:migration.id,resourceId:resource.id,at:migration.cutoverAt,generation:applied,status:migration.status});
    }
   }
   function configsAt(at){
@@ -147,7 +158,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    const snapshotConfigs=configsAt(exercise.startedAt);
    for(const snap of exercise.backupSnapshot.resources){if(!snapshotConfigs[snap.id]||stable(snap.config)!==stable(snapshotConfigs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
   }
-  return {configs,known,projects,accepted,transitional,latestWriteAt,writesByProject,skipTiming};
+  return {configs,known,projects,accepted,transitional,latestWriteAt,writesByProject,migrationWrites,skipTiming};
  }
  function validateProducts(provider,customer,child,projects){
   const deployments=child.products?.deployments||[],offers=child.products?.offers||[];if(!deployments.length&&!offers.length)return true;
@@ -236,41 +247,61 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   validateCallingOperations(provider,customer,child,expected.projects);
   return true;
  }
- function configurationAt(provider,customer,child,resourceId,at,{catalogue}={}){
-  if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock||typeof resourceId!=='string')fail('READ_TIME');
-  if(!child.resources[resourceId])return null;
+ function configurationReaderAt(provider,customer,child,at,{catalogue}={}){
+  if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock)fail('READ_TIME');
   const projects=(provider.projects||[]).filter(p=>p?.customerId===customer.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&p.status!=='cancelled').map(p=>{
    const row=clone(p);if(row.serviceRetirement&&row.serviceRetirement.requestedAt>at)delete row.serviceRetirement;return row;
   });
   const historicalProvider={...provider,projects},historicalChild=clone(child);historicalChild.clock=at;
   if(Array.isArray(historicalChild.siteOperations?.exercises))for(const exercise of historicalChild.siteOperations.exercises)if(exercise.restoration?.requestedAt>at)exercise.restoration=null;
-  const expected=expectedModel(historicalProvider,customer,historicalChild,catalogue),config=expected.configs[resourceId];
-  if(!config)return null;
+  const expected=expectedModel(historicalProvider,customer,historicalChild,catalogue),resourceGenerations=Object.fromEntries(Object.entries(child.resources).map(([id,resource])=>[id,resource.generation]));
   const originalOrder=new Map((provider.projects||[]).map((project,index)=>[project.id,index]));
   const ordered=projects.slice().sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt||(originalOrder.get(a.id)||0)-(originalOrder.get(b.id)||0));
+  const provenanceByResource=new Map();
+  const reader=resourceId=>{
+  if(typeof resourceId!=='string')fail('READ_TIME');
+  if(!Object.hasOwn(resourceGenerations,resourceId))return null;
+  const target=expected.configs[resourceId];if(!target)return null;const config=clone(target);
   let generation=1;const generationEvents=[];
   for(const project of ordered){
    const value=project.expectedGenerations?.[resourceId],receipt=project.operationReceipt;
    // Expected generations also record unchanged dependencies. Only an authored
    // configuration write (including capacity changes) must advance generation.
    const written=expected.writesByProject[project.id]?.includes(resourceId)||receipt?.resource===resourceId&&Number.isSafeInteger(receipt.capacity)||project.operationId==='mitigate'&&resourceId!=='room'&&receipt?.resources?.includes(resourceId);
-   if(value!==undefined)generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:value,id:project.id,written:!!written});
+   if(value!==undefined)generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:value,id:project.id,projectId:project.id,written:!!written});
+   else if((expected.writesByProject[project.id]||[]).includes(resourceId))generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:null,id:project.id,projectId:project.id,written:true});
    if(receipt?.resource===resourceId&&Number.isSafeInteger(receipt.capacity)&&['carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','direct-external-reach','managed-external-reach'].includes(project.operationId))config.capacity=receipt.capacity;
    if(project.serviceRetirement?.resources?.includes(resourceId)){
     const retirement=project.serviceRetirement,retired=retirement.expectedGenerations?.[resourceId];
     if(!Number.isSafeInteger(retired)||!Number.isSafeInteger(retirement.requestedAt)||retirement.requestedAt>at)fail(`RETIREMENT_GENERATION:${project.id}:${resourceId}`);
-    generationEvents.push({at:retirement.requestedAt,order:(originalOrder.get(project.id)||0)+0.5,generation:retired,id:project.id+':retirement',written:true});
+    generationEvents.push({at:retirement.requestedAt,order:(originalOrder.get(project.id)||0)+0.5,generation:retired,id:project.id+':retirement',projectId:project.id,written:true});
    }
   }
+  for(const migration of expected.migrationWrites||[])if(migration.resourceId===resourceId&&migration.at<=at)generationEvents.push({at:migration.at,order:(originalOrder.get(migration.projectId)||0)+0.5,generation:migration.generation,id:migration.migrationId+':'+resourceId,projectId:migration.projectId,written:true});
   generationEvents.sort((a,b)=>a.at-b.at||a.order-b.order);
-  for(const event of generationEvents){if(!Number.isSafeInteger(event.generation)||event.generation<generation||event.written&&event.generation===generation||event.generation>child.resources[resourceId]?.generation)fail(`GENERATION:${event.id}:${resourceId}`);generation=event.generation;}
-  if(!child.resources[resourceId]||generation>child.resources[resourceId].generation)fail(`RESOURCE_GENERATION:${resourceId}`);
+  const writes=[];
+  for(const event of generationEvents){const next=event.generation===null?generation+1:event.generation;if(!Number.isSafeInteger(next)||next<generation||event.written&&next===generation||next>resourceGenerations[resourceId])fail(`GENERATION:${event.id}:${resourceId}`);generation=next;if(event.written)writes.push({projectId:event.projectId,at:event.at,generation:next});}
+  if(generation>resourceGenerations[resourceId]||at===child.clock&&generation!==resourceGenerations[resourceId])fail(`RESOURCE_GENERATION:${resourceId}`);
+  provenanceByResource.set(resourceId,{generation,writes:clone(writes)});
   return {config:clone(config),generation};
+  };
+  reader.provenanceAt=resourceId=>{const value=reader(resourceId),provenance=provenanceByResource.get(resourceId);return value&&provenance?{version:1,resourceId,at,generation:value.generation,writes:clone(provenance.writes)}:null;};
+  return reader;
+ }
+ function configurationProvenanceAt(provider,customer,child,resourceId,at,{catalogue}={}){
+  if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock||typeof resourceId!=='string')fail('READ_TIME');
+  if(!child.resources[resourceId])return null;
+  const reader=configurationReaderAt(provider,customer,child,at,{catalogue});return reader.provenanceAt(resourceId);
+ }
+ function configurationAt(provider,customer,child,resourceId,at,{catalogue}={}){
+  if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock||typeof resourceId!=='string')fail('READ_TIME');
+  if(!child.resources[resourceId])return null;
+  return configurationReaderAt(provider,customer,child,at,{catalogue})(resourceId);
  }
  function hooksCatalogue(catalogue){return !!catalogue&&typeof catalogue==='object'&&!Array.isArray(catalogue);}
- function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),source:()=>load().source()};})();`;}
- return {version:1,validateCustomer,configurationAt,source};
+ function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),source:()=>load().source()};})();`;}
+ return {version:1,validateCustomer,configurationAt,configurationReaderAt,configurationProvenanceAt,source};
 }
 function socProviderConfigurationAuthorityDependencies(){if(typeof module!=='undefined'&&module.exports)return [require('./24-provider-rules.js'),require('./23-provider-products.js'),require('./23-provider-government.js')];return [SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES];}
-const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),source:()=>load().source()};})();
+const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),source:()=>load().source()};})();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_CONFIGURATION_AUTHORITY;

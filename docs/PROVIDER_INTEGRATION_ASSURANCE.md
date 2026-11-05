@@ -1,0 +1,11 @@
+# Earned integration assurance
+
+The version-8 `integration-assurance` purchase adapts `progress.goal.t2` into a reusable, costed assurance policy. Its authored terms are 30,000 cents setup, 9,000 cents per period, six implementation minutes and one shared Provider support reservation. Existing minimum supplier commitments apply.
+
+The purchase requires a validated T2 receipt for the selected customer. Its immutable binding copies the receipt's customer IDs, markets, and distinct tested integration/customer pairs, including deployment versions, generations, features and test time. A displayed integration status is insufficient: current eligibility checks the actual integration record and compatibility evaluator. The scoped calling and engagement boundaries must also be currently eligible.
+
+The paid installation starts suspended with zero automatic spending budget. The player selects an explicit subset of earned customers, assurance rules, a cash floor, lifetime budget, action cap and engineering/support ceilings. Every automatic repair obtains a fresh quote and enters the same Provider dispatcher. An acknowledgement changes the revision, so the action is quoted again before commitment. Purchase, delivery, policy configuration and repair charges remain separate events.
+
+Changing a bound integration or losing eligible boundary evidence suspends the policy on the next simulation advance. Inspection and preview are pure. A player must restore the bound integration/boundary and explicitly resume or recommit the policy; stale scope cannot authorize new expenditure. Already funded work and supplier commitments remain payable. A different tested product generation needs a newly authored migration/rebinding path; this policy never silently accepts it.
+
+The initial focused tests prove unearned public/worker refusal and isolated planner scope, version, boundary and mutation checks. The isolated planner fixture is not an earned campaign claim. A genuine T2 claim, paid installation, actual automatic repair, current-scope suspension/recovery, saved continuation and visible-control evidence remain required before acceptance. No catalogue or external supplier approval follows from this implementation.

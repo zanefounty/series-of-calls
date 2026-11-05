@@ -10,81 +10,253 @@ function socProviderSupportHistoryKernel(){
  const unsupported=code=>({status:'unsupported',missing:[code],participant:null});
  function workforceApi(){return typeof SOC_PROVIDER_WORKFORCE_HISTORY!=='undefined'?SOC_PROVIDER_WORKFORCE_HISTORY:require('./23-provider-workforce-history.js');}
  function configurationApi(){return typeof SOC_PROVIDER_CONFIGURATION_AUTHORITY!=='undefined'?SOC_PROVIDER_CONFIGURATION_AUTHORITY:require('./23-provider-configuration-authority.js');}
+ function governmentApi(){return typeof SOC_GOVERNMENT_ARCHITECTURES!=='undefined'?SOC_GOVERNMENT_ARCHITECTURES:(typeof require==='function'?require('./23-provider-government.js'):null);}
+ function ownedSiteApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:(typeof require==='function'?require('./23-provider-owned-sites.js'):null);}
  function customerRoot(s,c,hooks){return typeof hooks.customerRoot==='function'?hooks.customerRoot(s,c):s.portfolio?.customers?.find(row=>row.id===c.portfolioId)?.root||null;}
  function customerStatusAt(s,c,at){
   if(at<c.startedAt||c.activatedAt===null||at<c.activatedAt)return 'provisioning';
   let status='active';const events=(s.providerCampaign.events||[]).filter(event=>event.customerId===c.id&&event.at<=at).sort((a,b)=>a.at-b.at||a.id.localeCompare(b.id));
-  for(const event of events){if(event.code==='CUSTOMER_SERVICE_ACTIVE')status='active';else if(event.code==='CUSTOMER_RENEWAL_OFFERED')status='renewal';else if(['CUSTOMER_RENEWED'].includes(event.code))status='active';else if(['CUSTOMER_RENEWAL_REFUSED','CUSTOMER_EXITED','CUSTOMER_FAILED_CONSECUTIVE_PERIODS'].includes(event.code))status='exited';}
-  if(c.exitAt!==null&&c.exitAt!==undefined&&c.exitAt<=at)status='exited';return status;
+  for(const event of events){if(event.code==='CUSTOMER_SERVICE_ACTIVE')status='active';else if(event.code==='CUSTOMER_RENEWAL_OFFERED')status='renewal';else if(event.code==='CUSTOMER_RENEWED'&&event.at<at)status='active';else if(['CUSTOMER_RENEWAL_REFUSED','CUSTOMER_EXITED','CUSTOMER_FAILED_CONSECUTIVE_PERIODS'].includes(event.code)&&event.at<at)status='exited';}
+  // Samples are produced at the end of a clock advance; player commands at
+  // that same displayed minute happen afterward and belong to the next sample.
+  if(c.exitAt!==null&&c.exitAt!==undefined&&c.exitAt<at)status='exited';return status;
  }
  function retailAgreementAt(s,c,at){
   const agreement=c.retailAgreement;if(!agreement||!integer(agreement.at)||!integer(agreement.priceCents))return null;
-  if(agreement.at<=at)return {acceptedAt:agreement.at,priceCents:agreement.priceCents};
-  const prior=(c.history||[]).filter(row=>integer(row.from)&&integer(row.to)&&row.from<=at&&at<row.to).at(-1);
+  if(agreement.at<at)return {acceptedAt:agreement.at,priceCents:agreement.priceCents};
+  const prior=(c.history||[]).filter(row=>integer(row.from)&&integer(row.to)&&row.from<at&&at<=row.to).at(-1);
   if(!prior||!Number.isSafeInteger(prior.activeMinutes)||prior.activeMinutes<1||!integer(prior.grossRetail))return null;
   let price=null;if(prior.fullPeriod===true)price=prior.grossRetail;else{const min=Math.ceil(prior.grossRetail*60/prior.activeMinutes),max=Math.ceil((prior.grossRetail+1)*60/prior.activeMinutes)-1;if(min===max)price=min;}
   if(!integer(price)||price<1)return null;
-  const renewed=(s.providerCampaign.events||[]).filter(event=>event.customerId===c.id&&event.code==='CUSTOMER_RENEWED'&&event.at<=at).at(-1);
+  const renewed=(s.providerCampaign.events||[]).filter(event=>event.customerId===c.id&&event.code==='CUSTOMER_RENEWED'&&event.at<at).at(-1);
   return {acceptedAt:renewed?.at??c.customerAcceptedAt??c.startedAt,priceCents:price};
  }
  function paidStaffAt(s,at){
   const history=s.providerCampaign.workforceHistory;if(!history||!integer(history.startedAt))return false;
-  const periodStart=Math.max(history.startedAt,Math.floor(at/60)*60),row=(s.business?.ledger||[]).find(entry=>entry.reason==='staff'&&entry.category==='cost'&&entry.at===periodStart&&entry.unit==='person-minute'&&integer(entry.quantity)&&entry.quantity>0&&entry.cents===Math.floor(entry.quantity*10000/60));
+  const periodStart=Math.max(history.startedAt,Math.floor(at/60)*60),hourlyCents=s.business?.workforce?.hourlyCents,row=(s.business?.ledger||[]).find(entry=>entry.reason==='staff'&&entry.category==='cost'&&entry.at===periodStart&&entry.unit==='person-minute'&&integer(entry.quantity)&&entry.quantity>0&&integer(hourlyCents)&&entry.cents===Math.floor(entry.quantity*hourlyCents/60));
   return !!row;
  }
- function resourceObservationAt(s,c,root,resourceId,at,plan,hooks){
+ function logicalPlacementsAt(s,c,root,at,hooks){
+  const operations=root.operations;if(!operations)return [];
+  const migrations=operations.migrations||[],tasks=root.providerTasks||[];
+  if(!Array.isArray(migrations)||!Array.isArray(tasks))return null;
+  if(!migrations.length){const placements=operations.placements||{};if(!placements||typeof placements!=='object'||Array.isArray(placements)||Object.keys(placements).some(identity=>!['alex','bea'].includes(identity))||Object.values(placements).some(resource=>resource!=='phone'))return null;return [];}
+  const identities=new Set(['alex','bea']),replayed=Object.create(null),sampled=Object.create(null);
+  for(const identity of identities){replayed[identity]='phone';sampled[identity]='phone';}
+  for(const migration of migrations)for(const identity of migration.identities||[])if(!identities.has(identity))return null;
+  const entries=[];
+  for(const migration of migrations){
+   // Scheduled and verifying migrations are present/future operations. They
+   // do not alter the placement represented by an earlier sample; Provider
+   // root validation separately checks their live task lineage.
+   if(migration?.status!=='complete')continue;
+   if(!integer(migration.cutoverAt)||!integer(migration.verifyAt)||!Array.isArray(migration.identities)||!migration.identities.length||new Set(migration.identities).size!==migration.identities.length)return null;
+   const task=tasks.find(row=>row.migrationId===migration.id&&row.kind==='migration'&&row.status==='submitted');if(!task||!integer(task.createdAt))return null;
+   const operationId=task.mode==='consolidated'?'migration-consolidated':task.mode==='product-dedicated'?'cisco-dedicated-uc':task.mode===undefined?'migration':null;
+   const project=s.providerCampaign.projects.find(row=>row.customerId===c.id&&row.operationId===operationId&&row.configSubmittedAt===task.createdAt+1&&row.kind==='operation');if(!project||project.configSubmittedAt===null||project.status==='complete'&&!paidProject(s,project,hooks))return null;
+   const expected=task.mode==='consolidated'?{identities:['alex','bea'],target:'phone'}:task.mode==='product-dedicated'?{identities:['alex'],target:'dedicated-platform'}:{identities:['bea'],target:'migration-phone'};
+   if(migration.target!==expected.target||!same(migration.identities,expected.identities)||task.createdAt<migration.cutoverAt-1440||task.createdAt>migration.cutoverAt)return null;
+   const previous=migration.previousPlacements;
+   if(!previous||typeof previous!=='object'||Array.isArray(previous)||Object.keys(previous).sort().join(',')!==expected.identities.slice().sort().join(','))return null;
+   const endpointRows=Object.values(root.resources||{}).filter(resource=>resource.kind==='endpoint'&&expected.identities.includes(resource.desired?.identity));
+   if(!endpointRows.length||!migration.checkpoint||typeof migration.checkpoint!=='object'||Array.isArray(migration.checkpoint)||Object.keys(migration.checkpoint).sort().join(',')!==endpointRows.map(row=>row.id).sort().join(',')||endpointRows.some(resource=>{const saved=migration.checkpoint[resource.id];return !saved||!integer(saved.generation)||saved.generation<1||saved.generation>resource.generation||saved.desired?.identity!==resource.desired.identity;}))return null;
+   if(migration.status==='rolled-back')return null;
+   if(migration.status==='complete'){
+    if(project.status!=='complete'||!integer(project.completedAt)||project.completedAt<migration.verifyAt||migration.verifyAt!==migration.cutoverAt+1)return null;
+   }else if(migration.status==='verifying'&&migration.verifyAt<=root.clock)return null;
+   entries.push({migration,task,project,expected});
+  }
+  entries.sort((a,b)=>a.task.createdAt-b.task.createdAt||a.migration.cutoverAt-b.migration.cutoverAt||a.migration.id.localeCompare(b.migration.id));
+  for(const row of entries){
+   const {migration,task,expected}=row;
+   if(expected.identities.some(identity=>migration.previousPlacements[identity]!==replayed[identity]))return null;
+   if(migration.status==='complete'&&migration.verifyAt<=root.clock)for(const identity of expected.identities)replayed[identity]=expected.target;
+   if(migration.status==='complete'&&migration.verifyAt<=at)for(const identity of expected.identities)sampled[identity]=expected.target;
+  }
+  const placements=operations.placements||{};
+  if(Object.keys(placements).some(identity=>!identities.has(identity))||[...identities].some(identity=>(placements[identity]||'phone')!==replayed[identity]))return null;
+  return Object.entries(sampled).filter(([,resource])=>resource!=='phone').map(([,resource])=>resource);
+ }
+ function baseResourceObservationAt(s,c,root,resourceId,at,plan,hooks){
   if(!plan||!plan.config||!integer(plan.generation))return null;
-  const projects=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.status==='complete'&&p.completedAt<=at&&p.expectedGenerations?.[resourceId]===plan.generation),effective=plan.config.enabled===true&&projects.length>0;
-  const disconnected=(s.providerCampaign.incidents||[]).filter(i=>i.customerId===c.id&&i.kind==='disconnection'&&i.activatedAt!==null).some(i=>i.activatedAt<=at&&(i.resolvedAt===null||at<i.resolvedAt));
+  const provenanceFor=(id,generation)=>{
+   let value;try{value=hooks.configurationProvenanceAt(s,c,root,id,at);}catch{return false;}
+   return !!value&&value.version===1&&value.resourceId===id&&value.at===at&&value.generation===generation&&Array.isArray(value.writes)&&value.writes.every(write=>write&&typeof write.projectId==='string'&&integer(write.at)&&integer(write.generation)&&write.at<=at);
+  };
+  if(!provenanceFor(resourceId,plan.generation))return null;
+  const migrationOwnsGeneration=(p,id,generation)=>{
+   if(p.customerId!==c.id||p.status!=='complete'||p.completedAt>at)return false;
+   if(id==='migration-phone'&&p.operationId==='migration'&&generation===1)return (root.operations?.migrations||[]).some(m=>m.status==='complete'&&m.verifyAt<=at&&m.target==='migration-phone'&&(root.providerTasks||[]).some(task=>task.kind==='migration'&&task.status==='submitted'&&task.migrationId===m.id&&task.mode===undefined&&task.createdAt+1===p.configSubmittedAt));
+   return (root.operations?.migrations||[]).some(m=>m.status==='complete'&&m.verifyAt<=at&&m.appliedGenerations?.[id]===generation&&(root.providerTasks||[]).some(task=>task.kind==='migration'&&task.status==='submitted'&&task.migrationId===m.id&&task.createdAt+1===p.configSubmittedAt));
+  };
+  const provenanceOwnsGeneration=(p,id,generation)=>{let value;try{value=hooks.configurationProvenanceAt(s,c,root,id,at);}catch{return false;}return value?.writes?.some(write=>write.projectId===p.id&&write.generation===generation&&write.at<=at)===true;};
+  const migrationPending=(id,generation)=>(root.operations?.migrations||[]).some(migration=>['verifying','complete'].includes(migration.status)&&integer(migration.cutoverAt)&&integer(migration.verifyAt)&&migration.cutoverAt<=at&&migration.verifyAt>at&&migration.appliedGenerations?.[id]===generation&&(root.providerTasks||[]).some(task=>{
+   const operation=task?.mode==='consolidated'?'migration-consolidated':task?.mode==='product-dedicated'?'cisco-dedicated-uc':'migration',project=s.providerCampaign.projects.find(row=>row.customerId===c.id&&row.operationId===operation&&row.configSubmittedAt===task.createdAt+1);
+   return task?.kind==='migration'&&task.status==='submitted'&&task.migrationId===migration.id&&!!project;
+  }));
+  const ownsGeneration=(p,id,generation)=>p.customerId===c.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&!['cancelled','blocked'].includes(p.status)&&(p.expectedGenerations?.[id]===generation||p.serviceRetirement?.effectiveAt<=at&&p.serviceRetirement.expectedGenerations?.[id]===generation||migrationOwnsGeneration(p,id,generation)||provenanceOwnsGeneration(p,id,generation));
+  const projectOwnsGeneration=p=>ownsGeneration(p,resourceId,plan.generation);
+  const projects=s.providerCampaign.projects.filter(projectOwnsGeneration),effective=plan.config.enabled===true&&projects.length>0;
+  const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return null;
+  const disconnected=!timeline.connected;
   const linkFields={uc:{directory:'directory',connectivity:'connectivity'},dedicated:{directory:'directory',connectivity:'connectivity'},queue:{workforce:'workforce'},workflow:{channel:'channel',queue:'queue',crm:'crm'},room:{directory:'directory'},recorder:{archive:'archive'}};
   const observations=Object.create(null),visiting=new Set();
   function ready(id){
    if(observations[id]!==undefined)return observations[id];if(visiting.has(id))return false;visiting.add(id);
    let config,generation,paid=false;
    try{const value=id===resourceId?plan:hooks.configurationAt(s,c,root,id,at);config=value?.config;generation=value?.generation;paid=!!value&&projectsFor(id,generation).length>0;}catch{config=null;}
-   const activeFault=incidentApplies(s,c,id,at),row=root.resources?.[id],kind=row?.kind;
-   let value=!!config?.enabled&&paid&&!activeFault.invalid&&!activeFault.active;
+   const row=root.resources?.[id],kind=row?.kind,activeFault=timeline.faults[id]!==null;
+   let value=!!config?.enabled&&paid&&!activeFault&&!migrationPending(id,generation);
    if(disconnected&&!config?.local)value=false;
+   if(config?.local===true&&id!=='local'&&!ready('local'))value=false;
    if(kind&&linkFields[kind])for(const [field] of Object.entries(linkFields[kind]))if(!config?.[field]||!ready(config[field]))value=false;
-   // The authored SMB carrier-outage injects the shared inbound identity and
-   // engagement paths as well as the carrier edge; replay that typed incident
-   // scope at the historical minute, including after later paid repair.
-   if(activeIncidentFor(s,c,'carrier',at)&&['carrier','identity','phone','engage'].includes(id))value=false;
    visiting.delete(id);observations[id]=value;return value;
   }
-  function projectsFor(id,generation){return s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.status==='complete'&&p.completedAt<=at&&p.expectedGenerations?.[id]===generation);}
-  const activeIncidentFor=(state,customer,res,minute)=>(state.providerCampaign.incidents||[]).some(i=>i.customerId===customer.id&&i.resource===res&&i.activatedAt!==null&&i.activatedAt<=minute&&(i.resolvedAt===null||minute<i.resolvedAt));
+  function projectsFor(id,generation){return s.providerCampaign.projects.filter(p=>ownsGeneration(p,id,generation));}
   const available=ready(resourceId),wasEffective=effective&&(!disconnected||plan.config.local);
   return {effective:wasEffective,generation:wasEffective?plan.generation:null,ready:available};
  }
- function boundaryEvaluationAt(s,c,root,project,at,pathResources,observations,hooks){
+ function boundaryEvaluationAt(s,c,root,project,at,pathResources,observations,hooks,context={}){
   const plan=project.operationReceipt?.plan,definition=plan?.boundaryContract,deps=plan?.dependencies;
   if(!definition||!Array.isArray(deps)||!integer(plan.boundaryGeneration))return {eligible:false,resources:[],profile:definition?.profile||''};
-  const laterChanges=s.providerCampaign.projects.some(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.completedAt>project.completedAt&&p.completedAt<=at)||s.providerCampaign.incidents.some(i=>i.customerId===c.id&&i.kind==='boundary'&&i.activatedAt!==null&&i.activatedAt<=at);
-  const current=root.boundaries?.contracts?.find(item=>item.id===definition.id);
-  if(!current)return {unsupported:true};
-  if(laterChanges||current.generation!==plan.boundaryGeneration||current.provisioning?.status!=='ready')return {eligible:false,resources:[],profile:definition.profile};
+  const latest=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.kind==='operation'&&!['cancelled','blocked'].includes(p.status)&&integer(p.configSubmittedAt)&&p.configSubmittedAt<=at&&p.operationReceipt?.kind==='service-boundary').sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.id.localeCompare(b.id)).at(-1);
+  const faultTimeline=serviceFaultTimelineAt(s,c,root,at),activeBoundaryIncident=!faultTimeline.valid||faultTimeline.boundaryActive;
+  if(!latest||latest.id!==project.id||activeBoundaryIncident)return {eligible:false,resources:[],profile:definition.profile};
   if(pathResources.some(id=>!deps.some(dep=>dep.id===id&&dep.generation===observations[id]?.generation)))return {eligible:false,resources:[],profile:definition.profile};
   let api;try{api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:require('./43-boundaries.js');}catch{return {unsupported:true};}
   const child=copy(root);child.clock=at;child.boundaries=copy(root.boundaries);child.boundaries.clock=at;
   const historicalContract=copy(definition);for(const flow of historicalContract.flows||[]){const dep=deps.find(item=>item.id===flow.resource);if(dep)flow.resourceGeneration=dep.generation;}
-  const historicalRow=child.boundaries.contracts.find(item=>item.id===definition.id);historicalRow.desired=copy(historicalContract);historicalRow.effective=copy(historicalContract);historicalRow.generation=plan.boundaryGeneration;historicalRow.provisioning={status:'ready',due:project.completedAt,generation:plan.boundaryGeneration,errors:[]};
-  for(const dep of deps){const resource=child.resources?.[dep.id];if(!resource)continue;let config;try{config=hooks.configurationAt(s,c,root,dep.id,at);}catch{return {unsupported:true};}if(!config?.config)return {unsupported:true};resource.generation=observations[dep.id]?.generation??dep.generation;resource.desired=copy(config.config);resource.effective=copy(config.config);resource.provisioning={status:'ready',due:project.completedAt,generation:resource.generation,errors:[]};}
-  const disconnected=(s.providerCampaign.incidents||[]).filter(i=>i.customerId===c.id&&i.kind==='disconnection'&&i.activatedAt!==null&&i.activatedAt<=at&&(i.resolvedAt===null||at<i.resolvedAt)).length>0;
-  historicalRow.observed={...historicalRow.observed,connected:!disconnected};
+  const historicalRow=child.boundaries.contracts.find(item=>item.id===definition.id);historicalRow.desired=copy(historicalContract);historicalRow.effective=copy(historicalContract);historicalRow.generation=plan.boundaryGeneration;historicalRow.provisioning={status:'ready',due:project.configSubmittedAt,generation:plan.boundaryGeneration,errors:[]};
+  for(const resourceId of Object.keys(observations)){const resource=child.resources?.[resourceId];if(!resource)continue;let config;try{config=hooks.configurationAt(s,c,root,resourceId,at);}catch{return {unsupported:true};}if(!config?.config)return {unsupported:true};resource.generation=observations[resourceId]?.generation??config.generation;resource.desired=copy(config.config);resource.effective=copy(config.config);resource.provisioning={status:'ready',due:project.configSubmittedAt,generation:resource.generation,errors:[]};}
+  const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:definition.profile};
+  child.connected=timeline.connected;for(const [resourceId,resource] of Object.entries(child.resources||{}))resource.fault=timeline.faults[resourceId]??null;
+  const disconnected=!timeline.connected;
+  const resourcesCurrent=deps.every(dep=>observations[dep.id]?.ready===true&&observations[dep.id]?.generation===dep.generation),msp=activeMspAt(s,c,root,context.stageRows||[],context.stageResources||[],observations,at,hooks),eligible=!disconnected&&resourcesCurrent&&!!msp;
+  historicalRow.observed={...historicalRow.observed,connected:!disconnected,cloudLicenceAvailable:!disconnected&&resourcesCurrent,localLicenceGraceActive:false,localLicenceGraceExpiresAt:null,localServicesAvailable:false,localKeyCustodyAvailable:false,adminPathAvailable:eligible,adminPathLocation:eligible?root.jurisdiction:null};
   const evaluation=api.evaluate(child,definition.id),resources=evaluation.resourceBindings?.map(item=>typeof item==='string'?item:item.resource)||[];
   return {eligible:evaluation.eligible===true,resources,profile:evaluation.profile};
  }
+ function publicServiceCallingContract(region,resources){
+  return {id:'provider-public-service',workload:'public-service-records',profile:region,sensitivity:'internal',edition:'standard',productVersion:'provider-1',offeringEvidence:region==='US'?'eligible':'pending',customerAuthorization:'approved',agencyAuthorizationRequired:region==='US',agencyAuthorization:region==='US'?'approved':'not-required',serviceRegistration:region==='JP'?'registered':'not-registered',serviceRegistrationId:region==='JP'?'scenario-jp-public-service':null,usesAi:false,aiUseDecision:'not-required',language:region==='JP'?'ja':'en',supportLanguage:region==='JP'?'ja':'en',requirements:{processingRegions:[region],storageRegions:[region],backupRegions:[region],keyRegions:[region],adminRegions:[region],supportRegions:[region],allowedAccessRoles:['supervisor'],adminAuthorization:'customer-approved',continuity:'cloud',allowedTransferMechanisms:[]},flows:resources.map(resource=>({id:resource+'-flow',resource,informationClass:'internal',processingRegions:[region],storageRegions:[region],backupRegions:[region],keyCustodyRegions:[region],adminLocations:[region],supportRegions:[region],adminAuthorization:'customer-approved',accessRoles:['supervisor'],connectivity:'cloud',continuity:'cloud',licenceMode:'cloud',transfer:{parties:[],mechanism:null}}))};
+ }
+ function governmentCallingAt(s,c,root,at,hooks){
+  if(c.scenario!=='government'||!root.providerGovernment)return null;
+  const marker=root.providerGovernment,operation=marker.architectureId==='local-processing'?'compliance-local':'compliance',project=s.providerCampaign.projects.find(p=>p.id===marker.projectId&&p.postingId===marker.postingId&&p.customerId===c.id&&p.operationId===operation&&p.kind==='operation');
+  const posting=s.business?.ledger?.find(row=>row.id===project?.postingId),prunedNumber=Number(/^entry-([1-9]\d*)$/.exec(project?.postingId||'')?.[1]||0),funded=posting?posting.category==='cost'&&posting.projectId===project.id&&posting.customerId===c.id&&posting.cents===project.setupCents:prunedNumber>0&&prunedNumber<=(s.business?.ledgerPrunedThrough||0);
+  if(!project||!integer(project.configSubmittedAt)||project.configSubmittedAt!==marker.installedAt+1||project.configSubmittedAt>at||['cancelled','blocked'].includes(project.status)||!funded)return null;
+  let api,architecture;try{api=governmentApi();architecture=api?.plan(marker.architectureId,{jurisdiction:root.jurisdiction,resources:['recorder','archive','speech'],contractId:'provider-public-service-processing'});if(!architecture||!api.validatePlan(architecture))return null;}catch{return null;}
+  const configAt=project.configSubmittedAt,resources=[];
+  for(const id of Object.keys(root.resources||{})){let value;try{value=hooks.configurationAt(s,c,root,id,configAt);}catch{return null;}if(value?.config?.enabled===true)resources.push(id);}
+  const callingResources=resources.filter(id=>!['archive','recorder','speech'].includes(id));
+  if(!callingResources.includes('identity')||!callingResources.includes('phone')||!callingResources.includes('engage'))return null;
+  const base=publicServiceCallingContract(root.jurisdiction,callingResources),scoped={...copy(base),id:base.id+'-calling',flows:base.flows};
+  const flowGenerations=[];for(const flow of scoped.flows){let value;try{value=hooks.configurationAt(s,c,root,flow.resource,configAt);}catch{return null;}if(!value||!integer(value.generation)||value.generation<1)return null;flowGenerations.push({id:flow.id,resource:flow.resource,generation:value.generation});}
+  const projectRow={project,architecture,contract:scoped,flowGenerations,resources:callingResources.slice().sort(),installedAt:marker.installedAt};
+  return projectRow;
+ }
+ function governmentObservationsAt(s,c,root,gov,at,hooks){
+  const out=Object.create(null),ids=[...new Set([...gov.resources,'local'])];
+  for(const id of ids){let plan;try{plan=hooks.configurationAt(s,c,root,id,at);}catch{return null;}out[id]=baseResourceObservationAt(s,c,root,id,at,plan,hooks);if(!out[id])return null;}
+  return out;
+ }
+ function governmentCallingEvaluationAt(s,c,root,gov,at,observations,hooks){
+  if(!gov||!Array.isArray(gov.resources))return null;
+  const original=root.boundaries?.contracts?.find(row=>row.id==='provider-public-service-calling');
+  const bindings=root.boundaries?.bindings||{},expectedFlows=gov.contract.flows.map((flow,index)=>({...copy(flow),resourceGeneration:gov.flowGenerations[index].generation})),expected={...copy(gov.contract),flows:expectedFlows};
+  const clean=value=>{if(!value)return null;const out=copy(value);for(const flow of out.flows||[])delete flow.resourceGeneration;return out;};
+  if(!original||original.id!==expected.id||original.generation!==1||!integer(original.provisioning?.due)||original.provisioning.due!==gov.project.configSubmittedAt||original.provisioning.generation!==1||!same(clean(original.desired),gov.contract)||!gov.contract.flows.every(flow=>bindings[flow.resource]===expected.id))return {eligible:false,resources:[],profile:root.jurisdiction};
+  if(at<original.provisioning.due||original.provisioning.status!=='ready'||!same(clean(original.effective),gov.contract)||!same(original.effective,expected))return {eligible:false,resources:[],profile:root.jurisdiction};
+  for(const flow of expected.flows)if(observations[flow.resource]?.ready!==true||observations[flow.resource]?.generation!==flow.resourceGeneration)return {eligible:false,resources:[],profile:root.jurisdiction};
+  const api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:(typeof require==='function'?require('./43-boundaries.js'):null);if(!api)return {unsupported:true};
+  const child=copy(root);child.clock=at;child.boundaries.clock=at;const row=child.boundaries.contracts.find(item=>item.id===expected.id);row.desired=copy(expected);row.effective=copy(expected);row.generation=1;row.provisioning={status:'ready',due:gov.project.configSubmittedAt,generation:1,errors:[]};
+  const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:root.jurisdiction};child.connected=timeline.connected;
+  for(const [id,resource] of Object.entries(child.resources||{})){
+   const plan=hooks.configurationAt(s,c,root,id,at);if(!plan?.config||!integer(plan.generation))return {unsupported:true};resource.generation=plan.generation;resource.desired=copy(plan.config);resource.effective=copy(plan.config);resource.provisioning={status:'ready',due:at,generation:plan.generation,errors:[]};resource.fault=timeline.faults[id]??null;
+  }
+  const localConfig=hooks.configurationAt(s,c,root,'local',at)?.config,localReady=observations.local?.ready===true&&!!localConfig?.licensing,identityReady=observations.identity?.ready===true;
+  const lastDisconnect=(s.providerCampaign.incidents||[]).filter(item=>item.customerId===c.id&&item.kind==='disconnection'&&integer(item.activatedAt)&&item.activatedAt<=at&&(item.resolvedAt===null||integer(item.resolvedAt)&&item.resolvedAt>at)).sort((a,b)=>b.activatedAt-a.activatedAt)[0];
+  const lastConnectedAt=timeline.connected?at:lastDisconnect?lastDisconnect.activatedAt-1:at;
+  row.observed={connected:timeline.connected,cloudLicenceAvailable:timeline.connected&&localReady,localLicenceGraceActive:gov.architecture.id==='local-processing'&&localReady,localLicenceGraceExpiresAt:gov.architecture.id==='local-processing'?lastConnectedAt+30:null,localServicesAvailable:localReady,localKeyCustodyAvailable:localReady&&!!localConfig?.certificates,adminPathAvailable:localReady&&identityReady,adminPathLocation:localReady&&identityReady?root.jurisdiction:null};
+  const result=api.evaluate(child,expected.id),resources=result.resourceBindings?.map(item=>typeof item==='string'?item:item.resource)||[];
+  return {eligible:result.eligible===true,resources,profile:result.profile};
+ }
  function withDefaults(s,hooks){
+  const configMemo=new Map(),readerMemo=new Map(),provenanceMemo=new Map(),observationMemo=new Map(),boundaryMemo=new Map(),governmentBoundaryMemo=new Map();
+  const readerFor=(state,c,root,at)=>{
+   const readerKey=`${c.id}\u0000${at}`;
+   if(!readerMemo.has(readerKey)){
+    const api=configurationApi();
+    readerMemo.set(readerKey,typeof api.configurationReaderAt==='function'?api.configurationReaderAt(state.providerCampaign,c,root,at,{catalogue:hooks.catalogue}):null);
+   }
+   return readerMemo.get(readerKey);
+  };
+  const configurationAt=hooks.configurationAt||((state,c,root,id,at)=>{
+   const key=`${c.id}\u0000${id}\u0000${at}`;
+   if(!configMemo.has(key)){
+    const reader=readerFor(state,c,root,at),api=configurationApi();
+    configMemo.set(key,typeof reader==='function'?reader(id):api.configurationAt(state.providerCampaign,c,root,id,at,{catalogue:hooks.catalogue}));
+   }
+   return copy(configMemo.get(key));
+  });
+  const configurationProvenanceAt=hooks.configurationProvenanceAt||((state,c,root,id,at)=>{
+   const key=`${c.id}\u0000${id}\u0000${at}`;
+   if(!provenanceMemo.has(key)){
+    const reader=readerFor(state,c,root,at),api=configurationApi();
+    provenanceMemo.set(key,typeof reader==='function'&&typeof reader.provenanceAt==='function'?reader.provenanceAt(id):api.configurationProvenanceAt?.(state.providerCampaign,c,root,id,at,{catalogue:hooks.catalogue})||null);
+   }
+   return copy(provenanceMemo.get(key));
+  });
   const resolved={...hooks,
    customerRoot:hooks.customerRoot||((state,c)=>customerRoot(state,c,{})),
    customerStatusAt:hooks.customerStatusAt||customerStatusAt,
    retailAgreementAt:hooks.retailAgreementAt||retailAgreementAt,
-   configurationAt:hooks.configurationAt||((state,c,root,id,at)=>configurationApi().configurationAt(state.providerCampaign,c,root,id,at,{catalogue:hooks.catalogue})),
+   configurationAt,
+   configurationProvenanceAt,
+   pathResourcesAt:hooks.pathResourcesAt||((state,c,root,at)=>logicalPlacementsAt(state,c,root,at,resolved)),
    paidStaffAt:hooks.paidStaffAt||paidStaffAt
   };
-  resolved.resourceObservationAt=hooks.resourceObservationAt||((state,c,root,id,at,plan)=>resourceObservationAt(state,c,root,id,at,plan,resolved));
-  resolved.boundaryAt=hooks.boundaryAt||((state,c,root,project,at,paths,observations)=>boundaryEvaluationAt(state,c,root,project,at,paths,observations,resolved));
+  resolved.resourceObservationAt=hooks.resourceObservationAt||((state,c,root,id,at,plan)=>{
+   const key=`${c.id}\u0000${id}\u0000${at}\u0000${plan?.generation}`;
+   if(observationMemo.has(key))return copy(observationMemo.get(key));
+   const base=baseResourceObservationAt(state,c,root,id,at,plan,resolved);
+   if(!base){observationMemo.set(key,base);return copy(base);}
+   const activeBoundary=state.providerCampaign.projects.filter(project=>project.customerId===c.id&&project.operationId==='service-boundary-review'&&project.kind==='operation'&&!['cancelled','blocked'].includes(project.status)&&integer(project.configSubmittedAt)&&project.configSubmittedAt<=at&&project.operationReceipt?.kind==='service-boundary').sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.id.localeCompare(b.id)).at(-1);
+   if(activeBoundary?.operationReceipt?.plan?.boundaryContract?.flows?.some(flow=>flow.resource===id)){
+    const contractId=activeBoundary.operationReceipt.plan.boundaryContract.id,boundaryKey=`${c.id}\u0000${contractId}\u0000${at}`;
+    if(!boundaryMemo.has(boundaryKey)){
+     const stageRows=[];
+     for(const stageId of ['base','carrier','partner']){const stage=c.stages?.[stageId],project=stage&&projectById(state,c,stage.projectId);if(!stage||!project||project.kind!=='stage'||project.stage!==stageId||!paidProject(state,project,resolved)||project.completedAt>at){stageRows.length=0;break;}stageRows.push({stageId,stage,project});}
+     if(!stageRows.length){boundaryMemo.set(boundaryKey,false);}
+     else{
+      const contract=root.boundaries?.contracts?.find(row=>row.id===contractId),boundaryPlan=activeBoundary.operationReceipt.plan,flows=boundaryPlan?.boundaryContract?.flows;
+      if(!contract||!Array.isArray(flows)||!flows.some(flow=>flow.resource===id))boundaryMemo.set(boundaryKey,false);
+      else{
+       const deps=boundaryPlan.dependencies||[],observations=Object.create(null),stageResources=[...new Set(stageRows.flatMap(row=>row.project.resources||[]))],observationIds=[...new Set([...deps.map(dep=>dep.id),...stageResources])];
+       for(const resourceId of observationIds){let config;try{config=resolved.configurationAt(state,c,root,resourceId,at);}catch{config=null;}observations[resourceId]=baseResourceObservationAt(state,c,root,resourceId,at,config,resolved);}
+       const paths=[...new Set(flows.map(flow=>flow.resource))];
+       let evaluation;try{evaluation=boundaryEvaluationAt(state,c,root,activeBoundary,at,paths,observations,resolved,{stageRows,stageResources});}catch{evaluation=null;}
+       boundaryMemo.set(boundaryKey,!!evaluation?.eligible&&evaluation.resources.includes(id));
+      }
+     }
+    }
+    if(!boundaryMemo.get(boundaryKey))base.ready=false;
+   }
+   if(state.providerCampaign.customers.find(customer=>customer.id===c.id)?.scenario==='government'){
+    let gov;try{gov=governmentCallingAt(state,c,root,at,resolved);}catch{gov=null;}
+    if(gov?.resources.includes(id)){
+     const boundaryKey=`${c.id}\u0000${gov.project.id}\u0000${at}`;
+     if(!governmentBoundaryMemo.has(boundaryKey)){
+      const observed=governmentObservationsAt(state,c,root,gov,at,resolved);
+      let evaluation;try{evaluation=observed?governmentCallingEvaluationAt(state,c,root,gov,at,observed,resolved):null;}catch{evaluation=null;}
+      governmentBoundaryMemo.set(boundaryKey,evaluation&&!evaluation.unsupported?evaluation:null);
+     }
+     const evaluation=governmentBoundaryMemo.get(boundaryKey);if(!evaluation?.eligible||!evaluation.resources.includes(id))base.ready=false;
+    }
+   }
+   observationMemo.set(key,base);
+   return copy(observationMemo.get(key));
+  });
+  resolved.boundaryAt=hooks.boundaryAt||((state,c,root,project,at,paths,observations,context)=>boundaryEvaluationAt(state,c,root,project,at,paths,observations,resolved,context));
   return resolved;
  }
  function projectById(s,c,id){return s.providerCampaign.projects.find(p=>p.id===id&&p.customerId===c.id)||null;}
@@ -96,17 +268,58 @@ function socProviderSupportHistoryKernel(){
   const n=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);
   return n>0&&n<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign.projects.includes(p);
  }
- function incidentApplies(s,c,resourceId,at){
-  const aliases={processor:'speech',connectivity:'access'};
+ function serviceFaultTimelineAt(s,c,root,at){
+  const aliases={processor:'speech',connectivity:'access'},faults=Object.fromEntries(Object.keys(root.resources||{}).map(id=>[id,null])),events=[];let connected=true,boundaryActive=false;
   for(const incident of s.providerCampaign.incidents||[]){
-   if(incident.customerId!==c.id)continue;
-   if(!integer(incident.createdAt)||!integer(incident.dueAt)||incident.dueAt<incident.createdAt||incident.activatedAt!==null&&!integer(incident.activatedAt)||incident.acknowledgedAt!==null&&!integer(incident.acknowledgedAt)||incident.resolvedAt!==null&&!integer(incident.resolvedAt))return {invalid:true};
-   if(incident.activatedAt!==null&&incident.resolvedAt!==null&&incident.resolvedAt<=incident.activatedAt)return {invalid:true};
-   const affected=incident.resource===resourceId||aliases[incident.resource]===resourceId||incident.kind==='disconnection'&&['identity','access','phone','carrier','engage'].includes(resourceId);
-   if(!affected||incident.activatedAt===null||incident.activatedAt>at||incident.resolvedAt!==null&&at>=incident.resolvedAt)continue;
-   return {active:true,incidentId:incident.id};
+   if(incident.customerId!==c.id||incident.kind==='transport-domain')continue;
+   if(!integer(incident.createdAt)||!integer(incident.dueAt)||incident.dueAt<incident.createdAt||incident.activatedAt!==null&&!integer(incident.activatedAt)||incident.acknowledgedAt!==null&&!integer(incident.acknowledgedAt)||incident.resolvedAt!==null&&!integer(incident.resolvedAt)||incident.activatedAt!==null&&incident.resolvedAt!==null&&incident.resolvedAt<=incident.activatedAt)return {valid:false};
+   if(incident.activatedAt!==null&&incident.activatedAt<=at)events.push({at:incident.activatedAt,order:1,incident});
   }
-  return {active:false};
+  for(const project of s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.configSubmittedAt!==null&&['repair','mitigate','service-repair'].includes(p.operationId)&&p.configSubmittedAt<=at))events.push({at:project.configSubmittedAt,order:0,project});
+  events.sort((a,b)=>a.at-b.at||a.order-b.order);
+  for(const event of events){
+   if(event.incident){const incident=event.incident,id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=false;else if(incident.kind==='boundary')boundaryActive=true;else if(!(id==='room'&&incident.fault==='CAPACITY')){if(!Object.hasOwn(faults,id))return {valid:false};faults[id]='OUTAGE';}}
+   else{
+    const project=event.project,incidents=(s.providerCampaign.incidents||[]).filter(i=>i.customerId===c.id&&i.kind!=='transport-domain'&&i.activatedAt!==null&&i.activatedAt<event.at&&i.acknowledgedAt!==null&&i.acknowledgedAt<event.at&&(i.resolvedAt===null||i.resolvedAt>=event.at)),resources=incidents.map(i=>aliases[i.resource]||i.resource);
+    if(project.operationReceipt?.at!==event.at-1||!Array.isArray(project.operationReceipt?.resources)||!same(project.operationReceipt.resources,resources))return {valid:false};
+    for(const incident of incidents){const id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=true;else if(incident.kind==='boundary')boundaryActive=false;else if(!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}
+   }
+  }
+  return {valid:true,connected,faults,boundaryActive};
+ }
+ function ownedSiteTimelineAt(s,c,root,at,hooks){
+  const projects=(s.providerCampaign.projects||[]).filter(p=>p.customerId===c.id&&['site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review'].includes(p.operationId)&&p.configSubmittedAt!==null&&!['cancelled','blocked'].includes(p.status));
+  if(!root.siteOperations&&!root.providerSiteWork&&!projects.length)return {valid:true,bindings:null,domains:{}};
+  const api=ownedSiteApi();if(!api||!hooks.ownedSiteHooks)return {unsupported:true};
+  try{api.validateCustomer(s,c.id,root,hooks.ownedSiteHooks);}catch{return {valid:false};}
+  const install=(s.providerCampaign.projects||[]).find(p=>p.customerId===c.id&&p.operationId==='owned-site-operations'&&p.status==='complete'&&integer(p.completedAt));
+  let bindings=null;
+  if(install&&install.completedAt<=at){try{bindings=api.endpointBindingsAt(s,c.id,root,at);}catch{return {valid:false};}if(!bindings)return {valid:false};}
+  const currentDomains=root.transport?.domains||{},domains=Object.fromEntries(Object.keys(currentDomains).map(id=>[id,false])),events=[];
+  for(const incident of s.providerCampaign.incidents||[])if(incident.customerId===c.id&&incident.kind==='transport-domain'){
+   if(!root.transport||!Object.hasOwn(domains,incident.domain)||incident.resource!=='access'||incident.fault!=='TRANSPORT_DOMAIN'||!integer(incident.activatedAt)||incident.receipt?.at!==incident.activatedAt||incident.receipt?.domain!==incident.domain)return {valid:false};
+   const job=(s.providerCampaign.jobs||[]).find(j=>j.id===incident.jobId),sequence=job?.resilienceSequence;
+   if(!sequence||sequence.incidentId!==incident.id||sequence.windowStart!==incident.activatedAt)return {valid:false};
+   events.push({at:incident.activatedAt,order:2,domain:incident.domain,value:true});
+   if(incident.status==='resolved'){
+    const repair=(s.providerCampaign.projects||[]).find(p=>p.id===incident.repairProjectId&&p.customerId===c.id&&p.operationId==='transport-repair'&&p.configSubmittedAt===incident.resolvedAt);
+    if(!repair||repair.operationReceipt?.incidentId!==incident.id||repair.operationReceipt?.domain!==incident.domain||repair.operationReceipt?.at!==incident.resolvedAt)return {valid:false};
+    events.push({at:incident.resolvedAt,order:0,domain:incident.domain,value:false});
+   }else if(!['active','acknowledged'].includes(incident.status))return {valid:false};
+  }
+  for(const exercise of root.siteOperations?.exercises||[]){
+   if(!exercise.fault)continue;
+   if(!Object.hasOwn(domains,exercise.fault.id)||exercise.failedDomain!==exercise.fault.id||!exercise.baseline?.success||!integer(exercise.baseline.at))return {valid:false};
+   const project=(s.providerCampaign.projects||[]).find(p=>p.customerId===c.id&&['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
+   if(!project||project.config?.kind!==exercise.kind||project.config?.targetSite!==exercise.targetSite||exercise.id!=='site-exercise-'+project.id)return {valid:false};
+   events.push({at:exercise.baseline.at,order:2,domain:exercise.fault.id,value:true});
+   const abort=project.siteAbort;
+   if(abort){if(abort.exerciseId!==exercise.id||abort.clearedDomain!==exercise.fault.id||!integer(abort.at))return {valid:false};events.push({at:abort.at,order:0,domain:exercise.fault.id,value:false,strictAfter:true});}
+   else if(integer(exercise.recoveredAt))events.push({at:exercise.recoveredAt,order:0,domain:exercise.fault.id,value:false,strictAfter:true});
+  }
+  events.sort((a,b)=>a.at-b.at||a.order-b.order);
+  for(const event of events){if(event.at<at||event.at===at&&!event.strictAfter)domains[event.domain]=event.value;}
+  return {valid:true,bindings,domains};
  }
  function freshJobsAt(s,c,root,at){
   const out=[];for(const job of s.providerCampaign.jobs||[]){
@@ -117,12 +330,14 @@ function socProviderSupportHistoryKernel(){
   }
   return out.sort((a,b)=>a.jobId.localeCompare(b.jobId));
  }
- function resolvedWorkMissingAt(s,c,root,at){
-  const missing=[];
+ function resolvedWorkMissingAt(s,c,root,at,hooks){
+  const missing=[],tenant=root.tenant||c.tenant||c.portfolioId;
   for(const channel of ['voice','message']){
-   const match=s.providerCampaign.jobs.filter(job=>job.customerId===c.id&&!job.resilienceSequence&&job.channel===channel&&['completed','late'].includes(job.status)&&job.interactionId&&job.caseId&&job.contextRetained===true&&job.completedAt<=at)
-    .map(job=>({job,interaction:root.interactions?.find(i=>i.id===job.interactionId),linkedCase:root.cases?.[job.caseId]}))
-    .find(({job,interaction,linkedCase})=>interaction&&interaction.probe!==true&&interaction.phase==='resolved'&&interaction.caseId===job.caseId&&interaction.finishedAt===job.completedAt&&interaction.context===true&&(!interaction.needOutcome||interaction.needOutcome.outcome==='resolved')&&linkedCase?.interactions?.includes(interaction.id));
+   const match=(root.interactions||[]).filter(interaction=>interaction.channel===channel&&interaction.probe!==true&&interaction.phase==='resolved'&&integer(interaction.finishedAt)&&interaction.finishedAt<=at&&interaction.context===true&&(!interaction.needOutcome||interaction.needOutcome.outcome==='resolved')&&typeof interaction.caseId==='string')
+    .find(interaction=>{
+     const linkedCase=root.cases?.[interaction.caseId],job=(s.providerCampaign.jobs||[]).find(row=>row.customerId===c.id&&row.interactionId===interaction.id&&row.caseId===interaction.caseId&&row.channel===channel&&['completed','late'].includes(row.status)&&row.contextRetained===true&&integer(row.completedAt)&&row.completedAt===interaction.finishedAt&&row.completedAt<=at),matches=event=>event?.code==='CUSTOMER_WORK_ARRIVED'&&event.customerId===c.id&&event.interactionId===interaction.id&&event.caseId===interaction.caseId&&event.channel===channel&&integer(event.at)&&event.at<=interaction.startedAt&&typeof event.jobId==='string'&&/^provider-job-[1-9]\d*$/.test(event.jobId),arrival=(s.providerCampaign.events||[]).find(event=>matches(event)&&event.jobId===job?.id),pinned=arrival?null:(typeof hooks.supportWorkOrigin==='function'?hooks.supportWorkOrigin(s,c.id,interaction,at):null);
+     return !!job&&(matches(arrival)||matches(pinned)&&pinned.jobId===job.id)&&linkedCase?.tenant===tenant&&linkedCase.interactions?.includes(interaction.id);
+    });
    if(!match)missing.push(channel==='voice'?'resolved-voice-case-not-retained':'resolved-digital-case-not-retained');
   }
   return missing;
@@ -140,11 +355,13 @@ function socProviderSupportHistoryKernel(){
   const sharedWorkforce={engineers:team.engineers,support:team.support,personMinutes:team.personMinutes,billedMinutes:billed};
   return {id:`provider-responsibility-msp-${c.id}`,customerId:c.id,role:'msp',organisationId:'orchard-msp',projectId:latest.id,postingId:latest.postingId,effectiveAt,expiresAt:null,scope,setupCents:projects.reduce((n,p)=>n+p.setupCents,0),periodCents:projects.reduce((n,p)=>n+p.periodCents,0),engineers:team.engineers,support:team.support,sharedWorkforce};
  }
- function reconstructParticipantAt(s,customerId,at,hooks={}){
+ function reconstructParticipantAtResolved(s,customerId,at,hooks){
   if(!s?.providerCampaign||s.providerCampaign.contentVersion!=='provider-campaigns-8'||!integer(at)||at>s.clock)return unsupported('SUPPORT_HISTORY_CONTENT_OR_CLOCK_UNSUPPORTED');
-  hooks=withDefaults(s,hooks);
   const c=s.providerCampaign.customers.find(x=>x.id===customerId);if(!c)return {status:'invalid',missing:['customer-not-found'],participant:null};
   const root=customerRoot(s,c,hooks);if(!root||root.providerCustomer?.id!==c.id||root.providerCustomer?.version!==1||root.providerCampaign||root.mode==='sandbox'||root.experience?.kind==='lab')return {status:'invalid',missing:['validated-customer-root'],participant:null};
+  let ownedTimeline;try{ownedTimeline=ownedSiteTimelineAt(s,c,root,at,hooks);}catch{return unsupported('SUPPORT_HISTORY_OWNED_SITE_TIMELINE_UNAVAILABLE');}
+  if(ownedTimeline?.unsupported)return unsupported('SUPPORT_HISTORY_OWNED_SITE_TIMELINE_HOOK_REQUIRED');
+  if(!ownedTimeline?.valid)return {status:'invalid',missing:['owned-site-transport-timeline-invalid'],participant:null};
   let terms;try{terms=hooks.retailAgreementAt(s,c,at);}catch{return unsupported('SUPPORT_HISTORY_RETAIL_TIMELINE_UNAVAILABLE');}if(!terms||!integer(terms.acceptedAt)||terms.acceptedAt>at||!integer(terms.priceCents))return {status:'invalid',missing:['accepted-retail-agreement'],participant:null};
   const stageRows=[],missing=[];
   for(const stageId of ['base','carrier','partner']){
@@ -153,27 +370,23 @@ function socProviderSupportHistoryKernel(){
    stageRows.push({stageId,stage,project});
   }
   if(missing.length)return {status:'invalid',missing:[...new Set(missing)],participant:null};
-  const hasMigration=s.providerCampaign.projects.some(p=>p.customerId===c.id&&['migration','migration-consolidated','site-resource-migration'].includes(p.operationId)&&p.configSubmittedAt!==null);
-  const hasRetirement=s.providerCampaign.projects.some(p=>p.customerId===c.id&&p.serviceRetirement);
-  const hasOwnedFault=(s.providerCampaign.incidents||[]).some(i=>i.customerId===c.id&&(i.siteId||i.ownedSiteId||i.domain?.includes('site')));
-  if((hasMigration||hasRetirement||hasOwnedFault)&&typeof hooks.pathResourcesAt!=='function')return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_HOOK_REQUIRED');
   let paths;
-  try{paths=typeof hooks.pathResourcesAt==='function'?hooks.pathResourcesAt(s,c,root,at):Object.values(root.operations?.placements||{});}catch{return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');}
+  try{paths=hooks.pathResourcesAt(s,c,root,at);}catch{return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');}
+  if(paths===null)return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');
   if(!Array.isArray(paths)||paths.some(x=>typeof x!=='string'))return {status:'invalid',missing:['invalid-path-resource-history'],participant:null};
-  const stageResources=[...new Set(stageRows.flatMap(x=>x.project.resources||[]))],pathResources=[...new Set(['identity','phone',...paths,'engage'])],resourceIds=[...new Set([...stageResources,...pathResources])];
+  const govCalling=governmentCallingAt(s,c,root,at,hooks),stageResources=[...new Set(stageRows.flatMap(x=>x.project.resources||[]))],pathResources=[...new Set(['identity','phone',...paths,'engage'])],resourceIds=[...new Set([...stageResources,...pathResources,...(govCalling?.resources||[])])];
   const observations=Object.create(null),resourceMissing=[];
   for(const resourceId of resourceIds){
    let plan,observation;try{plan=hooks.configurationAt(s,c,root,resourceId,at);observation=hooks.resourceObservationAt(s,c,root,resourceId,at,plan);}catch{return unsupported(`SUPPORT_HISTORY_RESOURCE_TIMELINE_UNAVAILABLE:${resourceId}`);}
    if(!plan||!integer(plan.generation)||!plan.config||!observation||!exact(observation,['effective','generation','ready'])||typeof observation.effective!=='boolean'||typeof observation.ready!=='boolean'||observation.generation!==null&&!integer(observation.generation))return unsupported(`SUPPORT_HISTORY_RESOURCE_OBSERVATION_UNAVAILABLE:${resourceId}`);
-   const fault=incidentApplies(s,c,resourceId,at);if(fault.invalid)return {status:'invalid',missing:['invalid-incident-interval'],participant:null};
    const effective=observation.effective&&observation.generation===plan.generation;
-   const ready=observation.ready&&effective&&!fault.active;
+   const ready=observation.ready&&effective;
    observations[resourceId]={effective,generation:observation.generation,ready};
   }
   const expectedByResource=Object.create(null);for(const {stage} of stageRows)for(const resourceId of stage.resources||[])expectedByResource[resourceId]=stage.expectedGenerations?.[resourceId];
   for(const resourceId of stageResources){const r=observations[resourceId],expected=expectedByResource[resourceId];if(!r?.ready||!integer(expected)||r.generation<expected)resourceMissing.push(`resource-not-current:${resourceId}`);}
   if(resourceMissing.length)missing.push(...resourceMissing);
-  if(!missing.length)missing.push(...resolvedWorkMissingAt(s,c,root,at));
+  if(!missing.length)missing.push(...resolvedWorkMissingAt(s,c,root,at,hooks));
   const ready=missing.length===0;
   const resources=ready?[...new Set([...stageResources,...pathResources])]:[];
   const readyByResource=observations;
@@ -187,11 +400,16 @@ function socProviderSupportHistoryKernel(){
     const receipt=project.operationReceipt,plan=receipt.plan,contract=plan?.boundaryContract,deps=plan?.dependencies;
     if(!plan||plan.customerId!==c.id||!contract?.id||!integer(plan.boundaryGeneration)||!Array.isArray(deps)||!paidProject(s,project,hooks))continue;
     if(!pathResources.every(id=>deps.some(d=>d.id===id&&d.generation===observations[id]?.generation)))continue;
-    let evaluation;try{evaluation=hooks.boundaryAt(s,c,root,project,at,pathResources,observations);}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
+    let evaluation;try{evaluation=hooks.boundaryAt(s,c,root,project,at,pathResources,observations,{stageRows,stageResources});}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
     if(evaluation?.unsupported)return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');
     if(!evaluation||typeof evaluation.eligible!=='boolean'||!Array.isArray(evaluation.resources)||typeof evaluation.profile!=='string')return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');
     if(evaluation.eligible&&pathResources.every(id=>evaluation.resources.includes(id)))boundaries.push({id:contract.id,generation:plan.boundaryGeneration,profile:evaluation.profile,resources:[...evaluation.resources].filter(id=>pathResources.includes(id)).sort()});
    }
+  }
+  if(govCalling){
+   const evaluation=governmentCallingEvaluationAt(s,c,root,govCalling,at,observations,hooks);
+   if(evaluation?.unsupported)return unsupported('SUPPORT_HISTORY_GOVERNMENT_BOUNDARY_TIMELINE_UNAVAILABLE');
+   if(evaluation?.eligible&&pathResources.every(id=>evaluation.resources.includes(id)))boundaries.push({id:govCalling.contract.id,generation:1,profile:evaluation.profile,resources:[...pathResources].sort()});
   }
   boundaries.sort((a,b)=>a.id.localeCompare(b.id));
   if(!boundaries.length)missing.push('An effective supported boundary on a paid service resource is required throughout the sample.');
@@ -203,6 +421,7 @@ function socProviderSupportHistoryKernel(){
   if(typeof hooks.namedSupportAt==='function')participant.namedSupport=hooks.namedSupportAt(s,c,root,at);
   return {status:'supported',missing:[],participant};
  }
+ function reconstructParticipantAt(s,customerId,at,hooks={}){return reconstructParticipantAtResolved(s,customerId,at,withDefaults(s,hooks));}
  function validateParticipantAt(s,participant,at,hooks={}){
   const result=reconstructParticipantAt(s,participant?.customerId,at,hooks);if(result.status!=='supported')return result;
   const expected=result.participant,keys=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'];
@@ -210,8 +429,18 @@ function socProviderSupportHistoryKernel(){
   const sameSample=participant&&typeof participant==='object'&&!Array.isArray(participant)&&Object.keys(participant).every(key=>allowed.has(key))&&keys.every(key=>Object.hasOwn(participant,key)&&same(participant[key]??null,expected[key]??null))&&(!Object.hasOwn(participant,'freshJobs')||same(participant.freshJobs,expected.freshJobs));
   return {status:sameSample?'valid':'invalid',missing:sameSample?[]:['HISTORICAL_SUPPORT_PARTICIPANT_MISMATCH'],participant:expected};
  }
+ function createValidator(s,hooks={}){
+  const resolved=withDefaults(s,hooks);
+  return (participant,at)=>{
+   const result=reconstructParticipantAtResolved(s,participant?.customerId,at,resolved);if(result.status!=='supported')return result;
+   const expected=result.participant,keys=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'];
+   const allowed=new Set([...keys,'freshJobs','settlements','namedSupport','distributor','integrations']);
+   const sameSample=participant&&typeof participant==='object'&&!Array.isArray(participant)&&Object.keys(participant).every(key=>allowed.has(key))&&keys.every(key=>Object.hasOwn(participant,key)&&same(participant[key]??null,expected[key]??null))&&(!Object.hasOwn(participant,'freshJobs')||same(participant.freshJobs,expected.freshJobs));
+   return {status:sameSample?'valid':'invalid',missing:sameSample?[]:['HISTORICAL_SUPPORT_PARTICIPANT_MISMATCH'],participant:expected};
+  };
+ }
  function source(){return `const SOC_PROVIDER_SUPPORT_HISTORY=(${socProviderSupportHistoryKernel.toString()})();`;}
- return {version:VERSION,reconstructParticipantAt,validateParticipantAt,source};
+ return {version:VERSION,reconstructParticipantAt,validateParticipantAt,createValidator,source};
 }
 const SOC_PROVIDER_SUPPORT_HISTORY=socProviderSupportHistoryKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_SUPPORT_HISTORY;

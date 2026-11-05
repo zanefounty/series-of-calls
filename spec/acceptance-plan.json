@@ -881,6 +881,21 @@
       "AC-SOC-637",
       "AC-SOC-638",
       "AC-SOC-639"
+    ],
+    "tests/provider-journey-explanation.test.js": [
+      "AC-SOC-644",
+      "AC-SOC-645"
+    ],
+    "tests/provider-integration-assurance.test.js": [
+      "AC-SOC-646",
+      "AC-SOC-647",
+      "AC-SOC-648"
+    ],
+    "tests/provider-incident-inspector.test.js": [
+      "AC-SOC-649",
+      "AC-SOC-650",
+      "AC-SOC-651",
+      "AC-SOC-652"
     ]
   },
   "inputs": [
@@ -1010,6 +1025,8 @@
     "src/game/23-provider-finance-view.js",
     "src/game/23-provider-government.js",
     "src/game/23-provider-history.js",
+    "src/game/23-provider-integration-assurance.js",
+    "src/game/23-provider-journeys.js",
     "src/game/23-provider-local-progression.js",
     "src/game/23-provider-owned-site-custody.js",
     "src/game/23-provider-owned-site-mission.js",
@@ -1018,14 +1035,18 @@
     "src/game/23-provider-products.js",
     "src/game/23-provider-progression-receipts.js",
     "src/game/23-provider-progression.js",
+    "src/game/23-provider-regional-support.js",
     "src/game/23-provider-resilience-progression.js",
     "src/game/23-provider-resilience-sequence.js",
     "src/game/23-provider-resilience.js",
     "src/game/23-provider-responsibility.js",
     "src/game/23-provider-service-boundary.js",
     "src/game/23-provider-service-retirement.js",
+    "src/game/23-provider-support-history.js",
+    "src/game/23-provider-support-work.js",
     "src/game/23-provider-uc-cc-integration.js",
     "src/game/23-provider-variants.js",
+    "src/game/23-provider-workforce-history.js",
     "src/game/23-training-lessons.js",
     "src/game/24-provider-rules.js",
     "src/game/25-provider-campaign.js",
@@ -1194,7 +1215,9 @@
     "src/game/93-ui/79-provider-context-actions.js",
     "src/game/93-ui/79-provider-external-reach.js",
     "src/game/93-ui/79-provider-finance.js",
+    "src/game/93-ui/79-provider-incidents.js",
     "src/game/93-ui/79-provider-integration.js",
+    "src/game/93-ui/79-provider-journeys.js",
     "src/game/93-ui/79-provider-lifecycle.js",
     "src/game/93-ui/79-provider-meetings.js",
     "src/game/93-ui/79-provider-owned-sites.js",
@@ -1205,6 +1228,7 @@
     "src/game/93-ui/79-provider-storage.js",
     "src/game/93-ui/79-training-course.js",
     "src/game/93-ui/80-find-city.js",
+    "src/game/93-ui/80-provider-regional-support.js",
     "src/game/93-ui/82-keys.js",
     "src/game/94-contact-ui.js",
     "src/game/94-dashboard/10-progress.js",
@@ -1364,11 +1388,15 @@
     "tests/progression.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-incident-inspector.test.js",
+    "tests/provider-integration-assurance.test.js",
+    "tests/provider-journey-explanation.test.js",
     "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",
     "tests/provider-owned-site-migration-recovery-scope.test.js",
+    "tests/provider-owned-site-platform-migration.test.js",
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/security-ui.test.js",
@@ -1411,7 +1439,6 @@
     "tests/workforce-operations.test.js",
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
-    "tests/workforce-quality.test.js",
-    "tests/provider-owned-site-platform-migration.test.js"
+    "tests/workforce-quality.test.js"
   ]
 }

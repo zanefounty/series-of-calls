@@ -21,7 +21,8 @@ function socProviderRegionalSupportKernel(){
  });
  const COVERAGE=Object.freeze({
   'business-hours':Object.freeze({shiftStart:480,shiftEnd:1200,setupCents:9000,periodCents:8000,workMinutes:4,engineers:0,support:1}),
-  extended:Object.freeze({shiftStart:0,shiftEnd:1440,setupCents:18000,periodCents:16000,workMinutes:6,engineers:0,support:1})
+  extended:Object.freeze({shiftStart:0,shiftEnd:1440,setupCents:18000,periodCents:16000,workMinutes:6,engineers:0,support:1}),
+  'distributor-extended':Object.freeze({shiftStart:0,shiftEnd:1440,setupCents:24000,periodCents:12000,workMinutes:8,engineers:0,support:1})
  });
  const fail=code=>{throw new Error(code);},copy=x=>JSON.parse(JSON.stringify(x));
  const integer=(x,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
@@ -36,6 +37,31 @@ function socProviderRegionalSupportKernel(){
  function customerFor(s,customerId){return s?.providerCampaign?.customers?.find(c=>c.id===customerId)||null;}
  function marketFor(s,c,hooks={}){const row=s?.portfolio?.customers?.find(x=>x.id===c?.portfolioId);return row?.market||c?.market||null;}
  function providerOrganizationReady(s){const org=s?.business?.organisations?.['orchard-msp'];return !!org?.roles?.includes('msp')&&!!org?.roles?.includes('reseller');}
+ function replacementEdge(from,to){return from==='business-hours'&&['extended','distributor-extended'].includes(to)||from==='extended'&&to==='distributor-extended'||from==='distributor-extended'&&to==='extended';}
+ function earnedReceipt(s,market,receiptId){return s.providerCampaign?.progressionReceipts?.receipts?.find(r=>(!receiptId||r.id===receiptId)&&r.sourceId===LEVEL7&&integer(r.at)&&r.at<=s.clock&&r.unlock?.operationId===OPERATION_ID&&r.unlock?.coverageId==='distributor-extended'&&Array.isArray(r.unlock.allowedMarkets)&&r.unlock.allowedMarkets.includes(market));}
+ function earnedTerms(s,customerId,hooks={}){
+  const c=customerFor(s,customerId),market=c&&marketFor(s,c),receipt=earnedReceipt(s,market),distributor=c&&distributorEvidence(s,c,hooks),missing=[];
+  if(s.providerCampaign?.contentVersion!=='provider-campaigns-8')missing.push('PROVIDER_CONTENT_EIGHT_REQUIRED');
+  if(!receipt)missing.push('EARNED_DISTRIBUTOR_SUPPORT_MARKET_REQUIRED');if(!distributor)missing.push('CURRENT_DISTRIBUTOR_SUPPORT_TARIFF_REQUIRED');
+  return {eligible:missing.length===0,missing,evidence:missing.length?null:{version:1,sourceId:LEVEL7,receiptId:receipt.id,allowedMarkets:[...receipt.unlock.allowedMarkets],acceptedAt:s.clock,distributor:copy(distributor)}};
+ }
+ function purchaseCommercialValid(s,project){
+  const e=project.supportCommercialEvidence,c=customerFor(s,project.customerId),market=c&&marketFor(s,c),receipt=e&&earnedReceipt(s,market,e.receiptId);
+  return s.providerCampaign?.contentVersion==='provider-campaigns-8'&&exact(e,['version','sourceId','receiptId','allowedMarkets','acceptedAt','distributor'])&&e.version===1&&e.sourceId===LEVEL7&&!!receipt&&same(e.allowedMarkets,receipt.unlock.allowedMarkets)&&e.acceptedAt===project.acceptedAt&&receipt.at<=e.acceptedAt&&distributorSnapshotMatches(s,{customerId:project.customerId,distributor:e.distributor},project.acceptedAt);
+ }
+ function commercialValid(s,project,plan){
+  if(plan.coverageId!=='distributor-extended')return project.supportCommercialEvidence===undefined&&project.operationReceipt?.commercial===undefined;
+  if(!purchaseCommercialValid(s,project))return false;
+  const e=project.operationReceipt?.commercial;if(!exact(e,['version','sourceId','receiptId','allowedMarkets','acceptedAt','distributor','deliveredAt','deliveryDistributor'])||!same(project.supportCommercialEvidence,Object.fromEntries(Object.entries(e).filter(([key])=>!['deliveredAt','deliveryDistributor'].includes(key)))))return false;
+  if(project.status!=='complete')return e.deliveredAt===null&&e.deliveryDistributor===null;
+  return e.deliveredAt===project.completedAt&&e.deliveredAt>=project.configSubmittedAt&&distributorSnapshotMatches(s,{customerId:project.customerId,distributor:e.deliveryDistributor},e.deliveredAt);
+ }
+ function completeEligibility(s,project,hooks={}){
+  const request=project?.supportRequest;if(request?.coverageId!=='distributor-extended')return {eligible:true,missing:[],commissionEvidence:null};
+  const missing=[];if(!purchaseCommercialValid(s,project))missing.push('INVALID_PROVIDER_SUPPORT_COMMERCIAL_LINEAGE');
+  const c=customerFor(s,project.customerId),distributor=c&&distributorEvidence(s,c,hooks);if(!distributor)missing.push('CURRENT_DISTRIBUTOR_SUPPORT_TARIFF_REQUIRED');
+  return {eligible:missing.length===0,missing,commissionEvidence:missing.length?null:{deliveredAt:s.clock,deliveryDistributor:copy(distributor)}};
+ }
  function operationPlan(request){
   if(!exact(request,['customerId','market','personId','coverageId'])||!id(request.customerId)||!MARKETS[request.market]||!COVERAGE[request.coverageId])fail('INVALID_PROVIDER_SUPPORT_PLAN');
   const person=PEOPLE[request.personId];if(!person||person.market!==request.market||!person.languages.includes(MARKETS[request.market].language)||!person.skills.includes('support'))fail('PROVIDER_SUPPORT_PERSON_MARKET_MISMATCH');
@@ -54,7 +80,7 @@ function socProviderRegionalSupportKernel(){
   const request=project?.supportRequest;if(!request)return null;
   let plan;try{plan=operationPlan(request);}catch{return null;}
   if(project.customerId!==plan.customerId||marketFor(s,customerFor(s,project.customerId))!==plan.market||!paidProject(s,project)||['setupCents','periodCents','workMinutes','engineers','support'].some(k=>project[k]!==plan[k]))return null;
-  return plan;
+  if(plan.coverageId==='distributor-extended'?!purchaseCommercialValid(s,project):project.supportCommercialEvidence!==undefined)return null;return plan;
  }
  function reservedRows(s,at){
   const rows=allAssignments(s).filter(Boolean).filter(row=>assignmentEffectiveAt(row,at));
@@ -67,7 +93,7 @@ function socProviderRegionalSupportKernel(){
  }
  function operationReceiptValid(s,project,plan){
   const r=project?.operationReceipt;
-  return exact(r,['kind','version','projectId','postingId','customerId','installedAt','supportAssignment'])&&r.kind===OPERATION_ID&&r.version===VERSION&&r.projectId===project.id&&r.postingId===project.postingId&&r.customerId===project.customerId&&integer(r.installedAt)&&integer(project.configSubmittedAt)&&r.installedAt===project.configSubmittedAt-1&&same(r.supportAssignment,plan.supportAssignment);
+  return exact(r,['kind','version','projectId','postingId','customerId','installedAt','supportAssignment',...(plan.coverageId==='distributor-extended'?['commercial']:[])])&&r.kind===OPERATION_ID&&r.version===VERSION&&r.projectId===project.id&&r.postingId===project.postingId&&r.customerId===project.customerId&&integer(r.installedAt)&&integer(project.configSubmittedAt)&&r.installedAt===project.configSubmittedAt-1&&same(r.supportAssignment,plan.supportAssignment)&&commercialValid(s,project,plan);
  }
  function assignmentForProject(s,project){
   const c=customerFor(s,project?.customerId),a=project?.operationReceipt?.supportAssignment;
@@ -79,7 +105,7 @@ function socProviderRegionalSupportKernel(){
  function replacementValid(s,project){
   if(project.supportReplacesProjectId===undefined)return true;
   const prior=s.providerCampaign.projects.find(p=>p.id===project.supportReplacesProjectId),old=prior&&assignmentForProject(s,prior),plan=requestedPlan(s,project);
-  return !!old&&!!plan&&prior.customerId===project.customerId&&prior.status==='complete'&&integer(prior.completedAt)&&prior.completedAt<=project.acceptedAt&&(!prior.serviceRetirement||prior.serviceRetirement.effectiveAt>project.acceptedAt)&&old.assignment.personId===plan.personId&&old.assignment.coverageId==='business-hours'&&plan.coverageId==='extended'&&prior.id!==project.id;
+  return !!old&&!!plan&&prior.customerId===project.customerId&&prior.status==='complete'&&integer(prior.completedAt)&&prior.completedAt<=project.acceptedAt&&(!prior.serviceRetirement||prior.serviceRetirement.effectiveAt>project.acceptedAt)&&old.assignment.personId===plan.personId&&replacementEdge(old.assignment.coverageId,plan.coverageId)&&prior.id!==project.id;
  }
  function allAssignments(s){
   const p=s?.providerCampaign;if(!p||!Array.isArray(p.projects))fail('PROVIDER_SUPPORT_CAMPAIGN_REQUIRED');
@@ -117,7 +143,7 @@ function socProviderRegionalSupportKernel(){
   if(personId&&!PEOPLE[personId])return {ready:false,missing:['UNKNOWN_PROVIDER_SUPPORT_PERSON'],used:0,limit:s?.business?.workforce?.support||0,personIds:[],personCustomerIds:[],maximumCustomersPerPerson:MAX_CUSTOMERS_PER_PERSON};
   return personCapacity(s,personId||null,customerId||null);
  }
- function canOrder(s,request){
+ function canOrder(s,request,hooks={}){
   if(!s?.providerCampaign||!Array.isArray(s.providerCampaign.projects))return {eligible:false,missing:['PROVIDER_SUPPORT_CAMPAIGN_REQUIRED']};
   let plan;try{plan=operationPlan(request);}catch(error){return {eligible:false,missing:[error.message]};}
   const c=customerFor(s,request.customerId),missing=[];
@@ -126,10 +152,11 @@ function socProviderRegionalSupportKernel(){
   if(!providerOrganizationReady(s))missing.push('ORCHARD_MSP_RESELLER_ROLE_REQUIRED');
   if((s.providerCampaign.projects||[]).some(p=>p.customerId===request.customerId&&p.operationId===OPERATION_ID&&['running','commissioning','blocked'].includes(p.status)&&!p.serviceRetirement))missing.push('SUPPORT_COVERAGE_ALREADY_PENDING');
   const current=allAssignments(s).find(x=>x?.customer.id===request.customerId&&assignmentEffectiveAt(x,s.clock));
-  const replacement=current?.assignment.personId===plan.personId&&current.assignment.coverageId==='business-hours'&&plan.coverageId==='extended'?current.project.id:null;
+  const replacement=current?.assignment.personId===plan.personId&&replacementEdge(current.assignment.coverageId,plan.coverageId)?current.project.id:null;
   if(current&&!replacement)missing.push('CUSTOMER_ALREADY_HAS_NAMED_SUPPORT_COVERAGE');
   const cap=personCapacity(s,request.personId,request.customerId,s.clock);if(!cap.ready)missing.push(...cap.missing);
-  return {eligible:missing.length===0,missing:[...new Set(missing)],plan,capacity:cap,supportReplacesProjectId:replacement};
+  const commercial=plan.coverageId==='distributor-extended'?earnedTerms(s,request.customerId,hooks):null;if(commercial)missing.push(...commercial.missing);
+  return {eligible:missing.length===0,missing:[...new Set(missing)],plan,capacity:cap,supportReplacesProjectId:replacement,earnedTerms:commercial?.evidence||null};
  }
  function activeCandidateRows(s,customerId,at){
   return allAssignments(s).filter(Boolean).filter(x=>x.customer.id===customerId&&assignmentEffectiveAt(x,at)).sort((a,b)=>b.project.completedAt-a.project.completedAt||b.project.acceptedAt-a.project.acceptedAt||b.project.id.localeCompare(a.project.id));
@@ -143,7 +170,7 @@ function socProviderRegionalSupportKernel(){
   const result=typeof hooks.responsibilities==='function'?hooks.responsibilities(s,c.id):responsibilityApi().responsibilities(s,c.id,{customerRoot:(state,portfolioId)=>rootFor(state,{portfolioId},hooks),observeResource:hooks.observeResource});
   const record=result.records?.find(x=>x.customerId===c.id&&x.role==='distributor'&&x.organisationId==='branch-distribution');
   if(!record)return null;
-  const certificate=responsibilityApi().qualification(s,c.id,'partner-qualification').certificate;
+  const certificate=responsibilityApi().qualification(s,c.id,'partner-qualification',{customerRoot:(state,portfolioId)=>rootFor(state,{portfolioId},hooks),observeResource:hooks.observeResource}).certificate;
   return {id:record.id,role:record.role,organisationId:record.organisationId,customerId:record.customerId,scope:[...record.scope].sort(),projectId:record.projectId,postingId:record.postingId,acceptedAt:record.acceptedAt,effectiveAt:record.effectiveAt,expiresAt:record.expiresAt,qualificationId:record.evidence?.qualificationId,qualificationProjectId:record.evidence?.qualificationProjectId,qualificationPostingId:record.evidence?.qualificationPostingId,qualification:certificate?{version:certificate.version,id:certificate.id,customerId:certificate.customerId,issuerOrganizationId:certificate.issuerOrganizationId,holderOrganizationId:certificate.holderOrganizationId,scopes:[...certificate.scopes].sort(),acceptedAt:certificate.acceptedAt,effectiveAt:certificate.effectiveAt,expiresAt:certificate.expiresAt,projectId:certificate.projectId,postingId:certificate.postingId}:null};
  }
  function sample(s,customerId,at=s?.clock,hooks={}){
@@ -165,7 +192,7 @@ function socProviderRegionalSupportKernel(){
    if(!integer(workforce?.support,1)||!integer(payroll?.personMinutes,1)||!integer(payroll?.billedMinutes,1)||!integer(payroll?.costCents,1))missing.push('PAID_SHARED_SUPPORT_PAYROLL_REQUIRED');
    if(payroll?.personMinutes>0&&payroll?.billedMinutes>0)namedSupport=snapshotFor(s,selected,at,capacityResult.limit,payroll);
   }
-  const distributor=distributorEvidence(s,c,hooks);
+  const distributor=distributorEvidence(s,c,hooks);if(selected?.assignment.coverageId==='distributor-extended'&&!distributor)missing.push('CURRENT_DISTRIBUTOR_SUPPORT_TARIFF_REQUIRED');
   return {eligible:missing.length===0,missing:[...new Set(missing)],namedSupport,distributor,capacity:capacityResult};
  }
  function decodeSamples(s,hooks={}){
@@ -181,7 +208,7 @@ function socProviderRegionalSupportKernel(){
   // The live team may later be downsized; historical verification uses its sampled limit.
   if(!integer(proof.paidSupportSlots,0,20)||!integer(proof.payrollPersonMinutes,1,s.providerCampaign.payroll.personMinutes)||!integer(proof.payrollBilledMinutes,1,Math.min(proof.payrollPersonMinutes,s.providerCampaign.payroll.billedMinutes)))return false;
   const workforce=participant.responsibility?.sharedWorkforce;if(workforce?(proof.paidSupportSlots!==workforce.support||proof.payrollPersonMinutes!==workforce.personMinutes||proof.payrollBilledMinutes!==workforce.billedMinutes):options.allowIneligible!==true)return false;
-  if(!same(proof,expected))return false;if(options.allowIneligible===true)return true;
+  if(!same(proof,expected))return false;if(options.allowIneligible===true)return true;if(proof.coverageId==='distributor-extended'&&!distributorSnapshotMatches(s,participant,at))return false;
   const minute=at%1440;return minute>=proof.shiftStart&&minute<proof.shiftEnd&&proof.languages.includes(MARKETS[participant.market]?.language)&&proof.skills.includes('support')&&proof.market===participant.market&&proof.scopeCustomerIds.includes(participant.customerId)&&proof.usedSupportSlots+proof.implementationSupportSlots<=proof.paidSupportSlots;
  }
  function distributorSnapshotMatches(s,participant,at){
@@ -191,7 +218,7 @@ function socProviderRegionalSupportKernel(){
   if(!qualificationProject||!project||!paidPostingValid(s,qualificationProject)||!paidPostingValid(s,project)||!integer(qualificationProject.completedAt)||qualificationProject.completedAt>at||!integer(project.completedAt)||project.completedAt>at||retirement&&integer(retirement.effectiveAt)&&retirement.effectiveAt<=at||!api.permits(certificate,participant.customerId,'distributor-room',at))return false;
   const qExpected={version:1,id:`provider-qualification-${qualificationProject.id}`,customerId:participant.customerId,issuerOrganizationId:'branch-distribution',holderOrganizationId:'orchard-msp',scopes:[...api.SCOPES].sort(),acceptedAt:qualificationProject.acceptedAt,effectiveAt:qualificationProject.completedAt,expiresAt:qualificationProject.completedAt+api.QUALIFICATION_MINUTES,projectId:qualificationProject.id,postingId:qualificationProject.postingId};
   const expected={id:`provider-responsibility-distributor-${project.id}`,role:'distributor',organisationId:'branch-distribution',customerId:participant.customerId,scope:[...(project.resources||[])].sort(),projectId:project.id,postingId:project.postingId,acceptedAt:project.acceptedAt,effectiveAt:project.completedAt,expiresAt:certificate.expiresAt,qualificationId:certificate.id,qualificationProjectId:certificate.projectId,qualificationPostingId:certificate.postingId,qualification:qExpected};
-  return same(saved,expected)&&api.permits(certificate,participant.customerId,'distributor-room',project.acceptedAt);
+  const purchase=api.permits(certificate,participant.customerId,'distributor-room',project.acceptedAt)?certificate:s.providerCampaign.contentVersion==='provider-campaigns-8'?api.purchaseQualification(s,participant.customerId,project.acceptedAt):null;return same(saved,expected)&&api.permits(purchase,participant.customerId,'distributor-room',project.acceptedAt);
  }
  function sampleMatches(s,participant,at,hooks,options={}){
   if(participant.eligible!==true||!participant.responsibility||!participant.boundaries?.length||!retainedNamedSupportMatches(s,participant,at))return false;
@@ -308,10 +335,10 @@ function socProviderRegionalSupportKernel(){
   const c=customerFor(s,customerId);if(!c)return null;
   const market=marketFor(s,c,hooks),personId=Object.keys(PEOPLE).find(id=>PEOPLE[id].market===market);
   const current=sample(s,customerId,s.clock,hooks);
-  return {version:VERSION,customerId,market,asOf:s.clock,current,person:personId?{...copy(PEOPLE[personId]),name:PERSON_NAMES[personId]}:null,offers:personId?Object.keys(COVERAGE).map(coverageId=>{const request={customerId,market,personId,coverageId},result=canOrder(s,request);return {operationId:OPERATION_ID,request,eligible:result.eligible,missing:result.missing,terms:operationPlan(request),supportReplacesProjectId:result.supportReplacesProjectId||null};}):[]};
+  return {version:VERSION,customerId,market,asOf:s.clock,current,person:personId?{...copy(PEOPLE[personId]),name:PERSON_NAMES[personId]}:null,offers:personId?Object.keys(COVERAGE).map(coverageId=>{const request={customerId,market,personId,coverageId},result=canOrder(s,request,hooks);return {operationId:OPERATION_ID,request,eligible:result.eligible,missing:result.missing,terms:operationPlan(request),supportReplacesProjectId:result.supportReplacesProjectId||null};}):[]};
  }
  function source(){return `const SOC_PROVIDER_REGIONAL_SUPPORT=(${socProviderRegionalSupportKernel.toString()})();`;}
- return {PACK,VERSION,CONTENT,OPERATION_ID,MAX_CUSTOMERS_PER_PERSON,MARKETS:copy(MARKETS),PEOPLE:copy(PEOPLE),COVERAGE:copy(COVERAGE),GOALS:{C3,C5,T2,LEVEL7},inspectCustomer,operationPlan,canOrder,assignment(s,customerId,at=s?.clock){validate(s);const row=activeCandidateRows(s,customerId,at)[0];return row?copy(row.assignment):null;},capacity,sample,validateSampleEvidence,validateNamedSupportSnapshot:retainedNamedSupportMatches,validateDistributorSnapshot:distributorSnapshotMatches,validateIntegrationSnapshot:integrationSnapshotValid,evaluate,validateEvidence,validate,retentionPins,source};
+ return {PACK,VERSION,CONTENT,OPERATION_ID,MAX_CUSTOMERS_PER_PERSON,MARKETS:copy(MARKETS),PEOPLE:copy(PEOPLE),COVERAGE:copy(COVERAGE),GOALS:{C3,C5,T2,LEVEL7},inspectCustomer,operationPlan,canOrder,earnedTerms,completeEligibility,assignment(s,customerId,at=s?.clock){validate(s);const row=activeCandidateRows(s,customerId,at)[0];return row?copy(row.assignment):null;},capacity,sample,validateSampleEvidence,validateNamedSupportSnapshot:retainedNamedSupportMatches,validateDistributorSnapshot:distributorSnapshotMatches,validateIntegrationSnapshot:integrationSnapshotValid,evaluate,validateEvidence,validate,retentionPins,source};
 }
 const SOC_PROVIDER_REGIONAL_SUPPORT=socProviderRegionalSupportKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_REGIONAL_SUPPORT;

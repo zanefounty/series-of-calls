@@ -1,0 +1,19 @@
+# Fictional Tokyo service boundary review
+
+Provider content version 8 can fund the existing `service-boundary-review` operation for an active SMB or Enterprise customer in `jp-tokyo`, whose actual child jurisdiction is `JP`. The operation keeps its existing cost and staff terms: 40,000 cents, six engineering minutes, one engineer and one support reservation. Payment does not immediately make the service eligible.
+
+The new plan is version 2, `provider-service-boundary-jp-2`. It represents the fictional registered **managed service** `fictional-jp-managed-service-v2`, not supplier-wide eligibility. Its service and support languages are Japanese; processing, storage, backup, keys, administration and support are scoped to JP. It does not authorize AI use or cross-region transfers. Existing version-one AU, US and EU plans remain byte-compatible and do not acquire registration fields or new permissions. Versions before Provider content 8 still cannot purchase this JP plan.
+
+Planning requires the actual accepted retail agreement, paid and effective base/carrier/partner projects, current MSP responsibility, paid shared support and live identity/calling/engagement dependencies. The plan pins their generations, tenant, customer, topology and paid project/posting lineage. A later migration can invalidate that scope; a new paid review must include the newly commissioned platform. A restored JP plan must also match its version-8 parent, actual Tokyo customer and JP child. Importing an arbitrary JP contract is not an alternative purchase path.
+
+`23-provider-service-boundary.js` owns the fixed contract and pure observations. The normal Provider operation dispatcher installs it and the existing `43-boundaries.js` evaluator checks registration, language, allowed flows and live control observations. Parent restore validation calls `validatePlan(plan, state)`; standalone `validatePlan(plan)` validates the exact plan shape without asserting a campaign exists. Worker composition uses the same serialized helper.
+
+The source context is `uc-new:domain:commercial-roles`, the regional progression obligations `progress.goal.c3`, `progress.goal.c5`, `progress.progression-level.7` and `progress.goal.t2`, and the existing fictional JP profile linked to `RES-JP-CLOUD-001` and `RES-JP-AI-001`. Those references are retained context, not accepted research or legal approval. The evaluator continues to report `legalApprovalClaim: false`. This change enables one prerequisite for regional progression; it does not prove the complete regional goals.
+
+## Verification
+
+The public-dispatch regression file is `tests/provider-service-boundary-jp.test.js`. It covers a funded delayed review and actual subsequent voice, paid migration invalidation and re-review, coherent saved-contract registration/language/region/AI/version forgeries, actual worker continuation, and unchanged non-JP version-one restore. Positive fixtures use only validated public commands. Malicious saved copies are used only for import rejection.
+
+Initial development execution: `node --test --test-isolation=none tests/provider-service-boundary-jp.test.js` passed three of four tests. The migration recovery test reached a shared `INVALID_PROVIDER_SUPPORT_OBSERVATION` refusal while advancing lawful paid work; its failure is retained in `/tmp/soc-jp-service-boundary-test.log` and must be resolved and rerun before that path is claimed. No browser execution, frozen-candidate acceptance, source disposition or legal authorization is claimed here.
+
+The existing three service-boundary regressions also passed unchanged (`node --test --test-isolation=none tests/provider-service-boundary.test.js`, `/tmp/soc-service-boundary-existing-regression.log`). This includes the previous unsupported JP scope counterexample, which still refuses an AU customer relabelled only at the child jurisdiction.

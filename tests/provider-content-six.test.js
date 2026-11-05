@@ -34,5 +34,5 @@ test('version five restores and delivers its paid guest room while refusing vers
  assert.equal(s.portfolio.customers[0].root.information.meeting.effective.capacity,2);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  for(const operationId of ['national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve'])assert.ok(SOC.provider.quote(s,{action:'operation',operationId,customerId}).blockers.includes('PROVIDER_CONTENT_SIX_REQUIRED'));
- const future=structuredClone(s);future.providerCampaign.contentVersion='provider-campaigns-8';assert.throws(()=>SOC.restore(JSON.stringify(future)),/INVALID_PROVIDER_CAMPAIGN/);
+ const future=structuredClone(s);future.providerCampaign.contentVersion='provider-campaigns-9';assert.throws(()=>SOC.restore(JSON.stringify(future)),/INVALID_PROVIDER_CAMPAIGN/);
 });

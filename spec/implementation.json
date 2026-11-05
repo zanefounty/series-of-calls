@@ -6896,6 +6896,64 @@
       ],
       "status": "partial",
       "scope": "Pure shared pixel geometry keeps customer/site/link/resource hit targets distinct in a growing selected estate. Wrapped rows preserve camera and selected scope, and SVG paths share the button positions. One, two and twenty geographical customers and 19-resource/14-operation estate renderer fixtures cover desktop and mobile. This does not certify full source-catalogue map interactions or every paid mission and family journey."
+    },
+    {
+      "id": "BEH-SOC-387",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/23-provider-integration-assurance.js",
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "testIds": [
+        "AC-SOC-646",
+        "AC-SOC-647",
+        "AC-SOC-648"
+      ],
+      "status": "partial",
+      "scope": "Priced earned integration assurance with immutable claim scope, explicit editable policy subsets and current edge/boundary suspension. Public unearned orders and worker orders refuse atomically; isolated planner and retained-action counterexamples cover scope, action kind, commissioning time and changed integrations. These bounded tests do not establish a genuinely earned T2 claim, paid delivery or automatic action after that claim; those remain pending."
+    },
+    {
+      "id": "BEH-SOC-388",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/23-provider-journeys.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-journeys.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-644",
+        "AC-SOC-645"
+      ],
+      "status": "partial",
+      "scope": "Pure Provider journey explanations derived from retained queue, assignment, connection, wrap and outcome events, with actual supplier usage counters and current carrier occupancy. Customer period pricing and delivery credits are distinguished from supplier units. A real autonomous delivered voice job, transfer timing, missing history, repeated pure rendering and worker/save continuation are covered. This does not prove new handoff mechanics, every media failure or final browser acceptance."
+    },
+    {
+      "id": "BEH-SOC-389",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/93-ui/79-provider-incidents.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-649",
+        "AC-SOC-650",
+        "AC-SOC-651",
+        "AC-SOC-652"
+      ],
+      "status": "partial",
+      "scope": "Contextual incident presentation names the affected customer and observed service symptoms, separates a recorded event from an unperformed diagnosis, and presents current quote costs, lead/work time, staff and actionable blockers. Public paid construction, an actual incident, staffing refusal and paid delayed repair with restore are exercised; foreign or absent quotes cannot manufacture terms. Inspection is pure. No paid diagnosis mechanic or final browser acceptance is claimed."
     }
   ]
 }

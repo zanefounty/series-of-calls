@@ -5,6 +5,7 @@ const vm=require('node:vm');
 const SOC=require('../src/game/55-communications.js');
 const FACTS=require('../src/game/23-provider-progression.js');
 const HISTORY=require('../src/game/23-provider-support-history.js');
+const SUPPORT_WORK=require('../src/game/23-provider-support-work.js');
 
 const CUSTOMER='next-1-customer';
 const clone=value=>JSON.parse(JSON.stringify(value));
@@ -63,7 +64,7 @@ function fixture(){
  cachedFixture=clone(state);
  return state;
 }
-const hooksFor=()=>({catalogue:SOC.catalogue});
+const hooksFor=()=>({catalogue:SOC.catalogue,supportWorkOrigin:SUPPORT_WORK.origin});
 function coreParticipant(participant){return Object.fromEntries(['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'].map(key=>[key,participant[key]??null]));}
 
 test('historical eligibility is reconstructed at the sampled minute across paid carrier outage and repair',()=>{
@@ -81,6 +82,10 @@ test('historical eligibility is reconstructed at the sampled minute across paid 
 
 test('sample eligibility flags cannot replace historical paid configuration, fault or boundary reconstruction',()=>{
  const state=fixture(),rows=samples(state),hook=hooksFor(state),incident=state.providerCampaign.incidents.find(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),good=rows.find(row=>row.at<incident.activatedAt&&row.participants.find(p=>p.customerId===CUSTOMER)?.eligible===true),bad=clone(rows.find(row=>row.at===incident.activatedAt).participants.find(p=>p.customerId===CUSTOMER));
+ const reconstructed=HISTORY.reconstructParticipantAt(state,CUSTOMER,incident.activatedAt,hook);
+ assert.equal(reconstructed.status,'supported');
+ assert.ok(reconstructed.participant.missing.includes('resource-not-current:carrier'));
+ for(const bound of ['identity','phone','engage'])assert.ok(reconstructed.participant.missing.includes(`resource-not-current:${bound}`),`a carrier outage invalidates the active shared boundary across ${bound}`);
  bad.eligible=true;bad.missing=[];bad.resources=clone(good.participants.find(p=>p.customerId===CUSTOMER).resources);bad.boundaries=clone(good.participants.find(p=>p.customerId===CUSTOMER).boundaries);bad.responsibility=clone(good.participants.find(p=>p.customerId===CUSTOMER).responsibility);
  assert.equal(HISTORY.validateParticipantAt(state,bad,incident.activatedAt,hook).status,'invalid');
  const missingTimeline=HISTORY.reconstructParticipantAt(state,CUSTOMER,incident.activatedAt,{});
@@ -88,10 +93,27 @@ test('sample eligibility flags cannot replace historical paid configuration, fau
  const wrongMinute=HISTORY.reconstructParticipantAt(state,CUSTOMER,253,hook);assert.equal(wrongMinute.status,'unsupported');
 });
 
+test('pruned arrival event uses only the validated retained Provider origin',()=>{
+ const state=fixture(),root=state.portfolio.customers.find(row=>row.id===CUSTOMER).root;
+ const arrival=state.providerCampaign.events.find(event=>event.code==='CUSTOMER_WORK_ARRIVED'&&event.customerId===CUSTOMER&&event.channel==='message'),message=arrival&&root.interactions.find(interaction=>interaction.id===arrival.interactionId),at=message?.finishedAt;
+ assert.ok(message&&Number.isSafeInteger(at),'fixture retains an authored digital arrival and resolved interaction');
+ const altered=clone(state);altered.providerCampaign.events=altered.providerCampaign.events.filter(event=>event.interactionId!==message.id);
+ const pinned=HISTORY.reconstructParticipantAt(altered,CUSTOMER,at,hooksFor());
+ assert.equal(pinned.status,'supported');
+ assert.ok(!pinned.participant.missing.includes('resolved-digital-case-not-retained'),'the exact retained arrival origin can survive event pruning');
+ const unanchored=HISTORY.reconstructParticipantAt(altered,CUSTOMER,at,{catalogue:SOC.catalogue});
+ assert.equal(unanchored.status,'supported');
+ assert.ok(unanchored.participant.missing.includes('resolved-digital-case-not-retained'),'same-tenant work without a retained Provider origin cannot substitute');
+ assert.ok(!unanchored.participant.eligible,'unrelated retained interaction cannot qualify Provider delivery');
+});
+
 test('historical reconstruction is pure, survives validated restore, and serializes as a standalone worker adapter',()=>{
  const state=fixture(),rows=samples(state),hook=hooksFor(state),good=rows.find(row=>row.participants.some(p=>p.customerId===CUSTOMER&&p.eligible)),before=JSON.stringify(state);
  const result=HISTORY.reconstructParticipantAt(state,CUSTOMER,good.at,hook);
  assert.equal(result.status,'supported');assert.deepEqual(JSON.parse(JSON.stringify(state)),JSON.parse(before),'reconstruction does not mutate campaign, child root, resource or boundary state');
+ const validator=HISTORY.createValidator(state,hook),participant=good.participants.find(p=>p.customerId===CUSTOMER);
+ assert.equal(validator(participant,good.at).status,'valid','one call-local validator shares only its own reconstruction caches');
+ assert.deepEqual(JSON.parse(JSON.stringify(state)),JSON.parse(before),'cached validation remains read-only');
  const restored=SOC.restore(before);assert.deepEqual(restored,state,'the actual saved state remains accepted by normal restore');
  const workerContext=vm.createContext({});
  assert.doesNotThrow(()=>vm.runInContext(`${HISTORY.source()};globalThis.adapter=SOC_PROVIDER_SUPPORT_HISTORY;`,workerContext));

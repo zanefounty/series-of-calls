@@ -22,7 +22,7 @@ test('PLAY-010/016 authored campaign content changes demand timing and usage exp
  }
  assert.notDeepEqual(profiles.smb.voiceMinutes,profiles.enterprise.voiceMinutes,'enterprise arrival timing is distinct from the SMB service desk');
  assert.notDeepEqual(profiles.government.digitalMinutes,profiles.defence.digitalMinutes,'records and disconnected-site workload do not reuse the same digital schedule');
- const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';delete legacy.providerCampaign.enterpriseContinuityVersion;delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.meetingDependencyVersion;delete legacy.providerCampaign.supportObservation;delete legacy.providerCampaign.serviceRetirementVersion;delete legacy.providerCampaign.externalCollaborationVersion;
+ const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';delete legacy.providerCampaign.enterpriseContinuityVersion;delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.meetingDependencyVersion;delete legacy.providerCampaign.supportObservation;delete legacy.providerCampaign.supportWork;delete legacy.providerCampaign.workforceHistory;delete legacy.providerCampaign.serviceRetirementVersion;delete legacy.providerCampaign.externalCollaborationVersion;
  const restored=SOC.restore(JSON.stringify(legacy)),quote=SOC.provider.quote(restored,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
  assert.equal(quote.forecast.conditionalFullPlan.usageForecast,3000,'a validated version-one save keeps its historical 16 three-minute calls and eight messages');
 });

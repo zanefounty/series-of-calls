@@ -62,6 +62,8 @@ test('earned mission victory survives a later poor period and remains sufficient
 test('legacy win state reconstructs a missing optional proof from the retained event and qualifying settlements',()=>{
  const c=winSmb(),legacy=structuredClone(c.state);
  legacy.providerCampaign.contentVersion='provider-campaigns-6';
+ delete legacy.providerCampaign.supportWork;delete legacy.providerCampaign.workforceHistory;for(const row of legacy.portfolio.customers)delete row.root.providerSupportPins;
+ const facts=require('../src/game/23-provider-progression');legacy.providerCampaign.supportObservation=facts.encodeSupportObservation(facts.decodeSupportObservation(legacy.providerCampaign.supportObservation).map(sample=>{sample.version=1;for(const row of sample.participants)for(const key of ['namedSupport','distributor','integrations'])delete row[key];return sample;}));
  delete legacy.providerCampaign.mission.victoryProof;
  let restored=SOC.restore(JSON.stringify(legacy));
  assert.deepEqual(restored,legacy,'legacy state without the new proof remains restorable');

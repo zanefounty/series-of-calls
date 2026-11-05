@@ -4,7 +4,7 @@ This helper adds paid, named Provider workforce coverage to the existing 60-minu
 
 ## Evidence and terms
 
-The optional version-1 operation is `provider-support-coverage`. Its exact plan request is `{customerId, market, personId, coverageId}`. The authored roster has one named Orchard MSP support person per market, with `support` skill and the market's configured language. `business-hours` coverage is 08:00–20:00 (A$90 setup, A$80 per period, four work minutes and one support slot); `extended` covers all minutes (A$180 setup, A$160 per period, six work minutes and one support slot). These are proposed fictional balance terms, not yet available through Provider dispatch.
+The optional version-1 operation is `provider-support-coverage`. Its exact plan request is `{customerId, market, personId, coverageId}`. The authored roster has one named Orchard MSP support person per market, with `support` skill and the market's configured language. `business-hours` coverage is 08:00–20:00 (A$90 setup, A$80 per period, four work minutes and one support slot); `extended` covers all minutes (A$180 setup, A$160 per period, six work minutes and one support slot). These version-8 fictional balance terms are available through the validated Provider quote and dispatch paths in this integration branch.
 
 The parent campaign remains the sole treasury and payroll owner. This helper does not create a business, cash, or people. A candidate quote must fit the already-paid shared Provider support headcount. Active assignments count distinct named people, and a person can cover at most two customers in the same authored market. The named roster does not replace customer agents or BPO.
 
@@ -39,9 +39,9 @@ The helper exports `operationPlan(request)`, `canOrder(state, request)`, `capaci
 This is a synthetic market/support adaptation. It does not assert geographic coverage, legal approval, real provider employment, or catalogue completion. The helper alone does not establish public-dispatch or visible-control acceptance; those require parent integration and public Provider tests.
 
 
-## Coordinator integration contract (not implemented by this isolated branch)
+## Integration contract and remaining work
 
-The standalone helper and renderer are ready for integration review. The ordered static assembler discovers these files, but `SOC.dispatch`, the strict campaign schema, worker source composition, support-sample codec, claims, inspector caller and locales **are not yet integrated**. Existing helper fixtures deliberately supply a trusted test validator; they are domain counterexamples, not paid campaign, restore-transport or browser acceptance. Do not import a permissive test hook into runtime.
+Paid purchases, strict campaign schema, worker composition, versioned support samples, the scoped inspector and all six locale dictionaries are integrated in this branch. C3/C5/T2/L7 claims, retained integration-history adapters and earned offers/policies remain incomplete. The standalone helper fixtures supply a trusted test validator; their results do not establish public-dispatch or browser acceptance. The public runtime reconstructs historical service participants independently; no permissive fixture hook belongs in runtime.
 
 ### Purchase, installation and replacement
 
@@ -49,12 +49,12 @@ Use one exact public command through the existing Provider boundary:
 
 ```js
 {type:'provider', command:{
-  action:'operate', customerId, operationId:'provider-support-coverage',
+  action:'operation', customerId, operationId:'provider-support-coverage',
   config:{market, personId, coverageId}, quoteRevision
 }}
 ```
 
-This is an integration proposal; the current dispatcher does not accept it. Normalize `config` to the exact helper request `{customerId,market,personId,coverageId}`. Call `canOrder` during both quotation and atomic commitment. Recompute canonical `operationPlan`; never accept prices, scope, language or names from the command. Recheck revision, idempotency, cash, available implementation support and named reservations before one setup posting. Save the canonical request as `project.supportRequest` at commitment so a running/blocked order already reserves its named person and customer scope. A rejected/stale quote preserves its UI draft and commits nothing.
+The dispatcher accepts this exact operation through revision-bound quotation. Normalize `config` to the exact helper request `{customerId,market,personId,coverageId}`. Call `canOrder` during both quotation and atomic commitment. Recompute canonical `operationPlan`; never accept prices, scope, language or names from the command. Recheck revision, idempotency, cash, available implementation support and named reservations before one setup posting. Save the canonical request as `project.supportRequest` at commitment so a running/blocked order already reserves its named person and customer scope. A rejected/stale quote preserves its UI draft and commits nothing.
 
 | Coverage | Setup cents | Period cents | Work minutes | Engineers | Support during work | Shift |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
@@ -97,6 +97,6 @@ The working integration now exposes paid named coverage in the customer inspecto
 
 Support observation version3 retains row2 named coverage, distributor and integration fields. Immutable customer/portfolio/tenant/market/scenario and codec-version mismatches reject on restore. A versioned workforce journal records paid-team changes with ordered from/to values; restore checks current team, integrated payroll and retained TEAM_RESIZED events. Historical samples use the team before commands at the same minute. Inflated sampled support counts reject against that independent journal, and the actual serialized worker matches direct dispatch through staffing changes. The journal helper has bounded storage and tested checkpoint pruning; automatic pruning still needs claim-retention anchors before use.
 
-The focused checkpoint passed36 tests (purchase/dispatch, sampled-history counterexamples, pure helper, UI and workforce history), all7028 translation labels and the build. These are mutable integration checks, not final frozen acceptance. Historical service eligibility during resource/incident changes still requires independently reconstructed evidence. Integration snapshots, C3/C5/T2/L7 claims and useful earned operations/policies remain unconnected. Do not enable or certify those claims from paid coverage alone. Final registered acceptance, full candidate checks and actual regional browser journeys remain required.
+The focused checkpoint passed36 tests (purchase/dispatch, sampled-history counterexamples, pure helper, UI and workforce history), all7028 translation labels and the build. These are mutable integration checks, not final frozen acceptance. Historical service eligibility during resource/incident changes still requires independently reconstructed evidence. Integration snapshots, C3/C5/T2/L7 claims and useful earned operations/policies remain unconnected. Do not enable or certify those claims from paid coverage alone. Final registered acceptance, full candidate checks and actual regional browser journeys remain required. The strict historical-service integration is being verified with public dispatch/restore counterexamples; it is not yet a frozen passing candidate.
 
 The broader authority/runtime/progression run executed86 cases:84 passed and two failed. One assertion still treated newly supported observation version3 as unknown; the corrected refusal now targets version4 and the complete11-case facts suite passes. The other exposed a real map-render failure: generic operation quoting omitted the named coverage selection. Named coverage now appears only in its scoped customer offer controls; the runtime/UI rerun passes13 cases. Original failure output is retained at `/tmp/soc-regional-journal-core-regression.log`; this is not represented as an all-green86-case rerun.

@@ -66,3 +66,22 @@ test('support-window explanations stay compact, preserve exact evidence and expo
  assert.deepEqual([...host.querySelectorAll('button[data-provider-action="operation"]')].map(b=>[b.dataset.operation,b.dataset.id]),[['managed-carrier-headroom','starter-customer'],['integrator-room','next-1-customer'],['regional-provisioning','next-2-customer']]);
  dom.window.close();
 });
+
+test('central service goals explain the next work and retain all scoped purchase alternatives',()=>{
+ const {dom,w}=ui(),state=SOC.create({experience:'campaign'}),report=FACTS.evaluate(state,hooks);
+ w.eval(fs.readFileSync(path.join(__dirname,'../src/game/93-ui/70-provider-hud.js'),'utf8'));
+ w.eval(fs.readFileSync(path.join(__dirname,'../src/game/93-ui/75-provider-panels.js'),'utf8'));
+ report.claims={rows:[],unlockProposals:[{offers:['national-wholesale-headroom','managed-national-wholesale-headroom'].map((operationId,index)=>({request:{operationId,customerId:'next-1-customer'},quote:{setupCents:index?14000:26000,periodCents:index?9000:6000,workMinutes:index?8:6,engineers:index?0:1,support:index?1:0}}))}]};
+ const host=w.document.createElement('div');host.innerHTML=w.SOCProviderProgression.render(report);
+ const wholesale=host.querySelector('[data-progression-id="progress.progression-level.5"]'),government=host.querySelector('[data-progression-id="progress.progression-level.6"]');
+ assert.match(wholesale.textContent,/two distinct customers/);assert.match(wholesale.textContent,/wholesale usage charges/);
+ assert.match(government.textContent,/recovery from a support-boundary incident/);
+ assert.equal(host.querySelectorAll('.provider-earned-option').length,2);
+ assert.match(host.querySelector('.provider-earned-option').textContent,/A\$260 setup · A\$60 per period · 6 minutes · 1 engineers \+ 0 support/);
+ assert.match(host.querySelectorAll('.provider-earned-option')[1].textContent,/A\$140 setup · A\$90 per period · 8 minutes · 0 engineers \+ 1 support/);
+ assert.deepEqual([...host.querySelectorAll('button[data-provider-action="operation"]')].map(b=>[b.textContent,b.dataset.operation,b.dataset.id]),[
+  ['National carrier headroom','national-wholesale-headroom','next-1-customer'],
+  ['Managed national carrier headroom','managed-national-wholesale-headroom','next-1-customer']
+ ]);
+ dom.window.close();
+});

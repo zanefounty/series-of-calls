@@ -45,3 +45,18 @@ test('rendered authored names and quote values remain escaped and panel handlers
  const malicious=w.SOCProviderPanels.quote({action:'credit',commercial:{principalCents:1,interestRateBpsPerPeriod:0,estimatedInterestCentsPerPeriod:0},cashAfter:1,blockers:[]},{});host.innerHTML=malicious;
  assert.equal(host.querySelector('script'),null);dom.window.close();
 });
+
+test('earned capacity quotes show constrained units and preserve a refused draft without enabling commitment',()=>{
+ const SOC=require('../src/game/55-communications.js'),{dom,w}=ui();let state=SOC.create({experience:'campaign',scenario:'government'});
+ const opening={action:'purchase',offerId:'starter',planId:'steady',stage:'base'},openingQuote=SOC.provider.quote(state,opening);
+ state=SOC.dispatch(state,{type:'provider',command:{...opening,quoteRevision:openingQuote.atRevision}});
+ const request={action:'operation',operationId:'public-service-capture-reserve',customerId:'starter-customer'};
+ // The new customer has not earned the award; its refused quote still explains the proposal.
+ const quote=SOC.provider.quote(state,request),before=JSON.stringify(quote),host=w.document.createElement('div');
+ host.innerHTML=w.SOCProviderPanels.quote(quote,{quoteRequest:request,customers:[]});
+ assert.ok(quote.blockers.length);assert.ok(host.querySelector('[data-provider-action="confirm-quote"]').disabled);
+ assert.ok(host.querySelector('[data-provider-action="cancel-quote"]'));
+ assert.match(host.textContent,/concurrent capture reservations/);assert.match(host.textContent,/retention, backup, key or access permissions/);
+ assert.equal(JSON.stringify(quote),before);
+ dom.window.close();
+});

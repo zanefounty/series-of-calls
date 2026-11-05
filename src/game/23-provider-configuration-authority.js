@@ -40,7 +40,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   // These handlers return before the generic configure call in 55. Their capacity
   // deltas and incident effects have separate paid validators.
-  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
+  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
    if(id==='bpo')return {people:{enabled:true}};
    return {};
   }
@@ -57,7 +57,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(project.productId==='cisco-contact-centre')patch.speech={...(patch.speech||{}),region:child.jurisdiction};
    return patch;
   }
-  if(provider.contentVersion==='provider-campaigns-5'&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
+  if(['provider-campaigns-5','provider-campaigns-6'].includes(provider.contentVersion)&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
   if(project.operationId==='recording')patch.recorder={...(patch.recorder||{}),identityMapping:true};
   if(project.operationId==='transcription')patch.speech={...(patch.speech||{}),region:child.jurisdiction,local:true,licenceLocal:true};
   if(project.operationId==='local-deployment'){

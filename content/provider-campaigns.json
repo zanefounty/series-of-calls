@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "id": "provider-campaigns-5",
+  "id": "provider-campaigns-6",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -14,7 +14,7 @@
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -718,7 +718,7 @@
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1302,6 +1302,63 @@
       "sourceIds": [
         "uc-new:family:microsoft:meetings-rooms",
         "uc-new:family:cisco:meetings-devices"
+      ]
+    },
+    {
+      "id": "national-wholesale-headroom",
+      "name": "National carrier headroom",
+      "description": "After qualifying actual wholesale service for two supported customers, fund eight additional carrier sessions for one evidenced customer. Uses provider engineering with lower recurring cost.",
+      "setupCents": 26000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "managed-national-wholesale-headroom",
+      "name": "Managed national carrier headroom",
+      "description": "Use earned wholesale qualification to buy eight carrier sessions for one evidenced customer through supplier engineering. Lower setup competes with longer delivery, provider support and higher recurring cost.",
+      "setupCents": 14000,
+      "periodCents": 9000,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "public-service-capture-reserve",
+      "name": "Public-service recording reserve",
+      "description": "After evidenced public-service delivery, fund eight additional concurrent capture reservations within this customer's eligible boundary. Compared with two ordinary capture upgrades, this takes longer and costs more upfront, with lower recurring charges. Retention, keys, backup and permitted access stay governed by the existing scoped contract.",
+      "setupCents": 38000,
+      "periodCents": 6000,
+      "workMinutes": 12,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "recorder"
+      ],
+      "config": {},
+      "requirements": [
+        "recording",
+        "transcription"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:government-clouds"
       ]
     }
   ],

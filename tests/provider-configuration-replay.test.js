@@ -106,6 +106,45 @@ test('pending same-profile product reconfiguration retains its prior effective g
  assert.equal(SOC.restore(JSON.stringify(state)).portfolio.customers[0].root.products.deployments[0].effective.productVersion,oldEffective.productVersion);
 });
 
+test('configurationAt replays archive and processing generations at their paid submission times',()=>{
+ let state=opening();const c=customer(state),root=child(state),catalogue=SOC.catalogue;
+ const beforeRecording=state.clock;
+ const before=authority.configurationAt(state.providerCampaign,c,root,'archive',beforeRecording,{catalogue});
+ assert.equal(before.generation,1);assert.equal(before.config.enabled,false);
+ state=command(state,{action:'operation',operationId:'recording',customerId});
+ state=advance(state,state.providerCampaign.projects.at(-1).dueAt);
+ const recording=state.providerCampaign.projects.findLast(p=>p.operationId==='recording'),atRecording=recording.configSubmittedAt;
+ const recorded=authority.configurationAt(state.providerCampaign,customer(state),child(state),'archive',atRecording,{catalogue});
+ assert.equal(recorded.generation,recording.expectedGenerations.archive);assert.equal(recorded.generation,2);assert.equal(recorded.config.enabled,true);
+ state=command(state,{action:'operation',operationId:'transcription',customerId});
+ state=advance(state,state.providerCampaign.projects.at(-1).dueAt);
+ const transcription=state.providerCampaign.projects.findLast(p=>p.operationId==='transcription'),atTranscript=transcription.configSubmittedAt;
+ const processed=authority.configurationAt(state.providerCampaign,customer(state),child(state),'archive',atTranscript,{catalogue});
+ assert.equal(processed.generation,transcription.expectedGenerations.archive);assert.equal(processed.generation,3);assert.equal(processed.config.enabled,true);
+ assert.equal(authority.configurationAt(state.providerCampaign,customer(state),child(state),'not-a-resource',atTranscript,{catalogue}),null);
+ const forged=structuredClone(state);forged.providerCampaign.projects.find(p=>p.id===transcription.id).expectedGenerations.archive=2;
+ assert.throws(()=>authority.configurationAt(forged.providerCampaign,customer(forged),child(forged),'archive',atTranscript,{catalogue}),/INVALID_PROVIDER_CONFIG_AUTHORITY:GENERATION/);
+});
+
+test('configurationAt reflects a later funded capacity operation without rewriting earlier state',()=>{
+ let state=opening(),c=customer(state),root=child(state),catalogue=SOC.catalogue,atOpening=state.clock;
+ const prior=authority.configurationAt(state.providerCampaign,c,root,'carrier',atOpening,{catalogue});
+ state=command(state,{action:'operation',operationId:'carrier-headroom',customerId});
+ state=advance(state,state.providerCampaign.projects.at(-1).dueAt);
+ const project=state.providerCampaign.projects.findLast(p=>p.operationId==='carrier-headroom');
+ const before=authority.configurationAt(state.providerCampaign,customer(state),child(state),'carrier',project.configSubmittedAt-1,{catalogue});
+ const after=authority.configurationAt(state.providerCampaign,customer(state),child(state),'carrier',project.configSubmittedAt,{catalogue});
+ assert.equal(before.config.capacity,prior.config.capacity);
+ assert.equal(after.config.capacity,project.operationReceipt.capacity);
+ assert.equal(after.generation,project.expectedGenerations.carrier);
+});
+
+test('configurationAt is included in the standalone worker authority API',()=>{
+ const vm=require('node:vm'),box={};vm.createContext(box);
+ vm.runInContext(`${require('../src/game/24-provider-rules').source()}${products.source()}${require('../src/game/23-provider-government').source()}${authority.source()}globalThis.api=SOC_PROVIDER_CONFIGURATION_AUTHORITY;`,box);
+ assert.equal(typeof box.api.configurationAt,'function');
+});
+
 // A customer can be accepted after the shared campaign clock has advanced.
 test('Defence accepted after opening time keeps disabled pending resources and legacy imports unavailable',()=>{
  let state=SOC.create({experience:'campaign',scenario:'defence',seed:73});

@@ -51,7 +51,7 @@ function siteReady(){
 }
 function usage(s){return s.business.ledger.filter(row=>row.reason==='provider-site-voice-usage');}
 
-test('site responses reject stale and wrong-project commands, then bill actual journeys exactly once',()=>{
+test('AC-SOC-618 site responses reject stale and wrong-project commands, then bill actual journeys exactly once',()=>{
  let s=siteReady(),recovery=project(s,'site-recovery'),exercise=child(s).siteOperations.exercises.find(x=>x.id===recovery.operationReceipt.exerciseId);
  const before=JSON.stringify(s),stale={action:'site-response',projectId:recovery.id,response:'recover',quoteRevision:s.revision-1};
  assert.throws(()=>send(s,stale),/STALE_PROVIDER_QUOTE/);
@@ -86,7 +86,7 @@ test('site responses reject stale and wrong-project commands, then bill actual j
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('provider-site controls are read-only and raw or nested authoring paths stay closed',()=>{
+test('AC-SOC-619 provider-site controls are read-only and raw or nested authoring paths stay closed',()=>{
  const s=siteReady(),before=JSON.stringify(s),cash=s.business.balance.cash,revision=s.revision;
  const model=SOC.provider.inspect(s);
  assert.ok(model.customers.find(row=>row.id===CUSTOMER).ownedSites);
@@ -100,7 +100,7 @@ test('provider-site controls are read-only and raw or nested authoring paths sta
  assert.equal(JSON.stringify(s),quoteBefore,'quotes and rejected target previews do not alter state');
 });
 
-test('restore rejects altered work, duplicated usage and unfunded site resources; worker continuation matches dispatch',()=>{
+test('AC-SOC-620 restore rejects altered work, duplicated usage and unfunded site resources; worker continuation matches dispatch',()=>{
  let s=siteReady(),recovery=project(s,'site-recovery');
  s=send(s,{action:'site-response',projectId:recovery.id,response:'recover',quoteRevision:s.revision});
  s=advanceUntil(s,state=>child(state).siteOperations.exercises.find(x=>x.id===recovery.operationReceipt.exerciseId)?.phase==='restoring',30);

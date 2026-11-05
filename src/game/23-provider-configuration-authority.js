@@ -225,9 +225,39 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   validateCallingOperations(provider,customer,child,expected.projects);
   return true;
  }
- function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),source:()=>load().source()};})();`;}
- return {version:1,validateCustomer,source};
+ function configurationAt(provider,customer,child,resourceId,at,{catalogue}={}){
+  if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock||typeof resourceId!=='string')fail('READ_TIME');
+  if(!child.resources[resourceId])return null;
+  const projects=(provider.projects||[]).filter(p=>p?.customerId===customer.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&p.status!=='cancelled').map(p=>{
+   const row=clone(p);if(row.serviceRetirement&&row.serviceRetirement.requestedAt>at)delete row.serviceRetirement;return row;
+  });
+  const historicalProvider={...provider,projects},historicalChild=clone(child);historicalChild.clock=at;
+  if(Array.isArray(historicalChild.siteOperations?.exercises))for(const exercise of historicalChild.siteOperations.exercises)if(exercise.restoration?.requestedAt>at)exercise.restoration=null;
+  const expected=expectedModel(historicalProvider,customer,historicalChild,catalogue),config=expected.configs[resourceId];
+  if(!config)return null;
+  const originalOrder=new Map((provider.projects||[]).map((project,index)=>[project.id,index]));
+  const ordered=projects.slice().sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt||(originalOrder.get(a.id)||0)-(originalOrder.get(b.id)||0));
+  let generation=1;const generationEvents=[];
+  for(const project of ordered){
+   const value=project.expectedGenerations?.[resourceId];
+   if(value!==undefined)generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:value,id:project.id});
+   const receipt=project.operationReceipt;
+   if(receipt?.resource===resourceId&&Number.isSafeInteger(receipt.capacity)&&['carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','direct-external-reach','managed-external-reach'].includes(project.operationId))config.capacity=receipt.capacity;
+   if(project.serviceRetirement?.resources?.includes(resourceId)){
+    const retirement=project.serviceRetirement,retired=retirement.expectedGenerations?.[resourceId];
+    if(!Number.isSafeInteger(retired)||!Number.isSafeInteger(retirement.requestedAt)||retirement.requestedAt>at)fail(`RETIREMENT_GENERATION:${project.id}:${resourceId}`);
+    generationEvents.push({at:retirement.requestedAt,order:(originalOrder.get(project.id)||0)+0.5,generation:retired,id:project.id+':retirement'});
+   }
+  }
+  generationEvents.sort((a,b)=>a.at-b.at||a.order-b.order);
+  for(const event of generationEvents){if(!Number.isSafeInteger(event.generation)||event.generation<=generation||event.generation>child.resources[resourceId]?.generation)fail(`GENERATION:${event.id}:${resourceId}`);generation=event.generation;}
+  if(!child.resources[resourceId]||generation>child.resources[resourceId].generation)fail(`RESOURCE_GENERATION:${resourceId}`);
+  return {config:clone(config),generation};
+ }
+ function hooksCatalogue(catalogue){return !!catalogue&&typeof catalogue==='object'&&!Array.isArray(catalogue);}
+ function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),source:()=>load().source()};})();`;}
+ return {version:1,validateCustomer,configurationAt,source};
 }
 function socProviderConfigurationAuthorityDependencies(){if(typeof module!=='undefined'&&module.exports)return [require('./24-provider-rules.js'),require('./23-provider-products.js'),require('./23-provider-government.js')];return [SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES];}
-const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),source:()=>load().source()};})();
+const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),source:()=>load().source()};})();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_CONFIGURATION_AUTHORITY;

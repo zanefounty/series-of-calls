@@ -504,10 +504,32 @@ const SOC = (function socKernel() {
     const resources=[resourceId,config(child,resourceId)?.identity].filter(Boolean);
     return (child.transport?.reservations||[]).some(r=>resources.includes(r.from)||resources.includes(r.to));
   }
+  function providerCustodyPermissionSnapshotAt(s,customerId,child,at,context){
+    const customer=s.providerCampaign.customers.find(c=>c.id===customerId);if(!customer||!Number.isSafeInteger(at)||at>s.clock)return null;
+    const archive=providerConfigurationAuthority.configurationAt(s.providerCampaign,customer,child,'archive',at,{catalogue});if(!archive)return null;
+    // Provider operations start this pack but never author its read boundary.
+    const info=information.create({clock:0,jurisdiction:child.jurisdiction}).boundary;
+    let serviceBoundary={contractId:null,generation:null,flowId:null,effective:null},generation=0,policy=null;
+    const projects=s.providerCampaign.projects.filter(p=>p.customerId===customerId&&p.configSubmittedAt!==null&&p.configSubmittedAt<=at&&p.status!=='cancelled').sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt);
+    for(const project of projects){
+      if(['compliance','compliance-local'].includes(project.operationId)){
+        const architecture=governmentArchitectures.plan(project.operationId==='compliance-local'?'local-processing':'regional-cloud',{jurisdiction:child.jurisdiction,resources:['recorder','archive','speech'],contractId:'provider-public-service-processing'});
+        policy={...architecture.boundaryContract,id:'provider-public-service-capture',flows:architecture.boundaryContract.flows.filter(f=>['archive','recorder'].includes(f.resource))};
+      }else if(project.operationId!=='public-service-capture-reserve'||!policy)continue;
+      generation++;
+      const flows=[];for(const flow of policy.flows){const resource=providerConfigurationAuthority.configurationAt(s.providerCampaign,customer,child,flow.resource,project.configSubmittedAt,{catalogue});if(!resource)return null;flows.push({...clone(flow),resourceGeneration:resource.generation});}
+      serviceBoundary={contractId:policy.id,generation,flowId:'archive-flow',effective:{...clone(policy),flows}};
+    }
+    const record=child.records.find(r=>r.id===context.recordId);if(!record)return null;
+    const view={...child,information:{...child.information,boundary:{effective:info.desired}}},flow=serviceBoundary.effective?.flows.find(f=>f.resource==='archive');
+    const canRead=archive.config.enabled===true&&archive.config.access.includes(context.role)&&archive.config.region===record.region&&information.canRead(view,{...record,deleted:false},context.role,context.region)&&(!flow||flow.accessRoles.includes(context.role)&&flow.storageRegions.includes(record.region));
+    return {informationGeneration:info.generation,informationDesired:clone(info.desired),informationEffective:clone(info.desired),archive:{id:'archive',generation:archive.generation,effective:clone(archive.config)},serviceBoundary,canRead:!!canRead};
+  }
   function providerOwnedSiteHooks(parent){return {
     customerRoot:(s,id)=>s.portfolio.customers.find(c=>c.id===id)?.root,siteOperationsHooks:providerSiteHooks(parent),
     custodyReadiness:(s,c,child)=>providerOwnedSiteCustody.readiness(s,c.id,child),
-    validateCustodyRead:(s,c,child,r,options)=>{const project=s.providerCampaign.projects.find(p=>p.id===r.projectId);return providerOwnedSiteCustody.validateRead(s,c.id,child,project,r.custody,{},options);},
+    permissionSnapshotAt:providerCustodyPermissionSnapshotAt,
+    validateCustodyRead:(s,c,child,r,options)=>{const project=s.providerCampaign.projects.find(p=>p.id===r.projectId);return providerOwnedSiteCustody.validateRead(s,c.id,child,project,r.custody,{permissionSnapshotAt:providerCustodyPermissionSnapshotAt},options);},
     missionEvidence:(s,c,child,options)=>providerOwnedMissionEvidence(s,c.id,options),
     validateMissionEvidence:(s,c,child,e,options)=>JSON.stringify(e)===JSON.stringify(providerOwnedMissionEvidence(s,c.id,{...options,at:options?.at??s.clock,evidence:e}))
   };}

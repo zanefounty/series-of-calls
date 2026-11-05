@@ -77,7 +77,7 @@ function assertCustomerHasNoSeparateTreasury(s){
  assert.deepEqual(child(s).transport.ledger,[]);
 }
 
-test('paid site ingress and owned-site setup bind purchased endpoints, then commission only from effective state',()=>{
+test('AC-SOC-614 paid site ingress and owned-site setup bind purchased endpoints, then commission only from effective state',()=>{
  let s=opening();
  const openingCash=s.business.balance.cash,openingChild=structuredClone(child(s));
  const prematureIngress=SOC.provider.quote(s,{action:'operation',operationId:'site-diverse-ingress',customerId:CUSTOMER});
@@ -136,7 +136,7 @@ test('paid site ingress and owned-site setup bind purchased endpoints, then comm
  assert.throws(()=>SOC.restore(JSON.stringify(forgedBinding)),/OWNED_SITE|RESILIENCE|TRANSPORT|PAID_IDENTITY/);
 });
 
-test('a funded owned-site recovery records actual non-probe calls across fault, restoration and fresh service',()=>{
+test('AC-SOC-615 a funded owned-site recovery records actual non-probe calls across fault, restoration and fresh service',()=>{
  let s=opening();
  s=operation(s,'cisco-dedicated-uc');
  s=advanceUntil(s,state=>project(state,'cisco-dedicated-uc')?.status==='complete',60);
@@ -243,7 +243,7 @@ test('a funded owned-site recovery records actual non-probe calls across fault, 
  assert.throws(()=>SOC.restore(JSON.stringify(forgedRestore)),/RESTORE|RECEIPT|LINEAGE|INVALID/);
 });
 
-test('earned DF enables the paid managed recovery alternative and its real workflow',()=>{
+test('AC-SOC-616 earned DF enables the paid managed recovery alternative and its real workflow',()=>{
  let s=commissionedOwnedSites(opening());s=repairActiveIncident(s);
  const beforePrematureQuote=s.business.balance.cash,tooEarly=SOC.provider.quote(s,{action:'operation',operationId:'managed-site-recovery',customerId:CUSTOMER,config:{kind:'power',targetSite:OWN.SITE_IDS.head}});
  assert.ok(tooEarly.blockers.includes('EARNED_SITE_RECOVERY_MARKET_REQUIRED'),JSON.stringify(tooEarly.blockers));assert.equal(s.business.balance.cash,beforePrematureQuote);
@@ -275,7 +275,7 @@ test('earned DF enables the paid managed recovery alternative and its real workf
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('each owned endpoint migration is separately quoted, paid and retained against its exact source and target',()=>{
+test('AC-SOC-617 each owned endpoint migration is separately quoted, paid and retained against its exact source and target',()=>{
  let s=opening();
  s=operation(s,'cisco-dedicated-uc');
  s=advanceUntil(s,state=>project(state,'cisco-dedicated-uc')?.status==='complete',60);

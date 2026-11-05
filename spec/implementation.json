@@ -6812,6 +6812,34 @@
       ],
       "status": "partial",
       "scope": "Pure measured reserved-bandwidth advice and explicit validated capacity upgrade, typed Kbps/Mbps and basis-point bounds, active contract allocation, single setup charge and preservation of old effective capacity until provisioning completes. Inspired by pinned fork port-headroom and AU NNI upgrade tests. Autonomous standing orders, real PNI/IX portfolios and per-subscriber wholesale access remain pending."
+    },
+    {
+      "id": "BEH-SOC-384",
+      "sources": [
+        "progress.goal.df",
+        "progress.goal.m2",
+        "progress.progression-level.4",
+        "progress.progression-level.12"
+      ],
+      "implementation": [
+        "src/game/23-provider-owned-sites.js",
+        "src/game/23-provider-owned-site-custody.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-owned-sites.js"
+      ],
+      "testIds": [
+        "AC-SOC-614",
+        "AC-SOC-615",
+        "AC-SOC-616",
+        "AC-SOC-617",
+        "AC-SOC-618",
+        "AC-SOC-619",
+        "AC-SOC-620",
+        "AC-SOC-621"
+      ],
+      "status": "partial",
+      "scope": "Paid Provider independent ingress and owned-site commissioning, five real recovery sequences with actual duration-bearing work, separately funded endpoint migrations, DF/M2/L4 claims, an earned managed-recovery alternative, and an actual processed-record custody read. Dispatch and restore reject unpaid topology, stale responses, forged work and custody permissions; metered calls charge once and worker continuation matches. This bounded adapter does not establish the combined L12 or four-mission GI claim, all earned unlocks, the final browser matrix, or complete source catalogue fidelity."
     }
   ]
 }

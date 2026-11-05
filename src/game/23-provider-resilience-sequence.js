@@ -44,7 +44,7 @@ function socProviderResilienceSequenceKernel(){
   const sequence=job?.resilienceSequence;
   if(!parent?.providerCampaign||!customer||!job||!child||!sequence||!exact(sequence,['version','projectId','postingId','caller','tenant','windowStart','incidentId','phases','samples'])||sequence.version!==VERSION||typeof sequence.projectId!=='string'||typeof sequence.postingId!=='string'||sequence.caller!=='alex'||sequence.tenant!==child.tenant||!Array.isArray(sequence.phases)||sequence.phases.length<1||sequence.phases.length>3||!Array.isArray(sequence.samples)||sequence.samples.length>10)fail('INVALID_PROVIDER_RESILIENCE_SEQUENCE');
   const p=parent.providerCampaign,primary=p.projects.find(project=>project.id===sequence.projectId);
-  if(!['provider-campaigns-5','provider-campaigns-6'].includes(p.contentVersion)||job.customerId!==customer.id||job.channel!=='voice'||job.periodIndex<0||!integer(job.periodIndex)||job.caseId!==`pc-${customer.id}-${job.periodIndex}-0`||job.arrivalAt!==job.periodIndex*60+4||job.deadlineAt!==job.arrivalAt+24||!primary||primary.customerId!==customer.id||primary.kind!=='operation'||primary.operationId!=='primary-upstream'||primary.status!=='complete'||primary.postingId!==sequence.postingId||!Number.isSafeInteger(primary.completedAt)||primary.completedAt>job.periodIndex*60)fail('INVALID_PROVIDER_RESILIENCE_AUTHORITY');
+  if(!['provider-campaigns-5','provider-campaigns-6','provider-campaigns-7'].includes(p.contentVersion)||job.customerId!==customer.id||job.channel!=='voice'||job.periodIndex<0||!integer(job.periodIndex)||job.caseId!==`pc-${customer.id}-${job.periodIndex}-0`||job.arrivalAt!==job.periodIndex*60+4||job.deadlineAt!==job.arrivalAt+24||!primary||primary.customerId!==customer.id||primary.kind!=='operation'||primary.operationId!=='primary-upstream'||primary.status!=='complete'||primary.postingId!==sequence.postingId||!Number.isSafeInteger(primary.completedAt)||primary.completedAt>job.periodIndex*60)fail('INVALID_PROVIDER_RESILIENCE_AUTHORITY');
   const projectId=sequence.projectId,postingId=sequence.postingId;
   if(!/^[a-z][a-z0-9-]{0,47}$/.test(projectId)||!/^entry-[1-9][0-9]*$/.test(postingId)||job.interactionId!==sequence.phases[0].interactionId||job.deadlineAt!==job.arrivalAt+24)fail('INVALID_PROVIDER_RESILIENCE_AUTHORITY');
   const marker=child.providerResilienceCase,caseRow=child.cases?.[job.caseId];
@@ -59,7 +59,7 @@ function socProviderResilienceSequenceKernel(){
    if(interaction.phase==='resolved'&&(!Number.isSafeInteger(interaction.finishedAt)||interaction.finishedAt<interaction.startedAt)||interaction.phase==='failed'&&(!Number.isSafeInteger(interaction.finishedAt)||interaction.finishedAt<interaction.startedAt))fail('INVALID_PROVIDER_RESILIENCE_INTERACTION');
    if(interaction.probe===true||interaction.media!==undefined&&(interaction.media.in!==true||interaction.media.out!==true)||interaction.phase==='resolved'&&(!interaction.media||interaction.media.in!==true||interaction.media.out!==true||interaction.context!==true)||interaction.obligations?.length)fail('INVALID_PROVIDER_RESILIENCE_MEDIA');
    const assignments=child.workforceOps?.assignments||[],hasAssignment=interaction.agent!==undefined||interaction.workforceAssignment!==undefined;
-   if(hasAssignment&&(!interaction.agent||!interaction.workforceAssignment||!assignments.some(a=>a.interaction===interaction.workforceAssignment&&a.person===interaction.agent&&a.channel==='voice'&&['voice','wrap','complete'].includes(a.status)&&a.startedAt>=interaction.startedAt&&a.startedAt<=child.clock&&(!['resolved','failed'].includes(interaction.phase)||a.status==='complete'&&a.startedAt<=interaction.finishedAt)))||interaction.phase==='resolved'&&!hasAssignment)fail('INVALID_PROVIDER_RESILIENCE_HUMAN_ASSIGNMENT');
+   if(hasAssignment&&(!interaction.agent||!interaction.workforceAssignment||!assignments.some(a=>a.interaction===interaction.workforceAssignment&&a.person===interaction.agent&&a.channel==='voice'&&['voice','wrap','complete'].includes(a.status)&&a.startedAt>=interaction.startedAt&&a.startedAt<=child.clock&&(!['resolved','failed'].includes(interaction.phase)||a.status==='complete'&&a.startedAt<=interaction.finishedAt))))fail('INVALID_PROVIDER_RESILIENCE_HUMAN_ASSIGNMENT');
    if(customer.recording&&(!Array.isArray(interaction.records)||!interaction.records.some(recordId=>child.records?.some(r=>r.id===recordId&&r.kind==='recording'&&!r.deleted&&(r.captureScope||'complete')==='complete'))))fail('INVALID_PROVIDER_RESILIENCE_RECORDING');
    interactions.push(interaction);
   }
@@ -81,7 +81,8 @@ function socProviderResilienceSequenceKernel(){
  }
  function assessPaths(customer,job,child,incident){
   const sequence=job.resilienceSequence,items=sequence.phases.map(phase=>child.interactions.find(i=>i.id===phase.interactionId)),names=ids(customer.id),missing=[];
-  if(!incident||sequence.windowStart===null)return {missing:['SEQUENCE_WINDOW_NOT_STARTED']};
+  if(items.some(i=>i?.phase==='resolved'&&(!i.agent||!i.workforceAssignment)))missing.push('HUMAN_HANDLED_SEQUENCE_REQUIRED');
+  if(!incident||sequence.windowStart===null)return {missing:[...missing,'SEQUENCE_WINDOW_NOT_STARTED']};
   const W=sequence.windowStart,resolved=incident.resolvedAt,failedUntil=resolved===null?child.clock:resolved;
   if(!validAdmission(items[0],names.primary,names.primaryDomain,null,items[0].startedAt))missing.push('BASELINE_PRIMARY_PATH_NOT_USED');
   if(items[0].phase!=='resolved'||items[0].finishedAt>=W)missing.push('BASELINE_NOT_COMPLETED_BEFORE_FAILURE');

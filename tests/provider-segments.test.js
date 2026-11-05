@@ -44,10 +44,11 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  assert.deepEqual(q.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
  assert.equal(c.state.providerCampaign.missionStatus,'won');
 
+ const earnedVictory=structuredClone(c.state.providerCampaign.mission.victoryProof);
  const before={cash:c.state.business.balance.cash,staff:structuredClone(c.state.business.workforce),customers:c.state.providerCampaign.customers.map(x=>x.id),clock:c.state.clock};
  c.send({action:'advance-segment'});
  assert.equal(c.state.providerCampaign.scenario,'enterprise');
- assert.deepEqual(c.state.providerCampaign.segmentHistory,[{scenario:'smb',at:before.clock,focusCustomerId:'starter-customer',qualifiedPeriods:2,winnerCustomerId:'next-1-customer'}]);
+ assert.deepEqual(c.state.providerCampaign.segmentHistory,[{scenario:'smb',at:before.clock,focusCustomerId:'starter-customer',qualifiedPeriods:2,winnerCustomerId:'next-1-customer',victoryProof:earnedVictory}]);
  assert.equal(c.state.business.balance.cash,before.cash,'segment transition retains the shared treasury');
  assert.deepEqual(c.state.business.workforce,before.staff,'segment transition retains provider staff');
  assert.deepEqual(c.state.providerCampaign.customers.map(x=>x.id),before.customers,'segment transition retains customer portfolio');

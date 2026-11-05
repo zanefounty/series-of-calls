@@ -835,6 +835,23 @@
       "AC-SOC-610",
       "AC-SOC-611",
       "AC-SOC-612"
+    ],
+    "tests/provider-owned-site-dispatch.test.js": [
+      "AC-SOC-614",
+      "AC-SOC-615",
+      "AC-SOC-616",
+      "AC-SOC-617"
+    ],
+    "tests/provider-owned-site-authority-counterexamples.test.js": [
+      "AC-SOC-618",
+      "AC-SOC-619",
+      "AC-SOC-620"
+    ],
+    "tests/provider-owned-site-custody-dispatch.test.js": [
+      "AC-SOC-621"
+    ],
+    "tests/provider-owned-site-migration-recovery-scope.test.js": [
+      "AC-SOC-622"
     ]
   },
   "inputs": [
@@ -955,6 +972,7 @@
     "src/game/22-provider-demand.js",
     "src/game/23-information-record-store.js",
     "src/game/23-provider-capacity-authority.js",
+    "src/game/23-provider-central-progression.js",
     "src/game/23-provider-change-preview.js",
     "src/game/23-provider-configuration-authority.js",
     "src/game/23-provider-continuity.js",
@@ -962,6 +980,9 @@
     "src/game/23-provider-government.js",
     "src/game/23-provider-history.js",
     "src/game/23-provider-local-progression.js",
+    "src/game/23-provider-owned-site-custody.js",
+    "src/game/23-provider-owned-site-mission.js",
+    "src/game/23-provider-owned-sites.js",
     "src/game/23-provider-policy.js",
     "src/game/23-provider-products.js",
     "src/game/23-provider-progression-receipts.js",
@@ -1144,6 +1165,7 @@
     "src/game/93-ui/79-provider-integration.js",
     "src/game/93-ui/79-provider-lifecycle.js",
     "src/game/93-ui/79-provider-meetings.js",
+    "src/game/93-ui/79-provider-owned-sites.js",
     "src/game/93-ui/79-provider-progression.js",
     "src/game/93-ui/79-provider-resilience.js",
     "src/game/93-ui/79-provider-responsibility.js",
@@ -1308,6 +1330,10 @@
     "tests/progression-market.test.js",
     "tests/progression-observation.test.js",
     "tests/progression.test.js",
+    "tests/provider-owned-site-authority-counterexamples.test.js",
+    "tests/provider-owned-site-custody-dispatch.test.js",
+    "tests/provider-owned-site-dispatch.test.js",
+    "tests/provider-owned-site-migration-recovery-scope.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",

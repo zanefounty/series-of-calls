@@ -8,6 +8,7 @@ function socProviderProgressionFactsKernel(){
  function resilienceProgressionApi(){return typeof SOC_PROVIDER_RESILIENCE_PROGRESSION!=='undefined'?SOC_PROVIDER_RESILIENCE_PROGRESSION:require('./23-provider-resilience-progression.js');}
  function centralProgressionApi(){return typeof SOC_PROVIDER_CENTRAL_PROGRESSION!=='undefined'?SOC_PROVIDER_CENTRAL_PROGRESSION:require('./23-provider-central-progression.js');}
  function localProgressionApi(){return typeof SOC_PROVIDER_LOCAL_PROGRESSION!=='undefined'?SOC_PROVIDER_LOCAL_PROGRESSION:require('./23-provider-local-progression.js');}
+ function ownedSitesApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:require('./23-provider-owned-sites.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -370,7 +371,7 @@ function socProviderProgressionFactsKernel(){
  function blockedRows(rows){return Object.fromEntries(rows.map(([id,name,...req])=>[id,{id,name,status:'incomplete',missing:req.map(k=>MISSING[k]||`Required evidence is not evaluated: ${k}.`)}]));}
  function evaluate(s,hooks={}){
   if(!s||s.experience?.version!==1||s.experience?.kind!=='campaign'||s.experience?.custom!==false)fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
-  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5','provider-campaigns-6'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
+  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5','provider-campaigns-6','provider-campaigns-7'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
   if(!Array.isArray(p.customers)||!Array.isArray(p.projects)||!Array.isArray(p.jobs)||!Array.isArray(p.periodHistory)||!s.business||!Array.isArray(s.business.ledger))fail('INVALID_PROVIDER_PROGRESSION_FACTS_INPUT');
   const fullLive=[];
   for(const c of p.customers){const ready=customerReady(s,c,hooks);if(ready.ok)fullLive.push({customer:c,ready});}
@@ -438,6 +439,10 @@ function socProviderProgressionFactsKernel(){
   goals[goalId('ca')]={id:goalId('ca'),name:localReady?.result.name||'Local media or speech service',status:localReady?'ready':'incomplete',missing:localMissing.length?localMissing:['PAID_LOCAL_SPEECH_AND_TRANSCRIPTION_REQUIRED'],evidence:localReady?copy(localReady.result.evidence):null};
   proofRequirements.localContinuity=fact(localReady?'ready':'incomplete',goals[goalId('ca')].missing,goals[goalId('ca')].evidence||{});
   const central=centralProgressionApi().evaluate(s,hooks);for(const sourceId of [levelId(5),levelId(6)]){const row=central.levels[sourceId];levels[sourceId]={id:sourceId,name:row.name,status:row.status,missing:copy(row.missing),evidence:row.evidence?copy(row.evidence):null};}
+  if(p.contentVersion==='provider-campaigns-7'){
+   const owned=ownedSitesApi().evaluate(s,hooks.ownedSiteHooks||hooks);
+   for(const [sourceId,row] of Object.entries(owned.goals)){const target=sourceId.includes('progression-level')?levels:goals;target[sourceId]={...target[sourceId],status:row.status,missing:copy(row.missing),evidence:row.evidence?copy(row.evidence):null};}
+  }
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,sourceContentVersion:p.contentVersion,experience:{...s.experience},asOf:s.clock,levels,goals,facts:proofRequirements};
  }
  return {PACK,VERSION,CONTENT,LEVELS:LEVELS.map(x=>x[0]),GOALS:GOALS.map(x=>x[0]),evaluate,inspect:evaluate,sampleSupport,qualifySupportWindow,validateSupportSamples,validateUcCcCapabilityEvidence,encodeSupportObservation,decodeSupportObservation,appendSupportObservation,source:()=>`const SOC_PROVIDER_PROGRESSION_FACTS=(${socProviderProgressionFactsKernel.toString()})();`};

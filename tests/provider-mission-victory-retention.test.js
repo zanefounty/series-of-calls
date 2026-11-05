@@ -50,12 +50,18 @@ test('earned mission victory survives a later poor period and remains sufficient
 
  c.send({action:'advance-segment'});
  assert.equal(c.state.providerCampaign.scenario,'enterprise');
- assert.deepEqual(c.state.providerCampaign.segmentHistory,[{scenario:'smb',at:c.state.clock,focusCustomerId:proof.focusCustomerId,qualifiedPeriods:proof.qualifiedPeriods,winnerCustomerId:proof.winnerCustomerId}]);
+ assert.deepEqual(c.state.providerCampaign.segmentHistory,[{scenario:'smb',at:c.state.clock,focusCustomerId:proof.focusCustomerId,qualifiedPeriods:proof.qualifiedPeriods,winnerCustomerId:proof.winnerCustomerId,victoryProof:proof}]);
+ assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state,'segment transition retains the full earned proof');
+ const forgedHistory=structuredClone(c.state);forgedHistory.providerCampaign.segmentHistory[0].victoryProof.periods[0].operatingResult++;
+ assert.throws(()=>SOC.restore(JSON.stringify(forgedHistory)),/INVALID_PROVIDER_SEGMENT_VICTORY/);
+ const missingHistory=structuredClone(c.state);delete missingHistory.providerCampaign.segmentHistory[0].victoryProof;
+ assert.throws(()=>SOC.restore(JSON.stringify(missingHistory)),/INVALID_PROVIDER_SEGMENTS/);
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'the next mission starts with a fresh qualification streak');
 });
 
 test('legacy win state reconstructs a missing optional proof from the retained event and qualifying settlements',()=>{
  const c=winSmb(),legacy=structuredClone(c.state);
+ legacy.providerCampaign.contentVersion='provider-campaigns-6';
  delete legacy.providerCampaign.mission.victoryProof;
  let restored=SOC.restore(JSON.stringify(legacy));
  assert.deepEqual(restored,legacy,'legacy state without the new proof remains restorable');

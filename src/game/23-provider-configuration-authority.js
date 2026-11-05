@@ -81,7 +81,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
  }
  function expectedModel(provider,customer,child,catalogue){
   const plan=data?.plans?.[customer.planId];if(!plan)fail('PLAN');
-  const configs=initialConfigs(customer,child,catalogue),known=new Set(Object.keys(configs)),accepted=Object.create(null),transitional=Object.create(null),latestWriteAt=Object.create(null),skipTiming=new Set();
+  const configs=initialConfigs(customer,child,catalogue),known=new Set(Object.keys(configs)),accepted=Object.create(null),transitional=Object.create(null),latestWriteAt=Object.create(null),writesByProject=Object.create(null),skipTiming=new Set();
   for(const id of Object.keys(configs))latestWriteAt[id]=0;
   for(const [id,config] of Object.entries(configs))accepted[id]=[clone(config)];
   const projects=authorizedProjects(provider,customer);
@@ -109,6 +109,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     if(project.operationId==='migration-consolidated')patch.phone={...(configs.phone||{}),...(patch.phone||{}),deployment:'dedicated',local:true,extensionScope:'site'};
    for(const [id,config] of Object.entries(patch)){if(id==='__meeting')continue;if(!configs[id])fail(`RESOURCE:${id}`);merge(configs[id],config);written.add(id);}
    }else fail(`PROJECT_KIND:${project.id}`);
+   writesByProject[project.id]=[...written];
    for(const id of Object.keys(configs)){
     known.add(id);accepted[id]??=[];
     const previous=before[id];
@@ -136,7 +137,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(!project||project.operationReceipt.projectId!==project.id||project.config.targetSite!==exercise.targetSite||project.config.kind!==exercise.kind)fail('UNFUNDED_SITE_RESTORE');
    for(const snap of exercise.backupSnapshot.resources){if(!configs[snap.id]||stable(snap.config)!==stable(configs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
   }
-  return {configs,known,projects,accepted,transitional,latestWriteAt,skipTiming};
+  return {configs,known,projects,accepted,transitional,latestWriteAt,writesByProject,skipTiming};
  }
  function validateProducts(provider,customer,child,projects){
   const deployments=child.products?.deployments||[],offers=child.products?.offers||[];if(!deployments.length&&!offers.length)return true;
@@ -239,18 +240,20 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   const ordered=projects.slice().sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt||(originalOrder.get(a.id)||0)-(originalOrder.get(b.id)||0));
   let generation=1;const generationEvents=[];
   for(const project of ordered){
-   const value=project.expectedGenerations?.[resourceId];
-   if(value!==undefined)generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:value,id:project.id});
-   const receipt=project.operationReceipt;
+   const value=project.expectedGenerations?.[resourceId],receipt=project.operationReceipt;
+   // Expected generations also record unchanged dependencies. Only an authored
+   // configuration write (including capacity changes) must advance generation.
+   const written=expected.writesByProject[project.id]?.includes(resourceId)||receipt?.resource===resourceId&&Number.isSafeInteger(receipt.capacity)||project.operationId==='mitigate'&&resourceId!=='room'&&receipt?.resources?.includes(resourceId);
+   if(value!==undefined)generationEvents.push({at:project.configSubmittedAt,order:originalOrder.get(project.id)||0,generation:value,id:project.id,written:!!written});
    if(receipt?.resource===resourceId&&Number.isSafeInteger(receipt.capacity)&&['carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','direct-external-reach','managed-external-reach'].includes(project.operationId))config.capacity=receipt.capacity;
    if(project.serviceRetirement?.resources?.includes(resourceId)){
     const retirement=project.serviceRetirement,retired=retirement.expectedGenerations?.[resourceId];
     if(!Number.isSafeInteger(retired)||!Number.isSafeInteger(retirement.requestedAt)||retirement.requestedAt>at)fail(`RETIREMENT_GENERATION:${project.id}:${resourceId}`);
-    generationEvents.push({at:retirement.requestedAt,order:(originalOrder.get(project.id)||0)+0.5,generation:retired,id:project.id+':retirement'});
+    generationEvents.push({at:retirement.requestedAt,order:(originalOrder.get(project.id)||0)+0.5,generation:retired,id:project.id+':retirement',written:true});
    }
   }
   generationEvents.sort((a,b)=>a.at-b.at||a.order-b.order);
-  for(const event of generationEvents){if(!Number.isSafeInteger(event.generation)||event.generation<=generation||event.generation>child.resources[resourceId]?.generation)fail(`GENERATION:${event.id}:${resourceId}`);generation=event.generation;}
+  for(const event of generationEvents){if(!Number.isSafeInteger(event.generation)||event.generation<generation||event.written&&event.generation===generation||event.generation>child.resources[resourceId]?.generation)fail(`GENERATION:${event.id}:${resourceId}`);generation=event.generation;}
   if(!child.resources[resourceId]||generation>child.resources[resourceId].generation)fail(`RESOURCE_GENERATION:${resourceId}`);
   return {config:clone(config),generation};
  }

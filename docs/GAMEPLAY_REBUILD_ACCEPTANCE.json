@@ -602,6 +602,112 @@
         "sha256": "3d4e7cd37ffddc439b06b6f9e04bf2388350d7da2ccb808214840792a24f3996"
       },
       "scope": "Exact no-bundled-gate-weakening/exclusion clause. Core gates and decision records unchanged since 60f009d; all 603 baseline acceptance IDs retained. Separate PR #28 workflow change has explicit conversation owner approval, not a GitHub review. No research or full release approval."
+    },
+    "controls-protocol-full-c0f9ef9": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "executedCandidate": "c0f9ef9cf50fc2e29cf0a30f5caf3306ff04732c",
+      "equivalence": "c0f9ef9..0ac9430 changes only operation-disclosure documentation and generated evidence/source accounting; application, tests and browser driver inputs are unchanged. Metadata gates have separate fresh receipts.",
+      "command": "npm test",
+      "results": {
+        "tests": 2113,
+        "passed": 2111,
+        "failed": 0,
+        "skipped": 2
+      },
+      "rawArtifact": "/tmp/soc-operation-usage-full.log",
+      "sha256": "451ffb1aac698505dc22d126113de0def3cdc84e0d591ff10aa3f04282e3be60",
+      "registeredAcceptance": {
+        "passed": 633,
+        "failed": 0,
+        "rawArtifact": "/tmp/soc-operation-usage-quotes/evidence/acceptance.json",
+        "sha256": "72d585cbcff890dcd8ca9ec7fcadd5c12e1dc729a8a632892c3baeba3c776c14"
+      },
+      "scope": "Named executed tests below support only their exact clauses. No full release, human pilot or parked long-play pass."
+    },
+    "controls-browser-0ac9430": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "command": "SOC_PROVIDER_BROWSER_JOURNEYS=ownership-persistence,keyboard-smb-opening,mobile-hud-opening node scripts/provider-browser.js",
+      "browser": "Chromium156.0.8078.4",
+      "playwright": "1.64.1",
+      "journeys": 3,
+      "passed": 3,
+      "failed": 0,
+      "noSourceDrift": true,
+      "inputFilesVerified": 373,
+      "builtFilesVerified": 47,
+      "rawArtifact": "/tmp/soc-acceptance-controls-0ac9430/provider-browser-20261105214641543.json",
+      "sha256": "0da3a79b1602e0d5cb2ec2fc27eb76dae76f247aee00017b288622d8b8ee832e",
+      "independentReview": {
+        "rawArtifact": "/tmp/soc-acceptance-controls-0ac9430-independent-review.json",
+        "sha256": "cdd16492b1245aa54e98b2e922d1eb45426e38fd674a9ba123ba132f81d0f9c2"
+      },
+      "scope": "Actual keyboard-only opening through three commissioned stages, delivered work and incident acknowledgement; mobile HUD/focus; separate-tab ownership, export/import, worker fallback and offline reload. Not a full keyboard mission, storage-write-failure test or all-primary-target audit."
+    },
+    "controls-protocol-manual-0ac9430": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "method": "Independent exact-clause source/document review and reconciliation with named current test results; no participant sessions.",
+      "rawArtifact": "/tmp/soc-pending61-acceptance-proposal-r2.json",
+      "sha256": "92a1d3351674e33d505f0fb095b3e857d2960d727a8017d248c33aae479c63b0",
+      "sourceInventory": {
+        "rawArtifact": "/tmp/soc-pending-source-inventory-review.json",
+        "sha256": "c9cd160ab3d05061edaf77deda62bc84e1351066bd501799b8704ec0cf13d5af"
+      },
+      "documents": [
+        {
+          "path": "docs/GAMEPLAY_PILOT_PROTOCOL.md",
+          "sha256": "f39c1c5f1d9fc889130684202af07531d52ea77441c72fbd08b6d641012c5d21"
+        },
+        {
+          "path": "docs/PROVIDER_SOURCE_ACCOUNTING.md",
+          "sha256": "0ea51c8edb228eb25d6f2593572f496f324aabb873b4af30b8e59bf1f1e5b8f0"
+        },
+        {
+          "path": "docs/provider-rebuild-accounting.json",
+          "sha256": "d23f93d016d34757dbcebb7d492f9cd7e03a7c02f83375534504322a171f3106"
+        },
+        {
+          "path": "docs/PROVIDER_OPERATION_USAGE_QUOTES.md",
+          "sha256": "9949e391cf3de635dda0001592ed7f245a754ba65c99fc25cb9b25738f7ba9ea"
+        }
+      ],
+      "developmentGate": {
+        "rawArtifact": "/tmp/soc-operation-usage-checkall-r3.log",
+        "sha256": "60edd6eb2a356a31ca146c29a4ead315873e8724ec2d6983c6a8aa7c5590c5a3"
+      },
+      "gateMutations": {
+        "tests": 99,
+        "passed": 98,
+        "skipped": 1,
+        "rawArtifact": "/tmp/soc-operation-usage-gates-final.log",
+        "sha256": "0221b4760ad7dae6f22cdb8f8968e44881826e08328cfc16f4012ae37d68306f"
+      },
+      "scope": "Prepared pilot protocol, visible pending source obligations, and truthful candidate reporting. Document provision is distinct from human participation. No source disposition or research approval."
+    },
+    "public-dc34fbc-preview": {
+      "candidate": "dc34fbc85d495e56329012d00d938e593e45dad5",
+      "url": "https://github.com/zanefounty/series-of-calls/actions/runs/42108386366",
+      "status": "published-bounded-verification-passed",
+      "rawArtifact": "/tmp/soc-public-owned-migration-independent-review.json",
+      "sha256": "1c365ffe93af28633fe8c25a7054b64c65f421b11f577719b109fdd7637fe2c2",
+      "scope": "Exact downloaded artifact index/SW/version, actual persistent-cache controller update, separate paused saves, offline root/index, cold network-none restart and visible paid service. Does not establish publication of499fa17 or every translated asset."
+    },
+    "release-attempt-0ac9430": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "command": "npm run check:release",
+      "result": "failed-before-release-readiness",
+      "rawArtifact": "/tmp/soc-operation-usage-release-gate.log",
+      "sha256": "324a5f9a887fa2cd68c280e29fc8456ea968e4a1a3e4e8b01f0b90053200165e",
+      "observedOutput": "Current behavioural tests fail:590 tests,549pass,41fail. Retained stack points to tests/harness.js require/module loading.",
+      "scope": "This attempt failed during behavioural prerequisites, not a demonstrated final source/readiness rejection. Earlier633 registered passes and full2111 passes remain separately scoped. The full release is not passed; a correctly provisioned rerun is needed to reach later release gates."
+    },
+    "release-readiness-0ac9430-r2": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "command": "NODE_PATH=/home/zane-fountylabs/workspace/zefun/series-of-calls/node_modules npm run check:release",
+      "result": "failed-unreviewed-research",
+      "rawArtifact": "/tmp/soc-operation-usage-release-gate-r2.log",
+      "sha256": "709cc04f17f9945b2f030a5011e28649be6f9cf5dab720cbc587c2c1f565372f",
+      "observedOutput": "FAIL Unreviewed research reference: REF-ac194430f67b3832",
+      "scope": "The correctly provisioned retry reached the unchanged research gate and failed. No research approval, exclusion or full-release readiness is claimed. The prior module-loading failure remains separately recorded."
     }
   },
   "tests": {
@@ -3491,6 +3597,158 @@
       "run": "hosted-e492349",
       "jobId": "127157679601",
       "logLine": 528
+    },
+    "CONTROL-PROTOCOL-001": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "providerFrame keeps canonical paid opening economics and demand equal at every advertised speed",
+      "fileSha256": "e2451775acf219686354397fd3b43747c9dbf042914bba7c25640b1ecdba3524",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1435
+    },
+    "CONTROL-PROTOCOL-002": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "provider worker failure uses the deterministic synchronous advance fallback and save restore",
+      "fileSha256": "e2451775acf219686354397fd3b43747c9dbf042914bba7c25640b1ecdba3524",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1433
+    },
+    "CONTROL-PROTOCOL-003": {
+      "file": "tests/provider-persistence.test.js",
+      "name": "provider campaign saves and worker continuation preserve real projects, interactions, coaching and incident recovery",
+      "fileSha256": "115c96630d66f3fe69057d7a0aac0dfadd9b5978f2217b79372ef4e3b7918075",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1298
+    },
+    "CONTROL-PROTOCOL-004": {
+      "file": "tests/issue-exercises.test.js",
+      "name": "AC-SOC-150 reference directional-media commands produce the modeled one-way media failure",
+      "fileSha256": "caee775f2d4feceb1f62d817522e3d7e333d9b5341524110ead0fb2e211acb82",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 557
+    },
+    "CONTROL-PROTOCOL-005": {
+      "file": "tests/issue-exercises.test.js",
+      "name": "AC-SOC-151 directional-media recovery requires a fresh bidirectional trace and assessment is pure",
+      "fileSha256": "caee775f2d4feceb1f62d817522e3d7e333d9b5341524110ead0fb2e211acb82",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 558
+    },
+    "CONTROL-PROTOCOL-006": {
+      "file": "tests/issue-exercises.test.js",
+      "name": "AC-SOC-154 clearing the fault and making a fresh call proves carrier recovery",
+      "fileSha256": "caee775f2d4feceb1f62d817522e3d7e333d9b5341524110ead0fb2e211acb82",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 561
+    },
+    "CONTROL-PROTOCOL-007": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "both authored SMB opening plans reach effective service through real staged work",
+      "fileSha256": "18489388d98ac7dcf56fc69172d51ff70e65ded2da6234241580ac09351aa65e",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1022
+    },
+    "CONTROL-PROTOCOL-008": {
+      "file": "tests/provider-operation-usage-quotes.test.js",
+      "name": "AC-SOC-642 an unaffordable paid operation still discloses rates and keeps an atomic refusal",
+      "fileSha256": "feb24167c5b41719ab0b8af0b18fa2666ae45120ff697956db7d310bda5c8a70",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1237
+    },
+    "CONTROL-PROTOCOL-009": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "SMB mission victory needs two profitable full periods and an actually funded second customer",
+      "fileSha256": "18489388d98ac7dcf56fc69172d51ff70e65ded2da6234241580ac09351aa65e",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1026
+    },
+    "CONTROL-PROTOCOL-010": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider plan requires an engine quote and explicit commit; map selection is local view state",
+      "fileSha256": "279027f033cd33797fe248fa4eaa51ccd242b901ccbaa1bd9992f48aaa4ba222",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1474
+    },
+    "CONTROL-PROTOCOL-011": {
+      "file": "tests/provider-shell.test.js",
+      "name": "pause, speed and keyboard reachable controls stay on the callback boundary",
+      "fileSha256": "279027f033cd33797fe248fa4eaa51ccd242b901ccbaa1bd9992f48aaa4ba222",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1478
+    },
+    "CONTROL-PROTOCOL-012": {
+      "file": "tests/provider-shell.test.js",
+      "name": "quote keyboard focus is trapped and Escape resumes the previous decision state",
+      "fileSha256": "279027f033cd33797fe248fa4eaa51ccd242b901ccbaa1bd9992f48aaa4ba222",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1480
+    },
+    "CONTROL-PROTOCOL-013": {
+      "file": "tests/provider-scene.test.js",
+      "name": "Provider map shows funded product objects and marks dependency paths as keyboard actions",
+      "fileSha256": "e307ff1da2496dda85e34d3385a397a3155901f34361cbcb16fead96bcab1afe",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1442
+    },
+    "CONTROL-PROTOCOL-014": {
+      "file": "tests/provider-products.test.js",
+      "name": "paid product quotes carry validated configuration effects and authored prerequisites",
+      "fileSha256": "fa3707a286930dcd10d3408eb00f00a3d60d04cf6f80f95e8741cd0c524dafc7",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1336
+    },
+    "CONTROL-PROTOCOL-015": {
+      "file": "tests/provider-products.test.js",
+      "name": "local speech pathway provisions an authored model and versioned integration before its bound product is usable",
+      "fileSha256": "fa3707a286930dcd10d3408eb00f00a3d60d04cf6f80f95e8741cd0c524dafc7",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1337
+    },
+    "CONTROL-PROTOCOL-016": {
+      "file": "tests/provider-product-campaign.test.js",
+      "name": "all 14 authored product recipes are funded and pass actual campaign deployment readiness",
+      "fileSha256": "a8e4998e1c8941304a9be39b39f638f683d101f45c4d1237b2d9fe5619add017",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1317
+    },
+    "CONTROL-PROTOCOL-017": {
+      "file": "tests/provider-local-product.test.js",
+      "name": "funded Microsoft local product carries actual autonomous Defence voice during authored isolation and restores exactly",
+      "fileSha256": "ed500fb31c81f4d90b453e64c1d1e44f4bd4f1408e97cbaa527f5b9259161a35",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1207
+    },
+    "CONTROL-PROTOCOL-018": {
+      "file": "tests/provider-products.test.js",
+      "name": "all fourteen representative recipes apply validated quote configuration, then execute through shared SOC product dispatch",
+      "fileSha256": "fa3707a286930dcd10d3408eb00f00a3d60d04cf6f80f95e8741cd0c524dafc7",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1335
+    },
+    "CONTROL-PROTOCOL-019": {
+      "file": "tests/provider-products.test.js",
+      "name": "recipes are immutable, worker-serializable and cover each source-linked Microsoft and Cisco family",
+      "fileSha256": "fa3707a286930dcd10d3408eb00f00a3d60d04cf6f80f95e8741cd0c524dafc7",
+      "result": "passed",
+      "run": "controls-protocol-full-c0f9ef9",
+      "logLine": 1334
     }
   },
   "requirements": {
@@ -3557,11 +3815,11 @@
       "sourceIds": [
         "action:speed"
       ],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-005": {
@@ -3710,11 +3968,10 @@
         "src/game/30-media-negotiation.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-014": {
@@ -3759,14 +4016,13 @@
         "src/game/24-provider-rules.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-017": {
@@ -3804,13 +4060,14 @@
         "view:city_infra",
         "view:link_detail"
       ],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "pending-current-candidate-verification": 2,
+        "verified-current-candidate": 1
       }
     },
     "PLAY-019": {
@@ -3858,7 +4115,7 @@
         "src/i18n/en.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-training-map",
@@ -3866,7 +4123,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "verified-current-candidate": 1,
+        "pending-current-candidate-verification": 2
       }
     },
     "PLAY-022": {
@@ -4158,7 +4416,7 @@
         "uc-new:family:microsoft:government-clouds",
         "uc-new:family:microsoft:local"
       ],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities",
@@ -4166,7 +4424,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "pending-current-candidate-verification": 2,
+        "verified-current-candidate": 1
       }
     },
     "PLAY-037": {
@@ -4177,7 +4436,7 @@
         "content/products.json"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-government",
@@ -4187,8 +4446,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-038": {
@@ -4443,13 +4702,14 @@
         "evidence/"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "pending-current-candidate-verification": 2,
+        "verified-current-candidate": 1
       }
     },
     "PLAY-052": {
@@ -4460,12 +4720,13 @@
         "STATUS.md"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "verified-current-candidate": 1,
+        "pending-current-candidate-verification": 2
       }
     }
   },
@@ -4523,12 +4784,13 @@
       "implementation": [
         ".github/workflows/release.yml"
       ],
-      "remaining": "Protected eb0e88 preview published and actual public old-cache upgrade/offline/separate-saves/paid delivery passed. This is an incomplete preview and does not publish or certify the later e492349 changes.",
+      "remaining": "Protected dc34fbc preview is deployed and verified in run42108386366 for exact core artifact bytes, cache upgrade, separate saves, offline root/index, cold network-none restart and actual paid service. Later499fa17 publication run42115372988 remains pending its own completed deployment and public checks. Earlier deployments retain their separately scoped receipts.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
       ],
       "evidenceRuns": [
-        "public-eb0e88-preview"
+        "public-eb0e88-preview",
+        "public-dc34fbc-preview"
       ]
     },
     {
@@ -4546,6 +4808,15 @@
         "docs/GAMEPLAY_PILOT_PROTOCOL.md"
       ],
       "remaining": "Protocol prepared; no actual participant sessions or human results claimed."
+    },
+    {
+      "id": "OWNER-INFLIGHT-DIRECTIONAL-MEDIA",
+      "status": "pending",
+      "implementation": [
+        "src/game/55-communications.js",
+        "tests/provider-service-truth-regression.test.js"
+      ],
+      "remaining": "Execute an established, duration-bearing call with loss of only one media direction; assert its declared outcome and exactly-once reservation/usage consequences, then legitimate recovery. AC-SOC-150/151/154 prove one-way admission/outcome and recovery only; closing PLAY-013-A02 does not close this owner-plan requirement."
     }
   ],
   "assertions": [
@@ -5108,7 +5379,7 @@
       "requirement": "PLAY-004",
       "sourceIndex": 1,
       "assertion": "Equal simulation-time commands at different speeds yield identical demand, outcomes, balances and rewards.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B051",
         "B052",
@@ -5123,22 +5394,43 @@
       "reviewTestCandidates": [
         "B054"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
-          "src/game/98-provider-runtime.js",
-          "src/game/55-communications.js"
+          "src/game/55-communications.js",
+          "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C030",
-          "C032",
-          "C033"
+          "CONTROL-PROTOCOL-001",
+          "CONTROL-PROTOCOL-002",
+          "CONTROL-PROTOCOL-003"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Entire paid Provider state is deep-equal at clock120 across .5/1/2/4/8 actual providerFrame speeds; includes full24-case demand and settled cash. Named worker-fallback and exact save/worker continuation cases supply complementary paths.",
+        "scope": "The previous remaining text added a full later-lifecycle/every-combination matrix not stated in this exact assertion. That broader owner-plan regression remains separate; the finite executed example does not prove all possible command sequences.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Advertised-speed equality is tested for the paid opening. A full later lifecycle still needs equal-seed/equal-command comparisons across every speed, worker/fallback and restore."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. The previous remaining text added a full later-lifecycle/every-combination matrix not stated in this exact assertion. That broader owner-plan regression remains separate; the finite executed example does not prove all possible command sequences.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/98-provider-runtime.js",
+            "src/game/55-communications.js"
+          ],
+          "tests": [
+            "C030",
+            "C032",
+            "C033"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-004-A03",
@@ -6420,7 +6712,7 @@
       "requirement": "PLAY-013",
       "sourceIndex": 1,
       "assertion": "One-way media produces its declared degraded/failed outcome.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B021",
         "B022",
@@ -6437,21 +6729,42 @@
         "R013",
         "R014"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
-          "src/game/55-communications.js",
           "src/game/30-media-negotiation.js",
-          "src/game/25-provider-campaign.js"
+          "src/game/55-communications.js"
         ],
         "tests": [
-          "C076"
+          "CONTROL-PROTOCOL-004",
+          "CONTROL-PROTOCOL-005",
+          "CONTROL-PROTOCOL-006"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "AC150 asserts actual ONE_WAY_MEDIA with out=true/in=false; AC151 requires a fresh bidirectional recovery trace; AC154 also asserts actual outbound-only loss.",
+        "scope": "This closes only the declared one-way outcome clause. An established-call single-direction-loss counterexample remains an additional owner-plan service-truth obligation, not claimed by these admission-time exercises.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "One-way admission failure has a named test; no exact established-call single-direction loss regression or visible Provider directional incident is currently mapped. Do not substitute both-direction loss or product retirement."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. This closes only the declared one-way outcome clause. An established-call single-direction-loss counterexample remains an additional owner-plan service-truth obligation, not claimed by these admission-time exercises.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/55-communications.js",
+            "src/game/30-media-negotiation.js",
+            "src/game/25-provider-campaign.js"
+          ],
+          "tests": [
+            "C076"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-013-A03",
@@ -6773,7 +7086,7 @@
       "requirement": "PLAY-016",
       "sourceIndex": 0,
       "assertion": "A player can afford each reference plan individually but cannot buy every advantage without sacrificing another opportunity.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B006",
         "B007",
@@ -6804,24 +7117,48 @@
       "reviewTestCandidates": [
         "B008"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
           "content/provider-campaigns.json",
           "src/game/24-provider-rules.js",
           "src/game/25-provider-campaign.js",
-          "src/game/55-communications.js"
+          "src/game/93-ui/75-provider-panels.js",
+          "src/game/93-ui/79-provider-comparisons.js"
         ],
         "tests": [
-          "C023",
-          "C036",
-          "C041"
+          "CONTROL-PROTOCOL-007",
+          "CONTROL-PROTOCOL-008",
+          "CONTROL-PROTOCOL-009"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Both paid Swift and Steady reference paths reach real service, profitable qualifying periods and funded expansion. AC642 uses lawful hard Steady opening plus paid dedicatedUC leaving90000c; another210000c advantage refuses atomically.",
+        "scope": "Proves each reference plan individually affordable and a real common-budget sacrifice. Does not assert all authored variants or every advantage bundle can win.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Both strategies are individually affordable and can win. Attach a current lawful opportunity-sacrifice or unaffordable expansion refusal comparing the same constraint."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. Proves each reference plan individually affordable and a real common-budget sacrifice. Does not assert all authored variants or every advantage bundle can win.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "content/provider-campaigns.json",
+            "src/game/24-provider-rules.js",
+            "src/game/25-provider-campaign.js",
+            "src/game/55-communications.js"
+          ],
+          "tests": [
+            "C023",
+            "C036",
+            "C041"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-016-A02",
@@ -7214,7 +7551,7 @@
       "requirement": "PLAY-018",
       "sourceIndex": 1,
       "assertion": "Drag or click-connect opens a compatible costed plan; a keyboard/menu action does the same.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -7242,9 +7579,14 @@
       "reviewTestCandidates": [
         "B056"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430",
+          "controls-browser-0ac9430"
+        ],
         "implementation": [
           "src/game/45-products.js",
           "src/game/93-ui/75-provider-panels.js",
@@ -7252,17 +7594,64 @@
           "src/game/96-map/90-service-scene.js",
           "src/game/96-map/95-provider-canvas.js",
           "src/game/97-provider-shell.js",
-          "src/game/98-provider-runtime.js",
-          "src/game/23-provider-service-retirement.js"
+          "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C003",
-          "C100"
+          "CONTROL-PROTOCOL-010"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Current actual keyboard-only opening buys3 stages through existingcostedquote controls, reaches realdelivery and incident acknowledgement; textlabels supply non-colour status. Combined currentclickquote24rows uses same enginequote/actions.",
+        "scope": "DesktopChromium keyboardopening only, not keyboard-onlyfullcampaign victory orallbrowsermatrix.",
+        "result": "passed-exact-assertion",
+        "browserSteps": [
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-base-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-carrier-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-partner-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-work-and-incident-paused"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-incident-acknowledged"
+          }
+        ]
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Drag or click-connect opens a compatible costed plan; a keyboard/menu action does the same."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. DesktopChromium keyboardopening only, not keyboard-onlyfullcampaign victory orallbrowsermatrix.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/45-products.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/93-ui/79-provider-lifecycle.js",
+            "src/game/96-map/90-service-scene.js",
+            "src/game/96-map/95-provider-canvas.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js",
+            "src/game/23-provider-service-retirement.js"
+          ],
+          "tests": [
+            "C003",
+            "C100"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-018-A03",
@@ -7694,7 +8083,7 @@
       "requirement": "PLAY-021",
       "sourceIndex": 0,
       "assertion": "The opening can be completed without drag, hover or colour-only information.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -7731,9 +8120,14 @@
         "B062",
         "R020"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430",
+          "controls-browser-0ac9430"
+        ],
         "implementation": [
           "src/game/23-training-lessons.js",
           "src/game/93-ui/65-service-preferences.js",
@@ -7749,16 +8143,70 @@
           "src/styles/99-training-map.css"
         ],
         "tests": [
-          "C029",
-          "C116",
-          "C100",
-          "C097",
-          "C117"
+          "CONTROL-PROTOCOL-011",
+          "CONTROL-PROTOCOL-012",
+          "CONTROL-PROTOCOL-013"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Current actual keyboard-only opening buys3 stages through existingcostedquote controls, reaches realdelivery and incident acknowledgement; textlabels supply non-colour status. Combined currentclickquote24rows uses same enginequote/actions.",
+        "scope": "DesktopChromium keyboardopening only, not keyboard-onlyfullcampaign victory orallbrowsermatrix.",
+        "result": "passed-exact-assertion",
+        "browserSteps": [
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-base-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-carrier-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-partner-effective"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-work-and-incident-paused"
+          },
+          {
+            "run": "controls-browser-0ac9430",
+            "journey": "keyboard-smb-opening",
+            "step": "keyboard-incident-acknowledged"
+          }
+        ]
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: The opening can be completed without drag, hover or colour-only information."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. DesktopChromium keyboardopening only, not keyboard-onlyfullcampaign victory orallbrowsermatrix.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/23-training-lessons.js",
+            "src/game/93-ui/65-service-preferences.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/96-map/90-service-scene.js",
+            "src/game/96-map/95-provider-canvas.js",
+            "src/game/96-map/96-training-map.js",
+            "src/game/97-provider-shell.js",
+            "src/game/97-training.js",
+            "src/game/98-provider-runtime.js",
+            "src/i18n/en.js",
+            "src/styles/98-provider.css",
+            "src/styles/99-training-map.css"
+          ],
+          "tests": [
+            "C029",
+            "C116",
+            "C100",
+            "C097",
+            "C117"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-021-A02",
@@ -10335,7 +10783,7 @@
       "requirement": "PLAY-036",
       "sourceIndex": 1,
       "assertion": "A family is not counted complete because its name appears in a menu.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B037",
         "B038",
@@ -10370,9 +10818,13 @@
         "B043",
         "R043"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
           "content/products.json",
           "content/provider-campaigns.json",
@@ -10386,22 +10838,49 @@
           "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C208",
-          "C209",
-          "C210",
-          "C211",
-          "C207",
-          "C077",
-          "C133",
-          "C025",
-          "C018",
-          "C197",
-          "C195"
+          "CONTROL-PROTOCOL-014",
+          "CONTROL-PROTOCOL-015",
+          "CONTROL-PROTOCOL-016",
+          "CONTROL-PROTOCOL-017",
+          "CONTROL-PROTOCOL-018"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Every recipe feature is bound to actual resources; all14 dispatch through validated configurations, with missing government/local-speech proof explicitly blocked. Family acceptance records remain pending despite named menu entries and paid readiness.",
+        "scope": "Anti-marker accounting clause only; does not close PLAY036A01/037A01 or certify all family-specific limitations.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: A family is not counted complete because its name appears in a menu."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. Anti-marker accounting clause only; does not close PLAY036A01/037A01 or certify all family-specific limitations.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "content/products.json",
+            "content/provider-campaigns.json",
+            "src/game/23-provider-government.js",
+            "src/game/23-provider-products.js",
+            "src/game/25-provider-campaign.js",
+            "src/game/45-products.js",
+            "src/game/55-communications.js",
+            "src/game/93-ui/79-provider-lifecycle.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js"
+          ],
+          "tests": [
+            "C208",
+            "C209",
+            "C210",
+            "C211",
+            "C207",
+            "C077",
+            "C133",
+            "C025",
+            "C018",
+            "C197",
+            "C195"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-036-A03",
@@ -10625,7 +11104,7 @@
       "requirement": "PLAY-037",
       "sourceIndex": 2,
       "assertion": "Remaining source obligations stay visible; shared implementation is not proof of every distinctive feature.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B037",
         "B038",
@@ -10661,36 +11140,56 @@
       "reviewTestCandidates": [
         "B037"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
-          "content/products.json",
-          "content/provider-campaigns.json",
-          "src/game/23-provider-government.js",
-          "src/game/23-provider-policy.js",
-          "src/game/23-provider-products.js",
-          "src/game/25-provider-campaign.js",
-          "src/game/45-products.js",
-          "src/game/55-communications.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/93-ui/78-provider-policy-controls.js",
-          "src/game/93-ui/79-provider-lifecycle.js",
-          "src/game/97-provider-shell.js",
-          "src/game/98-provider-runtime.js"
+          "docs/PROVIDER_SOURCE_ACCOUNTING.md",
+          "docs/provider-rebuild-accounting.json",
+          "research/source/series-of-calls-full-mapping.json"
         ],
         "tests": [
-          "C212",
-          "C132",
-          "C196",
-          "C213",
-          "C214",
-          "C163"
+          "CONTROL-PROTOCOL-019"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Unchanged canonical mapping and explicit row-by-row actor/action/feature obligations remain visible; accounting globalCaveat explicitly rejects shared infrastructure as distinctive-behavior proof. Current source/coverage/mapping/catalogue gates pass without dispositions.",
+        "scope": "Documentation and accounting visibility only. No source fidelity acceptance, research approval or release readiness.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Remaining source obligations stay visible; shared implementation is not proof of every distinctive feature."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. Documentation and accounting visibility only. No source fidelity acceptance, research approval or release readiness.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "content/products.json",
+            "content/provider-campaigns.json",
+            "src/game/23-provider-government.js",
+            "src/game/23-provider-policy.js",
+            "src/game/23-provider-products.js",
+            "src/game/25-provider-campaign.js",
+            "src/game/45-products.js",
+            "src/game/55-communications.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/93-ui/78-provider-policy-controls.js",
+            "src/game/93-ui/79-provider-lifecycle.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js"
+          ],
+          "tests": [
+            "C212",
+            "C132",
+            "C196",
+            "C213",
+            "C214",
+            "C163"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-038-A01",
@@ -13043,7 +13542,7 @@
       "requirement": "PLAY-051",
       "sourceIndex": 2,
       "assertion": "Report exact results and current blockers; never rename a failed full-release gate to a pass.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
@@ -13058,33 +13557,51 @@
         "tests/"
       ],
       "reviewTestCandidates": [],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
-          "spec/acceptance-plan.json",
-          "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "docs/PROVIDER_OPERATION_USAGE_QUOTES.md",
+          "docs/PROVIDER_OWNED_SITE_ROUTING.md",
+          "docs/GAMEPLAY_ACCEPTANCE_RECONCILIATION.md"
         ],
-        "tests": [
-          "C250",
-          "C267",
-          "C028",
-          "C268",
-          "C269"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "tests": [],
+        "evidence": "Current operation and owned-site handoffs preserve failed R1/gate attempts, distinguish2111 passes+2skips,633registered,98of99Python+1skip, and bounded quote browsers from full gameplay/source release.",
+        "scope": "Candidate-scoped reporting obligation; continued truthful final handoff is still required and PLAY052A03 remains pending.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "This reconciliation records exact pass/failure/skip and scope. Preserve that distinction in subsequent candidate and final release reporting; full-release readiness is not inferred."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. Candidate-scoped reporting obligation; continued truthful final handoff is still required and PLAY052A03 remains pending.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "spec/acceptance-plan.json",
+            "src/game/97-provider-shell.js",
+            "src/game/97-training.js",
+            "src/game/98-provider-runtime.js"
+          ],
+          "tests": [
+            "C250",
+            "C267",
+            "C028",
+            "C268",
+            "C269"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-052-A01",
       "requirement": "PLAY-052",
       "sourceIndex": 0,
       "assertion": "Provide a 6\u20138-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
@@ -13095,20 +13612,44 @@
         "docs/GAMEPLAY_PILOT_PROTOCOL.md"
       ],
       "reviewTestCandidates": [],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-protocol-manual-0ac9430"
+        ],
         "implementation": [
-          "STATUS.md",
-          "docs/GAMEPLAY_PILOT_PROTOCOL.md",
-          "docs/GAMEPLAY_REBUILD_CHECKPOINT.md",
-          "docs/PROVIDER_CACHE_UPGRADE.md"
+          "docs/GAMEPLAY_PILOT_PROTOCOL.md"
         ],
         "tests": [],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Manual clause audit of prepared protocol:6\u20138 empty slots; counterbalanced game/plan/device order; clarity/choice/failure/change measures; consent/anonymized notes;2/5min targets,20\u201330min loop; observed failure\u2192fix\u2192affected retest.",
+        "scope": "Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
+        "result": "passed-exact-assertion",
+        "protocolClauses": [
+          "Candidate+recruitment6\u20138 adults",
+          "Counterbalanced assignment tableP01\u2013P08 empty slots",
+          "Neutral primary/changedconstraint taskcards",
+          "Measurement definitions goal/tradeoff/failure/adaptedplan/continue",
+          "Consent/datahandling",
+          "Observed failures\u2192fix\u2192affectedretest"
+        ]
       },
-      "remaining": "The six-to-eight-person counterbalanced protocol is provided in docs/GAMEPLAY_PILOT_PROTOCOL.md. Its content was manually reviewed; no executed named test or participant session is attached for ledger closure."
+      "remaining": "No remaining criterion identified for this exact clause at its named candidate. Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "STATUS.md",
+            "docs/GAMEPLAY_PILOT_PROTOCOL.md",
+            "docs/GAMEPLAY_REBUILD_CHECKPOINT.md",
+            "docs/PROVIDER_CACHE_UPGRADE.md"
+          ],
+          "tests": [],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-052-A02",
@@ -13511,7 +14052,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 94,
+    "assertionsClosed": 103,
     "phaseClusters": [
       {
         "phase": 1,
@@ -13519,8 +14060,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 22,
-          "pending-current-candidate-verification": 6
+          "verified-current-candidate": 23,
+          "pending-current-candidate-verification": 5
         }
       },
       {
@@ -13529,8 +14070,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 12,
-          "pending-current-candidate-verification": 9
+          "verified-current-candidate": 14,
+          "pending-current-candidate-verification": 7
         }
       },
       {
@@ -13539,8 +14080,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 9,
-          "pending-current-candidate-verification": 15
+          "verified-current-candidate": 11,
+          "pending-current-candidate-verification": 13
         }
       },
       {
@@ -13559,8 +14100,8 @@
         "assertions": 40,
         "status": "partially-verified",
         "statusCounts": {
-          "pending-current-candidate-verification": 13,
-          "verified-current-candidate": 27
+          "pending-current-candidate-verification": 11,
+          "verified-current-candidate": 29
         }
       },
       {
@@ -13569,19 +14110,20 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 9,
-          "pending-current-candidate-verification": 12,
+          "verified-current-candidate": 11,
+          "pending-current-candidate-verification": 10,
           "parked-owner-request": 4
         }
       }
     ],
-    "additionalOwnerItems": 7,
+    "additionalOwnerItems": 8,
     "knownUnclosedEngineeringScopes": [
       "Remaining canonical Provider progression adapters and useful earned choices must be completed while preserving the canonical endgame.",
       "Regional-support historical authority, retained work lineage and measured claims remain in implementation; historical configuration must not be replaced by current state.",
       "Bounded managed local-spares and bill-presentation repairs have landed; exact follow-on paid delivery and assertion reconciliation remain required where not already evidenced.",
       "Remaining mission/family/Training/current-input interaction, accessibility and persistence evidence must be individually reconciled; generic completed work is insufficient.",
-      "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged."
+      "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged.",
+      "Established-call loss of a single media direction remains an explicit owner-plan service-truth regression; one-way admission outcome evidence does not complete it."
     ],
     "externalDependencies": [
       {
@@ -13597,12 +14139,12 @@
       {
         "item": "Later candidate publication",
         "status": "not-established",
-        "scope": "Protected preview 92ac7bc is deployed and verified. The later dc34fbc candidate is being published in run 42108386366; its public upgrade/offline evidence remains pending until executed."
+        "scope": "Protected dc34fbc preview is deployed and independently verified in run42108386366. Later499fa17 run42115372988 remains pending its own successful deployment and fresh public upgrade/offline evidence."
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 94,
-      "pending-current-candidate-verification": 61,
+      "verified-current-candidate": 103,
+      "pending-current-candidate-verification": 52,
       "parked-owner-request": 4
     }
   },
@@ -13626,8 +14168,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 94,
-      "pending-current-candidate-verification": 61,
+      "verified-current-candidate": 103,
+      "pending-current-candidate-verification": 52,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -13660,6 +14202,26 @@
           "PLAY-049-A03"
         ],
         "scope": "Four exact clauses only; public preview remains 92ac7bc, local legacy check uses bb9 inputs equivalent to dd7. No blanket final-candidate or entire-gameplay closure."
+      },
+      {
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "controls-protocol-full-c0f9ef9",
+          "controls-browser-0ac9430",
+          "controls-protocol-manual-0ac9430"
+        ],
+        "assertions": [
+          "PLAY-004-A02",
+          "PLAY-013-A02",
+          "PLAY-016-A01",
+          "PLAY-018-A02",
+          "PLAY-021-A01",
+          "PLAY-036-A02",
+          "PLAY-037-A03",
+          "PLAY-051-A03",
+          "PLAY-052-A01"
+        ],
+        "scope": "Nine exact clauses only. Keyboard scope ends after real opening delivery and incident acknowledgement. One-way admission outcome does not close the added in-flight directional-loss obligation. Protocol provision does not claim human sessions; broader family/source conversion, current full browser matrix and parked long-play remain separate."
       }
     ]
   }

@@ -871,6 +871,11 @@
       "AC-SOC-628",
       "AC-SOC-629",
       "AC-SOC-630"
+    ],
+    "tests/provider-owned-map-layout.test.js": [
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
     ]
   },
   "inputs": [
@@ -932,6 +937,7 @@
     "scripts/lib/transport-lease-soak.js",
     "scripts/mcp-smoke.py",
     "scripts/mcp.js",
+    "scripts/provider-owned-map-layout-browser.js",
     "scripts/serve.js",
     "scripts/verify.py",
     "site/apple-touch-icon.png",
@@ -1353,6 +1359,7 @@
     "tests/progression.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",

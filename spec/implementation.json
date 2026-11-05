@@ -6873,6 +6873,26 @@
       ],
       "status": "partial",
       "scope": "Read-only Provider Finance projection of retained settled periods, customer credits/usage, shared payroll, setup and interest, named postings and cash movement. Borrowing and principal repayment are separate from operating result; same-minute post-settlement purchases appear in the next bill. Missing retained evidence remains unavailable. Period selection, focus and expanded detail persist through renders. These bounded cases do not establish every economy assertion, final browser acceptance or human understanding."
+    },
+    {
+      "id": "BEH-SOC-386",
+      "sources": [
+        "view:city_cust",
+        "view:city_links",
+        "view:city_infra",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/styles/98-provider.css"
+      ],
+      "testIds": [
+        "AC-SOC-634",
+        "AC-SOC-635",
+        "AC-SOC-636"
+      ],
+      "status": "partial",
+      "scope": "Pure shared pixel geometry keeps customer/site/link/resource hit targets distinct in a growing selected estate. Wrapped rows preserve camera and selected scope, and SVG paths share the button positions. One, two and twenty geographical customers and 19-resource/14-operation estate renderer fixtures cover desktop and mobile. This does not certify full source-catalogue map interactions or every paid mission and family journey."
     }
   ]
 }

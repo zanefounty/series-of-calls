@@ -58,7 +58,7 @@ async function snap(page,journey,name){await page.screenshot({path:path.join(OUT
 async function click(page,selector){
  const visible=page.locator(`${selector}:visible`).first();
  if(!await visible.isVisible()){
-  const requested=page.locator(selector).first(),group=requested.locator('xpath=ancestor::details[contains(concat(" ", normalize-space(@class), " "), " provider-more-actions ")][1]');
+  const requested=page.locator(selector).first(),group=requested.locator('xpath=ancestor::details[contains(concat(" ", normalize-space(@class), " "), " provider-more-actions ") or contains(concat(" ", normalize-space(@class), " "), " provider-locked-actions ")][1]');
   if(await requested.count()&&await group.count()&&await group.getAttribute('open')===null){const summary=group.locator(':scope > summary');if(await summary.isVisible())await summary.click();}
  }
  await visible.waitFor({state:'visible',timeout:15000});await visible.click();

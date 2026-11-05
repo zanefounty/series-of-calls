@@ -69,3 +69,52 @@
 @media(prefers-reduced-motion:reduce){.soc-training-map *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .soc-training-course{background:#fff;border:2px solid #203640;border-radius:12px;padding:12px 16px}.soc-training-course h3{margin:0 0 6px}.soc-training-course p{margin:6px 0}.soc-training-course details{margin-top:8px}.soc-training-course details[open]{max-height:180px;overflow:auto}
+
+/* Training shares the persistent world viewport; controls open explicit sheets. */
+#soc-console.is-training-map{overflow:hidden;display:grid;grid-template-rows:auto auto minmax(0,1fr)}
+#soc-console.is-training-map .soc-training-hud{padding:8px 14px;gap:10px;min-height:62px}
+#soc-console.is-training-map .soc-training-hud h1{font-size:18px;line-height:1.2;flex:1;margin:0}
+#soc-console.is-training-map .soc-training-hud button{min-height:44px;max-width:none}
+#soc-console.is-training-map>.soc-status{padding:5px 14px;white-space:nowrap;overflow:auto}
+#soc-training-map{min-height:0;position:relative}
+#soc-console.is-training-map .soc-training-map{height:100%;min-height:0;padding:0;border:0;border-radius:0;position:relative;display:block;overflow:hidden}
+#soc-console.is-training-map .soc-training-layout{position:absolute;inset:0;display:block;min-height:0}
+#soc-console.is-training-map .soc-training-world{height:100%;min-height:0;border:0;border-radius:0}
+#soc-console.is-training-map .soc-training-viewport{min-height:0;padding:120px 360px 230px 20px}
+#soc-console.is-training-map .soc-training-lesson{position:absolute;left:14px;top:12px;z-index:5;width:min(580px,calc(100% - 380px));padding:9px 12px;gap:12px;max-height:40%;overflow:auto;box-shadow:2px 3px 0 #20364033}
+#soc-console.is-training-map .soc-training-lesson h2{font-size:17px;line-height:1.3;margin:1px 0}
+#soc-console.is-training-map .soc-training-brief{margin-top:2px}
+#soc-console.is-training-map .soc-training-brief summary{font-size:13px;min-height:28px}
+#soc-console.is-training-map .soc-training-brief p{font-size:14px;margin:7px 0}
+#soc-console.is-training-map .soc-training-result{min-width:120px;max-width:40%;padding:6px 8px;font-size:12px}
+#soc-console.is-training-map .soc-training-result span{display:none}
+#soc-console.is-training-map .soc-training-course{position:absolute;z-index:5;left:14px;bottom:12px;width:min(600px,calc(100% - 380px));max-height:28%;overflow:auto;padding:10px 12px;box-shadow:2px 3px 0 #20364033}
+#soc-console.is-training-map .soc-training-course h3{font-size:15px;margin:0}
+#soc-console.is-training-map .soc-training-course p{font-size:12px;margin:3px 0}
+#soc-console.is-training-map .soc-training-course details{margin-top:5px;font-size:12px}
+#soc-console.is-training-map .soc-training-inspector{position:absolute;z-index:6;top:72px;right:12px;bottom:12px;width:330px;max-height:none}
+#soc-console.is-training-map .soc-training-world footer{display:none}
+#soc-console.is-training-map .soc-training-map-controls{z-index:7}
+#soc-console.is-training-map .soc-training-actions button{min-height:44px;background:#ffdc5d;border:2px solid #203640}
+#soc-console .soc-training-settings{position:fixed;z-index:1100;right:12px;top:72px;width:min(520px,calc(100% - 24px));max-height:calc(100dvh - 90px);overflow:auto;border:2px solid #203640;border-radius:12px;background:#fff;padding:14px;box-shadow:0 8px 36px #102e3655}
+#soc-console .soc-training-settings[hidden]{display:none}
+.soc-training-settings>header{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:-14px;background:#fff;z-index:2;padding:8px 0}
+.soc-training-settings h2{font-size:19px;margin:0}.soc-training-settings>p{font-size:12px}
+#soc-console .soc-training-settings .soc-toolbar{padding:10px 0;border:0;align-items:end}
+#soc-console .soc-training-settings button,#soc-console .soc-training-settings select{min-height:44px}
+@media(max-width:780px){
+ #soc-console.is-training-map .soc-training-hud{padding:6px 10px;gap:6px}
+ #soc-console.is-training-map .soc-training-hud h1{font-size:15px}
+ #soc-console.is-training-map .soc-training-hud button{padding:7px;font-size:12px;max-width:100px}
+ #soc-console.is-training-map .soc-training-lesson{left:10px;top:10px;width:calc(100% - 20px);display:flex;max-height:35%;gap:10px}
+ #soc-console.is-training-map .soc-training-result{width:auto;min-width:100px;max-width:38%;font-size:11px}
+ #soc-console.is-training-map .soc-training-map-controls{top:140px;left:10px;right:auto;gap:4px}
+ #soc-console.is-training-map .soc-training-map-controls button{padding:8px;min-height:44px;font-size:12px}
+ #soc-console.is-training-map .soc-training-viewport{padding:200px 12px 230px}
+ #soc-console.is-training-map .soc-training-course{left:10px;bottom:10px;width:calc(100% - 20px);max-height:27%;padding:9px 10px}
+ #soc-console.is-training-map .soc-training-inspector{display:none;position:fixed;z-index:1000;left:0;right:0;top:auto;bottom:0;width:100%;max-height:72dvh}
+ #soc-console.is-training-map .soc-training-inspector.is-open{display:flex}
+ #soc-console .soc-training-settings{top:66px;left:10px;right:10px;width:auto;max-height:calc(100dvh - 78px)}
+}
+
+.soc-training-preferences{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;border-top:1px solid #c4d4d5}.soc-training-preferences label{min-height:44px;display:flex;align-items:center;gap:8px;font-weight:650}.soc-training-preferences input[type=checkbox]{width:20px;height:20px}.soc-training-preferences select{max-width:100%}#soc-console.is-training-map.reduce-motion *{scroll-behavior:auto!important;transition:none!important;animation:none!important}

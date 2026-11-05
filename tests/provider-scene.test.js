@@ -59,3 +59,17 @@ test('Provider map shows funded product objects and marks dependency paths as ke
  assert.match(holder.querySelector('.provider-resource-node[aria-label*="recording"]').textContent,/Funded project · complete/);
  w.close();
 });
+
+
+test('paid integration edge stays selectable and reflects tested versus stale scope without moving its endpoints',()=>{
+ const {w}=boot();try{
+  const integration={projectId:'p-1',status:'commissioning',plan:{source:{resourceId:'phone'},target:{resourceId:'recorder'},edge:{id:'workplace-to-contact-quality'}},observation:{status:'awaiting-test'}};
+  const model={customers:[{id:'orchard',name:'Orchard',market:'au-sydney',stages:{},services:['phone','recorder'].map(id=>({id,kind:id,observed:{ready:true}})),serviceIntegration:{projects:[integration]}}],projects:[],offers:[],events:[]},view={layer:'services',selection:{customerId:'orchard'},camera:{}};
+  const before=JSON.stringify(model),scene=w.SOCServiceScene.project(model),edge=scene.edges.find(e=>e.type==='service-integration');
+  assert.equal(edge.from,'orchard:phone');assert.equal(edge.to,'orchard:recorder');assert.equal(edge.projectId,'p-1');assert.equal(JSON.stringify(model),before);
+  const holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderCanvas.render(model,view);
+  const selector='[data-provider-action="select-path"][data-id="'+edge.id+'"]',path=holder.querySelector(selector);assert.ok(path);assert.equal(path.getAttribute('tabindex'),'0');assert.ok(path.classList.contains('is-pending'));const geometry=path.getAttribute('d');
+  integration.observation.status='ready';holder.innerHTML=w.SOCProviderCanvas.render(model,view);assert.ok(holder.querySelector(selector).classList.contains('is-effective'));assert.equal(holder.querySelector(selector).getAttribute('d'),geometry);
+  integration.observation.status='stale';holder.innerHTML=w.SOCProviderCanvas.render(model,view);assert.ok(holder.querySelector(selector).classList.contains('is-pending'));assert.equal(holder.querySelector(selector).getAttribute('d'),geometry);
+ }finally{w.close();}
+});

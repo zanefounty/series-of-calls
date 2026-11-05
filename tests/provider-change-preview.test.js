@@ -14,7 +14,7 @@ test('migration comparison scopes actual live calls, identities and assigned num
  assert.equal(staged.target.id,'migration-phone');assert.equal(consolidated.target.id,'phone');
  assert.equal(staged.cohort[0].currentPlatform,SOC.operations.platform(r,'bea'));assert.equal(staged.cohort[0].present,true);assert.equal(staged.cohort[0].entitled,true);
  assert.deepEqual(staged.cohort[0].numbers,[{number:'+61255500201',status:'active',holder:'bea'}]);
- const bea=r.interactions.find(i=>i.from==='bea'&&i.phase==='queued'),alex=r.interactions.find(i=>i.from==='alex'&&i.phase==='handling');assert.ok(bea&&alex);
+ const bea=r.interactions.find(i=>i.channel==='voice'&&i.from==='bea'&&i.phase==='queued'),alex=r.interactions.find(i=>i.channel==='voice'&&i.from==='alex'&&['queued','handling'].includes(i.phase));assert.ok(bea&&alex);assert.ok(alex.voicePath&&alex.trace.some(t=>t.code==='CARRIER_PATH_ADMITTED'),'the unaffected path belongs to an actually admitted voice call, not a simultaneous digital case');
  assert.ok(staged.activeCalls.some(c=>c.id===bea.id&&c.reasons.includes('COHORT_PLACEMENT_CHANGE')));assert.ok(staged.unaffectedActiveCallIds.includes(alex.id));assert.ok(!staged.activeCalls.some(c=>c.id===alex.id));
  assert.ok(consolidated.activeCalls.some(c=>c.id===alex.id&&c.reasons.includes('DECLARED_PLATFORM_RECONFIGURED')));
  assert.ok(staged.activeCalls.every(c=>r.interactions.some(i=>i.id===c.id&&i.caseId===c.caseId)));assert.equal(staged.timing.guaranteedOutageMinutes,null);

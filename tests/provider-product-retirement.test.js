@@ -58,7 +58,7 @@ test('removing retirement state or forging a higher active generation cannot byp
 
 
 test('new quoted supplier minimums survive direct customer exit without first retiring the product',()=>{
- let s=opening(),work=project(s,productId);assert.equal(s.providerCampaign.contentVersion,'provider-campaigns-3');assert.equal(work.minimumTermPeriods,3);
+ let s=opening(),work=project(s,productId);assert.equal(s.providerCampaign.contentVersion,'provider-campaigns-5');assert.equal(work.minimumTermPeriods,3);
  const exitQuote=SOC.provider.quote(s,{action:'exit',customerId});assert.ok(exitQuote.commercial.remainingMinimumSupplierCents>=work.periodCents*2);
  s=buy(s,{action:'exit',customerId});const exitAt=s.clock;s=until(s,x=>x.clock>=Math.ceil((work.completedAt+180)/60)*60,300);
  const bills=s.business.ledger.filter(r=>r.reason==='provider-operation-period'&&r.at>exitAt);assert.ok(bills.length>=3,'supplier obligation survives exit in subsequent bills');const recording=project(s,'recording'),storage=recording.exitStorage;assert.equal(storage.retainedPeriodCents,3000);assert.equal(bills.reduce((n,r)=>n+r.cents,0),3*(work.periodCents+recording.periodCents)+Math.floor(3000*Math.max(0,s.clock-storage.commitmentEndsAt)/60));
@@ -66,7 +66,7 @@ test('new quoted supplier minimums survive direct customer exit without first re
 });
 
 test('version-two campaigns preserve original operation exit terms and restore without invented commitments',()=>{
- let s=SOC.create({experience:'campaign'});s.providerCampaign.contentVersion='provider-campaigns-2';const raw=JSON.stringify(s);assert.equal(JSON.stringify(SOC.restore(raw)),raw);
+ let s=SOC.create({experience:'campaign'});s.providerCampaign.contentVersion='provider-campaigns-2';delete s.providerCampaign.externalCollaborationVersion;const raw=JSON.stringify(s);assert.equal(JSON.stringify(SOC.restore(raw)),raw);
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});s=until(s,x=>x.providerCampaign.customers[0].status==='active');s=buy(s,op('recording'));s=until(s,x=>project(x,'recording').status==='complete');assert.equal(project(s,'recording').minimumTermPeriods,undefined);
  const work=project(s,'recording');s=buy(s,{action:'exit',customerId});const exitAt=s.clock;s=until(s,x=>x.clock>=120);assert.equal(s.business.ledger.filter(r=>r.reason==='provider-operation-period').reduce((n,r)=>n+r.cents,0),Math.floor(work.periodCents*(exitAt-work.completedAt)/60));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });

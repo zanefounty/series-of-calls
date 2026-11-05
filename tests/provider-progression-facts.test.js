@@ -5,6 +5,12 @@ const vm=require('node:vm');
 const SOC=require('../src/game/55-communications.js');
 const FACTS=require('../src/game/23-provider-progression.js');
 const RESPONSIBILITY=require('../src/game/23-provider-responsibility.js');
+const UC_CC=require('../src/game/23-provider-uc-cc-integration.js');
+const EXTERNAL_REACH=require('../src/game/23-provider-external-reach.js');
+const RESILIENCE_SEQUENCE=require('../src/game/23-provider-resilience-sequence.js');
+const RESILIENCE_PROGRESSION=require('../src/game/23-provider-resilience-progression.js');
+const PROVIDER_LOCAL=require('../src/game/23-provider-local-progression.js');
+const PROVIDER_CONTINUITY=require('../src/game/23-provider-continuity.js');
 const CONTENT=require('../content/progression.json');
 
 const buy=(s,request)=>{
@@ -44,6 +50,8 @@ test('AC-PROVIDER-PROGRESSION-FACTS-001 lists all canonical source IDs and exact
  assert.equal(Object.values(report.levels).filter(x=>x.status==='ready').length,0);
  assert.equal(Object.values(report.goals).filter(x=>x.status==='ready').length,0);
  assert.ok(report.levels['progress.progression-level.3'].missing.some(x=>x.includes('version-scoped')));
+ assert.equal(report.goals['progress.goal.ix'].status,'incomplete');assert.ok(report.goals['progress.goal.ix'].missing.some(x=>x.includes('paid')));
+ assert.equal(report.levels['progress.progression-level.3'].status,'incomplete');assert.ok(report.levels['progress.progression-level.3'].missing.some(x=>x.includes('paid')));
  assert.ok(report.goals['progress.goal.scrub'].missing.some(x=>x.includes('security operations')));
 });
 
@@ -114,9 +122,9 @@ test('current MSP responsibility is same-customer paid evidence and fails at zer
 });
 
 test('legacy responsibility version is unavailable and worker facts match host evaluation',()=>{
- const state=paidOpening(120),legacy=structuredClone(state);delete legacy.providerCampaign.commercialResponsibilityVersion;legacy.providerCampaign.contentVersion='provider-campaigns-2';
+ const state=paidOpening(120),legacy=structuredClone(state);delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.externalCollaborationVersion;legacy.providerCampaign.contentVersion='provider-campaigns-2';for(const customer of legacy.portfolio.customers)delete customer.root.providerCustomer.externalCollaborationVersion;
  const legacyReport=FACTS.evaluate(legacy,hooks);assert.equal(RESPONSIBILITY.responsibilities(legacy,'starter-customer',hooks).status,'unavailable');assert.equal(legacyReport.facts.supportResponsibility.status,'incomplete');assert.equal(legacyReport.levels['progress.progression-level.1'].status,'incomplete');
- const context={input:state,helpers:hooks};vm.createContext(context);vm.runInContext(RESPONSIBILITY.source()+FACTS.source(),context);
+ const context={input:state,helpers:hooks};vm.createContext(context);vm.runInContext(RESPONSIBILITY.source()+UC_CC.source()+EXTERNAL_REACH.source()+RESILIENCE_SEQUENCE.source()+RESILIENCE_PROGRESSION.source()+PROVIDER_CONTINUITY.source()+PROVIDER_LOCAL.source()+FACTS.source(),context);
  const worker=vm.runInContext('SOC_PROVIDER_PROGRESSION_FACTS.evaluate(input,helpers)',context);
  assert.deepEqual(JSON.parse(JSON.stringify(worker)),FACTS.evaluate(state,hooks),'worker and main facts derive the same current support proof');
 });
@@ -141,9 +149,32 @@ test('AC-PROVIDER-PROGRESSION-FACTS-006 support qualification needs 60 consecuti
  const changedConfig=syntheticSupportWindow();changedConfig[17].participants[0].configuration='new-generation';assert.ok(FACTS.qualifySupportWindow(changedConfig).missing.some(x=>x.includes('changed service configuration')));
 });
 
+test('support observation v2 interns configuration strings losslessly, preserves v1 reads, and appends a bounded window without mutation',()=>{
+ const samples=syntheticSupportWindow(),before=JSON.stringify(samples),encoded=FACTS.encodeSupportObservation(samples);
+ assert.equal(encoded.version,2);assert.equal(encoded.configurations.length,2);assert.ok(encoded.samples.every(sample=>sample.participants.every(p=>Object.hasOwn(p,'configurationIndex')&&!Object.hasOwn(p,'configuration'))));
+ const decoded=FACTS.decodeSupportObservation(encoded);assert.equal(JSON.stringify(decoded),before,'key order and every raw sample value are retained');assert.equal(JSON.stringify(samples),before,'encoding is pure');
+ const workerContext={encoded};vm.createContext(workerContext);vm.runInContext(FACTS.source(),workerContext);assert.equal(vm.runInContext('JSON.stringify(SOC_PROVIDER_PROGRESSION_FACTS.decodeSupportObservation(encoded))',workerContext),before,'worker source uses the same lossless decoder');
+ assert.deepEqual(FACTS.qualifySupportWindow(decoded),FACTS.qualifySupportWindow(samples));
+ const legacy={version:1,samples:structuredClone(samples)};assert.equal(JSON.stringify(FACTS.decodeSupportObservation(legacy)),before);assert.deepEqual(FACTS.decodeSupportObservation(undefined),[]);
+ const appended=FACTS.appendSupportObservation(encoded,syntheticSupportSample(61));assert.equal(appended.version,2);assert.equal(appended.samples.length,60);assert.equal(FACTS.decodeSupportObservation(appended)[0].at,2);assert.equal(FACTS.decodeSupportObservation(appended).at(-1).at,61);assert.equal(FACTS.decodeSupportObservation(encoded).at(-1).at,60,'append leaves the original observation unchanged');
+ const fromV1=FACTS.appendSupportObservation(legacy,syntheticSupportSample(61));assert.equal(JSON.stringify(FACTS.decodeSupportObservation(fromV1)),JSON.stringify(FACTS.decodeSupportObservation(appended)));
+ const first=syntheticSupportSample(1);assert.equal(FACTS.decodeSupportObservation(FACTS.appendSupportObservation(undefined,first)).length,1);
+});
+
+test('support observation codec rejects unknown versions, invalid dictionary references, duplicate configurations, and malformed samples',()=>{
+ const encoded=FACTS.encodeSupportObservation(syntheticSupportWindow());
+ assert.throws(()=>FACTS.decodeSupportObservation({version:3,configurations:[],samples:[]}),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ const badIndex=structuredClone(encoded);badIndex.samples[0].participants[0].configurationIndex=999;assert.throws(()=>FACTS.decodeSupportObservation(badIndex),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ const duplicate=structuredClone(encoded);duplicate.configurations.push(duplicate.configurations[0]);assert.throws(()=>FACTS.decodeSupportObservation(duplicate),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ const orphan=structuredClone(encoded);orphan.configurations.push('unused');assert.throws(()=>FACTS.decodeSupportObservation(orphan),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ assert.throws(()=>FACTS.encodeSupportObservation([syntheticSupportSample(1),syntheticSupportSample(3)]),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+ assert.throws(()=>FACTS.appendSupportObservation(encoded,syntheticSupportSample(62)),/INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING/);
+});
+
 test('sampled support remains absent from legacy facts and sampler reports current boundary/support gaps',()=>{
  const legacy=paidOpening(120),before=JSON.stringify(legacy),report=FACTS.evaluate(legacy,hooks);
  assert.equal(report.facts.twoSupportedCustomers.status,'incomplete');assert.equal(FACTS.qualifySupportWindow([]).status,'incomplete');
  const sample=FACTS.sampleSupport(legacy,hooks);assert.equal(sample.at,legacy.clock);assert.deepEqual(sample.cohort,['starter-customer']);assert.equal(sample.participants.length,1);assert.equal(sample.participants[0].tenant,legacy.portfolio.customers[0].root.tenant);assert.equal(sample.participants[0].eligible,false);assert.ok(sample.participants[0].missing.some(x=>x.includes('supported boundary')));assert.ok(sample.participants[0].responsibility);assert.equal(FACTS.validateSupportSamples(legacy,[sample],hooks),true);assert.deepEqual(FACTS.sampleSupport(legacy,hooks),sample);assert.equal(JSON.stringify(legacy),before,'sampling is pure');
+ assert.deepEqual(FACTS.evaluate(legacy,{...hooks,supportSamples:FACTS.encodeSupportObservation([sample])}),FACTS.evaluate(legacy,{...hooks,supportSamples:[sample]}),'facts accept an encoded observation without changing its raw evidence semantics');
  const withoutSampling=FACTS.evaluate(legacy,{...hooks,supportSamples:[]});assert.equal(withoutSampling.levels['progress.progression-level.2'].status,'incomplete','old saves never gain historical sampled support');
 });

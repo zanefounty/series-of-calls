@@ -4,6 +4,7 @@
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),http=require('node:http'),crypto=require('node:crypto');
 const SOC=require('../src/game/55-communications');
 const LESSONS=require('../src/game/23-training-lessons');
+const {trainingSettings,closeTrainingInspector,trainingFirstScreen}=require('./browser-smoke');
 const {campaignJourney,verifyCheckpoint}=require('./lib/campaign-journey');
 const {campaignUiAction}=require('./lib/campaign-ui');
 const ROOT=path.resolve(__dirname,'..'),VIEWPORTS=[{id:'desktop',width:1440,height:1000},{id:'mobile',width:390,height:844},{id:'landscape',width:844,height:390}];
@@ -53,7 +54,7 @@ function parseArgs(argv){
 function sha(value){return crypto.createHash('sha256').update(value).digest('hex');}
 function fileHash(file){return sha(fs.readFileSync(file));}
 function treeManifest(directory){const rows=[];const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else rows.push([path.relative(directory,file).split(path.sep).join('/'),fileHash(file)]);}};walk(directory);return {files:rows.length,sha256:sha(JSON.stringify(rows)),manifest:rows};}
-function sourceManifest(){const files=['package.json','package-lock.json','scripts/browser-campaigns.js','scripts/aggregate-browser-campaigns.js','scripts/lib/campaign-journey.js','scripts/lib/campaign-ui.js','scripts/build.js','scripts/serve.js','scripts/lib/page.js','scripts/lib/dict.js'];for(const base of ['src','site','content']){const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else files.push(path.relative(ROOT,file).split(path.sep).join('/'));}};walk(path.join(ROOT,base));}return Object.fromEntries([...new Set(files)].sort().map(rel=>[rel,fileHash(path.join(ROOT,rel))]));}
+function sourceManifest(){const files=['package.json','package-lock.json','scripts/browser-campaigns.js','scripts/browser-smoke.js','scripts/aggregate-browser-campaigns.js','scripts/lib/campaign-journey.js','scripts/lib/campaign-ui.js','scripts/build.js','scripts/serve.js','scripts/lib/page.js','scripts/lib/dict.js'];for(const base of ['src','site','content']){const walk=dir=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,ent.name);if(ent.isDirectory())walk(file);else files.push(path.relative(ROOT,file).split(path.sep).join('/'));}};walk(path.join(ROOT,base));}return Object.fromEntries([...new Set(files)].sort().map(rel=>[rel,fileHash(path.join(ROOT,rel))]));}
 function inputDrift(initial,final){return [...new Set([...Object.keys(initial||{}),...Object.keys(final||{})])].sort().filter(file=>initial[file]!==final[file]).map(file=>({file,before:initial[file]||null,after:final[file]||null}));}
 function runId(){return new Date().toISOString().replace(/[:.]/g,'-')+'-'+crypto.randomBytes(3).toString('hex');}
 async function withinBudget(promise,ms){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`CASE_RUNTIME_LIMIT:${ms}`)),ms);})]);}finally{clearTimeout(timer);}}
@@ -103,8 +104,9 @@ async function selectTrainingResource(page,id){
  await page.locator(`[data-training="select"][data-id="${id}"]`).click();await openTrainingInspector(page);
 }
 async function setProfile(page,profile){
+ if(profileExperience(profile)==='training')await trainingSettings(page,true);
  await page.locator('#soc-scenario').selectOption(profile.scenario);await page.locator('#soc-jurisdiction').selectOption(profile.jurisdiction);await page.locator('#soc-mode').selectOption(profile.mode);
- const revision=await page.evaluate(()=>SCT.state.revision);await page.locator('[data-soc="new"]').click();await page.waitForFunction(p=>SCT.state.scenario===p.scenario&&SCT.state.jurisdiction===p.jurisdiction&&SCT.state.mode===p.mode&&SCT.state.clock===0,profile,{timeout:10000});await waitIdle(page);const experience=await page.evaluate(()=>SCT.state.experience.kind);if(experience!==profileExperience(profile))throw new Error('PROFILE_EXPERIENCE_MISMATCH:'+experience);return revision;
+ const revision=await page.evaluate(()=>SCT.state.revision);await page.locator('[data-soc="new"]').click();await page.waitForFunction(p=>SCT.state.scenario===p.scenario&&SCT.state.jurisdiction===p.jurisdiction&&SCT.state.mode===p.mode&&SCT.state.clock===0,profile,{timeout:10000});await waitIdle(page);const experience=await page.evaluate(()=>SCT.state.experience.kind);if(experience!==profileExperience(profile))throw new Error('PROFILE_EXPERIENCE_MISMATCH:'+experience);if(experience==='training')await trainingSettings(page,false);return revision;
 }
 async function enterInteraction(page,channel,caseId){if(await page.evaluate(()=>SCT.state.experience.kind==='training')){await openTrainingInspector(page);if(await page.evaluate(()=>SOC.scenarios[SCT.state.scenario].channel)!==channel)throw new Error('TRAINING_CHANNEL_NOT_PERMITTED');await clickCommand(page,'[data-training="interaction"]');return;}const form=page.locator('#soc-journey-controls form'),fields={channel,from:'alex',to:'+61255500201',caseId};for(const [field,value] of Object.entries(fields))await fillVisibleField(form,field,value);await prepareJourneySubmit(form,fields);await clickCommand(page,'#soc-journey-controls form button[type="submit"]');}
 async function phase(page){return page.evaluate(()=>SCT.state.interactions.at(-1)?.phase||null);}
@@ -135,7 +137,7 @@ async function exerciseCampaign(page,profile){
    const observed=await page.evaluate(()=>JSON.parse(JSON.stringify(SCT.state))),actionId=LESSONS.findAction('defence',step.command,observed);
    if(!actionId)throw new Error('NO_VISIBLE_TRAINING_LESSON_MAPPING:'+JSON.stringify(step.command));
    if(step.command.type==='configure'&&LESSONS.completed('defence',actionId,observed))continue;
-   const control=page.locator(`[data-training="lesson-action"][data-id="${actionId}"]`);await control.waitFor({state:'visible'});if(!await control.isEnabled())throw new Error('TRAINING_LESSON_CONTROL_DISABLED:'+actionId);
+   await closeTrainingInspector(page);const control=page.locator(`[data-training="lesson-action"][data-id="${actionId}"]`);await control.waitFor({state:'visible'});if(!await control.isEnabled())throw new Error('TRAINING_LESSON_CONTROL_DISABLED:'+actionId);
    await clickCommand(page,`[data-training="lesson-action"][data-id="${actionId}"]`);
    if(!await page.locator('#soc-training-map').count())throw new Error('TRAINING_MAP_DISAPPEARED');
    const state=await page.evaluate(()=>({error:SCT.error,experience:SCT.state.experience.kind,provider:!!SCT.state.providerCampaign}));if(state.error||state.experience!=='training'||state.provider)throw new Error('TRAINING_LESSON_BOUNDARY_FAILED:'+JSON.stringify(state));continue;
@@ -172,6 +174,7 @@ async function main(argv=process.argv.slice(2)){
      await context.tracing.start({screenshots:true,snapshots:true,sources:true});page=await context.newPage();page.setDefaultTimeout(10000);page.on('pageerror',error=>row.errors.push(`pageerror:${error.message}`));page.on('console',message=>{if(message.type()==='error')row.errors.push(`console:${message.text()}`);});
      await page.goto(`http://127.0.0.1:${server.address().port}/series-of-calls/`,{waitUntil:'domcontentloaded',timeout:15000});
      await page.locator(`.provider-launch-actions [data-provider-action="${profileExperience(profile)}"]`).click({timeout:10000});await page.waitForFunction(()=>SCT.locked&&document.querySelector('#soc-console:not([hidden])'),null,{timeout:15000});
+     if(profileExperience(profile)==='training')row.firstScreen=await trainingFirstScreen(page);
      row.outcomes=await (args.journey==='campaign'?exerciseCampaign:exerciseProfile)(page,profile);row.status='passed';
     })(),caseBudget);
    }catch(error){row.status='failed';row.error=String(error.stack||error);row.errors.push(String(error.message||error));}

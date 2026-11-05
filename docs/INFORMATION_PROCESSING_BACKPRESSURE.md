@@ -1,0 +1,11 @@
+# Processing backpressure and pending admission
+
+Automatic capture no longer aborts the simulation when all 200 processing slots contain unfinished work. The recording remains stored, the attempted processing admission records `PROCESSING_ADMISSION_REFUSED`, and calls, commissioning, settlement and other customer work continue. A successful capture does not become a failed recording merely because its later processing queue is full.
+
+A pending recording retains a versioned admission containing the capture time, refusal audit reference, original pipeline plan and optional speech model. When an actual terminal job frees a slot, the oldest eligible pending recording receives a real processing job. Retrying does not silently adopt a changed pipeline, discard another active job or create a processing output. Current resource, boundary, permission and storage checks still govern every processing stage. Explicit processing commands retain atomic refusal. Expiry or authorized removal cancels pending admission with an audit.
+
+The focused domain regression completes a previously refused recording after capacity becomes available, checks unknown versions and mismatched receipts, and preserves explicit refusal behavior. The public Enterprise regression funds the existing transcription operation after reaching the full queue; an older refused recording receives a job, and previously queued work makes actual progress. Restore and worker continuation remain equivalent.
+
+The first queue-recovery slice exposed a separate fixed 500-record representation limit below already purchased archive capacity. The subsequent versioned record store removes that obstacle for the tested backlog without another storage charge: the public storage-capacity regression completes all 200 original six-stage plans and the oldest refused capture, retaining 1,556 records within the existing 20 archive units. Its bounded representation still has separate ceilings; broader long-retention and larger-portfolio storage work remains open. Retained records are not deleted to make the test pass.
+
+Tests: `tests/information-processing-capacity.test.js` and `tests/provider-processing-backpressure.test.js`. This bounded implementation does not close full gameplay acceptance or source catalogue obligations.

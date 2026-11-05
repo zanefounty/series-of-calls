@@ -102,3 +102,24 @@ test('Training map camera applies to nodes and dependency paths in one coordinat
  assert.doesNotMatch(css,/\.soc-training-links\s*\{[^}]*display:\s*none/s);assert.match(css,/\.soc-training-edge\s*\{[^}]*width:44px;height:44px/s);
  assert.deepEqual(x.errors,[]);
 });
+
+
+test('Training settings use explicit open and close state without advancing the lesson or replacing map selection',async t=>{
+ const x=tab(t);await x.ev('socOpen()');const d=x.dom.window.document,original=x.ev('JSON.stringify(SCT.state)');
+ assert.ok(d.querySelector('#soc-console.is-training-map'));assert.equal(d.querySelector('#soc-training-settings').hidden,true);
+ d.querySelector('[data-training="open-settings"]').click();assert.equal(d.querySelector('#soc-training-settings').hidden,false);assert.equal(d.querySelector('[data-training="open-settings"]').getAttribute('aria-expanded'),'true');
+ const selected=x.ev('SCT.selected');d.querySelector('#soc-scenario').focus();d.querySelector('[data-training="close-settings"]').click();
+ assert.equal(d.querySelector('#soc-training-settings').hidden,true);assert.equal(d.activeElement.dataset.training,'open-settings','closing settings returns keyboard focus to its opening control');assert.equal(x.ev('SCT.selected'),selected);assert.equal(x.ev('JSON.stringify(SCT.state)'),original);
+ d.querySelector('[data-training="open-settings"]').click();d.querySelector('#soc-mode').value='assessed';d.querySelector('#soc-mode').dispatchEvent(new x.dom.window.Event('change'));
+ assert.equal(d.querySelector('#soc-training-settings').hidden,false,'changing exercise settings keeps the explicit sheet open');assert.equal(x.ev('SCT.state.mode'),'assessed');
+ x.ev("SCT.state=SOC.create({mode:'sandbox'});socRender()");assert.equal(d.querySelector('#soc-console').classList.contains('is-training-map'),false);assert.ok(d.querySelector('#soc-config'));assert.deepEqual(x.errors,[]);
+});
+
+
+test('Training presentation preferences persist through the shared store without creating service work or altering its save',async t=>{
+ const x=tab(t);await x.ev('socOpen()');const d=x.dom.window.document,before=x.ev('JSON.stringify(SCT.state)');d.querySelector('[data-training="open-settings"]').click();
+ for(const [key,value] of [['sound',true],['animation',false],['reducedMotion',true],['alerts',false],['inputHelp',false]]){const input=d.querySelector(`[data-training-preference="${key}"]`);assert.ok(input);if(input.checked!==value)input.click();assert.equal(x.ev(`SOCServicePreferences.read(localStorage)[${JSON.stringify(key)}]`),value);}
+ assert.equal(x.ev('JSON.stringify(SCT.state)'),before);assert.ok(d.querySelector('#soc-console.reduce-motion'));assert.equal(d.querySelector('.soc-status').getAttribute('aria-live'),'off');assert.equal(x.ev('providerPreferences().sound'),true);
+ x.ev('socRender()');assert.equal(d.querySelector('[data-training-preference="animation"]').checked,false);assert.equal(d.querySelector('#soc-training-settings').hidden,false);
+ d.querySelector('[data-training="close-settings"]').click();assert.equal(x.ev('JSON.stringify(SCT.state)'),before);x.ev('providerHome()');assert.equal(x.ev('SOC_PROVIDER_UI.view().preferences.reducedMotion'),true,'Provider refreshes the shared settings after leaving Training');assert.equal(x.ev('SOC_PROVIDER_UI.view().preferences.animation'),false);assert.deepEqual(x.errors,[]);
+});

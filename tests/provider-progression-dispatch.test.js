@@ -38,6 +38,6 @@ test('worker claim parity and support-observation restore validation use the sam
  let response;const context={postMessage:value=>response=value};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:'claim',state:s,command}});
  assert.equal(response.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(response.state)),SOC.dispatch(s,command));
  assert.equal(s.providerCampaign.supportObservation.samples.length,60);
- for(const change of [o=>o.version=2,o=>o.samples.push(o.samples.at(-1)),o=>o.samples[0].at++,o=>o.samples.at(-1).at--]){const bad=structuredClone(s);change(bad.providerCampaign.supportObservation);assert.throws(()=>SOC.restore(JSON.stringify(bad)),/INVALID_PROVIDER_SUPPORT_OBSERVATION/);}
+ for(const change of [o=>o.version=999,o=>o.samples.push(o.samples.at(-1)),o=>o.samples[0].at++,o=>o.samples.at(-1).at--]){const bad=structuredClone(s);change(bad.providerCampaign.supportObservation);assert.throws(()=>SOC.restore(JSON.stringify(bad)),/INVALID_PROVIDER_SUPPORT_OBSERVATION/);}
  const legacy=structuredClone(s);delete legacy.providerCampaign.supportObservation;assert.deepEqual(SOC.restore(JSON.stringify(legacy)),legacy,'old saves acquire no invented minute samples');
 });

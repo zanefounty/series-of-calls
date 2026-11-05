@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-6",
+  "id": "provider-campaigns-7",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -1190,8 +1190,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        "progress.goal."+"ln",
-        "progress.goal."+"rd"
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"rd")
       ]
     },
     {
@@ -1207,8 +1207,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        "progress.goal."+"ln",
-        "progress.goal."+"rd"
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"rd")
       ]
     },
     {
@@ -1224,8 +1224,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        "progress.goal."+"ln",
-        "progress.goal."+"rd"
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"rd")
       ]
     },
     {
@@ -1241,8 +1241,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        "progress.goal."+"ln",
-        "progress.goal."+"rd"
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"rd")
       ]
     },
     {
@@ -1258,8 +1258,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        "progress.goal."+"ln",
-        "progress.goal."+"rd"
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"rd")
       ]
     },
     {
@@ -1279,7 +1279,7 @@ function socProviderRulesKernel(){
         "local-deployment"
       ],
       "sourceIds": [
-        "progress.goal."+"ca"
+        ("progress.goal."+"ca")
       ]
     },
     {
@@ -1363,6 +1363,159 @@ function socProviderRulesKernel(){
       "sourceIds": [
         "uc-new:family:microsoft:government-clouds"
       ]
+    },
+    {
+      "id": "site-diverse-ingress",
+      "sourceIds": [
+        ("progress.goal."+"ln"),
+        ("progress.goal."+"m2")
+      ],
+      "name": "Independent site calling ingress",
+      "description": "Commission a separately powered external calling point and independent paths to both customer sites. Carrier reach remains available when either customer building loses power.",
+      "setupCents": 32000,
+      "periodCents": 7000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "requirements": [
+        "primary-upstream"
+      ],
+      "config": {}
+    },
+    {
+      "id": "owned-site-operations",
+      "sourceIds": [
+        ("progress.goal."+"df"),
+        ("progress.goal."+"m2")
+      ],
+      "name": "Owned-site administration and recovery",
+      "description": "Fund local administration, configuration backups and restore services at both sites. Assign the actual desk endpoints and calling identities to their buildings; each incident and migration remains a separately quoted decision.",
+      "setupCents": 42000,
+      "periodCents": 4500,
+      "workMinutes": 10,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "owned-head-admin",
+        "owned-head-backup",
+        "owned-head-restore",
+        "owned-branch-admin",
+        "owned-branch-backup",
+        "owned-branch-restore"
+      ],
+      "resourceKinds": {
+        "owned-head-admin": "infrastructure",
+        "owned-head-backup": "archive",
+        "owned-head-restore": "infrastructure",
+        "owned-branch-admin": "infrastructure",
+        "owned-branch-backup": "archive",
+        "owned-branch-restore": "infrastructure"
+      },
+      "requirements": [
+        "site-diverse-ingress"
+      ],
+      "config": {
+        "owned-head-admin": {
+          "enabled": true,
+          "local": true
+        },
+        "owned-head-backup": {
+          "enabled": true,
+          "local": true
+        },
+        "owned-head-restore": {
+          "enabled": true,
+          "local": true
+        },
+        "owned-branch-admin": {
+          "enabled": true,
+          "local": true
+        },
+        "owned-branch-backup": {
+          "enabled": true,
+          "local": true
+        },
+        "owned-branch-restore": {
+          "enabled": true,
+          "local": true
+        }
+      }
+    },
+    {
+      "id": "site-recovery",
+      "sourceIds": [
+        ("progress.goal."+"df"),
+        ("progress.goal."+"m2")
+      ],
+      "name": "Fund a site recovery exercise",
+      "description": "Reserve the shared team for one authored site failure. Capture a backup, observe surviving calls, restore the affected configuration and verify fresh service before completion.",
+      "setupCents": 16000,
+      "periodCents": 1000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "requirements": [
+        "owned-site-operations"
+      ],
+      "config": {}
+    },
+    {
+      "id": "managed-site-recovery",
+      "sourceIds": [
+        ("progress.goal."+"df")
+      ],
+      "name": "Managed site recovery",
+      "description": "Use qualified provider support for the same scoped backup, failure and restoration work. Lower setup cost and no engineering reservation trade against a longer lead and higher recurring support.",
+      "setupCents": 10000,
+      "periodCents": 2200,
+      "workMinutes": 9,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [
+        "owned-site-operations"
+      ],
+      "config": {}
+    },
+    {
+      "id": "site-resource-migration",
+      "sourceIds": [
+        ("progress.progression-level."+"4")
+      ],
+      "name": "Move one owned-site endpoint",
+      "description": "Move the selected real endpoint between the two owned sites. The quote funds only that item and retains its individual migration result.",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 4,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "requirements": [
+        "owned-site-operations"
+      ],
+      "config": {}
+    },
+    {
+      "id": "custody-review",
+      "sourceIds": [
+        ("progress.progression-level."+"12"),
+        ("progress.goal."+"gi")
+      ],
+      "name": "Review retained record custody",
+      "description": "Fund a scoped review and permitted read of an actual processed customer record. Storage, access, key and support boundaries remain enforced.",
+      "setupCents": 5500,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [
+        "owned-site-operations",
+        "transcription"
+      ],
+      "config": {}
     }
   ],
   "families": [

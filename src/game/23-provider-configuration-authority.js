@@ -21,6 +21,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   return out;
  }
  function addResources(configs,project,definition,catalogue,child){
+  if(project.operationId==='owned-site-operations')for(const [id,kind] of Object.entries(definition.resourceKinds||{})){if(configs[id])fail(`DUPLICATE_OWNED_SITE_RESOURCE:${id}`);const base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${id}`);configs[id]={...clone(base),enabled:false,region:child.jurisdiction};}
   const recipe=project.productId?products?.recipes?.[project.productId]:null;
   const commands=recipe?.preparation?.commands||[];
   for(const command of commands)if(command.type==='add'&&typeof command.id==='string'&&!configs[command.id]){
@@ -31,6 +32,11 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
  }
  function operationPatch(provider,project,definition,configs,child){
   const id=project.operationId;
+  if(id==='owned-site-operations'){
+   const patch=Object.fromEntries(definition.resources.map(id=>[id,{...clone(definition.config[id]),enabled:true}]));
+   for(const id of ['phone','dedicated-platform']){if(!configs[id])fail('OWNED_SITE_CALL_PLATFORM_REQUIRED');patch[id]={routes:[{prefix:'+61255500202',target:'dedicated-endpoint'},{prefix:'+61255500201',target:'desk'},...clone(configs[id].routes).filter(r=>!['+61255500202','+61255500201'].includes(r.prefix))]};}
+   return patch;
+  }
   if(['direct-external-reach','managed-external-reach'].includes(id)){
    const receipt=project.operationReceipt;
    validateReachReceipt(project);
@@ -57,7 +63,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(project.productId==='cisco-contact-centre')patch.speech={...(patch.speech||{}),region:child.jurisdiction};
    return patch;
   }
-  if(['provider-campaigns-5','provider-campaigns-6'].includes(provider.contentVersion)&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
+  if(['provider-campaigns-5','provider-campaigns-6','provider-campaigns-7'].includes(provider.contentVersion)&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
   if(project.operationId==='recording')patch.recorder={...(patch.recorder||{}),identityMapping:true};
   if(project.operationId==='transcription')patch.speech={...(patch.speech||{}),region:child.jurisdiction,local:true,licenceLocal:true};
   if(project.operationId==='local-deployment'){
@@ -123,6 +129,13 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete';skipTiming.add(resource.id);
    }
   }
+  for(const exercise of child.siteOperations?.exercises||[]){
+   const project=projects.find(p=>['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
+   const restore=exercise.restoration;
+   if(!restore)continue;
+   if(!project||project.operationReceipt.projectId!==project.id||project.config.targetSite!==exercise.targetSite||project.config.kind!==exercise.kind)fail('UNFUNDED_SITE_RESTORE');
+   for(const snap of exercise.backupSnapshot.resources){if(!configs[snap.id]||stable(snap.config)!==stable(configs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
+  }
   return {configs,known,projects,accepted,transitional,latestWriteAt,skipTiming};
  }
  function validateProducts(provider,customer,child,projects){
@@ -178,7 +191,10 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   // Provider purchases do not author arbitrary port orders or replace caller IDs.
   // Dedicated and staged migrations move identity placement, keeping these numbers.
   const numbers=[{number:'+61255500101',holder:'alex',type:'user',provider:'level-tree',status:'active'},{number:'+61255500201',holder:'bea',type:'user',provider:'level-tree',status:'active'}];
-  if(funded.length)for(const alias of reachAliases)numbers.push({...alias,type:'user',provider:'level-tree',status:'active'});
+  for(const project of projects){
+   if(reachOperations.includes(project.operationId))for(const alias of reachAliases)numbers.push({...alias,type:'user',provider:'level-tree',status:'active'});
+   if(project.operationId==='owned-site-operations')numbers.push({number:'+61255500202',holder:'alex',type:'user',provider:'level-tree',status:'active'});
+  }
   if(stable(operations.numbers)!==stable(numbers))fail('NUMBER_OWNERSHIP');
   const policies=Object.fromEntries(numbers.slice(0,2).map(number=>[number.holder,{allowInternational:false,allowedPrefixes:funded.length?['+61','+44']:['+61'],callerId:number.number}]));
   if(stable(operations.policies)!==stable(policies))fail('DIALLING_POLICY');

@@ -216,7 +216,7 @@ test('Level 2 evidence rejects rehashed cohort and support-sample substitutions 
 
 test('blocked canonical facts stay claim-blocked with their measured missing evidence',()=>{
  const s=paidOpening(),other='progress.progression-level.4',state=structuredClone(s),report=RECEIPTS.eligibility(state,other,hooks);
- assert.equal(report.status,'incomplete');assert.ok(report.missing.some(x=>x.includes('retained proof adapter is not implemented')));
+ assert.equal(report.status,'incomplete');assert.ok(report.missing.includes('PAID_PROVIDER_OWNED_SITE_OPERATIONS_REQUIRED'));
  assert.throws(()=>RECEIPTS.claim(state,other,hooks),/PROVIDER_PROGRESSION_EVIDENCE_REQUIRED/);assert.equal(state.providerCampaign.progressionReceipts,undefined);
  const training=SOC.create();assert.throws(()=>RECEIPTS.eligibility(training,'progress.goal.bb',hooks),/PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED/);
 });

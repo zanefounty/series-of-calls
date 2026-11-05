@@ -2,9 +2,11 @@
 
 Engineering status as of 5 November 2026. This is not acceptance closure or a full ecosystem release declaration. The active completion contract remains all 52 requirements and 159 assertions, four missions, fourteen representative families, and map-based Training.
 
-## Published for review
+## Merged gameplay and current publication
 
-Seven PRs cover versioned demand/economy, mission operations, shared Provider/Training map, measured progression/responsibility, UC/contact integration and external reach, then storage recovery, transport resilience, local continuity and meeting choices. See `GAMEPLAY_REBUILD_PR_STACK.md` for exact drafts and candidate evidence. The latest published candidate `e6d85ae` passed all 13 GitHub checks, 603 registered acceptance cases, 94 actual stdio MCP cases, development gates and gate mutation tests. These results apply to that candidate, not subsequent work.
+PRs #21–#27 merged the initial gameplay stack. PR #28 parallelized the existing publication test shards without removing checks. PR #29 added the measured wholesale/public-service progression adapters and earned capacity alternatives; PR #31 added visible paid managed-resilience and local-spares journeys. PR #30 reconciled every original acceptance assertion: 86 verified against the recorded candidates, 69 pending and four parked by the owner. These counts are evidence accounting, not final-candidate acceptance. See [the reconciliation](GAMEPLAY_ACCEPTANCE_RECONCILIATION.md).
+
+PR #32 fixes cold offline browser loading by serving the installed application cache before waiting for network requests. Its focused tests passed, the regression failed against the old worker, and Chromium/Firefox/WebKit each passed an actual cache upgrade followed by a cold restart against a stalled server with separate saves intact. Public deployment and post-publication verification have their own current run receipts; these local browser passes do not replace those checks.
 
 ## Current implementation chunk
 
@@ -17,9 +19,9 @@ Seven PRs cover versioned demand/economy, mission operations, shared Provider/Tr
 
 ## Remaining engineering and delivery
 
-The other 22 canonical progression identities are grouped into eight next batches: wholesale and public-service adapters; named regional support and sampled market qualification; dedicated gateway and distinct integrations; owned-site backup/recovery; delegated operations; independent abuse controls; sustained load/omnichannel/AI; and the unchanged canonical endgame. Existing partial mechanics do not automatically satisfy those source predicates.
+After L5/L6, the remaining twenty canonical progression identities span: named regional support and sampled market qualification; dedicated gateway and distinct integrations; owned-site backup/recovery; delegated operations; independent abuse controls; sustained load/omnichannel/AI; and the unchanged canonical endgame. Existing partial mechanics do not automatically satisfy those source predicates.
 
-Every gameplay acceptance assertion still needs final individual implementation/evidence reconciliation. Required final work also includes the full visible journey matrix on Chromium/Firefox/WebKit, desktop/mobile interaction checks, worker/restore and long-play continuation, registered acceptance and all development/security/MCP gates, protected preview publication, and deployed cache/offline gameplay checks. Any changed tested inputs need fresh affected evidence.
+All 159 gameplay acceptance assertions have individual implementation/evidence reconciliation; the pending assertions and changed final candidate still require executed closure. Required final work also includes the full visible journey matrix on Chromium/Firefox/WebKit, desktop/mobile interaction checks, worker/restore continuation (the additional long-play runs remain parked by the owner), registered acceptance and all development/security/MCP gates, protected preview publication, and deployed cache/offline gameplay checks. Any changed tested inputs need fresh affected evidence.
 
 Real counterbalanced pilot participation and applicable owner/environment review remain external dependencies. Automated browser runs are not human playability evidence. Source catalogue and research acceptance remain separate and unchanged.
 
@@ -32,3 +34,9 @@ Frozen `8930cde` passed 2,031 JavaScript tests (2 skipped), 603 registered accep
 The follow-up changes only repair browser selectors and inspector CSS: ordinary room nodes use a raw resource ID, funded project nodes use their scoped scene ID; meeting feature labels stack above values; mobile sticky headings match the sheet padding. Fresh desktop and mobile guest journeys both pass with no runtime input drift. They exercise actual browser guest limitations, retained supplier charges, paid native replacement and fresh recording evidence. Geometry checks require readable label width, 44px actions, visible heading/close controls and no horizontal sheet overflow. These focused runs supplement rather than relabel the failed frozen run.
 
 The owner parked additional long-play runs and prioritized merging the stack. The remaining engineering and evidence scope is recorded in [the backlog and continuation prompt](GAMEPLAY_REBUILD_BACKLOG.md); no deferred or unexecuted assertion is marked passed.
+
+## Owned-site implementation candidate
+
+The active integration adds funded independent ingress, two-site administration, five authored power/site/shared-risk recovery choices, individual endpoint migrations and an actual processed-record custody read. Recovery requires real duration-bearing calls, captured backup, explicit recovery and restore, then fresh delivered work. Setup, metered work and recurring obligations remain in the shared Provider treasury. Partial migration waits for active calls to drain and retries the existing paid item without charging setup twice.
+
+A frozen diagnostic passed the full five-recovery/two-migration/DF–M2–L4 journey on desktop and mobile, including exact save reload and retained original DF evidence. An independently paid managed-recovery test earns DF, pays its different capital/recurring/staff terms, completes real failure and restoration work, and refuses a duplicate. Later quote wording and custody validation changes require fresh affected browser verification. L12 and GI integrated claim proof and the other earned follow-on choices remain open; pure helpers and partial evidence do not close them.

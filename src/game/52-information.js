@@ -133,7 +133,7 @@ function socInformationKernel(){
   return true;
  }
  function createJob(s,record,plan,speechModel){
-  const info=s.information;if(!removeTerminalJob(info,[...(s.providerProgressionPins?.pins?.processingJobIds||[]),...(s.providerCentralPins?.pins?.processingJobIds||[])]))return false;
+  const info=s.information;if(!removeTerminalJob(info,[...(s.providerProgressionPins?.pins?.processingJobIds||[]),...(s.providerCentralPins?.pins?.processingJobIds||[]),...(s.providerCustodyPins?.pins?.processingJobIds||[])]))return false;
   info.jobs.push({id:'processing-'+info.nextId++,source:record.id,parent:record.id,interaction:record.interaction,status:'queued',stage:0,remaining:steps[plan.steps[0]].work,plan:copy(plan),...(speechModel?{speechModel:copy(speechModel)}:{}),reason:null,createdAt:s.clock});
   audit(s,'PROCESSING_QUEUED',{record:record.id});return info.jobs.at(-1);
  }

@@ -52,7 +52,7 @@ function socProviderCapacityAuthorityKernel(rules,products,government){
    patch.carrier={...(patch.carrier||{}),capacity:previous+2};
   }
   if(['national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve'].includes(op.id)){
-   if(provider.contentVersion!=='provider-campaigns-6')fail('CENTRAL_CONTENT');
+   if(!['provider-campaigns-6','provider-campaigns-7'].includes(provider.contentVersion))fail('CENTRAL_CONTENT');
    const capture=op.id==='public-service-capture-reserve',resource=capture?'recorder':'carrier',previous=target[resource]?.capacity??4,added=8,receipt=project.operationReceipt;
    if(!receipt||Object.keys(receipt).sort().join(',')!==(capture?'at,boundaryRefresh,capacity,kind,previousCapacity,resource,unit':'at,capacity,kind,previousCapacity,resource,unit')||receipt.kind!==op.id||receipt.resource!==resource||receipt.previousCapacity!==previous||receipt.capacity!==previous+added||receipt.unit!==(capture?'concurrent capture reservations':'concurrent sessions')||receipt.at!==project.configSubmittedAt-1)fail('CENTRAL_RECEIPT');
    if(capture){const b=receipt.boundaryRefresh,contract=child.boundaries?.contracts?.find(c=>c.id===b?.contractId);if(!b||Object.keys(b).sort().join(',')!=='contractId,generation,previousGeneration'||!Number.isSafeInteger(b.previousGeneration)||b.previousGeneration<1||b.generation!==b.previousGeneration+1||!contract||contract.generation<b.generation||child.boundaries.bindings.recorder!==b.contractId)fail('CENTRAL_BOUNDARY_REFRESH');}

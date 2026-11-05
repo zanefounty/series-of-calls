@@ -9,11 +9,13 @@ const {E,act,tick,siteFixture,exercise}=require('./helpers/site-fixture');
 function providerState({siteRoot=null,projects=[]}={}){
  const customer={id:'acme',portfolioId:'portfolio-acme',status:'active',market:'melbourne'};
  const root=siteRoot||{experience:{version:1,kind:'campaign',custom:false},tenant:'tenant-acme',jurisdiction:'AU',providerCustomer:{version:1,id:customer.id,portfolioId:customer.portfolioId}};
- return {experience:{version:1,kind:'campaign',custom:false},clock:root.clock||0,providerCampaign:{pack:'soc-provider-campaign-1',customers:[customer],projects},portfolio:{customers:[{id:customer.portfolioId,root}]},business:{ledger:[],ledgerPrunedThrough:0}};
+ return {experience:{version:1,kind:'campaign',custom:false},clock:root.clock||0,providerCampaign:{pack:'soc-provider-campaign-1',customers:[customer],projects},portfolio:{customers:[{id:customer.portfolioId,tenant:root.tenant,root}]},business:{ledger:[],ledgerPrunedThrough:0}};
 }
 
 test('owned-site operations keep canonical IDs and quoted terms distinct by paid stage',()=>{
- assert.deepEqual(OWN.OPERATION_IDS,['site-diverse-ingress','owned-site-operations','site-recovery','site-resource-migration','custody-review']);
+ assert.deepEqual(OWN.OPERATION_IDS,['site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review']);
+ assert.deepEqual(OWN.RECOVERY_IDS,['site-recovery','managed-site-recovery']);
+ assert.deepEqual(OWN.ENDPOINTS,[{resource:'desk',person:'bea',site:'head'},{resource:'dedicated-endpoint',person:'alex',site:'branch'}]);
  assert.deepEqual(OWN.SITE_IDS,{head:'provider-owned-head',branch:'provider-owned-branch'});
  assert.equal(OWN.TERMS['owned-site-operations'].setupCents,42000);
  assert.equal(OWN.TERMS['site-diverse-ingress'].setupCents,32000);
@@ -21,6 +23,9 @@ test('owned-site operations keep canonical IDs and quoted terms distinct by paid
  assert.equal(OWN.TERMS['site-diverse-ingress'].commissioningMinutes,8);
  assert.equal(OWN.TERMS['owned-site-operations'].periodCents,4500);
  assert.equal(OWN.TERMS['site-recovery'].workMinutes,6);
+ assert.deepEqual(OWN.TERMS['managed-site-recovery'],{setupCents:10000,periodCents:2200,workMinutes:9,engineers:0,support:1});
+ assert.equal(OWN.isRecoveryOperation('managed-site-recovery'),true);
+ assert.equal(OWN.isRecoveryOperation('site-resource-migration'),false);
  assert.equal(OWN.TERMS['site-resource-migration'].perItem,true);
  assert.equal(OWN.TERMS['custody-review'].engineers,0);
  assert.equal(OWN.SOURCE.DF,'progress.goal.df');
@@ -62,6 +67,7 @@ test('order descriptors expose paid blockers for each authored operation without
  assert.ok(rows.every(x=>x.available===false&&x.blockers.length>0));
  assert.equal(rows[0].terms.setupCents,32000);
  assert.equal(OWN.canOrder(state,'acme','site-recovery',{kind:'power',targetSite:OWN.SITE_IDS.head}).eligible,false);
+ assert.equal(OWN.canOrder(state,'acme','managed-site-recovery',{kind:'power',targetSite:OWN.SITE_IDS.head}).eligible,false);
  assert.equal(OWN.canOrder(state,'acme','site-resource-migration',{resourceId:'desk',fromSite:OWN.SITE_IDS.head,toSite:OWN.SITE_IDS.branch}).eligible,false);
  assert.equal(OWN.canOrder(state,'acme','custody-review',{}).eligible,false);
  assert.equal(JSON.stringify(state),before);

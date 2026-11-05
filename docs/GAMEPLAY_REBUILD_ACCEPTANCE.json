@@ -564,7 +564,7 @@
       },
       "observations": [
         "All 47 published files including five locale assets match downloaded protected deployment artifact.",
-        "Actual Portuguese locale loaded from the project prefix and rendered Configura\u00e7\u00f5es.",
+        "Actual Portuguese locale loaded from the project prefix; translated title content and the rendered settings label were inspected.",
         "Persistent old cache replaced; root/index reload offline with exact separate Training/Provider saves.",
         "Cold restart with Docker network none loads updated root/index and saved runs.",
         "Actual paid Provider stages deliver completed customer work after upgrade."
@@ -585,7 +585,7 @@
         },
         {
           "rawArtifact": "/tmp/soc-pr35-dd7-browser-equivalence.json",
-          "sha256": "415b55c6e062e32b779d928842557b31f376be41e6c0d46a592324f8167182fc"
+          "sha256": "72934cfd6940bfe563c0788e7e241eab85681f4bf6b8aac929951bd6d5ab9022"
         }
       ],
       "driver": {
@@ -3505,14 +3505,13 @@
       "sourceIds": [
         "view:title"
       ],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-002": {
@@ -3678,14 +3677,14 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-012": {
@@ -3880,14 +3879,14 @@
       "sourceIds": [
         "view:notifications"
       ],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-023": {
@@ -4060,13 +4059,12 @@
         "view:dash_overview",
         "view:bank"
       ],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-wholesale"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-032": {
@@ -4388,13 +4386,12 @@
         "src/i18n/en.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-049": {
@@ -4409,13 +4406,14 @@
         "view:hud",
         "view:title"
       ],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-lab-fixture-separation"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "pending-current-candidate-verification": 2,
+        "verified-current-candidate": 1
       }
     },
     "PLAY-050": {
@@ -4426,13 +4424,14 @@
         "scripts/browser-smoke.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 0 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 3
+        "verified-current-candidate": 1,
+        "pending-current-candidate-verification": 2
       }
     },
     "PLAY-051": {

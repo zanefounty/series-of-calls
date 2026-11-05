@@ -1,5 +1,7 @@
 # Gameplay rebuild engineering checkpoint — 5 November 2026
 
+The executed receipts below describe commit `0b4096108c2e0429cba3a360196de7be924c1699`. Subsequent work on `feature/gameplay-responsibility-progression` is not covered by those receipts. It adds named commercial responsibilities, paid service-boundary reviews, earned progression offers, room-platform cutover continuity, consequence previews and funded service withdrawal. See the associated Provider contract documents and tests; fresh candidate verification remains required.
+
 This checkpoint implements the shared Provider/Training map and costed operating paths. It is not completion of the six-phase gameplay plan, full source catalogue acceptance, or publication approval. The 52 requirements and 159 assertions remain individually tracked in [the acceptance ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json).
 
 ## Changed behavior

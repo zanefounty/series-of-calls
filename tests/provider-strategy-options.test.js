@@ -84,7 +84,7 @@ test('a paid distributor qualification requires actual qualified service history
  const initialRoom={action:'operation',operationId:'distributor-room',customerId:'starter-customer'};
  assert.ok(SOC.provider.quote(c.state,initialRoom).blockers.includes('OPERATION_REQUIREMENT_REQUIRED:partner-qualification'));
  const blocked=c.operationQuote('partner-qualification');
- assert.ok(blocked.blockers.includes('OBSERVED_QUALIFIED_SERVICE_PERIOD_REQUIRED'));
+ assert.ok(blocked.blockers.includes('RECENT_FULL_QUALIFIED_SETTLEMENT_REQUIRED'));
  while(!c.state.providerCampaign.incidents.some(x=>x.status==='active'))c.advance(1);
  const incident=c.state.providerCampaign.incidents.find(x=>x.status==='active');
  c.send({action:'acknowledge-incident',incidentId:incident.id});c.operation('repair');

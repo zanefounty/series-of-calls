@@ -85,6 +85,9 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.operationEventually('migration',enterprise.id);
  if(c.state.providerCampaign.customers[0].status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
  c.advance(60-c.state.clock%60);
+ assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'a meeting begun before migration cutover cannot certify room continuity after it');
+ assert.equal(c.state.providerCampaign.customers.find(x=>x.id===enterprise.id).history.at(-1).evidence.migrationComplete,false);
+ c.advance(60);
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,1,'enterprise migration and actual meeting evidence earn its first period');
  c.advance(60);
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,2,'enterprise earns a second fresh qualifying period');

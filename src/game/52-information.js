@@ -20,8 +20,13 @@ function socInformationKernel(){
   meeting:{calendarAuthorised:true,bookingEnabled:true,platform:'grove',nativePlatform:'grove',guestJoin:true,bridgeLicensed:false,capacity:8,eventLicensed:false,eventCapacity:100,mediaPlacement:'cloud',captions:false,recording:false}
  };
  function config(kind,c){
-  const d=schemas[kind];if(!d||!c||Array.isArray(c)||Object.keys(c).sort().join(',')!==Object.keys(d).sort().join(','))fail('INVALID_INFORMATION_CONFIG');
+  const d=schemas[kind],keys=c&&!Array.isArray(c)?Object.keys(c).sort().join(','):'';
+  const legacyKeys=d?Object.keys(d).sort().join(','):'';
+  const dependencyKeys=kind==='meeting'?[...Object.keys(d).sort(),'platformDependency'].sort().join(','):null;
+  const hasDependency=kind==='meeting'&&keys===dependencyKeys;
+  if(!d||!c||Array.isArray(c)||(keys!==legacyKeys&&!hasDependency))fail('INVALID_INFORMATION_CONFIG');
   for(const [k,v] of Object.entries(c)){
+   if(k==='platformDependency'&&kind==='meeting')continue;
    if(Array.isArray(d[k])){if(!Array.isArray(v)||!v.length||v.length>30||v.some(x=>typeof x!=='string'||x.length>64)||new Set(v).size!==v.length)fail('INVALID_INFORMATION_LIST');}
    else if(typeof v!==typeof d[k]||typeof v==='number'&&!integer(v,0,100000)||typeof v==='string'&&v.length>64)fail('INVALID_INFORMATION_FIELD');
   }
@@ -31,6 +36,31 @@ function socInformationKernel(){
   }
   if(kind==='boundary'&&[...c.processRegions,...c.storageRegions].some(r=>!regions.includes(r)))fail('INVALID_INFORMATION_REGION');
   if(kind==='meeting'&&(!['grove','disco'].includes(c.platform)||!['grove','disco'].includes(c.nativePlatform)||!['local','cloud'].includes(c.mediaPlacement)||c.capacity<0||c.eventCapacity<0))fail('INVALID_MEETING_PROFILE');
+  if(hasDependency){const dependency=c.platformDependency;if(!dependency||Array.isArray(dependency)||Object.keys(dependency).sort().join(',')!=='resourceId,version'||dependency.version!==1||!id(dependency.resourceId))fail('INVALID_MEETING_PLATFORM_DEPENDENCY');}
+ }
+ function meetingDependency(s){return s.information?.meeting?.effective?.platformDependency||null;}
+ function validMeetingDependencyProof(proof,declared){
+  return !!proof&&Object.keys(proof).sort().join(',')==='generation,media,ready,reasons,resourceId,version'&&proof.version===1&&proof.resourceId===declared?.resourceId&&integer(proof.generation,1)&&typeof proof.ready==='boolean'&&Array.isArray(proof.reasons)&&proof.reasons.length<=30&&proof.reasons.every(x=>typeof x==='string'&&x.length>0&&x.length<=96)&&proof.media&&Object.keys(proof.media).sort().join(',')==='in,out'&&typeof proof.media.in==='boolean'&&typeof proof.media.out==='boolean';
+ }
+ function meetingDependencyStatus(s,booking,snapshot,declared){
+  if(!declared)return {proof:null,reasons:[]};
+  const proof=snapshot?.platformDependency;
+  if(!validMeetingDependencyProof(proof,declared))return {proof:{version:1,resourceId:declared.resourceId,generation:null,profileGeneration:s.information.meeting.generation,ready:false,reasons:['MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID'],media:{in:false,out:false}},reasons:['MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID']};
+  const reasons=[...proof.reasons];if(!proof.ready)reasons.push('MEETING_PLATFORM_DEPENDENCY_UNAVAILABLE');
+  if(!proof.media.in||!proof.media.out)reasons.push('MEETING_PLATFORM_MEDIA_UNAVAILABLE');
+  return {proof:{...copy(proof),profileGeneration:s.information.meeting.generation},reasons:[...new Set(reasons)]};
+ }
+ function meetingDependencyChanged(s,booking,session,snapshot){
+  if(!session.platformDependency)return [];
+  const declared=meetingDependency(s),status=meetingDependencyStatus(s,booking,snapshot,declared);
+  const prior=session.platformDependency,current=status.proof;
+  if(!current)return status.reasons.length?status.reasons:['MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID'];
+  if(!declared||declared.resourceId!==prior.resourceId||declared.version!==prior.version||current.generation===null||current.generation!==prior.generation||current.profileGeneration!==prior.profileGeneration)return ['MEETING_PLATFORM_DEPENDENCY_CHANGED'];
+  return status.reasons;
+ }
+ function meetingSnapshot(s,booking,services,fallback){
+  const declared=meetingDependency(s);
+  return typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking,declared?copy(declared):undefined):fallback;
  }
  function create(s){
   const result={pack:PACK,jobs:[],bookings:[],meetingSessions:[],nextMeetingSessionId:1,audit:[],interfaces:[],transfers:[],originReceipts:[],nextTransferId:1,nextId:1,jobPrunedThrough:0,nextAuditId:1,auditPrunedThrough:0};
@@ -150,15 +180,16 @@ function socInformationKernel(){
   const o=s.information;if(!o)return;
   o.meetingSessions=o.meetingSessions||[];o.nextMeetingSessionId=o.nextMeetingSessionId||1;
   for(const kind of Object.keys(schemas)){const n=o[kind];if(n.provisioning.status==='pending'&&n.provisioning.due<=s.clock){n.effective=copy(n.desired);n.provisioning.status='ready';}}
+  if(o.meeting.effective?.platformDependency&&!o.meetingDependencyEpoch)o.meetingDependencyEpoch={version:1,firstSessionNumber:o.nextMeetingSessionId,profileGeneration:o.meeting.generation,at:s.clock};
   for(const node of o.interfaces||[])if(node.provisioning.status==='pending'&&node.provisioning.due<=s.clock)provisionInterface(s,node,services);
   for(const session of o.meetingSessions){
    if(meetingSessionTerminal(session))continue;
    const booking=o.bookings.find(b=>b.id===session.bookingId);
    if(!booking||booking.cancelled){endMeetingSession(s,session,'cancelled',['BOOKING_CANCELLED'],services);continue;}
-   const snapshot=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):{at:s.clock,success:true,reasons:[]};
+   const snapshot=meetingSnapshot(s,booking,services,{at:s.clock,success:true,reasons:[]});
    if(session.status==='scheduled'&&s.clock>=session.scheduledAt)startMeetingSession(s,session,booking,services,snapshot);
    if(session.status!=='active')continue;
-   const reasons=[...meetingReasons(s,booking,snapshot,services,false,s.clock>=session.endsAt),...capacityBlockers(s,booking,snapshot)];
+   const reasons=[...meetingDependencyChanged(s,booking,session,snapshot),...meetingReasons(s,booking,snapshot,services,false,s.clock>=session.endsAt),...capacityBlockers(s,booking,snapshot)];
    if(reasons.length){endMeetingSession(s,session,'failed',reasons,services);continue;}
    if(s.clock>=session.endsAt){
     if(session.features.recording){
@@ -197,6 +228,7 @@ function socInformationKernel(){
  }
  function meetingReasons(s,booking,baseMeeting,services,allowFuture=false,allowEnd=false){
   const o=s.information,p=o.meeting.effective,c=s.resources.room.effective,errors=[...baseMeeting.reasons];
+  errors.push(...meetingDependencyStatus(s,booking,baseMeeting,meetingDependency(s)).reasons);
   if(!p||!c)errors.push('MEETING_NOT_PROVISIONED');
   else{
    if(!p.calendarAuthorised||!p.bookingEnabled)errors.push('CALENDAR_AUTHORISATION');
@@ -213,8 +245,8 @@ function socInformationKernel(){
   return [...new Set(errors)];
  }
  function join(s,booking,baseMeeting,services,emit){
-  const o=s.information,p=o.meeting.effective,errors=meetingReasons(s,booking,baseMeeting,services);
-  const result={...baseMeeting,at:s.clock,success:!errors.length,reasons:[...new Set(errors)],booking:booking.id,mediaPlacement:p?.mediaPlacement,features:{captions:!!p?.captions&&!errors.length,recording:!!p?.recording&&!errors.length}};
+  const o=s.information,p=o.meeting.effective,observed=meetingDependency(s)?meetingSnapshot(s,booking,services,baseMeeting):baseMeeting,errors=meetingReasons(s,booking,observed,services);
+  const result={...observed,at:s.clock,success:!errors.length,reasons:[...new Set(errors)],booking:booking.id,mediaPlacement:p?.mediaPlacement,features:{captions:!!p?.captions&&!errors.length,recording:!!p?.recording&&!errors.length}};
   // `join` is retained as a diagnostic/training probe. It checks today's
   // effective dependencies, but it does not occupy capacity or capture media.
   if(result.success&&p.recording&&!booking.probeEvidence){
@@ -262,7 +294,8 @@ function socInformationKernel(){
   if(booking.sessionId){const prior=meetingSession(s,booking.sessionId);if(prior&&!meetingSessionTerminal(prior))fail('MEETING_SESSION_ALREADY_ACTIVE');}
   if(o.meetingSessions.length>=200)fail('MEETING_SESSION_CAPACITY');
   const session={id:`meeting-session-${o.nextMeetingSessionId++}`,bookingId:booking.id,status:'scheduled',scheduledAt:booking.start,startedAt:null,endsAt:booking.end,endedAt:null,attendees:booking.attendees,roomId:'room',platform:o.meeting.effective?.platform||null,mediaPlacement:o.meeting.effective?.mediaPlacement||null,features:{captions:!!o.meeting.effective?.captions,recording:!!o.meeting.effective?.recording},reasons:[],reservationHeld:false,reservationReleased:false,captureRecordId:null};
-  const snapshot=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):baseMeeting;
+  const snapshot=meetingSnapshot(s,booking,services,baseMeeting);
+  const dependency=meetingDependencyStatus(s,booking,snapshot,meetingDependency(s));if(dependency.proof)session.platformDependency=dependency.proof;
   const blockers=[...meetingReasons(s,booking,snapshot||baseMeeting,services,true),...capacityBlockers(s,booking,snapshot)];
   if(blockers.length){session.status='failed';session.endedAt=s.clock;session.reasons=[...new Set(blockers)];session.reservationReleased=true;audit(s,'MEETING_SESSION_FAILED',{session:session.id,booking:booking.id,reasons:session.reasons});}
   else if(session.features.recording){
@@ -276,8 +309,8 @@ function socInformationKernel(){
  }
  function startMeetingSession(s,session,booking,services,snapshot){
   if(session.status!=='scheduled')return;
-  const current=typeof services?.meetingSnapshot==='function'?services.meetingSnapshot(s,booking):snapshot;
-  const reasons=[...meetingReasons(s,booking,current,services),...capacityBlockers(s,booking,current)];
+  const current=meetingSnapshot(s,booking,services,snapshot);
+  const reasons=[...meetingDependencyChanged(s,booking,session,current),...meetingReasons(s,booking,current,services),...capacityBlockers(s,booking,current)];
   if(reasons.length){endMeetingSession(s,session,'failed',reasons,services);return;}
   session.status='active';session.startedAt=s.clock;session.platform=s.information.meeting.effective.platform;session.mediaPlacement=s.information.meeting.effective.mediaPlacement;
   audit(s,'MEETING_SESSION_STARTED',{session:session.id,booking:booking.id,attendees:session.attendees,platform:session.platform,mediaPlacement:session.mediaPlacement});
@@ -290,6 +323,7 @@ function socInformationKernel(){
   if(c.action==='configure'){
    if(!own(schemas,c.kind)||!c.config||Array.isArray(c.config))fail('INVALID_INFORMATION_CONFIG');const n=o[c.kind],desired={...n.desired,...copy(c.config)};config(c.kind,desired);
    if(c.kind==='pipeline'&&(s.resources[desired.processor]?.kind!=='processor'||s.resources[desired.archive]?.kind!=='archive'))fail('INVALID_PROCESSING_RESOURCE');
+   if(c.kind==='meeting'&&desired.platformDependency){const resource=s.resources[desired.platformDependency.resourceId];if(!resource)fail('MEETING_PLATFORM_RESOURCE_UNKNOWN');if(!['uc','dedicated'].includes(resource.kind))fail('MEETING_PLATFORM_RESOURCE_KIND');if(!authorize(services,s,resource.id))fail('MEETING_PLATFORM_RESOURCE_AUTHORITY');}
    n.desired=desired;n.generation++;n.provisioning={status:'pending',due:s.clock+1,generation:n.generation};
   }else if(c.action==='interface'){
    if(s.scenario!=='defence'||!id(c.id)||!own(interfacePolicies,c.policyId)||!id(c.sourceResource)||!id(c.destinationResource))fail('INVALID_SCENARIO_INTERFACE');
@@ -341,7 +375,11 @@ function socInformationKernel(){
   if(o.jobPrunedThrough!==undefined&&!integer(o.jobPrunedThrough,0,o.nextId-1)||o.nextAuditId!==undefined&&!integer(o.nextAuditId,1)||o.auditPrunedThrough!==undefined&&(!integer(o.auditPrunedThrough,0,(o.nextAuditId||1)-1)))fail('INVALID_INFORMATION_HISTORY');
   const hasInterfaceState=['interfaces','transfers','originReceipts','nextTransferId'].some(k=>own(o,k));
   if(hasInterfaceState&&(!Array.isArray(o.interfaces)||!Array.isArray(o.transfers)||!Array.isArray(o.originReceipts)||!integer(o.nextTransferId,1)||o.interfaces.length>50||o.transfers.length>200||o.originReceipts.length>500||o.transferPrunedThrough!==undefined&&!integer(o.transferPrunedThrough,0,o.nextTransferId-1)))fail('INVALID_INFORMATION_INTERFACE_HISTORY');
-  for(const kind of Object.keys(schemas)){const n=o[kind];if(!n||!integer(n.generation,1)||!n.provisioning||n.provisioning.generation!==n.generation||!integer(n.provisioning.due)||!['pending','ready'].includes(n.provisioning.status))fail('INVALID_INFORMATION_PROVISIONING');config(kind,n.desired);if(n.effective)config(kind,n.effective);}
+  for(const kind of Object.keys(schemas)){const n=o[kind];if(!n||!integer(n.generation,1)||!n.provisioning||n.provisioning.generation!==n.generation||!integer(n.provisioning.due)||!['pending','ready'].includes(n.provisioning.status))fail('INVALID_INFORMATION_PROVISIONING');config(kind,n.desired);if(n.effective)config(kind,n.effective);if(kind==='meeting')for(const profile of [n.desired,n.effective].filter(Boolean))if(profile.platformDependency){const resource=s.resources?.[profile.platformDependency.resourceId];if(!resource||!['uc','dedicated'].includes(resource.kind))fail('INVALID_MEETING_PLATFORM_RESOURCE');}}
+  const dependencyEpoch=o.meetingDependencyEpoch,hasEffectiveDependency=!!o.meeting.effective?.platformDependency,hasDesiredDependency=!!o.meeting.desired?.platformDependency,hasDependencyProof=o.meetingSessions?.some(session=>session&&own(session,'platformDependency'));
+  if(dependencyEpoch!==undefined&&(!dependencyEpoch||Array.isArray(dependencyEpoch)||Object.keys(dependencyEpoch).sort().join(',')!=='at,firstSessionNumber,profileGeneration,version'||dependencyEpoch.version!==1||!integer(dependencyEpoch.firstSessionNumber,1,o.nextMeetingSessionId||1)||!integer(dependencyEpoch.profileGeneration,1,o.meeting.generation)||!integer(dependencyEpoch.at,0,s.clock)))fail('INVALID_MEETING_DEPENDENCY_EPOCH');
+  const firstDependencyPending=hasDesiredDependency&&!hasEffectiveDependency&&o.meeting.provisioning.status==='pending';
+  if((hasEffectiveDependency||hasDependencyProof||hasDesiredDependency&&!firstDependencyPending)&&!dependencyEpoch)fail('MISSING_MEETING_DEPENDENCY_EPOCH');
   for(const [key,max] of Object.entries({jobs:200,bookings:200,audit:500}))if(!Array.isArray(o[key])||o[key].length>max)fail('INVALID_INFORMATION_COLLECTION');
   const validEndpoint=x=>!!x&&Object.keys(x).sort().join(',')==='accessRoles,boundaryContractId,boundaryGeneration,eligible,flowId,informationClass,profile,resourceGeneration,resourceId,workload'&&id(x.resourceId)&&id(x.boundaryContractId)&&integer(x.boundaryGeneration,1)&&integer(x.resourceGeneration,1)&&id(x.flowId)&&id(x.workload)&&regions.includes(x.profile)&&classes.includes(x.informationClass)&&typeof x.eligible==='boolean'&&Array.isArray(x.accessRoles)&&x.accessRoles.length>0&&x.accessRoles.every(id)&&new Set(x.accessRoles).size===x.accessRoles.length;
   const liveEndpointConsistent=(s,x)=>{
@@ -385,7 +423,13 @@ function socInformationKernel(){
    const sessionIds=new Set();let sequence=0;
    for(const session of o.meetingSessions){
     const keys='attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status';
-    if(!session||Object.keys(session).sort().join(',')!==keys||!/^meeting-session-[1-9]\d*$/.test(session.id)||sessionIds.has(session.id)||Number(session.id.slice('meeting-session-'.length))<=sequence||Number(session.id.slice('meeting-session-'.length))>=o.nextMeetingSessionId||!id(session.bookingId)||!integer(session.attendees,1,10000)||!integer(session.scheduledAt)||!integer(session.endsAt,session.scheduledAt+1)||!['scheduled','active','completed','failed','cancelled'].includes(session.status)||session.startedAt!==null&&!integer(session.startedAt,session.scheduledAt,session.endsAt-1)||session.endedAt!==null&&!integer(session.endedAt,session.scheduledAt)||session.roomId!=='room'||session.platform!==null&&!['grove','disco'].includes(session.platform)||session.mediaPlacement!==null&&!['local','cloud'].includes(session.mediaPlacement)||!session.features||Object.keys(session.features).sort().join(',')!=='captions,recording'||typeof session.features.captions!=='boolean'||typeof session.features.recording!=='boolean'||!Array.isArray(session.reasons)||session.reasons.some(x=>typeof x!=='string')||typeof session.reservationHeld!=='boolean'||typeof session.reservationReleased!=='boolean'||session.captureRecordId!==null&&!id(session.captureRecordId))fail('INVALID_MEETING_SESSION');
+    const extendedKeys=[...keys.split(','),'platformDependency'].sort().join(',');
+    const hasDependency=session&&own(session,'platformDependency');
+    const proof=session?.platformDependency;
+    const invalidProofGeneration=!!proof&&proof.generation===null&&proof.ready===false&&Array.isArray(proof.reasons)&&proof.reasons.length===1&&proof.reasons[0]==='MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID'&&!!proof.media&&proof.media.in===false&&proof.media.out===false;
+    if(!session||Object.keys(session).sort().join(',')!==keys&&Object.keys(session).sort().join(',')!==extendedKeys||hasDependency&&(!proof||Object.keys(proof).sort().join(',')!=='generation,media,profileGeneration,ready,reasons,resourceId,version'||proof.version!==1||!id(proof.resourceId)||!integer(proof.profileGeneration,1,o.meeting.generation)||proof.generation!==null&&!integer(proof.generation,1)||proof.generation===null&&!invalidProofGeneration||typeof proof.ready!=='boolean'||!Array.isArray(proof.reasons)||proof.reasons.length>30||proof.reasons.some(x=>typeof x!=='string'||!x.length||x.length>96)||!proof.media||Object.keys(proof.media).sort().join(',')!=='in,out'||typeof proof.media.in!=='boolean'||typeof proof.media.out!=='boolean'||proof.generation!==null&&(!proof.ready||proof.reasons.length||!proof.media.in||!proof.media.out)&&['scheduled','active','completed'].includes(session.status))||!/^meeting-session-[1-9]\d*$/.test(session.id)||sessionIds.has(session.id)||Number(session.id.slice('meeting-session-'.length))<=sequence||Number(session.id.slice('meeting-session-'.length))>=o.nextMeetingSessionId||!id(session.bookingId)||!integer(session.attendees,1,10000)||!integer(session.scheduledAt)||!integer(session.endsAt,session.scheduledAt+1)||!['scheduled','active','completed','failed','cancelled'].includes(session.status)||session.startedAt!==null&&!integer(session.startedAt,session.scheduledAt,session.endsAt-1)||session.endedAt!==null&&!integer(session.endedAt,0,s.clock)||session.status==='completed'&&session.endedAt<session.scheduledAt||session.roomId!=='room'||session.platform!==null&&!['grove','disco'].includes(session.platform)||session.mediaPlacement!==null&&!['local','cloud'].includes(session.mediaPlacement)||!session.features||Object.keys(session.features).sort().join(',')!=='captions,recording'||typeof session.features.captions!=='boolean'||typeof session.features.recording!=='boolean'||!Array.isArray(session.reasons)||session.reasons.some(x=>typeof x!=='string')||typeof session.reservationHeld!=='boolean'||typeof session.reservationReleased!=='boolean'||session.captureRecordId!==null&&!id(session.captureRecordId))fail('INVALID_MEETING_SESSION');
+    const sessionNumber=Number(session.id.slice('meeting-session-'.length));if(dependencyEpoch&&(sessionNumber>=dependencyEpoch.firstSessionNumber&&!hasDependency||hasDependency&&sessionNumber<dependencyEpoch.firstSessionNumber||hasDependency&&proof.profileGeneration<dependencyEpoch.profileGeneration))fail('INVALID_MEETING_SESSION_DEPENDENCY_EPOCH');
+    if(hasDependency&&proof.profileGeneration===o.meeting.generation&&o.meeting.effective?.platformDependency?.resourceId!==proof.resourceId)fail('INVALID_MEETING_SESSION_DEPENDENCY');
     sessionIds.add(session.id);sequence=Number(session.id.slice('meeting-session-'.length));
     const booking=o.bookings.find(b=>b.id===session.bookingId);if(!booking||booking.sessionId!==session.id||session.scheduledAt!==booking.start||session.endsAt!==booking.end||session.attendees!==booking.attendees)fail('INVALID_MEETING_SESSION_BOOKING');
     if(session.status==='scheduled'&&(session.startedAt!==null||session.endedAt!==null)||session.status==='active'&&(session.startedAt===null||session.endedAt!==null)||meetingSessionTerminal(session)&&(session.endedAt===null||session.reservationHeld)||session.reservationHeld&&session.reservationReleased||session.captureRecordId!==null&&(!session.features.recording||!s.records.some(r=>r.id===session.captureRecordId&&r.kind==='recording'&&r.interaction===session.bookingId)))fail('INVALID_MEETING_SESSION_STATE');

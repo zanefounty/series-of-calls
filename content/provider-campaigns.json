@@ -852,6 +852,24 @@
       ]
     },
     {
+      "id": "managed-carrier-headroom",
+      "name": "Supplier-managed carrier headroom",
+      "description": "After earning Local UC reseller, buy four carrier sessions using supplier engineering and one provider support worker. Lower setup competes with a higher recurring commitment.",
+      "setupCents": 8000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
       "id": "compliance-local",
       "name": "Scoped local public-service processing",
       "description": "Commission customer-operated capture, storage and speech with independent regional paths and finite local licence grace. Higher setup and delivery effort reduce recurring supplier exposure.",
@@ -890,6 +908,74 @@
       "config": {},
       "requirements": [],
       "sourceIds": []
+    },
+    {
+      "id": "service-boundary-review",
+      "name": "Commercial service boundary review",
+      "description": "Fund a scoped review of the actual identity, calling and engagement paths. Resource or support changes can invalidate the reviewed boundary and require another paid review.",
+      "setupCents": 40000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "identity",
+        "phone",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "integrator-room",
+      "name": "Integrator-supported room service",
+      "description": "Twig Integrations commissions the room and its calendar path with a provider support reservation. Lower setup and shorter delivery carry a higher recurring support cost.",
+      "setupCents": 65000,
+      "periodCents": 10000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "room"
+      ],
+      "config": {
+        "room": {
+          "calendar": true
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "scheduledMeeting": {
+        "version": 1,
+        "minute": 20,
+        "durationMinutes": 4,
+        "attendees": 1
+      }
+    },
+    {
+      "id": "regional-provisioning",
+      "name": "Regional provisioning service",
+      "description": "Fund a reusable provisioning policy for explicitly selected customers in markets demonstrated by the Regional communications MSP achievement. Each order still needs its own money, staff and budget.",
+      "setupCents": 15000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "engage"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles"
+      ]
     }
   ],
   "families": [

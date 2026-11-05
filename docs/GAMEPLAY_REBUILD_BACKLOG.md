@@ -2,19 +2,19 @@
 
 Owner direction, 5 November 2026: park additional long-play testing for now and prioritize reviewing and merging the published implementation stack. This changes work order, not acceptance results or the full ecosystem release gate. Do not mark deferred assertions passed.
 
-## Immediate integration work
+## Integration completed — 5 November 2026
 
-- Repair the PR #23 locale merge conflict without losing either branch's labels.
-- Repair guest-room browser selectors and narrow-inspector readability, then execute both desktop and mobile journeys.
-- Merge the reviewed feature PRs through their existing stacked bases, preserve every PR and real merge history, and run the final combined required checks before the integration PR enters main.
-- Use the existing owner-only review exception only within the owner's explicit merge authorization. Required Actions checks have no bypass. Do not change governance, branch rules or deployment review requirements.
-- Keep the unfinished central-progression draft outside the merge candidate.
+- PRs #21–#27 are merged. Main `5d9f6c09eb4d5019617b18d6a20f4a76caa2dfe0` contains the reviewed stack; its tree equals tested candidate `691cf84f9272d382c3427c2becc46e70010c66cb`.
+- The locale conflict preserved both branches' labels. Guest-room selectors and narrow-inspector readability were repaired. Final integration PR #22 passed all 13 hosted checks before merging.
+- Fresh Chromium guest-room desktop/mobile journeys passed. Fresh Firefox 157.0 and WebKit 27.2 each passed resilience and guest-room desktop/mobile journeys using Playwright 1.64.1 with unchanged tested inputs. These eight cross-browser journeys do not establish the remaining full browser matrix.
+- Required checks and governance were unchanged. The owner's existing review exception was used within explicit merge authorization.
+- Central progression remained outside that merge candidate and is now being implemented separately. Its new behavior needs its own verification.
 
 ## Engineering backlog after integration
 
 | Batch | Remaining behavior |
 | --- | --- |
-| Commercial and public-service progression | Levels 5/6: retain actual wholesale and Government processing/history evidence, claims and useful paid follow-on choices. A draft helper exists but is untested and not integrated. |
+| Commercial and public-service progression | Levels 5/6: content version 6 implements retained wholesale and Government processing/history evidence, once-only claims and scoped paid capacity choices. Public-dispatch positive/failure/paid-delivery/worker/restore tests pass; independent forged-history checks reject and lawful later staffing changes restore. Final frozen-candidate CI and visible-control verification remain before closure. |
 | Regional support | Named Provider employees, language/shift/customer scope, paid support coverage and complete sampled multi-market qualification; distinct from customer agents and BPO. |
 | Owned sites | Paid administration/backup/restore, a real endpoint at each site, actual failure/surviving/recovered work, per-resource migration and permitted custody reads. |
 | Gateways and integrations | Dedicated authenticated gateway paths; distinct tested service/profile integrations with capability-specific delivered work and failure. |
@@ -23,7 +23,7 @@ Owner direction, 5 November 2026: park additional long-play testing for now and 
 | Workload and AI | Conserved omnichannel cases, threshold-bearing workload contracts, real staffing/meetings and actual human-assisted processing/fallback. These bounded gameplay mechanics remain distinct from the deferred long-duration regression. |
 | Canonical endgame | Four actual scenario tracks, fresh continuity and external bills, measured role responsibility and positive external operating result. Preserve the canonical predicates. |
 
-These batches cover the remaining 22 of 32 canonical progression identities. The ten currently implemented identities are not ten final accepted assertions. LN still needs a useful paid unlock; the managed resilience and local-spares offers need demonstrated funded delivery after claiming, including visible controls.
+These batches cover the remaining 22 of 32 canonical progression identities, including the two central-service identities awaiting final verification. The ten previously implemented identities are not ten final accepted assertions. LN still needs a useful paid unlock. Managed resilience and local-spares offers now have public-dispatch tests proving funded delivery to a second eligible customer and refusal outside earned scope; their complete visible-control evidence remains outstanding.
 
 ## Verification and delivery backlog
 
@@ -31,6 +31,7 @@ These batches cover the remaining 22 of 32 canonical progression identities. The
 - Complete the visible matrix for both SMB strategies, four mission alternatives/failure/recovery paths, fourteen representative family capabilities and limitations, ecosystem responsibilities, and map-based Training.
 - Finish current-candidate Chromium/Firefox/WebKit, mobile/keyboard, focus/draft/camera, save/worker/lock and exportable-storage-failure coverage where evidence remains missing.
 - Publish the labeled preview through the existing protected workflow when its applicable checks and review are satisfied; verify the deployed build, deployment prefix, existing-cache upgrade and offline reload.
+- Main publication run [41990039066](https://github.com/zanefounty/series-of-calls/actions/runs/41990039066) hit the existing 30-minute build deadline after successful JavaScript tests and acceptance recording; no deployment occurred. Separate owner-review [PR #28](https://github.com/zanefounty/series-of-calls/pull/28) uses the existing four test shards before the unchanged publication checks. The actual old public service-worker cache and separate Training/Provider saves have been preserved for the eventual upgrade verification; they are not a new-build deployment pass.
 - Conduct the counterbalanced human pilot when actual participants are available. Automated journeys are not human evidence.
 - Keep source catalogue fidelity, unaccepted research and pending upstream adoption separate and visible.
 

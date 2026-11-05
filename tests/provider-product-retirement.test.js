@@ -58,7 +58,7 @@ test('removing retirement state or forging a higher active generation cannot byp
 
 
 test('new quoted supplier minimums survive direct customer exit without first retiring the product',()=>{
- let s=opening(),work=project(s,productId);assert.equal(s.providerCampaign.contentVersion,'provider-campaigns-5');assert.equal(work.minimumTermPeriods,3);
+ let s=opening(),work=project(s,productId);assert.equal(s.providerCampaign.contentVersion,'provider-campaigns-6');assert.equal(work.minimumTermPeriods,3);
  const exitQuote=SOC.provider.quote(s,{action:'exit',customerId});assert.ok(exitQuote.commercial.remainingMinimumSupplierCents>=work.periodCents*2);
  s=buy(s,{action:'exit',customerId});const exitAt=s.clock;s=until(s,x=>x.clock>=Math.ceil((work.completedAt+180)/60)*60,300);
  const bills=s.business.ledger.filter(r=>r.reason==='provider-operation-period'&&r.at>exitAt);assert.ok(bills.length>=3,'supplier obligation survives exit in subsequent bills');const recording=project(s,'recording'),storage=recording.exitStorage;assert.equal(storage.retainedPeriodCents,3000);assert.equal(bills.reduce((n,r)=>n+r.cents,0),3*(work.periodCents+recording.periodCents)+Math.floor(3000*Math.max(0,s.clock-storage.commitmentEndsAt)/60));

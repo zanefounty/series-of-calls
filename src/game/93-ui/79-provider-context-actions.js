@@ -51,6 +51,7 @@ function socProviderContextActionsKernel(){
 
   const required=customer.requirements||{},requiredServices=[['recording','recording','recorder'],['transcript','transcription','speech'],['meeting','room','room']];
   for(const [requirement,operationId,resourceId] of requiredServices)if(required[requirement]===true&&!customer.services?.some(s=>s.id===resourceId&&s.observed?.ready===true))pushPrimary('service-prerequisites',operationId);
+  if(resource?.kind==='archive'&&(resource.storage?.pending>0||resource.storage?.queued>0))pushPrimary('service-growth','transcription');
 
   if(scenario==='enterprise'){
    if(!projects.some(p=>activeProject(p)&&p.customerId===customerId&&['direct-external-reach','managed-external-reach'].includes(p.operationId))&&(!resource||['carrier','phone','migration-phone'].includes(resource.id))){pushPrimary('scenario-alternatives','direct-external-reach');pushPrimary('scenario-alternatives','managed-external-reach');}

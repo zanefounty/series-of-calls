@@ -1,0 +1,13 @@
+# Transport path observations
+
+Transport version `soc-transport-1` accepts legacy reservations without observation fields. Newly admitted reservations carry an optional `pathObservation` record at version `1`; unknown versions and malformed spans are rejected. It records the simulation-clock admission time, actual occupied-minute sample count, consecutive route spans, and immutable admission or route-change snapshots. It stores one snapshot per transition or terminal path failure rather than copying a full route graph for every minute.
+
+`SOC_TRANSPORT.admit()` returns the actual admission result and its versioned snapshot. `SOC_TRANSPORT.advance(state, hooks)` calls `hooks.pathObserved(state, interactionId, snapshot)` once for each held reservation at the current simulation minute, after calculating the available route but before changing the reservation or releasing it. The snapshot contains the previous route before mutation and the newly selected route or failure reason. A caller handling terminal failure may release the reservation; transport also releases it if the callback leaves it held.
+
+Snapshots include resource and site identities, effective and desired site/link generations, link domains, actual site/link availability, domain failure flags, capacity in Mbps, latency in milliseconds, reservation load in Kbps, and the selected route's measured latency and remaining Kbps. Effective generation is recorded when a provisioning request completes. Legacy saves infer it only from a ready node on its current generation; while a legacy node is pending, the effective generation remains unknown. Failure domains currently have boolean state but no generation counter, so no domain generation is asserted. Snapshot validation rejects unknown observation versions; when given a live state it also checks known effective generations against their actual configuration.
+
+This is a transport evidence primitive only. It does not add provider-owned topology, dispatch authority, a customer claim, an incident, or a reward. Parent communications integration can attach compact per-minute sample summaries and transition snapshots to the actual interaction trace, including its terminal failure, and validate those traces against the applicable project, incident, and workload lineage.
+
+## Verification
+
+`tests/transport-observations.test.js` exercises actual held-call admission, primary failure and independent reroute, recovery to the primary route, shared-domain failure and release, alternate-path capacity exhaustion, strict save validation, legacy reservations, pure inspection, and worker serialization.

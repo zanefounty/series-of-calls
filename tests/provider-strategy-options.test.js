@@ -204,8 +204,9 @@ test('30 minute local autonomy exhaustion fails real customer jobs and paid spar
  const observation=SOC.observe(child(),'local');
  assert.ok(observation.reasons.includes('LOCAL_AUTONOMY_EXHAUSTED'));
  assert.ok(c.state.clock>=expiresAt,'the default local runtime has actually reached its expiry');
- c.until(()=>c.state.providerCampaign.jobs.some(j=>j.status==='failed'&&j.completedAt!==null&&j.completedAt>=expiresAt),12);
- const losses=c.state.providerCampaign.jobs.filter(j=>j.status==='failed'&&j.completedAt!==null&&j.completedAt>=expiresAt).map(j=>j.id);
+ // Expiry can fall in the authored quiet interval; wait for the next real arrival.
+ c.until(()=>c.state.providerCampaign.jobs.some(j=>j.status==='failed'&&j.arrivalAt>=expiresAt&&j.completedAt!==null),SOC.provider.rules.periodMinutes);
+ const losses=c.state.providerCampaign.jobs.filter(j=>j.status==='failed'&&j.arrivalAt>=expiresAt&&j.completedAt!==null).map(j=>j.id);
  assert.ok(losses.length>0,'actual work submitted after the local expiry fails instead of being credited as delivered');
  const failedCount=c.state.providerCampaign.customers[0].metrics.failed;
  assert.ok(SOC.provider.quote(c.state,{action:'operation',operationId:'local-spares',customerId:'starter-customer'}).blockers.length===0,'the paid recovery option remains fundable during the real outage');

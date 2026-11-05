@@ -5168,6 +5168,7 @@
 "provider.shell.campaign":"Provider campaign",
 "provider.shell.import_save":"Import save",
 "provider.shell.save_data":"Save data",
+"provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",
 "provider.uc_cc.description":"Fund a connection between the purchased workplace calling and contact-centre capture services. Run its included test, deliver a real call, then buy a quality review. Recurring support starts when the test passes.",

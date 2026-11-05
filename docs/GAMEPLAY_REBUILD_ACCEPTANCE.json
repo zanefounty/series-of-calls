@@ -716,6 +716,13 @@
       "rawArtifact": "/tmp/soc-public-usage-quotes-independent-review.json",
       "sha256": "d4ce38e2cb48647f03c24d30240218eae6075e1bf9da7b0af7d82925438f340a",
       "scope": "Actual protected public preview: index/service-worker/version match downloaded artifact; persistent old-cache controller upgrade; separate paused Training and Provider saves; paid three-stage opening and resolved voice at minute12; warm offline and cold network-none root/index reload. Chromium only; does not establish all47 network assets, every language, full missions/families or regional integration."
+    },
+    "family-paths-0ac9430-three-engine": {
+      "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+      "status": "forty-five-desktop-journeys-passed",
+      "rawArtifact": "/tmp/soc-family-visible-0ac9430-three-engine-independent-review.json",
+      "sha256": "34148d29b531f69619067f9670166a534c0b46de42ca60280d757e2a5eaa8394",
+      "scope": "Fourteen family-specific capabilities/limitations plus paid retirement/recommissioning in Chromium, Firefox and WebKit;373 source inputs and47 built files per engine independently reconciled. Desktop1366x768 only; no full mission victory, per-family save-restore, catalogue approval or mobile inference."
     }
   },
   "tests": {
@@ -4424,7 +4431,7 @@
         "uc-new:family:microsoft:government-clouds",
         "uc-new:family:microsoft:local"
       ],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-government",
         "candidate-family-capabilities",
@@ -4432,8 +4439,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-037": {
@@ -4444,7 +4451,7 @@
         "content/products.json"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-government",
@@ -4454,8 +4461,7 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-038": {
@@ -10722,7 +10728,7 @@
       "requirement": "PLAY-036",
       "sourceIndex": 0,
       "assertion": "Each of workplace calling, meetings/rooms, contact centre, communications APIs, government profiles and local deployment has at least one representative playable path tested through the campaign UI for this revision.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B037",
         "B038",
@@ -10755,9 +10761,10 @@
         "B043",
         "R043"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "run": "family-paths-0ac9430-three-engine",
         "implementation": [
           "content/products.json",
           "content/provider-campaigns.json",
@@ -10770,21 +10777,11 @@
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C205",
-          "C206",
-          "C207",
-          "C077",
-          "C133",
-          "C025",
-          "C018",
-          "C197",
-          "C195"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named candidate; desktop family paths do not certify full missions, mobile, historical restoration or entire source families.",
+        "evidence": "Six Microsoft representative paid paths use actual campaign controls, bound work and a relevant limitation/recovery; workplace calling includes separate live retirement/recommissioning.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "The current three-engine receipts cover interoperability and central progression, not all six Microsoft family paths. Older family receipts require individual affected-input review or fresh execution."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Visible family ownership/provenance, final-candidate compatibility and broader source obligations remain separate."
     },
     {
       "id": "PLAY-036-A02",
@@ -10959,7 +10956,7 @@
       "requirement": "PLAY-037",
       "sourceIndex": 0,
       "assertion": "Each of the eight families has at least one representative playable path tested through the campaign UI, with meaningful eligibility, cost, operating or compatibility behaviour linked to its source requirement.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B037",
         "B038",
@@ -10997,9 +10994,10 @@
         "R044",
         "B043"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "run": "family-paths-0ac9430-three-engine",
         "implementation": [
           "content/products.json",
           "content/provider-campaigns.json",
@@ -11015,21 +11013,11 @@
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C163",
-          "C205",
-          "C206",
-          "C207",
-          "C132",
-          "C196",
-          "C213",
-          "C214",
-          "C169"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named candidate; desktop family paths do not certify full missions, mobile, historical restoration or entire source families.",
+        "evidence": "Eight Cisco representative paid paths use actual campaign controls and source-linked capability, eligibility, operating-cost or compatibility limitations.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "The current three-engine receipts cover Cisco interoperability, not all eight Cisco family paths. Older family receipts require individual affected-input review or fresh execution."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Visible family ownership/provenance, final-candidate compatibility and broader source obligations remain separate."
     },
     {
       "id": "PLAY-037-A02",
@@ -11076,7 +11064,8 @@
       ],
       "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "run": "family-paths-0ac9430-three-engine",
         "implementation": [
           "content/products.json",
           "content/provider-campaigns.json",
@@ -11092,20 +11081,11 @@
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C215",
-          "C216",
-          "C217",
-          "C132",
-          "C196",
-          "C213",
-          "C214",
-          "C163"
-        ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+        "scope": "Only this exact assertion at the named candidate; desktop family paths do not certify full missions, mobile, historical restoration or entire source families.",
+        "evidence": "Cloud carrier-bound calling, dedicated identity/cohort placement, and finite local compute/autonomy produce distinct real failures and paid recoveries.",
         "result": "passed-exact-assertion"
       },
-      "remaining": "No remaining criterion identified for this exact assertion in the linked executed evidence. Broader source, owner-plan and matrix obligations remain separately open."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Visible family ownership/provenance, final-candidate compatibility and broader source obligations remain separate."
     },
     {
       "id": "PLAY-037-A03",
@@ -14060,7 +14040,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 103,
+    "assertionsClosed": 105,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14108,8 +14088,8 @@
         "assertions": 40,
         "status": "partially-verified",
         "statusCounts": {
-          "pending-current-candidate-verification": 11,
-          "verified-current-candidate": 29
+          "pending-current-candidate-verification": 9,
+          "verified-current-candidate": 31
         }
       },
       {
@@ -14146,13 +14126,13 @@
       },
       {
         "item": "Later candidate publication",
-        "status": "not-established",
-        "scope": "Protected dc34fbc preview is deployed and independently verified in run42108386366. Later499fa17 run42115372988 remains pending its own successful deployment and fresh public upgrade/offline evidence."
+        "status": "verified-bounded-preview",
+        "scope": "Protected499fa172 preview deployed inrun42115372988 and independently verified for actual cache upgrade, separate saves, paid opening and warm/cold offline root/index. Unmerged regional implementation requires its own future candidate checks and publication."
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 103,
-      "pending-current-candidate-verification": 52,
+      "verified-current-candidate": 105,
+      "pending-current-candidate-verification": 50,
       "parked-owner-request": 4
     }
   },
@@ -14176,8 +14156,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 103,
-      "pending-current-candidate-verification": 52,
+      "verified-current-candidate": 105,
+      "pending-current-candidate-verification": 50,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14230,6 +14210,25 @@
           "PLAY-052-A01"
         ],
         "scope": "Nine exact clauses only. Keyboard scope ends after real opening delivery and incident acknowledgement. One-way admission outcome does not close the added in-flight directional-loss obligation. Protocol provision does not claim human sessions; broader family/source conversion, current full browser matrix and parked long-play remain separate."
+      },
+      {
+        "candidate": "0ac943090073ebd558349ccf6d9c48a31f4e40a7",
+        "runs": [
+          "family-paths-0ac9430-three-engine"
+        ],
+        "assertions": [
+          "PLAY-036-A01",
+          "PLAY-037-A01",
+          "PLAY-037-A02"
+        ],
+        "newlyVerified": [
+          "PLAY-036-A01",
+          "PLAY-037-A01"
+        ],
+        "refreshedPreviouslyVerified": [
+          "PLAY-037-A02"
+        ],
+        "scope": "Two new exact closures and one refreshed distinction proof; all45 desktop family/retirement journeys passed. No new human, long-play, source/research or mobile acceptance."
       }
     ]
   }

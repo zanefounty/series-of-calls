@@ -144040,7 +144040,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/50-city-panel.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-386"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -144103,7 +144105,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/50-city-panel.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-386"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -144124,7 +144128,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/50-city-panel.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-386"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",

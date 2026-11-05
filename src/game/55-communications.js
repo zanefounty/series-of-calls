@@ -612,6 +612,20 @@ const SOC = (function socKernel() {
     if(project.operationId==='owned-site-operations')return providerOwnedSites.ownedSiteReady(parent,project.customerId,project.id,hooks).ready&&providerOwnedSites.activationCommands(project.customerId).every(c=>child.siteOperations?.bindings[c.command.resource]?.site===c.command.site);
     return project.operationReceipt?.completedAt!==null&&Number.isSafeInteger(project.operationReceipt?.completedAt);
   }
+  function providerOwnedSitePlatformAdvance(parent){
+    for(const project of parent.providerCampaign.projects.filter(p=>['migration','migration-consolidated'].includes(p.operationId)&&p.status==='complete')){
+      const changes=providerOwnedSites.platformMigrationTransitions(parent,project.customerId,project.id,providerOwnedSiteHooks(parent));
+      for(const change of changes){
+        if(change?.phase!=='effective')continue;
+        const child=parent.portfolio.customers.find(c=>c.id===project.customerId).root,node=child.siteOperations.sites[change.siteId],binding=child.siteOperations.bindings[change.resource];
+        if(change.currentResourceGeneration!==change.toGeneration||![change.fromGeneration,change.toGeneration].includes(change.priorResourceGeneration)||binding.resourceGeneration!==change.priorResourceGeneration)fail('INVALID_PROVIDER_SITE_PLATFORM_GENERATION');
+        // Only the current inventory follows the exact completed paid migration.
+        // Earlier exercise snapshots and their actual call proofs stay historical.
+        node.resourceGenerations[change.resource]=change.toGeneration;
+        binding.resourceGeneration=change.toGeneration;
+      }
+    }
+  }
   function providerOwnedSiteAdvance(parent){
     for(const project of parent.providerCampaign.projects.filter(p=>p.operationId==='owned-site-operations'&&p.status==='commissioning')){
       const child=parent.portfolio.customers.find(c=>c.id===project.customerId).root,ready=providerOwnedSites.ownedSiteReady(parent,project.customerId,project.id,providerOwnedSiteHooks(parent));
@@ -1891,7 +1905,7 @@ const SOC = (function socKernel() {
     providerServiceBoundaryObservations(s);
     if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s,!!s.providerCampaign));
     providerServiceBoundaryObservations(s);
-    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerCampaign.afterMinute(s,providerHooks());providerRetainedStorageAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}}
+    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerCampaign.afterMinute(s,providerHooks());providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}}
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());

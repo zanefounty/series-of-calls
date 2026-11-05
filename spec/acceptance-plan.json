@@ -849,6 +849,9 @@
     ],
     "tests/provider-owned-site-custody-dispatch.test.js": [
       "AC-SOC-621"
+    ],
+    "tests/provider-owned-site-migration-recovery-scope.test.js": [
+      "AC-SOC-622"
     ]
   },
   "inputs": [
@@ -1330,6 +1333,7 @@
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",
+    "tests/provider-owned-site-migration-recovery-scope.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",

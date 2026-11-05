@@ -4714,6 +4714,7 @@
 "provider.operation.site_resource_migration.name":"Move a paid endpoint",
 "provider.owned_sites.abort":"End failed exercise; retain paid costs",
 "provider.owned_sites.delivery_preparation":"Vorbereitung der Bereitstellung",
+"provider.owned_sites.endpoint_each_site":"Recovery needs a paid endpoint at each site. Move an endpoint back before ordering this exercise.",
 "provider.owned_sites.failed":"This exercise failed. End it to release staff and clear its remaining fault, then review a new paid recovery quote.",
 "provider.owned_sites.purpose":"Fund independent call ingress and local administration, backup and restoration. Recovery work uses real calls and shared staff.",
 "provider.owned_sites.quote":"Review site quote",

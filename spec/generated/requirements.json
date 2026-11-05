@@ -35719,10 +35719,15 @@
     "status": "partial",
     "implementation": [
       "content/narrative.json",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-owned-site-custody.js",
+      "src/game/23-provider-owned-sites.js",
       "src/game/31-capability-progression.js",
+      "src/game/32-site-operations.js",
       "src/game/41-progression.js",
       "src/game/55-communications.js",
       "src/game/88-narrative.js",
+      "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -35736,7 +35741,8 @@
       "BEH-SOC-336",
       "BEH-SOC-337",
       "BEH-SOC-338",
-      "BEH-SOC-345"
+      "BEH-SOC-345",
+      "BEH-SOC-384"
     ]
   },
   {
@@ -35986,11 +35992,16 @@
     "status": "partial",
     "implementation": [
       "content/narrative.json",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-owned-site-custody.js",
+      "src/game/23-provider-owned-sites.js",
       "src/game/31-capability-progression.js",
+      "src/game/32-site-operations.js",
       "src/game/41-progression.js",
       "src/game/52-information.js",
       "src/game/55-communications.js",
       "src/game/88-narrative.js",
+      "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36004,7 +36015,8 @@
       "BEH-SOC-336",
       "BEH-SOC-337",
       "BEH-SOC-338",
-      "BEH-SOC-346"
+      "BEH-SOC-346",
+      "BEH-SOC-384"
     ]
   },
   {
@@ -36528,12 +36540,16 @@
     "representation": "ucc.goal.df",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-owned-site-custody.js",
+      "src/game/23-provider-owned-sites.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
       "src/game/42-transport.js",
       "src/game/55-communications.js",
       "src/game/78-site-operations-ui.js",
+      "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36564,7 +36580,8 @@
       "BEH-SOC-285",
       "BEH-SOC-286",
       "BEH-SOC-287",
-      "BEH-SOC-351"
+      "BEH-SOC-351",
+      "BEH-SOC-384"
     ]
   },
   {
@@ -36576,12 +36593,16 @@
     "representation": "ucc.goal.m2",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-owned-site-custody.js",
+      "src/game/23-provider-owned-sites.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
       "src/game/42-transport.js",
       "src/game/55-communications.js",
       "src/game/78-site-operations-ui.js",
+      "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36612,7 +36633,8 @@
       "BEH-SOC-285",
       "BEH-SOC-286",
       "BEH-SOC-287",
-      "BEH-SOC-351"
+      "BEH-SOC-351",
+      "BEH-SOC-384"
     ]
   },
   {

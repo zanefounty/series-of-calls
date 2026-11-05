@@ -217,6 +217,7 @@ function socProviderOwnedSitesKernel(){
     const choice=recoveryChoice(s,c,child,hooks);if(!choice)missing.push('ALL_AUTHORED_SITE_RECOVERIES_COMPLETE');
     if(!exact(request,['kind','targetSite'])||!choice||request.kind!==choice[0]||request.targetSite!==choice[1])missing.push('NEXT_AUTHORED_SITE_RECOVERY_CHOICE_REQUIRED');
     if(child.siteOperations?.exercises?.some(x=>x.status==='active'))missing.push('SITE_RECOVERY_ALREADY_IN_PROGRESS');
+    if(Object.values(SITE_IDS).some(siteId=>!ENDPOINTS.some(endpoint=>child.siteOperations?.bindings?.[endpoint.resource]?.site===siteId)))missing.push('SITE_RECOVERY_ENDPOINT_ON_EACH_SITE_REQUIRED');
    }else if(operationId==='site-resource-migration'){
     if(!exact(request,['resourceId','fromSite','toSite'])||!['desk','dedicated-endpoint'].includes(request.resourceId)||!Object.values(SITE_IDS).includes(request.fromSite)||!Object.values(SITE_IDS).includes(request.toSite)||request.fromSite===request.toSite)missing.push('SITE_MIGRATION_SCOPE_REQUIRED');
     else{
@@ -278,6 +279,18 @@ function socProviderOwnedSitesKernel(){
  function migrationProjects(s,c,child,at=s.clock){
   const rows=projectRows(s,c,'site-resource-migration').filter(p=>paidProject(s,c,p,{complete:true})&&p.completedAt<=at);
   return rows.map(project=>{const plan=project.operationReceipt;if(!plan||!exact(plan,['kind','version','projectId','postingId','customerId','migrationId','resourceId','fromSite','toSite','completedAt'])||plan.kind!=='site-resource-migration'||plan.version!==1||plan.projectId!==project.id||plan.postingId!==project.postingId||plan.customerId!==c.id||!integer(plan.completedAt)||plan.completedAt>Math.min(project.completedAt,at)||!exact(project.config,['resourceId','fromSite','toSite'])||project.config.resourceId!==plan.resourceId||project.config.fromSite!==plan.fromSite||project.config.toSite!==plan.toSite)return null;const migration=child.siteOperations?.migrations?.find(m=>m.id===plan.migrationId&&m.phase==='complete'&&m.fromSite===plan.fromSite&&m.toSite===plan.toSite),item=migration?.items?.find(i=>i.resource===plan.resourceId&&i.status==='complete'&&integer(i.at)&&i.at<=at);return migration&&item?{projectId:project.id,postingId:project.postingId,migrationId:migration.id,resourceId:item.resource,fromSite:migration.fromSite,toSite:migration.toSite,completedAt:plan.completedAt,receiptId:item.receiptId}:null;}).filter(Boolean);
+ }
+ function endpointBindingsAt(s,customerId,child,at){
+  const c=customerRow(s,customerId);if(!c||!integer(at,0,s.clock))return null;
+  const install=projectRows(s,c,'owned-site-operations').find(p=>paidProject(s,c,p,{complete:true})&&p.completedAt<=at);if(!install)return null;
+  const names=idsFor(c),physical=site=>site===SITE_IDS.head?names.headTransport:site===SITE_IDS.branch?names.branchTransport:null;
+  const bindings={desk:names.headTransport,'dedicated-endpoint':names.branchTransport};
+  for(const migration of migrationProjects(s,c,child,at).sort((a,b)=>a.completedAt-b.completedAt||a.projectId.localeCompare(b.projectId))){
+   const from=physical(migration.fromSite),to=physical(migration.toSite);
+   if(!from||!to||bindings[migration.resourceId]!==from)return null;
+   bindings[migration.resourceId]=to;
+  }
+  return bindings;
  }
  function pendingMigration(s,c,child,project){
   if(!paidProject(s,c,project,{complete:false})||!['running','commissioning'].includes(project.status)||!integer(project.configSubmittedAt,project.acceptedAt,s.clock)||!exact(project.config,['resourceId','fromSite','toSite'])||!['desk','dedicated-endpoint'].includes(project.config.resourceId)||!Object.values(SITE_IDS).includes(project.config.fromSite)||!Object.values(SITE_IDS).includes(project.config.toSite)||project.config.fromSite===project.config.toSite)return false;
@@ -425,7 +438,7 @@ function socProviderOwnedSitesKernel(){
  }
  function installCommands(s,customerId,hooks={}){return operationPlan(s,customerId,'owned-site-operations',hooks);}
  function source(){return 'const SOC_PROVIDER_OWNED_SITES=('+socProviderOwnedSitesKernel.toString()+')();'}
- const api={PACK,VERSION,SOURCE,OPERATION_IDS,RECOVERY_IDS,isRecoveryOperation,TERMS,SITE_IDS,RESOURCE_IDS,ENDPOINTS,idsFor,expectedConfigs,canOrder,operationPlan,plan:operationPlan,installCommands,actionDescriptors,ingressReady,ownedSiteReady,activationCommands,evaluate,validateEvidence,validateCustomer,inspect,source};
+ const api={PACK,VERSION,SOURCE,OPERATION_IDS,RECOVERY_IDS,isRecoveryOperation,TERMS,SITE_IDS,RESOURCE_IDS,ENDPOINTS,idsFor,expectedConfigs,canOrder,operationPlan,plan:operationPlan,installCommands,actionDescriptors,ingressReady,ownedSiteReady,activationCommands,endpointBindingsAt,evaluate,validateEvidence,validateCustomer,inspect,source};
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  return api;
 }

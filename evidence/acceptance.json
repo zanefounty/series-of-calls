@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-05T20:22:58.018160+00:00",
+  "runAt": "2026-11-05T21:14:03.375355+00:00",
   "command": [
     "node",
     "--test",
@@ -132,7 +132,8 @@
     "tests/provider-finance-view.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-owned-map-layout.test.js",
-    "tests/provider-owned-site-platform-migration.test.js"
+    "tests/provider-owned-site-platform-migration.test.js",
+    "tests/provider-operation-usage-quotes.test.js"
   ],
   "runtime": "v24.22.2",
   "tests": {
@@ -547,6 +548,10 @@
     "AC-SOC-624": "passed",
     "AC-SOC-625": "passed",
     "AC-SOC-626": "passed",
+    "AC-SOC-640": "passed",
+    "AC-SOC-641": "passed",
+    "AC-SOC-642": "passed",
+    "AC-SOC-643": "passed",
     "AC-SOC-634": "passed",
     "AC-SOC-635": "passed",
     "AC-SOC-636": "passed",
@@ -913,7 +918,7 @@
     "src/game/23-provider-variants.js": "06c8d609522f9a2eb0b708887463875bf20aa17f031008cdae16c079b0101538",
     "src/game/23-training-lessons.js": "e18fbbfe01e008ab4b94373f5bb232fdad06cbe121b051e08bb5fc22086c2f71",
     "src/game/24-provider-rules.js": "ecebab3afef6a58235fa937cb9da916c10ef0f32b243ebee59f5783083e6ce12",
-    "src/game/25-provider-campaign.js": "e7e01f271a19d6b57981c4fc64884b79505bb722bf38c7499d2a6b0ceb78d8c0",
+    "src/game/25-provider-campaign.js": "457e704be4bc36016bc4fcd770b0072eb7372443f6121d383a723224d4854725",
     "src/game/26-customer-needs.js": "0e864f845f69de24eec552726ff75f3db846d064dd6b70e0fdacdca45f343f19",
     "src/game/27-speech-models.js": "bff7b5c5b288a067c26fed57c84adb930efb91668d4c97587394afe254627267",
     "src/game/28-product-evidence.js": "bf80b43312036ce062063c5c30b7375808050d19df70a9bf9f78127cf1809695",
@@ -1298,7 +1303,8 @@
     "tests/workforce-quality-ui.test.js": "70ff0ff53f56dfc800d8219ed58286748f409d7d0851038f2e16c6b4ce339bbb",
     "tests/workforce-quality.test.js": "7c2d6a16d3fdb9f30b67d5488726f881b462706a8b7548fa299d6698b5c4b0a4",
     "tests/provider-owned-site-platform-migration.test.js": "a06d06e12a063f6d79297fd1d06f495e4dc2c11c33a03e05c13a1ac9ff1dd296",
-    "spec/acceptance-plan.json": "3d78a799b967c0915cf3ef81c5f71c0aafa786d85f452f82bc893d36345bc6f1"
+    "tests/provider-operation-usage-quotes.test.js": "feb24167c5b41719ab0b8af0b18fa2666ae45120ff697956db7d310bda5c8a70",
+    "spec/acceptance-plan.json": "4e6ef4e6981d68a031396bc9d95266f9db0f9e68e81c52d5d4e23808e22dad10"
   },
   "changedInputs": []
 }

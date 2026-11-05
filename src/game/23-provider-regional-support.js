@@ -11,6 +11,7 @@ function socProviderRegionalSupportKernel(){
   'jp-tokyo':Object.freeze({language:'ja'}),
   'eu-dublin':Object.freeze({language:'en'})
  });
+ const PERSON_NAMES=Object.freeze({'support-au-sydney-01':'Ari Chen','support-au-melbourne-01':'Sam Patel','support-us-seattle-01':'Morgan Reed','support-jp-tokyo-01':'Ren Sato','support-eu-dublin-01':'Alex Byrne'});
  const PEOPLE=Object.freeze({
   'support-au-sydney-01':Object.freeze({id:'support-au-sydney-01',employer:'orchard-msp',market:'au-sydney',languages:Object.freeze(['en']),skills:Object.freeze(['support'])}),
   'support-au-melbourne-01':Object.freeze({id:'support-au-melbourne-01',employer:'orchard-msp',market:'au-melbourne',languages:Object.freeze(['en']),skills:Object.freeze(['support'])}),
@@ -49,6 +50,21 @@ function socProviderRegionalSupportKernel(){
   return number>0&&number<=(s.business?.ledgerPrunedThrough||0);
  }
  function paidProject(s,project){return project?.operationId===OPERATION_ID&&paidPostingValid(s,project);}
+ function requestedPlan(s,project){
+  const request=project?.supportRequest;if(!request)return null;
+  let plan;try{plan=operationPlan(request);}catch{return null;}
+  if(project.customerId!==plan.customerId||marketFor(s,customerFor(s,project.customerId))!==plan.market||!paidProject(s,project)||['setupCents','periodCents','workMinutes','engineers','support'].some(k=>project[k]!==plan[k]))return null;
+  return plan;
+ }
+ function reservedRows(s,at){
+  const rows=allAssignments(s).filter(Boolean).filter(row=>assignmentEffectiveAt(row,at));
+  for(const project of s.providerCampaign.projects||[]){
+   if(project.operationId!==OPERATION_ID||!['running','commissioning','blocked'].includes(project.status)||project.serviceRetirement)continue;
+   const plan=requestedPlan(s,project);if(!plan)fail('INVALID_PROVIDER_SUPPORT_RESERVATION');
+   rows.push({project,customer:customerFor(s,project.customerId),assignment:plan.supportAssignment,plan});
+  }
+  return rows;
+ }
  function operationReceiptValid(s,project,plan){
   const r=project?.operationReceipt;
   return exact(r,['kind','version','projectId','postingId','customerId','installedAt','supportAssignment'])&&r.kind===OPERATION_ID&&r.version===VERSION&&r.projectId===project.id&&r.postingId===project.postingId&&r.customerId===project.customerId&&integer(r.installedAt)&&integer(project.configSubmittedAt)&&r.installedAt===project.configSubmittedAt-1&&same(r.supportAssignment,plan.supportAssignment);
@@ -60,27 +76,37 @@ function socProviderRegionalSupportKernel(){
   if(!exact(a,['version','personId','employer','market','languages','skills','coverageId','shiftStart','shiftEnd','scopeCustomerIds'])||!same(a,plan.supportAssignment)||project.setupCents!==plan.setupCents||project.periodCents!==plan.periodCents||project.workMinutes!==plan.workMinutes||project.engineers!==plan.engineers||project.support!==plan.support||!operationReceiptValid(s,project,plan)||!paidProject(s,project))return null;
   return {project,customer:c,plan,assignment:copy(a)};
  }
+ function replacementValid(s,project){
+  if(project.supportReplacesProjectId===undefined)return true;
+  const prior=s.providerCampaign.projects.find(p=>p.id===project.supportReplacesProjectId),old=prior&&assignmentForProject(s,prior),plan=requestedPlan(s,project);
+  return !!old&&!!plan&&prior.customerId===project.customerId&&prior.status==='complete'&&integer(prior.completedAt)&&prior.completedAt<=project.acceptedAt&&(!prior.serviceRetirement||prior.serviceRetirement.effectiveAt>project.acceptedAt)&&old.assignment.personId===plan.personId&&old.assignment.coverageId==='business-hours'&&plan.coverageId==='extended'&&prior.id!==project.id;
+ }
  function allAssignments(s){
   const p=s?.providerCampaign;if(!p||!Array.isArray(p.projects))fail('PROVIDER_SUPPORT_CAMPAIGN_REQUIRED');
-  return p.projects.filter(x=>x.operationId===OPERATION_ID&&x.operationReceipt?.supportAssignment).map(project=>assignmentForProject(s,project));
+  const rows=p.projects.filter(x=>x.operationId===OPERATION_ID&&x.operationReceipt?.supportAssignment).map(project=>assignmentForProject(s,project));
+  for(const row of rows.filter(Boolean)){
+   const successor=rows.filter(next=>next&&next.project.status==='complete'&&next.project.supportReplacesProjectId===row.project.id&&replacementValid(s,next.project)).sort((a,b)=>a.project.completedAt-b.project.completedAt)[0];
+   if(successor)row.replacedAt=successor.project.completedAt;
+  }
+  return rows;
  }
  function validate(s){
   const p=s?.providerCampaign;if(!p)return true;
   const projects=(p.projects||[]).filter(x=>x.operationId===OPERATION_ID);
   for(const project of projects){
-   const receipt=project.operationReceipt;
-   if(!receipt&&['running','blocked'].includes(project.status))continue;
+   const receipt=project.operationReceipt;if(!replacementValid(s,project))fail('INVALID_PROVIDER_SUPPORT_REPLACEMENT');
+   if(!receipt&&['running','blocked','cancelled'].includes(project.status)){if(!requestedPlan(s,project)||!integer(project.acceptedAt)||!integer(project.dueAt)||project.dueAt!==project.acceptedAt+project.workMinutes)fail('INVALID_PROVIDER_SUPPORT_RESERVATION');continue;}
    if(!receipt||!receipt.supportAssignment||!assignmentForProject(s,project))fail('INVALID_PROVIDER_SUPPORT_ASSIGNMENT');
-   if(!['running','commissioning','complete','blocked','cancelled'].includes(project.status)||!integer(project.acceptedAt)||!integer(project.dueAt)||project.dueAt<project.acceptedAt||project.status==='complete'&&(!integer(project.completedAt)||project.completedAt<project.dueAt))fail('INVALID_PROVIDER_SUPPORT_PROJECT');
+   if(!['running','commissioning','complete','blocked','cancelled'].includes(project.status)||!integer(project.acceptedAt)||!integer(project.dueAt)||project.dueAt!==project.acceptedAt+project.workMinutes||project.configSubmittedAt!==project.dueAt||project.status==='complete'&&(!integer(project.completedAt)||project.completedAt<project.configSubmittedAt))fail('INVALID_PROVIDER_SUPPORT_PROJECT');
   }
-  const rows=allAssignments(s).filter(Boolean),scopeByPerson=new Map(),activeByCustomer=new Set();
-  for(const row of rows){if(assignmentEffectiveAt(row,s.clock)){if(activeByCustomer.has(row.customer.id))fail('INVALID_PROVIDER_SUPPORT_DUPLICATE_COVERAGE');activeByCustomer.add(row.customer.id);}const set=scopeByPerson.get(row.assignment.personId)||new Set();for(const customerId of row.assignment.scopeCustomerIds){if(!id(customerId)||marketFor(s,customerFor(s,customerId))!==row.assignment.market)fail('INVALID_PROVIDER_SUPPORT_SCOPE');set.add(customerId);}scopeByPerson.set(row.assignment.personId,set);}
+  const rows=reservedRows(s,s.clock),scopeByPerson=new Map(),activeByCustomer=new Map();
+  for(const row of rows){if(assignmentEffectiveAt(row,s.clock)||['running','commissioning','blocked'].includes(row.project.status)){const previous=activeByCustomer.get(row.customer.id);if(previous&&!(row.project.status!=='complete'&&row.project.supportReplacesProjectId===previous.id&&previous.status==='complete'))fail('INVALID_PROVIDER_SUPPORT_DUPLICATE_COVERAGE');activeByCustomer.set(row.customer.id,row.project);}const set=scopeByPerson.get(row.assignment.personId)||new Set();for(const customerId of row.assignment.scopeCustomerIds){if(!id(customerId)||marketFor(s,customerFor(s,customerId))!==row.assignment.market)fail('INVALID_PROVIDER_SUPPORT_SCOPE');set.add(customerId);}scopeByPerson.set(row.assignment.personId,set);}
   if([...scopeByPerson.values()].some(scope=>scope.size>MAX_CUSTOMERS_PER_PERSON))fail('INVALID_PROVIDER_SUPPORT_SCOPE_CAPACITY');
   return true;
  }
- function assignmentEffectiveAt(row,at){const project=row?.project,retirement=project?.serviceRetirement;return project?.status==='complete'&&integer(project.completedAt)&&project.completedAt<=at&&(!retirement||!integer(retirement.effectiveAt)||retirement.effectiveAt>at);}
+ function assignmentEffectiveAt(row,at){const project=row?.project,retirement=project?.serviceRetirement;return project?.status==='complete'&&integer(project.completedAt)&&project.completedAt<=at&&(!integer(row.replacedAt)||row.replacedAt>at)&&(!retirement||!integer(retirement.effectiveAt)||retirement.effectiveAt>at);}
  function personCapacity(s,personId,candidateCustomerId,at=s?.clock){
-  const limit=s?.business?.workforce?.support,rows=allAssignments(s).filter(Boolean).filter(x=>assignmentEffectiveAt(x,at)),personIds=[...new Set(rows.map(x=>x.assignment.personId))];
+  const limit=s?.business?.workforce?.support,rows=reservedRows(s,at),personIds=[...new Set(rows.map(x=>x.assignment.personId))];
   const personRows=rows.filter(x=>x.assignment.personId===personId),scope=new Set(personRows.flatMap(x=>x.assignment.scopeCustomerIds));
   if(candidateCustomerId)scope.add(candidateCustomerId);
   const used=new Set(personIds);if(candidateCustomerId&&!used.has(personId))used.add(personId);
@@ -92,22 +118,26 @@ function socProviderRegionalSupportKernel(){
   return personCapacity(s,personId||null,customerId||null);
  }
  function canOrder(s,request){
+  if(!s?.providerCampaign||!Array.isArray(s.providerCampaign.projects))return {eligible:false,missing:['PROVIDER_SUPPORT_CAMPAIGN_REQUIRED']};
   let plan;try{plan=operationPlan(request);}catch(error){return {eligible:false,missing:[error.message]};}
   const c=customerFor(s,request.customerId),missing=[];
   if(!c||!['active','renewal'].includes(c.status))missing.push('ACTIVE_PROVIDER_CUSTOMER_REQUIRED');
   if(c&&marketFor(s,c)!==plan.market)missing.push('CUSTOMER_MARKET_MISMATCH');
   if(!providerOrganizationReady(s))missing.push('ORCHARD_MSP_RESELLER_ROLE_REQUIRED');
   if((s.providerCampaign.projects||[]).some(p=>p.customerId===request.customerId&&p.operationId===OPERATION_ID&&['running','commissioning','blocked'].includes(p.status)&&!p.serviceRetirement))missing.push('SUPPORT_COVERAGE_ALREADY_PENDING');
-  if(allAssignments(s).some(x=>x?.customer.id===request.customerId&&assignmentEffectiveAt(x,s.clock)))missing.push('CUSTOMER_ALREADY_HAS_NAMED_SUPPORT_COVERAGE');
+  const current=allAssignments(s).find(x=>x?.customer.id===request.customerId&&assignmentEffectiveAt(x,s.clock));
+  const replacement=current?.assignment.personId===plan.personId&&current.assignment.coverageId==='business-hours'&&plan.coverageId==='extended'?current.project.id:null;
+  if(current&&!replacement)missing.push('CUSTOMER_ALREADY_HAS_NAMED_SUPPORT_COVERAGE');
   const cap=personCapacity(s,request.personId,request.customerId,s.clock);if(!cap.ready)missing.push(...cap.missing);
-  return {eligible:missing.length===0,missing:[...new Set(missing)],plan,capacity:cap};
+  return {eligible:missing.length===0,missing:[...new Set(missing)],plan,capacity:cap,supportReplacesProjectId:replacement};
  }
  function activeCandidateRows(s,customerId,at){
   return allAssignments(s).filter(Boolean).filter(x=>x.customer.id===customerId&&assignmentEffectiveAt(x,at)).sort((a,b)=>b.project.completedAt-a.project.completedAt||b.project.acceptedAt-a.project.acceptedAt||b.project.id.localeCompare(a.project.id));
  }
+ function implementationSupportAt(s,at){return (s.providerCampaign.projects||[]).filter(p=>integer(p.acceptedAt)&&integer(p.dueAt)&&p.acceptedAt<=at&&at<p.dueAt&&p.status!=='cancelled').reduce((n,p)=>n+(integer(p.support)?p.support:0),0);}
  function snapshotFor(s,row,at,limit,payroll){
   const personId=row.assignment.personId,effective=allAssignments(s).filter(Boolean).filter(x=>assignmentEffectiveAt(x,at)),samePerson=effective.filter(x=>x.assignment.personId===personId),scope=[...new Set(samePerson.flatMap(x=>x.assignment.scopeCustomerIds))].sort(),used=[...new Set(effective.map(x=>x.assignment.personId))].length;
-  return {version:VERSION,projectId:row.project.id,postingId:row.project.postingId,personId,employer:row.assignment.employer,market:row.assignment.market,languages:[...row.assignment.languages],skills:[...row.assignment.skills],coverageId:row.assignment.coverageId,shiftStart:row.assignment.shiftStart,shiftEnd:row.assignment.shiftEnd,scopeCustomerIds:scope,acceptedAt:row.project.acceptedAt,effectiveAt:row.project.completedAt,usedSupportSlots:used,paidSupportSlots:limit,payrollPersonMinutes:payroll.personMinutes,payrollBilledMinutes:payroll.billedMinutes};
+  return {version:VERSION,projectId:row.project.id,postingId:row.project.postingId,personId,employer:row.assignment.employer,market:row.assignment.market,languages:[...row.assignment.languages],skills:[...row.assignment.skills],coverageId:row.assignment.coverageId,shiftStart:row.assignment.shiftStart,shiftEnd:row.assignment.shiftEnd,scopeCustomerIds:scope,acceptedAt:row.project.acceptedAt,effectiveAt:row.project.completedAt,usedSupportSlots:used,paidSupportSlots:limit,implementationSupportSlots:implementationSupportAt(s,at),payrollPersonMinutes:payroll.personMinutes,payrollBilledMinutes:payroll.billedMinutes};
  }
  function distributorEvidence(s,c,hooks={}){
   const result=typeof hooks.responsibilities==='function'?hooks.responsibilities(s,c.id):responsibilityApi().responsibilities(s,c.id,{customerRoot:(state,portfolioId)=>rootFor(state,{portfolioId},hooks),observeResource:hooks.observeResource});
@@ -127,7 +157,7 @@ function socProviderRegionalSupportKernel(){
   let namedSupport=null;
   if(selected){
    const a=selected.assignment,p=PEOPLE[a.personId],shiftMinute=at%1440;
-   capacityResult=personCapacity(s,a.personId,null,at);if(!capacityResult.ready)missing.push(...capacityResult.missing);
+   capacityResult=personCapacity(s,a.personId,null,at);const implementationSlots=implementationSupportAt(s,at);if(capacityResult.used+implementationSlots>capacityResult.limit)missing.push('NAMED_SUPPORT_BUSY_WITH_IMPLEMENTATION');if(!capacityResult.ready)missing.push(...capacityResult.missing);
    if(a.market!==market||p?.market!==market)missing.push('NAMED_SUPPORT_MARKET_MISMATCH');
    if(!MARKETS[market]||!a.languages.includes(MARKETS[market].language))missing.push('NAMED_SUPPORT_LANGUAGE_MISMATCH');
    if(!a.skills.includes('support'))missing.push('NAMED_SUPPORT_SKILL_REQUIRED');
@@ -144,13 +174,13 @@ function socProviderRegionalSupportKernel(){
   try{return factsApi().decodeSupportObservation(observation);}catch{return [];}
  }
  function retainedNamedSupportMatches(s,participant,at){
-  const proof=participant?.namedSupport;if(!exact(proof,['version','projectId','postingId','personId','employer','market','languages','skills','coverageId','shiftStart','shiftEnd','scopeCustomerIds','acceptedAt','effectiveAt','usedSupportSlots','paidSupportSlots','payrollPersonMinutes','payrollBilledMinutes'])||proof.version!==VERSION)return false;
-  const project=s.providerCampaign.projects.find(x=>x.id===proof.projectId&&x.postingId===proof.postingId&&x.customerId===participant.customerId),row=project&&assignmentForProject(s,project);if(!row||!assignmentEffectiveAt(row,at)||project.acceptedAt!==proof.acceptedAt||project.completedAt!==proof.effectiveAt||project.completedAt>at)return false;
+  const proof=participant?.namedSupport;if(!exact(proof,['version','projectId','postingId','personId','employer','market','languages','skills','coverageId','shiftStart','shiftEnd','scopeCustomerIds','acceptedAt','effectiveAt','usedSupportSlots','paidSupportSlots','implementationSupportSlots','payrollPersonMinutes','payrollBilledMinutes'])||proof.version!==VERSION)return false;
+  const project=s.providerCampaign.projects.find(x=>x.id===proof.projectId&&x.postingId===proof.postingId&&x.customerId===participant.customerId),row=project&&allAssignments(s).find(x=>x?.project.id===project.id);if(!row||!assignmentEffectiveAt(row,at)||project.acceptedAt!==proof.acceptedAt||project.completedAt!==proof.effectiveAt||project.completedAt>at)return false;
   const expected=snapshotFor(s,row,at,proof.paidSupportSlots,{personMinutes:proof.payrollPersonMinutes,billedMinutes:proof.payrollBilledMinutes});
   // The per-minute support sample is the retained payroll/headcount observation.
   // The live team may later be downsized; historical verification uses its sampled limit.
   if(proof.paidSupportSlots!==participant.responsibility?.sharedWorkforce?.support||proof.payrollPersonMinutes!==participant.responsibility?.sharedWorkforce?.personMinutes||proof.payrollBilledMinutes!==participant.responsibility?.sharedWorkforce?.billedMinutes)return false;
-  const minute=at%1440;return same(proof,expected)&&minute>=proof.shiftStart&&minute<proof.shiftEnd&&proof.languages.includes(MARKETS[participant.market]?.language)&&proof.skills.includes('support')&&proof.market===participant.market&&proof.scopeCustomerIds.includes(participant.customerId)&&proof.usedSupportSlots<=proof.paidSupportSlots;
+  const minute=at%1440;return same(proof,expected)&&minute>=proof.shiftStart&&minute<proof.shiftEnd&&proof.languages.includes(MARKETS[participant.market]?.language)&&proof.skills.includes('support')&&proof.market===participant.market&&proof.scopeCustomerIds.includes(participant.customerId)&&proof.usedSupportSlots+proof.implementationSupportSlots<=proof.paidSupportSlots;
  }
  function distributorSnapshotMatches(s,participant,at){
   const saved=participant.distributor;if(saved===null||saved===undefined||!exact(saved,['id','role','organisationId','customerId','scope','projectId','postingId','acceptedAt','effectiveAt','expiresAt','qualificationId','qualificationProjectId','qualificationPostingId','qualification'])||!exact(saved.qualification,['version','id','customerId','issuerOrganizationId','holderOrganizationId','scopes','acceptedAt','effectiveAt','expiresAt','projectId','postingId']))return false;
@@ -168,8 +198,9 @@ function socProviderRegionalSupportKernel(){
  }
  function marketEvidence(s,sourceId,hooks={},options={}){
   const samples=decodeSamples(s,hooks),minimum=60,missing=[];
+  if(!Array.isArray(samples)||samples.some(x=>!x||!Array.isArray(x.cohort)||!Array.isArray(x.participants)||x.participants.some(p=>!p||typeof p!=='object')))return {sourceId,status:'incomplete',missing:['INVALID_PROVIDER_SUPPORT_SAMPLES'],evidence:null};
   if(samples.length!==minimum||samples.some((x,i)=>!x||!integer(x.at)||x.at>s.clock||i&&x.at!==samples[i-1].at+1))missing.push('SIXTY_CONSECUTIVE_PROVIDER_SUPPORT_SAMPLES_REQUIRED');
-  const first=samples[0],last=samples.at(-1),cohort=first?.cohort||[],participants=first?.participants||[];
+  const first=samples[0],last=samples.at(-1);if(!options.historical&&last?.at!==s.clock)missing.push('CURRENT_SUPPORT_SAMPLE_REQUIRED');const cohort=first?.cohort||[],participants=first?.participants||[];
   if(!Array.isArray(cohort)||cohort.length===0||new Set(cohort).size!==cohort.length||!same(cohort,[...cohort].sort())||!Array.isArray(participants)||participants.length!==cohort.length||!same(participants.map(x=>x.customerId),cohort))missing.push('STABLE_PROVIDER_CUSTOMER_COHORT_REQUIRED');
   if(samples.some(x=>!x||!same(x.cohort,cohort)||!Array.isArray(x.participants)||!same(x.participants.map(p=>p?.customerId),cohort)))missing.push('STABLE_PROVIDER_CUSTOMER_COHORT_REQUIRED');
   for(const row of participants){const c=customerFor(s,row.customerId);if(!c||marketFor(s,c,hooks)!==row.market||options.historical!==true&&!['active','renewal'].includes(c.status))missing.push('CURRENT_MARKET_CUSTOMER_REQUIRED');}
@@ -181,6 +212,9 @@ function socProviderRegionalSupportKernel(){
   for(const sampleRow of samples){
    if(!sampleRow||!Array.isArray(sampleRow.participants))continue;
    for(const p of sampleRow.participants){
+    const initial=participants.find(x=>x.customerId===p.customerId);
+    const stableFields=['market','configuration','resources','boundaries','integrations'];
+    if(!initial||stableFields.some(k=>!same(p[k]??null,initial[k]??null))||p.namedSupport?.projectId!==initial.namedSupport?.projectId)missing.push(`SUPPORT_CONFIGURATION_CHANGED:${p.customerId}:${sampleRow.at}`);
     if(p.eligible!==true||!p.responsibility||!p.boundaries?.length)missing.push(`PROVIDER_SUPPORT_OR_BOUNDARY_MISSING:${p.customerId}:${sampleRow.at}`);
     if(!sampleMatches(s,p,sampleRow.at,hooks,options))missing.push(`NAMED_SUPPORT_NOT_CURRENT:${p.customerId}:${sampleRow.at}`);
     if(!validateSampleEvidence(s,p,sampleRow.at,sourceId,hooks))missing.push(`NAMED_SUPPORT_EVIDENCE_INVALID:${p.customerId}:${sampleRow.at}`);
@@ -197,8 +231,10 @@ function socProviderRegionalSupportKernel(){
    if(!participantRows.some(p=>(p.freshJobs||[]).some(j=>j.startedAt>=first.at-1&&j.finishedAt<=last.at&&j.finishedAt>=j.startedAt&&j.jobId&&j.interactionId&&j.caseId&&j.person&&j.assignmentId)))missing.push(`FRESH_RESOLVED_HUMAN_WORK_REQUIRED:${customerId}`);
   }
   if(sourceId===T2){
-   const edges=new Set(samples.flatMap(x=>x.participants.flatMap(p=>(p.integrations||[]).filter(i=>integrationSnapshotValid(s,p,i,x.at,hooks)).map(i=>`${p.customerId}:${i.id}`))));
-   if(edges.size<2)missing.push('TWO_DISTINCT_CURRENT_INTEGRATIONS_REQUIRED');
+   for(const row of samples){
+    const edges=new Set(row.participants.flatMap(p=>(p.integrations||[]).filter(i=>integrationSnapshotValid(s,p,i,row.at,hooks)).map(i=>`${p.customerId}:${i.id}`)));
+    if(edges.size<2)missing.push(`TWO_DISTINCT_CURRENT_INTEGRATIONS_REQUIRED:${row.at}`);
+   }
   }
   if(!options.historical){
    let currentObservation=null;if(typeof hooks.currentSample!=='function'){try{currentObservation=factsApi().sampleSupport(s,hooks);}catch{currentObservation=null;}}
@@ -247,8 +283,7 @@ function socProviderRegionalSupportKernel(){
   if(![C3,C5,T2,LEVEL7].includes(sourceId))return false;
   if(!exact(evidence,['kind','version','sourceId','interval','customerIds','markets','samples'])||evidence.kind!=='provider-regional-support-window-v1'||evidence.version!==VERSION||evidence.sourceId!==sourceId||!exact(evidence.interval,['from','to'])||!integer(evidence.interval.from)||!integer(evidence.interval.to)||evidence.interval.to-evidence.interval.from!==60||!Array.isArray(evidence.samples)||evidence.samples.length!==60||!Array.isArray(evidence.customerIds)||new Set(evidence.customerIds).size!==evidence.customerIds.length||!same(evidence.customerIds,[...evidence.customerIds].sort())||!Array.isArray(evidence.markets)||!same(evidence.markets,[...evidence.markets].sort()))return false;
   const samples=evidence.samples;if(samples.some((x,i)=>!x||x.at!==evidence.interval.from+1+i||!Array.isArray(x.cohort)||!same(x.cohort,evidence.customerIds)||i&&x.at!==samples[i-1].at+1))return false;
-  const rebuilt=marketEvidence(s,sourceId,{...hooks,supportSamples:samples},{historical:options.historical===true});
-  return rebuilt.status==='ready'&&same(rebuilt.evidence,evidence);
+  try{const rebuilt=marketEvidence(s,sourceId,{...hooks,supportSamples:samples},{historical:options.historical===true});return rebuilt.status==='ready'&&same(rebuilt.evidence,evidence);}catch{return false;}
  }
  function retentionPins(evidence,customerId){
   const pins={interactionIds:[],caseIds:[],jobIds:[],processingJobIds:[],recordIds:[],incidentIds:[],projectIds:[],customerIds:[],postingIds:[],boundaryContractIds:[],integrationIds:[],distributorProjectIds:[]};
@@ -267,8 +302,14 @@ function socProviderRegionalSupportKernel(){
   pins.integrationIds=uniq(participants.flatMap(p=>(p.integrations||[]).map(i=>i.id)));
   pins.distributorProjectIds=uniq(participants.flatMap(p=>[p.distributor?.projectId,p.distributor?.qualificationProjectId]));return pins;
  }
+ function inspectCustomer(s,customerId,hooks={}){
+  const c=customerFor(s,customerId);if(!c)return null;
+  const market=marketFor(s,c,hooks),personId=Object.keys(PEOPLE).find(id=>PEOPLE[id].market===market);
+  const current=sample(s,customerId,s.clock,hooks);
+  return {version:VERSION,customerId,market,asOf:s.clock,current,person:personId?{...copy(PEOPLE[personId]),name:PERSON_NAMES[personId]}:null,offers:personId?Object.keys(COVERAGE).map(coverageId=>{const request={customerId,market,personId,coverageId},result=canOrder(s,request);return {operationId:OPERATION_ID,request,eligible:result.eligible,missing:result.missing,terms:operationPlan(request),supportReplacesProjectId:result.supportReplacesProjectId||null};}):[]};
+ }
  function source(){return `const SOC_PROVIDER_REGIONAL_SUPPORT=(${socProviderRegionalSupportKernel.toString()})();`;}
- return {PACK,VERSION,CONTENT,OPERATION_ID,MAX_CUSTOMERS_PER_PERSON,MARKETS:copy(MARKETS),PEOPLE:copy(PEOPLE),COVERAGE:copy(COVERAGE),GOALS:{C3,C5,T2,LEVEL7},operationPlan,canOrder,assignment(s,customerId,at=s?.clock){validate(s);const row=activeCandidateRows(s,customerId,at)[0];return row?copy(row.assignment):null;},capacity,sample,validateSampleEvidence,validateNamedSupportSnapshot:retainedNamedSupportMatches,validateDistributorSnapshot:distributorSnapshotMatches,validateIntegrationSnapshot:integrationSnapshotValid,evaluate,validateEvidence,validate,retentionPins,source};
+ return {PACK,VERSION,CONTENT,OPERATION_ID,MAX_CUSTOMERS_PER_PERSON,MARKETS:copy(MARKETS),PEOPLE:copy(PEOPLE),COVERAGE:copy(COVERAGE),GOALS:{C3,C5,T2,LEVEL7},inspectCustomer,operationPlan,canOrder,assignment(s,customerId,at=s?.clock){validate(s);const row=activeCandidateRows(s,customerId,at)[0];return row?copy(row.assignment):null;},capacity,sample,validateSampleEvidence,validateNamedSupportSnapshot:retainedNamedSupportMatches,validateDistributorSnapshot:distributorSnapshotMatches,validateIntegrationSnapshot:integrationSnapshotValid,evaluate,validateEvidence,validate,retentionPins,source};
 }
 const SOC_PROVIDER_REGIONAL_SUPPORT=socProviderRegionalSupportKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_REGIONAL_SUPPORT;

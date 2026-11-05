@@ -16,7 +16,7 @@ const ids=Object.keys(SUPPORT.MARKETS);
 function projectFor(customerId,market,index,coverageId='extended'){
  const plan=SUPPORT.operationPlan({customerId,market,personId:Object.keys(SUPPORT.PEOPLE).find(id=>SUPPORT.PEOPLE[id].market===market),coverageId});
  const projectId=`support-${customerId}`,postingId=`entry-${index}`;
- return {plan,project:{id:projectId,postingId,customerId,kind:'operation',operationId:SUPPORT.OPERATION_ID,status:'complete',acceptedAt:399,configSubmittedAt:400,dueAt:410,completedAt:410,setupCents:plan.setupCents,periodCents:plan.periodCents,workMinutes:plan.workMinutes,engineers:plan.engineers,support:plan.support,operationReceipt:{kind:SUPPORT.OPERATION_ID,version:1,projectId,postingId,customerId,installedAt:399,supportAssignment:plan.supportAssignment}}};
+ return {plan,project:{id:projectId,postingId,customerId,kind:'operation',operationId:SUPPORT.OPERATION_ID,status:'complete',acceptedAt:399,configSubmittedAt:399+plan.workMinutes,dueAt:399+plan.workMinutes,completedAt:410,setupCents:plan.setupCents,periodCents:plan.periodCents,workMinutes:plan.workMinutes,engineers:plan.engineers,support:plan.support,operationReceipt:{kind:SUPPORT.OPERATION_ID,version:1,projectId,postingId,customerId,installedAt:398+plan.workMinutes,supportAssignment:plan.supportAssignment}}};
 }
 function fixture(markets=ids.slice(0,3),{coverageId='extended',withIntegrations=false,withDistributor=false}={}){
  const customerIds=markets.map((_,i)=>`customer-${i+1}`),projects=[],customers=[],portfolioCustomers=[],ledger=[],roots={};
@@ -120,4 +120,82 @@ test('an earned support window validates after a later shared-team reduction, wh
  state.business.workforce.support=1;
  assert.equal(SUPPORT.validateEvidence(state,SUPPORT.GOALS.C3,result.evidence,{...hooks,validateSupportSamples:validateSamples},{historical:true}),true);
  assert.equal(SUPPORT.evaluate(state,{...hooks,supportSamples,validateSupportSamples:validateSamples}).levels[SUPPORT.GOALS.C3].status,'incomplete');
+});
+
+
+test('pending paid coverage reserves named capacity and scope before commissioning',()=>{
+ const {state}=fixture(['au-sydney','us-seattle']);state.providerCampaign.projects=[];state.business.ledger=[];state.business.workforce.support=1;
+ const request={customerId:'customer-1',market:'au-sydney',personId:'support-au-sydney-01',coverageId:'extended'},plan=SUPPORT.operationPlan(request);
+ const pending={id:'support-pending',customerId:request.customerId,kind:'operation',operationId:SUPPORT.OPERATION_ID,postingId:'entry-7',status:'running',acceptedAt:539,dueAt:545,...Object.fromEntries(['setupCents','periodCents','workMinutes','engineers','support'].map(k=>[k,plan[k]])),supportRequest:request};
+ state.providerCampaign.projects.push(pending);state.business.ledger.push({id:'entry-7',category:'cost',reason:'provider-operation',customerId:request.customerId,projectId:pending.id,cents:plan.setupCents});
+ assert.equal(SUPPORT.validate(state),true);
+ const second={customerId:'customer-2',market:'us-seattle',personId:'support-us-seattle-01',coverageId:'extended'};
+ assert.ok(SUPPORT.canOrder(state,second).missing.includes('NAMED_SUPPORT_EXCEEDS_PAID_SHARED_SUPPORT_SLOTS'));
+ assert.ok(SUPPORT.canOrder(state,request).missing.includes('SUPPORT_COVERAGE_ALREADY_PENDING'));
+ assert.equal(SUPPORT.sample(state,request.customerId,539,hooks).namedSupport,null,'reserved staff is not delivered coverage');
+ const forged=structuredClone(state);delete forged.providerCampaign.projects[0].supportRequest;assert.throws(()=>SUPPORT.validate(forged),/INVALID_PROVIDER_SUPPORT_RESERVATION/);
+ pending.status='cancelled';pending.operationReceipt=null;
+ // A cancelled unsubmitted order retains its cost but releases its reservation.
+ assert.equal(SUPPORT.validate(state),true);assert.equal(SUPPORT.canOrder(state,second).eligible,true);
+});
+
+test('t2 cannot combine different one-edge minutes or repair a configuration gap into a pass',()=>{
+ const {state,hooks,supportSamples}=fixture(['au-sydney','au-melbourne','us-seattle'],{withIntegrations:true});
+ const alternating=structuredClone(supportSamples);alternating.forEach((sample,index)=>sample.participants.forEach((p,i)=>{if(i!==(index%2))p.integrations=[];}));
+ const result=SUPPORT.evaluate(state,{...hooks,supportSamples:alternating}).levels[SUPPORT.GOALS.T2];assert.equal(result.status,'incomplete');assert.ok(result.missing.some(x=>x.startsWith('TWO_DISTINCT_CURRENT_INTEGRATIONS_REQUIRED:')));
+ const changed=structuredClone(supportSamples);changed[10].participants[0].resources[0].generation=2;
+ assert.ok(SUPPORT.evaluate(state,{...hooks,supportSamples:changed}).levels[SUPPORT.GOALS.C3].missing.some(x=>x.startsWith('SUPPORT_CONFIGURATION_CHANGED:')));
+});
+
+test('malformed samples, missing lineage validation and future commissioned coverage fail closed',()=>{
+ const {state,hooks,supportSamples}=fixture(['au-sydney','us-seattle','jp-tokyo']);
+ for(const malformed of [[null],[{at:480,cohort:[],participants:[null]}]])assert.equal(SUPPORT.evaluate(state,{...hooks,supportSamples:malformed}).levels[SUPPORT.GOALS.C3].status,'incomplete');
+ assert.equal(SUPPORT.evaluate(state,{...hooks,supportSamples,validateSupportSamples:()=>false}).levels[SUPPORT.GOALS.C3].status,'incomplete','support labels cannot replace central paid job/bill validation');
+ state.providerCampaign.projects[0].completedAt=540;assert.equal(SUPPORT.sample(state,'customer-1',539,hooks).eligible,false);
+ state.providerCampaign.projects[0].completedAt=400;assert.throws(()=>SUPPORT.validate(state),/INVALID_PROVIDER_SUPPORT_PROJECT/);
+});
+
+test('regional inspect is deterministic and historical proof survives later distinct paid coverage',()=>{
+ const {state,hooks,supportSamples}=fixture(['au-sydney','us-seattle','jp-tokyo']);const before=JSON.stringify(state);
+ const first=SUPPORT.inspectCustomer(state,'customer-1',hooks);assert.deepEqual(SUPPORT.inspectCustomer(state,'customer-1',hooks),first);assert.equal(JSON.stringify(state),before);assert.equal(first.person.name,'Ari Chen');assert.equal(first.offers.length,2);assert.equal(first.current.eligible,true);
+ const proof=SUPPORT.evaluate(state,{...hooks,supportSamples}).levels[SUPPORT.GOALS.C3].evidence;
+ const later=projectFor('customer-4','eu-dublin',4);Object.assign(later.project,{acceptedAt:540,dueAt:546,configSubmittedAt:546,completedAt:547});later.project.operationReceipt.installedAt=545;
+ state.providerCampaign.customers.push({id:'customer-4',portfolioId:'portfolio-customer-4',market:'eu-dublin',scenario:'smb',status:'active'});state.portfolio.customers.push({id:'portfolio-customer-4',market:'eu-dublin',root:{providerCustomer:{id:'customer-4',version:1},tenant:'tenant-customer-4'}});state.providerCampaign.projects.push(later.project);state.business.ledger.push({id:later.project.postingId,category:'cost',reason:'provider-operation',customerId:'customer-4',projectId:later.project.id,cents:later.plan.setupCents});state.clock=548;state.business.workforce.support=4;
+ assert.equal(SUPPORT.validateEvidence(state,SUPPORT.GOALS.C3,proof,hooks,{historical:true}),true,'future assignments do not rewrite earlier sampled scopes');
+ const altered=structuredClone(proof);altered.samples[12].participants[0].namedSupport.paidSupportSlots=99;
+ assert.equal(SUPPORT.validateEvidence(state,SUPPORT.GOALS.C3,altered,hooks,{historical:true}),false);
+});
+
+test('worker source preserves regional planning evaluation and rejection deterministically',()=>{
+ const vm=require('node:vm'),{state,hooks,supportSamples}=fixture(['au-sydney','us-seattle','jp-tokyo']);
+ const sandbox={SOC_PROVIDER_RESPONSIBILITY:RESPONSIBILITY,SOC_PROVIDER_PROGRESSION_FACTS:require('../src/game/23-provider-progression.js')};vm.runInNewContext(SUPPORT.source()+';globalThis.api=SOC_PROVIDER_REGIONAL_SUPPORT;',sandbox);
+ const worker=sandbox.api;
+ assert.deepEqual(JSON.parse(JSON.stringify(worker.evaluate(state,{...hooks,supportSamples}))),SUPPORT.evaluate(state,{...hooks,supportSamples}));
+ const request={customerId:'customer-1',market:'au-sydney',personId:'support-jp-tokyo-01',coverageId:'extended'};
+ assert.deepEqual(JSON.parse(JSON.stringify(worker.canOrder(state,request))),SUPPORT.canOrder(state,request));
+});
+
+
+test('paid extended replacement preserves historical coverage and old charges without allocating another person',()=>{
+ const {state,hooks,supportSamples}=fixture(['au-sydney','us-seattle','jp-tokyo'],{coverageId:'business-hours'});
+ const proof=SUPPORT.evaluate(state,{...hooks,supportSamples}).levels[SUPPORT.GOALS.C3].evidence;assert.ok(proof);
+ state.clock=1200;
+ const request={customerId:'customer-1',market:'au-sydney',personId:'support-au-sydney-01',coverageId:'extended'},q=SUPPORT.canOrder(state,request);assert.equal(q.eligible,true);assert.equal(q.supportReplacesProjectId,'support-customer-1');
+ const p={id:'support-upgrade',customerId:request.customerId,kind:'operation',operationId:SUPPORT.OPERATION_ID,postingId:'entry-90',supportRequest:request,supportReplacesProjectId:q.supportReplacesProjectId,status:'running',acceptedAt:1200,dueAt:1206,...Object.fromEntries(['setupCents','periodCents','workMinutes','engineers','support'].map(k=>[k,q.plan[k]]))};
+ state.providerCampaign.projects.push(p);state.business.ledger.push({id:p.postingId,category:'cost',reason:'provider-operation',customerId:p.customerId,projectId:p.id,cents:p.setupCents});
+ assert.equal(SUPPORT.validate(state),true);assert.equal(SUPPORT.capacity(state).used,3);assert.ok(SUPPORT.sample(state,p.customerId,1200,hooks).missing.includes('NAMED_SUPPORT_OUT_OF_SHIFT'));
+ Object.assign(p,{status:'complete',completedAt:1207,configSubmittedAt:1206,operationReceipt:{kind:SUPPORT.OPERATION_ID,version:1,projectId:p.id,postingId:p.postingId,customerId:p.customerId,installedAt:1205,supportAssignment:q.plan.supportAssignment}});state.clock=1207;
+ assert.equal(SUPPORT.validate(state),true);assert.equal(SUPPORT.sample(state,p.customerId,1207,hooks).eligible,true);assert.equal(SUPPORT.capacity(state).used,3);
+ assert.equal(state.providerCampaign.projects[0].periodCents,8000,'replacement does not erase old supplier commitment');assert.ok(state.business.ledger.some(x=>x.id==='entry-1'));
+ assert.equal(SUPPORT.validateEvidence(state,SUPPORT.GOALS.C3,proof,hooks,{historical:true}),true);
+ const bad=structuredClone(state);bad.providerCampaign.projects.at(-1).supportReplacesProjectId='support-customer-2';assert.throws(()=>SUPPORT.validate(bad),/INVALID_PROVIDER_SUPPORT_REPLACEMENT/);
+ const early=structuredClone(state);early.providerCampaign.projects.at(-1).completedAt=1205;assert.throws(()=>SUPPORT.validate(early),/INVALID_PROVIDER_SUPPORT_PROJECT/);
+});
+
+
+test('implementation uses actual shared support time and cannot simultaneously claim named coverage',()=>{
+ const {state,hooks}=fixture(['au-sydney']);assert.equal(SUPPORT.sample(state,'customer-1',539,hooks).eligible,true);
+ state.providerCampaign.projects.push({id:'other-installation',kind:'operation',operationId:'recording',customerId:'customer-1',status:'running',acceptedAt:539,dueAt:544,support:1});
+ assert.ok(SUPPORT.sample(state,'customer-1',539,hooks).missing.includes('NAMED_SUPPORT_BUSY_WITH_IMPLEMENTATION'));
+ state.clock=544;state.providerCampaign.projects.at(-1).status='commissioning';assert.equal(SUPPORT.sample(state,'customer-1',544,hooks).eligible,true,'evidence wait after quoted work does not hold staff indefinitely');
 });

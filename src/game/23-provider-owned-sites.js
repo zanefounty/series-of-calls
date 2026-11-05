@@ -90,9 +90,40 @@ function socProviderOwnedSitesKernel(){
    return !!exercise&&exercise.phase==='restoring'&&exercise.restoration?.status==='pending'&&integer(exercise.restoration.due,child.clock+1)&&snapshot?.config?.identity===expectedIdentity&&same(endpoint.desired,snapshot.config)&&endpoint.effective?.identity===expectedIdentity&&endpoint.provisioning?.status==='pending'&&endpoint.provisioning.generation===endpoint.generation&&endpoint.generation===snapshot.generation+1&&endpoint.provisioning.due===exercise.restoration.due;
   }));
  }
+ function platformMigrationEvidence(s,c,child,project,resource,allowPending=false){
+  const operationId=project?.operationId,consolidated=operationId==='migration-consolidated',mode=consolidated?'consolidated':undefined,identities=consolidated?['alex','bea']:['bea'],target=consolidated?'phone':'migration-phone',affected=consolidated?['desk','dedicated-endpoint']:['desk'],identity=resource==='desk'?'bea':'alex',endpoint=child.resources?.[resource];
+  if(!affected.includes(resource)||endpoint?.kind!=='endpoint'||endpoint?.effective?.identity!==identity||endpoint?.desired?.identity!==identity||!['pending','ready'].includes(endpoint?.provisioning?.status)||endpoint.provisioning.generation!==endpoint.generation||endpoint.provisioning.status==='pending'&&endpoint.provisioning.due<=child.clock||endpoint.provisioning.status==='ready'&&(!same(endpoint.desired,endpoint.effective)||endpoint.provisioning.due>child.clock))return null;
+  if(!s.providerCampaign.projects.includes(project)||project.customerId!==c.id||project.kind!=='operation'||project.productId!==null||!['commissioning','complete'].includes(project.status)||!integer(project.setupCents,1)||!id(project.postingId)||!integer(project.configSubmittedAt,project.acceptedAt,s.clock)||project.configSubmittedAt!==project.dueAt||!same([...project.resources].sort(),['desk','phone'])||!exact(project.expectedGenerations,['phone','desk'])||!integer(project.expectedGenerations.phone,1)||!integer(project.expectedGenerations.desk,1))return null;
+  const posting=s.business?.ledger?.find(row=>row.id===project.postingId);
+  if(posting?posting.category!=='cost'||posting.reason!=='provider-operation'||posting.customerId!==c.id||posting.projectId!==project.id||posting.cents!==project.setupCents:!/^entry-([1-9]\d*)$/.test(project.postingId)||Number(project.postingId.slice(6))>(s.business?.ledgerPrunedThrough||0))return null;
+  const receipt=project.operationReceipt;
+  if(!exact(receipt,['kind','operationId','at','revision'])||receipt.kind!=='operation'||receipt.operationId!==operationId||!integer(receipt.at,project.acceptedAt,project.configSubmittedAt)||receipt.at+1!==project.configSubmittedAt||!integer(receipt.revision))return null;
+  const tasks=(child.providerTasks||[]).filter(row=>row.kind==='migration'&&row.mode===mode&&['submitted','complete','completed'].includes(row.status)&&row.createdAt===receipt.at),task=tasks.length===1?tasks[0]:null;
+  const migration=(child.operations?.migrations||[]).find(row=>row.id===task?.migrationId),checkpoint=migration?.checkpoint?.[resource];
+  if(!task||!migration||!same(migration.identities,identities)||migration.target!==target||migration.reason!==null||!same(Object.keys(migration.checkpoint||{}).sort(),affected.slice().sort())||!same(Object.keys(migration.appliedGenerations||{}).sort(),affected.slice().sort())||!checkpoint||!integer(checkpoint.generation,1)||checkpoint.generation+1!==endpoint.generation||checkpoint.desired?.identity!==identity||migration.appliedGenerations?.[resource]!==endpoint.generation||endpoint.provisioning.generation!==migration.appliedGenerations[resource])return null;
+  const expected=copy(checkpoint.desired);expected.scope='site';if(!same(endpoint.desired,expected))return null;
+  if(!integer(migration.cutoverAt,receipt.at+1)||!integer(migration.verifyAt,migration.cutoverAt+1)||migration.verifyAt!==endpoint.provisioning.due)return null;
+  let phase;
+  if(migration.status==='verifying'&&allowPending&&project.status==='commissioning'&&['pending','ready'].includes(endpoint.provisioning.status)&&(endpoint.provisioning.status==='pending'?endpoint.provisioning.due>child.clock&&same(endpoint.effective,checkpoint.desired):same(endpoint.effective,endpoint.desired)&&endpoint.provisioning.due<=child.clock))phase='provisioning';
+  else if(migration.status==='complete'&&project.status==='complete'&&integer(project.completedAt,project.configSubmittedAt,s.clock)&&endpoint.provisioning.status==='ready'&&same(endpoint.effective,endpoint.desired))phase='effective';
+  else return null;
+  return {phase,operationId,project,task,migration,endpoint,resource,identity,checkpoint,affected};
+ }
+ function paidEndpointPlatformMigration(s,c,child,endpoint,expectedIdentity,allowPending=false){
+  const resource=expectedIdentity==='bea'?'desk':expectedIdentity==='alex'?'dedicated-endpoint':null;if(!resource||endpoint!==child.resources?.[resource])return false;
+  const matches=projectRows(s,c,'migration').concat(projectRows(s,c,'migration-consolidated')).map(project=>platformMigrationEvidence(s,c,child,project,resource,allowPending)).filter(Boolean);
+  return matches.sort((a,b)=>b.project.completedAt-a.project.completedAt||b.project.id.localeCompare(a.project.id))[0]||null;
+ }
+ function platformMigrationTransitions(s,customerId,projectId,hooks={}){
+  const c=customerRow(s,customerId),child=c&&childRoot(s,c,hooks),project=c&&['migration','migration-consolidated'].flatMap(operationId=>projectRows(s,c,operationId)).find(row=>row.id===projectId);
+  if(!c||!child||!project)return [];
+  const rows=(project.operationId==='migration-consolidated'?['desk','dedicated-endpoint']:['desk']).map(resource=>platformMigrationEvidence(s,c,child,project,resource,project.status==='commissioning')).filter(Boolean);
+  return rows.flatMap(evidence=>{const binding=child.siteOperations?.bindings?.[evidence.resource],site=binding&&child.siteOperations?.sites?.[binding.site];if(!site?.effective||!site.effective.endpointResources.includes(evidence.resource)||binding.generation!==site.effectiveGeneration||child.transport?.bindings?.[evidence.resource]!==site.effective.transportSite)return [];return [{version:1,phase:evidence.phase,customerId,projectId:project.id,postingId:project.postingId,operationId:project.operationId,migrationId:evidence.migration.id,taskCreatedAt:evidence.task.createdAt,resource:evidence.resource,identity:evidence.identity,platform:evidence.migration.target,fromGeneration:evidence.checkpoint.generation,toGeneration:evidence.migration.appliedGenerations[evidence.resource],effectiveAt:evidence.migration.verifyAt,siteId:binding.site,siteGeneration:site.effectiveGeneration,priorResourceGeneration:site.resourceGenerations?.[evidence.resource],currentResourceGeneration:evidence.endpoint.generation}];});
+ }
+ function platformMigrationTransition(s,customerId,projectId,hooks={}){return platformMigrationTransitions(s,customerId,projectId,hooks).find(row=>row.resource==='desk')||null;}
  function paidEndpointBindings(s,c,child,resilience,options={}){
   const rows=[];for(const resource of ['desk','dedicated-endpoint']){
-   const endpoint=child.resources?.[resource],identity=resource==='desk'?'bea':'alex',ready=endpoint?.provisioning?.status==='ready'&&endpoint?.effective?.identity===identity,pending=options.allowPendingRestore===true&&endpoint&&pendingEndpointRestoration(s,c,child,resource,endpoint,identity);if(endpoint?.kind!=='endpoint'||!endpoint.effective||endpoint.effective.identity!==identity||!ready&&!pending)return {ok:false,missing:[`OWNED_SITE_ENDPOINT_IDENTITY_MISMATCH:${resource}`]};
+   const endpoint=child.resources?.[resource],identity=resource==='desk'?'bea':'alex',ready=endpoint?.provisioning?.status==='ready'&&endpoint?.effective?.identity===identity,pending=options.allowPendingRestore===true&&endpoint&&pendingEndpointRestoration(s,c,child,resource,endpoint,identity),migrating=options.allowPendingPlatformMigration===true&&endpoint&&endpoint.provisioning?.status!=='ready'&&paidEndpointPlatformMigration(s,c,child,endpoint,identity,true);if(endpoint?.kind!=='endpoint'||!endpoint.effective||endpoint.effective.identity!==identity||!ready&&!pending&&!migrating)return {ok:false,missing:[`OWNED_SITE_ENDPOINT_IDENTITY_MISMATCH:${resource}`]};
    const installation=(child.providerResilience?.installations||[]).find(row=>row.bindings?.some(binding=>binding.resource===resource));
    const project=installation&&s.providerCampaign.projects.find(p=>p.id===installation.projectId&&p.customerId===c.id&&p.operationId===installation.operationId&&p.postingId===installation.postingId&&p.status==='complete');
    if(!installation||!project||!paidGenericProject(s,c,project,'provider-operation'))return {ok:false,missing:[`PAID_ENDPOINT_BINDING_REQUIRED:${resource}`]};
@@ -133,8 +164,8 @@ function socProviderOwnedSitesKernel(){
   const row=s.business?.ledger?.find(x=>x.id===p.postingId);if(row)return row.category==='cost'&&row.reason===reason&&row.customerId===c.id&&row.projectId===p.id&&row.cents===p.setupCents;
   const pruned=/^entry-([1-9]\d*)$/.exec(p.postingId);return !!pruned&&Number(pruned[1])<=(s.business?.ledgerPrunedThrough||0);
  }
- function expectedInstallReceipt(s,c,child,project,hooks={}){
-  const resilience=resilienceInstallation(s,c,child,hooks);if(!resilience.ok)fail(resilience.missing[0]);const ingress=ingressEvidence(s,c,child);if(!ingress.ok)fail(ingress.missing[0]);const endpoints=paidEndpointBindings(s,c,child,resilience,{allowPendingRestore:true});if(!endpoints.ok)fail(endpoints.missing[0]);
+ function expectedInstallReceipt(s,c,child,project,hooks={},options={}){
+  const resilience=resilienceInstallation(s,c,child,hooks);if(!resilience.ok)fail(resilience.missing[0]);const ingress=ingressEvidence(s,c,child);if(!ingress.ok)fail(ingress.missing[0]);const endpoints=paidEndpointBindings(s,c,child,resilience,{allowPendingRestore:true,allowPendingPlatformMigration:options.allowPaidPlatformMigrationTransition===true});if(!endpoints.ok)fail(endpoints.missing[0]);
   const raw=project.operationReceipt,keys=['kind','version','projectId','postingId','customerId','installedAt','siteIds','resourceIds','siteConfigs','transportBindings'];
   if(!exact(raw,keys)||raw.kind!=='provider-owned-sites'||raw.version!==VERSION||raw.projectId!==project.id||raw.postingId!==project.postingId||raw.customerId!==c.id||!integer(raw.installedAt,project.acceptedAt,project.completedAt)||!same(raw.siteIds,[SITE_IDS.head,SITE_IDS.branch])||!same(raw.resourceIds,RESOURCE_IDS)||!exact(raw.siteConfigs,['head','branch'])||!Array.isArray(raw.transportBindings)||raw.transportBindings.length!==5)fail('OWNED_SITE_INSTALLATION_RECEIPT_INVALID');
   const names=idsFor(c),sourceFor=resource=>endpoints.rows.find(x=>x.resource===resource)?.binding.site,fromIdentity=resilience.installation.bindings.find(x=>x.resource==='identity')?.site;
@@ -166,9 +197,9 @@ function socProviderOwnedSitesKernel(){
   if(!same(raw.siteConfigs.head.sharedDomains,raw.siteConfigs.branch.sharedDomains)||!raw.siteConfigs.head.sharedDomains.length)fail('OWNED_SITE_SHARED_RISK_REQUIRED');
   return {receipt:raw,configs};
  }
- function validateOwnedInstall(s,c,child,project,hooks={}){
+ function validateOwnedInstall(s,c,child,project,hooks={},options={}){
   if(!paidProject(s,c,project,{complete:true})||project.operationId!=='owned-site-operations')return {ok:false,missing:['PAID_PROVIDER_OWNED_SITE_OPERATIONS_REQUIRED']};
-  let expected;try{expected=expectedInstallReceipt(s,c,child,project,hooks);}catch(e){return {ok:false,missing:[String(e.message||'OWNED_SITE_INSTALLATION_INVALID')]};}
+  let expected;try{expected=expectedInstallReceipt(s,c,child,project,hooks,options);}catch(e){return {ok:false,missing:[String(e.message||'OWNED_SITE_INSTALLATION_INVALID')]};}
   if(!same(project.operationReceipt,expected.receipt))return {ok:false,missing:['OWNED_SITE_PROJECT_RECEIPT_MISMATCH']};
   const api=siteApi();if(!api||!child.siteOperations)return {ok:false,missing:['CANONICAL_SITE_OPERATIONS_REQUIRED']};
   try{api.validate(child);}catch{return {ok:false,missing:['CANONICAL_SITE_OPERATIONS_INVALID']};}
@@ -179,8 +210,18 @@ function socProviderOwnedSitesKernel(){
    if(node.effective&&(!node.effectiveOwnership||node.effectiveOwnership.owner!==OWNER||node.effectiveOwnership.ownership!=='provider'||node.effectiveOwnership.controlled!==true||node.effectiveOwnership.local!==true))return {ok:false,missing:[`OWNED_SITE_CUSTODY_NOT_CONTROLLED:${site.id}`]};
    const region=site.config.region;
    for(const [resource,kind] of [[site.config.adminResource,'infrastructure'],[site.config.backupResource,'archive'],[site.config.restoreResource,'infrastructure']]){const r=child.resources?.[resource],config=r?.effective;if(r?.kind!==kind||!config||config.local!==true||config.region!==region||resource===site.config.restoreResource&&config.backup!==true||resource===site.config.backupResource&&kind==='archive'&&!Array.isArray(config.access))return {ok:false,missing:[`PAID_OWNED_SITE_RESOURCE_MISSING:${resource}`]};}
-   if(node.effective&&Object.entries(node.resourceGenerations||{}).some(([resource,generation])=>{const r=child.resources?.[resource];return !r||r.generation<generation||r.generation>generation&&r.provisioning?.status==='ready';}))return {ok:false,missing:[`OWNED_SITE_RESOURCE_GENERATION_STALE:${site.id}`]};
-   for(const resource of site.config.endpointResources){const r=child.resources?.[resource],endpoint=ENDPOINTS.find(row=>row.resource===resource),pending=endpoint&&r&&pendingEndpointRestoration(s,c,child,resource,r,endpoint.person);if(r?.kind!=='endpoint'||!r.effective||r.provisioning?.status!=='ready'&&!pending)return {ok:false,missing:[`OWNED_SITE_ENDPOINT_UNAVAILABLE:${resource}`]};}
+   if(node.effective&&Object.entries(node.resourceGenerations||{}).some(([resource,generation])=>{
+    const r=child.resources?.[resource],endpoint=ENDPOINTS.find(row=>row.resource===resource),migration=endpoint&&r&&paidEndpointPlatformMigration(s,c,child,r,endpoint.person,options.allowPaidPlatformMigrationTransition===true);
+    if(!r||r.generation<generation)return true;
+    if(!migration)return r.generation>generation&&r.provisioning?.status==='ready';
+    const checkpoint=migration.checkpoint.generation,to=migration.endpoint.generation,binding=child.siteOperations?.bindings?.[resource];
+    if(![checkpoint,to].includes(generation))return true;
+    if(generation!==(migration.phase==='provisioning'?checkpoint:to))return true;
+    if(binding?.site===site.id&&binding.resourceGeneration!==generation)return true;
+    return false;
+   }))return {ok:false,missing:[`OWNED_SITE_RESOURCE_GENERATION_STALE:${site.id}`]};
+   for(const [resource,binding] of Object.entries(child.siteOperations.bindings||{}))if(binding.site===site.id&&binding.resourceGeneration!==node.resourceGenerations?.[resource])return {ok:false,missing:[`OWNED_SITE_RESOURCE_BINDING_GENERATION_INVALID:${resource}`]};
+   for(const resource of site.config.endpointResources){const r=child.resources?.[resource],endpoint=ENDPOINTS.find(row=>row.resource===resource),pending=endpoint&&r&&pendingEndpointRestoration(s,c,child,resource,r,endpoint.person),migrating=endpoint&&r&&paidEndpointPlatformMigration(s,c,child,r,endpoint.person,options.allowPaidPlatformMigrationTransition===true);if(r?.kind!=='endpoint'||!r.effective||r.provisioning?.status!=='ready'&&!pending&&!migrating)return {ok:false,missing:[`OWNED_SITE_ENDPOINT_UNAVAILABLE:${resource}`]};}
    const domains=site.config.sharedDomains;if(domains.some(domain=>!Object.values(child.transport.links||{}).some(link=>link.effective?.domain===domain)))return {ok:false,missing:[`OWNED_SITE_SHARED_DOMAIN_UNAVAILABLE:${site.id}`]};
    const physical=child.transport.sites?.[site.config.transportSite];if(physical?.effective&&(physical.effective.region!==region||physical.effective.domain!==site.config.failureDomain||physical.effective.powerDomain!==site.config.powerDomain))return {ok:false,missing:[`OWNED_SITE_TRANSPORT_SCOPE_MISMATCH:${site.id}`]};
    if(node.effective&&['administration','backup','restore'].some(key=>typeof node.observed?.[key]!=='boolean'))return {ok:false,missing:[`OWNED_SITE_OBSERVATION_INVALID:${site.id}`]};
@@ -419,7 +460,7 @@ function socProviderOwnedSitesKernel(){
   if(!child.siteOperations){if(projects.length)fail('PROVIDER_SITE_OPERATIONS_MARKER_REQUIRED');return true;}
   const install=operationPaid(s,c,'owned-site-operations').find(p=>p.status==='complete');
   if(!install){const pending=operationPaid(s,c,'owned-site-operations',{complete:false}).find(p=>['running','commissioning'].includes(p.status));if(pending){const result=validateOwnedInstallPending(s,c,child,pending,hooks);if(result.ok)return true;fail(result.missing[0]);}fail('UNFUNDED_PROVIDER_SITE_OPERATIONS');}
-  const checked=validateOwnedInstall(s,c,child,install,hooks);if(!checked.ok)fail(checked.missing[0]);
+  const checked=validateOwnedInstall(s,c,child,install,hooks,{allowPaidPlatformMigrationTransition:true});if(!checked.ok)fail(checked.missing[0]);
   for(const p of projectRows(s,c,'site-resource-migration').filter(x=>x.configSubmittedAt!==null&&!['cancelled','blocked'].includes(x.status)))if(p.status==='complete'?!migrationProjects(s,c,child).some(row=>row.projectId===p.id):!pendingMigration(s,c,child,p))fail('INVALID_PROVIDER_SITE_MIGRATION_LINEAGE');
   for(const p of RECOVERY_IDS.flatMap(op=>projectRows(s,c,op)).filter(x=>x.configSubmittedAt!==null&&!['cancelled','blocked'].includes(x.status)))if(p.status==='complete'?!recoveryRows(s,c,child).some(row=>row.projectId===p.id):!pendingRecovery(s,c,child,p))fail('INVALID_PROVIDER_SITE_RECOVERY_LINEAGE');
   for(const p of projectRows(s,c,'custody-review').filter(x=>x.configSubmittedAt!==null&&!['cancelled','blocked'].includes(x.status))){
@@ -438,7 +479,7 @@ function socProviderOwnedSitesKernel(){
  }
  function installCommands(s,customerId,hooks={}){return operationPlan(s,customerId,'owned-site-operations',hooks);}
  function source(){return 'const SOC_PROVIDER_OWNED_SITES=('+socProviderOwnedSitesKernel.toString()+')();'}
- const api={PACK,VERSION,SOURCE,OPERATION_IDS,RECOVERY_IDS,isRecoveryOperation,TERMS,SITE_IDS,RESOURCE_IDS,ENDPOINTS,idsFor,expectedConfigs,canOrder,operationPlan,plan:operationPlan,installCommands,actionDescriptors,ingressReady,ownedSiteReady,activationCommands,endpointBindingsAt,evaluate,validateEvidence,validateCustomer,inspect,source};
+ const api={PACK,VERSION,SOURCE,OPERATION_IDS,RECOVERY_IDS,isRecoveryOperation,TERMS,SITE_IDS,RESOURCE_IDS,ENDPOINTS,idsFor,expectedConfigs,canOrder,operationPlan,plan:operationPlan,installCommands,actionDescriptors,ingressReady,ownedSiteReady,activationCommands,endpointBindingsAt,platformMigrationTransition,platformMigrationTransitions,evaluate,validateEvidence,validateCustomer,inspect,source};
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  return api;
 }

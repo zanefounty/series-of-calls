@@ -27,14 +27,16 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const command of commands)if(command.type==='add'&&typeof command.id==='string'&&!configs[command.id]){
    const kind=command.kind,base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${command.id}`);configs[command.id]={...clone(base),enabled:false,region:child.jurisdiction};merge(configs[command.id],command.config||{});
   }
-  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:[{prefix:'+61',target:'service'},...(configs.phone?.routes?.some(route=>route.prefix==='+44'&&route.target==='service')?[{prefix:'+44',target:'service'}]:[])]};}
+  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:clone(configs.phone.routes)};}
   if(project.operationId==='migration'&&configs['migration-phone'])configs['migration-phone'].enabled=true;
  }
  function operationPatch(provider,project,definition,configs,child){
   const id=project.operationId;
-  if(id==='owned-site-operations'){
-   const patch=Object.fromEntries(definition.resources.map(id=>[id,{...clone(definition.config[id]),enabled:true}]));
-   for(const id of ['phone','dedicated-platform']){if(!configs[id])fail('OWNED_SITE_CALL_PLATFORM_REQUIRED');patch[id]={routes:[{prefix:'+61255500202',target:'dedicated-endpoint'},{prefix:'+61255500201',target:'desk'},...clone(configs[id].routes).filter(r=>!['+61255500202','+61255500201'].includes(r.prefix))]};}
+  if(id==='owned-site-operations'||project.ownedSiteRoutingVersion===2&&['site-recovery','managed-site-recovery'].includes(id)){
+   const patch=id==='owned-site-operations'?Object.fromEntries(definition.resources.map(id=>[id,{...clone(definition.config[id]),enabled:true}])):{};
+   const platforms=['phone','dedicated-platform'];
+   if(project.ownedSiteRoutingVersion===2&&configs['migration-phone'])platforms.push('migration-phone');
+   for(const id of platforms){if(!configs[id])fail('OWNED_SITE_CALL_PLATFORM_REQUIRED');patch[id]={routes:[{prefix:'+61255500202',target:'dedicated-endpoint'},{prefix:'+61255500201',target:'desk'},...clone(configs[id].routes).filter(r=>!['+61255500202','+61255500201'].includes(r.prefix))]};}
    return patch;
   }
   if(['direct-external-reach','managed-external-reach'].includes(id)){
@@ -122,19 +124,27 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const task of child.providerTasks||[]){
    if(task.kind!=='migration'||task.status!=='submitted')continue;
    const project=task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
-   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled')continue;
+   const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled'||!Number.isSafeInteger(migration.cutoverAt)||migration.cutoverAt>child.clock)continue;
    const targetId=migration.target,target=configs[targetId]?.extensionScope;if(typeof target!=='string')continue;
     for(const resource of Object.values(child.resources)){
     if(resource.kind!=='endpoint'||!migration.identities?.includes(resource.desired.identity)||!configs[resource.id])continue;
     const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete';skipTiming.add(resource.id);
    }
   }
+  function configsAt(at){
+   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild=clone(child);
+   historicalChild.clock=at;
+   historicalChild.providerTasks=(historicalChild.providerTasks||[]).filter(task=>task.createdAt<=at);
+   if(historicalChild.siteOperations)historicalChild.siteOperations.exercises=[];
+   return expectedModel(historicalProvider,customer,historicalChild,catalogue).configs;
+  }
   for(const exercise of child.siteOperations?.exercises||[]){
    const project=projects.find(p=>['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
    const restore=exercise.restoration;
    if(!restore)continue;
    if(!project||project.operationReceipt.projectId!==project.id||project.config.targetSite!==exercise.targetSite||project.config.kind!==exercise.kind)fail('UNFUNDED_SITE_RESTORE');
-   for(const snap of exercise.backupSnapshot.resources){if(!configs[snap.id]||stable(snap.config)!==stable(configs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
+   const snapshotConfigs=configsAt(exercise.startedAt);
+   for(const snap of exercise.backupSnapshot.resources){if(!snapshotConfigs[snap.id]||stable(snap.config)!==stable(snapshotConfigs[snap.id]))fail('SITE_RESTORE_CONFIG_CHANGED');latestWriteAt[snap.id]=Math.max(latestWriteAt[snap.id]||0,restore.requestedAt);}
   }
   return {configs,known,projects,accepted,transitional,latestWriteAt,skipTiming};
  }

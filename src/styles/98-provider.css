@@ -87,3 +87,9 @@
 .provider-sheet-header>.eyebrow{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .provider-sheet-header .provider-sheet-close{display:block;position:static;flex:0 0 auto;min-width:120px;min-height:44px;margin:0}
 .provider-rail-body [data-finance-period],.provider-rail-body [data-finance-posting],.provider-rail-body h2,.provider-rail-body h3{scroll-margin-top:68px}
+
+/* Geometry matches SOCProviderCanvas.serviceLayout; card bounds are hit bounds. */
+.provider-geography .provider-resource-node{box-sizing:border-box;width:var(--node-width,185px);height:var(--node-height,96px);min-height:44px;max-height:var(--node-height,96px);overflow:hidden;font-size:12px}
+.provider-geography .provider-resource-node b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;line-height:18px;overflow-wrap:anywhere;max-width:100%}
+.provider-geography .provider-map-node{box-sizing:border-box;width:200px;max-width:200px;height:88px;min-height:88px;overflow:hidden}
+.provider-geography .provider-map-node b{max-width:calc(100% - 20px);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}

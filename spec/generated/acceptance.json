@@ -16631,7 +16631,13 @@
       "AC-SOC-619",
       "AC-SOC-620",
       "AC-SOC-621",
-      "AC-SOC-622"
+      "AC-SOC-622",
+      "AC-SOC-631",
+      "AC-SOC-632",
+      "AC-SOC-633",
+      "AC-SOC-637",
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   {
@@ -16780,7 +16786,13 @@
       "AC-SOC-619",
       "AC-SOC-620",
       "AC-SOC-621",
-      "AC-SOC-622"
+      "AC-SOC-622",
+      "AC-SOC-631",
+      "AC-SOC-632",
+      "AC-SOC-633",
+      "AC-SOC-637",
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   {
@@ -17120,7 +17132,13 @@
       "AC-SOC-619",
       "AC-SOC-620",
       "AC-SOC-621",
-      "AC-SOC-622"
+      "AC-SOC-622",
+      "AC-SOC-631",
+      "AC-SOC-632",
+      "AC-SOC-633",
+      "AC-SOC-637",
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   {
@@ -17161,7 +17179,13 @@
       "AC-SOC-619",
       "AC-SOC-620",
       "AC-SOC-621",
-      "AC-SOC-622"
+      "AC-SOC-622",
+      "AC-SOC-631",
+      "AC-SOC-632",
+      "AC-SOC-633",
+      "AC-SOC-637",
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   {
@@ -23910,9 +23934,13 @@
   {
     "id": "AC-25688079b162d457",
     "requirement": "REQ-25688079b162d457",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
+    ]
   },
   {
     "id": "AC-4004ae29604088b8",
@@ -23931,16 +23959,24 @@
   {
     "id": "AC-3e5e97e9cd223051",
     "requirement": "REQ-3e5e97e9cd223051",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
+    ]
   },
   {
     "id": "AC-3dbaf2d7cda0f59a",
     "requirement": "REQ-3dbaf2d7cda0f59a",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
+    ]
   },
   {
     "id": "AC-e987e76266d20f08",
@@ -29606,7 +29642,10 @@
       "AC-SOC-627",
       "AC-SOC-628",
       "AC-SOC-629",
-      "AC-SOC-630"
+      "AC-SOC-630",
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
     ]
   },
   {

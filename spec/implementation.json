@@ -6827,7 +6827,9 @@
         "src/game/23-provider-configuration-authority.js",
         "src/game/55-communications.js",
         "src/game/93-ui/79-provider-owned-sites.js",
-        "src/game/32-site-operations.js"
+        "src/game/32-site-operations.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
       "testIds": [
         "AC-SOC-614",
@@ -6838,10 +6840,16 @@
         "AC-SOC-619",
         "AC-SOC-620",
         "AC-SOC-621",
-        "AC-SOC-622"
+        "AC-SOC-622",
+        "AC-SOC-631",
+        "AC-SOC-632",
+        "AC-SOC-633",
+        "AC-SOC-637",
+        "AC-SOC-638",
+        "AC-SOC-639"
       ],
       "status": "partial",
-      "scope": "Paid Provider independent ingress and owned-site commissioning, five real recovery sequences with actual duration-bearing work, separately funded endpoint migrations, DF/M2/L4 claims, an earned managed-recovery alternative, and an actual processed-record custody read. Dispatch and restore reject unpaid topology, stale responses, forged work and custody permissions; metered calls charge once and worker continuation matches. Recovery after paid endpoint swaps uses historical paid positions and canonical endpoint identities; an empty site refuses a new recovery quote. This bounded adapter does not establish the combined L12 or four-mission GI claim, all earned unlocks, the final browser matrix, or complete source catalogue fidelity."
+      "scope": "Paid Provider independent ingress and owned-site commissioning, five real recovery sequences with actual duration-bearing work, separately funded endpoint migrations, DF/M2/L4 claims, an earned managed-recovery alternative, and an actual processed-record custody read. Dispatch and restore reject unpaid topology, stale responses, forged work and custody permissions; metered calls charge once and worker continuation matches. Recovery after paid endpoint swaps uses historical paid positions and canonical endpoint identities; an empty site refuses a new recovery quote. This bounded adapter does not establish the combined L12 or four-mission GI claim, all earned unlocks, the final browser matrix, or complete source catalogue fidelity. Versioned paid route preparation includes a completed Enterprise migration platform. Wrong-target resolved work remains a failed exercise that can be aborted without refund, then separately purchased recovery must reach the actual endpoint. Legacy saves retain original route semantics; later coexistence copies the funded phone routes. Paid owned-site commissioning may precede either Enterprise platform migration: exact completed migration generations reconcile current site inventory while preserving historical exercises. Fresh recovery quotes remain unavailable during endpoint provisioning. Both architectures retain actual inbound routed endpoint service after paid site moves and recovery. Earlier completed recovery snapshots are checked against their historical paid configuration, while both current site inventories follow later paid cutovers; coherent stale inventory and future-configuration snapshot forgeries are rejected."
     },
     {
       "id": "BEH-SOC-385",
@@ -6868,6 +6876,26 @@
       ],
       "status": "partial",
       "scope": "Read-only Provider Finance projection of retained settled periods, customer credits/usage, shared payroll, setup and interest, named postings and cash movement. Borrowing and principal repayment are separate from operating result; same-minute post-settlement purchases appear in the next bill. Missing retained evidence remains unavailable. Period selection, focus and expanded detail persist through renders. These bounded cases do not establish every economy assertion, final browser acceptance or human understanding."
+    },
+    {
+      "id": "BEH-SOC-386",
+      "sources": [
+        "view:city_cust",
+        "view:city_links",
+        "view:city_infra",
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/styles/98-provider.css"
+      ],
+      "testIds": [
+        "AC-SOC-634",
+        "AC-SOC-635",
+        "AC-SOC-636"
+      ],
+      "status": "partial",
+      "scope": "Pure shared pixel geometry keeps customer/site/link/resource hit targets distinct in a growing selected estate. Wrapped rows preserve camera and selected scope, and SVG paths share the button positions. One, two and twenty geographical customers and 19-resource/14-operation estate renderer fixtures cover desktop and mobile. This does not certify full source-catalogue map interactions or every paid mission and family journey."
     }
   ]
 }

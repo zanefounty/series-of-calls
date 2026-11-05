@@ -35722,11 +35722,13 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-owned-site-custody.js",
       "src/game/23-provider-owned-sites.js",
+      "src/game/25-provider-campaign.js",
       "src/game/31-capability-progression.js",
       "src/game/32-site-operations.js",
       "src/game/41-progression.js",
       "src/game/55-communications.js",
       "src/game/88-narrative.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
@@ -35995,12 +35997,14 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-owned-site-custody.js",
       "src/game/23-provider-owned-sites.js",
+      "src/game/25-provider-campaign.js",
       "src/game/31-capability-progression.js",
       "src/game/32-site-operations.js",
       "src/game/41-progression.js",
       "src/game/52-information.js",
       "src/game/55-communications.js",
       "src/game/88-narrative.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
@@ -36543,12 +36547,14 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-owned-site-custody.js",
       "src/game/23-provider-owned-sites.js",
+      "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
       "src/game/42-transport.js",
       "src/game/55-communications.js",
       "src/game/78-site-operations-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
@@ -36596,12 +36602,14 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-owned-site-custody.js",
       "src/game/23-provider-owned-sites.js",
+      "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
       "src/game/42-transport.js",
       "src/game/55-communications.js",
       "src/game/78-site-operations-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-owned-sites.js",
       "src/game/97-training.js"
     ],
@@ -51113,13 +51121,18 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.city_cust",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/96-map/95-provider-canvas.js",
+      "src/styles/98-provider.css"
+    ],
     "acceptance": [
       "AC-25688079b162d457"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-386"
+    ]
   },
   {
     "id": "REQ-4004ae29604088b8",
@@ -51158,13 +51171,18 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.city_links",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/96-map/95-provider-canvas.js",
+      "src/styles/98-provider.css"
+    ],
     "acceptance": [
       "AC-3e5e97e9cd223051"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-386"
+    ]
   },
   {
     "id": "REQ-3dbaf2d7cda0f59a",
@@ -51173,13 +51191,18 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.city_infra",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/96-map/95-provider-canvas.js",
+      "src/styles/98-provider.css"
+    ],
     "acceptance": [
       "AC-3dbaf2d7cda0f59a"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-386"
+    ]
   },
   {
     "id": "REQ-e987e76266d20f08",
@@ -61992,8 +62015,10 @@
       "src/game/84-portfolio-ui.js",
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-finance.js",
+      "src/game/96-map/95-provider-canvas.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/styles/98-provider.css",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js",
@@ -62056,7 +62081,8 @@
       "BEH-SOC-353",
       "BEH-SOC-358",
       "BEH-SOC-375",
-      "BEH-SOC-385"
+      "BEH-SOC-385",
+      "BEH-SOC-386"
     ]
   },
   {

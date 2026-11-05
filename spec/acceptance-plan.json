@@ -853,6 +853,13 @@
     "tests/provider-owned-site-migration-recovery-scope.test.js": [
       "AC-SOC-622"
     ],
+    "tests/provider-owned-site-routed-endpoint.test.js": [
+      "AC-SOC-631",
+      "AC-SOC-632"
+    ],
+    "tests/provider-owned-site-quotes-ui.test.js": [
+      "AC-SOC-633"
+    ],
     "tests/provider-finance-view.test.js": [
       "AC-SOC-623",
       "AC-SOC-624",
@@ -864,6 +871,16 @@
       "AC-SOC-628",
       "AC-SOC-629",
       "AC-SOC-630"
+    ],
+    "tests/provider-owned-map-layout.test.js": [
+      "AC-SOC-634",
+      "AC-SOC-635",
+      "AC-SOC-636"
+    ],
+    "tests/provider-owned-site-platform-migration.test.js": [
+      "AC-SOC-637",
+      "AC-SOC-638",
+      "AC-SOC-639"
     ]
   },
   "inputs": [
@@ -925,6 +942,7 @@
     "scripts/lib/transport-lease-soak.js",
     "scripts/mcp-smoke.py",
     "scripts/mcp.js",
+    "scripts/provider-owned-map-layout-browser.js",
     "scripts/serve.js",
     "scripts/verify.py",
     "site/apple-touch-icon.png",
@@ -1346,10 +1364,13 @@
     "tests/progression.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",
     "tests/provider-owned-site-migration-recovery-scope.test.js",
+    "tests/provider-owned-site-quotes-ui.test.js",
+    "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",
@@ -1390,6 +1411,7 @@
     "tests/workforce-operations.test.js",
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
-    "tests/workforce-quality.test.js"
+    "tests/workforce-quality.test.js",
+    "tests/provider-owned-site-platform-migration.test.js"
   ]
 }

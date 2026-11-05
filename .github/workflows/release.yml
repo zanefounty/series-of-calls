@@ -14,7 +14,27 @@ concurrency:
   group: pages
   cancel-in-progress: false
 jobs:
+  tests:
+    if: github.ref == 'refs/heads/main'
+    name: publication test ${{ matrix.part }}/4
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test -- --shard ${{ matrix.part }}/4
   build:
+    needs: [tests]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -33,7 +53,6 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm test
       - run: npm run evidence
       - run: npm run check:all
       - name: Full product release gate

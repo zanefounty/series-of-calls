@@ -79,3 +79,4 @@
 @media(max-width:680px){.provider-resilience-paths,.provider-meeting-choice-grid{grid-template-columns:1fr}.provider-resilience{padding:9px}.provider-resilience dl{grid-template-columns:minmax(0,1fr) auto}}
 
 @media(max-width:680px){.provider-inspector-heading{top:-10px;margin:-10px -10px 10px;padding:10px}}
+.provider-modal>section:has(>.provider-close)>h2{padding-inline-end:52px;white-space:normal;overflow-wrap:anywhere}

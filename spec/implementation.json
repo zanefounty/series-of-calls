@@ -6896,6 +6896,26 @@
       ],
       "status": "partial",
       "scope": "Pure shared pixel geometry keeps customer/site/link/resource hit targets distinct in a growing selected estate. Wrapped rows preserve camera and selected scope, and SVG paths share the button positions. One, two and twenty geographical customers and 19-resource/14-operation estate renderer fixtures cover desktop and mobile. This does not certify full source-catalogue map interactions or every paid mission and family journey."
+    },
+    {
+      "id": "BEH-SOC-387",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-640",
+        "AC-SOC-641",
+        "AC-SOC-642",
+        "AC-SOC-643"
+      ],
+      "status": "partial",
+      "scope": "Provider operation quotes disclose the selected customer plan voice-minute and delivered-message unit rates through the existing cost comparison. Real paid Swift and Steady openings reconcile displayed rates against actual settled usage postings; purchase terms, operation fixed commitments and charges remain unchanged. Insufficient-cash quotes retain rates while atomic commitment refuses. An isolated distinct-rate content fixture detects accidental cross-customer tariff reuse; it is not campaign balance or playable delivery evidence. This bounded disclosure repair does not certify every operation cost, full ecosystem acceptance or human comprehension."
     }
   ]
 }

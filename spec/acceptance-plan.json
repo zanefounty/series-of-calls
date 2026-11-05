@@ -881,6 +881,12 @@
       "AC-SOC-637",
       "AC-SOC-638",
       "AC-SOC-639"
+    ],
+    "tests/provider-operation-usage-quotes.test.js": [
+      "AC-SOC-640",
+      "AC-SOC-641",
+      "AC-SOC-642",
+      "AC-SOC-643"
     ]
   },
   "inputs": [
@@ -1412,6 +1418,7 @@
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
     "tests/workforce-quality.test.js",
-    "tests/provider-owned-site-platform-migration.test.js"
+    "tests/provider-owned-site-platform-migration.test.js",
+    "tests/provider-operation-usage-quotes.test.js"
   ]
 }

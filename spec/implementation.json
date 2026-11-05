@@ -6842,6 +6842,32 @@
       ],
       "status": "partial",
       "scope": "Paid Provider independent ingress and owned-site commissioning, five real recovery sequences with actual duration-bearing work, separately funded endpoint migrations, DF/M2/L4 claims, an earned managed-recovery alternative, and an actual processed-record custody read. Dispatch and restore reject unpaid topology, stale responses, forged work and custody permissions; metered calls charge once and worker continuation matches. Recovery after paid endpoint swaps uses historical paid positions and canonical endpoint identities; an empty site refuses a new recovery quote. This bounded adapter does not establish the combined L12 or four-mission GI claim, all earned unlocks, the final browser matrix, or complete source catalogue fidelity."
+    },
+    {
+      "id": "BEH-SOC-385",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/23-provider-finance-view.js",
+        "src/game/93-ui/79-provider-finance.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-623",
+        "AC-SOC-624",
+        "AC-SOC-625",
+        "AC-SOC-626",
+        "AC-SOC-627",
+        "AC-SOC-628",
+        "AC-SOC-629",
+        "AC-SOC-630"
+      ],
+      "status": "partial",
+      "scope": "Read-only Provider Finance projection of retained settled periods, customer credits/usage, shared payroll, setup and interest, named postings and cash movement. Borrowing and principal repayment are separate from operating result; same-minute post-settlement purchases appear in the next bill. Missing retained evidence remains unavailable. Period selection, focus and expanded detail persist through renders. These bounded cases do not establish every economy assertion, final browser acceptance or human understanding."
     }
   ]
 }

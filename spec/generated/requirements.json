@@ -53116,6 +53116,7 @@
     "representation": "domain:commercial-roles",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-finance-view.js",
       "src/game/29-managed-operations.js",
       "src/game/37-portfolio.js",
       "src/game/42-transport.js",
@@ -53126,6 +53127,9 @@
       "src/game/55-communications.js",
       "src/game/76-managed-operations-ui.js",
       "src/game/90-service-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-finance.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "tests/campaign.test.js",
       "tests/domain-integration.test.js",
@@ -53158,7 +53162,8 @@
       "BEH-SOC-311",
       "BEH-SOC-312",
       "BEH-SOC-313",
-      "BEH-SOC-381"
+      "BEH-SOC-381",
+      "BEH-SOC-385"
     ]
   },
   {
@@ -54130,6 +54135,7 @@
       "scripts/lib/campaign-journey.js",
       "scripts/lib/campaign-ui.js",
       "scripts/mcp-smoke.py",
+      "src/game/23-provider-finance-view.js",
       "src/game/26-customer-needs.js",
       "src/game/37-transport-headroom.js",
       "src/game/42-transport.js",
@@ -54140,6 +54146,9 @@
       "src/game/72-customer-needs-ui.js",
       "src/game/86-domain-admin-ui.js",
       "src/game/90-service-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-finance.js",
+      "src/game/97-provider-shell.js",
       "src/game/98-business-ui.js",
       "tests/products.test.js"
     ],
@@ -54157,7 +54166,8 @@
       "BEH-SOC-372",
       "BEH-SOC-374",
       "BEH-SOC-381",
-      "BEH-SOC-383"
+      "BEH-SOC-383",
+      "BEH-SOC-385"
     ]
   },
   {
@@ -61967,6 +61977,7 @@
     "implementation": [
       "scripts/calls-mcp.js",
       "scripts/mcp.js",
+      "src/game/23-provider-finance-view.js",
       "src/game/37-portfolio.js",
       "src/game/38-admission-security.js",
       "src/game/39-service-observation.js",
@@ -61979,6 +61990,9 @@
       "src/game/82-security-ui.js",
       "src/game/83-observation-ui.js",
       "src/game/84-portfolio-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-finance.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
@@ -62041,7 +62055,8 @@
       "BEH-SOC-200",
       "BEH-SOC-353",
       "BEH-SOC-358",
-      "BEH-SOC-375"
+      "BEH-SOC-375",
+      "BEH-SOC-385"
     ]
   },
   {

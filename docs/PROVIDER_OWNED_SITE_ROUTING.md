@@ -1,0 +1,13 @@
+# Owned-site recovery after a calling-platform migration
+
+The paid Enterprise coexistence migration moves Bea to `migration-phone`. Owned-site setup previously prepared the direct desk numbers only on `phone` and `dedicated-platform`. After moving the desk to the surviving building, an external maintenance call could therefore resolve at the service queue. That call did not establish endpoint continuity, and the failed-exercise save validator incorrectly rejected the terminal resolved interaction, freezing the next advance.
+
+New paid owned-site setup and both recovery offers carry `ownedSiteRoutingVersion: 2`. Their preparation installs the authored direct endpoint routes on every already-purchased calling platform, including `migration-phone`. The commercial quote explains the route review. No platform, entitlement or customer agent is created by this change. Setup, recurring commitments, staffing and commissioning remain the existing quoted terms. A later coexistence migration copies the actual purchased phone routes; configuration authority now reconstructs that same dispatch behavior.
+
+Success still requires an actual resolved `CONNECTED` call to the scoped endpoint with at least the requested two-minute duration. A resolved queue-handled interaction is retained as failure, never converted into endpoint delivery. Failed exercises can be aborted, preserving paid setup and usage. A new recovery is a separate paid project.
+
+Legacy projects without the routing marker retain their original preparation behavior. Unknown marker versions or markers on other operations are rejected. A pending old exercise can finish unsuccessfully and be aborted; restoring it does not rewrite prior calls or install free routes.
+
+Registered regressions AC-SOC-631–633 cover migrated endpoint delivery and forged destination refusal, legacy failure/abort and separately funded recovery, and the visible quote explanation. The wider owned-site, custody, endpoint migration and configuration-authority suites remain required integration checks. This repair does not complete the combined L12 or four-mission endgame qualification.
+
+The focused integration run passed all 48 owned-site, custody, migration, quote and configuration-authority tests. The two new dispatch regressions both fail on the original main `0e91cff` with `INVALID_PROVIDER_SITE_DELIVERY`, and pass with the repair. Separately, the actual retained Enterprise save at minute 766 advances to a failed exercise at 767, aborts with its A$160 setup retained and unchanged cash, then restores exactly. This is bounded regression evidence; final candidate checks and browser verification are recorded separately.

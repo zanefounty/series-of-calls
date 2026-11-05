@@ -4683,6 +4683,7 @@
 "provider.owned_sites.recovery_timing":"Les {minutes} minutes du devis couvrent la préparation. Pour terminer, vous devez aussi résoudre la panne, restaurer la sauvegarde conservée et observer de nouveaux appels. Ce délai ne garantit pas la durée totale de livraison.",
 "provider.owned_sites.restore":"Restore retained backup",
 "provider.owned_sites.retry_migration":"Retry incomplete endpoint move",
+"provider.owned_sites.route_review":"Preparation checks direct desk-number routes on every purchased calling platform, including a completed migration. A call handled by a queue does not prove endpoint recovery.",
 "provider.owned_sites.scope":"Selected work: {scope}",
 "provider.owned_sites.terms":"{setup} upfront; {recurring} each period; {minutes} implementation minutes; {engineers} engineers and {support} support staff.",
 "provider.owned_sites.title":"Owned sites and recovery",

@@ -4683,6 +4683,7 @@
 "provider.owned_sites.recovery_timing":"Los {minutes} minutos presupuestados cubren la preparación. Para completar el trabajo también debe resolver el fallo, restaurar la copia conservada y observar llamadas nuevas. No es un plazo total de entrega garantizado.",
 "provider.owned_sites.restore":"Restore retained backup",
 "provider.owned_sites.retry_migration":"Retry incomplete endpoint move",
+"provider.owned_sites.route_review":"Preparation checks direct desk-number routes on every purchased calling platform, including a completed migration. A call handled by a queue does not prove endpoint recovery.",
 "provider.owned_sites.scope":"Selected work: {scope}",
 "provider.owned_sites.terms":"{setup} upfront; {recurring} each period; {minutes} implementation minutes; {engineers} engineers and {support} support staff.",
 "provider.owned_sites.title":"Owned sites and recovery",

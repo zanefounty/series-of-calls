@@ -852,6 +852,13 @@
     ],
     "tests/provider-owned-site-migration-recovery-scope.test.js": [
       "AC-SOC-622"
+    ],
+    "tests/provider-owned-site-routed-endpoint.test.js": [
+      "AC-SOC-631",
+      "AC-SOC-632"
+    ],
+    "tests/provider-owned-site-quotes-ui.test.js": [
+      "AC-SOC-633"
     ]
   },
   "inputs": [
@@ -1334,6 +1341,8 @@
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",
     "tests/provider-owned-site-migration-recovery-scope.test.js",
+    "tests/provider-owned-site-quotes-ui.test.js",
+    "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",

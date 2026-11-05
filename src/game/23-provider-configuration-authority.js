@@ -27,14 +27,16 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const command of commands)if(command.type==='add'&&typeof command.id==='string'&&!configs[command.id]){
    const kind=command.kind,base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${command.id}`);configs[command.id]={...clone(base),enabled:false,region:child.jurisdiction};merge(configs[command.id],command.config||{});
   }
-  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:[{prefix:'+61',target:'service'},...(configs.phone?.routes?.some(route=>route.prefix==='+44'&&route.target==='service')?[{prefix:'+44',target:'service'}]:[])]};}
+  if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:clone(configs.phone.routes)};}
   if(project.operationId==='migration'&&configs['migration-phone'])configs['migration-phone'].enabled=true;
  }
  function operationPatch(provider,project,definition,configs,child){
   const id=project.operationId;
-  if(id==='owned-site-operations'){
-   const patch=Object.fromEntries(definition.resources.map(id=>[id,{...clone(definition.config[id]),enabled:true}]));
-   for(const id of ['phone','dedicated-platform']){if(!configs[id])fail('OWNED_SITE_CALL_PLATFORM_REQUIRED');patch[id]={routes:[{prefix:'+61255500202',target:'dedicated-endpoint'},{prefix:'+61255500201',target:'desk'},...clone(configs[id].routes).filter(r=>!['+61255500202','+61255500201'].includes(r.prefix))]};}
+  if(id==='owned-site-operations'||project.ownedSiteRoutingVersion===2&&['site-recovery','managed-site-recovery'].includes(id)){
+   const patch=id==='owned-site-operations'?Object.fromEntries(definition.resources.map(id=>[id,{...clone(definition.config[id]),enabled:true}])):{};
+   const platforms=['phone','dedicated-platform'];
+   if(project.ownedSiteRoutingVersion===2&&configs['migration-phone'])platforms.push('migration-phone');
+   for(const id of platforms){if(!configs[id])fail('OWNED_SITE_CALL_PLATFORM_REQUIRED');patch[id]={routes:[{prefix:'+61255500202',target:'dedicated-endpoint'},{prefix:'+61255500201',target:'desk'},...clone(configs[id].routes).filter(r=>!['+61255500202','+61255500201'].includes(r.prefix))]};}
    return patch;
   }
   if(['direct-external-reach','managed-external-reach'].includes(id)){

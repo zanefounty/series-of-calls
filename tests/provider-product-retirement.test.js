@@ -34,14 +34,14 @@ test('recommissioning a retired product charges full setup again and resumes act
  assert.equal(s.business.ledger.filter(p=>p.reason==='provider-operation'&&p.operationId===productId).length,2);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('retirement retains the quoted minimum supplier term even after customer exit and then stops added charges',()=>{
+test('retirement retains the product minimum after exit while retained archives remain separately payable',()=>{
  let s=opening(),p=project(s,productId);s=buy(s,retire(s));const retired=s.providerCampaign.projects.find(x=>x.id===p.id),end=retired.retirement.commitmentEndsAt;
  assert.equal(end,Math.max(s.clock+1,p.completedAt+SOC.provider.rules.missions.smb.termPeriods*60));
  s=buy(s,{action:'exit',customerId});s=until(s,x=>x.clock>=Math.ceil(end/60)*60+60,400);
  const actual=s.business.ledger.filter(x=>x.reason==='provider-operation-period').reduce((n,x)=>n+x.cents,0);
  const recording=project(s,'recording'),exit=s.providerCampaign.customers[0].exitAt;
  let expected=0;for(let boundary=60;boundary<=s.clock;boundary+=60){for(const [work,stop] of [[p,end],[recording,Math.max(exit,recording.completedAt+recording.minimumTermPeriods*60)]]){const to=Math.max(work.completedAt,Math.min(boundary,stop)),from=Math.max(work.completedAt,Math.min(boundary-60,to));expected+=Math.floor(work.periodCents*(to-work.completedAt)/60)-Math.floor(work.periodCents*(from-work.completedAt)/60);}}
- assert.equal(actual,expected);const latest=s.business.ledger.filter(x=>x.reason==='provider-operation-period').at(-1);assert.ok(latest.period<Math.ceil(end/60));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const storage=recording.exitStorage;assert.equal(storage.retainedPeriodCents,3000);expected+=Math.floor(3000*Math.max(0,s.clock-storage.commitmentEndsAt)/60);assert.equal(actual,expected);const latest=s.business.ledger.filter(x=>x.reason==='provider-operation-period').at(-1);assert.equal(latest.cents,3000,'the later full-period bill contains archive storage, not renewed product charges');assert.ok(latest.period>=Math.ceil(end/60));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
 test('forged retirement receipts fail restore and pending retirement continues equally in worker and fallback',()=>{
@@ -61,7 +61,7 @@ test('new quoted supplier minimums survive direct customer exit without first re
  let s=opening(),work=project(s,productId);assert.equal(s.providerCampaign.contentVersion,'provider-campaigns-3');assert.equal(work.minimumTermPeriods,3);
  const exitQuote=SOC.provider.quote(s,{action:'exit',customerId});assert.ok(exitQuote.commercial.remainingMinimumSupplierCents>=work.periodCents*2);
  s=buy(s,{action:'exit',customerId});const exitAt=s.clock;s=until(s,x=>x.clock>=Math.ceil((work.completedAt+180)/60)*60,300);
- const bills=s.business.ledger.filter(r=>r.reason==='provider-operation-period'&&r.at>exitAt);assert.ok(bills.length>=3,'supplier obligation survives exit in subsequent bills');assert.equal(bills.reduce((n,r)=>n+r.cents,0),3*(work.periodCents+project(s,'recording').periodCents));
+ const bills=s.business.ledger.filter(r=>r.reason==='provider-operation-period'&&r.at>exitAt);assert.ok(bills.length>=3,'supplier obligation survives exit in subsequent bills');const recording=project(s,'recording'),storage=recording.exitStorage;assert.equal(storage.retainedPeriodCents,3000);assert.equal(bills.reduce((n,r)=>n+r.cents,0),3*(work.periodCents+recording.periodCents)+Math.floor(3000*Math.max(0,s.clock-storage.commitmentEndsAt)/60));
  const bad=structuredClone(s);delete project(bad,productId).minimumTermPeriods;assert.throws(()=>SOC.restore(JSON.stringify(bad)),/INVALID_PROVIDER_MINIMUM_TERM/);
 });
 

@@ -3,6 +3,7 @@ function socProviderProgressionFactsKernel(){
  'use strict';
  const VERSION=1,CONTENT='provider-progression-facts-content-1',PACK='soc-provider-progression-facts-1';
  function responsibilityApi(){return typeof SOC_PROVIDER_RESPONSIBILITY!=='undefined'?SOC_PROVIDER_RESPONSIBILITY:require('./23-provider-responsibility.js');}
+ function ucCcApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:(typeof SOCProviderUcCcIntegration!=='undefined'?SOCProviderUcCcIntegration:require('./23-provider-uc-cc-integration.js'));}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -55,6 +56,12 @@ function socProviderProgressionFactsKernel(){
   'two-customer-support-window':'Current MSP responsibility records do not prove live support coverage for both customers throughout the same 60-minute settlement window.',
   'version-scoped-integration-test':'A current version-scoped integration test is not available to this facts adapter.',
   'linked-end-to-end-task':'A resolved task linked to that tested integration is not available to this facts adapter.',
+  'uc-cc-integration-helper':'The validated UC and contact-centre integration evidence adapter is unavailable.',
+  'paid-uc-cc-integration':'A paid, current version-scoped UC and contact-centre integration project with a validated posting is required.',
+  'uc-cc-integration-current':'The paid UC and contact-centre edge, passing test, support, or supported boundary is not currently eligible.',
+  'same-customer-uc-cc-task':'A current same-customer voice task with complete capture and a funded quality review on the tested edge is required.',
+  'same-customer-integrated-needs':'A real human-resolved voice case with complete capture and funded quality review on this same Provider customer is required.',
+  'same-customer-integrated-meeting':'A successful real room meeting on the same supported integration customer is required.',
   'independent-sites':'Two separately scoped paid operating sites are not represented by this adapter.',
   'per-item-migration-receipts':'Migration lineage receipts are not evaluated by this adapter.',
   'backup-restore-continuity':'A bounded backup and restore continuity exercise is not evaluated by this adapter.',
@@ -118,6 +125,7 @@ function socProviderProgressionFactsKernel(){
   'fresh-external-profit':'Fresh consolidated external operating profit is not evaluated by this adapter.'
  };
  const rootFor=(s,c,h)=>typeof h.customerRoot==='function'?h.customerRoot(s,c.portfolioId):s.portfolio?.customers?.find(x=>x.id===c.portfolioId)?.root||null;
+ const id=x=>typeof x==='string'&&/^[a-z0-9][a-z0-9._:-]{0,159}$/i.test(x);
  const observedReady=(root,id,h)=>{if(typeof h.observeResource!=='function')return false;const v=h.observeResource(root,id);return v===true||v?.ready===true;};
  function postingFor(s,project){const e=s.business?.ledger?.find(x=>x.id===project.postingId);if(e)return e.category==='cost'&&e.cents===project.setupCents&&e.projectId===project.id&&e.customerId===project.customerId?e:null;const m=/^entry-([1-9]\d*)$/.exec(project?.postingId||'');return m&&Number(m[1])<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign?.projects?.includes(project)?{id:project.postingId,retention:'validated-project-checkpoint',projectId:project.id}:null;}
  function stageProjects(s,c){const p=s.providerCampaign;const out=[];for(const stageId of ['base','carrier','partner']){const stage=c.stages?.[stageId],project=stage&&p.projects.find(x=>x.id===stage.projectId&&x.customerId===c.id&&x.kind==='stage'&&x.stage===stageId);if(!stage||stage.status!=='effective'||!project||project.status!=='complete'||!postingFor(s,project))return null;out.push({stageId,stage,project});}return out;}
@@ -177,6 +185,43 @@ function socProviderProgressionFactsKernel(){
  function supportConfiguration(c,root,resources,responsibility,boundaries){
   return JSON.stringify(stable({customerId:c.id,tenant:root?.tenant||c.tenant||c.portfolioId,market:c.market,scenario:c.scenario,retailPriceCents:c.retailAgreement?.priceCents,stages:Object.fromEntries(['base','carrier','partner'].map(id=>{const stage=c.stages?.[id];return [id,stage?{status:stage.status,projectId:stage.projectId,resources:stage.resources,expectedGenerations:stage.expectedGenerations}:null];})),resources:resources.map(id=>({id,generation:root.resources?.[id]?.generation})),responsibility:{id:responsibility?.id,projectId:responsibility?.projectId,postingId:responsibility?.postingId,scope:responsibility?.scope,terms:responsibility?.terms,sharedWorkforce:responsibility?.evidence?.sharedWorkforce?{engineers:responsibility.evidence.sharedWorkforce.engineers,support:responsibility.evidence.sharedWorkforce.support}:null},boundaries}));
  }
+ function integrationHooks(s,c,root,hooks={}){
+  if(typeof hooks.integrationHooks==='function')return hooks.integrationHooks(s,c.id,root);
+  if(hooks.ucCcIntegrationHooks&&typeof hooks.ucCcIntegrationHooks==='function')return hooks.ucCcIntegrationHooks(s,c.id,root);
+  const observe=(r,id)=>typeof hooks.observeResource==='function'?hooks.observeResource(r,id):false;
+  const currentSupport=(state,customer,child)=>{
+   const response=responsibilityApi().responsibilities(state,customer?.id,{observeResource:observe});
+   const record=response.status==='available'?response.records.find(x=>x.customerId===customer.id&&x.role==='msp'&&x.organisationId==='orchard-msp'&&x.effectiveAt<=state.clock&&(x.expiresAt===null||x.expiresAt>state.clock)&&x.scope?.includes('phone')):null;
+   return record?{ready:true,recordId:record.id,projectId:record.projectId,postingId:record.postingId,resourceId:'phone'}:{ready:false,reason:'current-paid-msp-support-for-phone-required'};
+  };
+  const currentBoundary=(state,customer,child)=>{
+   const boundaryApi=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:require('./43-boundaries.js'),contracts=child?.boundaries?.contracts||[];
+   for(const contract of contracts){
+    if(!contract.effective||contract.provisioning?.status!=='ready')continue;
+    let assessment;try{assessment=typeof hooks.boundaryAssessment==='function'?hooks.boundaryAssessment(child,contract.id):boundaryApi.evaluate(child,contract.id);}catch{continue;}
+    if(assessment?.eligible!==true||!['phone','recorder'].every(id=>assessment.resourceBindings?.some(x=>(typeof x==='string'?x:x.resource)===id)))continue;
+    const review=(state.providerCampaign.projects||[]).find(p=>p.customerId===customer.id&&p.operationId==='service-boundary-review'&&p.status==='complete'&&p.operationReceipt?.kind==='service-boundary'&&p.operationReceipt.plan?.boundaryContract?.id===contract.id&&p.operationReceipt.plan?.boundaryGeneration===contract.generation);
+    if(review)return {ready:true,contractId:contract.id,generation:contract.generation,projectId:review.id,postingId:review.postingId,resources:['phone','recorder']};
+   }
+   return {ready:false,reason:'current-paid-supported-phone-and-recorder-boundary-required'};
+  };
+  return {resourceReady:observe,currentSupport,currentBoundary};
+ }
+ function paidUcCcProject(s,customer,project,api){
+  if(!project||project.customerId!==customer.id||project.kind!=='operation'||!api.OPERATION_IDS?.includes(project.operationId)||project.status!=='complete'||!project.operationReceipt||!project.postingId)return false;
+  const posting=s.business?.ledger?.find(x=>x.id===project.postingId);
+  if(posting)return posting.category==='cost'&&posting.reason==='provider-operation'&&posting.customerId===customer.id&&posting.projectId===project.id&&posting.cents===project.setupCents;
+  const match=/^entry-([1-9]\d*)$/.exec(project.postingId);return !!match&&Number(match[1])<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign.projects.includes(project);
+ }
+ function ucCcObservation(s,c,hooks={}){
+  let api;try{api=ucCcApi();}catch{return {status:'unavailable',missing:[MISSING['uc-cc-integration-helper']],evidence:null};}
+  const child=rootFor(s,c,hooks);if(!child||child.providerCustomer?.id!==c.id||child.providerCampaign)return {status:'incomplete',missing:['validated-customer-root'],evidence:null};
+  const projects=(s.providerCampaign.projects||[]).filter(p=>p.customerId===c.id&&api.OPERATION_IDS?.includes(p.operationId)).sort((a,b)=>(b.acceptedAt||0)-(a.acceptedAt||0));
+  const project=projects.find(p=>paidUcCcProject(s,c,p,api));if(!project)return {status:'incomplete',missing:[MISSING['paid-uc-cc-integration']],evidence:null};
+  const result=api.observe(s,project.id,integrationHooks(s,c,child,hooks));
+  if(result.status!=='ready')return {status:result.status==='stale'?'incomplete':'incomplete',missing:(result.missing||[]).map(reason=>`UC/CC: ${reason}`),evidence:null};
+  return {status:'ready',missing:[],evidence:copy(result.evidence)};
+ }
  function freshHumanJobs(s,c,root,at){
   const out=[];for(const job of s.providerCampaign.jobs||[]){
    if(job.customerId!==c.id||!['completed','late'].includes(job.status)||job.completedAt!==at||!job.interactionId||!job.caseId)continue;
@@ -194,6 +239,24 @@ function socProviderProgressionFactsKernel(){
    out.push({period:h.period,from:h.from,to:h.to,settledAt:at,qualified:h.qualified,operatingResultCents:global.operatingResult,revenuePostingId:bill.revenue.id,costPostingIds:bill.costs.map(x=>x.id).sort()});
   }
   return out.sort((a,b)=>a.period-b.period);
+ }
+ function ucCcCapabilityMatch(s,c,taskEvidence,hooks={}){
+  const root=rootFor(s,c,hooks),api=responsibilityApi(),responsibilities=api.responsibilities(s,c.id,hooks),record=responsibilities.records?.find(x=>x.role==='integrator'&&x.organisationId==='twig-integrations'&&x.customerId===c.id),project=record&&s.providerCampaign.projects.find(x=>x.id===record.projectId&&x.customerId===c.id&&x.kind==='operation'&&x.operationId==='integrator-room'&&x.status==='complete'),sessions=(root?.information?.meetingSessions||[]).filter(m=>record?.evidence?.meetingIds?.includes(m.id)&&m.status==='completed'&&m.startedAt>=project?.completedAt&&m.endedAt>m.startedAt&&m.roomId==='room'&&m.platformDependency?.resourceId&&m.platformDependency.generation>0),plan=taskEvidence?.plan;
+  if(!root||!record||!project||!sessions.length||!plan)return {evidence:null,missing:[...(responsibilities.missing||[]),MISSING['same-customer-integrated-meeting']]};
+  const proof={version:1,kind:'provider-uc-contact-room-operation',scope:`customer:${c.id}`,customerId:c.id,edge:{id:taskEvidence.edgeId,source:plan.source.deploymentId,target:plan.target.deploymentId,sourceVersion:plan.source.productVersion,targetVersion:plan.target.productVersion,sourceGeneration:plan.source.generation,targetGeneration:plan.target.generation},resolvedCase:{jobId:taskEvidence.job.id,interactionId:taskEvidence.interaction.id,caseId:taskEvidence.case.id,qualityProjectId:taskEvidence.quality.projectId,qualityPostingId:taskEvidence.quality.postingId,startedAt:taskEvidence.interaction.startedAt,completedAt:taskEvidence.interaction.finishedAt},roomProject:{id:project.id,postingId:project.postingId,acceptedAt:project.acceptedAt,completedAt:project.completedAt,setupCents:project.setupCents,periodCents:project.periodCents,resourceGeneration:project.expectedGenerations?.room??null},responsibility:{id:record.id,role:record.role,organisationId:record.organisationId,customerId:record.customerId,scope:[...record.scope].sort(),projectId:record.projectId,postingId:record.postingId,effectiveAt:record.effectiveAt,meetingIds:[...record.evidence.meetingIds].sort()},meetings:sessions.map(m=>({id:m.id,bookingId:m.bookingId,startedAt:m.startedAt,endedAt:m.endedAt,roomId:m.roomId,platformDependency:copy(m.platformDependency)})).sort((a,b)=>a.id.localeCompare(b.id)),interval:{from:taskEvidence.test.at,to:Math.max(taskEvidence.quality.completedAt,...sessions.map(m=>m.endedAt))}};
+  return validateUcCcCapabilityEvidence(s,c.id,taskEvidence,proof,hooks,{historical:true})?{evidence:proof,missing:[]}:{evidence:null,missing:[MISSING['same-customer-integrated-needs'],MISSING['same-customer-integrated-meeting']]};
+ }
+ function validateUcCcCapabilityEvidence(s,customerId,task,evidence,hooks={},options={}){
+  const keys=['version','kind','scope','customerId','edge','resolvedCase','roomProject','responsibility','meetings','interval'],c=s.providerCampaign?.customers?.find(x=>x.id===customerId),root=c&&rootFor(s,c,hooks),plan=task?.plan,source=evidence?.edge,need=evidence?.resolvedCase,room=evidence?.roomProject,role=evidence?.responsibility;
+  if(!exact(evidence,keys)||evidence.version!==1||evidence.kind!=='provider-uc-contact-room-operation'||evidence.customerId!==customerId||evidence.scope!==`customer:${customerId}`||!exact(source,['id','source','target','sourceVersion','targetVersion','sourceGeneration','targetGeneration'])||source.id!==task?.edgeId||source.source!==plan?.source?.deploymentId||source.target!==plan?.target?.deploymentId||source.sourceVersion!==plan?.source?.productVersion||source.targetVersion!==plan?.target?.productVersion||source.sourceGeneration!==plan?.source?.generation||source.targetGeneration!==plan?.target?.generation||!exact(need,['jobId','interactionId','caseId','qualityProjectId','qualityPostingId','startedAt','completedAt'])||need.jobId!==task?.job?.id||need.interactionId!==task?.interaction?.id||need.caseId!==task?.case?.id||need.qualityProjectId!==task?.quality?.projectId||need.qualityPostingId!==task?.quality?.postingId||need.startedAt!==task?.interaction?.startedAt||need.completedAt!==task?.interaction?.finishedAt||!exact(room,['id','postingId','acceptedAt','completedAt','setupCents','periodCents','resourceGeneration'])||!id(room.id)||!id(room.postingId)||![room.acceptedAt,room.completedAt,room.setupCents,room.periodCents,room.resourceGeneration].every(Number.isSafeInteger)||room.completedAt<room.acceptedAt||room.completedAt>evidence.interval?.to||room.setupCents<=0||room.resourceGeneration<1||!exact(role,['id','role','organisationId','customerId','scope','projectId','postingId','effectiveAt','meetingIds'])||role.id!==`provider-responsibility-integrator-${room.id}`||role.role!=='integrator'||role.organisationId!=='twig-integrations'||role.customerId!==customerId||!same(role.scope,['room'])||role.projectId!==room.id||role.postingId!==room.postingId||role.effectiveAt!==room.completedAt||!Array.isArray(role.meetingIds)||!role.meetingIds.length||!Array.isArray(evidence.meetings)||!evidence.meetings.length||!exact(evidence.interval,['from','to'])||evidence.interval.from!==task?.test?.at||!ints(evidence.interval.to)||evidence.interval.to<evidence.interval.from||evidence.interval.to!==Math.max(task?.quality?.completedAt||0,...evidence.meetings.map(x=>x.endedAt||0))||options.at!==undefined&&evidence.interval.to>options.at)return false;
+  const project=s.providerCampaign.projects.find(x=>x.id===room.id&&x.customerId===customerId&&x.kind==='operation'&&x.operationId==='integrator-room'&&x.status==='complete'&&x.postingId===room.postingId&&x.acceptedAt===room.acceptedAt&&x.completedAt===room.completedAt&&x.setupCents===room.setupCents&&x.periodCents===room.periodCents&&x.expectedGenerations?.room===room.resourceGeneration);
+  if(!project||!(project.resources||[]).includes('room')||options.historical!==true&&!['active','renewal'].includes(c?.status)||!same(role.meetingIds,evidence.meetings.map(x=>x.id).sort()))return false;
+  const posting=s.business?.ledger?.find(x=>x.id===room.postingId);if(posting&&(posting.category!=='cost'||posting.reason!=='provider-operation'||posting.customerId!==customerId||posting.projectId!==room.id||posting.cents!==room.setupCents))return false;if(!posting&&Number(room.postingId.slice('entry-'.length))>(s.business?.ledgerPrunedThrough||0))return false;
+  const org=s.business?.organisations?.['twig-integrations'];if(!org?.roles?.includes('integrator'))return false;
+  if(evidence.meetings.some(m=>!exact(m,['id','bookingId','startedAt','endedAt','roomId','platformDependency'])||!id(m.id)||!id(m.bookingId)||!ints(m.startedAt)||!ints(m.endedAt)||m.startedAt<room.completedAt||m.endedAt<=m.startedAt||m.roomId!=='room'||!m.platformDependency||m.platformDependency.version!==1||typeof m.platformDependency.resourceId!=='string'||!ints(m.platformDependency.generation)||m.platformDependency.generation<1||m.platformDependency.ready!==true||m.platformDependency.media?.in!==true||m.platformDependency.media?.out!==true))return false;
+  if(root){for(const proof of evidence.meetings){const actual=root.information?.meetingSessions?.find(m=>m.id===proof.id);if(!actual||actual.status!=='completed'||actual.bookingId!==proof.bookingId||actual.startedAt!==proof.startedAt||actual.endedAt!==proof.endedAt||actual.roomId!==proof.roomId||!same(actual.platformDependency,proof.platformDependency))return false;}}
+  if(options.historical!==true){const rebuilt=ucCcCapabilityMatch(s,c,task,hooks);return rebuilt.evidence!==null&&same(rebuilt.evidence,evidence);}
+  return true;
  }
  function sampleSupport(s,hooks={}){
   if(!s||s.experience?.version!==1||s.experience?.kind!=='campaign'||s.experience?.custom!==false)fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
@@ -213,6 +276,50 @@ function socProviderProgressionFactsKernel(){
  }
  const SUPPORT_SAMPLE_KEYS=['version','contentVersion','at','cohort','participants'];
  const SUPPORT_PARTICIPANT_KEYS=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility','freshJobs','settlements'];
+ const SUPPORT_ENCODED_PARTICIPANT_KEYS=SUPPORT_PARTICIPANT_KEYS.map(key=>key==='configuration'?'configurationIndex':key);
+ const SUPPORT_OBSERVATION_LIMIT=60;
+ function supportObservationError(){fail('INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING');}
+ function replaceObjectKeyInPlace(value,from,to,replacement){
+  const out={};for(const key of Object.keys(value))Object.defineProperty(out,key==from?to:key,{value:key===from?replacement:value[key],enumerable:true,configurable:true,writable:true});return out;
+ }
+ function supportSequenceValid(samples){return Array.isArray(samples)&&samples.length<=SUPPORT_OBSERVATION_LIMIT&&Array.from({length:samples.length},(_,index)=>supportSampleValid(samples[index])&&(!index||samples[index].at===samples[index-1].at+1)).every(Boolean);}
+ function decodeSupportObservation(observation){
+  if(observation===undefined)return [];
+  if(!observation||typeof observation!=='object'||Array.isArray(observation))supportObservationError();
+  if(exact(observation,['version','samples'])&&observation.version===1){
+   const samples=copy(observation.samples);if(!supportSequenceValid(samples))supportObservationError();return samples;
+  }
+  if(!exact(observation,['version','configurations','samples'])||observation.version!==2||!Array.isArray(observation.configurations)||!Array.isArray(observation.samples)||observation.samples.length>SUPPORT_OBSERVATION_LIMIT||observation.configurations.length>SUPPORT_OBSERVATION_LIMIT*20||Array.from({length:observation.configurations.length},(_,index)=>typeof observation.configurations[index]==='string'&&observation.configurations[index].length>0).some(valid=>!valid)||new Set(observation.configurations).size!==observation.configurations.length)supportObservationError();
+  const configurations=observation.configurations;
+  const decoded=observation.samples.map(sample=>{
+   if(!exact(sample,SUPPORT_SAMPLE_KEYS)||!Array.isArray(sample.participants))supportObservationError();
+   const participants=sample.participants.map(participant=>{
+    if(!exact(participant,SUPPORT_ENCODED_PARTICIPANT_KEYS)||!Number.isSafeInteger(participant.configurationIndex)||participant.configurationIndex<0||participant.configurationIndex>=configurations.length)supportObservationError();
+    return replaceObjectKeyInPlace(participant,'configurationIndex','configuration',configurations[participant.configurationIndex]);
+   });
+   const row={};for(const key of Object.keys(sample))Object.defineProperty(row,key,{value:key==='participants'?participants:sample[key],enumerable:true,configurable:true,writable:true});
+   return row;
+  });
+  const used=new Set(observation.samples.flatMap(sample=>sample.participants.map(participant=>participant.configurationIndex)));
+  if(used.size!==configurations.length||!supportSequenceValid(decoded))supportObservationError();return decoded;
+ }
+ function encodeSupportObservation(samples){
+  if(!supportSequenceValid(samples))supportObservationError();
+  const configurations=[],indexes=new Map();
+  const encoded=samples.map(sample=>{
+   const participants=sample.participants.map(participant=>{
+    let index=indexes.get(participant.configuration);if(index===undefined){index=configurations.length;indexes.set(participant.configuration,index);configurations.push(participant.configuration);}
+    return replaceObjectKeyInPlace(participant,'configuration','configurationIndex',index);
+   });
+   const row={};for(const key of Object.keys(sample))Object.defineProperty(row,key,{value:key==='participants'?participants:sample[key],enumerable:true,configurable:true,writable:true});return row;
+  });
+  return {version:2,configurations,samples:encoded};
+ }
+ function appendSupportObservation(observation,sample){
+  if(!supportSampleValid(sample))supportObservationError();
+  const samples=decodeSupportObservation(observation),last=samples.at(-1);if(last&&sample.at!==last.at+1)supportObservationError();
+  samples.push(copy(sample));return encodeSupportObservation(samples.slice(-SUPPORT_OBSERVATION_LIMIT));
+ }
  function supportSampleValid(x){
   if(!exact(x,SUPPORT_SAMPLE_KEYS)||x.version!==VERSION||x.contentVersion!==CONTENT||!ints(x.at)||!Array.isArray(x.cohort)||!Array.isArray(x.participants)||x.cohort.length>20||new Set(x.cohort).size!==x.cohort.length||x.cohort.some(id=>typeof id!=='string')||!same(x.cohort,[...x.cohort].sort()))return false;
   if(x.participants.length!==x.cohort.length||!same(x.participants.map(y=>y?.customerId),x.cohort))return false;
@@ -264,7 +371,7 @@ function socProviderProgressionFactsKernel(){
   const fullLive=[];
   for(const c of p.customers){const ready=customerReady(s,c,hooks);if(ready.ok)fullLive.push({customer:c,ready});}
   const first=fullLive[0]||null;
-  const liveEvidenceFor=entry=>entry?{customerId:entry.customer.id,portfolioId:entry.customer.portfolioId,from:Math.min(...entry.ready.resolved.map(x=>x.job.arrivalAt)),to:Math.max(...entry.ready.resolved.map(x=>x.interaction.finishedAt||x.job.completedAt)),agreementAt:entry.customer.retailAgreement.at,projectIds:entry.ready.rows.map(x=>x.project.id),postingIds:entry.ready.rows.map(x=>x.project.postingId),jobs:entry.ready.resolved.map(x=>({jobId:x.job.id,interactionId:x.interaction.id,caseId:x.job.caseId,channel:x.job.channel}))}:{};
+  const liveEvidenceFor=entry=>entry?{customerId:entry.customer.id,portfolioId:entry.customer.portfolioId,from:Math.min(...entry.ready.resolved.map(x=>x.job.arrivalAt)),to:Math.max(...entry.ready.resolved.map(x=>x.interaction.finishedAt||x.job.completedAt)),agreementAt:entry.customer.customerAcceptedAt??entry.customer.retailAgreement.at,projectIds:entry.ready.rows.map(x=>x.project.id),postingIds:entry.ready.rows.map(x=>x.project.postingId),jobs:entry.ready.resolved.map(x=>({jobId:x.job.id,interactionId:x.interaction.id,caseId:x.job.caseId,channel:x.job.channel}))}:{};
   const recent=s.clock;
   const liveEvidence=liveEvidenceFor(first);
   const firstLive=fact(first?'ready':'incomplete',first?[]:[p.customers.length?MISSING['first-live']:'No Provider customer has been accepted yet.'],liveEvidence);
@@ -278,7 +385,8 @@ function socProviderProgressionFactsKernel(){
   const supported=[];
   for(const c of p.customers){if(!['active','renewal'].includes(c.status))continue;const ready=customerReady(s,c,hooks);if(!ready.ok)continue;const history=[...(c.history||[])].reverse().find(h=>h.fullPeriod===true&&h.to-h.from===60&&recent-h.to<=60&&customerBill(s,c,h));if(history)supported.push({customer:c,ready,history,bill:customerBill(s,c,history)});}
   let pair=null;for(let i=0;i<supported.length&&!pair;i++)for(let j=i+1;j<supported.length;j++){const a=supported[i],b=supported[j],from=Math.max(a.history.from,b.history.from),to=Math.min(a.history.to,b.history.to);if(to-from>=60){pair=[a,b];break;}}
-  const supportSamples=Array.isArray(hooks.supportSamples)?hooks.supportSamples:hooks.supportSamples?.samples;
+  const suppliedSamples=hooks.supportSamples;
+  const supportSamples=Array.isArray(suppliedSamples)?suppliedSamples:suppliedSamples?decodeSupportObservation(suppliedSamples):undefined;
   const sampledWindow=supportSamples&&validateSupportSamples(s,supportSamples,hooks)?qualifySupportWindow(supportSamples):null;
   if(sampledWindow?.status==='ready'&&!supportCurrentEligibility(s,supportSamples,hooks)){sampledWindow.status='incomplete';sampledWindow.missing=['Current customer, paid MSP, resource and supported-boundary eligibility no longer matches the sampled window.'];sampledWindow.evidence=null;}
   const pairMissing=[];if(!pair)pairMissing.push(MISSING['two-supported-customers']);if(!sampledWindow||sampledWindow.status!=='ready')pairMissing.push(MISSING['two-customer-support-window'],...(sampledWindow?.missing||[]));
@@ -294,12 +402,26 @@ function socProviderProgressionFactsKernel(){
   const levelOneLive=sustainableCandidate?liveEvidenceFor(sustainableCandidate):null,l1=!!levelOneLive&&sustainability.status==='ready'&&supportResponsibility.status==='ready';
   levels[levelId(1)]={id:levelId(1),name:'Local UC reseller',status:l1?'ready':'incomplete',missing:l1?[]:[...(!levelOneLive?firstLive.missing:[]),...sustainability.missing,...supportResponsibility.missing],evidence:l1?{firstLive:levelOneLive,sustainable:sustainability.evidence,supportResponsibility:supportResponsibility.evidence}:null};
   levels[levelId(2)]={id:levelId(2),name:'Regional communications MSP',status:two.status,missing:[...two.missing],evidence:two.status==='ready'?two.evidence:null};
+  const integrationCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>({customer:c,result:ucCcObservation(s,c,hooks)}));
+  const integrated=integrationCandidates.find(x=>x.result.status==='ready')||null;
+  const integrationMissing=integrated?[]:[...new Set(integrationCandidates.flatMap(x=>x.result.missing||[]))];
+  const ixEvidence=integrated?{kind:'provider-uc-cc-first-integration',version:1,customerId:integrated.customer.id,portfolioId:integrated.customer.portfolioId,market:integrated.customer.market,markets:[integrated.customer.market],task:copy(integrated.result.evidence),interval:{from:integrated.result.evidence.test.at,to:integrated.result.evidence.quality.completedAt}}:null;
+  goals[goalId('ix')]={id:goalId('ix'),name:'First ecosystem integration',status:ixEvidence?'ready':'incomplete',missing:ixEvidence?[]:(integrationMissing.length?integrationMissing:[MISSING['paid-uc-cc-integration']]),evidence:ixEvidence};
+  let levelThree=null,levelThreeMissing=[];
+  for(const candidate of integrationCandidates){
+   if(candidate.result.status!=='ready')continue;
+   const capability=ucCcCapabilityMatch(s,candidate.customer,candidate.result.evidence,hooks);
+   if(capability.evidence){levelThree={kind:'provider-uc-cc-integrator',version:1,customerId:candidate.customer.id,portfolioId:candidate.customer.portfolioId,market:candidate.customer.market,markets:[candidate.customer.market],task:copy(candidate.result.evidence),capability:capability.evidence,interval:{from:candidate.result.evidence.test.at,to:capability.evidence.interval.to}};break;}
+   levelThreeMissing.push(...capability.missing);
+  }
+  if(!levelThree){if(!integrated)levelThreeMissing.push(...integrationMissing);if(!integrationCandidates.length)levelThreeMissing.push(MISSING['paid-uc-cc-integration']);levelThreeMissing.push(MISSING['same-customer-integrated-needs'],MISSING['same-customer-integrated-meeting']);}
+  levels[levelId(3)]={id:levelId(3),name:'UC and CC integrator',status:levelThree?'ready':'incomplete',missing:levelThree?[]:[...new Set(levelThreeMissing)],evidence:levelThree};
   goals[goalId('bb')]={id:goalId('bb'),name:'First customer live',status:firstLive.status,missing:[...firstLive.missing],evidence:firstLive.status==='ready'?liveEvidence:null};
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,sourceContentVersion:p.contentVersion,experience:{...s.experience},asOf:s.clock,levels,goals,facts:proofRequirements};
  }
- return {PACK,VERSION,CONTENT,LEVELS:LEVELS.map(x=>x[0]),GOALS:GOALS.map(x=>x[0]),evaluate,inspect:evaluate,sampleSupport,qualifySupportWindow,validateSupportSamples,source:()=>`const SOC_PROVIDER_PROGRESSION_FACTS=(${socProviderProgressionFactsKernel.toString()})();`};
+ return {PACK,VERSION,CONTENT,LEVELS:LEVELS.map(x=>x[0]),GOALS:GOALS.map(x=>x[0]),evaluate,inspect:evaluate,sampleSupport,qualifySupportWindow,validateSupportSamples,validateUcCcCapabilityEvidence,encodeSupportObservation,decodeSupportObservation,appendSupportObservation,source:()=>`const SOC_PROVIDER_PROGRESSION_FACTS=(${socProviderProgressionFactsKernel.toString()})();`};
 }
 const SOC_PROVIDER_PROGRESSION_FACTS=socProviderProgressionFactsKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_PROGRESSION_FACTS;

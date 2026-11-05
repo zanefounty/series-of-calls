@@ -976,6 +976,134 @@
         "uc-new:family:cisco:provider-operations",
         "uc-new:domain:commercial-roles"
       ]
+    },
+    {
+      "id": "uc-cc-integration",
+      "name": "Twig calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 40000,
+      "periodCents": 7000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "uc-cc-retest",
+      "name": "Retest changed calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 9000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "managed-uc-cc-retest",
+      "name": "Supplier-managed integration retest",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "managed-uc-cc-integration",
+      "name": "Supplier-managed calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 25000,
+      "periodCents": 11000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 2,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "capture-headroom",
+      "name": "Increase recording capacity",
+      "description": "Fund four additional concurrent capture reservations. This changes recording admission without adding customer staff, carrier sessions or missing historical recordings.",
+      "setupCents": 18000,
+      "periodCents": 5000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "recorder"
+      ],
+      "config": {},
+      "requirements": [
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:family:cisco:contact-center"
+      ]
     }
   ],
   "families": [

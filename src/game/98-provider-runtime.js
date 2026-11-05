@@ -38,7 +38,7 @@ function providerModel(){
 }
 function providerRender(){
  if(!SCP.host||SCP.host.hidden)return;
- SOC_PROVIDER_UI.render(SCP.atHome?null:SCP.state,SCP.atHome?null:providerModel(),{paused:!SCP.speed,speed:SCP.speed||SCP.lastSpeed});
+ SOC_PROVIDER_UI.render(SCP.atHome?null:SCP.state,SCP.atHome?null:providerModel(),{paused:!SCP.speed,speed:SCP.speed||SCP.lastSpeed,preferences:providerPreferences()});
  let alert=SCP.host.querySelector('[data-provider-error]');if(!alert){alert=document.createElement('div');alert.dataset.providerError='';alert.setAttribute('role','alert');SCP.host.append(alert);}alert.textContent=SCP.error;alert.hidden=!SCP.error;
 }
 function providerEnsureMount(){
@@ -49,7 +49,7 @@ function providerEnsureMount(){
 function providerHome(){
  SCP.atHome=true;providerRelease();UI.speed=0;if(typeof socClose==='function')socClose();
  const modal=document.getElementById('modal');if(modal)modal.hidden=true;
- providerEnsureMount();SOC_PROVIDER_UI.render(null,null,{paused:true,speed:SCP.lastSpeed});
+ providerEnsureMount();SOC_PROVIDER_UI.render(null,null,{paused:true,speed:SCP.lastSpeed,preferences:providerPreferences()});
 }
 async function providerOpen(){
  SCP.atHome=false;UI.speed=0;providerEnsureMount();providerPause();SCP.error='';const alreadyOwned=SCP.locked;await providerAcquire();

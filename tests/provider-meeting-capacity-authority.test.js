@@ -1,0 +1,15 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const SOC=require('../src/game/55-communications');
+const id='starter-customer',root=s=>s.portfolio.customers[0].root,project=(s,op)=>s.providerCampaign.projects.findLast(p=>p.operationId===op);
+function buy(s,request){const quote=SOC.provider.quote(s,request);assert.deepEqual(quote.blockers,[]);return SOC.dispatch(s,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});}
+function until(s,predicate){for(let n=0;n<150&&!predicate(s);n++)s=SOC.dispatch(s,{type:'advance',minutes:1});assert.ok(predicate(s),'not reached at '+s.clock);return s;}
+let cached;
+function commissioned(){if(!cached){let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73});for(const stage of ['base','carrier','partner']){s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:id})});s=until(s,x=>x.providerCampaign.customers[0].stages[stage].status==='effective');if(stage==='base'){s=buy(s,{action:'operation',operationId:'recording',customerId:id});s=until(s,x=>project(x,'recording').status==='complete');}}s=buy(s,{action:'operation',operationId:'room',customerId:id});cached=until(s,x=>project(x,'room').status==='complete');}return structuredClone(cached);}
+test('Provider restore cannot mint meeting or event admission by editing both desired and effective limits',()=>{
+ const state=commissioned();assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ for(const field of ['capacity','eventCapacity']){const altered=structuredClone(state);for(const config of [root(altered).information.meeting.desired,root(altered).information.meeting.effective])config[field]=999;assert.throws(()=>SOC.restore(JSON.stringify(altered)),/INVALID_PROVIDER_MEETING_CAPACITY_AUTHORITY/);}
+});
+test('authored zero-capacity incident and paid repair or mitigation restore their exact separately funded allowance',()=>{
+ const failed=until(commissioned(),s=>s.providerCampaign.incidents.some(i=>i.resource==='room'&&i.status==='active'));assert.equal(root(failed).information.meeting.effective.capacity,0);assert.deepEqual(SOC.restore(JSON.stringify(failed)),failed);
+ for(const operationId of ['repair','mitigate']){let s=structuredClone(failed),incident=s.providerCampaign.incidents.find(i=>i.resource==='room');s=SOC.dispatch(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});s=buy(s,{action:'operation',operationId,customerId:id});s=until(s,x=>project(x,operationId).status==='complete');assert.equal(root(s).information.meeting.effective.capacity,operationId==='mitigate'?9:8);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);const forged=structuredClone(s);forged.providerCampaign.incidents.find(i=>i.id===incident.id).receipt.previousCapacity=998;for(const config of [root(forged).information.meeting.desired,root(forged).information.meeting.effective])config.capacity=operationId==='mitigate'?999:998;assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MEETING_CAPACITY_AUTHORITY/);}
+});

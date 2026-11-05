@@ -617,11 +617,14 @@ const SOC = (function socKernel() {
       const changes=providerOwnedSites.platformMigrationTransitions(parent,project.customerId,project.id,providerOwnedSiteHooks(parent));
       for(const change of changes){
         if(change?.phase!=='effective')continue;
-        const child=parent.portfolio.customers.find(c=>c.id===project.customerId).root,node=child.siteOperations.sites[change.siteId],binding=child.siteOperations.bindings[change.resource];
+        const child=parent.portfolio.customers.find(c=>c.id===project.customerId).root,binding=child.siteOperations.bindings[change.resource];
         if(change.currentResourceGeneration!==change.toGeneration||![change.fromGeneration,change.toGeneration].includes(change.priorResourceGeneration)||binding.resourceGeneration!==change.priorResourceGeneration)fail('INVALID_PROVIDER_SITE_PLATFORM_GENERATION');
-        // Only the current inventory follows the exact completed paid migration.
-        // Earlier exercise snapshots and their actual call proofs stay historical.
-        node.resourceGenerations[change.resource]=change.toGeneration;
+        // Both purchased sites inventory this endpoint for later paid site moves.
+        // Update current inventory only; completed exercise snapshots stay historical.
+        for(const node of Object.values(child.siteOperations.sites))if(node.effective&&Object.hasOwn(node.resourceGenerations,change.resource)){
+          if(![change.fromGeneration,change.toGeneration].includes(node.resourceGenerations[change.resource]))fail('INVALID_PROVIDER_SITE_PLATFORM_GENERATION');
+          node.resourceGenerations[change.resource]=change.toGeneration;
+        }
         binding.resourceGeneration=change.toGeneration;
       }
     }

@@ -887,6 +887,10 @@
       "AC-SOC-641",
       "AC-SOC-642",
       "AC-SOC-643"
+    ],
+    "tests/provider-runtime.test.js": [
+      "AC-SOC-677",
+      "AC-SOC-678"
     ]
   },
   "inputs": [
@@ -949,6 +953,7 @@
     "scripts/mcp-smoke.py",
     "scripts/mcp.js",
     "scripts/provider-owned-map-layout-browser.js",
+    "scripts/provider-runtime-safety-browser.js",
     "scripts/serve.js",
     "scripts/verify.py",
     "site/apple-touch-icon.png",
@@ -1370,13 +1375,16 @@
     "tests/progression.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-operation-usage-quotes.test.js",
     "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
     "tests/provider-owned-site-custody-dispatch.test.js",
     "tests/provider-owned-site-dispatch.test.js",
     "tests/provider-owned-site-migration-recovery-scope.test.js",
+    "tests/provider-owned-site-platform-migration.test.js",
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
+    "tests/provider-runtime.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",
@@ -1417,8 +1425,6 @@
     "tests/workforce-operations.test.js",
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
-    "tests/workforce-quality.test.js",
-    "tests/provider-owned-site-platform-migration.test.js",
-    "tests/provider-operation-usage-quotes.test.js"
+    "tests/workforce-quality.test.js"
   ]
 }

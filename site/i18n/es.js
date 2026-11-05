@@ -4510,6 +4510,7 @@
 "provider.lifecycle.retire_service":"Retire service",
 "provider.lifecycle.retirement_pending":"Product retirement",
 "provider.lifecycle.review_retirement":"Review retirement terms",
+"provider.lock_lost":"Career save ownership was lost. This view is read-only and paused. Reopen it to continue; export remains available.",
 "provider.managed_external_reach.description":"Use earned external calling and guest collaboration evidence in this market. Supplier engineering lowers setup cost, with a longer delivery time and higher recurring support commitment.",
 "provider.managed_external_reach.name":"Supplier-managed external reach",
 "provider.managed_headroom.description":"Tras alcanzar Distribuidor UC local, compra cuatro sesiones de operador con ingeniería del proveedor y una persona de soporte. El menor coste inicial implica un compromiso recurrente mayor.",

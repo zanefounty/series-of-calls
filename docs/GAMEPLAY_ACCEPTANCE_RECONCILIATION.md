@@ -1,6 +1,6 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **105 exact assertions verified, 50 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **106 exact assertions verified, 49 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
@@ -9,7 +9,7 @@ The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **105 exact
 | 3 — map and interaction | 11 | 13 | 0 |
 | 4 — strategy and growth | 15 | 6 | 0 |
 | 5 — missions and ecosystem | 31 | 9 | 0 |
-| 6 — compatibility and delivery | 11 | 10 | 4 |
+| 6 — compatibility and delivery | 12 | 9 | 4 |
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 
@@ -35,6 +35,8 @@ Nine further exact clauses are now reconciled at application candidate `0ac9430`
 The underlying current full JavaScript run passed 2,111 tests with two skips; all 633 registered cases passed. The three fresh control journeys passed with all 373 input hashes and 47 built files reconciled. Separate operation-quote reviews passed 24 checks across Chromium, Firefox and WebKit. Development gates passed all seven categories, and Python gate/mutation checks passed 98 tests with one skip. These bounded results do not replace the remaining mission/family/Training matrix, storage-failure checks or parked long-play. Exact receipts and named tests are recorded in the ledger.
 
 Fresh family verification at `0ac9430` passed **45 desktop journeys**: fourteen representative families plus live retirement/recommissioning in each of Chromium, Firefox and WebKit. Independent review reconciled all 373 source inputs and 47 built files per engine, actual capability/limitation evidence and the additional selected-room inspection. This closes **PLAY-036-A01** and **PLAY-037-A01** and refreshes the already verified **PLAY-037-A02**. It adds two closures, not three. **PLAY-036-A03** remains pending for visible ownership/provenance distinctions. These runs do not prove full mission wins, mobile operation, per-family save restoration or the whole catalogue. The contact-centre capacity example improves 10 to 20 on-time cases out of 24; that is a measured improvement, not the 22-case mission threshold. Some room screenshots require separate scroll positions for status and duration/capture.
+
+The native ownership repair at `c0568a0` closes **PLAY-046-A03**. Before the fix, a real Web Locks takeover left the previous Provider tab running. Fresh Chromium, Firefox and WebKit desktop journeys now verify an immediate visible read-only pause, cancellation of pending work and explicit reopen/resume. They also inject a storage quota failure after a real quoted A$3,800 purchase, export the exact committed run, recover storage and retain one charge/project. The registered lock-race cases are AC-SOC-677–678. This is one exact persistence closure; it does not certify the full browser, mobile or gameplay matrix. Reports and the independent review are linked in the ledger.
 
 Remaining engineering includes canonical progression adapters and useful earned choices, regional-support historical authority and claims, complete current mission/family/Training and accessibility evidence, and remaining persistence and source-mapping clauses. Earlier identified issues such as hidden local-spares prerequisites and bill presentation now have bounded repairs; their exact assertions still require the corresponding evidence reconciliation. The human pilot remains external under the [prepared protocol](GAMEPLAY_PILOT_PROTOCOL.md). Four long-play assertions remain parked at the owner's request, without a pass or exclusion.
 

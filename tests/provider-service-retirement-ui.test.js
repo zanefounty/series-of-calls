@@ -1,0 +1,25 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
+const source=fs.readFileSync(path.join(__dirname,'../src/game/93-ui/79-provider-service-retirement.js'),'utf8');
+function ui(){const dom=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'}),markers=[];dom.window.N_=k=>{markers.push(k);return k;};dom.window.tr=k=>k;dom.window.eval(source);return {dom,api:dom.window.SOCProviderServiceRetirement,markers};}
+const project=()=>({id:'project-1',customerId:'starter-customer',kind:'operation',productId:null,operationId:'recording',status:'complete'});
+function quote(){return {action:'retire-service-project',blockers:[],commercial:{serviceRetirement:{version:1,operationId:'recording',retainedSetupCents:60000,effectiveAt:81,commitmentEndsAt:210,remainingMinimumSupplierCents:17334,recurringAfterTermCents:3000,resources:['recorder'],retainedResources:['archive'],retainedStorage:{charged:true,periodCents:3000},retainedRecords:[{id:'record-1'},{id:'record-2'}],affectedWork:[{id:'voice-1',caseId:'case-1',kind:'voice',effect:'CAPTURE_WITHDRAWN'},{id:'meeting-1',kind:'meeting',effect:'CAPTURE_WITHDRAWN'}],reservations:[{id:'voice-1'},{id:'meeting-1'}],workflows:{existingInputPreserved:true},dependentProducts:[],dependentProjects:[],blockers:[]}}};}
+function freeze(x){if(x&&typeof x==='object'){Object.freeze(x);for(const v of Object.values(x))freeze(v);}return x;}
+
+test('service retirement review preserves archive and storage obligations without asserting all conversations fail',()=>{
+ const {dom,api}=ui(),q=freeze(quote()),before=JSON.stringify(q),host=dom.window.document.createElement('div');host.innerHTML=api.quote(q);
+ assert.equal(JSON.stringify(q),before);assert.ok(host.querySelector('.provider-service-retirement-modal[role="dialog"]'));assert.match(host.textContent,/A\$173\.34/);assert.match(host.textContent,/A\$30\.00 per period after the minimum term while stored records remain/);assert.match(host.textContent,/archive remains enabled/);assert.match(host.textContent,/2 stored records retained/);
+ assert.match(host.textContent,/does not by itself guarantee that the conversation fails/);assert.match(host.textContent,/Existing processing jobs using retained input/);assert.match(host.textContent,/new paid operation and a new effective resource generation/);
+ assert.ok(host.querySelector('[data-work-id="voice-1"]'));assert.equal(host.querySelector('[data-provider-action="confirm-quote"]').disabled,false);assert.equal(host.querySelectorAll('input,select').length,0,'no authoring fields are exposed');dom.window.close();
+});
+
+test('named dependent paid products block confirmation and dynamic identifiers are escaped',()=>{
+ const {dom,api}=ui(),q=quote(),c=q.commercial.serviceRetirement;c.operationId='room';c.resources=['room'];c.blockers=['SERVICE_DEPENDENT_PAID_PRODUCT'];c.dependentProducts=[{projectId:'other-project',operationId:'ms-meetings-room',deploymentId:'<img src=x onerror=boom>',resources:['room']}];c.affectedWork=[{id:'<script>boom()</script>',kind:'meeting',effect:'ROOM_WITHDRAWN'}];const host=dom.window.document.createElement('div');host.innerHTML=api.quote(q);
+ assert.equal(host.querySelector('img,script'),null);assert.equal(host.querySelector('[data-provider-action="confirm-quote"]').disabled,true);assert.match(host.textContent,/ms meetings room/);assert.match(host.textContent,/Retire or replace the named dependent product/);assert.match(host.textContent,/active or scheduled meeting using it can fail/);assert.ok(host.querySelector('[data-project-id="other-project"]'));dom.window.close();
+});
+
+test('explicit version enablement controls supported project actions and paid recommission remains scoped',()=>{
+ const {dom,api,markers}=ui(),p=project();assert.equal(api.actions(p),'');assert.equal(api.actions({...p,productId:'ms-workplace-calling'},{enabled:true}),'');assert.equal(api.actions({...p,operationId:'migration'},{enabled:true}),'');assert.equal(api.actions({...p,status:'running'},{enabled:true}),'');const host=dom.window.document.createElement('div');host.innerHTML=api.actions(p,{enabled:true});assert.equal(host.querySelector('[data-provider-action="retire-service-project"]').dataset.id,p.id);
+ p.serviceRetirement={version:1,effectiveAt:81,commitmentEndsAt:210};host.innerHTML=api.actions(p,{enabled:true});const button=host.querySelector('[data-provider-action="operation"]');assert.equal(button.dataset.operation,'recording');assert.equal(button.dataset.id,'starter-customer');assert.match(host.textContent,/Previous supplier commitments remain payable/);assert.equal(host.querySelector('[data-provider-action="retire-service-project"]'),null);
+ assert.equal(api.quote({action:'retire-project'}),'');assert.equal(api.quote({action:'retire-service-project',commercial:{serviceRetirement:{version:2}}}),'');assert.deepEqual(markers,Object.values(api.keys));assert.ok(markers.every(k=>k.startsWith('provider.service_retirement.')&&typeof api.labelFallbacks[k]==='string'));dom.window.close();
+});

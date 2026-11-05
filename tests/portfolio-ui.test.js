@@ -43,8 +43,8 @@ test('AC-SOC-187 portfolio panel displays actual business finance and separates 
  assert.equal(w.__uiError,null);assert.deepEqual(h.errors,[]);h.dom.window.close();
 });
 
-test('AC-SOC-194 assembled training console configures the selected child, ticks every child, returns to root view, and restores save',()=>{
- const h=load(),w=h.dom.window;h.ev("SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU'});SCT.locked=true;SCT.selected='phone';socRender();");
+test('AC-SOC-194 assembled Lab console configures the selected child, ticks every child, returns to root view, and restores save',()=>{
+ const h=load(),w=h.dom.window;h.ev("SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'sandbox'});SCT.locked=true;SCT.selected='phone';socRender();");
  assert.ok(w.document.querySelector('#soc-portfolio [data-portfolio-action=start]'));
  w.document.querySelector('#soc-portfolio [data-portfolio-action=start]').click();
  let form=w.document.querySelector('#soc-portfolio [data-portfolio-add]');form.elements.id.value='portfolio-child';form.elements.tenant.value='tenant-portfolio-child';form.elements.name.value='Portfolio Child';form.elements.market.value='au-sydney';form.elements.scenario.value='smb';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));

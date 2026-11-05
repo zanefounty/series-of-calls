@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const {load}=require('./harness');
-function boot(){const h=load();h.ev("SCT.state=SOC.create({jurisdiction:'JP'});SCT.locked=true;socRender();");h.submit=selector=>{const form=h.dom.window.document.querySelector(selector);assert.ok(form,selector);form.dispatchEvent(new h.dom.window.Event('submit',{bubbles:true,cancelable:true}));assert.equal(h.ev('SCT.error'),'');};return h;}
+function boot(){const h=load();h.ev("SCT.state=SOC.create({experience:'lab',mode:'sandbox',jurisdiction:'JP'});SCT.locked=true;socRender();");h.submit=selector=>{const form=h.dom.window.document.querySelector(selector);assert.ok(form,selector);form.dispatchEvent(new h.dom.window.Event('submit',{bubbles:true,cancelable:true}));assert.equal(h.ev('SCT.error'),'');};return h;}
 test('AC-SOC-450 customer planning UI submits editable independent needs and displays effective state',()=>{
  const h=boot();try{
   h.submit('[data-customer-needs-start]');let form=h.dom.window.document.querySelector('[data-customer-needs-select]');form.elements.segment.value='government';form.elements.id.value='public-profile';h.submit('[data-customer-needs-select]');

@@ -6,7 +6,7 @@ function socOpsField(key,value){
  if(typeof value==='boolean')return `<label class="soc-toggle"><input type="checkbox" name="${key}"${value?' checked':''}>${label}</label>`;
  if(Array.isArray(value))return `<label>${label}<textarea name="${key}" rows="2">${esc(JSON.stringify(value))}</textarea></label>`;
  const choices={mode:['managed','operator','mobile','gateway'],model:['connect','extend','unify'],cloud:['public','private'],codec:['opus','g711','g729']}[key];
- if(choices)return `<label>${label}<select name="${key}">${choices.map(v=>`<option value="${v}"${v===value?' selected':''}>${esc(socOpsT(v))}</option>`).join('')}</select></label>`;
+ if(choices)return `<label>${label}<select name="${key}">${choices.map(v=>`<option value="${v}"${v===value?' selected':''}>${esc(['codec','cloud'].includes(key)?v:socOpsT(v))}</option>`).join('')}</select></label>`;
  return `<label>${label}<input name="${key}" type="${typeof value==='number'?'number':'text'}" value="${esc(String(value))}"${typeof value==='number'?' min="0" max="1000" step="1"':''}></label>`;
 }
 function socOperationsPanel(s,results){

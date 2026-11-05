@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
+const vm=require('node:vm');
 const SOC=require('../src/game/55-communications');
 
 const enabled=process.env.SOC_PROVIDER_LONG_SOAK==='1';
@@ -15,16 +16,17 @@ function inputHashes(){
 
 test('provider career supports twenty active customers through 10,000 minutes of actual workload, renewal and deterministic save continuation',{skip:!enabled},t=>{
  const startedAt=new Date().toISOString(),hashes=inputHashes();
+ let dispatch=SOC.dispatch;
  let state=SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',difficulty:'normal'});
  let requestSequence=0;
  const repairAttempts=[];
- const send=command=>{requestSequence=Math.max(requestSequence,state.providerRequestSequence||0)+1;state=SOC.dispatch(state,{type:'provider',requestId:`provider-${requestSequence}`,command});};
+ const send=command=>{requestSequence=Math.max(requestSequence,state.providerRequestSequence||0)+1;state=dispatch(state,{type:'provider',requestId:`provider-${requestSequence}`,command});};
  const campaign=()=>state.providerCampaign;
  const advanceTo=target=>{
   let turns=0,noProgress=0;
   while(state.clock<target){
    const before=state.clock,minutes=Math.min(60,target-before);
-   try{state=SOC.dispatch(state,{type:'advance',minutes});}catch(error){
+   try{state=dispatch(state,{type:'advance',minutes});}catch(error){
     const p=campaign();throw new Error(`${error.message} at clock ${before}, campaign collection sizes ${JSON.stringify({customers:p.customers.length,projects:p.projects.length,jobs:p.jobs.length,incidents:p.incidents.length,meetings:p.meetings.length,events:p.events.length,periodHistory:p.periodHistory.length})}`);
    }
    settleDecisions();
@@ -100,7 +102,8 @@ test('provider career supports twenty active customers through 10,000 minutes of
 
  assert.equal(campaign().customers.length,20);
  assert.ok(campaign().customers.every(x=>x.status==='active'), 'all twenty customers are active before the soak window');
- progressUntil(()=>campaign().incidents.length===20&&campaign().incidents.every(x=>x.status==='resolved'));
+ // Begin as soon as the full cohort is active, so the final customer's authored
+ // incident, paid response and recovery occur inside the measured window.
  const soakStart=state.clock,initialOffered=campaign().customers.reduce((n,x)=>n+x.metrics.offered,0),initialCompleted=campaign().customers.reduce((n,x)=>n+x.metrics.completed,0),initialFailed=campaign().customers.reduce((n,x)=>n+x.metrics.failed,0),initialOpenJobs=campaign().jobs.filter(x=>x.status==='pending'&&!x.settled).length,initialSettlements=campaign().historyCheckpoint.periods+campaign().periodHistory.length;
  const initialRevenue=state.business.balance.revenue,initialCost=state.business.balance.cost;
  const soakEnd=soakStart+10000;
@@ -121,18 +124,30 @@ test('provider career supports twenty active customers through 10,000 minutes of
  assert.ok(state.business.balance.revenue>0&&state.business.balance.cost>0,'shared treasury records actual recurring revenue and cost');
  assert.equal(campaign().incidents.length,20);
  assert.ok(campaign().incidents.every(x=>x.status==='resolved'&&x.receipt),'each authored incident was observed and repaired');
- const saveClock=state.clock,report={startedAt,endedAt:null,inputHashes:hashes,soakStartClock:soakStart,soakEndClock:saveClock,elapsedMinutes:saveClock-soakStart,customers:campaign().customers.length,offeredDelta,completedDelta,failedDelta,openJobsAtStart:initialOpenJobs,openJobsAtEnd:openJobs,settlementsDelta:campaign().historyCheckpoint.periods+campaign().periodHistory.length-initialSettlements,revenueDelta:state.business.balance.revenue-initialRevenue,costDelta:state.business.balance.cost-initialCost,incidents:campaign().incidents.length,allIncidentsResolved:campaign().incidents.every(x=>x.status==='resolved')};
+ const incidentsDuringWindow=campaign().incidents.filter(i=>i.activatedAt>soakStart&&i.activatedAt<=soakEnd),repairsDuringWindow=campaign().projects.filter(p=>p.operationId==='repair'&&p.completedAt>soakStart&&p.completedAt<=soakEnd);
+ assert.ok(incidentsDuringWindow.length>0,'a real authored incident must activate inside the measured twenty-customer window');
+ assert.ok(incidentsDuringWindow.every(i=>repairsDuringWindow.some(p=>p.customerId===i.customerId&&p.acceptedAt>=i.activatedAt)),'each in-window incident has a funded response and delivered recovery');
+ const saveClock=state.clock,report={startedAt,endedAt:null,inputHashes:hashes,soakStartClock:soakStart,soakEndClock:saveClock,elapsedMinutes:saveClock-soakStart,customers:campaign().customers.length,offeredDelta,completedDelta,failedDelta,openJobsAtStart:initialOpenJobs,openJobsAtEnd:openJobs,settlementsDelta:campaign().historyCheckpoint.periods+campaign().periodHistory.length-initialSettlements,revenueDelta:state.business.balance.revenue-initialRevenue,costDelta:state.business.balance.cost-initialCost,incidents:campaign().incidents.length,incidentsActivatedDuringWindow:incidentsDuringWindow.length,repairsCompletedDuringWindow:repairsDuringWindow.length,allIncidentsResolved:campaign().incidents.every(x=>x.status==='resolved')};
 
  // A real serialized save continues identically on both copies through a further settlement.
- const save=JSON.stringify(state),restored=SOC.restore(save),target=state.clock+60;
+ const save=JSON.stringify(state);report.saveCharacters=save.length;report.saveBytes=Buffer.byteLength(save);report.supportObservationCharacters=JSON.stringify(campaign().supportObservation).length;report.portfolioCharacters=JSON.stringify(state.portfolio).length;
+ if(process.env.SOC_PROVIDER_SOAK_REPORT)fs.writeFileSync(process.env.SOC_PROVIDER_SOAK_REPORT,JSON.stringify({...report,status:'pending-restore-verification'},null,2)+'\n');
+ assert.ok(save.length<=8e6,`twenty-customer save must remain importable: ${save.length} characters; support ${report.supportObservationCharacters}, portfolio ${report.portfolioCharacters}`);
+ const restored=SOC.restore(save),target=state.clock+60;
  assert.equal(JSON.stringify(restored),save);
  const control=state,controlSequence=requestSequence;
  advanceTo(target);
  const expected=state;
  state=restored;requestSequence=controlSequence;advanceTo(target);
  assert.equal(JSON.stringify(state),JSON.stringify(expected),'restored campaign has deterministic workload, renewals, incidents and ledger continuation');
+ // The same twenty live customers also continue through the actual serialized
+ // worker kernel, including decision commands and the next settlement.
+ let response;const context={postMessage:value=>{response=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);
+ dispatch=(current,command)=>{response=null;context.onmessage({data:{id:'twenty-customer-soak',state:JSON.parse(JSON.stringify(current)),command}});assert.equal(response.error,undefined);return JSON.parse(JSON.stringify(response.state));};
+ state=restored;requestSequence=controlSequence;advanceTo(target);
+ assert.equal(JSON.stringify(state),JSON.stringify(expected),'twenty-customer worker continuation matches restored fallback across settlement');
  state=control;
- report.saveContinuationMinutes=target-saveClock;report.saveContinuationMatched=true;report.endedAt=new Date().toISOString();
+ report.saveContinuationMinutes=target-saveClock;report.saveContinuationMatched=true;report.workerContinuationMinutes=target-saveClock;report.workerContinuationMatched=true;report.inputHashesAfter=inputHashes();report.noSourceDrift=JSON.stringify(report.inputHashesAfter)===JSON.stringify(hashes);assert.equal(report.noSourceDrift,true,'soak input files changed during execution');report.endedAt=new Date().toISOString();report.status='passed';
  if(process.env.SOC_PROVIDER_SOAK_REPORT)fs.writeFileSync(process.env.SOC_PROVIDER_SOAK_REPORT,JSON.stringify(report,null,2)+'\n');
  t.diagnostic(`SOC_PROVIDER_SOAK_METADATA ${JSON.stringify(report)}`);
 });

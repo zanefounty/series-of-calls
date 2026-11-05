@@ -10,7 +10,7 @@ let state=E.create();
 const objectSchema=(properties={},required=[])=>({type:'object',properties,required,additionalProperties:false});
 const stringSchema=(description,values)=>({type:'string',description,...(values?{enum:values}:{})});
 const tools=[
- {name:'new_provider_campaign',description:'Start a paused synthetic provider career with authored offers and one shared treasury.',inputSchema:objectSchema({providerName:{type:'string',maxLength:80},scenario:stringSchema('Authored segment mission.',Object.keys(E.scenarios)),market:stringSchema('Home market.',Object.keys(E.portfolio.markets)),difficulty:stringSchema('Career difficulty.',['easy','normal','hard']),seed:{type:'integer',minimum:1,maximum:2147483646}})},
+ {name:'new_provider_campaign',description:'Start a paused synthetic provider career with authored offers and one shared treasury.',inputSchema:objectSchema({providerName:{type:'string',maxLength:80},scenario:stringSchema('Authored segment mission.',Object.keys(E.scenarios)),market:stringSchema('Home market.',Object.keys(E.portfolio.markets)),difficulty:stringSchema('Career difficulty.',['easy','normal','hard']),openingVariant:stringSchema('Authored SMB workload variant.',['standard','peak-window','short-promise']),seed:{type:'integer',minimum:1,maximum:2147483646}})},
  {name:'provider_quote',description:'Read a costed authored campaign quote without changing time, cash or configuration.',inputSchema:objectSchema({request:{type:'object'}},['request'])},
  {name:'new_exercise',description:'Start a synthetic foundation exercise.',inputSchema:objectSchema({scenario:stringSchema('Fictional training scenario.',Object.keys(E.scenarios)),jurisdiction:stringSchema('Fictional jurisdiction profile.',E.jurisdictions),mode:stringSchema('Training mode.',['guided','assessed','sandbox'])})},
  {name:'inspect',description:'Read state, observations and catalogue without advancing time.',inputSchema:objectSchema()},
@@ -34,7 +34,7 @@ function validateToolArgs(name,args){
  const keys=Object.keys(args);
  const only=allowed=>{if(keys.some(k=>!allowed.includes(k)))throw new Error('Unexpected tool argument.');};
  if(name==='new_provider_campaign'){
-  only(['providerName','scenario','market','difficulty','seed']);
+  only(['providerName','scenario','market','difficulty','seed','openingVariant']);
  }else if(name==='provider_quote'){only(['request']);if(!isObject(args.request))throw new Error('A provider quote request is required.');
  }else if(name==='new_exercise'){
   only(['scenario','jurisdiction','mode']);

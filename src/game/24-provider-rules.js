@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-2",
+  "id": "provider-campaigns-5",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -128,6 +128,14 @@ function socProviderRulesKernel(){
         "meeting": true,
         "local": false
       },
+      "externalCollaboration": {
+        "version": 1,
+        "minute": 20,
+        "durationMinutes": 4,
+        "attendees": 2,
+        "guestId": "partner-jules",
+        "guestTenant": "synthetic-partner"
+      },
       "incident": {
         "afterDelivered": 8,
         "delayMinutes": 6,
@@ -203,7 +211,22 @@ function socProviderRulesKernel(){
         "retailCents": 540000,
         "deadlineMinutes": 120
       },
-      "victoryPeriods": 2
+      "victoryPeriods": 2,
+      "incidentVariants": [
+        {
+          "afterDelivered": 8,
+          "delayMinutes": 6,
+          "resource": "speech",
+          "kind": "boundary",
+          "field": "supportRegions"
+        },
+        {
+          "afterDelivered": 8,
+          "delayMinutes": 6,
+          "resource": "processor",
+          "kind": "capacity"
+        }
+      ]
     },
     "defence": {
       "id": "defence",
@@ -299,7 +322,8 @@ function socProviderRulesKernel(){
             "people": 2,
             "operator": "customer"
           }
-        }
+        },
+        "supplier": "grove-vendor"
       },
       "carrier": {
         "setupCents": 80000,
@@ -313,7 +337,8 @@ function socProviderRulesKernel(){
           "carrier": {
             "capacity": 4
           }
-        }
+        },
+        "supplier": "level-tree"
       },
       "partner": {
         "setupCents": 140000,
@@ -331,7 +356,8 @@ function socProviderRulesKernel(){
             "handoff": true,
             "botResolves": false
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "voiceCents": 50,
       "messageCents": 75,
@@ -365,7 +391,8 @@ function socProviderRulesKernel(){
             "people": 2,
             "operator": "customer"
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "carrier": {
         "setupCents": 120000,
@@ -379,7 +406,8 @@ function socProviderRulesKernel(){
           "carrier": {
             "capacity": 8
           }
-        }
+        },
+        "supplier": "level-tree"
       },
       "partner": {
         "setupCents": 180000,
@@ -397,7 +425,8 @@ function socProviderRulesKernel(){
             "handoff": true,
             "botResolves": false
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "voiceCents": 50,
       "messageCents": 75,
@@ -644,6 +673,28 @@ function socProviderRulesKernel(){
       ]
     },
     {
+      "id": "after-call-assistance",
+      "name": "After-call workflow assistance",
+      "description": "Fund CRM and workflow assistance to remove after-call wrap delay. Conversation duration, customer people, licences and carrier sessions remain unchanged.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "people"
+      ],
+      "config": {
+        "people": {
+          "wrapMinutes": 0
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:journeys"
+      ]
+    },
+    {
       "id": "compliance",
       "name": "Scoped public-service procurement",
       "description": "Commission a workload-specific regional processing, retention, key-custody and delegated support contract. This is a fictional scenario decision, not real authorization.",
@@ -813,6 +864,447 @@ function socProviderRulesKernel(){
       ],
       "sourceIds": [
         "uc-new:domain:journeys"
+      ]
+    },
+    {
+      "id": "carrier-headroom",
+      "name": "Carrier session headroom",
+      "description": "Commission four additional concurrent carrier sessions after paid engineering work. Endpoint seats and customer staffing remain separate.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 4,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "managed-carrier-headroom",
+      "name": "Supplier-managed carrier headroom",
+      "description": "After earning Local UC reseller, buy four carrier sessions using supplier engineering and one provider support worker. Lower setup competes with a higher recurring commitment.",
+      "setupCents": 8000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "direct-external-reach",
+      "name": "Direct external reach",
+      "description": "Fund direct carrier work for two authored number aliases and scoped international calling. Higher setup and provider engineering reduce recurring exposure.",
+      "setupCents": 30000,
+      "periodCents": 5000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-external-reach",
+      "name": "Supplier-managed external reach",
+      "description": "After earning external calling operational in this market, fund supplier-managed carrier work for two authored aliases and scoped international calling. Lower setup and no provider engineering trade against higher recurring cost and longer delivery.",
+      "setupCents": 15000,
+      "periodCents": 8000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "compliance-local",
+      "name": "Scoped local public-service processing",
+      "description": "Commission customer-operated capture, storage and speech with independent regional paths and finite local licence grace. Higher setup and delivery effort reduce recurring supplier exposure.",
+      "setupCents": 190000,
+      "periodCents": 10000,
+      "workMinutes": 24,
+      "engineers": 2,
+      "support": 1,
+      "resources": [
+        "archive",
+        "recorder",
+        "speech"
+      ],
+      "config": {},
+      "requirements": [
+        "recording",
+        "transcription"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:local-speech"
+      ]
+    },
+    {
+      "id": "service-repair",
+      "name": "Restore customer queue",
+      "description": "Restore the observed failed carrier, meeting, processing or connectivity dependency using a funded engineering job.",
+      "setupCents": 8000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "service"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": []
+    },
+    {
+      "id": "service-boundary-review",
+      "name": "Commercial service boundary review",
+      "description": "Fund a scoped review of the actual identity, calling and engagement paths. Resource or support changes can invalidate the reviewed boundary and require another paid review.",
+      "setupCents": 40000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "identity",
+        "phone",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "integrator-room",
+      "name": "Integrator-supported room service",
+      "description": "Twig Integrations commissions the room and its calendar path with a provider support reservation. Lower setup and shorter delivery carry a higher recurring support cost.",
+      "setupCents": 65000,
+      "periodCents": 10000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "room"
+      ],
+      "config": {
+        "room": {
+          "calendar": true
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "scheduledMeeting": {
+        "version": 1,
+        "minute": 20,
+        "durationMinutes": 4,
+        "attendees": 1
+      }
+    },
+    {
+      "id": "regional-provisioning",
+      "name": "Regional provisioning service",
+      "description": "Fund a reusable provisioning policy for explicitly selected customers in markets demonstrated by the Regional communications MSP achievement. Each order still needs its own money, staff and budget.",
+      "setupCents": 15000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "engage"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "uc-cc-integration",
+      "name": "Twig calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 40000,
+      "periodCents": 7000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "uc-cc-retest",
+      "name": "Retest changed calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 9000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "managed-uc-cc-retest",
+      "name": "Supplier-managed integration retest",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "managed-uc-cc-integration",
+      "name": "Supplier-managed calling and quality integration",
+      "description": "Fund the fixed calling-to-quality integration with a current compatibility test, a real captured customer call and a separate paid review of that same case.",
+      "setupCents": 25000,
+      "periodCents": 11000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 2,
+      "resources": [
+        "phone",
+        "recorder",
+        "archive",
+        "engage"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-contact-centre",
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "capture-headroom",
+      "name": "Increase recording capacity",
+      "description": "Fund four additional concurrent capture reservations. This changes recording admission without adding customer staff, carrier sessions or missing historical recordings.",
+      "setupCents": 18000,
+      "periodCents": 5000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "recorder"
+      ],
+      "config": {},
+      "requirements": [
+        "recording"
+      ],
+      "sourceIds": [
+        "uc-new:family:cisco:contact-center"
+      ]
+    },
+    {
+      "id": "primary-upstream",
+      "name": "Primary inter-site service",
+      "description": "Fund two customer sites and a 20 Mbps primary path. The next complete demand period includes one case with two follow-up calls and a primary-path incident.",
+      "setupCents": 48000,
+      "periodCents": 5000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
+      ]
+    },
+    {
+      "id": "diverse-upstream",
+      "name": "Independent upstream",
+      "description": "Fund a second 20 Mbps link in an independent failure domain. Customer staffing, carrier sessions and shared sites remain separate constraints.",
+      "setupCents": 32000,
+      "periodCents": 7000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
+      ]
+    },
+    {
+      "id": "managed-diverse-upstream",
+      "name": "Supplier-managed independent upstream",
+      "description": "Use earned resilience in this market to buy a lower-setup supplier-managed backup with higher recurring cost and longer delivery.",
+      "setupCents": 16000,
+      "periodCents": 11000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
+      ]
+    },
+    {
+      "id": "upstream-binding-extension",
+      "name": "Connect purchased endpoints",
+      "description": "Connect newly purchased endpoints to the existing branch. This does not add site or link capacity.",
+      "setupCents": 8000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 0,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
+      ]
+    },
+    {
+      "id": "transport-repair",
+      "name": "Repair primary upstream",
+      "description": "Restore the acknowledged primary-path failure through a funded engineering job. Failed work remains in service history.",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
+      ]
+    },
+    {
+      "id": "managed-local-spares",
+      "name": "Managed local autonomy spares",
+      "description": "Use earned local continuity in this market to buy supplier-installed autonomy spares: lower setup and no implementation engineer, with higher recurring cost and longer delivery. Extends autonomy to 60 minutes; does not repair the external connection.",
+      "setupCents": 28000,
+      "periodCents": 8000,
+      "workMinutes": 10,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "local"
+      ],
+      "config": {},
+      "requirements": [
+        "local-deployment"
+      ],
+      "sourceIds": [
+        "progress.goal."+"ca"
+      ]
+    },
+    {
+      "id": "browser-guest-room",
+      "name": "Browser guest meeting room",
+      "description": "A two-person browser room with external guest join and cloud media. No captions, recording or event capacity; recorded Enterprise meetings need a funded native or bridge replacement.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 4,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "room"
+      ],
+      "config": {
+        "room": {
+          "calendar": true,
+          "mode": "guest",
+          "interop": true
+        }
+      },
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
       ]
     }
   ],
@@ -1031,6 +1523,14 @@ function socProviderRulesKernel(){
     "startsAfterPeriods": 6,
     "discountBps": 300,
     "description": "Fictional rival bundles reduce willingness for new contracts; existing agreed terms are protected."
+  },
+  "resilienceSequence": {
+    "version": 1,
+    "sourceCaseIndex": 0,
+    "followupDurationMinutes": 3,
+    "deadlineMinutes": 24,
+    "windowMinutes": 10,
+    "maximumLatencyMs": 500
   }
 };
  function deepFreeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))deepFreeze(child);}return value;}

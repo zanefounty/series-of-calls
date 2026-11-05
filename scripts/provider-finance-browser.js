@@ -3,13 +3,25 @@
 const assert=require('node:assert/strict');
 async function scrollPanelToOverview(page,panel){
  await panel.hover();
+ // Wheel dispatch returns before smooth scrolling settles, especially in WebKit.
+ // Observe the whole movement before issuing another input; an initial animation
+ // frame is not evidence that the requested scroll has finished.
  for(let attempt=0;attempt<8;attempt++){
-  const before=await panel.evaluate(el=>el.scrollTop);
-  if(before<=1)return;
-  await page.mouse.wheel(0,-Math.max(160,Math.min(700,before)));
-  await page.waitForFunction(previous=>{const el=document.querySelector('.provider-rail-body');return el.scrollTop<=1||el.scrollTop<previous-.5;},before,{timeout:1500});
+  const before=await panel.evaluate(el=>({top:el.scrollTop,height:el.clientHeight}));
+  if(before.top<=1)return;
+  await page.mouse.wheel(0,-Math.max(700,before.top+before.height));
+  let previous=before.top,stableSince=Date.now();
+  const deadline=Date.now()+1500;
+  while(Date.now()<deadline){
+   await page.waitForTimeout(50);
+   const current=await panel.evaluate(el=>el.scrollTop);
+   if(current<=1)return;
+   if(Math.abs(current-previous)>.1)stableSince=Date.now();
+   else if(current<before.top-.5&&Date.now()-stableSince>=150)break;
+   previous=current;
+  }
  }
- assert.ok(await panel.evaluate(el=>el.scrollTop<=1),'finance panel did not reach its overview using bounded wheel input');
+ assert.ok(await panel.evaluate(el=>el.scrollTop<=1),'finance panel did not reach its overview using bounded settled wheel input');
 }
 async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requireRecovery=true}){
  if(await page.evaluate(()=>!!SCP.speed))await click(page,'[data-provider-action="pause"]');
@@ -52,4 +64,4 @@ async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requi
  row.financeEvidence={scope:'Actual retained settlements and visible posting reconciliation; automated observation, not a human pilot.',periods:evidence,persistentPeriod:period};
  return row.financeEvidence;
 }
-module.exports={inspectFinanceBills};
+module.exports={inspectFinanceBills,scrollPanelToOverview};

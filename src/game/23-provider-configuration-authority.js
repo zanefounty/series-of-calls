@@ -63,7 +63,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(project.productId==='cisco-contact-centre')patch.speech={...(patch.speech||{}),region:child.jurisdiction};
    return patch;
   }
-  if(['provider-campaigns-5','provider-campaigns-6','provider-campaigns-7'].includes(provider.contentVersion)&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
+  if(['provider-campaigns-5','provider-campaigns-6','provider-campaigns-7','provider-campaigns-8'].includes(provider.contentVersion)&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
   if(project.operationId==='recording')patch.recorder={...(patch.recorder||{}),identityMapping:true};
   if(project.operationId==='transcription')patch.speech={...(patch.speech||{}),region:child.jurisdiction,local:true,licenceLocal:true};
   if(project.operationId==='local-deployment'){

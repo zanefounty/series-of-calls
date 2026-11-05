@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "id": "provider-campaigns-7",
+  "id": "provider-campaigns-8",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -14,7 +14,7 @@
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -718,7 +718,7 @@
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1513,6 +1513,39 @@
         "transcription"
       ],
       "config": {}
+    },
+    {
+      "id": "provider-support-coverage",
+      "name": "Named regional support coverage",
+      "setupCents": 9000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.progression-level.7"
+      ],
+      "coverageTerms": {
+        "business-hours": {
+          "setupCents": 9000,
+          "periodCents": 8000,
+          "workMinutes": 4,
+          "engineers": 0,
+          "support": 1
+        },
+        "extended": {
+          "setupCents": 18000,
+          "periodCents": 16000,
+          "workMinutes": 6,
+          "engineers": 0,
+          "support": 1
+        }
+      }
     }
   ],
   "families": [

@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-7",
+  "id": "provider-campaigns-8",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -17,7 +17,7 @@ function socProviderRulesKernel(){
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -721,7 +721,7 @@ function socProviderRulesKernel(){
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1190,8 +1190,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1207,8 +1207,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1224,8 +1224,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1241,8 +1241,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1258,8 +1258,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1279,7 +1279,7 @@ function socProviderRulesKernel(){
         "local-deployment"
       ],
       "sourceIds": [
-        ("progress.goal."+"ca")
+        "progress.goal."+"ca"
       ]
     },
     {
@@ -1367,8 +1367,8 @@ function socProviderRulesKernel(){
     {
       "id": "site-diverse-ingress",
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"ln",
+        "progress.goal."+"m2"
       ],
       "name": "Independent site calling ingress",
       "description": "Commission a separately powered external calling point and independent paths to both customer sites. Carrier reach remains available when either customer building loses power.",
@@ -1386,8 +1386,8 @@ function socProviderRulesKernel(){
     {
       "id": "owned-site-operations",
       "sourceIds": [
-        ("progress.goal."+"df"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"df",
+        "progress.goal."+"m2"
       ],
       "name": "Owned-site administration and recovery",
       "description": "Fund local administration, configuration backups and restore services at both sites. Assign the actual desk endpoints and calling identities to their buildings; each incident and migration remains a separately quoted decision.",
@@ -1445,8 +1445,8 @@ function socProviderRulesKernel(){
     {
       "id": "site-recovery",
       "sourceIds": [
-        ("progress.goal."+"df"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"df",
+        "progress.goal."+"m2"
       ],
       "name": "Fund a site recovery exercise",
       "description": "Reserve the shared team for one authored site failure. Capture a backup, observe surviving calls, restore the affected configuration and verify fresh service before completion.",
@@ -1464,7 +1464,7 @@ function socProviderRulesKernel(){
     {
       "id": "managed-site-recovery",
       "sourceIds": [
-        ("progress.goal."+"df")
+        "progress.goal."+"df"
       ],
       "name": "Managed site recovery",
       "description": "Use qualified provider support for the same scoped backup, failure and restoration work. Lower setup cost and no engineering reservation trade against a longer lead and higher recurring support.",
@@ -1482,7 +1482,7 @@ function socProviderRulesKernel(){
     {
       "id": "site-resource-migration",
       "sourceIds": [
-        ("progress.progression-level."+"4")
+        "progress.progression-level.4"
       ],
       "name": "Move one owned-site endpoint",
       "description": "Move the selected real endpoint between the two owned sites. The quote funds only that item and retains its individual migration result.",
@@ -1500,8 +1500,8 @@ function socProviderRulesKernel(){
     {
       "id": "custody-review",
       "sourceIds": [
-        ("progress.progression-level."+"12"),
-        ("progress.goal."+"gi")
+        "progress.progression-level.12",
+        "progress.goal."+"gi"
       ],
       "name": "Review retained record custody",
       "description": "Fund a scoped review and permitted read of an actual processed customer record. Storage, access, key and support boundaries remain enforced.",
@@ -1516,6 +1516,39 @@ function socProviderRulesKernel(){
         "transcription"
       ],
       "config": {}
+    },
+    {
+      "id": "provider-support-coverage",
+      "name": "Named regional support coverage",
+      "setupCents": 9000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"c3",
+        "progress.goal."+"c5",
+        "progress.goal."+"t2",
+        "progress.progression-level.7"
+      ],
+      "coverageTerms": {
+        "business-hours": {
+          "setupCents": 9000,
+          "periodCents": 8000,
+          "workMinutes": 4,
+          "engineers": 0,
+          "support": 1
+        },
+        "extended": {
+          "setupCents": 18000,
+          "periodCents": 16000,
+          "workMinutes": 6,
+          "engineers": 0,
+          "support": 1
+        }
+      }
     }
   ],
   "families": [

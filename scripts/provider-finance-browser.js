@@ -1,6 +1,16 @@
 "use strict";
 // Attach to an existing paid journey after settlement. All mutations are visible controls.
 const assert=require('node:assert/strict');
+async function scrollPanelToOverview(page,panel){
+ await panel.hover();
+ for(let attempt=0;attempt<8;attempt++){
+  const before=await panel.evaluate(el=>el.scrollTop);
+  if(before<=1)return;
+  await page.mouse.wheel(0,-Math.max(160,Math.min(700,before)));
+  await page.waitForFunction(previous=>{const el=document.querySelector('.provider-rail-body');return el.scrollTop<=1||el.scrollTop<previous-.5;},before,{timeout:1500});
+ }
+ assert.ok(await panel.evaluate(el=>el.scrollTop<=1),'finance panel did not reach its overview using bounded wheel input');
+}
 async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requireRecovery=true}){
  if(await page.evaluate(()=>!!SCP.speed))await click(page,'[data-provider-action="pause"]');
  await page.waitForFunction(()=>!SCP.busy&&!SCP.speed);
@@ -22,7 +32,7 @@ async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requi
   const keys={opening:'openingCash',profit:'operatingResult',funding:'funding',repayment:'repayment',change:'cashChange',closing:'closingCash'};
   for(const item of amounts.bridge)assert.equal(item.text,amounts.expected[keys[item.key]]);
   assert.equal(bill.bridge.closingCash,bill.bridge.openingCash+bill.bridge.operatingResult+bill.bridge.funding-bill.bridge.repayment);
-  const panel=page.locator('.provider-rail-body');await panel.hover();await page.mouse.wheel(0,-10000);await page.waitForFunction(()=>document.querySelector('.provider-rail-body').scrollTop===0);
+  const panel=page.locator('.provider-rail-body');await scrollPanelToOverview(page,panel);
   await page.locator('[data-provider-finance-period]').scrollIntoViewIfNeeded();await snap(page,row,'finance-period-'+bill.period+'-overview');
   const bridge=page.locator('.provider-finance-bridge');await bridge.scrollIntoViewIfNeeded();
   const beforeBridge=await page.evaluate(()=>({header:document.querySelector('.provider-sheet-header').getBoundingClientRect().bottom,bridge:document.querySelector('.provider-finance-bridge').getBoundingClientRect().top}));

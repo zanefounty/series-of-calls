@@ -40,7 +40,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   // These handlers return before the generic configure call in 55. Their capacity
   // deltas and incident effects have separate paid validators.
-  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
+  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
    if(id==='bpo')return {people:{enabled:true}};
    return {};
   }
@@ -57,6 +57,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(project.productId==='cisco-contact-centre')patch.speech={...(patch.speech||{}),region:child.jurisdiction};
    return patch;
   }
+  if(provider.contentVersion==='provider-campaigns-5'&&['room','distributor-room','integrator-room'].includes(id))patch.room={...(patch.room||{}),mode:'native',interop:false};
   if(project.operationId==='recording')patch.recorder={...(patch.recorder||{}),identityMapping:true};
   if(project.operationId==='transcription')patch.speech={...(patch.speech||{}),region:child.jurisdiction,local:true,licenceLocal:true};
   if(project.operationId==='local-deployment'){
@@ -79,7 +80,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   for(const [id,config] of Object.entries(configs))accepted[id]=[clone(config)];
   const projects=authorizedProjects(provider,customer);
   const retirements=[];
-  const retirementResources={room:['room'],'distributor-room':['room'],'integrator-room':['room'],recording:['recorder'],transcription:['speech']};
+  const retirementResources={'browser-guest-room':['room'],room:['room'],'distributor-room':['room'],'integrator-room':['room'],recording:['recorder'],transcription:['speech']};
   for(const project of projects){const retirement=project.serviceRetirement;if(!retirement)continue;const authorized=retirementResources[project.operationId];if(!authorized||stable(retirement.resources)!==stable(authorized))throw new Error(`INVALID_PROVIDER_SERVICE_RETIREMENT_RESOURCE_SCOPE:${project.id}`);if(!Number.isSafeInteger(retirement.requestedAt)||!Number.isSafeInteger(retirement.effectiveAt)||retirement.effectiveAt!==retirement.requestedAt+1)throw new Error(`INVALID_PROVIDER_SERVICE_RETIREMENT_RECEIPT:${project.id}`);retirements.push({at:retirement.requestedAt,resources:authorized});}
   retirements.sort((a,b)=>a.at-b.at);let retirementIndex=0;
   const applyRetirement=retirement=>{for(const id of retirement.resources){if(!configs[id])fail(`RETIREMENT_RESOURCE:${id}`);const previous=clone(configs[id]);configs[id].enabled=false;accepted[id]=[previous,clone(configs[id])];latestWriteAt[id]=retirement.at;}};

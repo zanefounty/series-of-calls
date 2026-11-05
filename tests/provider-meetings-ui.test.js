@@ -34,3 +34,7 @@ test('room session list excludes probes bounds actual history and escapes eviden
  assert.ok(Object.keys(api.labelFallbacks).length>=40);assert.ok(Object.keys(api.labelFallbacks).every(k=>source.includes("N_('"+k+"')")));assert.ok(Object.values(api.labelFallbacks).every(v=>typeof v==='string'&&v.length));
  w.tr=(key,vars)=>key===api.keys.title?'Translated room':key;host.innerHTML=api.render(r);assert.match(host.textContent,/Translated room/);
 });
+
+test('actual room rows expose the observed joining method and foreign guest presence before technical evidence',t=>{
+ const {api,host}=ui(t),r=fixture(),session=r.meetingService.sessions[2];Object.assign(session,{joinMethod:'browser',joinRoomGeneration:2,joinProfileGeneration:3,externalGuest:{guestId:'partner-jules',observedMinutes:4},captureRecordId:null,reservationReleased:false});const before=JSON.stringify(r);host.innerHTML=api.render(r);const row=host.querySelector('[data-session-id="meeting-3"]'),visible=row.querySelector('dl').textContent;assert.match(visible,/Joining methodBrowser guest/);assert.match(visible,/Observed external guestpartner-jules: 4 minutes/);assert.match(visible,/Observed duration4 minutes/);assert.match(visible,/No capture record/);const evidence=JSON.parse(row.querySelector('pre').textContent);assert.equal(evidence.joinRoomGeneration,2);assert.equal(evidence.joinProfileGeneration,3);assert.equal(evidence.externalGuest.observedMinutes,4);assert.equal(JSON.stringify(r),before);
+});

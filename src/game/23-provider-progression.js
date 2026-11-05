@@ -5,6 +5,8 @@ function socProviderProgressionFactsKernel(){
  function responsibilityApi(){return typeof SOC_PROVIDER_RESPONSIBILITY!=='undefined'?SOC_PROVIDER_RESPONSIBILITY:require('./23-provider-responsibility.js');}
  function ucCcApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:(typeof SOCProviderUcCcIntegration!=='undefined'?SOCProviderUcCcIntegration:require('./23-provider-uc-cc-integration.js'));}
  function externalReachApi(){return typeof SOC_PROVIDER_EXTERNAL_REACH!=='undefined'?SOC_PROVIDER_EXTERNAL_REACH:require('./23-provider-external-reach.js');}
+ function resilienceProgressionApi(){return typeof SOC_PROVIDER_RESILIENCE_PROGRESSION!=='undefined'?SOC_PROVIDER_RESILIENCE_PROGRESSION:require('./23-provider-resilience-progression.js');}
+ function localProgressionApi(){return typeof SOC_PROVIDER_LOCAL_PROGRESSION!=='undefined'?SOC_PROVIDER_LOCAL_PROGRESSION:require('./23-provider-local-progression.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -144,7 +146,7 @@ function socProviderProgressionFactsKernel(){
   const expectedChannels=['voice','message'];
   const resolved=[];
   for(const channel of expectedChannels){
-   const match=s.providerCampaign.jobs.filter(j=>j.customerId===c.id&&j.channel===channel&&['completed','late'].includes(j.status)&&j.interactionId&&j.caseId&&j.contextRetained===true).map(job=>({job,interaction:root.interactions?.find(i=>i.id===job.interactionId),linkedCase:root.cases?.[job.caseId]})).find(({job,interaction,linkedCase})=>interaction&&interaction.probe!==true&&interaction.phase==='resolved'&&interaction.caseId===job.caseId&&interaction.context===true&&(!interaction.needOutcome||interaction.needOutcome.outcome==='resolved')&&linkedCase?.interactions?.includes(interaction.id));
+   const match=s.providerCampaign.jobs.filter(j=>j.customerId===c.id&&!j.resilienceSequence&&j.channel===channel&&['completed','late'].includes(j.status)&&j.interactionId&&j.caseId&&j.contextRetained===true).map(job=>({job,interaction:root.interactions?.find(i=>i.id===job.interactionId),linkedCase:root.cases?.[job.caseId]})).find(({job,interaction,linkedCase})=>interaction&&interaction.probe!==true&&interaction.phase==='resolved'&&interaction.caseId===job.caseId&&interaction.finishedAt===job.completedAt&&interaction.context===true&&(!interaction.needOutcome||interaction.needOutcome.outcome==='resolved')&&linkedCase?.interactions?.includes(interaction.id));
    if(match)resolved.push({job:match.job,interaction:match.interaction});
   }
   if(resolved.length!==expectedChannels.length){for(const channel of expectedChannels)if(!resolved.some(x=>x.job.channel===channel))missing.push(channel==='voice'?'resolved-voice-case-not-retained':'resolved-digital-case-not-retained');return {ok:false,missing};}
@@ -367,7 +369,7 @@ function socProviderProgressionFactsKernel(){
  function blockedRows(rows){return Object.fromEntries(rows.map(([id,name,...req])=>[id,{id,name,status:'incomplete',missing:req.map(k=>MISSING[k]||`Required evidence is not evaluated: ${k}.`)}]));}
  function evaluate(s,hooks={}){
   if(!s||s.experience?.version!==1||s.experience?.kind!=='campaign'||s.experience?.custom!==false)fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
-  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
+  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
   if(!Array.isArray(p.customers)||!Array.isArray(p.projects)||!Array.isArray(p.jobs)||!Array.isArray(p.periodHistory)||!s.business||!Array.isArray(s.business.ledger))fail('INVALID_PROVIDER_PROGRESSION_FACTS_INPUT');
   const fullLive=[];
   for(const c of p.customers){const ready=customerReady(s,c,hooks);if(ready.ok)fullLive.push({customer:c,ready});}
@@ -425,6 +427,15 @@ function socProviderProgressionFactsKernel(){
   proofRequirements.externalReach=fact(externalEvidence?'ready':'incomplete',externalEvidence?[]:goals[goalId('tr')].missing,externalEvidence||{});
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
+  const resilienceProgress=resilienceProgressionApi().evaluate(s,hooks);
+  for(const sourceId of [goalId('ln'),goalId('rd')]){
+   const row=resilienceProgress.goals[sourceId];
+   goals[sourceId]={id:sourceId,name:row.name,status:row.status,missing:copy(row.missing),evidence:row.status==='ready'?copy(row.evidence):null};
+  }
+  proofRequirements.resilienceGoals={ln:copy(goals[goalId('ln')]),rd:copy(goals[goalId('rd')])};
+  const localApi=localProgressionApi(),localCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(customer=>({customer,result:localApi.evaluate(s,customer.id,hooks)})),localReady=localCandidates.filter(row=>row.result.status==='ready'&&row.result.evidence?.kind==='provider-local-speech').sort((a,b)=>a.result.evidence.interval.to-b.result.evidence.interval.to||a.customer.id.localeCompare(b.customer.id))[0]||null,localMissing=localReady?[]:[...new Set(localCandidates.flatMap(row=>[...(row.result.missing||[]),...(row.result.status==='ready'&&row.result.evidence?.kind!=='provider-local-speech'?['PAID_LOCAL_SPEECH_AND_TRANSCRIPTION_REQUIRED']:[])]))];
+  goals[goalId('ca')]={id:goalId('ca'),name:localReady?.result.name||'Local media or speech service',status:localReady?'ready':'incomplete',missing:localMissing.length?localMissing:['PAID_LOCAL_SPEECH_AND_TRANSCRIPTION_REQUIRED'],evidence:localReady?copy(localReady.result.evidence):null};
+  proofRequirements.localContinuity=fact(localReady?'ready':'incomplete',goals[goalId('ca')].missing,goals[goalId('ca')].evidence||{});
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,sourceContentVersion:p.contentVersion,experience:{...s.experience},asOf:s.clock,levels,goals,facts:proofRequirements};
  }
  return {PACK,VERSION,CONTENT,LEVELS:LEVELS.map(x=>x[0]),GOALS:GOALS.map(x=>x[0]),evaluate,inspect:evaluate,sampleSupport,qualifySupportWindow,validateSupportSamples,validateUcCcCapabilityEvidence,encodeSupportObservation,decodeSupportObservation,appendSupportObservation,source:()=>`const SOC_PROVIDER_PROGRESSION_FACTS=(${socProviderProgressionFactsKernel.toString()})();`};

@@ -1,14 +1,14 @@
 /* Pure contextual Provider action grouping. Eligibility and dispatch remain authoritative elsewhere. */
 function socProviderContextActionsKernel(){
  'use strict';
- const VERSION=1;
+ const VERSION=1,transportOperations=new Set(['primary-upstream','diverse-upstream','managed-diverse-upstream','upstream-binding-extension','transport-repair']);
  const copy=x=>x==null?x:JSON.parse(JSON.stringify(x)),plain=x=>!!x&&typeof x==='object'&&!Array.isArray(x),
   repeatablePrimary=new Set(['quality','coaching','repair','mitigate','service-repair','carrier-headroom','managed-carrier-headroom','capture-headroom','sync-records','sync-all','uc-cc-retest','managed-uc-cc-retest']),
-  singlePurchase=new Set(['bpo','automation','local-spares','direct-external-reach','managed-external-reach']),
+  singlePurchase=new Set(['bpo','automation','local-spares','managed-local-spares','direct-external-reach','managed-external-reach']),
   integrationIds=new Set(['uc-cc-integration','managed-uc-cc-integration','uc-cc-retest','managed-uc-cc-retest']),
   integrationInitial=new Set(['uc-cc-integration','managed-uc-cc-integration']),integrationRetest=new Set(['uc-cc-retest','managed-uc-cc-retest']),
   incidentIds=new Set(['repair','mitigate','service-repair']),
-  govIds=new Set(['compliance','compliance-local']),enterpriseIds=new Set(['migration','migration-consolidated','direct-external-reach','managed-external-reach']),defenceIds=new Set(['local-deployment','local-spares','sync-records','sync-all']);
+  govIds=new Set(['compliance','compliance-local']),enterpriseIds=new Set(['migration','migration-consolidated','direct-external-reach','managed-external-reach']),defenceIds=new Set(['local-deployment','local-spares','managed-local-spares','sync-records','sync-all']);
  function activeProject(x){return x&&x.status!=='cancelled'&&x.status!=='blocked'&&!x.retirement&&!x.serviceRetirement;}
  function projectMatches(projects,customerId,id){return projects.some(x=>activeProject(x)&&x.customerId===customerId&&(x.operationId===id||x.productId===id));}
  function paidComplete(projects,customerId,id){return projects.some(x=>activeProject(x)&&x.customerId===customerId&&(x.operationId===id||x.productId===id)&&x.status==='complete');}
@@ -104,7 +104,12 @@ function socProviderContextActionsKernel(){
   const groups=map=>[...map.entries()].map(([key,items])=>grouped(key,items)).filter(Boolean);
   return {version:VERSION,customerId,resourceId:resource?.id||null,primary:groups(primary),secondary:groups(secondary),locked:groups(locked)};
  }
- return {VERSION,project,source:()=>`const SOC_PROVIDER_CONTEXT_ACTIONS=(${socProviderContextActionsKernel.toString()})();`};
+ function transport(customer,actions=[]){
+  if(!plain(customer)||typeof customer.id!=='string'||customer.transport?.version!==1)return null;
+  const rows=(Array.isArray(actions)?actions:[]).filter(row=>plain(row)&&transportOperations.has(row.id||row.operationId)&&(!row.customerId||row.customerId===customer.id)).map(row=>({...copy(row),id:row.id||row.operationId,customerId:customer.id}));
+  return {version:1,customerId:customer.id,choices:rows.filter(row=>row.id!=='transport-repair'),recovery:rows.filter(row=>row.id==='transport-repair')};
+ }
+ return {VERSION,project,transport,source:()=>`const SOC_PROVIDER_CONTEXT_ACTIONS=(${socProviderContextActionsKernel.toString()})();`};
 }
 const SOC_PROVIDER_CONTEXT_ACTIONS=socProviderContextActionsKernel();
 if(typeof globalThis!=='undefined')globalThis.SOC_PROVIDER_CONTEXT_ACTIONS=SOC_PROVIDER_CONTEXT_ACTIONS;

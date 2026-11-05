@@ -13,9 +13,12 @@ function providerState({siteRoot=null,projects=[]}={}){
 }
 
 test('owned-site operations keep canonical IDs and quoted terms distinct by paid stage',()=>{
- assert.deepEqual(OWN.OPERATION_IDS,['owned-site-operations','site-recovery','site-resource-migration','custody-review']);
+ assert.deepEqual(OWN.OPERATION_IDS,['site-diverse-ingress','owned-site-operations','site-recovery','site-resource-migration','custody-review']);
  assert.deepEqual(OWN.SITE_IDS,{head:'provider-owned-head',branch:'provider-owned-branch'});
  assert.equal(OWN.TERMS['owned-site-operations'].setupCents,42000);
+ assert.equal(OWN.TERMS['site-diverse-ingress'].setupCents,32000);
+ assert.equal(OWN.TERMS['site-diverse-ingress'].periodCents,7000);
+ assert.equal(OWN.TERMS['site-diverse-ingress'].commissioningMinutes,8);
  assert.equal(OWN.TERMS['owned-site-operations'].periodCents,4500);
  assert.equal(OWN.TERMS['site-recovery'].workMinutes,6);
  assert.equal(OWN.TERMS['site-resource-migration'].perItem,true);
@@ -25,6 +28,17 @@ test('owned-site operations keep canonical IDs and quoted terms distinct by paid
  assert.equal(OWN.SOURCE.L4,'progress.progression-level.4');
  assert.equal(OWN.SOURCE.L12,'progress.progression-level.12');
  assert.equal(OWN.SOURCE.GI,'progress.goal.gi');
+});
+
+test('a paid third ingress is required before owned-site setup and its authored topology is customer-scoped',()=>{
+ const state=providerState(),names=OWN.idsFor(state.providerCampaign.customers[0]);
+ assert.equal(names.ingressTransport,'acme-ingress');
+ assert.equal(names.ingressHead,'acme-ingress-head');
+ assert.equal(names.ingressBranch,'acme-ingress-branch');
+ assert.equal(OWN.canOrder(state,'acme','site-diverse-ingress').eligible,false);
+ assert.equal(OWN.canOrder(state,'acme','owned-site-operations').eligible,false);
+ assert.throws(()=>OWN.operationPlan(state,'acme','site-diverse-ingress'),/PAID_PROVIDER_OPERATION_REQUIRED/);
+ assert.throws(()=>OWN.operationPlan(state,'acme','owned-site-operations'),/PAID_PROVIDER_OPERATION_REQUIRED/);
 });
 
 test('empty Provider history exposes missing evidence without creating site facts or mutating state',()=>{
@@ -46,7 +60,7 @@ test('order descriptors expose paid blockers for each authored operation without
  const rows=OWN.actionDescriptors(state,'acme');
  assert.deepEqual(rows.map(x=>x.id),OWN.OPERATION_IDS);
  assert.ok(rows.every(x=>x.available===false&&x.blockers.length>0));
- assert.equal(rows[0].terms.setupCents,42000);
+ assert.equal(rows[0].terms.setupCents,32000);
  assert.equal(OWN.canOrder(state,'acme','site-recovery',{kind:'power',targetSite:OWN.SITE_IDS.head}).eligible,false);
  assert.equal(OWN.canOrder(state,'acme','site-resource-migration',{resourceId:'desk',fromSite:OWN.SITE_IDS.head,toSite:OWN.SITE_IDS.branch}).eligible,false);
  assert.equal(OWN.canOrder(state,'acme','custody-review',{}).eligible,false);
@@ -96,6 +110,8 @@ test('worker source publishes the same pure Provider owned-site adapter without 
  assert.deepEqual(Array.from(box.result.OPERATION_IDS),OWN.OPERATION_IDS);
  assert.equal(box.result.VERSION,OWN.VERSION);
  assert.equal(typeof box.result.validateCustomer,'function');
+ assert.equal(typeof box.result.ingressReady,'function');
+ assert.equal(typeof box.result.ownedSiteReady,'function');
 });
 
 test('inspection of a validated customer without paid site authority stays incomplete and read-only',()=>{

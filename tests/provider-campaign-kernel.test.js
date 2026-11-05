@@ -22,7 +22,7 @@ test('PLAY-010/016 authored campaign content changes demand timing and usage exp
  }
  assert.notDeepEqual(profiles.smb.voiceMinutes,profiles.enterprise.voiceMinutes,'enterprise arrival timing is distinct from the SMB service desk');
  assert.notDeepEqual(profiles.government.digitalMinutes,profiles.defence.digitalMinutes,'records and disconnected-site workload do not reuse the same digital schedule');
- const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';
+ const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';delete legacy.providerCampaign.enterpriseContinuityVersion;
  const restored=SOC.restore(JSON.stringify(legacy)),quote=SOC.provider.quote(restored,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
  assert.equal(quote.forecast.conditionalFullPlan.usageForecast,3000,'a validated version-one save keeps its historical 16 three-minute calls and eight messages');
 });
@@ -109,7 +109,7 @@ test('PLAY-018 purchased project resources and period-denominated workload are v
  assert.deepEqual(quote.blockers,[]);s=provider(s,{...request,quoteRevision:s.revision},sequence++);
  const before=JSON.stringify(s),scene=SOC.provider.inspect(s),customer=scene.customers[0],room=customer.services.find(x=>x.id==='room');
  assert.equal(JSON.stringify(s),before,'scene projection does not change simulation state');
- assert.deepEqual({name:room.name,kind:room.kind},{name:'Meeting room',kind:'room'});
+ assert.deepEqual({name:room.name,kind:room.kind},{name:SOC.catalogue.room.name,kind:'room'});
  assert.equal(customer.periodOutcome.periodIndex,s.providerCampaign.customers[0].period.index);
  assert.equal(customer.periodOutcome.due,s.providerCampaign.jobs.filter(x=>x.customerId===customer.id&&x.periodIndex===customer.periodOutcome.periodIndex).length);
  assert.equal(customer.periodOutcome.completedOnTime+customer.periodOutcome.late+customer.periodOutcome.failed+customer.periodOutcome.open,customer.periodOutcome.due);

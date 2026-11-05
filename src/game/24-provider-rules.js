@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-2",
+  "id": "provider-campaigns-3",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -203,7 +203,22 @@ function socProviderRulesKernel(){
         "retailCents": 540000,
         "deadlineMinutes": 120
       },
-      "victoryPeriods": 2
+      "victoryPeriods": 2,
+      "incidentVariants": [
+        {
+          "afterDelivered": 8,
+          "delayMinutes": 6,
+          "resource": "speech",
+          "kind": "boundary",
+          "field": "supportRegions"
+        },
+        {
+          "afterDelivered": 8,
+          "delayMinutes": 6,
+          "resource": "processor",
+          "kind": "capacity"
+        }
+      ]
     },
     "defence": {
       "id": "defence",
@@ -299,7 +314,8 @@ function socProviderRulesKernel(){
             "people": 2,
             "operator": "customer"
           }
-        }
+        },
+        "supplier": "grove-vendor"
       },
       "carrier": {
         "setupCents": 80000,
@@ -313,7 +329,8 @@ function socProviderRulesKernel(){
           "carrier": {
             "capacity": 4
           }
-        }
+        },
+        "supplier": "level-tree"
       },
       "partner": {
         "setupCents": 140000,
@@ -331,7 +348,8 @@ function socProviderRulesKernel(){
             "handoff": true,
             "botResolves": false
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "voiceCents": 50,
       "messageCents": 75,
@@ -365,7 +383,8 @@ function socProviderRulesKernel(){
             "people": 2,
             "operator": "customer"
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "carrier": {
         "setupCents": 120000,
@@ -379,7 +398,8 @@ function socProviderRulesKernel(){
           "carrier": {
             "capacity": 8
           }
-        }
+        },
+        "supplier": "level-tree"
       },
       "partner": {
         "setupCents": 180000,
@@ -397,7 +417,8 @@ function socProviderRulesKernel(){
             "handoff": true,
             "botResolves": false
           }
-        }
+        },
+        "supplier": "disco-vendor"
       },
       "voiceCents": 50,
       "messageCents": 75,
@@ -814,6 +835,64 @@ function socProviderRulesKernel(){
       "sourceIds": [
         "uc-new:domain:journeys"
       ]
+    },
+    {
+      "id": "carrier-headroom",
+      "name": "Carrier session headroom",
+      "description": "Commission four additional concurrent carrier sessions after paid engineering work. Endpoint seats and customer staffing remain separate.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 4,
+      "engineers": 1,
+      "support": 0,
+      "resources": [
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "uc-new:family:cisco:provider-operations"
+      ]
+    },
+    {
+      "id": "compliance-local",
+      "name": "Scoped local public-service processing",
+      "description": "Commission customer-operated capture, storage and speech with independent regional paths and finite local licence grace. Higher setup and delivery effort reduce recurring supplier exposure.",
+      "setupCents": 190000,
+      "periodCents": 10000,
+      "workMinutes": 24,
+      "engineers": 2,
+      "support": 1,
+      "resources": [
+        "archive",
+        "recorder",
+        "speech"
+      ],
+      "config": {},
+      "requirements": [
+        "recording",
+        "transcription"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:cisco:local-speech"
+      ]
+    },
+    {
+      "id": "service-repair",
+      "name": "Restore customer queue",
+      "description": "Restore the observed failed carrier, meeting, processing or connectivity dependency using a funded engineering job.",
+      "setupCents": 8000,
+      "periodCents": 0,
+      "workMinutes": 3,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "service"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": []
     }
   ],
   "families": [

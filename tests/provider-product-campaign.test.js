@@ -55,7 +55,7 @@ test('all 14 authored product recipes are funded and pass actual campaign deploy
   s=advanceUntil(s,3);
   if(['ms-government-boundary','cisco-government-boundary','cisco-local-speech'].includes(recipeId))completeOperation('transcription');
   if(['ms-government-boundary','cisco-government-boundary'].includes(recipeId))completeOperation('compliance');
-  if(recipeId==='cisco-local-speech')completeOperation('local-deployment');
+  if(['cisco-local-speech','ms-local-deployment'].includes(recipeId))completeOperation('local-deployment');
   for(let tries=0;tries<60&&s.providerCampaign.customers[0].status!=='active';tries++){s=tick(s);recoverObservedIncidents();}
   assert.equal(s.providerCampaign.customers[0].status,'active',recipeId+' starts from effective base/carrier/partner stages');
   const request={action:'operation',operationId:recipeId,customerId:'starter-customer'};let quote=SOC.provider.quote(s,request);

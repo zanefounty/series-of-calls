@@ -43,3 +43,18 @@ test('eligible expansion selects a distinct market with shared cash, local terms
  assert.throws(()=>SOC.provider.quote(s,{...request,offerId:'next-2',market:'unknown'}),/INVALID_PROVIDER_MARKET/);
  assert.throws(()=>SOC.provider.quote(s,{...request,stage:'carrier',customerId:'next-1-customer',market:'jp-tokyo'}),/MARKET_ONLY_FOR_NEW_CUSTOMER/);
 });
+
+
+test('map pressure counts admitted sessions and capture separately without mutating time or billing',()=>{
+ let s=service();while(!s.providerCampaign.jobs.some(j=>j.channel==='voice'&&j.status==='pending'&&j.voiceMinutes>0))s=tick(s);
+ const before=JSON.stringify(s),m=SOC.provider.inspect(s),customer=m.customers[0],carrier=customer.services.find(r=>r.id==='carrier'),child=s.portfolio.customers[0].root;
+ assert.equal(carrier.pressure.unit,'concurrent sessions');assert.ok(carrier.pressure.used>0);assert.equal(carrier.pressure.limit,child.resources.carrier.effective.capacity);assert.equal(carrier.pressure.at,s.clock);
+ assert.equal(customer.services.find(r=>r.id==='phone').pressure,null,'seat entitlement is not presented as occupied call capacity');
+ assert.ok(customer.journeys.some(j=>j.interactionId&&j.trace.length));assert.equal(JSON.stringify(s),before);
+});
+
+test('operation cancellation previews retained cost, releases unstarted delivery and preserves active service obligations',()=>{
+ let s=service();s=buy(s,{action:'operation',operationId:'room',customerId:'starter-customer'});const project=s.providerCampaign.projects.at(-1),request={action:'cancel-project',projectId:project.id},before=JSON.stringify(s),cash=s.business.balance.cash,q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[]);assert.equal(q.commercial.retainedSetupCents,project.setupCents);assert.equal(q.cashAfter,cash);assert.equal(JSON.stringify(s),before);
+ const later=tick(s);assert.throws(()=>SOC.dispatch(later,{type:'provider',command:{...request,quoteRevision:q.atRevision}}),/STALE_PROVIDER_QUOTE/);
+ s=buy(s,request);assert.equal(s.business.balance.cash,cash);assert.equal(s.providerCampaign.projects.find(p=>p.id===project.id).status,'cancelled');s=tick(s,15);assert.equal(s.portfolio.customers[0].root.resources.room.effective.enabled,false);assert.ok(s.providerCampaign.jobs.some(j=>j.status==='completed'));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);assert.ok(SOC.provider.quote(s,request).blockers.includes('PROJECT_NOT_CANCELLABLE'));assert.ok(SOC.provider.quote(s,{action:'cancel-project',projectId:s.providerCampaign.projects[0].id}).blockers.includes('PROJECT_NOT_CANCELLABLE'));
+});

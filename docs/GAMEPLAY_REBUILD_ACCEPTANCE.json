@@ -1,0 +1,4884 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent initial audit of the gameplay rebuild; not a completion receipt or source disposition.",
+  "remainingNotesAsOfCommit": "60f009d2885d76d108383c83b46a14c6220d101c",
+  "preliminaryFamilyDiagnostics": {
+    "scope": "Executed against mutable shared sources; supporting diagnosis only, not frozen candidate acceptance or visible-control evidence.",
+    "command": "node --test --test-isolation=none tests/provider-family-capabilities.test.js tests/provider-product-compatibility.test.js tests/provider-operations-product.test.js tests/provider-product-campaign.test.js tests/provider-products.test.js tests/provider-standing-policy.test.js",
+    "tests": 31,
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "rawArtifact": "/tmp/soc-family-compatibility-ops-pass.tap",
+    "newCoverage": [
+      "Eleven exact family recipes have capability-specific success, limitation and recovery probes in explicit Lab fixtures.",
+      "Paid dedicated UC places autonomous Alex calls on the actual dedicated platform; copied Lab proves compute outage and recovery without rewriting campaign history.",
+      "Paid provider operations executes measured carrier headroom and scoped migration orders with real projects, cash, ledger receipts, delayed capacity and caller placement.",
+      "Provider operations copied Lab distinguishes unavailable billing/fulfilment dependencies from still-available tenant authority.",
+      "Legacy dedicated projects without recipeVersion or with version 1 restore without fabricated endpoint or caller migration; version 2 funds the endpoint and waits for migration; unknown versions and relabelled resource receipts are rejected."
+    ],
+    "historicalSaveProbe": {
+      "sourceCommit": "60f009d2885d76d108383c83b46a14c6220d101c",
+      "method": "Created genuine pending and completed dedicated product saves through archived runtime public campaign commands. Current runtime restored byte-for-byte, advanced successfully, retained Alex on phone and did not fabricate a dedicated endpoint.",
+      "artifacts": [
+        "/tmp/soc-old-dedicated-pending.json",
+        "/tmp/soc-old-dedicated-complete.json"
+      ],
+      "regression": "The new paid dedicated-platform assertion failed on original main because actual Alex platform was phone."
+    },
+    "notEstablished": [
+      "All fourteen families through visible map controls",
+      "Paid campaign dependency outage suppressing provider operations automation and recovering it",
+      "Provider operations wholesale report and multiple-tenant fulfilment accounting",
+      "Distinct complete four-mission alternatives, failures, recovery, settlement and exit",
+      "Final frozen candidate acceptance"
+    ]
+  },
+  "preliminaryBrowserDiagnostics": {
+    "scope": "Parent-executed mutable-development-server diagnostics, independently inspected. These do not close current-candidate assertions. Later source changes require reruns.",
+    "driver": "scripts/gameplay-map-browser.js",
+    "playwright": "1.64.1",
+    "runs": [
+      {
+        "browser": "Chromium 156.0.8078.4",
+        "viewport": "390x844",
+        "result": "9 bounded steps passed",
+        "artifact": "/tmp/soc-map-browser-20261104220635051/report.json"
+      },
+      {
+        "browser": "Chromium 156.0.8078.4",
+        "viewport": "1366x768",
+        "result": "9 bounded steps passed",
+        "artifact": "/tmp/soc-map-browser-20261104220725925/report.json"
+      },
+      {
+        "browser": "Firefox 157.0",
+        "viewport": "390x844",
+        "result": "Failed after path inspection when SCP.state became null; launch screen shown. Development-server reload is a hypothesis; rerun immutable artifact.",
+        "artifact": "/tmp/soc-map-browser-20261104220727787/report.json"
+      }
+    ],
+    "visualFindings": [
+      "Mobile reset-map button overlaps the selected customer header.",
+      "Selected mobile inspector obscures most service-map resources."
+    ],
+    "notEstablished": [
+      "Stale command refusal in a real browser",
+      "Complete keyboard-only journey",
+      "Full mission or product-family acceptance",
+      "Human usability evidence",
+      "WebKit gameplay",
+      "Final frozen candidate"
+    ]
+  },
+  "source": {
+    "path": "spec/provider-gameplay-v1/requirements.json",
+    "sha256": "fde4da061e778a94dbaec28abcb42173b97b98b336f863420f31002d4c9e11c4",
+    "requirements": 52,
+    "acceptanceAssertions": 159
+  },
+  "statusPolicy": {
+    "pending-current-candidate-verification": "No assertion closure claimed. Supporting tests are discovery links and may cover only part of the assertion; passing a candidate test is not assertion acceptance.",
+    "closureRule": "After implementation freezes, inspect exact assertions and record current executed positive, negative, recovery and visible evidence as applicable. Preserve this baseline run as historical."
+  },
+  "runs": {
+    "baseline-60f009d": {
+      "commit": "60f009d2885d76d108383c83b46a14c6220d101c",
+      "executedAtUTC": "2026-11-04",
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/provider-authority.test.js tests/provider-campaign-kernel.test.js tests/provider-business-history.test.js tests/provider-service-truth.test.js tests/provider-meeting-lifecycle.test.js tests/provider-persistence.test.js tests/provider-strategy-options.test.js tests/provider-products.test.js tests/provider-product-campaign.test.js tests/provider-segments.test.js tests/provider-workforce.test.js tests/provider-runtime.test.js tests/provider-shell.test.js",
+      "dependencies": {
+        "node": "24.22.2",
+        "jsdom": "30.1.3",
+        "playwright-core": "1.64.1"
+      },
+      "tests": 63,
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 21353.384303,
+      "scope": "Node behavior and jsdom only. Clean working tree checked before and after execution. No browser, MCP, long soak or release acceptance claimed.",
+      "rawArtifact": "/tmp/soc-gameplay-baseline-verifier.tap",
+      "logSha256": "6adb3099267be4efbb0ba849f774c373be037d4ae5b93d6fa308be78deef08cc",
+      "inputManifest": {
+        "selection": "git ls-files src content tests package.json package-lock.json; sorted filename, NUL, bytes, NUL",
+        "fileCount": 541,
+        "sha256": "0f1135785f6c6d7e8665faa4fb28253abca8a1f9e02e026d4726a234a81a42d2"
+      }
+    }
+  },
+  "tests": {
+    "B001": {
+      "file": "tests/provider-authority.test.js",
+      "name": "PLAY-002 campaign denies world-authoring on direct, nested and worker boundaries",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B002": {
+      "file": "tests/provider-authority.test.js",
+      "name": "PLAY-003/005 buying is atomic, stale quotes fail and exact retries cannot mint capital",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B003": {
+      "file": "tests/provider-authority.test.js",
+      "name": "PLAY-009 legacy training and explicit Lab saves preserve their separate experience",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B004": {
+      "file": "tests/provider-authority.test.js",
+      "name": "a customer copied through dispatch becomes a separate custom Lab without mutating career cash or authority",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B005": {
+      "file": "tests/provider-authority.test.js",
+      "name": "campaign save cannot mint opening capital and difficulty has an authored financial consequence",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B006": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "provider quotes expose complete authored commitment and reject stale or unaffordable acceptance atomically",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B007": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "SMB stages fund real service readiness, deliver actual work, and repair an observed carrier outage",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B008": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "both authored SMB opening plans reach effective service through real staged work",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B009": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "enterprise meeting evidence comes from a scheduled and completed child session",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B010": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "enterprise, government and defence win only after their actual mission evidence and shared-cash expansion",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B011": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "SMB mission victory needs two profitable full periods and an actually funded second customer",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B012": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "provider save validation rejects forged authored pricing and customer links",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B013": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "starter credit is an authored one-time loan with a revision-bound shared-business receipt",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B014": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "PLAY-011 service settlement retains 57 unavailable minutes after last-minute repair",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B015": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "PLAY-011 a final-minute outage preserves the first 59 minutes of delivered readiness",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B016": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "PLAY-007 unfunded discretionary projects and orders fail atomically; forecast shows recurring commitments",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B017": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "PLAY-011 history, billing and worker replay agree",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B018": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "PLAY-007 unavoidable posted bills enter grace, recover with disclosed funding, or default at the deadline",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B019": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "provider campaign postings use the shared business balance and reject unscoped or forged ledger fields",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B020": {
+      "file": "tests/provider-business-history.test.js",
+      "name": "legacy validated saves gain empty period history and reconciled solvency without rewriting the source envelope",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B021": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "ordinary endpoint service occupies carrier minutes until completion; probes earn no delivery",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B022": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "current effective media loss fails live service while signalling-only loss preserves it",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B023": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "capacity-one capture cannot record four simultaneous required conversations",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B024": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "connected calls count against carrier sessions and failed media releases occupancy",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B025": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "capture interrupted during a call cannot become a complete recording after recovery",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B026": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "PLAY-014/041 scheduled meetings occupy a room for their booked duration and complete only after live delivery",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B027": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "PLAY-014 no effective participant capacity fails admission and cancellation is terminal once",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B028": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "recording meetings use the shared capture reservation through actual completion and failure release",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B029": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "legacy join remains an explicit training probe and cannot earn delivered meeting evidence",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B030": {
+      "file": "tests/provider-persistence.test.js",
+      "name": "provider campaign saves and worker continuation preserve real projects, interactions, coaching and incident recovery",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B031": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "enterprise coexistence and consolidated migration quotes trade staffing, cutover time and recurring commitment, then move actual identities",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B032": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "a paid distributor qualification requires actual qualified service history before unlocking its room offer",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B033": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "ordering an optional operation during renewal preserves the renewal decision until a valid renewal is accepted",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B034": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "defence continuity preserves real offline work, paid autonomy lineage and scoped reconciliation across saves and workers",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B035": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "paid sync-all clears real unrecorded offline work without manufacturing a recording",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B036": {
+      "file": "tests/provider-strategy-options.test.js",
+      "name": "30 minute local autonomy exhaustion fails real customer jobs and paid spares restores offline service",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B037": {
+      "file": "tests/provider-products.test.js",
+      "name": "recipes are immutable, worker-serializable and cover each source-linked Microsoft and Cisco family",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B038": {
+      "file": "tests/provider-products.test.js",
+      "name": "all fourteen representative recipes apply validated quote configuration, then execute through shared SOC product dispatch",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B039": {
+      "file": "tests/provider-products.test.js",
+      "name": "paid product quotes carry validated configuration effects and authored prerequisites",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B040": {
+      "file": "tests/provider-products.test.js",
+      "name": "local speech pathway provisions an authored model and versioned integration before its bound product is usable",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B041": {
+      "file": "tests/provider-products.test.js",
+      "name": "government profile requires real boundary and qualification evidence requests before scoped product features become effective",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B042": {
+      "file": "tests/provider-products.test.js",
+      "name": "dedicated UC refuses an unprovisioned platform binding and recovers after a real dedicated resource is added",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B043": {
+      "file": "tests/provider-product-campaign.test.js",
+      "name": "all 14 authored product recipes are funded and pass actual campaign deployment readiness",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B044": {
+      "file": "tests/provider-segments.test.js",
+      "name": "earned SMB victory unlocks enterprise in the same shared career and the next segment requires its own earned win",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B045": {
+      "file": "tests/provider-segments.test.js",
+      "name": "government mission earns two real qualifying periods with either authored opening plan",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B046": {
+      "file": "tests/provider-workforce.test.js",
+      "name": "paid BPO cover preserves customer people and coaching removes one actual worker until its course completes",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B047": {
+      "file": "tests/provider-workforce.test.js",
+      "name": "customer-controlled staff cannot be coached through campaign authoring or an unfunded course",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B048": {
+      "file": "tests/provider-workforce.test.js",
+      "name": "bounded assurance uses the same paid repair dispatch and preserves actual incident loss",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B049": {
+      "file": "tests/provider-workforce.test.js",
+      "name": "paid quality review derives its findings from a consented recording and rejects fabricated grades",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B050": {
+      "file": "tests/provider-workforce.test.js",
+      "name": "suspending a paid assurance policy stops new repairs and resuming preserves its remaining budget",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B051": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "provider runtime creates campaigns through visible new-game controls and stores an owned save",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B052": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "provider worker failure uses the deterministic synchronous advance fallback and save restore",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B053": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "opening a costed quote invalidates a delayed worker tick and still permits a current quote commit",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B054": {
+      "file": "tests/provider-runtime.test.js",
+      "name": "providerFrame keeps canonical paid opening economics and demand equal at every advertised speed",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B055": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider shell launches through callbacks and does not write simulation state",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B056": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider plan requires an engine quote and explicit commit; map selection is local view state",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B057": {
+      "file": "tests/provider-shell.test.js",
+      "name": "visible plan and operation quotes disclose engine forecast scope and validated minimum term",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B058": {
+      "file": "tests/provider-shell.test.js",
+      "name": "idle inspector omits stale family-count claims and deals humanize eligibility blockers",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B059": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider rerenders preserve launch draft focus and use compact responsive layout classes",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B060": {
+      "file": "tests/provider-shell.test.js",
+      "name": "pause, speed and keyboard reachable controls stay on the callback boundary",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B061": {
+      "file": "tests/provider-shell.test.js",
+      "name": "provider map uses retained geography, customer coordinates and typed observed dependency paths",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B062": {
+      "file": "tests/provider-shell.test.js",
+      "name": "quote keyboard focus is trapped and Escape resumes the previous decision state",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    },
+    "B063": {
+      "file": "tests/provider-shell.test.js",
+      "name": "coach distinguishes funded expansion from settled operations and mission victory",
+      "result": "passed",
+      "run": "baseline-60f009d"
+    }
+  },
+  "requirements": {
+    "PLAY-001": {
+      "title": "Default provider campaign",
+      "phase": 1,
+      "implementation": [
+        "src/index.html",
+        "src/game/95-modals/40-title.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "sourceIds": [
+        "view:title"
+      ],
+      "remaining": "Verify fresh/current browser opening and independently owned Training/Lab/SP saves.",
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-002": {
+      "title": "Campaign authority boundary",
+      "phase": 1,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Direct/nested/worker refusal has baseline tests; execute current UI and actual MCP counterexamples.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    "PLAY-003": {
+      "title": "Purchased starting estate",
+      "phase": 1,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Verify all late purchases and products obey ownership after commissioning and restore.",
+      "candidateDiscoveryRefs": [
+        "candidate-product-compatibility"
+      ]
+    },
+    "PLAY-004": {
+      "title": "One explicit clock",
+      "phase": 1,
+      "implementation": [
+        "src/game/98-provider-runtime.js",
+        "src/game/55-communications.js"
+      ],
+      "sourceIds": [
+        "action:speed"
+      ],
+      "remaining": "Baseline speed equivalence exists; current browser visibility, ownership and modal pauses need execution.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-005": {
+      "title": "Atomic quotes and purchases",
+      "phase": 1,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Baseline atomicity/idempotency exists; quote refusal must also preserve visible draft and require recommitment.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-standing-policy",
+        "candidate-product-compatibility"
+      ]
+    },
+    "PLAY-006": {
+      "title": "One provider treasury",
+      "phase": 1,
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [
+        "view:bank"
+      ],
+      "remaining": "Verify reservation and liability presentation alongside shared-cash behavior.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-wholesale"
+      ]
+    },
+    "PLAY-007": {
+      "title": "Funding and insolvency",
+      "phase": 1,
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Core-business grace/default repro is tested; complete Provider visible refusal/rescue and commitment proof.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-008": {
+      "title": "Separate success states",
+      "phase": 1,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/41-progression.js",
+        "src/game/55-communications.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Sustained mission tests exist; individually verify all authored failure/activation rules.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-009": {
+      "title": "Versioned experience and saves",
+      "phase": 1,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/44-campaign.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Legacy guided migration is tested; legacy sandbox identity and exportable original need explicit proof.",
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-product-compatibility",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    "PLAY-010": {
+      "title": "Autonomous customer work",
+      "phase": 2,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/46-outcomes.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Verify conserved demand across all channels and prove animations remain read-only.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-011": {
+      "title": "Period-history settlement",
+      "phase": 2,
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "sourceIds": [],
+      "remaining": "57-minute/final-minute tests use core-business history; link current Provider bills and renewals to equivalent evidence.",
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    "PLAY-012": {
+      "title": "Duration-bearing ordinary calls",
+      "phase": 2,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/50-calling.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Duration/probe tests exist; verify all synchronous consumers and displayed unit definitions.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-013": {
+      "title": "Live media consequences",
+      "phase": 2,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/30-media-negotiation.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Live media tests exist; prove each required failure/fallback outcome separately.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-014": {
+      "title": "Admission and reservations",
+      "phase": 2,
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/51-contact.js",
+        "src/game/52-information.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Call/meeting reservation tests exist; complete cancellation, timeout and migration matrix.",
+      "candidateDiscoveryRefs": []
+    },
+    "PLAY-015": {
+      "title": "Scarce provider labour",
+      "phase": 2,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js",
+        "src/game/29-managed-operations.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Repair/coaching contention tested; verify every operating-job labour/cash reservation path.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    "PLAY-016": {
+      "title": "Two viable opening plans",
+      "phase": 2,
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/24-provider-rules.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Both plans tested; authored demand/deadline/dependency variants need outcome-changing strategy proof.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth"
+      ]
+    },
+    "PLAY-017": {
+      "title": "Upstream game frame",
+      "phase": 3,
+      "implementation": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/97-provider-shell.js",
+        "src/styles/98-provider.css"
+      ],
+      "sourceIds": [
+        "view:hud",
+        "view:left_goals",
+        "view:left_deals",
+        "view:left_noc"
+      ],
+      "remaining": "Current real desktop/browser appearance and reachability not yet executed.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-018": {
+      "title": "Playable service map",
+      "phase": 3,
+      "implementation": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "sourceIds": [
+        "view:city_links",
+        "view:city_infra",
+        "view:link_detail"
+      ],
+      "remaining": "Baseline projection omits operation/product resources, overlaps same-market customers, and lacks selectable paths.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-019": {
+      "title": "Contextual decision cards",
+      "phase": 3,
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Incident context routes to global operation catalogue; compare eligible responses at affected object.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-comparisons"
+      ]
+    },
+    "PLAY-020": {
+      "title": "Stable UI during ticks",
+      "phase": 3,
+      "implementation": [
+        "src/game/97-provider-shell.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Baseline submitPurchase closes draft before dispatch; providerCommand returns no refusal result.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-021": {
+      "title": "Accessible equivalent controls",
+      "phase": 3,
+      "implementation": [
+        "src/game/96-map/95-provider-canvas.js",
+        "src/styles/98-provider.css",
+        "src/i18n/en.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Current mobile sheets rely on focus; browser/keyboard/44px checks remain.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-022": {
+      "title": "Readable consequences",
+      "phase": 3,
+      "implementation": [
+        "src/game/93-ui/70-provider-hud.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "sourceIds": [
+        "view:notifications"
+      ],
+      "remaining": "Baseline HUD says Capacity clear without measured pressure; sound/motion preferences are absent.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences"
+      ]
+    },
+    "PLAY-023": {
+      "title": "Six-step coaching",
+      "phase": 3,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "sourceIds": [
+        "progress.tutorial-step.1",
+        "progress.tutorial-step.2",
+        "progress.tutorial-step.3",
+        "progress.tutorial-step.4",
+        "progress.tutorial-step.5",
+        "progress.tutorial-step.6"
+      ],
+      "remaining": "Coach is not scoped to current mission/customer; wall-clock targets not recorded.",
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "prepared-human-pilot"
+      ]
+    },
+    "PLAY-024": {
+      "title": "Optional diagnosis",
+      "phase": 3,
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-training.js"
+      ],
+      "sourceIds": [
+        "view:trace_modal",
+        "view:help"
+      ],
+      "remaining": "Need human-readable path explanation and relevant actions before technical detail.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene"
+      ]
+    },
+    "PLAY-025": {
+      "title": "Consequential incidents",
+      "phase": 4,
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/53-service-operations.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Repair/mitigation mechanics exist; failure-domain variants and prior architecture consequences need broader proof.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth"
+      ]
+    },
+    "PLAY-026": {
+      "title": "Renewal, price and customer choice",
+      "phase": 4,
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/26-customer-needs.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Price/renewal mechanics exist; exercise refusal/exit and relevant visible terms.",
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth"
+      ]
+    },
+    "PLAY-027": {
+      "title": "Commercial progression",
+      "phase": 4,
+      "implementation": [
+        "src/game/41-progression.js",
+        "src/game/31-capability-progression.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [
+        "view:left_goals"
+      ],
+      "remaining": "Provider has four goals; thirteen identities/nineteen goals are not integrated with earned Provider unlocks.",
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "proposal-progression-adapter"
+      ]
+    },
+    "PLAY-028": {
+      "title": "Automation with tradeoffs",
+      "phase": 4,
+      "implementation": [
+        "src/game/29-managed-operations.js",
+        "src/game/48-estate.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [
+        "view:policy_editor"
+      ],
+      "remaining": "Only fixed two-repair assurance exists; provisioning/migration templates and configurable cash floors/headroom absent.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    "PLAY-029": {
+      "title": "Portfolio continuity",
+      "phase": 4,
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [
+        "view:decommission"
+      ],
+      "remaining": "Portfolio continues under shared treasury; retirement/migration consequence previews incomplete.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-commercial-growth",
+        "candidate-long-play"
+      ]
+    },
+    "PLAY-030": {
+      "title": "Workload substitution",
+      "phase": 4,
+      "implementation": [
+        "src/game/47-channels.js",
+        "src/game/46-outcomes.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Channel substitutions have dedicated suites not run in this baseline; verify compulsory floors and one-case handoff.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-commercial-growth"
+      ]
+    },
+    "PLAY-031": {
+      "title": "Finance and operating report",
+      "phase": 4,
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "sourceIds": [
+        "view:dash_overview",
+        "view:bank"
+      ],
+      "remaining": "Baseline economics tested; reconcile current displayed bill and cash movements.",
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale"
+      ]
+    },
+    "PLAY-032": {
+      "title": "SMB campaign",
+      "phase": 5,
+      "implementation": [
+        "content/provider-campaigns.json"
+      ],
+      "sourceIds": [],
+      "remaining": "Kernel can win both openings; fresh complete map-driven desktop/mobile journeys remain.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-033": {
+      "title": "Enterprise campaign",
+      "phase": 5,
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/32-site-operations.js",
+        "src/game/34-specialist-lifecycle.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Coexistence/consolidated migration tested; complete visible identity/number/room continuity failure/recovery journey.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-034": {
+      "title": "Government campaign",
+      "phase": 5,
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/43-boundaries.js",
+        "src/game/28-product-evidence.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Swift/Steady share one compliance architecture; second eligible architecture and evidence-change consequence unproved.",
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-035": {
+      "title": "Defence campaign",
+      "phase": 5,
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/43-boundaries.js",
+        "src/game/27-speech-models.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Offline autonomy/spares/reconciliation tested; complete visible mission and dependency-specific evidence.",
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-036": {
+      "title": "Microsoft family pathways",
+      "phase": 5,
+      "implementation": [
+        "src/game/45-products.js",
+        "content/products.json"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:microsoft:contact-center",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:microsoft:government-clouds",
+        "uc-new:family:microsoft:local"
+      ],
+      "remaining": "Paid deployment plus four arbitrary completed jobs does not prove each family capability/limitation through UI.",
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-037": {
+      "title": "Cisco family pathways",
+      "phase": 5,
+      "implementation": [
+        "src/game/45-products.js",
+        "content/products.json"
+      ],
+      "sourceIds": [],
+      "remaining": "Paid deployment plus four arbitrary completed jobs does not prove each family capability/limitation through UI.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-wholesale",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-038": {
+      "title": "Channel and partner roles",
+      "phase": 5,
+      "implementation": [
+        "src/game/54-business.js",
+        "src/game/29-managed-operations.js",
+        "src/game/36-market-qualification.js"
+      ],
+      "sourceIds": [
+        "uc-new:domain:commercial-roles"
+      ],
+      "remaining": "Distributor qualification/BPO exist; each MSP/SP/reseller/distributor/integrator/partner/BPO decision needs evidence.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-wholesale"
+      ]
+    },
+    "PLAY-039": {
+      "title": "Third-party ecosystem",
+      "phase": 5,
+      "implementation": [
+        "content/products.json",
+        "src/game/45-products.js",
+        "src/game/28-product-evidence.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Complete category-specific paid outcomes and preserve separate actor-level obligations.",
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-040": {
+      "title": "CC people and quality",
+      "phase": 5,
+      "implementation": [
+        "src/game/49-workforce.js",
+        "src/game/38-workforce-offers.js",
+        "src/game/38-workforce-quality.js",
+        "src/game/54-business.js"
+      ],
+      "sourceIds": [],
+      "remaining": "BPO/coaching/evidence review tested; show these meaningful decisions through contextual controls.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-041": {
+      "title": "Meetings, rooms and video",
+      "phase": 5,
+      "implementation": [
+        "src/game/30-media-negotiation.js",
+        "src/game/45-products.js",
+        "src/game/52-information.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Duration-bearing sessions tested; native/interop/browser feature subset alternatives need campaign evidence.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-042": {
+      "title": "Information and transcription",
+      "phase": 5,
+      "implementation": [
+        "src/game/52-information.js",
+        "src/game/27-speech-models.js",
+        "src/game/43-boundaries.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Some source-capture/model/boundary behavior tested; complete cloud/local tradeoff and independently inspectable paths.",
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-043": {
+      "title": "CPaaS and digital journeys",
+      "phase": 5,
+      "implementation": [
+        "src/game/47-channels.js",
+        "src/game/46-outcomes.js",
+        "src/game/51-contact.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Dedicated demand/channel suites and real visible asynchronous case/handoff journey remain.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-044": {
+      "title": "On-premises and physical dependencies",
+      "phase": 5,
+      "implementation": [
+        "src/game/42-transport.js",
+        "src/game/32-site-operations.js",
+        "src/game/43-boundaries.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Local autonomy tested; complete local capacity/support/lifecycle and independent dependency effects.",
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    "PLAY-045": {
+      "title": "Pure rendering and shared dispatch",
+      "phase": 6,
+      "implementation": [
+        "src/game/55-communications.js",
+        "scripts/lib/page.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Baseline pure quote/inspect/worker/UI tests pass; run current assembly/projection purity after integration.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    "PLAY-046": {
+      "title": "Exactly-once time and persistence",
+      "phase": 6,
+      "implementation": [
+        "src/game/98-provider-runtime.js",
+        "src/game/97-provider-shell.js",
+        "src/game/55-communications.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Baseline worker/save continuation passes; current tab-lock, storage-error and pending-bill browser proofs remain.",
+      "candidateDiscoveryRefs": [
+        "candidate-preferences",
+        "candidate-product-compatibility",
+        "candidate-long-play",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-047": {
+      "title": "Bounded long-play histories",
+      "phase": 6,
+      "implementation": [
+        "src/game/37-portfolio.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Existing 2001-minute fixture has one customer; 20-customer soak is opt-in and not executed in this baseline.",
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    "PLAY-048": {
+      "title": "Static build and usable deployment path",
+      "phase": 6,
+      "implementation": [
+        "scripts/build.js",
+        "scripts/lib/page.js",
+        "site/sw.js",
+        "src/i18n/en.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Fresh locked-browser prefix/offline/cache-upgrade checks required; old Playwright passes are historical.",
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-049": {
+      "title": "Source and requirement accounting",
+      "phase": 6,
+      "implementation": [
+        "spec/",
+        "research/source/",
+        "maintenance/upstream/"
+      ],
+      "sourceIds": [
+        "view:hud",
+        "view:title"
+      ],
+      "remaining": "Existing source accounting is partial; assertion ledger cannot approve source exclusions or research.",
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    "PLAY-050": {
+      "title": "Visible-UI commercial journeys",
+      "phase": 6,
+      "implementation": [
+        "tests/",
+        "scripts/browser-smoke.js"
+      ],
+      "sourceIds": [],
+      "remaining": "Fresh current-candidate four-mission and fourteen-family recordings remain.",
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    "PLAY-051": {
+      "title": "Behavioural regression and gates",
+      "phase": 6,
+      "implementation": [
+        "tests/",
+        "spec/acceptance-plan.json",
+        "evidence/"
+      ],
+      "sourceIds": [],
+      "remaining": "Run all required current-input suites/gates/evidence after candidate freeze; no release pass inferred.",
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    "PLAY-052": {
+      "title": "Human pilot and honest handoff",
+      "phase": 6,
+      "implementation": [
+        "docs/",
+        "STATUS.md"
+      ],
+      "sourceIds": [],
+      "remaining": "Protocol exists; real participants and current candidate/publication handoff remain external follow-up.",
+      "candidateDiscoveryRefs": [
+        "prepared-human-pilot"
+      ]
+    }
+  },
+  "ownerPlanAdditions": [
+    {
+      "id": "OWNER-TRAINING-MAP",
+      "status": "pending",
+      "implementation": [
+        "src/game/97-training.js"
+      ],
+      "remaining": "Training currently renders raw resource forms and small five-node canvas. Share pure world projection while retaining Training authority, saves, probes and assessment.",
+      "candidateDiscoveryRefs": [
+        "candidate-training-map"
+      ]
+    },
+    {
+      "id": "OWNER-MULTI-MARKET",
+      "status": "pending",
+      "implementation": [
+        "src/game/25-provider-campaign.js"
+      ],
+      "remaining": "New customers use provider home market and save validator requires equality. Implement eligible authored multi-market growth.",
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "OWNER-PREFERENCES",
+      "status": "pending",
+      "implementation": [
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "remaining": "Persist language/sound/animation/reduced-motion/alerts/input-help outside simulation state.",
+      "candidateDiscoveryRefs": [
+        "candidate-preferences"
+      ]
+    },
+    {
+      "id": "OWNER-FAMILY-LIMITATIONS",
+      "status": "pending",
+      "implementation": [
+        "tests/provider-product-campaign.test.js",
+        "scripts/provider-browser.js"
+      ],
+      "remaining": "Each of fourteen paths must demonstrate specific capability and relevant limitation/failure, not unrelated completed work.",
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "OWNER-PUBLICATION",
+      "status": "pending",
+      "implementation": [
+        ".github/workflows/release.yml"
+      ],
+      "remaining": "Protected preview publication and deployed current-cache upgrade/offline gameplay require final candidate checks and applicable review.",
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp"
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "id": "PLAY-001-A01",
+      "requirement": "PLAY-001",
+      "sourceIndex": 0,
+      "assertion": "A fresh normal run requires only a provider name, home market and difficulty, all with defaults.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-001-A02",
+      "requirement": "PLAY-001",
+      "sourceIndex": 1,
+      "assertion": "The first view contains an objective, finite capital, a customer opportunity and a costed action. No JSON or pack-start buttons are required.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-001-A03",
+      "requirement": "PLAY-001",
+      "sourceIndex": 2,
+      "assertion": "Existing training and SP saves remain separately accessible.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-002-A01",
+      "requirement": "PLAY-002",
+      "sourceIndex": 0,
+      "assertion": "Campaign attempts to set supplier cost, arbitrary capacity, customer requirements, fault events, task success or quality grades fail atomically through UI, worker and MCP paths.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-002-A02",
+      "requirement": "PLAY-002",
+      "sourceIndex": 1,
+      "assertion": "Retail quotation is permitted only through authored customer acceptance rules.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-002-A03",
+      "requirement": "PLAY-002",
+      "sourceIndex": 2,
+      "assertion": "No public system:true or arbitrary-command escape hatch is added; Lab editing remains available on a custom copy.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-003-A01",
+      "requirement": "PLAY-003",
+      "sourceIndex": 0,
+      "assertion": "Uncommissioned blueprints supply no usable entitlement, service, capacity or revenue.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-003-A02",
+      "requirement": "PLAY-003",
+      "sourceIndex": 1,
+      "assertion": "Buying a supported plan creates its necessary dependencies through validated commands without asking the player to start internal packs.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-003-A03",
+      "requirement": "PLAY-003",
+      "sourceIndex": 2,
+      "assertion": "Ownership and entitlement gate later capacity changes.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-004-A01",
+      "requirement": "PLAY-004",
+      "sourceIndex": 0,
+      "assertion": "Pause and 0.5x/1x/2x/4x/8x are available. Prices use /period, never an unexplained /month.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-004-A02",
+      "requirement": "PLAY-004",
+      "sourceIndex": 1,
+      "assertion": "Equal simulation-time commands at different speeds yield identical demand, outcomes, balances and rewards.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-004-A03",
+      "requirement": "PLAY-004",
+      "sourceIndex": 2,
+      "assertion": "Decision modals, hidden tabs, lost editing ownership and terminal outcomes pause; no undisclosed offline catch-up occurs.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-005-A01",
+      "requirement": "PLAY-005",
+      "sourceIndex": 0,
+      "assertion": "Stale or unaffordable quotes cannot double-spend or create partial inventory.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-standing-policy",
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-005-A02",
+      "requirement": "PLAY-005",
+      "sourceIndex": 1,
+      "assertion": "Repeating the same request ID does not charge, reserve or reward twice.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-standing-policy",
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-005-A03",
+      "requirement": "PLAY-005",
+      "sourceIndex": 2,
+      "assertion": "The client supplies offer and recipe identifiers, not authoritative wholesale cost or success.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-standing-policy",
+        "candidate-product-compatibility"
+      ]
+    },
+    {
+      "id": "PLAY-006-A01",
+      "requirement": "PLAY-006",
+      "sourceIndex": 0,
+      "assertion": "Creating a second customer does not create opening cash.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-006-A02",
+      "requirement": "PLAY-006",
+      "sourceIndex": 1,
+      "assertion": "Internal transfers do not become external revenue, and settlement receipts post once.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-006-A03",
+      "requirement": "PLAY-006",
+      "sourceIndex": 2,
+      "assertion": "Cash available excludes reservations; cash, commitments, liabilities and operating profit remain distinguishable.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-007-A01",
+      "requirement": "PLAY-007",
+      "sourceIndex": 0,
+      "assertion": "The unfunded 20-engineer, 1,440-minute project repro cannot start without an explicit funded or credit-backed commitment.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-007-A02",
+      "requirement": "PLAY-007",
+      "sourceIndex": 1,
+      "assertion": "An unavoidable bill can enter grace/default without crashing the engine or enabling unlimited discretionary spending.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-007-A03",
+      "requirement": "PLAY-007",
+      "sourceIndex": 2,
+      "assertion": "Forecast recurring exposure before commitment; do not escrow every future cost unless the scenario requires it.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-008-A01",
+      "requirement": "PLAY-008",
+      "sourceIndex": 0,
+      "assertion": "Passing the four-command foundation SMB repair cannot complete a provider campaign.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-008-A02",
+      "requirement": "PLAY-008",
+      "sourceIndex": 1,
+      "assertion": "A probe or manually generated test cannot mint earned customer revenue or commercial progression.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-008-A03",
+      "requirement": "PLAY-008",
+      "sourceIndex": 2,
+      "assertion": "Every mission authors arrivals, deadlines, activation, service/credit/renewal rules, grace/default and a sustained victory predicate.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-008-A04",
+      "requirement": "PLAY-008",
+      "sourceIndex": 3,
+      "assertion": "The proposed SMB reference requires two consecutive full periods with at least 22 of 24 due cases completed on time and positive provider operating result, no overdue critical obligations, and a funded next contract. A quiet or partial period cannot satisfy it.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-009-A01",
+      "requirement": "PLAY-009",
+      "sourceIndex": 0,
+      "assertion": "Legacy guided/assessed imports remain Training and legacy sandbox imports remain Lab.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-product-compatibility",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-009-A02",
+      "requirement": "PLAY-009",
+      "sourceIndex": 1,
+      "assertion": "A campaign exported to Lab is custom; changing a label does not restore earned campaign status.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-product-compatibility",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-009-A03",
+      "requirement": "PLAY-009",
+      "sourceIndex": 2,
+      "assertion": "Validate with the known old schema before migration, preserve the original, and reject unknown versions clearly.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-product-compatibility",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-010-A01",
+      "requirement": "PLAY-010",
+      "sourceIndex": 0,
+      "assertion": "Calls, messages and CC arrivals appear without Generate test interaction.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-010-A02",
+      "requirement": "PLAY-010",
+      "sourceIndex": 1,
+      "assertion": "Sampled particles and traces do not create or bill additional work.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-010-A03",
+      "requirement": "PLAY-010",
+      "sourceIndex": 2,
+      "assertion": "Offered, admitted, pending, completed, failed and abandoned totals conserve jobs across handoff and retry.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-011-A01",
+      "requirement": "PLAY-011",
+      "sourceIndex": 0,
+      "assertion": "An evenly distributed test workload with 57 minutes of outage cannot become a perfect period after a last-minute repair.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-011-A02",
+      "requirement": "PLAY-011",
+      "sourceIndex": 1,
+      "assertion": "A final-minute outage cannot erase completed service from the prior 59 minutes.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-011-A03",
+      "requirement": "PLAY-011",
+      "sourceIndex": 2,
+      "assertion": "Credits, usage, renewal evidence and visible bill explanations agree with the same recorded facts.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-012-A01",
+      "requirement": "PLAY-012",
+      "sourceIndex": 0,
+      "assertion": "An endpoint call with a declared duration produces the expected occupancy and metered usage.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-012-A02",
+      "requirement": "PLAY-012",
+      "sourceIndex": 1,
+      "assertion": "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-012-A03",
+      "requirement": "PLAY-012",
+      "sourceIndex": 2,
+      "assertion": "Waiting, talk time, connected carrier-leg occupancy and customer-billed units have explicit definitions.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-013-A01",
+      "requirement": "PLAY-013",
+      "sourceIndex": 0,
+      "assertion": "Loss of both media directions during a call cannot silently yield a successful conversation.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-013-A02",
+      "requirement": "PLAY-013",
+      "sourceIndex": 1,
+      "assertion": "One-way media produces its declared degraded/failed outcome.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-013-A03",
+      "requirement": "PLAY-013",
+      "sourceIndex": 2,
+      "assertion": "Loss of signalling alone does not automatically destroy surviving established media; local fallback must be provisioned.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-014-A01",
+      "requirement": "PLAY-014",
+      "sourceIndex": 0,
+      "assertion": "Capacity-one recording cannot capture four simultaneous recording-required sessions.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025",
+        "B026",
+        "B027",
+        "B028",
+        "B029"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-014-A02",
+      "requirement": "PLAY-014",
+      "sourceIndex": 1,
+      "assertion": "No available room/meeting capacity prevents an additional admission.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025",
+        "B026",
+        "B027",
+        "B028",
+        "B029"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-014-A03",
+      "requirement": "PLAY-014",
+      "sourceIndex": 2,
+      "assertion": "Cancellation, timeout, failure, normal completion and migration each release reservations once under a declared policy.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B021",
+        "B022",
+        "B023",
+        "B024",
+        "B025",
+        "B026",
+        "B027",
+        "B028",
+        "B029"
+      ],
+      "candidateDiscoveryRefs": []
+    },
+    {
+      "id": "PLAY-015-A01",
+      "requirement": "PLAY-015",
+      "sourceIndex": 0,
+      "assertion": "Two simultaneous jobs cannot allocate the same engineer or reserved money twice.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-015-A02",
+      "requirement": "PLAY-015",
+      "sourceIndex": 1,
+      "assertion": "Reduced support capacity increases eligible backlog/response time; reducing staff is not an identical-outcome cost saving.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-015-A03",
+      "requirement": "PLAY-015",
+      "sourceIndex": 2,
+      "assertion": "Cost coherent operations, not each field write; inspection and planning stay free.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-016-A01",
+      "requirement": "PLAY-016",
+      "sourceIndex": 0,
+      "assertion": "A player can afford each reference plan individually but cannot buy every advantage without sacrificing another opportunity.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-016-A02",
+      "requirement": "PLAY-016",
+      "sourceIndex": 1,
+      "assertion": "A changed supported seed/constraint changes a relevant investment or response.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-016-A03",
+      "requirement": "PLAY-016",
+      "sourceIndex": 2,
+      "assertion": "The evaluator accepts outcomes and constraints, not only one exact recipe.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-017-A01",
+      "requirement": "PLAY-017",
+      "sourceIndex": 0,
+      "assertion": "At 1366x768, cash, clock, objective, map and primary actions are reachable without scrolling through setup.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-017-A02",
+      "requirement": "PLAY-017",
+      "sourceIndex": 1,
+      "assertion": "The default opening has no oversized hero or stacked module forms.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-017-A03",
+      "requirement": "PLAY-017",
+      "sourceIndex": 2,
+      "assertion": "Match the bright map, white sticker panels, ink outlines, yellow actions and pink player selection with readable states.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-018-A01",
+      "requirement": "PLAY-018",
+      "sourceIndex": 0,
+      "assertion": "Purchasing, commissioning, losing and retiring a service visibly changes the correct nodes/paths.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-018-A02",
+      "requirement": "PLAY-018",
+      "sourceIndex": 1,
+      "assertion": "Drag or click-connect opens a compatible costed plan; a keyboard/menu action does the same.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-018-A03",
+      "requirement": "PLAY-018",
+      "sourceIndex": 2,
+      "assertion": "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-019-A01",
+      "requirement": "PLAY-019",
+      "sourceIndex": 0,
+      "assertion": "A purchase card names the cost now, /period commitment, work, lead time, limits and expected outcome.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-comparisons"
+      ]
+    },
+    {
+      "id": "PLAY-019-A02",
+      "requirement": "PLAY-019",
+      "sourceIndex": 1,
+      "assertion": "An incident card names affected customers, cause confidence, response options and each cost/delay.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-comparisons"
+      ]
+    },
+    {
+      "id": "PLAY-019-A03",
+      "requirement": "PLAY-019",
+      "sourceIndex": 2,
+      "assertion": "Blocked actions explain prerequisites and a way forward; no silent disabled button.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-comparisons"
+      ]
+    },
+    {
+      "id": "PLAY-020-A01",
+      "requirement": "PLAY-020",
+      "sourceIndex": 0,
+      "assertion": "An unfinished purchase draft retains values, focus, selection, scroll and expanded details during ticks.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-020-A02",
+      "requirement": "PLAY-020",
+      "sourceIndex": 1,
+      "assertion": "Camera and selected customer persist across ordinary events.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-020-A03",
+      "requirement": "PLAY-020",
+      "sourceIndex": 2,
+      "assertion": "Revalidate a changed quote at commit and explain any difference without silently accepting it.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-021-A01",
+      "requirement": "PLAY-021",
+      "sourceIndex": 0,
+      "assertion": "The opening can be completed without drag, hover or colour-only information.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-021-A02",
+      "requirement": "PLAY-021",
+      "sourceIndex": 1,
+      "assertion": "At 390x844, bottom navigation/context sheets preserve the same actions without horizontal page overflow.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-021-A03",
+      "requirement": "PLAY-021",
+      "sourceIndex": 2,
+      "assertion": "Use visible focus, labelled status, restrained live announcements and at least 44px primary touch targets.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-preferences",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-022-A01",
+      "requirement": "PLAY-022",
+      "sourceIndex": 0,
+      "assertion": "Provisioning, effective readiness and observed success are visibly distinct.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences"
+      ]
+    },
+    {
+      "id": "PLAY-022-A02",
+      "requirement": "PLAY-022",
+      "sourceIndex": 1,
+      "assertion": "A player can open a bill or failure explanation without raw trace codes.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences"
+      ]
+    },
+    {
+      "id": "PLAY-022-A03",
+      "requirement": "PLAY-022",
+      "sourceIndex": 2,
+      "assertion": "Optional sound and sampled animations reflect real events; both can be disabled.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-preferences"
+      ]
+    },
+    {
+      "id": "PLAY-023-A01",
+      "requirement": "PLAY-023",
+      "sourceIndex": 0,
+      "assertion": "The six steps cover launch, external connection, partner capability, operation, expansion and a larger contract.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "prepared-human-pilot"
+      ]
+    },
+    {
+      "id": "PLAY-023-A02",
+      "requirement": "PLAY-023",
+      "sourceIndex": 1,
+      "assertion": "Coaching can be dismissed/resumed and recognises valid states reached out of order. An accepted order may satisfy an ordering milestone; it cannot satisfy commissioned service. Highlight Resume as soon as pending delivery is needed.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "prepared-human-pilot"
+      ]
+    },
+    {
+      "id": "PLAY-023-A03",
+      "requirement": "PLAY-023",
+      "sourceIndex": 2,
+      "assertion": "First costed choice within 2 minutes and first delivered work within 5 minutes are measured design targets, not claims of current performance.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "prepared-human-pilot"
+      ]
+    },
+    {
+      "id": "PLAY-024-A01",
+      "requirement": "PLAY-024",
+      "sourceIndex": 0,
+      "assertion": "The main inspector answers what is happening, who is affected, the likely cause and useful actions.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene"
+      ]
+    },
+    {
+      "id": "PLAY-024-A02",
+      "requirement": "PLAY-024",
+      "sourceIndex": 1,
+      "assertion": "Experts can inspect detailed interaction paths, desired/effective state and evidence without editing world facts.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene"
+      ]
+    },
+    {
+      "id": "PLAY-024-A03",
+      "requirement": "PLAY-024",
+      "sourceIndex": 2,
+      "assertion": "Diagnosis can consume time/effort when the scenario makes it a decision; looking at public information is free.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene"
+      ]
+    },
+    {
+      "id": "PLAY-025-A01",
+      "requirement": "PLAY-025",
+      "sourceIndex": 0,
+      "assertion": "At least one mission incident has two sensible responses with different cost, time or customer loss.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-025-A02",
+      "requirement": "PLAY-025",
+      "sourceIndex": 1,
+      "assertion": "Earlier redundancy, staffing or architecture changes impact or available responses.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-025-A03",
+      "requirement": "PLAY-025",
+      "sourceIndex": 2,
+      "assertion": "A Repair action creates an eligible costed job; it cannot directly declare the service recovered.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013",
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-026-A01",
+      "requirement": "PLAY-026",
+      "sourceIndex": 0,
+      "assertion": "The player may quote retail prices but cannot force willingness to pay or contract acceptance.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-026-A02",
+      "requirement": "PLAY-026",
+      "sourceIndex": 1,
+      "assertion": "Repeated poor service triggers bounded credits, lost demand, refusal/exit or scenario failure under visible terms.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-026-A03",
+      "requirement": "PLAY-026",
+      "sourceIndex": 2,
+      "assertion": "An unavailable arbitrarily expensive offer cannot create an indefinitely repeatable profit strategy.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-027-A01",
+      "requirement": "PLAY-027",
+      "sourceIndex": 0,
+      "assertion": "The first sustainable customer changes the next available decision.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "proposal-progression-adapter"
+      ]
+    },
+    {
+      "id": "PLAY-027-A02",
+      "requirement": "PLAY-027",
+      "sourceIndex": 1,
+      "assertion": "Training badges/credits remain separate from earned commercial money and progress.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "proposal-progression-adapter"
+      ]
+    },
+    {
+      "id": "PLAY-027-A03",
+      "requirement": "PLAY-027",
+      "sourceIndex": 2,
+      "assertion": "Next-goal requirements and blocked opportunities are visible with reasons.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "proposal-progression-adapter"
+      ]
+    },
+    {
+      "id": "PLAY-028-A01",
+      "requirement": "PLAY-028",
+      "sourceIndex": 0,
+      "assertion": "A bulk joiner or migration template reduces repeated effort without bypassing entitlement or delegation.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-028-A02",
+      "requirement": "PLAY-028",
+      "sourceIndex": 1,
+      "assertion": "Standing orders respect cash floors, budgets and capacity caps.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-028-A03",
+      "requirement": "PLAY-028",
+      "sourceIndex": 2,
+      "assertion": "Automation shows a preview, commits once and can be suspended.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy"
+      ]
+    },
+    {
+      "id": "PLAY-029-A01",
+      "requirement": "PLAY-029",
+      "sourceIndex": 0,
+      "assertion": "Changing the inspector does not pause a tenant, reset a bill or move world revision.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-commercial-growth",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-029-A02",
+      "requirement": "PLAY-029",
+      "sourceIndex": 1,
+      "assertion": "An incident at one tenant competes with other work for shared staff and funds while preserving tenant authority.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-commercial-growth",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-029-A03",
+      "requirement": "PLAY-029",
+      "sourceIndex": 2,
+      "assertion": "Cancellation and decommission respect outstanding obligations and show the consequences before commitment.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B030"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-commercial-growth",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-030-A01",
+      "requirement": "PLAY-030",
+      "sourceIndex": 0,
+      "assertion": "A supported customer preference change alters a quote, channel investment, capacity plan or margin.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-030-A02",
+      "requirement": "PLAY-030",
+      "sourceIndex": 1,
+      "assertion": "Substitution cannot remove PSTN, emergency, identity, information-boundary or other mandatory requirements.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-030-A03",
+      "requirement": "PLAY-030",
+      "sourceIndex": 2,
+      "assertion": "Voice-to-digital handoff preserves one customer case; it cannot claim two independent resolutions.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-commercial-growth"
+      ]
+    },
+    {
+      "id": "PLAY-031-A01",
+      "requirement": "PLAY-031",
+      "sourceIndex": 0,
+      "assertion": "A player can reconcile the displayed bill and cash movement to named economic events.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-031-A02",
+      "requirement": "PLAY-031",
+      "sourceIndex": 1,
+      "assertion": "Borrowing/investment changes cash and debt, not operating profit.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-031-A03",
+      "requirement": "PLAY-031",
+      "sourceIndex": 2,
+      "assertion": "Diagnostic/core counters are never labelled as commercial treasury.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B014",
+        "B015",
+        "B016",
+        "B017",
+        "B018",
+        "B019",
+        "B020"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-032-A01",
+      "requirement": "PLAY-032",
+      "sourceIndex": 0,
+      "assertion": "Includes a costed calling/contact service, demand, an incident, settlement, renewal/exit and a second opportunity.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-032-A02",
+      "requirement": "PLAY-032",
+      "sourceIndex": 1,
+      "assertion": "Two plans or operating responses are viable and differ in margin, flexibility or risk.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-032-A03",
+      "requirement": "PLAY-032",
+      "sourceIndex": 2,
+      "assertion": "A remembered tutorial recipe is not the only accepted solution.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B006",
+        "B007",
+        "B008",
+        "B009",
+        "B010",
+        "B011",
+        "B012",
+        "B013"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-033-A01",
+      "requirement": "PLAY-033",
+      "sourceIndex": 0,
+      "assertion": "Staged coexistence and a more consolidated rollout create different staffing, time and compatibility consequences.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-033-A02",
+      "requirement": "PLAY-033",
+      "sourceIndex": 1,
+      "assertion": "Actual number/identity/room dependencies affect work during cutover and recovery.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-033-A03",
+      "requirement": "PLAY-033",
+      "sourceIndex": 2,
+      "assertion": "Settlement and renewal reflect the delivered migration and service outcomes.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B044",
+        "B045"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-034-A01",
+      "requirement": "PLAY-034",
+      "sourceIndex": 0,
+      "assertion": "Eligibility follows actual paths and versioned evidence, not only a country field.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-034-A02",
+      "requirement": "PLAY-034",
+      "sourceIndex": 1,
+      "assertion": "Two compliant architecture/operating plans differ in cost, lead time or workload.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-034-A03",
+      "requirement": "PLAY-034",
+      "sourceIndex": 2,
+      "assertion": "A boundary or evidence change produces a visible service/procurement consequence and a valid repair.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B044",
+        "B045",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-comparisons",
+        "candidate-government",
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-035-A01",
+      "requirement": "PLAY-035",
+      "sourceIndex": 0,
+      "assertion": "Pre-provisioned local identity, licensing, media, storage and processing determine supported survival during isolation.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-035-A02",
+      "requirement": "PLAY-035",
+      "sourceIndex": 1,
+      "assertion": "Spares, staffing, autonomy duration and deferred synchronisation create real choices.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-035-A03",
+      "requirement": "PLAY-035",
+      "sourceIndex": 2,
+      "assertion": "Reconnection applies scoped synchronisation and retained obligations; no real security accreditation is implied.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-commercial-growth",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-036-A01",
+      "requirement": "PLAY-036",
+      "sourceIndex": 0,
+      "assertion": "Each of workplace calling, meetings/rooms, contact centre, communications APIs, government profiles and local deployment has at least one representative playable path tested through the campaign UI for this revision.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-036-A02",
+      "requirement": "PLAY-036",
+      "sourceIndex": 1,
+      "assertion": "A family is not counted complete because its name appears in a menu.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-036-A03",
+      "requirement": "PLAY-036",
+      "sourceIndex": 2,
+      "assertion": "Supplier-owned capabilities, third-party additions and scenario fiction remain distinguishable.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-037-A01",
+      "requirement": "PLAY-037",
+      "sourceIndex": 0,
+      "assertion": "Each of the eight families has at least one representative playable path tested through the campaign UI, with meaningful eligibility, cost, operating or compatibility behaviour linked to its source requirement.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-wholesale",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-037-A02",
+      "requirement": "PLAY-037",
+      "sourceIndex": 1,
+      "assertion": "Cloud, dedicated and on-premises resources are not interchangeable labels.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-wholesale",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-037-A03",
+      "requirement": "PLAY-037",
+      "sourceIndex": 2,
+      "assertion": "Remaining source obligations stay visible; shared implementation is not proof of every distinctive feature.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B043"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-government",
+        "candidate-family-capabilities",
+        "candidate-product-compatibility",
+        "candidate-wholesale",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-038-A01",
+      "requirement": "PLAY-038",
+      "sourceIndex": 0,
+      "assertion": "Each role appears in at least one playable procurement or operating decision.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-038-A02",
+      "requirement": "PLAY-038",
+      "sourceIndex": 1,
+      "assertion": "An MSP has shared staff/capital; an SP has numbering/interconnect capacity; a BPO supplies skills/schedules and people, not just licences.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-038-A03",
+      "requirement": "PLAY-038",
+      "sourceIndex": 2,
+      "assertion": "A distributor/partner qualification changes a term or accessible offer; a logo alone is insufficient.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities",
+        "candidate-wholesale"
+      ]
+    },
+    {
+      "id": "PLAY-039-A01",
+      "requirement": "PLAY-039",
+      "sourceIndex": 0,
+      "assertion": "Provisioning, assurance, room interop, SBC/carrier, recording/compliance, WFM/quality and AI/API categories each have at least one costed, outcome-changing path.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-039-A02",
+      "requirement": "PLAY-039",
+      "sourceIndex": 1,
+      "assertion": "Preserve all 51 actor records and stable mappings; list each actor as implemented, shared with evidence, or pending.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-039-A03",
+      "requirement": "PLAY-039",
+      "sourceIndex": 2,
+      "assertion": "Do not create a separate setup screen for every supplier or treat distinct behaviours as a name reskin.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-standing-policy",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-040-A01",
+      "requirement": "PLAY-040",
+      "sourceIndex": 0,
+      "assertion": "A licensed queue without eligible people cannot handle the same workload as a staffed queue.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-040-A02",
+      "requirement": "PLAY-040",
+      "sourceIndex": 1,
+      "assertion": "Coaching temporarily removes useful capacity, costs the authored amount once, and changes capability only after completion.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-040-A03",
+      "requirement": "PLAY-040",
+      "sourceIndex": 2,
+      "assertion": "Quality review is evaluated from evidence in Campaign; authoring raw rubric scores remains Training/Lab.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B046",
+        "B047",
+        "B048",
+        "B049",
+        "B050"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-041-A01",
+      "requirement": "PLAY-041",
+      "sourceIndex": 0,
+      "assertion": "Native, interop and browser joining have declared feature subsets and capacity/cost consequences.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B026",
+        "B027",
+        "B028",
+        "B029",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-041-A02",
+      "requirement": "PLAY-041",
+      "sourceIndex": 1,
+      "assertion": "Implement scheduled, active and completed/failed meeting sessions with duration, occupancy, effective media and capture. The existing lastMeeting join check is an explicit probe and cannot satisfy actual video delivery.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B026",
+        "B027",
+        "B028",
+        "B029",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-041-A03",
+      "requirement": "PLAY-041",
+      "sourceIndex": 2,
+      "assertion": "A licence alone cannot create a physical room, staffed support or compatible media.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B026",
+        "B027",
+        "B028",
+        "B029",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-041-A04",
+      "requirement": "PLAY-041",
+      "sourceIndex": 3,
+      "assertion": "Local media resources change supported load or resilience without becoming an unrestricted substitute for a cloud service.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B026",
+        "B027",
+        "B028",
+        "B029",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-042-A01",
+      "requirement": "PLAY-042",
+      "sourceIndex": 0,
+      "assertion": "A transcript requires eligible source capture, processor/model capacity and an allowed data path.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-042-A02",
+      "requirement": "PLAY-042",
+      "sourceIndex": 1,
+      "assertion": "Cloud and local processing create a cost, delay, language/quality or dependency tradeoff.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-042-A03",
+      "requirement": "PLAY-042",
+      "sourceIndex": 2,
+      "assertion": "Storage/backup/keys/admin/support boundaries remain independently inspectable; a transcript cannot be typed into success.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-043-A01",
+      "requirement": "PLAY-043",
+      "sourceIndex": 0,
+      "assertion": "One campaign job crosses an asynchronous channel/API workflow and resolves or fails from actual execution.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-043-A02",
+      "requirement": "PLAY-043",
+      "sourceIndex": 1,
+      "assertion": "A retry cannot charge or resolve the customer twice outside explicit provider billing terms.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-043-A03",
+      "requirement": "PLAY-043",
+      "sourceIndex": 2,
+      "assertion": "A human handoff retains customer context and uses genuine CC capacity.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-044-A01",
+      "requirement": "PLAY-044",
+      "sourceIndex": 0,
+      "assertion": "Local/on-premises choices have setup, capacity, support and lifecycle costs.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-044-A02",
+      "requirement": "PLAY-044",
+      "sourceIndex": 1,
+      "assertion": "A dependency outage changes only the workloads that depend on it; a supported local path can continue.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-044-A03",
+      "requirement": "PLAY-044",
+      "sourceIndex": 2,
+      "assertion": "Keep the optional SP game separate; do not force carrier-network construction before the first SMB service.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B031",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-government",
+        "candidate-family-capabilities"
+      ]
+    },
+    {
+      "id": "PLAY-045-A01",
+      "requirement": "PLAY-045",
+      "sourceIndex": 0,
+      "assertion": "Repeated render/inspect/select operations do not alter model revision, time, cash or randomness.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B030",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-045-A02",
+      "requirement": "PLAY-045",
+      "sourceIndex": 1,
+      "assertion": "All campaign intents pass the shared validator and retain tenant authority and expectedRevision checks.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B030",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-045-A03",
+      "requirement": "PLAY-045",
+      "sourceIndex": 2,
+      "assertion": "A new factory is included in browser, Node and worker assembly with matching behaviour.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B001",
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B030",
+        "B055",
+        "B056",
+        "B057",
+        "B058",
+        "B059",
+        "B060",
+        "B061",
+        "B062",
+        "B063"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-training-map",
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-046-A01",
+      "requirement": "PLAY-046",
+      "sourceIndex": 0,
+      "assertion": "A stale worker result cannot replace a newer command or charge an interval twice.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-preferences",
+        "candidate-product-compatibility",
+        "candidate-long-play",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-046-A02",
+      "requirement": "PLAY-046",
+      "sourceIndex": 1,
+      "assertion": "Save/restore during a call, project, incident and pending bill reproduces the next outcome.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-preferences",
+        "candidate-product-compatibility",
+        "candidate-long-play",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-046-A03",
+      "requirement": "PLAY-046",
+      "sourceIndex": 2,
+      "assertion": "Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [
+        "B030",
+        "B051",
+        "B052",
+        "B053",
+        "B054"
+      ],
+      "candidateDiscoveryRefs": [
+        "candidate-preferences",
+        "candidate-product-compatibility",
+        "candidate-long-play",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-047-A01",
+      "requirement": "PLAY-047",
+      "sourceIndex": 0,
+      "assertion": "A 2,001-minute multi-customer run does not hit the old journal limit and restores correctly.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-047-A02",
+      "requirement": "PLAY-047",
+      "sourceIndex": 1,
+      "assertion": "A documented 20-active-customer, 10,000-minute headless fixture has nonzero sustained workload, recurring settlement and at least one change/incident. It preserves totals, obligations, monotonic IDs and deterministic continuation; inactive roots do not qualify.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-047-A03",
+      "requirement": "PLAY-047",
+      "sourceIndex": 2,
+      "assertion": "Bound case, record, trace and receipt histories as well as the portfolio journal using valid archival summaries/checkpoints or tombstones; retain active obligations and required lineage.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-047-A04",
+      "requirement": "PLAY-047",
+      "sourceIndex": 3,
+      "assertion": "UI sampling may be reduced under load; simulation outcomes and billing cannot be dropped.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-wholesale",
+        "candidate-long-play"
+      ]
+    },
+    {
+      "id": "PLAY-048-A01",
+      "requirement": "PLAY-048",
+      "sourceIndex": 0,
+      "assertion": "The intended /series-of-calls/ path loads its own assets and language strings.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-048-A02",
+      "requirement": "PLAY-048",
+      "sourceIndex": 1,
+      "assertion": "After successful cache installation, a supported offline reload preserves the available game.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-048-A03",
+      "requirement": "PLAY-048",
+      "sourceIndex": 2,
+      "assertion": "No mandatory backend, login, external AI/API call or new framework is introduced for this rebuild.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-049-A01",
+      "requirement": "PLAY-049",
+      "sourceIndex": 0,
+      "assertion": "All 25 existing view mappings and six tutorial mappings receive an explicit new placement.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-049-A02",
+      "requirement": "PLAY-049",
+      "sourceIndex": 1,
+      "assertion": "The 3,454-row catalogue remains intact; each implemented distinctive behaviour links to executed evidence.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-049-A03",
+      "requirement": "PLAY-049",
+      "sourceIndex": 2,
+      "assertion": "No release/gate weakening or exclusion approval is bundled into the UI change.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-training-map",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-050-A01",
+      "requirement": "PLAY-050",
+      "sourceIndex": 0,
+      "assertion": "Record fresh start, alternative plan, incident, bill, renewal/exit and shared-resource expansion for the SMB opening.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-050-A02",
+      "requirement": "PLAY-050",
+      "sourceIndex": 1,
+      "assertion": "Record one complete journey for enterprise, government and defence with distinct constraints.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-050-A03",
+      "requirement": "PLAY-050",
+      "sourceIndex": 2,
+      "assertion": "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-scene",
+        "candidate-visible-and-mcp"
+      ]
+    },
+    {
+      "id": "PLAY-051-A01",
+      "requirement": "PLAY-051",
+      "sourceIndex": 0,
+      "assertion": "Include positive, meaningful failure and recovery cases for each new mechanic plus targeted lifecycle/economy repros.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-051-A02",
+      "requirement": "PLAY-051",
+      "sourceIndex": 1,
+      "assertion": "Run required worker/save/communications, evidence, coverage, gate mutation, translation and build checks according to repository policy.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-051-A03",
+      "requirement": "PLAY-051",
+      "sourceIndex": 2,
+      "assertion": "Report exact results and current blockers; never rename a failed full-release gate to a pass.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "candidate-visible-and-mcp",
+        "candidate-lab-fixture-separation"
+      ]
+    },
+    {
+      "id": "PLAY-052-A01",
+      "requirement": "PLAY-052",
+      "sourceIndex": 0,
+      "assertion": "Provide a 6–8-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "prepared-human-pilot"
+      ]
+    },
+    {
+      "id": "PLAY-052-A02",
+      "requirement": "PLAY-052",
+      "sourceIndex": 1,
+      "assertion": "Do not claim people tested the game unless they actually did; human evidence stays pending until then.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "prepared-human-pilot"
+      ]
+    },
+    {
+      "id": "PLAY-052-A03",
+      "requirement": "PLAY-052",
+      "sourceIndex": 2,
+      "assertion": "Handoff distinguishes playable UI revision, remaining full-conversion obligations, browser verification and publication status.",
+      "status": "pending-current-candidate-verification",
+      "supportingTestCandidates": [],
+      "candidateDiscoveryRefs": [
+        "prepared-human-pilot"
+      ]
+    }
+  ],
+  "candidateDiscovery": {
+    "scope": "Current paths discovered during mutable implementation. Links are not executed acceptance and do not promote any assertion. Baseline remaining notes retain their original as-of commit.",
+    "entries": {
+      "candidate-scene": {
+        "implementation": [
+          "src/game/96-map/90-service-scene.js",
+          "src/game/96-map/95-provider-canvas.js",
+          "src/game/93-ui/75-provider-panels.js",
+          "src/game/97-provider-shell.js"
+        ],
+        "tests": [
+          "tests/provider-scene.test.js",
+          "tests/provider-shell.test.js",
+          "scripts/gameplay-map-browser.js",
+          "scripts/provider-browser.js"
+        ],
+        "requirements": [
+          "PLAY-017",
+          "PLAY-018",
+          "PLAY-019",
+          "PLAY-020",
+          "PLAY-021",
+          "PLAY-022",
+          "PLAY-024",
+          "PLAY-045",
+          "PLAY-050"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-comparisons": {
+        "implementation": [
+          "src/game/93-ui/79-provider-comparisons.js",
+          "src/game/93-ui/75-provider-panels.js"
+        ],
+        "tests": [
+          "tests/provider-comparisons.test.js",
+          "scripts/provider-browser.js"
+        ],
+        "requirements": [
+          "PLAY-005",
+          "PLAY-016",
+          "PLAY-019",
+          "PLAY-025",
+          "PLAY-032",
+          "PLAY-033",
+          "PLAY-034"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-training-map": {
+        "implementation": [
+          "src/game/23-training-lessons.js",
+          "src/game/96-map/96-training-map.js",
+          "src/game/97-training.js",
+          "src/styles/99-training-map.css"
+        ],
+        "tests": [
+          "tests/training-map.test.js",
+          "tests/training-lessons.test.js",
+          "tests/artwork-entry.test.js",
+          "tests/narrative.test.js"
+        ],
+        "requirements": [
+          "PLAY-001",
+          "PLAY-009",
+          "PLAY-021",
+          "PLAY-045",
+          "PLAY-049"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-preferences": {
+        "implementation": [
+          "src/game/93-ui/65-service-preferences.js",
+          "src/game/98-provider-runtime.js",
+          "src/game/97-training.js"
+        ],
+        "tests": [
+          "tests/provider-shell.test.js",
+          "tests/provider-runtime.test.js",
+          "tests/training-map.test.js"
+        ],
+        "requirements": [
+          "PLAY-020",
+          "PLAY-021",
+          "PLAY-022",
+          "PLAY-046"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-standing-policy": {
+        "implementation": [
+          "src/game/23-provider-policy.js",
+          "src/game/93-ui/78-provider-policy-controls.js",
+          "src/game/55-communications.js"
+        ],
+        "tests": [
+          "tests/provider-policy.test.js",
+          "tests/provider-standing-policy.test.js",
+          "tests/provider-policy-controls.test.js",
+          "tests/provider-operations-product.test.js"
+        ],
+        "requirements": [
+          "PLAY-002",
+          "PLAY-005",
+          "PLAY-006",
+          "PLAY-015",
+          "PLAY-028",
+          "PLAY-029",
+          "PLAY-037",
+          "PLAY-039"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-government": {
+        "implementation": [
+          "src/game/23-provider-government.js",
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
+          "content/provider-campaigns.json"
+        ],
+        "tests": [
+          "tests/provider-government.test.js",
+          "tests/provider-government-campaign.test.js",
+          "tests/provider-family-capabilities.test.js"
+        ],
+        "requirements": [
+          "PLAY-025",
+          "PLAY-034",
+          "PLAY-036",
+          "PLAY-037",
+          "PLAY-042",
+          "PLAY-044"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-family-capabilities": {
+        "implementation": [
+          "src/game/23-provider-products.js",
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js"
+        ],
+        "tests": [
+          "tests/provider-family-capabilities.test.js",
+          "tests/provider-products.test.js",
+          "tests/provider-product-campaign.test.js",
+          "tests/provider-demand-integration.test.js",
+          "tests/provider-operations-product.test.js",
+          "scripts/provider-browser.js"
+        ],
+        "requirements": [
+          "PLAY-030",
+          "PLAY-036",
+          "PLAY-037",
+          "PLAY-038",
+          "PLAY-039",
+          "PLAY-040",
+          "PLAY-041",
+          "PLAY-042",
+          "PLAY-043",
+          "PLAY-044"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-product-compatibility": {
+        "implementation": [
+          "src/game/23-provider-products.js",
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js"
+        ],
+        "tests": [
+          "tests/provider-product-compatibility.test.js"
+        ],
+        "requirements": [
+          "PLAY-003",
+          "PLAY-005",
+          "PLAY-009",
+          "PLAY-036",
+          "PLAY-037",
+          "PLAY-046"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-wholesale": {
+        "implementation": [
+          "src/game/55-communications.js",
+          "src/game/93-ui/75-provider-panels.js"
+        ],
+        "tests": [
+          "tests/provider-wholesale-statement.test.js",
+          "tests/provider-wholesale-retention.test.js",
+          "tests/provider-operations-product.test.js"
+        ],
+        "requirements": [
+          "PLAY-006",
+          "PLAY-011",
+          "PLAY-031",
+          "PLAY-037",
+          "PLAY-038",
+          "PLAY-047"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-commercial-growth": {
+        "implementation": [
+          "src/game/25-provider-campaign.js",
+          "content/provider-campaigns.json",
+          "src/game/24-provider-rules.js"
+        ],
+        "tests": [
+          "tests/provider-commercial-choices.test.js",
+          "tests/provider-segments.test.js",
+          "tests/provider-strategy-options.test.js",
+          "tests/provider-demand.test.js"
+        ],
+        "requirements": [
+          "PLAY-016",
+          "PLAY-025",
+          "PLAY-026",
+          "PLAY-027",
+          "PLAY-029",
+          "PLAY-030",
+          "PLAY-032",
+          "PLAY-033",
+          "PLAY-034",
+          "PLAY-035"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-long-play": {
+        "implementation": [
+          "src/game/23-provider-history.js",
+          "src/game/37-portfolio.js",
+          "src/game/54-business.js"
+        ],
+        "tests": [
+          "tests/provider-channel-history.test.js",
+          "tests/provider-portfolio-history.test.js",
+          "tests/provider-wholesale-retention.test.js",
+          "tests/provider-soak.test.js"
+        ],
+        "requirements": [
+          "PLAY-011",
+          "PLAY-029",
+          "PLAY-046",
+          "PLAY-047"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-visible-and-mcp": {
+        "implementation": [
+          "src/game/97-provider-shell.js",
+          "src/game/98-provider-runtime.js"
+        ],
+        "tests": [
+          "scripts/provider-browser.js",
+          "scripts/gameplay-map-browser.js",
+          "scripts/provider-stdio-smoke.py",
+          "scripts/provider-mcp-smoke.py",
+          "scripts/mcp-smoke.py"
+        ],
+        "requirements": [
+          "PLAY-001",
+          "PLAY-017",
+          "PLAY-018",
+          "PLAY-020",
+          "PLAY-021",
+          "PLAY-023",
+          "PLAY-032",
+          "PLAY-033",
+          "PLAY-034",
+          "PLAY-035",
+          "PLAY-036",
+          "PLAY-037",
+          "PLAY-045",
+          "PLAY-046",
+          "PLAY-048",
+          "PLAY-050",
+          "PLAY-051"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "candidate-lab-fixture-separation": {
+        "implementation": [
+          "src/game/97-training.js"
+        ],
+        "tests": [
+          "tests/browser-campaigns-contract.test.js",
+          "tests/business-managed-scope-ui.test.js",
+          "tests/business-pool-ui.test.js",
+          "tests/completion-packs-ui.test.js",
+          "tests/full-campaign-ui.test.js",
+          "tests/information-interfaces-ui.test.js",
+          "tests/interaction-ui.test.js",
+          "tests/market-ui.test.js",
+          "tests/product-rebase.test.js",
+          "tests/site-ui.test.js"
+        ],
+        "requirements": [
+          "PLAY-002",
+          "PLAY-009",
+          "PLAY-045",
+          "PLAY-049",
+          "PLAY-051"
+        ],
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "proposal-progression-adapter": {
+        "implementation": [],
+        "tests": [],
+        "documents": [
+          "docs/PROVIDER_PROGRESSION_CONTRACT.md"
+        ],
+        "requirements": [
+          "PLAY-027"
+        ],
+        "limitation": "Engineering proposal only; thirteen identities and nineteen goals are not accepted Provider achievements or unlocks.",
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      },
+      "prepared-human-pilot": {
+        "implementation": [],
+        "tests": [],
+        "documents": [
+          "docs/GAMEPLAY_PILOT_PROTOCOL.md"
+        ],
+        "requirements": [
+          "PLAY-023",
+          "PLAY-052"
+        ],
+        "limitation": "Protocol prepared, no participant sessions or human results recorded.",
+        "status": "discovery-only-pending-fresh-candidate-evidence"
+      }
+    }
+  },
+  "verificationBacklog": {
+    "scope": "Counts are open verification obligations, not a count of proven code defects or a completion percentage. No individual acceptance assertion is closed. New partial mechanics do not close the full ecosystem release gate.",
+    "requirements": 52,
+    "assertions": 159,
+    "assertionsClosed": 0,
+    "phaseClusters": [
+      {
+        "phase": 1,
+        "requirements": 9,
+        "assertions": 28,
+        "status": "pending-fresh-candidate-verification"
+      },
+      {
+        "phase": 2,
+        "requirements": 7,
+        "assertions": 21,
+        "status": "pending-fresh-candidate-verification"
+      },
+      {
+        "phase": 3,
+        "requirements": 8,
+        "assertions": 24,
+        "status": "pending-fresh-candidate-verification"
+      },
+      {
+        "phase": 4,
+        "requirements": 7,
+        "assertions": 21,
+        "status": "pending-fresh-candidate-verification"
+      },
+      {
+        "phase": 5,
+        "requirements": 13,
+        "assertions": 40,
+        "status": "pending-fresh-candidate-verification"
+      },
+      {
+        "phase": 6,
+        "requirements": 8,
+        "assertions": 25,
+        "status": "pending-fresh-candidate-verification"
+      }
+    ],
+    "additionalOwnerItems": 5,
+    "knownUnclosedEngineeringScopes": [
+      "Provider progression: proposal covers 13 identities and 19 goals; real evidence adapters and useful commercial unlocks remain engineering work.",
+      "Four mission journeys and fourteen family paths require current complete visible-control evidence, including distinctive limitations and recovery; scoped domain passes alone cannot close them.",
+      "Final frozen candidate checks, cross-browser/device/input journeys, persistence/offline/cache-upgrade and protected deployment/public gameplay remain to be reconciled and executed as applicable.",
+      "Per-assertion review remains necessary for authority/economy, service truth, context/stability/accessibility, automation/growth, ecosystem and long play; discovery paths are not proof of complete assertions."
+    ],
+    "externalDependencies": [
+      {
+        "item": "Real pilot participation",
+        "status": "pending",
+        "scope": "6–8 actual independent participants, consent, sessions, observed results and affected retesting. The protocol is prepared; no human outcomes claimed."
+      },
+      {
+        "item": "Applicable publication owner/environment review",
+        "status": "pending-at-final-step",
+        "scope": "Complete engineering and prepare reviewable candidate before seeking any required review; no blanket permission block on current work."
+      }
+    ]
+  }
+}

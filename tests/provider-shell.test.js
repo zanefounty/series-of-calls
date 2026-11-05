@@ -11,8 +11,8 @@ function boot({map=false,quoteHandler=null}={}){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true});const w=dom.window;
  if(map){w.W=2000;w.H=1000;w.COAST=[[[0,0],[100,0],[100,100],[0,100]]];w.CITY={syd:{x:1860,y:790}};}
  w.eval(read('game/93-ui/10-dom.js'));
- for(const file of ['game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
- const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>calls.commands.push(x),quote:x=>{calls.quotes.push(x);return quoteHandler?quoteHandler(x):{accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
+ for(const file of ['game/23-provider-variants.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/78-provider-policy-controls.js','game/93-ui/79-provider-comparisons.js','game/93-ui/79-provider-lifecycle.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
+ const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>{calls.commands.push(x);return {ok:true};},quote:x=>{calls.quotes.push(x);return quoteHandler?quoteHandler(x):{accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
  w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),callbacks);w.SOC_PROVIDER_UI.render(null,null);return {dom,w,calls};
 }
 function click(w,selector){const el=w.document.querySelector(selector);assert.ok(el,selector);el.click();return el;}
@@ -26,7 +26,7 @@ test('provider shell launches through callbacks and does not write simulation st
 });
 
 test('provider plan requires an engine quote and explicit commit; map selection is local view state',()=>{
- const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
+ const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="quote"][data-plan="swift"]');
  assert.equal(calls.quotes.length,1);assert.equal(JSON.stringify(calls.quotes[0]),JSON.stringify({action:'purchase',offerId:'starter',planId:'swift',stage:'base'}));assert.equal(calls.commands.length,0);assert.ok(calls.other.some(x=>x[0]==='decision'&&x[1]===true));
  click(w,'[data-provider-action="confirm-quote"]');assert.equal(JSON.stringify(calls.commands[0]),JSON.stringify({type:'provider',command:{action:'purchase',offerId:'starter',planId:'swift',stage:'base',quoteRevision:44}}));assert.equal(calls.other.at(-1)[1],false);
@@ -80,11 +80,52 @@ test('pause, speed and keyboard reachable controls stay on the callback boundary
 
 test('provider map uses retained geography, customer coordinates and typed observed dependency paths',()=>{
  const {w}=boot({map:true});const state={revision:1,clock:3},model={revision:1,clock:3,period:1,minute:3,cash:1000,forecast:{operatingResult:0},offers:[],events:[],customers:[{id:'one',name:'Sydney client',scenario:'smb',market:'au-sydney',status:'active',outcome:{offered:4,completed:3,onTime:2,open:1},history:[],services:[{id:'phone',kind:'uc',desired:{directory:'identity',connectivity:'access'},provisioning:{status:'ready'},effective:{},observed:{ready:false,reasons:['CARRIER_NOT_READY']}},{id:'identity',kind:'directory',desired:{},provisioning:{status:'ready'},effective:{},observed:{ready:true,reasons:[]}},{id:'access',kind:'connectivity',desired:{},provisioning:{status:'ready'},effective:{},observed:{ready:false,reasons:['CAPACITY_EXHAUSTED']}}]}]};
- w.SOC_PROVIDER_UI.render(state,model);assert.ok(w.document.querySelector('.provider-coast path'));assert.equal(w.document.querySelector('.provider-map-node').style.getPropertyValue('--x'),'93%');
- const map=w.document.createElement('div');map.innerHTML=w.SOCProviderCanvas.render(model,{...w.SOC_PROVIDER_UI.view(),selection:{customerId:'one'}});assert.equal(map.querySelectorAll('.provider-dependency').length,2);assert.equal(map.querySelectorAll('.provider-containment').length,3);assert.match(map.querySelector('.provider-resource-node[aria-label*="UC platform"]').textContent,/Observed unavailable/);assert.match(map.querySelector('.provider-resource-node[aria-label*="UC platform"]').getAttribute('aria-label'),/carrier not ready/);
+ w.SOC_PROVIDER_UI.render(state,model);assert.ok(w.document.querySelector('.provider-coast path'));assert.ok(Number.parseFloat(w.document.querySelector('.provider-map-node').style.getPropertyValue('--x'))<=90,'customer hit target remains inside the world');
+ const map=w.document.createElement('div');map.innerHTML=w.SOCProviderCanvas.render(model,{...w.SOC_PROVIDER_UI.view(),selection:{customerId:'one'}});assert.equal(map.querySelectorAll('.provider-dependency').length,2);assert.equal(map.querySelectorAll('.provider-containment').length,3);assert.match(map.querySelector('.provider-resource-node[data-id="phone"]').textContent,/Observed unavailable/);assert.match(map.querySelector('.provider-resource-node[data-id="phone"]').getAttribute('aria-label'),/carrier not ready/);
  w.close();
 });
 
- test('quote keyboard focus is trapped and Escape resumes the previous decision state',()=>{const {w,calls}=boot();w.SOC_PROVIDER_UI.render({revision:44},{cash:2000000,customers:[],offers:[],events:[],forecast:{}});click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');const trigger=w.document.querySelector('[data-plan="swift"]');trigger.focus();trigger.click();const dialog=w.document.querySelector('[role="dialog"]');assert.ok(dialog.contains(w.document.activeElement));const buttons=dialog.querySelectorAll('button:not([disabled])');buttons[buttons.length-1].focus();buttons[buttons.length-1].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(w.document.activeElement,buttons[0]);buttons[0].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.equal(w.document.querySelector('[role="dialog"]'),null);assert.equal(w.document.activeElement,trigger);assert.deepEqual(calls.other.at(-1),['decision',false]);assert.equal(calls.commands.length,0);w.close();});
+ test('quote keyboard focus is trapped and Escape resumes the previous decision state',()=>{const {w,calls}=boot();w.SOC_PROVIDER_UI.render({revision:44},{cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,customers:[],offers:[],events:[],forecast:{}});click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');const trigger=w.document.querySelector('[data-plan="swift"]');trigger.focus();trigger.click();const dialog=w.document.querySelector('[role="dialog"]');assert.ok(dialog.contains(w.document.activeElement));const buttons=dialog.querySelectorAll('button:not([disabled])');buttons[buttons.length-1].focus();buttons[buttons.length-1].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(w.document.activeElement,buttons[0]);buttons[0].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.equal(w.document.querySelector('[role="dialog"]'),null);assert.equal(w.document.activeElement,trigger);assert.deepEqual(calls.other.at(-1),['decision',false]);assert.equal(calls.commands.length,0);w.close();});
 
-test('coach distinguishes funded expansion from settled operations and mission victory',()=>{const {w}=boot();const model={cash:1000,forecast:{},offers:[],events:[],projects:[],incidents:[{status:'acknowledged'}],mission:{status:'active'},customers:[{id:'starter-customer',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{offered:12},history:[]},{id:'next-1-customer',stages:{base:{status:'running'}}}]};w.SOC_PROVIDER_UI.render({revision:1},model);let steps=w.document.querySelectorAll('.provider-coach-list li');assert.equal(steps[3].classList.contains('is-done'),false);assert.equal(steps[4].classList.contains('is-done'),false);assert.equal(steps[5].classList.contains('is-done'),false);model.incidents[0].status='resolved';model.customers[0].history=[{due:24}];model.customers[1].stages.base.status='effective';w.SOC_PROVIDER_UI.render({revision:2},model);steps=w.document.querySelectorAll('.provider-coach-list li');assert.ok(steps[3].classList.contains('is-done'));assert.ok(steps[4].classList.contains('is-done'));assert.equal(steps[5].classList.contains('is-done'),false);model.mission.status='won';w.SOC_PROVIDER_UI.render({revision:3},model);assert.ok(w.document.querySelectorAll('.provider-coach-list li')[5].classList.contains('is-done'));w.close();});
+test('coach distinguishes funded expansion from settled operations and mission victory',()=>{const {w}=boot();const model={cash:1000,forecast:{},offers:[],events:[],projects:[],incidents:[{customerId:'starter-customer',status:'acknowledged'}],mission:{status:'active'},customers:[{id:'starter-customer',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{offered:12},history:[]},{id:'next-1-customer',stages:{base:{status:'running'}}}]};w.SOC_PROVIDER_UI.render({revision:1},model);let steps=w.document.querySelectorAll('.provider-coach-list li');assert.equal(steps[3].classList.contains('is-done'),false);assert.equal(steps[4].classList.contains('is-done'),false);assert.equal(steps[5].classList.contains('is-done'),false);model.incidents[0].status='resolved';model.customers[0].history=[{due:24}];model.customers[1].stages.base.status='effective';w.SOC_PROVIDER_UI.render({revision:2},model);steps=w.document.querySelectorAll('.provider-coach-list li');assert.ok(steps[3].classList.contains('is-done'));assert.ok(steps[4].classList.contains('is-done'));assert.equal(steps[5].classList.contains('is-done'),false);model.mission.status='won';w.SOC_PROVIDER_UI.render({revision:3},model);assert.ok(w.document.querySelectorAll('.provider-coach-list li')[5].classList.contains('is-done'));w.close();});
+
+
+test('mobile sheet remains explicitly open through focus changes, ticks and closes on request',()=>{
+ const {w}=boot();try{Object.defineProperty(w,'innerWidth',{value:390});const model={cash:1000,customers:[],offers:[],events:[],forecast:{}};
+  w.SOC_PROVIDER_UI.render({revision:1},model);
+  click(w,'[data-provider-action="drawer"][data-provider-value="finance"]');
+  assert.equal(w.SOC_PROVIDER_UI.view().sheetOpen,true);
+  w.document.querySelector('[data-provider-action="pause"]').focus();
+  w.SOC_PROVIDER_UI.render({revision:2},model);
+  assert.ok(w.document.querySelector('.provider-shell').classList.contains('has-sheet'));
+  click(w,'.provider-sheet-close');assert.equal(w.SOC_PROVIDER_UI.view().sheetOpen,false);
+ }finally{w.close();}
+});
+
+
+test('provider preferences validate storage independently and rendering does not change simulation',()=>{
+ const {w}=boot();try{
+  const P=w.SOCServicePreferences,store=new Map(),storage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)};
+  assert.equal(P.read(storage).sound,false);
+  P.write(storage,{version:1,sound:true,animation:false,reducedMotion:true,alerts:false,inputHelp:false,language:'de',cash:999999});
+  const saved=P.read(storage);assert.equal(saved.language,'de');assert.equal(saved.cash,undefined);assert.equal(saved.reducedMotion,true);
+  const state={revision:8,clock:9},model={cash:1000,customers:[],offers:[],events:[],forecast:{}};const before=JSON.stringify(state);
+  w.SOC_PROVIDER_UI.render(state,model,{preferences:saved});
+  assert.ok(w.document.querySelector('.provider-shell.reduce-motion'));
+  assert.equal(w.document.querySelector('.provider-event-strip').getAttribute('aria-live'),'off');
+  assert.equal(JSON.stringify(state),before);
+  store.set(P.KEY,'{broken');assert.equal(P.read(storage).sound,false);
+ }finally{w.close();}
+});
+
+
+test('map product retirement preserves the project quote and submits only its revision-bound dispatch command',()=>{
+ const project={id:'provider-project-4',customerId:'starter-customer',kind:'operation',productId:'ms-workplace-calling',operationId:'ms-workplace-calling',status:'complete',setupCents:210000,dueAt:25,resources:['phone']};
+ const quote={action:'retire-project',atRevision:44,blockers:[],commercial:{retainedSetupCents:210000,effectiveAt:31,commitmentEndsAt:205,remainingMinimumSupplierCents:122500,recurringAfterTermCents:0,affectedWork:[{id:'interaction-4',kind:'voice',caseId:'case-4'}],resources:['phone']}};
+ const {w,calls}=boot({quoteHandler:request=>({...quote,request})});try{
+  const state={revision:44,clock:30},model={clock:30,revision:44,period:1,cash:1000000,forecast:{},goals:[],offers:[],events:[],projects:[project],customers:[{id:'starter-customer',name:'Orchard',status:'active',scenario:'smb',market:'au-sydney',services:[{id:'phone',kind:'uc',observed:{ready:true},effective:{}}]}]};
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="select-customer"][data-id="starter-customer"]');click(w,'[data-provider-action="select-service"][data-id="starter-customer:project:provider-project-4"]');click(w,'[data-provider-action="retire-project"]');
+  assert.equal(JSON.stringify(calls.quotes.at(-1)),JSON.stringify({action:'retire-project',projectId:project.id}));assert.equal(calls.commands.length,0);assert.match(w.document.querySelector('.provider-modal').textContent,/interaction-4/);
+  click(w,'[data-provider-action="confirm-quote"]');assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'retire-project',projectId:project.id,quoteRevision:44}}));
+ }finally{w.close();}
+});

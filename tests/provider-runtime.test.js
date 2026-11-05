@@ -9,10 +9,10 @@ const ROOT=path.join(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(ROOT,file),'utf8');
 function boot(){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div><div id="modal" hidden></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true,url:'http://localhost/'}),w=dom.window;
- w.__TUBES_TEST__=true;w.SOC=SOC;w.ACT={};w.UI={speed:0};w.SCT={};w.socClose=()=>{};
+ w.__TUBES_TEST__=true;w.SOC=SOC;w.SOCProviderPolicy=require('../src/game/23-provider-policy');w.ACT={};w.UI={speed:0};w.SCT={};w.socClose=()=>{};
  let acquired=0;Object.defineProperty(w.navigator,'locks',{value:{request:async(_name,_options,callback)=>{acquired++;await callback({name:'provider'});}}});
  w.eval(read('src/game/93-ui/10-dom.js'));
- for(const file of ['src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js'])w.eval(read(file));
+ for(const file of ['src/game/23-provider-variants.js','src/game/93-ui/65-service-preferences.js','src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/93-ui/78-provider-policy-controls.js','src/game/93-ui/79-provider-comparisons.js','src/game/96-map/90-service-scene.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js'])w.eval(read(file));
  w.eval(read('src/game/98-provider-runtime.js')+';globalThis.__SCP=SCP;');
  return {dom,w,acquired:()=>acquired};
 }
@@ -69,4 +69,58 @@ test('providerFrame keeps canonical paid opening economics and demand equal at e
  }
  const expected=JSON.stringify(canonical[0].state);for(const result of canonical.slice(1)){assert.equal(JSON.stringify(result.state),expected,`${result.speed}× must preserve identical dispatch, demand, cash and settlement state`);}
  assert.ok(canonical[0].state.business.balance.cash<seed.business.balance.cash,'the comparison includes actual period cash reconciliation');assert.equal(canonical[0].state.providerCampaign.periodHistory.find(x=>x.to===120).due,24,'the comparison includes authored full-period customer demand');
+});
+
+
+test('stale quote preserves draft, refuses duplicate commitment and requires fresh explicit review',async()=>{
+ const {dom,w}=boot();try{
+  w.providerHome();await w.providerNew({providerName:'Quote Recovery MSP'});
+  w.document.querySelector('[data-provider-action="drawer"][data-provider-value="deals"]').click();
+  w.document.querySelector('[data-provider-action="quote"][data-plan="steady"]').click();
+  const draft=JSON.stringify(w.SOC_PROVIDER_UI.view().quoteRequest),before=w.__SCP.state.business.balance.cash;
+  // An independently accepted command changes the revision while this quote is open.
+  w.__SCP.state=SOC.dispatch(w.__SCP.state,{type:'advance',minutes:1});
+  w.document.querySelector('[data-provider-action="confirm-quote"]').click();
+  assert.ok(w.document.querySelector('[role="dialog"]'));
+  assert.equal(JSON.stringify(w.SOC_PROVIDER_UI.view().quoteRequest),draft);
+  assert.equal(w.__SCP.state.business.balance.cash,before);
+  assert.equal(w.__SCP.state.providerCampaign.customers.length,0);
+  assert.equal(w.document.querySelector('[data-provider-action="confirm-quote"]').disabled,true);
+  assert.match(w.document.querySelector('[role="dialog"] [role="alert"]').textContent,/world changed|review current/i);
+  assert.equal(w.__SCP.decision,true);
+  w.document.querySelector('[data-provider-action="refresh-quote"]').click();
+  assert.equal(w.__SCP.state.providerCampaign.customers.length,0,'review must not recommit');
+  assert.equal(w.SOC_PROVIDER_UI.view().quote.atRevision,w.__SCP.state.revision);
+  w.document.querySelector('[data-provider-action="confirm-quote"]').click();
+  assert.equal(w.__SCP.state.providerCampaign.customers.length,1);
+  assert.equal(w.SOC_PROVIDER_UI.view().quoteModal,false);
+  assert.equal(w.__SCP.decision,false);
+ }finally{dom.window.close();}
+});
+
+test('standing policy review preserves drafts through ticks and stale refusal, then enables through dispatch without immediate purchase',async()=>{
+ const {dom,w}=boot();try{
+  const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();await w.providerNew({scenario:'smb'});
+  const buy=command=>{const q=SOC.provider.quote(w.__SCP.state,command);assert.deepEqual(q.blockers,[]);assert.equal(w.providerCommand({type:'provider',command:{...command,quoteRevision:q.atRevision}}).ok,true);};
+  buy({action:'purchase',offerId:'starter',planId:'swift',stage:'base'});for(let n=0;n<4;n++)w.providerTick();buy({action:'operation',operationId:'automation',customerId:'starter-customer'});for(let n=0;n<6;n++)w.providerTick();
+  w.document.querySelector('[data-provider-action="drawer"][data-provider-value="automation"]').click();
+  const form=()=>w.document.querySelector('[data-provider-form=policy]');const fill=(key,value)=>{form().elements[key].value=value;form().elements[key].dispatchEvent(new w.Event('input',{bubbles:true}));};fill('template','provisioning');fill('lifetimeBudget','3000');fill('cashFloor','100');
+  w.providerTick();assert.equal(form().elements.lifetimeBudget.value,'3000');assert.equal(form().elements.template.value,'provisioning');
+  const submit=()=>form().dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));submit();assert.equal(w.SOC_PROVIDER_UI.view().policyReview.preview.status,'ready');const cash=w.__SCP.state.business.balance.cash;
+  w.providerTick();w.document.querySelector('[data-provider-action=policy-confirm]').click();assert.match(w.SOC_PROVIDER_UI.view().policyReview.error,/world changed/i);assert.equal(w.__SCP.state.providerAutomation[0].config,undefined);assert.equal(form().elements.lifetimeBudget.value,'3000');
+  submit();w.document.querySelector('[data-provider-action=policy-confirm]').click();assert.equal(w.__SCP.state.providerAutomation[0].config.rules[0].kind,'provisioning');assert.equal(w.__SCP.state.business.balance.cash,cash);assert.equal(w.__SCP.state.providerCampaign.customers[0].stages.carrier,null);
+  w.providerTick();assert.ok(w.__SCP.state.providerCampaign.customers[0].stages.carrier);assert.equal(w.__SCP.state.providerAutomation[0].actions.length,1);assert.deepEqual(SOC.restore(JSON.stringify(w.__SCP.state)),w.__SCP.state);
+ }finally{dom.window.close();}
+});
+
+
+test('map actions retain a blocked costed quote while shared engineers are occupied',async()=>{
+ const {dom,w}=boot();try{
+  const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();await w.providerNew({scenario:'enterprise'});
+  const buy=command=>{const q=SOC.provider.quote(w.__SCP.state,command);assert.deepEqual(q.blockers,[]);assert.equal(w.providerCommand({type:'provider',command:{...command,quoteRevision:q.atRevision}}).ok,true);};
+  for(const stage of ['base','carrier','partner'])buy({action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});
+  for(let n=0;n<5;n++)w.providerTick();buy({action:'operation',operationId:'migration-consolidated',customerId:'starter-customer'});
+  w.SOC_PROVIDER_UI.render(w.__SCP.state,w.providerModel(),{selection:{kind:'service',customerId:'starter-customer',serviceId:'carrier'}});
+  const button=w.document.querySelector('.provider-inspector [data-provider-action=operation][data-operation=carrier-headroom]');assert.ok(button,'the costed response remains reachable while staff are busy');const cash=w.__SCP.state.business.balance.cash;button.click();assert.ok(w.SOC_PROVIDER_UI.view().quote.blockers.includes('ENGINEER_CAPACITY'));assert.equal(w.document.querySelector('[data-provider-action=confirm-quote]').disabled,true);assert.equal(w.__SCP.state.business.balance.cash,cash);assert.equal(w.__SCP.state.providerCampaign.projects.some(p=>p.operationId==='carrier-headroom'),false);
+ }finally{dom.window.close();}
 });

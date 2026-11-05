@@ -86,6 +86,14 @@ test('missing translations fall back to the English, with placeholders filled', 
   assert.equal(ev("trn('slots.n_day_ago',3)"), '3 giorni fa');
 });
 
+test('unknown labels and missing plural translations safely fall back to literal or English text', () => {
+  const { ev } = load();
+  ev("EN['test.partial_plural']={one:'{n} packet',other:'{n} packets'};DICT['test.partial_plural']=undefined");
+  assert.equal(ev("trn('test.partial_plural',1)"), '1 packet');
+  assert.equal(ev("trn('test.partial_plural',3)"), '3 packets');
+  assert.equal(ev("tr('unregistered.codec.label')"), 'unregistered.codec.label');
+});
+
 test('text that old saves stored in English is still translated', () => {
   const { ev } = load({ lang: 'it' });
   assert.equal(ev("tr('Delivery: 2 to 6 weeks')"), ev("tr('pnis.delivery_2_to_6_weeks')"));

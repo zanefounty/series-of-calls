@@ -73,12 +73,12 @@ test('AC-SOC-400 only a complete error-free locked-version browser matrix can re
 test('AC-SOC-401 page wait predicates use the lexical SCT binding and the mapped config submits through real UI dispatch',()=>{
  const h=load(),{dom,ev}=h,w=dom.window;
  try{
-  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'});SCT.locked=true;socRender();`);
+  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'});SCT.locked=true;socRender();`);
   assert.equal(ev('typeof window.SCT'),'undefined');assert.equal(ev('('+runner.pageIsIdle.toString()+')()'),true);
   assert.equal(ev('('+runner.pageRevisionPast.toString()+')(-1)'),true);assert.equal(ev('('+runner.pageRevisionPast.toString()+')(0)'),false);
   ev('SCT.busy=true');assert.equal(ev('('+runner.pageIsIdle.toString()+')()'),false);ev('SCT.busy=false');
-  const state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'}),command=SOC.reference(state).find(x=>x.type==='configure'),ui=runner.referenceUiAction(command);
-  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',mode:'guided'});SCT.locked=true;socRender();`);
+  const state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'}),command=SOC.reference(state).find(x=>x.type==='configure'),ui=runner.referenceUiAction(command);
+  ev(`SCT.state=SOC.create({scenario:'smb',jurisdiction:'AU',experience:'lab',mode:'sandbox'});SCT.locked=true;socRender();`);
   w.document.querySelector(ui.select).click();const form=w.document.querySelector(ui.form);
   for(const [name,value] of Object.entries(ui.fields)){const control=form.elements[name];assert.ok(control,`missing visible field ${name}`);control.value=String(value);}
   form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));

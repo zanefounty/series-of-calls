@@ -2,6 +2,7 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const information=require('../src/game/52-information.js');
+const recordStore=require('../src/game/23-information-record-store.js');
 
 function fullQueue(){
  const s={clock:12,scenario:'enterprise',jurisdiction:'AU',connected:true,records:[],interactions:[],resources:{}};
@@ -69,6 +70,22 @@ test('retention expiry cancels pending admission explicitly without creating pro
  assert.equal(s.information.jobs.some(job=>job.source===captured.id),false);
  assert.ok(s.information.audit.some(entry=>entry.code==='PROCESSING_ADMISSION_CANCELLED'&&entry.record===captured.id&&entry.reason==='RETENTION_EXPIRED'));
  assert.doesNotThrow(()=>information.validate(s));
+});
+
+test('a full paid archive blocks output without aborting clock advancement or dropping its source job',()=>{
+ const s={clock:1,scenario:'enterprise',jurisdiction:'AU',connected:true,records:[],interactions:[],resources:{},recordStore:recordStore.create()};
+ s.information=information.create(s);s.information.pipeline.effective=structuredClone(information.schemas.pipeline);
+ s.information.boundary.effective={processRegions:['AU'],storageRegions:['AU'],readers:['supervisor']};
+ s.resources.speech={id:'speech',kind:'processor',effective:{capacity:20,region:'AU'}};
+ s.resources.archive={id:'archive',kind:'archive',effective:{capacity:20,region:'AU',retentionDays:30,access:['supervisor']}};
+ for(let n=1;n<=2000;n++)s.records.push({id:`record-${n}`,kind:'recording',interaction:`call-${n}`,parents:[],region:'AU',archiveId:'archive',retentionDays:30,expiresAt:43200,access:['supervisor'],createdAt:0,held:n===1,deleted:false,quality:100});
+ const job={id:'processing-1',source:'record-1',parent:'record-1',interaction:'call-1',status:'queued',stage:0,remaining:2,plan:structuredClone(information.schemas.pipeline),reason:null,createdAt:0};
+ s.information.jobs=[job];s.information.nextId=2;
+ s.clock++;
+ assert.doesNotThrow(()=>information.advance(s,{speech:{ready:true},archive:{ready:true}},()=>{},()=>{}));
+ assert.equal(job.status,'blocked');assert.equal(job.reason,'ARCHIVE_CAPACITY');
+ assert.equal(s.records.length,2000);assert.equal(s.records[0].held,true);
+ assert.equal(s.records.some(row=>row.parents?.includes('record-1')&&row.kind==='transcription'),false);
 });
 
 test('pending admission rejects unknown versions and mismatched refusal snapshots',()=>{

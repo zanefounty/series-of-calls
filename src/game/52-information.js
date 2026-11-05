@@ -2,6 +2,7 @@
 function socInformationKernel(){
  'use strict';
  const PACK='soc-information-1',copy=x=>JSON.parse(JSON.stringify(x)),own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+ function recordStoreApi(){return typeof SOC_INFORMATION_RECORD_STORE!=='undefined'?SOC_INFORMATION_RECORD_STORE:(typeof require==='function'?require('./23-information-record-store.js'):null);}
  const fail=code=>{throw new Error(code);},id=x=>typeof x==='string'&&/^[a-z][a-z0-9-]{0,63}$/.test(x);
  const integer=(v,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(v)&&v>=min&&v<=max,regions=['AU','US','JP','EU'];
  const classes=['public','internal','confidential','restricted'],classRank=Object.fromEntries(classes.map((x,i)=>[x,i]));
@@ -114,19 +115,25 @@ function socInformationKernel(){
   const origin={scenario:s.scenario,workload:capture.workload,capture,initialStorage:storage,classification,capturedAt:s.clock,complete:capture.eligible&&storage.eligible&&capture.workload===storage.workload&&capture.profile===storage.profile};
   record.origin=copy(origin);record.classification=classification;record.storage=copy(storage);
   const o=s.information;o.originReceipts=o.originReceipts||[];
-  if(o.originReceipts.length>=500)fail('INFORMATION_ORIGIN_CAPACITY');
+  const receiptLimit=s.recordStore?.version===1?recordStoreApi().MAX_ORIGIN_RECEIPTS:500;
+  if(o.originReceipts.length>=receiptLimit)fail('INFORMATION_ORIGIN_CAPACITY');
   o.originReceipts.push({recordId:record.id,at:s.clock,origin:copy(origin)});
  }
+ function storageAdmission(s,resourceId,region,additional=1){
+  const store=recordStoreApi(),resource=s.resources?.[resourceId],config=resource?.effective||resource?.desired;
+  if(!store||!config)return {accepted:false,reason:'ARCHIVE_RESOURCE_UNAVAILABLE',used:0,limit:0,required:additional};
+  return store.admission(s,{resourceId,region,capacityUnits:config.capacity,additional,store:s.recordStore});
+ }
  function pendingAdmissions(s){return s.records.filter(r=>r.processingAdmission).sort((a,b)=>a.processingAdmission.refusedAt-b.processingAdmission.refusedAt||a.processingAdmission.refusalAuditId-b.processingAdmission.refusalAuditId);}
- function removeTerminalJob(info){
+ function removeTerminalJob(info,protectedJobs=[]){
   if(info.jobs.length<200)return true;
-  const removable=info.jobs.findIndex(j=>['complete','failed'].includes(j.status));if(removable<0)return false;
+  const removable=info.jobs.findIndex(j=>['complete','failed'].includes(j.status)&&!protectedJobs.includes(j.id));if(removable<0)return false;
   const removed=info.jobs.splice(removable,1)[0],number=Number(String(removed.id).slice('processing-'.length));
   if(Number.isSafeInteger(number))info.jobPrunedThrough=Math.max(info.jobPrunedThrough||0,number);
   return true;
  }
  function createJob(s,record,plan,speechModel){
-  const info=s.information;if(!removeTerminalJob(info))return false;
+  const info=s.information;if(!removeTerminalJob(info,s.providerProgressionPins?.pins?.processingJobIds||[]))return false;
   info.jobs.push({id:'processing-'+info.nextId++,source:record.id,parent:record.id,interaction:record.interaction,status:'queued',stage:0,remaining:steps[plan.steps[0]].work,plan:copy(plan),...(speechModel?{speechModel:copy(speechModel)}:{}),reason:null,createdAt:s.clock});
   audit(s,'PROCESSING_QUEUED',{record:record.id});return info.jobs.at(-1);
  }
@@ -218,14 +225,13 @@ function socInformationKernel(){
   if(!id(role)||!source.access?.includes(role)||!source.storage.accessRoles.includes(role)||!dest?.access?.includes(role)||!flow?.accessRoles.includes(role)||!canRead(s,source,role,source.region))return block('TRANSFER_ACCESS_DENIED');
   const classification=classes[Math.max(classRank[source.classification],classRank[cfg.destination.informationClass])];
   if(classRank[classification]>classRank[policy.maximumClassification])return block('DESTINATION_CLASSIFICATION_EXCEEDS_POLICY');
-  if(s.records.length>=500)return block('RECORD_CAPACITY');
   if(!integer(dest.retentionDays,1)||!Number.isSafeInteger(source.expiresAt))return block('RETENTION_UNPROVEN');
-  if(dest.capacity<Math.ceil((s.records.filter(x=>!x.deleted).length+1)/100))return block('DESTINATION_ARCHIVE_CAPACITY');
+  const capacity=storageAdmission(s,cfg.destination.resourceId,dest.region,1);if(!capacity.accepted)return block(capacity.reason||'ARCHIVE_CAPACITY');
   const expiresAt=Math.min(source.expiresAt,s.clock+dest.retentionDays*1440);if(expiresAt<=s.clock)return block('RETENTION_EXPIRED');
   const access=source.access.filter(x=>source.storage.accessRoles.includes(x)&&dest.access.includes(x)&&flow.accessRoles.includes(x)&&s.information.boundary.effective?.readers.includes(x));
   if(!access.includes(role))return block('TRANSFER_ACCESS_DENIED');
   const outputId=`record-${s.nextId++}`,storage=copy(cfg.destination);
-  const output={id:outputId,kind:source.kind,interaction:source.interaction,parents:[source.id],...(source.captureRegion!==undefined?{captureRegion:source.captureRegion}:{}),...(source.processRegion!==undefined?{processRegion:source.processRegion}:{}),region:dest.region,retentionDays:Math.max(1,Math.ceil((expiresAt-s.clock)/1440)),access,createdAt:s.clock,expiresAt,quality:source.quality,language:source.language,held:false,deleted:false,redacted:!!source.redacted,pack:PACK,origin:copy(source.origin),classification,storage,interfaceTransfer:{id:idValue,interfaceId:node.id,policyId:cfg.policyId,sourceRecord:source.id,at:s.clock,sourceStorage:copy(source.storage),destinationStorage:copy(cfg.destination),classification}};
+  const output={id:outputId,kind:source.kind,interaction:source.interaction,parents:[source.id],...(source.captureRegion!==undefined?{captureRegion:source.captureRegion}:{}),...(source.processRegion!==undefined?{processRegion:source.processRegion}:{}),region:dest.region,archiveId:cfg.destination.resourceId,retentionDays:Math.max(1,Math.ceil((expiresAt-s.clock)/1440)),access,createdAt:s.clock,expiresAt,quality:source.quality,language:source.language,held:false,deleted:false,redacted:!!source.redacted,pack:PACK,origin:copy(source.origin),classification,storage,interfaceTransfer:{id:idValue,interfaceId:node.id,policyId:cfg.policyId,sourceRecord:source.id,at:s.clock,sourceStorage:copy(source.storage),destinationStorage:copy(cfg.destination),classification}};
   s.records.push(output);result.status='complete';result.reason=null;result.outputRecordId=outputId;result.sourceStorage=copy(source.storage);result.destinationStorage=copy(cfg.destination);result.classification=classification;transferReceipt(o,result);audit(s,'INFORMATION_TRANSFER_COMPLETED',{transfer:idValue,interfaceId:node.id,policyId:cfg.policyId,source:source.id,destination:outputId,classification});return copy(result);
  }
  function reason(s,j,services,speechGate){
@@ -237,7 +243,7 @@ function socInformationKernel(){
   if(!b.processRegions.includes(proc.region)||!b.storageRegions.includes(archive.region))return 'PROCESSING_BOUNDARY';
   if(!p.languages.includes(source.language||i?.language||'en'))return 'PROCESSING_LANGUAGE';
   if(!p.access.some(role=>source.access.includes(role)&&archive.access.includes(role)&&b.readers.includes(role)))return 'PROCESSING_PERMISSION';
-  if(archive.capacity<Math.ceil((s.records.filter(r=>!r.deleted).length+1)/100))return 'ARCHIVE_CAPACITY';
+  const storage=storageAdmission(s,p.archive,archive.region,1);if(!storage.accepted)return storage.reason||'ARCHIVE_CAPACITY';
   if(j.speechModel){if(typeof speechGate!=='function')return 'SPEECH_MODEL_GATE_UNAVAILABLE';const gate=speechGate(j.speechModel,{language:source.language||i?.language||'en',stage:p.steps[j.stage],computeUnits:steps[p.steps[j.stage]]?.work||1,region:proc.region,offline:!s.connected});if(!gate?.ready)return gate?.reasons?.[0]||'SPEECH_MODEL_NOT_READY';}
   return null;
  }
@@ -293,8 +299,8 @@ function socInformationKernel(){
    const parent=s.records.find(r=>r.id===j.parent),kind=p.steps[j.stage],interaction=s.interactions.find(i=>i.id===j.interaction);
    const quality=Math.min(parent.quality??100,p.quality);
    if(quality<p.minimumQuality){j.status='failed';j.reason='PROCESSING_QUALITY';audit(s,j.reason,{job:j.id,quality});if(interaction)emit(s,interaction,'processing',j.reason,{job:j.id,quality});continue;}
-   if(s.records.length>=500){j.status='blocked';j.reason='RECORD_CAPACITY';continue;}
-   const record={id:'record-'+s.nextId++,kind,interaction:j.interaction,parents:[parent.id],captureRegion:parent.captureRegion,processRegion:proc.region,region:archive.region,retentionDays:Math.min(p.retentionDays,archive.retentionDays,parent.retentionDays),access:p.access.filter(role=>parent.access.includes(role)&&archive.access.includes(role)&&o.boundary.effective.readers.includes(role)),createdAt:s.clock,expiresAt:Math.min(parent.expiresAt??Infinity,s.clock+Math.min(p.retentionDays,archive.retentionDays)*1440),quality,language:kind==='translation'?p.targetLanguage:parent.language||interaction?.language||'en',held:false,deleted:false,redacted:kind==='redaction'||!!parent.redacted,pack:PACK,...(parent.origin?{origin:copy(parent.origin),classification:parent.classification,storage:copy(parent.storage)}:{})};
+   const capacity=storageAdmission(s,p.archive,archive.region,1);if(!capacity.accepted){j.status='blocked';j.reason=capacity.reason||'ARCHIVE_CAPACITY';continue;}
+   const record={id:'record-'+s.nextId++,kind,interaction:j.interaction,parents:[parent.id],captureRegion:parent.captureRegion,processRegion:proc.region,region:archive.region,archiveId:p.archive,retentionDays:Math.min(p.retentionDays,archive.retentionDays,parent.retentionDays),access:p.access.filter(role=>parent.access.includes(role)&&archive.access.includes(role)&&o.boundary.effective.readers.includes(role)),createdAt:s.clock,expiresAt:Math.min(parent.expiresAt??Infinity,s.clock+Math.min(p.retentionDays,archive.retentionDays)*1440),quality,language:kind==='translation'?p.targetLanguage:parent.language||interaction?.language||'en',held:false,deleted:false,redacted:kind==='redaction'||!!parent.redacted,pack:PACK,...(parent.origin?{origin:copy(parent.origin),classification:parent.classification,storage:copy(parent.storage)}:{})};
    s.records.push(record);j.parent=record.id;j.stage++;audit(s,'DERIVED_RECORD',{record:record.id,parent:parent.id,operation:kind});
    if(interaction){interaction.records.push(record.id);emit(s,interaction,'processing','ARTEFACT_CREATED',{record:record.id,operation:kind,processRegion:proc.region,storageRegion:archive.region,quality});}
    if(j.stage===p.steps.length)j.status='complete';else{j.remaining=steps[p.steps[j.stage]].work;j.status='queued';}
@@ -311,12 +317,13 @@ function socInformationKernel(){
    if((!allowFuture&&s.clock<booking.start)||(!allowEnd&&s.clock>=booking.end))errors.push('BOOKING_WINDOW');
    if(booking.attendees>(booking.event?p.eventCapacity:p.capacity))errors.push('MEETING_CAPACITY');
    if(booking.event&&!p.eventLicensed)errors.push('EVENT_ENTITLEMENT');
+   if(c.mode==='guest'&&(p.recording||p.captions||booking.event))errors.push('BROWSER_GUEST_FEATURE_UNAVAILABLE');
    if(p.platform!==p.nativePlatform&&(c.mode==='native'||c.mode==='guest'&&!p.guestJoin||c.mode==='bridge'&&!p.bridgeLicensed))errors.push('JOIN_METHOD_UNSUPPORTED');
    if(!s.connected&&p.mediaPlacement==='cloud')errors.push('MEETING_CLOUD_MEDIA');
    const boundary=o.boundary.effective,speech=s.resources.speech.effective,archive=s.resources.archive.effective,recorder=s.resources.recorder.effective;
    if(p.captions&&(!services.speech?.ready||speech.capacity<1||!o.pipeline.effective?.languages.includes(booking.language)||!boundary?.processRegions.includes(speech.region)))errors.push('CAPTIONS_DEPENDENCY');
    if(baseMeeting?.media&&(!baseMeeting.media.in||!baseMeeting.media.out))errors.push('MEETING_MEDIA_UNAVAILABLE');
-   if(p.recording&&(!services.recorder?.ready||!recorder.consent||!recorder.identityMapping||!services.archive?.ready||!boundary?.processRegions.includes(recorder.region)||!boundary?.storageRegions.includes(archive.region)||archive.capacity<Math.ceil((s.records.filter(r=>!r.deleted).length+1)/100)||s.records.length>=500))errors.push('MEETING_RECORDING_DEPENDENCY');
+   if(p.recording){const capacity=recorder?.archive&&archive?storageAdmission(s,recorder.archive,archive.region,1):{accepted:false,reason:'ARCHIVE_RESOURCE_UNAVAILABLE'};if(!services.recorder?.ready||!recorder?.consent||!recorder?.identityMapping||!services.archive?.ready||!boundary?.processRegions.includes(recorder?.region)||!boundary?.storageRegions.includes(archive?.region)||!capacity.accepted)errors.push(capacity.reason||'MEETING_RECORDING_DEPENDENCY');}
   }
   return [...new Set(errors)];
  }
@@ -371,6 +378,7 @@ function socInformationKernel(){
   if(booking.sessionId){const prior=meetingSession(s,booking.sessionId);if(prior&&!meetingSessionTerminal(prior))fail('MEETING_SESSION_ALREADY_ACTIVE');}
   if(o.meetingSessions.length>=200)fail('MEETING_SESSION_CAPACITY');
   const session={id:`meeting-session-${o.nextMeetingSessionId++}`,bookingId:booking.id,status:'scheduled',scheduledAt:booking.start,startedAt:null,endsAt:booking.end,endedAt:null,attendees:booking.attendees,roomId:'room',platform:o.meeting.effective?.platform||null,mediaPlacement:o.meeting.effective?.mediaPlacement||null,features:{captions:!!o.meeting.effective?.captions,recording:!!o.meeting.effective?.recording},reasons:[],reservationHeld:false,reservationReleased:false,captureRecordId:null};
+  if(s.resources.room.effective&&Number.isSafeInteger(s.resources.room.generation)&&s.resources.room.provisioning&&o.meeting.effective)Object.assign(session,{joinMethod:s.resources.room.effective.mode==='guest'?'browser':s.resources.room.effective.mode==='bridge'?'bridge':'native',joinProfileGeneration:o.meeting.provisioning.status==='ready'?o.meeting.generation:o.meeting.generation-1,joinRoomGeneration:s.resources.room.provisioning.status==='ready'?s.resources.room.generation:s.resources.room.generation-1});
   const snapshot=meetingSnapshot(s,booking,services,baseMeeting);
   const dependency=meetingDependencyStatus(s,booking,snapshot,meetingDependency(s));if(dependency.proof)session.platformDependency=dependency.proof;
   if(booking.externalGuest)session.externalGuest={version:1,admissionId:null,guestId:booking.externalGuest.guestId,guestTenant:booking.externalGuest.guestTenant,hostTenant:booking.externalGuest.hostTenant,admittedAt:null,lastPresentAt:null,observedMinutes:0,policyGeneration:o.meeting.generation,platformResourceId:session.platformDependency?.resourceId||null,platformGeneration:session.platformDependency?.generation??null,media:{in:false,out:false},status:'scheduled',reason:null};
@@ -458,9 +466,11 @@ function socInformationKernel(){
  function validate(s){
   const o=s.information;if(o===undefined)return;
   if(!o||o.pack!==PACK||!integer(o.nextId,1))fail('INVALID_INFORMATION_SAVE');
+  recordStoreApi().validate(s);
   if(o.jobPrunedThrough!==undefined&&!integer(o.jobPrunedThrough,0,o.nextId-1)||o.nextAuditId!==undefined&&!integer(o.nextAuditId,1)||o.auditPrunedThrough!==undefined&&(!integer(o.auditPrunedThrough,0,(o.nextAuditId||1)-1)))fail('INVALID_INFORMATION_HISTORY');
   const hasInterfaceState=['interfaces','transfers','originReceipts','nextTransferId'].some(k=>own(o,k));
-  if(hasInterfaceState&&(!Array.isArray(o.interfaces)||!Array.isArray(o.transfers)||!Array.isArray(o.originReceipts)||!integer(o.nextTransferId,1)||o.interfaces.length>50||o.transfers.length>200||o.originReceipts.length>500||o.transferPrunedThrough!==undefined&&!integer(o.transferPrunedThrough,0,o.nextTransferId-1)))fail('INVALID_INFORMATION_INTERFACE_HISTORY');
+  const originLimit=s.recordStore?.version===1?recordStoreApi().MAX_ORIGIN_RECEIPTS:500;
+  if(hasInterfaceState&&(!Array.isArray(o.interfaces)||!Array.isArray(o.transfers)||!Array.isArray(o.originReceipts)||!integer(o.nextTransferId,1)||o.interfaces.length>50||o.transfers.length>200||o.originReceipts.length>originLimit||o.transferPrunedThrough!==undefined&&!integer(o.transferPrunedThrough,0,o.nextTransferId-1)))fail('INVALID_INFORMATION_INTERFACE_HISTORY');
   for(const kind of Object.keys(schemas)){const n=o[kind];if(!n||!integer(n.generation,1)||!n.provisioning||n.provisioning.generation!==n.generation||!integer(n.provisioning.due)||!['pending','ready'].includes(n.provisioning.status))fail('INVALID_INFORMATION_PROVISIONING');config(kind,n.desired);if(n.effective)config(kind,n.effective);if(kind==='meeting')for(const profile of [n.desired,n.effective].filter(Boolean))if(profile.platformDependency){const resource=s.resources?.[profile.platformDependency.resourceId];if(!resource||!['uc','dedicated'].includes(resource.kind))fail('INVALID_MEETING_PLATFORM_RESOURCE');}}
   const dependencyEpoch=o.meetingDependencyEpoch,hasEffectiveDependency=!!o.meeting.effective?.platformDependency,hasDesiredDependency=!!o.meeting.desired?.platformDependency,hasDependencyProof=o.meetingSessions?.some(session=>session&&own(session,'platformDependency'));
   if(dependencyEpoch!==undefined&&(!dependencyEpoch||Array.isArray(dependencyEpoch)||Object.keys(dependencyEpoch).sort().join(',')!=='at,firstSessionNumber,profileGeneration,version'||dependencyEpoch.version!==1||!integer(dependencyEpoch.firstSessionNumber,1,o.nextMeetingSessionId||1)||!integer(dependencyEpoch.profileGeneration,1,o.meeting.generation)||!integer(dependencyEpoch.at,0,s.clock)))fail('INVALID_MEETING_DEPENDENCY_EPOCH');
@@ -493,8 +503,10 @@ function socInformationKernel(){
     if(Object.keys(refusal).sort().join(',')!==auditKeys.split(',').sort().join(',')||refusal.code!=='PROCESSING_ADMISSION_REFUSED'||refusal.synthetic!==true||refusal.at!==p.refusedAt||refusal.record!==r.id||refusal.reason!=='PROCESSING_JOB_CAPACITY'||refusal.admissionVersion!==1||refusal.capturedAt!==p.capturedAt||JSON.stringify(refusal.plan)!==JSON.stringify(p.plan)||JSON.stringify(refusal.speechModel)!==JSON.stringify(p.speechModel))fail('INVALID_PROCESSING_ADMISSION_RECEIPT');
    }else if(p.refusalAuditId>(o.auditPrunedThrough||0))fail('INVALID_PROCESSING_ADMISSION_RECEIPT');
   }
-  if(pendingCount>500)fail('INVALID_PROCESSING_ADMISSION_CAPACITY');
+  const pendingLimit=s.recordStore?.version===1?recordStoreApi().MAX_LIVE_RECORDS:500;
+  if(pendingCount>pendingLimit)fail('INVALID_PROCESSING_ADMISSION_CAPACITY');
   if(hasInterfaceState){
+   if(o.originReceipts.length>originLimit)fail('INVALID_INFORMATION_ORIGIN_CAPACITY');
    const origins=new Map();for(const receipt of o.originReceipts){if(!receipt||Object.keys(receipt).sort().join(',')!=='at,origin,recordId'||!id(receipt.recordId)||!integer(receipt.at)||!validOrigin(receipt.origin)||receipt.origin.capturedAt!==receipt.at||origins.has(receipt.recordId))fail('INVALID_INFORMATION_ORIGIN_RECEIPT');origins.set(receipt.recordId,receipt.origin);}
    for(const [recordId,origin] of origins){const record=s.records.find(x=>x.id===recordId);if(!record||record.parents.length||!record.origin||JSON.stringify(origin)!==JSON.stringify(record.origin))fail('INVALID_INFORMATION_ORIGIN_RECEIPT');}
    for(const r of s.records)if(r.origin&&r.parents.length===0){const origin=origins.get(r.id);if(!origin||JSON.stringify(origin)!==JSON.stringify(r.origin))fail('INVALID_INFORMATION_ORIGIN_RECEIPT');}
@@ -523,7 +535,10 @@ function socInformationKernel(){
    if(!Array.isArray(o.meetingSessions)||o.meetingSessions.length>200||!integer(o.nextMeetingSessionId,1))fail('INVALID_MEETING_SESSION_HISTORY');
    const sessionIds=new Set();let sequence=0;
    for(const session of o.meetingSessions){
-    const keys='attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status';
+    const hasJoin=session&&own(session,'joinMethod');
+    const keys=('attendees,bookingId,captureRecordId,endedAt,endsAt,features,id,mediaPlacement,platform,reasons,reservationHeld,reservationReleased,roomId,scheduledAt,startedAt,status'+(hasJoin?',joinMethod,joinProfileGeneration,joinRoomGeneration':'')).split(',').sort().join(',');
+    if(hasJoin&&(!['native','browser','bridge'].includes(session.joinMethod)||!integer(session.joinProfileGeneration,1,o.meeting.generation)||!integer(session.joinRoomGeneration,1,s.resources.room.generation)||session.joinMethod==='browser'&&['scheduled','active','completed'].includes(session.status)&&(session.features?.recording||session.features?.captions)))fail('INVALID_MEETING_JOIN_ADMISSION');
+    if(hasJoin&&session.joinRoomGeneration===s.resources.room.generation&&s.resources.room.provisioning.status==='ready'&&session.joinMethod!==(s.resources.room.effective.mode==='guest'?'browser':s.resources.room.effective.mode==='bridge'?'bridge':'native'))fail('INVALID_MEETING_JOIN_ADMISSION');
     const extendedKeys=[...keys.split(','),'platformDependency'].sort().join(',');
     const guestKeys=[...keys.split(','),'externalGuest'].sort().join(',');
     const guestAndDependencyKeys=[...keys.split(','),'externalGuest','platformDependency'].sort().join(',');
@@ -531,6 +546,7 @@ function socInformationKernel(){
     const hasExternalGuest=session&&own(session,'externalGuest');
     const guest=session?.externalGuest;
     const proof=session?.platformDependency;
+    if(hasJoin&&(proof&&session.joinProfileGeneration!==proof.profileGeneration||guest&&session.joinProfileGeneration!==guest.policyGeneration))fail('INVALID_MEETING_JOIN_ADMISSION');
     const invalidProofGeneration=!!proof&&proof.generation===null&&proof.ready===false&&Array.isArray(proof.reasons)&&proof.reasons.length===1&&proof.reasons[0]==='MEETING_PLATFORM_DEPENDENCY_EVIDENCE_INVALID'&&!!proof.media&&proof.media.in===false&&proof.media.out===false;
     if(!session||Object.keys(session).sort().join(',')!==keys&&Object.keys(session).sort().join(',')!==extendedKeys&&Object.keys(session).sort().join(',')!==guestKeys&&Object.keys(session).sort().join(',')!==guestAndDependencyKeys||hasDependency&&(!proof||Object.keys(proof).sort().join(',')!=='generation,media,profileGeneration,ready,reasons,resourceId,version'||proof.version!==1||!id(proof.resourceId)||!integer(proof.profileGeneration,1,o.meeting.generation)||proof.generation!==null&&!integer(proof.generation,1)||proof.generation===null&&!invalidProofGeneration||typeof proof.ready!=='boolean'||!Array.isArray(proof.reasons)||proof.reasons.length>30||proof.reasons.some(x=>typeof x!=='string'||!x.length||x.length>96)||!proof.media||Object.keys(proof.media).sort().join(',')!=='in,out'||typeof proof.media.in!=='boolean'||typeof proof.media.out!=='boolean'||proof.generation!==null&&(!proof.ready||proof.reasons.length||!proof.media.in||!proof.media.out)&&['scheduled','active','completed'].includes(session.status))||!/^meeting-session-[1-9]\d*$/.test(session.id)||sessionIds.has(session.id)||Number(session.id.slice('meeting-session-'.length))<=sequence||Number(session.id.slice('meeting-session-'.length))>=o.nextMeetingSessionId||!id(session.bookingId)||!integer(session.attendees,1,10000)||!integer(session.scheduledAt)||!integer(session.endsAt,session.scheduledAt+1)||!['scheduled','active','completed','failed','cancelled'].includes(session.status)||session.startedAt!==null&&!integer(session.startedAt,session.scheduledAt,session.endsAt-1)||session.endedAt!==null&&!integer(session.endedAt,0,s.clock)||session.status==='completed'&&session.endedAt<session.scheduledAt||session.roomId!=='room'||session.platform!==null&&!['grove','disco'].includes(session.platform)||session.mediaPlacement!==null&&!['local','cloud'].includes(session.mediaPlacement)||!session.features||Object.keys(session.features).sort().join(',')!=='captions,recording'||typeof session.features.captions!=='boolean'||typeof session.features.recording!=='boolean'||!Array.isArray(session.reasons)||session.reasons.some(x=>typeof x!=='string')||typeof session.reservationHeld!=='boolean'||typeof session.reservationReleased!=='boolean'||session.captureRecordId!==null&&!id(session.captureRecordId))fail('INVALID_MEETING_SESSION');
     const sessionNumber=Number(session.id.slice('meeting-session-'.length));if(dependencyEpoch&&(sessionNumber>=dependencyEpoch.firstSessionNumber&&!hasDependency||hasDependency&&sessionNumber<dependencyEpoch.firstSessionNumber||hasDependency&&proof.profileGeneration<dependencyEpoch.profileGeneration))fail('INVALID_MEETING_SESSION_DEPENDENCY_EPOCH');
@@ -550,7 +566,7 @@ function socInformationKernel(){
   }
   let auditId=0;for(const a of o.audit){if(!integer(a.at)||typeof a.code!=='string'||a.synthetic!==true||a.auditId!==undefined&&(!integer(a.auditId,auditId+1,(o.nextAuditId||1)-1)||a.auditId<=(o.auditPrunedThrough||0)))fail('INVALID_INFORMATION_AUDIT');if(a.auditId!==undefined)auditId=a.auditId;}
  }
- const source=()=>`const SOC_INFORMATION=(${socInformationKernel.toString()})();`;
+ const source=()=>recordStoreApi().source()+`const SOC_INFORMATION=(${socInformationKernel.toString()})();`;
  return {PACK,schemas,steps,interfacePolicies,config,create,fingerprint,inspect,enqueue,canRead,advance,command,validate,source};
 }
 const SOC_INFORMATION=socInformationKernel();

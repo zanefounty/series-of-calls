@@ -9,6 +9,15 @@ const input=(c,operations,extra={})=>({customer:c,resource:null,operations,proje
 const ids=groups=>groups.flatMap(g=>g.operations.map(o=>o.id));
 const group=(groups,key)=>groups.find(x=>x.key===key)?.operations.map(x=>x.id)||[];
 
+test('an archive with pending processing exposes the paid processor action without inventing a storage upgrade',()=>{
+ const model=input(customer('enterprise'),[op('transcription',['speech'])],{resource:{id:'archive',kind:'archive',storage:{pending:3,queued:200}}});
+ const before=JSON.stringify(model),result=A.project(model);
+ assert.deepEqual(group(result.primary,'service-growth'),['transcription']);
+ assert.equal(JSON.stringify(model),before);
+ model.projects=[{id:'processor-project',customerId:'customer-one',operationId:'transcription',status:'complete'}];
+ assert.deepEqual(group(A.project(model).primary,'service-growth'),[],'a completed processor is not sold again as backlog recovery');
+});
+
 test('incident repair and typed measured carrier headroom are primary beside the affected resource',()=>{
  const operations=[op('repair',['carrier']),op('service-repair',['service']),op('carrier-headroom',['carrier']),op('managed-carrier-headroom',['carrier']),op('recording',['recorder'])];
  const model=input(customer('smb'),operations,{resource:{id:'carrier',kind:'trunk',pressure:{used:4,limit:4,unit:'concurrent sessions'}},incidents:[{id:'incident-one',customerId:'customer-one',resource:'carrier',status:'active'}]});

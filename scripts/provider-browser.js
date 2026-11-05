@@ -57,9 +57,14 @@ async function readState(page){return page.evaluate(()=>{const s=SCP.state,p=s.p
 async function snap(page,journey,name){await page.screenshot({path:path.join(OUT,journey.id,`${name}.png`),fullPage:true});}
 async function click(page,selector){
  const visible=page.locator(`${selector}:visible`).first();
- if(!await visible.isVisible()){
-  const requested=page.locator(selector).first(),group=requested.locator('xpath=ancestor::details[contains(concat(" ", normalize-space(@class), " "), " provider-more-actions ") or contains(concat(" ", normalize-space(@class), " "), " provider-locked-actions ")][1]');
-  if(await requested.count()&&await group.count()&&await group.getAttribute('open')===null){const summary=group.locator(':scope > summary');if(await summary.isVisible())await summary.click();}
+ // Reveal only the contextual action/comparison groups containing this target.
+ // Clicking a visible summary also handles an outer group before a nested one.
+ for(let depth=0;depth<3&&!await visible.isVisible();depth++){
+  const requested=page.locator(selector).first(),groups=requested.locator('xpath=ancestor::details[(contains(concat(" ", normalize-space(@class), " "), " provider-more-actions ") or contains(concat(" ", normalize-space(@class), " "), " provider-locked-actions ") or contains(concat(" ", normalize-space(@class), " "), " provider-comparison-details ")) and not(@open)]');
+  if(!await requested.count())break;
+  const summary=groups.locator(':scope > summary:visible').first();
+  if(!await summary.isVisible())break;
+  await summary.click();
  }
  await visible.waitFor({state:'visible',timeout:15000});await visible.click();
 }

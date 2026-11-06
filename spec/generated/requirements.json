@@ -36542,7 +36542,8 @@
       "BEH-SOC-226",
       "BEH-SOC-388",
       "BEH-SOC-403",
-      "BEH-SOC-407"
+      "BEH-SOC-407",
+      "BEH-SOC-408"
     ]
   },
   {
@@ -53217,6 +53218,7 @@
     "implementation": [
       "src/game/23-provider-finance-view.js",
       "src/game/23-provider-integration-assurance.js",
+      "src/game/23-provider-support-history.js",
       "src/game/25-provider-campaign.js",
       "src/game/29-managed-operations.js",
       "src/game/37-portfolio.js",
@@ -53268,7 +53270,8 @@
       "BEH-SOC-385",
       "BEH-SOC-387",
       "BEH-SOC-388",
-      "BEH-SOC-406"
+      "BEH-SOC-406",
+      "BEH-SOC-408"
     ]
   },
   {

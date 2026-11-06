@@ -1053,6 +1053,9 @@
     ],
     "tests/provider-regional-support-exit-history.test.js": [
       "AC-SOC-753"
+    ],
+    "tests/provider-retail-history.test.js": [
+      "AC-SOC-755"
     ]
   },
   "inputs": [
@@ -1633,6 +1636,7 @@
     "tests/workforce-operations.test.js",
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
-    "tests/workforce-quality.test.js"
+    "tests/workforce-quality.test.js",
+    "tests/provider-retail-history.test.js"
   ]
 }

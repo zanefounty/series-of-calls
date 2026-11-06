@@ -24,6 +24,7 @@ function socProviderSupportHistoryKernel(){
   if(c.exitAt!==null&&c.exitAt!==undefined&&c.exitAt<at)status='exited';return status;
  }
  function retailAgreementAt(s,c,at){
+  const retained=c.retailAgreementHistory?.version===1&&c.retailAgreementHistory.entries?.findLast(entry=>entry.at<at);if(retained)return {acceptedAt:retained.at,priceCents:retained.priceCents};
   const agreement=c.retailAgreement;if(!agreement||!integer(agreement.at)||!integer(agreement.priceCents))return null;
   if(agreement.at<at)return {acceptedAt:agreement.at,priceCents:agreement.priceCents};
   const prior=(c.history||[]).filter(row=>integer(row.from)&&integer(row.to)&&row.from<at&&at<=row.to).at(-1);
@@ -301,6 +302,9 @@ function socProviderSupportHistoryKernel(){
   // commissioned stage resources as support sampling. An outage in an
   // unbound stage dependency (for example the carrier behind phone) therefore
   // suspends every resource bound by this service boundary.
+  // The paid boundary's MSP check requires each stage resource to have
+  // finished provisioning, even when the old endpoint still carries service.
+  if(stageResources.some(id=>(root.operations?.migrations||[]).some(migration=>['verifying','complete'].includes(migration.status)&&migration.cutoverAt<=at&&migration.verifyAt>at&&migration.appliedGenerations?.[id])))return {eligible:false,resources:[],profile:definition.profile};
   const msp=activeMspAt(s,c,root,stageRows,stageResources,observations,at,hooks),responsibility=plan.responsibility;
   if(!msp||!responsibility||msp.id!==responsibility.id||msp.projectId!==responsibility.projectId||msp.postingId!==responsibility.postingId||msp.effectiveAt!==responsibility.effectiveAt)return {eligible:false,resources:[],profile:definition.profile};
   let placements;try{placements=logicalPlacementStateAt(s,c,root,at,hooks);}catch{return {unsupported:true};}

@@ -1062,6 +1062,10 @@
     ],
     "tests/provider-support-work.test.js": [
       "AC-SOC-770"
+    ],
+    "tests/provider-configuration-reader-performance.test.js": [
+      "AC-SOC-771",
+      "AC-SOC-772"
     ]
   },
   "inputs": [
@@ -1645,6 +1649,7 @@
     "tests/workforce-quality.test.js",
     "tests/provider-retail-history.test.js",
     "tests/provider-resilience-sequence.test.js",
-    "tests/provider-support-work.test.js"
+    "tests/provider-support-work.test.js",
+    "tests/provider-configuration-reader-performance.test.js"
   ]
 }

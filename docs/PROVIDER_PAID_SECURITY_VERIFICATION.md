@@ -31,3 +31,9 @@ Each journey visibly bought the SMB service stages, acknowledged and paid to rep
 These runs verify paid commissioning, ordinary call admission, native usage settlement and visible save round-trip. They do not exercise the authored SCRUB abuse recipe, establish progression-goal eligibility, or claim progression completion. They are synthetic browser evidence, not external carrier/security certification or human-pilot evidence. Screenshots and exported saves remain under `/tmp/soc-security-browser-r1/`.
 
 The first Chromium desktop attempt is retained at `/tmp/soc-security-browser/chromium-desktop/provider-browser-20261106060523103.json`; it reached export and failed when the inspector close control was covered by the menu dialog. The corrected driver targets the close control inside the visible modal, and all six subsequent cells passed.
+
+## Regional parent integration
+
+After merging the updated regional parent, frozen `e12da35` passed 23 paid-helper/dispatch/UI and native admission-security cases in 4.01 seconds. Source, coverage, mapping and translation checks passed with unchanged tracked inputs. The first build failed with EACCES because the earlier browser container owned generated `_site`; correcting ownership of that generated directory allowed the same-input build to pass. Both attempts remain under `/home/zane-fountylabs/soc-evidence-archive/security-e12da35-verification/` (`result.json`, `build-retry-result.json` and logs).
+
+The six browser cells above remain evidence for their stated `9751b21` inputs, not a new browser pass for the merged runtime. Final integrated browser verification remains required.

@@ -9,6 +9,8 @@ The runtime candidate was `9eef094439634f2220d5a5bcb839fe3b704e09d4`. Its record
 - Inputs: `/home/zane-fountylabs/soc-evidence-archive/security-9eef094-verification/inputs.json`, SHA-256 `2fbbe67b717e463010d7f96a7ddff7294c95142e074a28132b952f5768e2b11e`.
 - Results and command logs: `/home/zane-fountylabs/soc-evidence-archive/security-9eef094-verification/result.json`, SHA-256 `ff5f63931ebad7755a5614a866df9a69d7ee72ed43261d6d2e95f55e05e84cf9`.
 
+Pinned Gitleaks 8.30.1 scanned full Git history, the current source snapshot and the built Pages artifact with no findings.
+
 ## Visible browser journeys
 
 The recorder candidate is `9751b2115e83971f9dddc1915b42e220a91c8a8e`. All six runs used Playwright Core 1.64.1 from the unchanged lockfile (SHA-256 `8606aeece2b3b0af655f1902f33292862a2fef7694ee6fd88f156dcd2745309a`) in `mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f`, with container networking disabled. Every report records `passed`, the same source HEAD before and after, and `noSourceDrift: true`.

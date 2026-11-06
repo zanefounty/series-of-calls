@@ -7,12 +7,15 @@ const barCls=u=>u>=0.9?'bad':u>=0.65?'warn':'';
    of them again, so patch what changed instead: same HTML, far less work. A button that now does something else, and
    any form field that changed, is swapped out whole, so a tap that started on the old one still cannot fire it (#44). */
 const SWAP={INPUT:1,SELECT:1,TEXTAREA:1,OPTION:1};
-function morph(el,html){const t=document.createElement(el.tagName);t.innerHTML=html;morphKids(el,t);}
-function sameNode(x,y){if(x.nodeType!==y.nodeType||x.nodeName!==y.nodeName)return false;if(x.nodeType!==1)return true;
+function morph(el,html){const t=document.createElement(el.tagName);t.innerHTML=html;const active=el.contains(document.activeElement)?document.activeElement:null,selection=active&&typeof active.selectionStart==='number'?{start:active.selectionStart,end:active.selectionEnd,direction:active.selectionDirection}:null;morphKids(el,t);if(active?.isConnected&&el.contains(active)&&document.activeElement!==active){active.focus({preventScroll:true});if(selection)active.setSelectionRange(selection.start,selection.end,selection.direction);}}
+function providerViewKey(node){return node?.nodeType===1?node.getAttribute('data-provider-view-key'):null;}
+function sameNode(x,y){if(x.nodeType!==y.nodeType||x.nodeName!==y.nodeName||providerViewKey(x)!==providerViewKey(y))return false;if(x.nodeType!==1)return true;
   if(SWAP[x.nodeName])return x.outerHTML===y.outerHTML;
   return x.getAttribute('data-act')===y.getAttribute('data-act')&&x.getAttribute('data-args')===y.getAttribute('data-args');}
 function morphKids(a,b){let x=a.firstChild,y=b.firstChild;
-  while(y){const ny=y.nextSibling;
+  while(y){const ny=y.nextSibling,key=providerViewKey(y);
+    if(key&&providerViewKey(x)!==key){const retained=[...a.childNodes].find(n=>providerViewKey(n)===key);if(retained){a.insertBefore(retained,x);x=retained;}}
+    if(x&&providerViewKey(x)&&providerViewKey(x)!==key&&[...b.childNodes].some(n=>providerViewKey(n)===providerViewKey(x))){a.insertBefore(y,x);y=ny;continue;}
     if(!x)a.appendChild(y);
     else if(!sameNode(x,y)){a.replaceChild(y,x);x=y;}
     else if(x.nodeType===1){if(!SWAP[x.nodeName]){const ya=y.attributes,xa=x.attributes;

@@ -6931,6 +6931,28 @@
       ],
       "status": "partial",
       "scope": "Native Web Locks revocation drops Provider editing authority, pauses its clock, cancels the pending worker, keeps the live run exportable and requires explicit reopen. Stale lock acquisition/rejection cannot invalidate a newer owner. Browser environment-failure coverage commits one real paid order under injected localStorage quota failure, exports that exact result, restores storage, steals the native lock from another tab and verifies stopped state plus explicit recovery. This does not establish all persistence, browser or gameplay acceptance."
+    },
+    {
+      "id": "BEH-SOC-396",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/93-ui/10-dom.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-688",
+        "AC-SOC-689",
+        "AC-SOC-690",
+        "AC-SOC-691",
+        "AC-SOC-692",
+        "AC-SOC-693",
+        "AC-SOC-694"
+      ],
+      "status": "partial",
+      "scope": "Provider views retain the same native retail field, typed draft, focus and selection while a same-form quote refresh is pending or refused, and prevent committing old terms while waiting. Inspector detail expansion and scroll remain attached to the selected object, and stable job keys retain the correct evidence section as journeys arrive. Changing plan, customer or actionable job preserves isolation. These controls do not certify the full gameplay revision or imply that purchase decision pauses advance simulation time."
     }
   ]
 }

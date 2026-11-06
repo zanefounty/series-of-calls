@@ -62018,6 +62018,7 @@
       "src/game/82-security-ui.js",
       "src/game/83-observation-ui.js",
       "src/game/84-portfolio-ui.js",
+      "src/game/93-ui/10-dom.js",
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-finance.js",
       "src/game/96-map/95-provider-canvas.js",
@@ -62090,7 +62091,8 @@
       "BEH-SOC-385",
       "BEH-SOC-386",
       "BEH-SOC-387",
-      "BEH-SOC-392"
+      "BEH-SOC-392",
+      "BEH-SOC-396"
     ]
   },
   {

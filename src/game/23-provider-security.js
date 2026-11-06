@@ -1,7 +1,7 @@
 /* Paid Provider adapter for native synthetic network, SIP and destination controls. */
-function socProviderSecurityKernel(terms){
+function socProviderSecurityKernel(terms,abuseTerms){
  'use strict';
- const VERSION=1, PACK='soc-provider-security-1', BINDING='provider-security-control-binding-v1';
+ const VERSION=1, PACK='soc-provider-security-1', BINDING='provider-security-control-binding-v1', ABUSE_KIND='provider-security-abuse-recipe-v2', ABUSE_EVIDENCE='provider-security-evidence-v2';
  const copy=x=>JSON.parse(JSON.stringify(x));
  const exact=(x,keys)=>!!x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).sort().join(',')===[...keys].sort().join(',');
  const same=(a,b)=>JSON.stringify(stable(a))===JSON.stringify(stable(b));
@@ -103,21 +103,90 @@ function socProviderSecurityKernel(terms){
   const all=!!customer&&effective.length===controlNames.length;
   return {version:VERSION,customerId,tenant:childRoot?.tenant||null,controls:perControl,requiredOperationIds:copy(allRequired),effectiveControlCount:effective.length,requiredControlCount:controlNames.length,voiceAdmissionReady:all,nativePackStarted:!!childRoot?.admissionSecurity,voiceAdmissionBlocked:!!childRoot?.admissionSecurity&&!all,blockers:all?[]:['ALL_THREE_PAID_SECURITY_CONTROLS_REQUIRED'],consequence:all?'Current native controls are effective for this Provider customer.':childRoot?.admissionSecurity?'Native voice admission remains blocked until all three controls are separately purchased and effective.':'Security is not installed. Existing calling continues; the first paid security purchase interrupts voice until all three controls are effective.'};
  }
- function nativeApi(){return typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');}
- function evaluateProviderEvidence(s,customerId,childRoot,jobId){
+ function currentSecurityTuple(s,customerId,childRoot){
   const ready=currentStatus(s,customerId,childRoot);if(!ready.voiceAdmissionReady)fail('PROVIDER_SECURITY_CONTROLS_INCOMPLETE');
+  const bindings=controlNames.map(control=>ready.controls[control].binding),security=childRoot?.admissionSecurity;
+  if(!security||security.clock!==childRoot.clock||s.clock!==childRoot.clock)fail('PROVIDER_SECURITY_NATIVE_STATE_UNAVAILABLE');
+  const generations=generationSnapshot(security);
+  if(bindings.some(b=>!b||generations[b.control]?.desired!==b.nativeGeneration||generations[b.control]?.effective!==b.nativeGeneration))fail('PROVIDER_SECURITY_GENERATION_CHANGED');
+  const n=security.controls.network,sip=security.controls.sip,d=security.controls.destination,peer=security.peers?.[abuseTerms.sip.peer];
+  if(!n.observed.available||!n.observed.protectedPathAvailable||n.effective.activationMode==='on-demand'&&!n.observed.active||!sip.observed.available||!d.observed.available||!peer?.observed?.available||!peer.observed.authenticated||!same(peer.observed.methods,terms.controls.sip.supplierPeer.methods))fail('PROVIDER_SECURITY_ATTACK_PATH_UNAVAILABLE');
+  const network=bindings.find(x=>x.control==='network').nativeConfig,sipConfig=bindings.find(x=>x.control==='sip').nativeConfig;
+  if(!(abuseTerms.network.packets>network.capacityPps&&abuseTerms.network.packets<=network.mitigationPps))fail('PROVIDER_SECURITY_ATTACK_OUTSIDE_PAID_CAPACITY');
+  return {bindings,policyGenerations:generations,security};
+ }
+ function emptyOffsets(bucket,count){const offsets=[];for(let offset=0;offset<60&&offsets.length<count;offset++)if(!(bucket?.[String(offset)]||0))offsets.push(offset);return offsets;}
+ function abuseRunKey(customerId,bindings){return `${ABUSE_KIND}:${terms.id}@${terms.version}:${abuseTerms.id}@${abuseTerms.version}:${customerId}:${bindings.map(b=>`${b.control}:${b.projectId}:${b.nativeGeneration}:${b.planId}`).join('|')}`;}
+ function abuseRecipe(s,customerId,childRoot){
+  const {bindings,policyGenerations,security}=currentSecurityTuple(s,customerId,childRoot),customer=s.providerCampaign.customers.find(x=>x.id===customerId),portfolio=s.portfolio.customers.find(x=>x.id===customer.portfolioId),sipBinding=bindings.find(x=>x.control==='sip'),sipConfig=sipBinding.nativeConfig,peer=abuseTerms.sip.peer;
+  const packetOffsets=emptyOffsets(security.packetBuckets,1),sipBucket=security.sipBuckets?.[peer],sipSeconds=sipBucket?.minute===childRoot.clock?sipBucket.seconds:{};
+  const sipOffsets=emptyOffsets(sipSeconds,4);if(packetOffsets.length!==1||sipOffsets.length!==4)fail('PROVIDER_SECURITY_ATTACK_BUCKETS_FULL');
+  const [packetOffset]=packetOffsets,[rateOffset,blockedOffset,allowedOffset,destinationOffset]=sipOffsets;
+  const steps={
+   nativeCommands:[
+    {action:'inject-packets',peer:abuseTerms.network.peer,packets:abuseTerms.network.packets,secondOffset:packetOffset},
+    {action:'inject-signalling',peer,attempts:sipConfig.attemptsPerSecond+abuseTerms.sip.rateAttemptsOverLimit,messageBytes:Math.min(128,sipConfig.maxMessageBytes),method:abuseTerms.sip.method,valid:true,secondOffset:rateOffset},
+    {action:'inject-signalling',peer,attempts:1,messageBytes:sipConfig.maxMessageBytes+abuseTerms.sip.oversizeBytesOverLimit,method:abuseTerms.sip.method,valid:true,secondOffset:blockedOffset},
+    {action:'inject-signalling',peer,attempts:abuseTerms.sip.allowedAttempts,messageBytes:Math.min(128,sipConfig.maxMessageBytes),method:abuseTerms.sip.method,valid:true,secondOffset:allowedOffset}
+   ],
+   blockedDestination:{to:abuseTerms.destination.to,peerId:peer,method:abuseTerms.sip.method,secondOffset:destinationOffset,requiresActualInteraction:true},
+   ordinaryDelivery:{source:abuseTerms.ordinaryDelivery.source,channel:abuseTerms.ordinaryDelivery.channel,to:abuseTerms.ordinaryDelivery.to,durationMinutes:abuseTerms.ordinaryDelivery.durationMinutes,eligibility:abuseTerms.ordinaryDelivery.eligibility,mustResolve:true,mustSettleCoreUsageOnce:true}
+  };
+  const recipe={kind:ABUSE_KIND,version:abuseTerms.version,recipeId:abuseTerms.id,termsId:terms.id,termsVersion:terms.version,sourceIds:copy(abuseTerms.sourceIds),customerId,portfolioId:customer.portfolioId,tenant:childRoot.tenant,market:customer.market,createdAt:s.clock,controlBindings:copy(bindings),policyGenerations:copy(policyGenerations),runKey:abuseRunKey(customerId,bindings),steps};
+  if(!validateAbuseRecipeShape(recipe))fail('INVALID_PROVIDER_SECURITY_ABUSE_RECIPE');return recipe;
+ }
+ function validateAbuseRecipeShape(recipe){
+  const keys=['controlBindings','createdAt','customerId','kind','market','policyGenerations','portfolioId','recipeId','runKey','sourceIds','steps','tenant','termsId','termsVersion','version'];
+  if(!exact(recipe,keys)||recipe.kind!==ABUSE_KIND||recipe.version!==abuseTerms.version||recipe.recipeId!==abuseTerms.id||recipe.termsId!==terms.id||recipe.termsVersion!==terms.version||!same(recipe.sourceIds,abuseTerms.sourceIds)||!integer(recipe.createdAt)||!validateScope({customerId:recipe.customerId,portfolioId:recipe.portfolioId,tenant:recipe.tenant,market:recipe.market})||!Array.isArray(recipe.controlBindings)||recipe.controlBindings.length!==3||!exact(recipe.steps,['blockedDestination','nativeCommands','ordinaryDelivery'])||!Array.isArray(recipe.steps.nativeCommands)||recipe.steps.nativeCommands.length!==4)return false;
+  if(!same(recipe.controlBindings.map(b=>b.control),controlNames)||recipe.runKey!==abuseRunKey(recipe.customerId,recipe.controlBindings))return false;
+  const network=recipe.controlBindings.find(b=>b.control==='network'),sip=recipe.controlBindings.find(b=>b.control==='sip');if(!network||!sip||!validateNativeConfig('network',network.nativeConfig)||!validateNativeConfig('sip',sip.nativeConfig)||!(abuseTerms.network.packets>network.nativeConfig.capacityPps&&abuseTerms.network.packets<=network.nativeConfig.mitigationPps))return false;
+  const [packet,rate,oversize,allowed]=recipe.steps.nativeCommands,peer=abuseTerms.sip.peer;
+  return exact(packet,['action','packets','peer','secondOffset'])&&packet.action==='inject-packets'&&packet.peer===abuseTerms.network.peer&&packet.packets===abuseTerms.network.packets&&integer(packet.secondOffset,0,59)&&exact(rate,['action','attempts','messageBytes','method','peer','secondOffset','valid'])&&rate.action==='inject-signalling'&&rate.peer===peer&&rate.attempts===sip.nativeConfig.attemptsPerSecond+abuseTerms.sip.rateAttemptsOverLimit&&rate.messageBytes<=sip.nativeConfig.maxMessageBytes&&rate.method===abuseTerms.sip.method&&rate.valid===true&&integer(rate.secondOffset,0,59)&&exact(oversize,['action','attempts','messageBytes','method','peer','secondOffset','valid'])&&oversize.action==='inject-signalling'&&oversize.peer===peer&&oversize.attempts===1&&oversize.messageBytes===sip.nativeConfig.maxMessageBytes+abuseTerms.sip.oversizeBytesOverLimit&&oversize.method===abuseTerms.sip.method&&oversize.valid===true&&integer(oversize.secondOffset,0,59)&&exact(allowed,['action','attempts','messageBytes','method','peer','secondOffset','valid'])&&allowed.action==='inject-signalling'&&allowed.peer===peer&&allowed.attempts===abuseTerms.sip.allowedAttempts&&allowed.messageBytes<=sip.nativeConfig.maxMessageBytes&&allowed.method===abuseTerms.sip.method&&allowed.valid===true&&integer(allowed.secondOffset,0,59)&&new Set([rate.secondOffset,oversize.secondOffset,allowed.secondOffset,recipe.steps.blockedDestination.secondOffset]).size===4&&exact(recipe.steps.blockedDestination,['method','peerId','requiresActualInteraction','secondOffset','to'])&&recipe.steps.blockedDestination.to===abuseTerms.destination.to&&recipe.steps.blockedDestination.peerId===peer&&recipe.steps.blockedDestination.method===abuseTerms.sip.method&&integer(recipe.steps.blockedDestination.secondOffset,0,59)&&recipe.steps.blockedDestination.requiresActualInteraction===true&&same(recipe.steps.ordinaryDelivery,{source:abuseTerms.ordinaryDelivery.source,channel:'voice',to:abuseTerms.ordinaryDelivery.to,durationMinutes:abuseTerms.ordinaryDelivery.durationMinutes,eligibility:abuseTerms.ordinaryDelivery.eligibility,mustResolve:true,mustSettleCoreUsageOnce:true});
+ }
+ function validateAbuseRecipe(s,recipe,childRoot,{historical=false}={}){
+  if(!validateAbuseRecipeShape(recipe)||recipe.createdAt>s.clock||recipe.createdAt>childRoot?.clock)return false;
+  const c=s?.providerCampaign?.customers?.find(x=>x.id===recipe.customerId),portfolio=s?.portfolio?.customers?.find(x=>x.id===recipe.portfolioId);if(!c||c.portfolioId!==recipe.portfolioId||c.market!==recipe.market||!portfolio||portfolio.market!==recipe.market||childRoot?.tenant!==recipe.tenant)return false;
+  for(const binding of recipe.controlBindings){const project=s.providerCampaign.projects.find(x=>x.id===binding.projectId&&x.customerId===recipe.customerId);if(!project||!validateHistoricalBinding(s,project,binding))return false;if(!historical&&!validateCurrentBinding(s,project,binding,childRoot))return false;}
+  const expected=Object.fromEntries(controlNames.map(name=>[name,{desired:recipe.controlBindings.find(b=>b.control===name).nativeGeneration,effective:recipe.controlBindings.find(b=>b.control===name).nativeGeneration}]));
+  return same(recipe.policyGenerations,expected);
+ }
+ function nativeApi(){return typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');}
+ function evaluateProviderEvidence(s,customerId,childRoot,jobId,recipe){
+  const ready=currentStatus(s,customerId,childRoot);if(!ready.voiceAdmissionReady)fail('PROVIDER_SECURITY_CONTROLS_INCOMPLETE');
+  if(!recipe||!validateAbuseRecipe(s,recipe,childRoot,{historical:true}))fail('PROVIDER_SECURITY_ABUSE_RECIPE_REQUIRED');
   const c=s.providerCampaign.customers.find(x=>x.id===customerId),job=s.providerCampaign.jobs.find(x=>x.id===jobId&&x.customerId===customerId),portfolio=s.portfolio.customers.find(x=>x.id===c.portfolioId),root=childRoot,interaction=job&&root.interactions?.find(x=>x.id===job.interactionId),caseRecord=job&&root.cases?.[job.caseId],security=root.admissionSecurity,api=nativeApi();
   if(!job||!['voice'].includes(job.channel)||!['completed','late'].includes(job.status)||job.resilienceSequence||job.contextRetained!==true||!integer(job.completedAt)||!interaction||interaction.probe===true||interaction.botAnswered===true||interaction.phase!=='resolved'||interaction.channel!=='voice'||interaction.caseId!==job.caseId||interaction.startedAt!==job.arrivalAt||interaction.finishedAt!==job.completedAt||interaction.context!==true||!caseRecord||caseRecord.tenant!==root.tenant||!caseRecord.interactions?.includes(interaction.id))fail('PROVIDER_SECURITY_ORDINARY_CALL_REQUIRED');
-  const assessment=api.evaluate(root),settlement=security.settlements.find(x=>x.interactionId===interaction.id),generations=api.inspect(root).controls;
+  const assessment=api.evaluate(root),settlement=security.settlements.find(x=>x.interactionId===interaction.id);
   if(!assessment.passed||!settlement||settlement.phase!=='resolved'||!['RESOLVED','CONNECTED'].includes(settlement.outcome)||settlement.obligations.length||!same(settlement.policyGenerations,api.inspect(root).assessment?generationSnapshot(security):null))fail('PROVIDER_SECURITY_ATTACK_AND_CALL_EVIDENCE_REQUIRED');
-  const current=controlNames.map(control=>ready.controls[control].binding),events=security.events,policyGenerations=settlement?.policyGenerations||{};
-  const selected=Object.fromEntries(['network','sipBlocked','sipAllowed','destination'].map(name=>[name,events.find(x=>abuseEventMatches(name,x,current,policyGenerations,s.clock))]));
+  const current=recipe.controlBindings,events=security.events,policyGenerations=settlement?.policyGenerations||{};
+  const selected=Object.fromEntries(['network','sipRate','sipOversize','sipAllowed','destination'].map(name=>[name,events.find(x=>abuseEventMatchesV2(name,x,recipe,root))]));
   if(Object.values(selected).some(x=>!x))fail('PROVIDER_SECURITY_ATTACK_AND_CALL_EVIDENCE_REQUIRED');
-  const evidence={kind:'provider-security-evidence-v1',version:VERSION,termsId:terms.id,termsVersion:terms.version,customerId,portfolioId:c.portfolioId,tenant:root.tenant,market:c.market,at:s.clock,controlBindings:current,policyGenerations:copy(settlement.policyGenerations),abuseEventIds:Object.fromEntries(Object.entries(selected).map(([key,event])=>[key,event.id])),jobId:job.id,caseId:job.caseId,interactionId:interaction.id,settlementAt:settlement.settledAt};
+  if(!orderedRecipeEvents(selected)||job.arrivalAt<recipe.createdAt||selected.destination.at>job.arrivalAt)fail('PROVIDER_SECURITY_RECIPE_ORDER_REQUIRED');
+  const blockedInteraction=root.interactions?.find(x=>x.id===selected.destination.detail.interactionId);
+  if(!blockedInteraction||blockedInteraction.channel!=='voice'||blockedInteraction.to!==recipe.steps.blockedDestination.to||blockedInteraction.probe===true||blockedInteraction.botAnswered===true)fail('PROVIDER_SECURITY_BLOCKED_DESTINATION_INTERACTION_REQUIRED');
+  const evidence={kind:ABUSE_EVIDENCE,version:abuseTerms.version,recipe:copy(recipe),termsId:terms.id,termsVersion:terms.version,customerId,portfolioId:c.portfolioId,tenant:root.tenant,market:c.market,at:s.clock,controlBindings:copy(current),policyGenerations:copy(settlement.policyGenerations),abuseEventIds:Object.fromEntries(Object.entries(selected).map(([key,event])=>[key,event.id])),blockedInteractionId:blockedInteraction.id,jobId:job.id,caseId:job.caseId,interactionId:interaction.id,settlementAt:settlement.settledAt};
   return evidence;
+ }
+ function abuseEventMatchesV2(name,event,recipe,root){
+  if(!event||event.synthetic!==true||!integer(event.at,recipe.createdAt)||event.at>root.clock||!event.detail)return false;
+  const binding=recipe.controlBindings.find(b=>b.control===({network:'network',sipRate:'sip',sipOversize:'sip',sipAllowed:'sip',destination:'destination'})[name]);if(!binding)return false;const d=event.detail;
+  if(name==='network')return exact(d,['blockedPackets','bucketPps','filteredPackets','networkGeneration','packets','peer','protectedPathAvailable','secondOffset'])&&event.kind==='packet-batch'&&event.code===abuseTerms.network.expectedCode&&d.peer===abuseTerms.network.peer&&d.packets===abuseTerms.network.packets&&d.secondOffset===recipe.steps.nativeCommands[0].secondOffset&&d.networkGeneration===binding.nativeGeneration&&d.bucketPps>binding.nativeConfig.capacityPps&&d.bucketPps<=binding.nativeConfig.mitigationPps&&d.filteredPackets===d.bucketPps-binding.nativeConfig.capacityPps&&d.blockedPackets===0&&d.protectedPathAvailable===abuseTerms.network.mustKeepProtectedPath;
+  if(name==='sipRate'||name==='sipOversize'){
+   const cmd=recipe.steps.nativeCommands[name==='sipRate'?1:2],expected=name==='sipRate'?abuseTerms.sip.rateExpectedCode:abuseTerms.sip.oversizeExpectedCode;
+   return exact(d,['attempts','bucketAttempts','method','messageBytes','peer','secondOffset','sipGeneration','valid'])&&event.kind==='signalling-batch'&&event.code===expected&&d.peer===cmd.peer&&d.attempts===cmd.attempts&&d.bucketAttempts===cmd.attempts&&d.method===cmd.method&&d.messageBytes===cmd.messageBytes&&d.valid===cmd.valid&&d.secondOffset===cmd.secondOffset&&d.sipGeneration===binding.nativeGeneration;
+  }
+  if(name==='sipAllowed'){
+   const cmd=recipe.steps.nativeCommands[3];return exact(d,['attempts','bucketAttempts','method','messageBytes','peer','secondOffset','sipGeneration','valid'])&&event.kind==='signalling-batch'&&event.code===abuseTerms.sip.allowedExpectedCode&&d.peer===cmd.peer&&d.attempts===cmd.attempts&&d.bucketAttempts===cmd.attempts&&d.method===cmd.method&&d.messageBytes===cmd.messageBytes&&d.valid===true&&d.secondOffset===cmd.secondOffset&&d.sipGeneration===binding.nativeGeneration;
+  }
+  if(name==='destination'){
+   const a=abuseTerms.destination;return exact(d,['interactionId','policyGenerations','reasons'])&&event.kind==='call-admission'&&event.code==='SECURITY_CALL_BLOCKED'&&id(d.interactionId)&&d.reasons?.some(x=>x.control==='destination'&&x.code===a.expectedCode)&&d.policyGenerations?.destination?.effective===binding.nativeGeneration&&same(d.policyGenerations,recipe.policyGenerations)&&root.interactions?.some(i=>i.id===d.interactionId&&i.channel==='voice'&&i.to===a.to&&i.probe!==true&&i.botAnswered!==true);
+  }
+  return false;
  }
  function generationSnapshot(security){return Object.fromEntries(controlNames.map(k=>[k,{desired:security.controls[k].generation,effective:security.controls[k].effectiveGeneration}]));}
  function eventById(root,eventId){return root?.admissionSecurity?.events?.find(x=>x.id===eventId)||null;}
+ function eventNumber(event){const match=/^security-event-([1-9][0-9]*)$/.exec(event?.id||'');return match?Number(match[1]):0;}
+ function orderedRecipeEvents(events){const serial=['network','sipRate','sipOversize','sipAllowed','destination'].map(name=>eventNumber(events[name]));return serial.every((n,i)=>n>0&&(!i||n>serial[i-1]));}
  function abuseEventMatches(name,event,bindings,policyGenerations,at){
   if(!event||event.synthetic!==true||!integer(event.at)||event.at>at||!event.detail)return false;
   const binding=bindings.find(x=>x.control===({network:'network',sipBlocked:'sip',sipAllowed:'sip',destination:'destination'})[name]);
@@ -142,6 +211,7 @@ function socProviderSecurityKernel(terms){
   return false;
  }
  function validateEvidence(s,evidence,childRoot,{historical=false}={}){
+  if(evidence?.kind===ABUSE_EVIDENCE)return validateEvidenceV2(s,evidence,childRoot,{historical});
   const keys=['abuseEventIds','at','caseId','controlBindings','customerId','interactionId','jobId','kind','market','policyGenerations','portfolioId','tenant','termsId','termsVersion','version','settlementAt'];
   if(!exact(evidence,keys)||evidence.kind!=='provider-security-evidence-v1'||evidence.version!==VERSION||evidence.termsId!==terms.id||evidence.termsVersion!==terms.version||!integer(evidence.at)||!integer(evidence.settlementAt)||evidence.settlementAt>evidence.at||!validateScope({customerId:evidence.customerId,portfolioId:evidence.portfolioId,tenant:evidence.tenant,market:evidence.market})||!Array.isArray(evidence.controlBindings)||evidence.controlBindings.length!==3||!exact(evidence.abuseEventIds,['destination','network','sipAllowed','sipBlocked']))return false;
   const c=s?.providerCampaign?.customers?.find(x=>x.id===evidence.customerId),portfolio=s?.portfolio?.customers?.find(x=>x.id===evidence.portfolioId);if(!c||c.portfolioId!==evidence.portfolioId||c.market!==evidence.market||!portfolio||portfolio.market!==evidence.market||childRoot?.tenant!==evidence.tenant)return false;
@@ -155,9 +225,22 @@ function socProviderSecurityKernel(terms){
   if(!historical&&(!currentStatus(s,evidence.customerId,childRoot).voiceAdmissionReady||!nativeApi().evaluate(childRoot).passed))return false;
   return true;
  }
- function pinnedEventIds(evidence){if(!evidence||evidence.kind!=='provider-security-evidence-v1')return [];return [...new Set(Object.values(evidence.abuseEventIds||{}))].sort();}
- function source(){return `const SOC_PROVIDER_SECURITY=(${socProviderSecurityKernel.toString()})(${JSON.stringify(terms)});`;}
- return {PACK,VERSION,CONTENT_ID:terms.id,sourceIds:copy(terms.sourceIds),controlNames:copy(controlNames),operationIds:copy(controlIds),voiceServicePrerequisites:copy(allRequired),terms:()=>copy(terms),operationDefinition,operationPlan,quotePlan,validatePlan,planReceipt,projectPlan,nativeCommands,paidProjectValid,bindingForProject,validateHistoricalBinding,validateCurrentBinding,currentStatus,evaluateProviderEvidence,validateEvidence,abuseEventMatches,pinnedEventIds,source};
+ function validateEvidenceV2(s,evidence,childRoot,{historical=false}={}){
+  const keys=['abuseEventIds','at','blockedInteractionId','caseId','controlBindings','customerId','interactionId','jobId','kind','market','policyGenerations','portfolioId','recipe','settlementAt','tenant','termsId','termsVersion','version'];
+  if(!exact(evidence,keys)||evidence.kind!==ABUSE_EVIDENCE||evidence.version!==abuseTerms.version||evidence.termsId!==terms.id||evidence.termsVersion!==terms.version||!integer(evidence.at)||!integer(evidence.settlementAt)||evidence.settlementAt>evidence.at||evidence.recipe?.createdAt>evidence.at||!id(evidence.blockedInteractionId)||!validateScope({customerId:evidence.customerId,portfolioId:evidence.portfolioId,tenant:evidence.tenant,market:evidence.market})||!Array.isArray(evidence.controlBindings)||evidence.controlBindings.length!==3||!exact(evidence.abuseEventIds,['destination','network','sipAllowed','sipOversize','sipRate'])||!validateAbuseRecipe(s,evidence.recipe,childRoot,{historical}))return false;
+  const c=s?.providerCampaign?.customers?.find(x=>x.id===evidence.customerId),portfolio=s?.portfolio?.customers?.find(x=>x.id===evidence.portfolioId);if(!c||c.portfolioId!==evidence.portfolioId||c.market!==evidence.market||!portfolio||portfolio.market!==evidence.market||childRoot?.tenant!==evidence.tenant||evidence.recipe.customerId!==evidence.customerId||!same(evidence.recipe.controlBindings,evidence.controlBindings))return false;
+  const job=s.providerCampaign.jobs.find(x=>x.id===evidence.jobId&&x.customerId===evidence.customerId),interaction=childRoot.interactions?.find(x=>x.id===evidence.interactionId),caseRecord=childRoot.cases?.[evidence.caseId],settlement=childRoot.admissionSecurity?.settlements?.find(x=>x.interactionId===evidence.interactionId),blocked=childRoot.interactions?.find(x=>x.id===evidence.blockedInteractionId);
+  if(!job||job.caseId!==evidence.caseId||job.interactionId!==evidence.interactionId||job.channel!=='voice'||job.status!=='completed'&&job.status!=='late'||job.resilienceSequence||job.contextRetained!==true||job.completedAt!==evidence.settlementAt||job.arrivalAt<evidence.recipe.createdAt||!interaction||interaction.phase!=='resolved'||interaction.channel!=='voice'||interaction.caseId!==evidence.caseId||interaction.startedAt!==job.arrivalAt||interaction.finishedAt!==job.completedAt||interaction.context!==true||interaction.probe===true||interaction.botAnswered===true||!caseRecord||caseRecord.tenant!==evidence.tenant||!caseRecord.interactions?.includes(interaction.id)||!settlement||settlement.phase!=='resolved'||!['RESOLVED','CONNECTED'].includes(settlement.outcome)||settlement.obligations.length||settlement.settledAt!==evidence.settlementAt||!same(settlement.policyGenerations,evidence.policyGenerations)||!blocked||blocked.channel!=='voice'||blocked.to!==evidence.recipe.steps.blockedDestination.to||blocked.probe===true||blocked.botAnswered===true)return false;
+  const expectedGenerations=Object.fromEntries(controlNames.map(name=>[name,{desired:evidence.controlBindings.find(b=>b.control===name).nativeGeneration,effective:evidence.controlBindings.find(b=>b.control===name).nativeGeneration}]));if(!same(evidence.policyGenerations,expectedGenerations))return false;
+  const matched=Object.fromEntries(Object.entries(evidence.abuseEventIds).map(([name,eventId])=>[name,eventById(childRoot,eventId)]));
+  for(const [name,event] of Object.entries(matched)){if(!event||event.at>evidence.at||!abuseEventMatchesV2(name,event,evidence.recipe,childRoot))return false;if(name==='destination'&&event.detail.interactionId!==evidence.blockedInteractionId)return false;}
+  if(!orderedRecipeEvents(matched)||matched.destination.at>job.arrivalAt)return false;
+  if(!historical&&(!currentStatus(s,evidence.customerId,childRoot).voiceAdmissionReady||!nativeApi().evaluate(childRoot).passed))return false;
+  return true;
+ }
+ function pinnedEventIds(evidence){if(!evidence||!['provider-security-evidence-v1',ABUSE_EVIDENCE].includes(evidence.kind))return [];return [...new Set(Object.values(evidence.abuseEventIds||{}))].sort();}
+ function source(){return `const SOC_PROVIDER_SECURITY=(${socProviderSecurityKernel.toString()})(${JSON.stringify(terms)},${JSON.stringify(abuseTerms)});`;}
+ return {PACK,VERSION,CONTENT_ID:terms.id,ABUSE_RECIPE_ID:abuseTerms.id,ABUSE_RECIPE_VERSION:abuseTerms.version,sourceIds:copy(terms.sourceIds),controlNames:copy(controlNames),operationIds:copy(controlIds),voiceServicePrerequisites:copy(allRequired),terms:()=>copy(terms),abuseTerms:()=>copy(abuseTerms),operationDefinition,operationPlan,quotePlan,validatePlan,planReceipt,projectPlan,nativeCommands,paidProjectValid,bindingForProject,validateHistoricalBinding,validateCurrentBinding,currentStatus,abuseRecipe,validateAbuseRecipe,evaluateProviderEvidence,validateEvidence,abuseEventMatches,abuseEventMatchesV2,pinnedEventIds,source};
 }
 const SOC_PROVIDER_SECURITY_CONTENT={
   "version": 1,
@@ -438,5 +521,14 @@ const SOC_PROVIDER_SECURITY_CONTENT={
     }
   }
 };
-const SOC_PROVIDER_SECURITY=socProviderSecurityKernel(SOC_PROVIDER_SECURITY_CONTENT);
+const SOC_PROVIDER_SECURITY_ABUSE_CONTENT=typeof require==='function'?require('../../content/provider-security-abuse.v2.json'):{
+ kind:'provider-security-abuse-recipe',version:2,id:'provider-security-abuse-v2',sourceTermsId:'provider-security-1',
+ sourceIds:['progress.goal.scrub','progress.incident-mechanic.scrub','action:scrubUp','action:scrubMode','state:S.scrubMode','state:S.scrubs','requirement:scrubbed','requirement:scrubnear','asset:scrubMo1/scrubMo/cleanMo:','asset:SCRUB_TIERS:0','asset:SCRUB_TIERS:1','asset:SCRUB_TIERS:2','asset:SCRUB_TIERS:3'],
+ rationale:'The authored synthetic batch is fixed at 7,500 packets per second so it exceeds the clean capacity of both paid network offers while remaining within either offer\'s filtered capacity. This is a scenario value, not a claim about real traffic or a conversion of the original bandwidth labels.',
+ network:{peer:'synthetic-flood-origin',packets:7500,secondOffset:'first-empty',expectedCode:'NETWORK_FLOOD_FILTERED',mustKeepProtectedPath:true},
+ sip:{peer:'synthetic-carrier',method:'INVITE',valid:true,rateAttemptsOverLimit:1,rateSecondOffset:'first-empty',rateExpectedCode:'SIP_RATE_EXCEEDED',oversizeBytesOverLimit:1,oversizeSecondOffset:'first-empty',oversizeExpectedCode:'SIP_MESSAGE_INVALID',allowedAttempts:1,allowedSecondOffset:'first-empty',allowedExpectedCode:'SIP_ADMITTED'},
+ destination:{to:'+18005550199',expectedCode:'DESTINATION_NOT_ALLOWED',requiresActualInteraction:true},
+ ordinaryDelivery:{source:'autonomous-provider-demand',channel:'voice',to:'+61255500201',durationMinutes:3,eligibility:'completed-or-late-clean-voice-job-with-case-and-settlement',mustResolve:true,mustSettleCoreUsageOnce:true}
+};
+const SOC_PROVIDER_SECURITY=socProviderSecurityKernel(SOC_PROVIDER_SECURITY_CONTENT,SOC_PROVIDER_SECURITY_ABUSE_CONTENT);
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_SECURITY;

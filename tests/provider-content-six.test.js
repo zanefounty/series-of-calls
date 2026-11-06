@@ -6,7 +6,7 @@ const customerId='starter-customer';
 function opening(version='provider-campaigns-6'){
  let s=SOC.create({experience:'campaign',scenario:'enterprise',difficulty:'easy',seed:73});
  // Model the actual pre-purchase legacy shape, without v8-only lineage journals.
- s.providerCampaign.contentVersion=version;delete s.providerCampaign.caseHandoffVersion;delete s.providerCampaign.caseFollowupVersion;delete s.providerCampaign.dedicatedInterconnectVersion;delete s.providerCampaign.supportWork;delete s.providerCampaign.workforceHistory;
+ s.providerCampaign.contentVersion=version;delete s.providerCampaign.incidentSequenceVersion;delete s.providerCampaign.caseHandoffVersion;delete s.providerCampaign.caseFollowupVersion;delete s.providerCampaign.dedicatedInterconnectVersion;delete s.providerCampaign.supportWork;delete s.providerCampaign.workforceHistory;
  s.providerCampaign.supportObservation={version:2,configurations:[],samples:[]};s=SOC.restore(JSON.stringify(s));
  for(const stage of ['base','carrier','partner']){
   const request={action:'purchase',offerId:'starter',planId:'steady',stage,...(stage==='base'?{}:{customerId})},q=SOC.provider.quote(s,request);

@@ -895,7 +895,10 @@
     "tests/provider-integration-assurance.test.js": [
       "AC-SOC-646",
       "AC-SOC-647",
-      "AC-SOC-648"
+      "AC-SOC-648",
+      "AC-SOC-832",
+      "AC-SOC-833",
+      "AC-SOC-834"
     ],
     "tests/provider-incident-inspector.test.js": [
       "AC-SOC-649",

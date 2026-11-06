@@ -45,17 +45,19 @@ test('AC-SOC-792 native packet and SIP command results prove filtering, rate and
  assert.equal(security.abuseEventMatchesV2('sipRate',{...find('SIP_RATE_EXCEEDED'),detail:{...find('SIP_RATE_EXCEEDED').detail,sipGeneration:99}},recipe,child),false);
 });
 
-test('AC-SOC-793 blocked-destination proof follows a real native call interaction and its exact destination',()=>{
+test('AC-SOC-793 native blocked-destination events require the later SOC failed-call trace before they count as Provider proof',()=>{
  const {s,child}=paidFixture(),recipe=security.abuseRecipe(s,scope.customerId,child);runRecipeNativeSteps(recipe,child);
  const interaction={id:'security-blocked-call-1',channel:'voice',phase:'arrival',to:recipe.steps.blockedDestination.to};child.interactions.push(interaction);
  const result=admission.admit(child,interaction,{peerId:'synthetic-carrier',method:'INVITE',messageBytes:128,messageValid:true,destination:interaction.to,secondOffset:recipe.steps.blockedDestination.secondOffset});
  assert.equal(result.allowed,false);assert.ok(result.reasons.some(x=>x.control==='destination'&&x.code==='DESTINATION_NOT_ALLOWED'));
- const event=child.admissionSecurity.events.find(x=>x.id===result.eventId);assert.equal(security.abuseEventMatchesV2('destination',event,recipe,child),true);
+ const event=child.admissionSecurity.events.find(x=>x.id===result.eventId);assert.equal(security.abuseEventMatchesV2('destination',event,recipe,child),false,'a native event without the shared SOC trace cannot pass Provider evidence');
+ interaction.phase='resolved';interaction.outcome='CONNECTED';assert.equal(security.abuseEventMatchesV2('destination',event,recipe,child),false,'a later successful interaction contradicts the blocked event');
  const altered={...interaction,to:'+61255500201'};child.interactions[0]=altered;assert.equal(security.abuseEventMatchesV2('destination',event,recipe,child),false,'the event reason alone cannot substitute for the actual interaction.to');
 });
 
 test('AC-SOC-794 retained v2 proof keeps paid v1 plans compatible, rejects current-generation substitution and serializes recipe rules to a worker',()=>{
  const {s,child}=paidFixture(),recipe=security.abuseRecipe(s,scope.customerId,child);assert.equal(security.validateAbuseRecipe(s,recipe,child,{historical:true}),true);
+ const premature=structuredClone(recipe);premature.createdAt=recipe.controlBindings[0].completedAt-1;assert.equal(security.validateAbuseRecipe(s,premature,child,{historical:true}),false,'a recipe cannot predate paid control completion');
  const replacement=security.quotePlan('network','edge-resilient',scope,9);for(const command of security.nativeCommands(replacement))admission.command(child,command);child.clock=10;s.clock=10;admission.advance(child);
  assert.equal(security.validateAbuseRecipe(s,recipe,child),false);assert.equal(security.validateAbuseRecipe(s,recipe,child,{historical:true}),true);
  const fresh=paidFixture(),expected=security.abuseRecipe(fresh.s,scope.customerId,fresh.child),box={};vm.createContext(box);vm.runInContext(security.source()+';globalThis.workerSecurity=SOC_PROVIDER_SECURITY;',box);

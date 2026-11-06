@@ -875,7 +875,7 @@ const SOC = (function socKernel() {
       let recipe;
       try{recipe=providerSecurity.abuseRecipe(s,customer.id,child);}catch(error){if(['PROVIDER_SECURITY_ATTACK_PATH_UNAVAILABLE','PROVIDER_SECURITY_CORE_CALL_BUCKET_FULL','PROVIDER_SECURITY_ATTACK_BUCKETS_FULL'].includes(error.message))continue;throw error;}
       const platform=operations.platform(child,'alex'),phone=config(child,platform),directory=config(child,phone?.directory);
-      const callerReady=directory?.identities.includes('alex')&&directory.entitled.includes('alex')&&[platform,'identity','carrier'].every(id=>observe(child,id).ready);
+      const callerReady=directory?.identities.includes('alex')&&directory.entitled.includes('alex')&&config(child,'cases')?.identityMapping&&[platform,'identity','carrier','cases'].every(id=>observe(child,id).ready);
       if(!(s.providerSecurityAbuse?.runs||[]).some(run=>run.recipe.runKey===recipe.runKey)&&callerReady){
         if((s.providerSecurityAbuse?.runs.length||0)>=200)fail('PROVIDER_SECURITY_ABUSE_CAPACITY');
         const run={recipe,eventIds:{},blockedInteractionId:null,blockedCaseId:null,evidence:null};
@@ -898,6 +898,7 @@ const SOC = (function socKernel() {
       const child=childOf(run.recipe.portfolioId);
       if(!providerSecurity.currentStatus(s,run.recipe.customerId,child).voiceAdmissionReady||!admissionSecurity.evaluate(child).passed)continue;
       for(const job of s.providerCampaign.jobs.filter(j=>j.customerId===run.recipe.customerId&&j.arrivalAt>run.recipe.createdAt&&j.channel==='voice'&&['completed','late'].includes(j.status)&&j.contextRetained&&!j.resilienceSequence)){
+        if(!providerSecurity.ordinaryDeliveryMatches(s,run.recipe.customerId,job,child.interactions.find(i=>i.id===job.interactionId),child.admissionSecurity.settlements.find(row=>row.interactionId===job.interactionId)))continue;
         const evidence=providerSecurity.evaluateProviderEvidence(s,run.recipe.customerId,child,job.id,run.recipe);
         if(providerSecurity.validateEvidence(s,evidence,child)){run.evidence=evidence;syncProviderSecurityPins(s);break;}
       }

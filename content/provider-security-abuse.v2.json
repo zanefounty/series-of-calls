@@ -48,10 +48,9 @@
   "ordinaryDelivery": {
     "source": "autonomous-provider-demand",
     "channel": "voice",
-    "to": "+61255500201",
-    "durationMinutes": 3,
     "eligibility": "completed-or-late-clean-voice-job-with-case-and-settlement",
     "mustResolve": true,
-    "mustSettleCoreUsageOnce": true
+    "mustSettleCoreUsageOnce": true,
+    "demandContract": "scenario-owned-ordinary-voice-v1"
   }
 }

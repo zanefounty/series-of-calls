@@ -24,7 +24,7 @@ test('AC-SOC-791 authored SCRUB recipe v2 binds fixed stress and native probes t
  assert.equal(recipe.controlBindings.length,3);assert.equal(recipe.controlBindings.find(x=>x.control==='network').nativeGeneration,1);assert.equal(recipe.steps.nativeCommands[0].packets,7500);assert.equal(recipe.steps.nativeCommands[0].packets>5000,true);assert.equal(recipe.steps.nativeCommands[0].packets<=50000,true);
  assert.deepEqual(recipe.steps.nativeCommands.map(x=>x.secondOffset),[1,1,2,3]);assert.equal(recipe.steps.blockedDestination.secondOffset,0);
  assert.equal(recipe.steps.nativeCommands[1].attempts,11);assert.equal(recipe.steps.nativeCommands[2].messageBytes,2049);assert.equal(recipe.steps.blockedDestination.to,recipeTerms.destination.to);
- assert.deepEqual(recipe.steps.ordinaryDelivery,{source:'autonomous-provider-demand',channel:'voice',to:'+61255500201',durationMinutes:3,eligibility:'completed-or-late-clean-voice-job-with-case-and-settlement',mustResolve:true,mustSettleCoreUsageOnce:true});
+ assert.deepEqual(recipe.steps.ordinaryDelivery,{source:'autonomous-provider-demand',channel:'voice',demandContract:'scenario-owned-ordinary-voice-v1',eligibility:'completed-or-late-clean-voice-job-with-case-and-settlement',mustResolve:true,mustSettleCoreUsageOnce:true});
  assert.equal(security.validateAbuseRecipe(s,recipe,child),true);
  const forged=structuredClone(recipe);forged.steps.nativeCommands[0].packets=1250;assert.equal(security.validateAbuseRecipe(s,forged,child),false);
  const premium=paidFixture('edge-resilient'),premiumRecipe=security.abuseRecipe(premium.s,scope.customerId,premium.child),premiumResults=runRecipeNativeSteps(premiumRecipe,premium.child);

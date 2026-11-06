@@ -174,6 +174,9 @@ test('AC-SOC-804 authored Provider abuse uses paid controls and a later autonomo
  s=until(s,x=>!!x.providerSecurityAbuse.runs[0].evidence,90);
  const evidence=s.providerSecurityAbuse.runs[0].evidence,job=s.providerCampaign.jobs.find(j=>j.id===evidence.jobId);
  assert.ok(job.arrivalAt>run.recipe.createdAt);assert.equal(SECURITY.validateEvidence(s,evidence,child(s)),true);
+ const actual=child(s).interactions.find(i=>i.id===evidence.interactionId);assert.equal(actual.to,'+61255500123');assert.equal(actual.durationMinutes,3);
+ for(const [key,value] of [['to','+61255500201'],['from','bea'],['durationMinutes',1]]){const wrong=structuredClone(s);child(wrong).interactions.find(i=>i.id===evidence.interactionId)[key]=value;assert.equal(SECURITY.validateEvidence(wrong,evidence,child(wrong),{historical:true}),false,'substituted '+key+' cannot satisfy authored demand');}
+
  assert.equal(s.providerCampaign.progressionReceipts?.receipts?.some(r=>r.sourceId==='progress.goal.scrub')||false,false,'delivered proof never auto-claims an achievement');
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  const before=JSON.stringify(s);SOC.provider.inspect(s);assert.equal(JSON.stringify(s),before,'inspection cannot replay attacks or grant service');

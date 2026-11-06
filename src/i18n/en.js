@@ -5614,6 +5614,8 @@
 "provider.scale.result":"Successful journeys / all attempts",
 "provider.scale.setup":"Setup cost",
 "provider.scale.start":"Start paid measurement",
+"provider.scale.stopped_default":"Provider default stopped new paid work at minute {at}. {cancelled} scheduled tasks were cancelled. Already-started work retains its actual outcome and usage charges. This measurement cannot pass.",
+"provider.scale.stopped_retirement":"A required service retired at minute {at}. {cancelled} scheduled tasks were cancelled. Already-started work keeps its actual outcome and usage charges. This measurement cannot pass.",
 "provider.scale.title":"Measure staffed service at scale",
 "provider.scale.workflow":"Paid short-task workflow",
 "provider.security.abuse.delivered":"A later ordinary customer call finished at minute {at}, with its actual voice usage settled once.",

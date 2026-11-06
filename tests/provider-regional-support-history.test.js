@@ -2,8 +2,9 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
 const SOC=require('../src/game/55-communications'),facts=require('../src/game/23-provider-progression');
 const REGIONAL=require('../src/game/23-provider-regional-support');
+const POLICY=require('../src/game/23-provider-policy');
 const copy=value=>JSON.parse(JSON.stringify(value)),customerId='starter-customer';
-const {startCustomer,operation,operationComplete,until,mspFor,stableSupportWindowShape}=require('./provider-progression-regional-claims.helpers.js');
+const {startCustomer,operation,operationComplete,until,mspFor,stableSupportWindowShape,assuranceMinute,assuranceWaitChunk}=require('./provider-progression-regional-claims.helpers.js');
 let original;
 function paidHistory(){
  if(original)return copy(original);
@@ -76,6 +77,47 @@ test('regional support verification keeps roster reuse local to one read and ret
  assert.equal(REGIONAL.validateNamedSupportSnapshot(stale,participant,at),false,'a later validation rebuilds authority from the changed state instead of reusing a prior invocation cache');
  assert.equal(REGIONAL.validateNamedSupportSnapshot(state,participant,at),true,'the original state remains valid');
 });
+test('AC-SOC-835 same-minute paid automation work is retained while unanchored manual work stays after the sample',()=>{
+ let state=paidHistory(),beforeActionTick=null;
+ state=operation(state,'automation',customerId);state=operationComplete(state,'automation',customerId);
+ const policy=state.providerAutomation.findLast(row=>row.customerId===customerId),policyProject=state.providerCampaign.projects.find(row=>row.id===policy.projectId);
+ const config={...POLICY.create(),enabled:true,cashFloorCents:0,lifetimeBudgetCents:100000,budgetSpentCents:policy.spentCents,maxActions:1,actionsUsed:policy.actions.length,engineerCeiling:5,supportCeiling:6,customerIds:[customerId],rules:[{id:'repair-one-real-incident',kind:'assurance',enabled:true,customerIds:[customerId],operationId:'repair',stage:null,resourceId:null,thresholdPercent:null}]};
+ state=SOC.dispatch(state,{type:'provider',command:{action:'configure-policy',customerId,config}});
+ const waitStartedAt=state.clock,deadline=waitStartedAt+420;
+ while(!state.providerAutomation.find(row=>row.projectId===policy.projectId)?.actions.length&&state.clock<deadline){
+  const n=state.clock<360?Math.min(deadline-state.clock,360-state.clock,assuranceWaitChunk(state)):1;
+  if(n===1){if(state.clock>=360&&!state.providerCampaign.customers.some(row=>row.status==='renewal'))beforeActionTick=copy(state);state=assuranceMinute(state);}else state=SOC.dispatch(state,{type:'advance',minutes:n});
+ }
+ const activePolicy=state.providerAutomation.find(row=>row.projectId===policy.projectId),action=activePolicy.actions[0],repair=action&&state.providerCampaign.projects.find(row=>row.id===action.projectId),sample=action&&facts.decodeSupportObservation(state.providerCampaign.supportObservation).find(row=>row.at===action.at),participant=sample?.participants.find(row=>row.customerId===repair?.customerId);
+ assert.ok(action,'the live paid policy handles the next authored incident');assert.ok(repair);assert.equal(repair.operationId,'repair');assert.equal(repair.acceptedAt,action.at);assert.ok(policyProject.completedAt<=action.at);assert.ok(state.business.ledger.some(row=>row.id===repair.postingId&&row.projectId===repair.id&&row.cents===repair.setupCents));
+ assert.ok(participant?.namedSupport,'the paid support payroll observation is retained at the repair minute');assert.equal(participant.namedSupport.implementationSupportSlots,1);assert.equal(REGIONAL.validateNamedSupportSnapshot(state,participant,action.at,{allowIneligible:true}),true,'the native policy action is ordered before this minute sample');
+ assert.deepEqual(SOC.restore(JSON.stringify(state)),state,'the authentic paid repair and its same-minute support sample survive save validation');
+
+ const unanchored=copy(state),unanchoredPolicy=unanchored.providerAutomation.find(row=>row.projectId===policy.projectId);unanchoredPolicy.actions=unanchoredPolicy.actions.filter(row=>row.projectId!==repair.id);
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(unanchored,participant,action.at,{allowIneligible:true}),false,'a same-minute project without its actual native policy action is treated as later manual work');
+ for(const [label,mutate] of [
+  ['wrong project',row=>{row.projectId='provider-project-999';}],
+  ['wrong minute',row=>{row.at=action.at+1;}],
+  ['wrong paid amount',row=>{row.cents++;}]
+ ]){const forged=copy(state),row=forged.providerAutomation.find(x=>x.projectId===policy.projectId).actions.find(x=>x.projectId===repair.id);mutate(row);assert.equal(REGIONAL.validateNamedSupportSnapshot(forged,participant,action.at,{allowIneligible:true}),false,label);}
+ const futurePolicy=copy(state),futureProject=futurePolicy.providerCampaign.projects.find(row=>row.id===policy.projectId);futureProject.completedAt=action.at+1;
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(futurePolicy,participant,action.at,{allowIneligible:true}),false,'a same-minute action cannot borrow a policy that completes afterward');
+
+ assert.ok(beforeActionTick,'the fixture retained the pre-tick state for an independent manual-order control');
+ let manual=copy(beforeActionTick);
+ manual=SOC.dispatch(manual,{type:'provider',command:{action:'automation',customerId,enabled:false}});
+ manual=SOC.dispatch(manual,{type:'advance',minutes:1});assert.equal(manual.clock,action.at);
+ const manualSample=facts.decodeSupportObservation(manual.providerCampaign.supportObservation).find(row=>row.at===action.at),manualParticipant=manualSample?.participants.find(row=>row.customerId===customerId),manualIncident=manual.providerCampaign.incidents.find(row=>row.customerId===customerId&&['active','acknowledged'].includes(row.status));
+ assert.ok(manualParticipant?.namedSupport);assert.equal(manualParticipant.namedSupport.implementationSupportSlots,0,'no native policy action preceded this sample');assert.ok(manualIncident,'the incident remains available for an explicit player repair');
+ if(manualIncident.status==='active')manual=SOC.dispatch(manual,{type:'provider',command:{action:'acknowledge-incident',incidentId:manualIncident.id}});
+ const manualQuote=SOC.provider.quote(manual,{action:'operation',operationId:'repair',customerId});assert.deepEqual(manualQuote.blockers,[]);
+ manual=SOC.dispatch(manual,{type:'provider',command:{action:'operation',operationId:'repair',customerId,quoteRevision:manualQuote.atRevision}});
+ const manualRepair=manual.providerCampaign.projects.at(-1);assert.equal(manualRepair.operationId,'repair');assert.equal(manualRepair.acceptedAt,action.at,'the player order follows the sample at the same displayed minute');assert.equal(REGIONAL.validateNamedSupportSnapshot(manual,manualParticipant,action.at,{allowIneligible:true}),true);assert.deepEqual(SOC.restore(JSON.stringify(manual)),manual);
+
+ const command={type:'advance',minutes:1},expected=SOC.dispatch(state,command);let message;const context={postMessage:value=>{message=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:835,state:copy(state),command}});
+ assert.ok(message,'serialized worker returned the tick');assert.equal(message.error,undefined);assert.deepEqual(copy(message.state),expected);assert.deepEqual(SOC.restore(JSON.stringify(message.state)),expected);
+});
+
 function stablePaidWindow(){
  let state=SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',seed:73,difficulty:'easy'});
  state=startCustomer(state,customerId,'starter','au-sydney');

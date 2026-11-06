@@ -1138,6 +1138,9 @@
     ],
     "tests/provider-standing-policy.test.js": [
       "AC-SOC-828"
+    ],
+    "tests/provider-regional-support-history.test.js": [
+      "AC-SOC-835"
     ]
   },
   "inputs": [
@@ -1743,6 +1746,7 @@
     "tests/provider-progression-regional-claims-l7.test.js",
     "tests/provider-progression-regional-claims.helpers.js",
     "tests/provider-progression-regional-claims-support.test.js",
-    "tests/provider-standing-policy.test.js"
+    "tests/provider-standing-policy.test.js",
+    "tests/provider-regional-support-history.test.js"
   ]
 }

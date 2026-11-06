@@ -17,6 +17,7 @@ function socProviderHistoryKernel(){
   for(const id of [...(s.providerProgressionPins?.pins?.interactionIds||[]),...(s.providerCentralPins?.pins?.interactionIds||[]),...(s.providerRegionalPins?.pins?.interactionIds||[]),...(s.providerInterconnectPins?.pins?.interactionIds||[]),...(s.providerExternalReachPins?.pins?.interactionIds||[]),...(s.providerCustodyPins?.pins?.interactionIds||[])])protectedInteractions.add(id);
   for(const r of [...(s.workforceQuality?.reviews||[]),...(s.providerReviews||[])])if(r.interactionId)protectedInteractions.add(r.interactionId);
   while(s.interactions.length>64){const index=s.interactions.findIndex(i=>['resolved','failed'].includes(i.phase)&&i.finishedAt<s.clock-60&&!protectedInteractions.has(i.id));if(index<0)break;
+   if(s.admissionSecurity){const security=typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');security.archiveInteraction(s,s.interactions[index]);}
    const [i]=s.interactions.splice(index,1);cp.interactions++;cp[i.phase]++;const n=Number(i.id.slice(12));if(Number.isSafeInteger(n)){cp.throughInteractionId=Math.max(cp.throughInteractionId,n);s.tracePrunedThrough=Math.max(s.tracePrunedThrough||0,n);}
   }
   const cases=new Set(s.interactions.map(i=>i.caseId));

@@ -17,8 +17,8 @@ function readyRoot({pins=false}={}){
  if(pins)root.providerSecurityPins={version:1,eventIds:['security-event-1','security-event-3'],interactionIds:[],jobIds:[],caseIds:[]};
  return root;
 }
-function admittedCall(root){
- const interaction={id:'security-call-1',channel:'voice',phase:'arrival',to:'+61255500201',trace:[]};root.interactions.push(interaction);
+function admittedCall(root,interactionId='security-call-1'){
+ const interaction={id:interactionId,startedAt:root.clock,channel:'voice',phase:'arrival',to:'+61255500201',trace:[]};root.interactions.push(interaction);
  const result=admission.admit(root,interaction,{peerId:'synthetic-carrier',destination:interaction.to,method:'INVITE',messageBytes:128,messageValid:true,secondOffset:0});assert.equal(result.allowed,true);
  interaction.trace.push({stage:'security',code:'SECURITY_CALL_ADMITTED'});interaction.phase='handling';
  const usage=admission.admitUsage(root,interaction.id,0);assert.equal(usage.allowed,true);root.ledger.push({id:'minute-1',minute:1,usage:1,cost:2,voiceInteractions:[interaction.id]});
@@ -62,4 +62,16 @@ test('AC-SOC-799 unpinned legacy FIFO saves keep their original admission fallba
  assert.equal(Object.prototype.hasOwnProperty.call(root.admissionSecurity,'eventHistory'),false);
  assert.equal(root.admissionSecurity.events.length,1000);assert.ok(root.admissionSecurity.events.every(x=>Number(x.id.slice('security-event-'.length))>4));
  const settled=admission.settle(root,interaction.id);assert.equal(settled.settled,true);assert.equal(admission.validate(root),true);
+});
+
+test('AC-SOC-814 Provider compaction retains exact terminal security proof and rejects missing or forged archive lineage',()=>{
+ const history=require('../src/game/23-provider-history.js'),root=readyRoot(),interaction=admittedCall(root,'interaction-1');admission.settle(root,interaction.id);
+ root.nextId=66;root.providerCustomer={version:1,id:'customer-a'};root.commands=[];root.records=[];
+ for(let n=2;n<=65;n++)root.interactions.push({id:'interaction-'+n,caseId:'case-'+n,phase:'resolved',channel:'message',startedAt:1,finishedAt:1});
+ while(root.clock<63){root.clock++;admission.advance(root);}const original=structuredClone(root);history.compact(root);assert.equal(root.interactions.length,64);assert.ok(!root.interactions.some(i=>i.id===interaction.id));assert.equal(root.providerArchive.interactions,1);
+ const settlement=root.admissionSecurity.settlements[0];assert.equal(settlement.archivedInteraction.interactionId,interaction.id);assert.equal(settlement.archivedInteraction.prunedAt,63);assert.equal(settlement.archivedInteraction.admissionEventId,root.admissionSecurity.admissions[0].eventId);assert.equal(admission.validate(root),true);assert.equal(history.validate(root),true);
+ for(const mutate of [r=>delete r.admissionSecurity.settlements[0].archivedInteraction,r=>r.admissionSecurity.settlements[0].archivedInteraction.admissionEventId='security-event-9999',r=>r.admissionSecurity.settlements[0].archivedInteraction.finishedAt++,r=>r.admissionSecurity.settlements[0].archivedInteraction.prunedAt=2,r=>r.admissionSecurity.settlements[0].archivedInteraction.obligations=['fabricated'],r=>r.tracePrunedThrough=0]){const bad=structuredClone(root);mutate(bad);assert.throws(()=>admission.validate(bad),/INVALID_SECURITY_SETTLEMENT_SAVE/);}
+ const missing=structuredClone(original);missing.interactions.shift();missing.tracePrunedThrough=1;assert.throws(()=>admission.validate(missing),/INVALID_SECURITY_SETTLEMENT_SAVE/,'a scalar prune marker alone cannot replace the deletion receipt');
+ const lab=structuredClone(root);delete lab.providerCustomer;delete lab.providerArchive;assert.equal(admission.validate(lab),true,'a Lab copy retains the already validated native settlement history');
+ const context={};vm.createContext(context);vm.runInContext(admission.source()+history.source()+`;globalThis.admission=SOC_ADMISSION_SECURITY;globalThis.history=SOC_PROVIDER_HISTORY;`,context);const replay=structuredClone(original);context.history.compact(replay);assert.deepEqual(JSON.parse(JSON.stringify(replay)),root);assert.equal(context.admission.validate(replay),true);
 });

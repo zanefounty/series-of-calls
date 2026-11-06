@@ -7737,6 +7737,44 @@
       ],
       "status": "partial",
       "scope": "The selected customer security inspector distinguishes actual filtered/blocked abuse from waiting for subsequent ordinary voice delivery and later settled delivery. Technical evidence is read-only beneath human-readable status. DOM evidence does not establish final browser acceptance or a progression award."
+    },
+    {
+      "id": "BEH-SOC-429",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/93-ui/79-provider-progression.js",
+        "content/provider-security-managed.v1.json"
+      ],
+      "testIds": [
+        "AC-SOC-811",
+        "AC-SOC-812",
+        "AC-SOC-813",
+        "AC-SOC-815"
+      ],
+      "status": "partial",
+      "scope": "Provider SCRUB claims require all three independently paid controls, authored blocked and admitted native attempts and a later actual ordinary call with once-only usage. Claims grant no cash and retain exact history after exit. Earned Managed Edge has separate versioned terms, requires another customer in the earned market, trades engineer reservations for support and recurring cost, and still requires independently paid SIP/destination controls. Actual paid second-customer delivery, forged-scope refusal, worker/restore and contextual plan-selection controls are covered; final visible-control acceptance and broader source tiers remain separate."
+    },
+    {
+      "id": "BEH-SOC-430",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/23-provider-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-814"
+      ],
+      "status": "partial",
+      "scope": "Before Provider diagnostic history removes a genuine terminal secured call, native settlement retains an explicit deletion receipt bound to the issued admission, actual terminal outcome and timing. Missing, mismatched or premature deletion receipts fail; a scalar pruning marker alone cannot establish missing interaction proof. Native history remains valid in Lab copies and serialized workers. This bounded compaction contract does not certify parked long-play or unlimited native settlement retention."
     }
   ]
 }

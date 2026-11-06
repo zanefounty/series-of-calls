@@ -3,6 +3,12 @@
  'use strict';
  const N_=g.N_||(value=>value),esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])),money=g.SOCProviderHud?.money||(value=>Number.isFinite(value)?`A$${(value/100).toFixed(2)}`:'—'),number=value=>Number.isFinite(value)?Number(value).toLocaleString('en-AU'):'—';
  const COPY=Object.freeze({
+  "offer_edge_managed":[N_("provider.security.offer.edge_managed"),"Managed Edge \u00b7 5,000 PPS clean / 50,000 PPS filtered"],
+  "blocker_earned":[N_("provider.security.blocker.earned"),"Earn Communications abuse defences by filtering the authored attack and delivering a later ordinary call, then claim it in Progression."],
+  "blocker_another":[N_("provider.security.blocker.another"),"This offer is for another customer. Fund a second customer in the earned market and select its carrier."],
+  "blocker_market":[N_("provider.security.blocker.market"),"Choose another customer in the market where you earned the protection milestone."],
+  "managed_tradeoff":[N_("provider.security.managed_tradeoff"),"Earned managed service: no Provider engineer reservation, two support reservations and higher recurring cost. SIP and destination controls are separate purchases."],
+
   'title':[N_('provider.security.title'),'Paid call security'],
   "abuse_title":[N_("provider.security.abuse.title"),"Observed protection"],
   "abuse_filtered":[N_("provider.security.abuse.filtered"),"At minute {at}, the paid filter handled {packets} PPS; rate abuse, an oversized SIP message and a forbidden destination were blocked."],
@@ -71,7 +77,7 @@
  const operationControls={'provider-security-network':'network','provider-security-sip':'sip','provider-security-destination':'destination'};
  const controlOrder=['network','sip','destination'];
  const offers={
-  'edge-basic':'offer_edge_basic','edge-resilient':'offer_edge_resilient',
+  'edge-basic':'offer_edge_basic','edge-resilient':'offer_edge_resilient','edge-managed':'offer_edge_managed',
   'sip-standard':'offer_sip_standard','sip-restricted':'offer_sip_restricted',
   'australia-guard':'offer_australia_guard','australia-tight-guard':'offer_australia_tight_guard'
  };
@@ -84,6 +90,7 @@
  function controlForOperation(operationId){return operationControls[operationId]||null;}
  function statusLabel(status){const labels={effective:['status_effective','Effective'],provisioning:['status_provisioning','Provisioning'],stale:['status_stale','Needs recommissioning'],failed:['status_failed','Failed'], 'not-purchased':['status_not_purchased','Not purchased']};const [key,fallback]=labels[status]||labels['not-purchased'];return text(key,fallback);}
  function blockerLabel(code){const labels={
+  SECURITY_PROTECTION_RECEIPT_REQUIRED:['blocker_earned'],SECURITY_MANAGED_REQUIRES_ANOTHER_CUSTOMER:['blocker_another'],SECURITY_MANAGED_MARKET_OUT_OF_SCOPE:['blocker_market'],
   SECURITY_ACTIVE_CALLS:['blocker_active_calls','Drain active voice calls before the first control purchase.'],
   SECURITY_CARRIER_REQUIRED:['blocker_carrier',"Commission and restore the customer's carrier service first."],
   SECURITY_PHONE_REQUIRED:['blocker_phone',"Commission and restore the customer's phone route first."],
@@ -117,9 +124,9 @@
  function offerCard(row,customerId){
   const control=row.securityControl||controlForOperation(row.operationId||row.id),operationId=row.operationId||row.id,planId=row.planId||row.selection?.planId,quote=row.quote||{},security=quote.commercial?.security,plan=security?.plan,blockers=quote.blockers||row.blockers||[],available=row.available!==false&&blockers.length===0&&quote.accepted!==false;
   const fallbackName=row.name||planId||'Paid offer',name=text(offers[planId]||'offer_unknown',fallbackName),lead=quote.leadMinutes??quote.workMinutes??row.workMinutes,engineers=quote.engineers??row.engineers,support=quote.support??row.support,setup=quote.setupCents??row.setupCents,period=quote.periodCents??row.periodCents;
-  return `<article class="provider-security-offer ${available?'is-available':'is-blocked'}" data-security-offer="${esc(control)}:${esc(planId)}"><h4>${esc(name)}</h4><p>${esc(text('offer_cost','{setup} setup · {period} / period',{setup:money(setup),period:money(period)}))}</p><p>${esc(text('offer_delivery','{lead} sim min · {engineers} engineers + {support} support',{lead:number(lead),engineers:number(engineers),support:number(support)}))}</p>${nativeRows(control,plan?.nativeConfig)}${blockers.length?`<p class="provider-blocked" data-security-blockers>${esc(blockers.map(blockerLabel).join(' '))}</p>`:''}<button type="button" data-provider-action="operation" data-operation="${esc(operationId)}" data-id="${esc(customerId)}" data-operation-config="${esc(JSON.stringify({planId}))}"${available?'':' disabled'}>${esc(text('review_quote','Review paid quote'))}</button></article>`;
+  return `<article class="provider-security-offer ${available?'is-available':'is-blocked'}" data-security-offer="${esc(control)}:${esc(planId)}"><h4>${esc(name)}</h4><p>${esc(text('offer_cost','{setup} setup · {period} / period',{setup:money(setup),period:money(period)}))}</p><p>${esc(text('offer_delivery','{lead} sim min · {engineers} engineers + {support} support',{lead:number(lead),engineers:number(engineers),support:number(support)}))}</p>${planId==='edge-managed'?`<p>${esc(text('managed_tradeoff'))}</p>`:''}${nativeRows(control,plan?.nativeConfig)}${blockers.length?`<p class="provider-blocked" data-security-blockers>${esc(blockers.map(blockerLabel).join(' '))}</p>`:''}<button type="button" data-provider-action="operation" data-operation="${esc(operationId)}" data-id="${esc(customerId)}" data-operation-config="${esc(JSON.stringify({planId}))}"${available?'':' disabled'}>${esc(text('review_quote','Review paid quote'))}</button></article>`;
  }
- function aggregate(operations){const quotes=(operations||[]).map(row=>row.quote?.commercial?.security).filter(value=>value&&Number.isFinite(value.totalMinimumSetupCents)&&Number.isFinite(value.totalMinimumPeriodCents));quotes.sort((a,b)=>(a.totalMinimumSetupCents+a.totalMinimumPeriodCents)-(b.totalMinimumSetupCents+b.totalMinimumPeriodCents));return quotes[0]||null;}
+ function aggregate(operations){const quotes=(operations||[]).filter(row=>!(row.quote?.blockers||row.blockers||[]).some(code=>['SECURITY_PROTECTION_RECEIPT_REQUIRED','SECURITY_MANAGED_REQUIRES_ANOTHER_CUSTOMER','SECURITY_MANAGED_MARKET_OUT_OF_SCOPE'].includes(code))).map(row=>row.quote?.commercial?.security).filter(value=>value&&Number.isFinite(value.totalMinimumSetupCents)&&Number.isFinite(value.totalMinimumPeriodCents));quotes.sort((a,b)=>(a.totalMinimumSetupCents+a.totalMinimumPeriodCents)-(b.totalMinimumSetupCents+b.totalMinimumPeriodCents));return quotes[0]||null;}
  function abuseSummary(runs){
   if(!runs?.length)return '';
   return `<section data-security-abuse><h3>${esc(text('abuse_title'))}</h3>${runs.map(run=>`<article data-security-abuse-status="${esc(run.status)}"><p>${esc(text('abuse_filtered',null,{at:number(run.at),packets:number(run.filteredPackets)}))}</p><p>${esc(run.status==='delivered'?text('abuse_delivered',null,{at:number(run.deliveredAt)}):text('abuse_waiting'))}</p><details data-provider-detail="security-abuse:${esc(run.blockedInteractionId)}"><summary>${esc(text('abuse_evidence'))}</summary><pre>${esc(JSON.stringify(run,null,2))}</pre></details></article>`).join('')}</section>`;
@@ -145,8 +152,8 @@
   const minimum=Number.isFinite(security.totalMinimumSetupCents)&&Number.isFinite(security.totalMinimumPeriodCents)?`<p>${esc(text('minimum','Minimum combined three-control commitment: {setup} setup · {period} / period.',{setup:money(security.totalMinimumSetupCents),period:money(security.totalMinimumPeriodCents)}))}</p>`:'';
   const interruption=security.interruptionStartsAtPurchase?`<p class="provider-security-notice">${esc(text('quote_interrupt','This first purchase requires active calls to be drained and interrupts voice admission until all three controls become effective.'))}</p>`:'';
   const usage=Number.isFinite(security.nativeUsageCentsPerMinute)?`<p>${esc(text('usage','Native calls use {rate} per voice minute; Provider wholesale usage is billed separately.',{rate:money(security.nativeUsageCentsPerMinute)}))}</p>`:'';
-  return `<section class="provider-security-quote" data-provider-security-quote><h3>${esc(controlName(control))} · ${esc(text(offers[plan.planId]||'offer_unknown',plan.planId))}</h3>${interruption}${minimum}${usage}${nativeRows(control,plan.nativeConfig)}<p>${esc(text('quote_scope','This is one separately paid control. Voice stays blocked until all three controls finish provisioning.'))}</p></section>`;
+  return `<section class="provider-security-quote" data-provider-security-quote><h3>${esc(controlName(control))} · ${esc(text(offers[plan.planId]||'offer_unknown',plan.planId))}</h3>${interruption}${minimum}${usage}${plan.planId==='edge-managed'?`<p>${esc(text('managed_tradeoff'))}</p>`:''}${nativeRows(control,plan.nativeConfig)}<p>${esc(text('quote_scope','This is one separately paid control. Voice stays blocked until all three controls finish provisioning.'))}</p></section>`;
  }
- g.SOCProviderSecurityUI={render,quote,controlName,controlForOperation};
+ g.SOCProviderSecurityUI={render,quote,controlName,controlForOperation,blockerLabel};
  if(typeof module!=='undefined'&&module.exports)module.exports=g.SOCProviderSecurityUI;
 })(typeof globalThis==='object'?globalThis:window);

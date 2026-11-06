@@ -1,5 +1,5 @@
 /* Paid Provider adapter for native synthetic network, SIP and destination controls. */
-function socProviderSecurityKernel(terms,abuseTerms){
+function socProviderSecurityKernel(terms,abuseTerms,managedTerms){
  'use strict';
  const VERSION=1, PACK='soc-provider-security-1', BINDING='provider-security-control-binding-v1', ABUSE_KIND='provider-security-abuse-recipe-v2', ABUSE_EVIDENCE='provider-security-evidence-v2';
  const copy=x=>JSON.parse(JSON.stringify(x));
@@ -9,11 +9,12 @@ function socProviderSecurityKernel(terms,abuseTerms){
  const integer=(x,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
  const id=x=>typeof x==='string'&&/^[a-z][a-z0-9-]{0,63}$/.test(x);
  const fail=code=>{throw new Error(code);};
+ const managedCatalogue={...terms,id:managedTerms.id,version:managedTerms.version,controls:{...terms.controls,network:{...terms.controls.network,offers:{[managedTerms.planId]:managedTerms.offer}}}};
  const controlNames=['network','sip','destination'];
  const controlIds=Object.fromEntries(controlNames.map(name=>[name,terms.controls[name].operationId]));
  const allRequired=[...terms.voiceServicePrerequisites];
  function controlForOperation(operationId){return controlNames.find(name=>controlIds[name]===operationId)||null;}
- function controlRow(control){return controlNames.includes(control)?terms.controls[control]:null;}
+ function controlRow(control){return control==='network'?{...terms.controls.network,offers:{...terms.controls.network.offers,[managedTerms.planId]:managedTerms.offer}}:controlNames.includes(control)?terms.controls[control]:null;}
  function offerRow(control,planId){const row=controlRow(control);return row&&typeof planId==='string'?row.offers[planId]||null:null;}
  function validateNativeConfig(control,c){
   if(control==='network')return exact(c,['activationMode','capacityPps','enabled','mitigationPps'])&&c.enabled===true&&integer(c.capacityPps,1,100000000)&&integer(c.mitigationPps,c.capacityPps,100000000)&&['always','on-demand'].includes(c.activationMode);
@@ -26,12 +27,14 @@ function socProviderSecurityKernel(terms,abuseTerms){
   const row=controlRow(control),offer=offerRow(control,planId);
   if(!row||!offer||!validateScope(scope)||!integer(quotedAt))fail('INVALID_PROVIDER_SECURITY_PLAN');
   if(!validateNativeConfig(control,offer.config))fail('INVALID_PROVIDER_SECURITY_TERMS');
-  const plan={version:VERSION,termsId:terms.id,termsVersion:terms.version,control,operationId:row.operationId,planId,customerId:scope.customerId,portfolioId:scope.portfolioId,tenant:scope.tenant,market:scope.market,quotedAt,setupCents:offer.setupCents,periodCents:offer.periodCents,workMinutes:offer.workMinutes,engineers:offer.engineers,support:offer.support,resources:copy(row.resources),requirements:copy(row.requirements),voiceServicePrerequisites:copy(allRequired),nativeConfig:copy(offer.config),supplierPeer:control==='sip'?copy(row.supplierPeer):null};
+  const selectedTerms=control==='network'&&planId===managedTerms.planId?managedCatalogue:terms;
+  const plan={version:VERSION,termsId:selectedTerms.id,termsVersion:selectedTerms.version,control,operationId:row.operationId,planId,customerId:scope.customerId,portfolioId:scope.portfolioId,tenant:scope.tenant,market:scope.market,quotedAt,setupCents:offer.setupCents,periodCents:offer.periodCents,workMinutes:offer.workMinutes,engineers:offer.engineers,support:offer.support,resources:copy(row.resources),requirements:copy(row.requirements),voiceServicePrerequisites:copy(allRequired),nativeConfig:copy(offer.config),supplierPeer:control==='sip'?copy(row.supplierPeer):null};
   if(!validatePlan(plan))fail('INVALID_PROVIDER_SECURITY_PLAN');return plan;
  }
  function termsForPlan(plan){
   if(!plan||typeof plan!=='object')return null;
   if(plan.termsId===terms.id&&plan.termsVersion===terms.version)return terms;
+  if(plan.termsId===managedCatalogue.id&&plan.termsVersion===managedCatalogue.version)return managedCatalogue;
   return (terms.historicalVersions||[]).find(old=>old.id===plan.termsId&&old.version===plan.termsVersion)||null;
  }
  function validatePlan(plan){
@@ -245,9 +248,33 @@ function socProviderSecurityKernel(terms,abuseTerms){
   if(!historical&&(!currentStatus(s,evidence.customerId,childRoot).voiceAdmissionReady||!nativeApi().evaluate(childRoot).passed))return false;
   return true;
  }
+ function managedBlockers(s,customerId,at=s.clock){
+  const receipt=s.providerCampaign?.progressionReceipts?.receipts?.find(r=>r.sourceId===managedTerms.sourceId&&r.at<=at),customer=s.providerCampaign?.customers?.find(c=>c.id===customerId);
+  if(!receipt)return ['SECURITY_PROTECTION_RECEIPT_REQUIRED'];
+  if(receipt.customerIds.includes(customerId))return ['SECURITY_MANAGED_REQUIRES_ANOTHER_CUSTOMER'];
+  if(!customer||receipt.sourceEvidence?.market!==customer.market)return ['SECURITY_MANAGED_MARKET_OUT_OF_SCOPE'];
+  return [];
+ }
+ function validateProgressionEvidence(s,e,{historical=false,claimedAt=s.clock,observeResource}={}){
+  if(!exact(e,['kind','version','sourceId','customerId','portfolioId','market','interval','proof'])||e.kind!=='provider-security-goal-v1'||e.version!==1||e.sourceId!==managedTerms.sourceId||!integer(claimedAt)||claimedAt>s.clock||!exact(e.interval,['from','to']))return false;
+  const proof=e.proof,c=s.providerCampaign?.customers?.find(c=>c.id===e.customerId),child=s.portfolio?.customers?.find(row=>row.id===e.portfolioId)?.root;
+  if(!c||c.portfolioId!==e.portfolioId||c.market!==e.market||proof?.customerId!==c.id||proof?.portfolioId!==c.portfolioId||proof?.market!==c.market||proof?.kind!==ABUSE_EVIDENCE||e.interval.from!==proof.recipe?.createdAt||e.interval.to!==proof.settlementAt||proof.at>claimedAt||!integer(c.activatedAt)||c.activatedAt>e.interval.from||c.exitAt!=null&&c.exitAt<claimedAt)return false;
+  const run=s.providerSecurityAbuse?.runs?.find(run=>run.recipe.runKey===proof.recipe.runKey);
+  if(!run||!same(run.evidence,proof)||!validateEvidence(s,proof,child,{historical}))return false;
+  if(!historical&&(!['active','renewal'].includes(c.status)||typeof observeResource!=='function'||['identity','phone','carrier','cases'].some(id=>observeResource(child,id)?.ready!==true)))return false;
+  return true;
+ }
+ function progression(s,hooks={}){
+  for(const run of s.providerSecurityAbuse?.runs||[]){
+   const proof=run.evidence;if(!proof)continue;
+   const evidence={kind:'provider-security-goal-v1',version:1,sourceId:managedTerms.sourceId,customerId:proof.customerId,portfolioId:proof.portfolioId,market:proof.market,interval:{from:proof.recipe.createdAt,to:proof.settlementAt},proof:copy(proof)};
+   if(validateProgressionEvidence(s,evidence,{observeResource:hooks.observeResource}))return {status:'ready',missing:[],evidence};
+  }
+  return {status:'incomplete',missing:['PAID_PROTECTION_AUTHORED_ABUSE_AND_LATER_VOICE_REQUIRED'],evidence:null};
+ }
  function pinnedEventIds(evidence){if(!evidence||!['provider-security-evidence-v1',ABUSE_EVIDENCE].includes(evidence.kind))return [];return [...new Set(Object.values(evidence.abuseEventIds||{}))].sort();}
- function source(){return `const SOC_PROVIDER_SECURITY=(${socProviderSecurityKernel.toString()})(${JSON.stringify(terms)},${JSON.stringify(abuseTerms)});`;}
- return {PACK,VERSION,CONTENT_ID:terms.id,ABUSE_RECIPE_ID:abuseTerms.id,ABUSE_RECIPE_VERSION:abuseTerms.version,sourceIds:copy(terms.sourceIds),controlNames:copy(controlNames),operationIds:copy(controlIds),voiceServicePrerequisites:copy(allRequired),terms:()=>copy(terms),abuseTerms:()=>copy(abuseTerms),operationDefinition,operationPlan,quotePlan,validatePlan,planReceipt,projectPlan,nativeCommands,paidProjectValid,bindingForProject,validateHistoricalBinding,validateCurrentBinding,currentStatus,ordinaryDeliveryMatches,abuseRecipe,validateAbuseRecipe,evaluateProviderEvidence,validateEvidence,abuseEventMatches,abuseEventMatchesV2,pinnedEventIds,source};
+ function source(){return `const SOC_PROVIDER_SECURITY=(${socProviderSecurityKernel.toString()})(${JSON.stringify(terms)},${JSON.stringify(abuseTerms)},${JSON.stringify(managedTerms)});`;}
+ return {PACK,VERSION,CONTENT_ID:terms.id,ABUSE_RECIPE_ID:abuseTerms.id,ABUSE_RECIPE_VERSION:abuseTerms.version,sourceIds:copy(terms.sourceIds),controlNames:copy(controlNames),operationIds:copy(controlIds),voiceServicePrerequisites:copy(allRequired),terms:()=>copy(terms),abuseTerms:()=>copy(abuseTerms),managedTerms:()=>copy(managedTerms),managedBlockers,progression,validateProgressionEvidence,operationDefinition,operationPlan,quotePlan,validatePlan,planReceipt,projectPlan,nativeCommands,paidProjectValid,bindingForProject,validateHistoricalBinding,validateCurrentBinding,currentStatus,ordinaryDeliveryMatches,abuseRecipe,validateAbuseRecipe,evaluateProviderEvidence,validateEvidence,abuseEventMatches,abuseEventMatchesV2,pinnedEventIds,source};
 }
 const SOC_PROVIDER_SECURITY_CONTENT={
   "version": 1,
@@ -537,5 +564,6 @@ const SOC_PROVIDER_SECURITY_ABUSE_CONTENT=typeof require==='function'?require('.
  destination:{to:'+18005550199',expectedCode:'DESTINATION_NOT_ALLOWED',requiresActualInteraction:true},
  ordinaryDelivery:{source:'autonomous-provider-demand',channel:'voice',demandContract:'scenario-owned-ordinary-voice-v1',eligibility:'completed-or-late-clean-voice-job-with-case-and-settlement',mustResolve:true,mustSettleCoreUsageOnce:true}
 };
-const SOC_PROVIDER_SECURITY=socProviderSecurityKernel(SOC_PROVIDER_SECURITY_CONTENT,SOC_PROVIDER_SECURITY_ABUSE_CONTENT);
+const SOC_PROVIDER_SECURITY_MANAGED_CONTENT=typeof require==='function'?require('../../content/provider-security-managed.v1.json'):{"id":"provider-security-managed-1","version":1,"sourceId":"progress.goal."+"scrub","planId":"edge-managed","unlockScope":"another-customer-in-earned-market","description":"An earned supplier-managed network filter trades lower setup and zero Provider engineer reservations for higher recurring cost and two support reservations. SIP and destination controls remain separately paid prerequisites.","offer":{"name":"Managed Edge \u00b7 5,000 PPS clean / 50,000 PPS filtered","setupCents":25000,"periodCents":14000,"workMinutes":4,"engineers":0,"support":2,"config":{"enabled":true,"capacityPps":5000,"mitigationPps":50000,"activationMode":"always"}}};
+const SOC_PROVIDER_SECURITY=socProviderSecurityKernel(SOC_PROVIDER_SECURITY_CONTENT,SOC_PROVIDER_SECURITY_ABUSE_CONTENT,SOC_PROVIDER_SECURITY_MANAGED_CONTENT);
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_SECURITY;

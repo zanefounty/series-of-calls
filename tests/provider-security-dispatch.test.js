@@ -207,3 +207,45 @@ test('AC-SOC-805 Provider abuse saves reject invented runs and pins and resume t
  assert.equal(reply?.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),SOC.dispatch(SOC.restore(original),command));assert.equal(JSON.stringify(s),original);
  const training=SOC.create();training.providerSecurityAbuse={version:1,runs:[]};assert.throws(()=>SOC.restore(JSON.stringify(training)),/INVALID_PROVIDER_SECURITY_ABUSE/);
 });
+
+const SCRUB='progress.goal.'+'scrub';
+function protectedDelivery(){return until(commissionedSecurityFixture(),s=>s.providerSecurityAbuse?.runs.some(run=>run.evidence),45);}
+function claimProtection(s){return dispatch(s,{action:'claim-progression',sourceId:SCRUB,quoteRevision:s.revision});}
+test('AC-SOC-811 SCRUB requires actual paid protection and later ordinary delivery, claims once and retains historical proof',()=>{
+ let s=commissionedSecurityFixture();const pending=SOC.provider.inspect(s).progression.goals[SCRUB];assert.equal(pending.status,'incomplete');const before=JSON.stringify(s);assert.throws(()=>claimProtection(s),/PROVIDER_PROGRESSION_EVIDENCE_REQUIRED/);assert.equal(JSON.stringify(s),before);
+ s=protectedDelivery();assert.equal(SOC.provider.inspect(s).progression.goals[SCRUB].status,'ready');const cash=s.business.balance.cash,ledger=JSON.stringify(s.business.ledger);s=claimProtection(s);const receipt=s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===SCRUB);assert.ok(receipt);assert.equal(receipt.sourceEvidence.proof.jobId,s.providerSecurityAbuse.runs[0].evidence.jobId);assert.equal(receipt.unlock.config.planId,'edge-managed');assert.equal(s.business.balance.cash,cash);assert.equal(JSON.stringify(s.business.ledger),ledger);
+ const once=JSON.stringify(s.providerCampaign.progressionReceipts);s=claimProtection(s);assert.equal(JSON.stringify(s.providerCampaign.progressionReceipts),once);assert.equal(s.business.balance.cash,cash);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const q=SOC.provider.quote(s,{action:'exit',customerId:CUSTOMER});assert.deepEqual(q.blockers,[]);s=dispatch(s,{action:'exit',customerId:CUSTOMER,quoteRevision:q.atRevision});s=advance(s);assert.deepEqual(s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===SCRUB),receipt);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);assert.equal(SOC.provider.inspect(s).progression.goals[SCRUB].status,'incomplete');
+ const forged=structuredClone(s);forged.providerCampaign.progressionReceipts.receipts[0].sourceEvidence.proof.jobId='provider-job-999999';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_PROGRESSION_RECEIPT/);
+});
+
+function careerMinute(s){
+ if(s.providerCampaign.status==='won')s=dispatch(s,{action:'continue-career'});
+ for(const c of s.providerCampaign.customers.filter(c=>c.status==='renewal'))s=dispatch(s,{action:'renew',customerId:c.id});
+ for(const i of s.providerCampaign.incidents.filter(i=>['active','acknowledged'].includes(i.status))){if(i.status==='active')s=dispatch(s,{action:'acknowledge-incident',incidentId:i.id});const request={action:'operation',operationId:i.resource==='service'?'service-repair':'repair',customerId:i.customerId},q=SOC.provider.quote(s,request);if(!q.blockers.length&&!s.providerCampaign.projects.some(p=>p.customerId===i.customerId&&p.operationId===request.operationId&&['running','commissioning'].includes(p.status)))s=dispatch(s,{...request,quoteRevision:q.atRevision});}
+ try{return advance(s);}catch(error){if(process.env.SOC_SECURITY_FAILURE_PATH)require('node:fs').writeFileSync(process.env.SOC_SECURITY_FAILURE_PATH,JSON.stringify({state:s,command:{type:'advance',minutes:1},error:error.message}));throw error;}
+}
+function careerUntil(s,predicate,limit=300){for(let i=0;i<limit&&!predicate(s);i++)s=careerMinute(s);if(!predicate(s)&&process.env.SOC_SECURITY_FAILURE_PATH)require('node:fs').writeFileSync(process.env.SOC_SECURITY_FAILURE_PATH,JSON.stringify({state:s,error:'career stalled'}));assert.ok(predicate(s),'career stalled at '+s.clock);return s;}
+let earnedManagedFixture=null,earnedOpportunityFixture=null;
+function managedDeliveredFixture(){
+ if(earnedManagedFixture)return SOC.restore(JSON.stringify(earnedManagedFixture));
+ let s=protectedDelivery(),request={action:'operation',operationId:SECURITY.operationIds.network,customerId:CUSTOMER,config:{planId:'edge-managed'}};
+ assert.ok(SOC.provider.quote(s,request).blockers.includes('SECURITY_PROTECTION_RECEIPT_REQUIRED'));s=claimProtection(s);assert.ok(SOC.provider.quote(s,request).blockers.includes('SECURITY_MANAGED_REQUIRES_ANOTHER_CUSTOMER'));
+ s=dispatch(s,{action:'staff',engineers:2,support:3});s=careerUntil(s,x=>x.providerCampaign.mission.nextOpportunityAvailable);earnedOpportunityFixture=structuredClone(s);
+ const target='next-1-customer';for(const stage of ['base','carrier','partner'])s=quoted(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,...(stage==='base'?{market:customer(s).market}:{customerId:target})});s=careerUntil(s,x=>x.providerCampaign.customers.find(c=>c.id===target)?.status==='active');
+ s=careerUntil(s,x=>x.providerCampaign.incidents.some(i=>i.customerId===target&&i.status==='resolved'),90);s=careerUntil(s,x=>!x.providerCampaign.projects.some(p=>['running','commissioning'].includes(p.status)));
+ s=dispatch(s,{action:'staff',engineers:0,support:3});const targetChild=x=>x.portfolio.customers.find(row=>row.id===target).root;
+ s=careerUntil(s,x=>!targetChild(x).interactions.some(i=>i.channel==='voice'&&!['resolved','failed'].includes(i.phase)));
+ request={...request,customerId:target};const direct=SOC.provider.quote(s,{...request,config:{planId:'edge-resilient'}}),managed=SOC.provider.quote(s,request);assert.ok(direct.blockers.includes('ENGINEER_CAPACITY'));assert.deepEqual(managed.blockers,[]);assert.deepEqual([managed.setupCents,managed.periodCents,managed.workMinutes,managed.engineers,managed.support],[25000,14000,4,0,2]);assert.equal(managed.commercial.security.plan.termsId,'provider-security-managed-1');
+ const cash=s.business.balance.cash;s=quoted(s,request);assert.equal(cash-s.business.balance.cash,25000);const network=s.providerCampaign.projects.at(-1);assert.equal(network.status,'running');s=careerUntil(s,x=>x.providerCampaign.projects.find(p=>p.id===network.id).status==='complete',20);assert.equal(SECURITY.currentStatus(s,target,targetChild(s)).voiceAdmissionReady,false);
+ s=dispatch(s,{action:'staff',engineers:1,support:3});for(const [control,planId] of [['sip','sip-standard'],['destination','australia-guard']]){s=quoted(s,{action:'operation',operationId:SECURITY.operationIds[control],customerId:target,config:{planId}});const id=s.providerCampaign.projects.at(-1).id;s=careerUntil(s,x=>x.providerCampaign.projects.find(p=>p.id===id).status==='complete',30);}
+ s=careerUntil(s,x=>x.providerSecurityAbuse?.runs.some(run=>run.recipe.customerId===target&&run.evidence),60);const run=s.providerSecurityAbuse.runs.find(run=>run.recipe.customerId===target);assert.ok(run.evidence);assert.equal(targetChild(s).admissionSecurity.settlements.filter(row=>row.interactionId===run.evidence.interactionId).length,1);assert.equal(s.business.ledger.filter(row=>row.projectId===network.id&&row.reason==='provider-operation').length,1);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);earnedManagedFixture=structuredClone(s);return s;
+}
+test('AC-SOC-812 SCRUB unlock delivers paid network protection to another customer with zero engineers and separately paid SIP and destination',()=>{managedDeliveredFixture();});
+test('AC-SOC-813 managed protection refuses forged earned scope and keeps worker save continuation deterministic',()=>{
+ const s=managedDeliveredFixture(),managed=s.providerCampaign.projects.find(p=>p.securityPlan?.planId==='edge-managed');
+ let foreign=SOC.restore(JSON.stringify(earnedOpportunityFixture));foreign=quoted(foreign,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base',market:'au-melbourne'});const foreignRequest={action:'operation',operationId:SECURITY.operationIds.network,customerId:'next-1-customer',config:{planId:'edge-managed'}},foreignQuote=SOC.provider.quote(foreign,foreignRequest),before=JSON.stringify(foreign);assert.ok(foreignQuote.blockers.includes('SECURITY_MANAGED_MARKET_OUT_OF_SCOPE'));assert.throws(()=>dispatch(foreign,{...foreignRequest,quoteRevision:foreignQuote.atRevision}),/PROVIDER_QUOTE_BLOCKED/);assert.equal(JSON.stringify(foreign),before);
+ const forged=structuredClone(s);delete forged.providerCampaign.progressionReceipts;assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_SECURITY_EARNED_SCOPE/);
+ const changed=structuredClone(s);changed.providerCampaign.projects.find(p=>p.id===managed.id).acceptedAt=0;assert.throws(()=>SOC.restore(JSON.stringify(changed)),/INVALID_PROVIDER/);
+ const context={postMessage:r=>{context.response=r;}};vm.createContext(context);vm.runInContext(SOC.workerSource()+';globalThis.engine=SOC;',context);const command={type:'advance',minutes:1};assert.deepEqual(JSON.parse(JSON.stringify(context.engine.dispatch(s,command))),SOC.dispatch(s,command));
+});

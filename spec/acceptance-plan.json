@@ -1132,12 +1132,16 @@
       "AC-SOC-785",
       "AC-SOC-786",
       "AC-SOC-804",
-      "AC-SOC-805"
+      "AC-SOC-805",
+      "AC-SOC-811",
+      "AC-SOC-812",
+      "AC-SOC-813"
     ],
     "tests/provider-security-ui.test.js": [
       "AC-SOC-782",
       "AC-SOC-783",
-      "AC-SOC-809"
+      "AC-SOC-809",
+      "AC-SOC-815"
     ],
     "tests/provider-security.test.js": [
       "AC-SOC-791",
@@ -1148,7 +1152,8 @@
     "tests/admission-security-event-retention.test.js": [
       "AC-SOC-797",
       "AC-SOC-798",
-      "AC-SOC-799"
+      "AC-SOC-799",
+      "AC-SOC-814"
     ]
   },
   "inputs": [
@@ -1753,6 +1758,7 @@
     "src/game/93-ui/74-provider-security.js",
     "tests/provider-security.test.js",
     "tests/admission-security-event-retention.test.js",
-    "content/provider-security-abuse.v2.json"
+    "content/provider-security-abuse.v2.json",
+    "content/provider-security-managed.v1.json"
   ]
 }

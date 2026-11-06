@@ -36440,9 +36440,12 @@
     "status": "partial",
     "implementation": [
       "content/provider-security-abuse.v2.json",
+      "content/provider-security-managed.v1.json",
       "content/provider-security.json",
       "src/game/23-provider-capacity-authority.js",
       "src/game/23-provider-history.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
       "src/game/23-provider-security.js",
       "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
@@ -36453,6 +36456,7 @@
       "src/game/82-security-ui.js",
       "src/game/93-ui/74-provider-security.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-progression.js",
       "src/game/97-training.js",
       "src/game/98-provider-runtime.js",
       "src/i18n/en.js"
@@ -36493,7 +36497,9 @@
       "BEH-SOC-421",
       "BEH-SOC-423",
       "BEH-SOC-425",
-      "BEH-SOC-427"
+      "BEH-SOC-427",
+      "BEH-SOC-429",
+      "BEH-SOC-430"
     ]
   },
   {

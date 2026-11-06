@@ -7,8 +7,20 @@
     "tests/provider-progression-regional-claims-t2.test.js": [
       "AC-SOC-655"
     ],
+    "tests/provider-progression-receipts-level3-managed.test.js": [
+      "AC-SOC-838"
+    ],
+    "tests/provider-progression-receipts-level3-markets.test.js": [
+      "AC-SOC-837"
+    ],
     "tests/provider-progression-regional-claims-c5.test.js": [
       "AC-SOC-654"
+    ],
+    "tests/provider-progression-receipts-level3-room.test.js": [
+      "AC-SOC-836"
+    ],
+    "tests/provider-progression-receipts.test.js": [
+      "AC-SOC-810"
     ],
     "tests/provider-progression-regional-claims-c3.test.js": [
       "AC-SOC-653"
@@ -1093,9 +1105,6 @@
       "AC-SOC-795",
       "AC-SOC-796"
     ],
-    "tests/provider-progression-receipts.test.js": [
-      "AC-SOC-810"
-    ],
     "tests/provider-incident-sequence.test.js": [
       "AC-SOC-824",
       "AC-SOC-825",
@@ -1708,6 +1717,10 @@
     "tests/provider-progression-regional-claims.helpers.js",
     "tests/provider-progression-regional-claims-support.test.js",
     "tests/provider-standing-policy.test.js",
-    "tests/provider-regional-support-history.test.js"
+    "tests/provider-regional-support-history.test.js",
+    "tests/provider-progression-receipts-level3-room.test.js",
+    "tests/provider-progression-receipts-level3-markets.test.js",
+    "tests/provider-progression-receipts-level3-managed.test.js",
+    "tests/provider-progression-receipts.helpers.js"
   ]
 }

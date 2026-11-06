@@ -159,3 +159,48 @@ test('AC-SOC-786 ordinary Provider demand resolves through all three paid contro
  const saved=structuredClone(settlement);s=advance(s);const later=child(s).admissionSecurity.settlements.filter(row=>row.interactionId===job.interactionId);
  assert.equal(later.length,1);assert.deepEqual(later[0],saved,'later ticks cannot charge the completed call a second time');
 });
+
+
+test('AC-SOC-804 authored Provider abuse uses paid controls and a later autonomous call, without rewards or repeated incident injection',()=>{
+ let s=commissionedSecurityFixture();const started=structuredClone(s.providerSecurityAbuse);
+ assert.equal(started.version,1);assert.equal(started.runs.length,1);const run=started.runs[0];
+ assert.equal(run.evidence,null,'commissioning and blocked attacks alone do not prove delivered service');
+ const codes=Object.values(run.eventIds).map(id=>child(s).admissionSecurity.events.find(e=>e.id===id).code);
+ assert.deepEqual(codes,['NETWORK_FLOOD_FILTERED','SIP_RATE_EXCEEDED','SIP_MESSAGE_INVALID','SIP_ADMITTED','SECURITY_CALL_BLOCKED']);
+ const blocked=child(s).interactions.find(i=>i.id===run.blockedInteractionId);assert.equal(blocked.outcome,'DESTINATION_NOT_ALLOWED');
+ assert.ok(blocked.trace.some(t=>t.nativeEventId===run.eventIds.destination));
+ assert.equal(s.providerCampaign.jobs.some(j=>j.interactionId===blocked.id),false,'an abuse attempt is not a due customer case');
+ assert.equal(child(s).admissionSecurity.settlements.some(x=>x.interactionId===blocked.id),false,'a denied attempt consumes no billable voice');
+ s=until(s,x=>!!x.providerSecurityAbuse.runs[0].evidence,90);
+ const evidence=s.providerSecurityAbuse.runs[0].evidence,job=s.providerCampaign.jobs.find(j=>j.id===evidence.jobId);
+ assert.ok(job.arrivalAt>run.recipe.createdAt);assert.equal(SECURITY.validateEvidence(s,evidence,child(s)),true);
+ assert.equal(s.providerCampaign.progressionReceipts?.receipts?.some(r=>r.sourceId==='progress.goal.scrub')||false,false,'delivered proof never auto-claims an achievement');
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const before=JSON.stringify(s);SOC.provider.inspect(s);assert.equal(JSON.stringify(s),before,'inspection cannot replay attacks or grant service');
+ for(const command of [{type:'admission-security',command:{action:'inject-packets',peer:'unfunded',packets:1,secondOffset:1}},{type:'interact',channel:'voice',from:'alex',to:'+18005550199',caseId:'manual-provider-abuse'}])assert.throws(()=>SOC.dispatch(s,command),/CAMPAIGN_AUTHORING_FORBIDDEN/);
+ s=until(s,x=>x.clock>=181,180);
+ assert.equal(s.providerSecurityAbuse.runs.length,1);assert.deepEqual(s.providerSecurityAbuse.runs[0].eventIds,run.eventIds);
+ assert.equal(SECURITY.validateEvidence(s,evidence,child(s),{historical:true}),true);
+ assert.ok(child(s).interactions.some(i=>i.id===blocked.id));assert.ok(s.providerCampaign.jobs.some(j=>j.id===evidence.jobId));
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const lab=SOC.dispatch(s,{type:'copy-to-lab',customerId:CUSTOMER});assert.equal(lab.providerSecurityPins,undefined);assert.deepEqual(SOC.restore(JSON.stringify(lab)),lab);
+});
+
+test('AC-SOC-805 Provider abuse saves reject invented runs and pins and resume the waiting call identically in workers',()=>{
+ const s=commissionedSecurityFixture();
+ for(const mutate of [
+  x=>{x.providerSecurityAbuse.version=2;},
+  x=>{x.providerSecurityAbuse.runs[0].recipe.createdAt=0;},
+  x=>{x.providerSecurityAbuse.runs.push(structuredClone(x.providerSecurityAbuse.runs[0]));},
+  x=>{child(x).providerSecurityPins.eventIds=[];},
+  x=>{delete x.providerSecurityAbuse;},
+  x=>{delete x.providerSecurityAbuse;delete child(x).providerSecurityPins;},
+  x=>{x.providerSecurityAbuse.runs[0].eventIds.destination=x.providerSecurityAbuse.runs[0].eventIds.network;},
+  x=>{child(x).interactions.find(i=>i.id===x.providerSecurityAbuse.runs[0].blockedInteractionId).trace.find(t=>t.code==='SECURITY_CALL_BLOCKED').nativeEventId='security-event-999';}
+ ]){const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_SECURITY|INVALID_SECURITY/);}
+ const original=JSON.stringify(s),command={type:'advance',minutes:8};let reply;
+ const box={require:require('node:module').createRequire(require('node:path').resolve(__dirname,'../src/game/55-communications.js')),postMessage:value=>{reply=value;}};
+ vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:'provider-abuse-resume',state:structuredClone(s),command}});
+ assert.equal(reply?.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),SOC.dispatch(SOC.restore(original),command));assert.equal(JSON.stringify(s),original);
+ const training=SOC.create();training.providerSecurityAbuse={version:1,runs:[]};assert.throws(()=>SOC.restore(JSON.stringify(training)),/INVALID_PROVIDER_SECURITY_ABUSE/);
+});

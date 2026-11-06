@@ -400,6 +400,7 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
   for(const receipt of p.progressionReceipts?.receipts||[])if(receipt.sourceId==='progress.progression-level.8')pinnedJobs.add(receipt.sourceEvidence.jobId);
   for(const receipt of externalReachReceipts(p))for(const leg of ['outbound','inbound'])pinnedJobs.add(receipt.sourceEvidence[leg].jobId);
   for(const project of p.projects)if(project.operationReceipt?.kind==='provider-uc-cc-integration'&&project.operationReceipt.task)pinnedJobs.add(project.operationReceipt.task.job.id);
+  for(const run of s.providerSecurityAbuse?.runs||[])if(run.evidence)pinnedJobs.add(run.evidence.jobId);
   for(const row of p.supportWork?.origins||[])pinnedJobs.add(row.jobId);
   for(const j of p.jobs.filter(x=>x.periodIndex<periodIndex&&x.settled&&!x.resilienceSequence&&!pinnedJobs.has(x.id))){if(j.followup&&p.projects.some(project=>project.operationId==='retry-case-followup'&&project.config?.jobId===j.id))hooks.archiveFollowupRetry(s,j,p.jobCheckpoint.pruned+1);p.jobCheckpoint.pruned++;p.jobCheckpoint.completed+=['completed','late'].includes(j.status)?1:0;p.jobCheckpoint.late+=j.status==='late'?1:0;p.jobCheckpoint.failed+=j.status==='failed'?1:0;p.jobCheckpoint.voiceMinutes+=j.voiceMinutes;p.jobCheckpoint.messages+=j.followup?j.messageUnits:j.messageCharged?1:0;}
   p.jobs=p.jobs.filter(x=>!(x.periodIndex<periodIndex&&x.settled&&!x.resilienceSequence&&!pinnedJobs.has(x.id)));

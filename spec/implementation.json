@@ -7535,6 +7535,74 @@
       ],
       "status": "partial",
       "scope": "Earned work receipts retain their exact arrival events in addition to the bounded working event history. Rehashed missing-arrival substitutions refuse; validated legacy regional markers migrate on owned copies. A real opening claim survives 220 dispatched staffing events and restores, while an isolated multi-window appender fixture proves 240 retained arrivals leave a 200-event working window. That fixture does not establish regional award eligibility or final long-play acceptance."
+    },
+    {
+      "id": "BEH-SOC-421",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "content/provider-security-abuse.v2.json"
+      ],
+      "testIds": [
+        "AC-SOC-791",
+        "AC-SOC-792",
+        "AC-SOC-793",
+        "AC-SOC-794"
+      ],
+      "status": "partial",
+      "scope": "A versioned authored synthetic abuse recipe binds fixed packet, SIP rate, oversized-message and destination attempts to separately paid controls and native generations. Pure helpers distinguish incident observations from subsequent real customer delivery. The canonical SCRUB claim and useful unlock remain pending."
+    },
+    {
+      "id": "BEH-SOC-423",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-797",
+        "AC-SOC-798",
+        "AC-SOC-799"
+      ],
+      "status": "partial",
+      "scope": "Native security keeps a bounded 1,000-event history while preserving explicitly pinned actual events. Exact pruned ranges retain older legitimate admission proof, reject forged gaps and survive removing Provider pins in a separate Lab copy. These native tests do not grant pin authority or establish a Provider achievement."
+    },
+    {
+      "id": "BEH-SOC-425",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-803",
+        "AC-SOC-804",
+        "AC-SOC-805"
+      ],
+      "status": "partial",
+      "scope": "The shared route records actual destination denials before unreachable routing without granting reach. After all three paid controls commission, the Provider dispatcher executes one authored abuse sequence per paid generation tuple and waits for a later autonomous voice job with actual once-only settlement. Strict versioned saves retain actual attack events, interactions, cases and delivered jobs; forged lineage and pin substitutions refuse. Worker continuation, read-only inspection, legacy saves and separate Lab copies preserve ownership. This is a bounded incident and delivery path, not a canonical SCRUB achievement, useful unlock or full failure-domain completion."
+    },
+    {
+      "id": "BEH-SOC-427",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/55-communications.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-809"
+      ],
+      "status": "partial",
+      "scope": "The selected customer security inspector distinguishes actual filtered/blocked abuse from waiting for subsequent ordinary voice delivery and later settled delivery. Technical evidence is read-only beneath human-readable status. DOM evidence does not establish final browser acceptance or a progression award."
     }
   ]
 }

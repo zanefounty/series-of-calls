@@ -4,6 +4,12 @@
  const N_=g.N_||(value=>value),esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])),money=g.SOCProviderHud?.money||(value=>Number.isFinite(value)?`A$${(value/100).toFixed(2)}`:'—'),number=value=>Number.isFinite(value)?Number(value).toLocaleString('en-AU'):'—';
  const COPY=Object.freeze({
   'title':[N_('provider.security.title'),'Paid call security'],
+  "abuse_title":[N_("provider.security.abuse.title"),"Observed protection"],
+  "abuse_filtered":[N_("provider.security.abuse.filtered"),"At minute {at}, the paid filter handled {packets} PPS; rate abuse, an oversized SIP message and a forbidden destination were blocked."],
+  "abuse_waiting":[N_("provider.security.abuse.waiting"),"Waiting for a later ordinary customer call to finish. Resume time to observe delivery; blocked attacks alone do not prove service."],
+  "abuse_delivered":[N_("provider.security.abuse.delivered"),"A later ordinary customer call finished at minute {at}, with its actual voice usage settled once."],
+  "abuse_evidence":[N_("provider.security.abuse.evidence"),"Read-only protection evidence"],
+
   'control_network':[N_('provider.security.control.network'),'Network packet filtering'],
   'control_sip':[N_('provider.security.control.sip'),'Authenticated SIP signalling'],
   'control_destination':[N_('provider.security.control.destination'),'Outbound destination guard'],
@@ -114,6 +120,10 @@
   return `<article class="provider-security-offer ${available?'is-available':'is-blocked'}" data-security-offer="${esc(control)}:${esc(planId)}"><h4>${esc(name)}</h4><p>${esc(text('offer_cost','{setup} setup · {period} / period',{setup:money(setup),period:money(period)}))}</p><p>${esc(text('offer_delivery','{lead} sim min · {engineers} engineers + {support} support',{lead:number(lead),engineers:number(engineers),support:number(support)}))}</p>${nativeRows(control,plan?.nativeConfig)}${blockers.length?`<p class="provider-blocked" data-security-blockers>${esc(blockers.map(blockerLabel).join(' '))}</p>`:''}<button type="button" data-provider-action="operation" data-operation="${esc(operationId)}" data-id="${esc(customerId)}" data-operation-config="${esc(JSON.stringify({planId}))}"${available?'':' disabled'}>${esc(text('review_quote','Review paid quote'))}</button></article>`;
  }
  function aggregate(operations){const quotes=(operations||[]).map(row=>row.quote?.commercial?.security).filter(value=>value&&Number.isFinite(value.totalMinimumSetupCents)&&Number.isFinite(value.totalMinimumPeriodCents));quotes.sort((a,b)=>(a.totalMinimumSetupCents+a.totalMinimumPeriodCents)-(b.totalMinimumSetupCents+b.totalMinimumPeriodCents));return quotes[0]||null;}
+ function abuseSummary(runs){
+  if(!runs?.length)return '';
+  return `<section data-security-abuse><h3>${esc(text('abuse_title'))}</h3>${runs.map(run=>`<article data-security-abuse-status="${esc(run.status)}"><p>${esc(text('abuse_filtered',null,{at:number(run.at),packets:number(run.filteredPackets)}))}</p><p>${esc(run.status==='delivered'?text('abuse_delivered',null,{at:number(run.deliveredAt)}):text('abuse_waiting'))}</p><details data-provider-detail="security-abuse:${esc(run.blockedInteractionId)}"><summary>${esc(text('abuse_evidence'))}</summary><pre>${esc(JSON.stringify(run,null,2))}</pre></details></article>`).join('')}</section>`;
+ }
  function render(customer,operations=[],selection=null){
   if(!customer?.id||!customer.security)return '';
   const security=customer.security,rows=(operations||[]).filter(row=>row.securityControl||controlForOperation(row.operationId||row.id)),known=security.controls||{},effectiveCount=Number.isSafeInteger(security.effectiveControlCount)?security.effectiveControlCount:controlOrder.filter(name=>known[name]?.status==='effective').length,started=typeof security.nativePackStarted==='boolean'?security.nativePackStarted:controlOrder.some(name=>known[name]?.status&&known[name].status!=='not-purchased'),allReady=security.voiceAdmissionReady===true,voiceBlocked=typeof security.voiceAdmissionBlocked==='boolean'?security.voiceAdmissionBlocked:started&&!allReady,min=aggregate(rows),cards=controlOrder.map(control=>{
@@ -127,7 +137,7 @@
   const partialNotice=voiceBlocked?text('partial_notice','A partial deployment blocks voice admission; each control must be separately purchased and finish provisioning.'):'';
   const minimum=min?`<p class="provider-security-minimum">${esc(text('minimum','Minimum combined three-control commitment: {setup} setup · {period} / period.',{setup:money(min.totalMinimumSetupCents),period:money(min.totalMinimumPeriodCents)}))}</p>`:'';
   const usage=min?`<p class="provider-security-usage">${esc(text('usage','Native calls use {rate} per voice minute; Provider wholesale usage is billed separately.',{rate:money(min.nativeUsageCentsPerMinute)}))}</p>`:'';
-  return `<section class="provider-security" data-provider-security data-context="${esc(selection?.serviceId||'customer')}"><h2>${esc(text('title','Paid call security'))}</h2><p class="provider-security-condition">${esc(condition)} · ${esc(text('count','{effective} of {required} controls effective',{effective:effectiveCount,required:security.requiredControlCount||3}))}</p>${firstNotice||partialNotice?`<p class="provider-security-notice">${esc(firstNotice||partialNotice)}</p>`:''}${minimum}${usage}<div class="provider-security-controls">${cards||`<p>${esc(text('offers_unavailable','No paid security offers are available for this customer selection.'))}</p>`}</div></section>`;
+  return `<section class="provider-security" data-provider-security data-context="${esc(selection?.serviceId||'customer')}"><h2>${esc(text('title','Paid call security'))}</h2><p class="provider-security-condition">${esc(condition)} · ${esc(text('count','{effective} of {required} controls effective',{effective:effectiveCount,required:security.requiredControlCount||3}))}</p>${firstNotice||partialNotice?`<p class="provider-security-notice">${esc(firstNotice||partialNotice)}</p>`:''}${minimum}${usage}${abuseSummary(security.abuse)}<div class="provider-security-controls">${cards||`<p>${esc(text('offers_unavailable','No paid security offers are available for this customer selection.'))}</p>`}</div></section>`;
  }
  function quote(q){
   const security=q?.commercial?.security,plan=security?.plan;if(!security||!plan)return '';

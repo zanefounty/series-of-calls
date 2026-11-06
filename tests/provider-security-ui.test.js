@@ -58,3 +58,10 @@ test('AC-SOC-783 security quotes show paid interruption, aggregate costs, select
  const invalid={...first,available:false,blockers:['SECURITY_CONTROL_ALREADY_ORDERED'],quote:{...first.quote,blockers:['SECURITY_CONTROL_ALREADY_ORDERED']}};const blockedRows=[...rows.filter(row=>row!==first),invalid];m.contextualOperations=blockedRows;f.host.innerHTML=f.w.SOCProviderPanels.inspector(m,{selection:{customerId:'customer-a'}});const button=f.host.querySelector('[data-security-offer="network:edge-basic"] button');assert.equal(button.disabled,true);assert.match(f.host.querySelector('[data-security-offer="network:edge-basic"]').textContent,/This control already has a funded purchase/);assert.doesNotMatch(f.host.querySelector('[data-security-offer="network:edge-basic"]').textContent,/project in progress/);m.contextualOperations=rows;assert.equal(JSON.stringify(m),before,'displaying a blocked quote cannot claim installation or mutate the customer model');
  f.dom.window.close();
 });
+
+
+test('AC-SOC-809 the selected customer shows observed attacks separately from later delivered voice without mutating evidence',()=>{
+ const f=fixture(),m=model();m.customers[0].security.abuse=[{at:41,status:'waiting-for-delivery',filteredPackets:7500,blockedInteractionId:'interaction-12',eventIds:{destination:'security-event-7'},deliveredAt:null,jobId:null}];
+ const before=JSON.stringify(m);inspect(f,m);let panel=f.host.querySelector('[data-security-abuse]');assert.ok(panel);assert.match(panel.textContent,/7,500 PPS/);assert.match(panel.textContent,/Resume time/);assert.doesNotMatch(panel.textContent,/actual voice usage settled once/);assert.equal(JSON.stringify(m),before);
+ m.customers[0].security.abuse[0]={...m.customers[0].security.abuse[0],status:'delivered',deliveredAt:48,jobId:'provider-job-19'};const completed=JSON.stringify(m);inspect(f,m);panel=f.host.querySelector('[data-security-abuse]');assert.match(panel.textContent,/finished at minute 48/);assert.match(panel.textContent,/actual voice usage settled once/);assert.match(panel.querySelector('details').textContent,/provider-job-19/);assert.equal(JSON.stringify(m),completed);f.dom.window.close();
+});

@@ -36437,8 +36437,10 @@
     "representation": "ucc.goal.scrub",
     "status": "partial",
     "implementation": [
+      "content/provider-security-abuse.v2.json",
       "content/provider-security.json",
       "src/game/23-provider-capacity-authority.js",
+      "src/game/23-provider-history.js",
       "src/game/23-provider-security.js",
       "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
@@ -36485,7 +36487,11 @@
       "BEH-SOC-412",
       "BEH-SOC-415",
       "BEH-SOC-418",
-      "BEH-SOC-417"
+      "BEH-SOC-417",
+      "BEH-SOC-421",
+      "BEH-SOC-423",
+      "BEH-SOC-425",
+      "BEH-SOC-427"
     ]
   },
   {

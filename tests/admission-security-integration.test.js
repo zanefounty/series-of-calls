@@ -50,3 +50,22 @@ test('AC-SOC-773 secured endpoint calls retain live reservations, settle once an
   assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  }
 });
+
+
+test('AC-SOC-803 destination policy blocks an actual unroutable public call without granting reach or admitting allowed unroutable calls',()=>{
+ let s=setup();const original=JSON.stringify(s),command={type:'interact',channel:'voice',from:'alex',to:'+18005550199',caseId:'unroutable-forbidden'};
+ const context={};vm.createContext(context);vm.runInContext(SOC.workerSource()+';globalThis.engine=SOC;',context);
+ s=SOC.dispatch(s,command);assert.equal(JSON.stringify(context.engine.dispatch(JSON.parse(original),command)),JSON.stringify(s));
+ const denied=s.interactions.at(-1);assert.equal(denied.outcome,'DESTINATION_NOT_ALLOWED');
+ assert.equal(denied.phase,'failed');assert.ok(denied.trace.some(t=>t.code==='SECURITY_CALL_BLOCKED'));
+ const events=s.admissionSecurity.events.filter(e=>e.kind==='call-admission'&&e.detail.interactionId===denied.id);
+ assert.equal(events.length,1);assert.equal(events[0].code,'SECURITY_CALL_BLOCKED');
+ assert.equal(s.admissionSecurity.reservations.length,0);assert.equal(s.admissionSecurity.admissions.length,0);assert.equal(s.admissionSecurity.settlements.length,0);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ s=security(s,{action:'configure',control:'destination',config:{allowedPrefixes:['+61','+18']}});s=SOC.dispatch(s,{type:'advance',minutes:1});
+ s=call(s,'+18005550199','allowed-without-reach');const unrouted=s.interactions.at(-1);assert.equal(unrouted.outcome,'NO_ROUTE');
+ assert.equal(s.admissionSecurity.events.filter(e=>e.detail.interactionId===unrouted.id).length,0,'an allowed destination without a route creates no admission or reservation');
+ s=call(s);const routed=s.interactions.at(-1);assert.equal(s.admissionSecurity.admissions.filter(a=>a.interactionId===routed.id).length,1);
+ assert.equal(s.admissionSecurity.events.filter(e=>e.kind==='call-admission'&&e.detail.interactionId===routed.id).length,1,'ordinary routable calls still admit only once');
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});

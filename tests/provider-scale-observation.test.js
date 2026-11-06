@@ -87,7 +87,7 @@ test('AC-SOC-853 task emission and usage posting are idempotent; refused jobs st
  assert.deepEqual(P.emitDue(side,run.id,blocked),[],'same minute cannot emit or retry rejected tasks twice');
  assert.equal(P.validate(side,blocked),true);
  assert.deepEqual(P.pins(side,'customer-a').interactionIds,[]);
- for(let n=0;n<10;n++){root=tick(root,1);P.advance(side,run.id,blocked);}
+ for(let n=0;n<10;n++){P.emitDue(side,run.id,blocked);root=tick(root,1);P.advance(side,run.id,blocked);}
  assert.throws(()=>P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,blocked),/PROVIDER_SCALE_PROJECT_ALREADY_USED/);
 });
 

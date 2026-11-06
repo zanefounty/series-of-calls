@@ -1,5 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
 const SOC=require('../src/game/55-communications.js');
+const scale=require('../src/game/23-provider-scale-observation.js');
 const customerId='starter-customer';
 const send=(s,command)=>SOC.dispatch(s,{type:'provider',command});
 function buy(s,request){const q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[],JSON.stringify(q.blockers));return send(s,{...request,quoteRevision:q.atRevision});}
@@ -62,4 +63,24 @@ test('AC-SOC-848 paid Provider scale baseline fails, separately funded BPO/workf
  const worker={postMessage:()=>{}};vm.createContext(worker);vm.runInContext(SOC.workerSource()+';globalThis.engine=SOC;',worker);
  const command={type:'advance',minutes:1};assert.deepEqual(JSON.parse(JSON.stringify(worker.engine.dispatch(SOC.restore(saved),command))),SOC.dispatch(SOC.restore(saved),command));
  for(const mutate of [s=>{s.providerCampaign.scaleObservation.runs[1].projectId='provider-project-1';},s=>{s.business.ledger.find(e=>e.reason==='provider-scale-voice-usage').quantity++;},s=>{s.providerCampaign.scaleObservation.runs[1].paidJobs[0].usageCents++;}]){const bad=structuredClone(s);mutate(bad);assert.throws(()=>SOC.restore(JSON.stringify(bad)));}
+});
+
+test('AC-SOC-870 effective retirement cancels only the un-emitted paid voice schedule and remains bound after restore',()=>{
+ let s=opening();s=send(s,{action:'staff',engineers:2,support:2});s=order(s,'bpo');s=advance(s,8);s=order(s,'ms-workplace-calling');const productId=s.providerCampaign.projects.find(p=>p.customerId===customerId&&p.operationId==='ms-workplace-calling').id;s=advance(s,30);s=order(s,'paid-scale-workflow');s=advance(s,10);s=start(s);
+ let run=s.providerCampaign.scaleObservation.runs.at(-1);assert.equal(run.version,scale.RUN_VERSION);assert.equal(s.providerCampaign.projects.find(p=>p.id===run.projectId).operationReceipt.measurement.lifecycleVersion,scale.RUN_VERSION);assert.equal(run.paidJobs.length,2);assert.deepEqual(scale.commitments(s.providerCampaign.scaleObservation,customerId),[{runId:run.id,projectId:run.projectId,dueAt:run.dueAt,activeTasks:2,scheduledTasks:10}]);
+ const legacy=structuredClone(s),legacyRun=legacy.providerCampaign.scaleObservation.runs.at(-1),legacyProject=legacy.providerCampaign.projects.find(p=>p.id===legacyRun.projectId);legacyRun.version=1;delete legacyProject.operationReceipt.measurement.lifecycleVersion;delete legacy.providerCampaign.scaleObservation.lifecycleVersion;assert.deepEqual(SOC.restore(JSON.stringify(legacy)),legacy,'supported version-one scale save keeps its prior behavior');
+ const partialDowngrade=structuredClone(s);partialDowngrade.providerCampaign.scaleObservation.runs.at(-1).version=1;assert.throws(()=>SOC.restore(JSON.stringify(partialDowngrade)),/INVALID_PROVIDER_SCALE_CONSUMPTION/);
+ const q=SOC.provider.quote(s,{action:'retire-project',projectId:productId});assert.deepEqual(q.blockers,[]);assert.deepEqual(q.commercial.scaleWork,[{runId:run.id,projectId:run.projectId,dueAt:run.dueAt,activeTasks:2,scheduledTasks:10,stopAt:q.commercial.effectiveAt,notEmittedIfAccepted:10}]);s=send(s,{...q.request,quoteRevision:q.atRevision});s=SOC.restore(JSON.stringify(s));
+ s=advance(s,1);run=s.providerCampaign.scaleObservation.runs.at(-1);assert.equal(run.paidJobs.length,2,'later schedule slots are not emitted');assert.equal(run.status,'open','the native measurement remains open until its authored close');s=SOC.restore(JSON.stringify(s));s=advance(s,9);run=s.providerCampaign.scaleObservation.runs.at(-1);const child=s.portfolio.customers.find(c=>c.id===customerId).root;
+ const retired=s.providerCampaign.projects.find(p=>p.id===productId).retirement;assert.equal(retired.effectiveAt,61);assert.deepEqual(run.scheduleStop,{kind:'resource-retirement',at:retired.effectiveAt,projectId:productId});
+ assert.equal(run.paidJobs.length,2,'already-emitted work remains for reconciliation');assert.ok(run.paidJobs.every(j=>j.status==='failed'));assert.ok(run.paidJobs.every(j=>child.interactions.find(i=>i.id===j.interactionId)?.outcome==='PRODUCT_FEATURE_UNAVAILABLE'));
+ assert.equal(run.status,'failed');assert.equal(run.result.schedule.totalTasks,12);assert.equal(run.result.schedule.emittedTasks,2);assert.equal(run.result.schedule.notEmittedTasks,10);assert.equal(run.result.schedule.cancelledTasks,10);assert.equal(run.result.checks.scheduleComplete,false);
+ assert.equal(s.business.ledger.filter(e=>e.reason==='provider-scale-voice-usage'&&e.scaleRunId===run.id).length,0,'refused voice work has no usage');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const viewBefore=JSON.stringify(s);assert.deepEqual(SOC.provider.inspect(s).scaleObservation.runs.at(-1).schedule,scale.scheduleOutcome(s.providerCampaign.scaleObservation,run.id));assert.equal(JSON.stringify(s),viewBefore,'inspection only annotates its returned copy');
+ const tampered=structuredClone(s);tampered.providerCampaign.scaleObservation.runs.at(-1).scheduleStop.at++;assert.throws(()=>SOC.restore(JSON.stringify(tampered)),/INVALID_PROVIDER_SCALE_STOP/);
+ assert.equal(scale.commitments(s.providerCampaign.scaleObservation,customerId).some(x=>x.runId===run.id),false,'a terminal run has no outstanding commitment');
+
+ let unrelated=opening();unrelated=send(unrelated,{action:'staff',engineers:2,support:3});unrelated=order(unrelated,'bpo');unrelated=advance(unrelated,8);unrelated=order(unrelated,'recording');unrelated=advance(unrelated,5);unrelated=order(unrelated,'paid-scale-workflow');unrelated=advance(unrelated,10);unrelated=start(unrelated);const recording=unrelated.providerCampaign.projects.find(p=>p.customerId===customerId&&p.operationId==='recording');
+ const recordingQuote=SOC.provider.quote(unrelated,{action:'retire-service-project',projectId:recording.id});assert.deepEqual(recordingQuote.blockers,[]);unrelated=send(unrelated,{...recordingQuote.request,quoteRevision:recordingQuote.atRevision});unrelated=advance(unrelated,2);const unrelatedRun=unrelated.providerCampaign.scaleObservation.runs.at(-1);assert.equal(unrelatedRun.scheduleStop,undefined,'recording-only retirement does not cancel unrelated voice load');assert.equal(unrelatedRun.paidJobs.length,4,'the paid voice schedule continues after recording is withdrawn');assert.deepEqual(SOC.restore(JSON.stringify(unrelated)),unrelated);
+
 });

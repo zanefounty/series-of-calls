@@ -156,9 +156,12 @@ function compareCashWaitToMinuteSteps(state, minutes) {
       .filter(([key]) => key !== 'revision')
       .map(([key, item]) => [key, persisted(item)]));
   };
-  delete chunked.commands;
-  delete minuteSteps.commands;
-  assert.deepEqual(persisted(chunked), persisted(minuteSteps), 'boundary-chunked advance matches one-minute dispatches across persisted outcomes');
+  const comparable = value => {
+    const result = persisted(value);
+    delete result.commands;
+    return result;
+  };
+  assert.deepEqual(comparable(chunked), comparable(minuteSteps), 'boundary-chunked advance matches one-minute dispatches across persisted outcomes');
   assert.ok(chunkedAdvanceDispatches < minutes, 'quiet periods use fewer native advance dispatches than one-minute waits');
   return chunked;
 }
@@ -497,9 +500,12 @@ function compareAssuranceWaitToMinuteSteps(state, minutes) {
       .filter(([key]) => key !== 'revision')
       .map(([key, item]) => [key, persisted(item)]));
   };
-  delete chunked.commands;
-  delete minuteSteps.commands;
-  if (JSON.stringify(persisted(chunked)) !== JSON.stringify(persisted(minuteSteps))) {
+  const comparable = value => {
+    const result = persisted(value);
+    delete result.commands;
+    return result;
+  };
+  if (JSON.stringify(comparable(chunked)) !== JSON.stringify(comparable(minuteSteps))) {
     throw new Error('boundary-chunked assurance wait diverges from one-minute persisted outcomes');
   }
   return chunked;

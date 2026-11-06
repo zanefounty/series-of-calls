@@ -3,6 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const SOC=require('../src/game/55-communications'),rules=require('../src/game/24-provider-rules'),campaign=require('../src/game/25-provider-campaign');
 const products=require('../src/game/23-provider-products'),demand=require('../src/game/22-provider-demand'),variants=require('../src/game/23-provider-variants');
 const regionalSupport=require('../src/game/23-provider-regional-support'),workforceHistory=require('../src/game/23-provider-workforce-history');
+const security=require('../src/game/23-provider-security');
 
 function buy(s,command){const q=SOC.provider.quote(s,command);assert.deepEqual(q.blockers,[],JSON.stringify(q.blockers));return SOC.dispatch(s,{type:'provider',command:{...command,quoteRevision:q.atRevision}});}
 function tick(s){return SOC.dispatch(s,{type:'advance',minutes:1});}
@@ -54,7 +55,7 @@ test('AC-SOC-643 operation quote selection is customer-scoped under explicitly d
  // pure-kernel content fixture to expose accidental reuse of the first plan;
  // they are never dispatched, imported, or presented as real campaign balance.
  const authored=structuredClone(rules.data);authored.plans.steady.voiceCents=125;authored.plans.steady.messageCents=225;
- const kernel=vm.runInNewContext(campaign.source()+';SOC_PROVIDER_CAMPAIGN',{SOC_PROVIDER_RULES:{...rules,data:authored},SOC_PROVIDER_PRODUCTS:products,SOC_PROVIDER_DEMAND:demand,SOC_PROVIDER_VARIANTS:variants,SOC_PROVIDER_REGIONAL_SUPPORT:regionalSupport,SOC_PROVIDER_WORKFORCE_HISTORY:workforceHistory});
+ const kernel=vm.runInNewContext(campaign.source()+';SOC_PROVIDER_CAMPAIGN',{SOC_PROVIDER_RULES:{...rules,data:authored},SOC_PROVIDER_PRODUCTS:products,SOC_PROVIDER_DEMAND:demand,SOC_PROVIDER_VARIANTS:variants,SOC_PROVIDER_REGIONAL_SUPPORT:regionalSupport,SOC_PROVIDER_WORKFORCE_HISTORY:workforceHistory,SOC_PROVIDER_SECURITY:security});
  const before=JSON.stringify(s),first=kernel.quote(s,operation()),second=kernel.quote(s,operation('next-1-customer'));
  assert.deepEqual(JSON.parse(JSON.stringify(first.forecast.variableUsage)),rates(authored.plans.swift));assert.deepEqual(JSON.parse(JSON.stringify(second.forecast.variableUsage)),rates(authored.plans.steady));
  assert.notDeepEqual(second.forecast.variableUsage,first.forecast.variableUsage);assert.equal(JSON.stringify(s),before);

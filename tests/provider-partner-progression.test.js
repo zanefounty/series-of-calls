@@ -9,6 +9,7 @@ const SUPPORT=require('../src/game/23-provider-integration-support');
 const RECEIPTS=require('../src/game/23-provider-progression-receipts');
 const PRODUCTS=require('../src/game/45-products');
 const BOUNDARIES=require('../src/game/43-boundaries');
+const PARTNER_FIXTURE=require('./provider-progression-receipts.helpers.js');
 const roomCustomerId='starter-customer',roomOperationId=ROOM.OPERATION_ID;
 const send=(s,command)=>SOC.dispatch(s,{type:'provider',command});
 function quoted(s,command){const q=SOC.provider.quote(s,command);assert.deepEqual(q.blockers,[],`${command.operationId||command.action}: ${q.blockers.join(',')}`);return send(s,{...command,quoteRevision:q.atRevision});}
@@ -194,4 +195,75 @@ test('a real paid UC/CC delivery is excluded when its MSP scope omits the record
  const owners=RESPONSIBILITY.responsibilities(state,roomCustomerId,{observeResource:ucHooks().observeResource});
  const owner=owners.records.find(x=>x.role==='msp'&&x.organisationId==='orchard-msp');assert.ok(owner);
  assert.ok(owner.scope.includes('phone'));assert.equal(owner.scope.includes('recorder'),false);
+});
+
+test('a paid Disco vendor UC/CC owner supplies the second distinct P5 edge without becoming the orchard MSP',()=>{
+ let state=PARTNER_FIXTURE.regionalSupportReady();
+ for(const sourceId of [RECEIPTS.FIRST_LIVE,RECEIPTS.SUSTAINABLE,RECEIPTS.LEVEL_TWO,RECEIPTS.NONSTARTER])state=PARTNER_FIXTURE.claimDispatched(state,sourceId);
+ state=PARTNER_FIXTURE.ccUntilClock(state,500);
+ state=PARTNER_FIXTURE.buy(state,{action:'purchase',offerId:'next-2',planId:'swift',stage:'base',market:'au-melbourne'});
+ state=PARTNER_FIXTURE.ccUntil(state,x=>x.providerCampaign.customers.some(c=>c.id==='next-2-customer'&&c.stages.base?.status==='effective'),600,'next-2-customer');
+ for(const stage of ['carrier','partner']){state=PARTNER_FIXTURE.buy(state,{action:'purchase',offerId:'next-2',planId:'swift',stage,customerId:'next-2-customer'});state=PARTNER_FIXTURE.ccUntil(state,x=>x.providerCampaign.customers.find(c=>c.id==='next-2-customer').stages[stage]?.status==='effective',600,'next-2-customer');}
+ state=PARTNER_FIXTURE.ccOperation(state,'bpo','next-2-customer');
+ state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,'bpo','next-2-customer')?.status==='complete',600,'next-2-customer');
+ state=PARTNER_FIXTURE.ccUntilClock(state,700);
+ state=PARTNER_FIXTURE.ccInstallUcCcWithTargetSupport(state,'next-1-customer');
+ state=PARTNER_FIXTURE.claimDispatched(state,RECEIPTS.IX);
+ state=PARTNER_FIXTURE.ccDeliverRoom(state,'next-1-customer');
+ state=PARTNER_FIXTURE.claimDispatched(state,RECEIPTS.LEVEL_THREE);
+
+ const customerId='next-2-customer',hooks={...ucHooks(),customerRoot:PARTNER_FIXTURE.hooks.customerRoot,room:roomHooks().room};
+ for(const id of ['recording',PARTNER_FIXTURE.UC_CC_SOURCE_OPERATION]){state=PARTNER_FIXTURE.ccOperationWhenReady(state,id,customerId);state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,id,customerId)?.status==='complete',600,customerId);}
+ if(state.business.workforce.support<2)state=send(state,{action:'staff',engineers:state.business.workforce.engineers,support:2});
+ for(const id of [PARTNER_FIXTURE.UC_CC_TARGET_OPERATION,'service-boundary-review']){state=PARTNER_FIXTURE.ccOperationWhenReady(state,id,customerId);state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,id,customerId)?.status==='complete',600,customerId);}
+ const request={action:'operation',operationId:'managed-uc-cc-integration',customerId};
+ const managedQuote=SOC.provider.quote(state,request);assert.deepEqual(managedQuote.blockers,[],JSON.stringify(managedQuote.blockers));
+ const beforeCash=state.business.balance.cash;
+ state=send(state,{...request,quoteRevision:managedQuote.atRevision});
+ const project=operationProject(state,'managed-uc-cc-integration',customerId);
+ assert.ok(project);assert.ok(state.business.balance.cash<beforeCash,'vendor support posts its own once-only paid operation');
+ state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,'managed-uc-cc-integration',customerId)?.status==='commissioning',600,customerId);
+ state=PARTNER_FIXTURE.ccCompleteWithPaidReview(state,project.id,'managed-uc-cc-integration',customerId);
+
+ const inspect=SUPPORT.supportFor(state,customerId,['phone','recorder'],{hooks});
+ assert.equal(inspect.status,'ready',JSON.stringify(inspect.missing));
+ const owner=inspect.owners.find(x=>x.adapter==='provider-uc-cc');
+ assert.ok(owner,'a completed paid UC/CC operation creates the separately scoped vendor owner');
+ assert.equal(owner.role,'vendor');assert.equal(owner.organisationId,'disco-vendor');
+ assert.equal(owner.projectId,project.id);assert.equal(owner.postingId,project.postingId);
+ assert.deepEqual(owner.scope,['archive','engage','phone','recorder']);
+ assert.equal(SUPPORT.validateOwner(state,owner,{at:state.clock}),true);
+
+ const evidence=P5.evaluate(state,hooks);
+ assert.equal(evidence.count,1,'the paid vendor UC/CC edge is one of the five distinct routes');
+ assert.equal(evidence.status,'incomplete');assert.equal(evidence.target,5);
+ assert.deepEqual(evidence.evidence.integrations.map(x=>x.key),[
+  'workplace-to-contact-quality:d-ms-workplace-calling:telephony->d-cisco-contact-centre:quality-review'
+ ]);
+ const row=evidence.evidence.integrations.find(x=>x.adapter==='provider-uc-cc');
+ assert.ok(row);assert.equal(row.projectId,project.id);assert.equal(row.postingId,project.postingId);
+ assert.notEqual(row.edgeId,ROOM.EDGE_ID,'the UC/CC route has a distinct identity from the existing room route');
+ assert.equal(row.test.result.status,'scenario-verified');
+ assert.equal(row.delivery.autonomousProvider,true);
+ assert.equal(row.delivery.interaction.phase,'resolved');
+ assert.equal(row.delivery.interaction.probe,false);
+ assert.equal(row.delivery.recording.captureScope,'complete');
+ assert.equal(row.support.role,'vendor');assert.equal(row.support.organisationId,'disco-vendor');
+ assert.ok(row.support.scope.includes('recorder'));
+
+ const owners=RESPONSIBILITY.responsibilities(state,customerId,{observeResource:hooks.observeResource});
+ const msp=owners.records.find(x=>x.role==='msp'&&x.organisationId==='orchard-msp');
+ assert.ok(msp);assert.equal(msp.scope.includes('recorder'),false,'the original provider-stage owner remains narrowly scoped');
+ assert.notEqual(row.support.role,msp.role,'vendor support remains a distinct commercial responsibility');
+ assert.equal(P5.validateEvidence(state,evidence.evidence,hooks).valid,false,'this one real managed edge still does not fulfill all five P5 paths');
+
+ const forgedOwner={...owner,role:'msp',organisationId:'orchard-msp'};
+ assert.equal(SUPPORT.validateOwner(state,forgedOwner,{at:state.clock,hooks}),false,'changing the vendor role cannot make its support an MSP contract');
+ const forgedEvidence=structuredClone(evidence.evidence);
+ forgedEvidence.integrations.find(x=>x.adapter==='provider-uc-cc').support=forgedOwner;
+ assert.equal(P5.validateEvidence(state,forgedEvidence,hooks).valid,false,'retained P5 claims re-derive and reject forged support responsibility');
+
+ const restored=SOC.restore(JSON.stringify(state));
+ assert.deepEqual(SUPPORT.supportFor(restored,customerId,['phone','recorder'],{hooks}).owners.find(x=>x.adapter==='provider-uc-cc'),owner,'the paid vendor owner is reproducible after restore');
+ assert.deepEqual(P5.evaluate(restored,hooks).evidence,evidence.evidence,'both eligible edges survive validated restore without changing their identities');
 });

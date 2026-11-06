@@ -13,19 +13,13 @@ function socProviderPartnerProgressionKernel(){
  function ucApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:require('./23-provider-uc-cc-integration.js');}
  function roomApi(){return typeof SOC_PROVIDER_ROOM_INTEGRATION!=='undefined'?SOC_PROVIDER_ROOM_INTEGRATION:require('./23-provider-room-integration.js');}
  function supportApi(){return typeof SOC_PROVIDER_INTEGRATION_SUPPORT!=='undefined'?SOC_PROVIDER_INTEGRATION_SUPPORT:require('./23-provider-integration-support.js');}
- function responsibilityApi(){return typeof SOC_PROVIDER_RESPONSIBILITY!=='undefined'?SOC_PROVIDER_RESPONSIBILITY:require('./23-provider-responsibility.js');}
  function customers(s){return Array.isArray(s?.providerCampaign?.customers)?s.providerCampaign.customers:[];}
  function rootFor(s,c){return s?.portfolio?.customers?.find(x=>x.id===c?.portfolioId||x.id===c?.id)?.root||null;}
  function operationProjects(s,c,ids){return (s.providerCampaign?.projects||[]).filter(p=>p.customerId===c.id&&ids.includes(p.operationId)&&p.kind==='operation'&&p.status==='complete'&&int(p.completedAt)&&p.completedAt<=s.clock).sort((a,b)=>(b.completedAt-a.completedAt)||a.id.localeCompare(b.id));}
  function customerAt(c,at){if(!c||!int(c.startedAt)||c.startedAt>at)return false;if(c.status==='active'||c.status==='renewal')return true;if(c.status==='exited'||c.status==='default'){const endedAt=c.status==='exited'?c.exitAt:c.defaultAt;return int(endedAt)&&at<endedAt;}return false;}
  function hooksFor(hooks,state,customer,root,adapter){const selected=typeof hooks.forAdapter==='function'?(hooks.forAdapter(state,customer,root,adapter)||{}):(hooks[adapter]||hooks);return typeof selected.observeResource==='function'||typeof hooks.observeResource!=='function'?selected:{...selected,observeResource:hooks.observeResource};}
- function scopeRecord(s,c,resourceIds,hooks,at=s.clock){
-  let result;try{result=responsibilityApi().responsibilities(s,c.id,hooks);}catch{return null;}
-  return (result?.records||[]).filter(r=>r.customerId===c.id&&['msp','integrator'].includes(r.role)&&int(r.effectiveAt)&&r.effectiveAt<=at&&(r.expiresAt===null||int(r.expiresAt)&&at<r.expiresAt)&&resourceIds.every(id=>(r.scope||[]).includes(id)))
-   .sort((a,b)=>a.role.localeCompare(b.role)||a.organisationId.localeCompare(b.organisationId)||a.id.localeCompare(b.id))[0]||null;
- }
  function postingMatches(s,p){const row=s.business?.ledger?.find(x=>x.id===p.postingId);if(row)return row.category==='cost'&&row.customerId===p.customerId&&row.projectId===p.id&&row.cents===p.setupCents;const n=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);return n>0&&n<=(s.business?.ledgerPrunedThrough||0);}
- function ucRow(s,c,p,hooks,historical=false,diagnostics=[]){
+ function ucRow(s,c,p,hooks,historical=false,diagnostics=[],retainedOwner=null){
   const api=ucApi(),root=rootFor(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCampaign)return null;
   if(!customerAt(c,p.completedAt))return null;
   const observed=historical?{status:p.operationReceipt?.task?'ready':'incomplete',evidence:p.operationReceipt?.task||null}:api.observe(s,p.id,hooks);
@@ -38,13 +32,18 @@ function socProviderPartnerProgressionKernel(){
      test.result?.sourceGeneration!==plan.source.generation||test.result?.targetGeneration!==plan.target.generation||
      test.result?.sourceVersion!==plan.source.productVersion||test.result?.targetVersion!==plan.target.productVersion)return null;
   const resourceIds=[plan.source.resourceId,plan.target.resourceId];
-  const supportRecord=scopeRecord(s,c,resourceIds,hooks,historical?test.at:s.clock);
-  // At claim time the native test retains the exact paid support boundary and
-  // provider-stage sources. Historical validation relies on that native receipt.
+  // The vendor support row is delivered with this paid managed project. Its
+  // evidence time is therefore the completed task, after the native test and
+  // qualifying delivery, rather than the earlier integration-test minute.
+  const supportTime=historical?p.completedAt:s.clock;
+  const vendorOwner=historical?null:supportApi().supportFor(s,c.id,resourceIds,{at:supportTime,hooks}).owners
+   .find(x=>x.adapter==='provider-uc-cc'&&x.role==='vendor'&&x.organisationId==='disco-vendor'&&x.customerId===c.id&&x.projectId===p.id&&x.postingId===p.postingId&&resourceIds.every(id=>x.scope.includes(id)))||null;
+  const vendorValid=historical?!!retainedOwner&&supportApi().validateOwner(s,retainedOwner,{at:supportTime,hooks}):!!vendorOwner;
+  // The UC/CC edge needs the paid vendor adapter. The MSP remains a separate
+  // owner of its own stage scope and is never relabelled to satisfy this edge.
   if(!test.supportScope?.resources)return null;
-  const testScopeMissing=resourceIds.filter(id=>!test.supportScope.resources.includes(id));if(testScopeMissing.length){for(const resource of testScopeMissing)diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);return null;}
-  if(!historical){const actualScope=supportRecord&&{projectIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.projectId)].sort(),postingIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.postingId)].sort(),resources:[...(supportRecord.scope||[])].sort()};if(!supportRecord||supportRecord.role!=='msp'||supportRecord.organisationId!=='orchard-msp'||!same(actualScope,test.supportScope)){for(const resource of resourceIds.filter(id=>!supportRecord?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);return null;}}
-  const support={role:'msp',organisationId:'orchard-msp',scope:copy(test.supportScope)};
+  if(!vendorValid){for(const resource of resourceIds.filter(id=>!vendorOwner?.scope?.includes(id)&&!retainedOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);if(!resourceIds.some(id=>!vendorOwner?.scope?.includes(id)&&!retainedOwner?.scope?.includes(id)))diagnostics.push(`current-vendor-owner-required:${IDS.ucCc}`);return null;}
+  const support=copy(vendorOwner||retainedOwner);
   return {version:VERSION,adapter:'provider-uc-cc',key:`${edge.id}:${edge.source}:${edge.features[0].sourceFeature}->${edge.target}:${edge.features[0].targetFeature}`,
    customerId:c.id,projectId:p.id,postingId:p.postingId,completedAt:p.completedAt,edgeId:edge.id,
    source:{deploymentId:plan.source.deploymentId,family:plan.source.family,feature:plan.source.feature,resourceId:plan.source.resourceId,generation:plan.source.generation,productVersion:plan.source.productVersion},
@@ -78,7 +77,7 @@ function socProviderPartnerProgressionKernel(){
   for(const c of customers(s)){
    if(!historical&&!['active','renewal'].includes(c.status))continue;
    const uc=operationProjects(s,c,ucApi().OPERATION_IDS);
-   for(const p of uc){const row=ucRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'ucCc'),historical,diagnostics);if(row)out.push(row);}
+   for(const p of uc){const retained=retainedEvidence.find(x=>x?.adapter==='provider-uc-cc'&&x.customerId===c.id&&x.projectId===p.id);const row=ucRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'ucCc'),historical,diagnostics,retained?.support);if(row)out.push(row);}
    const room=operationProjects(s,c,[roomApi().OPERATION_ID]);
    for(const p of room){const retained=retainedEvidence.find(x=>x?.adapter==='provider-room'&&x.customerId===c.id&&x.projectId===p.id);const row=roomRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'room'),historical,diagnostics,retained?.support);if(row)out.push(row);}
   }

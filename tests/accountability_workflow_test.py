@@ -118,11 +118,12 @@ class AccountabilityWorkflowContract(unittest.TestCase):
     def test_each_producer_has_an_independent_required_replay(self):
         for block in [self.acceptance, self.gates]:
             self.assertIn('fail-fast: false', block)
-            self.assertIn('part: [1, 2, 3, 4]', block)
-        self.assertIn('scripts/record-evidence.py --shard ${{ matrix.part }}/4', self.acceptance)
-        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/4', self.gates)
+            self.assertIn('part: [1, 2, 3, 4, 5, 6, 7, 8]', block)
+        self.assertIn('scripts/record-evidence.py --shard ${{ matrix.part }}/8', self.acceptance)
+        self.assertIn('name: development gates ${{ matrix.part }}/8', self.gates)
+        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/8', self.gates)
         self.assertIn('needs: [acceptance]', self.merge)
-        self.assertIn('--merge-shards acceptance-parts --shard-count 4', self.merge)
+        self.assertIn('--merge-shards acceptance-parts --shard-count 8', self.merge)
         self.assertIn('pattern: acceptance-part-*-${{ github.run_id }}-${{ github.run_attempt }}', self.merge)
         self.assertNotIn('merge-multiple: true', self.merge)
         self.assertLess(self.merge.index('Remove checked-in receipts'), self.merge.index('actions/download-artifact@'))

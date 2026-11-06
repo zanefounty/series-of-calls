@@ -305,7 +305,7 @@ const SOC_PROVIDER_SECURITY_CONTENT={
         }
       },
       "supplierPeer": {
-        "id": "provider-carrier-peer",
+        "id": "synthetic-carrier",
         "authenticated": true,
         "available": true,
         "methods": [
@@ -429,7 +429,7 @@ const SOC_PROVIDER_SECURITY_CONTENT={
       "expectedCode": "DESTINATION_NOT_ALLOWED"
     },
     "ordinaryCall": {
-      "peer": "provider-carrier-peer",
+      "peer": "synthetic-carrier",
       "to": "+61255500201",
       "method": "INVITE",
       "durationMinutes": 3,

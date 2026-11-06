@@ -29,7 +29,7 @@ test('AC-SOC-778: security quotes reject arbitrary native configs, unsupported o
 test('AC-SOC-779: independently bought native controls leave voice blocked until all three are effective',()=>{
  const root={clock:0};root.admissionSecurity=admission.create(root);
  const call={id:'security-smoke-call',channel:'voice',to:'+61255500201'};
- const context={peerId:'provider-carrier-peer',destination:'+61255500201'};
+ const context={peerId:'synthetic-carrier',destination:'+61255500201'};
  const initially=admission.preflight(root,call,context);assert.ok(initially.reasons.some(x=>x.control==='network'));assert.ok(initially.reasons.some(x=>x.control==='sip'));assert.ok(initially.reasons.some(x=>x.control==='destination'));
  const network=security.quotePlan('network','edge-basic',scope,0);for(const command of security.nativeCommands(network))admission.command(root,command);root.clock=1;admission.advance(root);
  assert.equal(root.admissionSecurity.controls.network.effective.enabled,true);assert.equal(root.admissionSecurity.controls.sip.effective,null);assert.equal(root.admissionSecurity.controls.destination.effective,null);
@@ -39,7 +39,7 @@ test('AC-SOC-779: independently bought native controls leave voice blocked until
  const destination=security.quotePlan('destination','australia-guard',scope,2);for(const command of security.nativeCommands(destination))admission.command(root,command);root.clock=3;admission.advance(root);
  assert.deepEqual(admission.preflight(root,call,context).reasons,[]);
  assert.deepEqual(root.admissionSecurity.controls.network.effective,network.nativeConfig);assert.deepEqual(root.admissionSecurity.controls.sip.effective,sip.nativeConfig);assert.deepEqual(root.admissionSecurity.controls.destination.effective,destination.nativeConfig);
- assert.deepEqual(root.admissionSecurity.peers['provider-carrier-peer'].observed,{authenticated:true,available:true,methods:['INVITE'],at:1});
+ assert.deepEqual(root.admissionSecurity.peers['synthetic-carrier'].observed,{authenticated:true,available:true,methods:['INVITE'],at:1});
 });
 
 test('Provider security helper serializes the same authored plan rules into a worker kernel',()=>{

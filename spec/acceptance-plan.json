@@ -1817,6 +1817,7 @@
     "src/game/93-ui/78-provider-room-integration.js",
     "tests/provider-empty-customer-actions-ui.test.js",
     "tests/provider-refused-quotes-ui.test.js",
+    "scripts/provider-browser.js",
     "content/provider-security-managed.v1.json",
     "tests/provider-meeting-join.test.js",
     "tests/provider-partner-progression.test.js",

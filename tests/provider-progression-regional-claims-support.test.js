@@ -61,3 +61,19 @@ test('safe cash wait chunks preserve native results at settlement boundaries', (
     'the actual customer settlement survives the chunked command');
 });
 
+test('operation completion waits stop at the exact accepted project due boundary', () => {
+  let bounded = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  let minuteSteps = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  const request = { action: 'purchase', offerId: 'starter', planId: 'swift', stage: 'base', market: 'au-sydney' };
+  bounded = buy(bounded, request);
+  minuteSteps = buy(minuteSteps, request);
+  minuteSteps = minuteUntil(minuteSteps, state => state.providerCampaign.customers.find(row => row.id === 'starter-customer')?.stages.base?.status === 'effective', 'reference base stage');
+  bounded = operationComplete(bounded, null, 'starter-customer');
+  const normalized = value => {
+    const result = persistedState(value);
+    delete result.commands;
+    return result;
+  };
+  assert.deepEqual(normalized(bounded), normalized(minuteSteps), 'due-boundary completion matches one-minute native dispatch outcomes');
+});
+

@@ -7687,6 +7687,24 @@
       ],
       "status": "partial",
       "scope": "Existing public-dispatch Level 3 journeys are isolated into separate test processes while preserving their assertion bodies: an actual paid room meeting binds to the same customer integration; IX earned by one customer precedes a measured Level 3 claim for another across two funded markets; the earned scoped managed UC/CC offer is separately purchased and delivered to a fresh eligible customer. These bounded native journeys do not certify every progression identity, visible-control path or source-catalogue obligation."
+    },
+    {
+      "id": "BEH-SOC-435",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:continuity",
+        "progress.goal.ix"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-839",
+        "AC-SOC-840",
+        "AC-SOC-841"
+      ],
+      "status": "partial",
+      "scope": "Paid UC/CC readiness constructs a fresh read-only native observer view on each call and isolates returned diagnostics; one synchronous Provider inspection shares its derived progression hooks. Frozen paid states, same-call capture/quality delivery, test/apply freshness, worker/restore parity and later same-object fault, deployment-generation and paid-posting mutations are exercised. This reduces repeated whole-customer copying without caching authority across commands or relaxing validation. Broader product fidelity and the existing legacy missing-arrival fallback remain separate obligations."
     }
   ]
 }

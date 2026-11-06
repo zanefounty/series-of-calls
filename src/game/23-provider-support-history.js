@@ -311,10 +311,13 @@ function socProviderSupportHistoryKernel(){
   if(!placements||!same(placements.topology,plan.topology||{}))return {eligible:false,resources:[],profile:definition.profile};
   if(pathResources.some(id=>!deps.some(dep=>dep.id===id&&dep.generation===observations[id]?.generation)))return {eligible:false,resources:[],profile:definition.profile};
   let api;try{api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:require('./43-boundaries.js');}catch{return {unsupported:true};}
-   const child={clock:at,boundaries:copy(root.boundaries),resources:copy(root.resources)};child.boundaries.clock=at;
-  const historicalContract=copy(definition);for(const flow of historicalContract.flows||[]){const dep=deps.find(item=>item.id===flow.resource);if(dep)flow.resourceGeneration=dep.generation;}
-  const historicalRow=child.boundaries.contracts.find(item=>item.id===definition.id);historicalRow.desired=copy(historicalContract);historicalRow.effective=copy(historicalContract);historicalRow.generation=plan.boundaryGeneration;historicalRow.provisioning={status:'ready',due:project.configSubmittedAt,generation:plan.boundaryGeneration,errors:[]};
-  for(const resourceId of Object.keys(observations)){const resource=child.resources?.[resourceId];if(!resource)continue;let config;try{config=hooks.configurationAt(s,c,root,resourceId,at);}catch{return {unsupported:true};}if(!config?.config)return {unsupported:true};resource.generation=observations[resourceId]?.generation??config.generation;resource.desired=copy(config.config);resource.effective=copy(config.config);resource.provisioning={status:'ready',due:project.configSubmittedAt,generation:resource.generation,errors:[]};}
+  // SOC_BOUNDARIES.evaluate is read-only. Build a private shallow view and copy
+  // only rows that this projection overwrites; nested authored data remains
+  // shared and untouched. This avoids cloning every saved resource/contract.
+  const child={clock:at,boundaries:{...root.boundaries,clock:at,contracts:(root.boundaries.contracts||[]).map(row=>row.id===definition.id?{...row}:row)},resources:Object.fromEntries(Object.entries(root.resources||{}).map(([id,row])=>[id,{...row}]))};
+  const historicalContract={...definition,flows:(definition.flows||[]).map(flow=>{const dep=deps.find(item=>item.id===flow.resource);return dep?{...flow,resourceGeneration:dep.generation}:{...flow};})};
+  const historicalRow=child.boundaries.contracts.find(item=>item.id===definition.id);historicalRow.desired=historicalContract;historicalRow.effective=historicalContract;historicalRow.generation=plan.boundaryGeneration;historicalRow.provisioning={status:'ready',due:project.configSubmittedAt,generation:plan.boundaryGeneration,errors:[]};
+  for(const resourceId of Object.keys(observations)){const resource=child.resources?.[resourceId];if(!resource)continue;let config;try{config=hooks.configurationAt(s,c,root,resourceId,at);}catch{return {unsupported:true};}if(!config?.config)return {unsupported:true};resource.generation=observations[resourceId]?.generation??config.generation;resource.desired=config.config;resource.effective=config.config;resource.provisioning={status:'ready',due:project.configSubmittedAt,generation:resource.generation,errors:[]};}
   const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:definition.profile};
   child.connected=timeline.connected;for(const [resourceId,resource] of Object.entries(child.resources||{}))resource.fault=timeline.faults[resourceId]??null;
   const disconnected=!timeline.connected;
@@ -355,10 +358,12 @@ function socProviderSupportHistoryKernel(){
   if(at<original.provisioning.due||original.provisioning.status!=='ready'||!same(clean(original.effective),gov.contract)||!same(original.effective,expected))return {eligible:false,resources:[],profile:root.jurisdiction};
   for(const flow of expected.flows)if(observations[flow.resource]?.ready!==true||observations[flow.resource]?.generation!==flow.resourceGeneration)return {eligible:false,resources:[],profile:root.jurisdiction};
   const api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:(typeof require==='function'?require('./43-boundaries.js'):null);if(!api)return {unsupported:true};
-  const child={clock:at,boundaries:copy(root.boundaries),resources:copy(root.resources)};child.boundaries.clock=at;const row=child.boundaries.contracts.find(item=>item.id===expected.id);row.desired=copy(expected);row.effective=copy(expected);row.generation=1;row.provisioning={status:'ready',due:gov.project.configSubmittedAt,generation:1,errors:[]};
+  // The evaluator below only reads its input; isolate top-level rows that are
+  // replaced while keeping nested saved state shared and immutable.
+  const child={clock:at,boundaries:{...root.boundaries,clock:at,contracts:(root.boundaries.contracts||[]).map(item=>item.id===expected.id?{...item}:item)},resources:Object.fromEntries(Object.entries(root.resources||{}).map(([id,resource])=>[id,{...resource}]))};const row=child.boundaries.contracts.find(item=>item.id===expected.id);row.desired=expected;row.effective=expected;row.generation=1;row.provisioning={status:'ready',due:gov.project.configSubmittedAt,generation:1,errors:[]};
   const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:root.jurisdiction};child.connected=timeline.connected;
   for(const [id,resource] of Object.entries(child.resources||{})){
-   const plan=hooks.configurationAt(s,c,root,id,at);if(!plan?.config||!integer(plan.generation))return {unsupported:true};resource.generation=plan.generation;resource.desired=copy(plan.config);resource.effective=copy(plan.config);resource.provisioning={status:'ready',due:at,generation:plan.generation,errors:[]};resource.fault=timeline.faults[id]??null;
+   const plan=hooks.configurationAt(s,c,root,id,at);if(!plan?.config||!integer(plan.generation))return {unsupported:true};resource.generation=plan.generation;resource.desired=plan.config;resource.effective=plan.config;resource.provisioning={status:'ready',due:at,generation:plan.generation,errors:[]};resource.fault=timeline.faults[id]??null;
   }
   const localConfig=hooks.configurationAt(s,c,root,'local',at)?.config,localReady=observations.local?.ready===true&&!!localConfig?.licensing,identityReady=observations.identity?.ready===true;
   const lastDisconnect=(s.providerCampaign.incidents||[]).filter(item=>item.customerId===c.id&&item.kind==='disconnection'&&integer(item.activatedAt)&&item.activatedAt<=at&&(item.resolvedAt===null||integer(item.resolvedAt)&&item.resolvedAt>at)).sort((a,b)=>b.activatedAt-a.activatedAt)[0];
@@ -368,6 +373,9 @@ function socProviderSupportHistoryKernel(){
   return {eligible:result.eligible===true,resources,profile:result.profile};
  }
  function withDefaults(s,hooks){
+  // These caches are scoped to one synchronous, read-only validator or
+  // reconstruction call. Their projections are never exposed; discard them
+  // before state mutation or dispatch and do not retain them across calls.
   const configMemo=new Map(),readerMemo=new Map(),provenanceMemo=new Map(),observationMemo=new Map(),boundaryMemo=new Map(),governmentBoundaryMemo=new Map(),configurationModelMemo=configurationApi().createExpectedModelMemo?.();
   const readerFor=(state,c,root,at)=>{
    const readerKey=`${c.id}\u0000${at}`;
@@ -383,7 +391,10 @@ function socProviderSupportHistoryKernel(){
     const reader=readerFor(state,c,root,at),api=configurationApi();
     configMemo.set(key,typeof reader==='function'?reader(id):api.configurationAt(state.providerCampaign,c,root,id,at,{catalogue:hooks.catalogue}));
    }
-   return copy(configMemo.get(key));
+   // This cache belongs to the private synchronous reconstruction. Consumers
+   // below only read these projections; public authority readers still return
+   // isolated copies, and no cached config is included in the public result.
+   return configMemo.get(key);
   });
   const configurationProvenanceAt=hooks.configurationProvenanceAt||((state,c,root,id,at)=>{
    const key=`${c.id}\u0000${id}\u0000${at}`;
@@ -391,7 +402,9 @@ function socProviderSupportHistoryKernel(){
     const reader=readerFor(state,c,root,at),api=configurationApi();
     provenanceMemo.set(key,typeof reader==='function'&&typeof reader.provenanceAt==='function'?reader.provenanceAt(id):api.configurationProvenanceAt?.(state.providerCampaign,c,root,id,at,{catalogue:hooks.catalogue})||null);
    }
-   return copy(provenanceMemo.get(key));
+   // Provenance is likewise read-only inside this invocation and never escapes
+   // through the reconstructed participant.
+   return provenanceMemo.get(key);
   });
   const resolved={...hooks,
    customerRoot:hooks.customerRoot||((state,c)=>customerRoot(state,c,{})),

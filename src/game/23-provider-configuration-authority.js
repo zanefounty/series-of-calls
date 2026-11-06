@@ -8,6 +8,9 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
  const normalize=x=>Array.isArray(x)?x.map(normalize):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(key=>[key,normalize(x[key])])):x;
  const stable=x=>JSON.stringify(normalize(x));
  const expectedModelMemoStores=new WeakMap();
+ // This memo is valid only for one synchronous, read-only validator invocation.
+ // Discard it before any input mutation or dispatch; it is not a caller-owned
+ // cache that may be retained across state changes.
  function createExpectedModelMemo(){const memo=Object.freeze({});expectedModelMemoStores.set(memo,new WeakMap());return memo;}
  function expectedModelEpochKey(provider,customer,child,at,viewKind){
   const projects=(provider.projects||[]).map((project,index)=>[index,project.id,project.serviceRetirement?{requestedAt:project.serviceRetirement.requestedAt,effectiveAt:project.serviceRetirement.effectiveAt,requested:project.serviceRetirement.requestedAt<=at,expectedGenerations:project.serviceRetirement.expectedGenerations}:null]);

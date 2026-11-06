@@ -9,6 +9,10 @@ const SUPPORT_WORK=require('../src/game/23-provider-support-work.js');
 
 const CUSTOMER='next-1-customer';
 const clone=value=>JSON.parse(JSON.stringify(value));
+function deepFreeze(value,seen=new Set()){
+ if(!value||typeof value!=='object'||seen.has(value))return value;
+ seen.add(value);for(const child of Object.values(value))deepFreeze(child,seen);return Object.freeze(value);
+}
 const samples=state=>FACTS.decodeSupportObservation(state.providerCampaign.supportObservation);
 let cachedFixture;
 function buy(state,request){
@@ -78,6 +82,18 @@ test('historical eligibility is reconstructed at the sampled minute across paid 
  assert.equal(HISTORY.validateParticipantAt(state,participantAt(badAt),badAt,hook).status,'valid');
  assert.equal(recovered.status,'supported',JSON.stringify(recovered.missing));assert.deepEqual(coreParticipant(recovered.participant),coreParticipant(participantAt(recoveredAt)));
  assert.equal(recovered.participant.eligible,true);assert.equal(HISTORY.validateParticipantAt(state,participantAt(recoveredAt),recoveredAt,hook).status,'valid');
+});
+
+test('AC-SOC-780 private history caches preserve frozen saves and isolate returned boundary projections',()=>{
+ const state=fixture(),before=JSON.stringify(state),incident=state.providerCampaign.incidents.find(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),at=incident.resolvedAt;
+ deepFreeze(state);
+ const first=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
+ assert.equal(first.status,'supported');assert.ok(first.participant.boundaries.length>0,'the real dispatched service-boundary path is present');
+ const expected=clone(first);first.participant.boundaries[0].resources.push('forged');first.participant.resources[0].generation=999;first.participant.responsibility.scope.push('forged');
+ const second=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
+ assert.deepEqual(second,expected,'mutating one public reconstruction cannot alter the private cached inputs or a later result');
+ assert.equal(JSON.stringify(state),before,'boundary projections leave the frozen dispatched save unchanged');
+ assert.equal(SOC.restore(JSON.stringify(state)).revision,state.revision,'the exact unmodified save remains restorable');
 });
 
 test('sample eligibility flags cannot replace historical paid configuration, fault or boundary reconstruction',()=>{

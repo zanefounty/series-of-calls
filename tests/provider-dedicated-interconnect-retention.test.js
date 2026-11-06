@@ -20,6 +20,13 @@ test('AC-SOC-699 isolated PN event pins preserve a saved mission victory at the 
  assert.equal(p.events.length,200);assert.ok(p.events.some(e=>e.id==='provider-event-1'));assert.ok(p.events.some(e=>e.id==='provider-event-2'));assert.equal(p.events.some(e=>e.id===proof.eventId),false);
  assert.equal(p.eventCheckpoint.count,1,'only one row was removed, despite its sequence number being three');assert.equal(p.eventCheckpoint.lastId,proof.eventId);assert.equal(p.eventCheckpoint.codes.MISSION_WON,1);
  assert.equal(api.retainedMissionVictory(s,proof),true,'historical mission validation must not fail during the two-event count/high-water gap');
+ // Previously pinned older rows can become evictable later. Their removal must
+ // not move the pruning boundary behind the already evicted victory event.
+ p.progressionReceipts.receipts=[];
+ api.appendFixtureEvent(p,182,'INCIDENT_ACKNOWLEDGED',{incidentId:'incident-later',customerId:'starter-customer'});
+ assert.equal(p.events.some(event=>event.id==='provider-event-1'),false);
+ assert.equal(p.eventCheckpoint.lastId,proof.eventId,'evicting an older released pin preserves the high-water mark');
+ assert.equal(api.retainedMissionVictory(s,proof),true,'historical victory survives a later out-of-order eviction');
  const restored=JSON.parse(JSON.stringify(s));assert.equal(api.retainedMissionVictory(restored,restored.providerCampaign.mission.victoryProof),true,'the serialized checkpoint/proof retain identical meaning');
  const beyond=structuredClone(proof);beyond.eventId='provider-event-201';assert.equal(api.retainedMissionVictory(s,beyond),false,'a retained unrelated event cannot impersonate the victory');beyond.eventId='provider-event-202';assert.equal(api.retainedMissionVictory(s,beyond),false,'a missing future event is not covered by the checkpoint');
  const missing=structuredClone(restored);delete missing.providerCampaign.eventCheckpoint.codes.MISSION_WON;assert.equal(api.retainedMissionVictory(missing,proof),false,'the high-water mark alone is insufficient');

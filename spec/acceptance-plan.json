@@ -963,7 +963,8 @@
       "AC-SOC-698"
     ],
     "tests/provider-dedicated-interconnect-retention.test.js": [
-      "AC-SOC-699"
+      "AC-SOC-699",
+      "AC-SOC-790"
     ],
     "tests/provider-runtime.test.js": [
       "AC-SOC-677",
@@ -1072,6 +1073,9 @@
     "tests/provider-support-history.test.js": [
       "AC-SOC-780",
       "AC-SOC-781"
+    ],
+    "tests/provider-progression-dispatch.test.js": [
+      "AC-SOC-789"
     ]
   },
   "inputs": [

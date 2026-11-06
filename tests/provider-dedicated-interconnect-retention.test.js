@@ -25,3 +25,15 @@ test('AC-SOC-699 isolated PN event pins preserve a saved mission victory at the 
  const missing=structuredClone(restored);delete missing.providerCampaign.eventCheckpoint.codes.MISSION_WON;assert.equal(api.retainedMissionVictory(missing,proof),false,'the high-water mark alone is insufficient');
  const fake=structuredClone(proof);fake.periods[0].operatingResult++;assert.equal(api.retainedMissionVictory(restored,fake),false,'retained settlements remain authoritative');
 });
+
+test('AC-SOC-790 retained work arrivals from multiple earned windows leave room for subsequent live events',()=>{
+ const api=campaignWithEventAppender(),s=fixture(),p=s.providerCampaign;
+ // Isolated appender capacity fixture, not proof that these synthetic claims can be earned.
+ p.progressionReceipts.receipts.push(...['c3','c5','t2','l7'].map((source,n)=>({sourceId:'progress.goal.'+source,workProofs:Array.from({length:60},(_,i)=>({arrivalEventId:'provider-event-'+(n*60+i+1)}))})));
+ for(let i=0;i<600;i++)api.appendFixtureEvent(p,181,'INCIDENT_ACKNOWLEDGED',{incidentId:'incident-later',customerId:'starter-customer'});
+ for(let i=1;i<=240;i++)assert.ok(p.events.some(event=>event.id==='provider-event-'+i));
+ assert.equal(p.events.length,440);
+ assert.equal(p.events.filter(event=>Number(event.id.slice(15))>240).length,200);
+ assert.equal(p.events.at(-1).id,'provider-event-800');
+ assert.equal(p.eventCheckpoint.count+p.events.length,800);
+});

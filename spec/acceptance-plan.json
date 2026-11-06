@@ -411,7 +411,8 @@
     "tests/provider-authority-counterexamples.test.js": [
       "AC-SOC-674",
       "AC-SOC-675",
-      "AC-SOC-676"
+      "AC-SOC-676",
+      "AC-SOC-846"
     ],
     "tests/completion-packs-ui.test.js": [
       "AC-SOC-450",
@@ -1225,6 +1226,9 @@
       "AC-SOC-856",
       "AC-SOC-857",
       "AC-SOC-858"
+    ],
+    "tests/provider-uc-cc-integration.test.js": [
+      "AC-SOC-845"
     ]
   },
   "inputs": [
@@ -1862,6 +1866,7 @@
     "src/game/93-ui/79-provider-scale.js",
     "tests/provider-scale-paid.test.js",
     "tests/provider-scale-ui.test.js",
-    "tests/provider-scale-observation.test.js"
+    "tests/provider-scale-observation.test.js",
+    "tests/provider-uc-cc-integration.test.js"
   ]
 }

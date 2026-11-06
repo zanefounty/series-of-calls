@@ -539,7 +539,12 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
     if(m.externalGuest&&(!id(m.bookingId)||m.bookingId!==booking.id||JSON.stringify(booking.externalGuest)!==JSON.stringify(m.externalGuest)||booking.start!==m.attemptedAt||booking.end!==booking.start+authored.durationMinutes||booking.attendees!==authored.attendees||session.scheduledAt!==booking.start||session.endsAt!==booking.end||session.attendees!==authored.attendees||session.externalGuest?.guestId!==authored.guestId||session.externalGuest?.guestTenant!==authored.guestTenant||session.externalGuest?.hostTenant!==child.tenant))fail('INVALID_PROVIDER_EXTERNAL_GUEST_MEETING_LINK');
    }
   }
-  for(const e of p.events)if(!e||!id(e.id)||!integer(e.at)||typeof e.code!=='string')fail('INVALID_PROVIDER_EVENT');
+  const eventIds=new Set();
+  for(const e of p.events){const sequence=Number(/^provider-event-([1-9]\d*)$/.exec(e?.id||'')?.[1]||0);if(!e||!integer(sequence,1,p.nextEventId-1)||eventIds.has(e.id)||!integer(e.at,0,s.clock)||typeof e.code!=='string')fail('INVALID_PROVIDER_EVENT');eventIds.add(e.id);}
+  const checkpoint=p.eventCheckpoint,codes=checkpoint.codes,last=Number(/^provider-event-([1-9]\d*)$/.exec(checkpoint.lastId||'')?.[1]||0);
+  // Older versions stored the most recently pruned ID, which can move backwards
+  // when a historical pin expires. Do not reinterpret it as a maximum watermark.
+  if(!codes||typeof codes!=='object'||Array.isArray(codes)||Object.values(codes).some(count=>!integer(count))||Object.values(codes).reduce((sum,count)=>sum+count,0)!==checkpoint.count||p.events.length+checkpoint.count!==p.nextEventId-1||(checkpoint.count===0?checkpoint.lastId!==null:!integer(last,1,p.nextEventId-1)))fail('INVALID_PROVIDER_EVENT_ACCOUNTING');
   return true;
  }
  function inspect(s,hooks={}){

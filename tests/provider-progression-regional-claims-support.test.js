@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, supportWindowBatchBoundary, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
+const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, stageEffective, nextOpportunity, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, supportWindowBatchBoundary, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
 
 function minuteUntil(state, predicate, label, limit = 120) {
   const startedAt = state.clock;
@@ -29,6 +29,71 @@ function persistedState(state) {
     .filter(([key]) => key !== 'revision')
     .map(([key, value]) => [key, persistedState(value)]));
 }
+
+function comparableState(state) {
+  const result = persistedState(state);
+  delete result.commands;
+  return result;
+}
+
+test('stage commissioning waits preserve each first effective minute and full persisted state', () => {
+  let bounded = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  let reference = clone(bounded);
+  for (const stage of ['base', 'carrier', 'partner']) {
+    const request = { action: 'purchase', offerId: 'starter', planId: 'swift', stage,
+      ...(stage === 'base' ? { market: 'au-sydney' } : { customerId: 'starter-customer' }) };
+    bounded = buy(bounded, request);
+    reference = buy(reference, request);
+    const ready = state => state.providerCampaign.customers[0].stages[stage].status === 'effective';
+    reference = minuteUntil(reference, ready, `${stage} reference`);
+    bounded = stageEffective(bounded, 'starter-customer', stage);
+    assert.equal(bounded.clock, reference.clock, `${stage} stops at the first observed effective minute`);
+    assert.deepEqual(comparableState(bounded), comparableState(reference), `${stage} preserves all non-command/revision state`);
+    assert.deepEqual(SOC.restore(JSON.stringify(bounded)), bounded, `${stage} result remains a valid native save`);
+  }
+  assert.ok(bounded.commands.filter(row => row.command.type === 'advance').length < reference.commands.filter(row => row.command.type === 'advance').length,
+    'accepted work due boundaries reduce native advance dispatches');
+});
+
+test('opportunity settlement waits preserve first success, native incident interruption and paid repair', () => {
+  let initial = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  initial = startCustomer(initial, 'starter-customer', 'starter', 'au-sydney');
+  const before = JSON.stringify(initial);
+  const requested = safeAdvanceChunk(initial);
+  const interrupted = SOC.dispatch(initial, { type: 'advance', minutes: requested });
+  assert.ok(interrupted.clock < initial.clock + requested, 'native advance stops before settlement when the authored incident activates');
+  assert.ok(interrupted.providerCampaign.incidents.some(row => row.status === 'active'));
+  const ready = state => state.providerCampaign.mission.nextOpportunityAvailable;
+  const reference = minuteUntil(clone(initial), ready, 'reference opportunity', 180);
+  const bounded = nextOpportunity(clone(initial), 'bounded opportunity', 180);
+  assert.equal(bounded.clock, reference.clock, 'opportunity stops on the same first qualifying settlement');
+  assert.equal(bounded.clock % 60, 0);
+  assert.deepEqual(comparableState(bounded), comparableState(reference), 'jobs, billing, incident timing, paid repair and all other persisted state match');
+  assert.ok(bounded.providerCampaign.incidents.some(row => row.status === 'resolved'));
+  assert.ok(bounded.providerCampaign.projects.some(row => row.operationId === 'repair' && row.status === 'complete' && row.postingId));
+  assert.ok(bounded.commands.filter(row => row.command.type === 'advance').length < reference.commands.filter(row => row.command.type === 'advance').length);
+  assert.equal(JSON.stringify(initial), before, 'comparison and waiting do not edit the supplied paid fixture');
+  assert.deepEqual(SOC.restore(JSON.stringify(bounded)), bounded);
+
+  let won = until(bounded, state => state.providerCampaign.mission.consecutiveQualifying >= 2, 'two qualified periods');
+  won = buy(won, { action: 'purchase', offerId: 'next-1', planId: 'swift', stage: 'base', market: 'us-seattle' });
+  assert.equal(won.providerCampaign.status, 'won', 'the second paid order creates an actual mission win');
+  assert.equal(won.providerCampaign.mission.nextOpportunityAvailable, false);
+  assert.equal(nextOpportunity(won, 'already won opportunity', 180, { allowWon: true }), won,
+    'the explicit won alternative returns immediately without continuing the career');
+});
+
+test('specialized waits keep simulation caps and generic transient predicates keep minute polling', () => {
+  const initial = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  const funded = buy(initial, { action: 'purchase', offerId: 'starter', planId: 'swift', stage: 'base', market: 'au-sydney' });
+  const before = JSON.stringify(funded);
+  assert.throws(() => stageEffective(funded, 'starter-customer', 'base', 'capped stage', 1), /capped stage not reached at minute 1/);
+  assert.throws(() => nextOpportunity(funded, 'capped opportunity', 1), /capped opportunity not reached at minute 1/);
+  assert.equal(JSON.stringify(funded), before, 'failed waits retain the caller-owned state');
+  const firstMinute = until(funded, state => state.clock === 1, 'transient first minute');
+  assert.equal(firstMinute.clock, 1);
+  assert.equal(firstMinute.commands.at(-1).command.minutes, 1, 'arbitrary predicates never opt into boundary batching');
+});
 
 test('regional T2 and L7 paid unlocks stay explicitly locked until their earned receipts exist', () => {
   const state = SOC.create({ experience: 'campaign', seed: 73 });

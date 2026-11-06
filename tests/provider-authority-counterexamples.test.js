@@ -9,6 +9,31 @@ function advance(s){for(const i of s.providerCampaign.incidents.filter(i=>i.stat
 let settlementFixture;
 function pendingBill(){if(!settlementFixture){let s=paidOpening();while(s.clock<59)s=advance(s);settlementFixture=s;}return copy(settlementFixture);}
 
+test('AC-SOC-846 Provider restore conserves emitted events across retained rows and archive counters',()=>{
+ const state=paidOpening(),original=JSON.stringify(state);
+ assert.ok(state.providerCampaign.events.length>1);
+ const mutations=[
+  ['deleted event',p=>p.events.pop()],
+  ['duplicate event ID',p=>{p.events[1].id=p.events[0].id;}],
+  ['future event ID',p=>{p.events[0].id=`provider-event-${p.nextEventId}`;}],
+  ['future event time',p=>{p.events[0].at=state.clock+1;}],
+  ['unaccounted archived event',p=>{p.eventCheckpoint.count++;p.eventCheckpoint.lastId=p.events[0].id;}],
+  ['invented archive code count',p=>{p.eventCheckpoint.codes.CUSTOMER_WORK_ARRIVED=1;}],
+  ['invalid archive code count',p=>{p.eventCheckpoint.codes.CUSTOMER_WORK_ARRIVED=-1;}],
+  ['invented next event',p=>{p.nextEventId++;}]
+ ];
+ for(const [name,mutate] of mutations){const forged=copy(state);mutate(forged.providerCampaign);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_(EVENT|WORKFORCE)/,name);assert.equal(JSON.stringify(state),original);}
+ assert.deepEqual(SOC.restore(original),state);
+ // Structural legacy-buffer fixture: an older pinned row was removed after a
+ // newer row. This models the former last-removed checkpoint, not a maximum ID.
+ const older=copy(state),rows=older.providerCampaign.events.splice(0,2),checkpoint=older.providerCampaign.eventCheckpoint;
+ checkpoint.count=rows.length;checkpoint.lastId=rows[0].id;for(const row of rows)checkpoint.codes[row.code]=(checkpoint.codes[row.code]||0)+1;
+ assert.deepEqual(SOC.restore(JSON.stringify(older)),older,'legacy last-removed checkpoints can precede the archived count');
+ const command={type:'advance',minutes:1},expected=SOC.dispatch(state,command);let result;
+ const context={postMessage:value=>{result=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:'event-accounting',state,command}});
+ assert.equal(result.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(result.state)),expected);assert.deepEqual(SOC.dispatch(SOC.restore(original),command),expected);
+});
+
 test('AC-SOC-674 paid Provider copy remains a separate custom Lab and relabelling its exported copy cannot restore earned authority',()=>{
  let s=paidOpening();s=SOC.dispatch(s,{type:'advance',minutes:10});const original=JSON.stringify(s),lab=SOC.dispatch(s,{type:'copy-to-lab',customerId});
  assert.deepEqual(lab.experience,{version:1,kind:'lab',custom:true});assert.equal(lab.providerCampaign,undefined);assert.equal(lab.providerCustomer,undefined);assert.equal(lab.labSource.customerId,customerId);assert.equal(JSON.stringify(s),original);

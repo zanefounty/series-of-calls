@@ -7873,6 +7873,24 @@
       ],
       "status": "partial",
       "scope": "Paid UC/CC readiness constructs a fresh read-only native observer view on each call and isolates returned diagnostics; one synchronous Provider inspection shares its derived progression hooks. Frozen paid states, same-call capture/quality delivery, test/apply freshness, worker/restore parity and later same-object fault, deployment-generation and paid-posting mutations are exercised. This reduces repeated whole-customer copying without caching authority across commands or relaxing validation. Broader product fidelity and the existing legacy missing-arrival fallback remain separate obligations."
+    },
+    {
+      "id": "BEH-SOC-436",
+      "sources": [
+        "progress.goal.ix",
+        "progress.progression-level.3",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/23-provider-uc-cc-integration.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "testIds": [
+        "AC-SOC-845",
+        "AC-SOC-846"
+      ],
+      "status": "partial",
+      "scope": "Provider restore conserves emitted event IDs and retained/archive counts. A paid UC/CC proof cannot contradict a retained same-job arrival or use an archive with no arrival events. Legitimately pruned legacy v1 proof remains supported; aggregate counters cannot authenticate every coordinated historical edit and no missing events are synthesized. Real old saves and public dispatch/worker continuation are separately verified."
     }
   ]
 }

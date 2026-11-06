@@ -411,7 +411,8 @@
     "tests/provider-authority-counterexamples.test.js": [
       "AC-SOC-674",
       "AC-SOC-675",
-      "AC-SOC-676"
+      "AC-SOC-676",
+      "AC-SOC-846"
     ],
     "tests/completion-packs-ui.test.js": [
       "AC-SOC-450",
@@ -1208,6 +1209,9 @@
       "AC-SOC-842",
       "AC-SOC-843",
       "AC-SOC-844"
+    ],
+    "tests/provider-uc-cc-integration.test.js": [
+      "AC-SOC-845"
     ]
   },
   "inputs": [
@@ -1839,6 +1843,7 @@
     "tests/provider-integration-support.test.js",
     "src/game/23-provider-integration-support.js",
     "src/game/23-provider-partner-progression.js",
-    "tests/provider-progression-ui.test.js"
+    "tests/provider-progression-ui.test.js",
+    "tests/provider-uc-cc-integration.test.js"
   ]
 }

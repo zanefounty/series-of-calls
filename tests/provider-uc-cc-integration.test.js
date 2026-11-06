@@ -125,9 +125,22 @@ test('funded task receipt remains historically valid after edge rebase while cur
 
 test('archived paid task proof survives workload-history pruning but rejects altered proof fields',()=>{
  const s=state();verifiedEdge(s);const job=voiceAndCapture(s);qualityReview(s,job);I.attachTaskEvidence(s,'provider-project-41',hooks);
- s.providerCampaign.nextJob=9;s.providerCampaign.jobCheckpoint={pruned:8,completed:8,late:0,failed:0,voiceMinutes:0,messages:0};s.providerCampaign.eventCheckpoint={count:8,lastId:'provider-event-8',codes:{}};s.providerCampaign.jobs=[];s.providerCampaign.events=[];
+ s.providerCampaign.nextJob=9;s.providerCampaign.jobCheckpoint={pruned:8,completed:8,late:0,failed:0,voiceMinutes:0,messages:0};s.providerCampaign.eventCheckpoint={count:8,lastId:'provider-event-8',codes:{CUSTOMER_WORK_ARRIVED:8}};s.providerCampaign.jobs=[];s.providerCampaign.events=[];
  const archived=s.providerCampaign.projects[0].operationReceipt.task;
  assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',archived),true);
+ const codes=s.providerCampaign.eventCheckpoint.codes;s.providerCampaign.eventCheckpoint.codes={CUSTOMER_RENEWED:8};assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',archived),false,'an archive with no arrivals cannot supply an evicted arrival');s.providerCampaign.eventCheckpoint.codes=codes;
  const changed=structuredClone(archived);changed.arrival.jobId='fabricated-job';assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',changed),false);
  const project=s.providerCampaign.projects[0],saved=structuredClone(project.operationReceipt.test);project.operationReceipt.test.supportScope.projectIds=['foreign-base','foreign-carrier','foreign-partner'];project.operationReceipt.task.test.supportScope.projectIds=['foreign-base','foreign-carrier','foreign-partner'];assert.equal(I.validateProject(s,project.id),false,'same-customer paid stage lineage rejects fabricated or cross-customer support IDs');project.operationReceipt.test=saved;project.operationReceipt.task.test=structuredClone(saved);
+});
+
+test('AC-SOC-845 retained same-job arrival cannot be replaced by an unrelated archived event ID',()=>{
+ const s=state();verifiedEdge(s);const job=voiceAndCapture(s);qualityReview(s,job);I.attachTaskEvidence(s,'provider-project-41',hooks);
+ s.providerCampaign.eventCheckpoint={count:7,lastId:'provider-event-7',codes:{CUSTOMER_WORK_ARRIVED:7}};
+ const task=s.providerCampaign.projects[0].operationReceipt.task;
+ assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',task),true);
+ task.arrival.id='provider-event-1';
+ assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',task),false,'the actual same-job event is still retained and contradicts the claimed archived ID');
+ task.arrival.id='provider-event-8';
+ for(const field of ['customerId','caseId','interactionId']){const original=s.providerCampaign.events[0][field];s.providerCampaign.events[0][field]='foreign';assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',task),false,field);s.providerCampaign.events[0][field]=original;}
+ assert.equal(I.validateRetainedTaskEvidence(s,'provider-project-41',task),true);
 });

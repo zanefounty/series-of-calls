@@ -90,26 +90,28 @@ function nextPlan(s,periodIndex,maxMinutes=240){
 }
 function child(s){return s.portfolio.customers.find(x=>x.id===CUSTOMER).root;}
 
-test('SMB social connector substitutes exactly four eligible calls and preserves 24 unique case obligations',()=>{
+test('SMB social connector substitutes three eligible calls and reserves one authored handoff choice and preserves 24 unique case obligations',()=>{
   let s=commissionSetup(start('smb'),'smb');
   s=operation(s,'cisco-programmable-engagement');
   const planned=nextPlan(s,Math.floor(s.clock/60)+1);s=planned.s;const result=planned.result;
   assert.equal(result.totalCases,24);
-  assert.equal(result.actualVoiceCount,12);
-  assert.equal(result.actualDigitalCount,12);
+  assert.equal(result.handoffReservations,1);
+  assert.equal(result.jobs.filter(j=>j.handoffPreference==='socialMessaging'&&j.channel==='voice').length,1);
+  assert.equal(result.actualVoiceCount,13);
+  assert.equal(result.actualDigitalCount,11);
   assert.equal(result.actualMeetingCount,0);
   assert.ok(result.actualVoiceCount>=result.voiceFloor);
   assert.equal(new Set(result.jobs.map(x=>x.caseId)).size,24);
-  assert.equal(result.jobs.filter(x=>x.channel==='message').length,12);
+  assert.equal(result.jobs.filter(x=>x.channel==='message').length,11);
   const converted=result.jobs.filter(x=>x.preference==='socialMessaging');
-  assert.equal(converted.length,4);
+  assert.equal(converted.length,3);
   assert.ok(converted.every(x=>x.channel==='message'&&x.account==='chatterleaf'&&x.operationId==='cisco-programmable-engagement'));
   s=advance(s,(result.periodIndex+1)*60-s.clock);
   const periodJobs=s.providerCampaign.jobs.filter(x=>x.customerId===CUSTOMER&&x.periodIndex===result.periodIndex);
   assert.equal(periodJobs.length,24,'actual provider scheduler creates exactly the authored 24 cases');
   assert.equal(new Set(periodJobs.map(x=>x.caseId)).size,24);
-  assert.equal(periodJobs.filter(x=>x.channel==='voice').length,12);
-  assert.equal(periodJobs.filter(x=>x.channel==='message').length,12);
+  assert.equal(periodJobs.filter(x=>x.channel==='voice').length,13);
+  assert.equal(periodJobs.filter(x=>x.channel==='message').length,11);
   assert.ok(periodJobs.filter(x=>x.preference==='socialMessaging').every(x=>x.interactionId&&x.channel==='message'));
   assert.ok(recoveredIncidentIds.length>0,'authored incident was repaired using public campaign commands');
 });

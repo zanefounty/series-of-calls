@@ -5,8 +5,9 @@ const RULES=require('../src/game/24-provider-rules');
 const customerId='starter-customer';
 function opening(version='provider-campaigns-6'){
  let s=SOC.create({experience:'campaign',scenario:'enterprise',difficulty:'easy',seed:73});
- // An otherwise unchanged pre-purchase export models the supported previous content version.
- s.providerCampaign.contentVersion=version;s=SOC.restore(JSON.stringify(s));
+ // Model the actual pre-purchase legacy shape, without v8-only lineage journals.
+ s.providerCampaign.contentVersion=version;delete s.providerCampaign.caseHandoffVersion;delete s.providerCampaign.dedicatedInterconnectVersion;delete s.providerCampaign.supportWork;delete s.providerCampaign.workforceHistory;
+ s.providerCampaign.supportObservation={version:2,configurations:[],samples:[]};s=SOC.restore(JSON.stringify(s));
  for(const stage of ['base','carrier','partner']){
   const request={action:'purchase',offerId:'starter',planId:'steady',stage,...(stage==='base'?{}:{customerId})},q=SOC.provider.quote(s,request);
   assert.deepEqual(q.blockers,[]);s=SOC.dispatch(s,{type:'provider',command:{...request,quoteRevision:q.atRevision}});

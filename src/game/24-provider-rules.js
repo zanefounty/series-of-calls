@@ -1556,25 +1556,66 @@ function socProviderRulesKernel(){
           "support": 1
         }
       }
+    },
+    {
+      "id": "integration-assurance",
+      "name": "Integration-aware assurance policy",
+      "description": "Fund a reusable incident-response policy for the customers and tested product integrations in the earned integration-support milestone. Every repair remains quoted and paid; changed integrations or missing boundary evidence suspend the policy.",
+      "setupCents": 30000,
+      "periodCents": 9000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"t2",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-dedicated-interconnect",
+      "name": "Direct dedicated interconnect",
+      "description": "Commission an authenticated gateway using existing paid sessions. Provider engineering and higher setup reduce recurring cost; real inbound and outbound media remain required.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-dedicated-interconnect",
+      "name": "Supplier-managed dedicated interconnect",
+      "description": "After proving dedicated interconnection in this market, buy supplier commissioning with lower setup and higher recurring cost. Existing capacity and supplier commitments remain.",
+      "setupCents": 12000,
+      "periodCents": 9000,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
     }
-,
-{
-  "id": "integration-assurance",
-  "name": "Integration-aware assurance policy",
-  "description": "Fund a reusable incident-response policy for the customers and tested product integrations in the earned integration-support milestone. Every repair remains quoted and paid; changed integrations or missing boundary evidence suspend the policy.",
-  "setupCents": 30000,
-  "periodCents": 9000,
-  "workMinutes": 6,
-  "engineers": 0,
-  "support": 1,
-  "resources": [],
-  "config": {},
-  "requirements": [],
-  "sourceIds": [
-    "progress.goal."+"t2",
-    "uc-new:domain:commercial-roles"
-  ]
-}
   ],
   "families": [
     {

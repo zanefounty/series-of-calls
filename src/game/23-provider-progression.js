@@ -11,6 +11,7 @@ function socProviderProgressionFactsKernel(){
  function workforceHistoryApi(){return typeof SOC_PROVIDER_WORKFORCE_HISTORY!=='undefined'?SOC_PROVIDER_WORKFORCE_HISTORY:require('./23-provider-workforce-history.js');}
  function regionalSupportApi(){return typeof SOC_PROVIDER_REGIONAL_SUPPORT!=='undefined'?SOC_PROVIDER_REGIONAL_SUPPORT:require('./23-provider-regional-support.js');}
  function ownedSitesApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:require('./23-provider-owned-sites.js');}
+ function dedicatedInterconnectApi(){return typeof SOC_PROVIDER_DEDICATED_INTERCONNECT!=='undefined'?SOC_PROVIDER_DEDICATED_INTERCONNECT:require('./23-provider-dedicated-interconnect.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -108,8 +109,8 @@ function socProviderProgressionFactsKernel(){
   'same-case-continuity-sample':'Same-case continuity across an incident is not evaluated by this adapter.',
   'typed-local-dependency-proof':'Typed local processing dependencies are not evaluated by this adapter.',
   'connected-offline-scope':'Declared connected and offline operating scope is not evaluated by this adapter.',
-  'dedicated-carrier-topology':'A dedicated carrier interconnect topology and offer are not evaluated by this adapter.',
-  'directional-acceptance':'Directional carrier acceptance is not evaluated by this adapter.',
+  'dedicated-carrier-topology':'A paid current carrier gateway, licensed phone route, and supported interconnect trunk are required.',
+  'directional-acceptance':'A real resolved outbound and inbound call with two-way media and no outstanding obligations is required.',
   'paid-security-operations':'Paid communications security operations are not evaluated by this adapter.',
   'attack-and-allowed-demand-proof':'Authored attack rejection and allowed-demand evidence are not evaluated by this adapter.',
   'market-support-boundary-sample':'A sampled market, support, and boundary proof is not evaluated by this adapter.',
@@ -442,6 +443,12 @@ function socProviderProgressionFactsKernel(){
   const externalEvidence=external?.result.evidence||null;
   goals[goalId('tr')]={id:goalId('tr'),name:'External calling operational',status:externalEvidence?'ready':'incomplete',missing:externalEvidence?[]:(externalMissing.length?externalMissing:[MISSING['inbound-demand'],MISSING['external-collaboration-acceptance']]),evidence:externalEvidence};
   proofRequirements.externalReach=fact(externalEvidence?'ready':'incomplete',externalEvidence?[]:goals[goalId('tr')].missing,externalEvidence||{});
+  const dedicatedApi=dedicatedInterconnectApi(),dedicatedHooks=typeof hooks.dedicatedInterconnectHooks==='function'?hooks.dedicatedInterconnectHooks(s):hooks.dedicatedInterconnectHooks||hooks;
+  const dedicatedCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(customer=>({customer,result:dedicatedApi.evaluate(s,customer.id,dedicatedHooks)}));
+  const dedicatedReady=dedicatedCandidates.find(row=>row.result.status==='ready'&&row.result.evidence)||null;
+  const dedicatedMissing=dedicatedReady?[]:[...new Set(dedicatedCandidates.flatMap(row=>row.result.missing||[]))];
+  goals[goalId('pn')]={id:goalId('pn'),name:'Dedicated carrier interconnect',status:dedicatedReady?'ready':'incomplete',missing:dedicatedReady?[]:(dedicatedMissing.length?dedicatedMissing:[MISSING['dedicated-carrier-topology'],MISSING['directional-acceptance']]),evidence:dedicatedReady?copy(dedicatedReady.result.evidence):null};
+  proofRequirements.dedicatedInterconnect=fact(dedicatedReady?'ready':'incomplete',goals[goalId('pn')].missing,goals[goalId('pn')].evidence||{});
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
   const resilienceProgress=resilienceProgressionApi().evaluate(s,hooks);

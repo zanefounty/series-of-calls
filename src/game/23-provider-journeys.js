@@ -24,7 +24,7 @@ function socProviderJourneysKernel(){
    meteredVoiceMinutes:interaction.usageMinutes||0,agent:interaction.agent||null};
  }
  function inspect(root,job,plan){
-  const ids=job.resilienceSequence?job.resilienceSequence.phases.map(p=>p.interactionId):[job.interactionId],interactions=ids.map(id=>root.interactions.find(i=>i.id===id)).filter(Boolean);
+  const ids=job.handoff?[job.handoff.sourceInteractionId,job.handoff.targetInteractionId]:job.resilienceSequence?job.resilienceSequence.phases.map(p=>p.interactionId):[job.interactionId],interactions=ids.map(id=>root.interactions.find(i=>i.id===id)).filter(Boolean);
   return {caseId:job.caseId,legs:interactions.map(i=>leg(root,i)),missingInteractions:ids.filter(Boolean).length-interactions.length,
    supplierUsage:{voiceMinutes:job.voiceMinutes,messageDeliveries:job.messageCharged?1:0,voiceCentsPerMinute:plan.voiceCents,messageCentsPerDelivery:plan.messageCents,costCents:job.voiceMinutes*plan.voiceCents+(job.messageCharged?plan.messageCents:0)},
    retailBasis:'period-service-with-delivery-credits',trace:copy(interactions.at(-1)?.trace||[])};

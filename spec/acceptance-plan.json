@@ -902,6 +902,65 @@
       "AC-SOC-650",
       "AC-SOC-651",
       "AC-SOC-652"
+    ],
+    "tests/provider-service-truth.test.js": [
+      "AC-SOC-673"
+    ],
+    "tests/provider-authority-counterexamples.test.js": [
+      "AC-SOC-674",
+      "AC-SOC-675",
+      "AC-SOC-676"
+    ],
+    "tests/provider-progression-regional-claims.test.js": [
+      "AC-SOC-653"
+    ],
+    "tests/even-workload-service-history.test.js": [
+      "AC-SOC-684",
+      "AC-SOC-685"
+    ],
+    "tests/provider-handoff-demand.test.js": [
+      "AC-SOC-657",
+      "AC-SOC-658",
+      "AC-SOC-659",
+      "AC-SOC-660"
+    ],
+    "tests/provider-case-handoff.test.js": [
+      "AC-SOC-661",
+      "AC-SOC-662",
+      "AC-SOC-663",
+      "AC-SOC-664",
+      "AC-SOC-665",
+      "AC-SOC-666",
+      "AC-SOC-667",
+      "AC-SOC-668"
+    ],
+    "tests/provider-case-handoff-ui.test.js": [
+      "AC-SOC-669",
+      "AC-SOC-670",
+      "AC-SOC-671",
+      "AC-SOC-672"
+    ],
+    "tests/provider-case-handoff-dispatch.test.js": [
+      "AC-SOC-686",
+      "AC-SOC-687"
+    ],
+    "tests/provider-dedicated-interconnect.test.js": [
+      "AC-SOC-679",
+      "AC-SOC-680",
+      "AC-SOC-681",
+      "AC-SOC-682",
+      "AC-SOC-683"
+    ],
+    "tests/provider-dedicated-interconnect-ui.test.js": [
+      "AC-SOC-695"
+    ],
+    "tests/provider-dedicated-interconnect-dispatch.test.js": [
+      "AC-SOC-696",
+      "AC-SOC-697",
+      "AC-SOC-698"
+    ],
+    "tests/provider-dedicated-interconnect-retention.test.js": [
+      "AC-SOC-699"
     ]
   },
   "inputs": [
@@ -1027,6 +1086,7 @@
     "src/game/23-provider-change-preview.js",
     "src/game/23-provider-configuration-authority.js",
     "src/game/23-provider-continuity.js",
+    "src/game/23-provider-dedicated-interconnect.js",
     "src/game/23-provider-external-reach.js",
     "src/game/23-provider-finance-view.js",
     "src/game/23-provider-government.js",
@@ -1334,6 +1394,7 @@
     "tests/domain-integration.test.js",
     "tests/estate-lifecycle-integration.test.js",
     "tests/estate-operations.test.js",
+    "tests/even-workload-service-history.test.js",
     "tests/full-campaign-journey.test.js",
     "tests/full-campaign-ui.test.js",
     "tests/gates_test.py",
@@ -1392,8 +1453,17 @@
     "tests/progression-market.test.js",
     "tests/progression-observation.test.js",
     "tests/progression.test.js",
+    "tests/provider-authority-counterexamples.test.js",
+    "tests/provider-case-handoff-dispatch.test.js",
+    "tests/provider-case-handoff-ui.test.js",
+    "tests/provider-case-handoff.test.js",
+    "tests/provider-dedicated-interconnect-dispatch.test.js",
+    "tests/provider-dedicated-interconnect-retention.test.js",
+    "tests/provider-dedicated-interconnect-ui.test.js",
+    "tests/provider-dedicated-interconnect.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-handoff-demand.test.js",
     "tests/provider-incident-inspector.test.js",
     "tests/provider-integration-assurance.test.js",
     "tests/provider-journey-explanation.test.js",
@@ -1406,6 +1476,8 @@
     "tests/provider-owned-site-platform-migration.test.js",
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
+    "tests/provider-progression-regional-claims.test.js",
+    "tests/provider-service-truth.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",

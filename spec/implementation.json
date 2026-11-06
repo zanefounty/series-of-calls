@@ -6974,6 +6974,145 @@
       ],
       "status": "partial",
       "scope": "Contextual incident presentation names the affected customer and observed service symptoms, separates a recorded event from an unperformed diagnosis, and presents current quote costs, lead/work time, staff and actionable blockers. Public paid construction, an actual incident, staffing refusal and paid delayed repair with restore are exercised; foreign or absent quotes cannot manufacture terms. Inspection is pure. No paid diagnosis mechanic or final browser acceptance is claimed."
+    },
+    {
+      "id": "BEH-SOC-391",
+      "sources": [
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-673"
+      ],
+      "status": "partial",
+      "scope": "An explicit Lab fixture establishes a six-minute real endpoint conversation, meters one healthy minute, then loses exactly one media direction through validated configuration. Both inbound and outbound loss fail the existing call with ONE_WAY_MEDIA before its due time, release capture exactly once, add no failed-minute usage or success revenue, and preserve the failed record while a fresh bidirectional call reuses capacity and completes. Worker and save continuation match. This shared-engine regression does not add or certify a Provider fault-authoring control or commercial incident path."
+    },
+    {
+      "id": "BEH-SOC-393",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-674",
+        "AC-SOC-675",
+        "AC-SOC-676"
+      ],
+      "status": "partial",
+      "scope": "Actual funded Provider export to Lab cannot regain earned campaign authority through an experience relabel. Actual paid minute-59 service restores into the same next settlement, complete state and serialized worker result with once-only retail and usage postings. Actual empty and partial periods remain unqualified; separately labelled isolated mission-proof fixtures refuse quiet, shortened, under-target, zero-profit, default, overdue-incident and cancelled-expansion substitutes. These bounded counterexamples do not claim a public grace/default rescue journey or new mission completion."
+    },
+    {
+      "id": "BEH-SOC-394",
+      "sources": [
+        "progress.goal.c3"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/23-provider-regional-support.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-653"
+      ],
+      "status": "partial",
+      "scope": "A fresh public Provider campaign funds three customers in AU, US and EU, sustains the same eligible 60-minute named-support cohort with actual voice/digital work and settlements, and claims C3 without a cash award. Rehashed market/support substitutions refuse restore. The earned regional policy is then purchased and delivered, starts suspended without a budget, and after explicit funded scope configuration buys and commissions a real new customer carrier stage with reconciled spend and restore. Other regional identities, current final browser evidence and broader source fidelity remain separate."
+    },
+    {
+      "id": "BEH-SOC-395",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:media"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-684",
+        "AC-SOC-685"
+      ],
+      "status": "partial",
+      "scope": "Explicit Lab/shared-engine paid service runs sixty ordinary one-minute calls at evenly distributed arrivals. A 57-minute outage causes 57 failures and three completions; a final-minute outage retains 59 completions and one failure. Recorded usage, credits and wholesale costs survive recovery, save restore and serialized-worker settlement exactly, without duplicate postings. These shared-engine histories complement the separate actual Provider outage tests and do not claim a new Provider incident or human playability evidence."
+    },
+    {
+      "id": "BEH-SOC-397",
+      "sources": [
+        "DEC-011",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/22-provider-demand.js",
+        "src/game/23-provider-case-handoff.js",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-case-handoff.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-657",
+        "AC-SOC-658",
+        "AC-SOC-659",
+        "AC-SOC-660",
+        "AC-SOC-661",
+        "AC-SOC-662",
+        "AC-SOC-663",
+        "AC-SOC-664",
+        "AC-SOC-665",
+        "AC-SOC-666",
+        "AC-SOC-667",
+        "AC-SOC-668",
+        "AC-SOC-669",
+        "AC-SOC-670",
+        "AC-SOC-671",
+        "AC-SOC-672",
+        "AC-SOC-686",
+        "AC-SOC-687"
+      ],
+      "status": "partial",
+      "scope": "Versioned SMB demand reserves one existing optional voice slot for a paid programmable engagement handoff while retaining 24 canonical case obligations and twelve mandatory voice cases. Quotes and atomic dispatch require authored preference, admitted unassigned voice, a current paid channel, available licensed handling and the original deadline. Actual paid public dispatch ends the original voice leg without delivering it, starts one digital leg for the same person and case, meters actual original usage and one accepted message, and completes only after real human resolution. Stale and duplicate commands, unpaid and protected cases, typed receipt forgeries, restore and serialized worker continuation are checked. Derived bounded pins preserve both legs. Final visible browser evidence, the L8 resolved voice follow-up and broader family acceptance remain separate."
+    },
+    {
+      "id": "BEH-SOC-398",
+      "sources": [
+        "DEC-011",
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling"
+      ],
+      "implementation": [
+        "src/game/23-provider-dedicated-interconnect.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-679",
+        "AC-SOC-680",
+        "AC-SOC-681",
+        "AC-SOC-682",
+        "AC-SOC-683",
+        "AC-SOC-695",
+        "AC-SOC-696",
+        "AC-SOC-697",
+        "AC-SOC-698",
+        "AC-SOC-699"
+      ],
+      "status": "partial",
+      "scope": "Versioned paid direct and earned managed gateway plans use existing capacity, authenticated native carrier admission, separately metered settled inbound/outbound human service and exact historical configurations. Isolated helper and translated contextual UI contracts cover terms, refusal and no free capacity; two retained call legs preserve claim evidence. A checkpoint regression covers mission-victory pruning when arrival events are pinned. Public dispatch, managed delivery, worker/restore and final visible-control evidence must execute on the integrated candidate; helper results alone do not complete the source goal or authorize research acceptance."
     }
   ]
 }

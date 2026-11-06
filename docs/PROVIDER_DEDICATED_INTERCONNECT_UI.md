@@ -1,0 +1,13 @@
+# Dedicated interconnect controls
+
+The Provider carrier and calling-service inspectors compare the direct and supplier-managed dedicated interconnect offers. They use the existing operation quote action for the selected customer; eligibility and commitment remain authoritative in the dispatcher. Other operation catalogues remain secondary.
+
+The direct offer costs A$240 setup and A$60 per period, with six implementation minutes using one engineer and one support worker. The managed offer costs A$120 setup and A$90 per period, with eight implementation minutes using one support worker. The quote includes the additional commissioning minute: seven and nine minutes respectively. Its managed-market prerequisite remains visible even when the offer is blocked; reviewing it does not grant an achievement or enable commitment.
+
+Quotes explain the authenticated gateway, certified SBC, trusted TLS, hostname and peer checks. They show the retained carrier session capacity from the quoted historical trunk configuration and explicitly add no sessions. A blocked quote with no complete plan reports capacity as unavailable rather than inferring a value. Existing supplier commitments and usage charges remain payable. Commissioning alone is not achievement evidence: both actual calling directions must complete and settle with successful signalling and media in each direction.
+
+The two offer names also label funded map projects. Eighteen static translation keys are provided in English, German, Spanish, French, Italian and Portuguese.
+
+`AC-SOC-695` in `tests/provider-dedicated-interconnect-ui.test.js` checks pure rendering, exact customer/action attributes, primary service-context placement, secondary catalogue placement, direct/managed terms, blocked quote review and disabled commitment, absent-plan capacity, eight readable prerequisite reasons, all six dictionaries and translated project names. Fixtures are isolated UI projections: this test does not prove paid runtime delivery, progression claims or browser geometry.
+
+Verification in the mutable integration tree: the new DOM case plus existing owned-site quote and panel translation suites passed 10/10. The first translation check found no missing, unused or broken dictionary entries but failed on 23 raw progression identifiers in the concurrently generated rules mirror. After the coordinator preserved the existing source-identifier convention, the fresh check passed all 7,124 labels in six languages (`/tmp/soc-pn-i18n-r2.log`). No build or actual-browser pass is claimed for this UI slice. The coordinator owns runtime integration, registered evidence and final candidate verification.

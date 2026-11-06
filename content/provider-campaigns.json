@@ -14,7 +14,7 @@
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -718,7 +718,7 @@
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1568,6 +1568,48 @@
       "requirements": [],
       "sourceIds": [
         "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-dedicated-interconnect",
+      "name": "Direct dedicated interconnect",
+      "description": "Commission an authenticated gateway using existing paid sessions. Provider engineering and higher setup reduce recurring cost; real inbound and outbound media remain required.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-dedicated-interconnect",
+      "name": "Supplier-managed dedicated interconnect",
+      "description": "After proving dedicated interconnection in this market, buy supplier commissioning with lower setup and higher recurring cost. Existing capacity and supplier commitments remain.",
+      "setupCents": 12000,
+      "periodCents": 9000,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling",
         "uc-new:domain:commercial-roles"
       ]
     }

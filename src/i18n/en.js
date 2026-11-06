@@ -5304,6 +5304,7 @@
 "provider.quote_guidance.credit_already_used":"This career already has a credit record. Starter credit cannot be borrowed again, even after repayment. Close this review to inspect any remaining balance in Finance.",
 "provider.quote_guidance.current_cash":"Current shared cash: {amount}",
 "provider.quote_guidance.customer_not_exitable":"This customer is already exited, in default, or unavailable. Close this review to inspect the customer status and remaining supplier obligations.",
+"provider.quote_guidance.requested_credit_terms":"Requested terms: {rate}% interest per period ({amount} at the requested balance).",
 "provider.quote_refused":"This commitment is currently unavailable: ",
 "provider.recent_journeys":"Recent customer journeys",
 "provider.regional_provisioning.description":"After earning Regional MSP, fund reusable carrier and partner provisioning for explicit customers in your evidenced markets. Set a cash floor, budget and staff limits before enabling the policy.",

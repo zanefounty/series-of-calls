@@ -22,13 +22,16 @@ test('AC-SOC-791 authored SCRUB recipe v2 binds fixed stress and native probes t
  assert.deepEqual(security.abuseTerms(),recipeTerms);assert.equal(recipeTerms.sourceTermsId,authored.id);assert.equal(recipe.kind,'provider-security-abuse-recipe-v2');assert.equal(recipe.version,2);assert.equal(recipe.recipeId,'provider-security-abuse-v2');
  assert.deepEqual(recipe.sourceIds,recipeTerms.sourceIds);
  assert.equal(recipe.controlBindings.length,3);assert.equal(recipe.controlBindings.find(x=>x.control==='network').nativeGeneration,1);assert.equal(recipe.steps.nativeCommands[0].packets,7500);assert.equal(recipe.steps.nativeCommands[0].packets>5000,true);assert.equal(recipe.steps.nativeCommands[0].packets<=50000,true);
- assert.deepEqual(recipe.steps.nativeCommands.map(x=>x.secondOffset),[0,0,1,2]);assert.equal(recipe.steps.blockedDestination.secondOffset,3);
+ assert.deepEqual(recipe.steps.nativeCommands.map(x=>x.secondOffset),[1,1,2,3]);assert.equal(recipe.steps.blockedDestination.secondOffset,0);
  assert.equal(recipe.steps.nativeCommands[1].attempts,11);assert.equal(recipe.steps.nativeCommands[2].messageBytes,2049);assert.equal(recipe.steps.blockedDestination.to,recipeTerms.destination.to);
  assert.deepEqual(recipe.steps.ordinaryDelivery,{source:'autonomous-provider-demand',channel:'voice',to:'+61255500201',durationMinutes:3,eligibility:'completed-or-late-clean-voice-job-with-case-and-settlement',mustResolve:true,mustSettleCoreUsageOnce:true});
  assert.equal(security.validateAbuseRecipe(s,recipe,child),true);
  const forged=structuredClone(recipe);forged.steps.nativeCommands[0].packets=1250;assert.equal(security.validateAbuseRecipe(s,forged,child),false);
  const premium=paidFixture('edge-resilient'),premiumRecipe=security.abuseRecipe(premium.s,scope.customerId,premium.child),premiumResults=runRecipeNativeSteps(premiumRecipe,premium.child);
  assert.equal(premiumRecipe.steps.nativeCommands[0].packets,7500);assert.equal(premiumResults[0].code,'NETWORK_FLOOD_FILTERED');assert.equal(premium.child.admissionSecurity.events[0].detail.filteredPackets,2500);
+ const busy=paidFixture(),filled=admission.command(busy.child,{action:'inject-signalling',peer:'synthetic-carrier',attempts:10,messageBytes:128,method:'INVITE',valid:true,secondOffset:0});assert.equal(filled.code,'SIP_ADMITTED');
+ assert.throws(()=>security.abuseRecipe(busy.s,scope.customerId,busy.child),/PROVIDER_SECURITY_CORE_CALL_BUCKET_FULL/);
+ busy.child.clock=10;busy.s.clock=10;admission.advance(busy.child);assert.equal(security.abuseRecipe(busy.s,scope.customerId,busy.child).steps.blockedDestination.secondOffset,0);
 });
 
 test('AC-SOC-792 native packet and SIP command results prove filtering, rate and size rejection, then an allowed carrier sample',()=>{

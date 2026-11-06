@@ -88,7 +88,7 @@ function socProviderOwnedSiteMissionKernel(){
   return true;
  }
  function evaluate(s,customerId,missionSummary,hooks={}){
-  if(!s?.providerCampaign||s.providerCampaign.pack!=='soc-provider-campaign-1'||s.providerCampaign.contentVersion!=='provider-campaigns-7'||!id(customerId)||!integer(s.clock))fail('PROVIDER_OWNED_SITE_MISSION_CAMPAIGN_REQUIRED');
+  if(!s?.providerCampaign||s.providerCampaign.pack!=='soc-provider-campaign-1'||!['provider-campaigns-7','provider-campaigns-8'].includes(s.providerCampaign.contentVersion)||!id(customerId)||!integer(s.clock))fail('PROVIDER_OWNED_SITE_MISSION_CAMPAIGN_REQUIRED');
   const references=missionReferences(missionSummary,s.clock);if(!references)return {status:'incomplete',missing:['FOUR_RETAINED_PROVIDER_MISSION_VICTORIES_REQUIRED'],evidence:null};
   if(typeof hooks.validateMissionEvidence!=='function'||hooks.validateMissionEvidence(s,customerId,missionSummary)!==true)return {status:'incomplete',missing:['FOUR_RETAINED_PROVIDER_MISSION_VICTORIES_REQUIRED'],evidence:null};
   const record=currentRecord(s,customerId,hooks);if(!record)return {status:'incomplete',missing:['CURRENT_PAID_NAMED_MSP_RESPONSIBILITY_REQUIRED'],evidence:null};
@@ -100,11 +100,11 @@ function socProviderOwnedSiteMissionKernel(){
   return {status:'ready',missing:[],evidence:{kind:KIND,version:VERSION,customerId,at:s.clock,missionAt:references.missionAt,missionReferences:references.references,responsibility:copy(record),supportSample:sample,payrollPosting}};
  }
  function validateEvidence(s,customerId,evidence,missionSummary,hooks={},options={}){
-  if(!s?.providerCampaign||s.providerCampaign.pack!=='soc-provider-campaign-1'||s.providerCampaign.contentVersion!=='provider-campaigns-7'||!id(customerId)||!evidence||!exact(evidence,['kind','version','customerId','at','missionAt','missionReferences','responsibility','supportSample','payrollPosting'])||evidence.kind!==KIND||evidence.version!==VERSION||evidence.customerId!==customerId||!integer(evidence.at)||!integer(evidence.missionAt,0,evidence.at)||!integer(options.claimedAt??evidence.at,evidence.at,evidence.at))return false;
+  if(!s?.providerCampaign||s.providerCampaign.pack!=='soc-provider-campaign-1'||!['provider-campaigns-7','provider-campaigns-8'].includes(s.providerCampaign.contentVersion)||!id(customerId)||!evidence||!exact(evidence,['kind','version','customerId','at','missionAt','missionReferences','responsibility','supportSample','payrollPosting'])||evidence.kind!==KIND||evidence.version!==VERSION||evidence.customerId!==customerId||!integer(evidence.at)||!integer(evidence.missionAt,0,evidence.at)||!integer(options.claimedAt??evidence.at,evidence.at,evidence.at))return false;
   const references=missionReferences(missionSummary,s.clock);if(!references||references.missionAt!==evidence.missionAt||!same(references.references,evidence.missionReferences))return false;
   if(typeof hooks.validateMissionEvidence!=='function'||hooks.validateMissionEvidence(s,customerId,missionSummary)!==true)return false;
   if(!validResponsibility(s,customerId,evidence.responsibility,{historical:options.historical===true,sample:evidence.supportSample}))return false;
-  const sample=evidence.supportSample;if(!exact(sample,['version','contentVersion','at','cohort','participants'])||sample.version!==1||sample.contentVersion!==factsApi().CONTENT||sample.at!==evidence.at||!same(sample.cohort,[customerId])||sample.participants.length!==1)return false;
+  const sample=evidence.supportSample;if(!exact(sample,['version','contentVersion','at','cohort','participants'])||sample.version!==(s.providerCampaign.contentVersion==='provider-campaigns-8'?2:1)||sample.contentVersion!==factsApi().CONTENT||sample.at!==evidence.at||!same(sample.cohort,[customerId])||sample.participants.length!==1)return false;
   if(!validStaffPayrollPosting(s,evidence.payrollPosting,evidence.at,evidence.responsibility,{historical:options.historical===true}))return false;
   let lineage=false;try{lineage=factsApi().validateSupportSamples(s,[sample],hooks.factHooks||hooks,{checkCurrent:false})===true;}catch{}
   if(!lineage)return false;

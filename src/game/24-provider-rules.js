@@ -3,7 +3,7 @@ function socProviderRulesKernel(){
  'use strict';
  const data={
   "version": 1,
-  "id": "provider-campaigns-7",
+  "id": "provider-campaigns-8",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -452,6 +452,22 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": []
+    },
+    {
+      "id": "diagnose-incident",
+      "name": "Scoped incident diagnosis",
+      "description": "Reserve engineering and support time to examine the selected incident. The result may identify an observed outage or disconnection, or remain inconclusive. Repair and mitigation require their own decisions. Public symptoms remain free to inspect.",
+      "setupCents": 6000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "DEC-011"
+      ]
     },
     {
       "id": "mitigate",
@@ -1190,8 +1206,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1207,8 +1223,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1224,8 +1240,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1241,8 +1257,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1258,8 +1274,8 @@ function socProviderRulesKernel(){
       "config": {},
       "requirements": [],
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"rd")
+        "progress.goal."+"ln",
+        "progress.goal."+"rd"
       ]
     },
     {
@@ -1279,7 +1295,7 @@ function socProviderRulesKernel(){
         "local-deployment"
       ],
       "sourceIds": [
-        ("progress.goal."+"ca")
+        "progress.goal."+"ca"
       ]
     },
     {
@@ -1367,8 +1383,8 @@ function socProviderRulesKernel(){
     {
       "id": "site-diverse-ingress",
       "sourceIds": [
-        ("progress.goal."+"ln"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"ln",
+        "progress.goal."+"m2"
       ],
       "name": "Independent site calling ingress",
       "description": "Commission a separately powered external calling point and independent paths to both customer sites. Carrier reach remains available when either customer building loses power.",
@@ -1386,8 +1402,8 @@ function socProviderRulesKernel(){
     {
       "id": "owned-site-operations",
       "sourceIds": [
-        ("progress.goal."+"df"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"df",
+        "progress.goal."+"m2"
       ],
       "name": "Owned-site administration and recovery",
       "description": "Fund local administration, configuration backups and restore services at both sites. Assign the actual desk endpoints and calling identities to their buildings; each incident and migration remains a separately quoted decision.",
@@ -1445,8 +1461,8 @@ function socProviderRulesKernel(){
     {
       "id": "site-recovery",
       "sourceIds": [
-        ("progress.goal."+"df"),
-        ("progress.goal."+"m2")
+        "progress.goal."+"df",
+        "progress.goal."+"m2"
       ],
       "name": "Fund a site recovery exercise",
       "description": "Reserve the shared team for one authored site failure. Capture a backup, observe surviving calls, restore the affected configuration and verify fresh service before completion.",
@@ -1464,7 +1480,7 @@ function socProviderRulesKernel(){
     {
       "id": "managed-site-recovery",
       "sourceIds": [
-        ("progress.goal."+"df")
+        "progress.goal."+"df"
       ],
       "name": "Managed site recovery",
       "description": "Use qualified provider support for the same scoped backup, failure and restoration work. Lower setup cost and no engineering reservation trade against a longer lead and higher recurring support.",
@@ -1482,7 +1498,7 @@ function socProviderRulesKernel(){
     {
       "id": "site-resource-migration",
       "sourceIds": [
-        ("progress.progression-level."+"4")
+        "progress.progression-level.4"
       ],
       "name": "Move one owned-site endpoint",
       "description": "Move the selected real endpoint between the two owned sites. The quote funds only that item and retains its individual migration result.",
@@ -1500,8 +1516,8 @@ function socProviderRulesKernel(){
     {
       "id": "custody-review",
       "sourceIds": [
-        ("progress.progression-level."+"12"),
-        ("progress.goal."+"gi")
+        "progress.progression-level.12",
+        "progress.goal."+"gi"
       ],
       "name": "Review retained record custody",
       "description": "Fund a scoped review and permitted read of an actual processed customer record. Storage, access, key and support boundaries remain enforced.",
@@ -1516,6 +1532,179 @@ function socProviderRulesKernel(){
         "transcription"
       ],
       "config": {}
+    },
+    {
+      "id": "provider-support-coverage",
+      "name": "Named regional support coverage",
+      "setupCents": 9000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"c3",
+        "progress.goal."+"c5",
+        "progress.goal."+"t2",
+        "progress.progression-level.7"
+      ],
+      "coverageTerms": {
+        "business-hours": {
+          "setupCents": 9000,
+          "periodCents": 8000,
+          "workMinutes": 4,
+          "engineers": 0,
+          "support": 1
+        },
+        "extended": {
+          "setupCents": 18000,
+          "periodCents": 16000,
+          "workMinutes": 6,
+          "engineers": 0,
+          "support": 1
+        },
+        "distributor-extended": {
+          "setupCents": 24000,
+          "periodCents": 12000,
+          "workMinutes": 8,
+          "engineers": 0,
+          "support": 1
+        }
+      }
+    },
+    {
+      "id": "integration-assurance",
+      "name": "Integration-aware assurance policy",
+      "description": "Fund a reusable incident-response policy for the customers and tested product integrations in the earned integration-support milestone. Every repair remains quoted and paid; changed integrations or missing boundary evidence suspend the policy.",
+      "setupCents": 30000,
+      "periodCents": 9000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"t2",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-dedicated-interconnect",
+      "name": "Direct dedicated interconnect",
+      "description": "Commission an authenticated gateway using existing paid sessions. Provider engineering and higher setup reduce recurring cost; real inbound and outbound media remain required.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-dedicated-interconnect",
+      "name": "Supplier-managed dedicated interconnect",
+      "description": "After proving dedicated interconnection in this market, buy supplier commissioning with lower setup and higher recurring cost. Existing capacity and supplier commitments remain.",
+      "setupCents": 12000,
+      "periodCents": 9000,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal."+"pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-case-followup",
+      "name": "Direct case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "managed-case-followup",
+      "name": "Managed case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 9000,
+      "periodCents": 6500,
+      "workMinutes": 7,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "retry-case-followup",
+      "name": "Retry case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "direct-room-integration",
+      "name": "Grove and Disco room integration",
+      "description": "Fund eight minutes of setup, explicitly test compatibility, then deliver a real cross-platform bridge meeting. Both room products must already be funded and ready.",
+      "setupCents": 50000,
+      "periodCents": 12000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "room"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-meetings-room",
+        "cisco-meetings-interoperability"
+      ],
+      "sourceIds": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ]
     }
   ],
   "families": [
@@ -1741,6 +1930,16 @@ function socProviderRulesKernel(){
     "deadlineMinutes": 24,
     "windowMinutes": 10,
     "maximumLatencyMs": 500
+  },
+  "caseFollowupDemand": {
+    "version": 1,
+    "deadlineMinutes": 20,
+    "maximumArrivalMinute": 40,
+    "casesPerPeriod": 1,
+    "requiresPaidWorkflow": true,
+    "variantDeadlineMinutes": {
+      "peak-window": 30
+    }
   }
 };
  function deepFreeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))deepFreeze(child);}return value;}

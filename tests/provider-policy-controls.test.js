@@ -31,7 +31,7 @@ test('regional provisioning policy presents and submits an explicit owned-custom
  assert.deepEqual([...host.querySelectorAll('[name="scopeCustomerId"]')].map(x=>x.value),['orchard-customer','harbor-customer']);
  assert.equal(host.querySelector('[name="scopeCustomerId"][value="orchard-customer"]').checked,true);
  assert.equal(host.querySelector('[name="scopeCustomerId"][value="harbor-customer"]').checked,false);
- assert.match(host.textContent,/Only markets demonstrated by the Regional MSP achievement/);
+ assert.match(host.textContent,/Only markets retained by this funded policy/);
  host.querySelector('[name="scopeCustomerId"][value="harbor-customer"]').checked=true;
  const config=w.SOCProviderPolicyControls.configFromForm(policy,new w.FormData(host.querySelector('form[data-provider-form="policy"]')),context);
  assert.deepEqual(JSON.parse(JSON.stringify(config.customerIds)),['orchard-customer','harbor-customer']);
@@ -74,4 +74,31 @@ test('review preserves uncommitted form drafts and all static N_ markers use dic
  const {w}=boot(),policy=oldPolicy(),draft={template:'headroom',cashFloor:'234.56',lifetimeBudget:'7890.12',maxActions:'5',maxEngineers:'1',maxSupport:'0'},host=w.document.createElement('div');host.innerHTML=w.SOCProviderPolicyControls.render(policy,{customerId:'orchard-customer',draft,review:{customerId:'orchard-customer',preview:{status:'idle'}}});
  assert.equal(host.querySelector('[name="template"]').value,'headroom');for(const [name,value] of Object.entries({cashFloor:'234.56',lifetimeBudget:'7890.12',maxActions:'5',maxEngineers:'1',maxSupport:'0'}))assert.equal(host.querySelector(`[name="${name}"]`).value,value);
  const markers=[],other=w.document.createElement('iframe');w.document.body.append(other);other.contentWindow.N_=s=>{markers.push(s);return s;};other.contentWindow.eval(read('game/93-ui/78-provider-policy-controls.js'));assert.ok(markers.length>20);assert.ok(markers.every(x=>x.startsWith('provider.policy.')));other.remove();w.close();
+});
+
+
+test('funded regional context uses C3/C5 receipt scope before legacy L2 evidence and remains pure',()=>{
+ const {w}=boot();w.eval(read('game/93-ui/70-provider-hud.js'));w.eval(read('game/93-ui/75-provider-panels.js'));
+ const model={projects:[{id:'project-policy',operationId:'regional-provisioning',operationReceipt:{sourceId:'progress.goal.c5',allowedMarkets:['jp-tokyo']}}],progression:{claims:{receipts:[{sourceId:'progress.progression-level.2',sourceEvidence:{markets:['au-sydney']}}]}},customers:[{id:'orchard-customer',market:'au-sydney',status:'active'},{id:'tokyo-customer',market:'jp-tokyo',status:'active'}]},before=JSON.stringify(model);
+ let context=w.SOCProviderPanels.policyContext(model,oldPolicy());assert.equal(context.sourceId,'progress.goal.c5');assert.deepEqual(Array.from(context.eligibleCustomers,c=>c.id),['tokyo-customer']);assert.equal(JSON.stringify(model),before);
+ model.projects[0].operationReceipt={sourceId:'progress.goal.c3',allowedMarkets:[]};context=w.SOCProviderPanels.policyContext(model,oldPolicy());assert.equal(context.eligibleCustomers.length,0,'explicit empty funded scope cannot fall back to another achievement');
+ delete model.projects[0].operationReceipt;context=w.SOCProviderPanels.policyContext(model,oldPolicy());assert.deepEqual(Array.from(context.eligibleCustomers,c=>c.id),['orchard-customer'],'legacy L2 fallback remains available');w.close();
+});
+
+test('integration policy form locks assurance and submits only an explicit funded subset without requiring the purchase anchor',()=>{
+ const {w}=boot();w.eval(read('game/93-ui/70-provider-hud.js'));w.eval(read('game/93-ui/75-provider-panels.js'));
+ // Projection fixtures test presentation, not an earned T2 claim or paid dispatch.
+ const policy=oldPolicy(),model={projects:[{id:'project-policy',operationId:'integration-assurance',operationReceipt:{binding:{sourceId:'progress.goal.t2',customerIds:['orchard-customer','harbor-customer'],markets:['au-sydney','au-melbourne']}}}],customers:[{id:'orchard-customer',name:'Orchard',market:'au-sydney',status:'active'},{id:'harbor-customer',name:'Harbor',market:'au-melbourne',status:'active'},{id:'other-customer',market:'au-melbourne',status:'active'}]},before=JSON.stringify({policy,model}),context=w.SOCProviderPanels.policyContext(model,policy),host=w.document.createElement('div');
+ host.innerHTML=w.SOCProviderPolicyControls.render(policy,{...context,draft:{template:'migration',scopeCustomerId:['harbor-customer'],cashFloor:'42.00',lifetimeBudget:'0.00'}});
+ assert.equal(host.querySelector('[name="template"]'),null);assert.match(host.textContent,/Incident assurance/);assert.match(host.textContent,/Changed tested connections or unavailable boundaries suspend/);assert.deepEqual([...host.querySelectorAll('[name="scopeCustomerId"]')].map(x=>x.value),['orchard-customer','harbor-customer']);
+ const config=w.SOCProviderPolicyControls.configFromForm(policy,fields('migration',{scopeCustomerId:['harbor-customer']}),context);
+ assert.deepEqual(Array.from(config.customerIds),['harbor-customer']);assert.deepEqual(Array.from(config.rules,r=>r.kind),['assurance']);assert.deepEqual(Array.from(config.rules[0].customerIds),['harbor-customer']);assert.equal(config.rules[0].operationId,'repair');
+ for(const scope of [[],['other-customer'],['harbor-customer','harbor-customer']])assert.throws(()=>w.SOCProviderPolicyControls.configFromForm(policy,fields('assurance',{scopeCustomerId:scope}),context),/INTEGRATION_ASSURANCE_SCOPE_(REQUIRED|INVALID)/);
+ assert.equal(JSON.stringify({policy,model}),before);w.close();
+});
+
+test('suspended integration review preserves customer and budget drafts without offering activation',()=>{
+ const {w}=boot(),policy=oldPolicy(),view={integrationAssurance:true,customerId:'orchard-customer',eligibleCustomers:[{id:'harbor-customer',name:'Harbor'}],draft:{scopeCustomerId:['harbor-customer'],cashFloor:'42.00',lifetimeBudget:'99.00'},review:{customerId:'orchard-customer',preview:{status:'suspended',reason:'INTEGRATION_ASSURANCE_EDGE_CHANGED',blockers:['INTEGRATION_ASSURANCE_BOUNDARY_REQUIRED']}}},before=JSON.stringify({policy,view}),host=w.document.createElement('div');
+ host.innerHTML=w.SOCProviderPolicyControls.render(policy,view);assert.equal(host.querySelector('[data-provider-action="policy-confirm"]'),null);assert.match(host.textContent,/policy is suspended/);assert.match(host.textContent,/integration assurance edge changed/);assert.match(host.textContent,/integration assurance boundary required/);assert.equal(host.querySelector('[name="scopeCustomerId"]').checked,true);assert.equal(host.querySelector('[name="cashFloor"]').value,'42.00');assert.equal(host.querySelector('[name="lifetimeBudget"]').value,'99.00');
+ host.innerHTML=w.SOCProviderPolicyControls.render(policy,{...view,review:{customerId:'orchard-customer',error:'INTEGRATION_ASSURANCE_EDGE_CHANGED'}});assert.equal(host.querySelector('[data-provider-action="policy-confirm"]'),null);assert.equal(host.querySelector('[name="scopeCustomerId"]').checked,true);assert.equal(JSON.stringify({policy,view}),before);w.close();
 });

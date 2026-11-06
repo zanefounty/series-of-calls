@@ -82,6 +82,13 @@ function socProviderResponsibilityKernel(){
   if(valid)return {...valid,certificate:copy(valid.certificate)};
   return {status:examined[0].status,missing:examined[0].missing,certificate:null};
  }
+ // Historical purchase permission is derived from an independently paid review
+ // at the order time. A later renewal never backdates its own certificate.
+ function purchaseQualification(s,customerId,at){
+  if(s?.providerCampaign?.contentVersion!=='provider-campaigns-8'||!integer(at)||at>s.clock)return null;
+  const projects=(records(s)||[]).filter(p=>p.customerId===customerId&&p.kind==='operation'&&p.operationId===QUALIFICATION_OPERATION&&p.status==='complete'&&integer(p.acceptedAt)&&integer(p.completedAt)&&p.acceptedAt<=p.completedAt&&p.completedAt<=at&&at<p.completedAt+QUALIFICATION_MINUTES&&['identity','engage'].every(id=>p.resources?.includes(id))&&postingFor(s,p)).sort((a,b)=>b.completedAt-a.completedAt||a.id.localeCompare(b.id));
+  const p=projects[0];return p?{version:1,id:`provider-qualification-${p.id}`,customerId,issuerOrganizationId:'branch-distribution',holderOrganizationId:'orchard-msp',scopes:[...SCOPES],acceptedAt:p.acceptedAt,effectiveAt:p.completedAt,expiresAt:p.completedAt+QUALIFICATION_MINUTES,projectId:p.id,postingId:p.postingId}:null;
+ }
  function permits(certificate,customerId,scope,at){return !!certificate&&certificate.version===1&&certificate.customerId===customerId&&SCOPES.includes(scope)&&certificate.scopes.includes(scope)&&integer(at)&&certificate.effectiveAt<=at&&at<certificate.expiresAt;}
  function stageEvidence(s,c,hooks){
   const root=rootFor(s,c.id,hooks),out=[];
@@ -131,7 +138,7 @@ function socProviderResponsibilityKernel(){
   const qualificationInfo=qualification(s,c.id,QUALIFICATION_OPERATION,hooks),projects=records(s).filter(p=>p.customerId===c.id&&p.operationId==='distributor-room'&&p.status==='complete').sort((a,b)=>(b.completedAt||0)-(a.completedAt||0));
   if(!projects.length)return {status:'incomplete',missing:['COMPLETED_DISTRIBUTOR_BUNDLE_REQUIRED'],qualification:qualificationInfo};
   const p=projects[0],e=operationEvidence(s,c,p,hooks),missing=[...e.missing];
-  if(qualificationInfo.status!=='active'||!permits(qualificationInfo.certificate,c.id,'distributor-room',p.acceptedAt)||!permits(qualificationInfo.certificate,c.id,'distributor-room',s.clock))missing.push('CURRENT_SCOPED_DISTRIBUTOR_QUALIFICATION_REQUIRED');
+  if(qualificationInfo.status!=='active'||!permits(s.providerCampaign.contentVersion==='provider-campaigns-8'?purchaseQualification(s,c.id,p.acceptedAt):qualificationInfo.certificate,c.id,'distributor-room',p.acceptedAt)||!permits(qualificationInfo.certificate,c.id,'distributor-room',s.clock))missing.push('CURRENT_SCOPED_DISTRIBUTOR_QUALIFICATION_REQUIRED');
   if(!actors(s).distributor?.roles.includes('distributor'))missing.push('NAMED_DISTRIBUTOR_ROLE_UNAVAILABLE');
   if(missing.length)return {status:'incomplete',missing:[...new Set(missing)],qualification:qualificationInfo};
   return {status:'active',missing:[],qualification:qualificationInfo,record:{version:1,id:`provider-responsibility-distributor-${p.id}`,role:'distributor',organisationId:'branch-distribution',customerId:c.id,scope:e.resources,acceptedAt:p.acceptedAt,effectiveAt:p.completedAt,expiresAt:qualificationInfo.certificate.expiresAt,projectId:p.id,postingId:e.posting.id,terms:{setupCents:p.setupCents,periodCents:p.periodCents,engineers:p.engineers,support:p.support},evidence:{qualificationId:qualificationInfo.certificate.id,qualificationProjectId:qualificationInfo.certificate.projectId,qualificationPostingId:qualificationInfo.certificate.postingId}}};
@@ -170,7 +177,7 @@ function socProviderResponsibilityKernel(){
   return {pack:PACK,version:VERSION,status:'available',asOf:s.clock,qualifications,responsibilities:evaluated.records,missing:[],comparison:null};
  }
  function source(){return `const SOC_PROVIDER_RESPONSIBILITY=(${socProviderResponsibilityKernel.toString()})();`;}
- return {PACK,VERSION,QUALIFICATION_MINUTES,SCOPES:copy(SCOPES),validate,qualification,qualificationReadiness,permits,responsibilities,comparison,inspect,source};
+ return {PACK,VERSION,QUALIFICATION_MINUTES,SCOPES:copy(SCOPES),validate,qualification,qualificationReadiness,purchaseQualification,permits,responsibilities,comparison,inspect,source};
 }
 const SOC_PROVIDER_RESPONSIBILITY=socProviderResponsibilityKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_RESPONSIBILITY;

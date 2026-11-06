@@ -9,10 +9,15 @@ function socProviderHistoryKernel(){
   if(!cp.channels)cp.channels={conversations:0,acceptances:0,deliveries:0,reads:0,webhookDelivered:0,webhookFailed:0,throughAt:0};
   const protectedInteractions=new Set((s.records||[]).filter(r=>!r.deleted).map(r=>r.interaction));
   for(const id of s.providerResilienceCase?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerSecurityPins?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerCaseFollowupPins?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerCaseHandoffPins?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerSupportPins?.interactionIds||[])protectedInteractions.add(id);
   for(const work of s.providerSiteWork||[])protectedInteractions.add(work.interactionId);
-  for(const id of [...(s.providerProgressionPins?.pins?.interactionIds||[]),...(s.providerCentralPins?.pins?.interactionIds||[]),...(s.providerCustodyPins?.pins?.interactionIds||[])])protectedInteractions.add(id);
+  for(const id of [...(s.providerProgressionPins?.pins?.interactionIds||[]),...(s.providerCentralPins?.pins?.interactionIds||[]),...(s.providerRegionalPins?.pins?.interactionIds||[]),...(s.providerInterconnectPins?.pins?.interactionIds||[]),...(s.providerExternalReachPins?.pins?.interactionIds||[]),...(s.providerCustodyPins?.pins?.interactionIds||[])])protectedInteractions.add(id);
   for(const r of [...(s.workforceQuality?.reviews||[]),...(s.providerReviews||[])])if(r.interactionId)protectedInteractions.add(r.interactionId);
   while(s.interactions.length>64){const index=s.interactions.findIndex(i=>['resolved','failed'].includes(i.phase)&&i.finishedAt<s.clock-60&&!protectedInteractions.has(i.id));if(index<0)break;
+   if(s.admissionSecurity){const security=typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');security.archiveInteraction(s,s.interactions[index]);}
    const [i]=s.interactions.splice(index,1);cp.interactions++;cp[i.phase]++;const n=Number(i.id.slice(12));if(Number.isSafeInteger(n)){cp.throughInteractionId=Math.max(cp.throughInteractionId,n);s.tracePrunedThrough=Math.max(s.tracePrunedThrough||0,n);}
   }
   const cases=new Set(s.interactions.map(i=>i.caseId));
@@ -37,9 +42,9 @@ function socProviderHistoryKernel(){
   const receiptsById=new Map((c.receipts||[]).map(r=>[r.id,r]));
   const webhooks=c.webhooks?.deliveries||[];
   const blockedByWebhook=new Set(webhooks.filter(d=>{const r=receiptsById.get(d.receipt);return r&&(!aged(d.createdAt)||!['delivered','failed'].includes(d.status));}).map(d=>receiptsById.get(d.receipt).interaction));
-  const acceptanceEligible=new Set();
+  const retainedFollowupInteractions=new Set(s.providerCaseFollowupPins?.interactionIds||[]),acceptanceEligible=new Set();
   const receiptsByInteraction=new Map();for(const r of c.receipts||[]){if(!receiptsByInteraction.has(r.interaction))receiptsByInteraction.set(r.interaction,[]);receiptsByInteraction.get(r.interaction).push(r);}
-  for(const a of c.acceptances||[]){const job=jobById.get(a.parentJob),receipts=receiptsByInteraction.get(a.interaction)||[];if(aged(a.authorizedAt)&&terminalInteraction(a.interaction)&&!blockedByWebhook.has(a.interaction)&&receipts.every(r=>aged(r.at))&&(!job||['delivered','failed'].includes(job.status)))acceptanceEligible.add(a.interaction);}
+  for(const a of c.acceptances||[]){const job=jobById.get(a.parentJob),receipts=receiptsByInteraction.get(a.interaction)||[];if(!retainedFollowupInteractions.has(a.interaction)&&aged(a.authorizedAt)&&terminalInteraction(a.interaction)&&!blockedByWebhook.has(a.interaction)&&receipts.every(r=>aged(r.at))&&(!job||['delivered','failed'].includes(job.status)))acceptanceEligible.add(a.interaction);}
   const removeReceipt=new Set((c.receipts||[]).filter(r=>aged(r.at)&&acceptanceEligible.has(r.interaction)).map(r=>r.id));
   const removeAcceptance=new Set((c.acceptances||[]).filter(a=>acceptanceEligible.has(a.interaction)).map(a=>a.id));
   const removeWebhook=new Set(webhooks.filter(d=>removeReceipt.has(d.receipt)&&aged(d.createdAt)&&['delivered','failed'].includes(d.status)).map(d=>d.id));

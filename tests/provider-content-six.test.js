@@ -5,8 +5,9 @@ const RULES=require('../src/game/24-provider-rules');
 const customerId='starter-customer';
 function opening(version='provider-campaigns-6'){
  let s=SOC.create({experience:'campaign',scenario:'enterprise',difficulty:'easy',seed:73});
- // An otherwise unchanged pre-purchase export models the supported previous content version.
- s.providerCampaign.contentVersion=version;s=SOC.restore(JSON.stringify(s));
+ // Model the actual pre-purchase legacy shape, without v8-only lineage journals.
+ s.providerCampaign.contentVersion=version;delete s.providerCampaign.incidentSequenceVersion;delete s.providerCampaign.caseHandoffVersion;delete s.providerCampaign.caseFollowupVersion;delete s.providerCampaign.dedicatedInterconnectVersion;delete s.providerCampaign.supportWork;delete s.providerCampaign.workforceHistory;
+ s.providerCampaign.supportObservation={version:2,configurations:[],samples:[]};s=SOC.restore(JSON.stringify(s));
  for(const stage of ['base','carrier','partner']){
   const request={action:'purchase',offerId:'starter',planId:'steady',stage,...(stage==='base'?{}:{customerId})},q=SOC.provider.quote(s,request);
   assert.deepEqual(q.blockers,[]);s=SOC.dispatch(s,{type:'provider',command:{...request,quoteRevision:q.atRevision}});
@@ -34,5 +35,5 @@ test('version five restores and delivers its paid guest room while refusing vers
  assert.equal(s.portfolio.customers[0].root.information.meeting.effective.capacity,2);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  for(const operationId of ['national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve'])assert.ok(SOC.provider.quote(s,{action:'operation',operationId,customerId}).blockers.includes('PROVIDER_CONTENT_SIX_REQUIRED'));
- const future=structuredClone(s);future.providerCampaign.contentVersion='provider-campaigns-8';assert.throws(()=>SOC.restore(JSON.stringify(future)),/INVALID_PROVIDER_CAMPAIGN/);
+ const future=structuredClone(s);future.providerCampaign.contentVersion='provider-campaigns-9';assert.throws(()=>SOC.restore(JSON.stringify(future)),/INVALID_PROVIDER_CAMPAIGN/);
 });

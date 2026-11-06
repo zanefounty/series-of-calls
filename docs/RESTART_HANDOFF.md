@@ -1,3 +1,70 @@
+# Verified SMB and active fixes — 6 November 2026, 05:47 UTC
+
+## Continuation checkpoint — 6 November 2026, 06:30 UTC
+
+Regional arrival authority and retention are repaired in `271dc3b` and documented in `PROVIDER_ARRIVAL_RETENTION.md`. Exact arrivals are retained outside the ordinary working-event budget; unknown/forged provenance refuses, and validated v1 regional pins migrate on owned copies. Frozen five-test checks passed. The obsolete `34182d8` full regional run was deliberately stopped after its inputs were superseded (not passed). Fresh integrated AC-SOC-656 is running with artifacts under `/home/zane-fountylabs/soc-evidence-archive/regional-656-9917113/`; inspect its result before claiming closure.
+
+Training lock loss is fixed in `43f9186` and registered by `874054e`: worker cancellation, stale-write refusal, export and delayed old-lease rejection are tested. Native Chromium lock stealing passes, as do four guided/assessed desktop/mobile curriculum shards traversing all four tracks. Firefox/WebKit equivalents are running on the same frozen inputs. See `TRAINING_LOCK_VERIFICATION.md`, including the distinction between completed retained curriculum checkpoints and the live quick-assessment badge.
+
+Integrated `9917113` passed eleven affected room, arrival-retention and Training tests plus source/coverage/mapping, translations and build, with no changed inputs. Its exact receipt is `/home/zane-fountylabs/soc-evidence-archive/integrated-9917113-verification/`. PR #43 contains the regional fixes; PR #44 now integrates them with rooms and Training. PR #45 has been synchronized with the regional parent; its eleven native admission-security tests pass. All remain draft pending final verification and protected review.
+
+Paid security controls and six desktop/mobile Chromium/Firefox/WebKit journeys are reviewable in PR #46, based on #45. The frozen runtime passed twelve focused tests and checks; all six browser cells passed without input drift. See `PROVIDER_PAID_SECURITY_VERIFICATION.md` on that branch. Authored abuse scheduling, retained SCRUB progression evidence and its useful earned choice remain unfinished. Bounded specialists are preparing that recipe and the separate P5 five-partner-services progression helper in isolated worktrees; neither is a completed claim.
+
+The ledger remains **122 verified / 33 pending / four owner-parked**. No new exact assertion or full-product completion is inferred from these repairs. Protected Pages still serves main `0ef9432`; current PRs have not deployed. Human participation and broader catalogue/research acceptance remain separate. Preserve old failure receipts. New evidence belongs under `/home/zane-fountylabs/soc-evidence-archive/` because `/tmp` is nearly full; the SMB evidence path there now has a compatibility symlink at its original `/tmp` path.
+
+
+Frozen `1139239` passed all twelve Swift/Steady desktop/mobile Chromium/Firefox/WebKit journeys plus two supplemental cost/incident captures. The exact ledger is now 122 verified, 33 pending and four parked. See [the scoped browser receipt](PROVIDER_SMB_BROWSER_20261106.md); no human or final publication completion is claimed.
+
+PR #43 is pushed through `7d9136e`, with scoped historical model and copy reductions. A real external-hook cache mutation regression was fixed with a defensive copy at that callback boundary. Fresh AC-SOC-656 on `557129b` passed the former minute-345 failure, then failed an actual minute-540 renewal with `INVALID_PROVIDER_PROGRESSION_RECEIPT` after184seconds. The captured save and command are under `/home/zane-fountylabs/soc-evidence-archive/regional-656-557129b/`; diagnosis remains active.
+
+The original `7e6ca47` full suite is terminal: 2,279 tests, 2,272 passed, five failed, two skipped, with unchanged inputs. Four failures are the earlier repaired support-origin pruning problem. The fifth test selected an intentionally pinned support-origin call as its eviction target; test-only commit `f1312b3` selects unpinned ordinary work, proves actual eviction pressure and passed in49seconds. Production retention remains unchanged.
+
+Paid security integration is in `/tmp/soc-paid-security-integration` on `feature/gameplay-paid-security`, based on PR #45. Three independently funded native controls now commission through public Provider dispatch; initial deployment requires drained calls and interrupts voice until all three become effective. Actual autonomous voice delivery and once-only native usage pass. Contextual comparisons and translations are implemented. Final frozen slice checks, authored abuse scheduling/retained evidence, the progression claim and publication remain pending.
+
+---
+
+# Current PR integration — 6 November 2026, 05:00 UTC
+
+PR #43 is pushed at `3ad042e` with the actual support-origin event pin repair, overdue-incident victory regression and historical-reader optimization. Frozen `906832d` passed 22 focused configuration/owned-site tests; captured-state ticks were about 30% faster, which does not establish hosted deadline compliance. Local review commit `693ae2a` additionally corrects the AC-SOC-751 title punctuation and records the terminal older acceptance result; integrate/push it with the next reviewed performance change.
+
+The original `7e6ca47` acceptance producer is terminal: 800 TAP cases, 796 passed and four failed (AC-SOC-653/654/655/656), all at the already repaired support-origin pruning failure. The parser separately rejected the colon attached to AC-SOC-751's otherwise passing title. No input drift was recorded. Preserve the old failed receipt under `/tmp/soc-acceptance-verification-7e6ca47/evidence/`; the older full JavaScript suite has its own still-pending result and must not inherit these counts.
+
+PR #44 is the room follow-on in `/tmp/soc-regional-support-integration`. Runtime `e262e4d` binds completed room receipts to their actual authored job or scheduled mission row and issued event, retaining origins through settlement/pruning. Fourteen focused tests passed, and strengthened AC-SOC-774 separately passed actual event eviction, job settlement/pruning, restore/worker and mission-origin checks. Frozen browser candidate `fa8a7aa` then passed all six Chromium/Firefox/WebKit desktop/mobile cells with unchanged inputs, including paid ordinary room delivery and visible export/import. See [the browser receipt](PROVIDER_ROOM_BROWSER_20261106.md). External-guest mission success remains outside these positive ordinary-demand journeys.
+
+PR #45 (`feature/gameplay-security-endpoint`, `/tmp/soc-security-endpoint-fix`, head `fdb4395`) repairs legitimate connected endpoint security reservations. Twenty-four focused cases pass, including after integration with `3ad042e`; source/coverage/mapping, translations, build and Gitleaks have scoped passes. Two Python mutation cases encountered stale acceptance input inventory before their intended checks: keep those failures visible until fresh integrated evidence exists. This native prerequisite does not complete paid Provider abuse protection.
+
+The ledger is 122 exact assertions verified, 33 pending and four owner-parked. Nine Provider progression adapters remain; existing adapters still need their scoped useful unlock and visible proof. The next performance slice is isolated in `/tmp/soc-config-reader-perf`; no persistent cache, skipped authority checks or CI timeout relaxation is authorized. Current main rules require one approving review, code-owner review and strict test/translations/accountability/security checks. All three current PRs remain draft. Protected Pages still serves `0ef9432`; no newer deployment is claimed. Human sessions and broader catalogue/research acceptance remain external/separate.
+
+---
+
+# Active integration checkpoint — 6 November 2026, 04:33 UTC
+
+PR #43 remains draft; its newer local review fixes retain bounded support arrival events. Frozen `7e6ca47` exposed a genuine minute345→346 failure: event122 had been evicted while checkpoint.count was121 because a renewal remained pinned. Retaining the existing support-origin arrivals fixes the captured public transition, restored state and serialized worker without manufacturing old work or broadening missing-event validation. Three focused support tests passed. A new real paid SMB counterexample also passed: active and acknowledged overdue primary incidents prevent victory despite two profitable qualifying periods and funded expansion; paid recovery followed by funded service permits the legitimate win. Frozen `1a8a70d` subsequently passed nine focused cases with all 1,415 input hashes unchanged, plus source/coverage/mapping, translations, build and Gitleaks. Receipt: `/tmp/soc-support-victory-1a8a70d-result.json`; independent review: `/tmp/soc-1a8a70d-smb-directional-closure-audit.json`. Full-suite and browser evidence remain separate.
+
+The acceptance ledger now records 122 verified, 33 pending and four owner-parked assertions. Exact additions are honest actor inventory, explicit view/tutorial placement, Lab relabel authority refusal and one-case voice-to-digital handoff. Thirty-two canonical progression identities have 23 bounded retained-proof adapters and nine missing adapters; this inventory is not final paid-unlock or visible acceptance.
+
+Room follow-on PR #44 has thirteen passing frozen cases at `6ce8509`, including absent-product-pack quotation and invalid audit-ID rejection. Initial desktop/mobile runs disclosed inspector selection and legitimate shared-support contention; the driver now uses visible customer/staff controls. Candidate `8741169` is running fresh desktop/mobile verification. No latest draft change is deployed; public preview remains main `0ef9432`.
+
+The regional full suite and acceptance producer remain active on separate frozen `7e6ca47` worktrees. Do not restart them merely because output is buffered. Their eventual result includes the known support-origin failure; prior logs and receipts remain unchanged. Hosted CI and accountability reached existing deadlines. Performance diagnosis is underway; no check or deadline was weakened. Earlier checkpoints below are historical.
+
+---
+
+# Active gameplay continuation — 6 November 2026
+
+The owner still authorizes completing the gameplay rebuild, reviewable PR stack and protected Pages preview. Four long-play assertions are parked by owner request; they are neither passed nor excluded. Human participation and broader catalogue/research acceptance remain separate. The gameplay ledger now records 109 exact assertions verified, 46 pending and four parked.
+
+PR #43 remains draft. Its pushed runtime candidate is `7e6ca4725dcc942884bcf1a8450920e1eaa1222a`; the subsequent local accounting commit `cbaf46f` closes only the evenly distributed outage assertion and corrects map/tutorial placements. The protected preview remains main `0ef9432`. No new preview deployment or final full-suite pass is claimed.
+
+Frozen `7e6ca47` passed five actual stdio Provider MCP journeys (both SMB strategies, Enterprise, Government and Defence; 1,090 requests), 19 visible browser-MCP checks, all six translation dictionaries, build and dependency audit. `/tmp/soc-7e6ca47-bounded-verification.json` records artifact hashes and unchanged tracked inputs. The native browser connector remains unavailable at its configured executable; the visible checks used the pinned separate MCP process with an explicit Chromium executable.
+
+At this checkpoint, the fresh full JavaScript suite and registered acceptance recorder are still active, respectively in `/tmp/soc-review-verification-7e6ca47` and `/tmp/soc-acceptance-verification-7e6ca47`. Read their terminal results and input manifests before making any claim or restarting. Logs are `/tmp/soc-full-suite-7e6ca47.log` and `/tmp/soc-acceptance-7e6ca47.log`; the read-only full-suite watcher writes the post-input/result receipts after completion. Earlier failed suite and recorder outputs remain unchanged.
+
+The unmerged room follow-on is in `/tmp/soc-regional-support-integration`, branch `feature/gameplay-room-integration-follow-on`. Its paid project, explicit test, native bridge-session/path evidence and compact translated inspector are under verification. The failure journey exposed a room capacity incident followed by a separate transport-domain outage: each requires its own paid repair. Integrate the review fixes and register the new acceptance cases before freezing its browser candidate. Do not treat the helper/Lab cases as paid Provider delivery or the paid room path as all five P5 integration paths.
+
+Remaining work includes final regional progression journeys, further canonical progression adapters/unlocks, the remaining exact assertions and mission/family/Training visible matrix, final browser compatibility and protected publication. Source and research release gates remain unchanged.
+
+---
+
 # Restart handoff — 4 November 2026
 
 Publication/security [PR #15](https://github.com/zanefounty/series-of-calls/pull/15) merged after all 12 checks passed. Security is a required check. Keep current supported Actions major tags with Dependabot updates, per owner review; do not replace them with commit-SHA pins. Preview publishing is separate from the unchanged full-product release gate.

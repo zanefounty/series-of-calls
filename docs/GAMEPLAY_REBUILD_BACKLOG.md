@@ -2,6 +2,14 @@
 
 Owner direction, 5 November 2026: park additional long-play testing for now and prioritize reviewing and merging the published implementation stack. This changes work order, not acceptance results or the full ecosystem release gate. Do not mark deferred assertions passed.
 
+## Current continuation — 6 November 2026
+
+The current regional candidate has bounded retained-proof adapters for 23 of 32 canonical progression identities. The nine missing adapters are levels 9 (multi-region deployments), 10 (wholesale/delegation), 11 (AI outcomes), and 13 (ecosystem group), plus P5 (five distinct integrations), scrub (abuse defences), TB and T10 (authored workload thresholds), and T1 (sustainable ecosystem endgame). This is an implementation inventory, not 23 accepted identities: paid unlocks, historical authority and actual visible delivery still need their individually scoped proof.
+
+Regional support and room interoperability are in draft PRs #43 and #44. The room follow-on has thirteen passing bounded tests; its initial desktop/mobile journey exposed early product-status and inspector-selection failures, now repaired and awaiting fresh frozen browser results. The regional full-suite and acceptance producers remain active. Hosted CI/accountability reached their existing deadlines; reliable execution is being investigated without reducing assertions or raising deadlines.
+
+The exact assertion ledger has 122 verified, 33 pending and four parked after independent inventory and placement reconciliation. The deployed preview remains main `0ef9432`; these draft changes are not deployed. The dated sections below retain earlier checkpoints and are not the current adapter or publication count.
+
 ## Integration completed — 5 November 2026
 
 - PRs #21–#27 are merged. Main `5d9f6c09eb4d5019617b18d6a20f4a76caa2dfe0` contains the reviewed stack; its tree equals tested candidate `691cf84f9272d382c3427c2becc46e70010c66cb`.

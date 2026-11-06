@@ -67,6 +67,7 @@ test('pages: only the release workflow deploys, and only with the GitHub Pages a
     if (f !== 'release.yml') assert.doesNotMatch(y, /pages:\s*write|deploy-pages/, `${f} must not deploy`);
   }
   const rel = fs.readFileSync(path.join(dir, 'release.yml'), 'utf8');
+  const accountability = fs.readFileSync(path.join(dir, 'accountability.yml'), 'utf8');
   assert.match(rel, /actions\/upload-pages-artifact@/);
   assert.match(rel, /actions\/deploy-pages@/);
   assert.match(rel, /path: \.\/_site/);
@@ -74,7 +75,27 @@ test('pages: only the release workflow deploys, and only with the GitHub Pages a
   assert.match(rel, /environment:\s+name: github-pages/, 'deployment retains the reviewed environment');
   assert.match(rel, /if: inputs\.publication == 'release'\s+run: npm run check:release/, 'full releases still require product completion');
   assert.match(rel, /case "\$PUBLICATION" in preview\|release\)/, 'unexpected publication choices fail');
-  for (const check of ['npm test', 'npm run evidence', 'npm run check:all', 'npm audit --audit-level=low',
+  assert.match(accountability, /^  workflow_call:\s*$/m, 'accountability is reusable by the publication workflow');
+  assert.ok(rel.includes('  accountability:\n    if: github.ref == \'refs/heads/main\'\n    name: required acceptance evidence and development gates\n    uses: ./.github/workflows/accountability.yml'), 'publication requires the local accountability workflow on main');
+  assert.ok(rel.includes('  build:\n    needs: [tests, accountability]'), 'publication build waits for tests and accountable evidence');
+  const cleanup = rel.indexOf('name: Remove checked-in acceptance receipts before artifact download');
+  const download = rel.indexOf('uses: actions/download-artifact@');
+  const requireReceipt = rel.indexOf("name: Require this run's acceptance receipts");
+  assert.ok(cleanup >= 0 && cleanup < download && download < requireReceipt, 'build clears seed receipts before downloading and requiring this run\'s receipt');
+  assert.match(rel, /name: acceptance-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/, 'build downloads the exact assembled artifact from this run and attempt');
+  assert.match(rel, /test -s evidence\/acceptance\.json\s+test -s evidence\/communications\.tap/, 'both assembled receipt files are mandatory');
+  assert.doesNotMatch(rel, /npm run evidence|npm run check:all/, 'publication does not repeat the full acceptance producer and gates');
+  assert.match(rel, /node-version: 24/, 'publication stays on the pinned Node major');
+  assert.match(rel, /^      - run: npm ci$/m, 'publication installs the locked dependency set');
+  assert.match(rel, /timeout-minutes: 20/, 'publication test shard deadline is retained');
+  assert.match(rel, /timeout-minutes: 30/, 'publication build deadline is retained');
+  assert.match(rel, /npm run check:release/, 'release choice keeps the full release gate');
+  assert.match(accountability, /scripts\/record-evidence\.py --shard \$\{\{ matrix\.part \}\}\/8/);
+  assert.match(accountability, /scripts\/verify\.py all --acceptance-shard \$\{\{ matrix\.part \}\}\/8/);
+  assert.match(accountability, /node-version: 24/);
+  assert.match(accountability, /^      - run: npm ci$/m);
+  assert.match(accountability, /timeout-minutes: 10/);
+  for (const check of ['npm test', 'npm audit --audit-level=low',
     'scripts/check-pages-artifact.py _site', 'scripts/check-secrets.py']) {
     assert.ok(rel.includes(check) && rel.indexOf(check) < rel.indexOf('actions/upload-pages-artifact@'), `${check} precedes upload`);
   }

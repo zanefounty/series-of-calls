@@ -13,3 +13,7 @@ The pure responsibility projection explains current eligibility from actual reco
 Legacy campaigns without the opt-in retain their original rules and gain no new qualification facts. Unknown versions reject. The inspector exposes eligibility, certificate scope/expiry, the direct/distributor comparison and read-only responsibility evidence. All purchases still enter `SOC.dispatch` using revision-bound engine quotes.
 
 `tests/provider-responsibility.test.js` and `tests/provider-responsibility-ui.test.js` cover the helper, real paid paths, refusal, expiry, requalification and presentation. Parent dispatch integration and the final visible-control evidence must be included in the candidate checks. Complete seven-role responsibility mechanics, progression claims/useful unlocks, broader actor-specific terms and source acceptance remain open.
+
+### Qualification preserves reviewed service dependencies
+
+The paid partner qualification review consumes current identity and engagement service dependencies. It records its paid operation receipt without writing generic configuration back to those resources, so an existing service-boundary review remains bound to the generations it actually checked. The subsequent paid distributor-room project still requires the scoped active qualification and its own valid posting. `tests/provider-qualification-boundary.test.js` covers the dispatched review, distributor-room delivery, and imported-save rejection for altered dependencies or missing payment.

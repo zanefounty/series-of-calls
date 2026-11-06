@@ -46,7 +46,8 @@ class AccountabilityWorkflowContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.source = WORKFLOW.read_text()
-        cls.acceptance = job_block(cls.source, 'acceptance', 'gates')
+        cls.acceptance = job_block(cls.source, 'acceptance', 'acceptance-merge')
+        cls.merge = job_block(cls.source, 'acceptance-merge', 'gates')
         cls.gates = job_block(cls.source, 'gates', 'mutations')
         cls.mutations = job_block(cls.source, 'mutations', 'accountability')
         cls.aggregate = job_block(cls.source, 'accountability')
@@ -55,8 +56,8 @@ class AccountabilityWorkflowContract(unittest.TestCase):
         clean = self.gates.index('name: Remove checked-in receipts before artifact download')
         download = self.gates.index('uses: actions/download-artifact@')
         self.assertLess(clean, download)
-        self.assertIn('needs: [acceptance]', self.gates)
-        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
+        self.assertIn('needs: [acceptance-merge]', self.gates)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.merge)
         self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.gates)
         cleanup = run_block(self.gates, 'Remove checked-in receipts before artifact download')
         required = run_block(self.gates, "Require this run's acceptance receipts")
@@ -79,8 +80,8 @@ class AccountabilityWorkflowContract(unittest.TestCase):
             self.assertEqual(current.returncode, 0, current.stdout.decode() + current.stderr.decode())
 
     def test_mutations_require_fresh_acceptance_artifact_not_checked_in_receipts(self):
-        self.assertIn('needs: [acceptance]', self.mutations)
-        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.acceptance)
+        self.assertIn('needs: [acceptance-merge]', self.mutations)
+        self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.merge)
         self.assertIn('name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}', self.mutations)
         clean = self.mutations.index('name: Remove checked-in receipts before artifact download')
         download = self.mutations.index('uses: actions/download-artifact@')
@@ -112,6 +113,28 @@ class AccountabilityWorkflowContract(unittest.TestCase):
                 self.assertIn('node-version: 24', block)
                 self.assertRegex(block, r'(?m)^      - run: npm ci$|\bnpm ci\b')
         self.assertRegex(self.aggregate, r'timeout-minutes: 10\b')
+        self.assertRegex(self.merge, r'timeout-minutes: 10\b')
+
+    def test_workflow_is_callable_by_publication_without_changing_its_other_triggers(self):
+        triggers = self.source.split('permissions:', 1)[0]
+        self.assertIn('  pull_request:', triggers)
+        self.assertIn('  push:', triggers)
+        self.assertIn('  workflow_dispatch:', triggers)
+        self.assertIn('  workflow_call:', triggers)
+        self.assertIn('branches: [main]', triggers)
+
+    def test_each_producer_has_an_independent_required_replay(self):
+        for block in [self.acceptance, self.gates]:
+            self.assertIn('fail-fast: false', block)
+            self.assertIn('part: [1, 2, 3, 4, 5, 6, 7, 8]', block)
+        self.assertIn('scripts/record-evidence.py --shard ${{ matrix.part }}/8', self.acceptance)
+        self.assertIn('name: development gates ${{ matrix.part }}/8', self.gates)
+        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/8', self.gates)
+        self.assertIn('needs: [acceptance]', self.merge)
+        self.assertIn('--merge-shards acceptance-parts --shard-count 8', self.merge)
+        self.assertIn('pattern: acceptance-part-*-${{ github.run_id }}-${{ github.run_attempt }}', self.merge)
+        self.assertNotIn('merge-multiple: true', self.merge)
+        self.assertLess(self.merge.index('Remove checked-in receipts'), self.merge.index('actions/download-artifact@'))
 
     def test_setup_failure_cannot_upload_checked_in_receipts_as_current_output(self):
         clean = self.acceptance.index('name: Remove checked-in receipts before producer execution')
@@ -126,8 +149,8 @@ class AccountabilityWorkflowContract(unittest.TestCase):
 
     def test_mutation_job_remains_required_and_artifacts_upload_after_failure(self):
         self.assertIn("python3 -m unittest discover -s tests -p '*_test.py'", self.mutations)
-        self.assertIn('needs: [acceptance, gates, mutations]', self.aggregate)
-        for block in [self.acceptance, self.gates, self.mutations]:
+        self.assertIn('needs: [acceptance, acceptance-merge, gates, mutations]', self.aggregate)
+        for block in [self.acceptance, self.merge, self.gates, self.mutations]:
             self.assertIn('if: always()', block)
         self.assertIn('evidence/acceptance.json', self.acceptance)
         self.assertIn('evidence/communications.tap', self.acceptance)
@@ -135,7 +158,7 @@ class AccountabilityWorkflowContract(unittest.TestCase):
 
     def test_actual_aggregate_shell_fails_when_any_required_job_is_not_success(self):
         self.assertIn('if: always()', self.aggregate)
-        self.assertIn('needs: [acceptance, gates, mutations]', self.aggregate)
+        self.assertIn('needs: [acceptance, acceptance-merge, gates, mutations]', self.aggregate)
         script = run_block(self.aggregate, 'Require every accountability job to succeed')
         cases = [
             ('success', 'success', 'success', True),
@@ -149,10 +172,45 @@ class AccountabilityWorkflowContract(unittest.TestCase):
         ]
         for a, g, m, expected in cases:
             env = os.environ.copy()
-            env.update(ACCEPTANCE_RESULT=a, GATES_RESULT=g, MUTATIONS_RESULT=m)
+            env.update(ACCEPTANCE_RESULT=a, MERGE_RESULT='success', GATES_RESULT=g, MUTATIONS_RESULT=m)
             result = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', script], env=env, capture_output=True)
             with self.subTest(results=(a, g, m)):
                 self.assertEqual(result.returncode == 0, expected, result.stdout.decode() + result.stderr.decode())
+        for merge in ['failure', 'cancelled', 'skipped', '']:
+            env = dict(os.environ, ACCEPTANCE_RESULT='success', MERGE_RESULT=merge, GATES_RESULT='success', MUTATIONS_RESULT='success')
+            result = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', script], env=env, capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+
+
+class PublicationWorkflowContract(unittest.TestCase):
+    def test_publication_requires_fresh_json_and_tap_after_removing_seed_receipts(self):
+        release = (ROOT / '.github' / 'workflows' / 'release.yml').read_text()
+        build = job_block(release, 'build', 'deploy')
+        cleanup = run_block(build, 'Remove checked-in acceptance receipts before artifact download')
+        required = run_block(build, "Require this run's acceptance receipts")
+        with tempfile.TemporaryDirectory(prefix='soc-publication-receipts-') as tmp:
+            evidence = Path(tmp) / 'evidence'
+            evidence.mkdir()
+            receipt, tap = evidence / 'acceptance.json', evidence / 'communications.tap'
+            receipt.write_text('{"stale":true}')
+            tap.write_text('stale TAP')
+            subprocess.run(['bash', '-e', '-c', cleanup], cwd=tmp, check=True)
+            self.assertFalse(receipt.exists())
+            self.assertFalse(tap.exists())
+            for json_bytes, tap_bytes, expected in [('', '', False), ('current', '', False),
+                                                    ('', 'current', False), ('current', 'current', True)]:
+                receipt.write_text(json_bytes)
+                tap.write_text(tap_bytes)
+                result = subprocess.run(['bash', '-e', '-c', required], cwd=tmp, capture_output=True)
+                self.assertEqual(result.returncode == 0, expected)
+
+    def test_publication_choice_shell_refuses_unrecognized_values(self):
+        release = (ROOT / '.github' / 'workflows' / 'release.yml').read_text()
+        script = run_block(job_block(release, 'build', 'deploy'), 'Validate publication choice')
+        for value in ['preview', 'release', '', 'unknown', 'PREVIEW']:
+            env = dict(os.environ, PUBLICATION=value)
+            result = subprocess.run(['bash', '-e', '-c', script], env=env, capture_output=True)
+            self.assertEqual(result.returncode == 0, value in ['preview', 'release'])
 
 
 if __name__ == '__main__':

@@ -1,15 +1,15 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **107 exact assertions verified, 48 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **122 exact assertions verified, 33 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
-| 1 — authority and foundations | 23 | 5 | 0 |
-| 2 — service truth and SMB | 14 | 7 | 0 |
-| 3 — map and interaction | 12 | 12 | 0 |
-| 4 — strategy and growth | 15 | 6 | 0 |
-| 5 — missions and ecosystem | 31 | 9 | 0 |
-| 6 — compatibility and delivery | 12 | 9 | 4 |
+| 1 — authority and foundations | 25 | 3 | 0 |
+| 2 — service truth and SMB | 15 | 6 | 0 |
+| 3 — map and interaction | 17 | 7 | 0 |
+| 4 — strategy and growth | 16 | 5 | 0 |
+| 5 — missions and ecosystem | 33 | 7 | 0 |
+| 6 — compatibility and delivery | 16 | 5 | 4 |
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 
@@ -25,7 +25,7 @@ For the PR #35 candidate, the full local JavaScript run passed 2,107 tests with 
 Nine further exact clauses are now reconciled at application candidate `0ac9430`, whose application, tests and browser inputs are identical to tested `c0f9ef9`:
 
 - **PLAY-004-A02:** the same paid opening reaches minute 120 with identical complete state at every advertised speed, including actual demand and settlement. Worker/fallback and save continuation have separate named tests.
-- **PLAY-013-A02:** actual one-way media produces `ONE_WAY_MEDIA`; fresh bidirectional work demonstrates recovery. This is admission/outcome evidence. The owner's **established-call single-direction media-loss regression remains explicitly open**.
+- **PLAY-013-A02:** actual one-way media produces `ONE_WAY_MEDIA`; fresh bidirectional work demonstrates recovery. This is admission/outcome evidence. The separate established-call regression was subsequently verified at `1a8a70d`, as recorded below.
 - **PLAY-016-A01:** both reference plans can fund successful service and expansion. A lawful constrained Steady career cannot buy another advantage after its paid opening and dedicated platform; the unaffordable quote refuses without mutation.
 - **PLAY-018-A02 and PLAY-021-A01:** a current Chromium journey uses only keyboard controls to purchase and commission all three opening stages, deliver actual work and acknowledge an incident. It uses the same costed quote actions as clicking. This does not claim a complete keyboard-only profitable mission or every accessibility criterion.
 - **PLAY-036-A02 and PLAY-037-A03:** product readiness requires bound capabilities and actual dependencies; a menu name is insufficient. Source-specific outstanding obligations remain visible, and shared infrastructure is explicitly not evidence of every distinctive feature. The six/eight family UI matrices and actor-specific obligations remain open.
@@ -48,3 +48,17 @@ The correctly provisioned retry reached the unchanged release gate and failed wi
 
 
 The view-stability candidate `20fdeaa` closes **PLAY-020-A02** after six desktop/mobile journeys across Chromium, Firefox and WebKit. A nondefault camera and selected customer persist through actual worker ticks and arriving work. The same runs verify the repaired quote field, focus, inspector detail identity and scroll. **PLAY-020-A01 remains open:** purchase decisions pause simulation, so these runs do not demonstrate an unfinished purchase draft during actual ticks. See [view verification](PROVIDER_VIEW_STABILITY.md). The nested backlog counters were also brought into agreement with the individually enumerated assertions.
+
+The paid-diagnosis candidate `256b28c` closes **PLAY-024-A03**. Six actual desktop/mobile journeys across Chromium, Firefox and WebKit show free unchanged-state public inspection, a separately quoted A$60 diagnosis reserving one engineer and one support worker for six minutes, and a retained finding after an independently paid A$80 repair. Twelve focused frozen tests and independent source/artifact/save reviews support this exact clause. The native positive case is an authored outage; other failure domains remain explicitly inconclusive. This adds one closure and does not certify all incident behavior or the final integrated candidate. See [diagnosis evidence](PROVIDER_INCIDENT_DIAGNOSIS.md).
+
+
+Frozen `7e6ca47` closes **PLAY-011-A01** using the two completed AC-SOC-684/685 cases and an independent review of their exact dispatch and settlement assertions. Sixty ordinary Lab calls arrive one minute apart. A 57-minute outage followed by final-minute repair leaves 57 failed calls, three delivered usage minutes and the corresponding service credit; a final-minute-only outage retains 59 completed calls. Direct, worker and restored settlement agree, and subsequent recovery preserves the settled bill. All 1,415 tracked inputs matched their launch hashes at review. The enclosing full suite was still running: this is one exact assertion closure, not a full-suite pass or Provider burst-demand evidence. The ledger retains the external audit and launch-manifest hashes.
+
+
+The independent inventory review at `10759c7` closes **PLAY-039-A02** and **PLAY-049-A01** only. All 51 stable actor mappings retain individual dispositions (four shared-partial and 47 pending); all 25 view mappings and six tutorial mappings now name explicit actual placements. Six distinct coach positions were rendered, and the UI source matches that probe. Canonical actor implementation statuses, tutorial predicate differences and full browser accessibility remain open. The ledger stores the external audit hash and reconciles all nested counts.
+
+The independently reviewed terminal AC-SOC-674/686/687 results at frozen `7e6ca47` close **PLAY-009-A02** and **PLAY-030-A03**: relabelled Lab exports cannot restore Provider authority, and a paid human voice-to-digital handoff retains one case, one resolution and exact usage with restore/worker parity. The full suite remains in progress. Full six-total case conservation remains pending. The public overdue-critical victory counterexample was subsequently verified below.
+
+Frozen `1a8a70d` closes **PLAY-008-A04** and the separate **OWNER-INFLIGHT-DIRECTIONAL-MEDIA** addition. Fresh Swift and Steady reference journeys win only after qualifying service and funded expansion. AC-SOC-769 proves actual active or acknowledged overdue incidents prevent victory despite two qualifying profitable periods; paid recovery permits the legitimate win. AC-SOC-673 loses each media direction independently after a connected minute, ends the call without charging failed usage, releases capture once and admits a fresh recovery call with restore/worker parity. Nine focused cases passed with all 1,415 input hashes unchanged. These results do not establish a full-suite or browser-matrix pass.
+
+Independent review at `fa8a7aa` closes **PLAY-052-A02/A03** for their exact reporting obligations: documents keep human participation pending and distinguish the playable draft, outstanding conversion work, browser evidence and deployed preview. No pilot sessions, complete browser matrix or final release are implied. **PLAY-023-A03 remains pending:** older automated timings have 33 changed inputs, and current room journeys do not record the opening timing fields. The audit and file hashes are linked in the ledger.

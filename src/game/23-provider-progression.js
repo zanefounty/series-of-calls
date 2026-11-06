@@ -8,7 +8,13 @@ function socProviderProgressionFactsKernel(){
  function resilienceProgressionApi(){return typeof SOC_PROVIDER_RESILIENCE_PROGRESSION!=='undefined'?SOC_PROVIDER_RESILIENCE_PROGRESSION:require('./23-provider-resilience-progression.js');}
  function centralProgressionApi(){return typeof SOC_PROVIDER_CENTRAL_PROGRESSION!=='undefined'?SOC_PROVIDER_CENTRAL_PROGRESSION:require('./23-provider-central-progression.js');}
  function localProgressionApi(){return typeof SOC_PROVIDER_LOCAL_PROGRESSION!=='undefined'?SOC_PROVIDER_LOCAL_PROGRESSION:require('./23-provider-local-progression.js');}
+ function workforceHistoryApi(){return typeof SOC_PROVIDER_WORKFORCE_HISTORY!=='undefined'?SOC_PROVIDER_WORKFORCE_HISTORY:require('./23-provider-workforce-history.js');}
+ function regionalSupportApi(){return typeof SOC_PROVIDER_REGIONAL_SUPPORT!=='undefined'?SOC_PROVIDER_REGIONAL_SUPPORT:require('./23-provider-regional-support.js');}
  function ownedSitesApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:require('./23-provider-owned-sites.js');}
+ function caseFollowupApi(){return typeof SOC_PROVIDER_CASE_FOLLOWUP!=='undefined'?SOC_PROVIDER_CASE_FOLLOWUP:require('./23-provider-case-followup.js');}
+ function partnerProgressionApi(){return typeof SOC_PROVIDER_PARTNER_PROGRESSION!=='undefined'?SOC_PROVIDER_PARTNER_PROGRESSION:require('./23-provider-partner-progression.js');}
+ function securityApi(){return typeof SOC_PROVIDER_SECURITY!=='undefined'?SOC_PROVIDER_SECURITY:require('./23-provider-security.js');}
+ function dedicatedInterconnectApi(){return typeof SOC_PROVIDER_DEDICATED_INTERCONNECT!=='undefined'?SOC_PROVIDER_DEDICATED_INTERCONNECT:require('./23-provider-dedicated-interconnect.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
   [levelId(1),'Local UC reseller','first-live','sustainable','support-responsibility'],
@@ -106,8 +112,8 @@ function socProviderProgressionFactsKernel(){
   'same-case-continuity-sample':'Same-case continuity across an incident is not evaluated by this adapter.',
   'typed-local-dependency-proof':'Typed local processing dependencies are not evaluated by this adapter.',
   'connected-offline-scope':'Declared connected and offline operating scope is not evaluated by this adapter.',
-  'dedicated-carrier-topology':'A dedicated carrier interconnect topology and offer are not evaluated by this adapter.',
-  'directional-acceptance':'Directional carrier acceptance is not evaluated by this adapter.',
+  'dedicated-carrier-topology':'A paid current carrier gateway, licensed phone route, and supported interconnect trunk are required.',
+  'directional-acceptance':'A real resolved outbound and inbound call with two-way media and no outstanding obligations is required.',
   'paid-security-operations':'Paid communications security operations are not evaluated by this adapter.',
   'attack-and-allowed-demand-proof':'Authored attack rejection and allowed-demand evidence are not evaluated by this adapter.',
   'market-support-boundary-sample':'A sampled market, support, and boundary proof is not evaluated by this adapter.',
@@ -277,11 +283,13 @@ function socProviderProgressionFactsKernel(){
    const responsible=responsibility?{id:responsibility.id,customerId:responsibility.customerId,role:responsibility.role,organisationId:responsibility.organisationId,projectId:responsibility.projectId,postingId:responsibility.postingId,effectiveAt:responsibility.effectiveAt,expiresAt:responsibility.expiresAt,scope:[...responsibility.scope].sort(),setupCents:responsibility.terms?.setupCents??null,periodCents:responsibility.terms?.periodCents??null,engineers:responsibility.terms?.engineers??null,support:responsibility.terms?.support??null,sharedWorkforce:responsibility.evidence?.sharedWorkforce?{engineers:responsibility.evidence.sharedWorkforce.engineers,support:responsibility.evidence.sharedWorkforce.support,personMinutes:responsibility.evidence.sharedWorkforce.personMinutes,billedMinutes:responsibility.evidence.sharedWorkforce.billedMinutes}:null}:null;
    participants.push({customerId:c.id,portfolioId:c.portfolioId,tenant:root?.tenant||c.tenant||c.portfolioId,market:c.market,scenario:c.scenario,configuration:supportConfiguration(c,root,resources,responsibility,boundaries),eligible:missing.length===0,missing:[...new Set(missing)],resources:generations,boundaries,responsibility:responsible,freshJobs:root?freshHumanJobs(s,c,root,s.clock):[],settlements:settlementsAt(s,c,s.clock)});
   }
-  return {version:VERSION,contentVersion:CONTENT,at:s.clock,cohort,participants};
+  if(p.contentVersion==='provider-campaigns-8')for(const participant of participants){const regional=regionalSupportApi().sample(s,participant.customerId,s.clock,hooks);participant.namedSupport=regional.namedSupport;participant.distributor=regional.distributor;participant.integrations=typeof hooks.regionalIntegrations==='function'?copy(hooks.regionalIntegrations(s,participant.customerId)):[];}
+  return {version:p.contentVersion==='provider-campaigns-8'?2:VERSION,contentVersion:CONTENT,at:s.clock,cohort,participants};
  }
  const SUPPORT_SAMPLE_KEYS=['version','contentVersion','at','cohort','participants'];
  const SUPPORT_PARTICIPANT_KEYS=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility','freshJobs','settlements'];
- const SUPPORT_ENCODED_PARTICIPANT_KEYS=SUPPORT_PARTICIPANT_KEYS.map(key=>key==='configuration'?'configurationIndex':key);
+ const supportParticipantKeys=version=>version===2?[...SUPPORT_PARTICIPANT_KEYS,'namedSupport','distributor','integrations']:SUPPORT_PARTICIPANT_KEYS;
+ const supportEncodedParticipantKeys=version=>supportParticipantKeys(version).map(key=>key==='configuration'?'configurationIndex':key);
  const SUPPORT_OBSERVATION_LIMIT=60;
  function supportObservationError(){fail('INVALID_PROVIDER_SUPPORT_OBSERVATION_ENCODING');}
  function replaceObjectKeyInPlace(value,from,to,replacement){
@@ -292,14 +300,14 @@ function socProviderProgressionFactsKernel(){
   if(observation===undefined)return [];
   if(!observation||typeof observation!=='object'||Array.isArray(observation))supportObservationError();
   if(exact(observation,['version','samples'])&&observation.version===1){
-   const samples=copy(observation.samples);if(!supportSequenceValid(samples))supportObservationError();return samples;
+   const samples=copy(observation.samples);if(!supportSequenceValid(samples)||samples.some(sample=>sample.version!==1))supportObservationError();return samples;
   }
-  if(!exact(observation,['version','configurations','samples'])||observation.version!==2||!Array.isArray(observation.configurations)||!Array.isArray(observation.samples)||observation.samples.length>SUPPORT_OBSERVATION_LIMIT||observation.configurations.length>SUPPORT_OBSERVATION_LIMIT*20||Array.from({length:observation.configurations.length},(_,index)=>typeof observation.configurations[index]==='string'&&observation.configurations[index].length>0).some(valid=>!valid)||new Set(observation.configurations).size!==observation.configurations.length)supportObservationError();
+  if(!exact(observation,['version','configurations','samples'])||![2,3].includes(observation.version)||!Array.isArray(observation.configurations)||!Array.isArray(observation.samples)||observation.samples.length>SUPPORT_OBSERVATION_LIMIT||observation.configurations.length>SUPPORT_OBSERVATION_LIMIT*20||Array.from({length:observation.configurations.length},(_,index)=>typeof observation.configurations[index]==='string'&&observation.configurations[index].length>0).some(valid=>!valid)||new Set(observation.configurations).size!==observation.configurations.length)supportObservationError();
   const configurations=observation.configurations;
   const decoded=observation.samples.map(sample=>{
-   if(!exact(sample,SUPPORT_SAMPLE_KEYS)||!Array.isArray(sample.participants))supportObservationError();
+   if(!exact(sample,SUPPORT_SAMPLE_KEYS)||sample.version!==(observation.version===3?2:1)||!Array.isArray(sample.participants))supportObservationError();
    const participants=sample.participants.map(participant=>{
-    if(!exact(participant,SUPPORT_ENCODED_PARTICIPANT_KEYS)||!Number.isSafeInteger(participant.configurationIndex)||participant.configurationIndex<0||participant.configurationIndex>=configurations.length)supportObservationError();
+    if(!exact(participant,supportEncodedParticipantKeys(sample.version))||!Number.isSafeInteger(participant.configurationIndex)||participant.configurationIndex<0||participant.configurationIndex>=configurations.length)supportObservationError();
     return replaceObjectKeyInPlace(participant,'configurationIndex','configuration',configurations[participant.configurationIndex]);
    });
    const row={};for(const key of Object.keys(sample))Object.defineProperty(row,key,{value:key==='participants'?participants:sample[key],enumerable:true,configurable:true,writable:true});
@@ -309,7 +317,7 @@ function socProviderProgressionFactsKernel(){
   if(used.size!==configurations.length||!supportSequenceValid(decoded))supportObservationError();return decoded;
  }
  function encodeSupportObservation(samples){
-  if(!supportSequenceValid(samples))supportObservationError();
+  if(!supportSequenceValid(samples)||samples.some(sample=>sample.version!==samples[0]?.version))supportObservationError();
   const configurations=[],indexes=new Map();
   const encoded=samples.map(sample=>{
    const participants=sample.participants.map(participant=>{
@@ -318,7 +326,7 @@ function socProviderProgressionFactsKernel(){
    });
    const row={};for(const key of Object.keys(sample))Object.defineProperty(row,key,{value:key==='participants'?participants:sample[key],enumerable:true,configurable:true,writable:true});return row;
   });
-  return {version:2,configurations,samples:encoded};
+  return {version:samples.some(sample=>sample.version===2)?3:2,configurations,samples:encoded};
  }
  function appendSupportObservation(observation,sample){
   if(!supportSampleValid(sample))supportObservationError();
@@ -326,10 +334,11 @@ function socProviderProgressionFactsKernel(){
   samples.push(copy(sample));return encodeSupportObservation(samples.slice(-SUPPORT_OBSERVATION_LIMIT));
  }
  function supportSampleValid(x){
-  if(!exact(x,SUPPORT_SAMPLE_KEYS)||x.version!==VERSION||x.contentVersion!==CONTENT||!ints(x.at)||!Array.isArray(x.cohort)||!Array.isArray(x.participants)||x.cohort.length>20||new Set(x.cohort).size!==x.cohort.length||x.cohort.some(id=>typeof id!=='string')||!same(x.cohort,[...x.cohort].sort()))return false;
+  if(!exact(x,SUPPORT_SAMPLE_KEYS)||![1,2].includes(x.version)||x.contentVersion!==CONTENT||!ints(x.at)||!Array.isArray(x.cohort)||!Array.isArray(x.participants)||x.cohort.length>20||new Set(x.cohort).size!==x.cohort.length||x.cohort.some(id=>typeof id!=='string')||!same(x.cohort,[...x.cohort].sort()))return false;
   if(x.participants.length!==x.cohort.length||!same(x.participants.map(y=>y?.customerId),x.cohort))return false;
   for(const p of x.participants){
-   if(!exact(p,SUPPORT_PARTICIPANT_KEYS)||!['customerId','portfolioId','tenant','market','scenario','configuration'].every(k=>typeof p[k]==='string')||!['au-sydney','au-melbourne','us-seattle','jp-tokyo','eu-dublin'].includes(p.market)||!['smb','enterprise','government','defence'].includes(p.scenario)||typeof p.eligible!=='boolean'||!Array.isArray(p.missing)||p.missing.some(y=>typeof y!=='string')||!Array.isArray(p.resources)||!Array.isArray(p.boundaries)||!Array.isArray(p.freshJobs)||!Array.isArray(p.settlements))return false;
+   if(x.version===2&&(!Array.isArray(p.integrations)||p.integrations.length>100||p.namedSupport!==null&&(!p.namedSupport||typeof p.namedSupport!=='object'||Array.isArray(p.namedSupport))||p.distributor!==null&&(!p.distributor||typeof p.distributor!=='object'||Array.isArray(p.distributor))))return false;
+   if(!exact(p,supportParticipantKeys(x.version))||!['customerId','portfolioId','tenant','market','scenario','configuration'].every(k=>typeof p[k]==='string')||!['au-sydney','au-melbourne','us-seattle','jp-tokyo','eu-dublin'].includes(p.market)||!['smb','enterprise','government','defence'].includes(p.scenario)||typeof p.eligible!=='boolean'||!Array.isArray(p.missing)||p.missing.some(y=>typeof y!=='string')||!Array.isArray(p.resources)||!Array.isArray(p.boundaries)||!Array.isArray(p.freshJobs)||!Array.isArray(p.settlements))return false;
    if(p.resources.some(r=>!exact(r,['id','generation'])||typeof r.id!=='string'||r.generation!==null&&(!ints(r.generation)||r.generation<1))||p.boundaries.some(b=>!exact(b,['id','generation','profile','resources'])||typeof b.id!=='string'||!ints(b.generation)||b.generation<1||typeof b.profile!=='string'||!Array.isArray(b.resources)||!b.resources.length||b.resources.some(id=>typeof id!=='string'))||p.responsibility!==null&&(!exact(p.responsibility,['id','customerId','role','organisationId','projectId','postingId','effectiveAt','expiresAt','scope','setupCents','periodCents','engineers','support','sharedWorkforce'])||p.responsibility.customerId!==p.customerId||p.responsibility.role!=='msp'||p.responsibility.organisationId!=='orchard-msp'||!Array.isArray(p.responsibility.scope)||!ints(p.responsibility.effectiveAt)||p.responsibility.expiresAt!==null&&!ints(p.responsibility.expiresAt)||![p.responsibility.setupCents,p.responsibility.periodCents,p.responsibility.engineers,p.responsibility.support].every(ints)||p.responsibility.sharedWorkforce!==null&&(!exact(p.responsibility.sharedWorkforce,['engineers','support','personMinutes','billedMinutes'])||!Object.values(p.responsibility.sharedWorkforce).every(ints))))return false;
    if(p.freshJobs.some(j=>!exact(j,['jobId','interactionId','caseId','channel','startedAt','finishedAt','person','assignmentId'])||![j.jobId,j.interactionId,j.caseId,j.person,j.assignmentId].every(y=>typeof y==='string')||!['voice','message','meeting','recording','processing'].includes(j.channel)||!ints(j.startedAt)||!ints(j.finishedAt)||j.finishedAt!==x.at))return false;
    if(p.settlements.some(q=>!exact(q,['period','from','to','settledAt','qualified','operatingResultCents','revenuePostingId','costPostingIds'])||!ints(q.period)||!ints(q.from)||!ints(q.to)||q.to-q.from!==60||q.settledAt!==x.at||typeof q.qualified!=='boolean'||!Number.isSafeInteger(q.operatingResultCents)||typeof q.revenuePostingId!=='string'||!Array.isArray(q.costPostingIds)||!q.costPostingIds.length||q.costPostingIds.some(y=>typeof y!=='string')))return false;
@@ -357,6 +366,9 @@ function socProviderProgressionFactsKernel(){
   if(options?.checkCurrent===true){const current=sampleSupport(s,hooks),last=samples.at(-1);if(last?.at===current.at&&!same(last,current))return false;}
   for(const sample of samples)for(const p of sample.participants){
    const c=s.providerCampaign.customers.find(x=>x.id===p.customerId);if(!c)return false;
+   if(s.providerCampaign.contentVersion==='provider-campaigns-8'&&(sample.version!==2||p.portfolioId!==c.portfolioId||p.market!==c.market||p.scenario!==c.scenario||p.tenant!==(rootFor(s,c,hooks)?.tenant||c.tenant||c.portfolioId)))return false;
+   if(sample.version===2&&typeof hooks.validateHistoricalSupportParticipant==='function'&&hooks.validateHistoricalSupportParticipant(s,p,sample.at)?.status!=='valid')return false;
+   if(sample.version===2){const history=s.providerCampaign.workforceHistory,team=workforceHistoryApi().at(history,sample.at),boundary=Math.max(history.startedAt,Math.floor(sample.at/60)*60),billed=workforceHistoryApi().at(history,boundary).personMinutes,shared=p.responsibility?.sharedWorkforce;if(shared&&(shared.engineers!==team.engineers||shared.support!==team.support||shared.personMinutes!==team.personMinutes||shared.billedMinutes!==billed)||p.namedSupport&&(p.namedSupport.paidSupportSlots!==team.support||p.namedSupport.payrollPersonMinutes!==team.personMinutes||p.namedSupport.payrollBilledMinutes!==billed))return false;const regional=regionalSupportApi();if(s.providerCampaign.contentVersion!=='provider-campaigns-8'||p.namedSupport!==null&&!regional.validateNamedSupportSnapshot(s,p,sample.at,{allowIneligible:true})||p.distributor!==null&&!regional.validateDistributorSnapshot(s,p,sample.at)||p.integrations.some(edge=>!regional.validateIntegrationSnapshot(s,p,edge,sample.at,hooks)))return false;}
    for(const j of p.freshJobs){const job=s.providerCampaign.jobs.find(x=>x.id===j.jobId&&x.customerId===c.id&&x.interactionId===j.interactionId&&x.caseId===j.caseId&&x.completedAt===j.finishedAt),root=rootFor(s,c,hooks),interaction=root?.interactions?.find(x=>x.id===j.interactionId),assignment=interaction&&root.workforceOps?.assignments?.find(x=>x.id===j.assignmentId&&[interaction.workforceAssignment,interaction.id].includes(x.interaction)&&x.person===j.person&&x.status==='complete');if(!job||!interaction||interaction.phase!=='resolved'||interaction.probe===true||interaction.botAnswered||interaction.caseId!==j.caseId||interaction.finishedAt!==j.finishedAt||!assignment||assignment.personSnapshot?.id!==j.person)return false;}
    for(const q of p.settlements){const h=c.history?.find(x=>x.period===q.period&&x.from===q.from&&x.to===q.to&&x.settledAt===q.settledAt&&x.qualified===q.qualified),g=s.providerCampaign.periodHistory?.find(x=>x.period===q.period&&x.from===q.from&&x.to===q.to&&x.settledAt===q.settledAt&&x.operatingResult===q.operatingResultCents),bill=h&&customerBill(s,c,h);if(!h||!g||!bill||bill.revenue.id!==q.revenuePostingId||!same(bill.costs.map(x=>x.id).sort(),q.costPostingIds))return false;}
    if(p.responsibility){const r=s.providerCampaign.projects.find(x=>x.id===p.responsibility.projectId&&x.postingId===p.responsibility.postingId&&x.customerId===c.id&&x.status==='complete');if(!r||r.kind!=='stage'&&!['complete','retired'].includes(r.status)||p.responsibility.effectiveAt>sample.at||p.responsibility.expiresAt!==null&&p.responsibility.expiresAt<=sample.at)return false;}
@@ -371,7 +383,7 @@ function socProviderProgressionFactsKernel(){
  function blockedRows(rows){return Object.fromEntries(rows.map(([id,name,...req])=>[id,{id,name,status:'incomplete',missing:req.map(k=>MISSING[k]||`Required evidence is not evaluated: ${k}.`)}]));}
  function evaluate(s,hooks={}){
   if(!s||s.experience?.version!==1||s.experience?.kind!=='campaign'||s.experience?.custom!==false)fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
-  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5','provider-campaigns-6','provider-campaigns-7'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
+  const p=s.providerCampaign;if(!p||p.pack!=='soc-provider-campaign-1'||p.version!==1||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5','provider-campaigns-6','provider-campaigns-7','provider-campaigns-8'].includes(p.contentVersion))fail('PROVIDER_PROGRESSION_CAMPAIGN_REQUIRED');
   if(!Array.isArray(p.customers)||!Array.isArray(p.projects)||!Array.isArray(p.jobs)||!Array.isArray(p.periodHistory)||!s.business||!Array.isArray(s.business.ledger))fail('INVALID_PROVIDER_PROGRESSION_FACTS_INPUT');
   const fullLive=[];
   for(const c of p.customers){const ready=customerReady(s,c,hooks);if(ready.ok)fullLive.push({customer:c,ready});}
@@ -407,6 +419,13 @@ function socProviderProgressionFactsKernel(){
   const levelOneLive=sustainableCandidate?liveEvidenceFor(sustainableCandidate):null,l1=!!levelOneLive&&sustainability.status==='ready'&&supportResponsibility.status==='ready';
   levels[levelId(1)]={id:levelId(1),name:'Local UC reseller',status:l1?'ready':'incomplete',missing:l1?[]:[...(!levelOneLive?firstLive.missing:[]),...sustainability.missing,...supportResponsibility.missing],evidence:l1?{firstLive:levelOneLive,sustainable:sustainability.evidence,supportResponsibility:supportResponsibility.evidence}:null};
   levels[levelId(2)]={id:levelId(2),name:'Regional communications MSP',status:two.status,missing:[...two.missing],evidence:two.status==='ready'?two.evidence:null};
+  if(p.contentVersion==='provider-campaigns-8'&&supportSamples?.length===60){
+   const regionalApi=regionalSupportApi(),regional=regionalApi.evaluate(s,{...hooks,supportSamples:supportSamples||[]});
+   for(const sourceId of [regionalApi.GOALS.C3,regionalApi.GOALS.C5,regionalApi.GOALS.T2,regionalApi.GOALS.LEVEL7]){
+    const target=sourceId===regionalApi.GOALS.LEVEL7?levels:goals,row=regional.levels?.[sourceId];
+    if(row&&target[sourceId])target[sourceId]={...target[sourceId],status:row.status,missing:copy(row.missing||[]),evidence:row.status==='ready'?copy(row.evidence):null};
+   }
+  }
   const integrationCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>({customer:c,result:ucCcObservation(s,c,hooks)}));
   const integrated=integrationCandidates.find(x=>x.result.status==='ready')||null;
   const integrationMissing=integrated?[]:[...new Set(integrationCandidates.flatMap(x=>x.result.missing||[]))];
@@ -427,6 +446,18 @@ function socProviderProgressionFactsKernel(){
   const externalEvidence=external?.result.evidence||null;
   goals[goalId('tr')]={id:goalId('tr'),name:'External calling operational',status:externalEvidence?'ready':'incomplete',missing:externalEvidence?[]:(externalMissing.length?externalMissing:[MISSING['inbound-demand'],MISSING['external-collaboration-acceptance']]),evidence:externalEvidence};
   proofRequirements.externalReach=fact(externalEvidence?'ready':'incomplete',externalEvidence?[]:goals[goalId('tr')].missing,externalEvidence||{});
+  const dedicatedApi=dedicatedInterconnectApi(),dedicatedHooks=typeof hooks.dedicatedInterconnectHooks==='function'?hooks.dedicatedInterconnectHooks(s):hooks.dedicatedInterconnectHooks||hooks;
+  const dedicatedCandidates=p.customers.filter(c=>['active','renewal'].includes(c.status)).map(customer=>({customer,result:dedicatedApi.evaluate(s,customer.id,dedicatedHooks)}));
+  const dedicatedReady=dedicatedCandidates.find(row=>row.result.status==='ready'&&row.result.evidence)||null;
+  const dedicatedMissing=dedicatedReady?[]:[...new Set(dedicatedCandidates.flatMap(row=>row.result.missing||[]))];
+  goals[goalId('pn')]={id:goalId('pn'),name:'Dedicated carrier interconnect',status:dedicatedReady?'ready':'incomplete',missing:dedicatedReady?[]:(dedicatedMissing.length?dedicatedMissing:[MISSING['dedicated-carrier-topology'],MISSING['directional-acceptance']]),evidence:dedicatedReady?copy(dedicatedReady.result.evidence):null};
+  proofRequirements.dedicatedInterconnect=fact(dedicatedReady?'ready':'incomplete',goals[goalId('pn')].missing,goals[goalId('pn')].evidence||{});
+  const partners=partnerProgressionApi().evaluate(s,hooks.partnerHooks||hooks);goals[goalId('p5')]={id:goalId('p5'),name:'Five working partner services',status:partners.status,missing:copy(partners.missing),progress:{count:partners.count,target:partners.target},evidence:partners.status==='ready'?copy(partners.evidence):null};proofRequirements.partnerIntegrations=fact(partners.status,partners.missing,partners.evidence);
+  const security=securityApi().progression(s,hooks);goals[goalId('scrub')]={id:goalId('scrub'),name:'Communications abuse defences',...security};proofRequirements.security=fact(security.status,security.missing,security.evidence||{});
+  const followupHooks=typeof hooks.caseFollowupHooks==='function'?hooks.caseFollowupHooks(s):hooks.caseFollowupHooks||hooks;
+  const followup=p.caseFollowupVersion===1?p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>caseFollowupApi().evaluate(s,c.id,followupHooks)).find(row=>row.status==='ready'&&row.evidence):null;
+  levels[levelId(8)]={id:levelId(8),name:'Omnichannel platform operator',status:followup?'ready':'incomplete',missing:followup?[]:['SETTLED_SAME_CASE_HUMAN_VOICE_AND_DIGITAL_REQUIRED'],evidence:followup?copy(followup.evidence):null};
+  proofRequirements.caseFollowup=fact(followup?'ready':'incomplete',levels[levelId(8)].missing,levels[levelId(8)].evidence||{});
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
   const resilienceProgress=resilienceProgressionApi().evaluate(s,hooks);
@@ -439,7 +470,7 @@ function socProviderProgressionFactsKernel(){
   goals[goalId('ca')]={id:goalId('ca'),name:localReady?.result.name||'Local media or speech service',status:localReady?'ready':'incomplete',missing:localMissing.length?localMissing:['PAID_LOCAL_SPEECH_AND_TRANSCRIPTION_REQUIRED'],evidence:localReady?copy(localReady.result.evidence):null};
   proofRequirements.localContinuity=fact(localReady?'ready':'incomplete',goals[goalId('ca')].missing,goals[goalId('ca')].evidence||{});
   const central=centralProgressionApi().evaluate(s,hooks);for(const sourceId of [levelId(5),levelId(6)]){const row=central.levels[sourceId];levels[sourceId]={id:sourceId,name:row.name,status:row.status,missing:copy(row.missing),evidence:row.evidence?copy(row.evidence):null};}
-  if(p.contentVersion==='provider-campaigns-7'){
+  if(['provider-campaigns-7','provider-campaigns-8'].includes(p.contentVersion)){
    const owned=ownedSitesApi().evaluate(s,hooks.ownedSiteHooks||hooks);
    for(const [sourceId,row] of Object.entries(owned.goals)){const target=sourceId.includes('progression-level')?levels:goals;target[sourceId]={...target[sourceId],status:row.status,missing:copy(row.missing),evidence:row.evidence?copy(row.evidence):null};}
   }

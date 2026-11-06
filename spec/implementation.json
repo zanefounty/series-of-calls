@@ -6918,6 +6918,82 @@
       "scope": "Provider operation quotes disclose the selected customer plan voice-minute and delivered-message unit rates through the existing cost comparison. Real paid Swift and Steady openings reconcile displayed rates against actual settled usage postings; purchase terms, operation fixed commitments and charges remain unchanged. Insufficient-cash quotes retain rates while atomic commitment refuses. An isolated distinct-rate content fixture detects accidental cross-customer tariff reuse; it is not campaign balance or playable delivery evidence. This bounded disclosure repair does not certify every operation cost, full ecosystem acceptance or human comprehension."
     },
     {
+      "id": "BEH-SOC-388",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/23-provider-integration-assurance.js",
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/93-ui/78-provider-policy-controls.js"
+      ],
+      "testIds": [
+        "AC-SOC-646",
+        "AC-SOC-647",
+        "AC-SOC-648",
+        "AC-SOC-832",
+        "AC-SOC-833",
+        "AC-SOC-834"
+      ],
+      "status": "partial",
+      "scope": "Priced earned integration assurance with immutable claim scope, explicit editable policy subsets and current edge/boundary suspension. Public unearned orders and worker orders refuse atomically; isolated planner and retained-action counterexamples cover scope, action kind, commissioning time and changed integrations. These bounded tests do not establish a genuinely earned T2 claim, paid delivery or automatic action after that claim; those remain pending. Funded assurance may retain repair permission during a corroborated scoped carrier outage only with unchanged native paid UC/CC test, resource and boundary generations and availability-only boundary blockers; strict purchase checks remain unchanged. Focused counterexamples and worker-source parity cover this limited repair permission without certifying healthy service."
+    },
+    {
+      "id": "BEH-SOC-389",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/23-provider-journeys.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-journeys.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-644",
+        "AC-SOC-645"
+      ],
+      "status": "partial",
+      "scope": "Pure Provider journey explanations derived from retained queue, assignment, connection, wrap and outcome events, with actual supplier usage counters and current carrier occupancy. Customer period pricing and delivery credits are distinguished from supplier units. A real autonomous delivered voice job, transfer timing, missing history, repeated pure rendering and worker/save continuation are covered. This does not prove new handoff mechanics, every media failure or final browser acceptance."
+    },
+    {
+      "id": "BEH-SOC-390",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/93-ui/79-provider-incidents.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-649",
+        "AC-SOC-650",
+        "AC-SOC-651",
+        "AC-SOC-652"
+      ],
+      "status": "partial",
+      "scope": "Contextual incident presentation names the affected customer and observed service symptoms, separates a recorded event from an unperformed diagnosis, and presents current quote costs, lead/work time, staff and actionable blockers. Public paid construction, an actual incident, staffing refusal and paid delayed repair with restore are exercised; foreign or absent quotes cannot manufacture terms. Inspection is pure. No paid diagnosis mechanic or final browser acceptance is claimed."
+    },
+    {
+      "id": "BEH-SOC-391",
+      "sources": [
+        "uc-new:domain:media",
+        "uc-new:domain:signalling"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-673"
+      ],
+      "status": "partial",
+      "scope": "An explicit Lab fixture establishes a six-minute real endpoint conversation, meters one healthy minute, then loses exactly one media direction through validated configuration. Both inbound and outbound loss fail the existing call with ONE_WAY_MEDIA before its due time, release capture exactly once, add no failed-minute usage or success revenue, and preserve the failed record while a fresh bidirectional call reuses capacity and completes. Worker and save continuation match. This shared-engine regression does not add or certify a Provider fault-authoring control or commercial incident path."
+    },
+    {
       "id": "BEH-SOC-392",
       "sources": [
         "DEC-011"
@@ -6931,6 +7007,62 @@
       ],
       "status": "partial",
       "scope": "Native Web Locks revocation drops Provider editing authority, pauses its clock, cancels the pending worker, keeps the live run exportable and requires explicit reopen. Stale lock acquisition/rejection cannot invalidate a newer owner. Browser environment-failure coverage commits one real paid order under injected localStorage quota failure, exports that exact result, restores storage, steals the native lock from another tab and verifies stopped state plus explicit recovery. This does not establish all persistence, browser or gameplay acceptance."
+    },
+    {
+      "id": "BEH-SOC-393",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-674",
+        "AC-SOC-675",
+        "AC-SOC-676"
+      ],
+      "status": "partial",
+      "scope": "Actual funded Provider export to Lab cannot regain earned campaign authority through an experience relabel. Actual paid minute-59 service restores into the same next settlement, complete state and serialized worker result with once-only retail and usage postings. Actual empty and partial periods remain unqualified; separately labelled isolated mission-proof fixtures refuse quiet, shortened, under-target, zero-profit, default, overdue-incident and cancelled-expansion substitutes. These bounded counterexamples do not claim a public grace/default rescue journey or new mission completion."
+    },
+    {
+      "id": "BEH-SOC-394",
+      "sources": [
+        "progress.goal.c3"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/23-provider-regional-support.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-653",
+        "AC-SOC-654",
+        "AC-SOC-655",
+        "AC-SOC-656"
+      ],
+      "status": "partial",
+      "scope": "A fresh public Provider campaign funds three customers in AU, US and EU, sustains the same eligible 60-minute named-support cohort with actual voice/digital work and settlements, and claims C3 without a cash award. Rehashed market/support substitutions refuse restore. The earned regional policy is then purchased and delivered, starts suspended without a budget, and after explicit funded scope configuration buys and commissions a real new customer carrier stage with reconciled spend and restore. Other regional identities, current final browser evidence and broader source fidelity remain separate. The C5, Tier Two and Level Seven real-dispatch journeys are registered even while failures remain; registration is not evidence of passing execution."
+    },
+    {
+      "id": "BEH-SOC-395",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:media"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-684",
+        "AC-SOC-685"
+      ],
+      "status": "partial",
+      "scope": "Explicit Lab/shared-engine paid service runs sixty ordinary one-minute calls at evenly distributed arrivals. A 57-minute outage causes 57 failures and three completions; a final-minute outage retains 59 completions and one failure. Recorded usage, credits and wholesale costs survive recovery, save restore and serialized-worker settlement exactly, without duplicate postings. These shared-engine histories complement the separate actual Provider outage tests and do not claim a new Provider incident or human playability evidence."
     },
     {
       "id": "BEH-SOC-396",
@@ -6953,6 +7085,794 @@
       ],
       "status": "partial",
       "scope": "Provider views retain the same native retail field, typed draft, focus and selection while a same-form quote refresh is pending or refused, and prevent committing old terms while waiting. Inspector detail expansion and scroll remain attached to the selected object, and stable job keys retain the correct evidence section as journeys arrive. Changing plan, customer or actionable job preserves isolation. These controls do not certify the full gameplay revision or imply that purchase decision pauses advance simulation time."
+    },
+    {
+      "id": "BEH-SOC-397",
+      "sources": [
+        "DEC-011",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/22-provider-demand.js",
+        "src/game/23-provider-case-handoff.js",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-case-handoff.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-657",
+        "AC-SOC-658",
+        "AC-SOC-659",
+        "AC-SOC-660",
+        "AC-SOC-661",
+        "AC-SOC-662",
+        "AC-SOC-663",
+        "AC-SOC-664",
+        "AC-SOC-665",
+        "AC-SOC-666",
+        "AC-SOC-667",
+        "AC-SOC-668",
+        "AC-SOC-669",
+        "AC-SOC-670",
+        "AC-SOC-671",
+        "AC-SOC-672",
+        "AC-SOC-686",
+        "AC-SOC-687"
+      ],
+      "status": "partial",
+      "scope": "Versioned SMB demand reserves one existing optional voice slot for a paid programmable engagement handoff while retaining 24 canonical case obligations and twelve mandatory voice cases. Quotes and atomic dispatch require authored preference, admitted unassigned voice, a current paid channel, available licensed handling and the original deadline. Actual paid public dispatch ends the original voice leg without delivering it, starts one digital leg for the same person and case, meters actual original usage and one accepted message, and completes only after real human resolution. Stale and duplicate commands, unpaid and protected cases, typed receipt forgeries, restore and serialized worker continuation are checked. Derived bounded pins preserve both legs. Final visible browser evidence, the L8 resolved voice follow-up and broader family acceptance remain separate."
+    },
+    {
+      "id": "BEH-SOC-398",
+      "sources": [
+        "DEC-011",
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling"
+      ],
+      "implementation": [
+        "src/game/23-provider-dedicated-interconnect.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-679",
+        "AC-SOC-680",
+        "AC-SOC-681",
+        "AC-SOC-682",
+        "AC-SOC-683",
+        "AC-SOC-695",
+        "AC-SOC-696",
+        "AC-SOC-697",
+        "AC-SOC-698",
+        "AC-SOC-699"
+      ],
+      "status": "partial",
+      "scope": "Versioned paid direct and earned managed gateway plans use existing capacity, authenticated native carrier admission, separately metered settled inbound/outbound human service and exact historical configurations. Isolated helper and translated contextual UI contracts cover terms, refusal and no free capacity; two retained call legs preserve claim evidence. A checkpoint regression covers mission-victory pruning when arrival events are pinned. Public dispatch, managed delivery, worker/restore and final visible-control evidence must execute on the integrated candidate; helper results alone do not complete the source goal or authorize research acceptance."
+    },
+    {
+      "id": "BEH-SOC-399",
+      "sources": [
+        "DEC-011",
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/22-provider-demand.js",
+        "src/game/23-provider-case-followup.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-case-followup.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "testIds": [
+        "AC-SOC-700",
+        "AC-SOC-701",
+        "AC-SOC-702",
+        "AC-SOC-703",
+        "AC-SOC-704",
+        "AC-SOC-705",
+        "AC-SOC-706",
+        "AC-SOC-707",
+        "AC-SOC-708",
+        "AC-SOC-709",
+        "AC-SOC-710",
+        "AC-SOC-711",
+        "AC-SOC-712",
+        "AC-SOC-713",
+        "AC-SOC-714",
+        "AC-SOC-725",
+        "AC-SOC-735"
+      ],
+      "status": "partial",
+      "scope": "Versioned paid same-case human voice then consented human digital follow-up, scoped paid retry, actual accepted-attempt metering, historical connector authority and retained L8 proof. New paid workflows reserve one existing optional case with its authored twenty-minute deadline at arrival (thirty for the peak-window variant); the other obligations retain existing deadlines. Actual paid Provider completion, failed accepted attempt, scoped retry and settlement pass; final frozen visible evidence remains in progress. No source acceptance or catalogue completion is implied."
+    },
+    {
+      "id": "BEH-SOC-400",
+      "sources": [
+        "DEC-011",
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/23-provider-followup-retry-archive.js",
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-726",
+        "AC-SOC-727",
+        "AC-SOC-728",
+        "AC-SOC-729",
+        "AC-SOC-730",
+        "AC-SOC-731",
+        "AC-SOC-732",
+        "AC-SOC-733",
+        "AC-SOC-734",
+        "AC-SOC-736"
+      ],
+      "status": "partial",
+      "scope": "Terminal settled paid retry authorization is archived before ordinary job pruning, preserving canonical case, actual voice/failed/retry legs, channel acceptances and customer/global settlement posting anchors. Retained cases keep acceptance records until archival; earned L8 remains a separate live proof. Isolated replay, bounded schema and public archive continuation tests cover malformed/orphan proof and checkpoint counterexamples. Broad frozen browser and long-history acceptance remain separate; no archive-only progression claim or history invention is permitted."
+    },
+    {
+      "id": "BEH-SOC-401",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/23-provider-incident-diagnosis.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-incidents.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "testIds": [
+        "AC-SOC-715",
+        "AC-SOC-716",
+        "AC-SOC-717",
+        "AC-SOC-718",
+        "AC-SOC-719",
+        "AC-SOC-737",
+        "AC-SOC-738",
+        "AC-SOC-739",
+        "AC-SOC-740",
+        "AC-SOC-741",
+        "AC-SOC-742"
+      ],
+      "status": "partial",
+      "scope": "Free public symptoms and an optional paid scoped six-minute diagnosis reserve shared engineer/support effort. Native outage and connection observations are reconstructed from validated incident and paid repair history; other domains remain explicitly inconclusive until their path authority is integrated. Diagnosis does not repair, mitigate, acknowledge or award progression. Pure helper transport-path fixtures are distinguished from real paid Provider dispatch, restore/worker and UI evidence. Visible frozen browser acceptance remains pending."
+    },
+    {
+      "id": "BEH-SOC-402",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/23-provider-uc-cc-integration.js"
+      ],
+      "testIds": [
+        "AC-SOC-743",
+        "AC-SOC-744"
+      ],
+      "status": "partial",
+      "scope": "Native synthetic product integration retests retain earlier same-generation success or failure in a versioned bounded history with supersession times. Lab dispatch exercises failed dependency, repair, retest, later version rebase, restore, worker parity and explicit history-capacity refusal. Paid UC/CC receipts can reference the earlier native result without treating it as current readiness. This does not certify vendor interoperability or complete all integration families."
+    },
+    {
+      "id": "BEH-SOC-403",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/23-provider-regional-integrations.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-745",
+        "AC-SOC-746",
+        "AC-SOC-747",
+        "AC-SOC-748",
+        "AC-SOC-749",
+        "AC-SOC-754"
+      ],
+      "status": "partial",
+      "scope": "Regional support samples include a paid UC/CC edge only after the actual tested integration and paid quality task complete. Historical snapshots retain exact customer, endpoint generation/version, native test, MSP and boundary scope through retirement and retest; prior evidence cannot qualify a new generation. Public dispatch, tampered imports, readonly evaluation and worker checks are distinct from the still-required complete Tier Two progression journey. A separately registered settlement-boundary test checks retention of the paid task job and actual arrival event, restore, and deletion rejection."
+    },
+    {
+      "id": "BEH-SOC-404",
+      "sources": [
+        "progress.goal.df",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-750"
+      ],
+      "status": "partial",
+      "scope": "A paid owned-site backup restore preserves the already sampled command minute and enters the next minute as one resource-generation write anchored to the funded recovery exercise. Public Provider dispatch, actual native backup scope, restore, worker continuation, and altered generation/time/exercise references are exercised. This bounded history repair does not complete every mission or source-specific recovery path."
+    },
+    {
+      "id": "BEH-SOC-405",
+      "sources": [
+        "progress.goal.tr",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/23-provider-external-reach.js",
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-751"
+      ],
+      "status": "partial",
+      "scope": "Earned external-reach awards retain their two actual paid call jobs, arrivals, interactions and cases plus the provider meeting through ordinary history pruning. Optional versioned child retention metadata is derived from validated receipts on owned legacy restore copies. A bounded first-prune regression checks native lineage, restore and worker continuation, legacy migration purity and forged evidence refusal. This does not replace the owner-parked long-play verification."
+    },
+    {
+      "id": "BEH-SOC-406",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-752"
+      ],
+      "status": "partial",
+      "scope": "Paid partner qualification reviews existing service and settlement evidence without rewriting dependency configurations or invalidating generation-bound service approvals. The review still consumes the quoted implementation effort and depends on qualified settlements, named roles, effective resources and paid lineage. A real Provider boundary-review and distributor-delivery journey verifies the bounded change; full regional progression remains separately pending."
+    },
+    {
+      "id": "BEH-SOC-407",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/23-provider-regional-support.js"
+      ],
+      "testIds": [
+        "AC-SOC-753",
+        "AC-SOC-835"
+      ],
+      "status": "partial",
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
+    },
+    {
+      "id": "BEH-SOC-408",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-755"
+      ],
+      "status": "partial",
+      "scope": "Versioned accepted retail history preserves actual prior agreements across renewal and bounded event eviction so historical support observations keep their paid boundary context. Current agreement, retained public commands and renewal events, authored budgets and period settlements are cross-checked; worker dispatch and save restore share validation. Legacy saves retain only their validated known agreement as the initial baseline. This bounded renewal regression does not establish complete Tier Two or regional progression."
+    },
+    {
+      "id": "BEH-SOC-409",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-room-integration.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-room-integration.js",
+        "scripts/provider-browser.js"
+      ],
+      "testIds": [
+        "AC-SOC-756",
+        "AC-SOC-757",
+        "AC-SOC-758",
+        "AC-SOC-759",
+        "AC-SOC-760",
+        "AC-SOC-761",
+        "AC-SOC-762",
+        "AC-SOC-763",
+        "AC-SOC-764",
+        "AC-SOC-765",
+        "AC-SOC-766",
+        "AC-SOC-767",
+        "AC-SOC-768"
+      ],
+      "status": "partial",
+      "scope": "Paid Provider room interoperability purchases an exact generation/version-scoped native edge, requires explicit testing and a later actual duration-bearing bridge meeting with live 5000 Kbps path, and retains historical delivery through retirement and validated native audit pruning. Room capacity and transport failures need separate funded repairs; quote, inspector and worker controls keep Provider authority. Separate explicit Lab tests exercise endpoint/path refusal, current tests and FIFO audit history without claiming commercial delivery. This one synthetic path does not complete either product family, all five partner integrations or the full source catalogue."
+    },
+    {
+      "id": "BEH-SOC-410",
+      "sources": [
+        "progress.goal.rd",
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-support-work.js"
+      ],
+      "testIds": [
+        "AC-SOC-769",
+        "AC-SOC-770"
+      ],
+      "status": "partial",
+      "scope": "Paid resilient service can complete profitable work while an unresolved primary incident still blocks the public funded-expansion victory. Legitimate paid repair permits subsequent victory. At most two support-origin arrival events per customer remain pinned in the bounded Provider event journal, preserving actual support history despite holes caused by pinned commercial events. Older validated pruned origins retain their prior fallback; no event or historical work is invented."
+    },
+    {
+      "id": "BEH-SOC-411",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js"
+      ],
+      "testIds": [
+        "AC-SOC-771",
+        "AC-SOC-772"
+      ],
+      "status": "partial",
+      "scope": "Historical configuration readers build local views while copying fields changed for historical time, avoiding full tenant clones. Frozen input purity, isolated returned configurations and provenance, and forged generation rejection remain enforced. Exact captured-state comparisons and bounded timing measurements do not establish whole-suite deadlines or long-play completion."
+    },
+    {
+      "id": "BEH-SOC-413",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "implementation": [
+        "src/game/23-provider-room-integration.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "testIds": [
+        "AC-SOC-774"
+      ],
+      "status": "partial",
+      "scope": "Paid room delivery retains the exact authored Provider job or scheduled mission meeting and its issued arrival/booking event. Customer, case, session, booking, timing and outcome must agree; missing or foreign origins are refused on restore. Bounded journals retain the originating job and event after settlement, and mission row where applicable. Native Lab meetings alone cannot establish paid Provider origin. This bounded lineage repair does not establish all room, mission or ecosystem requirements."
+    },
+    {
+      "id": "BEH-SOC-414",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-775",
+        "AC-SOC-776"
+      ],
+      "status": "partial",
+      "scope": "A private, validator-scoped memo reuses equivalent historical paid configuration projections while preserving per-read generation and provenance validation and isolated returned values. Historical replay is compared with uncached results across paid commissioning boundaries; a synthetic nested restoration/retirement model regression covers a cache-key boundary, not an accepted gameplay save. No persisted cache, whole-suite deadline or long-play completion is claimed."
+    },
+    {
+      "id": "BEH-SOC-419",
+      "sources": [
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-787",
+        "AC-SOC-788"
+      ],
+      "status": "partial",
+      "scope": "Training lease revocation cancels pending worker work, prevents stale edits and save writes, and retains exportable state. Lease generations stop delayed old lock errors from revoking a newly acquired lease. The storage-newer-save path uses the same revocation. Harness lock-steal tests do not substitute for the separate native multi-tab browser receipt or full persistence acceptance."
+    },
+    {
+      "id": "BEH-SOC-416",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-780",
+        "AC-SOC-781"
+      ],
+      "status": "partial",
+      "scope": "Private read-only support reconstruction reuses local configuration/provenance and temporary boundary views without serializing unrelated histories. Public authority outputs and external observation-hook arguments remain isolated copies. Actual paid boundary reconstruction, frozen-save purity, restore and a failing-then-fixed retained-hook mutation regression cover these boundaries. Bounded timing improvements do not establish full acceptance deadlines or long-play completion."
+    },
+    {
+      "id": "BEH-SOC-420",
+      "sources": [
+        "progress.goal.bb",
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/23-provider-regional-support.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-653",
+        "AC-SOC-789",
+        "AC-SOC-790"
+      ],
+      "status": "partial",
+      "scope": "Earned work receipts retain their exact arrival events in addition to the bounded working event history. Rehashed missing-arrival substitutions refuse; validated legacy regional markers migrate on owned copies. A real opening claim survives 220 dispatched staffing events and restores, while an isolated multi-window appender fixture proves 240 retained arrivals leave a 200-event working window. That fixture does not establish regional award eligibility or final long-play acceptance."
+    },
+    {
+      "id": "BEH-SOC-422",
+      "sources": [
+        "DEC-011",
+        "progress.goal.c5"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression-receipts.js"
+      ],
+      "testIds": [
+        "AC-SOC-795",
+        "AC-SOC-796"
+      ],
+      "status": "partial",
+      "scope": "One read-only progression inspection validates its input before deriving its proposals, instead of repeating the same receipt validation for every unlock row. Standalone proposals and every new inspection still validate authority independently. Actual paid opening proposals match independently validated quotes on frozen state; changed receipt integrity refuses before quote hooks execute. A measured five-market checkpoint produces identical output with lower inspector latency; this does not certify full simulation speed or hosted test deadlines."
+    },
+    {
+      "id": "BEH-SOC-424",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-800",
+        "AC-SOC-801",
+        "AC-SOC-802"
+      ],
+      "status": "partial",
+      "scope": "Empty Operations and Suppliers panels explain that a customer must be funded first and provide a native Deals action leading to a starter quote. Actual funded-customer actions remain eligible by existing authority. Bounded UI and browser checks cover empty-state navigation, purity and existing customer quote context; other disabled-action categories remain pending."
+    },
+    {
+      "id": "BEH-SOC-426",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-806",
+        "AC-SOC-807",
+        "AC-SOC-808"
+      ],
+      "status": "partial",
+      "scope": "Rejected repeat-credit drafts show current cash and requested terms, explain that the starter loan cannot be reused even after repayment and return to Finance. Terminal customer exit drafts explain existing exit/default status and retained obligations, retain the refusal and close without claiming a reversible active customer. Native UI checks preserve drafts and dispatch authority. This closes two concrete refusal-copy defects, not the entire blocked-action assertion."
+    },
+    {
+      "id": "BEH-SOC-428",
+      "sources": [
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression-receipts.js"
+      ],
+      "testIds": [
+        "AC-SOC-810"
+      ],
+      "status": "partial",
+      "scope": "A retained regional support-window claim validates customer activation and exit against its actual earned interval, rather than requiring participants to remain active forever. A public paid two-customer journey claims Level2, quotes and executes exit, advances and restores with the original receipt; backdated exit and activation after earning still refuse. Existing paid-stage, sample, work and posting validation remains required. This fixes historical receipt persistence without making exited customers eligible for new claims."
+    },
+    {
+      "id": "BEH-SOC-412",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-773"
+      ],
+      "status": "partial",
+      "scope": "A legitimate connected endpoint voice call retains its existing security reservation through dispatch, save restore and worker execution. Actual minutes settle once against the core ledger; a rolling spend cap terminates the call before an over-limit minute accrues. This repairs the native security prerequisite only; paid Provider abuse protection, authored abuse, progression award and useful unlock remain pending."
+    },
+    {
+      "id": "BEH-SOC-415",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "content/provider-security.json"
+      ],
+      "testIds": [
+        "AC-SOC-777",
+        "AC-SOC-778",
+        "AC-SOC-779"
+      ],
+      "status": "partial",
+      "scope": "Versioned fictional PPS, authenticated SIP and destination/spend offers have independently priced fixed plans. Helper binding tests distinguish paid historical terms from current native readiness and refuse arbitrary native configuration. Helper tests alone do not establish public paid delivery, authored abuse handling or the canonical security progression goal."
+    },
+    {
+      "id": "BEH-SOC-418",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/23-provider-capacity-authority.js",
+        "src/game/23-provider-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-784",
+        "AC-SOC-785",
+        "AC-SOC-786"
+      ],
+      "status": "partial",
+      "scope": "Public Provider quotations fund separate native network, SIP and destination controls with real shared cash, staffing and commissioning. Initial deployment requires calls to drain and blocks voice until all three controls are effective. Public tests recover a real carrier incident before purchasing; restore rejects forged paid plans, native desired/effective configurations and supplier peers, and worker dispatch matches synchronous state. Authored abuse scheduling, retained protection evidence and the security progression claim remain pending. Ordinary autonomous same-customer voice demand subsequently resolves through all three paid controls, with a positive duration, retained case and once-only native usage settlement. This does not substitute for authored abuse evidence."
+    },
+    {
+      "id": "BEH-SOC-417",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-782",
+        "AC-SOC-783"
+      ],
+      "status": "partial",
+      "scope": "Pure contextual panels compare the three paid security controls and their six fixed offers on customer, carrier, phone and access selections. They expose setup, recurring cost, staffing, lead time, native limits, prerequisites, first-purchase interruption and complete minimum cost; action payloads select only an authored plan. Quote panels explain native usage separately from supplier wholesale. DOM tests and translation coverage do not establish final visible browser or security progression acceptance."
+    },
+    {
+      "id": "BEH-SOC-421",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "content/provider-security-abuse.v2.json"
+      ],
+      "testIds": [
+        "AC-SOC-791",
+        "AC-SOC-792",
+        "AC-SOC-793",
+        "AC-SOC-794"
+      ],
+      "status": "partial",
+      "scope": "A versioned authored synthetic abuse recipe binds fixed packet, SIP rate, oversized-message and destination attempts to separately paid controls and native generations. Pure helpers distinguish incident observations from subsequent real customer delivery. The canonical SCRUB claim and useful unlock remain pending."
+    },
+    {
+      "id": "BEH-SOC-423",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-797",
+        "AC-SOC-798",
+        "AC-SOC-799"
+      ],
+      "status": "partial",
+      "scope": "Native security keeps a bounded 1,000-event history while preserving explicitly pinned actual events. Exact pruned ranges retain older legitimate admission proof, reject forged gaps and survive removing Provider pins in a separate Lab copy. These native tests do not grant pin authority or establish a Provider achievement."
+    },
+    {
+      "id": "BEH-SOC-425",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-803",
+        "AC-SOC-804",
+        "AC-SOC-805"
+      ],
+      "status": "partial",
+      "scope": "The shared route records actual destination denials before unreachable routing without granting reach. After all three paid controls commission, the Provider dispatcher executes one authored abuse sequence per paid generation tuple and waits for a later autonomous voice job with actual once-only settlement. Strict versioned saves retain actual attack events, interactions, cases and delivered jobs; forged lineage and pin substitutions refuse. Worker continuation, read-only inspection, legacy saves and separate Lab copies preserve ownership. This is a bounded incident and delivery path, not a canonical SCRUB achievement, useful unlock or full failure-domain completion."
+    },
+    {
+      "id": "BEH-SOC-427",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/55-communications.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-809"
+      ],
+      "status": "partial",
+      "scope": "The selected customer security inspector distinguishes actual filtered/blocked abuse from waiting for subsequent ordinary voice delivery and later settled delivery. Technical evidence is read-only beneath human-readable status. DOM evidence does not establish final browser acceptance or a progression award."
+    },
+    {
+      "id": "BEH-SOC-429",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/93-ui/79-provider-progression.js",
+        "content/provider-security-managed.v1.json"
+      ],
+      "testIds": [
+        "AC-SOC-811",
+        "AC-SOC-812",
+        "AC-SOC-813",
+        "AC-SOC-815"
+      ],
+      "status": "partial",
+      "scope": "Provider SCRUB claims require all three independently paid controls, authored blocked and admitted native attempts and a later actual ordinary call with once-only usage. Claims grant no cash and retain exact history after exit. Earned Managed Edge has separate versioned terms, requires another customer in the earned market, trades engineer reservations for support and recurring cost, and still requires independently paid SIP/destination controls. Actual paid second-customer delivery, forged-scope refusal, worker/restore and contextual plan-selection controls are covered; final visible-control acceptance and broader source tiers remain separate."
+    },
+    {
+      "id": "BEH-SOC-430",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js",
+        "src/game/23-provider-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-814"
+      ],
+      "status": "partial",
+      "scope": "Before Provider diagnostic history removes a genuine terminal secured call, native settlement retains an explicit deletion receipt bound to the issued admission, actual terminal outcome and timing. Missing, mismatched or premature deletion receipts fail; a scalar pruning marker alone cannot establish missing interaction proof. Native history remains valid in Lab copies and serialized workers. This bounded compaction contract does not certify parked long-play or unlimited native settlement retention."
+    },
+    {
+      "id": "BEH-SOC-431",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:family:cisco:meetings-devices",
+        "progress.goal.p5"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/23-provider-integration-support.js",
+        "src/game/23-provider-partner-progression.js",
+        "src/game/23-provider-progression.js",
+        "src/game/93-ui/79-provider-progression.js"
+      ],
+      "testIds": [
+        "AC-SOC-816",
+        "AC-SOC-817",
+        "AC-SOC-818",
+        "AC-SOC-842"
+      ],
+      "status": "partial",
+      "scope": "Paid native/bridge integrator choices preserve the explicit licensed room profile, enforce prior paid bridge purchase, commission at authored staff/cost, and deliver through a separately tested native integration and real meeting. Endpoint retirement removes current readiness; paid reinstall, owner recertification, edge rebase/retest and fresh delivery recover it while historical evidence remains. Duplicate edges, unsupported owners and malformed proofs do not count. Provider inspection, serialized workers and translated goal controls show measured distinct integrations against the unchanged target of five. Only one paid room path is positively demonstrated here; full P5 and the three missing adapters, source-family fidelity and final browser acceptance remain incomplete."
+    },
+    {
+      "id": "BEH-SOC-433",
+      "sources": [
+        "DEC-011",
+        "progress.goal.t2"
+      ],
+      "implementation": [
+        "src/game/23-provider-incident-sequence.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-incidents.js",
+        "src/game/98-provider-runtime.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-822",
+        "AC-SOC-823",
+        "AC-SOC-824",
+        "AC-SOC-825",
+        "AC-SOC-826",
+        "AC-SOC-827",
+        "AC-SOC-699",
+        "AC-SOC-828",
+        "AC-SOC-829",
+        "AC-SOC-830",
+        "AC-SOC-831"
+      ],
+      "status": "partial",
+      "scope": "New versioned careers permit at most eight authored dependency incidents per customer, each follow-up at least 360 minutes after observed recovery and triggered by fresh actual completed work. Only eligible trigger completions enter the journal; their exact native jobs and events remain pinned within bounded allowances. Unrelated pruned job substitutions refuse. Event pruning preserves a monotonic high-water mark when older pins are released. Public paid SMB construction, outage, delayed repair, renewal, follow-up, malformed-save refusal and worker/restore equivalence complement isolated pure-helper limit tests. Marker-absent legacy campaigns retain one-shot behavior. The contextual inspector explains follow-up timing; full browser and source-specific incident fidelity remain separate. Paid automation and explicitly resumed map time can continue serving live customers after a financial mission loss while the treasury has not defaulted. The failed mission stays recorded; initial loss, victory, default and tab ownership retain their pause/stop rules. Actual paid loss/recovery, worker continuation and translated runtime controls are tested."
+    },
+    {
+      "id": "BEH-SOC-434",
+      "sources": [
+        "progress.progression-level.3",
+        "progress.goal.ix"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/23-provider-uc-cc-integration.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-836",
+        "AC-SOC-837",
+        "AC-SOC-838"
+      ],
+      "status": "partial",
+      "scope": "Existing public-dispatch Level 3 journeys are isolated into separate test processes while preserving their assertion bodies: an actual paid room meeting binds to the same customer integration; IX earned by one customer precedes a measured Level 3 claim for another across two funded markets; the earned scoped managed UC/CC offer is separately purchased and delivered to a fresh eligible customer. These bounded native journeys do not certify every progression identity, visible-control path or source-catalogue obligation."
+    },
+    {
+      "id": "BEH-SOC-435",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:continuity",
+        "progress.goal.ix"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-839",
+        "AC-SOC-840",
+        "AC-SOC-841"
+      ],
+      "status": "partial",
+      "scope": "Paid UC/CC readiness constructs a fresh read-only native observer view on each call and isolates returned diagnostics; one synchronous Provider inspection shares its derived progression hooks. Frozen paid states, same-call capture/quality delivery, test/apply freshness, worker/restore parity and later same-object fault, deployment-generation and paid-posting mutations are exercised. This reduces repeated whole-customer copying without caching authority across commands or relaxing validation. Broader product fidelity and the existing legacy missing-arrival fallback remain separate obligations."
     }
   ]
 }

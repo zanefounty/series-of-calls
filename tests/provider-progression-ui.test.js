@@ -22,7 +22,7 @@ function liveProvider(){
 }
 const hooks={customerRoot:(s,id)=>s.portfolio.customers.find(x=>x.id===id)?.root||null,observeResource:(root,id)=>SOC.observe(root,id)};
 
-test('AC-PROVIDER-PROGRESSION-UI-001 renders all 13 levels and 19 goals as compact collapsed readiness groups without mutating Provider state',()=>{
+test('AC-SOC-842 renders all 13 levels and 19 goals as compact collapsed readiness groups without mutating Provider state',()=>{
  const {dom,w}=ui(),state=SOC.create({experience:'campaign'}),before=JSON.stringify(state),progression=FACTS.evaluate(state,hooks),host=w.document.createElement('div');host.innerHTML=w.SOCProviderProgression.render({progression});
  assert.equal(JSON.stringify(state),before);
  assert.equal(host.querySelectorAll('.provider-progression-row').length,32);
@@ -32,10 +32,11 @@ test('AC-PROVIDER-PROGRESSION-UI-001 renders all 13 levels and 19 goals as compa
  assert.match(host.textContent,/not claimed and unlocks nothing/i);
  assert.match(host.textContent,/No Provider customer has been accepted yet/);
  assert.ok(!host.querySelector('button'));
+ const partner=host.querySelector('[data-progression-id="progress.goal.p5"]');assert.match(partner.textContent,/Supported, tested integrations: 0 of 5/);assert.match(partner.textContent,/Workplace-to-suite calling integration is not available/);assert.match(partner.textContent,/Communications API-to-engagement/);assert.match(partner.textContent,/Local speech product/);
  dom.window.close();
 });
 
-test('AC-PROVIDER-PROGRESSION-UI-002 shows a measured first-live evidence trail and keeps detailed lists inside disclosures',()=>{
+test('AC-SOC-843 shows a measured first-live evidence trail and keeps detailed lists inside disclosures',()=>{
  const {dom,w}=ui(),state=liveProvider(),before=JSON.stringify(state),progression=FACTS.evaluate(state,hooks),host=w.document.createElement('div');host.innerHTML=w.SOCProviderProgression.render({progression});
  const row=host.querySelector('[data-progression-id="progress.goal.bb"]');assert.ok(row);assert.match(row.textContent,/First customer live/);assert.match(row.textContent,/Ready/);assert.ok(row.querySelector('.provider-progression-evidence'));
  row.querySelector('.provider-progression-evidence').open=true;assert.match(row.textContent,/Paid commissioned stages: 3/);assert.match(row.textContent,/Matching central postings: 3/);assert.match(row.textContent,/voice case pc-starter-customer/);assert.match(row.textContent,/digital case pc-starter-customer/);
@@ -43,7 +44,7 @@ test('AC-PROVIDER-PROGRESSION-UI-002 shows a measured first-live evidence trail 
  assert.equal(host.querySelectorAll('.provider-progression-row').length,32);dom.window.close();
 });
 
-test('AC-PROVIDER-PROGRESSION-UI-003 translates every source name and visible reason through static markers and escapes untrusted report values',()=>{
+test('AC-SOC-844 translates every source name and visible reason through static markers and escapes untrusted report values',()=>{
  const {dom,w,markers}=ui(),state=SOC.create({experience:'campaign'}),progression=FACTS.evaluate(state,hooks),host=w.document.createElement('div');
  const labels=Object.values(w.SOCProviderProgression.keys);
  assert.ok(labels.length>=70);assert.ok(labels.every(key=>markers.includes(key)));

@@ -90,26 +90,28 @@ function nextPlan(s,periodIndex,maxMinutes=240){
 }
 function child(s){return s.portfolio.customers.find(x=>x.id===CUSTOMER).root;}
 
-test('SMB social connector substitutes exactly four eligible calls and preserves 24 unique case obligations',()=>{
+test('SMB social connector substitutes three eligible calls and reserves one authored handoff choice and preserves 24 unique case obligations',()=>{
   let s=commissionSetup(start('smb'),'smb');
   s=operation(s,'cisco-programmable-engagement');
   const planned=nextPlan(s,Math.floor(s.clock/60)+1);s=planned.s;const result=planned.result;
   assert.equal(result.totalCases,24);
-  assert.equal(result.actualVoiceCount,12);
-  assert.equal(result.actualDigitalCount,12);
+  assert.equal(result.handoffReservations,1);
+  assert.equal(result.jobs.filter(j=>j.handoffPreference==='socialMessaging'&&j.channel==='voice').length,1);
+  assert.equal(result.actualVoiceCount,13);
+  assert.equal(result.actualDigitalCount,11);
   assert.equal(result.actualMeetingCount,0);
   assert.ok(result.actualVoiceCount>=result.voiceFloor);
   assert.equal(new Set(result.jobs.map(x=>x.caseId)).size,24);
-  assert.equal(result.jobs.filter(x=>x.channel==='message').length,12);
+  assert.equal(result.jobs.filter(x=>x.channel==='message').length,11);
   const converted=result.jobs.filter(x=>x.preference==='socialMessaging');
-  assert.equal(converted.length,4);
+  assert.equal(converted.length,3);
   assert.ok(converted.every(x=>x.channel==='message'&&x.account==='chatterleaf'&&x.operationId==='cisco-programmable-engagement'));
   s=advance(s,(result.periodIndex+1)*60-s.clock);
   const periodJobs=s.providerCampaign.jobs.filter(x=>x.customerId===CUSTOMER&&x.periodIndex===result.periodIndex);
   assert.equal(periodJobs.length,24,'actual provider scheduler creates exactly the authored 24 cases');
   assert.equal(new Set(periodJobs.map(x=>x.caseId)).size,24);
-  assert.equal(periodJobs.filter(x=>x.channel==='voice').length,12);
-  assert.equal(periodJobs.filter(x=>x.channel==='message').length,12);
+  assert.equal(periodJobs.filter(x=>x.channel==='voice').length,13);
+  assert.equal(periodJobs.filter(x=>x.channel==='message').length,11);
   assert.ok(periodJobs.filter(x=>x.preference==='socialMessaging').every(x=>x.interactionId&&x.channel==='message'));
   assert.ok(recoveredIncidentIds.length>0,'authored incident was repaired using public campaign commands');
 });
@@ -154,6 +156,10 @@ test('a message retry uses the same case context and its accepted usage is charg
   let s=commissionSetup(start('smb'),'smb');
   s=operation(s,'cisco-programmable-engagement');
   const plannedPlan=nextPlan(s,Math.floor(s.clock/60)+1);s=plannedPlan.s;const plan=plannedPlan.result;
+  const authoredMessageCases=plan.jobs.filter(x=>x.channel==='message').map(x=>x.caseId);
+  assert.equal(plan.actualDigitalCount,11,'the current authored SMB/social plan schedules eleven digital cases');
+  assert.equal(authoredMessageCases.length,plan.actualDigitalCount);
+  assert.equal(new Set(authoredMessageCases).size,authoredMessageCases.length);
   const planned=plan.jobs.find(x=>x.channel==='message');
   assert.ok(planned,'social preference creates real eligible digital work');
   const absoluteArrival=plan.periodIndex*60+planned.arrivalAt;
@@ -174,9 +180,14 @@ test('a message retry uses the same case context and its accepted usage is charg
   assert.equal(receipt.caseId,planned.caseId);
   assert.equal(campaignJob.messageCharged,true);
   s=advance(s,(plan.periodIndex+1)*60-s.clock);
+  const periodJobs=s.providerCampaign.jobs.filter(x=>x.customerId===CUSTOMER&&x.periodIndex===plan.periodIndex&&x.channel==='message');
+  const chargedMessageJobs=periodJobs.filter(x=>x.messageCharged);
+  assert.equal(periodJobs.length,authoredMessageCases.length,'the executor retains one campaign job per authored digital case through period settlement');
+  assert.deepEqual(chargedMessageJobs.map(x=>x.caseId).sort(),[...authoredMessageCases].sort(),'each accepted authored digital case is charged once, with no per-attempt duplicate');
+  assert.equal(new Set(chargedMessageJobs.map(x=>x.caseId)).size,chargedMessageJobs.length,'a retry cannot create another chargeable job for the same case');
   const messagePosts=s.business.ledger.filter(x=>x.customerId===CUSTOMER&&x.period===plan.periodIndex&&x.reason==='provider-message-usage');
   assert.equal(messagePosts.length,1,`period settlement posts message usage once; rows=${JSON.stringify(s.business.ledger.filter(x=>x.reason==='provider-message-usage'))}`);
-  assert.equal(messagePosts[0].quantity,12,'one period ledger posting accounts for all twelve accepted digital messages without repeated retry charges');
+  assert.equal(messagePosts[0].quantity,chargedMessageJobs.length,'one period posting equals distinct accepted digital cases, not delivery-attempt count');
   assert.ok(digitalWrapOverlaps.length>0,'an already in-flight digital assignment can overlap wrap without invalidating the bounded concurrency snapshot');
   assert.deepEqual(SOC.restore(JSON.stringify(s)),s,'observed in-flight wrap state and campaign receipts survive validated restore');
   assert.ok(recoveredIncidentIds.length>0,'incident recovery ran through campaign commands while delivering the retry workload');

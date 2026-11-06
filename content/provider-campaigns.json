@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "id": "provider-campaigns-7",
+  "id": "provider-campaigns-8",
   "periodMinutes": 60,
   "secondsPerMinute": 2,
   "startingCashCents": 2000000,
@@ -449,6 +449,22 @@
       "config": {},
       "requirements": [],
       "sourceIds": []
+    },
+    {
+      "id": "diagnose-incident",
+      "name": "Scoped incident diagnosis",
+      "description": "Reserve engineering and support time to examine the selected incident. The result may identify an observed outage or disconnection, or remain inconclusive. Repair and mitigation require their own decisions. Public symptoms remain free to inspect.",
+      "setupCents": 6000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "DEC-011"
+      ]
     },
     {
       "id": "mitigate",
@@ -1513,6 +1529,179 @@
         "transcription"
       ],
       "config": {}
+    },
+    {
+      "id": "provider-support-coverage",
+      "name": "Named regional support coverage",
+      "setupCents": 9000,
+      "periodCents": 8000,
+      "workMinutes": 4,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.progression-level.7"
+      ],
+      "coverageTerms": {
+        "business-hours": {
+          "setupCents": 9000,
+          "periodCents": 8000,
+          "workMinutes": 4,
+          "engineers": 0,
+          "support": 1
+        },
+        "extended": {
+          "setupCents": 18000,
+          "periodCents": 16000,
+          "workMinutes": 6,
+          "engineers": 0,
+          "support": 1
+        },
+        "distributor-extended": {
+          "setupCents": 24000,
+          "periodCents": 12000,
+          "workMinutes": 8,
+          "engineers": 0,
+          "support": 1
+        }
+      }
+    },
+    {
+      "id": "integration-assurance",
+      "name": "Integration-aware assurance policy",
+      "description": "Fund a reusable incident-response policy for the customers and tested product integrations in the earned integration-support milestone. Every repair remains quoted and paid; changed integrations or missing boundary evidence suspend the policy.",
+      "setupCents": 30000,
+      "periodCents": 9000,
+      "workMinutes": 6,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-dedicated-interconnect",
+      "name": "Direct dedicated interconnect",
+      "description": "Commission an authenticated gateway using existing paid sessions. Provider engineering and higher setup reduce recurring cost; real inbound and outbound media remain required.",
+      "setupCents": 24000,
+      "periodCents": 6000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "managed-dedicated-interconnect",
+      "name": "Supplier-managed dedicated interconnect",
+      "description": "After proving dedicated interconnection in this market, buy supplier commissioning with lower setup and higher recurring cost. Existing capacity and supplier commitments remain.",
+      "setupCents": 12000,
+      "periodCents": 9000,
+      "workMinutes": 8,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.goal.pn",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:domain:commercial-roles"
+      ]
+    },
+    {
+      "id": "direct-case-followup",
+      "name": "Direct case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "managed-case-followup",
+      "name": "Managed case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 9000,
+      "periodCents": 6500,
+      "workMinutes": 7,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "retry-case-followup",
+      "name": "Retry case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "direct-room-integration",
+      "name": "Grove and Disco room integration",
+      "description": "Fund eight minutes of setup, explicitly test compatibility, then deliver a real cross-platform bridge meeting. Both room products must already be funded and ready.",
+      "setupCents": 50000,
+      "periodCents": 12000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "room"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-meetings-room",
+        "cisco-meetings-interoperability"
+      ],
+      "sourceIds": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ]
     }
   ],
   "families": [
@@ -1738,5 +1927,15 @@
     "deadlineMinutes": 24,
     "windowMinutes": 10,
     "maximumLatencyMs": 500
+  },
+  "caseFollowupDemand": {
+    "version": 1,
+    "deadlineMinutes": 20,
+    "maximumArrivalMinute": 40,
+    "casesPerPeriod": 1,
+    "requiresPaidWorkflow": true,
+    "variantDeadlineMinutes": {
+      "peak-window": 30
+    }
   }
 }

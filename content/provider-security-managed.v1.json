@@ -1,0 +1,22 @@
+{
+  "id": "provider-security-managed-1",
+  "version": 1,
+  "sourceId": "progress.goal.scrub",
+  "planId": "edge-managed",
+  "unlockScope": "another-customer-in-earned-market",
+  "description": "An earned supplier-managed network filter trades lower setup and zero Provider engineer reservations for higher recurring cost and two support reservations. SIP and destination controls remain separately paid prerequisites.",
+  "offer": {
+    "name": "Managed Edge \u00b7 5,000 PPS clean / 50,000 PPS filtered",
+    "setupCents": 25000,
+    "periodCents": 14000,
+    "workMinutes": 4,
+    "engineers": 0,
+    "support": 2,
+    "config": {
+      "enabled": true,
+      "capacityPps": 5000,
+      "mitigationPps": 50000,
+      "activationMode": "always"
+    }
+  }
+}

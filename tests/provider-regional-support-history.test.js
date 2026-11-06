@@ -1,7 +1,9 @@
 "use strict";
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
 const SOC=require('../src/game/55-communications'),facts=require('../src/game/23-provider-progression');
+const REGIONAL=require('../src/game/23-provider-regional-support');
 const copy=value=>JSON.parse(JSON.stringify(value)),customerId='starter-customer';
+const {startCustomer,operation,operationComplete,until,mspFor,stableSupportWindowShape}=require('./provider-progression-regional-claims.helpers.js');
 let original;
 function paidHistory(){
  if(original)return copy(original);
@@ -62,6 +64,47 @@ test('public staff journal and retained resize events must agree even when same-
  const journalForgery=copy(state),changes=journalForgery.providerCampaign.workforceHistory.resizes;changes[0].to.support=1;changes[1].from.support=1;
  assert.equal(journalForgery.providerCampaign.payroll.personMinutes,state.providerCampaign.payroll.personMinutes);assert.equal(journalForgery.business.workforce.support,state.business.workforce.support);
  assert.throws(()=>SOC.restore(JSON.stringify(journalForgery)),/INVALID_PROVIDER_WORKFORCE_HISTORY_EVENTS/);
+});
+test('regional support verification keeps roster reuse local to one read and returns no mutable cached authority',()=>{
+ const state=paidHistory(),rows=facts.decodeSupportObservation(state.providerCampaign.supportObservation),participant=rows.at(-1).participants[0],at=rows.at(-1).at;
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(state,participant,at),true);
+ const observed=REGIONAL.sample(state,participant.customerId,at);assert.equal(observed.eligible,true);
+ observed.namedSupport.usedSupportSlots=99;observed.capacity.personIds.push('forged-person');
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(state,participant,at),true,'mutating a public observation cannot alter saved or reused authority');
+ const stale=copy(state),project=stale.providerCampaign.projects.find(row=>row.id===participant.namedSupport.projectId);
+ project.setupCents+=1;
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(stale,participant,at),false,'a later validation rebuilds authority from the changed state instead of reusing a prior invocation cache');
+ assert.equal(REGIONAL.validateNamedSupportSnapshot(state,participant,at),true,'the original state remains valid');
+});
+function stablePaidWindow(){
+ let state=SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',seed:73,difficulty:'easy'});
+ state=startCustomer(state,customerId,'starter','au-sydney');
+ state=operation(state,'bpo',customerId);state=operationComplete(state,'bpo',customerId);
+ state=until(state,current=>!!mspFor(current,customerId),'regional test MSP',120);
+ state=operation(state,'service-boundary-review',customerId);state=operationComplete(state,'service-boundary-review',customerId);
+ state=operation(state,'provider-support-coverage',customerId,{market:'au-sydney',personId:'support-au-sydney-01',coverageId:'extended'});
+ state=operationComplete(state,'provider-support-coverage',customerId);
+ return until(state,current=>stableSupportWindowShape(current,[customerId]),'regional test support window',180);
+}
+test('regional evidence reuses only a private read roster and rechecks paid and saved support proof on each invocation',()=>{
+ let state=stablePaidWindow();const original=JSON.stringify(state),first=REGIONAL.evaluate(state),goal=first.levels[REGIONAL.GOALS.C3];
+ assert.equal(goal.status,'incomplete','the one-customer fixture remains below the C3 threshold');
+ assert.ok(!goal.missing.some(reason=>reason.startsWith(`NAMED_SUPPORT_NOT_CURRENT:${customerId}:`)),'all sixty retained positive support observations are independently current');
+ goal.missing.push('caller mutation');assert.equal(JSON.stringify(state),original,'evaluation and returned diagnostics do not mutate the input');
+ const second=REGIONAL.evaluate(state).levels[REGIONAL.GOALS.C3];assert.ok(!second.missing.includes('caller mutation'));
+ const rows=copy(facts.decodeSupportObservation(state.providerCampaign.supportObservation)),saved=copy(state.providerCampaign.supportObservation);
+ rows.at(-1).participants[0].namedSupport.usedSupportSlots+=1;
+ state.providerCampaign.supportObservation=facts.encodeSupportObservation(rows);
+ const forged=REGIONAL.evaluate(state).levels[REGIONAL.GOALS.C3];
+ assert.ok(forged.missing.some(reason=>reason.startsWith(`NAMED_SUPPORT_NOT_CURRENT:${customerId}:`))||forged.missing.some(reason=>reason.startsWith(`NAMED_SUPPORT_EVIDENCE_INVALID:${customerId}:`)),'a rehashed staff snapshot forgery is rejected');
+ state.providerCampaign.supportObservation=saved;
+ assert.equal(JSON.stringify(state),original,'decoded and encoded row edits cannot alias the original observation');
+ const restored=REGIONAL.evaluate(state).levels[REGIONAL.GOALS.C3];assert.ok(!restored.missing.some(reason=>reason.startsWith(`NAMED_SUPPORT_NOT_CURRENT:${customerId}:`)),`the same state is freshly checked after restoration: ${restored.missing.join('|')}`);
+ const support=state.providerCampaign.projects.find(project=>project.id===rows.at(-1).participants[0].namedSupport.projectId),posting=state.business.ledger.find(entry=>entry.id===support.postingId),cents=posting.cents;
+ posting.cents++;
+ assert.throws(()=>REGIONAL.evaluate(state),/INVALID_PROVIDER_SUPPORT_ASSIGNMENT/,'changed payment lineage cannot reuse a previously read paid roster');
+ posting.cents=cents;
+ assert.ok(!REGIONAL.evaluate(state).levels[REGIONAL.GOALS.C3].missing.some(reason=>reason.startsWith(`NAMED_SUPPORT_NOT_CURRENT:${customerId}:`)),'restoring the paid input starts a fresh valid read');
 });
 test('actual serialized SOC worker matches direct paid support history through resize, tick and restore',()=>{
  let state=paidHistory(),message;const context={postMessage:value=>{message=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);

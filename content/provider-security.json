@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "id": "provider-security-1",
+  "currency": "AUD cents",
+  "billingIntervalMinutes": 60,
+  "sourceIds": [
+    "progress.goal.scrub",
+    "progress.incident-mechanic.scrub",
+    "action:scrubUp",
+    "action:scrubMode",
+    "state:S.scrubMode",
+    "state:S.scrubs",
+    "requirement:scrubbed",
+    "requirement:scrubnear",
+    "asset:scrubMo1/scrubMo/cleanMo:",
+    "asset:SCRUB_TIERS:0",
+    "asset:SCRUB_TIERS:1",
+    "asset:SCRUB_TIERS:2",
+    "asset:SCRUB_TIERS:3"
+  ],
+  "sourceContext": {
+    "goal": "Stand up DDoS defences by building a scrubbing center, filtering attacks up to capacity and selling protection.",
+    "requirement": "The customer prefers a network that scrubs DDoS traffic without hauling it across an ocean.",
+    "comparison": "A packet bouncer should turn away the flood without ejecting the paying callers with it; an overworked filter can mistake clean traffic for the troublemakers.",
+    "sourceReward": 20000,
+    "sourceRewardUnit": "source-game currency, provenance only",
+    "sourceCapacityTiers": ["100G", "1T", "10T", "100T"],
+    "capacityNote": "Original bandwidth labels remain source provenance; Provider plans price fictional PPS controls and never convert those labels or the source reward to AUD."
+  },
+  "voiceServicePrerequisites": [
+    "provider-security-network",
+    "provider-security-sip",
+    "provider-security-destination"
+  ],
+  "controls": {
+    "network": {
+      "operationId": "provider-security-network",
+      "name": "Edge packet scrubbing",
+      "description": "Fund a bounded packet-per-second filter. Capacity is measured in simulated packets per second, not in the source game's bandwidth tiers.",
+      "resources": ["carrier"],
+      "requirements": ["active-customer", "effective-carrier-stage"],
+      "offers": {
+        "edge-basic": {
+          "name": "Edge Basic · 1,000 PPS clean / 10,000 PPS filtered",
+          "setupCents": 26000,
+          "periodCents": 6000,
+          "workMinutes": 6,
+          "engineers": 1,
+          "support": 1,
+          "config": {"enabled": true, "capacityPps": 1000, "mitigationPps": 10000, "activationMode": "always"}
+        },
+        "edge-resilient": {
+          "name": "Edge Resilient · 5,000 PPS clean / 50,000 PPS filtered",
+          "setupCents": 42000,
+          "periodCents": 9500,
+          "workMinutes": 8,
+          "engineers": 1,
+          "support": 1,
+          "config": {"enabled": true, "capacityPps": 5000, "mitigationPps": 50000, "activationMode": "always"}
+        }
+      },
+      "limits": {
+        "capacityPps": [100, 100000000],
+        "mitigationPps": [100, 100000000],
+        "activationModes": ["always", "on-demand"]
+      }
+    },
+    "sip": {
+      "operationId": "provider-security-sip",
+      "name": "Authenticated SIP admission",
+      "description": "Fund separate peer authentication, allowed methods and a per-peer signalling rate. The authenticated synthetic carrier peer is part of this paid configuration.",
+      "resources": ["carrier", "phone"],
+      "requirements": ["active-customer", "effective-carrier-stage", "effective-phone-route"],
+      "offers": {
+        "sip-standard": {
+          "name": "Authenticated Invite · 10 attempts/sec · 2,048 bytes",
+          "setupCents": 18000,
+          "periodCents": 4500,
+          "workMinutes": 5,
+          "engineers": 1,
+          "support": 1,
+          "config": {"enabled": true, "attemptsPerSecond": 10, "allowedMethods": ["INVITE"], "maxMessageBytes": 2048, "requireAuthenticatedPeer": true}
+        },
+        "sip-restricted": {
+          "name": "Restricted Invite · 5 attempts/sec · 1,024 bytes",
+          "setupCents": 26000,
+          "periodCents": 6500,
+          "workMinutes": 7,
+          "engineers": 1,
+          "support": 1,
+          "config": {"enabled": true, "attemptsPerSecond": 5, "allowedMethods": ["INVITE"], "maxMessageBytes": 1024, "requireAuthenticatedPeer": true}
+        }
+      },
+      "supplierPeer": {
+        "id": "provider-carrier-peer",
+        "authenticated": true,
+        "available": true,
+        "methods": ["INVITE"]
+      },
+      "limits": {
+        "attemptsPerSecond": [1, 100000],
+        "messageBytes": [64, 65535],
+        "methods": ["INVITE", "REGISTER", "OPTIONS", "MESSAGE", "ACK", "CANCEL", "BYE"]
+      }
+    },
+    "destination": {
+      "operationId": "provider-security-destination",
+      "name": "Destination and spend guard",
+      "description": "Fund explicit destination prefixes, a per-call cap and a rolling spend cap. Blocked calls preserve already billed core usage.",
+      "resources": ["carrier", "phone"],
+      "requirements": ["active-customer", "effective-carrier-stage", "effective-phone-route"],
+      "offers": {
+        "australia-guard": {
+          "name": "Australia Destination Guard · A$1.00/call · A$1.20/60 min",
+          "setupCents": 14000,
+          "periodCents": 3500,
+          "workMinutes": 4,
+          "engineers": 0,
+          "support": 1,
+          "config": {"enabled": true, "allowedPrefixes": ["+61"], "perCallMaxCents": 100, "windowSpendLimitCents": 120, "windowMinutes": 60}
+        },
+        "australia-tight-guard": {
+          "name": "Australia Tight Guard · A$0.20/call · A$0.30/60 min",
+          "setupCents": 22000,
+          "periodCents": 6000,
+          "workMinutes": 6,
+          "engineers": 0,
+          "support": 1,
+          "config": {"enabled": true, "allowedPrefixes": ["+61"], "perCallMaxCents": 20, "windowSpendLimitCents": 30, "windowMinutes": 60}
+        }
+      },
+      "limits": {
+        "prefixCount": [1, 50],
+        "perCallCents": [1, 100000000],
+        "windowSpendCents": [1, 1000000000],
+        "windowMinutes": [1, 1440]
+      }
+    }
+  },
+  "authoredAbuseCases": {
+    "network": {
+      "peer": "synthetic-flood-origin",
+      "packets": 1250,
+      "secondOffset": 0,
+      "expectedCode": "NETWORK_FLOOD_FILTERED",
+      "mustKeepProtectedPath": true
+    },
+    "sip": {
+      "peer": "synthetic-unauthenticated-origin",
+      "authenticated": false,
+      "available": true,
+      "methods": ["INVITE", "REGISTER"],
+      "attempts": 1,
+      "method": "INVITE",
+      "messageBytes": 128,
+      "valid": true,
+      "secondOffset": 0,
+      "expectedCode": "SIP_AUTH_REQUIRED"
+    },
+    "destination": {
+      "to": "+18005550199",
+      "expectedCode": "DESTINATION_NOT_ALLOWED"
+    },
+    "ordinaryCall": {
+      "peer": "provider-carrier-peer",
+      "to": "+61255500201",
+      "method": "INVITE",
+      "durationMinutes": 3,
+      "mustResolve": true,
+      "mustSettleCoreUsageOnce": true
+    }
+  }
+}

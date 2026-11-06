@@ -7,6 +7,31 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
  const numericFields={phone:['capacity'],carrier:['capacity'],people:['people','entitlements','handlingMinutes','digitalConcurrency'],service:['capacity','maxWait'],messages:['rateLimit'],recorder:['capacity'],archive:['capacity','retentionDays'],speech:['capacity']};
  const normalize=x=>Array.isArray(x)?x.map(normalize):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(key=>[key,normalize(x[key])])):x;
  const stable=x=>JSON.stringify(normalize(x));
+ const expectedModelMemoStores=new WeakMap();
+ // This memo is valid only for one synchronous, read-only validator invocation.
+ // Discard it before any input mutation or dispatch; it is not a caller-owned
+ // cache that may be retained across state changes.
+ function createExpectedModelMemo(){const memo=Object.freeze({});expectedModelMemoStores.set(memo,new WeakMap());return memo;}
+ function expectedModelEpochKey(provider,customer,child,at,viewKind){
+  const projects=(provider.projects||[]).map((project,index)=>[index,project.id,project.serviceRetirement?{requestedAt:project.serviceRetirement.requestedAt,effectiveAt:project.serviceRetirement.effectiveAt,requested:project.serviceRetirement.requestedAt<=at,expectedGenerations:project.serviceRetirement.expectedGenerations}:null]);
+  const migrations=(child.operations?.migrations||[]).map(row=>({id:row.id,status:row.status,cutoverAt:row.cutoverAt,cutoverReached:Number.isSafeInteger(row.cutoverAt)&&row.cutoverAt<=at,verifyAt:row.verifyAt,target:row.target,identities:row.identities,checkpoint:Object.keys(row.checkpoint||{}).sort(),appliedGenerations:row.appliedGenerations}));
+  const deployments=(child.products?.deployments||[]).map(row=>({id:row.id,retired:!!row.retirement,status:row.provisioning?.status,due:row.provisioning?.due,dueReached:Number.isSafeInteger(row.provisioning?.due)&&row.provisioning.due<=at}));
+  const exercises=(child.siteOperations?.exercises||[]).map(row=>({id:row.id,startedAt:row.startedAt,restoration:row.restoration?{requestedAt:row.restoration.requestedAt,due:row.restoration.due}:null,nestedProjects:(row.restoration?(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=row.startedAt).map(project=>project.id):[]),nestedTasks:(row.restoration?(child.providerTasks||[]).filter(task=>task.createdAt<=row.startedAt).map((task,index)=>task.id||`${task.kind}:${task.migrationId||index}`):[])}));
+  const tasks=(child.providerTasks||[]).map((task,index)=>task.id||`${task.kind}:${task.migrationId||index}:${task.createdAt}:${task.status}`);
+  const interconnect=provider.dedicatedInterconnectVersion===1&&child.operations?(provider.projects||[]).filter(project=>project.customerId===customer.id&&['direct-dedicated-interconnect','managed-dedicated-interconnect'].includes(project.operationId)).map(project=>({id:project.id,accepted:project.acceptedAt<at,submitted:project.configSubmittedAt!==null&&project.configSubmittedAt!==undefined&&project.configSubmittedAt<=at})):null;
+  return stable({viewKind,customerId:customer.id,portfolioId:customer.portfolioId,customerScenario:customer.scenario,planId:customer.planId,rootId:child.providerCustomer?.id,rootPortfolioId:child.providerCustomer?.portfolioId,tenant:child.tenant,scenario:child.scenario,jurisdiction:child.jurisdiction,meetingDesired:child.information?.meeting?.desired,providerContentVersion:provider.contentVersion,meetingDependencyVersion:provider.meetingDependencyVersion,dedicatedInterconnectVersion:provider.dedicatedInterconnectVersion,enterpriseContinuityVersion:provider.enterpriseContinuityVersion,externalCollaborationVersion:provider.externalCollaborationVersion,projectIds:projects,migrations,deployments,exercises,tasks,interconnect});
+ }
+ function expectedModelAt(provider,customer,child,catalogue,at,memo,scope,viewKind='reader'){
+  if(!memo)return expectedModel(provider,customer,child,catalogue);
+  const providers=expectedModelMemoStores.get(memo);if(!providers||!scope?.provider||!scope.customer||!scope.child)fail('EXPECTED_MODEL_MEMO_SCOPE');
+  let customers=providers.get(scope.provider);if(!customers){customers=new WeakMap();providers.set(scope.provider,customers);}
+  let roots=customers.get(scope.customer);if(!roots){roots=new WeakMap();customers.set(scope.customer,roots);}
+  let catalogues=roots.get(scope.child);if(!catalogues){catalogues=new WeakMap();roots.set(scope.child,catalogues);}
+  let models=catalogues.get(catalogue);if(!models){models=new Map();catalogues.set(catalogue,models);}
+  const key=expectedModelEpochKey(provider,customer,child,at,viewKind);
+  if(models.has(key))return models.get(key);
+  const model=expectedModel(provider,customer,child,catalogue,{memo,scope});models.set(key,model);return model;
+ }
  function merge(target,patch){for(const [key,value] of Object.entries(patch||{})){target[key]=clone(value);}}
  function defaultsFor(id,child,catalogue){const kind=resourceKinds[id];const definition=catalogue?.[kind];if(!definition?.defaults)fail(`CATALOGUE:${id}`);return {...clone(definition.defaults),enabled:false,region:child.jurisdiction};}
  function authorizedProjects(provider,customer){const list=(provider.projects||[]).map((project,index)=>({project,index})).filter(x=>x.project.customerId===customer.id&&x.project.configSubmittedAt!==null&&x.project.configSubmittedAt!==undefined&&x.project.status!=='cancelled');if(list.length>2000)fail('PROJECT_LIMIT');return list.sort((a,b)=>a.project.configSubmittedAt-b.project.configSubmittedAt||a.project.acceptedAt-b.project.acceptedAt||a.index-b.index).map(x=>x.project);}
@@ -82,7 +107,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   return patch;
  }
- function expectedModel(provider,customer,child,catalogue){
+ function expectedModel(provider,customer,child,catalogue,temporalContext=null){
   const plan=data?.plans?.[customer.planId];if(!plan)fail('PLAN');
   const configs=initialConfigs(customer,child,catalogue),known=new Set(Object.keys(configs)),accepted=Object.create(null),transitional=Object.create(null),latestWriteAt=Object.create(null),writesByProject=Object.create(null),migrationWrites=[],skipTiming=new Set();
   for(const id of Object.keys(configs))latestWriteAt[id]=0;
@@ -150,7 +175,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   function configsAt(at){
    const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild={...child,clock:at,providerTasks:(child.providerTasks||[]).filter(task=>task.createdAt<=at)};
    if(child.siteOperations)historicalChild.siteOperations={...child.siteOperations,exercises:[]};
-   return expectedModel(historicalProvider,customer,historicalChild,catalogue).configs;
+   return (temporalContext?expectedModelAt(historicalProvider,customer,historicalChild,catalogue,at,temporalContext.memo,temporalContext.scope,'restore-start'):expectedModel(historicalProvider,customer,historicalChild,catalogue)).configs;
   }
   for(const exercise of child.siteOperations?.exercises||[]){
    const project=projects.find(p=>['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
@@ -250,14 +275,14 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   validateCallingOperations(provider,customer,child,expected.projects);
   return true;
  }
- function configurationReaderAt(provider,customer,child,at,{catalogue}={}){
+ function configurationReaderAt(provider,customer,child,at,{catalogue,expectedModelMemo}={}){
   if(!provider||!customer||!child?.resources||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock)fail('READ_TIME');
   const projects=(provider.projects||[]).filter(p=>p?.customerId===customer.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&p.status!=='cancelled').map(p=>{
    const row=clone(p);if(row.serviceRetirement&&row.serviceRetirement.requestedAt>at)delete row.serviceRetirement;return row;
   });
   const historicalProvider={...provider,projects},historicalChild={...child,clock:at};
   if(Array.isArray(child.siteOperations?.exercises))historicalChild.siteOperations={...child.siteOperations,exercises:child.siteOperations.exercises.map(exercise=>exercise.restoration?.requestedAt>at?{...exercise,restoration:null}:exercise)};
-  const expected=expectedModel(historicalProvider,customer,historicalChild,catalogue),resourceGenerations=Object.fromEntries(Object.entries(child.resources).map(([id,resource])=>[id,resource.generation]));
+  const expected=expectedModelAt(historicalProvider,customer,historicalChild,catalogue,at,expectedModelMemo,{provider,customer,child}),resourceGenerations=Object.fromEntries(Object.entries(child.resources).map(([id,resource])=>[id,resource.generation]));
   const originalOrder=new Map((provider.projects||[]).map((project,index)=>[project.id,index]));
   const ordered=projects.slice().sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt||(originalOrder.get(a.id)||0)-(originalOrder.get(b.id)||0));
   const provenanceByResource=new Map();
@@ -342,9 +367,9 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   return {generation,effective:effective?clone(effective):null};
  }
  function hooksCatalogue(catalogue){return !!catalogue&&typeof catalogue==='object'&&!Array.isArray(catalogue);}
- function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();`;}
- return {version:1,validateCustomer,configurationAt,configurationReaderAt,configurationProvenanceAt,carrierConfigurationAt,source};
+ function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,createExpectedModelMemo:()=>load().createExpectedModelMemo(),validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();`;}
+ return {version:1,createExpectedModelMemo,validateCustomer,configurationAt,configurationReaderAt,configurationProvenanceAt,carrierConfigurationAt,source};
 }
 function socProviderConfigurationAuthorityDependencies(){if(typeof module!=='undefined'&&module.exports)return [require('./24-provider-rules.js'),require('./23-provider-products.js'),require('./23-provider-government.js')];return [SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES];}
-const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();
+const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,createExpectedModelMemo:()=>load().createExpectedModelMemo(),validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_CONFIGURATION_AUTHORITY;

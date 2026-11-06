@@ -7378,6 +7378,23 @@
       ],
       "status": "partial",
       "scope": "Versioned accepted retail history preserves actual prior agreements across renewal and bounded event eviction so historical support observations keep their paid boundary context. Current agreement, retained public commands and renewal events, authored budgets and period settlements are cross-checked; worker dispatch and save restore share validation. Legacy saves retain only their validated known agreement as the initial baseline. This bounded renewal regression does not establish complete Tier Two or regional progression."
+    },
+    {
+      "id": "BEH-SOC-410",
+      "sources": [
+        "progress.goal.rd",
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-support-work.js"
+      ],
+      "testIds": [
+        "AC-SOC-769",
+        "AC-SOC-770"
+      ],
+      "status": "partial",
+      "scope": "Paid resilient service can complete profitable work while an unresolved primary incident still blocks the public funded-expansion victory. Legitimate paid repair permits subsequent victory. At most two support-origin arrival events per customer remain pinned in the bounded Provider event journal, preserving actual support history despite holes caused by pinned commercial events. Older validated pruned origins retain their prior fallback; no event or historical work is invented."
     }
   ]
 }

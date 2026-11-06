@@ -1,6 +1,6 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **111 exact assertions verified, 44 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **113 exact assertions verified, 42 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
@@ -56,3 +56,5 @@ Frozen `7e6ca47` closes **PLAY-011-A01** using the two completed AC-SOC-684/685 
 
 
 The independent inventory review at `10759c7` closes **PLAY-039-A02** and **PLAY-049-A01** only. All 51 stable actor mappings retain individual dispositions (four shared-partial and 47 pending); all 25 view mappings and six tutorial mappings now name explicit actual placements. Six distinct coach positions were rendered, and the UI source matches that probe. Canonical actor implementation statuses, tutorial predicate differences and full browser accessibility remain open. The ledger stores the external audit hash and reconciles all nested counts.
+
+The independently reviewed terminal AC-SOC-674/686/687 results at frozen `7e6ca47` close **PLAY-009-A02** and **PLAY-030-A03**: relabelled Lab exports cannot restore Provider authority, and a paid human voice-to-digital handoff retains one case, one resolution and exact usage with restore/worker parity. The full suite remains in progress. Full six-total case conservation and a public overdue-critical victory counterexample remain pending.

@@ -115,3 +115,26 @@ test('copying paid transport into Lab preserves topology with separate Lab finan
 test('a legitimately late paid recovery can finish the customer case but cannot earn the ten-minute resilience assessment',()=>{
  let s=until(sequenceOpening(),state=>phaseInteraction(state,1)?.phase==='resolved',140);const delayedUntil=s.clock+3;s=until(s,state=>state.clock===delayedUntil,3);s=repairTransport(s);s=until(s,state=>sequenceJob(state).status==='completed',30);const j=sequenceJob(s);assert.ok(j.completedAt<=j.deadlineAt);assert.ok(j.completedAt>j.resilienceSequence.windowStart+10);const assessment=require('../src/game/23-provider-resilience-sequence').evaluate(s,customerId,j,{child:child(s)});assert.equal(assessment.eligible,false);assert.ok(assessment.missing.includes('SEQUENCE_EXCEEDED_TEN_MINUTE_WINDOW'));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+
+
+test('AC-SOC-769 actual overdue primary-domain incident prevents funded SMB victory despite two qualifying periods until paid recovery',async()=>{
+ let s=until(sequenceOpening(),state=>state.clock===180,150);
+ assert.equal(s.providerCampaign.mission.consecutiveQualifying,2);
+ assert.ok(s.providerCampaign.periodHistory.slice(-2).every(p=>p.due===24&&p.completedOnTime>=22&&p.operatingResult>0&&p.qualified));
+ const incident=s.providerCampaign.incidents.find(i=>i.kind==='transport-domain'&&i.status==='active');assert.ok(incident);assert.ok(incident.dueAt<s.clock);
+ assert.equal(SOC.provider.inspect(s).customers[0].transport.paths.diverse.ready,true,'the paid backup serves work while the primary incident remains unresolved');
+ const expansion={action:'purchase',offerId:'next-1',planId:'steady',stage:'base'};
+ for(const acknowledged of [false,true]){
+  let before=SOC.restore(JSON.stringify(s));if(acknowledged)before=send(before,{action:'acknowledge-incident',incidentId:incident.id});
+  const quote=SOC.provider.quote(before,expansion);assert.deepEqual(quote.blockers,[]);
+  const command={type:'provider',command:{...expansion,quoteRevision:quote.atRevision}},cash=before.business.balance.cash,next=SOC.dispatch(before,command);
+  assert.equal(next.business.balance.cash,cash-quote.setupCents);assert.ok(next.providerCampaign.projects.some(p=>p.customerId==='next-1-customer'&&p.stage==='base'));
+  assert.equal(next.providerCampaign.missionStatus,'active');assert.equal(next.providerCampaign.status,'operating');assert.equal(next.providerCampaign.mission.victoryProof,null);assert.ok(!next.providerCampaign.events.some(e=>e.code==='MISSION_WON'));
+  assert.deepEqual(SOC.restore(JSON.stringify(next)),next);
+  if(acknowledged){const reply=await worker(before,command);assert.equal(reply.error,undefined);assert.deepEqual(reply.state,JSON.parse(JSON.stringify(next)));}
+ }
+ s=buy(s,expansion);s=repairTransport(s);s=until(s,state=>project(state,'transport-repair').status==='complete',20);
+ assert.equal(s.providerCampaign.incidents.find(i=>i.id===incident.id).status,'resolved');assert.equal(s.providerCampaign.mission.consecutiveQualifying,2);
+ s=buy(s,{action:'purchase',offerId:'next-1',planId:'steady',stage:'carrier',customerId:'next-1-customer'});
+ assert.equal(s.providerCampaign.missionStatus,'won');assert.ok(s.providerCampaign.mission.victoryProof);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});

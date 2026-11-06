@@ -1056,6 +1056,12 @@
     ],
     "tests/provider-retail-history.test.js": [
       "AC-SOC-755"
+    ],
+    "tests/provider-resilience-sequence.test.js": [
+      "AC-SOC-769"
+    ],
+    "tests/provider-support-work.test.js": [
+      "AC-SOC-770"
     ]
   },
   "inputs": [
@@ -1637,6 +1643,8 @@
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
     "tests/workforce-quality.test.js",
-    "tests/provider-retail-history.test.js"
+    "tests/provider-retail-history.test.js",
+    "tests/provider-resilience-sequence.test.js",
+    "tests/provider-support-work.test.js"
   ]
 }

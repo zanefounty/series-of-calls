@@ -8,12 +8,12 @@ function opening(){
  while(s.providerCampaign.supportWork.origins.length<2){assert.ok(s.clock<20);s=SOC.dispatch(s,{type:'advance',minutes:1});}
  return s;
 }
-test('paid Provider work retains bounded exact origins through actual event eviction and restore',()=>{
+test('AC-SOC-770 paid Provider work pins bounded exact arrival origins while other events evict and restores',()=>{
  let s=opening();const initial=copy(s.providerCampaign.supportWork),cash=s.business.balance.cash,clock=s.clock;
  for(let n=0;n<205;n++)s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:n%2?2:3,support:1}});
- assert.equal(s.clock,clock);assert.equal(s.business.balance.cash,cash);assert.equal(s.providerCampaign.events.length,200);
+ assert.equal(s.clock,clock);assert.equal(s.business.balance.cash,cash);assert.equal(s.providerCampaign.events.length,200);assert.ok(s.providerCampaign.eventCheckpoint.count>0);assert.ok(s.providerCampaign.events.some(e=>Number(e.id.slice(15))<s.providerCampaign.eventCheckpoint.count),'pinned origins create genuine holes in the evicted sequence');
  assert.deepEqual(s.providerCampaign.supportWork,initial);assert.equal(initial.origins.length,2);
- for(const row of initial.origins){assert.ok(!s.providerCampaign.events.some(e=>e.id===row.arrival.id));assert.ok(s.providerCampaign.jobs.some(j=>j.id===row.jobId));const child=s.portfolio.customers[0].root,i=child.interactions.find(i=>i.id===row.arrival.interactionId);assert.deepEqual(WORK.origin(s,row.customerId,i,s.clock),row.arrival);assert.equal(WORK.origin(s,row.customerId,i,row.completedAt-1),null);}
+ for(const row of initial.origins){assert.deepEqual(s.providerCampaign.events.find(e=>e.id===row.arrival.id),row.arrival);assert.ok(s.providerCampaign.jobs.some(j=>j.id===row.jobId));const child=s.portfolio.customers[0].root,i=child.interactions.find(i=>i.id===row.arrival.interactionId);assert.deepEqual(WORK.origin(s,row.customerId,i,s.clock),row.arrival);assert.equal(WORK.origin(s,row.customerId,i,row.completedAt-1),null);}
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  const before=JSON.stringify(s);assert.equal(WORK.validate(s),true);assert.equal(JSON.stringify(s),before);
  const context={};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.postMessage=x=>context.result=x;context.onmessage({data:{id:1,state:copy(s),command:{type:'advance',minutes:1}}});assert.equal(context.result.error,undefined);assert.deepEqual(copy(context.result.state),SOC.dispatch(s,{type:'advance',minutes:1}));

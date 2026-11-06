@@ -860,6 +860,16 @@
         "src/game/97-provider-shell.js": true
       },
       "scope": "All 51 stable actor mappings and individual honest dispositions; all 25 view and six tutorial placements. Existing shared-partial/pending actor statuses and tutorial behaviour gaps remain unchanged. DOM placement inspection is not responsive/browser or full tutorial acceptance."
+    },
+    "authority-handoff-7e6ca47": {
+      "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
+      "status": "individual-cases-passed",
+      "rawArtifact": "/tmp/soc-7e6ca47-authority-handoff-mission-audit.json",
+      "sha256": "58909797473d04ff194f503913f44df99b7e99f26a0df33731f60b1bf237f1fe",
+      "log": "/tmp/soc-full-suite-7e6ca47.log",
+      "launchManifest": "/tmp/soc-full-suite-7e6ca47-inputs.json",
+      "changedSinceLaunch": [],
+      "scope": "Only terminal AC-SOC-674/686/687 and independent source review. Enclosing suite still active; no full-suite or visible-control pass claimed."
     }
   },
   "tests": {
@@ -3933,6 +3943,30 @@
       "result": "passed",
       "run": "inventory-placement-10759c7",
       "kind": "independent-inventory-and-DOM-review"
+    },
+    "AUTHORITY-674": {
+      "file": "tests/provider-authority-counterexamples.test.js",
+      "name": "\u2714 AC-SOC-674 paid Provider copy remains a separate custom Lab and relabelling its exported copy cannot restore earned authority (119.896651ms)",
+      "fileSha256": "ad9ff9bdd6420fc4534c0dd6dad40091b2fd15fcba7d62401a7f3fce093933f1",
+      "result": "passed",
+      "run": "authority-handoff-7e6ca47",
+      "logLine": 986
+    },
+    "AUTHORITY-686": {
+      "file": "tests/provider-case-handoff-dispatch.test.js",
+      "name": "\u2714 AC-SOC-686 paid Provider hands one authored queued voice case to a real human digital leg without duplicate obligation or billing (52770.834611ms)",
+      "fileSha256": "d0f1c7b38a00de54b9f75b265ad211a814f57c4083c438f6302bca68b7288632",
+      "result": "passed",
+      "run": "authority-handoff-7e6ca47",
+      "logLine": 1060
+    },
+    "AUTHORITY-687": {
+      "file": "tests/provider-case-handoff-dispatch.test.js",
+      "name": "\u2714 AC-SOC-687 actual unpaid and mandatory Provider voice cases refuse handoff without changing their case or treasury (28.652837ms)",
+      "fileSha256": "d0f1c7b38a00de54b9f75b265ad211a814f57c4083c438f6302bca68b7288632",
+      "result": "passed",
+      "run": "authority-handoff-7e6ca47",
+      "logLine": 1061
     }
   },
   "requirements": {
@@ -4084,15 +4118,15 @@
         "src/game/97-provider-shell.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-training-map",
         "candidate-product-compatibility",
         "candidate-lab-fixture-separation"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-010": {
@@ -4479,14 +4513,14 @@
         "src/game/25-provider-campaign.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
         "candidate-commercial-growth"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-031": {
@@ -6278,7 +6312,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Existing kernel proves partial initial period cannot qualify and actual two full profitable periods plus funded expansion. Exact quiet-period/no-overdue-critical-obligations false-victory counterexamples remain unlinked; require those negatives before full contract closure."
+      "remaining": "Current public SMB positive and real quiet/partial negatives passed at 7e6ca47. Isolated retainedMissionVictory rejects overdue incidents, default, underfilled periods and cancelled expansion; a real nearly-winning public career with an overdue incident at the award boundary is still required."
     },
     {
       "id": "PLAY-009-A01",
@@ -6342,7 +6376,7 @@
       "requirement": "PLAY-009",
       "sourceIndex": 1,
       "assertion": "A campaign exported to Lab is custom; changing a label does not restore earned campaign status.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B001",
         "B002",
@@ -6376,20 +6410,21 @@
       "reviewTestCandidates": [
         "B004"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
         "implementation": [
-          "src/game/55-communications.js"
+          "src/game/55-communications.js",
+          "src/game/25-provider-campaign.js"
         ],
         "tests": [
-          "C014",
-          "C043"
+          "AUTHORITY-674"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Paid campaign copied through public copy-to-lab; custom Lab has no Provider campaign/customer authority; authored Lab restored; experience labels changed to campaign/custom:false with both original and guided modes reject CAMPAIGN_STATE_REQUIRED; original campaign and Lab inputs preserved.",
+        "limitations": "No claim of browser copy/import interaction proof or all Lab authority pathways.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Copy-to-Lab/custom/source-preservation test is positive. Exact modified Lab relabel-to-earned-campaign restore refusal is not named in current mapped tests; canonical browser does not execute copy-to-Lab then relabel/import."
+      "remaining": "No remaining criterion for this exact assertion. No claim of browser copy/import interaction proof or all Lab authority pathways."
     },
     {
       "id": "PLAY-009-A03",
@@ -9964,7 +9999,7 @@
       "requirement": "PLAY-030",
       "sourceIndex": 2,
       "assertion": "Voice-to-digital handoff preserves one customer case; it cannot claim two independent resolutions.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-family-capabilities",
@@ -9982,28 +10017,23 @@
       "reviewTestCandidates": [
         "R039"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
         "implementation": [
-          "content/provider-campaigns.json",
-          "src/game/23-provider-products.js",
-          "src/game/24-provider-rules.js",
+          "src/game/55-communications.js",
           "src/game/25-provider-campaign.js",
-          "src/game/46-outcomes.js",
-          "src/game/47-channels.js",
-          "src/game/55-communications.js"
+          "src/game/23-provider-case-handoff.js"
         ],
         "tests": [
-          "C065",
-          "C062",
-          "C063",
-          "C177"
+          "AUTHORITY-686",
+          "AUTHORITY-687"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Actual paid authored queued voice case hands off through revision-bound provider command; voice leg ends CHANNEL_HANDOFF, human digital leg shares case/from/deadline, exactly one provider job remains, offered count unchanged, repeat request idempotent, second handoff refused, completion settles one obligation and one message charge with retained voice usage; restore and worker parity. Unpaid/mandatory and cross-customer/arbitrary-channel requests refused.",
+        "limitations": "Does not independently establish every aggregate offered/admitted/pending/completed/failed/abandoned conservation identity or browser control.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Voice-to-digital handoff preserves one customer case; it cannot claim two independent resolutions."
+      "remaining": "No remaining criterion for this exact assertion. Does not independently establish every aggregate offered/admitted/pending/completed/failed/abandoned conservation identity or browser control."
     },
     {
       "id": "PLAY-031-A01",
@@ -14198,7 +14228,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 111,
+    "assertionsClosed": 113,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14206,8 +14236,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 23,
-          "pending-current-candidate-verification": 5
+          "verified-current-candidate": 24,
+          "pending-current-candidate-verification": 4
         }
       },
       {
@@ -14236,8 +14266,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 15,
-          "pending-current-candidate-verification": 6
+          "verified-current-candidate": 16,
+          "pending-current-candidate-verification": 5
         }
       },
       {
@@ -14289,8 +14319,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 111,
-      "pending-current-candidate-verification": 44,
+      "verified-current-candidate": 113,
+      "pending-current-candidate-verification": 42,
       "parked-owner-request": 4
     }
   },
@@ -14314,8 +14344,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 111,
-      "pending-current-candidate-verification": 44,
+      "verified-current-candidate": 113,
+      "pending-current-candidate-verification": 42,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14447,6 +14477,17 @@
           "PLAY-049-A01"
         ],
         "scope": "Two exact inventory/placement closures only. Actor implementation dispositions, source tutorial predicate gaps and all release/research gates unchanged."
+      },
+      {
+        "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
+        "runs": [
+          "authority-handoff-7e6ca47"
+        ],
+        "assertions": [
+          "PLAY-009-A02",
+          "PLAY-030-A03"
+        ],
+        "scope": "Two exact public-dispatch authority and one-case handoff closures. Full aggregate conservation and overdue-critical victory negatives remain open; no browser or full-suite completion claim."
       }
     ]
   }

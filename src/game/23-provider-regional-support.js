@@ -326,10 +326,11 @@ function socProviderRegionalSupportKernel(){
   const samples=evidence.samples;if(samples.some((x,i)=>!x||x.at!==evidence.interval.from+1+i||!Array.isArray(x.cohort)||!same(x.cohort,evidence.customerIds)||i&&x.at!==samples[i-1].at+1))return false;
   try{const rebuilt=marketEvidence(s,sourceId,{...hooks,supportSamples:samples},{historical:options.historical===true});return rebuilt.status==='ready'&&same(rebuilt.evidence,evidence);}catch{return false;}
  }
- function retentionPins(evidence,customerId){
-  const pins={interactionIds:[],caseIds:[],jobIds:[],processingJobIds:[],recordIds:[],incidentIds:[],projectIds:[],customerIds:[],postingIds:[],boundaryContractIds:[],integrationIds:[],distributorProjectIds:[]};
+ function retentionPins(evidence,customerId,workProofs=[]){
+  const pins={interactionIds:[],caseIds:[],jobIds:[],processingJobIds:[],recordIds:[],incidentIds:[],projectIds:[],customerIds:[],postingIds:[],boundaryContractIds:[],integrationIds:[],distributorProjectIds:[],eventIds:[]};
   if(!evidence||evidence.kind!=='provider-regional-support-window-v1'||evidence.version!==VERSION)return pins;
   const uniq=x=>[...new Set(x.filter(v=>typeof v==='string'&&v.length>0))].sort(),samples=evidence.samples||[],participants=samples.flatMap(x=>x.participants||[]).filter(p=>customerId===undefined||p.customerId===customerId);
+  const workIds=new Set(participants.flatMap(p=>(p.freshJobs||[]).map(j=>`${p.customerId}\0${j.jobId}`)));
   pins.customerIds=uniq(participants.map(p=>p.customerId));
   pins.interactionIds=uniq(participants.flatMap(p=>(p.freshJobs||[]).map(j=>j.interactionId)));
   pins.caseIds=uniq(participants.flatMap(p=>(p.freshJobs||[]).map(j=>j.caseId)));
@@ -341,7 +342,9 @@ function socProviderRegionalSupportKernel(){
   pins.postingIds=uniq(participants.flatMap(p=>[p.namedSupport?.postingId,p.responsibility?.postingId,p.distributor?.postingId,p.distributor?.qualificationPostingId,...(p.settlements||[]).flatMap(q=>[q.revenuePostingId,...(q.costPostingIds||[])])]));
   pins.boundaryContractIds=uniq(participants.flatMap(p=>(p.boundaries||[]).map(b=>b.id)));
   pins.integrationIds=uniq(participants.flatMap(p=>(p.integrations||[]).map(i=>i.id)));
-  pins.distributorProjectIds=uniq(participants.flatMap(p=>[p.distributor?.projectId,p.distributor?.qualificationProjectId]));return pins;
+  pins.distributorProjectIds=uniq(participants.flatMap(p=>[p.distributor?.projectId,p.distributor?.qualificationProjectId]));
+  pins.eventIds=uniq((Array.isArray(workProofs)?workProofs:[]).filter(proof=>workIds.has(`${proof?.customerId}\0${proof?.jobId}`)&&/^provider-event-[1-9]\d*$/.test(proof?.arrivalEventId||'')).map(proof=>proof.arrivalEventId));
+  return pins;
  }
  function inspectCustomer(s,customerId,hooks={}){
   const c=customerFor(s,customerId);if(!c)return null;

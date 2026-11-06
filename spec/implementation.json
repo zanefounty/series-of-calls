@@ -7479,6 +7479,62 @@
       ],
       "status": "partial",
       "scope": "Pure contextual panels compare the three paid security controls and their six fixed offers on customer, carrier, phone and access selections. They expose setup, recurring cost, staffing, lead time, native limits, prerequisites, first-purchase interruption and complete minimum cost; action payloads select only an authored plan. Quote panels explain native usage separately from supplier wholesale. DOM tests and translation coverage do not establish final visible browser or security progression acceptance."
+    },
+    {
+      "id": "BEH-SOC-414",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-775",
+        "AC-SOC-776"
+      ],
+      "status": "partial",
+      "scope": "A private, validator-scoped memo reuses equivalent historical paid configuration projections while preserving per-read generation and provenance validation and isolated returned values. Historical replay is compared with uncached results across paid commissioning boundaries; a synthetic nested restoration/retirement model regression covers a cache-key boundary, not an accepted gameplay save. No persisted cache, whole-suite deadline or long-play completion is claimed."
+    },
+    {
+      "id": "BEH-SOC-416",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-780",
+        "AC-SOC-781"
+      ],
+      "status": "partial",
+      "scope": "Private read-only support reconstruction reuses local configuration/provenance and temporary boundary views without serializing unrelated histories. Public authority outputs and external observation-hook arguments remain isolated copies. Actual paid boundary reconstruction, frozen-save purity, restore and a failing-then-fixed retained-hook mutation regression cover these boundaries. Bounded timing improvements do not establish full acceptance deadlines or long-play completion."
+    },
+    {
+      "id": "BEH-SOC-420",
+      "sources": [
+        "progress.goal.bb",
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/23-provider-regional-support.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-653",
+        "AC-SOC-789",
+        "AC-SOC-790"
+      ],
+      "status": "partial",
+      "scope": "Earned work receipts retain their exact arrival events in addition to the bounded working event history. Rehashed missing-arrival substitutions refuse; validated legacy regional markers migrate on owned copies. A real opening claim survives 220 dispatched staffing events and restores, while an isolated multi-window appender fixture proves 240 retained arrivals leave a 200-event working window. That fixture does not establish regional award eligibility or final long-play acceptance."
     }
   ]
 }

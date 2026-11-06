@@ -964,7 +964,8 @@
       "AC-SOC-698"
     ],
     "tests/provider-dedicated-interconnect-retention.test.js": [
-      "AC-SOC-699"
+      "AC-SOC-699",
+      "AC-SOC-790"
     ],
     "tests/provider-runtime.test.js": [
       "AC-SOC-677",
@@ -1066,7 +1067,9 @@
     ],
     "tests/provider-configuration-reader-performance.test.js": [
       "AC-SOC-771",
-      "AC-SOC-772"
+      "AC-SOC-772",
+      "AC-SOC-775",
+      "AC-SOC-776"
     ],
     "tests/provider-security-helper.test.js": [
       "AC-SOC-777",
@@ -1081,6 +1084,13 @@
     "tests/provider-security-ui.test.js": [
       "AC-SOC-782",
       "AC-SOC-783"
+    ],
+    "tests/provider-support-history.test.js": [
+      "AC-SOC-780",
+      "AC-SOC-781"
+    ],
+    "tests/provider-progression-dispatch.test.js": [
+      "AC-SOC-789"
     ]
   },
   "inputs": [
@@ -1671,6 +1681,7 @@
     "src/game/23-provider-security.js",
     "content/provider-security.json",
     "tests/provider-security-ui.test.js",
-    "src/game/93-ui/74-provider-security.js"
+    "src/game/93-ui/74-provider-security.js",
+    "tests/provider-support-history.test.js"
   ]
 }

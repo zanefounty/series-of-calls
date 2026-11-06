@@ -41,3 +41,14 @@ test('worker claim parity and support-observation restore validation use the sam
  for(const change of [o=>o.version=999,o=>o.samples.push(o.samples.at(-1)),o=>o.samples[0].at++,o=>o.samples.at(-1).at--]){const bad=structuredClone(s);change(bad.providerCampaign.supportObservation);assert.throws(()=>SOC.restore(JSON.stringify(bad)),/INVALID_PROVIDER_SUPPORT_OBSERVATION/);}
  const legacy=structuredClone(s);delete legacy.providerCampaign.supportObservation;assert.deepEqual(SOC.restore(JSON.stringify(legacy)),legacy,'old saves acquire no invented minute samples');
 });
+
+test('AC-SOC-789 earned opening arrivals survive repeated real staffing events without consuming the working event window',()=>{
+ let s=claim(opening(),first);
+ const arrivals=[...new Set(s.providerCampaign.progressionReceipts.receipts.flatMap(r=>r.workProofs.map(p=>p.arrivalEventId)))];
+ assert.ok(arrivals.length>0);
+ for(let n=0;n<220;n++)s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:2,support:1+n%2}});
+ for(const id of arrivals)assert.ok(s.providerCampaign.events.some(event=>event.id===id),id);
+ assert.equal(s.providerCampaign.events.length,200+arrivals.length);
+ assert.ok(s.providerCampaign.eventCheckpoint.count>0);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});

@@ -32,7 +32,7 @@ function opening(){
 }
 function digest(value){const input=JSON.stringify(value);let hash=0x811c9dc5;for(let i=0;i<input.length;i++){hash^=input.charCodeAt(i);hash=Math.imul(hash,0x01000193);}return (hash>>>0).toString(16).padStart(8,'0');}
 
-test('AC-SOC-751: earned external-reach proof stays native and valid through first pruning boundary, restore and worker continuation',()=>{
+test('AC-SOC-751 earned external-reach proof stays native and valid through first pruning boundary, restore and worker continuation',()=>{
  let s=opening();
  s=until(s,state=>SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',180);
  s=until(s,state=>Number.isSafeInteger(state.providerCampaign.customers.find(row=>row.id===customerId)?.renewedAt)&&SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',300);

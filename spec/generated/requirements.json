@@ -35821,7 +35821,10 @@
     "implementation": [
       "content/narrative.json",
       "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-regional-support.js",
+      "src/game/23-provider-support-history.js",
+      "src/game/25-provider-campaign.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
       "src/game/41-progression.js",
@@ -35853,7 +35856,10 @@
       "BEH-SOC-226",
       "BEH-SOC-406",
       "BEH-SOC-407",
-      "BEH-SOC-411"
+      "BEH-SOC-411",
+      "BEH-SOC-414",
+      "BEH-SOC-416",
+      "BEH-SOC-420"
     ]
   },
   {
@@ -36101,6 +36107,9 @@
     "status": "partial",
     "implementation": [
       "content/progression.json",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-regional-support.js",
+      "src/game/25-provider-campaign.js",
       "src/game/40-issue-exercises.js",
       "src/game/41-progression.js",
       "src/game/44-campaign.js",
@@ -36122,7 +36131,8 @@
       "BEH-SOC-147",
       "BEH-SOC-148",
       "BEH-SOC-159",
-      "BEH-SOC-160"
+      "BEH-SOC-160",
+      "BEH-SOC-420"
     ]
   },
   {
@@ -36309,6 +36319,7 @@
     "status": "partial",
     "implementation": [
       "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-support-history.js",
       "src/game/23-provider-support-work.js",
       "src/game/25-provider-campaign.js",
       "src/game/39-service-observation.js",
@@ -36337,7 +36348,9 @@
       "BEH-SOC-195",
       "BEH-SOC-196",
       "BEH-SOC-410",
-      "BEH-SOC-411"
+      "BEH-SOC-411",
+      "BEH-SOC-414",
+      "BEH-SOC-416"
     ]
   },
   {
@@ -36488,6 +36501,7 @@
       "src/game/23-provider-progression.js",
       "src/game/23-provider-regional-support.js",
       "src/game/23-provider-support-history.js",
+      "src/game/25-provider-campaign.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
       "src/game/41-progression.js",
@@ -36516,7 +36530,8 @@
       "BEH-SOC-225",
       "BEH-SOC-226",
       "BEH-SOC-394",
-      "BEH-SOC-407"
+      "BEH-SOC-407",
+      "BEH-SOC-420"
     ]
   },
   {
@@ -36725,7 +36740,9 @@
     "representation": "ucc.goal.c5",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-regional-support.js",
+      "src/game/25-provider-campaign.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
       "src/game/41-progression.js",
@@ -36753,7 +36770,8 @@
       "BEH-SOC-222",
       "BEH-SOC-225",
       "BEH-SOC-226",
-      "BEH-SOC-407"
+      "BEH-SOC-407",
+      "BEH-SOC-420"
     ]
   },
   {

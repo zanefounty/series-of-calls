@@ -488,7 +488,7 @@ function socProviderSupportHistoryKernel(){
    events.push({at:incident.activatedAt,order:2,domain:incident.domain,value:true});
    if(incident.status==='resolved'){
     const repair=(s.providerCampaign.projects||[]).find(p=>p.id===incident.repairProjectId&&p.customerId===c.id&&p.operationId==='transport-repair'&&p.configSubmittedAt===incident.resolvedAt);
-    if(!repair||repair.operationReceipt?.incidentId!==incident.id||repair.operationReceipt?.domain!==incident.domain||repair.operationReceipt?.at!==incident.resolvedAt)return {valid:false};
+    if(!repair||repair.operationReceipt?.incidentId!==incident.id||repair.operationReceipt?.domain!==incident.domain||repair.operationReceipt?.at!==incident.resolvedAt-1)return {valid:false};
     events.push({at:incident.resolvedAt,order:0,domain:incident.domain,value:false});
    }else if(!['active','acknowledged'].includes(incident.status))return {valid:false};
   }

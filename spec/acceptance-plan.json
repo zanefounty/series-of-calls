@@ -1026,6 +1026,20 @@
       "AC-SOC-737",
       "AC-SOC-738",
       "AC-SOC-739"
+    ],
+    "tests/product-integration-retest-history.test.js": [
+      "AC-SOC-743",
+      "AC-SOC-744"
+    ],
+    "tests/provider-regional-integrations.test.js": [
+      "AC-SOC-745",
+      "AC-SOC-746",
+      "AC-SOC-747",
+      "AC-SOC-748",
+      "AC-SOC-749"
+    ],
+    "tests/provider-recovery-configuration-history.test.js": [
+      "AC-SOC-750"
     ]
   },
   "inputs": [
@@ -1171,6 +1185,7 @@
     "src/game/23-provider-products.js",
     "src/game/23-provider-progression-receipts.js",
     "src/game/23-provider-progression.js",
+    "src/game/23-provider-regional-integrations.js",
     "src/game/23-provider-regional-support.js",
     "src/game/23-provider-resilience-progression.js",
     "src/game/23-provider-resilience-sequence.js",
@@ -1518,6 +1533,7 @@
     "tests/product-evidence-integration.test.js",
     "tests/product-evidence-ui.test.js",
     "tests/product-evidence.test.js",
+    "tests/product-integration-retest-history.test.js",
     "tests/product-integration.test.js",
     "tests/product-rebase.test.js",
     "tests/products.test.js",
@@ -1556,6 +1572,8 @@
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/provider-progression-regional-claims.test.js",
+    "tests/provider-recovery-configuration-history.test.js",
+    "tests/provider-regional-integrations.test.js",
     "tests/provider-runtime.test.js",
     "tests/provider-service-truth.test.js",
     "tests/provider-view-stability.test.js",

@@ -12,6 +12,7 @@ function socProviderSupportHistoryKernel(){
  function configurationApi(){return typeof SOC_PROVIDER_CONFIGURATION_AUTHORITY!=='undefined'?SOC_PROVIDER_CONFIGURATION_AUTHORITY:require('./23-provider-configuration-authority.js');}
  function governmentApi(){return typeof SOC_GOVERNMENT_ARCHITECTURES!=='undefined'?SOC_GOVERNMENT_ARCHITECTURES:(typeof require==='function'?require('./23-provider-government.js'):null);}
  function productsApi(){return typeof SOC_PRODUCTS!=='undefined'?SOC_PRODUCTS:(typeof require==='function'?require('./45-products.js'):null);}
+ function integrationHistoryApi(){return typeof SOC_PROVIDER_REGIONAL_INTEGRATIONS!=='undefined'?SOC_PROVIDER_REGIONAL_INTEGRATIONS:require('./23-provider-regional-integrations.js');}
  function ownedSiteApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:(typeof require==='function'?require('./23-provider-owned-sites.js'):null);}
  function customerRoot(s,c,hooks){return typeof hooks.customerRoot==='function'?hooks.customerRoot(s,c):s.portfolio?.customers?.find(row=>row.id===c.portfolioId)?.root||null;}
  function customerStatusAt(s,c,at){
@@ -111,9 +112,18 @@ function socProviderSupportHistoryKernel(){
    let config,generation,paid=false;
    try{const value=id===resourceId?plan:hooks.configurationAt(s,c,root,id,at);config=value?.config;generation=value?.generation;paid=!!value&&projectsFor(id,generation).length>0;}catch{config=null;}
    const row=root.resources?.[id],kind=row?.kind,activeFault=timeline.faults[id]!==null;
-   let value=!!config?.enabled&&paid&&!activeFault&&!migrationPending(id,generation);
+   let value=!!config?.enabled&&paid&&!activeFault&&!(hooks._allowPendingMigration!==true&&migrationPending(id,generation));
    if(disconnected&&!config?.local)value=false;
-   if(config?.local===true&&id!=='local'&&!ready('local'))value=false;
+   if(id==='local'&&disconnected&&root.providerContinuity){
+    const deployment=s.providerCampaign.projects.find(p=>p.customerId===c.id&&p.operationId==='local-deployment'&&p.configSubmittedAt<=at&&p.operationReceipt?.at===root.providerContinuity.installedAt),spares=s.providerCampaign.projects.find(p=>p.customerId===c.id&&['local-spares','managed-local-spares'].includes(p.operationId)&&p.configSubmittedAt!==null&&p.configSubmittedAt<=at&&p.operationReceipt?.projectId===p.id&&p.operationReceipt?.postingId===p.postingId);
+    const start=deployment&&integer(timeline.outageStartedAt)?Math.max(timeline.outageStartedAt,deployment.operationReceipt.at):null;
+    if(start!==null&&at-start>=(spares?60:30))value=false;
+   }
+   if(disconnected&&['uc','dedicated','directory','room','processor','trunk'].includes(kind)){
+    const local=hooks.configurationAt(s,c,root,'local',at)?.config;
+    if(!local||!['identity','dns','time','certificates','licensing'].every(k=>local[k])||!ready('local'))value=false;
+    if(kind==='processor'&&!config?.licenceLocal)value=false;
+   }
    if(kind&&linkFields[kind])for(const [field] of Object.entries(linkFields[kind]))if(!config?.[field]||!ready(config[field]))value=false;
    visiting.delete(id);observations[id]=value;return value;
   }
@@ -250,14 +260,14 @@ function socProviderSupportHistoryKernel(){
    historical.retirement=lastRetirement&&!reinstatement?{status:'retired',effectiveAt:lastRetirement.effectiveAt}:null;
    for(const binding of bindings){
     const status=api.featureStatus(historicalPack,deployment.id,binding.feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,at,context)?{ready:true}:false});
-    if(!status.available)return false;
+    if(!status.available||hooks._skipIntegrationGate!==true&&!integrationHistoryApi().bindingAvailableAt(s,c,root,deployment.id,binding.feature,at,{generation:historical.generation,productVersion:config.productVersion}))return false;
    }
    if(target?.deploymentId===deployment.id){
     const featureBindings=(config.bindings||[]).filter(binding=>binding.feature===target.feature&&Array.isArray(binding.resources)&&binding.resources.length);
     let available=!!current&&config.features?.includes(target.feature)&&featureBindings.length>0;
     for(const binding of featureBindings){
      const status=api.featureStatus(historicalPack,deployment.id,target.feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,at,context)?{ready:true}:false});
-     if(!status.available){available=false;break;}
+     if(!status.available||hooks._skipIntegrationGate!==true&&!integrationHistoryApi().bindingAvailableAt(s,c,root,deployment.id,target.feature,at,{generation:historical.generation,productVersion:config.productVersion})){available=false;break;}
      for(const boundResource of binding.resources){const plan=hooks.configurationAt(s,c,root,boundResource,at);if(!plan||baseResourceObservationAt(s,c,root,boundResource,at,plan,{...hooks,_skipProductGate:true})?.ready!==true){available=false;break;}}
      if(!available)break;
     }
@@ -400,7 +410,7 @@ function socProviderSupportHistoryKernel(){
       if(!contract||!Array.isArray(flows)||!flows.some(flow=>flow.resource===id))boundaryMemo.set(boundaryKey,false);
       else{
        const deps=boundaryPlan.dependencies||[],observations=Object.create(null),stageResources=[...new Set(stageRows.flatMap(row=>row.project.resources||[]))],observationIds=[...new Set([...deps.map(dep=>dep.id),...stageResources])];
-       for(const resourceId of observationIds){let config;try{config=resolved.configurationAt(state,c,root,resourceId,at);}catch{config=null;}observations[resourceId]=baseResourceObservationAt(state,c,root,resourceId,at,config,{...resolved,_skipProductGate:true});}
+       for(const resourceId of observationIds){let config;try{config=resolved.configurationAt(state,c,root,resourceId,at);}catch{config=null;}observations[resourceId]=baseResourceObservationAt(state,c,root,resourceId,at,config,{...resolved,_skipIntegrationGate:true,_allowPendingMigration:true});}
        const paths=[...new Set(flows.map(flow=>flow.resource))];
        let evaluation;try{evaluation=boundaryEvaluationAt(state,c,root,activeBoundary,at,paths,observations,resolved,{stageRows,stageResources});}catch{evaluation=null;}
        boundaryMemo.set(boundaryKey,!!evaluation?.eligible&&evaluation.resources.includes(id));
@@ -444,7 +454,7 @@ function socProviderSupportHistoryKernel(){
   return number>0&&number<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign.projects.includes(p);
  }
  function serviceFaultTimelineAt(s,c,root,at){
-  const aliases={processor:'speech',connectivity:'access'},faults=Object.fromEntries(Object.keys(root.resources||{}).map(id=>[id,null])),events=[];let connected=true,boundaryActive=false;
+  const aliases={processor:'speech',connectivity:'access'},faults=Object.fromEntries(Object.keys(root.resources||{}).map(id=>[id,null])),events=[];let connected=true,boundaryActive=false,outageStartedAt=null;
   for(const incident of s.providerCampaign.incidents||[]){
    if(incident.customerId!==c.id||incident.kind==='transport-domain')continue;
    if(!integer(incident.createdAt)||!integer(incident.dueAt)||incident.dueAt<incident.createdAt||incident.activatedAt!==null&&!integer(incident.activatedAt)||incident.acknowledgedAt!==null&&!integer(incident.acknowledgedAt)||incident.resolvedAt!==null&&!integer(incident.resolvedAt)||incident.activatedAt!==null&&incident.resolvedAt!==null&&incident.resolvedAt<=incident.activatedAt)return {valid:false};
@@ -453,14 +463,14 @@ function socProviderSupportHistoryKernel(){
   for(const project of s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.configSubmittedAt!==null&&['repair','mitigate','service-repair'].includes(p.operationId)&&p.configSubmittedAt<=at))events.push({at:project.configSubmittedAt,order:0,project});
   events.sort((a,b)=>a.at-b.at||a.order-b.order);
   for(const event of events){
-   if(event.incident){const incident=event.incident,id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=false;else if(incident.kind==='boundary')boundaryActive=true;else if(!(id==='room'&&incident.fault==='CAPACITY')){if(!Object.hasOwn(faults,id))return {valid:false};faults[id]='OUTAGE';}}
+   if(event.incident){const incident=event.incident,id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection'){if(connected)outageStartedAt=incident.receipt?.at??incident.activatedAt-1;connected=false;}else if(incident.kind==='boundary')boundaryActive=true;else if(!(id==='room'&&incident.fault==='CAPACITY')){if(!Object.hasOwn(faults,id))return {valid:false};faults[id]='OUTAGE';}}
    else{
     const project=event.project,incidents=(s.providerCampaign.incidents||[]).filter(i=>i.customerId===c.id&&i.kind!=='transport-domain'&&i.activatedAt!==null&&i.activatedAt<event.at&&i.acknowledgedAt!==null&&i.acknowledgedAt<event.at&&(i.resolvedAt===null||i.resolvedAt>=event.at)),resources=incidents.map(i=>aliases[i.resource]||i.resource);
     if(project.operationReceipt?.at!==event.at-1||!Array.isArray(project.operationReceipt?.resources)||!same(project.operationReceipt.resources,resources))return {valid:false};
-    for(const incident of incidents){const id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=true;else if(incident.kind==='boundary')boundaryActive=false;else if(!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}
+    for(const incident of incidents){const id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection'){connected=true;outageStartedAt=null;}else if(incident.kind==='boundary')boundaryActive=false;else if(!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}
    }
   }
-  return {valid:true,connected,faults,boundaryActive};
+  return {valid:true,connected,faults,boundaryActive,outageStartedAt};
  }
  function ownedSiteTimelineAt(s,c,root,at,hooks){
   const projects=(s.providerCampaign.projects||[]).filter(p=>p.customerId===c.id&&['site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review'].includes(p.operationId)&&p.configSubmittedAt!==null&&!['cancelled','blocked'].includes(p.status));
@@ -524,7 +534,16 @@ function socProviderSupportHistoryKernel(){
   if(!team||team.support<1||team.personMinutes<1||billed<1)return null;
   if(typeof hooks.paidStaffAt!=='function'||hooks.paidStaffAt(s,at)!==true)return null;
   const org=s.business?.organisations?.['orchard-msp'];if(!org?.roles?.includes('msp')||!org?.roles?.includes('reseller'))return null;
-  if(stageResources.some(id=>readyByResource[id]?.ready!==true))return null;
+  if(stageResources.some(id=>{
+   if(readyByResource[id]?.ready===true)return false;
+   const migration=(root.operations?.migrations||[]).find(row=>['verifying','complete'].includes(row.status)&&row.cutoverAt<=at&&row.verifyAt>at&&row.appliedGenerations?.[id]);
+   if(!migration)return true;
+   // A cutover leaves the previous effective endpoint available until its
+   // queued configuration becomes effective. Current service qualification
+   // still rejects that generation gap, while the paid MSP remains present.
+   let plan;try{plan=hooks.configurationAt(s,c,root,id,at);}catch{return true;}
+   return baseResourceObservationAt(s,c,root,id,at,plan,{...hooks,_allowPendingMigration:true})?.ready!==true;
+  }))return null;
   const scope=[...new Set(stageRows.flatMap(row=>row.project.resources||[]))],projects=stageRows.map(row=>row.project);
   const latest=projects.at(-1),effectiveAt=Math.max(...projects.map(p=>p.completedAt));
   const sharedWorkforce={engineers:team.engineers,support:team.support,personMinutes:team.personMinutes,billedMinutes:billed};
@@ -582,7 +601,7 @@ function socProviderSupportHistoryKernel(){
     if(!plan||plan.customerId!==c.id||!contract?.id||!integer(plan.boundaryGeneration)||!Array.isArray(deps)||!paidProject(s,project,hooks))continue;
     if(!pathResources.every(id=>deps.some(d=>d.id===id&&d.generation===observations[id]?.generation)))continue;
     const boundaryObservations=Object.create(null),boundaryIds=[...new Set([...stageResources,...pathResources,...deps.map(dep=>dep.id)])];
-    for(const resourceId of boundaryIds){let plan;try{plan=hooks.configurationAt(s,c,root,resourceId,at);}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}boundaryObservations[resourceId]=baseResourceObservationAt(s,c,root,resourceId,at,plan,{...hooks,_skipProductGate:true});if(!boundaryObservations[resourceId])return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
+    for(const resourceId of boundaryIds){let plan;try{plan=hooks.configurationAt(s,c,root,resourceId,at);}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}boundaryObservations[resourceId]=baseResourceObservationAt(s,c,root,resourceId,at,plan,{...hooks,_skipIntegrationGate:true,_allowPendingMigration:true});if(!boundaryObservations[resourceId])return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
     let evaluation;try{evaluation=hooks.boundaryAt(s,c,root,project,at,pathResources,boundaryObservations,{stageRows,stageResources});}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
     if(evaluation?.unsupported)return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');
     if(!evaluation||typeof evaluation.eligible!=='boolean'||!Array.isArray(evaluation.resources)||typeof evaluation.profile!=='string')return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');

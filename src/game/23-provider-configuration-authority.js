@@ -25,7 +25,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   const recipe=project.productId?products?.recipes?.[project.productId]:null;
   const commands=recipe?.preparation?.commands||[];
   for(const command of commands)if(command.type==='add'&&typeof command.id==='string'&&!configs[command.id]){
-   const kind=command.kind,base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${command.id}`);configs[command.id]={...clone(base),enabled:false,region:child.jurisdiction};merge(configs[command.id],command.config||{});
+   const kind=command.kind,base=catalogue?.[kind]?.defaults;if(!base)fail(`ADD_KIND:${command.id}`);configs[command.id]=clone(base);merge(configs[command.id],command.config||{});
   }
   if(project.operationId==='migration'&&!configs['migration-phone']){const base=catalogue?.dedicated?.defaults;if(!base)fail('MIGRATION_KIND');configs['migration-phone']={...clone(base),enabled:false,region:child.jurisdiction,routes:clone(configs.phone.routes)};}
   if(project.operationId==='migration'&&configs['migration-phone'])configs['migration-phone'].enabled=true;
@@ -48,7 +48,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   // These handlers return before the generic configure call in 55. Their capacity
   // deltas and incident effects have separate paid validators.
-  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
+  if(['repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','uc-cc-integration','uc-cc-retest','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
    if(id==='bpo')return {people:{enabled:true}};
    return {};
   }
@@ -121,7 +121,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     const previous=before[id];
     if(previous&&stable(previous)!==stable(configs[id]))accepted[id]=[clone(previous),clone(configs[id])];
     else if(!accepted[id].some(item=>stable(item)===stable(configs[id])))accepted[id].push(clone(configs[id]));
-    if(written.has(id))latestWriteAt[id]=writeAt;
+    if(written.has(id)||!previous)latestWriteAt[id]=writeAt;
    }
    while(retirementIndex<retirements.length&&retirements[retirementIndex].at<=writeAt)applyRetirement(retirements[retirementIndex++]);
   }
@@ -283,10 +283,23 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    }
   }
   for(const migration of expected.migrationWrites||[])if(migration.resourceId===resourceId&&migration.at<=at)generationEvents.push({at:migration.at,order:(originalOrder.get(migration.projectId)||0)+0.5,generation:migration.generation,id:migration.migrationId+':'+resourceId,projectId:migration.projectId,written:true});
+  // Recovery is an explicit command after the displayed minute's sample.
+  // Its resource writes enter historical observations at the next minute,
+  // using the funded exercise and backup scope rather than live generations.
+  let pendingRecoveryWrites=0;
+  for(const exercise of child.siteOperations?.exercises||[]){
+   const restoration=exercise.restoration;
+   if(!restoration||restoration.requestedAt>at||!exercise.backupSnapshot?.resources?.some(row=>row.id===resourceId))continue;
+   const project=ordered.find(p=>['site-recovery','managed-site-recovery'].includes(p.operationId)&&p.operationReceipt?.exerciseId===exercise.id);
+   if(!project||project.operationReceipt.projectId!==project.id||project.config.targetSite!==exercise.targetSite||project.config.kind!==exercise.kind||!Number.isSafeInteger(restoration.requestedAt)||restoration.due!==restoration.requestedAt+1)fail(`RECOVERY_GENERATION:${resourceId}`);
+   if(restoration.requestedAt+1<=at)generationEvents.push({at:restoration.requestedAt+1,order:-1,generation:null,id:exercise.id+':restore:'+resourceId,projectId:project.id,written:true});
+   else if(restoration.requestedAt===at)pendingRecoveryWrites++;
+  }
   generationEvents.sort((a,b)=>a.at-b.at||a.order-b.order);
   const writes=[];
   for(const event of generationEvents){const next=event.generation===null?generation+1:event.generation;if(!Number.isSafeInteger(next)||next<generation||event.written&&next===generation||next>resourceGenerations[resourceId])fail(`GENERATION:${event.id}:${resourceId}`);generation=next;if(event.written)writes.push({projectId:event.projectId,at:event.at,generation:next});}
-  if(generation>resourceGenerations[resourceId]||at===child.clock&&generation!==resourceGenerations[resourceId])fail(`RESOURCE_GENERATION:${resourceId}`);
+  const pendingRecovery=pendingRecoveryWrites>0&&child.resources[resourceId].provisioning?.status==='pending'&&child.resources[resourceId].provisioning.due===at+1&&generation+pendingRecoveryWrites===resourceGenerations[resourceId];
+  if(generation>resourceGenerations[resourceId]||at===child.clock&&generation!==resourceGenerations[resourceId]&&!pendingRecovery)fail(`RESOURCE_GENERATION:${resourceId}`);
   provenanceByResource.set(resourceId,{generation,writes:clone(writes)});
   return {config:clone(config),generation};
   };

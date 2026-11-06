@@ -3,9 +3,9 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 // Isolated campaign checkpoint fixture. Expose the real private event appender without
 // changing its implementation; this is not a dispatched paid PN claim or SOC.restore test.
 function campaignWithEventAppender(){
- const file=path.join(__dirname,'../src/game/25-provider-campaign.js'),source=fs.readFileSync(file,'utf8'),seam='return {handoffDemandPlan,PACK,VERSION';
+ const file=path.join(__dirname,'../src/game/25-provider-campaign.js'),source=fs.readFileSync(file,'utf8'),seam='return {validateRetainedSettlement,handoffDemandPlan,followupDemandPlan,PACK,VERSION';
  assert.ok(source.includes(seam),'campaign export seam');const sandbox={module:{exports:{}},require:createRequire(file)};vm.createContext(sandbox);
- vm.runInContext(source.replace(seam,'return {appendFixtureEvent:addEvent,handoffDemandPlan,PACK,VERSION'),sandbox);return sandbox.module.exports;
+ vm.runInContext(source.replace(seam,'return {appendFixtureEvent:addEvent,validateRetainedSettlement,handoffDemandPlan,followupDemandPlan,PACK,VERSION'),sandbox);return sandbox.module.exports;
 }
 function fixture(){
  const focusCustomerId='starter-customer',winnerCustomerId='next-1-customer',periods=[1,2].map(period=>({period,from:period*60,to:(period+1)*60,focusCustomerId,due:24,completedOnTime:24,operatingResult:10000,qualified:true,solvency:'current'}));

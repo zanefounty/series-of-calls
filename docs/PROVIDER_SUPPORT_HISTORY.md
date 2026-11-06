@@ -14,3 +14,11 @@ The call-local validator shares only per-invocation configuration and observatio
 - `node --test --test-isolation=none tests/provider-product-campaign.test.js` — 14/14 authored product recipes pass funded public campaign deployment readiness.
 
 These focused checks do not establish the regional claims or endgame. Public AC656/T2 journeys, broader provider suites, and final integrated verification remain separate checks.
+
+## Review regression repairs
+
+The PR #43 review exercises additionally exposed three historical projection errors. Paid product resources created by a native `add` can already be enabled at generation 1; their creation must not be replayed as a second configure command. Direct UC/contact integration commissioning changes a native connection, without reconfiguring its phone dependency. Defence support history now reconstructs the finite local-autonomy window from the authored disconnection and the funded local deployment/spares receipts, including exhaustion and repair.
+
+Product-dependent boundaries retain the underlying feature and licence checks while excluding the UC/contact connection test from its own prerequisites. During an actual migration cutover, the prior effective endpoint can still support the paid MSP record even though the generation gap prevents current-service qualification. Explicit owned-site restore commands take effect in the following minute's sample; later recovery writes cannot rewrite an earlier sample.
+
+Focused executions on the review worktree passed the five configuration/dedicated/PN retention tests, seven earned follow-on/local-speech tests, and the native-room replacement/recommission regression. The five regional integration tests also passed, including paid retirement/recommission, same-generation scope retest and actual worker continuation. A new paid native backup restore test passed its same-minute/next-minute generation, import-counterexample and worker checks. The broader owned-site migration/recovery rerun remains in progress at this note. These are mutable-worktree diagnostic results, not frozen final-candidate evidence. The original full-suite and registered-acceptance executions retain their original inputs and failures; final evidence must be regenerated after integration.

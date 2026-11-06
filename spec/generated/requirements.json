@@ -36498,7 +36498,10 @@
     "representation": "ucc.goal.t2",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-integration-assurance.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/23-provider-support-history.js",
       "src/game/25-provider-campaign.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
@@ -36528,7 +36531,8 @@
       "BEH-SOC-222",
       "BEH-SOC-225",
       "BEH-SOC-226",
-      "BEH-SOC-388"
+      "BEH-SOC-388",
+      "BEH-SOC-403"
     ]
   },
   {
@@ -36579,6 +36583,7 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-owned-site-custody.js",
       "src/game/23-provider-owned-sites.js",
+      "src/game/23-provider-support-history.js",
       "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
@@ -36619,7 +36624,8 @@
       "BEH-SOC-286",
       "BEH-SOC-287",
       "BEH-SOC-351",
-      "BEH-SOC-384"
+      "BEH-SOC-384",
+      "BEH-SOC-404"
     ]
   },
   {
@@ -53991,6 +53997,10 @@
     "representation": "domain:product-evidence",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/23-provider-support-history.js",
+      "src/game/23-provider-uc-cc-integration.js",
       "src/game/28-product-evidence.js",
       "src/game/34-specialist-lifecycle.js",
       "src/game/45-products.js",
@@ -54049,7 +54059,9 @@
       "BEH-SOC-296",
       "BEH-SOC-297",
       "BEH-SOC-298",
-      "BEH-SOC-352"
+      "BEH-SOC-352",
+      "BEH-SOC-402",
+      "BEH-SOC-403"
     ]
   },
   {
@@ -54297,6 +54309,9 @@
     "representation": "domain:continuity",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-support-history.js",
+      "src/game/23-provider-uc-cc-integration.js",
       "src/game/35-shared-services.js",
       "src/game/42-transport.js",
       "src/game/43-boundaries.js",
@@ -54351,7 +54366,9 @@
       "BEH-SOC-209",
       "BEH-SOC-210",
       "BEH-SOC-223",
-      "BEH-SOC-224"
+      "BEH-SOC-224",
+      "BEH-SOC-402",
+      "BEH-SOC-404"
     ]
   },
   {

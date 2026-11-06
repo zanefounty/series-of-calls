@@ -7252,6 +7252,62 @@
       ],
       "status": "partial",
       "scope": "Free public symptoms and an optional paid scoped six-minute diagnosis reserve shared engineer/support effort. Native outage and connection observations are reconstructed from validated incident and paid repair history; other domains remain explicitly inconclusive until their path authority is integrated. Diagnosis does not repair, mitigate, acknowledge or award progression. Pure helper transport-path fixtures are distinguished from real paid Provider dispatch, restore/worker and UI evidence. Visible frozen browser acceptance remains pending."
+    },
+    {
+      "id": "BEH-SOC-402",
+      "sources": [
+        "uc-new:domain:product-evidence",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/45-products.js",
+        "src/game/23-provider-uc-cc-integration.js"
+      ],
+      "testIds": [
+        "AC-SOC-743",
+        "AC-SOC-744"
+      ],
+      "status": "partial",
+      "scope": "Native synthetic product integration retests retain earlier same-generation success or failure in a versioned bounded history with supersession times. Lab dispatch exercises failed dependency, repair, retest, later version rebase, restore, worker parity and explicit history-capacity refusal. Paid UC/CC receipts can reference the earlier native result without treating it as current readiness. This does not certify vendor interoperability or complete all integration families."
+    },
+    {
+      "id": "BEH-SOC-403",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/23-provider-regional-integrations.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-745",
+        "AC-SOC-746",
+        "AC-SOC-747",
+        "AC-SOC-748",
+        "AC-SOC-749"
+      ],
+      "status": "partial",
+      "scope": "Regional support samples include a paid UC/CC edge only after the actual tested integration and paid quality task complete. Historical snapshots retain exact customer, endpoint generation/version, native test, MSP and boundary scope through retirement and retest; prior evidence cannot qualify a new generation. Public dispatch, tampered imports, readonly evaluation and worker checks are distinct from the still-required complete Tier Two progression journey."
+    },
+    {
+      "id": "BEH-SOC-404",
+      "sources": [
+        "progress.goal.df",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-750"
+      ],
+      "status": "partial",
+      "scope": "A paid owned-site backup restore preserves the already sampled command minute and enters the next minute as one resource-generation write anchored to the funded recovery exercise. Public Provider dispatch, actual native backup scope, restore, worker continuation, and altered generation/time/exercise references are exercised. This bounded history repair does not complete every mission or source-specific recovery path."
     }
   ]
 }

@@ -1096,6 +1096,28 @@
         "No new PLAY004A03/background-tab, drag-pan, human pilot, universal accessibility, longplay or broader source-family completion claim.",
         "Initial external meeting matcher failure preserved in chromium-r1-selector-failure; native reason array includes both MEETING_CAPACITY and MEETING_CAPACITY_ZERO. Runtime unchanged for corrected verification."
       ]
+    },
+    "probes-dd1d1a6": {
+      "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+      "status": "passed-scoped-native-probe-verification",
+      "scope": "Direct public site exercise invokes synchronous diagnostic probes under an active metered business contract; zero commercial completions, native observer attempts and variable billed units; later3minute call is positive control. Legacy meeting join remains noncommercial.",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/site-operations.test.js",
+        "tests/provider-meeting-lifecycle.test.js"
+      ],
+      "tests": 17,
+      "passed": 17,
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6/report.json",
+      "sha256": "836ce4d91e614810ff49d2ea318653bb2b7988765270f83ec6ede2b0d13146de",
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6-independent-review/REVIEW.md",
+          "sha256": "0ceb555abc99d659fa11293bb8e3da6e23c1617a8778c9dfd4be3faf8cef8fa1"
+        }
+      ]
     }
   },
   "tests": {
@@ -4281,6 +4303,18 @@
       "name": "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes.",
       "result": "passed",
       "run": "smb-visible-1139239"
+    },
+    "PROBE-DD1-SITE": {
+      "file": "tests/site-operations.test.js",
+      "name": "AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions",
+      "result": "passed",
+      "run": "probes-dd1d1a6"
+    },
+    "PROBE-DD1-MEETING": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "legacy join remains an explicit training probe and cannot earn delivered meeting evidence",
+      "result": "passed",
+      "run": "probes-dd1d1a6"
     }
   },
   "requirements": {
@@ -7160,7 +7194,7 @@
       "requirement": "PLAY-012",
       "sourceIndex": 1,
       "assertion": "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B021",
         "B022",
@@ -7176,22 +7210,45 @@
       "reviewTestCandidates": [
         "B021"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+        "run": "probes-dd1d1a6",
         "implementation": [
           "src/game/55-communications.js",
-          "src/game/50-calling.js",
-          "src/game/25-provider-campaign.js"
+          "src/game/32-site-operations.js",
+          "src/game/39-service-observation.js"
         ],
         "tests": [
-          "C054",
-          "C072"
+          "PROBE-DD1-SITE",
+          "PROBE-DD1-MEETING"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
+            "evidence": "Real public site exercise invokes three explicit instantaneous native probes under an active metered contract: no commercial completions, observer attempts or variable billed units through actual settlement; exact restore. A later real three-minute call meters three units and completes one conversation. Legacy meeting join is explicitly noncommercial and cannot create delivered sessions or recordings; real scheduled sessions are tested separately."
+          }
+        ],
+        "scope": "Exact assertion only; native17-test run independently reviewed. No human or full source release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Endpoint and meeting probes cannot earn commercial delivery, and siteHooks.journey now uses explicit probe by inspection. Direct synchronous-consumer commercial/no-usage regression remains unlinked."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/55-communications.js",
+            "src/game/50-calling.js",
+            "src/game/25-provider-campaign.js"
+          ],
+          "tests": [
+            "C054",
+            "C072"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-012-A03",
@@ -14813,8 +14870,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 128,
-      "pending-current-candidate-verification": 27,
+      "verified-current-candidate": 129,
+      "pending-current-candidate-verification": 26,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -15030,6 +15087,16 @@
         "scope": "Two exact clauses only; original159 and four parked assertions retained. Frozen browser candidate not relabelled as later lifecycle changes.",
         "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/proposal.json",
         "sha256": "68a6057217a9602f02898eb83301119a262314336f249b19bb969eb00363137e"
+      },
+      {
+        "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+        "run": "probes-dd1d1a6",
+        "assertions": [
+          "PLAY-012-A02"
+        ],
+        "scope": "One exact synchronous-probe commercial-evidence closure. No original or parked assertion changed.",
+        "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6-independent-review/REVIEW.md",
+        "sha256": "0ceb555abc99d659fa11293bb8e3da6e23c1617a8778c9dfd4be3faf8cef8fa1"
       }
     ]
   }

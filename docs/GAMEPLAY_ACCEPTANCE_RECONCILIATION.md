@@ -1,15 +1,21 @@
 # Gameplay acceptance reconciliation — 7 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **128 exact assertions verified, 27 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **129 exact assertions verified, 26 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 25 | 3 | 0 |
-| 2 — service truth and SMB | 16 | 5 | 0 |
+| 2 — service truth and SMB | 17 | 4 | 0 |
 | 3 — map and interaction | 18 | 6 | 0 |
 | 4 — strategy and growth | 16 | 5 | 0 |
 | 5 — missions and ecosystem | 35 | 5 | 0 |
 | 6 — compatibility and delivery | 18 | 3 | 4 |
+
+**PLAY-012-A02** is verified at `dd1d1a6`: native site diagnostic probes under
+an active metered contract create no commercial completions or variable billed
+units; a real three-minute call provides the positive control. The 17-test run
+also covers the noncommercial meeting probe and actual scheduled sessions.
+Independent review and exact input hashes are linked in the ledger.
 
 Two further clauses, **PLAY-010-A02** and **PLAY-018-A03**, are verified at
 `e3c40ab`: 18 scoped Chromium/Firefox/WebKit desktop/mobile cases prove actual

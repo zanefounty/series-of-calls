@@ -1102,6 +1102,10 @@
     ],
     "tests/provider-progression-dispatch.test.js": [
       "AC-SOC-789"
+    ],
+    "tests/provider-progression-inspection.test.js": [
+      "AC-SOC-795",
+      "AC-SOC-796"
     ]
   },
   "inputs": [
@@ -1693,6 +1697,7 @@
     "tests/provider-room-integration-dispatch.test.js",
     "src/game/23-provider-room-integration.js",
     "src/game/93-ui/78-provider-room-integration.js",
-    "tests/provider-support-history.test.js"
+    "tests/provider-support-history.test.js",
+    "tests/provider-progression-inspection.test.js"
   ]
 }

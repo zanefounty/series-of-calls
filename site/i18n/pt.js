@@ -4581,6 +4581,8 @@
 "provider.integration.title":"Calling and contact quality",
 "provider.integration_assurance.description":"Fund incident assurance for an explicit subset of the customers and tested connections in your earned integration scope. Set an action budget before enabling it. Changed connections or unavailable boundaries suspend the policy; existing commitments remain payable.",
 "provider.integration_assurance.name":"Integration assurance",
+"provider.integrator_room.bridge_required":"Commission the paid room interoperability product and its licensed bridge profile first.",
+"provider.integrator_room.bridge_terms":"Add paid integrator support while retaining the existing licensed bridge and meeting profile. Interoperability still needs its explicit compatibility test and a completed bridge meeting. Existing supplier commitments remain payable.",
 "provider.integrator_room.description":"After earning Managed business, commission this customer’s room with an integrator. Compare its setup, recurring cost and delivery time with direct purchase.",
 "provider.integrator_room.name":"Integrator-supported room service",
 "provider.interconnect.authentication":"Ativa um gateway autenticado com SBC certificado, TLS fidedigno, nome de anfitrião válido e par autenticado.",

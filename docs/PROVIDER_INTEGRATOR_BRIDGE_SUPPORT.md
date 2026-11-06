@@ -1,0 +1,11 @@
+# Paid integrator support for an existing bridge room
+
+The `integrator-room` operation previously always configured a native room. Buying it after the paid Disco interoperability product changed the room to `mode: native, interop: false`, invalidated the product binding and left the support project commissioning indefinitely. This prevented the integrator role from supporting the required tested Grove/Disco room path.
+
+The explicit selection `{version: 1, roomMode: "bridge"}` retains a bridge-capable room and its existing licensed meeting profile. It requires the customer's earned managed-business entitlement plus an already completed, unretired paid interoperability product and ready bridge licence. It retains the authored A$650 setup, A$100 per period, eight implementation minutes, one engineer and one support reservation. It grants no product, licence or compatibility-test result. The distinct room integration operation still requires its explicit test and actual completed bridge meeting.
+
+Omitting the selection preserves native-room operation and supported existing saves. Unknown versions and fields reject. Quote commitment rechecks eligibility, funded-project restoration requires the preceding paid bridge purchase, and configuration replay and historical meeting admission use the selected joining mode. Later product retirement retains the earlier purchase obligation but can stop current service readiness.
+
+After earning the entitlement, the customer room inspector compares native and bridge integrator support using the ordinary quote workflow. The bridge choice preserves its configuration through the purchase button and explains its prerequisites and retained supplier commitments. Both new labels use the existing six dictionaries; non-English text is an English fallback pending language review.
+
+Source links remain `uc-new:domain:commercial-roles` and `uc-new:family:cisco:meetings-devices`. The P5 adapter must separately demonstrate current paid integrator responsibility and a real tested room delivery; configuring a bridge or assigning a supplier name does not earn it. Final execution receipts and acceptance registration are recorded after the integrated behavioral tests run.

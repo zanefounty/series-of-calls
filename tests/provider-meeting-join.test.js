@@ -6,7 +6,7 @@ const path=require('node:path');
 const {JSDOM}=require('jsdom');
 const SOC=require('../src/game/55-communications.js');
 
-test('customer inspector compares actual browser, native and bridge meeting quotes with scoped controls',()=>{
+test('AC-SOC-818 customer inspector compares actual browser, native and bridge meeting quotes with scoped controls',()=>{
  const dom=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'}),w=dom.window;
  try{
   w.SOCProviderHud={esc:value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),money:value=>Number.isSafeInteger(value)?`A$${(value/100).toFixed(2)}`:'—'};w.N_=value=>value;w.tr=(key)=>key;
@@ -22,5 +22,11 @@ test('customer inspector compares actual browser, native and bridge meeting quot
   assert.match(host.textContent,/Browser guest meeting room/);assert.match(host.textContent,/A\$120\.00/);assert.match(host.textContent,/A\$80\.00/);assert.match(host.textContent,/17 sim min/);assert.match(host.textContent,/ms-meetings-room/);assert.match(host.textContent,/provider-project-13/);assert.match(host.textContent,/Minute 240/);assert.match(host.textContent,/ROOM LICENSE REQUIRED/i);
   const buttons=[...host.querySelectorAll('.provider-meeting-option button')];assert.equal(buttons.length,3);assert.equal(buttons[0].dataset.providerAction,'operation');assert.equal(buttons[0].dataset.operation,'browser-guest-room');assert.equal(buttons[0].dataset.id,customer.id);assert.equal(buttons[0].disabled,false);assert.equal(buttons[2].disabled,true);
   assert.match(cards[0].textContent,/Not supported/);assert.match(cards[0].textContent,/External guests/);
+  const request={action:'operation',customerId:customer.id,operationId:'integrator-room',config:{version:1,roomMode:'bridge'}},bridge={...customer.meetingActions[2],id:'integrator-room',name:'Integrator-supported room service',available:true,blockers:[],quote:{...customer.meetingActions[2].quote,request,setupCents:65000,periodCents:10000}};
+  customer.meetingActions=[bridge];host.innerHTML=w.SOCProviderPanels.inspector({...model,customers:[customer]},{selection:{customerId:customer.id}});
+  const bridgeButton=host.querySelector('[data-meeting-option="integrator-room-bridge"] button');assert.ok(bridgeButton);assert.equal(bridgeButton.dataset.operation,'integrator-room');assert.deepEqual(JSON.parse(bridgeButton.dataset.operationConfig),request.config);assert.equal(bridgeButton.disabled,false);
+  host.innerHTML=w.SOCProviderPanels.quote(bridge.quote,{quoteRequest:request});assert.match(host.textContent,/retaining the existing licensed bridge/);assert.match(host.textContent,/Existing supplier commitments remain payable/);
+  bridge.available=false;bridge.blockers=['PAID_ROOM_BRIDGE_REQUIRED'];host.innerHTML=w.SOCProviderPanels.inspector({...model,customers:[customer]},{selection:{customerId:customer.id}});assert.equal(host.querySelector('[data-meeting-option="integrator-room-bridge"] button').disabled,true);assert.match(host.textContent,/Commission the paid room interoperability product/);
+
  }finally{w.close();}
 });

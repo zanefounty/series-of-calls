@@ -115,6 +115,14 @@ class AccountabilityWorkflowContract(unittest.TestCase):
         self.assertRegex(self.aggregate, r'timeout-minutes: 10\b')
         self.assertRegex(self.merge, r'timeout-minutes: 10\b')
 
+    def test_workflow_is_callable_by_publication_without_changing_its_other_triggers(self):
+        triggers = self.source.split('permissions:', 1)[0]
+        self.assertIn('  pull_request:', triggers)
+        self.assertIn('  push:', triggers)
+        self.assertIn('  workflow_dispatch:', triggers)
+        self.assertIn('  workflow_call:', triggers)
+        self.assertIn('branches: [main]', triggers)
+
     def test_each_producer_has_an_independent_required_replay(self):
         for block in [self.acceptance, self.gates]:
             self.assertIn('fail-fast: false', block)
@@ -171,6 +179,37 @@ class AccountabilityWorkflowContract(unittest.TestCase):
             env = dict(os.environ, ACCEPTANCE_RESULT='success', MERGE_RESULT=merge, GATES_RESULT='success', MUTATIONS_RESULT='success')
             result = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', script], env=env, capture_output=True)
             self.assertNotEqual(result.returncode, 0)
+
+
+class PublicationWorkflowContract(unittest.TestCase):
+    def test_publication_requires_fresh_json_and_tap_after_removing_seed_receipts(self):
+        release = (ROOT / '.github' / 'workflows' / 'release.yml').read_text()
+        build = job_block(release, 'build', 'deploy')
+        cleanup = run_block(build, 'Remove checked-in acceptance receipts before artifact download')
+        required = run_block(build, "Require this run's acceptance receipts")
+        with tempfile.TemporaryDirectory(prefix='soc-publication-receipts-') as tmp:
+            evidence = Path(tmp) / 'evidence'
+            evidence.mkdir()
+            receipt, tap = evidence / 'acceptance.json', evidence / 'communications.tap'
+            receipt.write_text('{"stale":true}')
+            tap.write_text('stale TAP')
+            subprocess.run(['bash', '-e', '-c', cleanup], cwd=tmp, check=True)
+            self.assertFalse(receipt.exists())
+            self.assertFalse(tap.exists())
+            for json_bytes, tap_bytes, expected in [('', '', False), ('current', '', False),
+                                                    ('', 'current', False), ('current', 'current', True)]:
+                receipt.write_text(json_bytes)
+                tap.write_text(tap_bytes)
+                result = subprocess.run(['bash', '-e', '-c', required], cwd=tmp, capture_output=True)
+                self.assertEqual(result.returncode == 0, expected)
+
+    def test_publication_choice_shell_refuses_unrecognized_values(self):
+        release = (ROOT / '.github' / 'workflows' / 'release.yml').read_text()
+        script = run_block(job_block(release, 'build', 'deploy'), 'Validate publication choice')
+        for value in ['preview', 'release', '', 'unknown', 'PREVIEW']:
+            env = dict(os.environ, PUBLICATION=value)
+            result = subprocess.run(['bash', '-e', '-c', script], env=env, capture_output=True)
+            self.assertEqual(result.returncode == 0, value in ['preview', 'release'])
 
 
 if __name__ == '__main__':

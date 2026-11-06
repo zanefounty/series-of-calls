@@ -1,6 +1,7 @@
 /* Reconstruct one retained Provider support participant at its recorded minute. */
 function socProviderSupportHistoryKernel(){
  'use strict';
+ const COMMISSION_CACHE=Symbol('private historical product commissioning');
  const VERSION=1;
  const copy=x=>x===undefined?undefined:JSON.parse(JSON.stringify(x));
  const integer=x=>Number.isSafeInteger(x)&&x>=0;
@@ -198,7 +199,10 @@ function socProviderSupportHistoryKernel(){
    const dependencyPlan=hooks.configurationAt(s,c,root,id,when),observed=baseResourceObservationAt(s,c,root,id,when,dependencyPlan,{...hooks,_skipProductGate:true});
    return observed?.ready===true;
   };
-  const historicalPack=copy(pack);
+  // featureStatus only reads these packs. Own the rows whose fields we
+  // replace; retained histories and untouched configuration stay read-only.
+  const projectPack=value=>({...value,offers:value.offers.map(row=>({...row})),deployments:value.deployments.map(row=>({...row}))});
+  const historicalPack=projectPack(pack);
   for(const offer of historicalPack.offers){
    const changedAt=offer.effectiveLifecycle?.changedAt;
    // Offer support is an effective dependency, while sale lifecycle only
@@ -208,13 +212,13 @@ function socProviderSupportHistoryKernel(){
    if(integer(changedAt)&&changedAt>at)offer.effectiveLifecycle={sale:'available',support:'supported',changedAt:0};
   }
   const lifecycleAt=(offer,when)=>{const life=offer?.effectiveLifecycle;if(!life)return null;return integer(life.changedAt)&&life.changedAt>when?{sale:'available',support:'supported',changedAt:0}:life;};
-  const firstCommissionedAt=(deployment,project,config)=>{
+  const calculateFirstCommissionedAt=(deployment,project,config)=>{
    const taskCreatedAt=project.operationReceipt.at;
    if(!integer(taskCreatedAt)||taskCreatedAt>=at)return null;
    const firstGeneration=project.operationReceipt.reinstated===true?project.operationReceipt.generation:1;
    const origin=project.operationReceipt.reinstated===true?Math.max(taskCreatedAt,project.operationReceipt.at):taskCreatedAt;
    let due=origin+(project.operationReceipt.reinstated===true?1:2);
-   const attemptPack=copy(historicalPack),attempt=attemptPack.deployments.find(row=>row.id===deployment.id),attemptOffer=attemptPack.offers.find(row=>row.id===config.offer);
+   const attemptPack=projectPack(historicalPack),attempt=attemptPack.deployments.find(row=>row.id===deployment.id),attemptOffer=attemptPack.offers.find(row=>row.id===config.offer);
    if(!attempt||!attemptOffer)return null;
    attempt.generation=firstGeneration;attempt.desired=copy(config);attempt.effective=copy(config);attempt.retirement=null;attempt.provisioning={status:'ready',due,generation:firstGeneration,errors:[]};
    for(let tries=0;tries<100&&due<=at;tries++){
@@ -230,6 +234,16 @@ function socProviderSupportHistoryKernel(){
    }
    return null;
   };
+  const firstCommissionedAt=(deployment,project,config)=>{
+   const cache=hooks[COMMISSION_CACHE],key=JSON.stringify([c.id,deployment.id,project.id,config]);
+   const previous=cache?.get(key);
+   // A successful native commissioning minute is immutable within this read.
+   // A negative search covers only the minutes actually searched, so a later
+   // observation still executes the retry/dependency checks.
+   if(previous&&(previous.at!==null||at<=previous.through))return previous.at!==null&&previous.at<=at?previous.at:null;
+   const result=calculateFirstCommissionedAt(deployment,project,config);
+   cache?.set(key,{at:result,through:at});return result;
+  };
   let requested=null;
   for(const deployment of pack.deployments){
    if(target&&deployment.id!==target.deploymentId)continue;
@@ -239,6 +253,9 @@ function socProviderSupportHistoryKernel(){
    // retained sample predates its due minute. For an initial deployment with
    // no effective history, the paid task and authored due time reconstruct
    // that pending interval independently of today's status.
+   // An unrelated resource cannot acquire a binding from commissioning. Check
+   // every retained configuration before doing the expensive native replay.
+   if(!target&&![deployment.desired,deployment.effective,...(deployment.effectiveHistory||[]).map(row=>row.effective)].some(config=>config?.bindings?.some(binding=>binding.resources?.includes(resourceId))))continue;
    const targetGeneration=project.operationReceipt.reinstated===true?project.operationReceipt.generation:1;
    const firstEffective=firstCommissionedAt(deployment,project,(deployment.effectiveHistory||[]).find(row=>row.generation===targetGeneration)?.effective||deployment.desired);
    let current=snapshotAt(deployment,project,firstEffective);
@@ -282,12 +299,13 @@ function socProviderSupportHistoryKernel(){
   }
   return target?requested||{ready:false}:true;
  }
- function productFeatureAt(s,customerId,deploymentId,feature,at,hooks={}){
+ function productFeatureAtResolved(s,customerId,deploymentId,feature,at,resolved){
   if(!s?.providerCampaign||!integer(at)||at>s.clock||typeof customerId!=='string'||typeof deploymentId!=='string'||typeof feature!=='string')return {ready:false};
   const c=s.providerCampaign.customers.find(row=>row.id===customerId);if(!c)return {ready:false};
-  const resolved=withDefaults(s,hooks),root=resolved.customerRoot(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCustomer?.version!==1||root.providerCampaign||root.mode==='sandbox'||root.experience?.kind==='lab')return {ready:false};
+  const root=resolved.customerRoot(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCustomer?.version!==1||root.providerCampaign||root.mode==='sandbox'||root.experience?.kind==='lab')return {ready:false};
   return providerProductFeatureReadyAt(s,c,root,null,at,resolved,{deploymentId,feature});
  }
+ function productFeatureAt(s,customerId,deploymentId,feature,at,hooks={}){return productFeatureAtResolved(s,customerId,deploymentId,feature,at,withDefaults(s,hooks));}
  function boundaryEvaluationAt(s,c,root,project,at,pathResources,observations,hooks,context={}){
   const plan=project.operationReceipt?.plan,definition=plan?.boundaryContract,deps=plan?.dependencies;
   if(!definition||!Array.isArray(deps)||!integer(plan.boundaryGeneration))return {eligible:false,resources:[],profile:definition?.profile||''};
@@ -407,6 +425,7 @@ function socProviderSupportHistoryKernel(){
    return provenanceMemo.get(key);
   });
   const resolved={...hooks,
+   [COMMISSION_CACHE]:new Map(),
    customerRoot:hooks.customerRoot||((state,c)=>customerRoot(state,c,{})),
    customerStatusAt:hooks.customerStatusAt||customerStatusAt,
    retailAgreementAt:hooks.retailAgreementAt||retailAgreementAt,
@@ -660,18 +679,30 @@ function socProviderSupportHistoryKernel(){
   const sameSample=participant&&typeof participant==='object'&&!Array.isArray(participant)&&Object.keys(participant).every(key=>allowed.has(key))&&keys.every(key=>Object.hasOwn(participant,key)&&same(participant[key]??null,expected[key]??null))&&(!Object.hasOwn(participant,'freshJobs')||same(participant.freshJobs,expected.freshJobs));
   return {status:sameSample?'valid':'invalid',missing:sameSample?[]:['HISTORICAL_SUPPORT_PARTICIPANT_MISMATCH'],participant:expected};
  }
- function createValidator(s,hooks={}){
-  const resolved=withDefaults(s,hooks);
-  return (participant,at)=>{
-   const result=reconstructParticipantAtResolved(s,participant?.customerId,at,resolved);if(result.status!=='supported')return result;
-   const expected=result.participant,keys=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'];
-   const allowed=new Set([...keys,'freshJobs','settlements','namedSupport','distributor','integrations']);
-   const sameSample=participant&&typeof participant==='object'&&!Array.isArray(participant)&&Object.keys(participant).every(key=>allowed.has(key))&&keys.every(key=>Object.hasOwn(participant,key)&&same(participant[key]??null,expected[key]??null))&&(!Object.hasOwn(participant,'freshJobs')||same(participant.freshJobs,expected.freshJobs));
-   return {status:sameSample?'valid':'invalid',missing:sameSample?[]:['HISTORICAL_SUPPORT_PARTICIPANT_MISMATCH'],participant:expected};
+ function createValidator(s,hooks={}){return createReader(s,hooks).validateParticipant;}
+ // One reader belongs to one synchronous read of an unchanged state. Return
+ // owned projections; only private reconstruction inputs share these caches.
+ function createReader(s,hooks={}){
+  const resolved=withDefaults(s,hooks),participants=new Map();
+  const participant=(customerId,at)=>{
+   const key=JSON.stringify([customerId,at]);
+   if(!participants.has(key))participants.set(key,reconstructParticipantAtResolved(s,customerId,at,resolved));
+   return copy(participants.get(key));
+  };
+  return {
+   participant,
+   productFeature:(customerId,deploymentId,feature,at)=>productFeatureAtResolved(s,customerId,deploymentId,feature,at,resolved),
+   validateParticipant:(value,at)=>{
+    const result=participant(value?.customerId,at);if(result.status!=='supported')return result;
+    const expected=result.participant,keys=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'];
+    const allowed=new Set([...keys,'freshJobs','settlements','namedSupport','distributor','integrations']);
+    const sameSample=value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).every(key=>allowed.has(key))&&keys.every(key=>Object.hasOwn(value,key)&&same(value[key]??null,expected[key]??null))&&(!Object.hasOwn(value,'freshJobs')||same(value.freshJobs,expected.freshJobs));
+    return {status:sameSample?'valid':'invalid',missing:sameSample?[]:['HISTORICAL_SUPPORT_PARTICIPANT_MISMATCH'],participant:expected};
+   }
   };
  }
  function source(){return `const SOC_PROVIDER_SUPPORT_HISTORY=(${socProviderSupportHistoryKernel.toString()})();`;}
- return {version:VERSION,reconstructParticipantAt,callingSupportAt,validateParticipantAt,createValidator,productFeatureAt,source};
+ return {version:VERSION,reconstructParticipantAt,callingSupportAt,validateParticipantAt,createValidator,createReader,productFeatureAt,source};
 }
 const SOC_PROVIDER_SUPPORT_HISTORY=socProviderSupportHistoryKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_SUPPORT_HISTORY;

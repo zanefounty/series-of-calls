@@ -1,0 +1,15 @@
+# Exact arrival retention — 6 November 2026
+
+Earned work receipts require the original arrival event or its independently validated support-work origin. A missing event is no longer accepted just because its ID falls below the pruning checkpoint: pinned events make that checkpoint insufficient to prove a particular eviction. Rehashing a receipt and its derived marker cannot supply missing provenance.
+
+All validated receipt work proofs now pin their exact arrival IDs. The campaign retains the ordinary 200-event working budget plus one slot per distinct earned arrival, preventing accumulated regional awards from consuming the entire working history. Existing independent support, interconnect, room and integration pins remain enforced. Event checkpoint counters retain their existing meaning; exhaustion refuses explicitly.
+
+Regional retention markers are version 2. A valid version-1 save is checked against the old marker shape, then migrated on an owned restore/dispatch copy using existing verified proof. Validation does not mutate caller-owned state. Unknown versions refuse. Saves that already lost their exact evidence cannot be repaired by inventing arrivals: the preserved minute-540 pre-fix checkpoint refuses, while the genuine minute-420 checkpoint migrates without changing its events or receipts. Original artifacts remain exportable outside Git.
+
+Frozen `271dc3b` passed five focused tests in 39.55 seconds, including AC-SOC-789 (a real earned opening followed by 220 dispatched staffing events and restore) and AC-SOC-790 (an explicitly isolated appender capacity fixture retaining 240 arrivals alongside 200 working events). Source, coverage, mapping, translations and build passed; all tracked inputs were unchanged. The initial mapping check reported a stale generated audit; regeneration repaired the audit before the frozen checks. Full regional eligibility is not established by the isolated capacity fixture.
+
+Evidence: `/home/zane-fountylabs/soc-evidence-archive/arrival-retention-271dc3b/inputs.json`, `result.json`, and `check-0.log` through `check-5.log`. Independent bounded review of `34182d8` verified eight authority/migration cases plus direct/worker parity at `/tmp/soc-regional-341-independent-review.json`.
+
+The older full regional run at `34182d8` was deliberately stopped after the subsequent working-history correction superseded its inputs (699.21 seconds, exit -9, unchanged tracked inputs); it is not a pass. Its input receipt, log and explicit supersession note remain in `/home/zane-fountylabs/soc-evidence-archive/regional-34182d8/`. A fresh AC-SOC-656 run uses integrated candidate `9917113`; its terminal result remains pending at this checkpoint.
+
+The prior hosted CI run `42169348879` failed its resilience trace-pruning assumption, already corrected in `f1312b3`; cancelled peer jobs are not passes. These focused results do not establish full registered acceptance, final browser compatibility, long-play completion or protected deployment readiness.

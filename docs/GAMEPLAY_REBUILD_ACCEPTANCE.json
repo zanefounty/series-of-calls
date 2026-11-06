@@ -1075,6 +1075,27 @@
           "sha256": "2f9c11f76b03e4fd19f08e7270a8371e94aba193adb6bd5089f5ad20dbafd472"
         }
       ]
+    },
+    "workloads-e3c40ab-browser": {
+      "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+      "status": "passed-scoped-browser-verification",
+      "scope": "18/18 Chromium, Firefox and WebKit desktop/mobile motion-on, motion-off and paid meeting recovery cases. Six paired full-state comparisons, 18 exact save restores; no input/build drift. Only PLAY-010-A02 and PLAY-018-A03. Later changed inputs require affected verification.",
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/proposal.json",
+      "sha256": "68a6057217a9602f02898eb83301119a262314336f249b19bb969eb00363137e",
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/REVIEW.md",
+          "sha256": "bb0dd9029f63e44c24dfe76720c12c0f643ddebe380012af78245c0d627d1c99"
+        }
+      ],
+      "limits": [
+        "No ledger/source/registry changes; coordinator decides promotion.",
+        "Visible-flow comparisons span minutes68\u201372, with2newjobs,1newcompletion,4additionalusage minutes; no settlement boundary in that paired interval. Complete state and all ledger/accounting fields compare exactly.",
+        "Meeting fixture produced by actual current AC865 native dispatch, then imported through visible validated Import; paid repair and clock80\u2013144 run through actual browser controls.",
+        "Chromium host pinned binary; Firefox/WebKit immutable Playwright1.64.1 container sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f. Actual Node versions retained separately.",
+        "No new PLAY004A03/background-tab, drag-pan, human pilot, universal accessibility, longplay or broader source-family completion claim.",
+        "Initial external meeting matcher failure preserved in chromium-r1-selector-failure; native reason array includes both MEETING_CAPACITY and MEETING_CAPACITY_ZERO. Runtime unchanged for corrected verification."
+      ]
     }
   },
   "tests": {
@@ -6831,7 +6852,7 @@
       "requirement": "PLAY-010",
       "sourceIndex": 1,
       "assertion": "Sampled particles and traces do not create or bill additional work.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B006",
         "B007",
@@ -6851,22 +6872,47 @@
       "reviewTestCandidates": [
         "B055"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
         "implementation": [
-          "src/game/25-provider-campaign.js",
+          "src/game/96-map/90-service-scene.js",
+          "src/game/96-map/95-provider-canvas.js",
+          "src/game/93-ui/79-provider-workload-flow.js",
+          "src/game/23-provider-journeys.js",
           "src/game/55-communications.js",
-          "src/game/46-outcomes.js"
+          "src/game/97-provider-shell.js",
+          "src/game/98-provider-runtime.js",
+          "tests/provider-room-family-limitation.test.js"
         ],
-        "tests": [
-          "C004",
-          "C064"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Sampled particles and traces do not create or bill additional work.",
+            "evidence": "Sufficient executed visible-control evidence for the exact assertion. Real SMIL motion and actual trace display are state-pure while paused; six animation/sound on/off pairs produce exact full-state equality under identical68-to72 commands, including jobs, native interactions, usage and complete treasury/ledger."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only the exact assertion at these frozen tested inputs; no human, background-tab, long-play or full-release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Pure inspection is tested. Compare sampled animation/sound enabled versus disabled under fixed commands, with unchanged demand, usage and billing."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/25-provider-campaign.js",
+            "src/game/55-communications.js",
+            "src/game/46-outcomes.js"
+          ],
+          "tests": [
+            "C004",
+            "C064"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-010-A03",
@@ -8174,7 +8220,7 @@
       "requirement": "PLAY-018",
       "sourceIndex": 2,
       "assertion": "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8203,32 +8249,57 @@
         "B061",
         "R020"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
         "implementation": [
-          "src/game/45-products.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/93-ui/79-provider-lifecycle.js",
           "src/game/96-map/90-service-scene.js",
           "src/game/96-map/95-provider-canvas.js",
+          "src/game/93-ui/79-provider-workload-flow.js",
+          "src/game/23-provider-journeys.js",
+          "src/game/55-communications.js",
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js",
-          "src/game/23-provider-service-retirement.js"
+          "tests/provider-room-family-limitation.test.js"
         ],
-        "tests": [
-          "C098",
-          "C100",
-          "C102",
-          "C103",
-          "C101",
-          "C107",
-          "C108"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability.",
+            "evidence": "Sufficient executed visible-control evidence for the exact assertion. Actual geography/services/workloads/costs layers selectable; real voice/message paths and mission-meeting paths inspectable; every retained ordinary journey button reached at desktop/mobile, keyboard activation works, visible controls at least52px. Full native state unchanged by layer/flow/trace/service/incident selection, zoom/reset, sound and motion preference changes."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only the exact assertion at these frozen tested inputs; no human, background-tab, long-play or full-release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/45-products.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/93-ui/79-provider-lifecycle.js",
+            "src/game/96-map/90-service-scene.js",
+            "src/game/96-map/95-provider-canvas.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js",
+            "src/game/23-provider-service-retirement.js"
+          ],
+          "tests": [
+            "C098",
+            "C100",
+            "C102",
+            "C103",
+            "C101",
+            "C107",
+            "C108"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-019-A01",
@@ -14742,8 +14813,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 126,
-      "pending-current-candidate-verification": 29,
+      "verified-current-candidate": 128,
+      "pending-current-candidate-verification": 27,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14948,6 +15019,17 @@
         "scope": "Four exact closures only, independently audited. All159 original assertions and four owner-parked long-play items retained. f55 browser execution is not relabelled a59; source/tree equivalence is explicit. No research acceptance or exclusion.",
         "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/gameplay-159-main-a59-gap-audit/audit.json",
         "sha256": "c161fbf6f95abc50f7b353af1993f5f958581b1b2d3a2fe0fd31c21361107b64"
+      },
+      {
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
+        "assertions": [
+          "PLAY-010-A02",
+          "PLAY-018-A03"
+        ],
+        "scope": "Two exact clauses only; original159 and four parked assertions retained. Frozen browser candidate not relabelled as later lifecycle changes.",
+        "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/proposal.json",
+        "sha256": "68a6057217a9602f02898eb83301119a262314336f249b19bb969eb00363137e"
       }
     ]
   }

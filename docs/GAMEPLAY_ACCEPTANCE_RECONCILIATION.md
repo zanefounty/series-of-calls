@@ -1,17 +1,25 @@
 # Gameplay acceptance reconciliation — 7 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **126 exact assertions verified, 29 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **128 exact assertions verified, 27 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 25 | 3 | 0 |
-| 2 — service truth and SMB | 15 | 6 | 0 |
-| 3 — map and interaction | 17 | 7 | 0 |
+| 2 — service truth and SMB | 16 | 5 | 0 |
+| 3 — map and interaction | 18 | 6 | 0 |
 | 4 — strategy and growth | 16 | 5 | 0 |
 | 5 — missions and ecosystem | 35 | 5 | 0 |
 | 6 — compatibility and delivery | 18 | 3 | 4 |
 
-Four additional exact clauses are now recorded for merged candidate `a59d67b`:
+Two further clauses, **PLAY-010-A02** and **PLAY-018-A03**, are verified at
+`e3c40ab`: 18 scoped Chromium/Firefox/WebKit desktop/mobile cases prove actual
+moving particles, selectable geography/service/workload layers and journey traces.
+Six motion/sound on-off pairs produce byte-identical complete native state under
+the same commands; all 18 final saves restore exactly. The ledger links the
+external reports and hashes. This evidence does not cover later lifecycle edits,
+background tabs, human usability or parked long-play.
+
+Four earlier exact clauses are recorded for merged candidate `a59d67b`:
 
 - **PLAY-033-A03:** four Enterprise migration journeys retain delivered service,
   actual settlement amounts and renewal at minute 360.

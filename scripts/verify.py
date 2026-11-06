@@ -38,6 +38,18 @@ def acceptance_command(suites):
         except (AttributeError,OSError):jobs=os.cpu_count() or 1
     require(jobs>=1,'TEST_JOBS must be a positive integer')
     return ['node','--test','--test-isolation=process',f'--test-concurrency={jobs}','--test-reporter=tap',*suites]
+def acceptance_suites(plan,shard=None):
+    """Partition whole files deterministically; the complete set of shards is mandatory."""
+    suites=plan['suites']
+    require(isinstance(suites,dict) and suites,'Missing acceptance suites')
+    if shard is None:return dict(suites)
+    index,total=shard
+    require(type(index) is int and type(total) is int and 1<=index<=total<=len(suites),'Invalid acceptance shard')
+    return dict(list(suites.items())[index-1::total])
+def acceptance_shard(value):
+    match=re.fullmatch(r'([1-9][0-9]*)/([1-9][0-9]*)',value)
+    if not match or int(match[1])>int(match[2]):raise argparse.ArgumentTypeError('Expected acceptance shard I/N with 1 <= I <= N')
+    return int(match[1]),int(match[2])
 def source(root):
     manifest=read(root,'research/source-manifest.json')
     revision=read(root,f"research/revisions/{manifest['revision']}.json")
@@ -182,7 +194,7 @@ def catalogue(root):
     for row in progression['records']:
         src=original[row['sourceId']]
         require(row['original']['attributes']==src['original_attributes'] and row['original']['sha256']==hashlib.sha256(json.dumps(src,sort_keys=True,ensure_ascii=False).encode()).hexdigest(),'Progression original source changed')
-def evidence(root):
+def evidence(root,shard=None):
     index=read(root,'spec/implementation.json');unique(index['behaviours'],'behaviour')
     sources=unique(read(root,'spec/generated/source-items.json'),'source')
     report=read(root,'evidence/acceptance.json')
@@ -203,11 +215,14 @@ def evidence(root):
     require(all(re.fullmatch(r'tests/[a-z0-9-]+\.test\.js',p) for p in plan['suites']),'Invalid acceptance suite path')
     require(all((root/p).is_file() for p in plan['suites']),'Missing acceptance suite')
     require(set(report['tests'])=={t for suite in plan['suites'].values() for t in suite},'Acceptance plan differs from reported tests')
-    result=subprocess.run(acceptance_command(list(plan['suites'])),cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+    selected=acceptance_suites(plan,shard)
+    expected={tid for ids in selected.values() for tid in ids}
+    result=subprocess.run(acceptance_command(list(selected)),cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
     require(result.returncode==0,'Current behavioural tests fail: '+result.stdout[-1500:])
-    executed=set(acceptance_results(result.stdout,planned))
-    require(set(report['tests'])==executed,'Reported test IDs differ from executed tests')
-    for tid in {t for b in index['behaviours'] for t in b['testIds']}:require(tid in executed,'Test ID not executed: '+tid)
+    for path,digest in report['inputs'].items():require((root/path).is_file() and sha(root/path)==digest,'Evidence input changed during replay: '+path)
+    executed=set(acceptance_results(result.stdout,expected))
+    require(expected==executed,'Reported test IDs differ from executed tests')
+    for tid in {t for b in index['behaviours'] for t in b['testIds']} & expected:require(tid in executed,'Test ID not executed: '+tid)
 def upstream_evidence_subject(collection,item):
     if collection=='commits':return {'collection':collection,'sha':item['sha']}
     return {'collection':collection,'path':item['path'],'blob':item['blob']}
@@ -334,11 +349,13 @@ def release(root,now):
     require(browser.get('inputs'),'Browser acceptance lacks tested input hashes')
     for path,digest in browser['inputs'].items():require((root/path).is_file() and sha(root/path)==digest,'Browser acceptance is stale: '+path)
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('gate',choices=['source','coverage','mapping','catalogue','evidence','upstream','freshness','release','all']);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('gate',choices=['source','coverage','mapping','catalogue','evidence','upstream','freshness','release','all']);parser.add_argument('--acceptance-shard',type=acceptance_shard);args=parser.parse_args()
+    if args.acceptance_shard and args.gate not in ['all','evidence']:parser.error('--acceptance-shard is only supported for all/evidence; release always replays the complete plan')
     now=dt.datetime.now(dt.timezone.utc).date()
-    gates={'source':lambda:source(ROOT),'coverage':lambda:coverage(ROOT),'mapping':lambda:mapping(ROOT),'catalogue':lambda:catalogue(ROOT),'evidence':lambda:evidence(ROOT),'upstream':lambda:upstream(ROOT,now),'freshness':lambda:freshness(ROOT,now),'release':lambda:release(ROOT,now)}
+    gates={'source':lambda:source(ROOT),'coverage':lambda:coverage(ROOT),'mapping':lambda:mapping(ROOT),'catalogue':lambda:catalogue(ROOT),'evidence':lambda:evidence(ROOT,args.acceptance_shard),'upstream':lambda:upstream(ROOT,now),'freshness':lambda:freshness(ROOT,now),'release':lambda:release(ROOT,now)}
     try:
-        for k in (list(gates)[:-1] if args.gate=='all' else [args.gate]):gates[k]();print('PASS '+k)
+        for k in (list(gates)[:-1] if args.gate=='all' else [args.gate]):
+            gates[k]();print('PASS '+k+(f' (shard {args.acceptance_shard[0]}/{args.acceptance_shard[1]}; all shards required)' if k=='evidence' and args.acceptance_shard else ''))
     except (GateError,KeyError,ValueError,FileNotFoundError,subprocess.CalledProcessError) as e:print('FAIL '+str(e),file=sys.stderr);return 1
     return 0
 if __name__=='__main__':sys.exit(main())

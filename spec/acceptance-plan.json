@@ -1797,6 +1797,8 @@
     "tests/provider-progression-receipts-level3-markets.test.js",
     "tests/provider-progression-receipts-level3-managed.test.js",
     "tests/provider-progression-receipts.helpers.js",
+    "scripts/lib/elapsed-clock.js",
+    "scripts/provider-browser.js",
     "tests/provider-room-integration-paid.test.js",
     "tests/provider-room-integration-ui.test.js",
     "tests/provider-room-integration.test.js",
@@ -1804,7 +1806,6 @@
     "src/game/23-provider-room-integration.js",
     "src/game/93-ui/78-provider-room-integration.js",
     "tests/provider-empty-customer-actions-ui.test.js",
-    "tests/provider-refused-quotes-ui.test.js",
-    "scripts/provider-browser.js"
+    "tests/provider-refused-quotes-ui.test.js"
   ]
 }

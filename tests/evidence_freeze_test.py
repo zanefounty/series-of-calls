@@ -51,8 +51,22 @@ mode = os.environ.get('SOC_FREEZE_MUTATION', 'none')
 if mode == 'modify': target.write_text('changed while test subprocess was running\\n')
 elif mode == 'delete': target.unlink()
 print('TAP version 13')
-print('1..1')
-print('ok 1 - AC-SOC-001')
+if mode == 'duplicate':
+    print('1..2')
+    print('ok 1 - AC-SOC-001 first')
+    print('ok 2 - AC-SOC-001 duplicate')
+elif mode == 'missing':
+    print('1..0')
+elif mode == 'fail':
+    print('1..1')
+    print('not ok 1 - AC-SOC-001 controlled failure')
+    raise SystemExit(1)
+elif mode == 'skip':
+    print('1..1')
+    print('ok 1 - AC-SOC-001 # SKIP controlled skip')
+else:
+    print('1..1')
+    print('ok 1 - AC-SOC-001')
 ''')
         node.chmod(0o755)
         self.original_hash = hashlib.sha256(self.input.read_bytes()).hexdigest()
@@ -65,11 +79,15 @@ print('ok 1 - AC-SOC-001')
         env['PATH'] = str(self.root / 'bin') + os.pathsep + env.get('PATH', '')
         env['SOC_FREEZE_FIXTURE_INPUT'] = str(self.input)
         env['SOC_FREEZE_MUTATION'] = mutation
+        env['TEST_JOBS'] = '2'
         result = subprocess.run(
             [sys.executable, str(self.root / 'scripts' / 'record-evidence.py')],
             cwd=self.root, env=env, capture_output=True, text=True, timeout=10,
         )
-        report = json.loads((self.root / 'evidence' / 'acceptance.json').read_text())
+        report_path = self.root / 'evidence' / 'acceptance.json'
+        if not report_path.is_file():
+            raise AssertionError('recorder produced no receipt: ' + result.stdout + result.stderr)
+        report = json.loads(report_path.read_text())
         return result, report
 
     def test_unchanged_inputs_and_passing_tap_succeed(self):
@@ -101,6 +119,40 @@ print('ok 1 - AC-SOC-001')
         self.assertEqual(report['inputs']['fixture-input.txt'], self.original_hash)
         self.assertEqual(report['changedInputs'], ['fixture-input.txt'])
         self.assertIn('Acceptance inputs changed during execution', report['parseError'])
+
+
+    def test_parallel_command_fails_closed_on_duplicate_results(self):
+        result, report = self.run_recorder('duplicate')
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertEqual(report['tests'], {})
+        self.assertEqual(report['failures'], 1)
+        self.assertIn('--test-isolation=process', report['command'])
+        self.assertIn('--test-concurrency=2', report['command'])
+        self.assertIn('Duplicate executed acceptance ID', report['parseError'])
+
+    def test_parallel_command_fails_closed_on_missing_and_failed_suites(self):
+        missing, missing_report = self.run_recorder('missing')
+        self.assertEqual(missing.returncode, 1, missing.stdout + missing.stderr)
+        self.assertEqual(missing_report['tests'], {})
+        self.assertIn('Executed acceptance IDs differ from plan', missing_report['parseError'])
+        failed, failed_report = self.run_recorder('fail')
+        self.assertEqual(failed.returncode, 1, failed.stdout + failed.stderr)
+        self.assertEqual(failed_report['tests'], {})
+        self.assertIn('Acceptance tests failed', failed_report['parseError'])
+        skipped, skipped_report = self.run_recorder('skip')
+        self.assertEqual(skipped.returncode, 1, skipped.stdout + skipped.stderr)
+        self.assertEqual(skipped_report['tests'], {})
+        self.assertIn('Skipped acceptance test', skipped_report['parseError'])
+
+    def test_duplicate_plan_id_is_not_collapsed_by_a_set(self):
+        plan_path = self.root / 'spec' / 'acceptance-plan.json'
+        plan = json.loads(plan_path.read_text())
+        plan['suites']['tests/acceptance.test.js'].append('AC-SOC-001')
+        plan_path.write_text(json.dumps(plan))
+        result, report = self.run_recorder()
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertEqual(report['tests'], {})
+        self.assertIn('Duplicate acceptance plan ID', report['parseError'])
 
 
 class WorkflowOverlayTests(unittest.TestCase):

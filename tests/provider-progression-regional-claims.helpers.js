@@ -82,17 +82,7 @@ function advance(state) {
 }
 
 function until(state, predicate, label, limit = 420) {
-  const startedAt = state.clock;
-  while (state.clock - startedAt < limit && !predicate(state)) {
-    const before = state.clock;
-    const requested = Math.min(limit - (state.clock - startedAt), safeAdvanceChunk(state));
-    state = requested === 1
-      ? advance(state)
-      : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'bounded-until');
-    assert.ok(state.clock > before, `${label} wait advances at least one minute`);
-    assert.ok(state.clock - before <= requested, `${label} wait does not exceed its requested native advance`);
-    assert.ok(state.clock - startedAt <= limit, `${label} wait stays within its ${limit}-minute simulation cap`);
-  }
+  for (let i = 0; i < limit && !predicate(state); i++) state = advance(state);
   const reached = predicate(state);
   if (!reached) checkpoint('condition-not-reached', state, { condition: label });
   assert.ok(reached, `${label} not reached at minute ${state.clock}`);
@@ -196,7 +186,30 @@ function operation(state, operationId, customerId, config) {
 }
 
 function operationComplete(state, operationId, customerId) {
-  return until(state, s => s.providerCampaign.projects.some(project => project.customerId === customerId && project.operationId === operationId && project.status === 'complete'), `${customerId} ${operationId}`);
+  const label = `${customerId} ${operationId}`;
+  const startedAt = state.clock;
+  while (state.clock - startedAt < 420 && !state.providerCampaign.projects.some(project => project.customerId === customerId && project.operationId === operationId && project.status === 'complete')) {
+    const project = state.providerCampaign.projects.findLast(row => row.customerId === customerId && row.operationId === operationId);
+    const interrupted = state.providerCampaign.status === 'won'
+      || state.providerCampaign.incidents.some(row => ['active', 'acknowledged'].includes(row.status))
+      || state.providerCampaign.customers.some(row => row.status === 'renewal');
+    const remaining = 420 - (state.clock - startedAt);
+    const due = project && ['running', 'commissioning'].includes(project.status) && Number.isSafeInteger(project.dueAt) && project.dueAt > state.clock
+      ? project.dueAt - state.clock
+      : 1;
+    const requested = interrupted ? 1 : Math.min(remaining, due);
+    const before = state.clock;
+    state = requested === 1
+      ? advance(state)
+      : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'operation-due-boundary');
+    assert.ok(state.clock > before, `${label} completion wait advances at least one minute`);
+    assert.ok(state.clock - before <= requested, `${label} completion wait does not exceed its requested native advance`);
+    assert.ok(state.clock - startedAt <= 420, `${label} completion wait stays within its 420-minute simulation cap`);
+  }
+  const complete = state.providerCampaign.projects.some(project => project.customerId === customerId && project.operationId === operationId && project.status === 'complete');
+  if (!complete) checkpoint('condition-not-reached', state, { condition: `${label} completion` });
+  assert.ok(complete, `${label} not reached at minute ${state.clock}`);
+  return state;
 }
 
 function supportConfig(market) {

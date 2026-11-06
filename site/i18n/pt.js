@@ -4417,6 +4417,8 @@
 "provider.context.scenario_prerequisites":"Prepare the required services",
 "provider.context.service_growth":"Expand this service",
 "provider.context.service_prerequisites":"Build the required services",
+"provider.customer_prerequisite.compare":"Comparar planos iniciais em Deals",
+"provider.customer_prerequisite.explanation":"As operações e os orçamentos de fornecedores precisam de um cliente financiado. Abra Deals para comparar planos iniciais e financiar seu primeiro cliente.",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.exit_pending_capture_storage":"There are {count} recordings in progress. If they create stored records after exit, archive storage continues at {amount} per period after the supplier minimum. No charge is added if capture ends without a stored record.",

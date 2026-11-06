@@ -1261,6 +1261,23 @@
     ],
     "tests/provider-portfolio-runtime.test.js": [
       "AC-SOC-874"
+    ],
+    "tests/provider-persistence-next-outcome.test.js": [
+      "AC-SOC-876"
+    ],
+    "tests/provider-partner-paid-path.test.js": [
+      "AC-SOC-877"
+    ],
+    "tests/provider-partner-support.test.js": [
+      "AC-SOC-878"
+    ],
+    "tests/provider-partner-paths.test.js": [
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   "inputs": [

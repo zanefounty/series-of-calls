@@ -40,7 +40,7 @@ function apiDeliveryRows(state,interactionId){
  return {interaction,caseRecord,operationJob,channelAcceptance,deliveryReceipt,webhookDelivery};
 }
 
-test('P5 path contract maps declared native product features and costed paid quotes',()=>{
+test('AC-SOC-879 P5 path contract maps declared native product features and costed paid quotes',()=>{
  assert.deepEqual(PATHS.PATHS,Object.fromEntries(CONTENT.paths.map(row=>[row.id,row])));
  assert.equal(PATHS.PACK,CONTENT.id);assert.equal(PATHS.VERSION,CONTENT.version);assert.equal(PATHS.OFFERS.length,3);
  assert.ok(Object.isFrozen(PATHS.PATHS['local-speech-product-integration'].source));assert.ok(Object.isFrozen(PATHS.OFFERS[0].offer));
@@ -60,7 +60,7 @@ test('P5 path contract maps declared native product features and costed paid quo
  assert.deepEqual(JSON.parse(JSON.stringify(browser.api.PATHS)),JSON.parse(JSON.stringify(PATHS.PATHS)),'browser fallback is byte-for-byte equivalent to the versioned content');
 });
 
-test('partner-path lifecycle preflight fails closed without a paid customer, products, resources, or support and never buys prerequisites',()=>{
+test('AC-SOC-880 partner-path lifecycle preflight fails closed without a paid customer, products, resources, or support and never buys prerequisites',()=>{
  const s=SOC.create({experience:'campaign',scenario:'smb'}),before=JSON.stringify(s),path=CONTENT.paths[0];
  const result=PATHS.canOrder(s,'starter-customer',path.operationId,{});
  assert.equal(result.eligible,false);assert.ok(result.missing.includes('ACTIVE_PROVIDER_CUSTOMER_REQUIRED'));
@@ -69,7 +69,7 @@ test('partner-path lifecycle preflight fails closed without a paid customer, pro
  assert.equal(PATHS.captureTest(s,'missing-project').ready,false);assert.deepEqual(s,SOC.restore(before),'preflight and missing receipt checks are pure');
 });
 
-test('P5 Lab paths pass native directional tests, fail after retirement, and recover only after rebase and retest',()=>{
+test('AC-SOC-881 P5 Lab paths pass native directional tests, fail after retirement, and recover only after rebase and retest',()=>{
  for(const path of CONTENT.paths){
   const {state:initial}=labPair(path);let s=initial;
   for(const endpoint of [path.source,path.target]){
@@ -94,7 +94,7 @@ test('P5 Lab paths pass native directional tests, fail after retirement, and rec
  }
 });
 
-test('Provider P5 credit fails closed until paid route receipts, causal delivery, and exact support owners exist',()=>{
+test('AC-SOC-882 Provider P5 credit fails closed until paid route receipts, causal delivery, and exact support owners exist',()=>{
  const state=SOC.create({experience:'campaign',scenario:'smb',difficulty:'easy'}),customerId=state.providerCampaign.customers[0]?.id||'starter-customer',result=PATHS.observe(state,customerId);
  assert.equal(result.status,'incomplete');assert.equal(result.count,0);assert.equal(result.target,3);
  assert.ok(result.missing.every(x=>x==='PROVIDER_CUSTOMER_REQUIRED'||x.startsWith('provider-partner-integration-required:')));
@@ -102,7 +102,7 @@ test('Provider P5 credit fails closed until paid route receipts, causal delivery
 });
 
 
-test('native workplace integration admits the actual voice path and records its tested scope, while untested and retired edges fail',()=>{
+test('AC-SOC-883 native workplace integration admits the actual voice path and records its tested scope, while untested and retired edges fail',()=>{
  const path=CONTENT.paths.find(p=>p.id==='workplace-to-suite-calling');let {state:s}=labPair(path);
  const call=(state,id)=>SOC.dispatch(state,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:id,durationMinutes:2});
  const blocked=call(s,'unverified-edge');assert.equal(blocked.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');assert.ok(!blocked.interactions.at(-1).trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'));
@@ -116,7 +116,7 @@ test('native workplace integration admits the actual voice path and records its 
  s=SOC.dispatch(s,{type:'products',command:{action:'rebase-integration',id:path.integrationId}});s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});s=call(s,'recovered-edge');const recoveredId=s.interactions.at(-1).id;s=tick(s,6);const recovered=s.interactions.find(i=>i.id===recoveredId);assert.equal(recovered.phase,'resolved');assert.ok(recovered.trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'&&t.targetGeneration>gate.targetGeneration));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('native API integration binds channel delivery and human digital handoff to one tested case, then recovers after a blocked edge test',()=>{
+test('AC-SOC-884 native API integration binds channel delivery and human digital handoff to one tested case, then recovers after a blocked edge test',()=>{
  const path=CONTENT.paths.find(p=>p.id==='communications-api-to-engagement-workflow');let {state:s}=labPair(path);s=enableApiHumanRoute(s);
  s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});let edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'scenario-verified');const passedAt=edge.result.checkedAt;
  s=SOC.dispatch(s,{type:'products',command:{action:'retire',id:path.target.deploymentId}});s=tick(s);s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'blocked','native edge retest records the target retirement failure');

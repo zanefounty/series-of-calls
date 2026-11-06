@@ -10,7 +10,7 @@ function socProviderPartnerSupportKernel(){
   if(result.status!=='supported'||!r||r.customerId!==customerId||r.role!=='msp'||r.organisationId!=='orchard-msp'||!r.projectId||!r.postingId||!Array.isArray(r.scope))return null;
   // Payroll counters and the current staffing count change with time. Ownership
   // comes from the actual funded stages; current paid staffing is checked above.
-  return {version:VERSION,adapter:'provider-paid-stage-support',role:r.role,organisationId:r.organisationId,customerId,projectId:r.projectId,postingId:r.postingId,effectiveAt:r.effectiveAt,expiresAt:r.expiresAt,scope:[...r.scope].sort(),terms:{setupCents:r.setupCents,periodCents:r.periodCents}};
+  return {version:VERSION,role:r.role,organisationId:r.organisationId,customerId,scope:[...r.scope].sort(),acceptedAt:s.providerCampaign.projects.find(p=>p.id===r.projectId)?.acceptedAt,effectiveAt:r.effectiveAt,expiresAt:r.expiresAt,projectId:r.projectId,postingId:r.postingId};
  }
  function supportFor(s,customerId,resources,{at=s?.clock,hooks={}}={}){
   if(!Array.isArray(resources)||!resources.length||resources.some(x=>typeof x!=='string')||new Set(resources).size!==resources.length)throw new Error('INVALID_PARTNER_SUPPORT_SCOPE');

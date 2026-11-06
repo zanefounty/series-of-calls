@@ -14,7 +14,7 @@
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -734,7 +734,7 @@
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1770,6 +1770,52 @@
         "progress.goal.tb",
         "uc-new:domain:workforce",
         "uc-new:domain:journey-testing"
+      ]
+    },
+    {
+      "id": "partner-workplace-suite-calling",
+      "name": "Grove and Disco calling connection",
+      "description": "Connect the two funded calling products. Test their directional compatibility, then deliver a real customer call.",
+      "setupCents": 98000,
+      "periodCents": 13000,
+      "workMinutes": 10,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-suite-calling"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:suite-calling"
+      ]
+    },
+    {
+      "id": "partner-workplace-suite-calling-retest",
+      "name": "Retest Grove and Disco calling",
+      "description": "Fund a fresh compatibility test after a product change or recorded failure, then deliver a real call.",
+      "setupCents": 42000,
+      "periodCents": 13000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-suite-calling"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:suite-calling"
       ]
     }
   ],

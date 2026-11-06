@@ -74,16 +74,20 @@ async function closeMapInspector(page){
  await page.locator('.provider-inspector:visible').waitFor({state:'hidden'});
 }
 async function selectMapCustomer(page,customerId='starter-customer'){
- // Explicitly dismiss overlays, then select the world object. Focus never owns a sheet.
- for(const selector of ['.provider-modal [data-provider-action="drawer-close"]','.provider-inspector [data-provider-action="close-inspector"]','.provider-rail-body [data-provider-action="drawer-close"]']){
-  const close=page.locator(selector+':visible').first();if(await close.isVisible())await close.click();
+ // Prefer the visible authored customer action when a drawer is open. The map node
+ // can remain visible behind the drawer without opening the inspector reliably.
+ const manage=page.locator(`.provider-rail-body [data-provider-action="select-customer"][data-id="${customerId}"]:visible`).first();
+ if(await manage.count())await manage.click();
+ else {
+  for(const selector of ['.provider-modal [data-provider-action="drawer-close"]','.provider-inspector [data-provider-action="close-inspector"]','.provider-rail-body [data-provider-action="drawer-close"]']){
+   const close=page.locator(selector+':visible').first();if(await close.isVisible())await close.click();
+  }
+  const target=`.provider-map-node[data-provider-action="select-customer"][data-id="${customerId}"]`;
+  if(!await page.locator(target).isVisible())await page.locator('[data-provider-layer]').selectOption('geography');
+  await click(page,target);
  }
- const target=`.provider-map-node[data-provider-action="select-customer"][data-id="${customerId}"]`;
- // A selected service topology only shows its customer. Use the visible layer control
- // to return to the portfolio before selecting another customer.
- if(!await page.locator(target).isVisible())await page.locator('[data-provider-layer]').selectOption('geography');
- await click(page,target);
- await page.locator('.provider-inspector').waitFor({state:'visible'});
+ await page.waitForFunction(id=>{const v=SOC_PROVIDER_UI.view();return v.selection?.customerId===id&&v.inspectorOpen!==false&&!v.sheetOpen;},customerId,{timeout:10000});
+ await page.locator('.provider-inspector:visible').waitFor({state:'visible'});
 }
 async function openOperation(page,operationId,customerId='starter-customer'){
  await selectMapCustomer(page,customerId);
@@ -104,7 +108,7 @@ async function quoteBase(page,plan,stage='base',customerId,spec){
 }
 async function runJourney(baseUrl,spec){
  const row={id:spec.id,plan:spec.plan,openingVariant:spec.openingVariant||'standard',viewport:spec.viewport,steps:[],status:'running',errors:[]};report.journeys.push(row);fs.rmSync(path.join(OUT,spec.id),{recursive:true,force:true});fs.mkdirSync(path.join(OUT,spec.id),{recursive:true});
- const context=await browser.newContext({viewport:spec.viewport,acceptDownloads:true,reducedMotion:'reduce'});const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>row.errors.push(`pageerror:${e.message}`));page.on('console',m=>{if(m.type()==='error')row.errors.push(`console:${m.text()}`);});
+ const context=await browser.newContext({viewport:spec.viewport,acceptDownloads:true,reducedMotion:'reduce'});const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>{row.errors.push(`pageerror:${e.message}`);(row.pageErrors??=[]).push({message:e.message,stack:e.stack||null});});page.on('console',m=>{if(m.type()==='error')row.errors.push(`console:${m.text()}`);});
  let firstDeliveryPromise=null,openingWallTime=null;
  const step=async(name)=>{const state=await readState(page),view=await page.evaluate(()=>({viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,transition:getComputedStyle(document.querySelector('.provider-app button')).transitionDuration,activeAction:document.activeElement?.dataset?.providerAction||null}));assert.equal(view.reducedMotion,true);assert.ok(view.documentWidth<=view.viewport,`${spec.id}/${name}: viewport overflow ${view.documentWidth}>${view.viewport}`);row.steps.push({name,...state,view});await snap(page,spec,name);};
  const advanceUntil=async(predicate,timeout)=>{await click(page,'[data-provider-action="speed"][data-provider-value="8"]');const before=await page.evaluate(()=>SCP.state.clock);await page.waitForFunction(t=>SCP.state.clock>t,before,{timeout:timeout||15000});const focus=await page.evaluate(()=>document.activeElement?.dataset?.providerValue);assert.equal(focus,'8','simulation tick rerender should preserve speed control focus');await page.waitForFunction(predicate,null,{timeout:timeout||60000});};

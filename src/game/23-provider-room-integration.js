@@ -7,7 +7,7 @@ function socProviderRoomIntegrationKernel(){
   SOURCE_ID_REF='uc-new:family:microsoft:meetings-rooms',TARGET_ID_REF='uc-new:family:cisco:meetings-devices',
   copy=x=>x==null?x:JSON.parse(JSON.stringify(x)),plain=x=>!!x&&typeof x==='object'&&!Array.isArray(x),
   exact=(x,keys)=>plain(x)&&Object.keys(x).sort().join(',')===[...keys].sort().join(','),
-  same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),int=x=>Number.isSafeInteger(x)&&x>=0,
+  same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),int=(x,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(x)&&x>=min&&x<=max,
   fail=code=>{throw new Error(code);};
  function productsApi(){return typeof SOC_PRODUCTS!=='undefined'?SOC_PRODUCTS:require('./45-products.js');}
  function childOf(state,customer){return state?.portfolio?.customers?.find(x=>x.id===customer?.portfolioId||x.id===customer?.id)?.root||null;}
@@ -56,8 +56,8 @@ function socProviderRoomIntegrationKernel(){
   if(observed!==true&&observed?.ready!==true)missing.push(observed?.reason||'current-room-observation-required');
   if(roomConfig?.recording===true){for(const dependency of ['recorder','archive']){const ready=typeof hooks.resourceReady==='function'?hooks.resourceReady(root,dependency):null;if(ready!==true&&ready?.ready!==true)missing.push(`room-recording-dependency-required:${dependency}`);}}
   if(roomConfig?.captions===true){for(const dependency of ['speech','archive']){const ready=typeof hooks.resourceReady==='function'?hooks.resourceReady(root,dependency):null;if(ready!==true&&ready?.ready!==true)missing.push(`room-caption-dependency-required:${dependency}`);}}
-  const sourceFeature=typeof hooks.featureStatus==='function'?hooks.featureStatus(root,SOURCE_ID,SOURCE_FEATURE):null;
-  const targetFeature=typeof hooks.featureStatus==='function'?hooks.featureStatus(root,TARGET_ID,TARGET_FEATURE):null;
+  const sourceFeature=!source.missing&&typeof hooks.featureStatus==='function'?hooks.featureStatus(root,SOURCE_ID,SOURCE_FEATURE):null;
+  const targetFeature=!target.missing&&typeof hooks.featureStatus==='function'?hooks.featureStatus(root,TARGET_ID,TARGET_FEATURE):null;
   if(!featureAvailable(sourceFeature,source.row,SOURCE_FEATURE))missing.push(sourceFeature?.code||'current-room-device-feature-required');
   if(!featureAvailable(targetFeature,target.row,TARGET_FEATURE))missing.push(targetFeature?.code||'current-interop-feature-required');
   const existing=root?.products?.integrations?.find(x=>x.id===EDGE_ID);

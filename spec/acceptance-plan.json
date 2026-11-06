@@ -1154,6 +1154,9 @@
       "AC-SOC-798",
       "AC-SOC-799",
       "AC-SOC-814"
+    ],
+    "tests/provider-meeting-join.test.js": [
+      "AC-SOC-818"
     ]
   },
   "inputs": [
@@ -1759,6 +1762,7 @@
     "tests/provider-security.test.js",
     "tests/admission-security-event-retention.test.js",
     "content/provider-security-abuse.v2.json",
-    "content/provider-security-managed.v1.json"
+    "content/provider-security-managed.v1.json",
+    "tests/provider-meeting-join.test.js"
   ]
 }

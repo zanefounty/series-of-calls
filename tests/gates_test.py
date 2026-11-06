@@ -1,4 +1,6 @@
 import datetime as dt,hashlib,importlib.util,json,pathlib,shutil,subprocess,tempfile,unittest
+from contextlib import ExitStack
+from unittest import mock
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('verify',ROOT/'scripts/verify.py');V=importlib.util.module_from_spec(spec);spec.loader.exec_module(V)
 class Gates(unittest.TestCase):
@@ -218,6 +220,71 @@ class Gates(unittest.TestCase):
   self.change('research/generated/references.json',lambda d:d[0].update(activeJurisdictionClaim=True))
   (self.root/'research/reviews.json').write_text(json.dumps([{'id':'REV-1','reference':ref,'acceptedAt':'2026-01-01'}]))
   with self.assertRaisesRegex(V.GateError,'expired'):V.freshness(self.root,dt.date(2026,11,3))
+
+class ReleaseRequirementGate(unittest.TestCase):
+ """Exercise the release decision with real, bounded acceptance evidence.
+
+ Static/source, upstream and freshness gates have their own mutation cases above.
+ Only those orthogonal gates are patched here; release(), evidence(), the recorder
+ and Node execution remain real. This fixture never claims application coverage.
+ """
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory(prefix='soc-release-requirement-')
+  self.addCleanup(self.tmp.cleanup);self.root=pathlib.Path(self.tmp.name)
+  for directory in ['scripts','src','tests','evidence','spec/generated','maintenance']:
+   (self.root/directory).mkdir(parents=True,exist_ok=True)
+  for name in ['verify.py','record-evidence.py']:
+   shutil.copy2(ROOT/'scripts'/name,self.root/'scripts'/name)
+  (self.root/'src/fixture.js').write_text('module.exports = 7;\n')
+  (self.root/'tests/fixture.test.js').write_text("""const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+test('AC-SOC-001 synthetic release fixture', () => {
+  fs.appendFileSync('evidence/executions.txt', 'executed\\n');
+  assert.equal(require('../src/fixture.js'), 7);
+  assert.equal(fs.existsSync('evidence/fail-fixture'), false);
+});
+""")
+  self.write('spec/generated/source-items.json',[{'id':'fixture-source'}])
+  self.write('spec/generated/requirements.json',[{'id':'fixture-requirement','sources':['fixture-source']}])
+  self.write('spec/implementation.json',{'behaviours':[{'id':'fixture-behaviour','sources':['fixture-source'],
+   'implementation':['src/fixture.js'],'testIds':['AC-SOC-001']}]})
+  self.write('spec/acceptance-plan.json',{'suites':{'tests/fixture.test.js':['AC-SOC-001']},
+   'inputs':['src/fixture.js','tests/fixture.test.js','scripts/verify.py','scripts/record-evidence.py']})
+  self.write('spec/dispositions.json',{})
+  self.write('maintenance/readiness.json',{})
+  recorded=subprocess.run(['python3',str(self.root/'scripts/record-evidence.py')],cwd=self.root,
+   capture_output=True,text=True,check=True)
+  self.assertIn('failures=0',recorded.stdout)
+  report=json.loads((self.root/'evidence/acceptance.json').read_text())
+  self.assertEqual(report['tests'],{'AC-SOC-001':'passed'})
+  self.assertEqual(report['command'][-1],'tests/fixture.test.js')
+  self.assertEqual(self.executions(),1)
+ def write(self,path,value):
+  (self.root/path).write_text(json.dumps(value))
+ def executions(self):
+  return len((self.root/'evidence/executions.txt').read_text().splitlines())
+ def assert_release_refusal(self,message,reaches_history=True):
+  now=dt.date(2026,11,3);calls=mock.Mock()
+  with ExitStack() as patches:
+   for name in ['source','coverage','mapping','catalogue','upstream','freshness']:
+    stub=patches.enter_context(mock.patch.object(V,name))
+    calls.attach_mock(stub,name)
+   # Upstream is strictly after the real evidence replay in the production gate.
+   V.upstream.side_effect=lambda *args:self.assertEqual(self.executions(),2)
+   with self.assertRaisesRegex(V.GateError,message):V.release(self.root,now)
+  expected=[mock.call.source(self.root),mock.call.coverage(self.root),
+   mock.call.mapping(self.root),mock.call.catalogue(self.root)]
+  if reaches_history:expected += [mock.call.upstream(self.root,now,True),mock.call.freshness(self.root,now,True)]
+  self.assertEqual(calls.mock_calls,expected)
+  self.assertEqual(self.executions(),2,'release must execute the real tiny acceptance suite again')
  def test_pending_release_cannot_pass(self):
-  with self.assertRaises(V.GateError):V.release(self.root,dt.date(2026,11,3))
+  self.assert_release_refusal('^Full release blocked: requirements remain pending$')
+ def test_resolved_requirement_reaches_the_distinct_readiness_gate(self):
+  self.write('spec/dispositions.json',{'fixture-requirement':{'status':'verified',
+   'behaviours':['fixture-behaviour'],'acceptance':['AC-SOC-001']}})
+  self.assert_release_refusal('^Repository, history, browser, protection or maintenance readiness incomplete$')
+ def test_failing_real_acceptance_is_not_mistaken_for_pending_requirements(self):
+  (self.root/'evidence/fail-fixture').touch()
+  self.assert_release_refusal('^Current behavioural tests fail:',reaches_history=False)
 if __name__=='__main__':unittest.main()

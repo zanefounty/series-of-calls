@@ -4599,6 +4599,7 @@
 "provider.lifecycle.retire_service":"Retire service",
 "provider.lifecycle.retirement_pending":"Product retirement",
 "provider.lifecycle.review_retirement":"Review retirement terms",
+"provider.lock_lost":"Career save ownership was lost. This view is read-only and paused. Reopen it to continue; export remains available.",
 "provider.managed_external_reach.description":"Use earned external calling and guest collaboration evidence in this market. Supplier engineering lowers setup cost, with a longer delivery time and higher recurring support commitment.",
 "provider.managed_external_reach.name":"Supplier-managed external reach",
 "provider.managed_headroom.description":"After earning Local UC reseller, buy four carrier sessions using supplier engineering and one provider support worker. Lower setup competes with a higher recurring commitment.",

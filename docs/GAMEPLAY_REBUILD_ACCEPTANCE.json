@@ -723,6 +723,75 @@
       "rawArtifact": "/tmp/soc-family-visible-0ac9430-three-engine-independent-review.json",
       "sha256": "34148d29b531f69619067f9670166a534c0b46de42ca60280d757e2a5eaa8394",
       "scope": "Fourteen family-specific capabilities/limitations plus paid retirement/recommissioning in Chromium, Firefox and WebKit;373 source inputs and47 built files per engine independently reconciled. Desktop1366x768 only; no full mission victory, per-family save-restore, catalogue approval or mobile inference."
+    },
+    "runtime-storage-lock-c0568a0-three-engine": {
+      "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+      "status": "three-desktop-journeys-passed",
+      "rawArtifact": "/tmp/soc-lock-review-map_scene.json",
+      "sha256": "448332b6b9310c81043bc66f8a5f917cc5c433e75d52cf88fc1b07b8a9c59188",
+      "reports": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.4",
+          "path": "/tmp/soc-lock-final-chromium/provider-browser-20261105232231872.json",
+          "sha256": "8eb1eb961fbadb87e4038f74090396041699f06171aa33eb2556c99234a7d60e",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "path": "/tmp/soc-lock-final-firefox/provider-browser-20261105232348423.json",
+          "sha256": "0cb5f50350708fee4c9f7f68e3fa3c25a1efa0984bf45347349decc563893737",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "path": "/tmp/soc-lock-final-webkit/provider-browser-20261105232158040.json",
+          "sha256": "b4cacc3ad2c065af1fd1d420c842861bce0c5209874f1b70035ce08bd3b31796",
+          "sourceInputs": 374,
+          "builtFiles": 47
+        }
+      ],
+      "scope": "Actual native Web Locks revocation and storage quota failure around one visible paid purchase; exact export, pause/read-only state and explicit recovery in Chromium, Firefox and WebKit at1366x768. Explicit environment fault injection; no simulation state writes. Not a full persistence, mobile, mission or deployment matrix."
+    },
+    "view-stability-20fdeaa-three-engine": {
+      "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+      "status": "six-desktop-mobile-journeys-passed",
+      "rawArtifact": "/tmp/soc-view-stability-three-engine-independent-review.json",
+      "sha256": "b33049e67109bf751557d117ef636e773a5dd5e96358bc86c9735ddde2207ad6",
+      "reports": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.4",
+          "path": "/tmp/soc-view-r2-chromium/provider-browser-20261106000529101.json",
+          "sha256": "1c061b2294c16605c45e367af1f3dfeedb26134c8cc22dfdef6e49609231be47",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "path": "/tmp/soc-view-r2-firefox/provider-browser-20261106000651994.json",
+          "sha256": "e1cc940fbc4d088f6d4f650652e7039dff2705dd5c301b02f79f044cd7ac5b45",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "path": "/tmp/soc-view-r2-webkit/provider-browser-20261106000752165.json",
+          "sha256": "25c832904d7bc341e4fcce24f326d5103d40a9682e1a04955f0391c5b9b9e948",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        }
+      ],
+      "scope": "Actual Provider quote review and ordinary worker ticks in Chromium, Firefox and WebKit at1366x768 and390x844. Six paid careers retain a nondefault camera and selected customer during clock7\u21929 with real work. Inputs, focus, expanded detail identities and scroll are checked. Purchase decisions pause time: the literal unfinished purchase draft during ticks clause remains open."
     }
   },
   "tests": {
@@ -4110,15 +4179,15 @@
         "src/game/93-ui/75-provider-panels.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-021": {
@@ -4620,7 +4689,7 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-preferences",
         "candidate-product-compatibility",
@@ -4628,8 +4697,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-047": {
@@ -7974,7 +8043,7 @@
       "requirement": "PLAY-020",
       "sourceIndex": 1,
       "assertion": "Camera and selected customer persist across ordinary events.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8007,29 +8076,25 @@
       "reviewTestCandidates": [
         "B056"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+        "run": "view-stability-20fdeaa-three-engine",
         "implementation": [
-          "src/game/93-ui/65-service-preferences.js",
+          "src/game/93-ui/10-dom.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
-          "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/97-provider-shell.js"
         ],
-        "tests": [
-          "C003",
-          "C102",
-          "C103",
-          "C108",
-          "C104"
+        "testIds": [
+          "AC-SOC-690",
+          "AC-SOC-691",
+          "AC-SOC-692"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Six actual desktop/mobile browser careers preserve zoom1.1, selected customer and layer across worker-driven clock7\u21929 and actual AGENT_ASSIGNED at8. Inspector focus, expanded sections and nonzero scroll remain stable. Source/build inventories, traces and saves independently verified.",
+        "scope": "Only the camera and selected customer assertion; no claim that paused purchase drafts experience simulation ticks.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Camera and selected customer persist across ordinary events."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Literal purchase draft during ticks and final integrated gameplay remain separately tracked."
     },
     {
       "id": "PLAY-020-A03",
@@ -12800,7 +12865,7 @@
       "requirement": "PLAY-046",
       "sourceIndex": 2,
       "assertion": "Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B030",
         "B051",
@@ -12829,33 +12894,23 @@
       "reviewTestCandidates": [
         "B051"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+        "run": "runtime-storage-lock-c0568a0-three-engine",
         "implementation": [
-          "src/game/23-provider-history.js",
-          "src/game/23-provider-products.js",
-          "src/game/25-provider-campaign.js",
-          "src/game/37-portfolio.js",
-          "src/game/54-business.js",
-          "src/game/55-communications.js",
-          "src/game/93-ui/65-service-preferences.js",
-          "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/98-provider-runtime.js",
+          "src/game/97-provider-shell.js"
         ],
-        "tests": [
-          "C001",
-          "C024",
-          "C252",
-          "C253",
-          "C251",
-          "C254"
+        "testIds": [
+          "AC-SOC-677",
+          "AC-SOC-678"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "A real committed A$3,800 order survives injected storage quota failure, remains one project and exports exactly. After native lock takeover the original tab becomes visibly read-only/paused, cancels pending work and cannot advance; explicit reopen restores ownership and continuation. Before-fix Chromium reproduced continued unauthorised clock advancement.",
+        "scope": "Exact lock-loss and exportable-storage-failure assertion at the named candidate. Desktop three-engine scope; no blanket persistence or full gameplay closure.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Losing the lock becomes visibly read-only/paused; storage failure preserves an exportable run."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Final integrated candidate, mobile and broader persistence remain separately tracked."
     },
     {
       "id": "PLAY-047-A01",
@@ -14040,7 +14095,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 105,
+    "assertionsClosed": 107,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14068,8 +14123,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 13
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 12
         }
       },
       {
@@ -14098,8 +14153,8 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 10,
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 9,
           "parked-owner-request": 4
         }
       }
@@ -14131,8 +14186,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 105,
-      "pending-current-candidate-verification": 50,
+      "verified-current-candidate": 107,
+      "pending-current-candidate-verification": 48,
       "parked-owner-request": 4
     }
   },
@@ -14156,8 +14211,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 105,
-      "pending-current-candidate-verification": 50,
+      "verified-current-candidate": 107,
+      "pending-current-candidate-verification": 48,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14229,6 +14284,32 @@
           "PLAY-037-A02"
         ],
         "scope": "Two new exact closures and one refreshed distinction proof; all45 desktop family/retirement journeys passed. No new human, long-play, source/research or mobile acceptance."
+      },
+      {
+        "candidate": "c0568a081f6237ffd175a64d98589c6b605e3d0a",
+        "runs": [
+          "runtime-storage-lock-c0568a0-three-engine"
+        ],
+        "assertions": [
+          "PLAY-046-A03"
+        ],
+        "newlyVerified": [
+          "PLAY-046-A03"
+        ],
+        "scope": "One exact closure only; native lock loss and injected storage failure verified through actual browser controls. No owner exclusions, human participation or long-play result."
+      },
+      {
+        "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+        "runs": [
+          "view-stability-20fdeaa-three-engine"
+        ],
+        "assertions": [
+          "PLAY-020-A02"
+        ],
+        "newlyVerified": [
+          "PLAY-020-A02"
+        ],
+        "scope": "One exact closure. PLAY-020-A01 remains open; original159 assertions, four owner-parked long-play items and research gates remain unchanged."
       }
     ]
   }

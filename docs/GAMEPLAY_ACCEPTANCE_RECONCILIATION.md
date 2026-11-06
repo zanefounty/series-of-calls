@@ -1,15 +1,15 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **105 exact assertions verified, 50 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **107 exact assertions verified, 48 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 23 | 5 | 0 |
 | 2 — service truth and SMB | 14 | 7 | 0 |
-| 3 — map and interaction | 11 | 13 | 0 |
+| 3 — map and interaction | 12 | 12 | 0 |
 | 4 — strategy and growth | 15 | 6 | 0 |
 | 5 — missions and ecosystem | 31 | 9 | 0 |
-| 6 — compatibility and delivery | 11 | 10 | 4 |
+| 6 — compatibility and delivery | 12 | 9 | 4 |
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 
@@ -36,6 +36,8 @@ The underlying current full JavaScript run passed 2,111 tests with two skips; al
 
 Fresh family verification at `0ac9430` passed **45 desktop journeys**: fourteen representative families plus live retirement/recommissioning in each of Chromium, Firefox and WebKit. Independent review reconciled all 373 source inputs and 47 built files per engine, actual capability/limitation evidence and the additional selected-room inspection. This closes **PLAY-036-A01** and **PLAY-037-A01** and refreshes the already verified **PLAY-037-A02**. It adds two closures, not three. **PLAY-036-A03** remains pending for visible ownership/provenance distinctions. These runs do not prove full mission wins, mobile operation, per-family save restoration or the whole catalogue. The contact-centre capacity example improves 10 to 20 on-time cases out of 24; that is a measured improvement, not the 22-case mission threshold. Some room screenshots require separate scroll positions for status and duration/capture.
 
+The native ownership repair at `c0568a0` closes **PLAY-046-A03**. Before the fix, a real Web Locks takeover left the previous Provider tab running. Fresh Chromium, Firefox and WebKit desktop journeys now verify an immediate visible read-only pause, cancellation of pending work and explicit reopen/resume. They also inject a storage quota failure after a real quoted A$3,800 purchase, export the exact committed run, recover storage and retain one charge/project. The registered lock-race cases are AC-SOC-677–678. This is one exact persistence closure; it does not certify the full browser, mobile or gameplay matrix. Reports and the independent review are linked in the ledger.
+
 Remaining engineering includes canonical progression adapters and useful earned choices, regional-support historical authority and claims, complete current mission/family/Training and accessibility evidence, and remaining persistence and source-mapping clauses. Earlier identified issues such as hidden local-spares prerequisites and bill presentation now have bounded repairs; their exact assertions still require the corresponding evidence reconciliation. The human pilot remains external under the [prepared protocol](GAMEPLAY_PILOT_PROTOCOL.md). Four long-play assertions remain parked at the owner's request, without a pass or exclusion.
 
 Raw saves, logs, screenshots and receipts remain outside Git. Their hashes, local paths and hosted-run URLs are recorded in the ledger. New proof is under `/tmp/soc-public-42041484761/`, `/tmp/soc-legacy-visible-check-r5/`, and the named independent review files. Failed storage-exhausted browser attempts and corrected harness-navigation attempts are retained separately. Further changed inputs require affected verification. The full ecosystem release gate remains separate and unchanged; no research acceptance, legal approval or complete-conversion claim is made here.
@@ -43,3 +45,6 @@ Raw saves, logs, screenshots and receipts remain outside Git. Their hashes, loca
 A fresh `npm run check:release` attempt failed during its behavioural prerequisite: 549 tests passed and 41 failed, with retained module-loading errors from `tests/harness.js`. It did not reach the later release-readiness decision. This failure is preserved separately from the earlier full and registered passes; it is neither a release pass nor evidence that the expected source-readiness gate was reached.
 
 The correctly provisioned retry reached the unchanged release gate and failed with `Unreviewed research reference: REF-ac194430f67b3832`. The retained log is `/tmp/soc-operation-usage-release-gate-r2.log`. The full release remains blocked on its separate source/research obligations.
+
+
+The view-stability candidate `20fdeaa` closes **PLAY-020-A02** after six desktop/mobile journeys across Chromium, Firefox and WebKit. A nondefault camera and selected customer persist through actual worker ticks and arriving work. The same runs verify the repaired quote field, focus, inspector detail identity and scroll. **PLAY-020-A01 remains open:** purchase decisions pause simulation, so these runs do not demonstrate an unfinished purchase draft during actual ticks. See [view verification](PROVIDER_VIEW_STABILITY.md). The nested backlog counters were also brought into agreement with the individually enumerated assertions.

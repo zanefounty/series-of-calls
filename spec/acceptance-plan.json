@@ -961,6 +961,19 @@
     ],
     "tests/provider-dedicated-interconnect-retention.test.js": [
       "AC-SOC-699"
+    ],
+    "tests/provider-runtime.test.js": [
+      "AC-SOC-677",
+      "AC-SOC-678"
+    ],
+    "tests/provider-view-stability.test.js": [
+      "AC-SOC-688",
+      "AC-SOC-689",
+      "AC-SOC-690",
+      "AC-SOC-691",
+      "AC-SOC-692",
+      "AC-SOC-693",
+      "AC-SOC-694"
     ]
   },
   "inputs": [
@@ -1023,6 +1036,7 @@
     "scripts/mcp-smoke.py",
     "scripts/mcp.js",
     "scripts/provider-owned-map-layout-browser.js",
+    "scripts/provider-runtime-safety-browser.js",
     "scripts/serve.js",
     "scripts/verify.py",
     "site/apple-touch-icon.png",
@@ -1477,7 +1491,9 @@
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/provider-progression-regional-claims.test.js",
+    "tests/provider-runtime.test.js",
     "tests/provider-service-truth.test.js",
+    "tests/provider-view-stability.test.js",
     "tests/security-ui.test.js",
     "tests/service-admin-ui.test.js",
     "tests/service-observation.test.js",

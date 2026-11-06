@@ -1,16 +1,24 @@
 /* Single authoritative campaign clock and persistence controller. UI remains a projection. */
-const SCP={atHome:true,state:null,seq:0,locked:false,release:null,worker:null,busy:false,job:0,speed:0,lastSpeed:1,acc:0,last:0,error:'',host:null,decision:false,decisionSpeed:0,frameStarted:false};
+const SCP={atHome:true,state:null,seq:0,locked:false,release:null,lockJob:0,worker:null,busy:false,job:0,speed:0,lastSpeed:1,acc:0,last:0,error:'',host:null,decision:false,decisionSpeed:0,frameStarted:false};
 const SCP_KEY='series-of-calls:provider:v1',SCP_LOCK='series-of-calls:provider-lock:v1';
 function providerCancel(){SCP.job++;SCP.busy=false;SCP.acc=0;if(SCP.worker){SCP.worker.terminate();SCP.worker=null;}}
 function providerPause(){SCP.speed=0;SCP.acc=0;SCP.last=performance.now();}
 function providerError(error){providerPause();SCP.error=String(error?.message||error);providerRender();}
-function providerRelease(){providerPause();providerCancel();if(SCP.release){SCP.release();SCP.release=null;}SCP.locked=false;}
+function providerRelease(){SCP.lockJob++;providerPause();providerCancel();if(SCP.release){SCP.release();SCP.release=null;}SCP.locked=false;}
 async function providerAcquire(){
  if(SCP.locked)return true;
  if(!navigator.locks){SCP.error='This browser cannot safely own a career save. Export remains available.';return false;}
+ const lockJob=++SCP.lockJob;
  return new Promise(resolve=>navigator.locks.request(SCP_LOCK,{ifAvailable:true},async lock=>{
+  if(lockJob!==SCP.lockJob){resolve(false);return;}
   if(!lock){SCP.error='This career is open in another tab. This view is read-only.';resolve(false);return;}
-  SCP.locked=true;resolve(true);await new Promise(done=>SCP.release=done);SCP.locked=false;
+  SCP.locked=true;resolve(true);await new Promise(done=>SCP.release=done);if(lockJob===SCP.lockJob)SCP.locked=false;
+ }).catch(()=>{
+  // A native lock may be revoked after its callback acquired ownership. Drop
+  // authority immediately, including any worker result already in flight.
+  // An older request must never revoke a subsequently acquired career lock.
+  if(lockJob===SCP.lockJob){providerRelease();providerError(new Error(typeof tr==='function'?tr('provider.lock_lost'):'Career save ownership was lost. This view is read-only and paused. Reopen it to continue; export remains available.'));}
+  resolve(false);
  }));
 }
 function providerSavedView(value=SOC_PROVIDER_UI.view()){

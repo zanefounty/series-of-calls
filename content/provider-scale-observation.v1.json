@@ -8,7 +8,6 @@
   ],
   "window": {
     "goal": "tb",
-    "goal": "tb",
     "minutes": 10,
     "journeys": 12,
     "completionPercent": 90,
@@ -41,6 +40,7 @@
       "workflowMinutes": 3,
       "wrapMinutes": 1,
       "bpoRequired": false,
+      "earnedTbRequired": false,
       "description": "Fund a ten-minute workload measurement with the customer's ordinary handling model. It can fail when the measured queue cannot complete enough eligible work."
     },
     {
@@ -55,7 +55,23 @@
       "workflowMinutes": 1,
       "wrapMinutes": 0,
       "bpoRequired": true,
-      "description": "Fund a short, consented service workflow and two named BPO handlers for the measured window. Ordinary campaign demand remains in the same observer denominator."
+      "earnedTbRequired": false,
+      "description": "Fund a short, consented service workflow for a measured window; separately purchase the existing two-person BPO offer before ordering. Ordinary campaign demand remains in the same observer denominator."
+    },
+    {
+      "id": "managed-scale-workflow",
+      "name": "Managed sustained workload",
+      "setupCents": 36000,
+      "periodCents": 16000,
+      "workMinutes": 12,
+      "engineers": 0,
+      "support": 1,
+      "mode": "workflow",
+      "workflowMinutes": 1,
+      "wrapMinutes": 0,
+      "bpoRequired": true,
+      "earnedTbRequired": true,
+      "description": "After earning the staffed TB workload milestone, fund a managed one-minute service workflow for a measured window; separately purchase the existing two-person BPO offer before ordering. Lower setup and engineering demand trade against higher recurring cost."
     }
   ],
   "retention": {

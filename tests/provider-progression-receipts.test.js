@@ -240,3 +240,15 @@ test('worker source serializes the same receipt validation and does not create c
  const s=paidOpening(),issued=RECEIPTS.claim(s,RECEIPTS.FIRST_LIVE,hooks),context={input:issued.state,hooks};vm.createContext(context);vm.runInContext(FACTS.source()+RECEIPTS.source(),context);
  const worker=vm.runInContext('SOC_PROVIDER_PROGRESSION_RECEIPTS.validate(input,hooks)',context);assert.equal(worker,true);assert.equal(issued.receipt.unlock,null);assert.equal(issued.receipt.sourceEvidence.sourceCashConversion,undefined);assert.equal(issued.state.business.balance.cash,s.business.balance.cash);
 });
+
+
+test('AC-SOC-810 a real customer exit preserves the earned Level2 window but cannot backdate eligibility',()=>{
+ let s=regionalSupportReady();s=claimDispatched(s,RECEIPTS.FIRST_LIVE);s=claimDispatched(s,RECEIPTS.SUSTAINABLE);s=claimDispatched(s,RECEIPTS.LEVEL_TWO);
+ const original=structuredClone(s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===RECEIPTS.LEVEL_TWO)),customerId='next-1-customer';
+ const q=SOC.provider.quote(s,{action:'exit',customerId});assert.deepEqual(q.blockers,[]);
+ s=SOC.dispatch(s,{type:'provider',command:{action:'exit',customerId,quoteRevision:q.atRevision}});
+ assert.equal(s.providerCampaign.customers.find(c=>c.id===customerId).status,'exited');assert.deepEqual(s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===RECEIPTS.LEVEL_TWO),original);
+ assert.equal(RECEIPTS.validate(s,hooks),true);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(RECEIPTS.eligibility(s,RECEIPTS.LEVEL_TWO,hooks).status,'earned');
+ for(const change of [c=>{c.exitAt=original.at-1;},c=>{c.activatedAt=original.at+1;}]){const forged=structuredClone(s);change(forged.providerCampaign.customers.find(c=>c.id===customerId));assert.throws(()=>RECEIPTS.validate(forged,hooks),/INVALID_PROVIDER_PROGRESSION_RECEIPT/);}
+});

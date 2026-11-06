@@ -318,7 +318,7 @@ function socProviderProgressionReceiptsKernel(){
   if(!same(receipt.portfolioIds,portfolioIdsFor(s,receipt.customerIds)))return false;
   const expectedStages=[];
   for(const customerId of receipt.customerIds){
-   const customer=s.providerCampaign.customers.find(x=>x.id===customerId),root=customer&&rootFor(s,customer,hooks);if(!customer||!root||root.providerCustomer?.id!==customer.id||root.providerCampaign||!['active','renewal'].includes(customer.status))return false;
+   const customer=s.providerCampaign.customers.find(x=>x.id===customerId),root=customer&&rootFor(s,customer,hooks);if(!customer||!root||root.providerCustomer?.id!==customer.id||root.providerCampaign||!integer(customer.activatedAt)||customer.activatedAt>samples[0].at||customer.exitAt!==null&&customer.exitAt!==undefined&&(!integer(customer.exitAt)||customer.exitAt<receipt.at))return false;
    for(const stageId of ['base','carrier','partner']){const stage=customer.stages?.[stageId],project=stage&&s.providerCampaign.projects.find(x=>x.id===stage.projectId&&x.customerId===customer.id&&x.kind==='stage'&&x.stage===stageId&&x.status==='complete'&&stage.status==='effective');if(!project||project.completedAt>samples[0].at)return false;expectedStages.push({customerId,stageId,projectId:project.id,postingId:project.postingId});const posting=s.business?.ledger?.find(x=>x.id===project.postingId);if(posting&&(posting.category!=='cost'||posting.cents!==project.setupCents||posting.customerId!==customer.id||posting.projectId!==project.id||posting.reason!=='provider-implementation'))return false;if(!posting&&Number(project.postingId.slice('entry-'.length))>(s.business?.ledgerPrunedThrough||0))return false;}
    const expectedResources=['base','carrier','partner'].flatMap(id=>customer.stages[id].resources||[]).sort(),saved=receipt.resourceGenerations.filter(x=>x.customerId===customer.id).sort((a,b)=>a.resourceId.localeCompare(b.resourceId));if(!same(saved.map(x=>x.resourceId),expectedResources)||saved.some(x=>!integer(x.generation,1)||!integer(root.resources?.[x.resourceId]?.generation,1)||root.resources[x.resourceId].generation<x.generation))return false;
   }
@@ -434,8 +434,8 @@ function socProviderProgressionReceiptsKernel(){
   if(seen.has(LEVEL_THREE)&&(!seen.has(LEVEL_TWO)||!seen.has(IX)))fail('INVALID_PROVIDER_PROGRESSION_RECEIPT_ORDER');
   return true;
  }
- function unlockProposal(s,sourceId,hooks={}){
-  validate(s,hooks);
+ function unlockProposal(s,sourceId,hooks={}){validate(s,hooks);return unlockProposalValidated(s,sourceId,hooks);}
+ function unlockProposalValidated(s,sourceId,hooks){
   if(![SUSTAINABLE,NONSTARTER,LEVEL_TWO,REGIONAL_C3,REGIONAL_C5,REGIONAL_T2,REGIONAL_L7,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX].includes(sourceId))return {sourceId,status:'unavailable',missing:['NO_COSTED_UNLOCK_AUTHORED_FOR_SOURCE'],quotes:[]};
   const receipt=receiptStore(s)?.receipts?.find(x=>x.sourceId===sourceId);
   if(!receipt)return {sourceId,status:'locked',missing:[sourceId===SUSTAINABLE?'SUSTAINABLE_PROVIDER_RECEIPT_REQUIRED':sourceId===NONSTARTER?'MANAGED_BUSINESS_RECEIPT_REQUIRED':sourceId===LEVEL_TWO?'REGIONAL_MSP_RECEIPT_REQUIRED':sourceId===REGIONAL_C3?'THREE_REGION_RECEIPT_REQUIRED':sourceId===REGIONAL_C5?'FIVE_REGION_RECEIPT_REQUIRED':sourceId===REGIONAL_T2?'TIER_TWO_RECEIPT_REQUIRED':sourceId===REGIONAL_L7?'INTERNATIONAL_PROVIDER_RECEIPT_REQUIRED':sourceId===IX?'FIRST_INTEGRATION_RECEIPT_REQUIRED':sourceId===LEVEL_THREE?'UC_CC_INTEGRATOR_RECEIPT_REQUIRED':sourceId===RESILIENCE_RD?'PROVIDER_RESILIENCE_RECEIPT_REQUIRED':sourceId===LOCAL_CONTINUITY?'LOCAL_SPEECH_RECEIPT_REQUIRED':sourceId===CASE_FOLLOWUP?'CASE_FOLLOWUP_RECEIPT_REQUIRED':sourceId===DEDICATED_INTERCONNECT?'DEDICATED_INTERCONNECT_RECEIPT_REQUIRED':'EXTERNAL_REACH_RECEIPT_REQUIRED'],quotes:[]};
@@ -487,7 +487,7 @@ function socProviderProgressionReceiptsKernel(){
   const rows=[...A.LEVELS,...A.GOALS].map(sourceId=>{
    const result=eligibility(s,sourceId,hooks,facts,true);return {...result,receipt:result.receipt||null};
   });
-  const unlockProposals=[SUSTAINABLE,NONSTARTER,LEVEL_TWO,REGIONAL_C3,REGIONAL_C5,REGIONAL_T2,REGIONAL_L7,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX].map(sourceId=>unlockProposal(s,sourceId,hooks));
+  const unlockProposals=[SUSTAINABLE,NONSTARTER,LEVEL_TWO,REGIONAL_C3,REGIONAL_C5,REGIONAL_T2,REGIONAL_L7,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX].map(sourceId=>unlockProposalValidated(s,sourceId,hooks));
   return {pack:PACK,version:VERSION,contentVersion:CONTENT,asOf:s.clock,receipts,rows,unlockProposal:unlockProposals.find(x=>x.sourceId===SUSTAINABLE),unlockProposals};
  }
  function regionalRetentionPins(receipt,customerId){

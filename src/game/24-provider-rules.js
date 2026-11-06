@@ -1682,6 +1682,29 @@ function socProviderRulesKernel(){
         "progress.progression-level.8",
         "uc-new:family:cisco:programmable-engagement"
       ]
+    },
+    {
+      "id": "direct-room-integration",
+      "name": "Grove and Disco room integration",
+      "description": "Fund eight minutes of setup, explicitly test compatibility, then deliver a real cross-platform bridge meeting. Both room products must already be funded and ready.",
+      "setupCents": 50000,
+      "periodCents": 12000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "room"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-meetings-room",
+        "cisco-meetings-interoperability"
+      ],
+      "sourceIds": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ]
     }
   ],
   "families": [

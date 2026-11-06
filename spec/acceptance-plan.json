@@ -1203,6 +1203,11 @@
       "AC-SOC-717",
       "AC-SOC-718",
       "AC-SOC-719"
+    ],
+    "tests/provider-progression-ui.test.js": [
+      "AC-SOC-842",
+      "AC-SOC-843",
+      "AC-SOC-844"
     ]
   },
   "inputs": [
@@ -1833,6 +1838,7 @@
     "tests/provider-partner-progression.test.js",
     "tests/provider-integration-support.test.js",
     "src/game/23-provider-integration-support.js",
-    "src/game/23-provider-partner-progression.js"
+    "src/game/23-provider-partner-progression.js",
+    "tests/provider-progression-ui.test.js"
   ]
 }

@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, stageEffective, nextOpportunity, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, supportWindowBatchBoundary, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
+const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, stageEffective, nextOpportunity, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, supportWindowBatchBoundary, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, ucCcCommissioning, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
 
 function minuteUntil(state, predicate, label, limit = 120) {
   const startedAt = state.clock;
@@ -218,3 +218,59 @@ test('stable-window batch waits only while witnessed incompatible rows make succ
     'without a witnessed contradiction the waiter keeps checking one minute at a time');
 });
 
+
+
+test('paid UC/CC commissioning batches only pre-due work and preserves the first native state', () => {
+  let state = SOC.create({ experience: 'campaign', scenario: 'smb', seed: 73, difficulty: 'easy' });
+  state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: 4, support: 4 } });
+  state = startCustomer(state, 'starter-customer', 'starter', 'au-sydney');
+  for (const id of ['recording', 'ms-workplace-calling', 'cisco-contact-centre']) {
+    state = operation(state, id, 'starter-customer');
+    state = operationComplete(state, id, 'starter-customer');
+  }
+  state = until(state, current => current.clock >= 60, 'actual settled service before boundary review');
+  state = operationComplete(operation(state, 'service-boundary-review', 'starter-customer'), 'service-boundary-review', 'starter-customer');
+  const nextBoundary = (Math.floor(state.clock / 60) + 1) * 60;
+  state = until(state, current => current.clock === nextBoundary - 2, 'commissioning crosses an actual settlement');
+  const eligibleBeforePurchase = state;
+  state = operation(state, 'uc-cc-integration', 'starter-customer');
+  const project = state.providerCampaign.projects.findLast(row => row.operationId === 'uc-cc-integration');
+  const initial = JSON.stringify(state);
+  assert.equal(project.status, 'running');
+  assert.ok(project.dueAt > nextBoundary);
+  const bounded = ucCcCommissioning(state, project.id, 'paid commissioning');
+  const reference = minuteUntil(clone(state), current => current.providerCampaign.projects.find(row => row.id === project.id).status === 'commissioning', 'reference commissioning', 600);
+  assert.equal(bounded.clock, project.dueAt, 'submission first occurs at the accepted due minute');
+  assert.equal(bounded.clock, reference.clock);
+  assert.deepEqual(comparableState(bounded), comparableState(reference), 'work, settlement, reservations, incidents and all other simulation state match');
+  assert.equal(bounded.providerCampaign.projects.find(row => row.id === project.id).operationReceipt.test, null, 'waiting does not perform the explicit paid test');
+  assert.ok(bounded.providerCampaign.periodHistory.some(row => row.settledAt === nextBoundary));
+  assert.ok(bounded.commands.length < reference.commands.length);
+  assert.deepEqual(SOC.restore(JSON.stringify(bounded)), bounded);
+  assert.throws(() => ucCcCommissioning(state, project.id, 'capped commissioning', 1), /capped commissioning not reached/);
+  assert.throws(() => ucCcCommissioning(state, 'missing-project', 'invalid project'), /exact paid UC\/CC project/);
+  assert.equal(JSON.stringify(state), initial, 'successful and refused waits preserve their caller');
+  const command = { type: 'advance', minutes: Math.min(safeAdvanceChunk(state), project.dueAt - state.clock) };
+  assert.ok(command.minutes > 1);
+  const vm = require('node:vm'); let reply;
+  const worker = { postMessage: value => { reply = value; } };
+  vm.createContext(worker); vm.runInContext(SOC.workerSource(), worker);
+  worker.onmessage({ data: { id: 'commissioning-boundary', state: JSON.parse(initial), command } });
+  assert.equal(reply.error, undefined);
+  assert.deepEqual(JSON.parse(JSON.stringify(reply.state)), SOC.dispatch(state, command), 'native batched advance remains worker equivalent');
+
+  let scheduled = until(eligibleBeforePurchase, current => current.providerCampaign.incidents.some(row => row.status === 'scheduled'), 'native follow-up incident scheduled', 600);
+  const incident = scheduled.providerCampaign.incidents.find(row => row.status === 'scheduled');
+  scheduled = operation(scheduled, 'uc-cc-integration', 'starter-customer');
+  const interruptedProject = scheduled.providerCampaign.projects.findLast(row => row.operationId === 'uc-cc-integration');
+  assert.ok(incident.dueAt < interruptedProject.dueAt, 'native incident must interrupt the accepted work interval');
+  const interrupted = SOC.dispatch(scheduled, { type: 'advance', minutes: interruptedProject.dueAt - scheduled.clock });
+  assert.equal(interrupted.clock, incident.dueAt);
+  assert.ok(interrupted.clock < interruptedProject.dueAt);
+  const withIncident = ucCcCommissioning(scheduled, interruptedProject.id, 'interrupted paid commissioning');
+  const incidentReference = minuteUntil(clone(scheduled), current => current.providerCampaign.projects.find(row => row.id === interruptedProject.id).status === 'commissioning', 'interrupted reference', 600);
+  assert.equal(withIncident.clock, incidentReference.clock);
+  assert.deepEqual(comparableState(withIncident), comparableState(incidentReference), 'incident acknowledgement, paid repair, affected work and first commissioning minute match');
+  assert.ok(withIncident.providerCampaign.projects.some(row => row.operationId === 'repair' && row.acceptedAt >= incident.dueAt && row.postingId));
+  assert.deepEqual(SOC.restore(JSON.stringify(withIncident)), withIncident);
+});

@@ -148,7 +148,19 @@ async function exerciseCampaign(page,profile){
   const form=page.locator(ui.form);for(const [name,value] of Object.entries(ui.fields))await fillVisibleField(form,name,value);if(ui.form==='#soc-journey-controls form')await prepareJourneySubmit(form,ui.fields);
   await clickCommand(page,`${ui.form} button[type="submit"]`);
  }
- return {scope:CAMPAIGN_SCOPE,experience:profileExperience(profile),tracks:recipe.tracks.map(t=>t.track),commands:recipe.steps.filter(s=>s.command).length,checkpoints};
+ let trainingAssessment=null;
+ if(profileExperience(profile)==='training'){
+  const current=page.locator('.soc-training-result'),course=page.locator('.soc-training-course');
+  await current.scrollIntoViewIfNeeded();
+  if(!await current.locator('.soc-training-assessment-label').isVisible())throw new Error('CURRENT_TRAINING_ASSESSMENT_LABEL_NOT_VISIBLE');
+  await course.locator('.soc-training-course-scope').scrollIntoViewIfNeeded();
+  trainingAssessment=await page.evaluate(()=>{
+   const state=socViewState(),assessment=SOC.calculate(state).assessment,progress=SOC_TRAINING_LESSONS.progress('defence',state,SOC),status=document.querySelector('.soc-training-result'),course=document.querySelector('.soc-training-course');
+   return {passed:assessment.passed,missing:[...assessment.missing],completedActions:progress.completedActions,totalActions:progress.totalActions,label:status.querySelector('.soc-training-assessment-label').textContent,statusText:status.textContent,statusClass:status.className,courseTitle:course.querySelector('h3').textContent,courseText:course.querySelector('.soc-training-course-progress').textContent,explanation:course.querySelector('.soc-training-course-scope').textContent,overflow:status.scrollWidth>status.clientWidth+1};
+  });
+  if(trainingAssessment.label!=='Current quick-exercise assessment'||trainingAssessment.courseTitle!=='Retained curriculum progress'||!trainingAssessment.explanation.includes('do not pass the current quick exercise')||!trainingAssessment.courseText.includes(`${trainingAssessment.completedActions} / ${trainingAssessment.totalActions}`)||trainingAssessment.missing.some(reason=>!trainingAssessment.statusText.includes(reason))||!trainingAssessment.statusClass.includes(trainingAssessment.passed?'is-passed':'is-pending')||trainingAssessment.overflow)throw new Error('TRAINING_ASSESSMENT_PRESENTATION_MISMATCH:'+JSON.stringify(trainingAssessment));
+ }
+ return {scope:CAMPAIGN_SCOPE,experience:profileExperience(profile),tracks:recipe.tracks.map(t=>t.track),commands:recipe.steps.filter(s=>s.command).length,checkpoints,...(trainingAssessment?{trainingAssessment}:{})};
 }
 function outputDirectory(id){return path.resolve(process.env.SOC_BROWSER_CAMPAIGN_EVIDENCE_DIR||path.join(ROOT,'evidence','browser-campaigns'),id);}
 function maxRuntime(){const value=Number(process.env.SOC_BROWSER_CAMPAIGN_MAX_MS||1200000);return Number.isFinite(value)?Math.max(60000,Math.min(1800000,value)):1200000;}

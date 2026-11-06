@@ -4687,6 +4687,7 @@
 "provider.lifecycle.retire_service":"Retire service",
 "provider.lifecycle.retirement_pending":"Product retirement",
 "provider.lifecycle.review_retirement":"Review retirement terms",
+"provider.lifecycle.scale_work":"Paid workload {run}: {active} active tasks retain their actual outcome and usage charges. Retirement stops {cancelled} not-yet-emitted tasks at minute {at}; they cannot count as delivered work. The measurement can no longer pass.",
 "provider.lock_lost":"Career save ownership was lost. This view is read-only and paused. Reopen it to continue; export remains available.",
 "provider.managed_external_reach.description":"Use earned external calling and guest collaboration evidence in this market. Supplier engineering lowers setup cost, with a longer delivery time and higher recurring support commitment.",
 "provider.managed_external_reach.name":"Supplier-managed external reach",

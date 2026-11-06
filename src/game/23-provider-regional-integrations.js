@@ -54,8 +54,8 @@ function socProviderRegionalIntegrationsKernel(){
   }
   return true;
  }
- function createReader(s,historyHooks={},integrationHooksForCustomer){
-  const api=integrationApi(),history=historyApi(),proofs=new Map(),participants=new Map(),features=new Map(),results=new Map();
+ function createReader(s,historyHooks={},integrationHooksForCustomer,historyReader){
+  const api=integrationApi(),history=historyReader||historyApi().createReader(s,historyHooks),proofs=new Map(),participants=new Map(),features=new Map(),results=new Map();
   const customer=id=>s?.providerCampaign?.customers?.find(c=>c.id===id);
   const root=c=>s?.portfolio?.customers?.find(row=>row.id===c?.portfolioId)?.root;
   function validProof(p){
@@ -65,10 +65,10 @@ function socProviderRegionalIntegrationsKernel(){
    proofs.set(p.id,valid);return valid;
   }
   function participant(c,at){
-   const key=c.id+'@'+at;if(!participants.has(key)){let result;try{result=history.reconstructParticipantAt(s,c.id,at,historyHooks);}catch{result=null;}participants.set(key,result?.status==='supported'?result.participant:null);}return participants.get(key);
+   const key=c.id+'@'+at;if(!participants.has(key)){let result;try{result=history.participant(c.id,at);}catch{result=null;}participants.set(key,result?.status==='supported'?result.participant:null);}return participants.get(key);
   }
   function feature(c,id,name,at){
-   const key=[c.id,id,name,at].join('@');if(!features.has(key)){let result;try{result=history.productFeatureAt(s,c.id,id,name,at,historyHooks);}catch{result=null;}features.set(key,result);}return features.get(key);
+   const key=[c.id,id,name,at].join('@');if(!features.has(key)){let result;try{result=history.productFeature(c.id,id,name,at);}catch{result=null;}features.set(key,result);}return features.get(key);
   }
   function supports(c,p,at){
    const row=participant(c,at),scope=p.operationReceipt.test.supportScope,r=row?.responsibility;

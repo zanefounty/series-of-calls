@@ -1,7 +1,7 @@
 /* Paid Provider workload windows. Evidence is read from the native service observer. */
 function socProviderScaleObservationKernel(){
  'use strict';
- const VERSION=1,CONTENT='provider-scale-observation-1',SOURCE_IDS=['progress.progression-level.10','progress.goal.'+'tb','uc-new:domain:workload'];
+ const VERSION=1,CONTENT='provider-scale-observation-1',SOURCE_IDS=['progress.goal.'+'tb','uc-new:domain:workforce','uc-new:domain:journey-testing'];
  const BASELINE='paid-scale-baseline',WORKFLOW='paid-scale-workflow',MANAGED='managed-scale-workflow',MAX_RUNS=20,MAX_ATTEMPTS=400;
  const SCHEDULE=[{offsetMinute:0,tasks:2},{offsetMinute:1,tasks:2},{offsetMinute:2,tasks:2},{offsetMinute:3,tasks:1},{offsetMinute:4,tasks:1},{offsetMinute:5,tasks:1},{offsetMinute:6,tasks:1},{offsetMinute:7,tasks:1},{offsetMinute:8,tasks:1}];
  const TERMS={

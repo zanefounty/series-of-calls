@@ -1208,6 +1208,23 @@
       "AC-SOC-842",
       "AC-SOC-843",
       "AC-SOC-844"
+    ],
+    "tests/provider-scale-paid.test.js": [
+      "AC-SOC-848"
+    ],
+    "tests/provider-scale-ui.test.js": [
+      "AC-SOC-849"
+    ],
+    "tests/provider-scale-observation.test.js": [
+      "AC-SOC-850",
+      "AC-SOC-851",
+      "AC-SOC-852",
+      "AC-SOC-853",
+      "AC-SOC-854",
+      "AC-SOC-855",
+      "AC-SOC-856",
+      "AC-SOC-857",
+      "AC-SOC-858"
     ]
   },
   "inputs": [
@@ -1839,6 +1856,12 @@
     "tests/provider-integration-support.test.js",
     "src/game/23-provider-integration-support.js",
     "src/game/23-provider-partner-progression.js",
-    "tests/provider-progression-ui.test.js"
+    "tests/provider-progression-ui.test.js",
+    "content/provider-scale-observation.v1.json",
+    "src/game/23-provider-scale-observation.js",
+    "src/game/93-ui/79-provider-scale.js",
+    "tests/provider-scale-paid.test.js",
+    "tests/provider-scale-ui.test.js",
+    "tests/provider-scale-observation.test.js"
   ]
 }

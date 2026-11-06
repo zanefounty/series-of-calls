@@ -2,9 +2,9 @@
   "version": 1,
   "contentVersion": "provider-scale-observation-1",
   "sourceIds": [
-    "progress.progression-level.10",
     "progress.goal.tb",
-    "uc-new:domain:workload"
+    "uc-new:domain:workforce",
+    "uc-new:domain:journey-testing"
   ],
   "window": {
     "goal": "tb",
@@ -17,15 +17,42 @@
     "concurrent": 2
   },
   "paidLoadSchedule": [
-    { "offsetMinute": 0, "tasks": 2 },
-    { "offsetMinute": 1, "tasks": 2 },
-    { "offsetMinute": 2, "tasks": 2 },
-    { "offsetMinute": 3, "tasks": 1 },
-    { "offsetMinute": 4, "tasks": 1 },
-    { "offsetMinute": 5, "tasks": 1 },
-    { "offsetMinute": 6, "tasks": 1 },
-    { "offsetMinute": 7, "tasks": 1 },
-    { "offsetMinute": 8, "tasks": 1 }
+    {
+      "offsetMinute": 0,
+      "tasks": 2
+    },
+    {
+      "offsetMinute": 1,
+      "tasks": 2
+    },
+    {
+      "offsetMinute": 2,
+      "tasks": 2
+    },
+    {
+      "offsetMinute": 3,
+      "tasks": 1
+    },
+    {
+      "offsetMinute": 4,
+      "tasks": 1
+    },
+    {
+      "offsetMinute": 5,
+      "tasks": 1
+    },
+    {
+      "offsetMinute": 6,
+      "tasks": 1
+    },
+    {
+      "offsetMinute": 7,
+      "tasks": 1
+    },
+    {
+      "offsetMinute": 8,
+      "tasks": 1
+    }
   ],
   "operations": [
     {

@@ -29,7 +29,7 @@ function fixtureHooks(holder,project){
  };
 }
 
-test('paid offers expose distinct costs and block workflow capacity without a real paid BPO receipt',()=>{
+test('AC-SOC-850 paid offers expose distinct costs and block workflow capacity without a real paid BPO receipt',()=>{
  assert.deepEqual(P.terms(P.BASELINE),{setupCents:12000,periodCents:0,workMinutes:2,engineers:0,support:1,mode:'baseline',workflowMinutes:3,wrapMinutes:1,bpoRequired:false,earnedTbRequired:false});
  assert.equal(P.terms(P.WORKFLOW).setupCents,48000);assert.equal(P.terms(P.WORKFLOW).periodCents,10000);
  assert.deepEqual(P.terms(P.MANAGED),{setupCents:36000,periodCents:16000,workMinutes:12,engineers:0,support:1,mode:'workflow',workflowMinutes:1,wrapMinutes:0,bpoRequired:true,earnedTbRequired:true});
@@ -42,7 +42,7 @@ test('paid offers expose distinct costs and block workflow capacity without a re
  for(const operation of CONTENT.operations)assert.deepEqual(P.terms(operation.id),{setupCents:operation.setupCents,periodCents:operation.periodCents,workMinutes:operation.workMinutes,engineers:operation.engineers,support:operation.support,mode:operation.mode,workflowMinutes:operation.workflowMinutes,wrapMinutes:operation.wrapMinutes,bpoRequired:operation.bpoRequired,earnedTbRequired:operation.earnedTbRequired});
 });
 
-test('baseline is a real paid failure window; native attempts, including ordinary-origin attempts, remain in the denominator',()=>{
+test('AC-SOC-851 baseline is a real paid failure window; native attempts, including ordinary-origin attempts, remain in the denominator',()=>{
  let root=ready();const side=P.create(),project={id:'project-1',postingId:'posting-1',customerId:'customer-a',operationId:P.BASELINE,setupCents:12000};
  const hooks=fixtureHooks({get root(){return root;},set root(v){root=v;}},project);
  const run=P.beginRun(side,{customerId:'customer-a',operationId:P.BASELINE},project,hooks);
@@ -58,7 +58,7 @@ test('baseline is a real paid failure window; native attempts, including ordinar
  assert.equal(root.serviceObservation.windows[0].attempts.length,1);
 });
 
-test('paid short-task Lab interaction fixture can satisfy unchanged native TB thresholds and retention is explicit',()=>{
+test('AC-SOC-852 paid short-task Lab interaction fixture can satisfy unchanged native TB thresholds and retention is explicit',()=>{
  let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-2',postingId:'posting-1',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000};
  const hooks=fixtureHooks(holder,project);const run=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,hooks);
  for(let minute=0;minute<10;minute++){
@@ -79,7 +79,7 @@ test('paid short-task Lab interaction fixture can satisfy unchanged native TB th
  const context={};require('node:vm').createContext(context);require('node:vm').runInContext(P.source()+';globalThis.P=SOC_PROVIDER_SCALE_OBSERVATION;',context);assert.equal(context.P.VERSION,P.VERSION);assert.equal(context.P.validate(side,hooks),true);
 });
 
-test('task emission and usage posting are idempotent; refused jobs stay visible and one paid project opens only one window',()=>{
+test('AC-SOC-853 task emission and usage posting are idempotent; refused jobs stay visible and one paid project opens only one window',()=>{
  let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-one-window',postingId:'posting-one-window',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000};
  const base=fixtureHooks(holder,project),blocked={...base,interact:()=>({accepted:false,refusal:'BPO_CAPACITY_EXHAUSTED'})};
  const run=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,blocked);
@@ -91,7 +91,7 @@ test('task emission and usage posting are idempotent; refused jobs stay visible 
  assert.throws(()=>P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,blocked),/PROVIDER_SCALE_PROJECT_ALREADY_USED/);
 });
 
-test('an ordinary assigned human attempt with an unresolved customer need is retained as failed, not rejected for being human',()=>{
+test('AC-SOC-854 an ordinary assigned human attempt with an unresolved customer need is retained as failed, not rejected for being human',()=>{
  let root=ready();root=SOC.dispatch(root,{type:'configure',id:'people',config:{people:2,entitlements:2,handlingMinutes:1,wrapMinutes:0,digitalConcurrency:2}});root=SOC.dispatch(root,{type:'workforce',command:{action:'start'}});root=SOC.dispatch(root,{type:'workforce',command:{action:'roster',people:[person('agent-a','seat-01'),person('agent-b','seat-02')]}});root=SOC.dispatch(root,{type:'contact',command:{action:'start'}});root=SOC.dispatch(root,{type:'outcomes',command:{action:'start'}});root=SOC.dispatch(root,{type:'outcomes',command:{action:'need',tenant:'orchard-repairs',person:'alex',caseId:'reference-case',purpose:'service',intent:'unsupported-intent',permittedChannels:['voice']}});root=tick(root,1);
  const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-human-failure',postingId:'posting-human-failure',customerId:'customer-a',operationId:P.BASELINE,setupCents:12000},hooks=fixtureHooks(holder,project),run=P.beginRun(side,{customerId:'customer-a',operationId:P.BASELINE},project,hooks);
  root=SOC.dispatch(root,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'reference-case',needId:root.outcomes.needs[0].id,language:'en',durationMinutes:1});root=tick(root,4);P.advance(side,run.id,hooks);
@@ -99,7 +99,7 @@ test('an ordinary assigned human attempt with an unresolved customer need is ret
  assert.equal(P.validate(side,hooks),true);
 });
 
-test('an unfinished ordinary attempt may receive an assignment after the native window closes without rewriting its historical snapshot',()=>{
+test('AC-SOC-855 an unfinished ordinary attempt may receive an assignment after the native window closes without rewriting its historical snapshot',()=>{
  let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-postwindow',postingId:'posting-postwindow',customerId:'customer-a',operationId:P.BASELINE,setupCents:12000},hooks=fixtureHooks(holder,project),run=P.beginRun(side,{customerId:'customer-a',operationId:P.BASELINE},project,hooks);
  for(let n=0;n<9;n++){root=tick(root,1);P.advance(side,run.id,hooks);}
  root=SOC.dispatch(root,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'ordinary-at-close',language:'en'});root=tick(root,1);P.advance(side,run.id,hooks);
@@ -108,7 +108,7 @@ test('an unfinished ordinary attempt may receive an assignment after the native 
  assert.equal(P.validate(side,hooks),true);const validated=side.runs[0].attempts.find(a=>a.caseId==='ordinary-at-close');assert.equal(validated.finished,false);assert.equal(validated.person,null);assert.equal(validated.workforceAssignment,null);
 });
 
-test('a paid task with a failed customer outcome records its real human assignment and usage without counting as successful work',()=>{
+test('AC-SOC-856 a paid task with a failed customer outcome records its real human assignment and usage without counting as successful work',()=>{
  let root=tick(staffed(),6);root=SOC.dispatch(root,{type:'outcomes',command:{action:'start'}});root=SOC.dispatch(root,{type:'outcomes',command:{action:'need',tenant:'orchard-repairs',person:'alex',caseId:'reference-case',purpose:'service',intent:'unsupported-intent',permittedChannels:['voice']}});
  const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-paid-failure',postingId:'posting-paid-failure',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000},base=fixtureHooks(holder,project),hooks={...base,interact:(_s,task)=>{if(task.sequence!==1)return base.interact(_s,task);root=SOC.dispatch(root,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'reference-case',needId:root.outcomes.needs[0].id,language:'en',durationMinutes:1});const i=root.interactions.at(-1);return {accepted:true,interactionId:i.id,caseId:i.caseId,startedAt:i.startedAt};}};
  const run=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,hooks);
@@ -117,7 +117,7 @@ test('a paid task with a failed customer outcome records its real human assignme
  const attempt=side.runs[0].attempts.find(a=>a.interactionId===failed.interactionId);assert.equal(attempt.success,false);assert.equal(attempt.journey.human,true);assert.equal(P.validate(side,hooks),true);
 });
 
-test('open save validation is bound to its live native window and rejects altered paid task lineage or usage',()=>{
+test('AC-SOC-857 open save validation is bound to its live native window and rejects altered paid task lineage or usage',()=>{
  let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-open-validation',postingId:'posting-open-validation',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000};
  const hooks=fixtureHooks(holder,project),run=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,hooks);
  assert.equal(P.pins(side,'customer-a').caseIds.length,2);assert.equal(P.pins(side,'customer-a').interactionIds.length,2);assert.equal(P.pins(side,'customer-a').jobIds.length,2,'paid jobs are pinned before the observer samples them');
@@ -129,7 +129,7 @@ test('open save validation is bound to its live native window and rejects altere
  const alteredUsage=structuredClone(side);alteredUsage.runs[0].paidJobs.find(j=>j.id===started.id).usageCents=99;assert.throws(()=>P.validate(alteredUsage,hooks),/INVALID_PROVIDER_SCALE_PAID_(USAGE|JOB)/);
 });
 
-test('save validation rejects missing lineage, fabricated successful attempts and over-retention',()=>{
+test('AC-SOC-858 save validation rejects missing lineage, fabricated successful attempts and over-retention',()=>{
  const s=P.create();s.runs.push({id:'provider-scale-1',version:1,customerId:'customer-a',operationId:P.WORKFLOW,status:'open',projectId:'project-2',postingId:'posting-1',startedAt:1,dueAt:11,nativeWindowId:'service-window-1',mode:'workflow',paidJobs:[],attempts:[{origin:'paid-scale-job',jobId:'job-1',caseId:'case-1',interactionId:'interaction-1',person:'agent-a',workforceAssignment:'assignment-1',startedAt:2,finished:true,success:true,journey:{success:false}}],result:null});s.nextId=2;
  assert.throws(()=>P.validate(s),/INVALID_PROVIDER_SCALE_ATTEMPT/);
  const many=P.create();many.runs=Array.from({length:P.MAX_RUNS+1},(_,i)=>({id:`provider-scale-${i+1}`}));many.nextId=P.MAX_RUNS+2;assert.throws(()=>P.validate(many),/INVALID_PROVIDER_SCALE_STATE/);

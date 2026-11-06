@@ -62,6 +62,7 @@
   if(a==='quote-regional-support'){const customer=model?.customers?.find(c=>c.id===b.dataset.customer);v.regionalSupportContext={customerName:customer?.name,personName:customer?.regionalSupport?.person?.name,employer:customer?.regionalSupport?.person?.employer};openQuote({action:'operation',operationId:'provider-support-coverage',customerId:b.dataset.customer,config:{market:b.dataset.market,personId:b.dataset.person,coverageId:b.dataset.coverage}});return;}
   if(a==='refresh-quote'){openQuote(v.quoteRequest);return;}if(a==='confirm-quote'||a==='confirm-operation'){submitPurchase();return;}if(a==='cancel-quote'){if(v.quoteBusy)return;quoteToken++;v.quoteModal=false;v.quote=null;v.quoteRequest=null;render(state,model);finishDecision();return;}
   if(a==='site-response'){action('command',{type:'provider',command:{action:a,projectId:id,response:val,quoteRevision:state.revision}});return;}
+  if(a==='start-scale-window'){action('command',{type:'provider',command:{action:a,projectId:id}});return;}
   if(a==='test-service-integration'){action('command',{type:'provider',command:{action:a,projectId:id,quoteRevision:state.revision}});return;}
   if(a==='claim-progression'){action('command',{type:'provider',command:{action:a,sourceId:id,quoteRevision:state.revision}});return;}
   if(a==='advance-segment'){action('command',{type:'provider',command:{action:'advance-segment'}});return;}if(a==='continue-career'){action('command',{type:'provider',command:{action:'continue-career'}});return;}

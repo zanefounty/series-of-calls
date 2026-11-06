@@ -36628,10 +36628,19 @@
     "representation": "ucc.goal.tb",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-scale-observation.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/39-service-observation.js",
       "src/game/41-progression.js",
       "src/game/55-communications.js",
       "src/game/83-observation-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-scale.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36652,7 +36661,8 @@
       "BEH-SOC-192",
       "BEH-SOC-193",
       "BEH-SOC-195",
-      "BEH-SOC-196"
+      "BEH-SOC-196",
+      "BEH-SOC-438"
     ]
   },
   {
@@ -53396,6 +53406,12 @@
       "content/business.json",
       "scripts/calls-mcp.js",
       "scripts/mcp-smoke.py",
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-scale-observation.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/38-workforce-offers.js",
       "src/game/38-workforce-quality.js",
       "src/game/44-campaign.js",
@@ -53409,6 +53425,9 @@
       "src/game/87-workforce-offers-ui.js",
       "src/game/89-workforce-quality-ui.js",
       "src/game/90-service-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-scale.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "tests/campaign.test.js",
       "tests/estate-lifecycle-integration.test.js"
@@ -53436,7 +53455,8 @@
       "BEH-SOC-370",
       "BEH-SOC-378",
       "BEH-SOC-380",
-      "BEH-SOC-381"
+      "BEH-SOC-381",
+      "BEH-SOC-438"
     ]
   },
   {
@@ -54339,8 +54359,17 @@
     "implementation": [
       "content/campaign.json",
       "spec/work-packages/campaign-obligations.json",
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-scale-observation.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/44-campaign.js",
       "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-scale.js",
+      "src/game/97-provider-shell.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js"
     ],
@@ -54357,7 +54386,8 @@
       "BEH-SOC-114",
       "BEH-SOC-137",
       "BEH-SOC-139",
-      "BEH-SOC-140"
+      "BEH-SOC-140",
+      "BEH-SOC-438"
     ]
   },
   {

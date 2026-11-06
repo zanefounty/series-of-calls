@@ -7365,7 +7365,7 @@
         "AC-SOC-835"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
     },
     {
       "id": "BEH-SOC-408",
@@ -7873,6 +7873,41 @@
       ],
       "status": "partial",
       "scope": "Paid UC/CC readiness constructs a fresh read-only native observer view on each call and isolates returned diagnostics; one synchronous Provider inspection shares its derived progression hooks. Frozen paid states, same-call capture/quality delivery, test/apply freshness, worker/restore parity and later same-object fault, deployment-generation and paid-posting mutations are exercised. This reduces repeated whole-customer copying without caching authority across commands or relaxing validation. Broader product fidelity and the existing legacy missing-arrival fallback remain separate obligations."
+    },
+    {
+      "id": "BEH-SOC-438",
+      "sources": [
+        "progress.goal.tb",
+        "uc-new:domain:workforce",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/23-provider-scale-observation.js",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-scale.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-848",
+        "AC-SOC-849",
+        "AC-SOC-850",
+        "AC-SOC-851",
+        "AC-SOC-852",
+        "AC-SOC-853",
+        "AC-SOC-854",
+        "AC-SOC-855",
+        "AC-SOC-856",
+        "AC-SOC-857",
+        "AC-SOC-858"
+      ],
+      "status": "partial",
+      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance."
     }
   ]
 }

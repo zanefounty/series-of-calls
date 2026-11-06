@@ -129,13 +129,15 @@ test('AC-SOC-774 paid room delivery retains its authored job or mission origin a
  const job=s.providerCampaign.jobs.find(row=>row.id===origin.id),arrival=s.providerCampaign.events.find(row=>row.id===origin.eventId),booking=child(s).information.bookings.find(row=>row.id===meeting.bookingId);
  assert.equal(job.sessionId,meeting.sessionId);assert.equal(job.caseId,booking.caseId);assert.equal(job.completedAt,meeting.endedAt);assert.equal(arrival.jobId,job.id);
  assert.equal(s.providerCampaign.meetings.some(row=>row.sessionId===meeting.sessionId),false,'this receipt is an authored demand job, not a mission row');
- for(const mutate of [
-  state=>{state.providerCampaign.jobs=state.providerCampaign.jobs.filter(row=>row.id!==origin.id);},
-  state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==origin.eventId);},
-  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.id=state.providerCampaign.jobs.find(row=>row.id!==origin.id).id;},
-  state=>{state.providerCampaign.events.find(row=>row.id===origin.eventId).customerId='foreign-customer';},
-  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.extra=true;}
- ]){const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/);}
+ const archiveEvent=(state,id)=>{const p=state.providerCampaign,row=p.events.find(event=>event.id===id);p.events=p.events.filter(event=>event.id!==id);p.eventCheckpoint.count++;p.eventCheckpoint.codes[row.code]=(p.eventCheckpoint.codes[row.code]||0)+1;const number=value=>Number(value?.slice('provider-event-'.length)||0);if(number(id)>number(p.eventCheckpoint.lastId))p.eventCheckpoint.lastId=id;};
+ for(const [mutate,expected] of [
+  [state=>{state.providerCampaign.jobs=state.providerCampaign.jobs.filter(row=>row.id!==origin.id);},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==origin.eventId);},/INVALID_PROVIDER_EVENT_ACCOUNTING/],
+  [state=>archiveEvent(state,origin.eventId),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.id=state.providerCampaign.jobs.find(row=>row.id!==origin.id).id;},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{state.providerCampaign.events.find(row=>row.id===origin.eventId).customerId='foreign-customer';},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.extra=true;},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+ ]){const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),expected);}
  const receipt=structuredClone(project(s,operationId).operationReceipt);
  const eventNumber=id=>Number(/^provider-event-(\d+)$/.exec(id||'')?.[1]||0),originNumber=eventNumber(origin.eventId);
  for(let n=0;n<240&&eventNumber(s.providerCampaign.eventCheckpoint.lastId)<=originNumber;n++)s=staff(s);
@@ -161,9 +163,10 @@ test('AC-SOC-774 paid room delivery retains its authored job or mission origin a
  assert.equal(row.bookingId,missionMeeting.bookingId);assert.equal(row.attemptedAt,140);
  assert.ok(mission.providerCampaign.events.some(event=>event.id===missionOrigin.eventId&&event.code==='MISSION_MEETING_BOOKED'));
  assert.deepEqual(SOC.restore(JSON.stringify(mission)),mission);
- for(const mutate of [
-  state=>{state.providerCampaign.meetings=state.providerCampaign.meetings.filter(row=>row.sessionId!==missionMeeting.sessionId);},
-  state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==missionOrigin.eventId);},
-  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.periodIndex=1;}
- ]){const forged=structuredClone(mission);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/);}
+ for(const [mutate,expected] of [
+  [state=>{state.providerCampaign.meetings=state.providerCampaign.meetings.filter(row=>row.sessionId!==missionMeeting.sessionId);},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==missionOrigin.eventId);},/INVALID_PROVIDER_EVENT_ACCOUNTING/],
+  [state=>archiveEvent(state,missionOrigin.eventId),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+  [state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.periodIndex=1;},/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/],
+ ]){const forged=structuredClone(mission);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),expected);}
 });

@@ -95,18 +95,22 @@ function providerDecision(open){
  if(open&&!SCP.decision){SCP.decisionSpeed=SCP.speed;SCP.decision=true;providerPause();providerCancel();providerRender();}
  else if(!open&&SCP.decision){const speed=SCP.decisionSpeed;SCP.decision=false;SCP.decisionSpeed=0;providerSpeed(speed);}
 }
+function providerCanRun(state=SCP.state){
+ const p=state?.providerCampaign;
+ return !!p&&state.business?.solvency?.status!=='default'&&(p.status==='operating'||p.status==='failed'&&p.customers.some(c=>!['exited','default'].includes(c.status)));
+}
 function providerSpeed(value){
  if(![0,.5,1,2,4,8].includes(value))return;
  if(SCP.decision){SCP.decisionSpeed=value;return;}
- if(!SCP.locked||!SCP.state||document.hidden||SCP.state.providerCampaign.status!=='operating')value=0;
+ if(!SCP.locked||!providerCanRun()||document.hidden)value=0;
  if(!value)providerCancel();SCP.speed=value;if(value)SCP.lastSpeed=value;SCP.acc=0;SCP.last=performance.now();providerRender();
 }
 function providerTick(){
- if(SCP.busy||!SCP.locked||!SCP.state)return;
+ if(SCP.busy||!SCP.locked||!providerCanRun())return;
  const snapshot=SCP.state,revision=snapshot.revision,id=++SCP.job,command={type:'advance',minutes:1,expectedRevision:revision};SCP.busy=true;
  const current=()=>id===SCP.job&&SCP.locked&&SCP.state.revision===revision;
  const accept=next=>{if(!current())return;SCP.busy=false;SCP.worker=null;SCP.state=SOC.validateState(next);providerPresentationEvents(snapshot,SCP.state);SCP.error='';providerStore();const p=SCP.state.providerCampaign,previous=snapshot.providerCampaign;
- if(p.status!=='operating'||p.incidents.some(i=>i.status==='active'&&!previous.incidents.some(old=>old.id===i.id&&old.status==='active'))||p.customers.some(c=>c.status==='renewal'&&!previous.customers.some(old=>old.id===c.id&&old.status==='renewal')))providerPause();providerRender();};
+ if(!providerCanRun()||p.status==='failed'&&previous.status!=='failed'||p.incidents.some(i=>i.status==='active'&&!previous.incidents.some(old=>old.id===i.id&&old.status==='active'))||p.customers.some(c=>c.status==='renewal'&&!previous.customers.some(old=>old.id===c.id&&old.status==='renewal')))providerPause();providerRender();};
  const fallback=()=>{if(!current())return;try{accept(SOC.dispatch(snapshot,command));}catch(e){SCP.busy=false;providerError(e);}};
  if(typeof Worker!=='function')return fallback();
  let worker;

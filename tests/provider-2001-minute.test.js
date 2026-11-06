@@ -25,11 +25,29 @@ test('a paid two-customer Provider career retains 2,001 minutes of demand, incid
  run.until(s=>s.providerCampaign.mission.consecutiveQualifying>=2&&s.providerCampaign.mission.nextOpportunityAvailable);run.customer('next-1','next-1-customer');run.send({action:'continue-career'});
  run.advanceTo(2001);const state=run.state,p=state.providerCampaign;
  assert.equal(state.clock,2001);assert.equal(p.customers.length,2);assert.ok(p.customers.every(c=>c.status==='active'));
- assert.equal(p.incidents.length,2);assert.ok(p.incidents.every(i=>i.status==='resolved'&&i.receipt&&p.projects.some(w=>w.customerId===i.customerId&&w.operationId==='repair'&&w.status==='complete')));
+ assert.ok(p.incidents.length>2&&p.incidents.length<=16,'each of two active customers can receive no more than the authored eight-incident sequence');
+ for(const customer of p.customers){
+  const rows=p.incidents.filter(i=>i.customerId===customer.id).sort((a,b)=>a.createdAt-b.createdAt);
+  assert.ok(rows.length>=1&&rows.length<=8);
+  assert.equal(rows[0].sequence,undefined,'the first incident retains its legacy shape');
+  for(let index=0;index<rows.length;index++){
+   const incident=rows[index];
+   assert.ok(incident.status==='resolved'&&incident.receipt&&p.projects.some(w=>w.customerId===incident.customerId&&w.operationId==='repair'&&w.status==='complete'&&w.acceptedAt>=incident.acknowledgedAt&&w.completedAt<=incident.resolvedAt),`incident ${incident.id} has an observed, separately paid repair`);
+   if(index){
+    const prior=rows[index-1],proof=incident.sequence,event=p.events.find(row=>row.id===proof?.trigger.eventId),job=p.jobs.find(row=>row.id===proof?.trigger.jobId);
+    assert.equal(proof?.ordinal,index+1);assert.equal(proof?.predecessorIncidentId,prior.id);assert.ok(incident.createdAt>=prior.resolvedAt+360);
+    assert.ok(event&&event.code==='CUSTOMER_WORK_COMPLETED'&&event.customerId===customer.id&&event.jobId===job?.id,'the bounded follow-up retains its real work trigger');
+    assert.ok(job&&['completed','late'].includes(job.status)&&job.completedAt===proof.trigger.completedAt,'the actual trigger job stays pinned with its incident proof');
+   }
+  }
+ }
  assert.ok(p.customers.every(c=>c.metrics.offered>600&&c.metrics.completed>500));
  const offered=p.customers.reduce((n,c)=>n+c.metrics.offered,0),completed=p.customers.reduce((n,c)=>n+c.metrics.completed,0),failed=p.customers.reduce((n,c)=>n+c.metrics.failed,0),open=p.jobs.filter(j=>j.status==='pending'&&!j.settled).length;
  assert.equal(offered,completed+failed+open,'no offered case disappears across retained history');
- assert.ok(p.historyCheckpoint.periods>0);assert.equal(p.historyCheckpoint.periods+p.periodHistory.length,33);assert.ok(p.periodHistory.length<=24);assert.ok(p.events.length<=200);assert.ok(p.jobs.length<=1200);
+ assert.ok(p.historyCheckpoint.periods>0);assert.equal(p.historyCheckpoint.periods+p.periodHistory.length,33);assert.ok(p.periodHistory.length<=24);
+ const eventPins=new Set([...p.incidents.map(i=>i.sequence?.trigger?.eventId),...(p.supportWork?.origins||[]).map(row=>row.arrival?.id)].filter(Boolean));
+ for(const receipt of p.progressionReceipts?.receipts||[])for(const proof of receipt.workProofs||[])if(proof.arrivalEventId)eventPins.add(proof.arrivalEventId);
+ assert.ok(p.events.length<=200+eventPins.size,'campaign event history remains bounded except for its exact pinned evidence rows');assert.ok(p.jobs.length<=1200+p.incidents.filter(i=>i.sequence?.trigger?.jobId).length);
  assert.ok(state.portfolio.customers.every(c=>c.root.providerArchive.interactions>0&&c.root.interactions.length<=64&&c.root.commands.length<=128&&c.root.ledger.length<=120));
  assert.ok(state.business.balance.revenue>0&&state.business.balance.cost>0&&state.business.balance.cash>0);
  const restored=SOC.restore(JSON.stringify(state));assert.deepEqual(restored,state);const expected=controller(state).advanceTo(2061);assert.deepEqual(controller(restored).advanceTo(2061),expected);

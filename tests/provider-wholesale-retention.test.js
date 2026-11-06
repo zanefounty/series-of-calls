@@ -20,7 +20,7 @@ test('wholesale history and ledger pruning preserve bounded statements and resto
  while(s.clock<60)tick(1);
  const early=SOC.provider.inspect(s).customers[0].wholesaleStatement,earlyPeriod=early.rows[0].period,earlyPostingIds=[...early.rows[0].postingIds];assert.ok(earlyPostingIds.length>0);
  let settled=1;
- while((settled<=24||!earlyPostingIds.every(id=>Number(id.slice(6))<=(s.business.ledgerPrunedThrough||0)))&&s.clock<18000){tick(60);settled++;assert.equal(s.providerCampaign.status,'operating');}
+ while((settled<=24||!earlyPostingIds.every(id=>Number(id.slice(6))<=(s.business.ledgerPrunedThrough||0)))&&s.clock<18000){const beforeClock=s.clock;tick(60);assert.ok(s.clock>beforeClock&&s.clock<=beforeClock+60,'native advance may pause at an actual incident');settled=s.providerCampaign.historyCheckpoint.periods+s.providerCampaign.periodHistory.length;assert.equal(s.providerCampaign.status,'operating');}
  assert.ok(s.business.ledgerPrunedThrough>0,'real repeated settlement must cross the ledger retention bound');
  const customer=s.providerCampaign.customers[0],before=JSON.stringify(s),shown=SOC.provider.inspect(s).customers[0].wholesaleStatement;
  assert.equal(JSON.stringify(s),before);assert.equal(shown.available,true);assert.equal(shown.retainedPeriods,24);assert.equal(shown.archivedPeriods,settled-24);assert.equal(shown.rows.length+shown.archivedPeriods,settled);

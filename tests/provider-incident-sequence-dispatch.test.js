@@ -126,6 +126,11 @@ test('AC-SOC-822 a paid SMB repair and renewal history lead only through actual 
  assert.throws(()=>SOC.restore(JSON.stringify(badOrdinal)),/INVALID_PROVIDER_INCIDENT_SEQUENCE/);
  const badTriggerTime=clone(h.state);badTriggerTime.providerCampaign.events.find(event=>event.id===second.sequence.trigger.eventId).completedAt++;
  assert.throws(()=>SOC.restore(JSON.stringify(badTriggerTime)),/INVALID_PROVIDER_INCIDENT_SEQUENCE|INVALID_PROVIDER_COMPLETED_WORK_EVENT/);
+ const missingRetainedTriggerJob=clone(h.state),missingTriggerJobId=Array.from({length:missingRetainedTriggerJob.providerCampaign.nextJob-1},(_,index)=>`provider-job-${index+1}`).find(id=>!missingRetainedTriggerJob.providerCampaign.jobs.some(job=>job.id===id));
+ assert.ok(missingTriggerJobId,'the save has older pruned jobs available as a substitution counterexample');
+ missingRetainedTriggerJob.providerCampaign.events.find(event=>event.id===second.sequence.trigger.eventId).jobId=missingTriggerJobId;
+ missingRetainedTriggerJob.providerCampaign.incidents.find(row=>row.id===second.id).sequence.trigger.jobId=missingTriggerJobId;
+ assert.throws(()=>SOC.restore(JSON.stringify(missingRetainedTriggerJob)),/INVALID_PROVIDER_INCIDENT_SEQUENCE/,'a trigger must cite its exact retained native job, not an arbitrary pruned job ID');
  const extraTriggerField=clone(h.state);extraTriggerField.providerCampaign.events.find(event=>event.id===second.sequence.trigger.eventId).forged=true;
  assert.throws(()=>SOC.restore(JSON.stringify(extraTriggerField)),/INVALID_PROVIDER_INCIDENT_SEQUENCE|INVALID_PROVIDER_COMPLETED_WORK_EVENT/,'completed-work receipts reject unrecognized fields');
  const nonexistentFutureJob=clone(h.state),futureJobId=`provider-job-${nonexistentFutureJob.providerCampaign.nextJob}`;
@@ -145,6 +150,7 @@ test('AC-SOC-822 a paid SMB repair and renewal history lead only through actual 
  h.state=advanceUntil(h,s=>s.clock>=retentionStart+period*3,period*3+10,'bounded event-pruning pressure after the second incident');
  assert.ok(h.state.providerCampaign.eventCheckpoint.count>prunedBefore,'ordinary campaign events were pruned under bounded retention after the trigger was recorded');
  assert.ok(h.state.providerCampaign.events.some(event=>event.id===previousTriggerId),'the actual second-incident trigger remains pinned after event pruning');
+ assert.ok(h.state.providerCampaign.jobs.some(job=>job.id===second.sequence.trigger.jobId),'the actual native trigger job remains pinned after job pruning');
  const secondAfterRecovery=h.state.providerCampaign.incidents.find(row=>row.id===second.id),secondRepair=h.state.providerCampaign.projects.find(row=>row.customerId==='starter-customer'&&['repair','service-repair'].includes(row.operationId)&&row.acceptedAt>=secondAfterRecovery.acknowledgedAt&&row.status==='complete');
  assert.equal(secondAfterRecovery.status,'resolved','the second incident also resolves through observed service recovery');
  assert.ok(secondRepair?.postingId&&h.state.business.ledger.some(row=>row.id===secondRepair.postingId&&row.projectId===secondRepair.id&&row.reason==='provider-operation'),'the second incident recovery is backed by a separate paid repair');

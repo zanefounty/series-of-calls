@@ -1318,7 +1318,7 @@ const SOC = (function socKernel() {
     }
   }
   function providerAutomationAdvance(s){
-    if(!s.providerCampaign||s.providerCampaign.status!=='operating')return;
+    if(!s.providerCampaign||s.providerCampaign.status==='won'||s.business?.solvency?.status==='default')return;
     for(const policy of s.providerAutomation||[]){if(policy.status!=='active')continue;
       if(policy.config){providerStandingPolicyAdvance(s,policy);continue;}
       const incident=s.providerCampaign.incidents.find(i=>i.customerId===policy.customerId&&['active','acknowledged'].includes(i.status));if(!incident||policy.actions.some(a=>a.incidentId===incident.id))continue;

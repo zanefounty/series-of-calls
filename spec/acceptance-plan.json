@@ -913,12 +913,6 @@
       "AC-SOC-675",
       "AC-SOC-676"
     ],
-    "tests/provider-progression-regional-claims.test.js": [
-      "AC-SOC-653",
-      "AC-SOC-654",
-      "AC-SOC-655",
-      "AC-SOC-656"
-    ],
     "tests/even-workload-service-history.test.js": [
       "AC-SOC-684",
       "AC-SOC-685"
@@ -971,7 +965,10 @@
     "tests/provider-runtime.test.js": [
       "AC-SOC-677",
       "AC-SOC-678",
-      "AC-SOC-725"
+      "AC-SOC-725",
+      "AC-SOC-829",
+      "AC-SOC-830",
+      "AC-SOC-831"
     ],
     "tests/provider-view-stability.test.js": [
       "AC-SOC-688",
@@ -1164,6 +1161,21 @@
     "tests/provider-incident-sequence-dispatch.test.js": [
       "AC-SOC-822",
       "AC-SOC-823"
+    ],
+    "tests/provider-progression-regional-claims-c3.test.js": [
+      "AC-SOC-653"
+    ],
+    "tests/provider-progression-regional-claims-c5.test.js": [
+      "AC-SOC-654"
+    ],
+    "tests/provider-progression-regional-claims-t2.test.js": [
+      "AC-SOC-655"
+    ],
+    "tests/provider-progression-regional-claims-l7.test.js": [
+      "AC-SOC-656"
+    ],
+    "tests/provider-standing-policy.test.js": [
+      "AC-SOC-828"
     ]
   },
   "inputs": [
@@ -1696,7 +1708,6 @@
     "tests/provider-owned-site-platform-migration.test.js",
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
-    "tests/provider-progression-regional-claims.test.js",
     "tests/provider-qualification-boundary.test.js",
     "tests/provider-recovery-configuration-history.test.js",
     "tests/provider-regional-integrations.test.js",
@@ -1772,6 +1783,13 @@
     "content/provider-security-managed.v1.json",
     "tests/provider-incident-sequence.test.js",
     "tests/provider-incident-sequence-dispatch.test.js",
-    "src/game/23-provider-incident-sequence.js"
+    "src/game/23-provider-incident-sequence.js",
+    "tests/provider-progression-regional-claims-c3.test.js",
+    "tests/provider-progression-regional-claims-c5.test.js",
+    "tests/provider-progression-regional-claims-t2.test.js",
+    "tests/provider-progression-regional-claims-l7.test.js",
+    "tests/provider-progression-regional-claims.helpers.js",
+    "tests/provider-progression-regional-claims-support.test.js",
+    "tests/provider-standing-policy.test.js"
   ]
 }

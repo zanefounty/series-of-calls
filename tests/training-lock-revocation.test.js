@@ -13,6 +13,7 @@ test('AC-SOC-787 stolen Training lease cancels worker, pauses edits, and leaves 
  const b=browser(),owner=tab(t,b),stealer=tab(t,b);await owner.ev('socOpen()');
  owner.ev("socClick('interaction')");
  const saved=owner.ev('JSON.stringify(SCT.state)');assert.ok(owner.ev("localStorage.getItem(SCT_KEY+'main')"));
+ const stored=owner.ev("localStorage.getItem(SCT_KEY+'main')"),sequence=owner.ev('SCT.seq');
  const worker=installPendingWorker(owner);assert.equal(owner.ev('SCT.busy'),true);
  stealer.ev(`window.__stolenTrainingLock=navigator.locks.request('series-of-calls:training-lock:main',{steal:true},()=>new Promise(resolve=>window.__releaseStolenTrainingLock=resolve));`);
  await flush(5);
@@ -23,6 +24,12 @@ test('AC-SOC-787 stolen Training lease cancels worker, pauses edits, and leaves 
  assert.match(owner.ev('SCT.error'),/ownership.*lost|lost.*ownership/i);
  owner.ev(`window.__trainingWorker.onmessage({data:{revision:window.__trainingWorker.message.state.revision,state:SOC.dispatch(window.__trainingWorker.message.state,window.__trainingWorker.message.command)}})`);
  assert.equal(owner.ev('JSON.stringify(SCT.state)'),saved,'a late result cannot replace the retained state');
+ owner.ev('window.__trainingWorker.onerror()');
+ assert.throws(()=>owner.ev("socApply({type:'advance',minutes:1})"),/read.only/i);
+ assert.equal(owner.ev('socStore()'),undefined);
+ assert.equal(owner.ev("localStorage.getItem(SCT_KEY+'main')"),stored,'revocation prevents stale writes');
+ assert.equal(owner.ev('SCT.seq'),sequence);
+
  owner.ev(`HTMLAnchorElement.prototype.click=function(){window.__trainingDownload=this.download;};socClick('export');`);
  assert.equal(owner.ev('__trainingDownload'),'series-of-calls-exercise.json','the read-only state remains exportable');
  stealer.ev('window.__releaseStolenTrainingLock()');await flush();

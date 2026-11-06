@@ -7482,6 +7482,22 @@
       ],
       "status": "partial",
       "scope": "A private, validator-scoped memo reuses equivalent historical paid configuration projections while preserving per-read generation and provenance validation and isolated returned values. Historical replay is compared with uncached results across paid commissioning boundaries; a synthetic nested restoration/retirement model regression covers a cache-key boundary, not an accepted gameplay save. No persisted cache, whole-suite deadline or long-play completion is claimed."
+    },
+    {
+      "id": "BEH-SOC-419",
+      "sources": [
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/97-training.js"
+      ],
+      "testIds": [
+        "AC-SOC-787",
+        "AC-SOC-788"
+      ],
+      "status": "partial",
+      "scope": "Training lease revocation cancels pending worker work, prevents stale edits and save writes, and retains exportable state. Lease generations stop delayed old lock errors from revoking a newly acquired lease. The storage-newer-save path uses the same revocation. Harness lock-steal tests do not substitute for the separate native multi-tab browser receipt or full persistence acceptance."
     }
   ]
 }

@@ -1090,6 +1090,10 @@
       "AC-SOC-766",
       "AC-SOC-767",
       "AC-SOC-768"
+    ],
+    "tests/training-lock-revocation.test.js": [
+      "AC-SOC-787",
+      "AC-SOC-788"
     ]
   },
   "inputs": [

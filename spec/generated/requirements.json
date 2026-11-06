@@ -62271,7 +62271,8 @@
       "BEH-SOC-398",
       "BEH-SOC-399",
       "BEH-SOC-400",
-      "BEH-SOC-401"
+      "BEH-SOC-401",
+      "BEH-SOC-419"
     ]
   },
   {
@@ -62294,6 +62295,7 @@
       "src/game/48-estate.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
+      "src/game/97-training.js",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js",
@@ -62321,7 +62323,8 @@
       "BEH-SOC-197",
       "BEH-SOC-198",
       "BEH-SOC-353",
-      "BEH-SOC-361"
+      "BEH-SOC-361",
+      "BEH-SOC-419"
     ]
   },
   {

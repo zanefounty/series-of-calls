@@ -5,7 +5,7 @@ const security=require('../src/game/23-provider-security.js');
 const admission=require('../src/game/38-admission-security.js');
 const scope={customerId:'starter-customer',portfolioId:'starter-customer',tenant:'starter-customer',market:'au-sydney'};
 
-test('AC-SOC-777: Provider security helper offers are versioned fictional terms with separate prices and source provenance',()=>{
+test('AC-SOC-777 Provider security helper offers are versioned fictional terms with separate prices and source provenance',()=>{
  assert.equal(security.CONTENT_ID,'provider-security-1');assert.deepEqual(security.terms(),authored);
  assert.deepEqual(security.sourceIds,authored.sourceIds);assert.equal(authored.sourceContext.sourceReward,20000);assert.equal(authored.sourceContext.sourceRewardUnit,'source-game currency, provenance only');
  assert.deepEqual(security.voiceServicePrerequisites,['provider-security-network','provider-security-sip','provider-security-destination']);
@@ -18,7 +18,7 @@ test('AC-SOC-777: Provider security helper offers are versioned fictional terms 
  assert.equal(authored.sourceContext.comparison.includes('paying callers'),true);
 });
 
-test('AC-SOC-778: security quotes reject arbitrary native configs, unsupported offers and inflated PPS',()=>{
+test('AC-SOC-778 security quotes reject arbitrary native configs, unsupported offers and inflated PPS',()=>{
  assert.throws(()=>security.quotePlan('network','invented-tier',scope,0),/INVALID_PROVIDER_SECURITY_PLAN/);
  assert.throws(()=>security.operationPlan('provider-security-network',{capacityPps:100000000,mitigationPps:100000000,enabled:true,activationMode:'always'},scope,0),/INVALID_PROVIDER_SECURITY_SELECTION/);
  const plan=security.quotePlan('network','edge-basic',scope,0);plan.nativeConfig.capacityPps=100000000;plan.nativeConfig.mitigationPps=100000000;assert.equal(security.validatePlan(plan),false);
@@ -26,7 +26,7 @@ test('AC-SOC-778: security quotes reject arbitrary native configs, unsupported o
  const peerMutation=security.quotePlan('sip','sip-standard',scope,0);peerMutation.supplierPeer.authenticated=false;assert.equal(security.validatePlan(peerMutation),false);
 });
 
-test('AC-SOC-779: independently bought native controls leave voice blocked until all three are effective',()=>{
+test('AC-SOC-779 independently bought native controls leave voice blocked until all three are effective',()=>{
  const root={clock:0};root.admissionSecurity=admission.create(root);
  const call={id:'security-smoke-call',channel:'voice',to:'+61255500201'};
  const context={peerId:'synthetic-carrier',destination:'+61255500201'};

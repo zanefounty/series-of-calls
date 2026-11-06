@@ -120,3 +120,50 @@ test('AC-SOC-758 completed receipt survives endpoint retirement and rejects alte
  assert.throws(()=>SOC.restore(JSON.stringify(forgedPath)),/INVALID_MEETING_SESSION|INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+
+test('AC-SOC-774 paid room delivery retains its authored job or mission origin and refuses missing or foreign lineage',()=>{
+ const pending=commissioning();let s=explicitTest(pending);
+ s=until(s,current=>project(current,operationId)?.status==='complete',110,true);
+ const meeting=project(s,operationId).operationReceipt.evidence.meeting,origin=meeting.origin;
+ assert.equal(origin.kind,'provider-job');
+ const job=s.providerCampaign.jobs.find(row=>row.id===origin.id),arrival=s.providerCampaign.events.find(row=>row.id===origin.eventId),booking=child(s).information.bookings.find(row=>row.id===meeting.bookingId);
+ assert.equal(job.sessionId,meeting.sessionId);assert.equal(job.caseId,booking.caseId);assert.equal(job.completedAt,meeting.endedAt);assert.equal(arrival.jobId,job.id);
+ assert.equal(s.providerCampaign.meetings.some(row=>row.sessionId===meeting.sessionId),false,'this receipt is an authored demand job, not a mission row');
+ for(const mutate of [
+  state=>{state.providerCampaign.jobs=state.providerCampaign.jobs.filter(row=>row.id!==origin.id);},
+  state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==origin.eventId);},
+  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.id=state.providerCampaign.jobs.find(row=>row.id!==origin.id).id;},
+  state=>{state.providerCampaign.events.find(row=>row.id===origin.eventId).customerId='foreign-customer';},
+  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.extra=true;}
+ ]){const forged=structuredClone(s);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/);}
+ const receipt=structuredClone(project(s,operationId).operationReceipt);
+ const eventNumber=id=>Number(/^provider-event-(\d+)$/.exec(id||'')?.[1]||0),originNumber=eventNumber(origin.eventId);
+ for(let n=0;n<240&&eventNumber(s.providerCampaign.eventCheckpoint.lastId)<=originNumber;n++)s=staff(s);
+ assert.ok(s.providerCampaign.eventCheckpoint.count>0,'actual public staffing commands evict ordinary events');
+ assert.ok(eventNumber(s.providerCampaign.eventCheckpoint.lastId)>originNumber,'event eviction has passed the pinned arrival, not merely the first event');
+ assert.ok(s.providerCampaign.events.some(row=>row.id===origin.eventId));
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ s=until(s,state=>state.clock>=180,180-s.clock,true);
+ assert.ok(s.providerCampaign.jobCheckpoint.pruned>0,'ordinary settled jobs have actually pruned');
+ assert.ok(s.providerCampaign.jobs.some(row=>row.id===origin.id&&row.settled));
+ assert.ok(s.providerCampaign.events.some(row=>row.id===origin.eventId));
+ assert.deepEqual(project(s,operationId).operationReceipt,receipt);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const context={};vm.createContext(context);vm.runInContext(SOC.workerSource()+';globalThis.engine=SOC;',context);
+ const command={type:'advance',minutes:1};assert.deepEqual(JSON.parse(JSON.stringify(context.engine.dispatch(s,command))),SOC.dispatch(s,command));
+
+ // Hold the explicit native test until just before an authored mission meeting.
+ let mission=until(structuredClone(pending),state=>state.clock===139,139-pending.clock,true);
+ mission=explicitTest(mission);mission=until(mission,state=>project(state,operationId)?.status==='complete',45,true);
+ const missionMeeting=project(mission,operationId).operationReceipt.evidence.meeting,missionOrigin=missionMeeting.origin;
+ assert.equal(missionOrigin.kind,'mission-meeting');assert.equal(missionOrigin.periodIndex,2);
+ const row=mission.providerCampaign.meetings.find(row=>row.customerId===customerId&&row.sessionId===missionMeeting.sessionId);
+ assert.equal(row.bookingId,missionMeeting.bookingId);assert.equal(row.attemptedAt,140);
+ assert.ok(mission.providerCampaign.events.some(event=>event.id===missionOrigin.eventId&&event.code==='MISSION_MEETING_BOOKED'));
+ assert.deepEqual(SOC.restore(JSON.stringify(mission)),mission);
+ for(const mutate of [
+  state=>{state.providerCampaign.meetings=state.providerCampaign.meetings.filter(row=>row.sessionId!==missionMeeting.sessionId);},
+  state=>{state.providerCampaign.events=state.providerCampaign.events.filter(row=>row.id!==missionOrigin.eventId);},
+  state=>{project(state,operationId).operationReceipt.evidence.meeting.origin.periodIndex=1;}
+ ]){const forged=structuredClone(mission);mutate(forged);assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_ROOM_INTEGRATION_PROJECT/);}
+});

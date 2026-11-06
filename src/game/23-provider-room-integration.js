@@ -163,6 +163,24 @@ function socProviderRoomIntegrationKernel(){
   if(!prepared.plan||!samePlanScope(prepared.plan,receipt.plan)||!matchingRecordedTest(result,receipt.plan)||result.checkedAt!==state.clock)return false;
   receipt.test=copy(result);return true;
  }
+ function meetingOrigin(state,customer,session,booking){
+  const p=state?.providerCampaign;if(!p||!customer||!session||!booking||session.status!=='completed')return null;
+  const job=p.jobs.find(row=>row.customerId===customer.id&&row.channel==='meeting'&&row.sessionId===session.id);
+  if(job){
+   const prefix=`pc-${customer.id}-${job.periodIndex}-`,index=Number(job.caseId?.slice(prefix.length));
+   if(typeof job.caseId!=='string'||job.interactionId!==null||!['completed','late'].includes(job.status)||job.completedAt!==session.endedAt||job.arrivalAt!==booking.start||job.arrivalAt!==session.scheduledAt||booking.caseId!==job.caseId||booking.end!==job.arrivalAt+3||booking.attendees!==1||job.periodIndex!==Math.floor((job.arrivalAt-1)/60)||!job.caseId.startsWith(prefix)||!int(index,0,23)||job.caseId!==prefix+index||!int(job.deadlineAt,job.arrivalAt)||((job.completedAt<=job.deadlineAt)!==(job.status==='completed')))return null;
+   const event=p.events.find(row=>row.code==='CUSTOMER_WORK_ARRIVED'&&row.customerId===customer.id&&row.jobId===job.id&&row.caseId===job.caseId&&row.channel==='meeting'&&row.interactionId===null&&row.at===job.arrivalAt&&row.deadlineAt===job.deadlineAt);
+   return event?{kind:'provider-job',id:job.id,eventId:event.id}:null;
+  }
+  const row=p.meetings.find(row=>row.customerId===customer.id&&row.status==='scheduled'&&row.sessionId===session.id&&row.bookingId===booking.id&&row.attemptedAt===booking.start&&row.attemptedAt===session.scheduledAt&&row.periodIndex===Math.floor((row.attemptedAt-1)/60));
+  if(!row||booking.caseId!==undefined)return null;
+  const event=p.events.find(event=>event.code==='MISSION_MEETING_BOOKED'&&event.customerId===customer.id&&event.periodIndex===row.periodIndex&&event.sessionId===session.id&&event.at===row.attemptedAt);
+  return event?{kind:'mission-meeting',periodIndex:row.periodIndex,eventId:event.id}:null;
+ }
+ function validMeetingOrigin(state,customer,session,booking,origin){
+  if(!origin||!(origin.kind==='provider-job'&&exact(origin,['kind','id','eventId'])||origin.kind==='mission-meeting'&&exact(origin,['kind','periodIndex','eventId'])))return false;
+  const actual=meetingOrigin(state,customer,session,booking);return !!actual&&same(origin,actual);
+ }
  function meetingEvidenceForProject(state,project,hooks={},historical=false){
   const missing=[],customer=customerOf(state,project?.customerId),root=childOf(state,customer),receipt=project?.operationReceipt;
   if(!customer||!root||!receiptDraftValid(state,project)||!receipt.test){return {ready:false,missing:['paid-room-integration-receipt-required'],evidence:null};}
@@ -173,9 +191,10 @@ function socProviderRoomIntegrationKernel(){
   let meeting=null;
   for(const session of sessions){
    const booking=root.information?.bookings?.find(x=>x.id===session.bookingId);if(!booking||booking.probeEvidence||booking.nonCommercial===true||session.probe===true||session.endedAt>booking.end)continue;
+   const origin=meetingOrigin(state,customer,session,booking);if(!origin)continue;
    if(historical){if(!validHistoricalMeeting(root,session,booking,receipt,project))continue;meeting=historicalMeetingReceipt(root,session,booking);}
    else{const checked=meetingSession(state,customer.id,session.id,{hooks});if(checked.status!=='ready')continue;meeting=checked.evidence;}
-   if(meeting)break;
+   if(meeting){meeting.origin=origin;break;}
   }
   if(!meeting)missing.push('completed-duration-bearing-bridge-meeting-after-test-required');
   const completedAt=project.status==='complete'?project.completedAt:null;
@@ -202,7 +221,7 @@ function socProviderRoomIntegrationKernel(){
   if(!customer||!root||!setupPostingValid(state,project)||project.status!=='complete'||!int(project.completedAt)||project.completedAt>state.clock||!exact(receipt,['kind','version','projectId','postingId','customerId','submittedAt','plan','test','evidence'])||receipt.kind!=='provider-room-integration'||receipt.version!==VERSION||receipt.projectId!==project.id||receipt.postingId!==project.postingId||receipt.customerId!==customer.id||receipt.submittedAt!==project.configSubmittedAt||!validPlan(receipt.plan)||!same(project.roomIntegrationPlan,receipt.plan)||!int(receipt.test?.checkedAt)||receipt.test.checkedAt<receipt.submittedAt||!matchingTest(receipt.test,receipt.plan)||!exact(evidence,['version','customerId','projectId','postingId','submittedAt','completedAt','meeting'])||evidence.version!==VERSION||evidence.customerId!==customer.id||evidence.projectId!==project.id||evidence.postingId!==project.postingId||evidence.submittedAt!==receipt.submittedAt||evidence.completedAt!==project.completedAt)return false;
   const meeting=evidence.meeting,session=root.information?.meetingSessions?.find(x=>x.id===meeting?.sessionId),booking=session&&root.information?.bookings?.find(x=>x.id===meeting.bookingId);
   if(!session||!booking||session.status!=='completed'||session.joinMethod!=='bridge'||session.bookingId!==booking.id||session.startedAt<=receipt.submittedAt||session.startedAt<=receipt.test.checkedAt||session.endedAt<=session.startedAt||session.endedAt>project.completedAt||booking.probeEvidence||booking.nonCommercial===true||session.probe===true||session.endedAt>booking.end)return false;
-  if(!exact(meeting,['version','tenant','customerId','sessionId','bookingId','startedAt','endedAt','acceptance','sourceIds'])||meeting.version!==VERSION||meeting.tenant!==root.tenant||meeting.customerId!==customer.id||meeting.sessionId!==session.id||meeting.bookingId!==booking.id||meeting.startedAt!==session.startedAt||meeting.endedAt!==session.endedAt||!same(meeting.sourceIds,[SOURCE_ID_REF,TARGET_ID_REF])||!same(meeting.acceptance,session.productIntegration))return false;
+  if(!exact(meeting,['version','tenant','customerId','sessionId','bookingId','startedAt','endedAt','acceptance','sourceIds','origin'])||meeting.version!==VERSION||meeting.tenant!==root.tenant||meeting.customerId!==customer.id||meeting.sessionId!==session.id||meeting.bookingId!==booking.id||meeting.startedAt!==session.startedAt||meeting.endedAt!==session.endedAt||!same(meeting.sourceIds,[SOURCE_ID_REF,TARGET_ID_REF])||!same(meeting.acceptance,session.productIntegration)||!validMeetingOrigin(state,customer,session,booking,meeting.origin))return false;
   return validHistoricalMeeting(root,session,booking,receipt,project);
  }
  function projectEvidence(state,projectId,hooks={}){

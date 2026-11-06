@@ -27,6 +27,16 @@ test('AC-SOC-848 paid Provider scale baseline fails, separately funded BPO/workf
  const postings=s.business.ledger.filter(e=>e.reason==='provider-scale-voice-usage');assert.equal(postings.length,12);assert.equal(new Set(postings.map(e=>e.id)).size,12);
  assert.equal(postings.reduce((n,e)=>n+e.cents,0),run.result.counts.paidUsageCents);
  assert.throws(()=>send(s,{action:'start-scale-window',projectId:project.id}),/SCALE_PROJECT_ALREADY_USED/);
+ // A paid measurement is consumed in both the project and native window. Removing
+ // only its summary (even with recomputed derived pins) must never buy a free rerun.
+ const scale=require('../src/game/23-provider-scale-observation.js');
+ const reject=mutate=>{const bad=structuredClone(s);mutate(bad);const original=JSON.stringify(bad);assert.throws(()=>SOC.restore(original));assert.throws(()=>send(bad,{action:'start-scale-window',projectId:project.id}));assert.equal(JSON.stringify(bad),original);};
+ const repin=bad=>{for(const c of bad.portfolio.customers)c.root.providerScalePins=scale.pins(bad.providerCampaign.scaleObservation,c.id);};
+ for(const eraseMarker of [false,true])reject(bad=>{bad.providerCampaign.scaleObservation.runs.pop();bad.providerCampaign.scaleObservation.nextId--;repin(bad);if(eraseMarker)delete bad.providerCampaign.projects.find(p=>p.id===project.id).operationReceipt.measurement;});
+ reject(bad=>{delete bad.providerCampaign.scaleObservation;for(const c of bad.portfolio.customers)delete c.root.providerScalePins;for(const p of bad.providerCampaign.projects)if(p.operationReceipt)delete p.operationReceipt.measurement;});
+ for(const [key,value] of [['durationMinutes',99],['to','+442079460999'],['scope','global'],['language','fr'],['from','alex']])reject(bad=>{const j=bad.providerCampaign.scaleObservation.runs[1].paidJobs[0];bad.portfolio.customers[0].root.interactions.find(i=>i.id===j.interactionId)[key]=value;});
+ reject(bad=>{bad.providerCampaign.scaleObservation.runs[1].paidJobs[0].finishedAt++;});
+ reject(bad=>{const [first,,third]=bad.providerCampaign.scaleObservation.runs[1].paidJobs;[first.scheduledAt,third.scheduledAt]=[third.scheduledAt,first.scheduledAt];[first.offsetMinute,third.offsetMinute]=[third.offsetMinute,first.offsetMinute];});
  s=send(s,{action:'claim-progression',sourceId:'progress.goal.'+'tb',quoteRevision:s.revision});
  assert.equal(s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId==='progress.goal.'+'tb').unlock.operationId,'managed-scale-workflow');
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);

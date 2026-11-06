@@ -978,23 +978,46 @@ const SOC = (function socKernel() {
   function providerScaleStart(s,projectId){
     const p=s.providerCampaign,project=p.projects.find(p=>p.id===projectId),terms=providerScale.terms(project?.operationId);
     if(!project||!terms||project.status!=='complete'||project.serviceRetirement)fail('SCALE_COMMISSIONED_PROJECT_REQUIRED');
-    const side=p.scaleObservation||providerScale.create();if(side.runs.some(r=>r.projectId===projectId))fail('SCALE_PROJECT_ALREADY_USED');
+    const side=p.scaleObservation||providerScale.create();if(project.operationReceipt?.measurement||side.runs.some(r=>r.projectId===projectId))fail('SCALE_PROJECT_ALREADY_USED');
     const child=s.portfolio.customers.find(c=>c.id===project.customerId)?.root;
     if(terms.mode==='workflow'&&(child?.resources.people.effective?.handlingMinutes!==1||child.resources.people.effective.wrapMinutes!==0))fail('SCALE_WORKFLOW_NOT_EFFECTIVE');
-    p.scaleObservation=side;providerScale.beginRun(side,{customerId:project.customerId,operationId:project.operationId},project,providerScaleHooks(s));syncProviderScalePins(s);
+    p.scaleObservation=side;const run=providerScale.beginRun(side,{customerId:project.customerId,operationId:project.operationId},project,providerScaleHooks(s));project.operationReceipt.measurement={runId:run.id,nativeWindowId:run.nativeWindowId,startedAt:run.startedAt,dueAt:run.dueAt};syncProviderScalePins(s);
   }
   function providerScaleBefore(s){const side=s.providerCampaign.scaleObservation;if(!side)return;const h=providerScaleHooks(s);for(const run of side.runs.filter(r=>r.status==='open'&&r.mode==='workflow')){const child=s.portfolio.customers.find(c=>c.id===run.customerId).root;providerScale.emitDue(side,run.id,{...h,clock:()=>child.clock});}syncProviderScalePins(s);}
   function providerScaleAfter(s){const side=s.providerCampaign.scaleObservation;if(!side)return;const h=providerScaleHooks(s);for(const run of side.runs)if(run.status==='open'||run.paidJobs.some(j=>j.status==='started'))providerScale.advance(side,run.id,h);syncProviderScalePins(s);}
   function validateProviderScale(s){
     for(const project of s.providerCampaign.projects.filter(p=>providerScale.terms(p.operationId))){
       if(project.operationId==='managed-scale-workflow'&&!s.providerCampaign.progressionReceipts?.receipts.some(r=>r.sourceId==='progress.goal.'+'tb'&&r.at<=project.acceptedAt&&r.sourceEvidence.market===s.providerCampaign.customers.find(c=>c.id===project.customerId)?.market))fail('INVALID_PROVIDER_SCALE_EARNED_SCOPE');
-      if(project.configSubmittedAt!==null){const receipt=project.operationReceipt;if(!receipt||Object.keys(receipt).sort().join(',')!=='contentVersion,installedAt,kind,operationId,version'||receipt.kind!=='provider-scale-observation'||receipt.version!==1||receipt.contentVersion!==providerScale.CONTENT||receipt.operationId!==project.operationId||receipt.installedAt!==project.configSubmittedAt-1)fail('INVALID_PROVIDER_SCALE_COMMISSION');}
+      if(project.configSubmittedAt!==null){const receipt=project.operationReceipt;if(!receipt||Object.keys(receipt).sort().join(',')!==['contentVersion','installedAt','kind','operationId','version',...(receipt.measurement!==undefined?['measurement']:[])].sort().join(',')||receipt.kind!=='provider-scale-observation'||receipt.version!==1||receipt.contentVersion!==providerScale.CONTENT||receipt.operationId!==project.operationId||receipt.installedAt!==project.configSubmittedAt-1)fail('INVALID_PROVIDER_SCALE_COMMISSION');}
     }
-    const side=s.providerCampaign.scaleObservation;if(!side){for(const c of s.portfolio.customers)if(c.root.providerScalePins!==undefined)fail('INVALID_PROVIDER_SCALE_PINS');return;}
+    const side=s.providerCampaign.scaleObservation,scaleProjects=s.providerCampaign.projects.filter(p=>providerScale.terms(p.operationId));
+    for(const project of scaleProjects){
+      const run=side?.runs.find(r=>r.projectId===project.id),measurement=project.operationReceipt?.measurement;
+      const expected=run?{runId:run.id,nativeWindowId:run.nativeWindowId,startedAt:run.startedAt,dueAt:run.dueAt}:undefined;
+      if(JSON.stringify(measurement)!==JSON.stringify(expected))fail('INVALID_PROVIDER_SCALE_CONSUMPTION');
+    }
+    for(const customer of s.portfolio.customers){
+      const completed=scaleProjects.filter(p=>p.customerId===customer.id&&p.status==='complete').map(p=>p.completedAt);
+      if(!completed.length)continue;
+      for(const window of customer.root.serviceObservation?.windows||[])if(window.goal==='tb'&&window.startedAt>=Math.min(...completed)){
+        const runs=(side?.runs||[]).filter(r=>r.customerId===customer.id&&r.nativeWindowId===window.id);
+        if(runs.length!==1)fail('INVALID_PROVIDER_SCALE_WINDOW_CONSUMPTION');
+      }
+    }
+    if(!side){for(const c of s.portfolio.customers)if(c.root.providerScalePins!==undefined)fail('INVALID_PROVIDER_SCALE_PINS');return;}
     providerScale.validate(side,providerScaleHooks(s));const projectIds=new Set();
     for(const run of side.runs){if(projectIds.has(run.projectId))fail('INVALID_PROVIDER_SCALE_REUSED_PROJECT');projectIds.add(run.projectId);
       if(run.startedAt>s.clock||run.startedAt<s.providerCampaign.projects.find(p=>p.id===run.projectId).completedAt)fail('INVALID_PROVIDER_SCALE_START');
-      for(const job of run.paidJobs){if(!job.usagePostingId)continue;const entry=s.business.ledger.find(e=>e.id===job.usagePostingId),n=Number(/^entry-([1-9][0-9]*)$/.exec(job.usagePostingId)?.[1]);
+      if(run.mode==='workflow'){
+        const native=s.portfolio.customers.find(c=>c.id===run.customerId)?.root.serviceObservation?.windows.find(w=>w.id===run.nativeWindowId),lastOffset=Math.max(0,Math.min(8,native.previousClock-run.startedAt-1));
+        const expected=providerScale.SCHEDULE.filter(row=>row.offsetMinute<=lastOffset).flatMap(row=>Array(row.tasks).fill(row.offsetMinute));
+        if(JSON.stringify(run.paidJobs.map(j=>j.offsetMinute))!==JSON.stringify(expected))fail('INVALID_PROVIDER_SCALE_TASK_SCHEDULE');
+      }
+      for(const job of run.paidJobs){
+        if(job.interactionId){const interaction=s.portfolio.customers.find(c=>c.id===run.customerId)?.root.interactions.find(i=>i.id===job.interactionId);
+          if(job.caseId!==job.id||interaction?.channel!=='voice'||interaction?.durationMinutes!==job.durationMinutes||interaction?.from!==(job.sequence%2?'bea':'alex')||interaction?.to!=='+61255500123'||interaction?.language!=='en'||interaction?.scope!=='tenant'||interaction?.probe===true||interaction?.tenant!==s.portfolio.customers.find(c=>c.id===run.customerId)?.root.tenant)fail('INVALID_PROVIDER_SCALE_TASK_COMMAND');
+        }
+        if(!job.usagePostingId)continue;const entry=s.business.ledger.find(e=>e.id===job.usagePostingId),n=Number(/^entry-([1-9][0-9]*)$/.exec(job.usagePostingId)?.[1]);
         if(entry?entry.category!=='cost'||entry.reason!=='provider-scale-voice-usage'||entry.customerId!==run.customerId||entry.projectId!==run.projectId||entry.scaleRunId!==run.id||entry.scaleJobId!==job.id||entry.interactionId!==job.interactionId||entry.quantity!==job.usageMinutes||entry.cents!==job.usageCents:!Number.isSafeInteger(n)||n<1||n>(s.business.ledgerPrunedThrough||0))fail('INVALID_PROVIDER_SCALE_USAGE_POSTING');
       }
     }

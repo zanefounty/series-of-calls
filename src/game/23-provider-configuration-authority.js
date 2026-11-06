@@ -48,7 +48,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   }
   // These handlers return before the generic configure call in 55. Their capacity
   // deltas and incident effects have separate paid validators.
-  if(['direct-room-integration','repair','mitigate','carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','uc-cc-integration','uc-cc-retest','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
+  if(['direct-room-integration','repair','mitigate','service-repair','carrier-headroom','managed-carrier-headroom','capture-headroom','national-wholesale-headroom','managed-national-wholesale-headroom','public-service-capture-reserve','local-spares','managed-local-spares','sync-records','sync-all','quality','coaching','automation','regional-provisioning','partner-qualification','service-boundary-review','uc-cc-integration','uc-cc-retest','managed-uc-cc-integration','managed-uc-cc-retest','bpo'].includes(id)){
    if(id==='bpo')return {people:{enabled:true}};
    return {};
   }

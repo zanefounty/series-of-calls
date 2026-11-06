@@ -89,7 +89,7 @@ test('sample eligibility flags cannot replace historical paid configuration, fau
  bad.eligible=true;bad.missing=[];bad.resources=clone(good.participants.find(p=>p.customerId===CUSTOMER).resources);bad.boundaries=clone(good.participants.find(p=>p.customerId===CUSTOMER).boundaries);bad.responsibility=clone(good.participants.find(p=>p.customerId===CUSTOMER).responsibility);
  assert.equal(HISTORY.validateParticipantAt(state,bad,incident.activatedAt,hook).status,'invalid');
  const missingTimeline=HISTORY.reconstructParticipantAt(state,CUSTOMER,incident.activatedAt,{});
- assert.equal(missingTimeline.status,'unsupported');assert.ok(missingTimeline.missing[0].startsWith('SUPPORT_HISTORY_RESOURCE_TIMELINE_UNAVAILABLE:'));
+ assert.equal(missingTimeline.status,'unsupported');assert.match(missingTimeline.missing[0],/^SUPPORT_HISTORY_RESOURCE_(?:TIMELINE|OBSERVATION)_UNAVAILABLE:/);
  const wrongMinute=HISTORY.reconstructParticipantAt(state,CUSTOMER,253,hook);assert.equal(wrongMinute.status,'unsupported');
 });
 

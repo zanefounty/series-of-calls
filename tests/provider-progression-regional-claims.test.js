@@ -3,6 +3,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const SOC = require('../src/game/55-communications.js');
 const FACTS = require('../src/game/23-provider-progression.js');
 const RECEIPTS = require('../src/game/23-provider-progression-receipts.js');
@@ -22,6 +23,27 @@ const hooks = {
 const mspFor = (state, customerId) => RESPONSIBILITY.responsibilities(state, customerId, hooks).records.find(row => row.customerId === customerId && row.role === 'msp' && row.organisationId === 'orchard-msp') || null;
 let threeMarketWindow = null;
 let fiveMarketWindow = null;
+
+function checkpoint(label, state, detail = {}) {
+  const prefix = process.env.SOC_REGIONAL_CLAIM_CHECKPOINT_PREFIX;
+  if (!prefix) return;
+  const safe = String(label).replace(/[^a-z0-9-]/gi, '-');
+  const target = `${prefix}-${safe}-clock-${state.clock}.json`;
+  const temporary = `${target}.tmp`;
+  const contents = JSON.stringify(state);
+  fs.writeFileSync(temporary, contents);
+  fs.renameSync(temporary, target);
+  const metadata = {
+    label: safe,
+    clock: state.clock,
+    campaignStatus: state.providerCampaign?.status ?? null,
+    sourceHash: crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),
+    stateHash: crypto.createHash('sha256').update(contents).digest('hex'),
+    ...detail
+  };
+  fs.writeFileSync(`${target}.meta.json.tmp`, JSON.stringify(metadata, null, 2));
+  fs.renameSync(`${target}.meta.json.tmp`, `${target}.meta.json`);
+}
 
 test('regional T2 and L7 paid unlocks stay explicitly locked until their earned receipts exist', () => {
   const state = SOC.create({ experience: 'campaign', seed: 73 });
@@ -57,7 +79,13 @@ function advance(state) {
   for (const customer of state.providerCampaign.customers.filter(row => row.status === 'renewal')) {
     state = SOC.dispatch(state, { type: 'provider', command: { action: 'renew', customerId: customer.id } });
   }
-  return SOC.dispatch(state, { type: 'advance', minutes: 1 });
+  const beforeTick = process.env.SOC_REGIONAL_CLAIM_CHECKPOINT_PREFIX ? clone(state) : state;
+  try {
+    return SOC.dispatch(state, { type: 'advance', minutes: 1 });
+  } catch (error) {
+    checkpoint('prefailure-advance', beforeTick, { error: String(error?.message || error) });
+    throw error;
+  }
 }
 
 function until(state, predicate, label, limit = 420) {
@@ -240,6 +268,7 @@ function addDistributorResponsibility(state, customerId) {
 function createLevelSevenWindow() {
   let state = createFiveMarketWindow();
   state = claimSource(state, C5);
+  checkpoint('l7-earned-c5-window', state, { sourceId: C5, customerIds: state.providerCampaign.progressionReceipts?.receipts?.find(row => row.sourceId === C5)?.sourceEvidence?.customerIds || [] });
   if (state.business.workforce.support < 6) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 6 } });
   const customerIds = state.providerCampaign.customers.map(row => row.id).sort();
   for (const customerId of customerIds) state = addDistributorResponsibility(state, customerId);
@@ -412,6 +441,7 @@ test('AC-SOC-654 public dispatch earns C5 only after five distinct paid customer
   const cash = state.business.balance.cash;
   state = claimSource(state, C5);
   const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C5);
+  checkpoint('c5-earned-window', state, { sourceId: C5, customerIds: receipt?.sourceEvidence?.customerIds || [] });
   assert.ok(receipt);
   assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);
   assert.equal(receipt.unlock.operationId, 'regional-provisioning');
@@ -474,8 +504,10 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
   }
 
   const cashBeforeClaim = state.business.balance.cash;
+  checkpoint('t2-ready-window', state, { sourceId: T2, customerIds });
   state = claimSource(state, T2);
   const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
+  checkpoint('t2-earned-window', state, { sourceId: T2, customerIds: receipt?.sourceEvidence?.customerIds || [] });
   assert.ok(receipt);
   assert.deepEqual(receipt.unlock.allowedCustomerIds, [...customerIds].sort());
   assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);

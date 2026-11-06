@@ -154,15 +154,22 @@ function socProviderSupportHistoryKernel(){
    }
    return rows.find(row=>row.from<=at&&at<=row.through)||null;
   };
-  const rawDependencyReady=(name,id,when=at)=>{
+  const rawDependencyReady=(name,id,when=at,context={})=>{
    if(typeof id!=='string')return false;
    if(name==='language-model'||name==='integration-version'){
-    const speech=root.speechModels,field=name==='language-model'?'modelVersion':'integrationVersion';
-    return !!speech?.installations?.some(row=>row.provisioning?.status==='ready'&&row.effective&&row.desired?.[field]===id&&row.provisioning?.due<=when);
+    const speech=root.speechModels;
+    if(speech?.pack!=='soc-speech-models-1'||!Array.isArray(speech.installations)||!Array.isArray(speech.integrationTests)||context.family!=='cisco:local-speech')return false;
+    const installations=speech.installations.filter(row=>row?.provisioning?.status==='ready'&&row.effective&&row.desired?.deploymentId===context.deploymentId&&row.desired?.deploymentGeneration===context.generation&&row.desired?.productVersion===context.productVersion&&row.desired?.offerId===context.offer&&row.desired?.mode===context.mode&&row.desired?.region===context.region&&(name!=='language-model'||row.desired?.modelResourceId===id)&&(name!=='integration-version'||row.desired?.integrationResourceId===id)&&row.effective.deploymentId===context.deploymentId&&row.effective.deploymentGeneration===context.generation&&row.effective.productVersion===context.productVersion&&row.effective.offerId===context.offer&&row.effective.mode===context.mode&&row.effective.region===context.region&&integer(row.effective.installedAt)&&row.effective.installedAt<=when&&integer(row.provisioning.due)&&row.provisioning.due<=when&&row.effective.modelId===row.desired.modelId&&row.effective.modelVersion===row.desired.modelVersion);
+    if(name==='language-model')return installations.length>0;
+    return installations.some(install=>speech.integrationTests.some(test=>test?.installationId===install.id&&test.provisioning?.status==='ready'&&test.effective&&test.deploymentId===context.deploymentId&&test.deploymentGeneration===context.generation&&test.productVersion===context.productVersion&&test.offerId===context.offer&&test.region===context.region&&test.effective.installationId===install.id&&test.effective.deploymentId===context.deploymentId&&test.effective.deploymentGeneration===context.generation&&test.effective.productVersion===context.productVersion&&test.effective.offerId===context.offer&&test.effective.region===context.region&&test.effective.integrationId===test.integrationId&&test.effective.integrationVersion===test.integrationVersion&&integer(test.effective.verifiedAt)&&test.effective.verifiedAt<=when&&integer(test.provisioning.due)&&test.provisioning.due<=when));
    }
    if(name.endsWith('-evidence')){
     const evidence=root.productEvidence;if(!evidence)return false;
-    return (evidence.requests||[]).some(row=>row.resourceId===id&&row.kind===name&&row.status==='accepted'&&integer(row.completedAt)&&row.completedAt<=when);
+    return (evidence.requests||[]).some(row=>{
+     const scope=row?.desired,proof=row?.effective;
+     if(!scope||scope.dependency!==name||scope.resourceId!==id||scope.deploymentId!==context.deploymentId||scope.feature!==context.feature||scope.family!==context.family||scope.productVersion!==context.productVersion||scope.mode!==context.mode||scope.region!==context.region||scope.deploymentGeneration!==context.generation||row.provisioning?.status!=='ready'||!proof||proof.generation!==row.generation||proof.issuedAt>when||proof.expiresAt<=when||row.revokedAt!==null&&row.revokedAt<=when)return false;
+     const resource=hooks.configurationAt(s,c,root,id,when);return resource?.generation===scope.resourceGeneration;
+    });
    }
    if(!root.resources?.[id])return false;
    const resource=root.resources[id];
@@ -200,7 +207,7 @@ function socProviderSupportHistoryKernel(){
    for(let tries=0;tries<100&&due<=at;tries++){
     const lifecycle=lifecycleAt(attemptOffer,due);attemptOffer.effectiveLifecycle=copy(lifecycle);
     let ready=!!lifecycle&&lifecycle.sale==='available'&&lifecycle.support==='supported';
-    if(ready)for(const feature of config.features){const result=api.featureStatus(attemptPack,deployment.id,feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref,due)?{ready:true}:false});if(!result.available){ready=false;break;}}
+    if(ready)for(const feature of config.features){const result=api.featureStatus(attemptPack,deployment.id,feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,due,context)?{ready:true}:false});if(!result.available){ready=false;break;}}
     if(ready)return due;
     const retryAt=taskCreatedAt+(Math.floor((due-taskCreatedAt)/5)+1)*5;
     due=retryAt+1;
@@ -218,7 +225,18 @@ function socProviderSupportHistoryKernel(){
    // that pending interval independently of today's status.
    const targetGeneration=project.operationReceipt.reinstated===true?project.operationReceipt.generation:1;
    const firstEffective=firstCommissionedAt(deployment,project,(deployment.effectiveHistory||[]).find(row=>row.generation===targetGeneration)?.effective||deployment.desired);
-   const current=snapshotAt(deployment,project,firstEffective),pending=!current&&at>project.operationReceipt.at?((deployment.effectiveHistory||[]).find(row=>row.generation<deployment.generation)?.effective||deployment.desired):null;
+   let current=snapshotAt(deployment,project,firstEffective);
+   // A paid initial product task can become effective at its authored due
+   // minute before the enclosing Provider project is marked complete. Rebuild
+   // that transition from the task, dependency observations and due minute;
+   // the current mutable deployment row may still say pending at this point
+   // in the parent/child minute ordering.
+   if(!current&&firstEffective!==null&&firstEffective<=at){
+    const initial=(deployment.effectiveHistory||[]).find(row=>row.generation===targetGeneration)?.effective||
+      (deployment.generation===targetGeneration?deployment.desired:null);
+    if(initial)current={config:copy(initial),generation:targetGeneration,from:firstEffective,through:Number.MAX_SAFE_INTEGER};
+   }
+   const pending=!current&&at>project.operationReceipt.at?((deployment.effectiveHistory||[]).find(row=>row.generation<deployment.generation)?.effective||deployment.desired):null;
    const config=current?.config||pending;
    if(!config)continue;
    const bindings=(config.bindings||[]).filter(row=>target?.deploymentId===deployment.id?row.feature===target.feature:row.resources?.includes(resourceId));
@@ -231,14 +249,14 @@ function socProviderSupportHistoryKernel(){
    const reinstatement=s.providerCampaign.projects.filter(row=>row.customerId===c.id&&row.productId===recipeId(deployment.id)&&row.operationReceipt?.reinstated===true&&row.operationReceipt.at+1<=at&&row.operationReceipt.generation===lastRetirement?.generation+1&&paidProductProject(s,row)).sort((a,b)=>a.operationReceipt.at-b.operationReceipt.at).at(-1);
    historical.retirement=lastRetirement&&!reinstatement?{status:'retired',effectiveAt:lastRetirement.effectiveAt}:null;
    for(const binding of bindings){
-    const status=api.featureStatus(historicalPack,deployment.id,binding.feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref)?{ready:true}:false});
+    const status=api.featureStatus(historicalPack,deployment.id,binding.feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,at,context)?{ready:true}:false});
     if(!status.available)return false;
    }
    if(target?.deploymentId===deployment.id){
     const featureBindings=(config.bindings||[]).filter(binding=>binding.feature===target.feature&&Array.isArray(binding.resources)&&binding.resources.length);
     let available=!!current&&config.features?.includes(target.feature)&&featureBindings.length>0;
     for(const binding of featureBindings){
-     const status=api.featureStatus(historicalPack,deployment.id,target.feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref)?{ready:true}:false});
+     const status=api.featureStatus(historicalPack,deployment.id,target.feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,at,context)?{ready:true}:false});
      if(!status.available){available=false;break;}
      for(const boundResource of binding.resources){const plan=hooks.configurationAt(s,c,root,boundResource,at);if(!plan||baseResourceObservationAt(s,c,root,boundResource,at,plan,{...hooks,_skipProductGate:true})?.ready!==true){available=false;break;}}
      if(!available)break;
@@ -262,6 +280,14 @@ function socProviderSupportHistoryKernel(){
   const latest=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.kind==='operation'&&!['cancelled','blocked'].includes(p.status)&&integer(p.configSubmittedAt)&&p.configSubmittedAt<=at&&p.operationReceipt?.kind==='service-boundary').sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.id.localeCompare(b.id)).at(-1);
   const faultTimeline=serviceFaultTimelineAt(s,c,root,at),activeBoundaryIncident=!faultTimeline.valid||faultTimeline.boundaryActive;
   if(!latest||latest.id!==project.id||activeBoundaryIncident)return {eligible:false,resources:[],profile:definition.profile};
+  const stageRows=context.stageRows,stageResources=context.stageResources;
+  if(!Array.isArray(stageRows)||!Array.isArray(stageResources))return {unsupported:true};
+  // The live service-boundary observer requires the same paid MSP and all
+  // commissioned stage resources as support sampling. An outage in an
+  // unbound stage dependency (for example the carrier behind phone) therefore
+  // suspends every resource bound by this service boundary.
+  const msp=activeMspAt(s,c,root,stageRows,stageResources,observations,at,hooks),responsibility=plan.responsibility;
+  if(!msp||!responsibility||msp.id!==responsibility.id||msp.projectId!==responsibility.projectId||msp.postingId!==responsibility.postingId||msp.effectiveAt!==responsibility.effectiveAt)return {eligible:false,resources:[],profile:definition.profile};
   let placements;try{placements=logicalPlacementStateAt(s,c,root,at,hooks);}catch{return {unsupported:true};}
   if(!placements||!same(placements.topology,plan.topology||{}))return {eligible:false,resources:[],profile:definition.profile};
   if(pathResources.some(id=>!deps.some(dep=>dep.id===id&&dep.generation===observations[id]?.generation)))return {eligible:false,resources:[],profile:definition.profile};
@@ -298,7 +324,7 @@ function socProviderSupportHistoryKernel(){
  }
  function governmentObservationsAt(s,c,root,gov,at,hooks){
   const out=Object.create(null),ids=[...new Set([...gov.resources,...(gov.architecture.id==='local-processing'?['local']:[])])];
-  for(const id of ids){let plan;try{plan=hooks.configurationAt(s,c,root,id,at);}catch{return null;}out[id]=baseResourceObservationAt(s,c,root,id,at,plan,hooks);if(!out[id])return null;}
+  for(const id of ids){let plan;try{plan=hooks.configurationAt(s,c,root,id,at);}catch{return null;}out[id]=baseResourceObservationAt(s,c,root,id,at,plan,{...hooks,_skipProductGate:true});if(!out[id])return null;}
   return out;
  }
  function governmentCallingEvaluationAt(s,c,root,gov,at,observations,hooks){
@@ -374,7 +400,7 @@ function socProviderSupportHistoryKernel(){
       if(!contract||!Array.isArray(flows)||!flows.some(flow=>flow.resource===id))boundaryMemo.set(boundaryKey,false);
       else{
        const deps=boundaryPlan.dependencies||[],observations=Object.create(null),stageResources=[...new Set(stageRows.flatMap(row=>row.project.resources||[]))],observationIds=[...new Set([...deps.map(dep=>dep.id),...stageResources])];
-       for(const resourceId of observationIds){let config;try{config=resolved.configurationAt(state,c,root,resourceId,at);}catch{config=null;}observations[resourceId]=baseResourceObservationAt(state,c,root,resourceId,at,config,resolved);}
+       for(const resourceId of observationIds){let config;try{config=resolved.configurationAt(state,c,root,resourceId,at);}catch{config=null;}observations[resourceId]=baseResourceObservationAt(state,c,root,resourceId,at,config,{...resolved,_skipProductGate:true});}
        const paths=[...new Set(flows.map(flow=>flow.resource))];
        let evaluation;try{evaluation=boundaryEvaluationAt(state,c,root,activeBoundary,at,paths,observations,resolved,{stageRows,stageResources});}catch{evaluation=null;}
        boundaryMemo.set(boundaryKey,!!evaluation?.eligible&&evaluation.resources.includes(id));
@@ -512,32 +538,37 @@ function socProviderSupportHistoryKernel(){
   if(ownedTimeline?.unsupported)return unsupported('SUPPORT_HISTORY_OWNED_SITE_TIMELINE_HOOK_REQUIRED');
   if(!ownedTimeline?.valid)return {status:'invalid',missing:['owned-site-transport-timeline-invalid'],participant:null};
   let terms;try{terms=hooks.retailAgreementAt(s,c,at);}catch{return unsupported('SUPPORT_HISTORY_RETAIL_TIMELINE_UNAVAILABLE');}if(!terms||!integer(terms.acceptedAt)||terms.acceptedAt>at||!integer(terms.priceCents))return {status:'invalid',missing:['accepted-retail-agreement'],participant:null};
-  const stageRows=[],missing=[];
+  const stageRows=[],missing=[];let stageLineageReady=true;
   for(const stageId of ['base','carrier','partner']){
    const stage=c.stages?.[stageId],project=stage&&projectById(s,c,stage.projectId);
-   if(!stage||stage.status!=='effective'||!project||project.kind!=='stage'||project.stage!==stageId||!paidProject(s,project,hooks)||project.completedAt>at){missing.push('paid-commissioned-stage-lineage');break;}
+   if(!stage||stage.status!=='effective'||!project||project.kind!=='stage'||project.stage!==stageId||!paidProject(s,project,hooks)||project.completedAt>at){stageLineageReady=false;missing.push('paid-commissioned-stage-lineage');break;}
    stageRows.push({stageId,stage,project});
   }
-  if(missing.length)return {status:'invalid',missing:[...new Set(missing)],participant:null};
-  let paths;
-  try{paths=hooks.pathResourcesAt(s,c,root,at);}catch{return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');}
-  if(paths===null)return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');
-  if(!Array.isArray(paths)||paths.some(x=>typeof x!=='string'))return {status:'invalid',missing:['invalid-path-resource-history'],participant:null};
-  const govCalling=governmentCallingAt(s,c,root,at,hooks),stageResources=[...new Set(stageRows.flatMap(x=>x.project.resources||[]))],pathResources=[...new Set(['identity','phone',...paths,'engage'])],resourceIds=[...new Set([...stageResources,...pathResources,...(govCalling?.resources||[])])];
-  const observations=Object.create(null),resourceMissing=[];
-  for(const resourceId of resourceIds){
-   let plan,observation;try{plan=hooks.configurationAt(s,c,root,resourceId,at);observation=hooks.resourceObservationAt(s,c,root,resourceId,at,plan);}catch{return unsupported(`SUPPORT_HISTORY_RESOURCE_TIMELINE_UNAVAILABLE:${resourceId}`);}
-   if(!plan||!integer(plan.generation)||!plan.config||!observation||!exact(observation,['effective','generation','ready'])||typeof observation.effective!=='boolean'||typeof observation.ready!=='boolean'||observation.generation!==null&&!integer(observation.generation))return unsupported(`SUPPORT_HISTORY_RESOURCE_OBSERVATION_UNAVAILABLE:${resourceId}`);
-   const effective=observation.effective&&observation.generation===plan.generation;
-   const ready=observation.ready&&effective;
-   observations[resourceId]={effective,generation:observation.generation,ready};
-  }
+  if(!stageLineageReady)stageRows.length=0;
+  const stageResources=stageLineageReady?[...new Set(stageRows.flatMap(x=>x.project.resources||[]))]:[],observations=Object.create(null),resourceMissing=[];
+  const readResource=resourceId=>{
+   if(Object.hasOwn(observations,resourceId))return true;
+   let plan,observation;try{plan=hooks.configurationAt(s,c,root,resourceId,at);observation=hooks.resourceObservationAt(s,c,root,resourceId,at,plan);}catch{return false;}
+   if(!plan||!integer(plan.generation)||!plan.config||!observation||!exact(observation,['effective','generation','ready'])||typeof observation.effective!=='boolean'||typeof observation.ready!=='boolean'||observation.generation!==null&&!integer(observation.generation))return false;
+   observations[resourceId]={effective:observation.effective&&observation.generation===plan.generation,generation:observation.generation,ready:observation.ready&&observation.effective&&observation.generation===plan.generation};return true;
+  };
+  for(const resourceId of stageResources)if(!readResource(resourceId))return unsupported(`SUPPORT_HISTORY_RESOURCE_OBSERVATION_UNAVAILABLE:${resourceId}`);
   const expectedByResource=Object.create(null);for(const {stage} of stageRows)for(const resourceId of stage.resources||[])expectedByResource[resourceId]=stage.expectedGenerations?.[resourceId];
   for(const resourceId of stageResources){const r=observations[resourceId],expected=expectedByResource[resourceId];if(!r?.ready||!integer(expected)||r.generation<expected)resourceMissing.push(`resource-not-current:${resourceId}`);}
-  const stagesReady=resourceMissing.length===0;
+  const stagesReady=stageLineageReady&&resourceMissing.length===0;
   if(resourceMissing.length)missing.push(...resourceMissing);
   const workMissing=stagesReady?resolvedWorkMissingAt(s,c,root,at,hooks):[];missing.push(...workMissing);
   const customerReady=stagesReady&&workMissing.length===0;
+  let pathResources=[];
+  if(customerReady){
+   let paths;try{paths=hooks.pathResourcesAt(s,c,root,at);}catch{return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');}
+   if(paths===null)return unsupported('SUPPORT_HISTORY_PATH_TIMELINE_UNAVAILABLE');
+   if(!Array.isArray(paths)||paths.some(x=>typeof x!=='string'))return {status:'invalid',missing:['invalid-path-resource-history'],participant:null};
+   pathResources=[...new Set(['identity','phone',...paths,'engage'])];
+   for(const resourceId of pathResources)if(!readResource(resourceId))return unsupported(`SUPPORT_HISTORY_RESOURCE_OBSERVATION_UNAVAILABLE:${resourceId}`);
+  }
+  const govCalling=customerReady?governmentCallingAt(s,c,root,at,hooks):null;
+  if(govCalling)for(const resourceId of govCalling.resources)if(!readResource(resourceId))return unsupported(`SUPPORT_HISTORY_RESOURCE_OBSERVATION_UNAVAILABLE:${resourceId}`);
   const resources=customerReady?[...new Set([...stageResources,...pathResources])]:[];
   const readyByResource=observations;
   if(customerReady)for(const resourceId of pathResources)if(!readyByResource[resourceId]?.ready)missing.push(`resource-not-current:${resourceId}`);
@@ -546,7 +577,7 @@ function socProviderSupportHistoryKernel(){
   let boundaries=[];
   {
    const candidates=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.kind==='operation'&&p.status==='complete'&&integer(p.completedAt)&&p.completedAt<=at&&p.operationReceipt?.kind==='service-boundary');
-   for(const project of candidates){
+   if(customerReady)for(const project of candidates){
     const receipt=project.operationReceipt,plan=receipt.plan,contract=plan?.boundaryContract,deps=plan?.dependencies;
     if(!plan||plan.customerId!==c.id||!contract?.id||!integer(plan.boundaryGeneration)||!Array.isArray(deps)||!paidProject(s,project,hooks))continue;
     if(!pathResources.every(id=>deps.some(d=>d.id===id&&d.generation===observations[id]?.generation)))continue;

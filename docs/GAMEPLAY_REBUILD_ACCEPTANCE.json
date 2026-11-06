@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "Per-assertion reconciliation across explicitly named candidates; each verification records its actual tested revision. Not full-source disposition, research acceptance or complete-game certification.",
-  "remainingNotesAsOfCommit": "e49234902abb3f273aad8645baad1ef0766389d1",
+  "remainingNotesAsOfCommit": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
   "preliminaryFamilyDiagnostics": {
     "scope": "Executed against mutable shared sources; supporting diagnosis only, not frozen candidate acceptance or visible-control evidence.",
     "command": "node --test --test-isolation=none tests/provider-family-capabilities.test.js tests/provider-product-compatibility.test.js tests/provider-operations-product.test.js tests/provider-product-campaign.test.js tests/provider-products.test.js tests/provider-standing-policy.test.js",
@@ -1034,6 +1034,89 @@
         "Automated synthetic visible-control evidence, not human pilot/comprehension or 20\u201330 minute pacing.",
         "Second customer funded/provisioning at win; no completed second delivery claim.",
         "No full guest mission, stale quote subcase, 14-family generalization or hosted publication."
+      ]
+    },
+    "missions-families-f55-a59": {
+      "candidate": "f55bec35ff9678b2516f44f219dc868d15d65b0e",
+      "integratedCandidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+      "status": "passed-scoped-missions-and-family-paths",
+      "scope": "12 Chromium mission alternatives and 84 product-family desktop/mobile paths across Chromium, Firefox and WebKit. Actual execution is f55; runtime source equivalence to 713 and complete-tree equivalence to merged a59 are explicit. UC/CC supplementary browser path remains desktop-only. No full catalogue acceptance.",
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/gameplay-159-f55-713-reconciliation/proposal.json",
+      "sha256": "193fcc5b8011055cfada601557570c06c69449a8a4973658186b83e1fed258cf",
+      "sourceEquivalence": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/final-f55-browser-matrix/inputs/final-candidate-713ab8b-source-equivalence.json",
+          "sha256": "753bf3754a6d1030be3735e9cc0366b7fe759c4d3144461d7e8070d506b6fa6f"
+        },
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/protected-merge-post-a59d67b/receipt.json",
+          "sha256": "1e93a08b0e4942792fd1e50b1b6fea429a092e76624ab3fd94fcda198bd05fd3"
+        }
+      ]
+    },
+    "hosted-publication-a59": {
+      "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+      "status": "passed-required-preview-checks-and-public-verification",
+      "scope": "Main CI, Security and Accountability passed. Protected preview publication passed 29 jobs including all eight evidence producers and eight independent replays, mutations, build/audit/scans/deploy. All 826 acceptance IDs passed with 630 matching inputs; 125 mutation tests include one existing Gitleaks-dependent skip, with required Security separately passed. Full-product release gate skipped for preview, not passed. Four public SMB journeys and eight cache/online/offline/reopen checkpoints passed.",
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/publication-42280527440/postdeploy-verification-summary.json",
+      "sha256": "486f56c6987741a555759678c7f432702131528f54363e4c904af690f6e520c2",
+      "workflow": "https://github.com/zanefounty/series-of-calls/actions/runs/42280527440",
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/protected-merge-post-a59d67b/publication-audit/receipt.json",
+          "sha256": "234a20e09614d97dfb4060d121c4fdb2380a07efb7826277d77d36a0744d5a33"
+        },
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/publication-42280527440/acceptance-merged/acceptance.json",
+          "sha256": "d847086910efccda2fe89eef3a215f4174bcaa4b3353641221bc3f5172fdcd75"
+        },
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/gameplay-159-main-a59-gap-audit/acceptance-input-audit.json",
+          "sha256": "2f9c11f76b03e4fd19f08e7270a8371e94aba193adb6bd5089f5ad20dbafd472"
+        }
+      ]
+    },
+    "workloads-e3c40ab-browser": {
+      "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+      "status": "passed-scoped-browser-verification",
+      "scope": "18/18 Chromium, Firefox and WebKit desktop/mobile motion-on, motion-off and paid meeting recovery cases. Six paired full-state comparisons, 18 exact save restores; no input/build drift. Only PLAY-010-A02 and PLAY-018-A03. Later changed inputs require affected verification.",
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/proposal.json",
+      "sha256": "68a6057217a9602f02898eb83301119a262314336f249b19bb969eb00363137e",
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/REVIEW.md",
+          "sha256": "bb0dd9029f63e44c24dfe76720c12c0f643ddebe380012af78245c0d627d1c99"
+        }
+      ],
+      "limits": [
+        "No ledger/source/registry changes; coordinator decides promotion.",
+        "Visible-flow comparisons span minutes68\u201372, with2newjobs,1newcompletion,4additionalusage minutes; no settlement boundary in that paired interval. Complete state and all ledger/accounting fields compare exactly.",
+        "Meeting fixture produced by actual current AC865 native dispatch, then imported through visible validated Import; paid repair and clock80\u2013144 run through actual browser controls.",
+        "Chromium host pinned binary; Firefox/WebKit immutable Playwright1.64.1 container sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f. Actual Node versions retained separately.",
+        "No new PLAY004A03/background-tab, drag-pan, human pilot, universal accessibility, longplay or broader source-family completion claim.",
+        "Initial external meeting matcher failure preserved in chromium-r1-selector-failure; native reason array includes both MEETING_CAPACITY and MEETING_CAPACITY_ZERO. Runtime unchanged for corrected verification."
+      ]
+    },
+    "probes-dd1d1a6": {
+      "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+      "status": "passed-scoped-native-probe-verification",
+      "scope": "Direct public site exercise invokes synchronous diagnostic probes under an active metered business contract; zero commercial completions, native observer attempts and variable billed units; later3minute call is positive control. Legacy meeting join remains noncommercial.",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/site-operations.test.js",
+        "tests/provider-meeting-lifecycle.test.js"
+      ],
+      "tests": 17,
+      "passed": 17,
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6/report.json",
+      "sha256": "836ce4d91e614810ff49d2ea318653bb2b7988765270f83ec6ede2b0d13146de",
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6-independent-review/REVIEW.md",
+          "sha256": "0ceb555abc99d659fa11293bb8e3da6e23c1617a8778c9dfd4be3faf8cef8fa1"
+        }
       ]
     }
   },
@@ -4220,6 +4303,18 @@
       "name": "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes.",
       "result": "passed",
       "run": "smb-visible-1139239"
+    },
+    "PROBE-DD1-SITE": {
+      "file": "tests/site-operations.test.js",
+      "name": "AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions",
+      "result": "passed",
+      "run": "probes-dd1d1a6"
+    },
+    "PROBE-DD1-MEETING": {
+      "file": "tests/provider-meeting-lifecycle.test.js",
+      "name": "legacy join remains an explicit training probe and cannot earn delivered meeting evidence",
+      "result": "passed",
+      "run": "probes-dd1d1a6"
     }
   },
   "requirements": {
@@ -4819,15 +4914,14 @@
         "src/game/34-specialist-lifecycle.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-034": {
@@ -4946,14 +5040,14 @@
         "src/game/28-product-evidence.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-standing-policy",
         "candidate-family-capabilities"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-040": {
@@ -5150,14 +5244,13 @@
         "scripts/browser-smoke.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-051": {
@@ -5169,14 +5262,14 @@
         "evidence/"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "candidate-lab-fixture-separation"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-052": {
@@ -5246,17 +5339,18 @@
     },
     {
       "id": "OWNER-PUBLICATION",
-      "status": "preview-published-later-candidate-pending",
+      "status": "preview-published-and-verified",
       "implementation": [
         ".github/workflows/release.yml"
       ],
-      "remaining": "Protected dc34fbc preview is deployed and verified in run42108386366 for exact core artifact bytes, cache upgrade, separate saves, offline root/index, cold network-none restart and actual paid service. Later499fa17 publication run42115372988 remains pending its own completed deployment and public checks. Earlier deployments retain their separately scoped receipts.",
+      "remaining": "Protected a59 preview deployed in run42280527440. All47 public files match the downloaded artifact; four SMB journeys and actual old-cache upgrade, three-size offline reload and persistent reopen pass. No full-gameplay, human-pilot or catalogue/research completion follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp"
       ],
       "evidenceRuns": [
         "public-eb0e88-preview",
-        "public-dc34fbc-preview"
+        "public-dc34fbc-preview",
+        "hosted-publication-a59"
       ]
     },
     {
@@ -6792,7 +6886,7 @@
       "requirement": "PLAY-010",
       "sourceIndex": 1,
       "assertion": "Sampled particles and traces do not create or bill additional work.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B006",
         "B007",
@@ -6812,22 +6906,47 @@
       "reviewTestCandidates": [
         "B055"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
         "implementation": [
-          "src/game/25-provider-campaign.js",
+          "src/game/96-map/90-service-scene.js",
+          "src/game/96-map/95-provider-canvas.js",
+          "src/game/93-ui/79-provider-workload-flow.js",
+          "src/game/23-provider-journeys.js",
           "src/game/55-communications.js",
-          "src/game/46-outcomes.js"
+          "src/game/97-provider-shell.js",
+          "src/game/98-provider-runtime.js",
+          "tests/provider-room-family-limitation.test.js"
         ],
-        "tests": [
-          "C004",
-          "C064"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Sampled particles and traces do not create or bill additional work.",
+            "evidence": "Sufficient executed visible-control evidence for the exact assertion. Real SMIL motion and actual trace display are state-pure while paused; six animation/sound on/off pairs produce exact full-state equality under identical68-to72 commands, including jobs, native interactions, usage and complete treasury/ledger."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only the exact assertion at these frozen tested inputs; no human, background-tab, long-play or full-release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Pure inspection is tested. Compare sampled animation/sound enabled versus disabled under fixed commands, with unchanged demand, usage and billing."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/25-provider-campaign.js",
+            "src/game/55-communications.js",
+            "src/game/46-outcomes.js"
+          ],
+          "tests": [
+            "C004",
+            "C064"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-010-A03",
@@ -7075,7 +7194,7 @@
       "requirement": "PLAY-012",
       "sourceIndex": 1,
       "assertion": "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B021",
         "B022",
@@ -7091,22 +7210,45 @@
       "reviewTestCandidates": [
         "B021"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+        "run": "probes-dd1d1a6",
         "implementation": [
           "src/game/55-communications.js",
-          "src/game/50-calling.js",
-          "src/game/25-provider-campaign.js"
+          "src/game/32-site-operations.js",
+          "src/game/39-service-observation.js"
         ],
         "tests": [
-          "C054",
-          "C072"
+          "PROBE-DD1-SITE",
+          "PROBE-DD1-MEETING"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "Immediate connectivity probes do not count as completed commercial conversations. Existing synchronous consumers such as siteHooks.journey migrate to explicit probes or asynchronous delivery evidence.",
+            "evidence": "Real public site exercise invokes three explicit instantaneous native probes under an active metered contract: no commercial completions, observer attempts or variable billed units through actual settlement; exact restore. A later real three-minute call meters three units and completes one conversation. Legacy meeting join is explicitly noncommercial and cannot create delivered sessions or recordings; real scheduled sessions are tested separately."
+          }
+        ],
+        "scope": "Exact assertion only; native17-test run independently reviewed. No human or full source release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Endpoint and meeting probes cannot earn commercial delivery, and siteHooks.journey now uses explicit probe by inspection. Direct synchronous-consumer commercial/no-usage regression remains unlinked."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/55-communications.js",
+            "src/game/50-calling.js",
+            "src/game/25-provider-campaign.js"
+          ],
+          "tests": [
+            "C054",
+            "C072"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-012-A03",
@@ -8135,7 +8277,7 @@
       "requirement": "PLAY-018",
       "sourceIndex": 2,
       "assertion": "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8164,32 +8306,57 @@
         "B061",
         "R020"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
         "implementation": [
-          "src/game/45-products.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/93-ui/79-provider-lifecycle.js",
           "src/game/96-map/90-service-scene.js",
           "src/game/96-map/95-provider-canvas.js",
+          "src/game/93-ui/79-provider-workload-flow.js",
+          "src/game/23-provider-journeys.js",
+          "src/game/55-communications.js",
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js",
-          "src/game/23-provider-service-retirement.js"
+          "tests/provider-room-family-limitation.test.js"
         ],
-        "tests": [
-          "C098",
-          "C100",
-          "C102",
-          "C103",
-          "C101",
-          "C107",
-          "C108"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability.",
+            "evidence": "Sufficient executed visible-control evidence for the exact assertion. Actual geography/services/workloads/costs layers selectable; real voice/message paths and mission-meeting paths inspectable; every retained ordinary journey button reached at desktop/mobile, keyboard activation works, visible controls at least52px. Full native state unchanged by layer/flow/trace/service/incident selection, zoom/reset, sound and motion preference changes."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only the exact assertion at these frozen tested inputs; no human, background-tab, long-play or full-release claim.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Region/geography, service dependencies and flows are selectable layers; graphics never grant service capability."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/45-products.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/93-ui/79-provider-lifecycle.js",
+            "src/game/96-map/90-service-scene.js",
+            "src/game/96-map/95-provider-canvas.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js",
+            "src/game/23-provider-service-retirement.js"
+          ],
+          "tests": [
+            "C098",
+            "C100",
+            "C102",
+            "C103",
+            "C101",
+            "C107",
+            "C108"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-019-A01",
@@ -8365,7 +8532,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Known presentation gap: an unearned managed-local-spares offer is removed from contextual actions rather than displaying its prerequisite/refusal explanation. The pure quote rejects it, but that is not a visible explanation."
+      "remaining": "The managed-spares, empty-customer and spent-credit/exited-customer presentation gaps are repaired at a59. Inventory every remaining blocked-action category for a visible prerequisite and usable next step before universal closure."
     },
     {
       "id": "PLAY-020-A01",
@@ -9815,7 +9982,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Current Provider dispatch exposes bounded retained-proof adapters for 23 of 32 canonical identities. Nine remain: levels 9, 10, 11 and 13; goals P5, scrub, TB, T10 and T1. Existing adapters still require their exact paid-unlock and visible delivery evidence. Preserve the canonical endgame; no exclusion is approved."
+      "remaining": "Eight retained-proof adapters remain: L9, L10, L11, L13, P5, TB, T10 and T1. P5 has measured progress (one eligible route of five). Demonstrate honest visible next requirements and blocked opportunity reasons across the full progression catalogue."
     },
     {
       "id": "PLAY-028-A01",
@@ -10740,7 +10907,7 @@
       "requirement": "PLAY-033",
       "sourceIndex": 2,
       "assertion": "Settlement and renewal reflect the delivered migration and service outcomes.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B031",
         "B032",
@@ -10771,9 +10938,11 @@
       "reviewTestCandidates": [
         "B010"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+        "executedBrowserCandidate": "f55bec35ff9678b2516f44f219dc868d15d65b0e",
+        "run": "missions-families-f55-a59",
         "implementation": [
           "content/provider-campaigns.json",
           "src/game/24-provider-rules.js",
@@ -10788,19 +10957,51 @@
           "src/game/23-provider-change-preview.js",
           "src/game/52-information.js"
         ],
-        "tests": [
-          "C055",
-          "C186",
-          "C187",
-          "C181",
-          "C182",
-          "C183",
-          "C189"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Settlement follows delivered migration and service outcomes",
+            "evidence": "Four Enterprise standard/alternative desktop/mobile journeys retain actual migration completion, period-2 and period-5 settlement history and visible finance amounts."
+          },
+          {
+            "text": "Renewal reflects service history",
+            "evidence": "The same journeys execute actual renewal at minute 360 with the recorded migration and service history."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named inputs; broader mechanics, product fidelity, owner additions and research acceptance remain separate.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Settlement and renewal reflect the delivered migration and service outcomes."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "content/provider-campaigns.json",
+            "src/game/24-provider-rules.js",
+            "src/game/25-provider-campaign.js",
+            "src/game/32-site-operations.js",
+            "src/game/34-specialist-lifecycle.js",
+            "src/game/53-service-operations.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/93-ui/79-provider-comparisons.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js",
+            "src/game/23-provider-change-preview.js",
+            "src/game/52-information.js"
+          ],
+          "tests": [
+            "C055",
+            "C186",
+            "C187",
+            "C181",
+            "C182",
+            "C183",
+            "C189"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-034-A01",
@@ -11946,7 +12147,7 @@
       "requirement": "PLAY-039",
       "sourceIndex": 2,
       "assertion": "Do not create a separate setup screen for every supplier or treat distinct behaviours as a name reskin.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B037",
         "B038",
@@ -11982,9 +12183,11 @@
         "B031",
         "B032"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+        "executedBrowserCandidate": "f55bec35ff9678b2516f44f219dc868d15d65b0e",
+        "run": "missions-families-f55-a59",
         "implementation": [
           "content/products.json",
           "src/game/23-provider-policy.js",
@@ -11995,24 +12198,52 @@
           "src/game/55-communications.js",
           "src/game/93-ui/78-provider-policy-controls.js"
         ],
-        "tests": [
-          "C163",
-          "C205",
-          "C206",
-          "C087",
-          "C141",
-          "C180",
-          "C218",
-          "C213",
-          "C230",
-          "C231",
-          "C232",
-          "C233"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Shared contextual setup controls",
+            "evidence": "Fourteen family paths use the existing shared inspector, quotes and map controls rather than supplier-specific setup screens."
+          },
+          {
+            "text": "Distinct capability and limitation",
+            "evidence": "84 executed family paths across three engines and two viewports demonstrate capability-specific outcomes, failure and recovery; generic paid deployment alone is not counted."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named inputs; broader mechanics, product fidelity, owner additions and research acceptance remain separate.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Do not create a separate setup screen for every supplier or treat distinct behaviours as a name reskin."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "content/products.json",
+            "src/game/23-provider-policy.js",
+            "src/game/23-provider-products.js",
+            "src/game/25-provider-campaign.js",
+            "src/game/28-product-evidence.js",
+            "src/game/45-products.js",
+            "src/game/55-communications.js",
+            "src/game/93-ui/78-provider-policy-controls.js"
+          ],
+          "tests": [
+            "C163",
+            "C205",
+            "C206",
+            "C087",
+            "C141",
+            "C180",
+            "C218",
+            "C213",
+            "C230",
+            "C231",
+            "C232",
+            "C233"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-040-A01",
@@ -13784,7 +14015,7 @@
       "requirement": "PLAY-050",
       "sourceIndex": 1,
       "assertion": "Record one complete journey for enterprise, government and defence with distinct constraints.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-scene",
@@ -13802,9 +14033,11 @@
       "reviewTestCandidates": [
         "B010"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+        "executedBrowserCandidate": "f55bec35ff9678b2516f44f219dc868d15d65b0e",
+        "run": "missions-families-f55-a59",
         "implementation": [
           "scripts/browser-smoke.js",
           "src/game/93-ui/75-provider-panels.js",
@@ -13813,14 +14046,36 @@
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C055",
-          "C056"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Complete Enterprise, Government and Defence journeys",
+            "evidence": "12 executed standard/alternative desktop/mobile journeys preserve distinctive migration, custody/boundary and local-isolation constraints, paid construction, actual work, failure/recovery and settlement. Ten paths renew/expand; two Defence alternatives recover technically then exit with retained commercial loss."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named inputs; broader mechanics, product fidelity, owner additions and research acceptance remain separate.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Attach complete current Enterprise, Government and Defence visible journeys with each distinctive constraint. Current Government and interoperability evidence is supporting but not the full three-mission record."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "scripts/browser-smoke.js",
+            "src/game/93-ui/75-provider-panels.js",
+            "src/game/96-map/90-service-scene.js",
+            "src/game/96-map/95-provider-canvas.js",
+            "src/game/97-provider-shell.js",
+            "src/game/98-provider-runtime.js"
+          ],
+          "tests": [
+            "C055",
+            "C056"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-050-A03",
@@ -13913,7 +14168,7 @@
       "requirement": "PLAY-051",
       "sourceIndex": 1,
       "assertion": "Run required worker/save/communications, evidence, coverage, gate mutation, translation and build checks according to repository policy.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
@@ -13931,28 +14186,54 @@
         "R065",
         "B001"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+        "executedBrowserCandidate": null,
+        "run": "hosted-publication-a59",
         "implementation": [
           "spec/acceptance-plan.json",
           "src/game/97-provider-shell.js",
           "src/game/97-training.js",
           "src/game/98-provider-runtime.js"
         ],
-        "tests": [
-          "C270",
-          "C007",
-          "C250",
-          "C028",
-          "C267",
-          "C268",
-          "C269"
+        "tests": [],
+        "clauses": [
+          {
+            "text": "Required runtime and evidence checks",
+            "evidence": "Exact a59 main CI runs all eight JavaScript shards, translation and build; complete 193-suite/826-ID acceptance inputs match all 630 source hashes; publication independently replays all eight partitions and runs gate mutations."
+          },
+          {
+            "text": "Publication checks",
+            "evidence": "Dependency audit, Gitleaks, artifact inventory, build and protected deploy pass. Full-product release gate remains intentionally separate and unpassed."
+          }
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Only this exact assertion at the named inputs; broader mechanics, product fidelity, owner additions and research acceptance remain separate.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Hosted full JS and current browser receipts are attached. Attach exact current registered evidence, source/coverage/mapping, mutation, translation, build and security check receipts individually before closing the full required-check matrix."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "spec/acceptance-plan.json",
+            "src/game/97-provider-shell.js",
+            "src/game/97-training.js",
+            "src/game/98-provider-runtime.js"
+          ],
+          "tests": [
+            "C270",
+            "C007",
+            "C250",
+            "C028",
+            "C267",
+            "C268",
+            "C269"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-051-A03",
@@ -14473,7 +14754,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 122,
+    "assertionsClosed": 126,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14521,8 +14802,8 @@
         "assertions": 40,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 33,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 35,
+          "pending-current-candidate-verification": 5
         }
       },
       {
@@ -14531,8 +14812,8 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 16,
-          "pending-current-candidate-verification": 5,
+          "verified-current-candidate": 18,
+          "pending-current-candidate-verification": 3,
           "parked-owner-request": 4
         }
       }
@@ -14540,11 +14821,10 @@
     "additionalOwnerItems": 8,
     "knownUnclosedEngineeringScopes": [
       "Remaining canonical Provider progression adapters and useful earned choices must be completed while preserving the canonical endgame.",
-      "Regional-support historical authority, retained work lineage and measured claims remain in implementation; historical configuration must not be replaced by current state.",
-      "Bounded managed local-spares and bill-presentation repairs have landed; exact follow-on paid delivery and assertion reconciliation remain required where not already evidenced.",
-      "Remaining mission/family/Training/current-input interaction, accessibility and persistence evidence must be individually reconciled; generic completed work is insufficient.",
-      "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged.",
-      "Established-call loss of a single media direction remains an explicit owner-plan service-truth regression; one-way admission outcome evidence does not complete it."
+      "Regional-support implementation is merged in a59d67b; remaining save-history edge cases and exact acceptance clauses require their own executed evidence. Historical configuration must not be replaced by current state.",
+      "Managed local-spares and bill-presentation repairs and bounded paid-delivery evidence have landed; broader follow-on coverage must be assessed per exact assertion.",
+      "Remaining interaction, accessibility, multi-customer, service-lifecycle and persistence assertions must be individually verified. Four mission and fourteen family browser paths do not close unrelated clauses.",
+      "Catalogue-specific source obligations, research acceptance and full-release gates remain separate and unchanged."
     ],
     "externalDependencies": [
       {
@@ -14559,13 +14839,14 @@
       },
       {
         "item": "Later candidate publication",
-        "status": "verified-bounded-preview",
-        "scope": "Protected499fa172 preview deployed inrun42115372988 and independently verified for actual cache upgrade, separate saves, paid opening and warm/cold offline root/index. Unmerged regional implementation requires its own future candidate checks and publication."
+        "status": "preview-published-and-verified",
+        "scope": "Protected a59d67b preview deployed in run42280527440, deployment7609494849. Actual public SMB Swift/Steady desktop/mobile play, exact published assets, cache upgrade and offline reload passed. Future runtime changes require affected verification and a new protected publication; this is not full-product release acceptance.",
+        "run": "hosted-publication-a59"
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 122,
-      "pending-current-candidate-verification": 33,
+      "verified-current-candidate": 126,
+      "pending-current-candidate-verification": 29,
       "parked-owner-request": 4
     }
   },
@@ -14589,8 +14870,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 122,
-      "pending-current-candidate-verification": 33,
+      "verified-current-candidate": 129,
+      "pending-current-candidate-verification": 26,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14773,6 +15054,49 @@
           "PLAY-050-A03"
         ],
         "scope": "Five exact clauses supported by twelve frozen browser journeys and two supplemental captures; full scope of159assertions and fourparkeditems unchanged."
+      },
+      {
+        "candidate": "a59d67b6ecefc8686abd3cc0ad1058f0b8bd9f8c",
+        "runs": [
+          "missions-families-f55-a59",
+          "hosted-publication-a59"
+        ],
+        "assertions": [
+          "PLAY-033-A03",
+          "PLAY-039-A03",
+          "PLAY-050-A02",
+          "PLAY-051-A02"
+        ],
+        "newlyVerified": [
+          "PLAY-033-A03",
+          "PLAY-039-A03",
+          "PLAY-050-A02",
+          "PLAY-051-A02"
+        ],
+        "scope": "Four exact closures only, independently audited. All159 original assertions and four owner-parked long-play items retained. f55 browser execution is not relabelled a59; source/tree equivalence is explicit. No research acceptance or exclusion.",
+        "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/gameplay-159-main-a59-gap-audit/audit.json",
+        "sha256": "c161fbf6f95abc50f7b353af1993f5f958581b1b2d3a2fe0fd31c21361107b64"
+      },
+      {
+        "candidate": "e3c40abceec47844980dbb215cda18703f06dd45",
+        "run": "workloads-e3c40ab-browser",
+        "assertions": [
+          "PLAY-010-A02",
+          "PLAY-018-A03"
+        ],
+        "scope": "Two exact clauses only; original159 and four parked assertions retained. Frozen browser candidate not relabelled as later lifecycle changes.",
+        "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/workloads-e3c40ab-browser/proposal.json",
+        "sha256": "68a6057217a9602f02898eb83301119a262314336f249b19bb969eb00363137e"
+      },
+      {
+        "candidate": "dd1d1a6b6495ee20669e7712cb3e10bebc723ba8",
+        "run": "probes-dd1d1a6",
+        "assertions": [
+          "PLAY-012-A02"
+        ],
+        "scope": "One exact synchronous-probe commercial-evidence closure. No original or parked assertion changed.",
+        "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/probes-dd1d1a6-independent-review/REVIEW.md",
+        "sha256": "0ceb555abc99d659fa11293bb8e3da6e23c1617a8778c9dfd4be3faf8cef8fa1"
       }
     ]
   }

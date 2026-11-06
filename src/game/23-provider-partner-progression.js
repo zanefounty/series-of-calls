@@ -25,7 +25,7 @@ function socProviderPartnerProgressionKernel(){
    .sort((a,b)=>a.role.localeCompare(b.role)||a.organisationId.localeCompare(b.organisationId)||a.id.localeCompare(b.id))[0]||null;
  }
  function postingMatches(s,p){const row=s.business?.ledger?.find(x=>x.id===p.postingId);if(row)return row.category==='cost'&&row.customerId===p.customerId&&row.projectId===p.id&&row.cents===p.setupCents;const n=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);return n>0&&n<=(s.business?.ledgerPrunedThrough||0);}
- function ucRow(s,c,p,hooks,historical=false,diagnostics=[]){
+ function ucRow(s,c,p,hooks,historical=false,diagnostics=[],retainedOwner=null){
   const api=ucApi(),root=rootFor(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCampaign)return null;
   if(!customerAt(c,p.completedAt))return null;
   const observed=historical?{status:p.operationReceipt?.task?'ready':'incomplete',evidence:p.operationReceipt?.task||null}:api.observe(s,p.id,hooks);
@@ -38,13 +38,33 @@ function socProviderPartnerProgressionKernel(){
      test.result?.sourceGeneration!==plan.source.generation||test.result?.targetGeneration!==plan.target.generation||
      test.result?.sourceVersion!==plan.source.productVersion||test.result?.targetVersion!==plan.target.productVersion)return null;
   const resourceIds=[plan.source.resourceId,plan.target.resourceId];
-  const supportRecord=scopeRecord(s,c,resourceIds,hooks,historical?test.at:s.clock);
-  // At claim time the native test retains the exact paid support boundary and
-  // provider-stage sources. Historical validation relies on that native receipt.
+  // The vendor support row is delivered with this paid managed project. Its
+  // evidence time is therefore the completed task, after the native test and
+  // qualifying delivery, rather than the earlier integration-test minute.
+  const supportTime=historical?p.completedAt:s.clock;
+  const mspSupportTime=historical?test.at:s.clock;
+  const supportRecord=scopeRecord(s,c,resourceIds,hooks,mspSupportTime);
+  const actualScope=supportRecord&&{projectIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.projectId)].sort(),postingIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.postingId)].sort(),resources:[...(supportRecord.scope||[])].sort()};
+  const mspEvidence={role:'msp',organisationId:'orchard-msp',scope:copy(test.supportScope)};
+  const mspValid=!!supportRecord&&supportRecord.role==='msp'&&supportRecord.organisationId==='orchard-msp'&&same(actualScope,test.supportScope);
+  const vendorOwner=historical?null:supportApi().supportFor(s,c.id,resourceIds,{at:supportTime,hooks}).owners
+   .find(x=>x.adapter==='provider-uc-cc'&&x.role==='vendor'&&x.organisationId==='disco-vendor'&&x.customerId===c.id&&x.projectId===p.id&&x.postingId===p.postingId&&resourceIds.every(id=>x.scope.includes(id)))||null;
+  // A retained MSP receipt is historical proof: the native test binds the
+  // exact stage snapshot at test time, and previously accepted evidence must
+  // not be revoked because today's responsibility projection has changed.
+  const retainedMsp=historical&&retainedOwner?.role==='msp'&&retainedOwner.organisationId==='orchard-msp'&&same(retainedOwner,mspEvidence)&&resourceIds.every(id=>test.supportScope.resources.includes(id));
+  const retainedVendor=historical&&retainedOwner?.adapter==='provider-uc-cc'&&retainedOwner.role==='vendor'&&retainedOwner.organisationId==='disco-vendor'&&retainedOwner.customerId===c.id&&retainedOwner.projectId===p.id&&retainedOwner.postingId===p.postingId&&resourceIds.every(id=>(retainedOwner.scope||[]).includes(id))&&supportApi().validateOwner(s,retainedOwner,{at:supportTime,hooks});
+  const vendorValid=historical?!!retainedVendor:!!vendorOwner;
+  // Retain the original exact orchard MSP evidence when its paid stage scope
+  // covers both endpoints. Otherwise a separate paid Disco vendor contract
+  // may own this managed route without changing the MSP's responsibilities.
   if(!test.supportScope?.resources)return null;
-  const testScopeMissing=resourceIds.filter(id=>!test.supportScope.resources.includes(id));if(testScopeMissing.length){for(const resource of testScopeMissing)diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);return null;}
-  if(!historical){const actualScope=supportRecord&&{projectIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.projectId)].sort(),postingIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.postingId)].sort(),resources:[...(supportRecord.scope||[])].sort()};if(!supportRecord||supportRecord.role!=='msp'||supportRecord.organisationId!=='orchard-msp'||!same(actualScope,test.supportScope)){for(const resource of resourceIds.filter(id=>!supportRecord?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);return null;}}
-  const support={role:'msp',organisationId:'orchard-msp',scope:copy(test.supportScope)};
+  if(historical?!retainedMsp&&!retainedVendor:!mspValid&&!vendorValid){
+   for(const resource of resourceIds.filter(id=>!supportRecord?.scope?.includes(id)&&!vendorOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);
+   if(!resourceIds.some(id=>!supportRecord?.scope?.includes(id)&&!vendorOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}`);
+   return null;
+  }
+  const support=copy(historical?retainedOwner:(mspValid?mspEvidence:vendorOwner));
   return {version:VERSION,adapter:'provider-uc-cc',key:`${edge.id}:${edge.source}:${edge.features[0].sourceFeature}->${edge.target}:${edge.features[0].targetFeature}`,
    customerId:c.id,projectId:p.id,postingId:p.postingId,completedAt:p.completedAt,edgeId:edge.id,
    source:{deploymentId:plan.source.deploymentId,family:plan.source.family,feature:plan.source.feature,resourceId:plan.source.resourceId,generation:plan.source.generation,productVersion:plan.source.productVersion},
@@ -78,7 +98,7 @@ function socProviderPartnerProgressionKernel(){
   for(const c of customers(s)){
    if(!historical&&!['active','renewal'].includes(c.status))continue;
    const uc=operationProjects(s,c,ucApi().OPERATION_IDS);
-   for(const p of uc){const row=ucRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'ucCc'),historical,diagnostics);if(row)out.push(row);}
+   for(const p of uc){const retained=retainedEvidence.find(x=>x?.adapter==='provider-uc-cc'&&x.customerId===c.id&&x.projectId===p.id);const row=ucRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'ucCc'),historical,diagnostics,retained?.support);if(row)out.push(row);}
    const room=operationProjects(s,c,[roomApi().OPERATION_ID]);
    for(const p of room){const retained=retainedEvidence.find(x=>x?.adapter==='provider-room'&&x.customerId===c.id&&x.projectId===p.id);const row=roomRow(s,c,p,hooksFor(hooks,s,c,rootFor(s,c),'room'),historical,diagnostics,retained?.support);if(row)out.push(row);}
   }

@@ -7831,10 +7831,12 @@
         "AC-SOC-828",
         "AC-SOC-829",
         "AC-SOC-830",
-        "AC-SOC-831"
+        "AC-SOC-831",
+        "AC-SOC-871",
+        "AC-SOC-872"
       ],
       "status": "partial",
-      "scope": "New versioned careers permit at most eight authored dependency incidents per customer, each follow-up at least 360 minutes after observed recovery and triggered by fresh actual completed work. Only eligible trigger completions enter the journal; their exact native jobs and events remain pinned within bounded allowances. Unrelated pruned job substitutions refuse. Event pruning preserves a monotonic high-water mark when older pins are released. Public paid SMB construction, outage, delayed repair, renewal, follow-up, malformed-save refusal and worker/restore equivalence complement isolated pure-helper limit tests. Marker-absent legacy campaigns retain one-shot behavior. The contextual inspector explains follow-up timing; full browser and source-specific incident fidelity remain separate. Paid automation and explicitly resumed map time can continue serving live customers after a financial mission loss while the treasury has not defaulted. The failed mission stays recorded; initial loss, victory, default and tab ownership retain their pause/stop rules. Actual paid loss/recovery, worker continuation and translated runtime controls are tested."
+      "scope": "New versioned careers permit at most eight authored dependency incidents per customer, each follow-up at least 360 minutes after observed recovery and triggered by fresh actual completed work. Only eligible trigger completions enter the journal; their exact native jobs and events remain pinned within bounded allowances. Unrelated pruned job substitutions refuse. Event pruning preserves a monotonic high-water mark when older pins are released. Public paid SMB construction, outage, delayed repair, renewal, follow-up, malformed-save refusal and worker/restore equivalence complement isolated pure-helper limit tests. Marker-absent legacy campaigns retain one-shot behavior. The contextual inspector explains follow-up timing; full browser and source-specific incident fidelity remain separate. Paid automation and explicitly resumed map time can continue serving live customers after a financial mission loss while the treasury has not defaulted. The failed mission stays recorded; initial loss, victory, default and tab ownership retain their pause/stop rules. Actual paid loss/recovery, worker continuation and translated runtime controls are tested. The actual document visibility event pauses Provider without hidden-time catch-up; an earned victory remains terminal. Deterministic DOM tests do not claim native browser visibility evidence."
     },
     {
       "id": "BEH-SOC-434",
@@ -7875,6 +7877,45 @@
       "scope": "Paid UC/CC readiness constructs a fresh read-only native observer view on each call and isolates returned diagnostics; one synchronous Provider inspection shares its derived progression hooks. Frozen paid states, same-call capture/quality delivery, test/apply freshness, worker/restore parity and later same-object fault, deployment-generation and paid-posting mutations are exercised. This reduces repeated whole-customer copying without caching authority across commands or relaxing validation. Broader product fidelity and the existing legacy missing-arrival fallback remain separate obligations."
     },
     {
+      "id": "BEH-SOC-438",
+      "sources": [
+        "progress.goal.tb",
+        "uc-new:domain:workforce",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/23-provider-scale-observation.js",
+        "src/game/23-provider-history.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-scale.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-848",
+        "AC-SOC-849",
+        "AC-SOC-850",
+        "AC-SOC-851",
+        "AC-SOC-852",
+        "AC-SOC-853",
+        "AC-SOC-854",
+        "AC-SOC-855",
+        "AC-SOC-856",
+        "AC-SOC-857",
+        "AC-SOC-858",
+        "AC-SOC-866",
+        "AC-SOC-870",
+        "AC-SOC-873",
+        "AC-SOC-875"
+      ],
+      "status": "partial",
+      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal. Version-two paid windows cancel un-emitted tasks after an effective required-product retirement, retain actual outcomes and metered usage for emitted work, and cannot pass after cancellation. The quote discloses the active/future workload. Retained stop authority and exact paid recommissioning/new-window behavior are validated; recording-only retirement preserves the unrelated voice schedule. Legacy version-one non-retired saves remain supported; version markers never authorize resumed unsupported emission. Customer exit discloses and retains its committed paid batch and actual usage while stopping new ordinary demand. Real paid payroll/default during an open prepaid window cancels future tasks after settlement, retains actual usage, and survives restore and worker continuation. Version-two terminal stop authority remains bound after every task emits; retirement after finalization leaves the old result unchanged. Genuine legacy version-one open and terminal saves retain their emitted work; the next owned dispatch stops further legacy emission without discarding native jobs or charges."
+    },
+    {
       "id": "BEH-SOC-436",
       "sources": [
         "progress.goal.ix",
@@ -7891,6 +7932,71 @@
       ],
       "status": "partial",
       "scope": "Provider restore conserves emitted event IDs and retained/archive counts. A paid UC/CC proof cannot contradict a retained same-job arrival or use an archive with no arrival events. Legitimately pruned legacy v1 proof remains supported; aggregate counters cannot authenticate every coordinated historical edit and no missing events are synthesized. Real old saves and public dispatch/worker continuation are separately verified."
+    },
+    {
+      "id": "BEH-SOC-439",
+      "sources": [
+        "view:dash_traffic",
+        "view:link_detail",
+        "view:trace_modal",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-workload-flow.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-859",
+        "AC-SOC-860",
+        "AC-SOC-861",
+        "AC-SOC-862",
+        "AC-SOC-863",
+        "AC-SOC-864",
+        "AC-SOC-865",
+        "AC-SOC-867",
+        "AC-SOC-868",
+        "AC-SOC-869"
+      ],
+      "status": "partial",
+      "scope": "Provider workload paths project retained customer journey events with stable selection IDs and observed resource endpoints. The selected path explains actual delivery, failure and pending states, exposes existing service/incident responses and retains technical evidence beneath the explanation. Rendering is read-only. This bounded mapping does not establish all map interactions, accessibility, human playability or source-catalogue completion; real browser verification is recorded separately. Meeting work uses retained native sessions and admission/completion audits, including actual failed participant admission and separately funded incident recovery."
+    },
+    {
+      "id": "BEH-SOC-437",
+      "sources": [
+        "progress.goal.p5",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/23-provider-partner-progression.js"
+      ],
+      "testIds": [
+        "AC-SOC-847"
+      ],
+      "status": "partial",
+      "scope": "The paid UC/CC managed integration may contribute one distinct partner edge through its exact same-customer Disco vendor support contract, native directional test, human voice task, capture and funded quality review. Current exact-scope MSP ownership remains supported and historical MSP evidence retains its original shape; the real fixture with no recorder scope is correctly excluded. Forged role/organisation/project/posting scopes are rejected. This adds the UC/CC vendor alternative, not a second count for the same edge. Three other distinct partner integration adapters and complete P5 qualification remain pending."
+    },
+    {
+      "id": "BEH-SOC-440",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-874"
+      ],
+      "status": "partial",
+      "scope": "A genuinely funded two-customer Provider career shares engineering, support and cash. One customer paid product job blocks the other customer incident repair for support capacity; public cross-tenant dispatch and blocked repair refuse without mutation. When the shared team frees, the paid repair delivers with distinct customer postings against the same cash balance. Both tenant roots continue on the shared clock and restore exactly. This bounded dispatch case does not itself establish inspector browser behavior, cash-insufficiency refusal, long play or all ecosystem role obligations."
     }
   ]
 }

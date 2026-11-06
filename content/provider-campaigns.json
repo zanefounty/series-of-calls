@@ -1702,6 +1702,75 @@
         "uc-new:family:microsoft:meetings-rooms",
         "uc-new:family:cisco:meetings-devices"
       ]
+    },
+    {
+      "id": "paid-scale-baseline",
+      "name": "Paid scale window (baseline handling)",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "requirements": [],
+      "config": {},
+      "sourceIds": [
+        "progress.goal.tb",
+        "uc-new:domain:workforce",
+        "uc-new:domain:journey-testing"
+      ]
+    },
+    {
+      "id": "paid-scale-workflow",
+      "name": "Paid scale workflow and BPO handling",
+      "setupCents": 48000,
+      "periodCents": 10000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "people"
+      ],
+      "requirements": [
+        "bpo"
+      ],
+      "config": {
+        "people": {
+          "handlingMinutes": 1,
+          "wrapMinutes": 0
+        }
+      },
+      "sourceIds": [
+        "progress.goal.tb",
+        "uc-new:domain:workforce",
+        "uc-new:domain:journey-testing"
+      ]
+    },
+    {
+      "id": "managed-scale-workflow",
+      "name": "Managed sustained workload",
+      "setupCents": 36000,
+      "periodCents": 16000,
+      "workMinutes": 12,
+      "engineers": 0,
+      "support": 1,
+      "resources": [
+        "people"
+      ],
+      "requirements": [
+        "bpo"
+      ],
+      "config": {
+        "people": {
+          "handlingMinutes": 1,
+          "wrapMinutes": 0
+        }
+      },
+      "sourceIds": [
+        "progress.goal.tb",
+        "uc-new:domain:workforce",
+        "uc-new:domain:journey-testing"
+      ]
     }
   ],
   "families": [

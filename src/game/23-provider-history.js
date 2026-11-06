@@ -10,6 +10,7 @@ function socProviderHistoryKernel(){
   const protectedInteractions=new Set((s.records||[]).filter(r=>!r.deleted).map(r=>r.interaction));
   for(const id of s.providerResilienceCase?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerSecurityPins?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerScalePins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerCaseFollowupPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerCaseHandoffPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerSupportPins?.interactionIds||[])protectedInteractions.add(id);

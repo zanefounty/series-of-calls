@@ -50,7 +50,9 @@
       "AC-SOC-725",
       "AC-SOC-829",
       "AC-SOC-830",
-      "AC-SOC-831"
+      "AC-SOC-831",
+      "AC-SOC-871",
+      "AC-SOC-872"
     ],
     "tests/provider-owned-site-platform-migration.test.js": [
       "AC-SOC-637",
@@ -67,7 +69,9 @@
       "AC-SOC-816",
       "AC-SOC-817"
     ],
-    "tests/transport-boundaries.test.js": [],
+    "tests/provider-partner-paid-uc-cc.test.js": [
+      "AC-SOC-847"
+    ],
     "tests/shared-services-integration.test.js": [
       "AC-SOC-223",
       "AC-SOC-224"
@@ -1210,8 +1214,53 @@
       "AC-SOC-843",
       "AC-SOC-844"
     ],
+    "tests/provider-scale-paid.test.js": [
+      "AC-SOC-848",
+      "AC-SOC-870"
+    ],
+    "tests/provider-scale-ui.test.js": [
+      "AC-SOC-849"
+    ],
+    "tests/provider-scale-observation.test.js": [
+      "AC-SOC-850",
+      "AC-SOC-851",
+      "AC-SOC-852",
+      "AC-SOC-853",
+      "AC-SOC-854",
+      "AC-SOC-855",
+      "AC-SOC-856",
+      "AC-SOC-857",
+      "AC-SOC-858",
+      "AC-SOC-875"
+    ],
     "tests/provider-uc-cc-integration.test.js": [
       "AC-SOC-845"
+    ],
+    "tests/provider-workload-inspector.test.js": [
+      "AC-SOC-859"
+    ],
+    "tests/provider-workload-flows.test.js": [
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
+    ],
+    "tests/provider-room-family-limitation.test.js": [
+      "AC-SOC-865"
+    ],
+    "tests/provider-scale-mcp.test.js": [
+      "AC-SOC-866"
+    ],
+    "tests/transport-boundaries.test.js": [],
+    "tests/provider-scale-default.test.js": [
+      "AC-SOC-873"
+    ],
+    "tests/provider-portfolio-runtime.test.js": [
+      "AC-SOC-874"
     ]
   },
   "inputs": [
@@ -1844,6 +1893,20 @@
     "src/game/23-provider-integration-support.js",
     "src/game/23-provider-partner-progression.js",
     "tests/provider-progression-ui.test.js",
-    "tests/provider-uc-cc-integration.test.js"
+    "content/provider-scale-observation.v1.json",
+    "src/game/23-provider-scale-observation.js",
+    "src/game/93-ui/79-provider-scale.js",
+    "tests/provider-scale-paid.test.js",
+    "tests/provider-scale-ui.test.js",
+    "tests/provider-scale-observation.test.js",
+    "tests/provider-uc-cc-integration.test.js",
+    "src/game/93-ui/79-provider-workload-flow.js",
+    "tests/provider-workload-inspector.test.js",
+    "tests/provider-workload-flows.test.js",
+    "tests/provider-room-family-limitation.test.js",
+    "tests/provider-scale-mcp.test.js",
+    "tests/provider-partner-paid-uc-cc.test.js",
+    "tests/provider-scale-default.test.js",
+    "tests/provider-portfolio-runtime.test.js"
   ]
 }

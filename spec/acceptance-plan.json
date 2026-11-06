@@ -1106,6 +1106,16 @@
     "tests/provider-progression-inspection.test.js": [
       "AC-SOC-795",
       "AC-SOC-796"
+    ],
+    "tests/provider-empty-customer-actions-ui.test.js": [
+      "AC-SOC-800",
+      "AC-SOC-801",
+      "AC-SOC-802"
+    ],
+    "tests/provider-refused-quotes-ui.test.js": [
+      "AC-SOC-806",
+      "AC-SOC-807",
+      "AC-SOC-808"
     ]
   },
   "inputs": [
@@ -1698,6 +1708,8 @@
     "src/game/23-provider-room-integration.js",
     "src/game/93-ui/78-provider-room-integration.js",
     "tests/provider-support-history.test.js",
-    "tests/provider-progression-inspection.test.js"
+    "tests/provider-progression-inspection.test.js",
+    "tests/provider-empty-customer-actions-ui.test.js",
+    "tests/provider-refused-quotes-ui.test.js"
   ]
 }

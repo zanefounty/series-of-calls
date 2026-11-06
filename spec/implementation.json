@@ -7553,6 +7553,40 @@
       ],
       "status": "partial",
       "scope": "One read-only progression inspection validates its input before deriving its proposals, instead of repeating the same receipt validation for every unlock row. Standalone proposals and every new inspection still validate authority independently. Actual paid opening proposals match independently validated quotes on frozen state; changed receipt integrity refuses before quote hooks execute. A measured five-market checkpoint produces identical output with lower inspector latency; this does not certify full simulation speed or hosted test deadlines."
+    },
+    {
+      "id": "BEH-SOC-424",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-800",
+        "AC-SOC-801",
+        "AC-SOC-802"
+      ],
+      "status": "partial",
+      "scope": "Empty Operations and Suppliers panels explain that a customer must be funded first and provide a native Deals action leading to a starter quote. Actual funded-customer actions remain eligible by existing authority. Bounded UI and browser checks cover empty-state navigation, purity and existing customer quote context; other disabled-action categories remain pending."
+    },
+    {
+      "id": "BEH-SOC-426",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/93-ui/75-provider-panels.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-806",
+        "AC-SOC-807",
+        "AC-SOC-808"
+      ],
+      "status": "partial",
+      "scope": "Rejected repeat-credit drafts show current cash and requested terms, explain that the starter loan cannot be reused even after repayment and return to Finance. Terminal customer exit drafts explain existing exit/default status and retained obligations, retain the refusal and close without claiming a reversible active customer. Native UI checks preserve drafts and dispatch authority. This closes two concrete refusal-copy defects, not the entire blocked-action assertion."
     }
   ]
 }

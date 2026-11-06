@@ -62210,6 +62210,7 @@
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "src/game/98-provider-runtime.js",
+      "src/i18n/en.js",
       "src/styles/98-provider.css",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
@@ -62288,7 +62289,9 @@
       "BEH-SOC-400",
       "BEH-SOC-401",
       "BEH-SOC-419",
-      "BEH-SOC-422"
+      "BEH-SOC-422",
+      "BEH-SOC-424",
+      "BEH-SOC-426"
     ]
   },
   {

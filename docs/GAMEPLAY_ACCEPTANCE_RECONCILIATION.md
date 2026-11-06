@@ -6,10 +6,10 @@ The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **122 exact
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 25 | 3 | 0 |
 | 2 — service truth and SMB | 15 | 6 | 0 |
-| 3 — map and interaction | 13 | 11 | 0 |
+| 3 — map and interaction | 17 | 7 | 0 |
 | 4 — strategy and growth | 16 | 5 | 0 |
-| 5 — missions and ecosystem | 32 | 8 | 0 |
-| 6 — compatibility and delivery | 15 | 6 | 4 |
+| 5 — missions and ecosystem | 33 | 7 | 0 |
+| 6 — compatibility and delivery | 16 | 5 | 4 |
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 

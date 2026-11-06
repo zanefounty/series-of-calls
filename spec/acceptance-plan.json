@@ -7,8 +7,20 @@
     "tests/provider-progression-regional-claims-t2.test.js": [
       "AC-SOC-655"
     ],
+    "tests/provider-progression-receipts-level3-managed.test.js": [
+      "AC-SOC-838"
+    ],
+    "tests/provider-progression-receipts-level3-markets.test.js": [
+      "AC-SOC-837"
+    ],
     "tests/provider-progression-regional-claims-c5.test.js": [
       "AC-SOC-654"
+    ],
+    "tests/provider-progression-receipts-level3-room.test.js": [
+      "AC-SOC-836"
+    ],
+    "tests/provider-progression-receipts.test.js": [
+      "AC-SOC-810"
     ],
     "tests/provider-progression-regional-claims-c3.test.js": [
       "AC-SOC-653"
@@ -1084,6 +1096,66 @@
       "AC-SOC-775",
       "AC-SOC-776"
     ],
+    "tests/provider-security-helper.test.js": [
+      "AC-SOC-777",
+      "AC-SOC-778",
+      "AC-SOC-779"
+    ],
+    "tests/provider-security-dispatch.test.js": [
+      "AC-SOC-784",
+      "AC-SOC-785",
+      "AC-SOC-786",
+      "AC-SOC-804",
+      "AC-SOC-805",
+      "AC-SOC-811",
+      "AC-SOC-812",
+      "AC-SOC-813"
+    ],
+    "tests/provider-security-ui.test.js": [
+      "AC-SOC-782",
+      "AC-SOC-783",
+      "AC-SOC-809",
+      "AC-SOC-815"
+    ],
+    "tests/provider-support-history.test.js": [
+      "AC-SOC-780",
+      "AC-SOC-781"
+    ],
+    "tests/provider-progression-dispatch.test.js": [
+      "AC-SOC-789"
+    ],
+    "tests/provider-security.test.js": [
+      "AC-SOC-791",
+      "AC-SOC-792",
+      "AC-SOC-793",
+      "AC-SOC-794"
+    ],
+    "tests/admission-security-event-retention.test.js": [
+      "AC-SOC-797",
+      "AC-SOC-798",
+      "AC-SOC-799",
+      "AC-SOC-814"
+    ],
+    "tests/provider-progression-inspection.test.js": [
+      "AC-SOC-795",
+      "AC-SOC-796"
+    ],
+    "tests/provider-incident-sequence.test.js": [
+      "AC-SOC-824",
+      "AC-SOC-825",
+      "AC-SOC-826",
+      "AC-SOC-827"
+    ],
+    "tests/provider-incident-sequence-dispatch.test.js": [
+      "AC-SOC-822",
+      "AC-SOC-823"
+    ],
+    "tests/provider-standing-policy.test.js": [
+      "AC-SOC-828"
+    ],
+    "tests/provider-regional-support-history.test.js": [
+      "AC-SOC-835"
+    ],
     "tests/provider-room-integration-paid.test.js": [
       "AC-SOC-756",
       "AC-SOC-757",
@@ -1110,17 +1182,6 @@
       "AC-SOC-787",
       "AC-SOC-788"
     ],
-    "tests/provider-support-history.test.js": [
-      "AC-SOC-780",
-      "AC-SOC-781"
-    ],
-    "tests/provider-progression-dispatch.test.js": [
-      "AC-SOC-789"
-    ],
-    "tests/provider-progression-inspection.test.js": [
-      "AC-SOC-795",
-      "AC-SOC-796"
-    ],
     "tests/provider-empty-customer-actions-ui.test.js": [
       "AC-SOC-800",
       "AC-SOC-801",
@@ -1130,58 +1191,6 @@
       "AC-SOC-806",
       "AC-SOC-807",
       "AC-SOC-808"
-    ],
-    "tests/provider-progression-receipts.test.js": [
-      "AC-SOC-810"
-    ],
-    "tests/provider-security-helper.test.js": [
-      "AC-SOC-777",
-      "AC-SOC-778",
-      "AC-SOC-779"
-    ],
-    "tests/provider-security-dispatch.test.js": [
-      "AC-SOC-784",
-      "AC-SOC-785",
-      "AC-SOC-786",
-      "AC-SOC-804",
-      "AC-SOC-805",
-      "AC-SOC-811",
-      "AC-SOC-812",
-      "AC-SOC-813"
-    ],
-    "tests/provider-security-ui.test.js": [
-      "AC-SOC-782",
-      "AC-SOC-783",
-      "AC-SOC-809",
-      "AC-SOC-815"
-    ],
-    "tests/provider-security.test.js": [
-      "AC-SOC-791",
-      "AC-SOC-792",
-      "AC-SOC-793",
-      "AC-SOC-794"
-    ],
-    "tests/admission-security-event-retention.test.js": [
-      "AC-SOC-797",
-      "AC-SOC-798",
-      "AC-SOC-799",
-      "AC-SOC-814"
-    ],
-    "tests/provider-incident-sequence.test.js": [
-      "AC-SOC-824",
-      "AC-SOC-825",
-      "AC-SOC-826",
-      "AC-SOC-827"
-    ],
-    "tests/provider-incident-sequence-dispatch.test.js": [
-      "AC-SOC-822",
-      "AC-SOC-823"
-    ],
-    "tests/provider-standing-policy.test.js": [
-      "AC-SOC-828"
-    ],
-    "tests/provider-regional-support-history.test.js": [
-      "AC-SOC-835"
     ]
   },
   "inputs": [
@@ -1766,27 +1775,18 @@
     "tests/provider-resilience-sequence.test.js",
     "tests/provider-support-work.test.js",
     "tests/provider-configuration-reader-performance.test.js",
-    "tests/provider-room-integration-paid.test.js",
-    "tests/provider-room-integration-ui.test.js",
-    "tests/provider-room-integration.test.js",
-    "tests/provider-room-integration-dispatch.test.js",
-    "src/game/23-provider-room-integration.js",
-    "src/game/93-ui/78-provider-room-integration.js",
-    "tests/provider-support-history.test.js",
-    "tests/provider-progression-inspection.test.js",
-    "tests/provider-empty-customer-actions-ui.test.js",
-    "tests/provider-refused-quotes-ui.test.js",
-    "tests/provider-progression-receipts.test.js",
     "tests/provider-security-helper.test.js",
     "tests/provider-security-dispatch.test.js",
     "src/game/23-provider-security.js",
     "content/provider-security.json",
     "tests/provider-security-ui.test.js",
     "src/game/93-ui/74-provider-security.js",
+    "tests/provider-support-history.test.js",
     "tests/provider-security.test.js",
     "tests/admission-security-event-retention.test.js",
     "content/provider-security-abuse.v2.json",
-    "content/provider-security-managed.v1.json",
+    "tests/provider-progression-inspection.test.js",
+    "tests/provider-progression-receipts.test.js",
     "tests/provider-incident-sequence.test.js",
     "tests/provider-incident-sequence-dispatch.test.js",
     "src/game/23-provider-incident-sequence.js",
@@ -1797,6 +1797,19 @@
     "tests/provider-progression-regional-claims.helpers.js",
     "tests/provider-progression-regional-claims-support.test.js",
     "tests/provider-standing-policy.test.js",
-    "tests/provider-regional-support-history.test.js"
+    "tests/provider-regional-support-history.test.js",
+    "tests/provider-progression-receipts-level3-room.test.js",
+    "tests/provider-progression-receipts-level3-markets.test.js",
+    "tests/provider-progression-receipts-level3-managed.test.js",
+    "tests/provider-progression-receipts.helpers.js",
+    "tests/provider-room-integration-paid.test.js",
+    "tests/provider-room-integration-ui.test.js",
+    "tests/provider-room-integration.test.js",
+    "tests/provider-room-integration-dispatch.test.js",
+    "src/game/23-provider-room-integration.js",
+    "src/game/93-ui/78-provider-room-integration.js",
+    "tests/provider-empty-customer-actions-ui.test.js",
+    "tests/provider-refused-quotes-ui.test.js",
+    "content/provider-security-managed.v1.json"
   ]
 }

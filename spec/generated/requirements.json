@@ -35692,6 +35692,9 @@
     "status": "partial",
     "implementation": [
       "content/narrative.json",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-uc-cc-integration.js",
       "src/game/31-capability-progression.js",
       "src/game/41-progression.js",
       "src/game/45-products.js",
@@ -35711,7 +35714,8 @@
       "BEH-SOC-336",
       "BEH-SOC-337",
       "BEH-SOC-338",
-      "BEH-SOC-341"
+      "BEH-SOC-341",
+      "BEH-SOC-434"
     ]
   },
   {
@@ -36184,6 +36188,9 @@
     "representation": "ucc.goal.ix",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-uc-cc-integration.js",
       "src/game/41-progression.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
@@ -36200,7 +36207,8 @@
       "BEH-SOC-142",
       "BEH-SOC-146",
       "BEH-SOC-158",
-      "BEH-SOC-160"
+      "BEH-SOC-160",
+      "BEH-SOC-434"
     ]
   },
   {

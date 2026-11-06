@@ -11,6 +11,7 @@ function socProviderSupportHistoryKernel(){
  function workforceApi(){return typeof SOC_PROVIDER_WORKFORCE_HISTORY!=='undefined'?SOC_PROVIDER_WORKFORCE_HISTORY:require('./23-provider-workforce-history.js');}
  function configurationApi(){return typeof SOC_PROVIDER_CONFIGURATION_AUTHORITY!=='undefined'?SOC_PROVIDER_CONFIGURATION_AUTHORITY:require('./23-provider-configuration-authority.js');}
  function governmentApi(){return typeof SOC_GOVERNMENT_ARCHITECTURES!=='undefined'?SOC_GOVERNMENT_ARCHITECTURES:(typeof require==='function'?require('./23-provider-government.js'):null);}
+ function productsApi(){return typeof SOC_PRODUCTS!=='undefined'?SOC_PRODUCTS:(typeof require==='function'?require('./45-products.js'):null);}
  function ownedSiteApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:(typeof require==='function'?require('./23-provider-owned-sites.js'):null);}
  function customerRoot(s,c,hooks){return typeof hooks.customerRoot==='function'?hooks.customerRoot(s,c):s.portfolio?.customers?.find(row=>row.id===c.portfolioId)?.root||null;}
  function customerStatusAt(s,c,at){
@@ -33,14 +34,16 @@ function socProviderSupportHistoryKernel(){
  }
  function paidStaffAt(s,at){
   const history=s.providerCampaign.workforceHistory;if(!history||!integer(history.startedAt))return false;
-  const periodStart=Math.max(history.startedAt,Math.floor(at/60)*60),hourlyCents=s.business?.workforce?.hourlyCents,row=(s.business?.ledger||[]).find(entry=>entry.reason==='staff'&&entry.category==='cost'&&entry.at===periodStart&&entry.unit==='person-minute'&&integer(entry.quantity)&&entry.quantity>0&&integer(hourlyCents)&&entry.cents===Math.floor(entry.quantity*hourlyCents/60));
-  return !!row;
+  const periodStart=Math.max(history.startedAt,Math.floor(at/60)*60),previousStart=Math.max(history.startedAt,periodStart-60),hourlyCents=s.business?.workforce?.hourlyCents;
+  let before,after;try{before=workforceApi().at(history,previousStart);after=workforceApi().at(history,periodStart);}catch{return false;}
+  const quantity=after.personMinutes-before.personMinutes,cents=Math.floor(after.personMinutes*hourlyCents/60)-Math.floor(before.personMinutes*hourlyCents/60),row=(s.business?.ledger||[]).find(entry=>entry.reason==='staff'&&entry.category==='cost'&&entry.at===periodStart&&entry.unit==='person-minute'&&integer(entry.quantity)&&entry.quantity>0&&entry.quantity===quantity&&integer(hourlyCents)&&entry.cents===cents);
+  return !!row&&quantity>0&&cents>0;
  }
- function logicalPlacementsAt(s,c,root,at,hooks){
-  const operations=root.operations;if(!operations)return [];
+ function logicalPlacementStateAt(s,c,root,at,hooks){
+  const operations=root.operations;if(!operations)return {topology:{},resources:[]};
   const migrations=operations.migrations||[],tasks=root.providerTasks||[];
   if(!Array.isArray(migrations)||!Array.isArray(tasks))return null;
-  if(!migrations.length){const placements=operations.placements||{};if(!placements||typeof placements!=='object'||Array.isArray(placements)||Object.keys(placements).some(identity=>!['alex','bea'].includes(identity))||Object.values(placements).some(resource=>resource!=='phone'))return null;return [];}
+  if(!migrations.length){const placements=operations.placements||{};if(!placements||typeof placements!=='object'||Array.isArray(placements)||Object.keys(placements).some(identity=>!['alex','bea'].includes(identity))||Object.values(placements).some(resource=>resource!=='phone'))return null;return {topology:{},resources:[]};}
   const identities=new Set(['alex','bea']),replayed=Object.create(null),sampled=Object.create(null);
   for(const identity of identities){replayed[identity]='phone';sampled[identity]='phone';}
   for(const migration of migrations)for(const identity of migration.identities||[])if(!identities.has(identity))return null;
@@ -75,8 +78,10 @@ function socProviderSupportHistoryKernel(){
   }
   const placements=operations.placements||{};
   if(Object.keys(placements).some(identity=>!identities.has(identity))||[...identities].some(identity=>(placements[identity]||'phone')!==replayed[identity]))return null;
-  return Object.entries(sampled).filter(([,resource])=>resource!=='phone').map(([,resource])=>resource);
+  const topology=Object.fromEntries(Object.entries(sampled).filter(([,resource])=>resource!=='phone'));
+  return {topology,resources:Object.values(topology)};
  }
+ function logicalPlacementsAt(s,c,root,at,hooks){const result=logicalPlacementStateAt(s,c,root,at,hooks);return result?.resources??null;}
  function baseResourceObservationAt(s,c,root,resourceId,at,plan,hooks){
   if(!plan||!plan.config||!integer(plan.generation))return null;
   const provenanceFor=(id,generation)=>{
@@ -114,27 +119,164 @@ function socProviderSupportHistoryKernel(){
   }
   function projectsFor(id,generation){return s.providerCampaign.projects.filter(p=>ownsGeneration(p,id,generation));}
   const available=ready(resourceId),wasEffective=effective&&(!disconnected||plan.config.local);
-  return {effective:wasEffective,generation:wasEffective?plan.generation:null,ready:available};
+  const productReady=hooks._skipProductGate===true?true:providerProductFeatureReadyAt(s,c,root,resourceId,at,hooks);
+  return {effective:wasEffective,generation:wasEffective?plan.generation:null,ready:available&&productReady};
+ }
+ function providerProductFeatureReadyAt(s,c,root,resourceId,at,hooks,target=null){
+  const pack=root.products;if(!pack)return target?{ready:false}:true;
+  const api=productsApi();if(!api||pack.pack!==api.PACK||!Array.isArray(pack.deployments)||!Array.isArray(pack.offers))return false;
+  const recipeId=id=>typeof id==='string'&&id.startsWith('d-')?id.slice(2):'';
+  const providerProject=deployment=>{
+   const rid=recipeId(deployment.id);if(!rid)return null;
+   // Recommission replaces the single live task row, while paid operation
+   // receipts retain each earlier deployment generation. Rebuild from those
+   // paid order anchors, not today's mutable task timestamp.
+   const project=s.providerCampaign.projects.filter(row=>row.customerId===c.id&&row.productId===rid&&row.kind==='operation'&&row.operationReceipt?.kind==='product'&&row.operationReceipt.recipeId===rid&&integer(row.operationReceipt.at)&&row.configSubmittedAt===row.operationReceipt.at+1&&row.operationReceipt.at<at&&paidProductProject(s,row)).sort((a,b)=>a.operationReceipt.at-b.operationReceipt.at||a.id.localeCompare(b.id)).at(-1);
+   return project||null;
+  };
+  const snapshotAt=(deployment,project,commissionedAt)=>{
+   if(commissionedAt===null)return null;
+   const receipt=project.operationReceipt,reinstate=receipt.reinstated===true;
+   let firstAt=commissionedAt??project.configSubmittedAt+1;
+   const firstGeneration=reinstate?receipt.generation:1;
+   if(reinstate){if(!integer(receipt.at)||!integer(receipt.generation,1)||!integer(project.configSubmittedAt)||project.configSubmittedAt!==receipt.at+1)return null;firstAt=Math.max(firstAt,receipt.at+1);}
+   const history=(deployment.effectiveHistory||[]).filter(row=>row.generation>=firstGeneration);
+   if(!Array.isArray(history))return null;
+   const rows=[];let previousAt=firstAt-1;
+   for(const h of history){
+    if(!h||!integer(h.at)||!integer(h.generation)||!h.effective||h.at<previousAt)return null;
+    const start=rows.length?previousAt+1:firstAt;rows.push({config:h.effective,generation:h.generation,from:start,through:h.at});previousAt=h.at;
+   }
+   const sameCurrent=deployment.effective&&deployment.provisioning?.status==='ready'&&deployment.provisioning.generation===deployment.generation&&same(deployment.effective,deployment.desired);
+   if(sameCurrent){
+    const from=rows.length?previousAt+1:firstAt;
+    rows.push({config:deployment.effective,generation:deployment.generation,from:Math.max(from,deployment.provisioning.due),through:Number.MAX_SAFE_INTEGER});
+   }
+   return rows.find(row=>row.from<=at&&at<=row.through)||null;
+  };
+  const rawDependencyReady=(name,id,when=at)=>{
+   if(typeof id!=='string')return false;
+   if(name==='language-model'||name==='integration-version'){
+    const speech=root.speechModels,field=name==='language-model'?'modelVersion':'integrationVersion';
+    return !!speech?.installations?.some(row=>row.provisioning?.status==='ready'&&row.effective&&row.desired?.[field]===id&&row.provisioning?.due<=when);
+   }
+   if(name.endsWith('-evidence')){
+    const evidence=root.productEvidence;if(!evidence)return false;
+    return (evidence.requests||[]).some(row=>row.resourceId===id&&row.kind===name&&row.status==='accepted'&&integer(row.completedAt)&&row.completedAt<=when);
+   }
+   if(!root.resources?.[id])return false;
+   const resource=root.resources[id];
+   const config=hooks.configurationAt(s,c,root,id,when);if(!config?.config)return false;
+   if(name==='calendar'&&!config.config.calendar)return false;
+   if(name==='capture-permission'&&(!config.config.consent||!config.config.identityMapping))return false;
+   if(name==='workforce'&&(!config.config.people||!config.config.entitlements))return false;
+   if(name==='crm'&&!config.config.identityMapping)return false;
+   if(name==='licensing-service'&&!config.config.licensing)return false;
+   if(name==='channel-supplier'&&!config.config.approved)return false;
+   // Match the Provider observer: product dependencies use the underlying
+   // resource observation and feature-specific checks, not another product gate.
+   const dependencyPlan=hooks.configurationAt(s,c,root,id,when),observed=baseResourceObservationAt(s,c,root,id,when,dependencyPlan,{...hooks,_skipProductGate:true});
+   return observed?.ready===true;
+  };
+  const historicalPack=copy(pack);
+  for(const offer of historicalPack.offers){
+   const changedAt=offer.effectiveLifecycle?.changedAt;
+   // Offer support is an effective dependency, while sale lifecycle only
+   // controls whether a new deployment can be ordered. Since support cannot
+   // be restored after it ends, a later lifecycle change implies the authored
+   // initial supported/available state for earlier samples.
+   if(integer(changedAt)&&changedAt>at)offer.effectiveLifecycle={sale:'available',support:'supported',changedAt:0};
+  }
+  const lifecycleAt=(offer,when)=>{const life=offer?.effectiveLifecycle;if(!life)return null;return integer(life.changedAt)&&life.changedAt>when?{sale:'available',support:'supported',changedAt:0}:life;};
+  const firstCommissionedAt=(deployment,project,config)=>{
+   const taskCreatedAt=project.operationReceipt.at;
+   if(!integer(taskCreatedAt)||taskCreatedAt>=at)return null;
+   const firstGeneration=project.operationReceipt.reinstated===true?project.operationReceipt.generation:1;
+   const origin=project.operationReceipt.reinstated===true?Math.max(taskCreatedAt,project.operationReceipt.at):taskCreatedAt;
+   let due=origin+(project.operationReceipt.reinstated===true?1:2);
+   const attemptPack=copy(historicalPack),attempt=attemptPack.deployments.find(row=>row.id===deployment.id),attemptOffer=attemptPack.offers.find(row=>row.id===config.offer);
+   if(!attempt||!attemptOffer)return null;
+   attempt.desired=copy(config);attempt.effective=copy(config);attempt.retirement=null;attempt.provisioning={status:'ready',due,generation:firstGeneration,errors:[]};
+   for(let tries=0;tries<100&&due<=at;tries++){
+    const lifecycle=lifecycleAt(attemptOffer,due);attemptOffer.effectiveLifecycle=copy(lifecycle);
+    let ready=!!lifecycle&&lifecycle.sale==='available'&&lifecycle.support==='supported';
+    if(ready)for(const feature of config.features){const result=api.featureStatus(attemptPack,deployment.id,feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref,due)?{ready:true}:false});if(!result.available){ready=false;break;}}
+    if(ready)return due;
+    const retryAt=taskCreatedAt+(Math.floor((due-taskCreatedAt)/5)+1)*5;
+    due=retryAt+1;
+   }
+   return null;
+  };
+  let requested=null;
+  for(const deployment of pack.deployments){
+   if(target&&deployment.id!==target.deploymentId)continue;
+   const project=providerProject(deployment);if(!project)continue;
+   const historical=historicalPack.deployments.find(row=>row.id===deployment.id),offer=historicalPack.offers.find(row=>row.id===deployment.desired?.offer);if(!historical||!offer)return false;
+   // A deployment's live provisioning status may now be ready even though a
+   // retained sample predates its due minute. For an initial deployment with
+   // no effective history, the paid task and authored due time reconstruct
+   // that pending interval independently of today's status.
+   const targetGeneration=project.operationReceipt.reinstated===true?project.operationReceipt.generation:1;
+   const firstEffective=firstCommissionedAt(deployment,project,(deployment.effectiveHistory||[]).find(row=>row.generation===targetGeneration)?.effective||deployment.desired);
+   const current=snapshotAt(deployment,project,firstEffective),pending=!current&&at>project.operationReceipt.at?((deployment.effectiveHistory||[]).find(row=>row.generation<deployment.generation)?.effective||deployment.desired):null;
+   const config=current?.config||pending;
+   if(!config)continue;
+   const bindings=(config.bindings||[]).filter(row=>target?.deploymentId===deployment.id?row.feature===target.feature:row.resources?.includes(resourceId));
+   if(!bindings.length)continue;
+   historical.desired=copy(config);
+   historical.effective=current?copy(current.config):null;
+   historical.generation=current?.generation??(pending?((deployment.effectiveHistory||[]).find(row=>same(row.effective,config))?.generation||deployment.generation):deployment.generation);
+   historical.provisioning=current?{status:'ready',due:current.from,generation:current.generation,errors:[]}:{status:'pending',due:deployment.provisioning?.due??project.operationReceipt.at+1,generation:deployment.generation,errors:[]};
+   const lastRetirement=[...(deployment.retirementHistory||[]),...(deployment.retirement?[deployment.retirement]:[])].filter(row=>row.effectiveAt<=at).sort((a,b)=>a.effectiveAt-b.effectiveAt).at(-1)||null;
+   const reinstatement=s.providerCampaign.projects.filter(row=>row.customerId===c.id&&row.productId===recipeId(deployment.id)&&row.operationReceipt?.reinstated===true&&row.operationReceipt.at+1<=at&&row.operationReceipt.generation===lastRetirement?.generation+1&&paidProductProject(s,row)).sort((a,b)=>a.operationReceipt.at-b.operationReceipt.at).at(-1);
+   historical.retirement=lastRetirement&&!reinstatement?{status:'retired',effectiveAt:lastRetirement.effectiveAt}:null;
+   for(const binding of bindings){
+    const status=api.featureStatus(historicalPack,deployment.id,binding.feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref)?{ready:true}:false});
+    if(!status.available)return false;
+   }
+   if(target?.deploymentId===deployment.id){
+    const featureBindings=(config.bindings||[]).filter(binding=>binding.feature===target.feature&&Array.isArray(binding.resources)&&binding.resources.length);
+    let available=!!current&&config.features?.includes(target.feature)&&featureBindings.length>0;
+    for(const binding of featureBindings){
+     const status=api.featureStatus(historicalPack,deployment.id,target.feature,{observeDependency:(_state,name,ref)=>rawDependencyReady(name,ref)?{ready:true}:false});
+     if(!status.available){available=false;break;}
+     for(const boundResource of binding.resources){const plan=hooks.configurationAt(s,c,root,boundResource,at);if(!plan||baseResourceObservationAt(s,c,root,boundResource,at,plan,{...hooks,_skipProductGate:true})?.ready!==true){available=false;break;}}
+     if(!available)break;
+    }
+    requested=available?{ready:true,projectId:project.id,postingId:project.postingId,deploymentId:deployment.id,generation:historical.generation,configuration:copy(config)}: {ready:false};
+   }
+  }
+  return target?requested||{ready:false}:true;
+ }
+ function productFeatureAt(s,customerId,deploymentId,feature,at,hooks={}){
+  if(!s?.providerCampaign||!integer(at)||at>s.clock||typeof customerId!=='string'||typeof deploymentId!=='string'||typeof feature!=='string')return {ready:false};
+  const c=s.providerCampaign.customers.find(row=>row.id===customerId);if(!c)return {ready:false};
+  const resolved=withDefaults(s,hooks),root=resolved.customerRoot(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCustomer?.version!==1||root.providerCampaign||root.mode==='sandbox'||root.experience?.kind==='lab')return {ready:false};
+  return providerProductFeatureReadyAt(s,c,root,null,at,resolved,{deploymentId,feature});
  }
  function boundaryEvaluationAt(s,c,root,project,at,pathResources,observations,hooks,context={}){
   const plan=project.operationReceipt?.plan,definition=plan?.boundaryContract,deps=plan?.dependencies;
   if(!definition||!Array.isArray(deps)||!integer(plan.boundaryGeneration))return {eligible:false,resources:[],profile:definition?.profile||''};
+  const retail=hooks.retailAgreementAt(s,c,at);
+  if(!retail||!integer(plan.acceptedRetailAt)||!integer(plan.retailPriceCents)||retail.acceptedAt<plan.acceptedRetailAt||retail.priceCents!==plan.retailPriceCents)return {eligible:false,resources:[],profile:definition.profile};
   const latest=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.kind==='operation'&&!['cancelled','blocked'].includes(p.status)&&integer(p.configSubmittedAt)&&p.configSubmittedAt<=at&&p.operationReceipt?.kind==='service-boundary').sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.id.localeCompare(b.id)).at(-1);
   const faultTimeline=serviceFaultTimelineAt(s,c,root,at),activeBoundaryIncident=!faultTimeline.valid||faultTimeline.boundaryActive;
   if(!latest||latest.id!==project.id||activeBoundaryIncident)return {eligible:false,resources:[],profile:definition.profile};
+  let placements;try{placements=logicalPlacementStateAt(s,c,root,at,hooks);}catch{return {unsupported:true};}
+  if(!placements||!same(placements.topology,plan.topology||{}))return {eligible:false,resources:[],profile:definition.profile};
   if(pathResources.some(id=>!deps.some(dep=>dep.id===id&&dep.generation===observations[id]?.generation)))return {eligible:false,resources:[],profile:definition.profile};
   let api;try{api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:require('./43-boundaries.js');}catch{return {unsupported:true};}
-  const child=copy(root);child.clock=at;child.boundaries=copy(root.boundaries);child.boundaries.clock=at;
+   const child={clock:at,boundaries:copy(root.boundaries),resources:copy(root.resources)};child.boundaries.clock=at;
   const historicalContract=copy(definition);for(const flow of historicalContract.flows||[]){const dep=deps.find(item=>item.id===flow.resource);if(dep)flow.resourceGeneration=dep.generation;}
   const historicalRow=child.boundaries.contracts.find(item=>item.id===definition.id);historicalRow.desired=copy(historicalContract);historicalRow.effective=copy(historicalContract);historicalRow.generation=plan.boundaryGeneration;historicalRow.provisioning={status:'ready',due:project.configSubmittedAt,generation:plan.boundaryGeneration,errors:[]};
   for(const resourceId of Object.keys(observations)){const resource=child.resources?.[resourceId];if(!resource)continue;let config;try{config=hooks.configurationAt(s,c,root,resourceId,at);}catch{return {unsupported:true};}if(!config?.config)return {unsupported:true};resource.generation=observations[resourceId]?.generation??config.generation;resource.desired=copy(config.config);resource.effective=copy(config.config);resource.provisioning={status:'ready',due:project.configSubmittedAt,generation:resource.generation,errors:[]};}
   const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:definition.profile};
   child.connected=timeline.connected;for(const [resourceId,resource] of Object.entries(child.resources||{}))resource.fault=timeline.faults[resourceId]??null;
   const disconnected=!timeline.connected;
-  const resourcesCurrent=deps.every(dep=>observations[dep.id]?.ready===true&&observations[dep.id]?.generation===dep.generation),msp=activeMspAt(s,c,root,context.stageRows||[],context.stageResources||[],observations,at,hooks),eligible=!disconnected&&resourcesCurrent&&!!msp;
-  historicalRow.observed={...historicalRow.observed,connected:!disconnected,cloudLicenceAvailable:!disconnected&&resourcesCurrent,localLicenceGraceActive:false,localLicenceGraceExpiresAt:null,localServicesAvailable:false,localKeyCustodyAvailable:false,adminPathAvailable:eligible,adminPathLocation:eligible?root.jurisdiction:null};
+  const resourcesCurrent=deps.every(dep=>observations[dep.id]?.ready===true&&observations[dep.id]?.generation===dep.generation),flowResources=(definition.flows||[]).map(flow=>flow.resource),flowsReady=flowResources.every(id=>observations[id]?.ready===true),localConfig=hooks.configurationAt(s,c,root,'local',at)?.config,localReady=observations.local?.ready===true&&!!localConfig?.licensing,identityReady=observations.identity?.ready===true;
+  historicalRow.observed={...historicalRow.observed,connected:!disconnected,cloudLicenceAvailable:!disconnected&&localReady,localLicenceGraceActive:false,localLicenceGraceExpiresAt:null,localServicesAvailable:localReady,localKeyCustodyAvailable:localReady&&!!localConfig?.certificates,adminPathAvailable:identityReady,adminPathLocation:identityReady?root.jurisdiction:null};
   const evaluation=api.evaluate(child,definition.id),resources=evaluation.resourceBindings?.map(item=>typeof item==='string'?item:item.resource)||[];
-  return {eligible:evaluation.eligible===true,resources,profile:evaluation.profile};
+  return {eligible:evaluation.eligible===true&&resourcesCurrent&&flowsReady,resources,profile:evaluation.profile};
  }
  function publicServiceCallingContract(region,resources){
   return {id:'provider-public-service',workload:'public-service-records',profile:region,sensitivity:'internal',edition:'standard',productVersion:'provider-1',offeringEvidence:region==='US'?'eligible':'pending',customerAuthorization:'approved',agencyAuthorizationRequired:region==='US',agencyAuthorization:region==='US'?'approved':'not-required',serviceRegistration:region==='JP'?'registered':'not-registered',serviceRegistrationId:region==='JP'?'scenario-jp-public-service':null,usesAi:false,aiUseDecision:'not-required',language:region==='JP'?'ja':'en',supportLanguage:region==='JP'?'ja':'en',requirements:{processingRegions:[region],storageRegions:[region],backupRegions:[region],keyRegions:[region],adminRegions:[region],supportRegions:[region],allowedAccessRoles:['supervisor'],adminAuthorization:'customer-approved',continuity:'cloud',allowedTransferMechanisms:[]},flows:resources.map(resource=>({id:resource+'-flow',resource,informationClass:'internal',processingRegions:[region],storageRegions:[region],backupRegions:[region],keyCustodyRegions:[region],adminLocations:[region],supportRegions:[region],adminAuthorization:'customer-approved',accessRoles:['supervisor'],connectivity:'cloud',continuity:'cloud',licenceMode:'cloud',transfer:{parties:[],mechanism:null}}))};
@@ -155,7 +297,7 @@ function socProviderSupportHistoryKernel(){
   return projectRow;
  }
  function governmentObservationsAt(s,c,root,gov,at,hooks){
-  const out=Object.create(null),ids=[...new Set([...gov.resources,'local'])];
+  const out=Object.create(null),ids=[...new Set([...gov.resources,...(gov.architecture.id==='local-processing'?['local']:[])])];
   for(const id of ids){let plan;try{plan=hooks.configurationAt(s,c,root,id,at);}catch{return null;}out[id]=baseResourceObservationAt(s,c,root,id,at,plan,hooks);if(!out[id])return null;}
   return out;
  }
@@ -168,7 +310,7 @@ function socProviderSupportHistoryKernel(){
   if(at<original.provisioning.due||original.provisioning.status!=='ready'||!same(clean(original.effective),gov.contract)||!same(original.effective,expected))return {eligible:false,resources:[],profile:root.jurisdiction};
   for(const flow of expected.flows)if(observations[flow.resource]?.ready!==true||observations[flow.resource]?.generation!==flow.resourceGeneration)return {eligible:false,resources:[],profile:root.jurisdiction};
   const api=typeof SOC_BOUNDARIES!=='undefined'?SOC_BOUNDARIES:(typeof require==='function'?require('./43-boundaries.js'):null);if(!api)return {unsupported:true};
-  const child=copy(root);child.clock=at;child.boundaries.clock=at;const row=child.boundaries.contracts.find(item=>item.id===expected.id);row.desired=copy(expected);row.effective=copy(expected);row.generation=1;row.provisioning={status:'ready',due:gov.project.configSubmittedAt,generation:1,errors:[]};
+  const child={clock:at,boundaries:copy(root.boundaries),resources:copy(root.resources)};child.boundaries.clock=at;const row=child.boundaries.contracts.find(item=>item.id===expected.id);row.desired=copy(expected);row.effective=copy(expected);row.generation=1;row.provisioning={status:'ready',due:gov.project.configSubmittedAt,generation:1,errors:[]};
   const timeline=serviceFaultTimelineAt(s,c,root,at);if(!timeline.valid)return {eligible:false,resources:[],profile:root.jurisdiction};child.connected=timeline.connected;
   for(const [id,resource] of Object.entries(child.resources||{})){
    const plan=hooks.configurationAt(s,c,root,id,at);if(!plan?.config||!integer(plan.generation))return {unsupported:true};resource.generation=plan.generation;resource.desired=copy(plan.config);resource.effective=copy(plan.config);resource.provisioning={status:'ready',due:at,generation:plan.generation,errors:[]};resource.fault=timeline.faults[id]??null;
@@ -267,6 +409,13 @@ function socProviderSupportHistoryKernel(){
   if(row)return row.category==='cost'&&row.projectId===p.id&&row.customerId===p.customerId&&row.cents===p.setupCents;
   const n=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);
   return n>0&&n<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign.projects.includes(p);
+ }
+ function paidProductProject(s,p){
+  if(!p||p.kind!=='operation'||typeof p.productId!=='string'||!integer(p.setupCents)||!integer(p.acceptedAt)||!integer(p.configSubmittedAt))return false;
+  const row=s.business?.ledger?.find(x=>x.id===p.postingId);
+  if(row)return row.category==='cost'&&row.projectId===p.id&&row.customerId===p.customerId&&row.cents===p.setupCents;
+  const number=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);
+  return number>0&&number<=(s.business?.ledgerPrunedThrough||0)&&s.providerCampaign.projects.includes(p);
  }
  function serviceFaultTimelineAt(s,c,root,at){
   const aliases={processor:'speech',connectivity:'access'},faults=Object.fromEntries(Object.keys(root.resources||{}).map(id=>[id,null])),events=[];let connected=true,boundaryActive=false;
@@ -385,29 +534,32 @@ function socProviderSupportHistoryKernel(){
   }
   const expectedByResource=Object.create(null);for(const {stage} of stageRows)for(const resourceId of stage.resources||[])expectedByResource[resourceId]=stage.expectedGenerations?.[resourceId];
   for(const resourceId of stageResources){const r=observations[resourceId],expected=expectedByResource[resourceId];if(!r?.ready||!integer(expected)||r.generation<expected)resourceMissing.push(`resource-not-current:${resourceId}`);}
+  const stagesReady=resourceMissing.length===0;
   if(resourceMissing.length)missing.push(...resourceMissing);
-  if(!missing.length)missing.push(...resolvedWorkMissingAt(s,c,root,at,hooks));
-  const ready=missing.length===0;
-  const resources=ready?[...new Set([...stageResources,...pathResources])]:[];
+  const workMissing=stagesReady?resolvedWorkMissingAt(s,c,root,at,hooks):[];missing.push(...workMissing);
+  const customerReady=stagesReady&&workMissing.length===0;
+  const resources=customerReady?[...new Set([...stageResources,...pathResources])]:[];
   const readyByResource=observations;
-  if(ready)for(const resourceId of pathResources)if(!readyByResource[resourceId]?.ready)missing.push(`resource-not-current:${resourceId}`);
+  if(customerReady)for(const resourceId of pathResources)if(!readyByResource[resourceId]?.ready)missing.push(`resource-not-current:${resourceId}`);
   let responsibility;try{responsibility=activeMspAt(s,c,root,stageRows,stageResources,readyByResource,at,hooks);}catch{return unsupported('SUPPORT_HISTORY_RESPONSIBILITY_TIMELINE_UNAVAILABLE');}
   if(!responsibility)missing.push('No current MSP responsibility proof links the customer to paid service stages and shared support payroll.');
   let boundaries=[];
-  if(ready){
+  {
    const candidates=s.providerCampaign.projects.filter(p=>p.customerId===c.id&&p.operationId==='service-boundary-review'&&p.kind==='operation'&&p.status==='complete'&&integer(p.completedAt)&&p.completedAt<=at&&p.operationReceipt?.kind==='service-boundary');
    for(const project of candidates){
     const receipt=project.operationReceipt,plan=receipt.plan,contract=plan?.boundaryContract,deps=plan?.dependencies;
     if(!plan||plan.customerId!==c.id||!contract?.id||!integer(plan.boundaryGeneration)||!Array.isArray(deps)||!paidProject(s,project,hooks))continue;
     if(!pathResources.every(id=>deps.some(d=>d.id===id&&d.generation===observations[id]?.generation)))continue;
-    let evaluation;try{evaluation=hooks.boundaryAt(s,c,root,project,at,pathResources,observations,{stageRows,stageResources});}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
+    const boundaryObservations=Object.create(null),boundaryIds=[...new Set([...stageResources,...pathResources,...deps.map(dep=>dep.id)])];
+    for(const resourceId of boundaryIds){let plan;try{plan=hooks.configurationAt(s,c,root,resourceId,at);}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}boundaryObservations[resourceId]=baseResourceObservationAt(s,c,root,resourceId,at,plan,{...hooks,_skipProductGate:true});if(!boundaryObservations[resourceId])return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
+    let evaluation;try{evaluation=hooks.boundaryAt(s,c,root,project,at,pathResources,boundaryObservations,{stageRows,stageResources});}catch{return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');}
     if(evaluation?.unsupported)return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');
     if(!evaluation||typeof evaluation.eligible!=='boolean'||!Array.isArray(evaluation.resources)||typeof evaluation.profile!=='string')return unsupported('SUPPORT_HISTORY_BOUNDARY_TIMELINE_UNAVAILABLE');
     if(evaluation.eligible&&pathResources.every(id=>evaluation.resources.includes(id)))boundaries.push({id:contract.id,generation:plan.boundaryGeneration,profile:evaluation.profile,resources:[...evaluation.resources].filter(id=>pathResources.includes(id)).sort()});
    }
   }
   if(govCalling){
-   const evaluation=governmentCallingEvaluationAt(s,c,root,govCalling,at,observations,hooks);
+    const govObservations=governmentObservationsAt(s,c,root,govCalling,at,hooks),evaluation=govObservations?governmentCallingEvaluationAt(s,c,root,govCalling,at,govObservations,hooks):null;
    if(evaluation?.unsupported)return unsupported('SUPPORT_HISTORY_GOVERNMENT_BOUNDARY_TIMELINE_UNAVAILABLE');
    if(evaluation?.eligible&&pathResources.every(id=>evaluation.resources.includes(id)))boundaries.push({id:govCalling.contract.id,generation:1,profile:evaluation.profile,resources:[...pathResources].sort()});
   }
@@ -422,6 +574,12 @@ function socProviderSupportHistoryKernel(){
   return {status:'supported',missing:[],participant};
  }
  function reconstructParticipantAt(s,customerId,at,hooks={}){return reconstructParticipantAtResolved(s,customerId,at,withDefaults(s,hooks));}
+ function callingSupportAt(s,customerId,at,hooks={}){
+  const result=reconstructParticipantAt(s,customerId,at,hooks);if(result.status!=='supported'||!result.participant)return false;
+  const participant=result.participant,optionalBoundary='An effective supported boundary on a paid service resource is required throughout the sample.',optionalResponsibility='No current MSP responsibility proof links the customer to paid service stages and shared support payroll.';
+  if(participant.missing.some(reason=>reason!==optionalBoundary&&reason!==optionalResponsibility)||!participant.responsibility||!paidStaffAt(s,at))return false;
+  const shared=participant.responsibility.sharedWorkforce;return !!shared&&integer(shared.support)&&shared.support>0&&integer(shared.personMinutes)&&shared.personMinutes>0&&integer(shared.billedMinutes)&&shared.billedMinutes>0;
+ }
  function validateParticipantAt(s,participant,at,hooks={}){
   const result=reconstructParticipantAt(s,participant?.customerId,at,hooks);if(result.status!=='supported')return result;
   const expected=result.participant,keys=['customerId','portfolioId','tenant','market','scenario','configuration','eligible','missing','resources','boundaries','responsibility'];
@@ -440,7 +598,7 @@ function socProviderSupportHistoryKernel(){
   };
  }
  function source(){return `const SOC_PROVIDER_SUPPORT_HISTORY=(${socProviderSupportHistoryKernel.toString()})();`;}
- return {version:VERSION,reconstructParticipantAt,validateParticipantAt,createValidator,source};
+ return {version:VERSION,reconstructParticipantAt,callingSupportAt,validateParticipantAt,createValidator,productFeatureAt,source};
 }
 const SOC_PROVIDER_SUPPORT_HISTORY=socProviderSupportHistoryKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_SUPPORT_HISTORY;

@@ -7150,6 +7150,46 @@
       ],
       "status": "partial",
       "scope": "Versioned paid direct and earned managed gateway plans use existing capacity, authenticated native carrier admission, separately metered settled inbound/outbound human service and exact historical configurations. Isolated helper and translated contextual UI contracts cover terms, refusal and no free capacity; two retained call legs preserve claim evidence. A checkpoint regression covers mission-victory pruning when arrival events are pinned. Public dispatch, managed delivery, worker/restore and final visible-control evidence must execute on the integrated candidate; helper results alone do not complete the source goal or authorize research acceptance."
+    },
+    {
+      "id": "BEH-SOC-399",
+      "sources": [
+        "DEC-011",
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/22-provider-demand.js",
+        "src/game/23-provider-case-followup.js",
+        "src/game/23-provider-progression.js",
+        "src/game/23-provider-progression-receipts.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-case-followup.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-700",
+        "AC-SOC-701",
+        "AC-SOC-702",
+        "AC-SOC-703",
+        "AC-SOC-704",
+        "AC-SOC-705",
+        "AC-SOC-706",
+        "AC-SOC-707",
+        "AC-SOC-708",
+        "AC-SOC-709",
+        "AC-SOC-710",
+        "AC-SOC-711",
+        "AC-SOC-712",
+        "AC-SOC-713",
+        "AC-SOC-714"
+      ],
+      "status": "partial",
+      "scope": "Versioned paid same-case human voice then consented human digital follow-up, scoped paid retry, actual accepted-attempt metering, historical connector authority and retained L8 proof. New paid workflows reserve one existing optional case with its authored twenty-minute deadline at arrival; the other obligations retain existing deadlines. Isolated contracts pass; actual Provider and visible evidence are in progress. No source acceptance or catalogue completion is implied."
     }
   ]
 }

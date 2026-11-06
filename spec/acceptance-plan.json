@@ -974,6 +974,27 @@
       "AC-SOC-692",
       "AC-SOC-693",
       "AC-SOC-694"
+    ],
+    "tests/provider-case-followup.test.js": [
+      "AC-SOC-700",
+      "AC-SOC-701",
+      "AC-SOC-702",
+      "AC-SOC-703",
+      "AC-SOC-704",
+      "AC-SOC-705",
+      "AC-SOC-708",
+      "AC-SOC-709"
+    ],
+    "tests/provider-case-followup-ui.test.js": [
+      "AC-SOC-706",
+      "AC-SOC-707",
+      "AC-SOC-711",
+      "AC-SOC-712",
+      "AC-SOC-713"
+    ],
+    "tests/provider-case-followup-dispatch.test.js": [
+      "AC-SOC-710",
+      "AC-SOC-714"
     ]
   },
   "inputs": [
@@ -1096,6 +1117,7 @@
     "src/game/22-provider-demand.js",
     "src/game/23-information-record-store.js",
     "src/game/23-provider-capacity-authority.js",
+    "src/game/23-provider-case-followup.js",
     "src/game/23-provider-central-progression.js",
     "src/game/23-provider-change-preview.js",
     "src/game/23-provider-configuration-authority.js",
@@ -1290,6 +1312,7 @@
     "src/game/93-ui/75-optic-counts.js",
     "src/game/93-ui/75-provider-panels.js",
     "src/game/93-ui/78-provider-policy-controls.js",
+    "src/game/93-ui/79-provider-case-followup.js",
     "src/game/93-ui/79-provider-change-preview.js",
     "src/game/93-ui/79-provider-comparisons.js",
     "src/game/93-ui/79-provider-context-actions.js",
@@ -1468,6 +1491,9 @@
     "tests/progression-observation.test.js",
     "tests/progression.test.js",
     "tests/provider-authority-counterexamples.test.js",
+    "tests/provider-case-followup-dispatch.test.js",
+    "tests/provider-case-followup-ui.test.js",
+    "tests/provider-case-followup.test.js",
     "tests/provider-case-handoff-dispatch.test.js",
     "tests/provider-case-handoff-ui.test.js",
     "tests/provider-case-handoff.test.js",

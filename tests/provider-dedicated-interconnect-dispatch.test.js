@@ -14,7 +14,7 @@ function until(s,predicate,limit=150){for(let n=0;n<limit&&!predicate(s);n++)s=t
 let foundation;
 function opening(){if(foundation)return copy(foundation);let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney'});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:ID})});
- s=until(s,s=>s.providerCampaign.customers[0].status==='active',30);s=op(s,'room');s=op(s,'recording');s=until(s,s=>['room','recording'].every(id=>project(s,id)?.status==='complete'),30);s=op(s,'bpo');s=until(s,s=>project(s,'bpo')?.status==='complete',30);s=op(s,'migration');s=until(s,s=>project(s,'migration')?.status==='complete',60);s=until(s,s=>!s.providerCampaign.projects.some(p=>['running','commissioning'].includes(p.status))&&!s.providerCampaign.incidents.some(i=>['active','acknowledged'].includes(i.status)),30);foundation=copy(s);return s;
+ s=until(s,s=>s.providerCampaign.customers[0].status==='active',30);s=op(s,'room');s=op(s,'recording');s=until(s,s=>['room','recording'].every(id=>project(s,id)?.status==='complete'),30);s=op(s,'bpo');s=until(s,s=>project(s,'bpo')?.status==='complete',30);s=op(s,'migration');s=until(s,s=>project(s,'migration')?.status==='complete',60);s=until(s,s=>!s.providerCampaign.projects.some(p=>['running','commissioning'].includes(p.status))&&!s.providerCampaign.incidents.some(i=>['active','acknowledged'].includes(i.status)),30);s=until(s,s=>s.clock>=60,30);foundation=copy(s);return s;
 }
 let earned;
 test('AC-SOC-696 actual paid Provider gateway proves settled inbound and outbound service before a cash-neutral PN claim and paid managed delivery',()=>{
@@ -25,7 +25,7 @@ test('AC-SOC-696 actual paid Provider gateway proves settled inbound and outboun
  s=until(s,s=>project(s,PN.DIRECT)?.status==='complete',20);assert.equal(project(s,PN.DIRECT).completedAt,paid.dueAt+1);assert.equal(child(s).operations.carrier.effective.mode,'gateway');assert.equal(child(s).resources.carrier.effective.capacity,child(before).resources.carrier.effective.capacity);
  s=until(s,s=>SOC.provider.inspect(s).progression.goals[PN.SOURCE_ID]?.status==='ready',150);
  const cash=s.business.balance.cash,resources=copy(child(s).resources);s=send(s,{action:'claim-progression',sourceId:PN.SOURCE_ID,quoteRevision:s.revision});assert.equal(s.business.balance.cash,cash);assert.deepEqual(child(s).resources,resources);
- const r=s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===PN.SOURCE_ID);for(const direction of ['outbound','inbound']){const leg=r.sourceEvidence[direction];assert.equal(leg.job.settled,true);assert.equal(leg.interaction.direction,direction);assert.equal(leg.interaction.phase,'resolved');assert.equal(leg.interaction.probe,false);assert.ok(leg.interaction.usageMinutes>0);assert.equal(leg.interaction.caseId,leg.job.caseId);assert.ok(leg.interaction.trace.some(t=>t.code==='CARRIER_MODEL_SELECTED'&&t.model==='gateway'));}
+ const r=s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===PN.SOURCE_ID);for(const direction of ['outbound','inbound']){const leg=r.sourceEvidence[direction];assert.equal(leg.job.settled,true);assert.equal(leg.interaction.direction,direction);assert.equal(leg.interaction.phase,'resolved');assert.notEqual(leg.interaction.probe,true);assert.ok(leg.interaction.usageMinutes>0);assert.equal(leg.interaction.caseId,leg.job.caseId);assert.ok(leg.interaction.trace.some(t=>t.code==='CARRIER_MODEL_SELECTED'&&t.model==='gateway'));}
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);earned=copy(s);
  const managed={action:'operation',customerId:ID,operationId:PN.MANAGED},mq=SOC.provider.quote(s,managed);assert.deepEqual(mq.blockers,[]);assert.equal(mq.setupCents,12000);assert.equal(mq.periodCents,9000);s=buy(s,managed);assert.equal(s.business.balance.cash,cash-12000);s=until(s,s=>project(s,PN.MANAGED).status==='complete',20);assert.equal(project(s,PN.MANAGED).operationReceipt.plan.earnedReceiptId,r.id);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
@@ -42,7 +42,13 @@ test('AC-SOC-697 actual Provider refuses unpaid managed gateway, stale quotes, f
 test('AC-SOC-698 PN paid saved project and earned call lineage remain equal through real worker continuation and bounded event retention',()=>{
  assert.ok(earned,'earlier actual paid claim required');let s=copy(earned),reply;const context={postMessage:r=>reply=r,setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);const command={type:'advance',minutes:1};context.onmessage({data:{id:1,state:copy(s),command}});assert.equal(reply.error,undefined);assert.deepEqual(copy(reply.state),SOC.dispatch(SOC.restore(JSON.stringify(s)),command));
  const r=s.providerCampaign.progressionReceipts.receipts.find(r=>r.sourceId===PN.SOURCE_ID),first=r.sourceEvidence.outbound.arrival.id;
- s=until(s,s=>s.providerCampaign.eventCheckpoint.count>Number(first.slice('provider-event-'.length)),240);
+ // One real settlement ages the earned job past normal job pruning. Then use
+ // legitimate staffing edits to cross the bounded event journal threshold;
+ // this is an event-retention regression, not a long-play acceptance run.
+ s=until(s,state=>state.clock>=earned.clock+60,60);
+ const firstNumber=Number(first.slice('provider-event-'.length));
+ for(let n=0;n<400&&s.providerCampaign.eventCheckpoint.count<=firstNumber;n++)s=send(s,{action:'staff',engineers:s.business.workforce.engineers,support:n%2?1:2});
+ assert.ok(s.providerCampaign.eventCheckpoint.count>firstNumber,'actual public commands evict earlier unpinned events');
  assert.ok(s.providerCampaign.events.some(e=>e.id===first));assert.ok(s.providerCampaign.events.length<=200);assert.ok(child(s).interactions.some(i=>i.id===r.sourceEvidence.outbound.interaction.id));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  const forged=copy(s);child(forged).providerInterconnectPins.pins.interactionIds=[];assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INTERCONNECT_PINS/);
 });

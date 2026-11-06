@@ -8,7 +8,7 @@
   talk:[N_('provider.journey_units.talk'),'talk'],handling:[N_('provider.journey_units.handling'),'handling'],
   unknown:[N_('provider.journey_units.unknown'),'not retained'],
   occupancy:[N_('provider.journey_units.occupancy'),'Carrier sessions occupied now: {count}. A queued or connected external call holds one session; after-call work releases it.'],
-  usage:[N_('provider.journey_units.usage'),'Supplier usage: {voice} metered voice minutes at {voiceRate} cents; {messages} accepted digital deliveries at {messageRate} cents. Accrued usage cost: {cost} cents.'],
+  usage:[N_('provider.journey_units.usage'),'Supplier usage: {voice} metered voice minutes at {voiceRate} cents; {messages} accepted message attempts at {messageRate} cents. Accrued usage cost: {cost} cents.'],
   definitions:[N_('provider.journey_units.definitions'),'Waiting runs from queue entry to assignment or termination. Talk/handling runs from assignment or endpoint connection to after-call work or termination. After-call work runs from wrap start to completion. Voice metering samples eligible active sessions once per simulation minute; it can include queue time.'],
   retail:[N_('provider.journey_units.retail'),'The customer pays the agreed service-period price, adjusted for partial periods and delivery credits. These supplier usage units do not add a separate customer conversation charge.'],
   missing:[N_('provider.journey_units.missing'),'Some interaction timing is no longer retained. Recorded job usage remains available.']

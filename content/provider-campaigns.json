@@ -1612,6 +1612,57 @@
         "uc-new:family:cisco:suite-calling",
         "uc-new:domain:commercial-roles"
       ]
+    },
+    {
+      "id": "direct-case-followup",
+      "name": "Direct case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "managed-case-followup",
+      "name": "Managed case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 9000,
+      "periodCents": 6500,
+      "workMinutes": 7,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "retry-case-followup",
+      "name": "Retry case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
     }
   ],
   "families": [
@@ -1837,5 +1888,12 @@
     "deadlineMinutes": 24,
     "windowMinutes": 10,
     "maximumLatencyMs": 500
+  },
+  "caseFollowupDemand": {
+    "version": 1,
+    "deadlineMinutes": 20,
+    "maximumArrivalMinute": 40,
+    "casesPerPeriod": 1,
+    "requiresPaidWorkflow": true
   }
 }

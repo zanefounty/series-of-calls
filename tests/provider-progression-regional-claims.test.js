@@ -276,8 +276,9 @@ function installTestedUcCcPair(state, customerId) {
   }
   state = operation(state, 'service-boundary-review', customerId);
   state = operationComplete(state, 'service-boundary-review', customerId);
-  const integration = operation(state, 'uc-cc-integration', customerId);
-  const integrationId = state.providerCampaign.projects.findLast(row => row.customerId === customerId && row.operationId === 'uc-cc-integration').id;
+  state = operation(state, 'uc-cc-integration', customerId);
+  const integration = state.providerCampaign.projects.findLast(row => row.customerId === customerId && row.operationId === 'uc-cc-integration');
+  const integrationId = integration.id;
   state = until(state, current => current.providerCampaign.projects.find(row => row.id === integrationId)?.status === 'commissioning', `${customerId} integration commissioning`, 600);
   const testedAt = state.clock;
   state = SOC.dispatch(state, { type: 'provider', command: { action: 'test-service-integration', projectId: integrationId, quoteRevision: state.revision } });

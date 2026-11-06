@@ -11,6 +11,7 @@ function socProviderProgressionFactsKernel(){
  function workforceHistoryApi(){return typeof SOC_PROVIDER_WORKFORCE_HISTORY!=='undefined'?SOC_PROVIDER_WORKFORCE_HISTORY:require('./23-provider-workforce-history.js');}
  function regionalSupportApi(){return typeof SOC_PROVIDER_REGIONAL_SUPPORT!=='undefined'?SOC_PROVIDER_REGIONAL_SUPPORT:require('./23-provider-regional-support.js');}
  function ownedSitesApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:require('./23-provider-owned-sites.js');}
+ function caseFollowupApi(){return typeof SOC_PROVIDER_CASE_FOLLOWUP!=='undefined'?SOC_PROVIDER_CASE_FOLLOWUP:require('./23-provider-case-followup.js');}
  function dedicatedInterconnectApi(){return typeof SOC_PROVIDER_DEDICATED_INTERCONNECT!=='undefined'?SOC_PROVIDER_DEDICATED_INTERCONNECT:require('./23-provider-dedicated-interconnect.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
  const LEVELS=[
@@ -449,6 +450,10 @@ function socProviderProgressionFactsKernel(){
   const dedicatedMissing=dedicatedReady?[]:[...new Set(dedicatedCandidates.flatMap(row=>row.result.missing||[]))];
   goals[goalId('pn')]={id:goalId('pn'),name:'Dedicated carrier interconnect',status:dedicatedReady?'ready':'incomplete',missing:dedicatedReady?[]:(dedicatedMissing.length?dedicatedMissing:[MISSING['dedicated-carrier-topology'],MISSING['directional-acceptance']]),evidence:dedicatedReady?copy(dedicatedReady.result.evidence):null};
   proofRequirements.dedicatedInterconnect=fact(dedicatedReady?'ready':'incomplete',goals[goalId('pn')].missing,goals[goalId('pn')].evidence||{});
+  const followupHooks=typeof hooks.caseFollowupHooks==='function'?hooks.caseFollowupHooks(s):hooks.caseFollowupHooks||hooks;
+  const followup=p.caseFollowupVersion===1?p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>caseFollowupApi().evaluate(s,c.id,followupHooks)).find(row=>row.status==='ready'&&row.evidence):null;
+  levels[levelId(8)]={id:levelId(8),name:'Omnichannel platform operator',status:followup?'ready':'incomplete',missing:followup?[]:['SETTLED_SAME_CASE_HUMAN_VOICE_AND_DIGITAL_REQUIRED'],evidence:followup?copy(followup.evidence):null};
+  proofRequirements.caseFollowup=fact(followup?'ready':'incomplete',levels[levelId(8)].missing,levels[levelId(8)].evidence||{});
   goals[goalId('bz')]={id:goalId('bz'),name:'First managed business contract',status:billed.status,missing:[...billed.missing],evidence:billed.status==='ready'?billed.evidence:null};
   proofRequirements.supportResponsibility=supportResponsibility;
   const resilienceProgress=resilienceProgressionApi().evaluate(s,hooks);

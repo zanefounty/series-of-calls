@@ -17,7 +17,7 @@ function socProviderRulesKernel(){
       "id": "smb",
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
-      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner\u2019s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -721,7 +721,7 @@ function socProviderRulesKernel(){
     {
       "id": "migration",
       "name": "Canopy coexistence wave",
-      "description": "Commission a dedicated coexistence platform, then migrate Bea\u2019s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
+      "description": "Commission a dedicated coexistence platform, then migrate Bea’s endpoint with a retained rollback checkpoint. Existing calling continues on the old platform until cutover.",
       "setupCents": 125000,
       "periodCents": 14000,
       "workMinutes": 16,
@@ -1615,6 +1615,57 @@ function socProviderRulesKernel(){
         "uc-new:family:cisco:suite-calling",
         "uc-new:domain:commercial-roles"
       ]
+    },
+    {
+      "id": "direct-case-followup",
+      "name": "Direct case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 18000,
+      "periodCents": 4000,
+      "workMinutes": 5,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "managed-case-followup",
+      "name": "Managed case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 9000,
+      "periodCents": 6500,
+      "workMinutes": 7,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
+    },
+    {
+      "id": "retry-case-followup",
+      "name": "Retry case follow-up",
+      "description": "Prepare a paid same-case human digital follow-up after an actual voice conversation. Existing consent, handling capacity and the original deadline still apply.",
+      "setupCents": 4000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ]
     }
   ],
   "families": [
@@ -1840,6 +1891,13 @@ function socProviderRulesKernel(){
     "deadlineMinutes": 24,
     "windowMinutes": 10,
     "maximumLatencyMs": 500
+  },
+  "caseFollowupDemand": {
+    "version": 1,
+    "deadlineMinutes": 20,
+    "maximumArrivalMinute": 40,
+    "casesPerPeriod": 1,
+    "requiresPaidWorkflow": true
   }
 };
  function deepFreeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))deepFreeze(child);}return value;}

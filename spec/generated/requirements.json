@@ -35858,10 +35858,20 @@
     "status": "partial",
     "implementation": [
       "content/narrative.json",
+      "src/game/22-provider-demand.js",
+      "src/game/23-provider-case-followup.js",
+      "src/game/23-provider-journeys.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/31-capability-progression.js",
       "src/game/41-progression.js",
       "src/game/55-communications.js",
       "src/game/88-narrative.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-case-followup.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -35875,7 +35885,8 @@
       "BEH-SOC-336",
       "BEH-SOC-337",
       "BEH-SOC-338",
-      "BEH-SOC-342"
+      "BEH-SOC-342",
+      "BEH-SOC-399"
     ]
   },
   {
@@ -36350,10 +36361,17 @@
     "representation": "ucc.goal.pn",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-dedicated-interconnect.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
-      "src/game/55-communications.js"
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js"
     ],
     "acceptance": [
       "AC-19871b28c92719a7"
@@ -36372,7 +36390,8 @@
       "BEH-SOC-284",
       "BEH-SOC-285",
       "BEH-SOC-286",
-      "BEH-SOC-350"
+      "BEH-SOC-350",
+      "BEH-SOC-398"
     ]
   },
   {
@@ -36432,6 +36451,10 @@
     "representation": "ucc.goal.c3",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/23-provider-regional-support.js",
+      "src/game/23-provider-support-history.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
       "src/game/41-progression.js",
@@ -36458,7 +36481,8 @@
       "BEH-SOC-221",
       "BEH-SOC-222",
       "BEH-SOC-225",
-      "BEH-SOC-226"
+      "BEH-SOC-226",
+      "BEH-SOC-394"
     ]
   },
   {
@@ -36470,12 +36494,15 @@
     "representation": "ucc.goal.t2",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-integration-assurance.js",
+      "src/game/25-provider-campaign.js",
       "src/game/36-market-qualification.js",
       "src/game/37-portfolio.js",
       "src/game/41-progression.js",
       "src/game/44-campaign.js",
       "src/game/55-communications.js",
       "src/game/84-portfolio-ui.js",
+      "src/game/93-ui/78-provider-policy-controls.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36496,7 +36523,8 @@
       "BEH-SOC-221",
       "BEH-SOC-222",
       "BEH-SOC-225",
-      "BEH-SOC-226"
+      "BEH-SOC-226",
+      "BEH-SOC-388"
     ]
   },
   {
@@ -52797,9 +52825,16 @@
     "representation": "family:cisco:suite-calling",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-dedicated-interconnect.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52810,7 +52845,8 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-398"
     ]
   },
   {
@@ -52872,9 +52908,22 @@
     "representation": "family:cisco:programmable-engagement",
     "status": "partial",
     "implementation": [
+      "src/game/22-provider-demand.js",
+      "src/game/23-provider-case-followup.js",
+      "src/game/23-provider-case-handoff.js",
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-journeys.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-case-followup.js",
+      "src/game/93-ui/79-provider-case-handoff.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52885,7 +52934,9 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-397",
+      "BEH-SOC-399"
     ]
   },
   {
@@ -53140,6 +53191,7 @@
     "status": "partial",
     "implementation": [
       "src/game/23-provider-finance-view.js",
+      "src/game/23-provider-integration-assurance.js",
       "src/game/25-provider-campaign.js",
       "src/game/29-managed-operations.js",
       "src/game/37-portfolio.js",
@@ -53152,6 +53204,7 @@
       "src/game/76-managed-operations-ui.js",
       "src/game/90-service-admin-ui.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-policy-controls.js",
       "src/game/93-ui/79-provider-finance.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
@@ -53188,7 +53241,8 @@
       "BEH-SOC-313",
       "BEH-SOC-381",
       "BEH-SOC-385",
-      "BEH-SOC-387"
+      "BEH-SOC-387",
+      "BEH-SOC-388"
     ]
   },
   {
@@ -53455,7 +53509,8 @@
       "BEH-SOC-328",
       "BEH-SOC-329",
       "BEH-SOC-330",
-      "BEH-SOC-331"
+      "BEH-SOC-331",
+      "BEH-SOC-391"
     ]
   },
   {
@@ -53523,7 +53578,9 @@
       "BEH-SOC-328",
       "BEH-SOC-329",
       "BEH-SOC-330",
-      "BEH-SOC-331"
+      "BEH-SOC-331",
+      "BEH-SOC-391",
+      "BEH-SOC-395"
     ]
   },
   {
@@ -54161,6 +54218,7 @@
       "scripts/lib/campaign-ui.js",
       "scripts/mcp-smoke.py",
       "src/game/23-provider-finance-view.js",
+      "src/game/23-provider-journeys.js",
       "src/game/25-provider-campaign.js",
       "src/game/26-customer-needs.js",
       "src/game/37-transport-headroom.js",
@@ -54174,6 +54232,8 @@
       "src/game/90-service-admin-ui.js",
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-finance.js",
+      "src/game/93-ui/79-provider-incidents.js",
+      "src/game/93-ui/79-provider-journeys.js",
       "src/game/97-provider-shell.js",
       "src/game/98-business-ui.js",
       "tests/products.test.js"
@@ -54194,7 +54254,11 @@
       "BEH-SOC-381",
       "BEH-SOC-383",
       "BEH-SOC-385",
-      "BEH-SOC-387"
+      "BEH-SOC-387",
+      "BEH-SOC-389",
+      "BEH-SOC-390",
+      "BEH-SOC-393",
+      "BEH-SOC-395"
     ]
   },
   {
@@ -62004,7 +62068,17 @@
     "implementation": [
       "scripts/calls-mcp.js",
       "scripts/mcp.js",
+      "src/game/22-provider-demand.js",
+      "src/game/23-provider-case-followup.js",
+      "src/game/23-provider-case-handoff.js",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-dedicated-interconnect.js",
       "src/game/23-provider-finance-view.js",
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-journeys.js",
+      "src/game/23-provider-progression-receipts.js",
+      "src/game/23-provider-progression.js",
+      "src/game/24-provider-rules.js",
       "src/game/25-provider-campaign.js",
       "src/game/37-portfolio.js",
       "src/game/38-admission-security.js",
@@ -62020,7 +62094,11 @@
       "src/game/84-portfolio-ui.js",
       "src/game/93-ui/10-dom.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-case-followup.js",
+      "src/game/93-ui/79-provider-case-handoff.js",
       "src/game/93-ui/79-provider-finance.js",
+      "src/game/93-ui/79-provider-incidents.js",
+      "src/game/93-ui/79-provider-journeys.js",
       "src/game/96-map/95-provider-canvas.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
@@ -62091,8 +62169,15 @@
       "BEH-SOC-385",
       "BEH-SOC-386",
       "BEH-SOC-387",
+      "BEH-SOC-389",
+      "BEH-SOC-390",
       "BEH-SOC-392",
-      "BEH-SOC-396"
+      "BEH-SOC-393",
+      "BEH-SOC-395",
+      "BEH-SOC-396",
+      "BEH-SOC-397",
+      "BEH-SOC-398",
+      "BEH-SOC-399"
     ]
   },
   {

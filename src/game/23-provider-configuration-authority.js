@@ -52,6 +52,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    if(id==='bpo')return {people:{enabled:true}};
    return {};
   }
+  if(['direct-dedicated-interconnect','managed-dedicated-interconnect'].includes(id))return configs.phone?.carrierModel!=='gateway'?{phone:{carrierModel:'gateway'}}:{};
   const patch=Object.create(null);for(const id of definition?.resources||[])patch[id]={enabled:true,...clone(definition.config?.[id]||{})};
   for(const [id,value] of Object.entries(definition?.config||{}))patch[id]={...(patch[id]||{}),...clone(value)};
   if(project.productId){
@@ -109,15 +110,18 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     addResources(configs,project,definition,catalogue,child);
     const patch=operationPatch(provider,project,definition,configs,child);
     if(project.operationId==='migration-consolidated')patch.phone={...(configs.phone||{}),...(patch.phone||{}),deployment:'dedicated',local:true,extensionScope:'site'};
-   for(const [id,config] of Object.entries(patch)){if(id==='__meeting')continue;if(!configs[id])fail(`RESOURCE:${id}`);merge(configs[id],config);written.add(id);}
+   // Ordinary operation dispatch sends every patch key through configure,
+   // which advances generation even for an identical config. Product orders
+   // are different: their preparation path configures only changed values.
+   for(const [id,config] of Object.entries(patch)){if(id==='__meeting')continue;if(!configs[id])fail(`RESOURCE:${id}`);const previous=clone(configs[id]);merge(configs[id],config);if(!project.productId||stable(previous)!==stable(configs[id]))written.add(id);}
    }else fail(`PROJECT_KIND:${project.id}`);
    writesByProject[project.id]=[...written];
    for(const id of Object.keys(configs)){
     known.add(id);accepted[id]??=[];
     const previous=before[id];
-    if(previous&&stable(previous)!==stable(configs[id])){accepted[id]=[clone(previous),clone(configs[id])];if(written.has(id))latestWriteAt[id]=writeAt;}
+    if(previous&&stable(previous)!==stable(configs[id]))accepted[id]=[clone(previous),clone(configs[id])];
     else if(!accepted[id].some(item=>stable(item)===stable(configs[id])))accepted[id].push(clone(configs[id]));
-    if(!previous&&written.has(id))latestWriteAt[id]=writeAt;
+    if(written.has(id))latestWriteAt[id]=writeAt;
    }
    while(retirementIndex<retirements.length&&retirements[retirementIndex].at<=writeAt)applyRetirement(retirements[retirementIndex++]);
   }
@@ -243,6 +247,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     // Defence bootstrap resources). Pending state grants no new effective service.
    }
   }
+  if(provider.dedicatedInterconnectVersion===1&&child.operations){const native=carrierConfigurationAt(provider,customer,child,child.clock,{catalogue:hooks.catalogue});if(!native)fail('NATIVE_CARRIER');}
   validateProducts(provider,customer,child,expected.projects);
   validateCallingOperations(provider,customer,child,expected.projects);
   return true;
@@ -298,10 +303,37 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   if(!child.resources[resourceId])return null;
   return configurationReaderAt(provider,customer,child,at,{catalogue})(resourceId);
  }
+ function carrierConfigurationAt(provider,customer,child,at,{catalogue}={}){
+  if(!provider||!customer||!child?.resources||!child.operations||!hooksCatalogue(catalogue)||!Number.isSafeInteger(at)||at<0||at>child.clock)return null;
+  const operations=typeof SOC_OPERATIONS!=='undefined'?SOC_OPERATIONS:require('./53-service-operations.js'),interconnect=typeof SOC_PROVIDER_DEDICATED_INTERCONNECT!=='undefined'?SOC_PROVIDER_DEDICATED_INTERCONNECT:require('./23-provider-dedicated-interconnect.js');
+  const same=(a,b)=>stable(a)===stable(b);
+  const startProducts=new Set(['cisco-programmable-engagement','ms-communications-api','cisco-provider-operations','cisco-dedicated-uc']);
+  const starts=[];
+  for(const p of provider.projects||[]){
+   if(p.customerId!==customer.id||!Number.isSafeInteger(p.configSubmittedAt)||p.configSubmittedAt>child.clock||!['commissioning','complete','retired'].includes(p.status))continue;
+   if(p.kind==='stage'&&p.stage==='carrier'&&customer.scenario==='enterprise'&&provider.enterpriseContinuityVersion===1)starts.push({at:p.configSubmittedAt-1,project:p});
+   else if(startProducts.has(p.productId)&&p.operationReceipt?.kind==='product'&&p.operationReceipt.recipeId===p.productId&&Number.isSafeInteger(p.operationReceipt.at)&&p.configSubmittedAt===p.operationReceipt.at+1)starts.push({at:p.operationReceipt.at,project:p});
+   else if(['migration','migration-consolidated'].includes(p.operationId)&&p.operationReceipt?.kind==='operation'&&Number.isSafeInteger(p.operationReceipt.at)&&p.configSubmittedAt===p.operationReceipt.at+1)starts.push({at:p.operationReceipt.at,project:p});
+  }
+  starts.sort((a,b)=>a.at-b.at||a.project.id.localeCompare(b.project.id));const start=starts.find(row=>row.at<=at);if(!start)return null;
+  const startAt=start.at,initialReadAt=Math.min(child.clock,startAt+1),initialPhone=configurationAt(provider,customer,child,'phone',initialReadAt,{catalogue});if(!initialPhone)return null;
+  const initial=operations.create({clock:startAt,resources:{phone:{desired:initialPhone.config}}})?.carrier?.desired;if(!initial)return null;
+  let generation=1,desired=clone(initial),effective=at>=startAt+1?clone(initial):null;
+  const projects=(provider.projects||[]).filter(p=>p.customerId===customer.id&&['direct-dedicated-interconnect','managed-dedicated-interconnect'].includes(p.operationId)&&p.acceptedAt<at).sort((a,b)=>a.acceptedAt-b.acceptedAt||a.id.localeCompare(b.id));
+  for(const project of projects){
+   const plan=project.interconnectPlan;if(!interconnect.validPlan(plan)||plan.customerId!==customer.id||plan.operationId!==project.operationId||plan.acceptedAt!==project.acceptedAt||plan.previous.carrier.generation!==generation||!same(plan.previous.carrier.effective,effective))return null;
+   if(project.configSubmittedAt===null||project.configSubmittedAt>at)continue;
+   const receipt=project.operationReceipt;if(!receipt||receipt.kind!=='provider-dedicated-interconnect'||receipt.version!==1||receipt.projectId!==project.id||receipt.postingId!==project.postingId||receipt.submittedAt!==project.configSubmittedAt||!same(receipt.plan,plan)||plan.carrierGeneration!==generation+1)return null;
+   generation=plan.carrierGeneration;desired=clone(plan.carrierProfile);effective=at>=project.configSubmittedAt?clone(plan.carrierProfile):clone(plan.previous.carrier.effective);
+  }
+  const current=child.operations.carrier;if(!current||!Number.isSafeInteger(current.generation)||!current.desired)return null;
+  if(at===child.clock&&(current.generation!==generation||!same(current.desired,desired)||(effective===null?current.effective!==null:current.effective!==null&&!same(current.effective,effective))))return null;
+  return {generation,effective:effective?clone(effective):null};
+ }
  function hooksCatalogue(catalogue){return !!catalogue&&typeof catalogue==='object'&&!Array.isArray(catalogue);}
- function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),source:()=>load().source()};})();`;}
- return {version:1,validateCustomer,configurationAt,configurationReaderAt,configurationProvenanceAt,source};
+ function source(){return `const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=(${socProviderConfigurationAuthorityKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();`;}
+ return {version:1,validateCustomer,configurationAt,configurationReaderAt,configurationProvenanceAt,carrierConfigurationAt,source};
 }
 function socProviderConfigurationAuthorityDependencies(){if(typeof module!=='undefined'&&module.exports)return [require('./24-provider-rules.js'),require('./23-provider-products.js'),require('./23-provider-government.js')];return [SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_GOVERNMENT_ARCHITECTURES];}
-const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),source:()=>load().source()};})();
+const SOC_PROVIDER_CONFIGURATION_AUTHORITY=(()=>{let api;const load=()=>api||(api=socProviderConfigurationAuthorityKernel(...socProviderConfigurationAuthorityDependencies()));return {version:1,validateCustomer:(...args)=>load().validateCustomer(...args),configurationAt:(...args)=>load().configurationAt(...args),configurationReaderAt:(...args)=>load().configurationReaderAt(...args),configurationProvenanceAt:(...args)=>load().configurationProvenanceAt(...args),carrierConfigurationAt:(...args)=>load().carrierConfigurationAt(...args),source:()=>load().source()};})();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_CONFIGURATION_AUTHORITY;

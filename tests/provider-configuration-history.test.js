@@ -46,3 +46,25 @@ test('historical migration uses the parent version and distinguishes coexistence
   assert.throws(()=>at(forged,'phone',project.configSubmittedAt),/INVALID_PROVIDER_CONFIG_AUTHORITY:GENERATION/);
  }
 });
+
+test('native carrier history is anchored by the Enterprise carrier stage or a paid product start and rejects a free profile edit',()=>{
+ let enterprise=SOC.create({experience:'campaign',scenario:'enterprise',seed:73});
+ for(const stage of ['base','carrier']){enterprise=buy(enterprise,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:cid})});enterprise=until(enterprise,x=>customer(x).stages[stage].status==='effective');}
+ const enterpriseChild=child(enterprise),enterpriseCarrier=AUTH.carrierConfigurationAt(enterprise.providerCampaign,customer(enterprise),enterpriseChild,enterprise.clock,{catalogue:SOC.catalogue});
+ assert.deepEqual(enterpriseCarrier,{generation:enterpriseChild.operations.carrier.generation,effective:enterpriseChild.operations.carrier.effective});
+ const forgedEnterprise=structuredClone(enterprise);child(forgedEnterprise).operations.carrier.desired.peerAuthenticated=true;
+ assert.equal(AUTH.carrierConfigurationAt(forgedEnterprise.providerCampaign,customer(forgedEnterprise),child(forgedEnterprise),forgedEnterprise.clock,{catalogue:SOC.catalogue}),null);
+
+ let smb=SOC.create({experience:'campaign',seed:73});
+ for(const stage of ['base','carrier','partner']){smb=buy(smb,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:cid})});smb=until(smb,x=>customer(x).stages[stage].status==='effective');}
+ smb=until(smb,x=>customer(x).status==='active');
+ const request={action:'operation',operationId:'cisco-programmable-engagement',customerId:cid},quote=SOC.provider.quote(smb,request);assert.deepEqual(quote.blockers,[]);
+ smb=SOC.dispatch(smb,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});
+ smb=until(smb,x=>!!child(x).operations);
+ let smbChild=child(smb),productCarrier=AUTH.carrierConfigurationAt(smb.providerCampaign,customer(smb),smbChild,smb.clock,{catalogue:SOC.catalogue});
+ assert.ok(productCarrier,'a commissioning product that starts operations supplies an independently replayable origin');
+ assert.deepEqual(productCarrier,{generation:smbChild.operations.carrier.generation,effective:smbChild.operations.carrier.effective});
+ smb=until(smb,x=>x.providerCampaign.projects.find(p=>p.productId==='cisco-programmable-engagement')?.status==='complete');
+ smbChild=child(smb);productCarrier=AUTH.carrierConfigurationAt(smb.providerCampaign,customer(smb),smbChild,smb.clock,{catalogue:SOC.catalogue});
+ assert.deepEqual(productCarrier,{generation:smbChild.operations.carrier.generation,effective:smbChild.operations.carrier.effective});
+});

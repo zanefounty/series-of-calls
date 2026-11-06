@@ -9,6 +9,10 @@ const SUPPORT_WORK=require('../src/game/23-provider-support-work.js');
 
 const CUSTOMER='next-1-customer';
 const clone=value=>JSON.parse(JSON.stringify(value));
+function deepFreeze(value,seen=new Set()){
+ if(!value||typeof value!=='object'||seen.has(value))return value;
+ seen.add(value);for(const child of Object.values(value))deepFreeze(child,seen);return Object.freeze(value);
+}
 const samples=state=>FACTS.decodeSupportObservation(state.providerCampaign.supportObservation);
 let cachedFixture;
 function buy(state,request){
@@ -80,6 +84,18 @@ test('historical eligibility is reconstructed at the sampled minute across paid 
  assert.equal(recovered.participant.eligible,true);assert.equal(HISTORY.validateParticipantAt(state,participantAt(recoveredAt),recoveredAt,hook).status,'valid');
 });
 
+test('AC-SOC-780 private history caches preserve frozen saves and isolate returned boundary projections',()=>{
+ const state=fixture(),before=JSON.stringify(state),incident=state.providerCampaign.incidents.find(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),at=incident.resolvedAt;
+ deepFreeze(state);
+ const first=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
+ assert.equal(first.status,'supported');assert.ok(first.participant.boundaries.length>0,'the real dispatched service-boundary path is present');
+ const expected=clone(first);first.participant.boundaries[0].resources.push('forged');first.participant.resources[0].generation=999;first.participant.responsibility.scope.push('forged');
+ const second=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
+ assert.deepEqual(second,expected,'mutating one public reconstruction cannot alter the private cached inputs or a later result');
+ assert.equal(JSON.stringify(state),before,'boundary projections leave the frozen dispatched save unchanged');
+ assert.equal(SOC.restore(JSON.stringify(state)).revision,state.revision,'the exact unmodified save remains restorable');
+});
+
 test('sample eligibility flags cannot replace historical paid configuration, fault or boundary reconstruction',()=>{
  const state=fixture(),rows=samples(state),hook=hooksFor(state),incident=state.providerCampaign.incidents.find(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),good=rows.find(row=>row.at<incident.activatedAt&&row.participants.find(p=>p.customerId===CUSTOMER)?.eligible===true),bad=clone(rows.find(row=>row.at===incident.activatedAt).participants.find(p=>p.customerId===CUSTOMER));
  const reconstructed=HISTORY.reconstructParticipantAt(state,CUSTOMER,incident.activatedAt,hook);
@@ -119,4 +135,18 @@ test('historical reconstruction is pure, survives validated restore, and seriali
  assert.doesNotThrow(()=>vm.runInContext(`${HISTORY.source()};globalThis.adapter=SOC_PROVIDER_SUPPORT_HISTORY;`,workerContext));
  assert.equal(workerContext.adapter.version,HISTORY.version);
  assert.equal(typeof workerContext.adapter.reconstructParticipantAt,'function');
+});
+
+
+test('AC-SOC-781 custom observation hooks cannot retain and poison a validator configuration cache',()=>{
+ const state=fixture(),before=JSON.stringify(state),good=samples(state).find(row=>row.participants.some(p=>p.customerId===CUSTOMER&&p.eligible));
+ assert.ok(good);let captured;
+ const hook={catalogue:SOC.catalogue,resourceObservationAt:(s,c,root,id,at,plan)=>{if(id==='phone')captured??=plan;return {effective:plan.config.enabled===true,generation:plan.generation,ready:plan.config.enabled===true};}};
+ const validator=HISTORY.createValidator(state,hook),claim={customerId:CUSTOMER},first=validator(claim,good.at);
+ assert.ok(captured?.config.enabled,'the hook receives an actual paid enabled phone projection');
+ captured.config.enabled=false;
+ const second=validator(claim,good.at),fresh=HISTORY.createValidator(state,hook)(claim,good.at);
+ assert.deepEqual(second,first,'mutating a retained external hook argument cannot poison subsequent validation');
+ assert.deepEqual(second,fresh,'the shared validator matches a fresh validation after external argument mutation');
+ assert.equal(JSON.stringify(state),before,'neither external projection mutation nor reconstruction changes the source save');
 });

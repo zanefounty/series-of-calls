@@ -833,6 +833,20 @@
         "result": "12 passed,0 failed"
       },
       "scope": "Actual authored outage: free paused public inspection preserves exact state; scoped6000-cent diagnosis reserves one engineer and one support for six minutes; finding does not repair. Separate8000-cent repair completes and the diagnosis remains visible after exact reload. Chromium/Firefox/WebKit at1366x768 and390x844. Native outage only; other domains, human pilot, final integrated matrix and release remain separate."
+    },
+    "even-workload-7e6ca47": {
+      "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
+      "status": "two-individual-cases-passed",
+      "rawArtifact": "/tmp/soc-7e6ca47-play011-a01-audit.json",
+      "sha256": "6c1f6c1c23febe0c5c34e37ee9df54f15cfaa7f64661058a1a1ec84ecbdd987f",
+      "launchManifest": "/tmp/soc-full-suite-7e6ca47-inputs.json",
+      "launchManifestSha256": "e46fdeece8a20e7ecea345ad1fc9eb6cc1fd590c7c023d6abf2bb6c6f6ef75c2",
+      "log": "/tmp/soc-full-suite-7e6ca47.log",
+      "scope": "60 ordinary non-probe Lab calls, one at each minute60..119; OUTAGE at62 cleared119 gives57 failed calls/unavailable minutes,3completed/usage minutes and proportional service credit. Repair cannot rewrite already observed work or settled postings.",
+      "counterexample": "Final-minute-only outage yields59completed/usage minutes and1failure; fresh post-period recovery does not alter old failed call or bill.",
+      "limitations": "Explicit ordinary Lab workload, not Provider authored burst distribution. Assertion specifically permitted domain/explicit Lab workload in its remaining text. No whole-family, release or campaign workload claim. The enclosing full suite was still running at review; this receipt asserts only the two terminal cases.",
+      "inputCount": 1415,
+      "changedSinceLaunch": []
     }
   },
   "tests": {
@@ -3874,6 +3888,22 @@
       "result": "passed",
       "run": "controls-protocol-full-c0f9ef9",
       "logLine": 1334
+    },
+    "HISTORY-684": {
+      "file": "tests/even-workload-service-history.test.js",
+      "name": "AC-SOC-684 even ordinary Lab demand retains 57 failed service minutes despite final-minute repair and settles actual prior usage",
+      "fileSha256": "33652fad3c567dd5bf1dbc06db1fe39157cf28fa8eaf56955bfd5fc97f4d712e",
+      "result": "passed",
+      "run": "even-workload-7e6ca47",
+      "logLine": 373
+    },
+    "HISTORY-685": {
+      "file": "tests/even-workload-service-history.test.js",
+      "name": "AC-SOC-685 even final-minute-only outage preserves 59 completed calls and reconciled usage, then fresh real recovery",
+      "fileSha256": "33652fad3c567dd5bf1dbc06db1fe39157cf28fa8eaf56955bfd5fc97f4d712e",
+      "result": "passed",
+      "run": "even-workload-7e6ca47",
+      "logLine": 374
     }
   },
   "requirements": {
@@ -4060,14 +4090,13 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "All 3 exact assertions have individually scoped evidence. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-wholesale",
         "candidate-long-play"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-012": {
@@ -6524,7 +6553,7 @@
       "requirement": "PLAY-011",
       "sourceIndex": 0,
       "assertion": "An evenly distributed test workload with 57 minutes of outage cannot become a perfect period after a last-minute repair.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B014",
         "B015",
@@ -6548,22 +6577,21 @@
       "reviewTestCandidates": [
         "B014"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
         "implementation": [
           "src/game/54-business.js",
-          "src/game/55-communications.js",
-          "src/game/25-provider-campaign.js"
+          "src/game/55-communications.js"
         ],
         "tests": [
-          "C067",
-          "C068"
+          "HISTORY-684",
+          "HISTORY-685"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Exact evenly distributed workload and history-based settlement assertion, exercised through ordinary Lab dispatch. Not Provider burst-demand, browser or full-suite acceptance.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Exact wording requires an evenly distributed test workload. Existing generic business regression counts57 unavailable readiness-minutes; new paid Provider regression has actual authored burst cases, not evenly distributed arrivals. Together they establish historical settlement behavior but do not execute the exact workload distribution. Add a valid domain/explicit Lab evenly distributed workload counterexample or retain this assertion pending; do not relabel the burst test."
+      "remaining": "No remaining criterion for this exact assertion in the linked evenly distributed positive, failure and recovery evidence. Provider mission outcomes and the owner-parked long-play runs remain separately scoped."
     },
     {
       "id": "PLAY-011-A02",
@@ -14152,7 +14180,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 108,
+    "assertionsClosed": 109,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14170,8 +14198,8 @@
         "assertions": 21,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 14,
-          "pending-current-candidate-verification": 7
+          "verified-current-candidate": 15,
+          "pending-current-candidate-verification": 6
         }
       },
       {
@@ -14268,8 +14296,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 108,
-      "pending-current-candidate-verification": 47,
+      "verified-current-candidate": 109,
+      "pending-current-candidate-verification": 46,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14380,6 +14408,16 @@
           "PLAY-024-A03"
         ],
         "scope": "One exact closure supported by six frozen desktop/mobile browser journeys and12 focused tests. Original159 assertion wording and four parked long-play items unchanged; broader diagnosis, source/research and final integrated checks remain open."
+      },
+      {
+        "candidate": "7e6ca4725dcc942884bcf1a8450920e1eaa1222a",
+        "runs": [
+          "even-workload-7e6ca47"
+        ],
+        "assertions": [
+          "PLAY-011-A01"
+        ],
+        "scope": "One exact history-settlement clause only. The completed AC-SOC-684/685 cases were reviewed independently with unchanged launch inputs while the enclosing suite remained active; no full-suite result is claimed."
       }
     ]
   }

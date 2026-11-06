@@ -1799,6 +1799,7 @@
     "tests/provider-progression-receipts.helpers.js",
     "scripts/lib/elapsed-clock.js",
     "scripts/provider-browser.js",
+    "tests/provider-progression-dispatch.test.js",
     "tests/provider-room-integration-paid.test.js",
     "tests/provider-room-integration-ui.test.js",
     "tests/provider-room-integration.test.js",

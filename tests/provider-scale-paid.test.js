@@ -21,6 +21,17 @@ test('AC-SOC-848 paid Provider scale baseline fails, separately funded BPO/workf
  assert.equal(s.providerCampaign.jobs.length,before,'paid short tasks do not inflate ordinary campaign demand');
  assert.equal(s.providerCampaign.scaleObservation.runs[1].paidJobs.length,2);
  const saved=JSON.stringify(s);assert.deepEqual(SOC.restore(saved),s);
+ // Exit preserves the funded batch and discloses both active and not-yet-emitted work.
+ const exitQuote=SOC.provider.quote(s,{action:'exit',customerId});assert.equal(JSON.stringify(s),saved);
+ assert.deepEqual(exitQuote.commercial.scaleContinuations,[{runId:'provider-scale-2',projectId:project.id,dueAt:s.clock+10,activeTasks:2,scheduledTasks:10}]);
+ let exited=buy(s,{action:'exit',customerId});const ordinaryIds=exited.providerCampaign.jobs.map(j=>j.id);
+ exited=SOC.restore(JSON.stringify(exited));exited=advance(exited,10);
+ assert.deepEqual(exited.providerCampaign.jobs.map(j=>j.id),ordinaryIds,'exit creates no new ordinary demand');
+ const drained=exited.providerCampaign.scaleObservation.runs[1];assert.equal(drained.paidJobs.length,12);assert.ok(drained.paidJobs.every(j=>j.status==='completed'));
+ assert.equal(exited.business.ledger.filter(e=>e.reason==='provider-scale-voice-usage').length,12,'continued paid work bills real usage exactly once');
+ assert.deepEqual(SOC.restore(JSON.stringify(exited)),exited);
+ assert.throws(()=>send(exited,{action:'start-scale-window',projectId:project.id}),/SCALE_PROJECT_ALREADY_USED|SCALE_ACTIVE_CUSTOMER_REQUIRED/);
+
  s=advance(s,10);const run=s.providerCampaign.scaleObservation.runs[1];
  assert.equal(run.status,'passed',JSON.stringify(run.result));assert.equal(run.paidJobs.length,12);assert.ok(run.attempts.some(a=>a.origin==='ordinary-job'));
  assert.ok(run.paidJobs.every(j=>j.status==='completed'&&j.person&&j.workforceAssignment&&j.usagePostingId));

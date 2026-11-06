@@ -13,6 +13,11 @@ test('AC-SOC-849 paid scale map inspector quotes and commits a purchase, starts 
  click('[data-provider-action="confirm-quote"]');assert.equal(calls[0].command.action,'operation');assert.equal(calls[0].command.operationId,'paid-scale-baseline');
  s=SOC.dispatch(s,{type:'advance',minutes:3});render();const paid=s.providerCampaign.projects.at(-1);assert.equal(paid.status,'complete');
  click('.provider-scale [data-provider-action="start-scale-window"]');assert.equal(calls.at(-1).command.projectId,paid.id);assert.equal(s.providerCampaign.scaleObservation.runs.length,1);
+ const beforeExit=JSON.stringify(s);click('[data-provider-action="exit"]');
+ assert.match(w.document.querySelector('.provider-exit-scale').textContent,/0 active tasks and 0 scheduled tasks continue after exit/);
+ assert.match(w.document.querySelector('.provider-exit-scale').textContent,/Actual voice minutes remain chargeable/);
+ assert.equal(JSON.stringify(s),beforeExit);click('[data-provider-action="cancel-quote"]');
+
  for(let n=0;n<10;n++)s=SOC.dispatch(s,{type:'advance',minutes:1});render();assert.match(w.document.querySelector('.provider-scale').textContent,/Measured workload target missed/);assert.equal(w.document.querySelector('.provider-scale [data-provider-action="start-scale-window"]'),null);
  const original=JSON.stringify(s),m=SOC.provider.inspect(s),modelBytes=JSON.stringify(m);for(let n=0;n<3;n++)w.SOCProviderScaleUI.render(m,customerId);assert.equal(JSON.stringify(s),original);assert.equal(JSON.stringify(m),modelBytes);
  for(const lang of ['en','de','es','fr','it','pt']){w.eval(fs.readFileSync(path.join(__dirname,'..',lang==='en'?'src/i18n/en.js':`site/i18n/${lang}.js`),'utf8'));for(const label of Object.keys(w.SOCProviderScaleUI.labelFallbacks))assert.ok(w.I18N[lang][label],lang+':'+label);}

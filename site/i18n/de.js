@@ -4425,6 +4425,7 @@
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.exit_pending_capture_storage":"There are {count} recordings in progress. If they create stored records after exit, archive storage continues at {amount} per period after the supplier minimum. No charge is added if capture ends without a stored record.",
 "provider.exit_retained_storage":"Retained archives continue at {amount} per period after their supplier minimums while stored records remain. Exiting does not delete these records or cancel their storage obligation.",
+"provider.exit_scale_continuation":"Paid workload {run}: {active} active tasks and {scheduled} scheduled tasks continue after exit. Its measurement ends at minute {due}; active work may finish later. Actual voice minutes remain chargeable. No new customer demand is added.",
 "provider.expansion_market":"Next customer market",
 "provider.external_reach.description":"Fund two additional carrier sessions, two assigned local numbers and calling to the authored +44 destination range. Provider engineering delivers sooner with a lower recurring commitment.",
 "provider.external_reach.guests":"Completed foreign guest meetings in the last six attempts: {count}",

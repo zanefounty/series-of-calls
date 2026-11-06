@@ -32,3 +32,14 @@ The authored content links `progress.goal.tb`, `uc-new:domain:workforce` and `uc
 `AC-SOC-848` uses a fresh funded Provider career: a paid baseline fails; separately purchased BPO staff and workflow deliver a successful native window; the retained TB receipt unlocks a separately paid managed workflow. Running that follow-on during busy ordinary demand hits actual `SESSION_CAPACITY`; the failed attempts remain in the denominator and accrue no invented usage. Buying carrier headroom and another paid measurement recovers delivery. The test covers setup/recurring terms, central usage postings, once-only window ownership, evidence tampering, restore and worker continuation. `AC-SOC-849` drives quote, commitment and explicit start through the customer map inspector and shared dispatch, and renders the actual failed result without changing state. `AC-SOC-850`–`858` are bounded module/native-observer tests, including Lab fixtures; they are not substituted for the Provider path. `AC-SOC-866` uses an actual stdio MCP child process to quote and buy the baseline, start once, retry idempotently, observe failure, restore a valid export and reject erased consumption without replacing the live state.
 
 The panel compares setup and recurring terms, requires a costed quote and leaves raw evidence in read-only details. New English fallback strings are registered in all dictionaries; this does not claim human translation review. Real-browser verification on the integrated candidate, complete hosted checks, remaining progression adapters, long-play and full ecosystem release acceptance remain separately required.
+
+## Exit while a paid window is open
+
+The exit quote lists each committed measurement, active paid tasks, remaining
+scheduled tasks and its observation deadline. Already-funded tasks continue;
+actual used voice minutes remain centrally chargeable. Exit stops new ordinary
+customer demand and does not grant another measurement or erase the paid
+project's consumption marker. Tasks still active at the window deadline may
+drain afterwards. AC-SOC-848 exercises exit, exact restore, all twelve paid
+tasks, no new ordinary jobs and exactly-once usage; AC-SOC-849 checks the visible
+quote and its read-only behavior.

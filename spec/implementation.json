@@ -7411,6 +7411,23 @@
       ],
       "status": "partial",
       "scope": "Historical configuration readers build local views while copying fields changed for historical time, avoiding full tenant clones. Frozen input purity, isolated returned configurations and provenance, and forged generation rejection remain enforced. Exact captured-state comparisons and bounded timing measurements do not establish whole-suite deadlines or long-play completion."
+    },
+    {
+      "id": "BEH-SOC-414",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-775",
+        "AC-SOC-776"
+      ],
+      "status": "partial",
+      "scope": "A private, validator-scoped memo reuses equivalent historical paid configuration projections while preserving per-read generation and provenance validation and isolated returned values. Historical replay is compared with uncached results across paid commissioning boundaries; a synthetic nested restoration/retirement model regression covers a cache-key boundary, not an accepted gameplay save. No persisted cache, whole-suite deadline or long-play completion is claimed."
     }
   ]
 }

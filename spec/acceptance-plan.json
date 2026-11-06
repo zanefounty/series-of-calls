@@ -1065,7 +1065,9 @@
     ],
     "tests/provider-configuration-reader-performance.test.js": [
       "AC-SOC-771",
-      "AC-SOC-772"
+      "AC-SOC-772",
+      "AC-SOC-775",
+      "AC-SOC-776"
     ]
   },
   "inputs": [

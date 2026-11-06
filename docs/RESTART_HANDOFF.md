@@ -1,3 +1,19 @@
+# Active gameplay continuation — 6 November 2026
+
+The owner still authorizes completing the gameplay rebuild, reviewable PR stack and protected Pages preview. Four long-play assertions are parked by owner request; they are neither passed nor excluded. Human participation and broader catalogue/research acceptance remain separate. The gameplay ledger now records 109 exact assertions verified, 46 pending and four parked.
+
+PR #43 remains draft. Its pushed runtime candidate is `7e6ca4725dcc942884bcf1a8450920e1eaa1222a`; the subsequent local accounting commit `cbaf46f` closes only the evenly distributed outage assertion and corrects map/tutorial placements. The protected preview remains main `0ef9432`. No new preview deployment or final full-suite pass is claimed.
+
+Frozen `7e6ca47` passed five actual stdio Provider MCP journeys (both SMB strategies, Enterprise, Government and Defence; 1,090 requests), 19 visible browser-MCP checks, all six translation dictionaries, build and dependency audit. `/tmp/soc-7e6ca47-bounded-verification.json` records artifact hashes and unchanged tracked inputs. The native browser connector remains unavailable at its configured executable; the visible checks used the pinned separate MCP process with an explicit Chromium executable.
+
+At this checkpoint, the fresh full JavaScript suite and registered acceptance recorder are still active, respectively in `/tmp/soc-review-verification-7e6ca47` and `/tmp/soc-acceptance-verification-7e6ca47`. Read their terminal results and input manifests before making any claim or restarting. Logs are `/tmp/soc-full-suite-7e6ca47.log` and `/tmp/soc-acceptance-7e6ca47.log`; the read-only full-suite watcher writes the post-input/result receipts after completion. Earlier failed suite and recorder outputs remain unchanged.
+
+The unmerged room follow-on is in `/tmp/soc-regional-support-integration`, branch `feature/gameplay-room-integration-follow-on`. Its paid project, explicit test, native bridge-session/path evidence and compact translated inspector are under verification. The failure journey exposed a room capacity incident followed by a separate transport-domain outage: each requires its own paid repair. Integrate the review fixes and register the new acceptance cases before freezing its browser candidate. Do not treat the helper/Lab cases as paid Provider delivery or the paid room path as all five P5 integration paths.
+
+Remaining work includes final regional progression journeys, further canonical progression adapters/unlocks, the remaining exact assertions and mission/family/Training visible matrix, final browser compatibility and protected publication. Source and research release gates remain unchanged.
+
+---
+
 # Restart handoff — 4 November 2026
 
 Publication/security [PR #15](https://github.com/zanefounty/series-of-calls/pull/15) merged after all 12 checks passed. Security is a required check. Keep current supported Actions major tags with Dependabot updates, per owner review; do not replace them with commit-SHA pins. Preview publishing is separate from the unchanged full-product release gate.

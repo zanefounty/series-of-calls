@@ -964,7 +964,8 @@
     ],
     "tests/provider-runtime.test.js": [
       "AC-SOC-677",
-      "AC-SOC-678"
+      "AC-SOC-678",
+      "AC-SOC-725"
     ],
     "tests/provider-view-stability.test.js": [
       "AC-SOC-688",

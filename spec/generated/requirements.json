@@ -35872,7 +35872,8 @@
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-case-followup.js",
       "src/game/97-provider-shell.js",
-      "src/game/97-training.js"
+      "src/game/97-training.js",
+      "src/game/98-provider-runtime.js"
     ],
     "acceptance": [
       "AC-34f4abdb5abdbc35"
@@ -52925,6 +52926,7 @@
       "src/game/93-ui/79-provider-case-handoff.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
       "tests/products.test.js"
     ],
     "acceptance": [

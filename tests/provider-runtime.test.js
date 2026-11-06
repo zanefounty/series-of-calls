@@ -156,3 +156,17 @@ test('map actions retain a blocked costed quote while shared engineers are occup
   const button=w.document.querySelector('.provider-inspector [data-provider-action=operation][data-operation=carrier-headroom]');assert.ok(button,'the costed response remains reachable while staff are busy');const cash=w.__SCP.state.business.balance.cash;button.click();assert.ok(w.SOC_PROVIDER_UI.view().quote.blockers.includes('ENGINEER_CAPACITY'));assert.equal(w.document.querySelector('[data-provider-action=confirm-quote]').disabled,true);assert.equal(w.__SCP.state.business.balance.cash,cash);assert.equal(w.__SCP.state.providerCampaign.projects.some(p=>p.operationId==='carrier-headroom'),false);
  }finally{dom.window.close();}
 });
+
+
+test('AC-SOC-725 selecting a real newly funded customer quotes contextual operations without inventing a retry case',async()=>{
+ const {dom,w}=boot();try{
+  w.providerHome();await w.providerNew({providerName:'Contextual quote MSP',scenario:'enterprise'});
+  const request={action:'purchase',offerId:'starter',planId:'swift',stage:'base'},q=SOC.provider.quote(w.__SCP.state,request);
+  await w.providerCommand({type:'provider',command:{...request,quoteRevision:q.atRevision}});
+  const node=w.document.querySelector('[data-provider-action="select-customer"][data-id="starter-customer"]');assert.ok(node);node.click();
+  assert.equal(w.__SCP.error,'');assert.equal(w.SOC_PROVIDER_UI.view().inspectorOpen,true);assert.equal(w.document.querySelector('[data-provider-region=inspector]').hidden,false);
+  assert.ok(w.document.querySelector('.provider-inspector'));
+  assert.equal(w.document.querySelector('[data-provider-action="operation"][data-operation="retry-case-followup"]'),null);
+  assert.equal(w.document.querySelector('[data-provider-action="quote-case-followup"]'),null);
+ }finally{w.providerRelease();dom.window.close();}
+});

@@ -7169,7 +7169,8 @@
         "src/game/93-ui/79-provider-case-followup.js",
         "src/game/23-provider-journeys.js",
         "src/game/93-ui/75-provider-panels.js",
-        "src/game/97-provider-shell.js"
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
       ],
       "testIds": [
         "AC-SOC-700",
@@ -7186,7 +7187,8 @@
         "AC-SOC-711",
         "AC-SOC-712",
         "AC-SOC-713",
-        "AC-SOC-714"
+        "AC-SOC-714",
+        "AC-SOC-725"
       ],
       "status": "partial",
       "scope": "Versioned paid same-case human voice then consented human digital follow-up, scoped paid retry, actual accepted-attempt metering, historical connector authority and retained L8 proof. New paid workflows reserve one existing optional case with its authored twenty-minute deadline at arrival; the other obligations retain existing deadlines. Isolated contracts pass; actual Provider and visible evidence are in progress. No source acceptance or catalogue completion is implied."

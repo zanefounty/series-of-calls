@@ -268,7 +268,9 @@
     ],
     "tests/admission-security-integration.test.js": [
       "AC-SOC-197",
-      "AC-SOC-198"
+      "AC-SOC-198",
+      "AC-SOC-773",
+      "AC-SOC-803"
     ],
     "tests/security-ui.test.js": [
       "AC-SOC-199",
@@ -1119,6 +1121,34 @@
     ],
     "tests/provider-progression-receipts.test.js": [
       "AC-SOC-810"
+    ],
+    "tests/provider-security-helper.test.js": [
+      "AC-SOC-777",
+      "AC-SOC-778",
+      "AC-SOC-779"
+    ],
+    "tests/provider-security-dispatch.test.js": [
+      "AC-SOC-784",
+      "AC-SOC-785",
+      "AC-SOC-786",
+      "AC-SOC-804",
+      "AC-SOC-805"
+    ],
+    "tests/provider-security-ui.test.js": [
+      "AC-SOC-782",
+      "AC-SOC-783",
+      "AC-SOC-809"
+    ],
+    "tests/provider-security.test.js": [
+      "AC-SOC-791",
+      "AC-SOC-792",
+      "AC-SOC-793",
+      "AC-SOC-794"
+    ],
+    "tests/admission-security-event-retention.test.js": [
+      "AC-SOC-797",
+      "AC-SOC-798",
+      "AC-SOC-799"
     ]
   },
   "inputs": [
@@ -1714,6 +1744,15 @@
     "tests/provider-progression-inspection.test.js",
     "tests/provider-empty-customer-actions-ui.test.js",
     "tests/provider-refused-quotes-ui.test.js",
-    "tests/provider-progression-receipts.test.js"
+    "tests/provider-progression-receipts.test.js",
+    "tests/provider-security-helper.test.js",
+    "tests/provider-security-dispatch.test.js",
+    "src/game/23-provider-security.js",
+    "content/provider-security.json",
+    "tests/provider-security-ui.test.js",
+    "src/game/93-ui/74-provider-security.js",
+    "tests/provider-security.test.js",
+    "tests/admission-security-event-retention.test.js",
+    "content/provider-security-abuse.v2.json"
   ]
 }

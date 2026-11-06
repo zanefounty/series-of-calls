@@ -9,6 +9,7 @@ function socProviderHistoryKernel(){
   if(!cp.channels)cp.channels={conversations:0,acceptances:0,deliveries:0,reads:0,webhookDelivered:0,webhookFailed:0,throughAt:0};
   const protectedInteractions=new Set((s.records||[]).filter(r=>!r.deleted).map(r=>r.interaction));
   for(const id of s.providerResilienceCase?.interactionIds||[])protectedInteractions.add(id);
+  for(const id of s.providerSecurityPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerCaseFollowupPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerCaseHandoffPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerSupportPins?.interactionIds||[])protectedInteractions.add(id);

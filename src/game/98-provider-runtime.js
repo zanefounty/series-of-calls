@@ -51,8 +51,8 @@ function providerRender(){
 }
 function providerContextualOperations(selection){
  if(!selection?.customerId||!SCP.state)return [];const m=SOC.provider.inspect(SCP.state),normal=id=>({processor:'speech',connectivity:'access'})[id]||id;
- const quote=(o,config)=>{const q=SOC.provider.quote(SCP.state,{action:'operation',operationId:o.id,customerId:selection.customerId,...(config?{config}:{})});return {...o,quote:q,customerId:selection.customerId,operationId:o.id,available:q.blockers.every(code=>['INSUFFICIENT_CASH','ENGINEER_CAPACITY','SUPPORT_CAPACITY','INSOLVENT'].includes(code)),blockers:q.blockers};};
- const rows=m.operations.filter(o=>!['diagnose-incident','retry-case-followup','provider-support-coverage','site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review'].includes(o.id)).map(o=>quote(o));
+ const quote=(o,config)=>{const q=SOC.provider.quote(SCP.state,{action:'operation',operationId:o.id,customerId:selection.customerId,...(config?{config}:{})});return {...o,quote:q,selection:config||null,customerId:selection.customerId,operationId:o.id,available:q.blockers.every(code=>['INSUFFICIENT_CASH','ENGINEER_CAPACITY','SUPPORT_CAPACITY','INSOLVENT'].includes(code)),blockers:q.blockers};};
+ const rows=m.operations.filter(o=>!['diagnose-incident','retry-case-followup','provider-support-coverage','site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review'].includes(o.id)).flatMap(o=>o.control&&o.offers?Object.entries(o.offers).map(([planId,offer])=>quote({...o,...offer,securityControl:o.control,planId},{planId})):[quote(o)]);
  const diagnosis=m.operations.find(o=>o.id==='diagnose-incident');if(diagnosis)for(const i of m.incidents||[]){if(i.customerId!==selection.customerId)continue;const selected=selection.incidentId?i.id===selection.incidentId:['active','acknowledged'].includes(i.status)&&(!selection.serviceId||normal(selection.serviceId)===normal(i.resource));if(selected)rows.push(quote(diagnosis,{incidentId:i.id}));}return rows;
 }
 function providerEnsureMount(){

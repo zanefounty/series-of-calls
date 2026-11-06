@@ -35,6 +35,9 @@ function socProviderCapacityAuthorityKernel(rules,products,government){
    }
    return patch;
   }
+  // Paid admission controls do not write communication-resource capacity.
+  // Their native units and paid generations are validated by the Provider security adapter.
+  if(['provider-security-network','provider-security-sip','provider-security-destination'].includes(project.operationId))return {};
   if(!op)fail();
   const patch={};
   for(const resource of op.resources||[])patch[resource]={enabled:true,...clone(op.config?.[resource]||{})};

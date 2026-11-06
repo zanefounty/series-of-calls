@@ -36439,13 +36439,23 @@
     "representation": "ucc.goal.scrub",
     "status": "partial",
     "implementation": [
+      "content/provider-security-abuse.v2.json",
+      "content/provider-security.json",
+      "src/game/23-provider-capacity-authority.js",
+      "src/game/23-provider-history.js",
+      "src/game/23-provider-security.js",
+      "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/38-admission-security.js",
       "src/game/41-progression.js",
       "src/game/55-communications.js",
       "src/game/82-security-ui.js",
-      "src/game/97-training.js"
+      "src/game/93-ui/74-provider-security.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
+      "src/i18n/en.js"
     ],
     "acceptance": [
       "AC-b8b7bd22fb0ba9f0"
@@ -36475,7 +36485,15 @@
       "BEH-SOC-283",
       "BEH-SOC-284",
       "BEH-SOC-285",
-      "BEH-SOC-286"
+      "BEH-SOC-286",
+      "BEH-SOC-412",
+      "BEH-SOC-415",
+      "BEH-SOC-418",
+      "BEH-SOC-417",
+      "BEH-SOC-421",
+      "BEH-SOC-423",
+      "BEH-SOC-425",
+      "BEH-SOC-427"
     ]
   },
   {

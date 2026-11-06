@@ -7361,7 +7361,7 @@
         "AC-SOC-753"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
     },
     {
       "id": "BEH-SOC-408",
@@ -7601,6 +7601,142 @@
       ],
       "status": "partial",
       "scope": "A retained regional support-window claim validates customer activation and exit against its actual earned interval, rather than requiring participants to remain active forever. A public paid two-customer journey claims Level2, quotes and executes exit, advances and restores with the original receipt; backdated exit and activation after earning still refuse. Existing paid-stage, sample, work and posting validation remains required. This fixes historical receipt persistence without making exited customers eligible for new claims."
+    },
+    {
+      "id": "BEH-SOC-412",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-773"
+      ],
+      "status": "partial",
+      "scope": "A legitimate connected endpoint voice call retains its existing security reservation through dispatch, save restore and worker execution. Actual minutes settle once against the core ledger; a rolling spend cap terminates the call before an over-limit minute accrues. This repairs the native security prerequisite only; paid Provider abuse protection, authored abuse, progression award and useful unlock remain pending."
+    },
+    {
+      "id": "BEH-SOC-415",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "content/provider-security.json"
+      ],
+      "testIds": [
+        "AC-SOC-777",
+        "AC-SOC-778",
+        "AC-SOC-779"
+      ],
+      "status": "partial",
+      "scope": "Versioned fictional PPS, authenticated SIP and destination/spend offers have independently priced fixed plans. Helper binding tests distinguish paid historical terms from current native readiness and refuse arbitrary native configuration. Helper tests alone do not establish public paid delivery, authored abuse handling or the canonical security progression goal."
+    },
+    {
+      "id": "BEH-SOC-418",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/23-provider-capacity-authority.js",
+        "src/game/23-provider-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-784",
+        "AC-SOC-785",
+        "AC-SOC-786"
+      ],
+      "status": "partial",
+      "scope": "Public Provider quotations fund separate native network, SIP and destination controls with real shared cash, staffing and commissioning. Initial deployment requires calls to drain and blocks voice until all three controls are effective. Public tests recover a real carrier incident before purchasing; restore rejects forged paid plans, native desired/effective configurations and supplier peers, and worker dispatch matches synchronous state. Authored abuse scheduling, retained protection evidence and the security progression claim remain pending. Ordinary autonomous same-customer voice demand subsequently resolves through all three paid controls, with a positive duration, retained case and once-only native usage settlement. This does not substitute for authored abuse evidence."
+    },
+    {
+      "id": "BEH-SOC-417",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/98-provider-runtime.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-782",
+        "AC-SOC-783"
+      ],
+      "status": "partial",
+      "scope": "Pure contextual panels compare the three paid security controls and their six fixed offers on customer, carrier, phone and access selections. They expose setup, recurring cost, staffing, lead time, native limits, prerequisites, first-purchase interruption and complete minimum cost; action payloads select only an authored plan. Quote panels explain native usage separately from supplier wholesale. DOM tests and translation coverage do not establish final visible browser or security progression acceptance."
+    },
+    {
+      "id": "BEH-SOC-421",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/23-provider-security.js",
+        "content/provider-security-abuse.v2.json"
+      ],
+      "testIds": [
+        "AC-SOC-791",
+        "AC-SOC-792",
+        "AC-SOC-793",
+        "AC-SOC-794"
+      ],
+      "status": "partial",
+      "scope": "A versioned authored synthetic abuse recipe binds fixed packet, SIP rate, oversized-message and destination attempts to separately paid controls and native generations. Pure helpers distinguish incident observations from subsequent real customer delivery. The canonical SCRUB claim and useful unlock remain pending."
+    },
+    {
+      "id": "BEH-SOC-423",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-797",
+        "AC-SOC-798",
+        "AC-SOC-799"
+      ],
+      "status": "partial",
+      "scope": "Native security keeps a bounded 1,000-event history while preserving explicitly pinned actual events. Exact pruned ranges retain older legitimate admission proof, reject forged gaps and survive removing Provider pins in a separate Lab copy. These native tests do not grant pin authority or establish a Provider achievement."
+    },
+    {
+      "id": "BEH-SOC-425",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/55-communications.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-803",
+        "AC-SOC-804",
+        "AC-SOC-805"
+      ],
+      "status": "partial",
+      "scope": "The shared route records actual destination denials before unreachable routing without granting reach. After all three paid controls commission, the Provider dispatcher executes one authored abuse sequence per paid generation tuple and waits for a later autonomous voice job with actual once-only settlement. Strict versioned saves retain actual attack events, interactions, cases and delivered jobs; forged lineage and pin substitutions refuse. Worker continuation, read-only inspection, legacy saves and separate Lab copies preserve ownership. This is a bounded incident and delivery path, not a canonical SCRUB achievement, useful unlock or full failure-domain completion."
+    },
+    {
+      "id": "BEH-SOC-427",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/93-ui/74-provider-security.js",
+        "src/game/55-communications.js",
+        "src/i18n/en.js"
+      ],
+      "testIds": [
+        "AC-SOC-809"
+      ],
+      "status": "partial",
+      "scope": "The selected customer security inspector distinguishes actual filtered/blocked abuse from waiting for subsequent ordinary voice delivery and later settled delivery. Technical evidence is read-only beneath human-readable status. DOM evidence does not establish final browser acceptance or a progression award."
     }
   ]
 }

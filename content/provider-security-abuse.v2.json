@@ -1,0 +1,56 @@
+{
+  "kind": "provider-security-abuse-recipe",
+  "version": 2,
+  "id": "provider-security-abuse-v2",
+  "sourceTermsId": "provider-security-1",
+  "sourceIds": [
+    "progress.goal.scrub",
+    "progress.incident-mechanic.scrub",
+    "action:scrubUp",
+    "action:scrubMode",
+    "state:S.scrubMode",
+    "state:S.scrubs",
+    "requirement:scrubbed",
+    "requirement:scrubnear",
+    "asset:scrubMo1/scrubMo/cleanMo:",
+    "asset:SCRUB_TIERS:0",
+    "asset:SCRUB_TIERS:1",
+    "asset:SCRUB_TIERS:2",
+    "asset:SCRUB_TIERS:3"
+  ],
+  "rationale": "The authored synthetic batch is fixed at 7,500 packets per second so it exceeds the clean capacity of both paid network offers while remaining within either offer's filtered capacity. This is a scenario value, not a claim about real traffic or a conversion of the original bandwidth labels.",
+  "network": {
+    "peer": "synthetic-flood-origin",
+    "packets": 7500,
+    "secondOffset": "first-empty",
+    "expectedCode": "NETWORK_FLOOD_FILTERED",
+    "mustKeepProtectedPath": true
+  },
+  "sip": {
+    "peer": "synthetic-carrier",
+    "method": "INVITE",
+    "valid": true,
+    "rateAttemptsOverLimit": 1,
+    "rateSecondOffset": "first-empty",
+    "rateExpectedCode": "SIP_RATE_EXCEEDED",
+    "oversizeBytesOverLimit": 1,
+    "oversizeSecondOffset": "first-empty",
+    "oversizeExpectedCode": "SIP_MESSAGE_INVALID",
+    "allowedAttempts": 1,
+    "allowedSecondOffset": "first-empty",
+    "allowedExpectedCode": "SIP_ADMITTED"
+  },
+  "destination": {
+    "to": "+18005550199",
+    "expectedCode": "DESTINATION_NOT_ALLOWED",
+    "requiresActualInteraction": true
+  },
+  "ordinaryDelivery": {
+    "source": "autonomous-provider-demand",
+    "channel": "voice",
+    "eligibility": "completed-or-late-clean-voice-job-with-case-and-settlement",
+    "mustResolve": true,
+    "mustSettleCoreUsageOnce": true,
+    "demandContract": "scenario-owned-ordinary-voice-v1"
+  }
+}

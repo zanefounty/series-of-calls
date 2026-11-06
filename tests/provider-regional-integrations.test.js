@@ -120,3 +120,18 @@ test('AC-SOC-749 regional reader source serializes with the canonical history an
  const input=structuredClone(s),command={type:'advance',minutes:1},expected=SOC.dispatch(s,command);let reply;const worker={postMessage:value=>{reply=value;}};vm.createContext(worker);vm.runInContext(SOC.workerSource(),worker);worker.onmessage({data:{id:'regional-integration-history',state:input,command}});
  assert.equal(reply.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),expected);assert.equal(JSON.stringify(input),before,'worker dispatch leaves its supplied snapshot untouched');
 });
+
+test('AC-SOC-754 paid UC/CC task lineage retains its exact job and arrival across settlement pruning',()=>{
+ let s=fixture();const p=project(s,'uc-cc-integration'),task=structuredClone(p.operationReceipt.task),at=s.clock,edge=R.current(s,customerId,historyHooks,integrationHooks(s))[0],pruned=s.providerCampaign.jobCheckpoint.pruned;
+ const afterPruning=(Math.floor(task.job.arrivalAt/60)+2)*60;
+ s=until(s,x=>x.clock>=afterPruning,180);
+ assert.ok(s.providerCampaign.jobCheckpoint.pruned>pruned,'ordinary settled jobs were actually pruned');
+ assert.ok(s.providerCampaign.jobs.some(j=>j.id===task.job.id),'the reviewed call job remains retained despite sparse older pinned jobs');
+ assert.ok(s.providerCampaign.events.some(e=>e.id===task.arrival.id),'the exact paid task arrival remains retained');
+ assert.equal(I.validateRetainedTaskEvidence(s,p.id,task),true);
+ assert.equal(R.validAt(s,customer(s),edge,at,historyHooks),true);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const missing=structuredClone(s);missing.providerCampaign.jobs=missing.providerCampaign.jobs.filter(j=>j.id!==task.job.id);
+ assert.equal(I.validateRetainedTaskEvidence(missing,p.id,task),false,'a missing pinned call cannot be replaced by a count of unrelated pruned jobs');
+ assert.throws(()=>SOC.restore(JSON.stringify(missing)));
+});

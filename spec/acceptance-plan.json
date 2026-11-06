@@ -912,7 +912,10 @@
       "AC-SOC-676"
     ],
     "tests/provider-progression-regional-claims.test.js": [
-      "AC-SOC-653"
+      "AC-SOC-653",
+      "AC-SOC-654",
+      "AC-SOC-655",
+      "AC-SOC-656"
     ],
     "tests/even-workload-service-history.test.js": [
       "AC-SOC-684",
@@ -1036,10 +1039,20 @@
       "AC-SOC-746",
       "AC-SOC-747",
       "AC-SOC-748",
-      "AC-SOC-749"
+      "AC-SOC-749",
+      "AC-SOC-754"
     ],
     "tests/provider-recovery-configuration-history.test.js": [
       "AC-SOC-750"
+    ],
+    "tests/provider-external-reach-retention-boundary.test.js": [
+      "AC-SOC-751"
+    ],
+    "tests/provider-qualification-boundary.test.js": [
+      "AC-SOC-752"
+    ],
+    "tests/provider-regional-support-exit-history.test.js": [
+      "AC-SOC-753"
     ]
   },
   "inputs": [
@@ -1552,6 +1565,7 @@
     "tests/provider-dedicated-interconnect-retention.test.js",
     "tests/provider-dedicated-interconnect-ui.test.js",
     "tests/provider-dedicated-interconnect.test.js",
+    "tests/provider-external-reach-retention-boundary.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
     "tests/provider-followup-retry-archive.test.js",
@@ -1572,8 +1586,10 @@
     "tests/provider-owned-site-quotes-ui.test.js",
     "tests/provider-owned-site-routed-endpoint.test.js",
     "tests/provider-progression-regional-claims.test.js",
+    "tests/provider-qualification-boundary.test.js",
     "tests/provider-recovery-configuration-history.test.js",
     "tests/provider-regional-integrations.test.js",
+    "tests/provider-regional-support-exit-history.test.js",
     "tests/provider-runtime.test.js",
     "tests/provider-service-truth.test.js",
     "tests/provider-view-stability.test.js",

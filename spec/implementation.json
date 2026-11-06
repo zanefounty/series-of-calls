@@ -7036,10 +7036,13 @@
         "src/game/55-communications.js"
       ],
       "testIds": [
-        "AC-SOC-653"
+        "AC-SOC-653",
+        "AC-SOC-654",
+        "AC-SOC-655",
+        "AC-SOC-656"
       ],
       "status": "partial",
-      "scope": "A fresh public Provider campaign funds three customers in AU, US and EU, sustains the same eligible 60-minute named-support cohort with actual voice/digital work and settlements, and claims C3 without a cash award. Rehashed market/support substitutions refuse restore. The earned regional policy is then purchased and delivered, starts suspended without a budget, and after explicit funded scope configuration buys and commissions a real new customer carrier stage with reconciled spend and restore. Other regional identities, current final browser evidence and broader source fidelity remain separate."
+      "scope": "A fresh public Provider campaign funds three customers in AU, US and EU, sustains the same eligible 60-minute named-support cohort with actual voice/digital work and settlements, and claims C3 without a cash award. Rehashed market/support substitutions refuse restore. The earned regional policy is then purchased and delivered, starts suspended without a budget, and after explicit funded scope configuration buys and commissions a real new customer carrier stage with reconciled spend and restore. Other regional identities, current final browser evidence and broader source fidelity remain separate. The C5, Tier Two and Level Seven real-dispatch journeys are registered even while failures remain; registration is not evidence of passing execution."
     },
     {
       "id": "BEH-SOC-395",
@@ -7287,10 +7290,11 @@
         "AC-SOC-746",
         "AC-SOC-747",
         "AC-SOC-748",
-        "AC-SOC-749"
+        "AC-SOC-749",
+        "AC-SOC-754"
       ],
       "status": "partial",
-      "scope": "Regional support samples include a paid UC/CC edge only after the actual tested integration and paid quality task complete. Historical snapshots retain exact customer, endpoint generation/version, native test, MSP and boundary scope through retirement and retest; prior evidence cannot qualify a new generation. Public dispatch, tampered imports, readonly evaluation and worker checks are distinct from the still-required complete Tier Two progression journey."
+      "scope": "Regional support samples include a paid UC/CC edge only after the actual tested integration and paid quality task complete. Historical snapshots retain exact customer, endpoint generation/version, native test, MSP and boundary scope through retirement and retest; prior evidence cannot qualify a new generation. Public dispatch, tampered imports, readonly evaluation and worker checks are distinct from the still-required complete Tier Two progression journey. A separately registered settlement-boundary test checks retention of the paid task job and actual arrival event, restore, and deletion rejection."
     },
     {
       "id": "BEH-SOC-404",
@@ -7308,6 +7312,56 @@
       ],
       "status": "partial",
       "scope": "A paid owned-site backup restore preserves the already sampled command minute and enters the next minute as one resource-generation write anchored to the funded recovery exercise. Public Provider dispatch, actual native backup scope, restore, worker continuation, and altered generation/time/exercise references are exercised. This bounded history repair does not complete every mission or source-specific recovery path."
+    },
+    {
+      "id": "BEH-SOC-405",
+      "sources": [
+        "progress.goal.tr",
+        "uc-new:domain:continuity"
+      ],
+      "implementation": [
+        "src/game/23-provider-external-reach.js",
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-751"
+      ],
+      "status": "partial",
+      "scope": "Earned external-reach awards retain their two actual paid call jobs, arrivals, interactions and cases plus the provider meeting through ordinary history pruning. Optional versioned child retention metadata is derived from validated receipts on owned legacy restore copies. A bounded first-prune regression checks native lineage, restore and worker continuation, legacy migration purity and forged evidence refusal. This does not replace the owner-parked long-play verification."
+    },
+    {
+      "id": "BEH-SOC-406",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-752"
+      ],
+      "status": "partial",
+      "scope": "Paid partner qualification reviews existing service and settlement evidence without rewriting dependency configurations or invalidating generation-bound service approvals. The review still consumes the quoted implementation effort and depends on qualified settlements, named roles, effective resources and paid lineage. A real Provider boundary-review and distributor-delivery journey verifies the bounded change; full regional progression remains separately pending."
+    },
+    {
+      "id": "BEH-SOC-407",
+      "sources": [
+        "progress.goal.c3",
+        "progress.goal.c5",
+        "progress.goal.t2",
+        "progress.progression-level.7"
+      ],
+      "implementation": [
+        "src/game/23-provider-regional-support.js"
+      ],
+      "testIds": [
+        "AC-SOC-753"
+      ],
+      "status": "partial",
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
     }
   ]
 }

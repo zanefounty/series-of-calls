@@ -111,10 +111,21 @@ function socProviderRegionalSupportKernel(){
   const p=s?.providerCampaign;if(!p||!Array.isArray(p.projects))fail('PROVIDER_SUPPORT_CAMPAIGN_REQUIRED');
   const rows=p.projects.filter(x=>x.operationId===OPERATION_ID&&x.operationReceipt?.supportAssignment).map(project=>assignmentForProject(s,project));
   for(const row of rows.filter(Boolean)){
+   row.exitAfterSupportSample=exitAfterSupportSample(s,row.customer);
    const successor=rows.filter(next=>next&&next.project.status==='complete'&&next.project.supportReplacesProjectId===row.project.id&&replacementValid(s,next.project)).sort((a,b)=>a.project.completedAt-b.project.completedAt)[0];
    if(successor)row.replacedAt=successor.project.completedAt;
   }
   return rows;
+ }
+ function exitAfterSupportSample(s,customer){
+  if(!integer(customer?.exitAt))return false;
+  const event=s.providerCampaign.events?.find(x=>x.customerId===customer.id&&x.at===customer.exitAt&&['CUSTOMER_EXITED','CUSTOMER_FAILED_CONSECUTIVE_PERIODS','CUSTOMER_RENEWAL_REFUSED'].includes(x.code));
+  if(event)return event.code==='CUSTOMER_EXITED'&&event.reason==='provider-decision';
+  // Older saves may have pruned the exit event. A retained minute sample still
+  // identifies whether sampling preceded the exit. Beyond that window retain
+  // the legacy interpretation; there is no surviving ordering evidence.
+  const sample=decodeSamples(s).find(x=>x.at===customer.exitAt);
+  return sample?sample.cohort.includes(customer.id):true;
  }
  function validate(s){
   const p=s?.providerCampaign;if(!p)return true;
@@ -130,7 +141,7 @@ function socProviderRegionalSupportKernel(){
   if([...scopeByPerson.values()].some(scope=>scope.size>MAX_CUSTOMERS_PER_PERSON))fail('INVALID_PROVIDER_SUPPORT_SCOPE_CAPACITY');
   return true;
  }
- function assignmentEffectiveAt(row,at,historical=false){const project=row?.project,retirement=project?.serviceRetirement;return project?.status==='complete'&&integer(project.completedAt)&&project.completedAt<=at&&(!integer(row.customer?.exitAt)||(historical?row.customer.exitAt>=at:row.customer.exitAt>at))&&(!integer(row.replacedAt)||row.replacedAt>at)&&(!retirement||!integer(retirement.effectiveAt)||retirement.effectiveAt>at);}
+ function assignmentEffectiveAt(row,at,historical=false){const project=row?.project,retirement=project?.serviceRetirement;return project?.status==='complete'&&integer(project.completedAt)&&project.completedAt<=at&&(!integer(row.customer?.exitAt)||row.customer.exitAt>at||historical&&row.customer.exitAt===at&&row.exitAfterSupportSample===true)&&(!integer(row.replacedAt)||row.replacedAt>at)&&(!retirement||!integer(retirement.effectiveAt)||retirement.effectiveAt>at);}
  function personCapacity(s,personId,candidateCustomerId,at=s?.clock){
   const limit=s?.business?.workforce?.support,rows=reservedRows(s,at),personIds=[...new Set(rows.map(x=>x.assignment.personId))];
   const personRows=rows.filter(x=>x.assignment.personId===personId),scope=new Set(personRows.flatMap(x=>x.assignment.scopeCustomerIds));
@@ -212,6 +223,7 @@ function socProviderRegionalSupportKernel(){
   const minute=at%1440;return minute>=proof.shiftStart&&minute<proof.shiftEnd&&proof.languages.includes(MARKETS[participant.market]?.language)&&proof.skills.includes('support')&&proof.market===participant.market&&proof.scopeCustomerIds.includes(participant.customerId)&&proof.usedSupportSlots+proof.implementationSupportSlots<=proof.paidSupportSlots;
  }
  function distributorSnapshotMatches(s,participant,at){
+  if(!participant||typeof participant!=='object'||Array.isArray(participant))return false;
   const saved=participant.distributor;if(saved===null||saved===undefined||!exact(saved,['id','role','organisationId','customerId','scope','projectId','postingId','acceptedAt','effectiveAt','expiresAt','qualificationId','qualificationProjectId','qualificationPostingId','qualification'])||!exact(saved.qualification,['version','id','customerId','issuerOrganizationId','holderOrganizationId','scopes','acceptedAt','effectiveAt','expiresAt','projectId','postingId']))return false;
   const api=responsibilityApi(),certificate=saved.qualification,qualificationProject=s.providerCampaign.projects.find(x=>x.id===certificate.projectId&&x.postingId===certificate.postingId&&x.customerId===participant.customerId&&x.operationId==='partner-qualification'&&x.kind==='operation'&&x.status==='complete'),project=s.providerCampaign.projects.find(x=>x.id===saved.projectId&&x.postingId===saved.postingId&&x.customerId===participant.customerId&&x.operationId==='distributor-room'&&x.kind==='operation'&&x.status==='complete');
   const retirement=project?.serviceRetirement;

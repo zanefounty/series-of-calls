@@ -151,8 +151,20 @@ function socProviderExternalReachKernel(){
   const starts=[evidence.outbound.arrivalAt,evidence.inbound.arrivalAt,sessionProof.startedAt],ends=[evidence.outbound.finishedAt,evidence.inbound.finishedAt,sessionProof.endedAt];
   return evidence.agreementAt<=evidence.from&&evidence.from===Math.min(...starts)&&evidence.to===Math.max(...ends);
  }
+ function retentionPins(receipt,customerId){
+  const empty={interactionIds:[],caseIds:[],jobIds:[],eventIds:[]},e=receipt?.sourceEvidence;
+  if(!receipt||receipt.sourceId!==SOURCE_ID||receipt.id!==`provider-progression-receipt:${SOURCE_ID}`||!e||e.kind!=='provider-external-reach'||e.customerId!==customerId)return empty;
+  const proofs=[e.outbound,e.inbound];
+  if(proofs.some(proof=>!proof||!id(proof.jobId)||!id(proof.interactionId)||!id(proof.caseId)||!id(proof.arrivalEventId)))return empty;
+  const pins={interactionIds:proofs.map(proof=>proof.interactionId),caseIds:proofs.map(proof=>proof.caseId),jobIds:proofs.map(proof=>proof.jobId),eventIds:proofs.map(proof=>proof.arrivalEventId)};
+  for(const key of Object.keys(pins)){
+   pins[key]=[...new Set(pins[key])].sort();
+   if(pins[key].length!==2)return empty;
+  }
+  return pins;
+ }
  function source(){return `const SOC_PROVIDER_EXTERNAL_REACH=(${socProviderExternalReachKernel.toString()})();`;}
- return {PACK:'soc-provider-external-reach-1',VERSION,CONTENT,SOURCE_ID,evaluate,validateEvidence,source};
+ return {PACK:'soc-provider-external-reach-1',VERSION,CONTENT,SOURCE_ID,evaluate,validateEvidence,retentionPins,source};
 }
 const SOC_PROVIDER_EXTERNAL_REACH=socProviderExternalReachKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_EXTERNAL_REACH;

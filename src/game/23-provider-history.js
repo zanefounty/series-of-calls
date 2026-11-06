@@ -13,7 +13,7 @@ function socProviderHistoryKernel(){
   for(const id of s.providerCaseHandoffPins?.interactionIds||[])protectedInteractions.add(id);
   for(const id of s.providerSupportPins?.interactionIds||[])protectedInteractions.add(id);
   for(const work of s.providerSiteWork||[])protectedInteractions.add(work.interactionId);
-  for(const id of [...(s.providerProgressionPins?.pins?.interactionIds||[]),...(s.providerCentralPins?.pins?.interactionIds||[]),...(s.providerRegionalPins?.pins?.interactionIds||[]),...(s.providerInterconnectPins?.pins?.interactionIds||[]),...(s.providerCustodyPins?.pins?.interactionIds||[])])protectedInteractions.add(id);
+  for(const id of [...(s.providerProgressionPins?.pins?.interactionIds||[]),...(s.providerCentralPins?.pins?.interactionIds||[]),...(s.providerRegionalPins?.pins?.interactionIds||[]),...(s.providerInterconnectPins?.pins?.interactionIds||[]),...(s.providerExternalReachPins?.pins?.interactionIds||[]),...(s.providerCustodyPins?.pins?.interactionIds||[])])protectedInteractions.add(id);
   for(const r of [...(s.workforceQuality?.reviews||[]),...(s.providerReviews||[])])if(r.interactionId)protectedInteractions.add(r.interactionId);
   while(s.interactions.length>64){const index=s.interactions.findIndex(i=>['resolved','failed'].includes(i.phase)&&i.finishedAt<s.clock-60&&!protectedInteractions.has(i.id));if(index<0)break;
    const [i]=s.interactions.splice(index,1);cp.interactions++;cp[i.phase]++;const n=Number(i.id.slice(12));if(Number.isSafeInteger(n)){cp.throughInteractionId=Math.max(cp.throughInteractionId,n);s.tracePrunedThrough=Math.max(s.tracePrunedThrough||0,n);}

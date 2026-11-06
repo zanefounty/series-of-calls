@@ -7904,10 +7904,11 @@
         "AC-SOC-855",
         "AC-SOC-856",
         "AC-SOC-857",
-        "AC-SOC-858"
+        "AC-SOC-858",
+        "AC-SOC-866"
       ],
       "status": "partial",
-      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance."
+      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal."
     },
     {
       "id": "BEH-SOC-436",
@@ -7926,6 +7927,52 @@
       ],
       "status": "partial",
       "scope": "Provider restore conserves emitted event IDs and retained/archive counts. A paid UC/CC proof cannot contradict a retained same-job arrival or use an archive with no arrival events. Legitimately pruned legacy v1 proof remains supported; aggregate counters cannot authenticate every coordinated historical edit and no missing events are synthesized. Real old saves and public dispatch/worker continuation are separately verified."
+    },
+    {
+      "id": "BEH-SOC-439",
+      "sources": [
+        "view:dash_traffic",
+        "view:link_detail",
+        "view:trace_modal",
+        "uc-new:domain:journey-testing"
+      ],
+      "implementation": [
+        "src/game/96-map/90-service-scene.js",
+        "src/game/96-map/95-provider-canvas.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/79-provider-workload-flow.js",
+        "src/game/23-provider-journeys.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-859",
+        "AC-SOC-860",
+        "AC-SOC-861",
+        "AC-SOC-862",
+        "AC-SOC-863",
+        "AC-SOC-864",
+        "AC-SOC-865",
+        "AC-SOC-867",
+        "AC-SOC-868",
+        "AC-SOC-869"
+      ],
+      "status": "partial",
+      "scope": "Provider workload paths project retained customer journey events with stable selection IDs and observed resource endpoints. The selected path explains actual delivery, failure and pending states, exposes existing service/incident responses and retains technical evidence beneath the explanation. Rendering is read-only. This bounded mapping does not establish all map interactions, accessibility, human playability or source-catalogue completion; real browser verification is recorded separately. Meeting work uses retained native sessions and admission/completion audits, including actual failed participant admission and separately funded incident recovery."
+    },
+    {
+      "id": "BEH-SOC-437",
+      "sources": [
+        "progress.goal.p5",
+        "uc-new:domain:product-evidence"
+      ],
+      "implementation": [
+        "src/game/23-provider-partner-progression.js"
+      ],
+      "testIds": [
+        "AC-SOC-847"
+      ],
+      "status": "partial",
+      "scope": "The paid UC/CC managed integration may contribute one distinct partner edge through its exact same-customer Disco vendor support contract, native directional test, human voice task, capture and funded quality review. Current exact-scope MSP ownership remains supported and historical MSP evidence retains its original shape; the real fixture with no recorder scope is correctly excluded. Forged role/organisation/project/posting scopes are rejected. This adds the UC/CC vendor alternative, not a second count for the same edge. Three other distinct partner integration adapters and complete P5 qualification remain pending."
     }
   ]
 }

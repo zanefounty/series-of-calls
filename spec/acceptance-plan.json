@@ -65,7 +65,8 @@
     ],
     "tests/provider-partner-progression.test.js": [
       "AC-SOC-816",
-      "AC-SOC-817"
+      "AC-SOC-817",
+      "AC-SOC-847"
     ],
     "tests/transport-boundaries.test.js": [],
     "tests/shared-services-integration.test.js": [
@@ -1229,6 +1230,25 @@
     ],
     "tests/provider-uc-cc-integration.test.js": [
       "AC-SOC-845"
+    ],
+    "tests/provider-workload-inspector.test.js": [
+      "AC-SOC-859"
+    ],
+    "tests/provider-workload-flows.test.js": [
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
+    ],
+    "tests/provider-room-family-limitation.test.js": [
+      "AC-SOC-865"
+    ],
+    "tests/provider-scale-mcp.test.js": [
+      "AC-SOC-866"
     ]
   },
   "inputs": [
@@ -1867,6 +1887,11 @@
     "tests/provider-scale-paid.test.js",
     "tests/provider-scale-ui.test.js",
     "tests/provider-scale-observation.test.js",
-    "tests/provider-uc-cc-integration.test.js"
+    "tests/provider-uc-cc-integration.test.js",
+    "src/game/93-ui/79-provider-workload-flow.js",
+    "tests/provider-workload-inspector.test.js",
+    "tests/provider-workload-flows.test.js",
+    "tests/provider-room-family-limitation.test.js",
+    "tests/provider-scale-mcp.test.js"
   ]
 }

@@ -16949,7 +16949,8 @@
       "AC-SOC-816",
       "AC-SOC-817",
       "AC-SOC-818",
-      "AC-SOC-842"
+      "AC-SOC-842",
+      "AC-SOC-847"
     ]
   },
   {
@@ -17242,7 +17243,8 @@
       "AC-SOC-855",
       "AC-SOC-856",
       "AC-SOC-857",
-      "AC-SOC-858"
+      "AC-SOC-858",
+      "AC-SOC-866"
     ]
   },
   {
@@ -24161,9 +24163,20 @@
   {
     "id": "AC-a9710ef5866de341",
     "requirement": "REQ-a9710ef5866de341",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-859",
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-865",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
+    ]
   },
   {
     "id": "AC-1c53c9a2faf91840",
@@ -24210,9 +24223,20 @@
   {
     "id": "AC-1d209182077adea6",
     "requirement": "REQ-1d209182077adea6",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-859",
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-865",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
+    ]
   },
   {
     "id": "AC-fd6e4dcfe544e313",
@@ -24231,9 +24255,20 @@
   {
     "id": "AC-7c5bd9bef0b07988",
     "requirement": "REQ-7c5bd9bef0b07988",
-    "status": "pending",
+    "status": "partial",
     "outcome": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
-    "testIds": []
+    "testIds": [
+      "AC-SOC-859",
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-865",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
+    ]
   },
   {
     "id": "AC-a68fd888bbf03c4b",
@@ -25458,7 +25493,8 @@
       "AC-SOC-855",
       "AC-SOC-856",
       "AC-SOC-857",
-      "AC-SOC-858"
+      "AC-SOC-858",
+      "AC-SOC-866"
     ]
   },
   {
@@ -25963,7 +25999,8 @@
       "AC-SOC-840",
       "AC-SOC-841",
       "AC-SOC-845",
-      "AC-SOC-846"
+      "AC-SOC-846",
+      "AC-SOC-847"
     ]
   },
   {
@@ -26078,7 +26115,18 @@
       "AC-SOC-855",
       "AC-SOC-856",
       "AC-SOC-857",
-      "AC-SOC-858"
+      "AC-SOC-858",
+      "AC-SOC-859",
+      "AC-SOC-860",
+      "AC-SOC-861",
+      "AC-SOC-862",
+      "AC-SOC-863",
+      "AC-SOC-864",
+      "AC-SOC-865",
+      "AC-SOC-866",
+      "AC-SOC-867",
+      "AC-SOC-868",
+      "AC-SOC-869"
     ]
   },
   {

@@ -115679,7 +115679,8 @@
         "BEH-SOC-284",
         "BEH-SOC-285",
         "BEH-SOC-286",
-        "BEH-SOC-431"
+        "BEH-SOC-431",
+        "BEH-SOC-437"
       ],
       "semanticReview": "pending",
       "narrative": {
@@ -144260,7 +144261,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/94-dashboard/60-dashboard.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-439"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -144456,7 +144459,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/93-ui/70-link-panels.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-439"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -144548,7 +144553,9 @@
       "sourcePathStatus": "present",
       "historicalSource": "https://github.com/fjaeckel/seriesoftubes/blob/48e6200c532d486f79bc8376de0aecbf6169123b/src/game/60-features/50-traceroute.js",
       "attributeStrings": [],
-      "behaviours": [],
+      "behaviours": [
+        "BEH-SOC-439"
+      ],
       "semanticReview": "pending",
       "narrative": {
         "status": "pending-review",
@@ -147539,7 +147546,8 @@
         "BEH-SOC-402",
         "BEH-SOC-403",
         "BEH-SOC-435",
-        "BEH-SOC-436"
+        "BEH-SOC-436",
+        "BEH-SOC-437"
       ],
       "semanticReview": "pending",
       "narrative": {
@@ -147679,7 +147687,8 @@
         "BEH-SOC-137",
         "BEH-SOC-139",
         "BEH-SOC-140",
-        "BEH-SOC-438"
+        "BEH-SOC-438",
+        "BEH-SOC-439"
       ],
       "semanticReview": "pending",
       "narrative": {

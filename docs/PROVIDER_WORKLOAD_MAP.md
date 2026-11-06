@@ -1,0 +1,11 @@
+# Recorded workload on the Provider map
+
+The Workloads layer presents recent customer journeys on the same map as their purchased services. Selecting a journey opens its actual outcome, timing, affected service and available incident controls. Technical traces remain read-only beneath the explanation. Camera, selection and preferences belong to the view; inspecting work does not advance it or change billing.
+
+Calling and messaging paths use recorded resource references from actual interaction events. Meeting work uses native session records and matching admission, failure and completion audit entries. A failed admission is not treated as a completed meeting, and a missing old session is not reconstructed as a successful one. Mission meetings remain identified separately from the ordinary 24-case service demand.
+
+The scene preserves stable journey and path IDs. Movement is decorative presentation of observed active work; it does not create tasks, advance time, consume resources or award revenue. Animation and reduced-motion preferences govern that presentation. Touch and keyboard controls must expose the same retained journeys as the drawn paths.
+
+`AC-SOC-859` exercises the inspector against actual paid Provider work. `AC-SOC-860`–`864` and `AC-SOC-867`–`869` cover the scene and canvas projection. `AC-SOC-865` uses paid enterprise room commissioning, actual participant-admission failure, funded incident repair and a later recorded meeting; it checks that the map model and inspector retain the real session outcome and audits. Real-browser evidence is recorded separately on a frozen candidate. These cases do not close every map, accessibility or playability assertion by themselves.
+
+The separate scale-workload integration is described in [Provider scale observation](PROVIDER_SCALE_OBSERVATION.md). Independent verification of commit `4dd8a3f91a7189cdaf1d9e89f1b5b9ce69096dba` passed both desktop and mobile Chromium journeys through baseline failure, paid workflow success, managed-offer session exhaustion and paid headroom recovery. Both final exports restored exactly. Its external review receipt is `scale-4dd8-independent/REVIEW.md`, SHA-256 `8fa5f65c01caa352b63c9a47b9b9468c8444140bb59f1936b90bc984e106de17`. That receipt remains specific to the scale snapshot; later combined map changes require their own affected verification.

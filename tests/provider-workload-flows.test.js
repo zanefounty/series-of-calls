@@ -35,7 +35,7 @@ const completedJourney=()=>({id:'job-41',channel:'voice',caseId:'case-41',arriva
  {at:13,code:'RESOLVED'}
 ]});
 
-test('[AC860] workload projection is pure, stable, and only follows resources and outcomes evidenced by a real journey trace',()=>{
+test('AC-SOC-860 workload projection is pure, stable, and only follows resources and outcomes evidenced by a real journey trace',()=>{
  const {w}=boot();try{
   const model=modelFor([completedJourney()]),before=JSON.stringify(model),scene=w.SOCServiceScene.project(model),customer=scene.customers[0],flow=customer.workloadFlows[0];
   assert.equal(JSON.stringify(model),before,'scene projection does not mutate simulation input');
@@ -50,7 +50,7 @@ test('[AC860] workload projection is pure, stable, and only follows resources an
  }finally{w.close();}
 });
 
-test('[AC861] failed and still-running work keep real failure/progress and never gain a made-up destination or completion',()=>{
+test('AC-SOC-861 failed and still-running work keep real failure/progress and never gain a made-up destination or completion',()=>{
  const {w}=boot();try{
   const failed={id:'job-failed',channel:'voice',caseId:'case-failed',arrivalAt:1,status:'failed',failure:'CARRIER_CAPACITY',trace:[
    {at:2,code:'CALL_REQUEST',platform:'phone'},
@@ -66,7 +66,7 @@ test('[AC861] failed and still-running work keep real failure/progress and never
  }finally{w.close();}
 });
 
-test('[AC862] workloads layer renders stable keyboard-selectable paths and event-derived status without changing model or geometry',()=>{
+test('AC-SOC-862 workloads layer renders stable keyboard-selectable paths and event-derived status without changing model or geometry',()=>{
  const {w}=boot();try{
   const model=modelFor([completedJourney()]),view={layer:'workloads',selection:{customerId:'orchard'},camera:{x:0,y:0,zoom:1}},before=JSON.stringify(model),scene=w.SOCServiceScene.project(model),edge=scene.edges.find(x=>x.type==='workload-flow'),html=w.SOCProviderCanvas.render(model,view),holder=w.document.createElement('div');holder.innerHTML=html;
   const query=`[data-provider-action="select-path"][data-id="${edge.id}"]`,path=holder.querySelector(query);
@@ -80,7 +80,7 @@ test('[AC862] workloads layer renders stable keyboard-selectable paths and event
  }finally{w.close();}
 });
 
-test('[AC863] failed journey remains selectable with its actual failure and resource pressure evidence',()=>{
+test('AC-SOC-863 failed journey remains selectable with its actual failure and resource pressure evidence',()=>{
  const {w}=boot();try{
   const journey={...completedJourney(),status:'failed',failure:'CARRIER_CAPACITY',trace:[{at:2,code:'CALL_REQUEST',platform:'phone'},{at:3,code:'CARRIER_PATH_ADMITTED',carrier:'carrier'},{at:4,code:'CALL_FAILED',reason:'CARRIER_CAPACITY'}]},model=modelFor([journey]),scene=w.SOCServiceScene.project(model),edge=scene.edges.find(x=>x.type==='workload-flow'),holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderCanvas.render(model,{layer:'workloads',selection:{customerId:'orchard'},camera:{}});
   const path=holder.querySelector(`[data-provider-action="select-path"][data-id="${edge.id}"]`);
@@ -90,7 +90,7 @@ test('[AC863] failed journey remains selectable with its actual failure and reso
  }finally{w.close();}
 });
 
-test('[AC864] channel delivery is earned by its delivery trace and stale completed totals cannot invent success',()=>{
+test('AC-SOC-864 channel delivery is earned by its delivery trace and stale completed totals cannot invent success',()=>{
  const {w}=boot();try{
   const delivered={id:'message-7',channel:'message',caseId:'case-message-7',arrivalAt:2,status:'completed',completedAt:20,trace:[{at:3,code:'CHANNEL_ACCEPTED'},{at:8,code:'CHANNEL_DELIVERY_RECORDED'}]},stale={id:'message-stale',channel:'message',arrivalAt:9,status:'completed',completedAt:20,trace:[{at:10,code:'CHANNEL_ACCEPTED'}]},scene=w.SOCServiceScene.project(modelFor([delivered,stale]));
   assert.equal(scene.workloadFlows[0].delivered,true);assert.equal(scene.workloadFlows[0].finishedAt,8);
@@ -98,7 +98,7 @@ test('[AC864] channel delivery is earned by its delivery trace and stale complet
  }finally{w.close();}
 });
 
-test('[MAP-01] native meeting sessions project room and actual platform dependencies without synthesizing a call-resolution event',()=>{
+test('AC-SOC-867 native meeting sessions project room and actual platform dependencies without synthesizing a call-resolution event',()=>{
  const {w}=boot();try{
   const meeting={id:'mission-meeting-2',bookingId:'booking-2',roomId:'room',status:'completed',scheduledAt:4,startedAt:8,endsAt:17,endedAt:17,reasons:[],platformDependency:{resourceId:'phone',ready:true},captureRecordId:'recording-2',audit:[]},model=modelFor([]);
   model.customers[0].meetingJourneys=[{id:'mission-meeting-2',sourceKind:'mission-meeting',channel:'meeting',arrivalAt:4,deadlineAt:null,status:'completed',failure:null,meeting,trace:[]}];
@@ -111,7 +111,7 @@ test('[MAP-01] native meeting sessions project room and actual platform dependen
  }finally{w.close();}
 });
 
-test('[MAP-02] active workload motion is decorative, preference-gated, and parallel journey controls stay individually selectable',()=>{
+test('AC-SOC-868 active workload motion is decorative, preference-gated, and parallel journey controls stay individually selectable',()=>{
  const {w}=boot();try{
   const first={...completedJourney(),status:'pending',trace:completedJourney().trace.slice(0,5)},second={...first,id:'job-42',caseId:'case-42'},model=modelFor([first,second]),view={layer:'workloads',selection:{customerId:'orchard'},camera:{},preferences:{animation:true,reducedMotion:false}};
   const html=w.SOCProviderCanvas.render(model,view),holder=w.document.createElement('div');holder.innerHTML=html;
@@ -124,7 +124,7 @@ test('[MAP-02] active workload motion is decorative, preference-gated, and paral
  }finally{w.close();}
 });
 
-test('[MAP-03] geography layer caption names geography rather than reusing the services caption',()=>{
+test('AC-SOC-869 geography layer caption names geography rather than reusing the services caption',()=>{
  const {w}=boot();try{
   const holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderCanvas.render({customers:[],offers:[],events:[]},{layer:'geography',selection:null,camera:{}});
   assert.match(holder.querySelector('.provider-world-layers span').textContent,/geography view/i);

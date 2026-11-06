@@ -29,8 +29,17 @@ function socProviderJourneysKernel(){
    supplierUsage:{voiceMinutes:job.voiceMinutes,messageDeliveries:job.followup?job.messageUnits:(job.messageCharged?1:0),voiceCentsPerMinute:plan.voiceCents,messageCentsPerDelivery:plan.messageCents,costCents:job.voiceMinutes*plan.voiceCents+(job.followup?job.messageUnits*plan.messageCents:(job.messageCharged?plan.messageCents:0))},
    retailBasis:'period-service-with-delivery-credits',trace:copy(interactions.at(-1)?.trace||[])};
  }
+ function meeting(root,sessionId){
+  const session=root.information?.meetingSessions?.find(s=>s.id===sessionId);
+  if(!session)return null;
+  return {id:session.id,bookingId:session.bookingId,roomId:session.roomId,status:session.status,scheduledAt:session.scheduledAt,startedAt:session.startedAt,endsAt:session.endsAt,endedAt:session.endedAt,reasons:copy(session.reasons||[]),platformDependency:session.platformDependency?copy(session.platformDependency):null,captureRecordId:session.captureRecordId,audit:copy((root.information.audit||[]).filter(a=>a.session===session.id))};
+ }
+ function missionMeetings(root,rows){return rows.slice(-6).map(row=>{
+  const session=meeting(root,row.sessionId),status=session?({completed:'completed',failed:'failed',cancelled:'failed',scheduled:'pending',active:'pending'}[session.status]||'unknown'):row.status==='blocked'?'failed':'unknown';
+  return {id:'mission-meeting-'+row.periodIndex,sourceKind:'mission-meeting',channel:'meeting',arrivalAt:row.attemptedAt,deadlineAt:null,status,failure:row.reason||session?.reasons?.join(',')||null,meeting:session,trace:session?.audit||[]};
+ });}
  const source=()=>`const SOC_PROVIDER_JOURNEYS=(${socProviderJourneysKernel.toString()})();`;
- return {leg,inspect,source};
+ return {leg,inspect,meeting,missionMeetings,source};
 }
 const SOC_PROVIDER_JOURNEYS=socProviderJourneysKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_JOURNEYS;

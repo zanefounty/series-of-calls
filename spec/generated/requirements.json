@@ -36254,7 +36254,8 @@
       "BEH-SOC-284",
       "BEH-SOC-285",
       "BEH-SOC-286",
-      "BEH-SOC-431"
+      "BEH-SOC-431",
+      "BEH-SOC-437"
     ]
   },
   {
@@ -51398,13 +51399,22 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.dash_traffic",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/23-provider-journeys.js",
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-workload-flow.js",
+      "src/game/96-map/90-service-scene.js",
+      "src/game/96-map/95-provider-canvas.js"
+    ],
     "acceptance": [
       "AC-a9710ef5866de341"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-439"
+    ]
   },
   {
     "id": "REQ-1c53c9a2faf91840",
@@ -51503,13 +51513,22 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.link_detail",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/23-provider-journeys.js",
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-workload-flow.js",
+      "src/game/96-map/90-service-scene.js",
+      "src/game/96-map/95-provider-canvas.js"
+    ],
     "acceptance": [
       "AC-1d209182077adea6"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-439"
+    ]
   },
   {
     "id": "REQ-fd6e4dcfe544e313",
@@ -51548,13 +51567,22 @@
     ],
     "statement": "Preserve navigation and responsive layout; replace content with the named UC view, typed metrics and drill-down evidence.",
     "representation": "uc.view.trace_modal",
-    "status": "pending",
-    "implementation": [],
+    "status": "partial",
+    "implementation": [
+      "src/game/23-provider-journeys.js",
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-workload-flow.js",
+      "src/game/96-map/90-service-scene.js",
+      "src/game/96-map/95-provider-canvas.js"
+    ],
     "acceptance": [
       "AC-7c5bd9bef0b07988"
     ],
-    "reason": "Requires implementation and behavioural verification; source preservation is not implementation.",
-    "behaviours": []
+    "reason": "Linked mechanics have executed acceptance evidence; full source-specific fidelity and remaining capabilities still require review.",
+    "behaviours": [
+      "BEH-SOC-439"
+    ]
   },
   {
     "id": "REQ-a68fd888bbf03c4b",
@@ -54158,6 +54186,7 @@
     "status": "partial",
     "implementation": [
       "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-partner-progression.js",
       "src/game/23-provider-regional-integrations.js",
       "src/game/23-provider-support-history.js",
       "src/game/23-provider-uc-cc-integration.js",
@@ -54224,7 +54253,8 @@
       "BEH-SOC-402",
       "BEH-SOC-403",
       "BEH-SOC-435",
-      "BEH-SOC-436"
+      "BEH-SOC-436",
+      "BEH-SOC-437"
     ]
   },
   {
@@ -54366,6 +54396,7 @@
       "content/campaign.json",
       "spec/work-packages/campaign-obligations.json",
       "src/game/23-provider-history.js",
+      "src/game/23-provider-journeys.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
       "src/game/23-provider-scale-observation.js",
@@ -54375,6 +54406,9 @@
       "src/game/55-communications.js",
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/79-provider-scale.js",
+      "src/game/93-ui/79-provider-workload-flow.js",
+      "src/game/96-map/90-service-scene.js",
+      "src/game/96-map/95-provider-canvas.js",
       "src/game/97-provider-shell.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js"
@@ -54393,7 +54427,8 @@
       "BEH-SOC-137",
       "BEH-SOC-139",
       "BEH-SOC-140",
-      "BEH-SOC-438"
+      "BEH-SOC-438",
+      "BEH-SOC-439"
     ]
   },
   {

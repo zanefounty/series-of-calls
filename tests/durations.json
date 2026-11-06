@@ -245,7 +245,7 @@
   "tests/provider-owned-site-sequence-coexistence.test.js": 6.0,
   "tests/provider-owned-sites.test.js": 0.3,
   "tests/provider-panels-i18n.test.js": 0.8,
-  "tests/provider-partner-progression.test.js": 111.4,
+  "tests/provider-partner-progression.test.js": 338.0,
   "tests/provider-pending-capture-exit.test.js": 5.5,
   "tests/provider-persistence.test.js": 1.6,
   "tests/provider-policy-controls.test.js": 0.8,

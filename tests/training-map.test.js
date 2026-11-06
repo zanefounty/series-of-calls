@@ -19,6 +19,7 @@ test('guided and assessed Training open the shared service map with lesson and r
  const x=tab(t);await x.ev('socOpen()');let d=x.dom.window.document;
  assert.equal(x.ev('SCT.state.experience.kind'),'training');assert.ok(d.querySelector('.soc-training-map'));
  assert.ok(d.querySelector('.soc-training-lesson'));assert.ok(d.querySelector('.soc-training-result[role="status"]'));assert.equal(d.querySelector('.soc-training-assessment-label')?.textContent,'Current quick-exercise assessment');
+ for(const span of d.querySelectorAll('.soc-training-result span'))assert.notEqual(x.dom.window.getComputedStyle(span).display,'none','current assessment label and missing evidence must be visible');
  assert.ok(d.querySelectorAll('#soc-narrative [data-narrative]').length>0,'the map keeps the source-linked narrative library visible');assert.ok(d.querySelector('.soc-flavour'),'the selected service keeps its source-linked flavour');
  assert.ok(d.querySelectorAll('.soc-training-node').length>0);assert.equal(d.querySelector('#soc-config'),null);
  assert.equal(d.querySelector('[data-soc="fault"]'),null);assert.equal(d.querySelector('.soc-admin'),null);

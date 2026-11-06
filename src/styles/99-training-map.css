@@ -87,7 +87,7 @@
 #soc-console.is-training-map .soc-training-brief summary{font-size:13px;min-height:28px}
 #soc-console.is-training-map .soc-training-brief p{font-size:14px;margin:7px 0}
 #soc-console.is-training-map .soc-training-result{min-width:120px;max-width:40%;padding:6px 8px;font-size:12px}
-#soc-console.is-training-map .soc-training-result span{display:none}
+#soc-console.is-training-map .soc-training-result span{display:block;overflow-wrap:anywhere}
 #soc-console.is-training-map .soc-training-course{position:absolute;z-index:5;left:14px;bottom:12px;width:min(600px,calc(100% - 380px));max-height:28%;overflow:auto;padding:10px 12px;box-shadow:2px 3px 0 #20364033}
 #soc-console.is-training-map .soc-training-course h3{font-size:15px;margin:0}
 #soc-console.is-training-map .soc-training-course p{font-size:12px;margin:3px 0}
@@ -108,7 +108,7 @@
  #soc-console.is-training-map .soc-training-hud button{padding:7px;font-size:12px;max-width:100px}
  #soc-console.is-training-map .soc-training-lesson{left:10px;top:10px;width:calc(100% - 20px);display:flex;max-height:35%;gap:10px}
  #soc-console.is-training-map .soc-training-result{width:auto;min-width:100px;max-width:38%;font-size:11px}
- #soc-console.is-training-map .soc-training-map-controls{top:140px;left:10px;right:auto;gap:4px}
+ #soc-console.is-training-map .soc-training-map-controls{top:auto;bottom:calc(27% + 22px);left:10px;right:auto;gap:4px}
  #soc-console.is-training-map .soc-training-map-controls button{padding:8px;min-height:44px;font-size:12px}
  #soc-console.is-training-map .soc-training-viewport{padding:200px 12px 230px}
  #soc-console.is-training-map .soc-training-course{left:10px;bottom:10px;width:calc(100% - 20px);max-height:27%;padding:9px 10px}

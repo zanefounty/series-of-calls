@@ -592,7 +592,7 @@
         "rawArtifact": "/tmp/soc-legacy-visible-check.js",
         "sha256": "b6597b0def56e57edaff660e603d073236eb5a0612c97abaeec19372c3e17244"
       },
-      "scope": "Synthetic legacy single-key SP fixture, desktop Chromium, service workers blocked. Visible SPload/resume day30→31; original slot bytes and separate Training/Provider states retained. Earlier harness-selector/navigation failures retained outside Git. Not all legacy schemas, browser engines or human evidence."
+      "scope": "Synthetic legacy single-key SP fixture, desktop Chromium, service workers blocked. Visible SPload/resume day30\u219231; original slot bytes and separate Training/Provider states retained. Earlier harness-selector/navigation failures retained outside Git. Not all legacy schemas, browser engines or human evidence."
     },
     "governance-dd7a3dd": {
       "candidate": "dd7a3ddc9aadc2bf18315cbd7257642f907ac11a",
@@ -756,6 +756,42 @@
         }
       ],
       "scope": "Actual native Web Locks revocation and storage quota failure around one visible paid purchase; exact export, pause/read-only state and explicit recovery in Chromium, Firefox and WebKit at1366x768. Explicit environment fault injection; no simulation state writes. Not a full persistence, mobile, mission or deployment matrix."
+    },
+    "view-stability-20fdeaa-three-engine": {
+      "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+      "status": "six-desktop-mobile-journeys-passed",
+      "rawArtifact": "/tmp/soc-view-stability-three-engine-independent-review.json",
+      "sha256": "b33049e67109bf751557d117ef636e773a5dd5e96358bc86c9735ddde2207ad6",
+      "reports": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.4",
+          "path": "/tmp/soc-view-r2-chromium/provider-browser-20261106000529101.json",
+          "sha256": "1c061b2294c16605c45e367af1f3dfeedb26134c8cc22dfdef6e49609231be47",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "path": "/tmp/soc-view-r2-firefox/provider-browser-20261106000651994.json",
+          "sha256": "e1cc940fbc4d088f6d4f650652e7039dff2705dd5c301b02f79f044cd7ac5b45",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "path": "/tmp/soc-view-r2-webkit/provider-browser-20261106000752165.json",
+          "sha256": "25c832904d7bc341e4fcce24f326d5103d40a9682e1a04955f0391c5b9b9e948",
+          "sourceInputs": 375,
+          "builtFiles": 47,
+          "journeys": 2
+        }
+      ],
+      "scope": "Actual Provider quote review and ordinary worker ticks in Chromium, Firefox and WebKit at1366x768 and390x844. Six paid careers retain a nondefault camera and selected customer during clock7\u21929 with real work. Inputs, focus, expanded detail identities and scroll are checked. Purchase decisions pause time: the literal unfinished purchase draft during ticks clause remains open."
     }
   },
   "tests": {
@@ -4143,15 +4179,15 @@
         "src/game/93-ui/75-provider-panels.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-preferences",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 2,
-        "verified-current-candidate": 1
+        "pending-current-candidate-verification": 1,
+        "verified-current-candidate": 2
       }
     },
     "PLAY-021": {
@@ -8007,7 +8043,7 @@
       "requirement": "PLAY-020",
       "sourceIndex": 1,
       "assertion": "Camera and selected customer persist across ordinary events.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8040,29 +8076,25 @@
       "reviewTestCandidates": [
         "B056"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+        "run": "view-stability-20fdeaa-three-engine",
         "implementation": [
-          "src/game/93-ui/65-service-preferences.js",
+          "src/game/93-ui/10-dom.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
-          "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js"
+          "src/game/97-provider-shell.js"
         ],
-        "tests": [
-          "C003",
-          "C102",
-          "C103",
-          "C108",
-          "C104"
+        "testIds": [
+          "AC-SOC-690",
+          "AC-SOC-691",
+          "AC-SOC-692"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "evidence": "Six actual desktop/mobile browser careers preserve zoom1.1, selected customer and layer across worker-driven clock7\u21929 and actual AGENT_ASSIGNED at8. Inspector focus, expanded sections and nonzero scroll remain stable. Source/build inventories, traces and saves independently verified.",
+        "scope": "Only the camera and selected customer assertion; no claim that paused purchase drafts experience simulation ticks.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Camera and selected customer persist across ordinary events."
+      "remaining": "No remaining clause for this exact assertion at its named candidate. Literal purchase draft during ticks and final integrated gameplay remain separately tracked."
     },
     {
       "id": "PLAY-020-A03",
@@ -8723,7 +8755,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Automated timing measurements exist in older browser receipts. Attach exact current first-choice and first-delivery times without presenting them as human comprehension or 20–30-minute loop evidence."
+      "remaining": "Automated timing measurements exist in older browser receipts. Attach exact current first-choice and first-delivery times without presenting them as human comprehension or 20\u201330-minute loop evidence."
     },
     {
       "id": "PLAY-024-A01",
@@ -12921,7 +12953,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A02",
@@ -12967,7 +12999,7 @@
         ],
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A03",
@@ -13013,7 +13045,7 @@
         "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-047-A04",
@@ -13066,7 +13098,7 @@
         ],
         "result": "supporting-only"
       },
-      "remaining": "Long-play verification is parked at the owner’s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
+      "remaining": "Long-play verification is parked at the owner\u2019s request. Earlier receipts remain historical; neither skipped opt-in tests nor shorter regressions close this assertion."
     },
     {
       "id": "PLAY-048-A01",
@@ -13361,7 +13393,7 @@
           },
           {
             "text": "Renewal/exit",
-            "evidence": "steady-desktop and bothmobile journeys continuecareer→visible-renewal→visible-exit; Swift desktop continues to next segment."
+            "evidence": "steady-desktop and bothmobile journeys continuecareer\u2192visible-renewal\u2192visible-exit; Swift desktop continues to next segment."
           },
           {
             "text": "Shared-resource expansion",
@@ -13611,7 +13643,7 @@
       "id": "PLAY-052-A01",
       "requirement": "PLAY-052",
       "sourceIndex": 0,
-      "assertion": "Provide a 6–8-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
+      "assertion": "Provide a 6\u20138-person counterbalanced protocol measuring clarity, choice, consequence and changed-plan behaviour.",
       "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
@@ -13634,16 +13666,16 @@
           "docs/GAMEPLAY_PILOT_PROTOCOL.md"
         ],
         "tests": [],
-        "evidence": "Manual clause audit of prepared protocol:6–8 empty slots; counterbalanced game/plan/device order; clarity/choice/failure/change measures; consent/anonymized notes;2/5min targets,20–30min loop; observed failure→fix→affected retest.",
+        "evidence": "Manual clause audit of prepared protocol:6\u20138 empty slots; counterbalanced game/plan/device order; clarity/choice/failure/change measures; consent/anonymized notes;2/5min targets,20\u201330min loop; observed failure\u2192fix\u2192affected retest.",
         "scope": "Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
         "result": "passed-exact-assertion",
         "protocolClauses": [
-          "Candidate+recruitment6–8 adults",
-          "Counterbalanced assignment tableP01–P08 empty slots",
+          "Candidate+recruitment6\u20138 adults",
+          "Counterbalanced assignment tableP01\u2013P08 empty slots",
           "Neutral primary/changedconstraint taskcards",
           "Measurement definitions goal/tradeoff/failure/adaptedplan/continue",
           "Consent/datahandling",
-          "Observed failures→fix→affectedretest"
+          "Observed failures\u2192fix\u2192affectedretest"
         ]
       },
       "remaining": "No remaining criterion identified for this exact clause at its named candidate. Provision of protocol is the exact requirement. It does not require real sessions to prove a document exists. Recruitment, actual sessions, human results and final pilot outcome remain explicitly pending.",
@@ -14063,7 +14095,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 105,
+    "assertionsClosed": 107,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14091,8 +14123,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 13
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 12
         }
       },
       {
@@ -14121,8 +14153,8 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 11,
-          "pending-current-candidate-verification": 10,
+          "verified-current-candidate": 12,
+          "pending-current-candidate-verification": 9,
           "parked-owner-request": 4
         }
       }
@@ -14140,7 +14172,7 @@
       {
         "item": "Real pilot participation",
         "status": "pending",
-        "scope": "6–8 actual participants, consent, counterbalanced sessions, observed results and affected retesting; no human outcomes claimed."
+        "scope": "6\u20138 actual participants, consent, counterbalanced sessions, observed results and affected retesting; no human outcomes claimed."
       },
       {
         "item": "Long-play verification",
@@ -14154,8 +14186,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 105,
-      "pending-current-candidate-verification": 50,
+      "verified-current-candidate": 107,
+      "pending-current-candidate-verification": 48,
       "parked-owner-request": 4
     }
   },
@@ -14179,8 +14211,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 106,
-      "pending-current-candidate-verification": 49,
+      "verified-current-candidate": 107,
+      "pending-current-candidate-verification": 48,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14265,6 +14297,19 @@
           "PLAY-046-A03"
         ],
         "scope": "One exact closure only; native lock loss and injected storage failure verified through actual browser controls. No owner exclusions, human participation or long-play result."
+      },
+      {
+        "candidate": "20fdeaa28522fec3fa06c77a83cae5f44f07a65e",
+        "runs": [
+          "view-stability-20fdeaa-three-engine"
+        ],
+        "assertions": [
+          "PLAY-020-A02"
+        ],
+        "newlyVerified": [
+          "PLAY-020-A02"
+        ],
+        "scope": "One exact closure. PLAY-020-A01 remains open; original159 assertions, four owner-parked long-play items and research gates remain unchanged."
       }
     ]
   }

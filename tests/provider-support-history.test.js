@@ -89,9 +89,19 @@ test('AC-SOC-780 private history caches preserve frozen saves and isolate return
  deepFreeze(state);
  const first=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
  assert.equal(first.status,'supported');assert.ok(first.participant.boundaries.length>0,'the real dispatched service-boundary path is present');
+ const reader=HISTORY.createReader(state,hooksFor(state));
+ const minutes=[incident.activatedAt-1,incident.activatedAt,incident.resolvedAt,incident.activatedAt-1];
+ const fresh=minutes.map(minute=>HISTORY.reconstructParticipantAt(state,CUSTOMER,minute,hooksFor(state)));
+ const reused=minutes.map(minute=>reader.participant(CUSTOMER,minute));
+ assert.deepEqual(reused,fresh,'one reader matches fresh reconstruction across nonmonotonic healthy, outage, and recovery minutes');
+ const moved=SOC.dispatch(state,{type:'advance',minutes:1}),newReader=HISTORY.createReader(moved,hooksFor(moved));
+ assert.deepEqual(newReader.participant(CUSTOMER,at),reader.participant(CUSTOMER,at),
+  'a reader for a new dispatched state independently preserves the same historical minute');
  const expected=clone(first);first.participant.boundaries[0].resources.push('forged');first.participant.resources[0].generation=999;first.participant.responsibility.scope.push('forged');
  const second=HISTORY.reconstructParticipantAt(state,CUSTOMER,at,hooksFor());
  assert.deepEqual(second,expected,'mutating one public reconstruction cannot alter the private cached inputs or a later result');
+ const cached=reader.participant(CUSTOMER,at);cached.participant.boundaries[0].resources.push('forged');
+ assert.deepEqual(reader.participant(CUSTOMER,at),expected,'mutating one reader result cannot poison its cached participant');
  assert.equal(JSON.stringify(state),before,'boundary projections leave the frozen dispatched save unchanged');
  assert.equal(SOC.restore(JSON.stringify(state)).revision,state.revision,'the exact unmodified save remains restorable');
 });

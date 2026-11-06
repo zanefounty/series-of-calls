@@ -7,6 +7,7 @@ const SOC=require('../src/game/55-communications.js');
 const PRODUCTS=require('../src/game/45-products.js');
 const PROVIDER_PRODUCTS=require('../src/game/23-provider-products.js');
 const RULES=require('../src/game/24-provider-rules.js');
+const CHANNELS=require('../src/game/47-channels.js');
 const RECIPES=require('../src/game/23-provider-products.js').recipes;
 const PATHS=require('../src/game/23-provider-partner-paths.js');
 const CONTENT=require('../content/provider-partner-paths.v1.json');
@@ -25,6 +26,18 @@ function labPair(path){
  const command={action:'integration',id:path.integrationId,source:path.source.deploymentId,target:path.target.deploymentId,features:[{sourceFeature:path.source.feature,targetFeature:path.target.feature}]};
  s=SOC.dispatch(s,{type:'products',command});
  return {state:s,path};
+}
+function enableApiHumanRoute(state){
+ state=SOC.dispatch(state,{type:'operations',command:{action:'start'}});state=SOC.dispatch(state,{type:'channels',command:{action:'start'}});
+ state=SOC.dispatch(state,{type:'operations',command:{action:'configure',kind:'workflow',config:{authenticated:true,endpointAvailable:true,callbackVerified:true,transientFailures:0,retries:2,backoff:1,timeout:10,deliveryReceipts:true}}});
+ state=SOC.dispatch(state,{type:'channels',command:{action:'configure',channel:'chatterleaf',config:CHANNELS.defaults.chatterleaf}});
+ state=SOC.dispatch(state,{type:'channels',command:{action:'permission',tenant:state.tenant||'orchard-repairs',person:'alex',channel:'chatterleaf',purpose:'service',granted:true,expiresAt:null}});
+ state=SOC.dispatch(state,{type:'channels',command:{action:'webhook-configure',config:{enabled:true,rateLimit:5,retries:3,backoff:1}}});state=tick(state);
+ state=SOC.dispatch(state,{type:'channels',command:{action:'observe',channel:'chatterleaf',authenticated:true,providerAvailable:true,fault:null}});return state;
+}
+function apiDeliveryRows(state,interactionId){
+ const interaction=state.interactions.find(x=>x.id===interactionId),nativeCase=state.cases[interaction?.caseId],caseRecord=nativeCase?{id:interaction.caseId,...nativeCase}:null,operationJob=state.operations?.jobs.find(x=>x.interaction===interactionId),channelAcceptance=state.channels?.acceptances.find(x=>x.interaction===interactionId),deliveryReceipt=state.channels?.receipts.find(x=>x.interaction===interactionId&&x.kind==='delivery'),webhookDelivery=state.channels?.webhooks?.deliveries.find(x=>x.interaction===interactionId);
+ return {interaction,caseRecord,operationJob,channelAcceptance,deliveryReceipt,webhookDelivery};
 }
 
 test('P5 path contract maps declared native product features and costed paid quotes',()=>{
@@ -101,4 +114,19 @@ test('native workplace integration admits the actual voice path and records its 
  s=SOC.dispatch(s,{type:'products',command:{action:'retire',id:path.target.deploymentId}});s=tick(s);s=call(s,'retired-edge');assert.equal(s.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');assert.ok(!s.interactions.at(-1).trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'));
  s=SOC.dispatch(s,{type:'products',command:{action:'reinstate',id:path.target.deploymentId}});s=tick(s,2);s=call(s,'stale-generation');assert.equal(s.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');
  s=SOC.dispatch(s,{type:'products',command:{action:'rebase-integration',id:path.integrationId}});s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});s=call(s,'recovered-edge');const recoveredId=s.interactions.at(-1).id;s=tick(s,6);const recovered=s.interactions.find(i=>i.id===recoveredId);assert.equal(recovered.phase,'resolved');assert.ok(recovered.trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'&&t.targetGeneration>gate.targetGeneration));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+
+test('native API integration binds channel delivery and human digital handoff to one tested case, then recovers after a blocked edge test',()=>{
+ const path=CONTENT.paths.find(p=>p.id==='communications-api-to-engagement-workflow');let {state:s}=labPair(path);s=enableApiHumanRoute(s);
+ s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});let edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'scenario-verified');const passedAt=edge.result.checkedAt;
+ s=SOC.dispatch(s,{type:'products',command:{action:'retire',id:path.target.deploymentId}});s=tick(s);s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'blocked','native edge retest records the target retirement failure');
+ s=SOC.dispatch(s,{type:'interact',channel:'message',from:'alex',to:'service',caseId:'api-recovery-case',account:'chatterleaf',purpose:'service',template:'service-outside-window'});assert.ok(['PRODUCT_FEATURE_UNAVAILABLE','CHANNEL_OR_TEMPLATE'].includes(s.interactions.at(-1).outcome),'a retired target does not deliver the message');
+ s=SOC.dispatch(s,{type:'products',command:{action:'reinstate',id:path.target.deploymentId}});s=tick(s,2);s=SOC.dispatch(s,{type:'products',command:{action:'rebase-integration',id:path.integrationId}});s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'scenario-verified','recovery requires explicit rebase and a new native test');const testAt=edge.result.checkedAt;
+ s=SOC.dispatch(s,{type:'interact',channel:'message',from:'alex',to:'service',caseId:'api-human-case',account:'chatterleaf',purpose:'service',template:'service-outside-window'});const interactionId=s.interactions.at(-1).id;s=tick(s,12);const raw=apiDeliveryRows(s,interactionId),proof=PATHS.validateDelivery(path.id,PATHS.integrationEvidence(s,path.id,testAt),raw);
+ assert.equal(raw.interaction.phase,'resolved');assert.equal(raw.interaction.outcome,'RESOLVED');assert.ok(raw.interaction.trace.some(x=>x.code==='PRODUCT_INTEGRATION_ACCEPTED'&&x.integrationId===path.integrationId&&x.testAt===testAt));assert.ok(raw.interaction.trace.some(x=>x.code==='DELIVERY_QUEUED'&&x.job===raw.operationJob.id));assert.ok(raw.interaction.trace.some(x=>x.code==='CHANNEL_ACCEPTED'&&x.job===raw.operationJob.id));assert.ok(raw.interaction.trace.some(x=>x.code==='CHANNEL_DELIVERY_RECORDED'&&x.job===raw.operationJob.id));assert.ok(raw.interaction.trace.some(x=>x.code==='HUMAN_HANDOFF'&&x.queue==='service'));assert.ok(raw.interaction.trace.some(x=>x.code==='AGENT_ASSIGNED'));assert.equal(raw.operationJob.status,'delivered');assert.equal(raw.channelAcceptance.permissionGranted,true);assert.equal(raw.deliveryReceipt.kind,'delivery');assert.equal(raw.webhookDelivery.status,'delivered');
+ assert.ok(proof,JSON.stringify({testAt,interaction:{id:raw.interaction.id,phase:raw.interaction.phase,outcome:raw.interaction.outcome,startedAt:raw.interaction.startedAt,finishedAt:raw.interaction.finishedAt,worker:raw.interaction.worker,context:raw.interaction.context,tenant:raw.interaction.tenant,trace:raw.interaction.trace},caseRecord:raw.caseRecord,operationJob:raw.operationJob,channelAcceptance:raw.channelAcceptance,deliveryReceipt:raw.deliveryReceipt,webhookDelivery:raw.webhookDelivery,event:PATHS.integrationEvidence(s,path.id,testAt)}));assert.equal(proof.kind,path.deliveryKind);assert.equal(proof.interactionId,interactionId);assert.equal(proof.caseId,'api-human-case');assert.equal(proof.testAt,testAt);assert.equal(proof.deliveredAt,raw.webhookDelivery.deliveredAt);assert.ok(!Object.hasOwn(proof,'apiReceiptId'),'no fictional API receipt is claimed');
+ const forged=structuredClone(raw);forged.operationJob.status='failed';assert.equal(PATHS.validateDelivery(path.id,PATHS.integrationEvidence(s,path.id,testAt),forged),null,'a failed channel job cannot become delivered-work evidence');
+ const noHandoff=structuredClone(raw);noHandoff.interaction.trace=noHandoff.interaction.trace.filter(x=>x.code!=='AGENT_ASSIGNED');assert.equal(PATHS.validateDelivery(path.id,PATHS.integrationEvidence(s,path.id,testAt),noHandoff),null,'delivery without a real human assignment is insufficient');
+ const noIntegration=structuredClone(raw);noIntegration.interaction.trace=noIntegration.interaction.trace.filter(x=>x.code!=='PRODUCT_INTEGRATION_ACCEPTED');assert.equal(PATHS.validateDelivery(path.id,PATHS.integrationEvidence(s,path.id,testAt),noIntegration),null,'unrelated delivery cannot substitute for the tested API integration');
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s,'the recorded API route remains valid through save/restore');
 });

@@ -90,8 +90,8 @@ test('pages: only the release workflow deploys, and only with the GitHub Pages a
   assert.match(rel, /timeout-minutes: 20/, 'publication test shard deadline is retained');
   assert.match(rel, /timeout-minutes: 30/, 'publication build deadline is retained');
   assert.match(rel, /npm run check:release/, 'release choice keeps the full release gate');
-  assert.match(accountability, /scripts\/record-evidence\.py --shard \$\{\{ matrix\.part \}\}\/4/);
-  assert.match(accountability, /scripts\/verify\.py all --acceptance-shard \$\{\{ matrix\.part \}\}\/4/);
+  assert.match(accountability, /scripts\/record-evidence\.py --shard \$\{\{ matrix\.part \}\}\/8/);
+  assert.match(accountability, /scripts\/verify\.py all --acceptance-shard \$\{\{ matrix\.part \}\}\/8/);
   assert.match(accountability, /node-version: 24/);
   assert.match(accountability, /^      - run: npm ci$/m);
   assert.match(accountability, /timeout-minutes: 10/);

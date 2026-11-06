@@ -1,5 +1,5 @@
 /* Communications training console. The optional SP game keeps its existing canvas and controls. */
-const SCT={state:null,slot:'main',selected:'phone',view:{zoom:1},worker:null,job:0,busy:false,locked:false,release:null,seq:0,error:'',checkpoint:null};
+const SCT={state:null,slot:'main',selected:'phone',view:{zoom:1},worker:null,job:0,busy:false,locked:false,release:null,lease:0,seq:0,error:'',checkpoint:null};
 const SCT_KEY='series-of-calls:training:',SCT_LOCK='series-of-calls:training-lock:';
 const SCT_LEGACY_MIGRATED='series-of-calls:legacy-sandbox-migrated:';
 const SCT_LEGACY_ARCHIVE='series-of-calls:training:legacy-main-original';
@@ -7,6 +7,7 @@ const SOC_LABELS={attribution:N_('training.attribution'),license:N_('training.li
 const socT=(key,vars)=>tr(SOC_LABELS[key.toLowerCase()]||key,vars);
 Object.assign(SOC_LABELS,{map:N_('training.map'),services:N_('training.map_services'),select_hint:N_('training.map_select_hint'),inspector:N_('training.map_inspector'),inspector_hint:N_('training.map_inspector_hint'),desired:N_('training.map_desired'),observed:N_('training.map_observed'),enable:N_('training.map_enable'),disable:N_('training.map_disable'),capacity:N_('training.map_capacity'),lower_capacity:N_('training.map_lower_capacity'),raise_capacity:N_('training.map_raise_capacity'),probe:N_('training.map_probe'),interaction:N_('training.map_interaction'),evidence:N_('training.map_evidence'),latest:N_('training.map_latest'),no_evidence:N_('training.map_no_evidence'),all_checks:N_('training.map_all_checks'),no_setting:N_('training.map_no_setting'),zoom_in:N_('training.map_zoom_in'),zoom_out:N_('training.map_zoom_out'),reset_map:N_('training.map_reset')});
 Object.assign(SOC_LABELS,{map_settings:N_('training.map_settings'),map_close_settings:N_('training.map_close_settings'),map_lesson_brief:N_('training.map_lesson_brief')});
+Object.assign(SOC_LABELS,{lock_lost:N_('training.lock_lost')});
 const SOC_TRAINING_PREFERENCE_LABELS={sound:N_('provider.preference_sound'),animation:N_('provider.preference_animation'),reducedMotion:N_('provider.preference_motion'),alerts:N_('provider.preference_alerts'),inputHelp:N_('provider.panels.input_help')};
 const SOC_TRAINING_MAP_LABELS={ready:'ready',unavailable:'unavailable',provisioning:'provisioning',map:'map',services:'services',selectHint:'select_hint',inspector:'inspector',inspectorHint:'inspector_hint',desired:'desired',effective:'effective',observed:'observed',enable:'enable',disable:'disable',capacity:'capacity',lowerCapacity:'lower_capacity',raiseCapacity:'raise_capacity',probe:'probe',interaction:'interaction',minute:'minute',five:'five',meeting:'meeting',disconnect:'disconnect',reconnect:'reconnect',passed:'passed',incomplete:'incomplete',allChecks:'all_checks',noSetting:'no_setting',evidence:'evidence',latest:'latest',noEvidence:'no_evidence',zoomIn:'zoom_in',zoomOut:'zoom_out',resetMap:'reset_map'};
 Object.assign(SOC_LABELS,{map_purpose:N_('training.map_purpose'),map_purpose_text:N_('training.map_purpose_text'),map_condition:N_('training.map_condition'),map_path:N_('training.map_path'),map_dependency:N_('training.map_dependency'),map_open_inspector:N_('training.map_open_inspector'),map_close_inspector:N_('training.map_close_inspector'),map_configuration_detail:N_('training.map_configuration_detail'),map_no_services:N_('training.map_no_services'),map_failed:N_('training.map_failed')});
@@ -17,18 +18,20 @@ function socError(e){SCT.error=String(e.message||e);socRender();}
 function socStore(){
   if(!SCT.state||!SCT.locked)return;
   const key=SCT_KEY+SCT.slot,old=localStorage.getItem(key),previous=old?JSON.parse(old):null;
-  if(previous&&previous.seq>SCT.seq){SCT.locked=false;throw new Error(socT('newer_save'));}
+  if(previous&&previous.seq>SCT.seq){socReleaseSlot();throw new Error(socT('newer_save'));}
   const data=JSON.stringify({app:SOC.APP,seq:SCT.seq+1,state:SCT.state});localStorage.setItem(key,data);SCT.seq++;return data;
 }
 async function socAcquire(){
   if(SCT.locked)return true;
   if(!navigator.locks){SCT.error=socT('locks_required');return false;}
+  const lease=++SCT.lease;
   return new Promise(resolve=>navigator.locks.request(SCT_LOCK+SCT.slot,{ifAvailable:true},async lock=>{
+    if(lease!==SCT.lease){resolve(false);return;}
     if(!lock){SCT.error=socT('slot_busy');resolve(false);return;}
-    SCT.locked=true;resolve(true);await new Promise(done=>SCT.release=done);SCT.locked=false;
-  }).catch(e=>{socError(e);resolve(false);}));
+    SCT.locked=true;resolve(true);await new Promise(done=>SCT.release=done);if(lease===SCT.lease)SCT.locked=false;
+  }).catch(()=>{if(lease===SCT.lease){socReleaseSlot();socError(new Error(socT('lock_lost')));}resolve(false);}));
 }
-function socReleaseSlot(){if(SCT.release){SCT.release();SCT.release=null;}SCT.locked=false;}
+function socReleaseSlot(){SCT.lease++;socCancel();if(SCT.release){const release=SCT.release;SCT.release=null;release();}SCT.locked=false;}
 async function socAdoptLegacyLab(legacyState,legacySeq){
  const previousSlot=SCT.slot;SCT.state=legacyState;SCT.seq=legacySeq;
  const original=localStorage.getItem(SCT_KEY+previousSlot);if(original&&!localStorage.getItem(SCT_LEGACY_ARCHIVE))localStorage.setItem(SCT_LEGACY_ARCHIVE,original);
@@ -56,7 +59,7 @@ async function socOpen(){
   if(!SCT.state)SCT.state=SOC.create();socRender();
 }
 function socCancel(){SCT.job++;SCT.busy=false;if(SCT.worker){SCT.worker.terminate();SCT.worker=null;}}
-function socClose(){socCancel();const el=document.getElementById('soc-console');if(el)el.hidden=true;if(SCT.release){SCT.release();SCT.release=null;}SCT.locked=false;}
+function socClose(){socReleaseSlot();const el=document.getElementById('soc-console');if(el)el.hidden=true;}
 function socApply(command){
   if(!SCT.locked)throw new Error(socT('read_only'));
   const selected=SCT.state.portfolio?.selectedCustomer;
@@ -217,5 +220,5 @@ function socClick(action,id){
   if(action==='export-legacy'){const original=localStorage.getItem(SCT_LEGACY_ARCHIVE);if(!original)throw new Error('LEGACY_SAVE_NOT_FOUND');const a=document.createElement('a'),url=URL.createObjectURL(new Blob([original],{type:'application/json'}));a.href=url;a.download='series-of-calls-legacy-sandbox-save.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 }
 Object.assign(ACT,{training:()=>socOpen()});
-addEventListener('storage',e=>{if(e.key===SCT_KEY+SCT.slot&&SCT.state){try{if(!e.newValue||JSON.parse(e.newValue).seq>SCT.seq){socCancel();SCT.locked=false;if(SCT.release){SCT.release();SCT.release=null;}SCT.error=socT('newer_save');socRender();}}catch(error){socError(error);}}});
+addEventListener('storage',e=>{if(e.key===SCT_KEY+SCT.slot&&SCT.state){try{if(!e.newValue||JSON.parse(e.newValue).seq>SCT.seq){socReleaseSlot();SCT.error=socT('newer_save');socRender();}}catch(error){socError(error);}}});
 addEventListener('pagehide',()=>{try{socStore();}catch(e){}socClose();});

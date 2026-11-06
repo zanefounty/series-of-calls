@@ -6880,6 +6880,7 @@
 "training.lesson_government":"Inspect the recording and transcript locations. Select the scenario region for speech processing, then test again. These are fictional contractual boundaries, not real procurement approvals.",
 "training.lesson_smb":"More sessions do not create trained people. Open People Orchard, provision people and agent entitlements, then send an enquiry. Advance time through handling and wrap-up. Check the case context.",
 "training.license":"MIT licence",
+"training.lock_lost":"Se perdió el bloqueo de este entrenamiento. La edición se detuvo; el estado actual aún puede exportarse.",
 "training.locks_required":"This browser cannot acquire a safe editing lock. Export is available in read-only mode.",
 "training.map":"Training map",
 "training.map_all_checks":"All lesson checks passed.",

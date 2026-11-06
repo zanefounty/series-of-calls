@@ -25,9 +25,11 @@ test('AC-SOC-771 historical configuration reads are pure on frozen inputs and re
  for(const at of [0,s.clock]){
   const read=AUTH.configurationReaderAt(s.providerCampaign,c,root,at,{catalogue:SOC.catalogue});
   const first=read('carrier');assert.ok(first);const original=structuredClone(first);
-  first.config.routes?.push({prefix:'+999',target:'forged'});
-  const provenance=read.provenanceAt('carrier');if(provenance)provenance.writes.push({projectId:'forged',at,generation:999});
+  assert.equal(typeof first.config.enabled,'boolean');first.config.enabled=!first.config.enabled;
+  const provenance=read.provenanceAt('carrier'),originalProvenance=structuredClone(provenance);
+  assert.ok(provenance);provenance.writes.push({projectId:'forged',at,generation:999});
   assert.deepEqual(read('carrier'),original,'mutating one returned projection must not alter future reads');
+  assert.deepEqual(read.provenanceAt('carrier'),originalProvenance,'returned provenance must also be isolated');
   assert.equal(read('not-a-resource'),null);
  }
  assert.equal(JSON.stringify(s),before,'historical reads leave even frozen simulation inputs unchanged');

@@ -1,6 +1,6 @@
-# Gameplay acceptance reconciliation — 6 November 2026
+# Gameplay acceptance reconciliation — 7 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **122 exact assertions verified, 33 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **126 exact assertions verified, 29 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
@@ -8,8 +8,41 @@ The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **122 exact
 | 2 — service truth and SMB | 15 | 6 | 0 |
 | 3 — map and interaction | 17 | 7 | 0 |
 | 4 — strategy and growth | 16 | 5 | 0 |
-| 5 — missions and ecosystem | 33 | 7 | 0 |
-| 6 — compatibility and delivery | 16 | 5 | 4 |
+| 5 — missions and ecosystem | 35 | 5 | 0 |
+| 6 — compatibility and delivery | 18 | 3 | 4 |
+
+Four additional exact clauses are now recorded for merged candidate `a59d67b`:
+
+- **PLAY-033-A03:** four Enterprise migration journeys retain delivered service,
+  actual settlement amounts and renewal at minute 360.
+- **PLAY-039-A03:** fourteen family paths use shared contextual controls and
+  demonstrate distinct capability, limitation and recovery across 84 journeys.
+- **PLAY-050-A02:** twelve Enterprise, Government and Defence alternatives run
+  through their distinct constraints. Ten renew/expand; two Defence alternatives
+  recover technically and exit with retained commercial loss.
+- **PLAY-051-A02:** fresh main and publication workflows pass the required preview
+  checks, including 826 registered acceptance IDs, eight independent replays,
+  mutation checks, translations, build and security. The full-product release
+  gate was skipped for preview and is not reported as passed.
+
+The first three use actual `f55bec3` browser execution, explicitly linked through
+runtime source equivalence to `713ab8b` and complete-tree equivalence to merged
+`a59d67b`. They are not relabelled as new browser runs. The ledger links the
+independently checked reports and hashes. Earlier closures retain their own
+candidate and scope.
+
+[Protected publication run 42280527440](https://github.com/zanefounty/series-of-calls/actions/runs/42280527440)
+deployed `a59d67b` with all 29 jobs passing. Fresh public verification matched all
+47 files to the downloaded artifact, passed both SMB strategies on desktop and
+mobile, and verified old-cache upgrade, offline reload at three sizes and saved
+browser-profile reopen. Two initial verifier failures remain preserved: a
+reproduced async-predicate polling defect in the pinned browser tool was fixed in
+the external verifier; the game was unchanged. No human participation is claimed.
+
+Eight Provider proof adapters remain: L9, L10, L11, L13, P5, TB, T10 and T1. The
+remaining 29 assertions require their specific control, resource, lifecycle or
+source-evidence checks. Four long-play assertions remain owner-parked, not passed
+or excluded. The human pilot and broader catalogue/research work remain separate.
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 

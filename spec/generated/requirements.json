@@ -36566,6 +36566,7 @@
     "status": "partial",
     "implementation": [
       "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-incident-sequence.js",
       "src/game/23-provider-integration-assurance.js",
       "src/game/23-provider-regional-integrations.js",
       "src/game/23-provider-regional-support.js",
@@ -36578,6 +36579,7 @@
       "src/game/55-communications.js",
       "src/game/84-portfolio-ui.js",
       "src/game/93-ui/78-provider-policy-controls.js",
+      "src/game/93-ui/79-provider-incidents.js",
       "src/game/97-training.js"
     ],
     "acceptance": [
@@ -36602,7 +36604,8 @@
       "BEH-SOC-388",
       "BEH-SOC-403",
       "BEH-SOC-407",
-      "BEH-SOC-408"
+      "BEH-SOC-408",
+      "BEH-SOC-433"
     ]
   },
   {
@@ -62227,6 +62230,7 @@
       "src/game/23-provider-followup-retry-archive.js",
       "src/game/23-provider-history.js",
       "src/game/23-provider-incident-diagnosis.js",
+      "src/game/23-provider-incident-sequence.js",
       "src/game/23-provider-journeys.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
@@ -62336,7 +62340,8 @@
       "BEH-SOC-419",
       "BEH-SOC-422",
       "BEH-SOC-424",
-      "BEH-SOC-426"
+      "BEH-SOC-426",
+      "BEH-SOC-433"
     ]
   },
   {

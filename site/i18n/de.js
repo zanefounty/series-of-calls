@@ -4552,6 +4552,7 @@
 "provider.incident.recurring":"Additional recurring cost per period",
 "provider.incident.responses":"Compare responses",
 "provider.incident.review":"Review current quote",
+"provider.incident.sequence":"Follow-up incident {ordinal}: scheduled after recovery and more delivered customer work, with at least {minutes} minutes between incidents.",
 "provider.incident.service":"Affected service",
 "provider.incident.setup":"One-time response cost",
 "provider.incident.staff":"Shared engineers / support",

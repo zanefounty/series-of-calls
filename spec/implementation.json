@@ -7395,6 +7395,20 @@
       ],
       "status": "partial",
       "scope": "Paid resilient service can complete profitable work while an unresolved primary incident still blocks the public funded-expansion victory. Legitimate paid repair permits subsequent victory. At most two support-origin arrival events per customer remain pinned in the bounded Provider event journal, preserving actual support history despite holes caused by pinned commercial events. Older validated pruned origins retain their prior fallback; no event or historical work is invented."
+    },
+    {
+      "id": "BEH-SOC-412",
+      "sources": [
+        "progress.goal.scrub"
+      ],
+      "implementation": [
+        "src/game/38-admission-security.js"
+      ],
+      "testIds": [
+        "AC-SOC-773"
+      ],
+      "status": "partial",
+      "scope": "A legitimate connected endpoint voice call retains its existing security reservation through dispatch, save restore and worker execution. Actual minutes settle once against the core ledger; a rolling spend cap terminates the call before an over-limit minute accrues. This repairs the native security prerequisite only; paid Provider abuse protection, authored abuse, progression award and useful unlock remain pending."
     }
   ]
 }

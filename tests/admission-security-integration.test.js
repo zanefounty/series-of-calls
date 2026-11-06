@@ -20,3 +20,33 @@ test('AC-SOC-198 rolling spend includes a live calls previous minutes and a bloc
  assert.equal(next.interactions.find(i=>i.id===id).outcome,'DESTINATION_WINDOW_LIMIT');assert.equal(next.ledger.at(-1).usage,0);assert.equal(next.admissionSecurity.settlements.find(x=>x.interactionId===id).cents,2);assert.equal(next.admissionSecurity.reservations.length,0);assert.equal(next.workforceOps.assignments.filter(a=>['voice','digital','wrap'].includes(a.status)).length,0);
  assert.equal(SOC.calculate(next).admissionSecurity.assessment.passed,false);assert.deepEqual(SOC.restore(JSON.stringify(next)),next);
 });
+
+test('AC-SOC-773 secured endpoint calls retain live reservations, settle once and enforce spend before the next minute',()=>{
+ const endpoint=cap=>{
+  let s=setup(cap);
+  s=SOC.dispatch(s,{type:'configure',id:'phone',config:{routes:[{prefix:'+61',target:'desk'}]}});
+  s=SOC.dispatch(s,{type:'advance',minutes:1});
+  return SOC.dispatch(s,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'secured-endpoint',durationMinutes:3});
+ };
+ const context={};vm.createContext(context);vm.runInContext(SOC.workerSource()+';globalThis.engine=SOC;',context);
+ for(const cap of [1000,2]){
+  let s=endpoint(cap);const id=s.interactions.at(-1).id;
+  assert.equal(s.interactions.at(-1).phase,'connected');
+  assert.equal(s.admissionSecurity.reservations.filter(x=>x.interactionId===id).length,1);
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+  const cmd={type:'advance',minutes:1},saved=JSON.stringify(s);
+  s=SOC.dispatch(s,cmd);assert.equal(JSON.stringify(context.engine.dispatch(JSON.parse(saved),cmd)),JSON.stringify(s));
+  assert.equal(s.admissionSecurity.reservations.find(x=>x.interactionId===id).usage.length,1);
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+  s=SOC.dispatch(s,{type:'advance',minutes:2});
+  const call=s.interactions.find(x=>x.id===id),settlements=s.admissionSecurity.settlements.filter(x=>x.interactionId===id),units=cap===2?1:3;
+  assert.equal(call.phase,cap===2?'failed':'resolved');
+  assert.equal(call.outcome,cap===2?'DESTINATION_WINDOW_LIMIT':'CONNECTED');
+  assert.equal(settlements.length,1);assert.equal(settlements[0].cents,units*2);
+  assert.equal(s.ledger.filter(x=>x.voiceInteractions?.includes(id)).length,units);
+  assert.equal(s.admissionSecurity.reservations.length,0);
+  const old=structuredClone(settlements[0]);s=SOC.dispatch(s,{type:'advance',minutes:1});
+  assert.deepEqual(s.admissionSecurity.settlements.filter(x=>x.interactionId===id),[old]);
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ }
+});

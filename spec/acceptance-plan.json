@@ -268,7 +268,8 @@
     ],
     "tests/admission-security-integration.test.js": [
       "AC-SOC-197",
-      "AC-SOC-198"
+      "AC-SOC-198",
+      "AC-SOC-773"
     ],
     "tests/security-ui.test.js": [
       "AC-SOC-199",

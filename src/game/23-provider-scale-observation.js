@@ -34,7 +34,7 @@ function socProviderScaleObservationKernel(){
   s.lifecycleVersion=RUN_VERSION;const run={id:'provider-scale-'+s.nextId++,version:RUN_VERSION,customerId:request.customerId,operationId:request.operationId,status:'open',projectId:project.id,postingId:project.postingId,startedAt:window.startedAt,dueAt:window.dueAt,nativeWindowId:window.id,mode:t.mode,paidJobs:[],attempts:[],result:null};
   s.runs.push(run);if(run.mode==='workflow')emitDue(s,run.id,h);return copy(run);
  }
- function scheduleStopAuthority(s,r,h={}){const get=h.scheduleStopAuthority;if(typeof get!=='function')return null;const stop=get(s,r);if(stop===null||stop===undefined)return null;if(!exact(stop,['kind','at',...(stop.kind==='provider-default'?[]:['projectId'])])||!['provider-default','resource-retirement'].includes(stop.kind)||!int(stop.at,r.startedAt))fail('INVALID_PROVIDER_SCALE_STOP_AUTHORITY');return stop;}
+ function scheduleStopAuthority(s,r,h={}){const get=h.scheduleStopAuthority;if(typeof get!=='function')return null;const stop=get(s,r);if(stop===null||stop===undefined)return null;if(!exact(stop,['kind','at',...(stop.kind==='provider-default'?[]:['projectId'])])||!['provider-default','resource-retirement'].includes(stop.kind)||!int(stop.at,r.startedAt)||stop.at>need(h,'clock')(s))fail('INVALID_PROVIDER_SCALE_STOP_AUTHORITY');return stop;}
  function stopSchedule(s,runId,stop,h={}){
   const r=runFor(state(s),runId);if(!r||r.status!=='open')fail('PROVIDER_SCALE_RUN_REQUIRED');const authority=scheduleStopAuthority(s,r,h);if(!authority||!same(authority,stop))fail('PROVIDER_SCALE_STOP_NOT_AUTHORIZED');
   if(r.scheduleStop&&!same(r.scheduleStop,stop))fail('PROVIDER_SCALE_STOP_ALREADY_RECORDED');r.scheduleStop=copy(stop);return copy(r.scheduleStop);

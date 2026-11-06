@@ -1215,7 +1215,8 @@
       "AC-SOC-844"
     ],
     "tests/provider-scale-paid.test.js": [
-      "AC-SOC-848"
+      "AC-SOC-848",
+      "AC-SOC-870"
     ],
     "tests/provider-scale-ui.test.js": [
       "AC-SOC-849"

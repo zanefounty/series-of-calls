@@ -7907,10 +7907,11 @@
         "AC-SOC-856",
         "AC-SOC-857",
         "AC-SOC-858",
-        "AC-SOC-866"
+        "AC-SOC-866",
+        "AC-SOC-870"
       ],
       "status": "partial",
-      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal."
+      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal. Version-two paid windows cancel un-emitted tasks after an effective required-product retirement, retain actual outcomes and metered usage for emitted work, and cannot pass after cancellation. The quote discloses the active/future workload. Retained stop authority and exact paid recommissioning/new-window behavior are validated; recording-only retirement preserves the unrelated voice schedule. Legacy version-one non-retired saves remain supported; version markers never authorize resumed unsupported emission. Customer exit discloses and retains its committed paid batch and actual usage while stopping new ordinary demand."
     },
     {
       "id": "BEH-SOC-436",

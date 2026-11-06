@@ -23,7 +23,7 @@
   'blocker_active_calls':[N_('provider.security.blocker.active_calls'),'Drain active voice calls before the first control purchase.'],
   'blocker_carrier':[N_('provider.security.blocker.carrier'),"Commission and restore the customer's carrier service first."],
   'blocker_phone':[N_('provider.security.blocker.phone'),"Commission and restore the customer's phone route first."],
-  'blocker_pending':[N_('provider.security.blocker.pending'),'This control already has a funded project in progress.'],
+  'blocker_pending':[N_('provider.security.blocker.pending'),'This control already has a funded purchase.'],
   'blocker_customer':[N_('provider.security.blocker.customer'),'The customer must be active before ordering this control.'],
   'blocker_cash':[N_('provider.security.blocker.cash'),'The provider needs more available cash for this quote.'],
   'blocker_engineers':[N_('provider.security.blocker.engineers'),'The provider needs an available engineer for this work.'],
@@ -54,7 +54,12 @@
   'native_optional':[N_('provider.security.native.optional'),'Optional'],
   'native_prefixes':[N_('provider.security.native.prefixes'),'Allowed destination prefixes'],
   'native_call_cap':[N_('provider.security.native.call_cap'),'Per-call spend limit'],
-  'native_rolling_cap':[N_('provider.security.native.rolling_cap'),'Rolling spend limit']
+  'native_rolling_cap':[N_('provider.security.native.rolling_cap'),'Rolling spend limit'],
+  'native_attempt_value':[N_('provider.security.native.attempt_value'),'{count} attempts per second'],
+  'native_bytes_value':[N_('provider.security.native.bytes_value'),'{count} bytes'],
+  'native_rolling_value':[N_('provider.security.native.rolling_value'),'{amount} / {minutes} minutes'],
+  'native_mode_always':[N_('provider.security.native.mode_always'),'Always'],
+  'native_mode_on_demand':[N_('provider.security.native.mode_on_demand'),'On demand']
  });
  const controls={network:'control_network',sip:'control_sip',destination:'control_destination'};
  const operationControls={'provider-security-network':'network','provider-security-sip':'sip','provider-security-destination':'destination'};
@@ -89,16 +94,17 @@
   if(control==='network'){
    rows.push([text('native_clean_capacity','Clean packet capacity'),`${number(config.capacityPps)} PPS`]);
    rows.push([text('native_filtered_capacity','Filtered packet capacity'),`${number(config.mitigationPps)} PPS`]);
-   rows.push([text('native_mode','Activation mode'),config.activationMode||'—']);
+   const mode={always:text('native_mode_always','Always'),'on-demand':text('native_mode_on_demand','On demand')}[config.activationMode]||'—';
+   rows.push([text('native_mode','Activation mode'),mode]);
   }else if(control==='sip'){
-   rows.push([text('native_attempt_rate','Signalling rate'),`${number(config.attemptsPerSecond)} attempts / second`]);
-   rows.push([text('native_message_limit','Maximum message size'),`${number(config.maxMessageBytes)} bytes`]);
+   rows.push([text('native_attempt_rate','Signalling rate'),text('native_attempt_value','{count} attempts per second',{count:number(config.attemptsPerSecond)})]);
+   rows.push([text('native_message_limit','Maximum message size'),text('native_bytes_value','{count} bytes',{count:number(config.maxMessageBytes)})]);
    rows.push([text('native_methods','Allowed methods'),(config.allowedMethods||[]).join(', ')||'—']);
    rows.push([text('native_peer_authentication','Peer authentication'),config.requireAuthenticatedPeer?text('native_required','Required'):text('native_optional','Optional')]);
   }else if(control==='destination'){
    rows.push([text('native_prefixes','Allowed destination prefixes'),(config.allowedPrefixes||[]).join(', ')||'—']);
    rows.push([text('native_call_cap','Per-call spend limit'),money(config.perCallMaxCents)]);
-   rows.push([text('native_rolling_cap','Rolling spend limit'),`${money(config.windowSpendLimitCents)} / ${number(config.windowMinutes)} min`]);
+   rows.push([text('native_rolling_cap','Rolling spend limit'),text('native_rolling_value','{amount} / {minutes} minutes',{amount:money(config.windowSpendLimitCents),minutes:number(config.windowMinutes)})]);
   }
   return `<dl class="provider-security-native">${rows.map(([name,value])=>`<dt>${esc(name)}</dt><dd>${esc(value)}</dd>`).join('')}</dl>`;
  }
@@ -107,7 +113,7 @@
   const fallbackName=row.name||planId||'Paid offer',name=text(offers[planId]||'offer_unknown',fallbackName),lead=quote.leadMinutes??quote.workMinutes??row.workMinutes,engineers=quote.engineers??row.engineers,support=quote.support??row.support,setup=quote.setupCents??row.setupCents,period=quote.periodCents??row.periodCents;
   return `<article class="provider-security-offer ${available?'is-available':'is-blocked'}" data-security-offer="${esc(control)}:${esc(planId)}"><h4>${esc(name)}</h4><p>${esc(text('offer_cost','{setup} setup · {period} / period',{setup:money(setup),period:money(period)}))}</p><p>${esc(text('offer_delivery','{lead} sim min · {engineers} engineers + {support} support',{lead:number(lead),engineers:number(engineers),support:number(support)}))}</p>${nativeRows(control,plan?.nativeConfig)}${blockers.length?`<p class="provider-blocked" data-security-blockers>${esc(blockers.map(blockerLabel).join(' '))}</p>`:''}<button type="button" data-provider-action="operation" data-operation="${esc(operationId)}" data-id="${esc(customerId)}" data-operation-config="${esc(JSON.stringify({planId}))}"${available?'':' disabled'}>${esc(text('review_quote','Review paid quote'))}</button></article>`;
  }
- function aggregate(operations){const quote=(operations||[]).map(row=>row.quote?.commercial?.security).find(value=>value&&Number.isFinite(value.totalMinimumSetupCents)&&Number.isFinite(value.totalMinimumPeriodCents));return quote||null;}
+ function aggregate(operations){const quotes=(operations||[]).map(row=>row.quote?.commercial?.security).filter(value=>value&&Number.isFinite(value.totalMinimumSetupCents)&&Number.isFinite(value.totalMinimumPeriodCents));quotes.sort((a,b)=>(a.totalMinimumSetupCents+a.totalMinimumPeriodCents)-(b.totalMinimumSetupCents+b.totalMinimumPeriodCents));return quotes[0]||null;}
  function render(customer,operations=[],selection=null){
   if(!customer?.id||!customer.security)return '';
   const security=customer.security,rows=(operations||[]).filter(row=>row.securityControl||controlForOperation(row.operationId||row.id)),known=security.controls||{},effectiveCount=Number.isSafeInteger(security.effectiveControlCount)?security.effectiveControlCount:controlOrder.filter(name=>known[name]?.status==='effective').length,started=typeof security.nativePackStarted==='boolean'?security.nativePackStarted:controlOrder.some(name=>known[name]?.status&&known[name].status!=='not-purchased'),allReady=security.voiceAdmissionReady===true,voiceBlocked=typeof security.voiceAdmissionBlocked==='boolean'?security.voiceAdmissionBlocked:started&&!allReady,min=aggregate(rows),cards=controlOrder.map(control=>{

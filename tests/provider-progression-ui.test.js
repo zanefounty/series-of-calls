@@ -32,6 +32,7 @@ test('AC-PROVIDER-PROGRESSION-UI-001 renders all 13 levels and 19 goals as compa
  assert.match(host.textContent,/not claimed and unlocks nothing/i);
  assert.match(host.textContent,/No Provider customer has been accepted yet/);
  assert.ok(!host.querySelector('button'));
+ const partner=host.querySelector('[data-progression-id="progress.goal.p5"]');assert.match(partner.textContent,/Supported, tested integrations: 0 of 5/);assert.match(partner.textContent,/Workplace-to-suite calling integration is not available/);assert.match(partner.textContent,/Communications API-to-engagement/);assert.match(partner.textContent,/Local speech product/);
  dom.window.close();
 });
 

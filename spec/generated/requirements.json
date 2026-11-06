@@ -36212,10 +36212,17 @@
     "representation": "ucc.goal.p5",
     "status": "partial",
     "implementation": [
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-integration-support.js",
+      "src/game/23-provider-partner-progression.js",
+      "src/game/23-provider-progression.js",
+      "src/game/25-provider-campaign.js",
       "src/game/32-site-operations.js",
       "src/game/33-calling-achievements.js",
       "src/game/41-progression.js",
-      "src/game/55-communications.js"
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/79-provider-progression.js"
     ],
     "acceptance": [
       "AC-d0a7af486343d8c4"
@@ -36233,7 +36240,8 @@
       "BEH-SOC-283",
       "BEH-SOC-284",
       "BEH-SOC-285",
-      "BEH-SOC-286"
+      "BEH-SOC-286",
+      "BEH-SOC-431"
     ]
   },
   {
@@ -53043,6 +53051,9 @@
       "content/provider-campaigns.json",
       "scripts/provider-browser.js",
       "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-integration-support.js",
+      "src/game/23-provider-partner-progression.js",
+      "src/game/23-provider-progression.js",
       "src/game/23-provider-room-integration.js",
       "src/game/24-provider-rules.js",
       "src/game/25-provider-campaign.js",
@@ -53052,6 +53063,7 @@
       "src/game/87-advanced-admin-ui.js",
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/78-provider-room-integration.js",
+      "src/game/93-ui/79-provider-progression.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -53297,6 +53309,9 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-finance-view.js",
       "src/game/23-provider-integration-assurance.js",
+      "src/game/23-provider-integration-support.js",
+      "src/game/23-provider-partner-progression.js",
+      "src/game/23-provider-progression.js",
       "src/game/23-provider-support-history.js",
       "src/game/25-provider-campaign.js",
       "src/game/29-managed-operations.js",
@@ -53312,6 +53327,7 @@
       "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/78-provider-policy-controls.js",
       "src/game/93-ui/79-provider-finance.js",
+      "src/game/93-ui/79-provider-progression.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
       "tests/campaign.test.js",

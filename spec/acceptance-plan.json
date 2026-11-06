@@ -1157,6 +1157,10 @@
     ],
     "tests/provider-meeting-join.test.js": [
       "AC-SOC-818"
+    ],
+    "tests/provider-partner-progression.test.js": [
+      "AC-SOC-816",
+      "AC-SOC-817"
     ]
   },
   "inputs": [
@@ -1763,6 +1767,10 @@
     "tests/admission-security-event-retention.test.js",
     "content/provider-security-abuse.v2.json",
     "content/provider-security-managed.v1.json",
-    "tests/provider-meeting-join.test.js"
+    "tests/provider-meeting-join.test.js",
+    "tests/provider-partner-progression.test.js",
+    "tests/provider-integration-support.test.js",
+    "src/game/23-provider-integration-support.js",
+    "src/game/23-provider-partner-progression.js"
   ]
 }

@@ -12,6 +12,7 @@ function socProviderProgressionFactsKernel(){
  function regionalSupportApi(){return typeof SOC_PROVIDER_REGIONAL_SUPPORT!=='undefined'?SOC_PROVIDER_REGIONAL_SUPPORT:require('./23-provider-regional-support.js');}
  function ownedSitesApi(){return typeof SOC_PROVIDER_OWNED_SITES!=='undefined'?SOC_PROVIDER_OWNED_SITES:require('./23-provider-owned-sites.js');}
  function caseFollowupApi(){return typeof SOC_PROVIDER_CASE_FOLLOWUP!=='undefined'?SOC_PROVIDER_CASE_FOLLOWUP:require('./23-provider-case-followup.js');}
+ function partnerProgressionApi(){return typeof SOC_PROVIDER_PARTNER_PROGRESSION!=='undefined'?SOC_PROVIDER_PARTNER_PROGRESSION:require('./23-provider-partner-progression.js');}
  function securityApi(){return typeof SOC_PROVIDER_SECURITY!=='undefined'?SOC_PROVIDER_SECURITY:require('./23-provider-security.js');}
  function dedicatedInterconnectApi(){return typeof SOC_PROVIDER_DEDICATED_INTERCONNECT!=='undefined'?SOC_PROVIDER_DEDICATED_INTERCONNECT:require('./23-provider-dedicated-interconnect.js');}
  const goalId=x=>`progress.goal.${x}`,levelId=x=>`progress.progression-level.${x}`;
@@ -451,6 +452,7 @@ function socProviderProgressionFactsKernel(){
   const dedicatedMissing=dedicatedReady?[]:[...new Set(dedicatedCandidates.flatMap(row=>row.result.missing||[]))];
   goals[goalId('pn')]={id:goalId('pn'),name:'Dedicated carrier interconnect',status:dedicatedReady?'ready':'incomplete',missing:dedicatedReady?[]:(dedicatedMissing.length?dedicatedMissing:[MISSING['dedicated-carrier-topology'],MISSING['directional-acceptance']]),evidence:dedicatedReady?copy(dedicatedReady.result.evidence):null};
   proofRequirements.dedicatedInterconnect=fact(dedicatedReady?'ready':'incomplete',goals[goalId('pn')].missing,goals[goalId('pn')].evidence||{});
+  const partners=partnerProgressionApi().evaluate(s,hooks.partnerHooks||hooks);goals[goalId('p5')]={id:goalId('p5'),name:'Five working partner services',status:partners.status,missing:copy(partners.missing),progress:{count:partners.count,target:partners.target},evidence:partners.status==='ready'?copy(partners.evidence):null};proofRequirements.partnerIntegrations=fact(partners.status,partners.missing,partners.evidence);
   const security=securityApi().progression(s,hooks);goals[goalId('scrub')]={id:goalId('scrub'),name:'Communications abuse defences',...security};proofRequirements.security=fact(security.status,security.missing,security.evidence||{});
   const followupHooks=typeof hooks.caseFollowupHooks==='function'?hooks.caseFollowupHooks(s):hooks.caseFollowupHooks||hooks;
   const followup=p.caseFollowupVersion===1?p.customers.filter(c=>['active','renewal'].includes(c.status)).map(c=>caseFollowupApi().evaluate(s,c.id,followupHooks)).find(row=>row.status==='ready'&&row.evidence):null;

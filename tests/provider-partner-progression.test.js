@@ -122,6 +122,8 @@ test('a real paid room delivery is excluded when the current support contract om
 test('AC-SOC-816 a paid bridge owner and separately tested room edge rebase once and retain proof after retirement',()=>{
  let s=paidRoomPartnerJourney(),customerId='next-1-customer',hooks=roomHooks();
  const firstProject=operationProject(s,roomOperationId,customerId),first=P5.evaluate(s,hooks);
+ const beforeProjection=JSON.stringify(s),visible=SOC.provider.inspect(s).progression.goals['progress.goal.p5'];assert.deepEqual(visible.progress,{count:1,target:5});assert.equal(visible.status,'incomplete');assert.equal(JSON.stringify(s),beforeProjection,'goal projection cannot change the delivered service');
+ const vm=require('node:vm'),worker={input:structuredClone(s)};vm.createContext(worker);vm.runInContext(SOC.workerSource()+';globalThis.workerGoal=SOC.provider.inspect(input).progression.goals["progress.goal.p5"];',worker);assert.deepEqual(JSON.parse(JSON.stringify(worker.workerGoal)),visible,'serialized worker projects the same actual paid integration count');
  assert.equal(first.status,'incomplete');assert.equal(first.count,1,JSON.stringify({missing:first.missing,integrations:first.integrations,room:ROOM.projectEvidence(s,firstProject.id,roomHooks().room),support:SUPPORT.supportFor(s,customerId,['room'],{hooks}),responsibilities:RESPONSIBILITY.responsibilities(s,customerId,{observeResource:roomHooks().observeResource}),project:firstProject}));
  assert.deepEqual(first.evidence.integrations.map(x=>x.key),['room-to-interop:d-ms-meetings-room:room-devices->d-cisco-meetings-interoperability:interop-join']);
  assert.equal(first.evidence.integrations[0].projectId,firstProject.id);

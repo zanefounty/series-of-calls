@@ -210,6 +210,7 @@
   "tests/provider-incident-inspector.test.js": 2.0,
   "tests/provider-incident-sequence-dispatch.test.js": 5.9,
   "tests/provider-incident-sequence.test.js": 0.1,
+  "tests/provider-inspection-read-views.test.js": 5.428,
   "tests/provider-inspector-state.test.js": 1.9,
   "tests/provider-integration-assurance.test.js": 0.4,
   "tests/provider-integration-support.test.js": 38.0,
@@ -271,6 +272,7 @@
   "tests/provider-progression-regional-claims-t2.test.js": 314.052,
   "tests/provider-progression-ui.test.js": 1.1,
   "tests/provider-qualification-boundary.test.js": 8.0,
+  "tests/provider-receipt-waits.test.js": 7.849,
   "tests/provider-recovery-configuration-history.test.js": 8.0,
   "tests/provider-refused-quotes-ui.test.js": 0.8,
   "tests/provider-regional-integrations.test.js": 57.1,
@@ -412,6 +414,5 @@
   "tests/workforce-operations.test.js": 0.2,
   "tests/workforce-quality-integration.test.js": 4.0,
   "tests/workforce-quality-ui.test.js": 3.7,
-  "tests/workforce-quality.test.js": 0.2,
-  "tests/provider-receipt-waits.test.js": 7.849
+  "tests/workforce-quality.test.js": 0.2
 }

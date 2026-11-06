@@ -5,6 +5,8 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const SOC=require('../src/game/55-communications.js');
 const PRODUCTS=require('../src/game/45-products.js');
+const PROVIDER_PRODUCTS=require('../src/game/23-provider-products.js');
+const RULES=require('../src/game/24-provider-rules.js');
 const RECIPES=require('../src/game/23-provider-products.js').recipes;
 const PATHS=require('../src/game/23-provider-partner-paths.js');
 const CONTENT=require('../content/provider-partner-paths.v1.json');
@@ -38,10 +40,20 @@ test('P5 path contract maps declared native product features and costed paid quo
   assert.ok(row.resourceIds.length>=2&&row.requiredProducts.length>=2&&row.supportedChoices.length);
   for(const terms of [row.offer,row.retestOffer])assert.ok(terms.setupCents>0&&terms.periodCents>0&&terms.workMinutes>0&&terms.engineers>=0&&terms.support>0);
  }
- const source={};vm.createContext(source);vm.runInContext(PATHS.source()+';globalThis.api=SOC_PROVIDER_PARTNER_PATHS;',source);
+ const source={};vm.createContext(source);vm.runInContext(PROVIDER_PRODUCTS.source()+RULES.source()+PATHS.source()+';globalThis.api=SOC_PROVIDER_PARTNER_PATHS;',source);
  assert.deepEqual(JSON.parse(JSON.stringify(source.api.OFFERS)),JSON.parse(JSON.stringify(PATHS.OFFERS)),'serialized worker uses the same versioned offer contract');
+ for(const name of ['canOrder','plan','createReceipt','startCommands','testCommands','captureTest','validateProject'])assert.equal(typeof source.api[name],'function',`worker exports lifecycle helper ${name}`);
  const browser={};vm.createContext(browser);vm.runInContext(fs.readFileSync(require.resolve('../src/game/23-provider-partner-paths.js'),'utf8')+';globalThis.api=SOC_PROVIDER_PARTNER_PATHS;',browser);
  assert.deepEqual(JSON.parse(JSON.stringify(browser.api.PATHS)),JSON.parse(JSON.stringify(PATHS.PATHS)),'browser fallback is byte-for-byte equivalent to the versioned content');
+});
+
+test('partner-path lifecycle preflight fails closed without a paid customer, products, resources, or support and never buys prerequisites',()=>{
+ const s=SOC.create({experience:'campaign',scenario:'smb'}),before=JSON.stringify(s),path=CONTENT.paths[0];
+ const result=PATHS.canOrder(s,'starter-customer',path.operationId,{});
+ assert.equal(result.eligible,false);assert.ok(result.missing.includes('ACTIVE_PROVIDER_CUSTOMER_REQUIRED'));
+ assert.equal(result.plan,null);assert.deepEqual(result.terms,path.offer);assert.deepEqual(PATHS.startCommands(result.plan),[]);assert.deepEqual(PATHS.testCommands(result.plan),[]);
+ assert.equal(PATHS.plan(s,'missing-project').status,'blocked');assert.equal(PATHS.createReceipt(s,'missing-project'),null);
+ assert.equal(PATHS.captureTest(s,'missing-project').ready,false);assert.deepEqual(s,SOC.restore(before),'preflight and missing receipt checks are pure');
 });
 
 test('P5 Lab paths pass native directional tests, fail after retirement, and recover only after rebase and retest',()=>{

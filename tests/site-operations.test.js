@@ -78,6 +78,23 @@ test('AC-SOC-272 save validation blocks forged completion, stale binding lineage
  const configFingerprint=S.configurationFingerprint(f.root),historyOnly=structuredClone(f.root);historyOnly.siteOperations.exercises[0].continuity[0].at++;historyOnly.siteOperations.sites['site-a'].observed.at++;assert.equal(S.configurationFingerprint(historyOnly),configFingerprint,'exercise progress and observation timestamps must not invalidate service configuration evidence');historyOnly.siteOperations.sites['site-a'].observed.available=false;assert.notEqual(S.configurationFingerprint(historyOnly),configFingerprint,'changed observed availability invalidates service evidence');historyOnly.siteOperations.sites['site-a'].desired.name='Changed desired site';assert.notEqual(S.configurationFingerprint(historyOnly),configFingerprint,'desired configuration changes invalidate service evidence');
 });
 test('AC-SOC-273 integrated saves bind site references and exercise claims to canonical resources, transport, and actual interactions',()=>{
+
+ // The synchronous site consumer is a diagnostic probe, even with an active
+ // metered retail/supplier contract. A later duration-bearing call is the control.
+ let measured=siteFixture();const offer=E.business.offers.workplace;
+ measured=act(measured,'business',{action:'order',offer:'workplace',quantity:offer.minimum,unit:offer.unit,currency:'AUD',resources:['phone'],sell:true});measured=tick(measured,2);
+ assert.equal(measured.business.contracts[0].status,'active');measured=act(measured,'service-observation',{action:'start'});measured=act(measured,'service-observation',{action:'open-window',goal:'tb'});
+ const preMetrics=structuredClone(measured.business.metrics);measured=exercise(measured);
+ const probes=measured.interactions.filter(i=>i.caseId.startsWith('site-probe-'));assert.equal(probes.length,3);
+ for(const i of probes){assert.equal(i.probe,true);assert.equal(i.phase,'resolved');assert.equal(i.startedAt,i.finishedAt);assert.equal(i.usageMinutes||0,0);}
+ assert.equal(E.calculate(measured).resolved,0);assert.equal(measured.business.contracts[0].usage,0);assert.deepEqual(measured.business.metrics,preMetrics);
+ assert.deepEqual(measured.serviceObservation.active.attempts,[]);assert.deepEqual(measured.serviceObservation.active.journeys,[]);
+ measured=tick(measured,measured.business.contracts[0].nextBill-measured.clock);
+ const billed=measured.business.ledger.filter(x=>x.contract===measured.business.contracts[0].id&&x.period!==undefined);assert.ok(billed.length>0);
+ assert.ok(billed.every(x=>(x.usage||0)===0&&(x.overage||0)===0),'probes add no variable retail or wholesale units');assert.deepEqual(E.restore(JSON.stringify(measured)),measured);
+ measured=E.dispatch(measured,{type:'interact',channel:'voice',direction:'outbound',from:'alex',to:'+61255500201',caseId:'commercial-control',durationMinutes:3});
+ assert.notEqual(measured.interactions.at(-1).probe,true);assert.notEqual(measured.interactions.at(-1).phase,'resolved');measured=tick(measured,3);
+ assert.equal(measured.interactions.at(-1).phase,'resolved');assert.equal(measured.interactions.at(-1).usageMinutes,3);assert.equal(measured.business.contracts[0].usage,3);assert.equal(E.calculate(measured).resolved,1);
  const saved=exercise(siteFixture()),sample=saved.siteOperations.exercises[0].continuity[0];
  const phantom=structuredClone(saved),site=phantom.siteOperations.sites['site-b'],cfg=structuredClone(site.effective);cfg.endpointResources=['desk','phantom-endpoint'];site.desired=structuredClone(cfg);site.effective=structuredClone(cfg);site.resourceGenerations={'admin-b':1,'desk':1,'phantom-endpoint':1,'backup-b':1,'restore-b':1};site.desiredResourceGenerations=structuredClone(site.resourceGenerations);assert.throws(()=>E.restore(JSON.stringify(phantom)),/INVALID_SITE_OPERATIONS_RESOURCE_REFERENCE/);
  const stale=structuredClone(saved);stale.transport.bindings.alexdesk='office-b';assert.throws(()=>E.restore(JSON.stringify(stale)),/INVALID_SITE_OPERATIONS_BINDING_LINEAGE/);

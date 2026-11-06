@@ -1158,6 +1158,26 @@
           "sha256": "92d2df7ca9c59e0aad8fbd69b0293861f30d51b09c7e5fea146456299b2af1cd"
         }
       ]
+    },
+    "provider-default-cad5226": {
+      "candidate": "cad5226fb70e90fc623598b74bcc80799bf42fd7",
+      "status": "passed-scoped-default-verification",
+      "scope": "Actual public Provider commands cause grace/default, preserve continuation and atomically refuse discretionary repair spending.",
+      "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/pr55-cad5226-hosted/complete-acceptance/acceptance.json",
+      "sha256": "2b30e3cfc565a6efad6840b2098bdc94bce8c849cbd92451449ce61e3b087288",
+      "limits": [
+        "No visible default/rescue browser journey or broader economy completion claimed."
+      ],
+      "verification": [
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/play-007-014-046-cad5226-review/PROPOSAL.md",
+          "sha256": "369e20de2348f1edb8d345a54cc8cfab62485c6469dc222ad84f8a85c9f1765e"
+        },
+        {
+          "rawArtifact": "/home/zane-fountylabs/soc-evidence-archive/play-007-014-046-cad5226-review/audit.json",
+          "sha256": "3bc76cecaa3c305e700645aab39ba34c8d339d8266c15a451574c31f0464bbc2"
+        }
+      ]
     }
   },
   "tests": {
@@ -4367,6 +4387,12 @@
       "name": "AC-SOC-874 / PLAY-029-A02 paid tenant incident competes for shared support and funds without crossing customer authority",
       "result": "passed",
       "run": "portfolio-shared-cad5226"
+    },
+    "DEFAULT-007-A02": {
+      "file": "tests/provider-scale-default.test.js",
+      "name": "AC-SOC-873 actual Provider default retains delivered usage, cancels future paid work and refuses discretionary spending",
+      "result": "passed",
+      "run": "provider-default-cad5226"
     }
   },
   "requirements": {
@@ -4486,11 +4512,10 @@
         "src/game/25-provider-campaign.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [],
       "assertionStatusCounts": {
-        "verified-current-candidate": 2,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 3
       }
     },
     "PLAY-008": {
@@ -6476,7 +6501,7 @@
       "requirement": "PLAY-007",
       "sourceIndex": 1,
       "assertion": "An unavoidable bill can enter grace/default without crashing the engine or enabling unlimited discretionary spending.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B014",
         "B015",
@@ -6494,21 +6519,43 @@
       "reviewTestCandidates": [
         "B018"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "cad5226fb70e90fc623598b74bcc80799bf42fd7",
+        "run": "provider-default-cad5226",
         "implementation": [
           "src/game/54-business.js",
-          "src/game/25-provider-campaign.js"
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js"
         ],
         "tests": [
-          "C051",
-          "C045"
+          "DEFAULT-007-A02"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "clauses": [
+          {
+            "text": "An unavoidable bill can enter grace/default without crashing the engine or enabling unlimited discretionary spending.",
+            "evidence": "Actual funded payroll causes grace at355 and default at360. Native continuation and worker/restored states match through365; discretionary repair quote and dispatch refuse INSOLVENT atomically."
+          }
+        ],
+        "scope": "Native validated Provider commands; no browser rescue or wider source-family disposition.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "The generic unavoidable-bill test passes. Attach a current public Provider grace/default/rescue outcome and its visible discretionary-spending refusal."
+      "remaining": "No remaining criterion for this exact assertion at the referenced candidate. Later changes require affected verification.",
+      "verificationHistory": [
+        {
+          "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+          "implementation": [
+            "src/game/54-business.js",
+            "src/game/25-provider-campaign.js"
+          ],
+          "tests": [
+            "C051",
+            "C045"
+          ],
+          "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
+          "result": "supporting-only"
+        }
+      ]
     },
     {
       "id": "PLAY-007-A03",
@@ -14867,7 +14914,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 131,
+    "assertionsClosed": 132,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14875,8 +14922,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 25,
-          "pending-current-candidate-verification": 3
+          "verified-current-candidate": 26,
+          "pending-current-candidate-verification": 2
         }
       },
       {
@@ -14958,8 +15005,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 131,
-      "pending-current-candidate-verification": 24,
+      "verified-current-candidate": 132,
+      "pending-current-candidate-verification": 23,
       "parked-owner-request": 4
     }
   },
@@ -15223,6 +15270,11 @@
         ],
         "scope": "Two exact clauses only; A01 executed at9c8b2ea with independently reviewed scoped source equivalence, A02 hosted atcad5226. No insufficient-cash, multi-engine two-tenant, human or full-source claim."
       }
-    ]
+    ],
+    "statusCounts": {
+      "verified-current-candidate": 132,
+      "pending-current-candidate-verification": 23,
+      "parked-owner-request": 4
+    }
   }
 }

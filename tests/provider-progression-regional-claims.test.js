@@ -566,6 +566,10 @@ test('AC-SOC-656 L7 unlock quotes and funds the real scoped distributor support 
 
 test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and funds bounded automatic repair', () => {
   let state = createThreeMarketWindow();
+  // The three quoted recipes total 1,902,000 setup cents and 357,000 cents per period.
+  // Include three settlement cycles during 165 serial work minutes, actual payroll,
+  // the measured pre-integration operating surplus, and the bounded repair budget.
+  state = until(state, current => current.business.balance.cash >= 2_500_000, 'fund the costed T2 and response reserve from actual settlements', 600);
   const customerIds = ['starter-customer', 'next-1-customer', 'next-2-customer'];
   for (const customerId of customerIds) state = installTestedUcCcPair(state, customerId);
   state = until(state, current => stableSupportWindowShape(current, customerIds), 'stable three-market support and tested integration window', 180);
@@ -574,8 +578,9 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
   assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
   assert.deepEqual(ready.evidence.customerIds, [...customerIds].sort());
   assert.deepEqual(ready.evidence.markets, ['au-sydney', 'eu-dublin', 'us-seattle']);
+  assert.ok(Array.isArray(ready.evidence.samples), 'live regional-window evidence exposes decoded samples');
   for (const customerId of customerIds) {
-    const participantRows = FACTS.decodeSupportObservation(ready.evidence.samples).map(sample => sample.participants.find(row => row.customerId === customerId));
+    const participantRows = ready.evidence.samples.map(sample => sample.participants.find(row => row.customerId === customerId));
     assert.ok(participantRows.every(row => row.integrations?.some(edge => edge.id === 'workplace-to-contact-quality')),
       `${customerId} has a current paid and tested integration in every retained sample`);
   }

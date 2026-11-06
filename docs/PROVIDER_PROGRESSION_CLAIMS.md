@@ -15,6 +15,10 @@ This document records the bounded receipt implementation in `src/game/23-provide
 
 Amounts above are simulator cents converted to Australian dollars. The quote engine remains the source of commercial terms; receipt inspection can ask it for a current proposal but never commits a purchase.
 
+## AC-SOC-655 costed reserve
+
+The three-market T2 regression waits until ordinary campaign settlements have accumulated A$25,000 cash before it starts the six-operation UC/CC recipe for each customer. This is a fixture predicate, not an opening-capital grant or a change to quoted terms. Each bundle is quoted and dispatched through `SOC.provider`; together the three bundles cost A$19,020 setup, A$3,570 per billing period, and 165 project work minutes. The estimate budgets three period charges during delivery (A$10,710), about A$290 incremental payroll, and up to A$80 for the bounded automatic repair. A measured C3 cash probe earned A$10,480 over 300 minutes; straight-line scaling to 165 work minutes estimates A$5,764 of operating surplus. The resulting planning need is about A$24,336, leaving roughly A$664 below the A$25,000 reserve threshold. These are planning estimates: the test waits on actual cash and must report the actual terminal balance and outcome. It does not edit cash, tariffs, wages or repair spend to force the tier.
+
 ## Evidence and persistence
 
 Receipts are stored under `providerCampaign.progressionReceipts` with pack, schema and content versions. Saves without this field remain legacy saves. Unknown versions, unknown identities, duplicate receipts and malformed or invalid references are rejected. Claiming is idempotent and returns a copied state; it does not mutate the caller's state or treasury.

@@ -7483,6 +7483,20 @@
       ],
       "status": "partial",
       "scope": "One read-only progression inspection validates its input before deriving its proposals, instead of repeating the same receipt validation for every unlock row. Standalone proposals and every new inspection still validate authority independently. Actual paid opening proposals match independently validated quotes on frozen state; changed receipt integrity refuses before quote hooks execute. A measured five-market checkpoint produces identical output with lower inspector latency; this does not certify full simulation speed or hosted test deadlines."
+    },
+    {
+      "id": "BEH-SOC-428",
+      "sources": [
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression-receipts.js"
+      ],
+      "testIds": [
+        "AC-SOC-810"
+      ],
+      "status": "partial",
+      "scope": "A retained regional support-window claim validates customer activation and exit against its actual earned interval, rather than requiring participants to remain active forever. A public paid two-customer journey claims Level2, quotes and executes exit, advances and restores with the original receipt; backdated exit and activation after earning still refuse. Existing paid-stage, sample, work and posting validation remains required. This fixes historical receipt persistence without making exited customers eligible for new claims."
     }
   ]
 }

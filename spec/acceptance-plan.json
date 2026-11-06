@@ -1080,6 +1080,9 @@
     "tests/provider-progression-inspection.test.js": [
       "AC-SOC-795",
       "AC-SOC-796"
+    ],
+    "tests/provider-progression-receipts.test.js": [
+      "AC-SOC-810"
     ]
   },
   "inputs": [
@@ -1666,6 +1669,7 @@
     "tests/provider-support-work.test.js",
     "tests/provider-configuration-reader-performance.test.js",
     "tests/provider-support-history.test.js",
-    "tests/provider-progression-inspection.test.js"
+    "tests/provider-progression-inspection.test.js",
+    "tests/provider-progression-receipts.test.js"
   ]
 }

@@ -1121,6 +1121,11 @@
       "AC-SOC-385",
       "AC-SOC-386",
       "AC-SOC-410"
+    ],
+    "tests/provider-inspection-read-views.test.js": [
+      "AC-SOC-839",
+      "AC-SOC-840",
+      "AC-SOC-841"
     ]
   },
   "inputs": [
@@ -1726,6 +1731,7 @@
     "scripts/lib/elapsed-clock.js",
     "scripts/provider-browser.js",
     "tests/provider-progression-dispatch.test.js",
-    "tests/provider-receipt-waits.test.js"
+    "tests/provider-receipt-waits.test.js",
+    "tests/provider-inspection-read-views.test.js"
   ]
 }

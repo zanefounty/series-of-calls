@@ -46,7 +46,9 @@ function socProviderSupportHistoryKernel(){
   if(!Array.isArray(migrations)||!Array.isArray(tasks))return null;
   if(!migrations.length){const placements=operations.placements||{};if(!placements||typeof placements!=='object'||Array.isArray(placements)||Object.keys(placements).some(identity=>!['alex','bea'].includes(identity))||Object.values(placements).some(resource=>resource!=='phone'))return null;return {topology:{},resources:[]};}
   const identities=new Set(['alex','bea']),replayed=Object.create(null),sampled=Object.create(null);
-  for(const identity of identities){replayed[identity]='phone';sampled[identity]='phone';}
+  for(const identity of identities)replayed[identity]='phone';
+  // Native placement keys are inserted by paid migration order. Preserve that
+  // order when reconstructing the historical path's configuration fingerprint.
   for(const migration of migrations)for(const identity of migration.identities||[])if(!identities.has(identity))return null;
   const entries=[];
   for(const migration of migrations){

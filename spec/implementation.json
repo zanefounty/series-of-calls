@@ -7497,6 +7497,29 @@
       ],
       "status": "partial",
       "scope": "A retained regional support-window claim validates customer activation and exit against its actual earned interval, rather than requiring participants to remain active forever. A public paid two-customer journey claims Level2, quotes and executes exit, advances and restores with the original receipt; backdated exit and activation after earning still refuse. Existing paid-stage, sample, work and posting validation remains required. This fixes historical receipt persistence without making exited customers eligible for new claims."
+    },
+    {
+      "id": "BEH-SOC-433",
+      "sources": [
+        "DEC-011",
+        "progress.goal.t2"
+      ],
+      "implementation": [
+        "src/game/23-provider-incident-sequence.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-incidents.js"
+      ],
+      "testIds": [
+        "AC-SOC-822",
+        "AC-SOC-823",
+        "AC-SOC-824",
+        "AC-SOC-825",
+        "AC-SOC-826",
+        "AC-SOC-827"
+      ],
+      "status": "partial",
+      "scope": "New versioned careers permit at most eight authored dependency incidents per customer, each follow-up at least 360 minutes after observed recovery and triggered by fresh actual completed work. Exact trigger events remain pinned inside a bounded journal. Public paid SMB construction, outage, delayed repair, renewal, follow-up, malformed-save refusal and worker/restore equivalence complement isolated pure-helper limit tests. Marker-absent legacy campaigns retain one-shot behavior. The contextual inspector explains follow-up timing; full browser and source-specific incident fidelity remain separate."
     }
   ]
 }

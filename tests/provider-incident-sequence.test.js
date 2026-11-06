@@ -23,7 +23,7 @@ function scheduledIncident(n,proof){
 }
 function resolved(incident,at){return {...incident,status:'resolved',resolvedAt:at};}
 
-test('legacy campaigns remain one-shot and v1 recurrence waits for a real recovered interval and fresh work',()=>{
+test('AC-SOC-824 legacy campaigns remain one-shot and v1 recurrence waits for a real recovered interval and fresh work',()=>{
  const first=firstIncident();
  assert.equal(SEQUENCE.candidate({version:undefined,customerId,at:1000,definition,incidents:[first],completedWorkEvents:[workEvent(2,1000)]}),null);
  assert.equal(SEQUENCE.candidate({version:SEQUENCE.VERSION,customerId,at:17,definition,incidents:[first],completedWorkEvents:[workEvent(2,17)]}),null,'an unresolved predecessor cannot repeat');
@@ -35,7 +35,7 @@ test('legacy campaigns remain one-shot and v1 recurrence waits for a real recove
  assert.equal(SEQUENCE.validateHistory({version:2,customerId,definition,incidents:[first],completedWorkEvents:[]}),false);
 });
 
-test('v1 recurrence binds each bounded incident to the exact paid predecessor recovery, interval, mission fault and actual completed-work event',()=>{
+test('AC-SOC-825 v1 recurrence binds each bounded incident to the exact paid predecessor recovery, interval, mission fault and actual completed-work event',()=>{
  const first=firstIncident(),event=workEvent(2,378,'late',376),events=[event],repairs=[paidRepairFor(first,1)];
  const input={version:SEQUENCE.VERSION,customerId,at:378,definition,incidents:[first],completedWorkEvents:events,repairProjects:repairs};
  const before=JSON.stringify(input),proof=SEQUENCE.candidate(input);
@@ -69,7 +69,7 @@ test('v1 recurrence binds each bounded incident to the exact paid predecessor re
  assert.equal(SEQUENCE.validateHistory({version:undefined,customerId,definition,incidents:[first,forgedLegacy],completedWorkEvents:events}),false);
 });
 
-test('v1 history enforces predecessor order and stops after eight authored incidents per customer',()=>{
+test('AC-SOC-826 v1 history enforces predecessor order and stops after eight authored incidents per customer',()=>{
  const incidents=[firstIncident()],events=[],repairs=[paidRepairFor(incidents[0],1)];
  for(let ordinal=2;ordinal<=SEQUENCE.MAX_TOTAL;ordinal++){
   const predecessor=incidents.at(-1),at=predecessor.resolvedAt+SEQUENCE.INTERVAL_MINUTES,event=workEvent(ordinal,at);
@@ -90,7 +90,7 @@ test('v1 history enforces predecessor order and stops after eight authored incid
  assert.equal(SEQUENCE.validateHistory({version:1,customerId,definition,incidents:ninth,completedWorkEvents:events,repairProjects:repairs}),false,'saved history cannot exceed its bounded authored sequence');
 });
 
-test('worker source preserves the native incident-sequence contract',()=>{
+test('AC-SOC-827 worker source preserves the native incident-sequence contract',()=>{
  const worker=new Function(`${SEQUENCE.source()}\nreturn SOC_PROVIDER_INCIDENT_SEQUENCE;`)();
  const first=firstIncident(),event=workEvent(2,378),input={version:1,customerId,at:378,definition,incidents:[first],completedWorkEvents:[event]};
  assert.deepEqual(worker.candidate(input),SEQUENCE.candidate(input));

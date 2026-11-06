@@ -1083,6 +1083,16 @@
     ],
     "tests/provider-progression-receipts.test.js": [
       "AC-SOC-810"
+    ],
+    "tests/provider-incident-sequence.test.js": [
+      "AC-SOC-824",
+      "AC-SOC-825",
+      "AC-SOC-826",
+      "AC-SOC-827"
+    ],
+    "tests/provider-incident-sequence-dispatch.test.js": [
+      "AC-SOC-822",
+      "AC-SOC-823"
     ]
   },
   "inputs": [
@@ -1670,6 +1680,9 @@
     "tests/provider-configuration-reader-performance.test.js",
     "tests/provider-support-history.test.js",
     "tests/provider-progression-inspection.test.js",
-    "tests/provider-progression-receipts.test.js"
+    "tests/provider-progression-receipts.test.js",
+    "tests/provider-incident-sequence.test.js",
+    "tests/provider-incident-sequence-dispatch.test.js",
+    "src/game/23-provider-incident-sequence.js"
   ]
 }

@@ -32,7 +32,7 @@ function socAdmissionSecurityKernel(){
  function legacyEventSuffixValid(p,pins){const expected=Math.min(p.nextId-1,1000);if(p.events.length!==expected)return false;const first=p.nextId-p.events.length;for(let i=0;i<p.events.length;i++)if(securityEventNumber(p.events[i]?.id)!==first+i)return false;const retained=new Set(p.events.map(e=>e.id));return pins.eventIds.every(id=>retained.has(id));}
  function ensureEventCapacity(root){const p=pack(root),pins=providerPins(root);if(p.eventHistory!==undefined&&!eventHistoryValid(p,pins)||p.eventHistory===undefined&&pins.active&&!legacyEventSuffixValid(p,pins))fail('INVALID_SECURITY_EVENT_HISTORY');if(p.events.length>=1000&&p.events.every(e=>pins.set.has(e.id)))fail('SECURITY_EVENT_CAPACITY');}
  function eventHistoryValid(p,pins){
-  const history=p.eventHistory;if(!exact(history,['prunedRanges','version'])||history.version!==1||!Array.isArray(history.prunedRanges)||history.prunedRanges.length>Math.min(1001,pins.eventIds.length+1))return false;
+  const history=p.eventHistory;if(!exact(history,['prunedRanges','version'])||history.version!==1||!Array.isArray(history.prunedRanges)||history.prunedRanges.length>1001)return false;
   let prior=0;for(const range of history.prunedRanges){if(!Array.isArray(range)||range.length!==2||!int(range[0],1,p.nextId-1)||!int(range[1],range[0],p.nextId-1)||(prior>0&&range[0]<=prior+1))return false;prior=range[1];}
   const eventNumbers=p.events.map(e=>securityEventNumber(e.id));if(eventNumbers.some(n=>!Number.isSafeInteger(n)||n<1)||eventNumbers.some((n,i)=>i>0&&n<=eventNumbers[i-1]))return false;
   let ri=0,ei=0,next=1;
@@ -45,7 +45,7 @@ function socAdmissionSecurityKernel(){
   p.eventHistory={version:1,prunedRanges:first>1?[[1,first-1]]:[]};if(!eventHistoryValid(p,pins))fail('INVALID_SECURITY_EVENT_HISTORY');
  }
  function appendPrunedRange(history,n){
-  const ranges=history.prunedRanges,last=ranges[ranges.length-1];if(last&&last[1]+1===n)last[1]=n;else if(!last||n>last[1])ranges.push([n,n]);else fail('INVALID_SECURITY_EVENT_HISTORY');
+  const ranges=[...history.prunedRanges,[n,n]].sort((a,b)=>a[0]-b[0]),merged=[];for(const range of ranges){const last=merged[merged.length-1];if(last&&range[0]<=last[1]+1)last[1]=Math.max(last[1],range[1]);else merged.push([...range]);}if(merged.length>1001)fail('INVALID_SECURITY_EVENT_HISTORY');history.prunedRanges=merged;
  }
  function event(root,kind,code,detail={}){
   const p=pack(root),pins=providerPins(root);if(p.events.length>=1000&&p.events.every(e=>pins.set.has(e.id)))fail('SECURITY_EVENT_CAPACITY');

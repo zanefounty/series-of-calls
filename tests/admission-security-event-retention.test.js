@@ -35,6 +35,10 @@ test('AC-SOC-797 native event pins survive FIFO pressure while an older genuine 
  const settled=admission.settle(root,interaction.id);assert.equal(settled.settled,true);assert.equal(settled.record.interactionId,interaction.id);assert.equal(admission.validate(root),true);
  assert.deepEqual(root.admissionSecurity.eventHistory,{version:1,prunedRanges:[[2,2],[4,108]]});
  const worker={};vm.createContext(worker);vm.runInContext(admission.source()+';globalThis.nativeAdmission=SOC_ADMISSION_SECURITY;',worker);assert.equal(worker.nativeAdmission.validate(JSON.parse(JSON.stringify(root))),true,'the imported worker validates the same pinned sparse history');
+ const labCopy=structuredClone(root);delete labCopy.providerSecurityPins;assert.equal(admission.validate(labCopy),true,'historical ranges remain valid when a Lab copy removes Provider pin authority');
+ admission.command(labCopy,{action:'inject-packets',peer:'lab-copy-pressure',packets:1,secondOffset:2});assert.deepEqual(labCopy.admissionSecurity.eventHistory,{version:1,prunedRanges:[[1,2],[4,108]]});assert.equal(admission.validate(labCopy),true);
+ admission.command(labCopy,{action:'inject-packets',peer:'lab-copy-pressure',packets:1,secondOffset:3});assert.deepEqual(labCopy.admissionSecurity.eventHistory,{version:1,prunedRanges:[[1,108]]});assert.equal(admission.validate(labCopy),true);
+ assert.deepEqual(root.admissionSecurity.eventHistory,{version:1,prunedRanges:[[2,2],[4,108]]},'copy pressure does not mutate the saved Provider root');
 });
 
 test('AC-SOC-798 event history rejects forged counters, gaps, overlaps, missing pinned rows and unknown versions',()=>{

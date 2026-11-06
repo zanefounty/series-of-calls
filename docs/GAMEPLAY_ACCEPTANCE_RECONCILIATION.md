@@ -1,6 +1,6 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **109 exact assertions verified, 46 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **111 exact assertions verified, 44 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
@@ -53,3 +53,6 @@ The paid-diagnosis candidate `256b28c` closes **PLAY-024-A03**. Six actual deskt
 
 
 Frozen `7e6ca47` closes **PLAY-011-A01** using the two completed AC-SOC-684/685 cases and an independent review of their exact dispatch and settlement assertions. Sixty ordinary Lab calls arrive one minute apart. A 57-minute outage followed by final-minute repair leaves 57 failed calls, three delivered usage minutes and the corresponding service credit; a final-minute-only outage retains 59 completed calls. Direct, worker and restored settlement agree, and subsequent recovery preserves the settled bill. All 1,415 tracked inputs matched their launch hashes at review. The enclosing full suite was still running: this is one exact assertion closure, not a full-suite pass or Provider burst-demand evidence. The ledger retains the external audit and launch-manifest hashes.
+
+
+The independent inventory review at `10759c7` closes **PLAY-039-A02** and **PLAY-049-A01** only. All 51 stable actor mappings retain individual dispositions (four shared-partial and 47 pending); all 25 view mappings and six tutorial mappings now name explicit actual placements. Six distinct coach positions were rendered, and the UI source matches that probe. Canonical actor implementation statuses, tutorial predicate differences and full browser accessibility remain open. The ledger stores the external audit hash and reconciles all nested counts.

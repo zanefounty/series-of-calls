@@ -374,6 +374,23 @@ test('AC-SOC-653 public dispatch earns C3 from three paid markets and rejects re
   assert.equal(receipt.unlock.operationId, 'regional-provisioning');
   assert.equal(state.business.balance.cash, cash, 'earning the evidence receipt does not award or spend cash');
   assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3).sourceId, C3);
+  const customerId = 'next-1-customer';
+  const decodedEvidence = {
+    ...receipt.sourceEvidence,
+    samples: FACTS.decodeSupportObservation(receipt.sourceEvidence.samples)
+  };
+  const arrivalPins = REGIONAL.retentionPins(decodedEvidence, customerId, receipt.workProofs).eventIds;
+  const customerProofs = receipt.workProofs.filter(proof => proof.customerId === customerId);
+  assert.deepEqual(arrivalPins, customerProofs.map(proof => proof.arrivalEventId).sort());
+  assert.ok(arrivalPins.length > 0);
+  for (const proof of customerProofs) {
+    const event = state.providerCampaign.events.find(row => row.id === proof.arrivalEventId);
+    const origin = state.providerCampaign.supportWork.origins.find(row => row.customerId === proof.customerId && row.arrival.interactionId === proof.interactionId)?.arrival;
+    assert.ok(event || origin, `${proof.jobId} arrival is present or has its exact retained origin`);
+  }
+  const childId = state.providerCampaign.customers.find(row => row.id === customerId).portfolioId;
+  const storedPins = state.portfolio.customers.find(row => row.id === childId).root.providerRegionalPins;
+  assert.deepEqual(storedPins.pins.eventIds, arrivalPins, 'claim installs the evidenced arrival IDs in the customer retention marker');
   if (process.env.SOC_C3_EARNED_STATE) fs.writeFileSync(process.env.SOC_C3_EARNED_STATE, JSON.stringify(state));
 
   const badMarkets = clone(state);
@@ -392,6 +409,26 @@ test('AC-SOC-653 public dispatch earns C3 from three paid markets and rejects re
   badSupportReceipt.sourceEvidence.samples = FACTS.encodeSupportObservation(samples);
   rehash(badSupportReceipt);
   assert.throws(() => SOC.restore(JSON.stringify(badSupport)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/);
+
+  const missingArrival = clone(state);
+  const missingArrivalReceipt = missingArrival.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3);
+  const checkpointLastId = Number(missingArrival.providerCampaign.eventCheckpoint.lastId.slice('provider-event-'.length));
+  const retainedOriginIds = new Set(missingArrival.providerCampaign.supportWork.origins.map(row => row.arrival.id));
+  const retainedEventIds = new Set(missingArrival.providerCampaign.events.map(row => row.id));
+  const absentBelowCheckpoint = Array.from({ length: checkpointLastId }, (_, index) => `provider-event-${index + 1}`)
+    .find(id => !retainedEventIds.has(id) && !retainedOriginIds.has(id));
+  assert.ok(absentBelowCheckpoint, 'fixture has an absent arrival ID below the event checkpoint');
+  const missingArrivalProof = missingArrivalReceipt.workProofs.find(proof => proof.arrivalEventId !== absentBelowCheckpoint);
+  assert.ok(missingArrivalProof);
+  missingArrivalProof.arrivalEventId = absentBelowCheckpoint;
+  rehash(missingArrivalReceipt);
+  const forgedCustomer = missingArrival.providerCampaign.customers.find(row => row.id === missingArrivalProof.customerId);
+  const forgedChild = missingArrival.portfolio.customers.find(row => row.id === forgedCustomer.portfolioId).root;
+  const forgedEvidence = { ...missingArrivalReceipt.sourceEvidence, samples: FACTS.decodeSupportObservation(missingArrivalReceipt.sourceEvidence.samples) };
+  const forgedEventIds = REGIONAL.retentionPins(forgedEvidence, forgedCustomer.id, missingArrivalReceipt.workProofs).eventIds;
+  forgedChild.providerRegionalPins.pins.eventIds = forgedEventIds;
+  assert.throws(() => SOC.restore(JSON.stringify(missingArrival)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/,
+    'a rehashed receipt cannot substitute an absent arrival ID below the checkpoint, even with matching derived pins');
 
   const duplicate = claim(state);
   assert.equal(duplicate.providerCampaign.progressionReceipts.receipts.filter(row => row.sourceId === C3).length, 1);

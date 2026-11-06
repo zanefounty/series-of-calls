@@ -1,12 +1,12 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **107 exact assertions verified, 48 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **108 exact assertions verified, 47 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 23 | 5 | 0 |
 | 2 — service truth and SMB | 14 | 7 | 0 |
-| 3 — map and interaction | 12 | 12 | 0 |
+| 3 — map and interaction | 13 | 11 | 0 |
 | 4 — strategy and growth | 15 | 6 | 0 |
 | 5 — missions and ecosystem | 31 | 9 | 0 |
 | 6 — compatibility and delivery | 12 | 9 | 4 |
@@ -48,3 +48,5 @@ The correctly provisioned retry reached the unchanged release gate and failed wi
 
 
 The view-stability candidate `20fdeaa` closes **PLAY-020-A02** after six desktop/mobile journeys across Chromium, Firefox and WebKit. A nondefault camera and selected customer persist through actual worker ticks and arriving work. The same runs verify the repaired quote field, focus, inspector detail identity and scroll. **PLAY-020-A01 remains open:** purchase decisions pause simulation, so these runs do not demonstrate an unfinished purchase draft during actual ticks. See [view verification](PROVIDER_VIEW_STABILITY.md). The nested backlog counters were also brought into agreement with the individually enumerated assertions.
+
+The paid-diagnosis candidate `256b28c` closes **PLAY-024-A03**. Six actual desktop/mobile journeys across Chromium, Firefox and WebKit show free unchanged-state public inspection, a separately quoted A$60 diagnosis reserving one engineer and one support worker for six minutes, and a retained finding after an independently paid A$80 repair. Twelve focused frozen tests and independent source/artifact/save reviews support this exact clause. The native positive case is an authored outage; other failure domains remain explicitly inconclusive. This adds one closure and does not certify all incident behavior or the final integrated candidate. See [diagnosis evidence](PROVIDER_INCIDENT_DIAGNOSIS.md).

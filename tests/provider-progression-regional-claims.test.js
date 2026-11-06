@@ -391,6 +391,22 @@ test('AC-SOC-653 public dispatch earns C3 from three paid markets and rejects re
   const childId = state.providerCampaign.customers.find(row => row.id === customerId).portfolioId;
   const storedPins = state.portfolio.customers.find(row => row.id === childId).root.providerRegionalPins;
   assert.deepEqual(storedPins.pins.eventIds, arrivalPins, 'claim installs the evidenced arrival IDs in the customer retention marker');
+  assert.equal(storedPins.version, 2);
+  const legacy = clone(state);
+  for (const customer of legacy.portfolio.customers) if (customer.root.providerRegionalPins) {
+    customer.root.providerRegionalPins.version = 1;
+    delete customer.root.providerRegionalPins.pins.eventIds;
+  }
+  const legacyText = JSON.stringify(legacy);
+  SOC.validateState(legacy);
+  assert.equal(JSON.stringify(legacy), legacyText, 'validation does not migrate caller-owned state');
+  const migrated = SOC.restore(legacyText);
+  assert.deepEqual(migrated.portfolio.customers.map(row => row.root.providerRegionalPins), state.portfolio.customers.map(row => row.root.providerRegionalPins));
+  assert.equal(JSON.stringify(legacy), legacyText, 'restore owns its migrated copy');
+  const unknownVersion = clone(state);
+  unknownVersion.portfolio.customers.find(row => row.root.providerRegionalPins).root.providerRegionalPins.version = 3;
+  assert.throws(() => SOC.restore(JSON.stringify(unknownVersion)), /INVALID_PROVIDER_REGIONAL_PINS/);
+
   if (process.env.SOC_C3_EARNED_STATE) fs.writeFileSync(process.env.SOC_C3_EARNED_STATE, JSON.stringify(state));
 
   const badMarkets = clone(state);

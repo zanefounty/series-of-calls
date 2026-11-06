@@ -100,6 +100,91 @@ function until(state, predicate, label, limit = 420) {
   return state;
 }
 
+function safeCashWaitChunk(state) {
+  const campaign = state.providerCampaign;
+  if (campaign.status === 'won') return 1;
+  const retryableIncident = campaign.incidents.some(row => ['active', 'acknowledged'].includes(row.status));
+  const retryableRenewal = campaign.customers.some(row => row.status === 'renewal');
+  if (retryableIncident || retryableRenewal) return 1;
+
+  // Campaign settlements occur on period boundaries. Stop at the next one,
+  // or at any accepted project's due boundary, so callers can inspect the
+  // persisted result before moving on. Native advance still stops early when
+  // a new incident, renewal, or campaign transition occurs.
+  let boundary = (Math.floor(state.clock / 60) + 1) * 60;
+  for (const project of campaign.projects) {
+    if (['running', 'commissioning'].includes(project.status) && Number.isSafeInteger(project.dueAt) && project.dueAt > state.clock) {
+      boundary = Math.min(boundary, project.dueAt);
+    }
+  }
+  return Math.max(1, boundary - state.clock);
+}
+
+function untilCash(state, targetCents, label, limit = 600) {
+  const startedAt = state.clock, startedWall = process.hrtime.bigint();
+  let dispatches = 0, chunkedDispatches = 0;
+  while (state.clock - startedAt < limit && state.business.balance.cash < targetCents) {
+    const before = state.clock;
+    const requested = Math.min(limit - (state.clock - startedAt), safeCashWaitChunk(state));
+    state = requested === 1 ? advance(state) : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'cash-wait');
+    dispatches++;
+    if (requested > 1) chunkedDispatches++;
+    assert.ok(state.clock > before, `${label} wait advances at least one minute`);
+  }
+  const waitProfile = {
+    targetCashCents: targetCents,
+    elapsedMinutes: state.clock - startedAt,
+    advanceDispatches: dispatches,
+    multiMinuteDispatches: chunkedDispatches,
+    wallTimeMs: Number(process.hrtime.bigint() - startedWall) / 1e6
+  };
+  if (state.business.balance.cash < targetCents) checkpoint('condition-not-reached', state, { condition: label, ...waitProfile });
+  else checkpoint('t2-cash-wait-profile', state, waitProfile);
+  assert.ok(state.business.balance.cash >= targetCents, `${label} not reached at minute ${state.clock}`);
+  return state;
+}
+
+function compareCashWaitToMinuteSteps(state, minutes) {
+  let minuteSteps = clone(state);
+  for (let n = 0; n < minutes; n++) minuteSteps = advance(minuteSteps);
+  let chunked = clone(state), remaining = minutes, chunkedAdvanceDispatches = 0;
+  while (remaining > 0) {
+    const chunk = Math.min(remaining, safeCashWaitChunk(chunked));
+    const before = chunked.clock;
+    chunked = chunk === 1 ? advance(chunked) : dispatchWithCheckpoint(chunked, { type: 'advance', minutes: chunk }, 'cash-wait-equivalence');
+    chunkedAdvanceDispatches++;
+    const elapsed = chunked.clock - before;
+    assert.ok(elapsed > 0 && elapsed <= chunk, `native advance pauses only on persisted boundary: requested ${chunk}, elapsed ${elapsed}`);
+    remaining -= elapsed;
+  }
+  // A single multi-minute advance has one command/revision row while repeated
+  // one-minute commands have one per command. Exclude only those audit fields;
+  // all simulation, settlement, work and incident outcomes must match.
+  const persisted = value => {
+    if (Array.isArray(value)) return value.map(persisted);
+    if (!value || typeof value !== 'object') return value;
+    return Object.fromEntries(Object.entries(value)
+      .filter(([key]) => key !== 'revision')
+      .map(([key, item]) => [key, persisted(item)]));
+  };
+  delete chunked.commands;
+  delete minuteSteps.commands;
+  assert.deepEqual(persisted(chunked), persisted(minuteSteps), 'boundary-chunked advance matches one-minute dispatches across persisted outcomes');
+  assert.ok(chunkedAdvanceDispatches < minutes, 'quiet periods use fewer native advance dispatches than one-minute waits');
+  return chunked;
+}
+
+test('safe cash wait chunks preserve native results at settlement boundaries', () => {
+  let state = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  state = startCustomer(state, 'starter-customer', 'starter', 'au-sydney');
+  const startClock = state.clock;
+  const target = Math.ceil((startClock + 1) / 60) * 60;
+  const waited = compareCashWaitToMinuteSteps(state, target - startClock);
+  assert.equal(waited.clock, target);
+  assert.ok(waited.providerCampaign.periodHistory.some(row => row.settledAt === target),
+    'the actual customer settlement survives the chunked command');
+});
+
 function startCustomer(state, customerId, offerId, market) {
   state = buy(state, { action: 'purchase', offerId, planId: 'swift', stage: 'base', market });
   state = until(state, s => s.providerCampaign.customers.find(row => row.id === customerId)?.stages.base?.status === 'effective', `${customerId} base`);
@@ -569,9 +654,14 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
   // The three quoted recipes total 1,902,000 setup cents and 357,000 cents per period.
   // Include three settlement cycles during 165 serial work minutes, actual payroll,
   // the measured pre-integration operating surplus, and the bounded repair budget.
-  state = until(state, current => current.business.balance.cash >= 2_500_000, 'fund the costed T2 and response reserve from actual settlements', 600);
+  checkpoint('t2-before-funding-wait', state, { targetCashCents: 2_500_000 });
+  state = untilCash(state, 2_500_000, 'fund the costed T2 and response reserve from actual settlements', 600);
+  checkpoint('t2-funded-reserve', state, { targetCashCents: 2_500_000 });
   const customerIds = ['starter-customer', 'next-1-customer', 'next-2-customer'];
-  for (const customerId of customerIds) state = installTestedUcCcPair(state, customerId);
+  for (const customerId of customerIds) {
+    state = installTestedUcCcPair(state, customerId);
+    checkpoint(`t2-integration-${customerId}`, state, { customerId });
+  }
   state = until(state, current => stableSupportWindowShape(current, customerIds), 'stable three-market support and tested integration window', 180);
 
   const ready = SOC.provider.inspect(state).progression.goals[T2];
@@ -584,6 +674,7 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
     assert.ok(participantRows.every(row => row.integrations?.some(edge => edge.id === 'workplace-to-contact-quality')),
       `${customerId} has a current paid and tested integration in every retained sample`);
   }
+  checkpoint('t2-assurance-ready', state, { customerIds });
 
   const cashBeforeClaim = state.business.balance.cash;
   checkpoint('t2-ready-window', state, { sourceId: T2, customerIds });

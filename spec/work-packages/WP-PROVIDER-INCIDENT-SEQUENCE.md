@@ -1,0 +1,13 @@
+# Bounded follow-up incidents — version 1
+
+This authored synthetic gameplay policy implements a bounded part of PLAY-025 and PLAY-047, linked through DEC-011 and the paid Tier Two assurance path (`progress.goal.t2`). It does not accept historical research or close broader incident fidelity.
+
+Previously a customer could receive only one authored dependency incident. Once that incident had been repaired, a legitimately purchased assurance policy could never encounter another incident for the same customer. The AC-SOC-655 paid journey exposed that unreachable outcome.
+
+New `provider-campaigns-8` careers carry `incidentSequenceVersion: 1`. The original incident remains unchanged. After its observed resolution, another incident becomes eligible after 360 simulation minutes, and only fresh completed or late customer work can schedule it. The same scenario, seed and opening-variant definition determines resource, fault and delay. Each customer has a finite budget of eight authored incidents. Transport-domain incidents retain their separate rules. Existing careers without the marker remain one-shot; restore does not invent earlier evidence. Unknown sequence versions refuse.
+
+A follow-up retains its ordinal, exact predecessor and resolution time, authored definition, and the actual completed-work event. At most seven trigger events per customer are pinned in addition to the ordinary event window and existing progression pins. Native jobs retain their existing pruning rules. Validation checks retained jobs when present and requires native pruning history otherwise. The sequence does not require a particular repair operation; the predecessor must actually recover. Existing operation posting, commissioning and service checks remain authoritative. Optional paid-repair binding in the pure helper is tested as an isolated fixture and is not supplied by the campaign adapter.
+
+Scheduling neither charges money nor repairs service. The actual incident changes the original dependency through the existing engine; acknowledgement, diagnosis, repair and assurance retain public SOC dispatch, staff, cash, delay and quote checks. The inspector explains the follow-up and recovery interval using the translation system. Rendering does not schedule incidents.
+
+AC-SOC-822/823 exercise paid SMB construction, actual outage and repair, renewals, follow-up demand, legacy behavior, malformed saves, workers and restore. AC-SOC-824–827 separately exercise the pure helper, including its finite limit. These are bounded tests, not the parked long-play regression or human pilot. Fresh integrated acceptance and browser evidence must identify the exact candidate tested.

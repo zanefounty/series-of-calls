@@ -1,6 +1,5 @@
 'use strict';
 
-const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
@@ -45,17 +44,6 @@ function checkpoint(label, state, detail = {}) {
   fs.renameSync(`${target}.meta.json.tmp`, `${target}.meta.json`);
 }
 
-test('regional T2 and L7 paid unlocks stay explicitly locked until their earned receipts exist', () => {
-  const state = SOC.create({ experience: 'campaign', seed: 73 });
-  const before = JSON.stringify(state);
-  const quoteHooks = { providerQuote: (current, request) => SOC.provider.quote(current, request) };
-  for (const [sourceId, missing] of [[RECEIPTS.REGIONAL_T2, 'TIER_TWO_RECEIPT_REQUIRED'], [RECEIPTS.REGIONAL_L7, 'INTERNATIONAL_PROVIDER_RECEIPT_REQUIRED'], [RECEIPTS.DEDICATED_INTERCONNECT, 'DEDICATED_INTERCONNECT_RECEIPT_REQUIRED']]) {
-    const proposal = RECEIPTS.unlockProposal(state, sourceId, quoteHooks);
-    assert.equal(proposal.status, 'locked');
-    assert.deepEqual(proposal.missing, [missing]);
-  }
-  assert.equal(JSON.stringify(state), before, 'inspection cannot grant an unlock or change campaign finances');
-});
 
 function buy(state, request) {
   const quote = SOC.provider.quote(state, request);
@@ -174,16 +162,6 @@ function compareCashWaitToMinuteSteps(state, minutes) {
   return chunked;
 }
 
-test('safe cash wait chunks preserve native results at settlement boundaries', () => {
-  let state = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
-  state = startCustomer(state, 'starter-customer', 'starter', 'au-sydney');
-  const startClock = state.clock;
-  const target = Math.ceil((startClock + 1) / 60) * 60;
-  const waited = compareCashWaitToMinuteSteps(state, target - startClock);
-  assert.equal(waited.clock, target);
-  assert.ok(waited.providerCampaign.periodHistory.some(row => row.settledAt === target),
-    'the actual customer settlement survives the chunked command');
-});
 
 function startCustomer(state, customerId, offerId, market) {
   state = buy(state, { action: 'purchase', offerId, planId: 'swift', stage: 'base', market });
@@ -437,6 +415,73 @@ function assuranceMinute(state) {
   return SOC.dispatch(state, { type: 'advance', minutes: 1 });
 }
 
+function assuranceWaitChunk(state) {
+  if (state.providerCampaign.status === 'won' || state.providerCampaign.customers.some(row => row.status === 'renewal')) return 1;
+  let boundary = (Math.floor(state.clock / 60) + 1) * 60;
+  for (const project of state.providerCampaign.projects) {
+    if (['running', 'commissioning'].includes(project.status) && Number.isSafeInteger(project.dueAt) && project.dueAt > state.clock) {
+      boundary = Math.min(boundary, project.dueAt);
+    }
+  }
+  return Math.max(1, boundary - state.clock);
+}
+
+function runAssuranceWait(state, projectId, limit = 240) {
+  const startedAt = state.clock;
+  let dispatches = 0, chunkedDispatches = 0;
+  while (state.clock - startedAt < limit && !state.providerAutomation.find(row => row.projectId === projectId)?.actions.length) {
+    const requested = Math.min(limit - (state.clock - startedAt), assuranceWaitChunk(state));
+    const before = state.clock;
+    state = requested === 1
+      ? assuranceMinute(state)
+      : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'assurance-wait');
+    dispatches++;
+    if (requested > 1) chunkedDispatches++;
+    assertAssuranceProgress(state, before, requested);
+  }
+  checkpoint('t2-assurance-wait-profile', state, {
+    projectId,
+    elapsedMinutes: state.clock - startedAt,
+    dispatches,
+    multiMinuteDispatches: chunkedDispatches,
+    actionCount: state.providerAutomation.find(row => row.projectId === projectId)?.actions.length || 0
+  });
+  return state;
+}
+
+function assertAssuranceProgress(state, before, requested) {
+  if (state.clock <= before || state.clock - before > requested) throw new Error(`assurance wait advanced ${state.clock - before} minutes for a ${requested}-minute request`);
+}
+
+function compareAssuranceWaitToMinuteSteps(state, minutes) {
+  let minuteSteps = clone(state);
+  for (let n = 0; n < minutes; n++) minuteSteps = assuranceMinute(minuteSteps);
+  let chunked = clone(state), remaining = minutes;
+  while (remaining > 0) {
+    const requested = Math.min(remaining, assuranceWaitChunk(chunked));
+    const before = chunked.clock;
+    chunked = requested === 1
+      ? assuranceMinute(chunked)
+      : dispatchWithCheckpoint(chunked, { type: 'advance', minutes: requested }, 'assurance-wait-equivalence');
+    const elapsed = chunked.clock - before;
+    assertAssuranceProgress(chunked, before, requested);
+    remaining -= elapsed;
+  }
+  const persisted = value => {
+    if (Array.isArray(value)) return value.map(persisted);
+    if (!value || typeof value !== 'object') return value;
+    return Object.fromEntries(Object.entries(value)
+      .filter(([key]) => key !== 'revision')
+      .map(([key, item]) => [key, persisted(item)]));
+  };
+  delete chunked.commands;
+  delete minuteSteps.commands;
+  if (JSON.stringify(persisted(chunked)) !== JSON.stringify(persisted(minuteSteps))) {
+    throw new Error('boundary-chunked assurance wait diverges from one-minute persisted outcomes');
+  }
+  return chunked;
+}
+
 function rehash(receipt) {
   const unsigned = { ...receipt };
   delete unsigned.integrity;
@@ -445,331 +490,17 @@ function rehash(receipt) {
   receipt.integrity = (hash >>> 0).toString(16).padStart(8, '0');
 }
 
-test('AC-SOC-653 public dispatch earns C3 from three paid markets and rejects rehashed market or support forgery', () => {
-  let state = createThreeMarketWindow();
-  const ready = SOC.provider.inspect(state).progression.goals[C3];
-  assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
-  assert.deepEqual(ready.evidence.markets, ['au-sydney', 'eu-dublin', 'us-seattle']);
-  assert.equal(ready.evidence.customerIds.length, 3);
-  const cash = state.business.balance.cash;
-  state = claim(state);
-  const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3);
-  assert.ok(receipt);
-  assert.deepEqual(receipt.unlock.allowedMarkets, ['au-sydney', 'eu-dublin', 'us-seattle']);
-  assert.equal(receipt.unlock.operationId, 'regional-provisioning');
-  assert.equal(state.business.balance.cash, cash, 'earning the evidence receipt does not award or spend cash');
-  assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3).sourceId, C3);
-  const customerId = 'next-1-customer';
-  const decodedEvidence = {
-    ...receipt.sourceEvidence,
-    samples: FACTS.decodeSupportObservation(receipt.sourceEvidence.samples)
-  };
-  const arrivalPins = REGIONAL.retentionPins(decodedEvidence, customerId, receipt.workProofs).eventIds;
-  const customerProofs = receipt.workProofs.filter(proof => proof.customerId === customerId);
-  assert.deepEqual(arrivalPins, customerProofs.map(proof => proof.arrivalEventId).sort());
-  assert.ok(arrivalPins.length > 0);
-  for (const proof of customerProofs) {
-    const event = state.providerCampaign.events.find(row => row.id === proof.arrivalEventId);
-    const origin = state.providerCampaign.supportWork.origins.find(row => row.customerId === proof.customerId && row.arrival.interactionId === proof.interactionId)?.arrival;
-    assert.ok(event || origin, `${proof.jobId} arrival is present or has its exact retained origin`);
-  }
-  const childId = state.providerCampaign.customers.find(row => row.id === customerId).portfolioId;
-  const storedPins = state.portfolio.customers.find(row => row.id === childId).root.providerRegionalPins;
-  assert.deepEqual(storedPins.pins.eventIds, arrivalPins, 'claim installs the evidenced arrival IDs in the customer retention marker');
-  assert.equal(storedPins.version, 2);
-  const legacy = clone(state);
-  for (const customer of legacy.portfolio.customers) if (customer.root.providerRegionalPins) {
-    customer.root.providerRegionalPins.version = 1;
-    delete customer.root.providerRegionalPins.pins.eventIds;
-  }
-  const legacyText = JSON.stringify(legacy);
-  SOC.validateState(legacy);
-  assert.equal(JSON.stringify(legacy), legacyText, 'validation does not migrate caller-owned state');
-  const migrated = SOC.restore(legacyText);
-  assert.deepEqual(migrated.portfolio.customers.map(row => row.root.providerRegionalPins), state.portfolio.customers.map(row => row.root.providerRegionalPins));
-  assert.equal(JSON.stringify(legacy), legacyText, 'restore owns its migrated copy');
-  const unknownVersion = clone(state);
-  unknownVersion.portfolio.customers.find(row => row.root.providerRegionalPins).root.providerRegionalPins.version = 3;
-  assert.throws(() => SOC.restore(JSON.stringify(unknownVersion)), /INVALID_PROVIDER_REGIONAL_PINS/);
 
-  if (process.env.SOC_C3_EARNED_STATE) fs.writeFileSync(process.env.SOC_C3_EARNED_STATE, JSON.stringify(state));
 
-  const badMarkets = clone(state);
-  const badMarketReceipt = badMarkets.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3);
-  badMarketReceipt.sourceEvidence.markets = ['au-sydney', 'au-melbourne', 'us-seattle'];
-  badMarketReceipt.unlock.allowedMarkets = [...badMarketReceipt.sourceEvidence.markets];
-  rehash(badMarketReceipt);
-  assert.throws(() => SOC.restore(JSON.stringify(badMarkets)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/);
 
-  const badSupport = clone(state);
-  const badSupportReceipt = badSupport.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3);
-  const samples = FACTS.decodeSupportObservation(badSupportReceipt.sourceEvidence.samples);
-  const usParticipant = samples[20].participants.find(row => row.customerId === 'next-1-customer');
-  assert.ok(usParticipant?.namedSupport);
-  usParticipant.namedSupport.market = 'au-sydney';
-  badSupportReceipt.sourceEvidence.samples = FACTS.encodeSupportObservation(samples);
-  rehash(badSupportReceipt);
-  assert.throws(() => SOC.restore(JSON.stringify(badSupport)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/);
 
-  const missingArrival = clone(state);
-  const missingArrivalReceipt = missingArrival.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C3);
-  const checkpointLastId = Number(missingArrival.providerCampaign.eventCheckpoint.lastId.slice('provider-event-'.length));
-  const retainedOriginIds = new Set(missingArrival.providerCampaign.supportWork.origins.map(row => row.arrival.id));
-  const retainedEventIds = new Set(missingArrival.providerCampaign.events.map(row => row.id));
-  const absentBelowCheckpoint = Array.from({ length: checkpointLastId }, (_, index) => `provider-event-${index + 1}`)
-    .find(id => !retainedEventIds.has(id) && !retainedOriginIds.has(id));
-  assert.ok(absentBelowCheckpoint, 'fixture has an absent arrival ID below the event checkpoint');
-  const missingArrivalProof = missingArrivalReceipt.workProofs.find(proof => proof.arrivalEventId !== absentBelowCheckpoint);
-  assert.ok(missingArrivalProof);
-  missingArrivalProof.arrivalEventId = absentBelowCheckpoint;
-  rehash(missingArrivalReceipt);
-  const forgedCustomer = missingArrival.providerCampaign.customers.find(row => row.id === missingArrivalProof.customerId);
-  const forgedChild = missingArrival.portfolio.customers.find(row => row.id === forgedCustomer.portfolioId).root;
-  const forgedEvidence = { ...missingArrivalReceipt.sourceEvidence, samples: FACTS.decodeSupportObservation(missingArrivalReceipt.sourceEvidence.samples) };
-  const forgedEventIds = REGIONAL.retentionPins(forgedEvidence, forgedCustomer.id, missingArrivalReceipt.workProofs).eventIds;
-  forgedChild.providerRegionalPins.pins.eventIds = forgedEventIds;
-  assert.throws(() => SOC.restore(JSON.stringify(missingArrival)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/,
-    'a rehashed receipt cannot substitute an absent arrival ID below the checkpoint, even with matching derived pins');
-
-  const duplicate = claim(state);
-  assert.equal(duplicate.providerCampaign.progressionReceipts.receipts.filter(row => row.sourceId === C3).length, 1);
-  assert.equal(duplicate.business.balance.cash, cash, 'repeated claims remain idempotent');
-
-  const anchor = 'next-1-customer';
-  const followRequest = { action: 'operation', operationId: 'regional-provisioning', customerId: anchor };
-  const followQuote = SOC.provider.quote(state, followRequest);
-  assert.deepEqual(followQuote.blockers, []);
-  assert.deepEqual([followQuote.setupCents, followQuote.periodCents, followQuote.workMinutes, followQuote.engineers, followQuote.support], [15000, 8000, 4, 0, 1]);
-  const cashBeforeFollowOn = state.business.balance.cash;
-  state = SOC.dispatch(state, { type: 'provider', command: { ...followRequest, quoteRevision: followQuote.atRevision } });
-  const followProject = state.providerCampaign.projects.findLast(row => row.customerId === anchor && row.operationId === 'regional-provisioning');
-  state = operationComplete(state, 'regional-provisioning', anchor);
-  const paidFollowProject = state.providerCampaign.projects.find(row => row.id === followProject.id);
-  assert.equal(paidFollowProject.status, 'complete');
-  assert.equal(state.business.balance.cash, cashBeforeFollowOn - paidFollowProject.setupCents);
-  assert.ok(state.business.ledger.some(row => row.id === paidFollowProject.postingId && row.customerId === anchor && row.projectId === paidFollowProject.id && row.cents === paidFollowProject.setupCents));
-  assert.equal(paidFollowProject.operationReceipt.sourceId, C3);
-  assert.equal(paidFollowProject.operationReceipt.receiptId, receipt.id);
-  const policy = state.providerAutomation.find(row => row.projectId === paidFollowProject.id);
-  assert.ok(policy);
-  assert.equal(policy.status, 'suspended', 'the paid recipe is not enabled by purchase');
-  assert.equal(policy.config.lifetimeBudgetCents, 0);
-  assert.deepEqual(policy.config.customerIds, [anchor]);
-
-  const newCustomer = 'next-3-customer';
-  const baseRequest = { action: 'purchase', offerId: 'next-3', planId: 'swift', stage: 'base', market: 'au-sydney' };
-  const baseQuote = SOC.provider.quote(state, baseRequest);
-  assert.deepEqual(baseQuote.blockers, []);
-  state = SOC.dispatch(state, { type: 'provider', command: { ...baseRequest, quoteRevision: baseQuote.atRevision } });
-  state = until(state, s => s.providerCampaign.customers.find(row => row.id === newCustomer)?.stages.base?.status === 'effective', `${newCustomer} base`);
-  const activeRecipe = POLICY.create({
-    ...policy.config,
-    enabled: true,
-    suspended: false,
-    lifetimeBudgetCents: 100000,
-    maxActions: 1,
-    engineerCeiling: 1,
-    supportCeiling: 1,
-    customerIds: [newCustomer],
-    rules: [{ id: 'carrier-for-next-customer', kind: 'provisioning', enabled: true, customerIds: [newCustomer], operationId: null, stage: 'carrier', resourceId: null, thresholdPercent: null }]
-  });
-  state = SOC.dispatch(state, { type: 'provider', command: { action: 'configure-policy', customerId: anchor, config: activeRecipe, quoteRevision: state.revision } });
-  const preview = SOC.provider.policyPreview(state, activeRecipe, anchor);
-  assert.equal(preview.status, 'ready');
-  assert.equal(preview.customerId, newCustomer);
-  const cashBeforeAutomaticOrder = state.business.balance.cash;
-  state = advance(state);
-  const automatedStage = state.providerCampaign.projects.findLast(row => row.customerId === newCustomer && row.kind === 'stage' && row.stage === 'carrier');
-  assert.ok(automatedStage, 'the explicit paid policy submits an eligible carrier order');
-  assert.ok(state.business.ledger.some(row => row.id === automatedStage.postingId && row.projectId === automatedStage.id && row.cents === automatedStage.setupCents));
-  assert.equal(state.business.balance.cash, cashBeforeAutomaticOrder - automatedStage.setupCents);
-  const enabledPolicy = state.providerAutomation.find(row => row.projectId === paidFollowProject.id);
-  assert.equal(enabledPolicy.actions.length, 1);
-  assert.equal(enabledPolicy.actions[0].projectId, automatedStage.id);
-  assert.equal(enabledPolicy.spentCents, automatedStage.setupCents);
-  state = until(state, s => s.providerCampaign.customers.find(row => row.id === newCustomer)?.stages.carrier?.status === 'effective', `${newCustomer} carrier`);
-  assert.equal(state.providerCampaign.projects.find(row => row.id === automatedStage.id).status, 'complete');
-  assert.deepEqual(SOC.restore(JSON.stringify(state)), state);
-});
-
-test('AC-SOC-654 public dispatch earns C5 only after five distinct paid customer markets and a full support window', () => {
-  let state = createFiveMarketWindow();
-  const ready = SOC.provider.inspect(state).progression.goals[C5];
-  assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
-  assert.deepEqual(ready.evidence.markets, ['au-melbourne', 'au-sydney', 'eu-dublin', 'jp-tokyo', 'us-seattle']);
-  assert.equal(ready.evidence.customerIds.length, 5);
-  const cash = state.business.balance.cash;
-  state = claimSource(state, C5);
-  const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C5);
-  checkpoint('c5-earned-window', state, { sourceId: C5, customerIds: receipt?.sourceEvidence?.customerIds || [] });
-  assert.ok(receipt);
-  assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);
-  assert.equal(receipt.unlock.operationId, 'regional-provisioning');
-  assert.equal(state.business.balance.cash, cash, 'earning C5 does not award or spend cash');
-  assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === C5).sourceId, C5);
-});
-
-test('AC-SOC-656 L7 unlock quotes and funds the real scoped distributor support tariff', () => {
-  let state = createLevelSevenWindow();
-  const ready = SOC.provider.inspect(state).progression.levels[L7];
-  checkpoint('l7-before-claim', state, { sourceId: L7, status: ready.status, missing: ready.missing });
-  assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
-  assert.deepEqual(ready.evidence.markets, ['au-melbourne', 'au-sydney', 'eu-dublin', 'jp-tokyo', 'us-seattle']);
-  assert.equal(ready.evidence.customerIds.length, 5);
-  const cash = state.business.balance.cash;
-  state = claimSource(state, L7);
-  const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === L7);
-  checkpoint('l7-earned-window', state, { sourceId: L7, customerIds: receipt?.sourceEvidence?.customerIds || [] });
-  assert.ok(receipt);
-  assert.equal(state.business.balance.cash, cash);
-  assert.equal(receipt.unlock.operationId, REGIONAL.OPERATION_ID);
-  assert.equal(receipt.unlock.coverageId, 'distributor-extended');
-  assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);
-
-  const target = state.providerCampaign.customers.find(row => row.market === 'au-sydney');
-  const beforeProposal = JSON.stringify(state);
-  const proposal = RECEIPTS.unlockProposal(state, L7, { ...hooks, customerId: target.id, providerQuote: (current, request) => SOC.provider.quote(current, request) });
-  assert.equal(JSON.stringify(state), beforeProposal, 'the earned offer preview is read-only');
-  assert.equal(proposal.status, 'available', JSON.stringify(proposal.missing));
-  assert.equal(proposal.request.operationId, REGIONAL.OPERATION_ID);
-  assert.deepEqual(proposal.request.config, { market: 'au-sydney', personId: 'support-au-sydney-01', coverageId: 'distributor-extended' });
-  assert.deepEqual([proposal.quote.setupCents, proposal.quote.periodCents, proposal.quote.workMinutes, proposal.quote.engineers, proposal.quote.support], [24000, 12000, 8, 0, 1]);
-
-  state = SOC.dispatch(state, { type: 'provider', command: { ...proposal.request, quoteRevision: proposal.quote.atRevision } });
-  const project = state.providerCampaign.projects.findLast(row => row.customerId === target.id && row.operationId === REGIONAL.OPERATION_ID && row.config?.coverageId === 'distributor-extended');
-  assert.ok(project);
-  state = until(state, current => current.providerCampaign.projects.find(row => row.id === project.id)?.status === 'complete', 'L7 distributor tariff delivery');
-  const completed = state.providerCampaign.projects.find(row => row.id === project.id);
-  assert.equal(completed.status, 'complete');
-  assert.equal(completed.supportCommercialEvidence.sourceId, L7);
-  assert.equal(completed.supportCommercialEvidence.receiptId, receipt.id);
-  assert.deepEqual(completed.supportCommercialEvidence.allowedMarkets, receipt.unlock.allowedMarkets);
-  assert.ok(state.business.ledger.some(row => row.id === completed.postingId && row.projectId === completed.id && row.cents === completed.setupCents));
-  assert.equal(state.business.balance.cash, cash - completed.setupCents);
-  assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.projects.find(row => row.id === project.id).status, 'complete');
-});
-
-test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and funds bounded automatic repair', () => {
-  let state = createThreeMarketWindow();
-  // The three quoted recipes total 1,902,000 setup cents and 357,000 cents per period.
-  // Include three settlement cycles during 165 serial work minutes, actual payroll,
-  // the measured pre-integration operating surplus, and the bounded repair budget.
-  checkpoint('t2-before-funding-wait', state, { targetCashCents: 2_500_000 });
-  state = untilCash(state, 2_500_000, 'fund the costed T2 and response reserve from actual settlements', 600);
-  checkpoint('t2-funded-reserve', state, { targetCashCents: 2_500_000 });
-  const customerIds = ['starter-customer', 'next-1-customer', 'next-2-customer'];
-  for (const customerId of customerIds) {
-    state = installTestedUcCcPair(state, customerId);
-    checkpoint(`t2-integration-${customerId}`, state, { customerId });
-  }
-  state = until(state, current => stableSupportWindowShape(current, customerIds), 'stable three-market support and tested integration window', 180);
-
-  const ready = SOC.provider.inspect(state).progression.goals[T2];
-  assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
-  assert.deepEqual(ready.evidence.customerIds, [...customerIds].sort());
-  assert.deepEqual(ready.evidence.markets, ['au-sydney', 'eu-dublin', 'us-seattle']);
-  assert.ok(Array.isArray(ready.evidence.samples), 'live regional-window evidence exposes decoded samples');
-  for (const customerId of customerIds) {
-    const participantRows = ready.evidence.samples.map(sample => sample.participants.find(row => row.customerId === customerId));
-    assert.ok(participantRows.every(row => row.integrations?.some(edge => edge.id === 'workplace-to-contact-quality')),
-      `${customerId} has a current paid and tested integration in every retained sample`);
-  }
-  checkpoint('t2-assurance-ready', state, { customerIds });
-
-  const cashBeforeClaim = state.business.balance.cash;
-  checkpoint('t2-ready-window', state, { sourceId: T2, customerIds });
-  state = claimSource(state, T2);
-  const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
-  checkpoint('t2-earned-window', state, { sourceId: T2, customerIds: receipt?.sourceEvidence?.customerIds || [] });
-  assert.ok(receipt);
-  assert.ok(receipt.evidenceInterval.from <= receipt.sourceEvidence.interval.from,
-    'receipt interval aggregates nested settlement and support-window intervals');
-  assert.ok(receipt.evidenceInterval.to >= receipt.sourceEvidence.interval.to,
-    'receipt interval covers the complete support window');
-  assert.deepEqual(receipt.unlock.allowedCustomerIds, [...customerIds].sort());
-  assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);
-  assert.equal(state.business.balance.cash, cashBeforeClaim, 'claiming the measured tier grants no cash');
-  assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2).id, receipt.id);
-
-  const alteredAggregate = clone(state);
-  const aggregateReceipt = alteredAggregate.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
-  aggregateReceipt.evidenceInterval.from++;
-  rehash(aggregateReceipt);
-  assert.throws(() => SOC.restore(JSON.stringify(alteredAggregate)), /INVALID_PROVIDER_PROGRESSION_RECEIPT_EVIDENCE/,
-    'rehashed aggregate interval edits fail the recomputed source summary');
-
-  const alteredWindow = clone(state);
-  const windowReceipt = alteredWindow.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
-  windowReceipt.sourceEvidence.interval.from++;
-  rehash(windowReceipt);
-  assert.throws(() => SOC.restore(JSON.stringify(alteredWindow)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/,
-    'rehashed support-window interval edits fail against the retained samples');
-
-  const forged = clone(state);
-  const forgedReceipt = forged.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
-  const samples = FACTS.decodeSupportObservation(forgedReceipt.sourceEvidence.samples);
-  samples[12].participants.find(row => row.customerId === customerIds[2]).integrations = [];
-  forgedReceipt.sourceEvidence.samples = FACTS.encodeSupportObservation(samples);
-  rehash(forgedReceipt);
-  assert.throws(() => SOC.restore(JSON.stringify(forged)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/);
-
-  const anchor = customerIds[0];
-  const quoteHooks = { ...hooks, customerId: anchor, providerQuote: (current, request) => SOC.provider.quote(current, request) };
-  const beforePreview = JSON.stringify(state);
-  const proposal = RECEIPTS.unlockProposal(state, T2, quoteHooks);
-  assert.equal(JSON.stringify(state), beforePreview, 'assurance preview is pure');
-  assert.equal(proposal.status, 'available', JSON.stringify(proposal.missing));
-  assert.equal(proposal.request.operationId, 'integration-assurance');
-  assert.deepEqual(proposal.unlock.allowedCustomerIds, [...customerIds].sort());
-  assert.deepEqual([proposal.quote.setupCents, proposal.quote.periodCents, proposal.quote.workMinutes, proposal.quote.engineers, proposal.quote.support], [30000, 9000, 6, 0, 1]);
-
-  const paidAssurance = proposal.request;
-  state = SOC.dispatch(state, { type: 'provider', command: { ...paidAssurance, quoteRevision: proposal.quote.atRevision } });
-  const assuranceProject = state.providerCampaign.projects.findLast(row => row.customerId === anchor && row.operationId === 'integration-assurance');
-  assert.ok(assuranceProject);
-  state = operationComplete(state, 'integration-assurance', anchor);
-  const completedAssurance = state.providerCampaign.projects.find(row => row.id === assuranceProject.id);
-  assert.equal(completedAssurance.status, 'complete');
-  assert.ok(state.business.ledger.some(row => row.id === completedAssurance.postingId && row.projectId === completedAssurance.id && row.cents === completedAssurance.setupCents));
-
-  const existingPolicy = state.providerAutomation.find(row => row.projectId === completedAssurance.id);
-  assert.ok(existingPolicy);
-  assert.equal(existingPolicy.status, 'suspended', 'a paid assurance product does not enable itself');
-  const config = POLICY.create({
-    ...existingPolicy.config,
-    enabled: true,
-    suspended: false,
-    cashFloorCents: 0,
-    lifetimeBudgetCents: 50000,
-    maxActions: 1,
-    engineerCeiling: 5,
-    supportCeiling: 6,
-    customerIds,
-    rules: [{ id: 'repair-one-real-incident', kind: 'assurance', enabled: true, customerIds, operationId: 'repair', stage: null, resourceId: null, thresholdPercent: null }]
-  });
-  const beforeConfigure = JSON.stringify(state);
-  const idle = SOC.provider.policyPreview(state, config, anchor);
-  assert.notEqual(idle.status, 'ready', 'without a measured incident the configured policy has no action');
-  assert.equal(JSON.stringify(state), beforeConfigure);
-  state = SOC.dispatch(state, { type: 'provider', command: { action: 'configure-policy', customerId: anchor, config, quoteRevision: state.revision } });
-  const activePolicy = state.providerAutomation.find(row => row.projectId === completedAssurance.id);
-  assert.equal(activePolicy.status, 'active');
-  assert.equal(activePolicy.config.lifetimeBudgetCents, 50000);
-  assert.equal(activePolicy.config.maxActions, 1);
-
-  for (let minute = 0; minute < 240 && state.providerAutomation.find(row => row.projectId === completedAssurance.id).actions.length === 0; minute++) state = assuranceMinute(state);
-  const fundedPolicy = state.providerAutomation.find(row => row.projectId === completedAssurance.id);
-  assert.equal(fundedPolicy.actions.length, 1, `one actual incident should use the bounded policy; clock ${state.clock}`);
-  const action = fundedPolicy.actions[0];
-  const repair = state.providerCampaign.projects.find(row => row.id === action.projectId);
-  assert.equal(repair.operationId, 'repair');
-  assert.ok(customerIds.includes(repair.customerId));
-  assert.equal(repair.status === 'running' || repair.status === 'commissioning' || repair.status === 'complete', true);
-  assert.equal(action.incidentId && state.providerCampaign.incidents.some(row => row.id === action.incidentId && row.customerId === repair.customerId), true);
-  assert.ok(state.business.ledger.some(row => row.id === repair.postingId && row.projectId === repair.id && row.cents === repair.setupCents));
-  assert.equal(fundedPolicy.spentCents, repair.setupCents);
-  assert.equal(fundedPolicy.config.actionsUsed, 1);
-  assert.ok(fundedPolicy.spentCents <= fundedPolicy.config.lifetimeBudgetCents);
-  state = until(state, current => current.providerCampaign.projects.find(row => row.id === repair.id)?.status === 'complete', 'policy-submitted incident repair', 120);
-  assert.equal(SOC.restore(JSON.stringify(state)).providerAutomation.find(row => row.projectId === completedAssurance.id).actions.length, 1);
-});
+module.exports = {
+  SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC,
+  C3, C5, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint,
+  advance, until, safeCashWaitChunk, untilCash, compareCashWaitToMinuteSteps,
+  startCustomer, operation, operationComplete, stableSupportWindowShape,
+  createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow,
+  claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer,
+  ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk,
+  runAssuranceWait, compareAssuranceWaitToMinuteSteps
+};

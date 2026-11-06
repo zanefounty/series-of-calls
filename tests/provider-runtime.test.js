@@ -170,3 +170,58 @@ test('AC-SOC-725 selecting a real newly funded customer quotes contextual operat
   assert.equal(w.document.querySelector('[data-provider-action="quote-case-followup"]'),null);
  }finally{w.providerRelease();dom.window.close();}
 });
+
+
+test('AC-SOC-829 paid mission failure pauses once and visible Resume operations continues the same live business',()=>{
+ // Every positive gameplay state below comes from the public dispatcher.
+ let state=SOC.create({experience:'campaign',scenario:'smb',difficulty:'easy',seed:73});
+ const customerId='starter-customer',P=require('../src/game/23-provider-policy');
+ const buy=request=>{const q=SOC.provider.quote(state,request);assert.deepEqual(q.blockers,[],JSON.stringify({clock:state.clock,request,blockers:q.blockers}));state=SOC.dispatch(state,{type:'provider',command:{...request,quoteRevision:q.atRevision}});};
+ const tick=()=>{for(const c of state.providerCampaign.customers.filter(c=>c.status==='renewal'))state=SOC.dispatch(state,{type:'provider',command:{action:'renew',customerId:c.id}});state=SOC.dispatch(state,{type:'advance',minutes:1});};
+ const until=predicate=>{for(let n=0;n<300&&!predicate();n++)tick();assert.ok(predicate(),'paid fixture stalled at '+state.clock);};
+ for(const stage of ['base','carrier','partner']){buy({action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});until(()=>state.providerCampaign.customers[0].stages[stage].status==='effective');}
+ const op=id=>{buy({action:'operation',operationId:id,customerId});until(()=>state.providerCampaign.projects.findLast(p=>p.operationId===id).status==='complete');};
+ op('automation');
+ const policy=state.providerAutomation[0],config={...P.create(),enabled:true,cashFloorCents:10000,lifetimeBudgetCents:300000,budgetSpentCents:policy.spentCents,maxActions:6,actionsUsed:policy.actions.length,engineerCeiling:2,supportCeiling:1,customerIds:[customerId],rules:[{id:'assurance',kind:'assurance',enabled:true,customerIds:[customerId],operationId:'repair',stage:null,resourceId:null,thresholdPercent:null}]};
+ state=SOC.dispatch(state,{type:'provider',command:{action:'configure-policy',customerId,config}});
+ op('recording');op('bpo');state=SOC.dispatch(state,{type:'provider',command:{action:'staff',engineers:4,support:4}});op('ms-workplace-calling');until(()=>state.clock===239);
+ assert.equal(state.providerCampaign.status,'operating');assert.equal(state.providerCampaign.mission.consecutiveFailures,2);
+ const {dom,w}=boot();try{
+  w.Worker=undefined;w.providerHome();const runtime=w.__SCP;runtime.state=SOC.restore(JSON.stringify(state));runtime.atHome=false;runtime.locked=true;w.providerRender();w.providerSpeed(8);assert.equal(runtime.speed,8);
+  w.providerTick();assert.equal(runtime.state.clock,240);assert.equal(runtime.state.providerCampaign.status,'failed');assert.equal(runtime.state.providerCampaign.missionStatus,'failed');assert.equal(runtime.state.providerCampaign.customers[0].status,'active');assert.equal(runtime.state.business.solvency.status,'current');assert.equal(runtime.speed,0,'new mission failure pauses once');
+  assert.ok(runtime.state.providerCampaign.customers[0].history.slice(-3).every(h=>h.qualified));assert.ok(runtime.state.providerCampaign.periodHistory.slice(-3).every(h=>h.operatingResult<0),'mission failure is actual operating loss, not fabricated customer failure');
+  const before=JSON.stringify(runtime.state),failure=runtime.state.providerCampaign.mission.consecutiveFailures;
+  w.requestAnimationFrame=()=>0;for(let n=0;n<20;n++)w.providerFrame(w.performance.now()+250*n);assert.equal(JSON.stringify(runtime.state),before,'the paused failure screen cannot advance simulation time');
+  w.providerRender();assert.equal(JSON.stringify(runtime.state),before,'rendering the explanation does not change state');
+  const notice=w.document.querySelector('.provider-mission-failure');assert.match(notice.textContent,/failed result remains recorded/);
+  const resume=notice.querySelector('[data-provider-action="resume"]');assert.equal(resume.textContent,'Resume operations');assert.equal(resume.disabled,false);resume.click();assert.equal(runtime.speed,1);assert.equal(JSON.stringify(runtime.state),before,'resume changes only the runtime clock control');
+  for(let n=0;n<2;n++){const expected=SOC.dispatch(runtime.state,{type:'advance',minutes:1,expectedRevision:runtime.state.revision});w.providerTick();assert.deepEqual(runtime.state,expected);assert.equal(runtime.speed,1,'failed status must not pause every subsequent tick');}
+  assert.equal(runtime.state.clock,242);assert.equal(runtime.state.providerCampaign.missionStatus,'failed');assert.equal(runtime.state.providerCampaign.mission.consecutiveFailures,failure);assert.equal(runtime.state.providerCampaign.mission.victoryProof,null);assert.deepEqual(SOC.restore(JSON.stringify(runtime.state)),runtime.state);
+ }finally{dom.window.close();}
+});
+
+test('AC-SOC-830 runtime stop guards refuse winning, defaulted, customerless failed, hidden and unowned clocks',()=>{
+ // Isolated runtime boundary models: these are not earned gameplay fixtures.
+ const {dom,w}=boot();try{
+  w.providerRender=()=>{};const r=w.__SCP;
+  for(const [status,solvency,customers,locked,hidden] of [
+   ['won','current',[{status:'active'}],true,false],['operating','default',[{status:'active'}],true,false],['failed','default',[{status:'active'}],true,false],['failed','current',[{status:'exited'}],true,false],['failed','current',[],true,false],['failed','current',[{status:'active'}],false,false],['failed','current',[{status:'active'}],true,true]
+  ]){
+   r.state={revision:0,providerCampaign:{status,customers},business:{solvency:{status:solvency}}};r.locked=locked;r.speed=0;r.busy=false;Object.defineProperty(w.document,'hidden',{configurable:true,value:hidden});
+   const before=JSON.stringify(r.state);w.providerSpeed(8);assert.equal(r.speed,0,JSON.stringify({status,solvency,customers,locked,hidden}));
+   if(!hidden)w.providerTick();assert.equal(r.busy,false);assert.equal(JSON.stringify(r.state),before,'refused clock does not mutate the state');
+  }
+ }finally{dom.window.close();}
+});
+
+test('AC-SOC-831 mission failure panel explains default and missing customers with pure translated actions',()=>{
+ const {dom,w}=boot();try{
+  const base=SOC.provider.inspect(SOC.create({experience:'campaign'}));
+  for(const [solvency,customers,reason,action] of [
+   ['default',[{id:'c',status:'active'}],/business is in default/,'finance'],['current',[],/No live customer remains/,'deals']
+  ]){
+   const model={...base,mission:{...base.mission,status:'failed'},solvency:{status:solvency},customers,locked:true},before=JSON.stringify(model),holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderPanels.rail(model,{drawer:'goals'});const notice=holder.querySelector('.provider-mission-failure');assert.match(notice.textContent,reason);assert.equal(notice.querySelector('[data-provider-action="resume"]'),null);assert.ok(notice.querySelector(`[data-provider-action="drawer"][data-provider-value="${action}"]`));assert.equal(JSON.stringify(model),before);
+  }
+  w.tr=key=>'translated:'+key;const model={...base,mission:{...base.mission,status:'failed'},customers:[{id:'c',status:'active'}],locked:false},holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderPanels.rail(model,{drawer:'goals'});const notice=holder.querySelector('.provider-mission-failure');assert.match(notice.textContent,/translated:provider.panels.mission_failed_explanation/);assert.equal(notice.querySelector('[data-provider-action="resume"]').disabled,true);
+ }finally{dom.window.close();}
+});

@@ -36546,9 +36546,11 @@
       "src/game/44-campaign.js",
       "src/game/55-communications.js",
       "src/game/84-portfolio-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
       "src/game/93-ui/78-provider-policy-controls.js",
       "src/game/93-ui/79-provider-incidents.js",
-      "src/game/97-training.js"
+      "src/game/97-training.js",
+      "src/game/98-provider-runtime.js"
     ],
     "acceptance": [
       "AC-aff59faa7431000b"

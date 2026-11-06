@@ -25,6 +25,7 @@ function socProviderRegionalSupportKernel(){
   'distributor-extended':Object.freeze({shiftStart:0,shiftEnd:1440,setupCents:24000,periodCents:12000,workMinutes:8,engineers:0,support:1})
  });
  const fail=code=>{throw new Error(code);},copy=x=>JSON.parse(JSON.stringify(x));
+ const supportReadScope=Symbol('provider-regional-support-read-scope');
  const integer=(x,min=0,max=Number.MAX_SAFE_INTEGER)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
  const id=x=>typeof x==='string'&&/^[a-z][a-z0-9-]{0,47}$/.test(x);
  const exact=(x,keys)=>!!x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).sort().join(',')===[...keys].sort().join(',');
@@ -117,6 +118,19 @@ function socProviderRegionalSupportKernel(){
   }
   return rows;
  }
+ function assignmentRowsFor(s,hooks={}){
+  const scope=hooks?.[supportReadScope];
+  if(!scope||scope.state!==s)return allAssignments(s);
+  if(!scope.rows)scope.rows=allAssignments(s);
+  return scope.rows;
+ }
+ function effectiveAssignmentRowsFor(s,at,historical=false,hooks={}){
+  const scope=hooks?.[supportReadScope];
+  if(!scope||scope.state!==s)return assignmentRowsFor(s).filter(Boolean).filter(x=>assignmentEffectiveAt(x,at,historical));
+  const key=`${at}:${historical===true}`;
+  if(!scope.effective.has(key))scope.effective.set(key,assignmentRowsFor(s,hooks).filter(Boolean).filter(x=>assignmentEffectiveAt(x,at,historical)));
+  return scope.effective.get(key);
+ }
  function exitAfterSupportSample(s,customer){
   if(!integer(customer?.exitAt))return false;
   const event=s.providerCampaign.events?.find(x=>x.customerId===customer.id&&x.at===customer.exitAt&&['CUSTOMER_EXITED','CUSTOMER_FAILED_CONSECUTIVE_PERIODS','CUSTOMER_RENEWAL_REFUSED'].includes(x.code));
@@ -173,8 +187,8 @@ function socProviderRegionalSupportKernel(){
   return allAssignments(s).filter(Boolean).filter(x=>x.customer.id===customerId&&assignmentEffectiveAt(x,at)).sort((a,b)=>b.project.completedAt-a.project.completedAt||b.project.acceptedAt-a.project.acceptedAt||b.project.id.localeCompare(a.project.id));
  }
  function implementationSupportAt(s,at,historical=false){return (s.providerCampaign.projects||[]).filter(p=>integer(p.acceptedAt)&&integer(p.dueAt)&&(historical?p.acceptedAt<at:p.acceptedAt<=at)&&at<p.dueAt&&(p.status!=='cancelled'||historical&&p.completedAt>=at)).reduce((n,p)=>n+(integer(p.support)?p.support:0),0);}
- function snapshotFor(s,row,at,limit,payroll,historical=false){
-  const personId=row.assignment.personId,effective=allAssignments(s).filter(Boolean).filter(x=>assignmentEffectiveAt(x,at,historical)),samePerson=effective.filter(x=>x.assignment.personId===personId),scope=[...new Set(samePerson.flatMap(x=>x.assignment.scopeCustomerIds))].sort(),used=[...new Set(effective.map(x=>x.assignment.personId))].length;
+ function snapshotFor(s,row,at,limit,payroll,historical=false,hooks={}){
+  const personId=row.assignment.personId,effective=effectiveAssignmentRowsFor(s,at,historical,hooks),samePerson=effective.filter(x=>x.assignment.personId===personId),scope=[...new Set(samePerson.flatMap(x=>x.assignment.scopeCustomerIds))].sort(),used=[...new Set(effective.map(x=>x.assignment.personId))].length;
   return {version:VERSION,projectId:row.project.id,postingId:row.project.postingId,personId,employer:row.assignment.employer,market:row.assignment.market,languages:[...row.assignment.languages],skills:[...row.assignment.skills],coverageId:row.assignment.coverageId,shiftStart:row.assignment.shiftStart,shiftEnd:row.assignment.shiftEnd,scopeCustomerIds:scope,acceptedAt:row.project.acceptedAt,effectiveAt:row.project.completedAt,usedSupportSlots:used,paidSupportSlots:limit,implementationSupportSlots:implementationSupportAt(s,at,historical),payrollPersonMinutes:payroll.personMinutes,payrollBilledMinutes:payroll.billedMinutes};
  }
  function distributorEvidence(s,c,hooks={}){
@@ -211,10 +225,10 @@ function socProviderRegionalSupportKernel(){
   const observation=s?.providerCampaign?.supportObservation;if(!observation)return [];
   try{return factsApi().decodeSupportObservation(observation);}catch{return [];}
  }
- function retainedNamedSupportMatches(s,participant,at,options={}){
+ function retainedNamedSupportMatches(s,participant,at,options={},hooks={}){
   const proof=participant?.namedSupport;if(!exact(proof,['version','projectId','postingId','personId','employer','market','languages','skills','coverageId','shiftStart','shiftEnd','scopeCustomerIds','acceptedAt','effectiveAt','usedSupportSlots','paidSupportSlots','implementationSupportSlots','payrollPersonMinutes','payrollBilledMinutes'])||proof.version!==VERSION)return false;
-  const project=s.providerCampaign.projects.find(x=>x.id===proof.projectId&&x.postingId===proof.postingId&&x.customerId===participant.customerId),row=project&&allAssignments(s).find(x=>x?.project.id===project.id);if(!row||!assignmentEffectiveAt(row,at,true)||project.acceptedAt!==proof.acceptedAt||project.completedAt!==proof.effectiveAt||project.completedAt>at)return false;
-  const expected=snapshotFor(s,row,at,proof.paidSupportSlots,{personMinutes:proof.payrollPersonMinutes,billedMinutes:proof.payrollBilledMinutes},true);
+  const project=s.providerCampaign.projects.find(x=>x.id===proof.projectId&&x.postingId===proof.postingId&&x.customerId===participant.customerId),row=project&&assignmentRowsFor(s,hooks).find(x=>x?.project.id===project.id);if(!row||!assignmentEffectiveAt(row,at,true)||project.acceptedAt!==proof.acceptedAt||project.completedAt!==proof.effectiveAt||project.completedAt>at)return false;
+  const expected=snapshotFor(s,row,at,proof.paidSupportSlots,{personMinutes:proof.payrollPersonMinutes,billedMinutes:proof.payrollBilledMinutes},true,hooks);
   // The per-minute support sample is the retained payroll/headcount observation.
   // The live team may later be downsized; historical verification uses its sampled limit.
   if(!integer(proof.paidSupportSlots,0,20)||!integer(proof.payrollPersonMinutes,1,s.providerCampaign.payroll.personMinutes)||!integer(proof.payrollBilledMinutes,1,Math.min(proof.payrollPersonMinutes,s.providerCampaign.payroll.billedMinutes)))return false;
@@ -233,13 +247,19 @@ function socProviderRegionalSupportKernel(){
   const purchase=api.permits(certificate,participant.customerId,'distributor-room',project.acceptedAt)?certificate:s.providerCampaign.contentVersion==='provider-campaigns-8'?api.purchaseQualification(s,participant.customerId,project.acceptedAt):null;return same(saved,expected)&&api.permits(purchase,participant.customerId,'distributor-room',project.acceptedAt);
  }
  function sampleMatches(s,participant,at,hooks,options={}){
-  if(participant.eligible!==true||!participant.responsibility||!participant.boundaries?.length||!retainedNamedSupportMatches(s,participant,at))return false;
+  if(participant.eligible!==true||!participant.responsibility||!participant.boundaries?.length||!retainedNamedSupportMatches(s,participant,at,{},hooks))return false;
   if(options.sourceId===LEVEL7)return distributorSnapshotMatches(s,participant,at);
   return true;
  }
  function marketEvidence(s,sourceId,hooks={},options={}){
   const samples=decodeSamples(s,hooks),minimum=60,missing=[];
   if(!Array.isArray(samples)||samples.some(x=>!x||!Array.isArray(x.cohort)||!Array.isArray(x.participants)||x.participants.some(p=>!p||typeof p!=='object')))return {sourceId,status:'incomplete',missing:['INVALID_PROVIDER_SUPPORT_SAMPLES'],evidence:null};
+  // Evidence reconstruction is synchronous and read-only. Reuse the retained
+  // roster across a 60-minute window only when no integration hook can run
+  // inside the participant loop. This cache never survives marketEvidence().
+  const cacheSafe=samples.every(row=>row.participants.every(p=>!Array.isArray(p.integrations)||p.integrations.length===0));
+  const readScope=cacheSafe?{state:s,rows:null,effective:new Map()}:null;
+  const scopedHooks=readScope?{...hooks,[supportReadScope]:readScope}:hooks;
   if(samples.length!==minimum||samples.some((x,i)=>!x||!integer(x.at)||x.at>s.clock||i&&x.at!==samples[i-1].at+1))missing.push('SIXTY_CONSECUTIVE_PROVIDER_SUPPORT_SAMPLES_REQUIRED');
   const first=samples[0],last=samples.at(-1);if(!options.historical&&last?.at!==s.clock)missing.push('CURRENT_SUPPORT_SAMPLE_REQUIRED');const cohort=first?.cohort||[],participants=first?.participants||[];
   if(!Array.isArray(cohort)||cohort.length===0||new Set(cohort).size!==cohort.length||!same(cohort,[...cohort].sort())||!Array.isArray(participants)||participants.length!==cohort.length||!same(participants.map(x=>x.customerId),cohort))missing.push('STABLE_PROVIDER_CUSTOMER_COHORT_REQUIRED');
@@ -257,8 +277,8 @@ function socProviderRegionalSupportKernel(){
     const stableFields=['market','configuration','resources','boundaries','integrations'];
     if(!initial||stableFields.some(k=>!same(p[k]??null,initial[k]??null))||p.namedSupport?.projectId!==initial.namedSupport?.projectId)missing.push(`SUPPORT_CONFIGURATION_CHANGED:${p.customerId}:${sampleRow.at}`);
     if(p.eligible!==true||!p.responsibility||!p.boundaries?.length)missing.push(`PROVIDER_SUPPORT_OR_BOUNDARY_MISSING:${p.customerId}:${sampleRow.at}`);
-    if(!sampleMatches(s,p,sampleRow.at,hooks,options))missing.push(`NAMED_SUPPORT_NOT_CURRENT:${p.customerId}:${sampleRow.at}`);
-    if(!validateSampleEvidence(s,p,sampleRow.at,sourceId,hooks))missing.push(`NAMED_SUPPORT_EVIDENCE_INVALID:${p.customerId}:${sampleRow.at}`);
+    if(!sampleMatches(s,p,sampleRow.at,scopedHooks,options))missing.push(`NAMED_SUPPORT_NOT_CURRENT:${p.customerId}:${sampleRow.at}`);
+    if(!validateSampleEvidence(s,p,sampleRow.at,sourceId,scopedHooks))missing.push(`NAMED_SUPPORT_EVIDENCE_INVALID:${p.customerId}:${sampleRow.at}`);
     if(sourceId===LEVEL7){
      const requiredLanguage=MARKETS[p.market]?.language;if(!p.namedSupport?.languages?.includes(requiredLanguage))missing.push(`MARKET_LANGUAGE_MISSING:${p.customerId}:${sampleRow.at}`);
      const carrier=p.resources?.some(r=>r.id==='carrier'&&integer(r.generation,1));if(!carrier)missing.push(`CARRIER_NOT_CURRENT:${p.customerId}:${sampleRow.at}`);
@@ -308,7 +328,7 @@ function socProviderRegionalSupportKernel(){
  }
  function validateSampleEvidence(s,participant,at,sourceId,hooks={}){
   if(!participant||!integer(at)||!id(participant.customerId))return false;
-  if(participant.namedSupport!==null&&participant.namedSupport!==undefined&&!retainedNamedSupportMatches(s,participant,at))return false;
+  if(participant.namedSupport!==null&&participant.namedSupport!==undefined&&!retainedNamedSupportMatches(s,participant,at,{},hooks))return false;
   if(participant.eligible===true&&!participant.namedSupport)return false;
   if(participant.distributor!==null&&participant.distributor!==undefined&&!distributorSnapshotMatches(s,participant,at))return false;
   if(sourceId===LEVEL7&&!distributorSnapshotMatches(s,participant,at))return false;

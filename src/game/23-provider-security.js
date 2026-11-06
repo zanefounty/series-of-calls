@@ -256,7 +256,7 @@ function socProviderSecurityKernel(terms,abuseTerms,managedTerms){
   return [];
  }
  function validateProgressionEvidence(s,e,{historical=false,claimedAt=s.clock,observeResource}={}){
-  if(!exact(e,['kind','version','sourceId','customerId','portfolioId','market','interval','proof'])||e.kind!=='provider-security-goal-v1'||e.version!==1||e.sourceId!==managedTerms.sourceId||!integer(claimedAt)||claimedAt>s.clock||!exact(e.interval,['from','to']))return false;
+  if(!exact(e,['kind','version','sourceId','customerId','portfolioId','market','interval','proof'])||e.kind!=='provider-security-goal-v1'||e.version!==1||e.sourceId!==managedTerms.sourceId||!integer(claimedAt)||claimedAt>s.clock||!exact(e.interval,['from','to'])||!integer(e.interval.from)||!integer(e.interval.to)||e.interval.from>e.interval.to||e.interval.to>claimedAt)return false;
   const proof=e.proof,c=s.providerCampaign?.customers?.find(c=>c.id===e.customerId),child=s.portfolio?.customers?.find(row=>row.id===e.portfolioId)?.root;
   if(!c||c.portfolioId!==e.portfolioId||c.market!==e.market||proof?.customerId!==c.id||proof?.portfolioId!==c.portfolioId||proof?.market!==c.market||proof?.kind!==ABUSE_EVIDENCE||e.interval.from!==proof.recipe?.createdAt||e.interval.to!==proof.settlementAt||proof.at>claimedAt||!integer(c.activatedAt)||c.activatedAt>e.interval.from||c.exitAt!=null&&c.exitAt<claimedAt)return false;
   const run=s.providerSecurityAbuse?.runs?.find(run=>run.recipe.runKey===proof.recipe.runKey);

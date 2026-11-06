@@ -7448,6 +7448,23 @@
       ],
       "status": "partial",
       "scope": "Historical configuration readers build local views while copying fields changed for historical time, avoiding full tenant clones. Frozen input purity, isolated returned configurations and provenance, and forged generation rejection remain enforced. Exact captured-state comparisons and bounded timing measurements do not establish whole-suite deadlines or long-play completion."
+    },
+    {
+      "id": "BEH-SOC-413",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "implementation": [
+        "src/game/23-provider-room-integration.js",
+        "src/game/25-provider-campaign.js"
+      ],
+      "testIds": [
+        "AC-SOC-774"
+      ],
+      "status": "partial",
+      "scope": "Paid room delivery retains the exact authored Provider job or scheduled mission meeting and its issued arrival/booking event. Customer, case, session, booking, timing and outcome must agree; missing or foreign origins are refused on restore. Bounded journals retain the originating job and event after settlement, and mission row where applicable. Native Lab meetings alone cannot establish paid Provider origin. This bounded lineage repair does not establish all room, mission or ecosystem requirements."
     }
   ]
 }

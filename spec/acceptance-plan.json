@@ -1070,7 +1070,8 @@
     "tests/provider-room-integration-paid.test.js": [
       "AC-SOC-756",
       "AC-SOC-757",
-      "AC-SOC-758"
+      "AC-SOC-758",
+      "AC-SOC-774"
     ],
     "tests/provider-room-integration-ui.test.js": [
       "AC-SOC-759",

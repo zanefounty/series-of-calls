@@ -364,7 +364,9 @@ function socProviderProgressionReceiptsKernel(){
   if(receipt.sourceId===LEVEL_TWO)return verifyRegionalReferences(s,receipt,hooks);
   if(REGIONAL_SOURCES.includes(receipt.sourceId)){
    const evidence=receipt.sourceEvidence,decoded=decodeRegionalEvidence(evidence),support=regionalSupportApi();
-   if(!decoded||s.providerCampaign.contentVersion!=='provider-campaigns-8'||receipt.name!==NAMES[receipt.sourceId]||receipt.customerIds.length!==evidence.customerIds?.length||!same(receipt.customerIds,evidence.customerIds)||!same(receipt.portfolioIds,portfolioIdsFor(s,receipt.customerIds))||receipt.evidenceInterval?.from!==evidence.interval?.from||receipt.evidenceInterval?.to!==evidence.interval?.to||receipt.workProofs.length===0||receipt.settlementProof!==null||!support.validateEvidence(s,receipt.sourceId,decoded,hooks,{historical:true}))return false;
+   // The receipt interval includes nested settlement intervals as well as the
+   // support window. validate() checks it against collect(sourceEvidence).
+   if(!decoded||s.providerCampaign.contentVersion!=='provider-campaigns-8'||receipt.name!==NAMES[receipt.sourceId]||receipt.customerIds.length!==evidence.customerIds?.length||!same(receipt.customerIds,evidence.customerIds)||!same(receipt.portfolioIds,portfolioIdsFor(s,receipt.customerIds))||receipt.workProofs.length===0||receipt.settlementProof!==null||!support.validateEvidence(s,receipt.sourceId,decoded,hooks,{historical:true}))return false;
    const items=regionalWorkItems(decoded);
    if(!items.length||receipt.workProofs.length!==items.length)return false;
    for(const item of items){const proof=receipt.workProofs.find(x=>x.jobId===item.jobId&&x.customerId===item.customerId);if(!proof||!validWorkProof(s,receipt,proof,item,hooks))return false;}

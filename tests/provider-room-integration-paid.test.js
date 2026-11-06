@@ -1,5 +1,5 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict');
+const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
 const SOC=require('../src/game/55-communications');
 const ROOM=require('../src/game/23-provider-room-integration');
 const customerId='starter-customer',operationId='direct-room-integration';
@@ -82,7 +82,9 @@ function scheduledMeeting(s,period){return s.providerCampaign.meetings.find(row=
 function completedMeetingForProject(s){const p=project(s,operationId),id=p?.operationReceipt?.evidence?.meeting?.sessionId;return id&&child(s).information.meetingSessions.find(row=>row.id===id);}
 
 test('AC-SOC-756 a funded room edge records its exact native test and completes only after a later real bridge meeting',()=>{
- let s=explicitTest(commissioning()),paid=project(s,operationId);assert.equal(paid.operationReceipt.test.status,'scenario-verified');assert.equal(paid.operationReceipt.test.checkedAt,paid.operationReceipt.submittedAt);assert.equal(paid.status,'commissioning');
+ const pending=commissioning(),restored=SOC.restore(JSON.stringify(pending));assert.deepEqual(restored,pending);
+ const command={type:'provider',command:{action:'test-service-integration',projectId:project(pending,operationId).id,quoteRevision:pending.revision}};let reply;const worker={postMessage:value=>{reply=value;}};vm.createContext(worker);vm.runInContext(SOC.workerSource(),worker);worker.onmessage({data:{id:'paid-room-test',state:restored,command}});assert.equal(reply.error,undefined);
+ let s=explicitTest(pending),paid=project(s,operationId);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),s);assert.equal(paid.operationReceipt.test.status,'scenario-verified');assert.equal(paid.operationReceipt.test.checkedAt,paid.operationReceipt.submittedAt);assert.equal(paid.status,'commissioning');
  s=until(s,current=>project(current,operationId)?.status==='complete',110,true);paid=project(s,operationId);const meeting=completedMeetingForProject(s);
  assert.ok(meeting);assert.equal(meeting.status,'completed');assert.equal(meeting.joinMethod,'bridge');assert.ok(meeting.endedAt>meeting.startedAt);assert.ok(meeting.startedAt>paid.operationReceipt.test.checkedAt);assert.ok(meeting.startedAt>paid.operationReceipt.submittedAt);
  assert.equal(paid.operationReceipt.evidence.meeting.sessionId,meeting.id);assert.equal(paid.operationReceipt.evidence.meeting.acceptance.edgeId,'room-to-interop');assert.deepEqual(paid.operationReceipt.evidence.meeting.acceptance.path.edges,['starter-customer-a-primary']);

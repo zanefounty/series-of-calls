@@ -39,7 +39,7 @@ function book(s){
  return send(booked,{type:'information',command:{action:'schedule',booking:booking.id}});
 }
 
-test('lab dispatch admits a meeting only with a live tested edge, endpoint gates and actual transport path; recovery works after path repair',()=>{
+test('AC-SOC-766 lab dispatch admits a meeting only with a live tested edge, endpoint gates and actual transport path; recovery works after path repair',()=>{
  let s=readyLab();
  s=book(s);s=advance(s);
  let session=s.information.meetingSessions.at(-1);
@@ -64,7 +64,7 @@ test('lab dispatch admits a meeting only with a live tested edge, endpoint gates
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_MEETING_SESSION/);
 });
 
-test('lab dispatch refuses a room session when a current endpoint feature gate is unavailable',()=>{
+test('AC-SOC-767 lab dispatch refuses a room session when a current endpoint feature gate is unavailable',()=>{
  let s=readyLab();
  s=pack(s,{action:'lifecycle',offer:'cisco-interop-offer',sale:'available',support:'ended'});s=advance(s);
  s=book(s);s=advance(s);
@@ -74,7 +74,7 @@ test('lab dispatch refuses a room session when a current endpoint feature gate i
  assert.equal(session.productIntegration,undefined);
 });
 
-test('serialized worker uses the same meeting edge and path checks as root dispatch',()=>{
+test('AC-SOC-768 serialized worker uses the same meeting edge and path checks as root dispatch',()=>{
  let s=readyLab();s=book(s);
  const command={type:'advance',minutes:1},expected=advance(s),box={postMessage:response=>{box.response=response;}};
  vm.createContext(box);vm.runInContext(SOC.workerSource(),box);

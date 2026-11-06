@@ -1056,6 +1056,27 @@
     ],
     "tests/provider-retail-history.test.js": [
       "AC-SOC-755"
+    ],
+    "tests/provider-room-integration-paid.test.js": [
+      "AC-SOC-756",
+      "AC-SOC-757",
+      "AC-SOC-758"
+    ],
+    "tests/provider-room-integration-ui.test.js": [
+      "AC-SOC-759",
+      "AC-SOC-760",
+      "AC-SOC-761"
+    ],
+    "tests/provider-room-integration.test.js": [
+      "AC-SOC-762",
+      "AC-SOC-763",
+      "AC-SOC-764",
+      "AC-SOC-765"
+    ],
+    "tests/provider-room-integration-dispatch.test.js": [
+      "AC-SOC-766",
+      "AC-SOC-767",
+      "AC-SOC-768"
     ]
   },
   "inputs": [
@@ -1637,6 +1658,12 @@
     "tests/workforce-quality-integration.test.js",
     "tests/workforce-quality-ui.test.js",
     "tests/workforce-quality.test.js",
-    "tests/provider-retail-history.test.js"
+    "tests/provider-retail-history.test.js",
+    "tests/provider-room-integration-paid.test.js",
+    "tests/provider-room-integration-ui.test.js",
+    "tests/provider-room-integration.test.js",
+    "tests/provider-room-integration-dispatch.test.js",
+    "src/game/23-provider-room-integration.js",
+    "src/game/93-ui/78-provider-room-integration.js"
   ]
 }

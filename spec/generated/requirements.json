@@ -52707,10 +52707,19 @@
     "representation": "family:microsoft:meetings-rooms",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "scripts/provider-browser.js",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-room-integration.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/44-campaign.js",
       "src/game/45-products.js",
+      "src/game/52-information.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-room-integration.js",
       "src/game/97-training.js",
       "tests/campaign-integration.test.js",
       "tests/products.test.js"
@@ -52723,7 +52732,8 @@
       "BEH-SOC-085",
       "BEH-SOC-138",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-409"
     ]
   },
   {
@@ -52974,9 +52984,18 @@
     "representation": "family:cisco:meetings-devices",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "scripts/provider-browser.js",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-room-integration.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
+      "src/game/52-information.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-room-integration.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52987,7 +53006,8 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-409"
     ]
   },
   {
@@ -53731,12 +53751,20 @@
     "representation": "domain:room-joining",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "scripts/provider-browser.js",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-room-integration.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/42-transport.js",
       "src/game/44-campaign.js",
       "src/game/45-products.js",
       "src/game/48-estate.js",
       "src/game/52-information.js",
       "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-room-integration.js",
       "tests/campaign-integration.test.js",
       "tests/domain-integration.test.js",
       "tests/estate-lifecycle-integration.test.js",
@@ -53754,7 +53782,8 @@
       "BEH-SOC-091",
       "BEH-SOC-117",
       "BEH-SOC-133",
-      "BEH-SOC-138"
+      "BEH-SOC-138",
+      "BEH-SOC-409"
     ]
   },
   {

@@ -16,7 +16,7 @@ function fixture(){
  return {root,hooks,booking,session,gate,plan};
 }
 
-test('meeting acceptance binds the retained current product test and live identity-to-room path',()=>{
+test('AC-SOC-762 meeting acceptance binds the retained current product test and live identity-to-room path',()=>{
  const f=fixture(),accepted=I.acceptedSnapshot(f.root,f.booking,f.session,12,f.hooks);
  assert.ok(accepted);
  assert.equal(accepted.testAt,10);
@@ -28,7 +28,7 @@ test('meeting acceptance binds the retained current product test and live identi
  assert.equal(next.path.checkedAt,13);
 });
 
-test('a failed endpoint feature or live path blocks admission and active-session recovery observes repaired state',()=>{
+test('AC-SOC-763 a failed endpoint feature or live path blocks admission and active-session recovery observes repaired state',()=>{
  const f=fixture();f.gate.target=false;
  assert.equal(I.acceptedSnapshot(f.root,f.booking,f.session,12,f.hooks),null);
  f.gate.target=true;f.gate.path=false;
@@ -42,7 +42,7 @@ test('a failed endpoint feature or live path blocks admission and active-session
  assert.equal(I.observeAccepted(f.root,f.booking,active,accepted,14,f.hooks).path.checkedAt,14);
 });
 
-test('retiring or upgrading an endpoint generation invalidates an accepted room session',()=>{
+test('AC-SOC-764 retiring or upgrading an endpoint generation invalidates an accepted room session',()=>{
  const f=fixture(),accepted=I.acceptedSnapshot(f.root,f.booking,f.session,12,f.hooks),active={...f.session,startedAt:12};
  assert.ok(accepted);
  f.root.products.deployments[1].generation++;
@@ -50,7 +50,7 @@ test('retiring or upgrading an endpoint generation invalidates an accepted room 
  assert.equal(I.observeAccepted(f.root,f.booking,active,accepted,13,f.hooks),null);
 });
 
-test('a same-generation retest retains the accepted test time while the current test must remain verified',()=>{
+test('AC-SOC-765 a same-generation retest retains the accepted test time while the current test must remain verified',()=>{
  const f=fixture(),edge=f.root.products.integrations[0],accepted=I.acceptedSnapshot(f.root,f.booking,f.session,12,f.hooks),active={...f.session,startedAt:12};
  assert.ok(accepted);
  edge.testHistory={version:1,entries:[{at:13,sourceVersion:edge.sourceVersion,targetVersion:edge.targetVersion,sourceGeneration:edge.sourceGeneration,targetGeneration:edge.targetGeneration,result:structuredClone(edge.result)}]};

@@ -7378,6 +7378,43 @@
       ],
       "status": "partial",
       "scope": "Versioned accepted retail history preserves actual prior agreements across renewal and bounded event eviction so historical support observations keep their paid boundary context. Current agreement, retained public commands and renewal events, authored budgets and period settlements are cross-checked; worker dispatch and save restore share validation. Legacy saves retain only their validated known agreement as the initial baseline. This bounded renewal regression does not establish complete Tier Two or regional progression."
+    },
+    {
+      "id": "BEH-SOC-409",
+      "sources": [
+        "uc-new:domain:room-joining",
+        "uc-new:family:microsoft:meetings-rooms",
+        "uc-new:family:cisco:meetings-devices"
+      ],
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/23-provider-room-integration.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/52-information.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/93-ui/78-provider-room-integration.js",
+        "scripts/provider-browser.js"
+      ],
+      "testIds": [
+        "AC-SOC-756",
+        "AC-SOC-757",
+        "AC-SOC-758",
+        "AC-SOC-759",
+        "AC-SOC-760",
+        "AC-SOC-761",
+        "AC-SOC-762",
+        "AC-SOC-763",
+        "AC-SOC-764",
+        "AC-SOC-765",
+        "AC-SOC-766",
+        "AC-SOC-767",
+        "AC-SOC-768"
+      ],
+      "status": "partial",
+      "scope": "Paid Provider room interoperability purchases an exact generation/version-scoped native edge, requires explicit testing and a later actual duration-bearing bridge meeting with live 5000 Kbps path, and retains historical delivery through retirement and validated native audit pruning. Room capacity and transport failures need separate funded repairs; quote, inspector and worker controls keep Provider authority. Separate explicit Lab tests exercise endpoint/path refusal, current tests and FIFO audit history without claiming commercial delivery. This one synthetic path does not complete either product family, all five partner integrations or the full source catalogue."
     }
   ]
 }

@@ -63,34 +63,40 @@ function buy(state, request) {
   return SOC.dispatch(state, { type: 'provider', command: { ...request, quoteRevision: quote.atRevision } });
 }
 
+function dispatchWithCheckpoint(state, command, label) {
+  const before = process.env.SOC_REGIONAL_CLAIM_CHECKPOINT_PREFIX ? clone(state) : state;
+  try {
+    return SOC.dispatch(state, command);
+  } catch (error) {
+    checkpoint(`prefailure-${label}`, before, { command, error: String(error?.message || error) });
+    throw error;
+  }
+}
+
 function advance(state) {
   if (state.providerCampaign.status === 'won') {
-    state = SOC.dispatch(state, { type: 'provider', command: { action: 'continue-career' } });
+    state = dispatchWithCheckpoint(state, { type: 'provider', command: { action: 'continue-career' } }, 'continue-career');
   }
   for (const incident of state.providerCampaign.incidents.filter(row => row.status === 'active')) {
-    state = SOC.dispatch(state, { type: 'provider', command: { action: 'acknowledge-incident', incidentId: incident.id } });
+    state = dispatchWithCheckpoint(state, { type: 'provider', command: { action: 'acknowledge-incident', incidentId: incident.id } }, 'acknowledge-incident');
   }
   for (const incident of state.providerCampaign.incidents.filter(row => row.status === 'acknowledged')) {
     if (state.providerCampaign.projects.some(project => project.customerId === incident.customerId && ['repair', 'service-repair'].includes(project.operationId) && project.status !== 'cancelled' && project.acceptedAt >= incident.acknowledgedAt)) continue;
     const operationId = incident.resource === 'service' ? 'service-repair' : 'repair';
     const quote = SOC.provider.quote(state, { action: 'operation', operationId, customerId: incident.customerId });
-    if (!quote.blockers.length) state = SOC.dispatch(state, { type: 'provider', command: { action: 'operation', operationId, customerId: incident.customerId, quoteRevision: quote.atRevision } });
+    if (!quote.blockers.length) state = dispatchWithCheckpoint(state, { type: 'provider', command: { action: 'operation', operationId, customerId: incident.customerId, quoteRevision: quote.atRevision } }, 'incident-repair');
   }
   for (const customer of state.providerCampaign.customers.filter(row => row.status === 'renewal')) {
-    state = SOC.dispatch(state, { type: 'provider', command: { action: 'renew', customerId: customer.id } });
+    state = dispatchWithCheckpoint(state, { type: 'provider', command: { action: 'renew', customerId: customer.id } }, 'renew');
   }
-  const beforeTick = process.env.SOC_REGIONAL_CLAIM_CHECKPOINT_PREFIX ? clone(state) : state;
-  try {
-    return SOC.dispatch(state, { type: 'advance', minutes: 1 });
-  } catch (error) {
-    checkpoint('prefailure-advance', beforeTick, { error: String(error?.message || error) });
-    throw error;
-  }
+  return dispatchWithCheckpoint(state, { type: 'advance', minutes: 1 }, 'advance');
 }
 
 function until(state, predicate, label, limit = 420) {
   for (let i = 0; i < limit && !predicate(state); i++) state = advance(state);
-  assert.ok(predicate(state), `${label} not reached at minute ${state.clock}`);
+  const reached = predicate(state);
+  if (!reached) checkpoint('condition-not-reached', state, { condition: label });
+  assert.ok(reached, `${label} not reached at minute ${state.clock}`);
   return state;
 }
 
@@ -265,6 +271,22 @@ function addDistributorResponsibility(state, customerId) {
   return state;
 }
 
+function stableDistributorSupportWindow(state, customerIds) {
+  if (!stableSupportWindowShape(state, customerIds)) return false;
+  const samples = FACTS.decodeSupportObservation(state.providerCampaign.supportObservation);
+  const team = state.business.workforce;
+  if (samples.at(-1)?.at !== state.clock) return false;
+  for (const sample of samples) for (const participant of sample.participants) {
+    const workforce = participant.responsibility?.sharedWorkforce;
+    if (participant.namedSupport?.paidSupportSlots !== team.support || workforce?.support !== team.support || workforce?.engineers !== team.engineers) return false;
+    if (!REGIONAL.validateNamedSupportSnapshot(state, participant, sample.at) || !REGIONAL.validateDistributorSnapshot(state, participant, sample.at)) return false;
+  }
+  // The cheap window checks avoid a full progression inspection until all
+  // sixty minutes have actual distributor scope and the current paid team.
+  // The public evaluator also checks today's configuration against that window.
+  return SOC.provider.inspect(state).progression.levels[L7].status === 'ready';
+}
+
 function createLevelSevenWindow() {
   let state = createFiveMarketWindow();
   state = claimSource(state, C5);
@@ -273,7 +295,7 @@ function createLevelSevenWindow() {
   const customerIds = state.providerCampaign.customers.map(row => row.id).sort();
   for (const customerId of customerIds) state = addDistributorResponsibility(state, customerId);
   if (state.business.workforce.support > 5) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 5 } });
-  state = until(state, s => stableSupportWindowShape(s, customerIds), 'stable five-market distributor support sample window', 180);
+  state = until(state, s => stableDistributorSupportWindow(s, customerIds), 'stable five-market distributor support sample window', 180);
   return state;
 }
 
@@ -452,12 +474,14 @@ test('AC-SOC-654 public dispatch earns C5 only after five distinct paid customer
 test('AC-SOC-656 L7 unlock quotes and funds the real scoped distributor support tariff', () => {
   let state = createLevelSevenWindow();
   const ready = SOC.provider.inspect(state).progression.levels[L7];
+  checkpoint('l7-before-claim', state, { sourceId: L7, status: ready.status, missing: ready.missing });
   assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));
   assert.deepEqual(ready.evidence.markets, ['au-melbourne', 'au-sydney', 'eu-dublin', 'jp-tokyo', 'us-seattle']);
   assert.equal(ready.evidence.customerIds.length, 5);
   const cash = state.business.balance.cash;
   state = claimSource(state, L7);
   const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === L7);
+  checkpoint('l7-earned-window', state, { sourceId: L7, customerIds: receipt?.sourceEvidence?.customerIds || [] });
   assert.ok(receipt);
   assert.equal(state.business.balance.cash, cash);
   assert.equal(receipt.unlock.operationId, REGIONAL.OPERATION_ID);

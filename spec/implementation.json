@@ -7361,7 +7361,23 @@
         "AC-SOC-753"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
+    },
+    {
+      "id": "BEH-SOC-408",
+      "sources": [
+        "progress.goal.t2",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-755"
+      ],
+      "status": "partial",
+      "scope": "Versioned accepted retail history preserves actual prior agreements across renewal and bounded event eviction so historical support observations keep their paid boundary context. Current agreement, retained public commands and renewal events, authored budgets and period settlements are cross-checked; worker dispatch and save restore share validation. Legacy saves retain only their validated known agreement as the initial baseline. This bounded renewal regression does not establish complete Tier Two or regional progression."
     }
   ]
 }

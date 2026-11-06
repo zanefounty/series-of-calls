@@ -104,7 +104,7 @@ function socProviderOwnedSiteMissionKernel(){
   const references=missionReferences(missionSummary,s.clock);if(!references||references.missionAt!==evidence.missionAt||!same(references.references,evidence.missionReferences))return false;
   if(typeof hooks.validateMissionEvidence!=='function'||hooks.validateMissionEvidence(s,customerId,missionSummary)!==true)return false;
   if(!validResponsibility(s,customerId,evidence.responsibility,{historical:options.historical===true,sample:evidence.supportSample}))return false;
-  const sample=evidence.supportSample;if(!exact(sample,['version','contentVersion','at','cohort','participants'])||sample.version!==1||sample.contentVersion!==factsApi().CONTENT||sample.at!==evidence.at||!same(sample.cohort,[customerId])||sample.participants.length!==1)return false;
+  const sample=evidence.supportSample;if(!exact(sample,['version','contentVersion','at','cohort','participants'])||sample.version!==(s.providerCampaign.contentVersion==='provider-campaigns-8'?2:1)||sample.contentVersion!==factsApi().CONTENT||sample.at!==evidence.at||!same(sample.cohort,[customerId])||sample.participants.length!==1)return false;
   if(!validStaffPayrollPosting(s,evidence.payrollPosting,evidence.at,evidence.responsibility,{historical:options.historical===true}))return false;
   let lineage=false;try{lineage=factsApi().validateSupportSamples(s,[sample],hooks.factHooks||hooks,{checkCurrent:false})===true;}catch{}
   if(!lineage)return false;

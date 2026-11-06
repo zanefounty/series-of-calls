@@ -47,10 +47,12 @@ test('owned-site mission support binds four accepted Provider win references to 
  assert.equal(result.evidence.responsibility.organisationId,'orchard-msp');
  assert.deepEqual(result.evidence.responsibility.evidence.stageProjects.map(x=>x.stageId),['base','carrier','partner']);
  assert.equal(result.evidence.supportSample.at,s.clock);
+ assert.equal(result.evidence.supportSample.version,2,'provider-campaigns-8 stores the v2 current support sample');
  assert.equal(result.evidence.payrollPosting.reason,'staff');
  assert.equal(result.evidence.payrollPosting.unit,'person-minute');
  assert.equal(result.evidence.payrollPosting.cents,Math.floor(result.evidence.payrollPosting.quantity*10000/60));
  assert.equal(MISSION.validateEvidence(s,'starter-customer',result.evidence,summary,h),true);
+ for(const version of [1,3]){const wrongVersion=structuredClone(result.evidence);wrongVersion.supportSample.version=version;assert.equal(MISSION.validateEvidence(s,'starter-customer',wrongVersion,summary,h),false,`provider-campaigns-8 must reject support-sample version ${version}`);}
  for(const change of [
   row=>{row.cents++;},
   row=>{row.quantity++;},

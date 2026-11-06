@@ -4,13 +4,18 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 jobs:
   acceptance:
-    name: acceptance producer
+    name: acceptance producer ${{ matrix.part }}/4
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -26,7 +31,41 @@ jobs:
       - name: Record acceptance evidence
         run: |
           set -o pipefail
-          python3 scripts/record-evidence.py 2>&1 | tee evidence/recorder.log
+          python3 scripts/record-evidence.py --shard ${{ matrix.part }}/4 2>&1 | tee evidence/recorder.log
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: acceptance-part-${{ matrix.part }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            evidence/acceptance.json
+            evidence/communications.tap
+            evidence/recorder.log
+          if-no-files-found: warn
+          retention-days: 14
+
+  acceptance-merge:
+    name: complete acceptance evidence
+    needs: [acceptance]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Remove checked-in receipts before artifact assembly
+        run: rm -f evidence/acceptance.json evidence/communications.tap evidence/recorder.log
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: acceptance-part-*-${{ github.run_id }}-${{ github.run_attempt }}
+          path: acceptance-parts
+      - name: Require every actual shard and assemble the complete receipt
+        run: |
+          set -o pipefail
+          python3 scripts/record-evidence.py --merge-shards acceptance-parts --shard-count 4 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -35,14 +74,19 @@ jobs:
             evidence/acceptance.json
             evidence/communications.tap
             evidence/recorder.log
+            evidence/acceptance-shards/
           if-no-files-found: warn
           retention-days: 14
 
   gates:
-    name: development gates
-    needs: [acceptance]
+    name: development gates ${{ matrix.part }}/4
+    needs: [acceptance-merge]
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -71,11 +115,11 @@ jobs:
       - name: Run development gates against downloaded acceptance
         run: |
           set -o pipefail
-          python3 scripts/verify.py all 2>&1 | tee evidence/gates.log
+          python3 scripts/verify.py all --acceptance-shard ${{ matrix.part }}/4 2>&1 | tee evidence/gates.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: gates-${{ github.run_id }}-${{ github.run_attempt }}
+          name: gates-part-${{ matrix.part }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             evidence/gates-install.log
             evidence/gates.log
@@ -84,7 +128,7 @@ jobs:
 
   mutations:
     name: gate mutation tests
-    needs: [acceptance]
+    needs: [acceptance-merge]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -129,7 +173,7 @@ jobs:
 
   accountability:
     name: accountability
-    needs: [acceptance, gates, mutations]
+    needs: [acceptance, acceptance-merge, gates, mutations]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -137,10 +181,12 @@ jobs:
       - name: Require every accountability job to succeed
         env:
           ACCEPTANCE_RESULT: ${{ needs.acceptance.result }}
+          MERGE_RESULT: ${{ needs.acceptance-merge.result }}
           GATES_RESULT: ${{ needs.gates.result }}
           MUTATIONS_RESULT: ${{ needs.mutations.result }}
         run: |
-          printf 'acceptance: %s, gates: %s, mutations: %s\n' "$ACCEPTANCE_RESULT" "$GATES_RESULT" "$MUTATIONS_RESULT"
+          printf 'acceptance: %s, complete receipt: %s, gates: %s, mutations: %s\n' "$ACCEPTANCE_RESULT" "$MERGE_RESULT" "$GATES_RESULT" "$MUTATIONS_RESULT"
           test "$ACCEPTANCE_RESULT" = success
+          test "$MERGE_RESULT" = success
           test "$GATES_RESULT" = success
           test "$MUTATIONS_RESULT" = success

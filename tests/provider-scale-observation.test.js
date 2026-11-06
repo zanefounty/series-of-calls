@@ -87,7 +87,7 @@ test('AC-SOC-853 task emission and usage posting are idempotent; refused jobs st
  assert.deepEqual(P.emitDue(side,run.id,blocked),[],'same minute cannot emit or retry rejected tasks twice');
  assert.equal(P.validate(side,blocked),true);
  assert.deepEqual(P.pins(side,'customer-a').interactionIds,[]);
- for(let n=0;n<10;n++){root=tick(root,1);P.advance(side,run.id,blocked);}
+ for(let n=0;n<10;n++){P.emitDue(side,run.id,blocked);root=tick(root,1);P.advance(side,run.id,blocked);}
  assert.throws(()=>P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,blocked),/PROVIDER_SCALE_PROJECT_ALREADY_USED/);
 });
 
@@ -133,4 +133,19 @@ test('AC-SOC-858 save validation rejects missing lineage, fabricated successful 
  const s=P.create();s.runs.push({id:'provider-scale-1',version:1,customerId:'customer-a',operationId:P.WORKFLOW,status:'open',projectId:'project-2',postingId:'posting-1',startedAt:1,dueAt:11,nativeWindowId:'service-window-1',mode:'workflow',paidJobs:[],attempts:[{origin:'paid-scale-job',jobId:'job-1',caseId:'case-1',interactionId:'interaction-1',person:'agent-a',workforceAssignment:'assignment-1',startedAt:2,finished:true,success:true,journey:{success:false}}],result:null});s.nextId=2;
  assert.throws(()=>P.validate(s),/INVALID_PROVIDER_SCALE_ATTEMPT/);
  const many=P.create();many.runs=Array.from({length:P.MAX_RUNS+1},(_,i)=>({id:`provider-scale-${i+1}`}));many.nextId=P.MAX_RUNS+2;assert.throws(()=>P.validate(many),/INVALID_PROVIDER_SCALE_STATE/);
+});
+
+
+test('AC-SOC-875 legacy emitted native tasks survive late cancellation observation without permitting more tasks',()=>{
+ let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'legacy-project',postingId:'legacy-posting',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000},base=fixtureHooks(holder,project);
+ const started=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,base);side.runs[0].version=1;delete side.lifecycleVersion;
+ // Explicit legacy module fixture: native tasks already emitted before this
+ // version learned of the older retirement. Actual interactions stay intact.
+ root=tick(root);P.advance(side,started.id,base);P.emitDue(side,started.id,base);root=tick(root);P.advance(side,started.id,base);
+ const run=side.runs[0],ids=run.paidJobs.map(j=>j.interactionId),hooks={...base,scheduleStopAuthority:()=>({kind:'resource-retirement',at:started.startedAt+1,projectId:'retired-product'})};assert.equal(ids.length,4);assert.equal(P.validate(side,hooks),true);
+ assert.deepEqual(P.emitDue(side,started.id,hooks),[]);assert.equal(run.legacyPaidTasks,4);assert.equal(run.scheduleStop.at,started.startedAt+1);assert.deepEqual(run.paidJobs.map(j=>j.interactionId),ids);
+ for(let minute=0;minute<8;minute++){root=tick(root);P.advance(side,started.id,hooks);assert.equal(P.validate(side,hooks),true);}
+ assert.equal(run.status,'failed');assert.equal(run.paidJobs.length,4);assert.equal(run.result.schedule.cancelledTasks,8);assert.ok(run.paidJobs.every(j=>j.usageMinutes===root.interactions.find(i=>i.id===j.interactionId).usageMinutes));
+ const bad=structuredClone(side);bad.runs[0].legacyPaidTasks--;assert.throws(()=>P.validate(bad,hooks),/INVALID_PROVIDER_SCALE_LEGACY_TASKS/);
+ const modern=structuredClone(side);modern.lifecycleVersion=P.RUN_VERSION;modern.runs[0].version=P.RUN_VERSION;assert.throws(()=>P.validate(modern,hooks),/INVALID_PROVIDER_SCALE_LEGACY_TASKS/);
 });

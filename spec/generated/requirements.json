@@ -53423,7 +53423,8 @@
       "BEH-SOC-388",
       "BEH-SOC-406",
       "BEH-SOC-408",
-      "BEH-SOC-431"
+      "BEH-SOC-431",
+      "BEH-SOC-440"
     ]
   },
   {
@@ -54448,6 +54449,7 @@
       "src/game/23-provider-journeys.js",
       "src/game/25-provider-campaign.js",
       "src/game/26-customer-needs.js",
+      "src/game/37-portfolio.js",
       "src/game/37-transport-headroom.js",
       "src/game/42-transport.js",
       "src/game/45-products.js",
@@ -54485,7 +54487,8 @@
       "BEH-SOC-389",
       "BEH-SOC-390",
       "BEH-SOC-393",
-      "BEH-SOC-395"
+      "BEH-SOC-395",
+      "BEH-SOC-440"
     ]
   },
   {
@@ -62425,7 +62428,8 @@
       "BEH-SOC-422",
       "BEH-SOC-424",
       "BEH-SOC-426",
-      "BEH-SOC-433"
+      "BEH-SOC-433",
+      "BEH-SOC-440"
     ]
   },
   {

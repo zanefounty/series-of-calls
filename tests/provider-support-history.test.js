@@ -136,3 +136,17 @@ test('historical reconstruction is pure, survives validated restore, and seriali
  assert.equal(workerContext.adapter.version,HISTORY.version);
  assert.equal(typeof workerContext.adapter.reconstructParticipantAt,'function');
 });
+
+
+test('AC-SOC-781 custom observation hooks cannot retain and poison a validator configuration cache',()=>{
+ const state=fixture(),before=JSON.stringify(state),good=samples(state).find(row=>row.participants.some(p=>p.customerId===CUSTOMER&&p.eligible));
+ assert.ok(good);let captured;
+ const hook={catalogue:SOC.catalogue,resourceObservationAt:(s,c,root,id,at,plan)=>{if(id==='phone')captured??=plan;return {effective:plan.config.enabled===true,generation:plan.generation,ready:plan.config.enabled===true};}};
+ const validator=HISTORY.createValidator(state,hook),claim={customerId:CUSTOMER},first=validator(claim,good.at);
+ assert.ok(captured?.config.enabled,'the hook receives an actual paid enabled phone projection');
+ captured.config.enabled=false;
+ const second=validator(claim,good.at),fresh=HISTORY.createValidator(state,hook)(claim,good.at);
+ assert.deepEqual(second,first,'mutating a retained external hook argument cannot poison subsequent validation');
+ assert.deepEqual(second,fresh,'the shared validator matches a fresh validation after external argument mutation');
+ assert.equal(JSON.stringify(state),before,'neither external projection mutation nor reconstruction changes the source save');
+});

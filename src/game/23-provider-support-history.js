@@ -415,7 +415,8 @@ function socProviderSupportHistoryKernel(){
    pathResourcesAt:hooks.pathResourcesAt||((state,c,root,at)=>logicalPlacementsAt(state,c,root,at,resolved)),
    paidStaffAt:hooks.paidStaffAt||paidStaffAt
   };
-  resolved.resourceObservationAt=hooks.resourceObservationAt||((state,c,root,id,at,plan)=>{
+  // External observation hooks may retain their arguments; keep cached plans private.
+  resolved.resourceObservationAt=(hooks.resourceObservationAt?((state,c,root,id,at,plan)=>hooks.resourceObservationAt(state,c,root,id,at,copy(plan))):null)||((state,c,root,id,at,plan)=>{
    const key=`${c.id}\u0000${id}\u0000${at}\u0000${plan?.generation}`;
    if(observationMemo.has(key))return copy(observationMemo.get(key));
    const base=baseResourceObservationAt(state,c,root,id,at,plan,resolved);

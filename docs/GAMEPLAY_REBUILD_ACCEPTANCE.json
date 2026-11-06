@@ -870,6 +870,35 @@
       "launchManifest": "/tmp/soc-full-suite-7e6ca47-inputs.json",
       "changedSinceLaunch": [],
       "scope": "Only terminal AC-SOC-674/686/687 and independent source review. Enclosing suite still active; no full-suite or visible-control pass claimed."
+    },
+    "smb-directional-1a8a70d": {
+      "candidate": "1a8a70d6aa1c4fe8efe727837d08ac9eaacdae31",
+      "at": "2026-11-06T04:35:54.696843+00:00",
+      "status": "passed-bounded-nine-cases",
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "manifest": "/tmp/soc-support-victory-1a8a70d-inputs.json",
+      "manifestSha256": "51300736c243662cd14452cde366cef0c05aab1a6bad18060737ffb6fea0974f",
+      "inputCount": 1415,
+      "sourceDrift": [],
+      "logs": {
+        "/tmp/soc-support-victory-1a8a70d.log": "71465c61e7e6e338607246b2e2999a24bec831cd7ae061af55a47f78d3dc2b23",
+        "/tmp/soc-support-victory-1a8a70d-smb.log": "433ecd77c482b8c75fcff72a5fa241a197e124cc61ae878b98c593b88466f797"
+      },
+      "checks": {
+        "source": "passed",
+        "coverage": "passed",
+        "mapping": "passed",
+        "i18n": "passed-six-locales-7179-labels",
+        "build": "passed",
+        "gitleaks": "passed-no-leaks"
+      },
+      "scope": "Real paid SMB victory/refusal/recovery; custom Lab authority; in-flight one-way live media and recovery; support origin retention/restore/worker. Full suite, browser matrix, human pilot and release separate.",
+      "rawArtifact": "/tmp/soc-support-victory-1a8a70d-result.json",
+      "sha256": "aa6e61358b51f06a2acfd0ffabfb743353893b3f4dfc656bc694e729b0606764",
+      "independentAudit": "/tmp/soc-1a8a70d-smb-directional-closure-audit.json",
+      "independentAuditSha256": "2baf73b82f31479bbcbd58e0115995cb8f12ee616711a66706dbecf4acfa5ac4"
     }
   },
   "tests": {
@@ -3967,6 +3996,42 @@
       "result": "passed",
       "run": "authority-handoff-7e6ca47",
       "logLine": 1061
+    },
+    "SMB-676": {
+      "file": "tests/provider-authority-counterexamples.test.js",
+      "name": "\u2714 AC-SOC-676 quiet and partial public periods cannot win; isolated mission-rule counterexamples reject underfilled periods and overdue incidents (146.551661ms)",
+      "fileSha256": "ad9ff9bdd6420fc4534c0dd6dad40091b2fd15fcba7d62401a7f3fce093933f1",
+      "result": "passed",
+      "run": "smb-directional-1a8a70d",
+      "log": "/tmp/soc-support-victory-1a8a70d.log",
+      "logLine": 3
+    },
+    "SMB-769": {
+      "file": "tests/provider-resilience-sequence.test.js",
+      "name": "\u2714 AC-SOC-769 actual overdue primary-domain incident prevents funded SMB victory despite two qualifying periods until paid recovery (77179.124043ms)",
+      "fileSha256": "9717b9109442ff3bbead5e3256775580a89b6b600f71f7f9560cd4306f616538",
+      "result": "passed",
+      "run": "smb-directional-1a8a70d",
+      "log": "/tmp/soc-support-victory-1a8a70d.log",
+      "logLine": 4
+    },
+    "DIRECTIONAL-673": {
+      "file": "tests/provider-service-truth.test.js",
+      "name": "\u2714 AC-SOC-673 established single-direction loss ends one real conversation, releases capture once and permits fresh recovery (49.394148ms)",
+      "fileSha256": "8142a7bed3902fac6ac48053c603baf345fe51debf5489c426ae1545b01471d3",
+      "result": "passed",
+      "run": "smb-directional-1a8a70d",
+      "log": "/tmp/soc-support-victory-1a8a70d.log",
+      "logLine": 5
+    },
+    "SMB-REFERENCE": {
+      "file": "tests/provider-campaign-kernel.test.js",
+      "name": "\u2714 SMB mission victory needs two profitable full periods and an actually funded second customer (54934.783357ms)",
+      "fileSha256": "b3628cddd25ab61028b2149c7ffaac6c05758b0b67c88d2794792cf5ab3bb0d0",
+      "result": "passed",
+      "run": "smb-directional-1a8a70d",
+      "log": "/tmp/soc-support-victory-1a8a70d-smb.log",
+      "logLine": 1
     }
   },
   "requirements": {
@@ -4102,11 +4167,10 @@
         "src/game/55-communications.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 3 of 4 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 4 of 4 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [],
       "assertionStatusCounts": {
-        "verified-current-candidate": 3,
-        "pending-current-candidate-verification": 1
+        "verified-current-candidate": 4
       }
     },
     "PLAY-009": {
@@ -5028,12 +5092,21 @@
     },
     {
       "id": "OWNER-INFLIGHT-DIRECTIONAL-MEDIA",
-      "status": "pending",
+      "status": "verified-current-candidate",
       "implementation": [
         "src/game/55-communications.js",
-        "tests/provider-service-truth-regression.test.js"
+        "tests/provider-service-truth.test.js"
       ],
-      "remaining": "Execute an established, duration-bearing call with loss of only one media direction; assert its declared outcome and exactly-once reservation/usage consequences, then legitimate recovery. AC-SOC-150/151/154 prove one-way admission/outcome and recovery only; closing PLAY-013-A02 does not close this owner-plan requirement."
+      "remaining": "No remaining criterion for this established single-direction call regression; broader network and Provider fault controls are not claimed.",
+      "verification": {
+        "candidate": "1a8a70d6aa1c4fe8efe727837d08ac9eaacdae31",
+        "tests": [
+          "DIRECTIONAL-673"
+        ],
+        "scope": "AC-SOC-673 removes mediaIn and mediaOut independently after one actual connected voice minute. The next advance terminates the same call with ONE_WAY_MEDIA before its due time, adds no failed-minute usage or revenue, releases capture once and produces exactly one outcome without a recording. Restore and worker results agree. Later advance and recovery preserve the old failed call. A fresh call after repair completes three minutes using the capacity-one carrier, produces one recording and clears its reservation.",
+        "limitations": "Shared call engine exercised through explicit Lab authoring. No Provider fault control or broader network-failure coverage is claimed.",
+        "result": "passed-exact-owner-addition"
+      }
     }
   ],
   "assertions": [
@@ -6278,7 +6351,7 @@
       "requirement": "PLAY-008",
       "sourceIndex": 3,
       "assertion": "The proposed SMB reference requires two consecutive full periods with at least 22 of 24 due cases completed on time and positive provider operating result, no overdue critical obligations, and a funded next contract. A quiet or partial period cannot satisfy it.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B006",
         "B007",
@@ -6298,21 +6371,23 @@
       "reviewTestCandidates": [
         "B011"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1a8a70d6aa1c4fe8efe727837d08ac9eaacdae31",
         "implementation": [
           "src/game/25-provider-campaign.js",
           "content/provider-campaigns.json"
         ],
         "tests": [
-          "C041",
-          "C058"
+          "SMB-676",
+          "SMB-769",
+          "SMB-REFERENCE"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "scope": "Fresh public Swift and Steady journeys require two full profitable periods and funded expansion. AC-SOC-676 rejects actual quiet and partial periods. AC-SOC-769 reaches minute 180 through paid Steady construction: two qualifying periods each have 24 due cases, at least 22 on time and positive operating result. An actual overdue primary incident remains active while backup service delivers work. Purchasing the next base charges cash and creates a project, but an active or acknowledged overdue incident prevents victory. Both cases restore; the acknowledged case also matches the worker. Paid transport repair followed by a funded next carrier produces a legitimate, restorable win.",
+        "limitations": "Exact SMB assertion only. No invented positive state; isolated AC-SOC-676 predicate mutations remain supporting unit evidence. Other missions and obligation types retain separate requirements.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "Current public SMB positive and real quiet/partial negatives passed at 7e6ca47. Isolated retainedMissionVictory rejects overdue incidents, default, underfilled periods and cancelled expansion; a real nearly-winning public career with an overdue incident at the award boundary is still required."
+      "remaining": "No remaining criterion for this exact assertion. Other mission and obligation types retain separate requirements."
     },
     {
       "id": "PLAY-009-A01",
@@ -14228,7 +14303,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 113,
+    "assertionsClosed": 114,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14236,8 +14311,8 @@
         "assertions": 28,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 24,
-          "pending-current-candidate-verification": 4
+          "verified-current-candidate": 25,
+          "pending-current-candidate-verification": 3
         }
       },
       {
@@ -14344,8 +14419,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 113,
-      "pending-current-candidate-verification": 42,
+      "verified-current-candidate": 114,
+      "pending-current-candidate-verification": 41,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14488,6 +14563,17 @@
           "PLAY-030-A03"
         ],
         "scope": "Two exact public-dispatch authority and one-case handoff closures. Full aggregate conservation and overdue-critical victory negatives remain open; no browser or full-suite completion claim."
+      },
+      {
+        "candidate": "1a8a70d6aa1c4fe8efe727837d08ac9eaacdae31",
+        "run": "smb-directional-1a8a70d",
+        "assertions": [
+          "PLAY-008-A04"
+        ],
+        "ownerPlanAdditions": [
+          "OWNER-INFLIGHT-DIRECTIONAL-MEDIA"
+        ],
+        "scope": "One original assertion and one separate owner addition; frozen nine-case receipt and independent review. Full suite and browser matrix remain separate."
       }
     ]
   }

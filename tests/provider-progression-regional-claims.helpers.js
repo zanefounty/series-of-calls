@@ -89,6 +89,42 @@ function until(state, predicate, label, limit = 420) {
   return state;
 }
 
+// Only use this for predicates whose earliest possible change is established
+// by an accepted project or the campaign settlement boundary. Arbitrary
+// readiness predicates keep the one-minute `until` path above.
+function untilKnownBoundary(state, predicate, nextChunk, label, limit, checkpointLabel) {
+  const startedAt = state.clock;
+  while (state.clock - startedAt < limit && !predicate(state)) {
+    const requested = Math.min(limit - (state.clock - startedAt), nextChunk(state));
+    const before = state.clock;
+    state = requested <= 1
+      ? advance(state)
+      : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, checkpointLabel);
+    assert.ok(state.clock > before && state.clock - before <= requested, `${label} respects its native advance boundary`);
+  }
+  const reached = predicate(state);
+  if (!reached) checkpoint('condition-not-reached', state, { condition: label });
+  assert.ok(reached, `${label} not reached at minute ${state.clock}`);
+  return state;
+}
+
+function stageEffective(state, customerId, stage, label = `${customerId} ${stage}`, limit = 420) {
+  const stageOf = current => current.providerCampaign.customers.find(row => row.id === customerId)?.stages[stage];
+  return untilKnownBoundary(state, current => stageOf(current)?.status === 'effective', current => {
+    const project = current.providerCampaign.projects.find(row => row.id === stageOf(current)?.projectId);
+    // Submission cannot precede accepted work completion. Once commissioning
+    // begins, observed readiness can change each minute, so keep polling it.
+    if (project?.status !== 'running' || !Number.isSafeInteger(project.dueAt) || project.dueAt <= current.clock) return 1;
+    return Math.min(safeAdvanceChunk(current), project.dueAt - current.clock);
+  }, label, limit, 'stage-due-boundary');
+}
+
+function nextOpportunity(state, label, limit = 180, { allowWon = false } = {}) {
+  return untilKnownBoundary(state,
+    current => current.providerCampaign.mission.nextOpportunityAvailable || allowWon && current.providerCampaign.status === 'won',
+    safeAdvanceChunk, label, limit, 'opportunity-settlement-boundary');
+}
+
 function safeAdvanceChunk(state) {
   const campaign = state.providerCampaign;
   if (campaign.status === 'won') return 1;
@@ -169,10 +205,10 @@ function compareCashWaitToMinuteSteps(state, minutes) {
 
 function startCustomer(state, customerId, offerId, market) {
   state = buy(state, { action: 'purchase', offerId, planId: 'swift', stage: 'base', market });
-  state = until(state, s => s.providerCampaign.customers.find(row => row.id === customerId)?.stages.base?.status === 'effective', `${customerId} base`);
+  state = stageEffective(state, customerId, 'base');
   for (const stage of ['carrier', 'partner']) {
     state = buy(state, { action: 'purchase', offerId, planId: 'swift', stage, customerId });
-    state = until(state, s => s.providerCampaign.customers.find(row => row.id === customerId)?.stages[stage]?.status === 'effective', `${customerId} ${stage}`);
+    state = stageEffective(state, customerId, stage);
   }
   return state;
 }
@@ -350,7 +386,7 @@ function createThreeMarketWindow() {
   state = operationComplete(state, 'service-boundary-review', starter);
   state = operation(state, 'provider-support-coverage', starter, supportConfig('au-sydney'));
   state = operationComplete(state, 'provider-support-coverage', starter);
-  state = until(state, s => s.providerCampaign.mission.nextOpportunityAvailable, 'first qualifying period', 180);
+  state = nextOpportunity(state, 'first qualifying period', 180);
 
   const second = 'next-1-customer';
   state = startCustomer(state, second, 'next-1', 'us-seattle');
@@ -362,9 +398,9 @@ function createThreeMarketWindow() {
   if (state.business.workforce.support < 2) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 2 } });
   state = operation(state, 'provider-support-coverage', second, supportConfig('us-seattle'));
   state = operationComplete(state, 'provider-support-coverage', second);
-  state = until(state, s => s.providerCampaign.mission.nextOpportunityAvailable || s.providerCampaign.status === 'won', 'second customer qualifying period', 180);
+  state = nextOpportunity(state, 'second customer qualifying period', 180, { allowWon: true });
   if (state.providerCampaign.status === 'won') state = SOC.dispatch(state, { type: 'provider', command: { action: 'continue-career' } });
-  if (!state.providerCampaign.mission.nextOpportunityAvailable) state = until(state, s => s.providerCampaign.mission.nextOpportunityAvailable, 'continued career opportunity', 120);
+  if (!state.providerCampaign.mission.nextOpportunityAvailable) state = nextOpportunity(state, 'continued career opportunity', 120);
 
   const third = 'next-2-customer';
   state = startCustomer(state, third, 'next-2', 'eu-dublin');
@@ -403,12 +439,12 @@ function paidPurchaseWhenReady(state, request, label, limit = 180) {
 }
 
 function addRegionalCustomer(state, customerId, offerId, market) {
-  state = until(state, s => s.providerCampaign.mission.nextOpportunityAvailable, `${customerId} opportunity`, 180);
+  state = nextOpportunity(state, `${customerId} opportunity`, 180);
   state = paidPurchaseWhenReady(state, { action: 'purchase', offerId, planId: 'swift', stage: 'base', market }, `${customerId} base`);
-  state = until(state, s => s.providerCampaign.customers.find(row => row.id === customerId)?.stages.base?.status === 'effective', `${customerId} base`, 120);
+  state = stageEffective(state, customerId, 'base', `${customerId} base`, 120);
   for (const stage of ['carrier', 'partner']) {
     state = paidPurchaseWhenReady(state, { action: 'purchase', offerId, planId: 'swift', stage, customerId }, `${customerId} ${stage}`);
-    state = until(state, s => s.providerCampaign.customers.find(row => row.id === customerId)?.stages[stage]?.status === 'effective', `${customerId} ${stage}`, 120);
+    state = stageEffective(state, customerId, stage, `${customerId} ${stage}`, 120);
   }
   if (state.business.workforce.support < 5) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 5 } });
   state = operation(state, 'bpo', customerId);
@@ -608,7 +644,7 @@ function rehash(receipt) {
 module.exports = {
   SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC,
   C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint,
-  advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps,
+  advance, until, stageEffective, nextOpportunity, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps,
   startCustomer, operation, operationComplete, stableSupportWindowShape,
   createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow,
   supportWindowBatchBoundary, waitForStableSupportWindow, stableDistributorSupportWindow,

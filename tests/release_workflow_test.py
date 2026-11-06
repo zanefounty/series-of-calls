@@ -11,16 +11,25 @@ class PublicationVerificationTests(unittest.TestCase):
         workflow = (ROOT / '.github/workflows/release.yml').read_text()
         jobs = dict(re.findall(r'^  (\w+):\n(.*?)(?=^  \w+:\n|\Z)', workflow, re.M | re.S))
         tests, build, deploy = (jobs[name] for name in ('tests', 'build', 'deploy'))
+        accountability = jobs['accountability']
+        called = (ROOT / '.github/workflows/accountability.yml').read_text()
         self.assertIn('part: [1, 2, 3, 4]', tests)
         self.assertIn('npm test -- --shard ${{ matrix.part }}/4', tests)
         self.assertIn('fail-fast: false', tests)
         self.assertIn('timeout-minutes: 20', tests)
-        self.assertIn('needs: [tests]', build)
+        self.assertIn('needs: [tests, accountability]', build)
+        self.assertIn('uses: ./.github/workflows/accountability.yml', accountability)
+        self.assertIn("if: github.ref == 'refs/heads/main'", accountability)
+        self.assertIn('  workflow_call:', called)
+        self.assertIn('scripts/record-evidence.py --shard ${{ matrix.part }}/4', called)
+        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/4', called)
+        self.assertIn('needs: [acceptance, acceptance-merge, gates, mutations]', called)
+        self.assertEqual(called.count('part: [1, 2, 3, 4]'), 2)
         self.assertIn("if: github.ref == 'refs/heads/main'", build)
         self.assertIn('timeout-minutes: 30', build)
         self.assertIn('needs: build', deploy)
         self.assertIn('name: github-pages', deploy)
-        for body in (tests, build, deploy):
+        for body in (tests, accountability, build, deploy):
             self.assertNotIn('continue-on-error:', body)
             self.assertNotIn('always()', body)
         for body in (tests, build):
@@ -28,7 +37,8 @@ class PublicationVerificationTests(unittest.TestCase):
             self.assertIn('node-version: 24', body)
             self.assertIn('npm ci', body)
         commands = [
-            'npm run evidence', 'npm run check:all', 'npm run check:release',
+            'Remove checked-in acceptance receipts', 'actions/download-artifact@v8',
+            "Require this run's acceptance receipts", 'npm run check:release',
             'npm run build', 'npm audit --audit-level=low',
             'scripts/install-gitleaks.sh', 'scripts/check-pages-artifact.py _site',
             'scripts/check-secrets.py', 'actions/upload-pages-artifact@v5',

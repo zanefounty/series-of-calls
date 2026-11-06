@@ -1,15 +1,17 @@
 # Gameplay acceptance reconciliation — 7 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **129 exact assertions verified, 26 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **131 exact assertions verified, 24 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
 | 1 — authority and foundations | 25 | 3 | 0 |
 | 2 — service truth and SMB | 17 | 4 | 0 |
 | 3 — map and interaction | 18 | 6 | 0 |
-| 4 — strategy and growth | 16 | 5 | 0 |
+| 4 — strategy and growth | 18 | 3 | 0 |
 | 5 — missions and ecosystem | 35 | 5 | 0 |
 | 6 — compatibility and delivery | 18 | 3 | 4 |
+
+**PLAY-029-A01/A02** now have exact scoped evidence: actual two-tenant inspector switches preserve revision and billing while both tenants settle, and a paid project competes with another tenant’s repair for shared staff and cash. The inspector run is the original `9c8b2ea` Chromium desktop execution, with independently audited relevant-source equivalence to `cad5226`; it is not relabelled as a fresh browser run. The strengthened AC874 public-command test passed in hosted producer 4 at `cad5226`, with all 645 recorded inputs matching. Neither closure claims an insufficient-cash failure, multi-engine two-tenant controls or human accessibility. Nested requirement and phase counters are regenerated from the individual statuses.
 
 **PLAY-012-A02** is verified at `dd1d1a6`: native site diagnostic probes under
 an active metered contract create no commercial completions or variable billed
@@ -53,8 +55,9 @@ browser-profile reopen. Two initial verifier failures remain preserved: a
 reproduced async-predicate polling defect in the pinned browser tool was fixed in
 the external verifier; the game was unchanged. No human participation is claimed.
 
-Eight Provider proof adapters remain: L9, L10, L11, L13, P5, TB, T10 and T1. The
-remaining 29 assertions require their specific control, resource, lifecycle or
+The paid TB observation adapter is implemented and verified in PR #55 at
+`cad5226`; merge and publication are tracked separately. Seven further Provider
+proof adapters remain: L9, L10, L11, L13, P5, T10 and T1. The remaining 24 assertions require their specific control, resource, lifecycle or
 source-evidence checks. Four long-play assertions remain owner-parked, not passed
 or excluded. The human pilot and broader catalogue/research work remain separate.
 

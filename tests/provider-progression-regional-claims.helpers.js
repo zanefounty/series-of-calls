@@ -14,6 +14,7 @@ const UC_CC = require('../src/game/23-provider-uc-cc-integration.js');
 const C3 = 'progress.goal.c3';
 const C5 = 'progress.goal.c5';
 const L7 = RECEIPTS.REGIONAL_L7;
+const T2 = RECEIPTS.REGIONAL_T2;
 const clone = value => JSON.parse(JSON.stringify(value));
 const hooks = {
   customerRoot: (state, portfolioId) => state.portfolio.customers.find(row => row.id === portfolioId)?.root || null,
@@ -81,14 +82,24 @@ function advance(state) {
 }
 
 function until(state, predicate, label, limit = 420) {
-  for (let i = 0; i < limit && !predicate(state); i++) state = advance(state);
+  const startedAt = state.clock;
+  while (state.clock - startedAt < limit && !predicate(state)) {
+    const before = state.clock;
+    const requested = Math.min(limit - (state.clock - startedAt), safeAdvanceChunk(state));
+    state = requested === 1
+      ? advance(state)
+      : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'bounded-until');
+    assert.ok(state.clock > before, `${label} wait advances at least one minute`);
+    assert.ok(state.clock - before <= requested, `${label} wait does not exceed its requested native advance`);
+    assert.ok(state.clock - startedAt <= limit, `${label} wait stays within its ${limit}-minute simulation cap`);
+  }
   const reached = predicate(state);
   if (!reached) checkpoint('condition-not-reached', state, { condition: label });
   assert.ok(reached, `${label} not reached at minute ${state.clock}`);
   return state;
 }
 
-function safeCashWaitChunk(state) {
+function safeAdvanceChunk(state) {
   const campaign = state.providerCampaign;
   if (campaign.status === 'won') return 1;
   const retryableIncident = campaign.incidents.some(row => ['active', 'acknowledged'].includes(row.status));
@@ -113,7 +124,7 @@ function untilCash(state, targetCents, label, limit = 600) {
   let dispatches = 0, chunkedDispatches = 0;
   while (state.clock - startedAt < limit && state.business.balance.cash < targetCents) {
     const before = state.clock;
-    const requested = Math.min(limit - (state.clock - startedAt), safeCashWaitChunk(state));
+    const requested = Math.min(limit - (state.clock - startedAt), safeAdvanceChunk(state));
     state = requested === 1 ? advance(state) : dispatchWithCheckpoint(state, { type: 'advance', minutes: requested }, 'cash-wait');
     dispatches++;
     if (requested > 1) chunkedDispatches++;
@@ -137,7 +148,7 @@ function compareCashWaitToMinuteSteps(state, minutes) {
   for (let n = 0; n < minutes; n++) minuteSteps = advance(minuteSteps);
   let chunked = clone(state), remaining = minutes, chunkedAdvanceDispatches = 0;
   while (remaining > 0) {
-    const chunk = Math.min(remaining, safeCashWaitChunk(chunked));
+    const chunk = Math.min(remaining, safeAdvanceChunk(chunked));
     const before = chunked.clock;
     chunked = chunk === 1 ? advance(chunked) : dispatchWithCheckpoint(chunked, { type: 'advance', minutes: chunk }, 'cash-wait-equivalence');
     chunkedAdvanceDispatches++;
@@ -362,7 +373,6 @@ function createLevelSevenWindow() {
   return state;
 }
 
-const T2 = RECEIPTS.REGIONAL_T2;
 const UC_CC_SOURCE = 'd-ms-workplace-calling';
 const UC_CC_TARGET = 'd-cisco-contact-centre';
 
@@ -496,8 +506,8 @@ function rehash(receipt) {
 
 module.exports = {
   SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC,
-  C3, C5, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint,
-  advance, until, safeCashWaitChunk, untilCash, compareCashWaitToMinuteSteps,
+  C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint,
+  advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps,
   startCustomer, operation, operationComplete, stableSupportWindowShape,
   createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow,
   claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer,

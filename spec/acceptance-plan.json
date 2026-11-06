@@ -1724,6 +1724,7 @@
     "tests/provider-progression-receipts-level3-managed.test.js",
     "tests/provider-progression-receipts.helpers.js",
     "scripts/lib/elapsed-clock.js",
-    "scripts/provider-browser.js"
+    "scripts/provider-browser.js",
+    "tests/provider-progression-dispatch.test.js"
   ]
 }

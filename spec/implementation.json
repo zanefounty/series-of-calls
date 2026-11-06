@@ -7587,6 +7587,20 @@
       ],
       "status": "partial",
       "scope": "Rejected repeat-credit drafts show current cash and requested terms, explain that the starter loan cannot be reused even after repayment and return to Finance. Terminal customer exit drafts explain existing exit/default status and retained obligations, retain the refusal and close without claiming a reversible active customer. Native UI checks preserve drafts and dispatch authority. This closes two concrete refusal-copy defects, not the entire blocked-action assertion."
+    },
+    {
+      "id": "BEH-SOC-428",
+      "sources": [
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression-receipts.js"
+      ],
+      "testIds": [
+        "AC-SOC-810"
+      ],
+      "status": "partial",
+      "scope": "A retained regional support-window claim validates customer activation and exit against its actual earned interval, rather than requiring participants to remain active forever. A public paid two-customer journey claims Level2, quotes and executes exit, advances and restores with the original receipt; backdated exit and activation after earning still refuse. Existing paid-stage, sample, work and posting validation remains required. This fixes historical receipt persistence without making exited customers eligible for new claims."
     }
   ]
 }

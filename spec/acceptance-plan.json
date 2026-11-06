@@ -1116,6 +1116,9 @@
       "AC-SOC-806",
       "AC-SOC-807",
       "AC-SOC-808"
+    ],
+    "tests/provider-progression-receipts.test.js": [
+      "AC-SOC-810"
     ]
   },
   "inputs": [
@@ -1710,6 +1713,7 @@
     "tests/provider-support-history.test.js",
     "tests/provider-progression-inspection.test.js",
     "tests/provider-empty-customer-actions-ui.test.js",
-    "tests/provider-refused-quotes-ui.test.js"
+    "tests/provider-refused-quotes-ui.test.js",
+    "tests/provider-progression-receipts.test.js"
   ]
 }

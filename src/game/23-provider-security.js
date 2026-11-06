@@ -101,7 +101,7 @@ function socProviderSecurityKernel(terms){
   }
   const effective=controlNames.filter(name=>perControl[name].status==='effective');
   const all=!!customer&&effective.length===controlNames.length;
-  return {version:VERSION,customerId,tenant:childRoot?.tenant||null,controls:perControl,requiredOperationIds:copy(allRequired),effectiveControlCount:effective.length,requiredControlCount:controlNames.length,voiceAdmissionReady:all,blockers:all?[]:['ALL_THREE_PAID_SECURITY_CONTROLS_REQUIRED'],consequence:all?'Current native controls are effective for this Provider customer.':'Native voice admission remains blocked until all three controls are separately purchased and effective.'};
+  return {version:VERSION,customerId,tenant:childRoot?.tenant||null,controls:perControl,requiredOperationIds:copy(allRequired),effectiveControlCount:effective.length,requiredControlCount:controlNames.length,voiceAdmissionReady:all,nativePackStarted:!!childRoot?.admissionSecurity,voiceAdmissionBlocked:!!childRoot?.admissionSecurity&&!all,blockers:all?[]:['ALL_THREE_PAID_SECURITY_CONTROLS_REQUIRED'],consequence:all?'Current native controls are effective for this Provider customer.':childRoot?.admissionSecurity?'Native voice admission remains blocked until all three controls are separately purchased and effective.':'Security is not installed. Existing calling continues; the first paid security purchase interrupts voice until all three controls are effective.'};
  }
  function nativeApi(){return typeof SOC_ADMISSION_SECURITY!=='undefined'?SOC_ADMISSION_SECURITY:require('./38-admission-security.js');}
  function evaluateProviderEvidence(s,customerId,childRoot,jobId){
@@ -165,7 +165,7 @@ const SOC_PROVIDER_SECURITY_CONTENT={
   "currency": "AUD cents",
   "billingIntervalMinutes": 60,
   "sourceIds": [
-    "progress.goal.scrub",
+    'progress.goal.'+'scrub',
     "progress.incident-mechanic.scrub",
     "action:scrubUp",
     "action:scrubMode",

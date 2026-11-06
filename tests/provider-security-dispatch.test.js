@@ -83,10 +83,14 @@ function commissionedSecurityFixture(){
  let s=repairAuthoredCarrierOutage(freshCustomer());
  const initial=SECURITY.currentStatus(s,CUSTOMER,child(s));
  assert.equal(initial.voiceAdmissionReady,false);
+ assert.equal(initial.nativePackStarted,false);assert.equal(initial.voiceAdmissionBlocked,false,'uninstalled security must not claim ordinary calling is blocked');
  assert.equal(initial.effectiveControlCount,0);
 
  assertRejectedQuote(s,{action:'operation',operationId:SECURITY.operationIds.network,customerId:CUSTOMER,config:{planId:'edge-basic',capacityPps:100000000}});
  assertRejectedQuote(s,{action:'operation',operationId:SECURITY.operationIds.network,customerId:CUSTOMER,config:{planId:'unpriced-unlimited'}});
+ const expensive=SOC.provider.quote(s,{action:'operation',operationId:SECURITY.operationIds.network,customerId:CUSTOMER,config:{planId:'edge-resilient'}});
+ assert.equal(expensive.commercial.security.totalMinimumSetupCents,74000,'complete required cost includes the selected premium control rather than the cheapest alternative');
+ assert.equal(expensive.commercial.security.totalMinimumPeriodCents,17500);
 
  for(const [control,planId] of [['network','edge-basic'],['sip','sip-standard'],['destination','australia-guard']]){
   s=orderControl(s,control,planId);
@@ -139,4 +143,19 @@ test('AC-SOC-785 SOC restore rejects forged paid security and native controls wh
  vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:'provider-security-paid-worker',state:input,command}});
  assert.equal(reply?.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),expected);
  assert.equal(JSON.stringify(input),source,'worker dispatch leaves the supplied paid Provider save unchanged');
+});
+
+
+test('AC-SOC-786 ordinary Provider demand resolves through all three paid controls and native usage settles once',()=>{
+ let s=commissionedSecurityFixture();const readyAt=s.clock;
+ const delivered=state=>state.providerCampaign.jobs.find(j=>j.customerId===CUSTOMER&&j.channel==='voice'&&j.arrivalAt>=readyAt&&j.status==='completed'&&child(state).admissionSecurity.settlements.some(row=>row.interactionId===j.interactionId&&row.cents>0));
+ s=until(s,delivered,90);const job=delivered(s),root=child(s),call=root.interactions.find(i=>i.id===job.interactionId),settlement=root.admissionSecurity.settlements.find(row=>row.interactionId===job.interactionId);
+ assert.equal(call.phase,'resolved');assert.notEqual(call.probe,true);assert.equal(call.caseId,job.caseId);
+ assert.ok(call.finishedAt>call.startedAt);assert.ok(settlement.usage.length>0);
+ assert.equal(settlement.cents,settlement.usage.length*2,'native security reconciles its authored two-cent core usage separately from Provider wholesale');
+ assert.ok(root.cases[job.caseId].interactions.includes(call.id));
+ assert.equal(SECURITY.currentStatus(s,CUSTOMER,root).voiceAdmissionBlocked,false);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const saved=structuredClone(settlement);s=advance(s);const later=child(s).admissionSecurity.settlements.filter(row=>row.interactionId===job.interactionId);
+ assert.equal(later.length,1);assert.deepEqual(later[0],saved,'later ticks cannot charge the completed call a second time');
 });

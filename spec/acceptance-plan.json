@@ -1067,6 +1067,20 @@
     "tests/provider-configuration-reader-performance.test.js": [
       "AC-SOC-771",
       "AC-SOC-772"
+    ],
+    "tests/provider-security-helper.test.js": [
+      "AC-SOC-777",
+      "AC-SOC-778",
+      "AC-SOC-779"
+    ],
+    "tests/provider-security-dispatch.test.js": [
+      "AC-SOC-784",
+      "AC-SOC-785",
+      "AC-SOC-786"
+    ],
+    "tests/provider-security-ui.test.js": [
+      "AC-SOC-782",
+      "AC-SOC-783"
     ]
   },
   "inputs": [
@@ -1651,6 +1665,12 @@
     "tests/provider-retail-history.test.js",
     "tests/provider-resilience-sequence.test.js",
     "tests/provider-support-work.test.js",
-    "tests/provider-configuration-reader-performance.test.js"
+    "tests/provider-configuration-reader-performance.test.js",
+    "tests/provider-security-helper.test.js",
+    "tests/provider-security-dispatch.test.js",
+    "src/game/23-provider-security.js",
+    "content/provider-security.json",
+    "tests/provider-security-ui.test.js",
+    "src/game/93-ui/74-provider-security.js"
   ]
 }

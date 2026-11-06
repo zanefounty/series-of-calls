@@ -35695,6 +35695,7 @@
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
       "src/game/23-provider-uc-cc-integration.js",
+      "src/game/25-provider-campaign.js",
       "src/game/31-capability-progression.js",
       "src/game/41-progression.js",
       "src/game/45-products.js",
@@ -35715,7 +35716,8 @@
       "BEH-SOC-337",
       "BEH-SOC-338",
       "BEH-SOC-341",
-      "BEH-SOC-434"
+      "BEH-SOC-434",
+      "BEH-SOC-436"
     ]
   },
   {
@@ -36191,6 +36193,7 @@
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
       "src/game/23-provider-uc-cc-integration.js",
+      "src/game/25-provider-campaign.js",
       "src/game/41-progression.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
@@ -36209,7 +36212,8 @@
       "BEH-SOC-158",
       "BEH-SOC-160",
       "BEH-SOC-434",
-      "BEH-SOC-435"
+      "BEH-SOC-435",
+      "BEH-SOC-436"
     ]
   },
   {
@@ -54137,6 +54141,7 @@
       "src/game/23-provider-regional-integrations.js",
       "src/game/23-provider-support-history.js",
       "src/game/23-provider-uc-cc-integration.js",
+      "src/game/25-provider-campaign.js",
       "src/game/28-product-evidence.js",
       "src/game/34-specialist-lifecycle.js",
       "src/game/45-products.js",
@@ -54198,7 +54203,8 @@
       "BEH-SOC-352",
       "BEH-SOC-402",
       "BEH-SOC-403",
-      "BEH-SOC-435"
+      "BEH-SOC-435",
+      "BEH-SOC-436"
     ]
   },
   {

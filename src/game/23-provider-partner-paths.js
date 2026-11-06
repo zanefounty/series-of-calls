@@ -47,7 +47,7 @@ function socProviderPartnerPathsKernel(content){
   if(!Array.isArray(value.resources)||value.resources.some(x=>!exact(x,['id','ready'])||typeof x.id!=='string'||x.ready!==true))return false;
   return exact(value.support,['version','role','organisationId','customerId','scope','acceptedAt','effectiveAt','expiresAt','projectId','postingId'])&&value.support.version===1&&typeof value.support.role==='string'&&typeof value.support.organisationId==='string'&&value.support.customerId===value.customerId&&Array.isArray(value.support.scope)&&value.support.scope.every(x=>typeof x==='string')&&int(value.support.acceptedAt)&&int(value.support.effectiveAt)&&(value.support.expiresAt===null||int(value.support.expiresAt))&&typeof value.support.projectId==='string'&&typeof value.support.postingId==='string';
  }
- function scopePlanEqual(a,b){if(!planShape(a)||!planShape(b))return false;const x=copy(a),y=copy(b);x.edgeAction=y.edgeAction='scope';return same(x,y);}
+ function scopePlanEqual(a,b){if(!planShape(a)||!planShape(b))return false;const x=copy(a),y=copy(b);x.edgeAction=y.edgeAction='scope';x.operationId=y.operationId='scope';return same(x,y);}
  function edgeAction(root,path,source,target){
   const existing=root?.products?.integrations?.find(x=>x.id===path.integrationId),features=[{sourceFeature:path.source.feature,targetFeature:path.target.feature}];
   if(!existing)return 'create';if(existing.source!==path.source.deploymentId||existing.target!==path.target.deploymentId||!same(existing.features,features))return null;

@@ -5,7 +5,7 @@
 .soc-training-kicker{font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#137565}
 .soc-training-result{min-width:180px;max-width:34%;padding:10px 12px;border:2px solid #d18b00;border-radius:10px;background:#fff4c8;display:grid;gap:5px}
 .soc-training-result.is-passed{border-color:#18765d;background:#e3f6ed}
-.soc-training-result span{font-size:.9rem;line-height:1.35}
+.soc-training-result span{font-size:.9rem;line-height:1.35}.soc-training-assessment-label{font-weight:700;text-transform:uppercase;letter-spacing:.035em;font-size:.72rem!important}
 .soc-training-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(290px,.9fr);gap:14px;flex:1;min-height:400px}
 .soc-training-world{position:relative;isolation:isolate;overflow:hidden;min-height:400px;border:2px solid #203640;border-radius:14px;background:#b8edf0;display:flex;flex-direction:column;justify-content:space-between}
 .soc-training-land{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 16% 24%,#ddf3cc 0 16%,transparent 16.5%),radial-gradient(ellipse at 79% 27%,#ddf3cc 0 18%,transparent 18.5%),radial-gradient(ellipse at 50% 82%,#ddf3cc 0 20%,transparent 20.5%),linear-gradient(145deg,#8cdae4,#b8edf0 50%,#83cfda)}
@@ -68,7 +68,7 @@
 }
 @media(prefers-reduced-motion:reduce){.soc-training-map *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
-.soc-training-course{background:#fff;border:2px solid #203640;border-radius:12px;padding:12px 16px}.soc-training-course h3{margin:0 0 6px}.soc-training-course p{margin:6px 0}.soc-training-course details{margin-top:8px}.soc-training-course details[open]{max-height:180px;overflow:auto}
+.soc-training-course{background:#fff;border:2px solid #203640;border-radius:12px;padding:12px 16px}.soc-training-course h3{margin:0 0 6px}.soc-training-course p{margin:6px 0}.soc-training-course-scope{color:#405862;line-height:1.45}.soc-training-course details{margin-top:8px}.soc-training-course details[open]{max-height:180px;overflow:auto}
 
 /* Training shares the persistent world viewport; controls open explicit sheets. */
 #soc-console.is-training-map{overflow:hidden;display:grid;grid-template-rows:auto auto minmax(0,1fr)}

@@ -4,10 +4,21 @@ const {browser,load}=require('./harness');
 
 function tab(t){const b=browser(),x=load({browser:b});t.after(()=>{x.ev('socClose()');b.close(x.dom.window);x.dom.window.close();});return x;}
 
+test('current quick-exercise assessment is distinct from retained curriculum action awards',async t=>{
+ const x=tab(t),d=x.dom.window.document;
+ const current=x.ev(`SOCTrainingMap.render({trainingResources:[]},{assessment:{passed:false,missing:['one-current-case-check']},labels:{map:'Training map',currentAssessment:'Current quick-exercise assessment',incomplete:'Evidence still required'}})`);
+ const curriculum=x.ev(`SOCTrainingCourse.render([],{completedActions:149,totalActions:149,checkpoints:[]},{resources:{}})`);
+ d.body.insertAdjacentHTML('beforeend',current+curriculum);
+ const status=d.querySelector('.soc-training-result[role="status"]'),progress=d.querySelector('.soc-training-course');
+ assert.match(status.textContent,/Current quick-exercise assessment/);assert.match(status.textContent,/Evidence still required/);assert.match(status.textContent,/one-current-case-check/);
+ assert.match(progress.textContent,/Retained curriculum progress/);assert.match(progress.textContent,/149 \/ 149 curriculum actions completed/);assert.match(progress.textContent,/do not pass the current quick exercise/);
+ assert.equal(progress.querySelectorAll('[data-training="lesson-action"]').length,0,'displayed completion counts retained actions; it does not create additional completions');assert.deepEqual(x.errors,[]);
+});
+
 test('guided and assessed Training open the shared service map with lesson and read-only assessment overlays',async t=>{
  const x=tab(t);await x.ev('socOpen()');let d=x.dom.window.document;
  assert.equal(x.ev('SCT.state.experience.kind'),'training');assert.ok(d.querySelector('.soc-training-map'));
- assert.ok(d.querySelector('.soc-training-lesson'));assert.ok(d.querySelector('.soc-training-result[role="status"]'));
+ assert.ok(d.querySelector('.soc-training-lesson'));assert.ok(d.querySelector('.soc-training-result[role="status"]'));assert.equal(d.querySelector('.soc-training-assessment-label')?.textContent,'Current quick-exercise assessment');
  assert.ok(d.querySelectorAll('#soc-narrative [data-narrative]').length>0,'the map keeps the source-linked narrative library visible');assert.ok(d.querySelector('.soc-flavour'),'the selected service keeps its source-linked flavour');
  assert.ok(d.querySelectorAll('.soc-training-node').length>0);assert.equal(d.querySelector('#soc-config'),null);
  assert.equal(d.querySelector('[data-soc="fault"]'),null);assert.equal(d.querySelector('.soc-admin'),null);

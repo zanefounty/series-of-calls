@@ -43,9 +43,7 @@ All runner processes exited zero. Independent final comparison again found no ch
 
 ## Visible assessment distinction
 
-The final desktop screen shows “149 / 149 lesson actions completed” while the quick-exercise badge says “Evidence still required.” The course checkpoints retain earned curriculum awards; the badge uses the current exercise assessment after later reconnect/renewal actions. The driver proves the retained checkpoints, not a passing current badge. Do not interpret the action count as complete current assessment or commercial victory.
-
-Record this as a UI wording follow-up: distinguish retained course completion from the current quick-exercise objective and explain any remaining current evidence. This note does not alter either predicate or close the broader Training owner addition.
+The final desktop screen showed “149 / 149 lesson actions completed” while the quick-exercise badge said “Evidence still required.” The map now labels that badge “Current quick-exercise assessment.” The separate progress panel is “Retained curriculum progress” and explains that its action/award count does not pass the current exercise; the assessment continues to show its current missing evidence. The new wording is registered in all six dictionaries; non-English copies use the existing English fallback pending translation review. This is a presentation-only clarification: it changes no predicates, dispatch, save data or completion count. Focused DOM coverage checks the two statuses together, including a 149/149 progress display beside an incomplete assessment. This note does not close the broader Training owner addition.
 
 ## Scoped Provider prerequisite checks
 

@@ -7361,7 +7361,7 @@
         "AC-SOC-753"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
     },
     {
       "id": "BEH-SOC-408",
@@ -7737,6 +7737,29 @@
       ],
       "status": "partial",
       "scope": "The selected customer security inspector distinguishes actual filtered/blocked abuse from waiting for subsequent ordinary voice delivery and later settled delivery. Technical evidence is read-only beneath human-readable status. DOM evidence does not establish final browser acceptance or a progression award."
+    },
+    {
+      "id": "BEH-SOC-433",
+      "sources": [
+        "DEC-011",
+        "progress.goal.t2"
+      ],
+      "implementation": [
+        "src/game/23-provider-incident-sequence.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-incidents.js"
+      ],
+      "testIds": [
+        "AC-SOC-822",
+        "AC-SOC-823",
+        "AC-SOC-824",
+        "AC-SOC-825",
+        "AC-SOC-826",
+        "AC-SOC-827"
+      ],
+      "status": "partial",
+      "scope": "New versioned careers permit at most eight authored dependency incidents per customer, each follow-up at least 360 minutes after observed recovery and triggered by fresh actual completed work. Exact trigger events remain pinned inside a bounded journal. Public paid SMB construction, outage, delayed repair, renewal, follow-up, malformed-save refusal and worker/restore equivalence complement isolated pure-helper limit tests. Marker-absent legacy campaigns retain one-shot behavior. The contextual inspector explains follow-up timing; full browser and source-specific incident fidelity remain separate."
     }
   ]
 }

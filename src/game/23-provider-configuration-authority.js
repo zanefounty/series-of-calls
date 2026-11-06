@@ -148,10 +148,8 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    }
   }
   function configsAt(at){
-   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild=clone(child);
-   historicalChild.clock=at;
-   historicalChild.providerTasks=(historicalChild.providerTasks||[]).filter(task=>task.createdAt<=at);
-   if(historicalChild.siteOperations)historicalChild.siteOperations.exercises=[];
+   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild={...child,clock:at,providerTasks:(child.providerTasks||[]).filter(task=>task.createdAt<=at)};
+   if(child.siteOperations)historicalChild.siteOperations={...child.siteOperations,exercises:[]};
    return expectedModel(historicalProvider,customer,historicalChild,catalogue).configs;
   }
   for(const exercise of child.siteOperations?.exercises||[]){
@@ -257,8 +255,8 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   const projects=(provider.projects||[]).filter(p=>p?.customerId===customer.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&p.status!=='cancelled').map(p=>{
    const row=clone(p);if(row.serviceRetirement&&row.serviceRetirement.requestedAt>at)delete row.serviceRetirement;return row;
   });
-  const historicalProvider={...provider,projects},historicalChild=clone(child);historicalChild.clock=at;
-  if(Array.isArray(historicalChild.siteOperations?.exercises))for(const exercise of historicalChild.siteOperations.exercises)if(exercise.restoration?.requestedAt>at)exercise.restoration=null;
+  const historicalProvider={...provider,projects},historicalChild={...child,clock:at};
+  if(Array.isArray(child.siteOperations?.exercises))historicalChild.siteOperations={...child.siteOperations,exercises:child.siteOperations.exercises.map(exercise=>exercise.restoration?.requestedAt>at?{...exercise,restoration:null}:exercise)};
   const expected=expectedModel(historicalProvider,customer,historicalChild,catalogue),resourceGenerations=Object.fromEntries(Object.entries(child.resources).map(([id,resource])=>[id,resource.generation]));
   const originalOrder=new Map((provider.projects||[]).map((project,index)=>[project.id,index]));
   const ordered=projects.slice().sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt||a.acceptedAt-b.acceptedAt||(originalOrder.get(a.id)||0)-(originalOrder.get(b.id)||0));

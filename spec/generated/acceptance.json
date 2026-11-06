@@ -16930,7 +16930,6 @@
     "status": "partial",
     "outcome": "Prove five scoped integrations with owned support responsibilities. Preserve inspectable completion and one-time rewards.",
     "testIds": [
-      "AC-PROVIDER-PROGRESSION-UI-001",
       "AC-SOC-275",
       "AC-SOC-276",
       "AC-SOC-277",
@@ -16945,7 +16944,8 @@
       "AC-SOC-286",
       "AC-SOC-816",
       "AC-SOC-817",
-      "AC-SOC-818"
+      "AC-SOC-818",
+      "AC-SOC-842"
     ]
   },
   {
@@ -25040,7 +25040,6 @@
     "status": "partial",
     "outcome": "Represent Room/Desk/Board devices, supported native platform modes, VIMT/CVI and WebRTC joining separately. Model Video Mesh and Meeting Server with their actual remaining dependencies.",
     "testIds": [
-      "AC-PROVIDER-PROGRESSION-UI-001",
       "AC-SOC-085",
       "AC-SOC-332",
       "AC-SOC-333",
@@ -25060,7 +25059,8 @@
       "AC-SOC-774",
       "AC-SOC-816",
       "AC-SOC-817",
-      "AC-SOC-818"
+      "AC-SOC-818",
+      "AC-SOC-842"
     ]
   },
   {
@@ -25262,7 +25262,6 @@
     "status": "partial",
     "outcome": "Model vendor, distributor, reseller, SI, MSP, carrier/SP, CPaaS supplier/builder and BPO roles separately. Agreements specify buyer, seller, permitted resale, support ownership, tenant access, obligations, renewal and exit.",
     "testIds": [
-      "AC-PROVIDER-PROGRESSION-UI-001",
       "AC-SOC-015",
       "AC-SOC-020",
       "AC-SOC-038",
@@ -25321,7 +25320,8 @@
       "AC-SOC-818",
       "AC-SOC-832",
       "AC-SOC-833",
-      "AC-SOC-834"
+      "AC-SOC-834",
+      "AC-SOC-842"
     ]
   },
   {

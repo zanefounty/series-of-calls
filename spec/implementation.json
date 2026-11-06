@@ -7415,6 +7415,39 @@
       ],
       "status": "partial",
       "scope": "Paid Provider room interoperability purchases an exact generation/version-scoped native edge, requires explicit testing and a later actual duration-bearing bridge meeting with live 5000 Kbps path, and retains historical delivery through retirement and validated native audit pruning. Room capacity and transport failures need separate funded repairs; quote, inspector and worker controls keep Provider authority. Separate explicit Lab tests exercise endpoint/path refusal, current tests and FIFO audit history without claiming commercial delivery. This one synthetic path does not complete either product family, all five partner integrations or the full source catalogue."
+    },
+    {
+      "id": "BEH-SOC-410",
+      "sources": [
+        "progress.goal.rd",
+        "progress.progression-level.2"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/23-provider-support-work.js"
+      ],
+      "testIds": [
+        "AC-SOC-769",
+        "AC-SOC-770"
+      ],
+      "status": "partial",
+      "scope": "Paid resilient service can complete profitable work while an unresolved primary incident still blocks the public funded-expansion victory. Legitimate paid repair permits subsequent victory. At most two support-origin arrival events per customer remain pinned in the bounded Provider event journal, preserving actual support history despite holes caused by pinned commercial events. Older validated pruned origins retain their prior fallback; no event or historical work is invented."
+    },
+    {
+      "id": "BEH-SOC-411",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js"
+      ],
+      "testIds": [
+        "AC-SOC-771",
+        "AC-SOC-772"
+      ],
+      "status": "partial",
+      "scope": "Historical configuration readers build local views while copying fields changed for historical time, avoiding full tenant clones. Frozen input purity, isolated returned configurations and provenance, and forged generation rejection remain enforced. Exact captured-state comparisons and bounded timing measurements do not establish whole-suite deadlines or long-play completion."
     }
   ]
 }

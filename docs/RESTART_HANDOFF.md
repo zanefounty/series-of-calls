@@ -1,3 +1,15 @@
+# Active integration checkpoint — 6 November 2026, 04:33 UTC
+
+PR #43 remains draft; its newer local review fixes retain bounded support arrival events. Frozen `7e6ca47` exposed a genuine minute345→346 failure: event122 had been evicted while checkpoint.count was121 because a renewal remained pinned. Retaining the existing support-origin arrivals fixes the captured public transition, restored state and serialized worker without manufacturing old work or broadening missing-event validation. Three focused support tests passed. A new real paid SMB counterexample also passed: active and acknowledged overdue primary incidents prevent victory despite two profitable qualifying periods and funded expansion; paid recovery followed by funded service permits the legitimate win. Frozen `1a8a70d` subsequently passed nine focused cases with all 1,415 input hashes unchanged, plus source/coverage/mapping, translations, build and Gitleaks. Receipt: `/tmp/soc-support-victory-1a8a70d-result.json`; independent review: `/tmp/soc-1a8a70d-smb-directional-closure-audit.json`. Full-suite and browser evidence remain separate.
+
+The acceptance ledger now records 114 verified, 41 pending and four owner-parked assertions. Exact additions are honest actor inventory, explicit view/tutorial placement, Lab relabel authority refusal and one-case voice-to-digital handoff. Thirty-two canonical progression identities have 23 bounded retained-proof adapters and nine missing adapters; this inventory is not final paid-unlock or visible acceptance.
+
+Room follow-on PR #44 has thirteen passing frozen cases at `6ce8509`, including absent-product-pack quotation and invalid audit-ID rejection. Initial desktop/mobile runs disclosed inspector selection and legitimate shared-support contention; the driver now uses visible customer/staff controls. Candidate `8741169` is running fresh desktop/mobile verification. No latest draft change is deployed; public preview remains main `0ef9432`.
+
+The regional full suite and acceptance producer remain active on separate frozen `7e6ca47` worktrees. Do not restart them merely because output is buffered. Their eventual result includes the known support-origin failure; prior logs and receipts remain unchanged. Hosted CI and accountability reached existing deadlines. Performance diagnosis is underway; no check or deadline was weakened. Earlier checkpoints below are historical.
+
+---
+
 # Active gameplay continuation — 6 November 2026
 
 The owner still authorizes completing the gameplay rebuild, reviewable PR stack and protected Pages preview. Four long-play assertions are parked by owner request; they are neither passed nor excluded. Human participation and broader catalogue/research acceptance remain separate. The gameplay ledger now records 109 exact assertions verified, 46 pending and four parked.

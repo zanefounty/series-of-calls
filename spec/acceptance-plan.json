@@ -1057,6 +1057,16 @@
     "tests/provider-retail-history.test.js": [
       "AC-SOC-755"
     ],
+    "tests/provider-resilience-sequence.test.js": [
+      "AC-SOC-769"
+    ],
+    "tests/provider-support-work.test.js": [
+      "AC-SOC-770"
+    ],
+    "tests/provider-configuration-reader-performance.test.js": [
+      "AC-SOC-771",
+      "AC-SOC-772"
+    ],
     "tests/provider-room-integration-paid.test.js": [
       "AC-SOC-756",
       "AC-SOC-757",
@@ -1659,6 +1669,9 @@
     "tests/workforce-quality-ui.test.js",
     "tests/workforce-quality.test.js",
     "tests/provider-retail-history.test.js",
+    "tests/provider-resilience-sequence.test.js",
+    "tests/provider-support-work.test.js",
+    "tests/provider-configuration-reader-performance.test.js",
     "tests/provider-room-integration-paid.test.js",
     "tests/provider-room-integration-ui.test.js",
     "tests/provider-room-integration.test.js",

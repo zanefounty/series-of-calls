@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
+const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T2, L7, clone, hooks, mspFor, checkpoint, buy, dispatchWithCheckpoint, advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps, startCustomer, operation, operationComplete, stableSupportWindowShape, waitForStableSupportWindow, createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow, claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer, ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk, runAssuranceWait, compareAssuranceWaitToMinuteSteps } = require('./provider-progression-regional-claims.helpers.js');
 
 test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and funds bounded automatic repair', () => {
   let state = createThreeMarketWindow();
@@ -17,7 +17,7 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
     state = installTestedUcCcPair(state, customerId);
     checkpoint(`t2-integration-${customerId}`, state, { customerId });
   }
-  state = until(state, current => stableSupportWindowShape(current, customerIds), 'stable three-market support and tested integration window', 180);
+  state = waitForStableSupportWindow(state, current => stableSupportWindowShape(current, customerIds), customerIds, 'stable three-market support and tested integration window', 180);
 
   const ready = SOC.provider.inspect(state).progression.goals[T2];
   assert.equal(ready.status, 'ready', JSON.stringify(ready.missing));

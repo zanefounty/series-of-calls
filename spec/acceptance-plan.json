@@ -538,11 +538,8 @@
     "tests/provider-owned-site-quotes-ui.test.js": [
       "AC-SOC-633"
     ],
-    "tests/provider-configuration-reader-performance.test.js": [
-      "AC-SOC-771",
-      "AC-SOC-772",
-      "AC-SOC-775",
-      "AC-SOC-776"
+    "tests/workforce-coaching-campaign.test.js": [
+      "AC-SOC-592"
     ],
     "tests/provider-dedicated-interconnect-ui.test.js": [
       "AC-SOC-695"
@@ -600,20 +597,11 @@
       "AC-SOC-192",
       "AC-SOC-193"
     ],
-    "tests/information-interfaces-integration.test.js": [
-      "AC-SOC-471",
-      "AC-SOC-472",
-      "AC-SOC-473",
-      "AC-SOC-474",
-      "AC-SOC-475",
-      "AC-SOC-476",
-      "AC-SOC-477",
-      "AC-SOC-478",
-      "AC-SOC-479",
-      "AC-SOC-480",
-      "AC-SOC-481",
-      "AC-SOC-491",
-      "AC-SOC-492"
+    "tests/provider-room-integration.test.js": [
+      "AC-SOC-762",
+      "AC-SOC-763",
+      "AC-SOC-764",
+      "AC-SOC-765"
     ],
     "tests/progression-calling.test.js": [
       "AC-SOC-283",
@@ -650,15 +638,13 @@
       "AC-SOC-743",
       "AC-SOC-744"
     ],
-    "tests/provider-case-followup.test.js": [
-      "AC-SOC-700",
-      "AC-SOC-701",
-      "AC-SOC-702",
-      "AC-SOC-703",
-      "AC-SOC-704",
-      "AC-SOC-705",
-      "AC-SOC-708",
-      "AC-SOC-709"
+    "tests/outcomes.test.js": [
+      "AC-SOC-079",
+      "AC-SOC-080",
+      "AC-SOC-081",
+      "AC-SOC-082",
+      "AC-SOC-083",
+      "AC-SOC-084"
     ],
     "tests/shared-services-integration.test.js": [
       "AC-SOC-223",
@@ -704,11 +690,13 @@
       "AC-SOC-598",
       "AC-SOC-599"
     ],
-    "tests/managed-operations-leaver.test.js": [
-      "AC-SOC-531",
-      "AC-SOC-532",
-      "AC-SOC-533",
-      "AC-SOC-549"
+    "tests/speech-models.test.js": [
+      "AC-SOC-382",
+      "AC-SOC-383",
+      "AC-SOC-384",
+      "AC-SOC-385",
+      "AC-SOC-386",
+      "AC-SOC-410"
     ],
     "tests/provider-followup-retry-archive.test.js": [
       "AC-SOC-726",
@@ -763,13 +751,13 @@
       "AC-SOC-327",
       "AC-SOC-328"
     ],
-    "tests/customer-fit.test.js": [
-      "AC-SOC-456",
-      "AC-SOC-457",
-      "AC-SOC-458",
-      "AC-SOC-459",
-      "AC-SOC-460",
-      "AC-SOC-461"
+    "tests/estate-operations.test.js": [
+      "AC-SOC-059",
+      "AC-SOC-060",
+      "AC-SOC-061",
+      "AC-SOC-062",
+      "AC-SOC-063",
+      "AC-SOC-064"
     ],
     "tests/transport-headroom-integration.test.js": [
       "AC-SOC-601",
@@ -829,13 +817,15 @@
       "AC-SOC-454",
       "AC-SOC-455"
     ],
-    "tests/packs-integration.test.js": [
-      "AC-SOC-065",
-      "AC-SOC-066",
-      "AC-SOC-067",
-      "AC-SOC-068",
-      "AC-SOC-069",
-      "AC-SOC-070"
+    "tests/advanced-boundaries.test.js": [
+      "AC-SOC-099",
+      "AC-SOC-100",
+      "AC-SOC-101",
+      "AC-SOC-102",
+      "AC-SOC-103",
+      "AC-SOC-104",
+      "AC-SOC-105",
+      "AC-SOC-106"
     ],
     "tests/contact.test.js": [
       "AC-SOC-039",
@@ -892,14 +882,15 @@
       "AC-SOC-611",
       "AC-SOC-612"
     ],
-    "tests/business-pool-integration.test.js": [
-      "AC-SOC-369",
-      "AC-SOC-370"
+    "tests/customer-fit.test.js": [
+      "AC-SOC-456",
+      "AC-SOC-457",
+      "AC-SOC-458",
+      "AC-SOC-459",
+      "AC-SOC-460",
+      "AC-SOC-461"
     ],
-    "tests/product-integration.test.js": [
-      "AC-SOC-091",
-      "AC-SOC-092"
-    ],
+    "tests/transport-boundaries.test.js": [],
     "tests/calls-mcp.test.js": [
       "AC-SOC-353",
       "AC-SOC-354",
@@ -918,8 +909,11 @@
       "AC-SOC-147",
       "AC-SOC-148"
     ],
-    "tests/workforce-coaching-campaign.test.js": [
-      "AC-SOC-592"
+    "tests/provider-configuration-reader-performance.test.js": [
+      "AC-SOC-771",
+      "AC-SOC-772",
+      "AC-SOC-775",
+      "AC-SOC-776"
     ],
     "tests/workforce-coaching-journey.test.js": [
       "AC-SOC-589"
@@ -996,13 +990,15 @@
       "AC-SOC-304",
       "AC-SOC-305"
     ],
-    "tests/outcomes.test.js": [
-      "AC-SOC-079",
-      "AC-SOC-080",
-      "AC-SOC-081",
-      "AC-SOC-082",
-      "AC-SOC-083",
-      "AC-SOC-084"
+    "tests/provider-case-followup.test.js": [
+      "AC-SOC-700",
+      "AC-SOC-701",
+      "AC-SOC-702",
+      "AC-SOC-703",
+      "AC-SOC-704",
+      "AC-SOC-705",
+      "AC-SOC-708",
+      "AC-SOC-709"
     ],
     "tests/provider-handoff-demand.test.js": [
       "AC-SOC-657",
@@ -1026,13 +1022,9 @@
       "AC-SOC-077",
       "AC-SOC-078"
     ],
-    "tests/estate-operations.test.js": [
-      "AC-SOC-059",
-      "AC-SOC-060",
-      "AC-SOC-061",
-      "AC-SOC-062",
-      "AC-SOC-063",
-      "AC-SOC-064"
+    "tests/business-pool-integration.test.js": [
+      "AC-SOC-369",
+      "AC-SOC-370"
     ],
     "tests/shared-services.test.js": [
       "AC-SOC-201",
@@ -1054,7 +1046,10 @@
       "AC-SOC-667",
       "AC-SOC-668"
     ],
-    "tests/transport-boundaries.test.js": [],
+    "tests/product-integration.test.js": [
+      "AC-SOC-091",
+      "AC-SOC-092"
+    ],
     "tests/provider-incident-diagnosis.test.js": [
       "AC-SOC-715",
       "AC-SOC-716",
@@ -1090,15 +1085,13 @@
       "AC-SOC-292",
       "AC-SOC-293"
     ],
-    "tests/advanced-boundaries.test.js": [
-      "AC-SOC-099",
-      "AC-SOC-100",
-      "AC-SOC-101",
-      "AC-SOC-102",
-      "AC-SOC-103",
-      "AC-SOC-104",
-      "AC-SOC-105",
-      "AC-SOC-106"
+    "tests/packs-integration.test.js": [
+      "AC-SOC-065",
+      "AC-SOC-066",
+      "AC-SOC-067",
+      "AC-SOC-068",
+      "AC-SOC-069",
+      "AC-SOC-070"
     ],
     "tests/channels-webhooks.test.js": [
       "AC-SOC-422",
@@ -1115,13 +1108,11 @@
       "AC-SOC-372",
       "AC-SOC-373"
     ],
-    "tests/speech-models.test.js": [
-      "AC-SOC-382",
-      "AC-SOC-383",
-      "AC-SOC-384",
-      "AC-SOC-385",
-      "AC-SOC-386",
-      "AC-SOC-410"
+    "tests/managed-operations-leaver.test.js": [
+      "AC-SOC-531",
+      "AC-SOC-532",
+      "AC-SOC-533",
+      "AC-SOC-549"
     ],
     "tests/provider-inspection-read-views.test.js": [
       "AC-SOC-839",
@@ -1191,11 +1182,20 @@
       "AC-SOC-767",
       "AC-SOC-768"
     ],
-    "tests/provider-room-integration.test.js": [
-      "AC-SOC-762",
-      "AC-SOC-763",
-      "AC-SOC-764",
-      "AC-SOC-765"
+    "tests/information-interfaces-integration.test.js": [
+      "AC-SOC-471",
+      "AC-SOC-472",
+      "AC-SOC-473",
+      "AC-SOC-474",
+      "AC-SOC-475",
+      "AC-SOC-476",
+      "AC-SOC-477",
+      "AC-SOC-478",
+      "AC-SOC-479",
+      "AC-SOC-480",
+      "AC-SOC-481",
+      "AC-SOC-491",
+      "AC-SOC-492"
     ],
     "tests/provider-partner-progression.test.js": [
       "AC-SOC-816",

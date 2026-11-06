@@ -26,6 +26,39 @@ test('configured assurance remains suspendable and preserves each paid incident 
  s=SOC.dispatch(s,{type:'provider',command:{action:'automation',customerId,enabled:true}});s=tick(s,7);assert.equal(s.providerAutomation[0].actions.length,1);assert.equal(s.providerAutomation[0].spentCents,8000);assert.ok(s.providerCampaign.incidents.some(i=>i.status==='resolved'));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
+test('AC-SOC-828 paid assurance keeps repairing after financial mission loss while the customer remains healthy and solvent',()=>{
+ let s=SOC.create({experience:'campaign',scenario:'smb',difficulty:'easy',seed:73});
+ const project=(state,operationId)=>state.providerCampaign.projects.findLast(row=>row.customerId===customerId&&row.operationId===operationId);
+ const until=(predicate,limit=80)=>{const start=s.clock;while(!predicate(s)&&s.clock-start<limit)s=tick(s);assert.ok(predicate(s),`target not reached from minute ${start} before ${limit} minutes`);};
+ for(const stage of ['base','carrier','partner']){
+  s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
+  until(()=>stage==='base'?s.providerCampaign.customers[0].stages.base.status==='effective':stage==='carrier'?s.providerCampaign.customers[0].stages.carrier.status==='effective':s.providerCampaign.customers[0].status==='active',20);
+ }
+ s=buy(s,{action:'operation',operationId:'automation',customerId});until(()=>project(s,'automation')?.status==='complete');
+ s=configure(s,config(s,[rule('assurance')],{cashFloorCents:10000,lifetimeBudgetCents:300000,maxActions:6,engineerCeiling:4,supportCeiling:4}));
+ for(const operationId of ['recording','bpo']){s=buy(s,{action:'operation',operationId,customerId});const id=project(s,operationId).id;until(()=>s.providerCampaign.projects.find(row=>row.id===id)?.status==='complete',45);}
+ s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:4,support:4}});
+ s=buy(s,{action:'operation',operationId:'ms-workplace-calling',customerId});const productId=project(s,'ms-workplace-calling').id;until(()=>s.providerCampaign.projects.find(row=>row.id===productId)?.status==='complete',50);
+ assert.equal(project(s,'ms-workplace-calling').productId,'ms-workplace-calling','the economic loss follows an actual paid product installation');
+ const renewLiveCustomers=()=>{for(const c of s.providerCampaign.customers.filter(row=>row.status==='renewal'))s=SOC.dispatch(s,{type:'provider',command:{action:'renew',customerId:c.id}});};
+ while(s.providerCampaign.missionStatus!=='failed'&&s.clock<360){renewLiveCustomers();s=tick(s);}
+ assert.equal(s.providerCampaign.missionStatus,'failed');assert.equal(s.providerCampaign.status,'failed');
+ const failedAt=s.clock,c=s.providerCampaign.customers.find(row=>row.id===customerId),lossRows=s.providerCampaign.periodHistory.filter(row=>row.from>=60&&row.to<=failedAt);
+ assert.ok(c&&c.status==='active','the customer and its paid service remain active after the financial mission loss');
+ assert.equal(s.business.solvency.status,'current');assert.ok(s.business.balance.cash>0);
+ assert.equal(lossRows.length,3);assert.ok(lossRows.every(row=>row.operatingResult<0&&!row.qualified),'mission failure comes from three negative operating periods');
+ const healthyCustomerPeriods=c.history.filter(row=>lossRows.some(loss=>loss.period===row.period));assert.equal(healthyCustomerPeriods.length,3);assert.ok(healthyCustomerPeriods.every(row=>row.qualified&&row.failed===0&&row.due===24&&row.completedOnTime===24),'service delivery remains on-time throughout those financial-loss periods');
+ assert.equal(s.providerAutomation[0].actions.length,1,'the paid assurance already performed the original incident repair');
+ while(!s.providerCampaign.incidents.some(row=>row.customerId===customerId&&row.sequence?.ordinal===2&&row.status==='resolved')&&s.clock<500){renewLiveCustomers();s=tick(s);}
+ const second=s.providerCampaign.incidents.find(row=>row.customerId===customerId&&row.sequence?.ordinal===2),action=s.providerAutomation[0].actions.find(row=>row.incidentId===second?.id),repair=action&&s.providerCampaign.projects.find(row=>row.id===action.projectId);
+ assert.ok(second&&second.status==='resolved','the actual authored repeat incident is resolved after mission loss');
+ assert.ok(action&&repair?.operationId==='repair'&&repair.status==='complete'&&repair.setupCents===8000);
+ assert.ok(s.business.ledger.some(row=>row.id===repair.postingId&&row.projectId===repair.id&&row.reason==='provider-operation'),'the post-loss repair still has its actual paid ledger entry');
+ assert.equal(s.providerCampaign.missionStatus,'failed');assert.equal(s.providerCampaign.customers.find(row=>row.id===customerId).status,'active');assert.equal(s.business.solvency.status,'current');
+ const restored=SOC.restore(JSON.stringify(s));assert.deepEqual(restored,JSON.parse(JSON.stringify(s)));
+ const command={type:'advance',minutes:1},expected=SOC.dispatch(restored,command);let response;const vm=require('node:vm'),context={postMessage:value=>{response=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:'failed-mission-paid-assurance',state:restored,command}});assert.equal(response.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(response.state)),expected,'worker continuation preserves paid response after mission loss');
+});
+
 test('migration standing order uses actual placements and preserves worker and saved continuation',()=>{
  let s=setup(),c=config(s,[rule('migration')],{maxActions:1});const q=SOC.provider.policyPreview(s,c);assert.equal(q.status,'ready');assert.equal(q.intent.command.operationId,'migration');s=configure(s,c);s=tick(s);
  assert.equal(s.providerAutomation[0].actions.length,1);assert.equal(s.providerAutomation[0].actions[0].kind,'migration');

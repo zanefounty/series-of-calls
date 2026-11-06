@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Accountability gates. Structural coverage is not evidence of semantic fidelity."""
 from pathlib import Path
-import argparse, datetime as dt, hashlib, importlib.util, json, re, shutil, subprocess, sys, tempfile
+import argparse, datetime as dt, hashlib, importlib.util, json, os, re, shutil, subprocess, sys, tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
 class GateError(Exception):pass
@@ -19,13 +19,25 @@ def unique(records,kind):
     ids=[r['id'] for r in records];require(len(ids)==len(set(ids)),f'Duplicate {kind} ID');return set(ids)
 def acceptance_results(output,expected):
     """Only top-level TAP results count; aliases and duplicate titles are invalid."""
-    rows=re.findall(r'^(ok|not ok) \d+ - (AC-SOC-\S+)',output,re.M)
-    require(all(re.fullmatch(r'AC-SOC-\d+',tid) for _,tid in rows),'Invalid executed acceptance ID')
-    ids=[tid for _,tid in rows]
+    rows=re.findall(r'^(ok|not ok) \d+ - (AC-SOC-\S+)(.*)$',output,re.M)
+    require(all(re.fullmatch(r'AC-SOC-\d+',tid) for _,tid,_ in rows),'Invalid executed acceptance ID')
+    ids=[tid for _,tid,_ in rows]
     require(len(ids)==len(set(ids)),'Duplicate executed acceptance ID')
     require(set(ids)==set(expected),'Executed acceptance IDs differ from plan')
-    require(all(status=='ok' for status,_ in rows),'Acceptance tests failed')
+    require(all(status=='ok' for status,_,_ in rows),'Acceptance tests failed')
+    require(all(not re.search(r'#\s*(?:SKIP|TODO)\b',directive,re.I) for _,_,directive in rows),'Skipped acceptance test')
     return {tid:'passed' for tid in ids}
+def acceptance_command(suites):
+    """Run the unchanged planned suites with normal per-file Node isolation and bounded parallelism."""
+    raw=os.environ.get('TEST_JOBS')
+    if raw is not None:
+        try:jobs=int(raw)
+        except ValueError:raise GateError('TEST_JOBS must be a positive integer')
+    else:
+        try:jobs=len(os.sched_getaffinity(0))
+        except (AttributeError,OSError):jobs=os.cpu_count() or 1
+    require(jobs>=1,'TEST_JOBS must be a positive integer')
+    return ['node','--test','--test-isolation=process',f'--test-concurrency={jobs}','--test-reporter=tap',*suites]
 def source(root):
     manifest=read(root,'research/source-manifest.json')
     revision=read(root,f"research/revisions/{manifest['revision']}.json")
@@ -191,7 +203,7 @@ def evidence(root):
     require(all(re.fullmatch(r'tests/[a-z0-9-]+\.test\.js',p) for p in plan['suites']),'Invalid acceptance suite path')
     require(all((root/p).is_file() for p in plan['suites']),'Missing acceptance suite')
     require(set(report['tests'])=={t for suite in plan['suites'].values() for t in suite},'Acceptance plan differs from reported tests')
-    result=subprocess.run(['node','--test','--test-isolation=none','--test-reporter=tap',*plan['suites']],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+    result=subprocess.run(acceptance_command(list(plan['suites'])),cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
     require(result.returncode==0,'Current behavioural tests fail: '+result.stdout[-1500:])
     executed=set(acceptance_results(result.stdout,planned))
     require(set(report['tests'])==executed,'Reported test IDs differ from executed tests')

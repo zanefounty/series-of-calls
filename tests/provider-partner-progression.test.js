@@ -197,7 +197,7 @@ test('a real paid UC/CC delivery is excluded when its MSP scope omits the record
  assert.ok(owner.scope.includes('phone'));assert.equal(owner.scope.includes('recorder'),false);
 });
 
-test('a paid Disco vendor UC/CC owner supplies the second distinct P5 edge without becoming the orchard MSP',()=>{
+test('AC-SOC-847 paid UC/CC accepts exact orchard MSP scope or a separately paid Disco vendor owner',()=>{
  let state=PARTNER_FIXTURE.regionalSupportReady();
  for(const sourceId of [RECEIPTS.FIRST_LIVE,RECEIPTS.SUSTAINABLE,RECEIPTS.LEVEL_TWO,RECEIPTS.NONSTARTER])state=PARTNER_FIXTURE.claimDispatched(state,sourceId);
  state=PARTNER_FIXTURE.ccUntilClock(state,500);
@@ -213,6 +213,17 @@ test('a paid Disco vendor UC/CC owner supplies the second distinct P5 edge witho
  state=PARTNER_FIXTURE.claimDispatched(state,RECEIPTS.LEVEL_THREE);
 
  const customerId='next-2-customer',hooks={...ucHooks(),customerRoot:PARTNER_FIXTURE.hooks.customerRoot,room:roomHooks().room};
+ const mspProof=PARTNER_FIXTURE.ccInstallUcCcWithTargetSupport(structuredClone(state),customerId);
+ const mspEvidence=P5.evaluate(mspProof,hooks);
+ assert.equal(mspEvidence.count,0,'the real direct integration remains excluded until its MSP scope covers both tested endpoints');
+ assert.ok(mspEvidence.missing.includes('current-owner-scope-required:workplace-to-contact-quality:recorder'));
+ const directProject=operationProject(mspProof,'uc-cc-integration',customerId),directTest=directProject.operationReceipt.test;
+ const mspRecord=RESPONSIBILITY.responsibilities(mspProof,customerId,{observeResource:hooks.observeResource}).records.find(x=>x.role==='msp'&&x.organisationId==='orchard-msp');
+ assert.ok(mspRecord);assert.ok(mspRecord.scope.includes('phone'));assert.equal(mspRecord.scope.includes('recorder'),false);
+ assert.deepEqual(directTest.supportScope.projectIds,mspRecord.evidence.stageProjects.map(x=>x.projectId).sort(),'the native direct test retains the real paid MSP stage-project proof');
+ assert.deepEqual(directTest.supportScope.postingIds,mspRecord.evidence.stageProjects.map(x=>x.postingId).sort());
+ assert.deepEqual(directTest.supportScope.resources,[...mspRecord.scope].sort());
+
  for(const id of ['recording',PARTNER_FIXTURE.UC_CC_SOURCE_OPERATION]){state=PARTNER_FIXTURE.ccOperationWhenReady(state,id,customerId);state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,id,customerId)?.status==='complete',600,customerId);}
  if(state.business.workforce.support<2)state=send(state,{action:'staff',engineers:state.business.workforce.engineers,support:2});
  for(const id of [PARTNER_FIXTURE.UC_CC_TARGET_OPERATION,'service-boundary-review']){state=PARTNER_FIXTURE.ccOperationWhenReady(state,id,customerId);state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,id,customerId)?.status==='complete',600,customerId);}
@@ -225,6 +236,9 @@ test('a paid Disco vendor UC/CC owner supplies the second distinct P5 edge witho
  state=PARTNER_FIXTURE.ccUntil(state,x=>PARTNER_FIXTURE.ccProject(x,'managed-uc-cc-integration',customerId)?.status==='commissioning',600,customerId);
  state=PARTNER_FIXTURE.ccCompleteWithPaidReview(state,project.id,'managed-uc-cc-integration',customerId);
 
+ const orchard=RESPONSIBILITY.responsibilities(state,customerId,{observeResource:hooks.observeResource}).records.find(x=>x.role==='msp'&&x.organisationId==='orchard-msp');
+ assert.ok(orchard,'the managed vendor route retains its independent orchard MSP authority');
+ assert.equal(orchard.scope.includes('recorder'),false,'the vendor contract does not widen the orchard MSP stage scope');
  const inspect=SUPPORT.supportFor(state,customerId,['phone','recorder'],{hooks});
  assert.equal(inspect.status,'ready',JSON.stringify(inspect.missing));
  const owner=inspect.owners.find(x=>x.adapter==='provider-uc-cc');
@@ -265,5 +279,5 @@ test('a paid Disco vendor UC/CC owner supplies the second distinct P5 edge witho
 
  const restored=SOC.restore(JSON.stringify(state));
  assert.deepEqual(SUPPORT.supportFor(restored,customerId,['phone','recorder'],{hooks}).owners.find(x=>x.adapter==='provider-uc-cc'),owner,'the paid vendor owner is reproducible after restore');
- assert.deepEqual(P5.evaluate(restored,hooks).evidence,evidence.evidence,'both eligible edges survive validated restore without changing their identities');
+ assert.deepEqual(P5.evaluate(restored,hooks).evidence,evidence.evidence,'the eligible UC/CC edge survives validated restore without changing its identity');
 });

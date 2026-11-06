@@ -13,11 +13,17 @@ function socProviderPartnerProgressionKernel(){
  function ucApi(){return typeof SOC_PROVIDER_UC_CC_INTEGRATION!=='undefined'?SOC_PROVIDER_UC_CC_INTEGRATION:require('./23-provider-uc-cc-integration.js');}
  function roomApi(){return typeof SOC_PROVIDER_ROOM_INTEGRATION!=='undefined'?SOC_PROVIDER_ROOM_INTEGRATION:require('./23-provider-room-integration.js');}
  function supportApi(){return typeof SOC_PROVIDER_INTEGRATION_SUPPORT!=='undefined'?SOC_PROVIDER_INTEGRATION_SUPPORT:require('./23-provider-integration-support.js');}
+ function responsibilityApi(){return typeof SOC_PROVIDER_RESPONSIBILITY!=='undefined'?SOC_PROVIDER_RESPONSIBILITY:require('./23-provider-responsibility.js');}
  function customers(s){return Array.isArray(s?.providerCampaign?.customers)?s.providerCampaign.customers:[];}
  function rootFor(s,c){return s?.portfolio?.customers?.find(x=>x.id===c?.portfolioId||x.id===c?.id)?.root||null;}
  function operationProjects(s,c,ids){return (s.providerCampaign?.projects||[]).filter(p=>p.customerId===c.id&&ids.includes(p.operationId)&&p.kind==='operation'&&p.status==='complete'&&int(p.completedAt)&&p.completedAt<=s.clock).sort((a,b)=>(b.completedAt-a.completedAt)||a.id.localeCompare(b.id));}
  function customerAt(c,at){if(!c||!int(c.startedAt)||c.startedAt>at)return false;if(c.status==='active'||c.status==='renewal')return true;if(c.status==='exited'||c.status==='default'){const endedAt=c.status==='exited'?c.exitAt:c.defaultAt;return int(endedAt)&&at<endedAt;}return false;}
  function hooksFor(hooks,state,customer,root,adapter){const selected=typeof hooks.forAdapter==='function'?(hooks.forAdapter(state,customer,root,adapter)||{}):(hooks[adapter]||hooks);return typeof selected.observeResource==='function'||typeof hooks.observeResource!=='function'?selected:{...selected,observeResource:hooks.observeResource};}
+ function scopeRecord(s,c,resourceIds,hooks,at=s.clock){
+  let result;try{result=responsibilityApi().responsibilities(s,c.id,hooks);}catch{return null;}
+  return (result?.records||[]).filter(r=>r.customerId===c.id&&['msp','integrator'].includes(r.role)&&int(r.effectiveAt)&&r.effectiveAt<=at&&(r.expiresAt===null||int(r.expiresAt)&&at<r.expiresAt)&&resourceIds.every(id=>(r.scope||[]).includes(id)))
+   .sort((a,b)=>a.role.localeCompare(b.role)||a.organisationId.localeCompare(b.organisationId)||a.id.localeCompare(b.id))[0]||null;
+ }
  function postingMatches(s,p){const row=s.business?.ledger?.find(x=>x.id===p.postingId);if(row)return row.category==='cost'&&row.customerId===p.customerId&&row.projectId===p.id&&row.cents===p.setupCents;const n=Number(/^entry-([1-9]\d*)$/.exec(p.postingId||'')?.[1]||0);return n>0&&n<=(s.business?.ledgerPrunedThrough||0);}
  function ucRow(s,c,p,hooks,historical=false,diagnostics=[],retainedOwner=null){
   const api=ucApi(),root=rootFor(s,c);if(!root||root.providerCustomer?.id!==c.id||root.providerCampaign)return null;
@@ -36,14 +42,29 @@ function socProviderPartnerProgressionKernel(){
   // evidence time is therefore the completed task, after the native test and
   // qualifying delivery, rather than the earlier integration-test minute.
   const supportTime=historical?p.completedAt:s.clock;
+  const mspSupportTime=historical?test.at:s.clock;
+  const supportRecord=scopeRecord(s,c,resourceIds,hooks,mspSupportTime);
+  const actualScope=supportRecord&&{projectIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.projectId)].sort(),postingIds:[...(supportRecord.evidence?.stageProjects||[]).map(x=>x.postingId)].sort(),resources:[...(supportRecord.scope||[])].sort()};
+  const mspEvidence={role:'msp',organisationId:'orchard-msp',scope:copy(test.supportScope)};
+  const mspValid=!!supportRecord&&supportRecord.role==='msp'&&supportRecord.organisationId==='orchard-msp'&&same(actualScope,test.supportScope);
   const vendorOwner=historical?null:supportApi().supportFor(s,c.id,resourceIds,{at:supportTime,hooks}).owners
    .find(x=>x.adapter==='provider-uc-cc'&&x.role==='vendor'&&x.organisationId==='disco-vendor'&&x.customerId===c.id&&x.projectId===p.id&&x.postingId===p.postingId&&resourceIds.every(id=>x.scope.includes(id)))||null;
-  const vendorValid=historical?!!retainedOwner&&supportApi().validateOwner(s,retainedOwner,{at:supportTime,hooks}):!!vendorOwner;
-  // The UC/CC edge needs the paid vendor adapter. The MSP remains a separate
-  // owner of its own stage scope and is never relabelled to satisfy this edge.
+  // A retained MSP receipt is historical proof: the native test binds the
+  // exact stage snapshot at test time, and previously accepted evidence must
+  // not be revoked because today's responsibility projection has changed.
+  const retainedMsp=historical&&retainedOwner?.role==='msp'&&retainedOwner.organisationId==='orchard-msp'&&same(retainedOwner,mspEvidence)&&resourceIds.every(id=>test.supportScope.resources.includes(id));
+  const retainedVendor=historical&&retainedOwner?.adapter==='provider-uc-cc'&&retainedOwner.role==='vendor'&&retainedOwner.organisationId==='disco-vendor'&&retainedOwner.customerId===c.id&&retainedOwner.projectId===p.id&&retainedOwner.postingId===p.postingId&&resourceIds.every(id=>(retainedOwner.scope||[]).includes(id))&&supportApi().validateOwner(s,retainedOwner,{at:supportTime,hooks});
+  const vendorValid=historical?!!retainedVendor:!!vendorOwner;
+  // Retain the original exact orchard MSP evidence when its paid stage scope
+  // covers both endpoints. Otherwise a separate paid Disco vendor contract
+  // may own this managed route without changing the MSP's responsibilities.
   if(!test.supportScope?.resources)return null;
-  if(!vendorValid){for(const resource of resourceIds.filter(id=>!vendorOwner?.scope?.includes(id)&&!retainedOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);if(!resourceIds.some(id=>!vendorOwner?.scope?.includes(id)&&!retainedOwner?.scope?.includes(id)))diagnostics.push(`current-vendor-owner-required:${IDS.ucCc}`);return null;}
-  const support=copy(vendorOwner||retainedOwner);
+  if(historical?!retainedMsp&&!retainedVendor:!mspValid&&!vendorValid){
+   for(const resource of resourceIds.filter(id=>!supportRecord?.scope?.includes(id)&&!vendorOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}:${resource}`);
+   if(!resourceIds.some(id=>!supportRecord?.scope?.includes(id)&&!vendorOwner?.scope?.includes(id)))diagnostics.push(`current-owner-scope-required:${IDS.ucCc}`);
+   return null;
+  }
+  const support=copy(historical?retainedOwner:(mspValid?mspEvidence:vendorOwner));
   return {version:VERSION,adapter:'provider-uc-cc',key:`${edge.id}:${edge.source}:${edge.features[0].sourceFeature}->${edge.target}:${edge.features[0].targetFeature}`,
    customerId:c.id,projectId:p.id,postingId:p.postingId,completedAt:p.completedAt,edgeId:edge.id,
    source:{deploymentId:plan.source.deploymentId,family:plan.source.family,feature:plan.source.feature,resourceId:plan.source.resourceId,generation:plan.source.generation,productVersion:plan.source.productVersion},

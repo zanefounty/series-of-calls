@@ -16,16 +16,16 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  # The tests in four parts of about equal time, each on its own runner, each running as many files at once as
-  # it has cores (scripts/test.js; the split comes from tests/durations.json).
+  # The tests run in eight parts of about equal time, each on its own runner, with the same per-runner file concurrency.
+  # scripts/test.js uses tests/durations.json for the balanced split.
   part:
-    name: test ${{ matrix.part }}/4
+    name: test ${{ matrix.part }}/8
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        part: [1, 2, 3, 4]
+        part: [1, 2, 3, 4, 5, 6, 7, 8]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -35,7 +35,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm test -- --shard ${{ matrix.part }}/4
+      - run: npm test -- --shard ${{ matrix.part }}/8
 
   build:
     name: build

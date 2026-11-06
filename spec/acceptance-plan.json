@@ -1106,6 +1106,13 @@
       "AC-SOC-797",
       "AC-SOC-798",
       "AC-SOC-799"
+    ],
+    "tests/provider-progression-inspection.test.js": [
+      "AC-SOC-795",
+      "AC-SOC-796"
+    ],
+    "tests/provider-progression-receipts.test.js": [
+      "AC-SOC-810"
     ]
   },
   "inputs": [
@@ -1700,6 +1707,8 @@
     "tests/provider-support-history.test.js",
     "tests/provider-security.test.js",
     "tests/admission-security-event-retention.test.js",
-    "content/provider-security-abuse.v2.json"
+    "content/provider-security-abuse.v2.json",
+    "tests/provider-progression-inspection.test.js",
+    "tests/provider-progression-receipts.test.js"
   ]
 }

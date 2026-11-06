@@ -76,6 +76,19 @@ function socProviderRegionalSupportKernel(){
   const number=Number(/^entry-([1-9][0-9]*)$/.exec(project.postingId||'')?.[1]||0);
   return number>0&&number<=(s.business?.ledgerPrunedThrough||0);
  }
+ function sameMinutePaidAutomationRepair(s,project,at){
+  if(project?.kind!=='operation'||project.operationId!=='repair'||project.acceptedAt!==at)return false;
+  for(const policy of s.providerAutomation||[]){
+   if(!Array.isArray(policy.actions))continue;
+   const action=policy.actions.find(row=>row?.projectId===project.id&&row.at===at&&row.cents===project.setupCents);
+   if(!action||action.kind!==undefined&&action.kind!=='incident'||!id(action.incidentId))continue;
+   const policyProject=s.providerCampaign.projects.find(row=>row.id===policy.projectId&&row.customerId===policy.customerId);
+   if(!policyProject||!['automation','regional-provisioning','integration-assurance','cisco-provider-operations'].includes(policyProject.operationId)||!['complete','retired'].includes(policyProject.status)||!integer(policyProject.completedAt)||policyProject.completedAt>at||!integer(policyProject.configSubmittedAt)||policyProject.configSubmittedAt>policyProject.completedAt||!paidPostingValid(s,policyProject)||!paidPostingValid(s,project))continue;
+   const incident=s.providerCampaign.incidents.find(row=>row.id===action.incidentId&&row.customerId===project.customerId&&integer(row.acknowledgedAt)&&row.acknowledgedAt<=at);
+   if(incident)return true;
+  }
+  return false;
+ }
  function paidProject(s,project){return project?.operationId===OPERATION_ID&&paidPostingValid(s,project);}
  function requestedPlan(s,project){
   const request=project?.supportRequest;if(!request)return null;
@@ -186,7 +199,10 @@ function socProviderRegionalSupportKernel(){
  function activeCandidateRows(s,customerId,at){
   return allAssignments(s).filter(Boolean).filter(x=>x.customer.id===customerId&&assignmentEffectiveAt(x,at)).sort((a,b)=>b.project.completedAt-a.project.completedAt||b.project.acceptedAt-a.project.acceptedAt||b.project.id.localeCompare(a.project.id));
  }
- function implementationSupportAt(s,at,historical=false){return (s.providerCampaign.projects||[]).filter(p=>integer(p.acceptedAt)&&integer(p.dueAt)&&(historical?p.acceptedAt<at:p.acceptedAt<=at)&&at<p.dueAt&&(p.status!=='cancelled'||historical&&p.completedAt>=at)).reduce((n,p)=>n+(integer(p.support)?p.support:0),0);}
+ // afterMinute runs native policy actions before appending its end-of-minute
+ // sample. Ordinary player commands at that displayed clock run after the
+ // sample; 55 validates the native action journal before historical checks.
+ function implementationSupportAt(s,at,historical=false){return (s.providerCampaign.projects||[]).filter(p=>integer(p.acceptedAt)&&integer(p.dueAt)&&(historical?(p.acceptedAt<at||p.acceptedAt===at&&sameMinutePaidAutomationRepair(s,p,at)):p.acceptedAt<=at)&&at<p.dueAt&&(p.status!=='cancelled'||historical&&p.completedAt>=at)).reduce((n,p)=>n+(integer(p.support)?p.support:0),0);}
  function snapshotFor(s,row,at,limit,payroll,historical=false,hooks={}){
   const personId=row.assignment.personId,effective=effectiveAssignmentRowsFor(s,at,historical,hooks),samePerson=effective.filter(x=>x.assignment.personId===personId),scope=[...new Set(samePerson.flatMap(x=>x.assignment.scopeCustomerIds))].sort(),used=[...new Set(effective.map(x=>x.assignment.personId))].length;
   return {version:VERSION,projectId:row.project.id,postingId:row.project.postingId,personId,employer:row.assignment.employer,market:row.assignment.market,languages:[...row.assignment.languages],skills:[...row.assignment.skills],coverageId:row.assignment.coverageId,shiftStart:row.assignment.shiftStart,shiftEnd:row.assignment.shiftEnd,scopeCustomerIds:scope,acceptedAt:row.project.acceptedAt,effectiveAt:row.project.completedAt,usedSupportSlots:used,paidSupportSlots:limit,implementationSupportSlots:implementationSupportAt(s,at,historical),payrollPersonMinutes:payroll.personMinutes,payrollBilledMinutes:payroll.billedMinutes};

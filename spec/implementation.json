@@ -7361,10 +7361,11 @@
         "src/game/23-provider-regional-support.js"
       ],
       "testIds": [
-        "AC-SOC-753"
+        "AC-SOC-753",
+        "AC-SOC-835"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
     },
     {
       "id": "BEH-SOC-408",

@@ -251,6 +251,88 @@ function stableSupportWindowShape(state, customerIds) {
   return true;
 }
 
+function supportWindowBatchBoundary(state, customerIds, { distributor = false } = {}) {
+  const observation = state.providerCampaign.supportObservation;
+  if (!observation) return null;
+  let samples;
+  try { samples = FACTS.decodeSupportObservation(observation); } catch { return null; }
+  if (samples.length !== 60 || samples.at(-1)?.at !== state.clock) return null;
+  const cohort = [...customerIds].sort();
+  const team = state.business.workforce;
+  const signatureFor = sample => JSON.stringify({
+    cohort: sample.cohort,
+    participants: [...(Array.isArray(sample.participants) ? sample.participants : [])].sort((a, b) => a.customerId.localeCompare(b.customerId)).map(row => ({
+      customerId: row.customerId,
+      configuration: row.configuration,
+      resources: row.resources,
+      boundaries: row.boundaries,
+      integrations: row.integrations ?? null,
+      namedSupportProjectId: row.namedSupport?.projectId ?? null
+    }))
+  });
+  const classified = samples.map((sample, index) => {
+    let impossible = !Array.isArray(sample.cohort) || JSON.stringify(sample.cohort) !== JSON.stringify(cohort)
+      || !Array.isArray(sample.participants) || new Set(sample.participants.map(row => row.customerId)).size !== cohort.length
+      || cohort.some(id => !sample.participants.some(row => row.customerId === id));
+    if (index && sample.at !== samples[index - 1].at + 1) impossible = true;
+    for (const customerId of cohort) {
+      const participant = sample.participants.find(row => row.customerId === customerId);
+      if (!participant || participant.eligible !== true || !participant.responsibility || !participant.boundaries?.length) {
+        impossible = true;
+        continue;
+      }
+      if (distributor) {
+        const workforce = participant.responsibility.sharedWorkforce;
+        if (participant.namedSupport?.projectId == null || participant.namedSupport.paidSupportSlots !== team.support
+            || workforce?.support !== team.support || workforce?.engineers !== team.engineers) impossible = true;
+      }
+    }
+    return { at: sample.at, impossible, signature: signatureFor(sample) };
+  });
+
+  const signatures = [...new Set(classified.filter(row => !row.impossible).map(row => row.signature))];
+  if (!signatures.length) return Math.max(...classified.map(row => row.at + 60));
+  let earliest = Infinity;
+  for (const signature of signatures) {
+    const incompatible = classified.filter(row => row.impossible || row.signature !== signature);
+    if (!incompatible.length) return null;
+    earliest = Math.min(earliest, Math.max(...incompatible.map(row => row.at + 60)));
+  }
+  return earliest > state.clock ? earliest : null;
+}
+
+function waitForStableSupportWindow(state, predicate, customerIds, label, limit, options = {}) {
+  const startedAt = state.clock;
+  let advanceDispatches = 0, boundedDispatches = 0;
+  while (state.clock - startedAt < limit && !predicate(state)) {
+    const earliest = supportWindowBatchBoundary(state, customerIds, options);
+    const remaining = limit - (state.clock - startedAt);
+    const chunk = earliest === null ? 1 : Math.min(remaining, safeAdvanceChunk(state), earliest - state.clock);
+    const before = state.clock;
+    const workforceBefore = options.distributor ? JSON.stringify({ engineers: state.business.workforce.engineers, support: state.business.workforce.support }) : null;
+    state = chunk <= 1
+      ? advance(state)
+      : dispatchWithCheckpoint(state, { type: 'advance', minutes: chunk }, 'support-window-boundary');
+    advanceDispatches++;
+    if (chunk > 1) boundedDispatches++;
+    assert.ok(state.clock > before, `${label} wait advances at least one minute`);
+    assert.ok(state.clock - before <= chunk, `${label} wait does not exceed its requested native advance`);
+    assert.ok(state.clock - startedAt <= limit, `${label} wait stays within its ${limit}-minute simulation cap`);
+    if (workforceBefore !== null) assert.equal(JSON.stringify({ engineers: state.business.workforce.engineers, support: state.business.workforce.support }), workforceBefore, `${label} batching assumes no staffing command or automatic team change during native advance`);
+  }
+  const reached = predicate(state);
+  if (!reached) checkpoint('condition-not-reached', state, { condition: label });
+  checkpoint('support-window-wait-profile', state, {
+    condition: label,
+    elapsedMinutes: state.clock - startedAt,
+    advanceDispatches,
+    boundedDispatches,
+    reached
+  });
+  assert.ok(reached, `${label} not reached at minute ${state.clock}`);
+  return state;
+}
+
 function createThreeMarketWindow() {
   if (threeMarketWindow) return clone(threeMarketWindow);
   let state = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
@@ -294,7 +376,7 @@ function createThreeMarketWindow() {
   if (state.business.workforce.support < 3) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 3 } });
   state = operation(state, 'provider-support-coverage', third, supportConfig('eu-dublin'));
   state = operationComplete(state, 'provider-support-coverage', third);
-  state = until(state, s => stableSupportWindowShape(s, [starter, second, third]), 'stable three-region support sample window', 300);
+  state = waitForStableSupportWindow(state, s => stableSupportWindowShape(s, [starter, second, third]), [starter, second, third], 'stable three-region support sample window', 300);
   threeMarketWindow = clone(state);
   return state;
 }
@@ -346,7 +428,7 @@ function createFiveMarketWindow() {
   state = addRegionalCustomer(state, 'next-3-customer', 'next-3', 'au-melbourne');
   state = addRegionalCustomer(state, 'next-4-customer', 'next-4', 'jp-tokyo');
   const customerIds = state.providerCampaign.customers.map(row => row.id).sort();
-  state = until(state, s => stableSupportWindowShape(s, customerIds), 'stable five-market support sample window', 180);
+  state = waitForStableSupportWindow(state, s => stableSupportWindowShape(s, customerIds), customerIds, 'stable five-market support sample window', 180);
   fiveMarketWindow = clone(state);
   return state;
 }
@@ -385,7 +467,7 @@ function createLevelSevenWindow() {
   const customerIds = state.providerCampaign.customers.map(row => row.id).sort();
   for (const customerId of customerIds) state = addDistributorResponsibility(state, customerId);
   if (state.business.workforce.support > 5) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 5 } });
-  state = until(state, s => stableDistributorSupportWindow(s, customerIds), 'stable five-market distributor support sample window', 180);
+  state = waitForStableSupportWindow(state, s => stableDistributorSupportWindow(s, customerIds), customerIds, 'stable five-market distributor support sample window', 180, { distributor: true });
   return state;
 }
 
@@ -529,6 +611,7 @@ module.exports = {
   advance, until, safeAdvanceChunk, untilCash, compareCashWaitToMinuteSteps,
   startCustomer, operation, operationComplete, stableSupportWindowShape,
   createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow,
+  supportWindowBatchBoundary, waitForStableSupportWindow, stableDistributorSupportWindow,
   claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer,
   ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk,
   runAssuranceWait, compareAssuranceWaitToMinuteSteps

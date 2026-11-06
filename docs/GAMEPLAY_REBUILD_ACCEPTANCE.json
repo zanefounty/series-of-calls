@@ -921,6 +921,69 @@
         "content/provider-campaigns.json": "e508514a2d8a75c89fb26e601cdf692194b148cf4bc9f0526f3d30a8845e2049"
       },
       "scope": "Exact reporting and handoff distinctions only. No human participation, full gameplay, browser matrix, fresh deployment or source-catalogue completion is claimed."
+    },
+    "room-mobile-fa8a7aa": {
+      "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
+      "status": "passed-six-browser-journeys",
+      "rawArtifact": "/tmp/soc-room-r8-independent-acceptance-audit.json",
+      "sha256": "414309ef2b81262d1e3a08fa12403f5bfcf4bb5be23b9243eb86c76c01ee668a",
+      "reports": [
+        {
+          "path": "/tmp/soc-room-r8-evidence/chromium-desktop/provider-browser-20261106051359639.json",
+          "sha256": "8a2130d0f6d2070c1be38c698e565c6c2ece95be92e47a283d427871400b11da",
+          "engine": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "path": "/tmp/soc-room-r8-evidence/chromium-mobile/provider-browser-20261106051537172.json",
+          "sha256": "28a71c008db4636965031e97078be909df6508ac54162424d4eb782c82fa7a84",
+          "engine": "chromium",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "path": "/tmp/soc-room-r8-evidence/firefox-desktop/provider-browser-20261106051359661.json",
+          "sha256": "ca4909f9c105641dbccc7448996bb75bf8c16841ce1ac8ab83e977b6634b97b3",
+          "engine": "firefox",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "path": "/tmp/soc-room-r8-evidence/firefox-mobile/provider-browser-20261106051636111.json",
+          "sha256": "6208a72e61c99c00d01973fb3421349dfc43c9829a2a52735a2162a1fd27bc05",
+          "engine": "firefox",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "path": "/tmp/soc-room-r8-evidence/webkit-desktop/provider-browser-20261106051359608.json",
+          "sha256": "86828fea48c8041b2727071fa4f09eb993c8a1ee2a96bd54ffaab726ec6d0868",
+          "engine": "webkit",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "path": "/tmp/soc-room-r8-evidence/webkit-mobile/provider-browser-20261106051606265.json",
+          "sha256": "8a3e659d557e7aa60dabadb8771a7b4f501241e86300886af7435932405857e2",
+          "engine": "webkit",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ],
+      "scope": "Equivalent desktop/mobile paid room controls and no horizontal page overflow only; original requirements unchanged."
     }
   },
   "tests": {
@@ -4070,6 +4133,12 @@
       "kind": "independent-document-review",
       "run": "reporting-fa8a7aa",
       "result": "passed"
+    },
+    "ROOM-MOBILE-ACTION-PARITY": {
+      "file": "scripts/provider-browser.js",
+      "name": "Six desktop/mobile paid room journeys preserve visible controls and fit the viewport",
+      "result": "passed",
+      "run": "room-mobile-fa8a7aa"
     }
   },
   "requirements": {
@@ -4434,7 +4503,7 @@
         "src/i18n/en.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-training-map",
@@ -4442,8 +4511,8 @@
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-022": {
@@ -8538,7 +8607,7 @@
       "requirement": "PLAY-021",
       "sourceIndex": 1,
       "assertion": "At 390x844, bottom navigation/context sheets preserve the same actions without horizontal page overflow.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8573,35 +8642,22 @@
       "reviewTestCandidates": [
         "R024"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
         "implementation": [
-          "src/game/23-training-lessons.js",
-          "src/game/93-ui/65-service-preferences.js",
-          "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
-          "src/game/96-map/96-training-map.js",
           "src/game/97-provider-shell.js",
-          "src/game/97-training.js",
-          "src/game/98-provider-runtime.js",
-          "src/i18n/en.js",
-          "src/styles/98-provider.css",
-          "src/styles/99-training-map.css"
+          "src/game/93-ui/75-provider-panels.js",
+          "src/styles/98-provider.css"
         ],
         "tests": [
-          "C117",
-          "C108",
-          "C102",
-          "C103",
-          "C104",
-          "C118"
+          "ROOM-MOBILE-ACTION-PARITY"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Same visible purchase/cancel quote, staffing, incident acknowledgement/paid repair, map/project selection/integration test, Save/Export/Import path at 1366x768 and 390x844 in Chromium, Firefox and WebKit. All72 recorded snapshots have documentWidth equal viewport; independent screenshot and393 input hash review.",
+        "limitations": "No claim of external-guest success, full mission, stale quote, 14-family, keyboard or 44px coverage."
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: At 390x844, bottom navigation/context sheets preserve the same actions without horizontal page overflow."
+      "remaining": "No remaining criterion for this exact mobile action-parity/overflow clause at the reviewed candidate. Keyboard/44px, other mission/family paths and Training assessment remain separately scoped."
     },
     {
       "id": "PLAY-021-A03",
@@ -14344,7 +14400,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 116,
+    "assertionsClosed": 117,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14372,8 +14428,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 13,
-          "pending-current-candidate-verification": 11
+          "verified-current-candidate": 14,
+          "pending-current-candidate-verification": 10
         }
       },
       {
@@ -14435,8 +14491,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 113,
-      "pending-current-candidate-verification": 42,
+      "verified-current-candidate": 117,
+      "pending-current-candidate-verification": 38,
       "parked-owner-request": 4
     }
   },
@@ -14624,6 +14680,14 @@
           "PLAY-052-A03"
         ],
         "scope": "Honest reporting and distinct handoff scope verified. Human pilot remains external; PLAY-023-A03 awaits current measured timestamps."
+      },
+      {
+        "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
+        "run": "room-mobile-fa8a7aa",
+        "assertions": [
+          "PLAY-021-A02"
+        ],
+        "scope": "One exact mobile parity and overflow closure; original159 assertions, four owner-parked long-play items and release/research gates unchanged."
       }
     ]
   }

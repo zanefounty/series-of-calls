@@ -1,6 +1,6 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **116 exact assertions verified, 39 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **117 exact assertions verified, 38 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |

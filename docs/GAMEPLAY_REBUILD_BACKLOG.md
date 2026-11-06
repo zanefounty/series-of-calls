@@ -8,7 +8,7 @@ The current regional candidate has bounded retained-proof adapters for 23 of 32 
 
 Regional support and room interoperability are in draft PRs #43 and #44. The room follow-on has thirteen passing bounded tests; its initial desktop/mobile journey exposed early product-status and inspector-selection failures, now repaired and awaiting fresh frozen browser results. The regional full-suite and acceptance producers remain active. Hosted CI/accountability reached their existing deadlines; reliable execution is being investigated without reducing assertions or raising deadlines.
 
-The exact assertion ledger has 116 verified, 39 pending and four parked after independent inventory and placement reconciliation. The deployed preview remains main `0ef9432`; these draft changes are not deployed. The dated sections below retain earlier checkpoints and are not the current adapter or publication count.
+The exact assertion ledger has 117 verified, 38 pending and four parked after independent inventory and placement reconciliation. The deployed preview remains main `0ef9432`; these draft changes are not deployed. The dated sections below retain earlier checkpoints and are not the current adapter or publication count.
 
 ## Integration completed — 5 November 2026
 

@@ -35860,6 +35860,8 @@
       "content/narrative.json",
       "src/game/22-provider-demand.js",
       "src/game/23-provider-case-followup.js",
+      "src/game/23-provider-followup-retry-archive.js",
+      "src/game/23-provider-history.js",
       "src/game/23-provider-journeys.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
@@ -35887,7 +35889,8 @@
       "BEH-SOC-337",
       "BEH-SOC-338",
       "BEH-SOC-342",
-      "BEH-SOC-399"
+      "BEH-SOC-399",
+      "BEH-SOC-400"
     ]
   },
   {
@@ -52912,6 +52915,7 @@
       "src/game/22-provider-demand.js",
       "src/game/23-provider-case-followup.js",
       "src/game/23-provider-case-handoff.js",
+      "src/game/23-provider-followup-retry-archive.js",
       "src/game/23-provider-history.js",
       "src/game/23-provider-journeys.js",
       "src/game/23-provider-progression-receipts.js",
@@ -52938,7 +52942,8 @@
       "BEH-SOC-332",
       "BEH-SOC-333",
       "BEH-SOC-397",
-      "BEH-SOC-399"
+      "BEH-SOC-399",
+      "BEH-SOC-400"
     ]
   },
   {
@@ -62076,7 +62081,9 @@
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-dedicated-interconnect.js",
       "src/game/23-provider-finance-view.js",
+      "src/game/23-provider-followup-retry-archive.js",
       "src/game/23-provider-history.js",
+      "src/game/23-provider-incident-diagnosis.js",
       "src/game/23-provider-journeys.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
@@ -62179,7 +62186,9 @@
       "BEH-SOC-396",
       "BEH-SOC-397",
       "BEH-SOC-398",
-      "BEH-SOC-399"
+      "BEH-SOC-399",
+      "BEH-SOC-400",
+      "BEH-SOC-401"
     ]
   },
   {

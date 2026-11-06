@@ -13,7 +13,7 @@
    // Retain the actual native input node, including a number input's opaque caret selection.
    const old=el.querySelector('[data-provider-form="retail-quote"] [name="retailPrice"]'),next=t.querySelector('[data-provider-form="retail-quote"] [name="retailPrice"]');if(old&&next){next.setAttribute('value',old.getAttribute('value')||'');if(old.getAttribute('style')===''&&!next.hasAttribute('style'))next.setAttribute('style','');}
   }else if(scope!==undefined&&el._providerScope!==undefined){el.replaceChildren();}
-  for(const b of t.querySelectorAll('[data-provider-action]')){const args={};for(const k of ['id','value','offer','plan','stage','customer','operation','operationConfig','job'])if(b.dataset[k]!==undefined)args[k]=b.dataset[k];b.dataset.act=b.dataset.providerAction;b.dataset.args=JSON.stringify(args);}
+  for(const b of t.querySelectorAll('[data-provider-action]')){const args={};for(const k of ['id','value','offer','plan','stage','customer','operation','operationConfig','job','incident'])if(b.dataset[k]!==undefined)args[k]=b.dataset[k];b.dataset.act=b.dataset.providerAction;b.dataset.args=JSON.stringify(args);}
   if(typeof morph==='function')morph(el,t.innerHTML);else el.innerHTML=t.innerHTML;
   if(sameScope&&el.firstElementChild){el.firstElementChild.scrollTop=scrollTop||0;el.firstElementChild.scrollLeft=scrollLeft||0;}if(scope!==undefined)el._providerScope=scope;
  }
@@ -58,6 +58,7 @@
   if(a==='quote'){const offerId=b.dataset.offer||'starter',stage=b.dataset.stage||'base',customerId=b.dataset.customer||(stage==='base'?undefined:v.selection?.customerId),planId=b.dataset.plan||v.draft.planId||'swift';openQuote({action:'purchase',offerId,planId,stage,...(customerId?{customerId}:stage==='base'&&offerId!=='starter'&&v.expansionMarket?{market:v.expansionMarket}:{})});return;}
   if(a==='quote-case-followup'){openQuote({action:b.dataset.retry==='true'?'retry-case-followup':'followup-case',customerId:b.dataset.customer,jobId:b.dataset.job});return;}
   if(a==='quote-case-handoff'){openQuote({action:'handoff-case',customerId:b.dataset.customer,jobId:b.dataset.job,connectorId:'social-messaging'});return;}
+  if(a==='quote-incident-diagnosis'){openQuote({action:'operation',operationId:'diagnose-incident',customerId:b.dataset.customer,config:{incidentId:b.dataset.incident}});return;}
   if(a==='quote-regional-support'){const customer=model?.customers?.find(c=>c.id===b.dataset.customer);v.regionalSupportContext={customerName:customer?.name,personName:customer?.regionalSupport?.person?.name,employer:customer?.regionalSupport?.person?.employer};openQuote({action:'operation',operationId:'provider-support-coverage',customerId:b.dataset.customer,config:{market:b.dataset.market,personId:b.dataset.person,coverageId:b.dataset.coverage}});return;}
   if(a==='refresh-quote'){openQuote(v.quoteRequest);return;}if(a==='confirm-quote'||a==='confirm-operation'){submitPurchase();return;}if(a==='cancel-quote'){if(v.quoteBusy)return;quoteToken++;v.quoteModal=false;v.quote=null;v.quoteRequest=null;render(state,model);finishDecision();return;}
   if(a==='site-response'){action('command',{type:'provider',command:{action:a,projectId:id,response:val,quoteRevision:state.revision}});return;}

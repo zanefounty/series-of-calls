@@ -86,7 +86,8 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  function remainingOperationExposure(project,customer,from,to){let cents=0;for(let at=from;at<to;){const end=Math.min(to,(Math.floor(at/PERIOD)+1)*PERIOD);cents+=operationExposure(project,customer,at,end);at=end;}return cents;}
  function validateOperationSelection(operationId,config){
   const sites=['provider-owned-head','provider-owned-branch'];
-  if(operationId==='retry-case-followup'){if(!config||Object.keys(config).join(',')!=='jobId'||!id(config.jobId))fail('INVALID_PROVIDER_FOLLOWUP_RETRY_SCOPE');
+  if(operationId==='diagnose-incident'){if(!config||Object.keys(config).join(',')!=='incidentId'||!id(config.incidentId))fail('INVALID_PROVIDER_DIAGNOSIS_SCOPE');
+  }else if(operationId==='retry-case-followup'){if(!config||Object.keys(config).join(',')!=='jobId'||!id(config.jobId))fail('INVALID_PROVIDER_FOLLOWUP_RETRY_SCOPE');
   }else if(operationId===regionalSupport.OPERATION_ID){
    if(!config||Object.keys(config).sort().join(',')!=='coverageId,market,personId')fail('INVALID_PROVIDER_SUPPORT_SELECTION');regionalSupport.operationPlan({customerId:'validation-customer',...copy(config)});
   }else if(['site-recovery','managed-site-recovery'].includes(operationId)){

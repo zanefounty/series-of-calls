@@ -7221,6 +7221,37 @@
       ],
       "status": "partial",
       "scope": "Terminal settled paid retry authorization is archived before ordinary job pruning, preserving canonical case, actual voice/failed/retry legs, channel acceptances and customer/global settlement posting anchors. Retained cases keep acceptance records until archival; earned L8 remains a separate live proof. Isolated replay, bounded schema and public archive continuation tests cover malformed/orphan proof and checkpoint counterexamples. Broad frozen browser and long-history acceptance remain separate; no archive-only progression claim or history invention is permitted."
+    },
+    {
+      "id": "BEH-SOC-401",
+      "sources": [
+        "DEC-011"
+      ],
+      "implementation": [
+        "src/game/23-provider-incident-diagnosis.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/79-provider-incidents.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "testIds": [
+        "AC-SOC-715",
+        "AC-SOC-716",
+        "AC-SOC-717",
+        "AC-SOC-718",
+        "AC-SOC-719",
+        "AC-SOC-737",
+        "AC-SOC-738",
+        "AC-SOC-739",
+        "AC-SOC-740",
+        "AC-SOC-741",
+        "AC-SOC-742"
+      ],
+      "status": "partial",
+      "scope": "Free public symptoms and an optional paid scoped six-minute diagnosis reserve shared engineer/support effort. Native outage and connection observations are reconstructed from validated incident and paid repair history; other domains remain explicitly inconclusive until their path authority is integrated. Diagnosis does not repair, mitigate, acknowledge or award progression. Pure helper transport-path fixtures are distinguished from real paid Provider dispatch, restore/worker and UI evidence. Visible frozen browser acceptance remains pending."
     }
   ]
 }

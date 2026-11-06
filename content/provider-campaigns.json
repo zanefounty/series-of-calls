@@ -451,6 +451,22 @@
       "sourceIds": []
     },
     {
+      "id": "diagnose-incident",
+      "name": "Scoped incident diagnosis",
+      "description": "Reserve engineering and support time to examine the selected incident. The result may identify an observed outage or disconnection, or remain inconclusive. Repair and mitigation require their own decisions. Public symptoms remain free to inspect.",
+      "setupCents": 6000,
+      "periodCents": 0,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [],
+      "config": {},
+      "requirements": [],
+      "sourceIds": [
+        "DEC-011"
+      ]
+    },
+    {
       "id": "mitigate",
       "name": "Capacity mitigation",
       "description": "Repair the affected dependency and reserve one additional unit of its capacity, with an ongoing support commitment.",

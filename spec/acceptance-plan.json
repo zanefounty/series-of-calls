@@ -1009,6 +1009,23 @@
       "AC-SOC-732",
       "AC-SOC-733",
       "AC-SOC-734"
+    ],
+    "tests/provider-incident-diagnosis.test.js": [
+      "AC-SOC-715",
+      "AC-SOC-716",
+      "AC-SOC-717",
+      "AC-SOC-718",
+      "AC-SOC-719"
+    ],
+    "tests/provider-incident-diagnosis-dispatch.test.js": [
+      "AC-SOC-740",
+      "AC-SOC-741",
+      "AC-SOC-742"
+    ],
+    "tests/provider-incident-diagnosis-ui.test.js": [
+      "AC-SOC-737",
+      "AC-SOC-738",
+      "AC-SOC-739"
     ]
   },
   "inputs": [
@@ -1520,6 +1537,9 @@
     "tests/provider-finance-view.test.js",
     "tests/provider-followup-retry-archive.test.js",
     "tests/provider-handoff-demand.test.js",
+    "tests/provider-incident-diagnosis-dispatch.test.js",
+    "tests/provider-incident-diagnosis-ui.test.js",
+    "tests/provider-incident-diagnosis.test.js",
     "tests/provider-incident-inspector.test.js",
     "tests/provider-integration-assurance.test.js",
     "tests/provider-journey-explanation.test.js",

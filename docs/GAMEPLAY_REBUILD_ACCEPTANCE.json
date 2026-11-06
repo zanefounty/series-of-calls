@@ -984,6 +984,57 @@
         }
       ],
       "scope": "Equivalent desktop/mobile paid room controls and no horizontal page overflow only; original requirements unchanged."
+    },
+    "smb-visible-1139239": {
+      "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
+      "status": "passed-twelve-browser-journeys-and-two-supplemental-views",
+      "rawArtifact": "/tmp/soc-smb-visible-1139239-evidence/independent-acceptance-audit.json",
+      "sha256": "c254a0e3459f230f67a08e64f6a35e570864fb080b4e9e90191bcb6348a93787",
+      "reports": [
+        {
+          "engine": "chromium",
+          "browser": "156.0.8078.80",
+          "report": "/tmp/soc-smb-visible-1139239-evidence/chromium/provider-browser-20261106052633686.json",
+          "sha256": "a13b421f85b37e03f3e691bea1b72d1075b8db8cdc2ba80c53329ae89df3a9ce",
+          "trackedInputCount": 1426,
+          "sourceInputCount": 393,
+          "builtArtifactCount": 47
+        },
+        {
+          "engine": "firefox",
+          "browser": "157.0",
+          "report": "/tmp/soc-smb-visible-1139239-evidence/firefox/provider-browser-20261106053312800.json",
+          "sha256": "53a1d50770d934dabbdbf897f1b253e8d1ac5532c8fff62e3ee5e6301dc7cfbb",
+          "trackedInputCount": 1426,
+          "sourceInputCount": 393,
+          "builtArtifactCount": 47
+        },
+        {
+          "engine": "webkit",
+          "browser": "27.2",
+          "report": "/tmp/soc-smb-visible-1139239-evidence/webkit/provider-browser-20261106053312805.json",
+          "sha256": "901118a573d0df8b97e19b4531a07e610eec9ba9b91fb25834bddf37d20f4eb5",
+          "trackedInputCount": 1426,
+          "sourceInputCount": 393,
+          "builtArtifactCount": 47
+        }
+      ],
+      "supplemental": {
+        "report": "/tmp/soc-smb-visible-1139239-evidence/supplemental/report.json",
+        "sha256": "23d27aa4a0f30ad9f3c97e603d39150ba3e39ed0da8631ad5795f1208d940108",
+        "status": "passed",
+        "preservedFailedCapture": "/tmp/soc-smb-visible-1139239-evidence/supplemental-r1/report.json"
+      },
+      "evidenceManifest": {
+        "file": "/tmp/soc-smb-visible-1139239-evidence/evidence-files.json",
+        "sha256": "b84a55fd4a80066aa08d25438167a668ee42ddc8adf3eaa043b7f86b04f404a1",
+        "files": 313
+      },
+      "limitations": [
+        "Automated synthetic visible-control evidence, not human pilot/comprehension or 20\u201330 minute pacing.",
+        "Second customer funded/provisioning at win; no completed second delivery claim.",
+        "No full guest mission, stale quote subcase, 14-family generalization or hosted publication."
+      ]
     }
   },
   "tests": {
@@ -4139,6 +4190,36 @@
       "name": "Six desktop/mobile paid room journeys preserve visible controls and fit the viewport",
       "result": "passed",
       "run": "room-mobile-fa8a7aa"
+    },
+    "SMB-VISIBLE-PLAY-023-A03": {
+      "file": "scripts/provider-browser.js",
+      "name": "First costed choice within 2 minutes and first delivered work within 5 minutes are measured design targets, not claims of current performance.",
+      "result": "passed",
+      "run": "smb-visible-1139239"
+    },
+    "SMB-VISIBLE-PLAY-032-A01": {
+      "file": "scripts/provider-browser.js",
+      "name": "Includes a costed calling/contact service, demand, an incident, settlement, renewal/exit and a second opportunity.",
+      "result": "passed",
+      "run": "smb-visible-1139239"
+    },
+    "SMB-VISIBLE-PLAY-019-A02": {
+      "file": "scripts/provider-browser.js",
+      "name": "An incident card names affected customers, cause confidence, response options and each cost/delay.",
+      "result": "passed",
+      "run": "smb-visible-1139239"
+    },
+    "SMB-VISIBLE-PLAY-024-A01": {
+      "file": "scripts/provider-browser.js",
+      "name": "The main inspector answers what is happening, who is affected, the likely cause and useful actions.",
+      "result": "passed",
+      "run": "smb-visible-1139239"
+    },
+    "SMB-VISIBLE-PLAY-050-A03": {
+      "file": "scripts/provider-browser.js",
+      "name": "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes.",
+      "result": "passed",
+      "run": "smb-visible-1139239"
     }
   },
   "requirements": {
@@ -4465,14 +4546,14 @@
         "src/game/93-ui/75-provider-panels.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-comparisons"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-020": {
@@ -4550,14 +4631,14 @@
         "progress.tutorial-step.5",
         "progress.tutorial-step.6"
       ],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-visible-and-mcp",
         "prepared-human-pilot"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-024": {
@@ -4571,13 +4652,12 @@
         "view:trace_modal",
         "view:help"
       ],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-025": {
@@ -4720,15 +4800,14 @@
         "content/provider-campaigns.json"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-comparisons",
         "candidate-commercial-growth",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "pending-current-candidate-verification": 1,
-        "verified-current-candidate": 2
+        "verified-current-candidate": 3
       }
     },
     "PLAY-033": {
@@ -5071,14 +5150,14 @@
         "scripts/browser-smoke.js"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 2 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "candidate-scene",
         "candidate-visible-and-mcp"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 2,
+        "pending-current-candidate-verification": 1
       }
     },
     "PLAY-051": {
@@ -8190,7 +8269,7 @@
       "requirement": "PLAY-019",
       "sourceIndex": 1,
       "assertion": "An incident card names affected customers, cause confidence, response options and each cost/delay.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -8216,27 +8295,24 @@
       "reviewTestCandidates": [
         "R022"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
         "implementation": [
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/93-ui/79-provider-comparisons.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
           "src/game/97-provider-shell.js",
-          "src/game/23-provider-change-preview.js",
-          "src/game/93-ui/79-provider-change-preview.js"
+          "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C111",
-          "C109",
-          "C112"
+          "SMB-VISIBLE-PLAY-019-A02"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Both viewport incident panels name affected customer/service, recorded-event confidence (explicitly not additional diagnosis), observed media-lost work, four responses with exact quote costs and implementation minutes.",
+        "limitations": "Automated visible-control evidence only. No human pilot/comprehension, full guest mission, fourteen-family completion or hosted publication claim."
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: An incident card names affected customers, cause confidence, response options and each cost/delay."
+      "remaining": "No remaining criterion for this exact clause at the reviewed candidate. Broader mission/family, human and publication obligations remain separately scoped."
     },
     {
       "id": "PLAY-019-A03",
@@ -9019,7 +9095,7 @@
       "requirement": "PLAY-023",
       "sourceIndex": 2,
       "assertion": "First costed choice within 2 minutes and first delivered work within 5 minutes are measured design targets, not claims of current performance.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -9043,28 +9119,31 @@
       "reviewTestCandidates": [
         "B051"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
         "implementation": [
           "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
+          "src/game/93-ui/75-provider-panels.js",
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C001"
+          "SMB-VISIBLE-PLAY-023-A03"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Exact automated measurement/reporting clause:12 current runs record first commitment and ordinary voice completion, all under120/300sec targets. Not human evidence.",
+        "limitations": "Automated visible-control evidence only. No human pilot/comprehension, full guest mission, fourteen-family completion or hosted publication claim."
       },
-      "remaining": "Automated timing measurements exist in older browser receipts. Attach exact current first-choice and first-delivery times without presenting them as human comprehension or 20\u201330-minute loop evidence."
+      "remaining": "No remaining criterion for this exact clause at the reviewed candidate. Broader mission/family, human and publication obligations remain separately scoped."
     },
     {
       "id": "PLAY-024-A01",
       "requirement": "PLAY-024",
       "sourceIndex": 0,
       "assertion": "The main inspector answers what is happening, who is affected, the likely cause and useful actions.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B055",
         "B056",
@@ -9089,27 +9168,24 @@
       "reviewTestCandidates": [
         "B058"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
         "implementation": [
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
           "src/game/97-provider-shell.js",
-          "src/game/97-training.js"
+          "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C118",
-          "C124",
-          "C125",
-          "C126",
-          "C127"
+          "SMB-VISIBLE-PLAY-024-A01"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Main incident inspector shows outage, affected customer/service, confidence-qualified cause, observations and useful quoted actions before collapsed technical evidence.",
+        "limitations": "Automated visible-control evidence only. No human pilot/comprehension, full guest mission, fourteen-family completion or hosted publication claim."
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: The main inspector answers what is happening, who is affected, the likely cause and useful actions."
+      "remaining": "No remaining criterion for this exact clause at the reviewed candidate. Broader mission/family, human and publication obligations remain separately scoped."
     },
     {
       "id": "PLAY-024-A02",
@@ -10358,7 +10434,7 @@
       "requirement": "PLAY-032",
       "sourceIndex": 0,
       "assertion": "Includes a costed calling/contact service, demand, an incident, settlement, renewal/exit and a second opportunity.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [
         "B006",
         "B007",
@@ -10386,27 +10462,24 @@
       "reviewTestCandidates": [
         "B007"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
         "implementation": [
-          "content/provider-campaigns.json",
-          "src/game/24-provider-rules.js",
           "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/93-ui/79-provider-comparisons.js",
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C017",
-          "C023",
-          "C041"
+          "SMB-VISIBLE-PLAY-032-A01"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Costed calling/contact, actual voice/message demand, incident/funded repair, actual settlement, visible renewal/explicit exit in9 journeys, second customer funded in12.",
+        "limitations": "Automated visible-control evidence only. No human pilot/comprehension, full guest mission, fourteen-family completion or hosted publication claim."
       },
-      "remaining": "Linked tests are supporting evidence only. Reconcile every clause of this assertion against a current executed visible/control journey before closure: Includes a costed calling/contact service, demand, an incident, settlement, renewal/exit and a second opportunity."
+      "remaining": "No remaining criterion for this exact clause at the reviewed candidate. Broader mission/family, human and publication obligations remain separately scoped."
     },
     {
       "id": "PLAY-032-A02",
@@ -13754,7 +13827,7 @@
       "requirement": "PLAY-050",
       "sourceIndex": 2,
       "assertion": "Screenshots cover new game, cost comparison, active service, incident and post-billing expansion at desktop/mobile sizes.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "candidate-scene",
@@ -13772,24 +13845,24 @@
       "reviewTestCandidates": [
         "B008"
       ],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
         "implementation": [
-          "scripts/browser-smoke.js",
+          "src/game/25-provider-campaign.js",
+          "src/game/55-communications.js",
           "src/game/93-ui/75-provider-panels.js",
-          "src/game/96-map/90-service-scene.js",
-          "src/game/96-map/95-provider-canvas.js",
           "src/game/97-provider-shell.js",
           "src/game/98-provider-runtime.js"
         ],
         "tests": [
-          "C023"
+          "SMB-VISIBLE-PLAY-050-A03"
         ],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "result": "passed-exact-assertion",
+        "scope": "Desktop/mobile initial.png, supplemental full cost comparison, partner-effective.png, supplemental incident, mission-won.png at181 following settled180 and paid expansion. No completed second-customer delivery claim.",
+        "limitations": "Automated visible-control evidence only. No human pilot/comprehension, full guest mission, fourteen-family completion or hosted publication claim."
       },
-      "remaining": "Attach the full new-game, comparison, active-service, incident and post-billing expansion screenshot set for both desktop and mobile on the current application inputs."
+      "remaining": "No remaining criterion for this exact clause at the reviewed candidate. Broader mission/family, human and publication obligations remain separately scoped."
     },
     {
       "id": "PLAY-051-A01",
@@ -14400,7 +14473,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 117,
+    "assertionsClosed": 122,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14428,8 +14501,8 @@
         "assertions": 24,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 14,
-          "pending-current-candidate-verification": 10
+          "verified-current-candidate": 17,
+          "pending-current-candidate-verification": 7
         }
       },
       {
@@ -14448,8 +14521,8 @@
         "assertions": 40,
         "status": "partially-verified",
         "statusCounts": {
-          "pending-current-candidate-verification": 8,
-          "verified-current-candidate": 32
+          "verified-current-candidate": 33,
+          "pending-current-candidate-verification": 7
         }
       },
       {
@@ -14458,8 +14531,8 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 15,
-          "pending-current-candidate-verification": 6,
+          "verified-current-candidate": 16,
+          "pending-current-candidate-verification": 5,
           "parked-owner-request": 4
         }
       }
@@ -14491,8 +14564,8 @@
       }
     ],
     "statusCounts": {
-      "verified-current-candidate": 117,
-      "pending-current-candidate-verification": 38,
+      "verified-current-candidate": 122,
+      "pending-current-candidate-verification": 33,
       "parked-owner-request": 4
     }
   },
@@ -14516,8 +14589,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 116,
-      "pending-current-candidate-verification": 39,
+      "verified-current-candidate": 122,
+      "pending-current-candidate-verification": 33,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14688,6 +14761,18 @@
           "PLAY-021-A02"
         ],
         "scope": "One exact mobile parity and overflow closure; original159 assertions, four owner-parked long-play items and release/research gates unchanged."
+      },
+      {
+        "candidate": "1139239f4f5484042a152d1fe3a9a31e444dba98",
+        "run": "smb-visible-1139239",
+        "assertions": [
+          "PLAY-023-A03",
+          "PLAY-032-A01",
+          "PLAY-019-A02",
+          "PLAY-024-A01",
+          "PLAY-050-A03"
+        ],
+        "scope": "Five exact clauses supported by twelve frozen browser journeys and two supplemental captures; full scope of159assertions and fourparkeditems unchanged."
       }
     ]
   }

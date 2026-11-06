@@ -215,12 +215,15 @@ function socProviderSupportHistoryKernel(){
    let due=origin+(project.operationReceipt.reinstated===true?1:2);
    const attemptPack=copy(historicalPack),attempt=attemptPack.deployments.find(row=>row.id===deployment.id),attemptOffer=attemptPack.offers.find(row=>row.id===config.offer);
    if(!attempt||!attemptOffer)return null;
-   attempt.desired=copy(config);attempt.effective=copy(config);attempt.retirement=null;attempt.provisioning={status:'ready',due,generation:firstGeneration,errors:[]};
+   attempt.generation=firstGeneration;attempt.desired=copy(config);attempt.effective=copy(config);attempt.retirement=null;attempt.provisioning={status:'ready',due,generation:firstGeneration,errors:[]};
    for(let tries=0;tries<100&&due<=at;tries++){
     const lifecycle=lifecycleAt(attemptOffer,due);attemptOffer.effectiveLifecycle=copy(lifecycle);
     let ready=!!lifecycle&&lifecycle.sale==='available'&&lifecycle.support==='supported';
     if(ready)for(const feature of config.features){const result=api.featureStatus(attemptPack,deployment.id,feature,{observeDependency:(_state,name,ref,context)=>rawDependencyReady(name,ref,due,context)?{ready:true}:false});if(!result.available){ready=false;break;}}
     if(ready)return due;
+    // Reinstatement first attempts delivery before its waiting task prepares
+    // fresh typed proofs. That native waiting-task retry runs the next minute.
+    if(project.operationReceipt.reinstated===true&&due===taskCreatedAt+1){due=taskCreatedAt+2;continue;}
     const retryAt=taskCreatedAt+(Math.floor((due-taskCreatedAt)/5)+1)*5;
     due=retryAt+1;
    }

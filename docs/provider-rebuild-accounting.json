@@ -1813,7 +1813,7 @@
       "id": "view:dash_cust",
       "upstreamLabel": "Customers dashboard",
       "mappedLabel": "Customer outcomes, obligations and renewals",
-      "proposedLocation": "Customers drawer",
+      "proposedLocation": "Deals rail: customer list; selected customer inspector on the service map",
       "requiredPurpose": "Portfolio obligations, renewal risk and customer-level economics.",
       "status": "shared-partial",
       "evidencePaths": [
@@ -1828,7 +1828,7 @@
       "id": "view:dash_conn",
       "upstreamLabel": "Connections dashboard",
       "mappedLabel": "Dependency and support register",
-      "proposedLocation": "Operations drawer: Dependencies",
+      "proposedLocation": "Service map: selected customer, service and path inspectors for dependencies and support evidence",
       "requiredPurpose": "Integration scope, support ownership, compatibility and health.",
       "status": "shared-partial",
       "evidencePaths": [
@@ -1858,7 +1858,7 @@
       "id": "view:dash_infra",
       "upstreamLabel": "Links and routers dashboard",
       "mappedLabel": "Physical and application resource utilisation",
-      "proposedLocation": "Capacity layer and report",
+      "proposedLocation": "Service map: Services layer and selected service inspector for resource capacity and utilisation",
       "requiredPurpose": "Actual and reserved transport, sessions, staff, rooms and processing.",
       "status": "shared-partial",
       "evidencePaths": [
@@ -2030,14 +2030,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[0]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 1: Launch a managed service.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(1)",
+      "currentCompletionPredicate": "The focus customer base stage is effective.",
+      "remaining": "The base-stage predicate does not individually prove a provisioned user, number and test endpoint. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     },
     {
       "sourceId": "progress.tutorial-step.2",
@@ -2048,14 +2052,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[1]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 2: Connect external calling.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(2)",
+      "currentCompletionPredicate": "The focus customer carrier stage is effective.",
+      "remaining": "Carrier-stage effectiveness does not itself demonstrate an actual calling outcome through eligible PSTN connectivity. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     },
     {
       "sourceId": "progress.tutorial-step.3",
@@ -2066,14 +2074,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[2]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 3: Add a partner capability.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(3)",
+      "currentCompletionPredicate": "The focus customer partner stage is effective.",
+      "remaining": "Partner-stage effectiveness does not itself demonstrate a useful connected customer-records or recording outcome. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     },
     {
       "sourceId": "progress.tutorial-step.4",
@@ -2084,14 +2096,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[3]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 4: Operate and respond.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(4)",
+      "currentCompletionPredicate": "The focus customer has offered work, a retained settlement with due work, and a resolved incident.",
+      "remaining": "Offered work, settlement and incident resolution do not prove that the player inspected an interaction and reviewed service costs. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     },
     {
       "sourceId": "progress.tutorial-step.5",
@@ -2102,14 +2118,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[4]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 5: Expand a site or capability.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(5)",
+      "currentCompletionPredicate": "A qualifying product/capability operation is complete for the focus customer, or another customer in the same scenario has an effective base stage.",
+      "remaining": "A completed capability operation or another customer is not necessarily a second site with demonstrated inter-site journeys. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     },
     {
       "sourceId": "progress.tutorial-step.6",
@@ -2120,14 +2140,18 @@
       "sourceFile": "src/game/60-features/40-tutorial.js",
       "sourceSymbol": "TUT[5]",
       "treatment": "Replace",
-      "contextualHome": "Training remains retained; provider short coaching is a separate first-session path. The six adapted provider steps are not proven by retaining TUT[0..5].",
+      "contextualHome": "Provider campaign > Goals rail > coaching step 6: Win the next contract.",
       "status": "shared-partial",
       "evidencePaths": [
         "src/game/60-features/40-tutorial.js",
         "src/game/97-provider-shell.js",
-        "tests/provider-shell.test.js"
+        "tests/provider-shell.test.js",
+        "src/game/93-ui/75-provider-panels.js"
       ],
-      "obligationRef": "tutorial"
+      "obligationRef": "tutorial",
+      "placementSelector": ".provider-coach-list li:nth-child(6)",
+      "currentCompletionPredicate": "The current mission status is won.",
+      "remaining": "Mission completion is a different predicate from evaluating requirements and accepting a deliverable business contract. Preserve the canonical state-aware completion, highlighting and skip obligation. The current whole-coach Dismiss/Resume control and current-step styling do not establish per-step skip or complete source fidelity; legacy Training retention is separate."
     }
   ],
   "progressionLevels": [

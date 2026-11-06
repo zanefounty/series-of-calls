@@ -1897,7 +1897,10 @@ function socProviderRulesKernel(){
     "deadlineMinutes": 20,
     "maximumArrivalMinute": 40,
     "casesPerPeriod": 1,
-    "requiresPaidWorkflow": true
+    "requiresPaidWorkflow": true,
+    "variantDeadlineMinutes": {
+      "peak-window": 30
+    }
   }
 };
  function deepFreeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))deepFreeze(child);}return value;}

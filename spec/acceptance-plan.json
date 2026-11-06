@@ -995,7 +995,20 @@
     ],
     "tests/provider-case-followup-dispatch.test.js": [
       "AC-SOC-710",
-      "AC-SOC-714"
+      "AC-SOC-714",
+      "AC-SOC-735",
+      "AC-SOC-736"
+    ],
+    "tests/provider-followup-retry-archive.test.js": [
+      "AC-SOC-726",
+      "AC-SOC-727",
+      "AC-SOC-728",
+      "AC-SOC-729",
+      "AC-SOC-730",
+      "AC-SOC-731",
+      "AC-SOC-732",
+      "AC-SOC-733",
+      "AC-SOC-734"
     ]
   },
   "inputs": [
@@ -1126,6 +1139,7 @@
     "src/game/23-provider-dedicated-interconnect.js",
     "src/game/23-provider-external-reach.js",
     "src/game/23-provider-finance-view.js",
+    "src/game/23-provider-followup-retry-archive.js",
     "src/game/23-provider-government.js",
     "src/game/23-provider-history.js",
     "src/game/23-provider-integration-assurance.js",
@@ -1504,6 +1518,7 @@
     "tests/provider-dedicated-interconnect.test.js",
     "tests/provider-finance-ui.test.js",
     "tests/provider-finance-view.test.js",
+    "tests/provider-followup-retry-archive.test.js",
     "tests/provider-handoff-demand.test.js",
     "tests/provider-incident-inspector.test.js",
     "tests/provider-integration-assurance.test.js",

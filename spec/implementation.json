@@ -7188,10 +7188,39 @@
         "AC-SOC-712",
         "AC-SOC-713",
         "AC-SOC-714",
-        "AC-SOC-725"
+        "AC-SOC-725",
+        "AC-SOC-735"
       ],
       "status": "partial",
-      "scope": "Versioned paid same-case human voice then consented human digital follow-up, scoped paid retry, actual accepted-attempt metering, historical connector authority and retained L8 proof. New paid workflows reserve one existing optional case with its authored twenty-minute deadline at arrival; the other obligations retain existing deadlines. Isolated contracts pass; actual Provider and visible evidence are in progress. No source acceptance or catalogue completion is implied."
+      "scope": "Versioned paid same-case human voice then consented human digital follow-up, scoped paid retry, actual accepted-attempt metering, historical connector authority and retained L8 proof. New paid workflows reserve one existing optional case with its authored twenty-minute deadline at arrival (thirty for the peak-window variant); the other obligations retain existing deadlines. Actual paid Provider completion, failed accepted attempt, scoped retry and settlement pass; final frozen visible evidence remains in progress. No source acceptance or catalogue completion is implied."
+    },
+    {
+      "id": "BEH-SOC-400",
+      "sources": [
+        "DEC-011",
+        "progress.progression-level.8",
+        "uc-new:family:cisco:programmable-engagement"
+      ],
+      "implementation": [
+        "src/game/23-provider-followup-retry-archive.js",
+        "src/game/23-provider-history.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-726",
+        "AC-SOC-727",
+        "AC-SOC-728",
+        "AC-SOC-729",
+        "AC-SOC-730",
+        "AC-SOC-731",
+        "AC-SOC-732",
+        "AC-SOC-733",
+        "AC-SOC-734",
+        "AC-SOC-736"
+      ],
+      "status": "partial",
+      "scope": "Terminal settled paid retry authorization is archived before ordinary job pruning, preserving canonical case, actual voice/failed/retry legs, channel acceptances and customer/global settlement posting anchors. Retained cases keep acceptance records until archival; earned L8 remains a separate live proof. Isolated replay, bounded schema and public archive continuation tests cover malformed/orphan proof and checkpoint counterexamples. Broad frozen browser and long-history acceptance remain separate; no archive-only progression claim or history invention is permitted."
     }
   ]
 }

@@ -40,9 +40,9 @@ function socProviderHistoryKernel(){
   const receiptsById=new Map((c.receipts||[]).map(r=>[r.id,r]));
   const webhooks=c.webhooks?.deliveries||[];
   const blockedByWebhook=new Set(webhooks.filter(d=>{const r=receiptsById.get(d.receipt);return r&&(!aged(d.createdAt)||!['delivered','failed'].includes(d.status));}).map(d=>receiptsById.get(d.receipt).interaction));
-  const acceptanceEligible=new Set();
+  const retainedFollowupInteractions=new Set(s.providerCaseFollowupPins?.interactionIds||[]),acceptanceEligible=new Set();
   const receiptsByInteraction=new Map();for(const r of c.receipts||[]){if(!receiptsByInteraction.has(r.interaction))receiptsByInteraction.set(r.interaction,[]);receiptsByInteraction.get(r.interaction).push(r);}
-  for(const a of c.acceptances||[]){const job=jobById.get(a.parentJob),receipts=receiptsByInteraction.get(a.interaction)||[];if(aged(a.authorizedAt)&&terminalInteraction(a.interaction)&&!blockedByWebhook.has(a.interaction)&&receipts.every(r=>aged(r.at))&&(!job||['delivered','failed'].includes(job.status)))acceptanceEligible.add(a.interaction);}
+  for(const a of c.acceptances||[]){const job=jobById.get(a.parentJob),receipts=receiptsByInteraction.get(a.interaction)||[];if(!retainedFollowupInteractions.has(a.interaction)&&aged(a.authorizedAt)&&terminalInteraction(a.interaction)&&!blockedByWebhook.has(a.interaction)&&receipts.every(r=>aged(r.at))&&(!job||['delivered','failed'].includes(job.status)))acceptanceEligible.add(a.interaction);}
   const removeReceipt=new Set((c.receipts||[]).filter(r=>aged(r.at)&&acceptanceEligible.has(r.interaction)).map(r=>r.id));
   const removeAcceptance=new Set((c.acceptances||[]).filter(a=>acceptanceEligible.has(a.interaction)).map(a=>a.id));
   const removeWebhook=new Set(webhooks.filter(d=>removeReceipt.has(d.receipt)&&aged(d.createdAt)&&['delivered','failed'].includes(d.status)).map(d=>d.id));

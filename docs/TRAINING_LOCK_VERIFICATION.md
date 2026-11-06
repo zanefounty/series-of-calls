@@ -14,7 +14,7 @@ The same native test passes on `43f9186`: revocation clears ownership, terminate
 
 The repair uses a lease generation, cancellation and worker termination before dropping authority; stale lock callbacks cannot revoke a newer lease. See [Training controller](../src/game/97-training.js) and [registered regression](../tests/training-lock-revocation.test.js). The later strengthened regression/registry checks have their own receipts; this browser run remains scoped to the frozen runtime above.
 
-## Four-track Chromium curriculum
+## Four-track curriculum across three engines
 
 Each selected [campaign driver](../scripts/browser-campaigns.js) shard uses visible map lesson-action buttons and traverses SMB, Enterprise, Government and Defence prerequisite tracks. Each passes 40 retained checkpoints covering service, incident/recovery, pending versus active contracts, three billed periods, assessment awards and renewal. Training remains separate from Provider; raw authoring forms are used only by the separate Lab path.
 
@@ -27,7 +27,19 @@ Each selected [campaign driver](../scripts/browser-campaigns.js) shard uses visi
 
 Command for each row: `node scripts/browser-campaigns.js --journey campaign --browser chromium --shard <row>`, with `SOC_BROWSER_CAMPAIGN_EVIDENCE_DIR` outside Git. Chromium was `156.0.8078.80`; Playwright and lockfile both `1.64.1`. The pinned image was `mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f`. Package and lock bytes match the pinned dependency installation.
 
-All 1,428 tracked inputs remained unchanged. Each run’s 47 built files, report, screenshot and trace were independently hashed. The stable four-case audit is `/home/zane-fountylabs/soc-evidence-archive/training-43f9186-evidence/chromium-independent-curriculum-audit.json`, SHA-256 `45a21784286ab2839bf871483747dcd2d6984588378039bed6eb7a311c108090`; it links exact reports and artifact manifests. This is four selected AU cases, not the entire 144-case matrix. Other jurisdictions, landscape, broader keyboard/accessibility, preferences and active-save equivalence remain separately scoped. Firefox/WebKit results, when available, require their own receipts.
+All 1,428 tracked inputs remained unchanged. Each run’s 47 built files, report, screenshot and trace were independently hashed. The stable four-case audit is `/home/zane-fountylabs/soc-evidence-archive/training-43f9186-evidence/chromium-independent-curriculum-audit.json`, SHA-256 `45a21784286ab2839bf871483747dcd2d6984588378039bed6eb7a311c108090`; it links exact reports and artifact manifests. This is four selected AU cases, not the entire 144-case matrix. Other jurisdictions, landscape, broader keyboard/accessibility, preferences and active-save equivalence remain separately scoped. The subsequent Firefox and WebKit runs below are separately recorded on the same frozen candidate.
+
+## Final selected-case verification
+
+All 12 selected cases passed: the same four AU guided/assessed desktop/mobile shards in Chromium, Firefox and WebKit. Each case retains 40 passing curriculum checkpoints; this does not expand the scope to all jurisdictions or the entire 144-case matrix. The native midflight lock-revocation probe remains Chromium-specific.
+
+| Engine | Version | Shards 109 / 110 / 112 / 113, seconds | Result |
+|---|---|---|---|
+| Chromium | 156.0.8078.80 | 80.531 / 80.040 / 115.781 / 111.099 | 4 shard passes |
+| Firefox | 157.0 | 182.709 / 174.743 / 170.364 / 125.530 | 4 shard passes |
+| WebKit | 27.2 | 114.073 / 103.701 / 107.345 / 102.490 | 4 shard passes |
+
+All runner processes exited zero. Independent final comparison again found no changes to the 1,428 tracked inputs; all 47 built files per case matched their manifests. Report, screenshot and trace hashes are retained for every case in `/home/zane-fountylabs/soc-evidence-archive/training-43f9186-evidence/independent-curriculum-audit.json`, SHA-256 `5a20d79d2177dfe666d4b35a3fa059e7d984a181c9bb2f6725977e56bda51d2d`. The Chromium-only audit above remains unchanged as an earlier scoped receipt.
 
 ## Visible assessment distinction
 

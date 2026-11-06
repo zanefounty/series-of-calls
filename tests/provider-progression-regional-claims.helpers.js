@@ -527,6 +527,18 @@ function ccHasFullWork(state, customerId, after) {
       (record.captureScope ?? 'complete') === 'complete' && !record.deleted));
 }
 
+function ucCcCommissioning(state, projectId, label, limit = 600) {
+  const projectOf = current => current.providerCampaign.projects.find(row => row.id === projectId);
+  assert.ok(UC_CC.OPERATION_IDS.includes(projectOf(state)?.operationId), 'commissioning waiter requires the exact paid UC/CC project');
+  return untilKnownBoundary(state, current => projectOf(current)?.status === 'commissioning', current => {
+    const project = projectOf(current);
+    // A paid UC/CC project cannot submit before its accepted due minute, and
+    // cannot finish commissioning before the separate explicit integration test.
+    if (project?.status !== 'running' || !Number.isSafeInteger(project.dueAt) || project.dueAt <= current.clock) return 1;
+    return Math.min(safeAdvanceChunk(current), project.dueAt - current.clock);
+  }, label, limit, 'uc-cc-commissioning-boundary');
+}
+
 function installTestedUcCcPair(state, customerId) {
   for (const operationId of ['recording', 'ms-workplace-calling', 'cisco-contact-centre']) {
     state = operation(state, operationId, customerId);
@@ -537,7 +549,7 @@ function installTestedUcCcPair(state, customerId) {
   state = operation(state, 'uc-cc-integration', customerId);
   const integration = state.providerCampaign.projects.findLast(row => row.customerId === customerId && row.operationId === 'uc-cc-integration');
   const integrationId = integration.id;
-  state = until(state, current => current.providerCampaign.projects.find(row => row.id === integrationId)?.status === 'commissioning', `${customerId} integration commissioning`, 600);
+  state = ucCcCommissioning(state, integrationId, `${customerId} integration commissioning`, 600);
   const testedAt = state.clock;
   state = SOC.dispatch(state, { type: 'provider', command: { action: 'test-service-integration', projectId: integrationId, quoteRevision: state.revision } });
   state = until(state, current => ccHasFullWork(current, customerId, testedAt), `${customerId} tested voice and capture`, 600);
@@ -649,6 +661,6 @@ module.exports = {
   createThreeMarketWindow, createFiveMarketWindow, createLevelSevenWindow,
   supportWindowBatchBoundary, waitForStableSupportWindow, stableDistributorSupportWindow,
   claim, claimSource, rehash, paidPurchaseWhenReady, addRegionalCustomer,
-  ccChild, ccHasFullWork, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk,
+  ccChild, ccHasFullWork, ucCcCommissioning, installTestedUcCcPair, assuranceMinute, assuranceWaitChunk,
   runAssuranceWait, compareAssuranceWaitToMinuteSteps
 };

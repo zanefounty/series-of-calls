@@ -74,3 +74,18 @@ test('Provider P5 credit fails closed until paid route receipts, causal delivery
  assert.ok(result.missing.every(x=>x==='PROVIDER_CUSTOMER_REQUIRED'||x.startsWith('provider-partner-integration-required:')));
  assert.deepEqual(PATHS.validateEvidence(state,customerId,{version:1,pack:PATHS.PACK,customerId,paths:[]}),{valid:false,missing:['INVALID_PROVIDER_PARTNER_PATH_EVIDENCE']});
 });
+
+
+test('native workplace integration admits the actual voice path and records its tested scope, while untested and retired edges fail',()=>{
+ const path=CONTENT.paths.find(p=>p.id==='workplace-to-suite-calling');let {state:s}=labPair(path);
+ const call=(state,id)=>SOC.dispatch(state,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:id,durationMinutes:2});
+ const blocked=call(s,'unverified-edge');assert.equal(blocked.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');assert.ok(!blocked.interactions.at(-1).trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'));
+ s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});const tested=s.products.integrations.find(e=>e.id===path.integrationId);
+ s=call(s,'tested-edge');const id=s.interactions.at(-1).id;s=tick(s,6);const delivered=s.interactions.find(i=>i.id===id);assert.equal(delivered.phase,'resolved',JSON.stringify(delivered));assert.equal(delivered.probe,undefined);
+ const gate=delivered.trace.find(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'&&t.integrationId===path.integrationId);assert.ok(gate);
+ assert.equal(gate.resource,'phone');assert.equal(gate.testAt,tested.result.checkedAt);assert.equal(gate.sourceDeploymentId,path.source.deploymentId);assert.equal(gate.targetDeploymentId,path.target.deploymentId);assert.equal(gate.sourceFeature,path.source.feature);assert.equal(gate.targetFeature,path.target.feature);assert.equal(gate.sourceGeneration,tested.sourceGeneration);assert.equal(gate.targetGeneration,tested.targetGeneration);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ s=SOC.dispatch(s,{type:'products',command:{action:'retire',id:path.target.deploymentId}});s=tick(s);s=call(s,'retired-edge');assert.equal(s.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');assert.ok(!s.interactions.at(-1).trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'));
+ s=SOC.dispatch(s,{type:'products',command:{action:'reinstate',id:path.target.deploymentId}});s=tick(s,2);s=call(s,'stale-generation');assert.equal(s.interactions.at(-1).outcome,'PRODUCT_FEATURE_UNAVAILABLE');
+ s=SOC.dispatch(s,{type:'products',command:{action:'rebase-integration',id:path.integrationId}});s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});s=call(s,'recovered-edge');const recoveredId=s.interactions.at(-1).id;s=tick(s,6);const recovered=s.interactions.find(i=>i.id===recoveredId);assert.equal(recovered.phase,'resolved');assert.ok(recovered.trace.some(t=>t.code==='PRODUCT_INTEGRATION_ACCEPTED'&&t.targetGeneration>gate.targetGeneration));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});

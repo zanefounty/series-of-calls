@@ -1992,8 +1992,18 @@ const SOC = (function socKernel() {
     beginCapture(s,i);i.phase='connected';i.connectedAt=s.clock;i.due=s.clock+i.durationMinutes;
     event(s,i,'conversation','CONVERSATION_STARTED',{durationMinutes:i.durationMinutes});return i;
   }
+  function recordProductPathAdmission(s,i,resource,gate){
+    event(s,i,'product','PRODUCT_FEATURE_ACCEPTED',{resource,bindings:clone(gate.bindings)});
+    // bindingStatus already requires these exact directional tests. Record the
+    // scope that admitted this resource, not an unrelated catalogue capability.
+    for(const edge of s.products.integrations){
+      const pairs=edge.features.filter(pair=>gate.bindings.some(b=>b.deploymentId===edge.source&&b.feature===pair.sourceFeature||b.deploymentId===edge.target&&b.feature===pair.targetFeature));
+      if(!pairs.length||products.compatibilityStatus(s,edge.id).status!=='scenario-verified')continue;
+      for(const pair of pairs)event(s,i,'product','PRODUCT_INTEGRATION_ACCEPTED',{resource,integrationId:edge.id,testAt:edge.result.checkedAt,sourceDeploymentId:edge.source,sourceFeature:pair.sourceFeature,sourceGeneration:edge.sourceGeneration,sourceVersion:edge.sourceVersion,targetDeploymentId:edge.target,targetFeature:pair.targetFeature,targetGeneration:edge.targetGeneration,targetVersion:edge.targetVersion});
+    }
+  }
   function productPathReady(s,i,resources,recordAccepted=false){
-    for(const resource of [...new Set(resources)]){const gate=productGate(s,resource);if(!gate)continue;if(!gate.available){event(s,i,'product','PRODUCT_FEATURE_BLOCKED',{deployment:gate.deploymentId,feature:gate.feature,resource,reason:gate.reason});finish(s,i,'PRODUCT_FEATURE_UNAVAILABLE');return false;}if(recordAccepted)event(s,i,'product','PRODUCT_FEATURE_ACCEPTED',{resource,bindings:clone(gate.bindings)});}
+    for(const resource of [...new Set(resources)]){const gate=productGate(s,resource);if(!gate)continue;if(!gate.available){event(s,i,'product','PRODUCT_FEATURE_BLOCKED',{deployment:gate.deploymentId,feature:gate.feature,resource,reason:gate.reason});finish(s,i,'PRODUCT_FEATURE_UNAVAILABLE');return false;}if(recordAccepted)recordProductPathAdmission(s,i,resource,gate);}
     return true;
   }
   function liveVoiceMedia(s,i){

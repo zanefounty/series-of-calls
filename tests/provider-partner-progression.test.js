@@ -176,6 +176,9 @@ test('AC-SOC-817 bridge mode requires a paid Cisco interop product and restored 
  assert.throws(()=>SOC.provider.quote(fresh,{...bridgeRequest,config:{version:1,roomMode:'native'}}),/INVALID_PROVIDER_INTEGRATOR_ROOM_SELECTION/);
 
  const paid=paidRoomPartnerJourney();assert.deepEqual(SOC.restore(JSON.stringify(paid)),paid,'the real paid bridge and test state restores unchanged');
+ const malformed=structuredClone(paid),malformedProject=operationProject(malformed,roomOperationId,'next-1-customer');malformedProject.operationReceipt.evidence.meeting.acceptance.testAt++;
+ assert.equal(ROOM.validateProjectEvidence(malformed,malformedProject).valid,false,'the native adapter rejects a mutated paid meeting receipt');
+ assert.equal(P5.evaluate(malformed,roomHooks()).count,0,'an object-shaped invalid project result is never treated as a truthy accepted proof');
  const forged=structuredClone(paid),project=forged.providerCampaign.projects.findLast(p=>p.customerId==='next-1-customer'&&p.operationId==='integrator-room');
  project.config.version=2;
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_INTEGRATOR_ROOM_SELECTION/,'a save cannot upgrade bridge authority by editing its versioned configuration');

@@ -56,7 +56,7 @@ function socProviderPartnerProgressionKernel(){
   if(!customerAt(c,p.completedAt))return null;
   const observed=api.projectEvidence(s,p.id,hooks);if(observed.ready!==true||!observed.evidence||!postingMatches(s,p))return null;
   const proof=observed.evidence,receipt=p.operationReceipt,plan=receipt?.plan,acceptance=proof.meeting?.acceptance,edge=plan?.edge;
-  if(!api.validateProjectEvidence(s,p,hooks)||edge?.id!==IDS.room||!receipt?.test||receipt.test.status!=='scenario-verified'||
+  if(api.validateProjectEvidence(s,p,hooks).valid!==true||edge?.id!==IDS.room||!receipt?.test||receipt.test.status!=='scenario-verified'||
      plan.source?.deploymentId!=='d-ms-meetings-room'||plan.target?.deploymentId!=='d-cisco-meetings-interoperability'||
      plan.source?.feature!=='room-devices'||plan.target?.feature!=='interop-join'||
      acceptance?.edgeId!==IDS.room||acceptance.testAt!==receipt.test.checkedAt||

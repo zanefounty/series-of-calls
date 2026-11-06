@@ -1,0 +1,26 @@
+# Provider paid scale observation
+
+This pack defines two paid, customer scoped workload offers around the existing native `tb` service observer. It keeps the `progress.goal.tb` thresholds unchanged: ten sampled minutes, twelve successful human journeys, at least 90% completion across every in-window intended-service attempt, eight completion buckets, two named people, and three samples with at least two concurrent assignments.
+
+`paid-scale-baseline` funds a measurement using ordinary three minute handling plus one minute wrap. It is an honest baseline that may fail. `paid-scale-workflow` separately prices a one minute, consented short task, zero wrap, one provider engineer/support allocation and the existing paid BPO capacity. The operation itself does not grant staff or alter ordinary handling. The effective service configuration and BPO roster must come from paid Provider records, and workflow commissioning must be refused without them.
+
+The pack is deliberately a separate run ledger. It must never add scale tasks to `providerCampaign.jobs` or change the 24 due ordinary cases per campaign period. One paid run opens one native observer window. The workflow's authored schedule creates twelve actual one-minute voice tasks across offsets 0–8, with paired tasks at offsets 0, 1 and 2 to establish sampled concurrency. The baseline creates no paid tasks. The observer is authoritative for arrivals, attempts, journeys, samples and result. The run reconciler retains every observer attempt, including ordinary campaign attempts; no attempt may be filtered to improve the completion ratio. Every attempt is joined to its source job, real case, interaction and actual person/assignment where one exists. Missing lineage makes the run invalid.
+
+## Integration contract
+
+The coordinator must integrate through the shared Provider quote and validated dispatch route. The pure module exports operation terms and planning, start, minute reconciliation, finalization/evaluation, validation and retention pins. Its hooks must:
+
+- verify active tenant ownership, paid project and central posting, paid BPO capacity, effective short-task configuration and provider staff;
+- open `serviceObservation` with its existing `open-window { goal: "tb" }` command after project commissioning;
+- let the ordinary child minute lifecycle advance the observer exactly once; this module must not advance time or call native `advance` itself;
+- call `emitDue` before the child minute for its current clock; its `interact` hook must use the real validated interaction command and return the created case and interaction IDs; use ordinary cases, actual consent and real workforce assignments;
+- let `advance` run after the existing child minute and native observation advance; its `interaction`, `usage` and `postUsage` hooks must read the actual interaction, derive billed usage from its native usage record, and post that exact amount through the central ledger once; and
+- resolve each native observer interaction to its true ordinary-job or paid-scale-job origin, including case, agent, assignment and usage charges.
+
+Only the paid workflow may schedule authored short tasks. The scheduler must be time aligned with observer sampling, bounded by the run window and paid capacity, and must not issue duplicate jobs. Each started task records its actual case and interaction; completed/failed tasks retain their actual agent, workforce assignment and usage posting. Usage and operation charges go through the central business ledger. Failed attempts and failed windows remain visible; a retry is a new paid run with its own native window.
+
+The retained state is optional and version 1. `pins()` reports run, project, posting, observer window, job, case and interaction IDs needed to keep the underlying evidence available. The run cap is 20, matching the native observer's 30-window cap while leaving room for other observer goals. Per-run attempt retention is capped at the native observer's 400 attempts. Old saves without this field remain valid; any owner integration must separately add the save version, worker serialization, migration and restore validation.
+
+## Source links and limits
+
+The authored content links `progress.progression-level.10`, `progress.goal.tb` and the workload domain. The scale threshold is reused exactly from `src/game/39-service-observation.js`; this pack does not assert that `progress.goal.tb` or a progression reward has been earned. The test suite's positive run exercises the actual SOC dispatcher and native observer in an assessed Lab exercise using explicit unit fixtures. It is not Provider campaign evidence: there is no Provider command, operation registration, campaign integration, reward receipt, UI, quote, save migration, worker test or release acceptance wired by this bounded module. The coordinator must complete those integrations and prove paid central postings before it can be represented as playable Provider progression.

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "contentVersion": "provider-scale-observation-1",
+  "sourceIds": [
+    "progress.progression-level.10",
+    "progress.goal.tb",
+    "uc-new:domain:workload"
+  ],
+  "window": {
+    "goal": "tb",
+    "goal": "tb",
+    "minutes": 10,
+    "journeys": 12,
+    "completionPercent": 90,
+    "activeBuckets": 8,
+    "people": 2,
+    "concurrentSamples": 3,
+    "concurrent": 2
+  },
+  "paidLoadSchedule": [
+    { "offsetMinute": 0, "tasks": 2 },
+    { "offsetMinute": 1, "tasks": 2 },
+    { "offsetMinute": 2, "tasks": 2 },
+    { "offsetMinute": 3, "tasks": 1 },
+    { "offsetMinute": 4, "tasks": 1 },
+    { "offsetMinute": 5, "tasks": 1 },
+    { "offsetMinute": 6, "tasks": 1 },
+    { "offsetMinute": 7, "tasks": 1 },
+    { "offsetMinute": 8, "tasks": 1 }
+  ],
+  "operations": [
+    {
+      "id": "paid-scale-baseline",
+      "name": "Paid scale window (baseline handling)",
+      "setupCents": 12000,
+      "periodCents": 0,
+      "workMinutes": 2,
+      "engineers": 0,
+      "support": 1,
+      "mode": "baseline",
+      "workflowMinutes": 3,
+      "wrapMinutes": 1,
+      "bpoRequired": false,
+      "description": "Fund a ten-minute workload measurement with the customer's ordinary handling model. It can fail when the measured queue cannot complete enough eligible work."
+    },
+    {
+      "id": "paid-scale-workflow",
+      "name": "Paid scale workflow and BPO handling",
+      "setupCents": 48000,
+      "periodCents": 10000,
+      "workMinutes": 8,
+      "engineers": 1,
+      "support": 1,
+      "mode": "workflow",
+      "workflowMinutes": 1,
+      "wrapMinutes": 0,
+      "bpoRequired": true,
+      "description": "Fund a short, consented service workflow and two named BPO handlers for the measured window. Ordinary campaign demand remains in the same observer denominator."
+    }
+  ],
+  "retention": {
+    "maxRuns": 20,
+    "maxAttemptsPerRun": 400
+  }
+}

@@ -7428,6 +7428,23 @@
       ],
       "status": "partial",
       "scope": "A private, validator-scoped memo reuses equivalent historical paid configuration projections while preserving per-read generation and provenance validation and isolated returned values. Historical replay is compared with uncached results across paid commissioning boundaries; a synthetic nested restoration/retirement model regression covers a cache-key boundary, not an accepted gameplay save. No persisted cache, whole-suite deadline or long-play completion is claimed."
+    },
+    {
+      "id": "BEH-SOC-416",
+      "sources": [
+        "progress.progression-level.7",
+        "progress.goal.rd"
+      ],
+      "implementation": [
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/23-provider-support-history.js"
+      ],
+      "testIds": [
+        "AC-SOC-780",
+        "AC-SOC-781"
+      ],
+      "status": "partial",
+      "scope": "Private read-only support reconstruction reuses local configuration/provenance and temporary boundary views without serializing unrelated histories. Public authority outputs and external observation-hook arguments remain isolated copies. Actual paid boundary reconstruction, frozen-save purity, restore and a failing-then-fixed retained-hook mutation regression cover these boundaries. Bounded timing improvements do not establish full acceptance deadlines or long-play completion."
     }
   ]
 }

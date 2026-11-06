@@ -1,6 +1,18 @@
 {
   "version": 1,
   "suites": {
+    "tests/provider-progression-regional-claims-l7.test.js": [
+      "AC-SOC-656"
+    ],
+    "tests/provider-progression-regional-claims-t2.test.js": [
+      "AC-SOC-655"
+    ],
+    "tests/provider-progression-regional-claims-c5.test.js": [
+      "AC-SOC-654"
+    ],
+    "tests/provider-progression-regional-claims-c3.test.js": [
+      "AC-SOC-653"
+    ],
     "tests/communications.test.js": [
       "AC-SOC-001",
       "AC-SOC-002",
@@ -897,7 +909,10 @@
     "tests/provider-integration-assurance.test.js": [
       "AC-SOC-646",
       "AC-SOC-647",
-      "AC-SOC-648"
+      "AC-SOC-648",
+      "AC-SOC-832",
+      "AC-SOC-833",
+      "AC-SOC-834"
     ],
     "tests/provider-incident-inspector.test.js": [
       "AC-SOC-649",
@@ -1168,18 +1183,6 @@
     "tests/provider-incident-sequence-dispatch.test.js": [
       "AC-SOC-822",
       "AC-SOC-823"
-    ],
-    "tests/provider-progression-regional-claims-c3.test.js": [
-      "AC-SOC-653"
-    ],
-    "tests/provider-progression-regional-claims-c5.test.js": [
-      "AC-SOC-654"
-    ],
-    "tests/provider-progression-regional-claims-t2.test.js": [
-      "AC-SOC-655"
-    ],
-    "tests/provider-progression-regional-claims-l7.test.js": [
-      "AC-SOC-656"
     ],
     "tests/provider-standing-policy.test.js": [
       "AC-SOC-828"

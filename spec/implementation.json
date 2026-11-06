@@ -6932,10 +6932,13 @@
       "testIds": [
         "AC-SOC-646",
         "AC-SOC-647",
-        "AC-SOC-648"
+        "AC-SOC-648",
+        "AC-SOC-832",
+        "AC-SOC-833",
+        "AC-SOC-834"
       ],
       "status": "partial",
-      "scope": "Priced earned integration assurance with immutable claim scope, explicit editable policy subsets and current edge/boundary suspension. Public unearned orders and worker orders refuse atomically; isolated planner and retained-action counterexamples cover scope, action kind, commissioning time and changed integrations. These bounded tests do not establish a genuinely earned T2 claim, paid delivery or automatic action after that claim; those remain pending."
+      "scope": "Priced earned integration assurance with immutable claim scope, explicit editable policy subsets and current edge/boundary suspension. Public unearned orders and worker orders refuse atomically; isolated planner and retained-action counterexamples cover scope, action kind, commissioning time and changed integrations. These bounded tests do not establish a genuinely earned T2 claim, paid delivery or automatic action after that claim; those remain pending. Funded assurance may retain repair permission during a corroborated scoped carrier outage only with unchanged native paid UC/CC test, resource and boundary generations and availability-only boundary blockers; strict purchase checks remain unchanged. Focused counterexamples and worker-source parity cover this limited repair permission without certifying healthy service."
     },
     {
       "id": "BEH-SOC-389",

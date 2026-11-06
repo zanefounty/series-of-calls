@@ -1230,7 +1230,8 @@
       "AC-SOC-855",
       "AC-SOC-856",
       "AC-SOC-857",
-      "AC-SOC-858"
+      "AC-SOC-858",
+      "AC-SOC-875"
     ],
     "tests/provider-uc-cc-integration.test.js": [
       "AC-SOC-845"
@@ -1254,7 +1255,13 @@
     "tests/provider-scale-mcp.test.js": [
       "AC-SOC-866"
     ],
-    "tests/transport-boundaries.test.js": []
+    "tests/transport-boundaries.test.js": [],
+    "tests/provider-scale-default.test.js": [
+      "AC-SOC-873"
+    ],
+    "tests/provider-portfolio-runtime.test.js": [
+      "AC-SOC-874"
+    ]
   },
   "inputs": [
     "artwork/generated/defence.png",
@@ -1898,6 +1905,8 @@
     "tests/provider-workload-flows.test.js",
     "tests/provider-room-family-limitation.test.js",
     "tests/provider-scale-mcp.test.js",
-    "tests/provider-partner-paid-uc-cc.test.js"
+    "tests/provider-partner-paid-uc-cc.test.js",
+    "tests/provider-scale-default.test.js",
+    "tests/provider-portfolio-runtime.test.js"
   ]
 }

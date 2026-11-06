@@ -46,7 +46,8 @@ test('AC-SOC-874 / PLAY-029-A02 paid tenant incident competes for shared support
 
  const incident=game.state.providerCampaign.incidents.find(item=>item.customerId===CUSTOMER_B&&item.status==='scheduled');
  const competingRequest={action:'operation',operationId:'ms-communications-api',customerId:CUSTOMER_A};
- const competingQuote=game.buy(competingRequest);
+ const cashBeforeCompetition=game.state.business.balance.cash;
+ const competingQuote=game.buy(competingRequest);assert.equal(game.state.business.balance.cash,cashBeforeCompetition-competingQuote.setupCents);
  const competitor=game.state.providerCampaign.projects.findLast(project=>project.customerId===CUSTOMER_A&&project.operationId==='ms-communications-api');
  while(game.state.providerCampaign.incidents.find(item=>item.id===incident.id)?.status!=='active')game.minute();
  game.dispatch({action:'acknowledge-incident',incidentId:incident.id});
@@ -56,10 +57,12 @@ test('AC-SOC-874 / PLAY-029-A02 paid tenant incident competes for shared support
  assert.ok(blockedQuote.blockers.includes('SUPPORT_CAPACITY'));
  const crossTenantQuote=SOC.provider.quote(game.state,{...blockedRepair,customerId:CUSTOMER_A});
  assert.ok(crossTenantQuote.blockers.includes('NO_ACTIVE_INCIDENT'));
+ const blockedState=JSON.stringify(game.state);for(const quote of [blockedQuote,crossTenantQuote])assert.throws(()=>game.dispatch({...quote.request,quoteRevision:quote.atRevision}),/PROVIDER_QUOTE_BLOCKED/);assert.equal(JSON.stringify(game.state),blockedState,'staff and tenant refusals are enforced atomically by dispatch');
  assert.equal(game.state.providerCampaign.projects.some(project=>project.customerId===CUSTOMER_B&&project.operationId==='repair'),false,'refused quote creates no project');
 
  while(game.state.providerCampaign.projects.find(project=>project.id===competitor.id)?.status!=='complete')game.minute();
- const recoveredQuote=game.buy(blockedRepair);
+ const cashBeforeRepair=game.state.business.balance.cash;
+ const recoveredQuote=game.buy(blockedRepair);assert.equal(game.state.business.balance.cash,cashBeforeRepair-recoveredQuote.setupCents,'both customers consume the same cash balance');
  assert.equal(recoveredQuote.engineers,1);
  const repair=game.state.providerCampaign.projects.findLast(project=>project.customerId===CUSTOMER_B&&project.operationId==='repair');
  while(game.state.providerCampaign.projects.find(project=>project.id===repair.id)?.status!=='complete')game.minute();

@@ -1028,8 +1028,8 @@ const SOC = (function socKernel() {
     for(const run of side.runs){if(projectIds.has(run.projectId))fail('INVALID_PROVIDER_SCALE_REUSED_PROJECT');projectIds.add(run.projectId);
       if(run.startedAt>s.clock||run.startedAt<s.providerCampaign.projects.find(p=>p.id===run.projectId).completedAt)fail('INVALID_PROVIDER_SCALE_START');
       if(run.mode==='workflow'){
-        const root=s.portfolio.customers.find(c=>c.id===run.customerId)?.root,native=root?.serviceObservation?.windows.find(w=>w.id===run.nativeWindowId);let lastOffset=run.version===providerScale.RUN_VERSION?Math.max(0,Math.min(8,root.clock-run.startedAt-1)):Math.max(0,Math.min(8,native.previousClock-run.startedAt-1));if(run.scheduleStop)lastOffset=Math.min(lastOffset,run.scheduleStop.at-run.startedAt-1);
-        const expected=providerScale.SCHEDULE.filter(row=>row.offsetMinute<=lastOffset).flatMap(row=>Array(row.tasks).fill(row.offsetMinute));
+        const root=s.portfolio.customers.find(c=>c.id===run.customerId)?.root,native=root?.serviceObservation?.windows.find(w=>w.id===run.nativeWindowId);let lastOffset=run.version===providerScale.RUN_VERSION?Math.max(0,Math.min(8,root.clock-run.startedAt-1)):Math.max(0,Math.min(8,native.previousClock-run.startedAt-1));if(run.scheduleStop&&run.legacyPaidTasks===undefined)lastOffset=Math.min(lastOffset,run.scheduleStop.at-run.startedAt-1);
+        let expected=providerScale.SCHEDULE.filter(row=>row.offsetMinute<=lastOffset).flatMap(row=>Array(row.tasks).fill(row.offsetMinute));if(run.legacyPaidTasks!==undefined)expected=expected.slice(0,run.legacyPaidTasks);
         if(JSON.stringify(run.paidJobs.map(j=>j.offsetMinute))!==JSON.stringify(expected))fail('INVALID_PROVIDER_SCALE_TASK_SCHEDULE');
       }
       for(const job of run.paidJobs){

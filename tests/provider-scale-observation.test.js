@@ -134,3 +134,18 @@ test('AC-SOC-858 save validation rejects missing lineage, fabricated successful 
  assert.throws(()=>P.validate(s),/INVALID_PROVIDER_SCALE_ATTEMPT/);
  const many=P.create();many.runs=Array.from({length:P.MAX_RUNS+1},(_,i)=>({id:`provider-scale-${i+1}`}));many.nextId=P.MAX_RUNS+2;assert.throws(()=>P.validate(many),/INVALID_PROVIDER_SCALE_STATE/);
 });
+
+
+test('AC-SOC-875 legacy emitted native tasks survive late cancellation observation without permitting more tasks',()=>{
+ let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'legacy-project',postingId:'legacy-posting',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000},base=fixtureHooks(holder,project);
+ const started=P.beginRun(side,{customerId:'customer-a',operationId:P.WORKFLOW},project,base);side.runs[0].version=1;delete side.lifecycleVersion;
+ // Explicit legacy module fixture: native tasks already emitted before this
+ // version learned of the older retirement. Actual interactions stay intact.
+ root=tick(root);P.advance(side,started.id,base);P.emitDue(side,started.id,base);root=tick(root);P.advance(side,started.id,base);
+ const run=side.runs[0],ids=run.paidJobs.map(j=>j.interactionId),hooks={...base,scheduleStopAuthority:()=>({kind:'resource-retirement',at:started.startedAt+1,projectId:'retired-product'})};assert.equal(ids.length,4);assert.equal(P.validate(side,hooks),true);
+ assert.deepEqual(P.emitDue(side,started.id,hooks),[]);assert.equal(run.legacyPaidTasks,4);assert.equal(run.scheduleStop.at,started.startedAt+1);assert.deepEqual(run.paidJobs.map(j=>j.interactionId),ids);
+ for(let minute=0;minute<8;minute++){root=tick(root);P.advance(side,started.id,hooks);assert.equal(P.validate(side,hooks),true);}
+ assert.equal(run.status,'failed');assert.equal(run.paidJobs.length,4);assert.equal(run.result.schedule.cancelledTasks,8);assert.ok(run.paidJobs.every(j=>j.usageMinutes===root.interactions.find(i=>i.id===j.interactionId).usageMinutes));
+ const bad=structuredClone(side);bad.runs[0].legacyPaidTasks--;assert.throws(()=>P.validate(bad,hooks),/INVALID_PROVIDER_SCALE_LEGACY_TASKS/);
+ const modern=structuredClone(side);modern.lifecycleVersion=P.RUN_VERSION;modern.runs[0].version=P.RUN_VERSION;assert.throws(()=>P.validate(modern,hooks),/INVALID_PROVIDER_SCALE_LEGACY_TASKS/);
+});

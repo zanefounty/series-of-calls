@@ -7908,10 +7908,12 @@
         "AC-SOC-857",
         "AC-SOC-858",
         "AC-SOC-866",
-        "AC-SOC-870"
+        "AC-SOC-870",
+        "AC-SOC-873",
+        "AC-SOC-875"
       ],
       "status": "partial",
-      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal. Version-two paid windows cancel un-emitted tasks after an effective required-product retirement, retain actual outcomes and metered usage for emitted work, and cannot pass after cancellation. The quote discloses the active/future workload. Retained stop authority and exact paid recommissioning/new-window behavior are validated; recording-only retirement preserves the unrelated voice schedule. Legacy version-one non-retired saves remain supported; version markers never authorize resumed unsupported emission. Customer exit discloses and retains its committed paid batch and actual usage while stopping new ordinary demand."
+      "scope": "Paid Provider scale observation uses ordinary native TB thresholds and every attempted service interaction, with one window per commissioned project, separately purchased BPO staff, actual short-task dispatch, and once-only central usage charges. Baseline failure, workflow success, paid managed unlock, session exhaustion and separately paid headroom recovery are exercised through Provider commands; save/worker continuation, retained failure evidence, tamper refusal and contextual UI dispatch are covered. Ordinary 24-case settlement demand remains separate. This does not complete wholesale level10, mixed-work T10, full progression, long-play or source-catalogue acceptance. The actual stdio MCP process independently exercises paid quoting, once-only native window start, request retry, completed failure, valid import and erased-consumption refusal. Version-two paid windows cancel un-emitted tasks after an effective required-product retirement, retain actual outcomes and metered usage for emitted work, and cannot pass after cancellation. The quote discloses the active/future workload. Retained stop authority and exact paid recommissioning/new-window behavior are validated; recording-only retirement preserves the unrelated voice schedule. Legacy version-one non-retired saves remain supported; version markers never authorize resumed unsupported emission. Customer exit discloses and retains its committed paid batch and actual usage while stopping new ordinary demand. Real paid payroll/default during an open prepaid window cancels future tasks after settlement, retains actual usage, and survives restore and worker continuation. Version-two terminal stop authority remains bound after every task emits; retirement after finalization leaves the old result unchanged. Genuine legacy version-one open and terminal saves retain their emitted work; the next owned dispatch stops further legacy emission without discarding native jobs or charges."
     },
     {
       "id": "BEH-SOC-436",
@@ -7976,6 +7978,25 @@
       ],
       "status": "partial",
       "scope": "The paid UC/CC managed integration may contribute one distinct partner edge through its exact same-customer Disco vendor support contract, native directional test, human voice task, capture and funded quality review. Current exact-scope MSP ownership remains supported and historical MSP evidence retains its original shape; the real fixture with no recorder scope is correctly excluded. Forged role/organisation/project/posting scopes are rejected. This adds the UC/CC vendor alternative, not a second count for the same edge. Three other distinct partner integration adapters and complete P5 qualification remain pending."
+    },
+    {
+      "id": "BEH-SOC-440",
+      "sources": [
+        "DEC-011",
+        "uc-new:domain:pricing",
+        "uc-new:domain:commercial-roles"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/37-portfolio.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-874"
+      ],
+      "status": "partial",
+      "scope": "A genuinely funded two-customer Provider career shares engineering, support and cash. One customer paid product job blocks the other customer incident repair for support capacity; public cross-tenant dispatch and blocked repair refuse without mutation. When the shared team frees, the paid repair delivers with distinct customer postings against the same cash balance. Both tenant roots continue on the shared clock and restore exactly. This bounded dispatch case does not itself establish inspector browser behavior, cash-insufficiency refusal, long play or all ecosystem role obligations."
     }
   ]
 }

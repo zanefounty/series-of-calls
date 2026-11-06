@@ -368,12 +368,12 @@ function socProviderSupportHistoryKernel(){
   return {eligible:result.eligible===true,resources,profile:result.profile};
  }
  function withDefaults(s,hooks){
-  const configMemo=new Map(),readerMemo=new Map(),provenanceMemo=new Map(),observationMemo=new Map(),boundaryMemo=new Map(),governmentBoundaryMemo=new Map();
+  const configMemo=new Map(),readerMemo=new Map(),provenanceMemo=new Map(),observationMemo=new Map(),boundaryMemo=new Map(),governmentBoundaryMemo=new Map(),configurationModelMemo=configurationApi().createExpectedModelMemo?.();
   const readerFor=(state,c,root,at)=>{
    const readerKey=`${c.id}\u0000${at}`;
    if(!readerMemo.has(readerKey)){
     const api=configurationApi();
-    readerMemo.set(readerKey,typeof api.configurationReaderAt==='function'?api.configurationReaderAt(state.providerCampaign,c,root,at,{catalogue:hooks.catalogue}):null);
+    readerMemo.set(readerKey,typeof api.configurationReaderAt==='function'?api.configurationReaderAt(state.providerCampaign,c,root,at,{catalogue:hooks.catalogue,expectedModelMemo:configurationModelMemo}):null);
    }
    return readerMemo.get(readerKey);
   };

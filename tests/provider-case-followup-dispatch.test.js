@@ -33,7 +33,7 @@ function worker(s,c){let result;const context={postMessage:r=>{result=r;},setTim
 
 let earnedFollowup;
 function operation(s,operationId,config){return buy(s,{action:'operation',customerId:CUSTOMER,operationId,...(config?{config}:{})});}
-function nextFollowup(s){for(const j of s.providerCampaign.jobs.filter(j=>j.followup&&j.status==='pending'&&!j.followup.attempts.length)){const request={action:'followup-case',customerId:CUSTOMER,jobId:j.id},q=SOC.provider.quote(s,request);if(!q.blockers.length)return {job:j,request,q};}return null;}
+function nextFollowup(s,predicate=()=>true){for(const j of s.providerCampaign.jobs.filter(j=>j.followup&&j.status==='pending'&&!j.followup.attempts.length&&predicate(j))){const request={action:'followup-case',customerId:CUSTOMER,jobId:j.id},q=SOC.provider.quote(s,request);if(!q.blockers.length)return {job:j,request,q};}return null;}
 test('AC-SOC-710 actual paid Provider voice and human digital follow-up conserve one case and settle both metered legs before L8 claim and managed delivery',()=>{
  let s=opening(),request={action:'operation',customerId:CUSTOMER,operationId:'managed-case-followup'};
  assert.ok(SOC.provider.quote(s,request).blockers.includes('FOLLOWUP_EARNED_MARKET_REQUIRED'));
@@ -59,7 +59,17 @@ test('AC-SOC-710 actual paid Provider voice and human digital follow-up conserve
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  const forged=clone(s);forged.providerCampaign.jobs.find(j=>j.id===job.id).messageUnits++;assert.throws(()=>SOC.restore(JSON.stringify(forged)),/FOLLOWUP/);
  s=operation(s,'managed-case-followup');assert.equal(claimCash-s.business.balance.cash,9000);
- s=until(s,s=>s.providerCampaign.projects.some(p=>p.operationId==='managed-case-followup'&&p.status==='complete'),20);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);earnedFollowup=clone(s);
+ s=until(s,s=>s.providerCampaign.projects.some(p=>p.operationId==='managed-case-followup'&&p.status==='complete'),20);const managed=s.providerCampaign.projects.find(p=>p.operationId==='managed-case-followup'&&p.status==='complete');assert.ok(managed.completedAt>=managed.acceptedAt+managed.workMinutes);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);earnedFollowup=clone(s);
+ // A new authored period must capture the completed managed workflow at its own
+ // arrival. The older direct workflow remains pinned to the already-earned case.
+ s=until(s,s=>s.clock>=120,120);s=until(s,s=>!!nextFollowup(s,j=>j.periodIndex>=2&&j.followup.workflow.projectId===managed.id),100);
+ const fresh=nextFollowup(s,j=>j.periodIndex>=2&&j.followup.workflow.projectId===managed.id),freshJob=fresh.job,freshSource=child(s).interactions.find(i=>i.id===freshJob.interactionId),freshWorkflow=freshJob.followup.workflow;
+ assert.ok(freshJob.arrivalAt>managed.completedAt);assert.equal(freshWorkflow.projectId,managed.id);assert.equal(freshWorkflow.operationId,'managed-case-followup');assert.equal(freshWorkflow.completedAt,managed.completedAt);assert.equal(freshJob.deadlineAt,freshJob.arrivalAt+20);assert.equal(freshSource.phase,'resolved');assert.ok(freshSource.agent);assert.equal(s.providerCampaign.jobs.filter(j=>j.caseId===freshJob.caseId).length,1);
+ const freshCash=s.business.balance.cash,freshRequestId=`provider-${s.providerRequestSequence+1}`;s=command(s,{...fresh.request,quoteRevision:fresh.q.atRevision},freshRequestId);assert.equal(s.business.balance.cash,freshCash);assert.deepEqual(command(s,{...fresh.request,quoteRevision:fresh.q.atRevision},freshRequestId),s);
+ s=until(s,s=>s.providerCampaign.jobs.find(j=>j.id===freshJob.id).status==='completed',20);const freshDone=s.providerCampaign.jobs.find(j=>j.id===freshJob.id),freshDigital=child(s).interactions.find(i=>i.id===freshDone.followup.attempts[0].interactionId);
+ assert.equal(freshDone.followup.workflow.projectId,managed.id);assert.equal(freshDone.followup.workflow.operationId,'managed-case-followup');assert.equal(freshDone.caseId,freshSource.caseId);assert.equal(freshDigital.caseId,freshSource.caseId);assert.equal(freshDigital.from,freshSource.from);assert.equal(freshDigital.phase,'resolved');assert.ok(freshDigital.agent);assert.equal(freshDone.deadlineAt,freshJob.deadlineAt);assert.equal(freshDone.messageUnits,1);assert.ok(freshDigital.trace.some(t=>t.code==='PRODUCT_FEATURE_ACCEPTED'&&t.resource==='messages'&&t.bindings?.some(b=>b.deploymentId==='d-cisco-programmable-engagement'&&b.feature==='channel-accounts')));assert.equal(s.providerCampaign.jobs.filter(j=>j.caseId===freshJob.caseId).length,1);
+ s=until(s,s=>s.clock>=(freshJob.periodIndex+1)*60,60);const freshPeriod=s.providerCampaign.customers[0].history.find(h=>h.period===freshJob.periodIndex),freshRows=s.providerCampaign.jobs.filter(j=>j.customerId===CUSTOMER&&j.periodIndex===freshJob.periodIndex);
+ assert.equal(s.providerCampaign.jobs.find(j=>j.id===freshJob.id).settled,true);assert.equal(freshPeriod.due,24);assert.equal(freshRows.length,24);assert.equal(new Set(freshRows.map(j=>j.caseId)).size,24);assert.equal(freshPeriod.messages,freshRows.reduce((n,j)=>n+(j.followup?j.messageUnits:j.messageCharged?1:0),0));assert.equal(freshPeriod.voiceMinutes,freshRows.reduce((n,j)=>n+j.voiceMinutes,0));assert.equal(freshPeriod.voiceCost,freshPeriod.voiceMinutes*50);assert.equal(freshPeriod.messageCost,freshPeriod.messages*75);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
 test('AC-SOC-714 actual L8 history rejects missing paid product-path evidence, altered case deadlines and unpaid or unknown-version workflow state',()=>{

@@ -77,3 +77,17 @@ test('operation completion waits stop at the exact accepted project due boundary
   assert.deepEqual(normalized(bounded), normalized(minuteSteps), 'due-boundary completion matches one-minute native dispatch outcomes');
 });
 
+test('cash and assurance comparison results retain commands and remain restorable and dispatchable', () => {
+  const initial = SOC.create({ experience: 'campaign', scenario: 'smb', market: 'au-sydney', seed: 73, difficulty: 'easy' });
+  for (const [label, compared] of [
+    ['cash', compareCashWaitToMinuteSteps(initial, 6)],
+    ['assurance', compareAssuranceWaitToMinuteSteps(initial, 6)]
+  ]) {
+    assert.ok(Array.isArray(compared.commands), `${label} comparison preserves the native command collection`);
+    const restored = SOC.restore(JSON.stringify(compared));
+    assert.ok(Array.isArray(restored.commands), `${label} comparison output restores without migration loss`);
+    const next = SOC.dispatch(compared, { type: 'advance', minutes: 1 });
+    assert.equal(next.clock, compared.clock + 1, `${label} comparison result accepts the next validated advance`);
+  }
+});
+

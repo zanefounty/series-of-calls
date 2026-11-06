@@ -225,3 +225,32 @@ test('AC-SOC-831 mission failure panel explains default and missing customers wi
   w.tr=key=>'translated:'+key;const model={...base,mission:{...base.mission,status:'failed'},customers:[{id:'c',status:'active'}],locked:false},holder=w.document.createElement('div');holder.innerHTML=w.SOCProviderPanels.rail(model,{drawer:'goals'});const notice=holder.querySelector('.provider-mission-failure');assert.match(notice.textContent,/translated:provider.panels.mission_failed_explanation/);assert.equal(notice.querySelector('[data-provider-action="resume"]').disabled,true);
  }finally{dom.window.close();}
 });
+
+test('PLAY-004-A03 Provider decision modal and hidden visibility event pause without catch-up',async()=>{
+ const {dom,w}=boot();try{
+  w.requestAnimationFrame=()=>0;w.Worker=undefined;const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();
+  await w.providerNew({providerName:'Pause Boundary MSP',scenario:'smb'});const runtime=w.__SCP;assert.equal(runtime.state.clock,0);
+  w.providerSpeed(4);assert.equal(runtime.speed,4);w.providerDecision(true);assert.equal(runtime.decision,true);assert.equal(runtime.speed,0,'opening a decision modal pauses the active campaign');
+  const beforeModal=JSON.stringify(runtime.state);for(let n=0;n<8;n++)w.providerFrame(w.performance.now()+250*n);assert.equal(JSON.stringify(runtime.state),beforeModal,'modal time does not advance simulation state');
+  w.providerDecision(false);assert.equal(runtime.decision,false);assert.equal(runtime.speed,4,'closing the decision restores the prior selected speed');
+  runtime.acc=1700;Object.defineProperty(w.document,'hidden',{configurable:true,value:true});w.document.dispatchEvent(new w.Event('visibilitychange'));
+  assert.equal(runtime.speed,0,'the visibilitychange event pauses a running campaign');assert.equal(runtime.acc,0,'partial elapsed-frame time is discarded');
+  const hiddenState=JSON.stringify(runtime.state);for(let n=1;n<=80;n++)w.providerFrame(w.performance.now()+250*n);assert.equal(JSON.stringify(runtime.state),hiddenState,'the hidden period produces no background simulation ticks');
+  Object.defineProperty(w.document,'hidden',{configurable:true,value:false});w.document.dispatchEvent(new w.Event('visibilitychange'));for(let n=81;n<=120;n++)w.providerFrame(w.performance.now()+250*n);
+  assert.equal(runtime.speed,0,'returning to the foreground does not silently resume');assert.equal(JSON.stringify(runtime.state),hiddenState,'foreground return does not catch up elapsed hidden time');
+ }finally{w.providerRelease();dom.window.close();}
+});
+
+test('PLAY-004-A03 an earned Provider mission victory leaves no runnable campaign clock',()=>{
+ const customerId='starter-customer';let state=SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',difficulty:'normal'});
+ const send=command=>{state=SOC.dispatch(state,{type:'provider',command});};
+ const buy=command=>{const quote=SOC.provider.quote(state,command);assert.deepEqual(quote.blockers,[],JSON.stringify({clock:state.clock,command,blockers:quote.blockers}));send({...command,quoteRevision:quote.atRevision});};
+ const minute=()=>{state=SOC.dispatch(state,{type:'advance',minutes:1});};
+ for(const stage of ['base','carrier','partner']){buy({action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});while(state.providerCampaign.customers[0].stages[stage].status!=='effective')minute();}
+ while(!state.providerCampaign.incidents.some(i=>i.status==='active'))minute();
+ const incident=state.providerCampaign.incidents.find(i=>i.status==='active');send({action:'acknowledge-incident',incidentId:incident.id});buy({action:'operation',operationId:'repair',customerId});
+ while(state.clock<180){if(state.providerCampaign.customers.some(c=>c.status==='renewal'))for(const c of state.providerCampaign.customers.filter(c=>c.status==='renewal'))send({action:'renew',customerId:c.id});minute();}
+ assert.ok(state.providerCampaign.periodHistory.slice(-2).every(p=>p.qualified),'the mission win follows two measured qualifying periods');
+ buy({action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});assert.equal(state.providerCampaign.missionStatus,'won');assert.equal(state.providerCampaign.status,'won');assert.ok(state.providerCampaign.events.some(e=>e.code==='MISSION_WON'));assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ const {dom,w}=boot();try{w.providerHome();const runtime=w.__SCP;runtime.state=SOC.restore(JSON.stringify(state));runtime.atHome=false;runtime.locked=true;runtime.speed=0;w.providerRender();w.providerSpeed(8);assert.equal(runtime.speed,0,'a terminal victory cannot start the clock');const before=JSON.stringify(runtime.state);w.providerTick();assert.equal(runtime.busy,false);assert.equal(JSON.stringify(runtime.state),before,'terminal victory cannot advance or be rewritten by the runtime');}finally{dom.window.close();}
+});

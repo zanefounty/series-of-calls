@@ -140,7 +140,7 @@ async function providerExperience(kind){
  await socOpen();if(kind==='lab'&&SCT.state?.experience?.kind!=='lab'&&SCT.locked){SCT.state=SOC.create({experience:'lab',mode:'sandbox'});socStore();socRender();}
 }
 Object.assign(ACT,{provider:providerOpen,providerHome:providerHome,providerLab:()=>providerExperience('lab')});
-addEventListener('visibilitychange',()=>{if(document.hidden){providerPause();providerCancel();providerRender();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){providerPause();providerCancel();providerRender();}});
 addEventListener('pagehide',providerRelease);
 addEventListener('storage',e=>{if(e.key!==SCP_KEY||!SCP.state)return;try{if(!e.newValue||JSON.parse(e.newValue).seq!==SCP.seq){providerRelease();SCP.error='The saved career changed in another tab. Reopen it to continue.';providerRender();}}catch(error){providerRelease();providerError(error);}});
 

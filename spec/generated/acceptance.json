@@ -17186,7 +17186,10 @@
       "AC-SOC-828",
       "AC-SOC-829",
       "AC-SOC-830",
-      "AC-SOC-831"
+      "AC-SOC-831",
+      "AC-SOC-832",
+      "AC-SOC-833",
+      "AC-SOC-834"
     ]
   },
   {
@@ -25290,7 +25293,10 @@
       "AC-SOC-647",
       "AC-SOC-648",
       "AC-SOC-752",
-      "AC-SOC-755"
+      "AC-SOC-755",
+      "AC-SOC-832",
+      "AC-SOC-833",
+      "AC-SOC-834"
     ]
   },
   {

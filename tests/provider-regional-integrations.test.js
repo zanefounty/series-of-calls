@@ -61,6 +61,13 @@ test('AC-SOC-745 paid public UC/CC delivery yields a pure exact regional snapsho
  assert.equal(R.bindingAvailableAt(s,customer(s),child(s),I.SOURCE_ID,I.SOURCE_FEATURE,p.operationReceipt.test.at+1),true);
  assert.equal(rows[0].id,I.EDGE_ID);assert.equal(rows[0].checkedAt,p.operationReceipt.test.at);assert.equal(reader.validAt(customer(s),rows[0],s.clock),true);
  assert.equal(reader.validAt(customer(s),rows[0],p.completedAt-1),false,'later reviewed completion cannot backfill an earlier minute');
+ const nonmonotonic=[p.configSubmittedAt-1,p.completedAt-1,p.completedAt,s.clock,p.completedAt-1];
+ for(const at of nonmonotonic){
+  assert.equal(reader.validAt(customer(s),rows[0],at),R.validAt(s,customer(s),rows[0],at,historyHooks),
+   `a reused reader matches a fresh replay at nonmonotonic minute ${at}`);
+ }
+ const alteredRows=reader.current(customerId);alteredRows[0].features[0].targetFeature='forged-feature';
+ assert.deepEqual(reader.current(customerId),rows,'mutating returned integration rows cannot poison the reader or retained native edge');
  assert.equal(JSON.stringify(s),before);assert.deepEqual(SOC.restore(before),s);
 });
 
@@ -82,9 +89,14 @@ test('AC-SOC-746 regional integration snapshots reject coherent foreign scope, u
 
 test('AC-SOC-747 historical regional proof survives a paid product retirement while current generation cannot reuse the old test',()=>{
  let s=fixture();const at=s.clock,edge=R.current(s,customerId,historyHooks,integrationHooks(s))[0];assert.ok(edge);
+ const originalReader=R.createReader(s,historyHooks,integrationHooks(s));assert.deepEqual(originalReader.current(customerId),[edge]);
  s=buy(s,{action:'retire-project',projectId:project(s,'ms-workplace-calling').id});s=minute(s);
  assert.equal(R.validAt(s,customer(s),edge,at,historyHooks),true,'retirement does not rewrite the previously sampled service');
  assert.deepEqual(R.current(s,customerId,historyHooks,integrationHooks(s)),[]);
+ assert.deepEqual(originalReader.current(customerId),[edge],'the earlier reader stays scoped to its unchanged source state');
+ const retiredReader=R.createReader(s,historyHooks,integrationHooks(s));
+ assert.equal(retiredReader.validAt(customer(s),edge,at),true,'a fresh reader on the retired state still proves the prior minute');
+ assert.deepEqual(retiredReader.current(customerId),[],'a fresh reader on the retired state sees no current edge');
  s=complete(op(s,'ms-workplace-calling'),'ms-workplace-calling');
  assert.ok(child(s).products.deployments.find(d=>d.id===I.SOURCE_ID).generation>edge.sourceGeneration);
  assert.equal(R.validAt(s,customer(s),edge,at,historyHooks),true);

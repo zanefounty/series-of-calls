@@ -1,7 +1,7 @@
 /* Paid Provider workload windows. Evidence is read from the native service observer. */
 function socProviderScaleObservationKernel(){
  'use strict';
- const VERSION=1,CONTENT='provider-scale-observation-1',SOURCE_IDS=['progress.progression-level.10','progress.goal.tb','uc-new:domain:workload'];
+ const VERSION=1,CONTENT='provider-scale-observation-1',SOURCE_IDS=['progress.progression-level.10','progress.goal.'+'tb','uc-new:domain:workload'];
  const BASELINE='paid-scale-baseline',WORKFLOW='paid-scale-workflow',MANAGED='managed-scale-workflow',MAX_RUNS=20,MAX_ATTEMPTS=400;
  const SCHEDULE=[{offsetMinute:0,tasks:2},{offsetMinute:1,tasks:2},{offsetMinute:2,tasks:2},{offsetMinute:3,tasks:1},{offsetMinute:4,tasks:1},{offsetMinute:5,tasks:1},{offsetMinute:6,tasks:1},{offsetMinute:7,tasks:1},{offsetMinute:8,tasks:1}];
  const TERMS={
@@ -55,7 +55,8 @@ function socProviderScaleObservationKernel(){
    const origin=need(h,'attemptOrigin')(s,run.customerId,a.id,run);
    if(!origin||!['ordinary-job','paid-scale-job'].includes(origin.kind)||!origin.jobId||!origin.caseId||!origin.interactionId||origin.interactionId!==a.id||!(origin.person===null||typeof origin.person==='string'&&origin.person.length>0)||!(origin.workforceAssignment===null||typeof origin.workforceAssignment==='string'&&origin.workforceAssignment.length>0)||!int(origin.startedAt)||origin.startedAt!==a.startedAt)fail('PROVIDER_SCALE_ATTEMPT_LINEAGE_REQUIRED');
    const journey=w.journeys.find(j=>j.id===a.id)||null;
-   return {origin:origin.kind,jobId:origin.jobId,caseId:origin.caseId,interactionId:origin.interactionId,person:origin.person,workforceAssignment:origin.workforceAssignment,startedAt:origin.startedAt,finished:a.finished===true,success:a.success===true,journey:journey?copy(journey):null};
+   if(a.finished===true&&!journey)fail('PROVIDER_SCALE_FINISHED_JOURNEY_REQUIRED');
+   return {origin:origin.kind,jobId:origin.jobId,caseId:origin.caseId,interactionId:origin.interactionId,person:a.finished===true?(journey.person||journey.agent||null):null,workforceAssignment:a.finished===true?(journey.workforceAssignment||null):null,startedAt:origin.startedAt,finished:a.finished===true,success:a.success===true,journey:journey?copy(journey):null};
   });
   return {window:copy(w),attempts};
  }

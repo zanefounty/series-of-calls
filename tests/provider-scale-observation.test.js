@@ -99,6 +99,15 @@ test('an ordinary assigned human attempt with an unresolved customer need is ret
  assert.equal(P.validate(side,hooks),true);
 });
 
+test('an unfinished ordinary attempt may receive an assignment after the native window closes without rewriting its historical snapshot',()=>{
+ let root=tick(staffed(),6);const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-postwindow',postingId:'posting-postwindow',customerId:'customer-a',operationId:P.BASELINE,setupCents:12000},hooks=fixtureHooks(holder,project),run=P.beginRun(side,{customerId:'customer-a',operationId:P.BASELINE},project,hooks);
+ for(let n=0;n<9;n++){root=tick(root,1);P.advance(side,run.id,hooks);}
+ root=SOC.dispatch(root,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'ordinary-at-close',language:'en'});root=tick(root,1);P.advance(side,run.id,hooks);
+ const atClose=side.runs[0].attempts.find(a=>a.caseId==='ordinary-at-close');assert.ok(atClose);assert.equal(atClose.finished,false);assert.equal(atClose.person,null);assert.equal(atClose.workforceAssignment,null);assert.equal(side.runs[0].status,'failed');
+ root=tick(root,3);const later=root.interactions.find(i=>i.caseId==='ordinary-at-close');assert.ok(later.agent);assert.ok(later.workforceAssignment);
+ assert.equal(P.validate(side,hooks),true);const validated=side.runs[0].attempts.find(a=>a.caseId==='ordinary-at-close');assert.equal(validated.finished,false);assert.equal(validated.person,null);assert.equal(validated.workforceAssignment,null);
+});
+
 test('a paid task with a failed customer outcome records its real human assignment and usage without counting as successful work',()=>{
  let root=tick(staffed(),6);root=SOC.dispatch(root,{type:'outcomes',command:{action:'start'}});root=SOC.dispatch(root,{type:'outcomes',command:{action:'need',tenant:'orchard-repairs',person:'alex',caseId:'reference-case',purpose:'service',intent:'unsupported-intent',permittedChannels:['voice']}});
  const holder={get root(){return root;},set root(v){root=v;}},side=P.create(),project={id:'project-paid-failure',postingId:'posting-paid-failure',customerId:'customer-a',operationId:P.WORKFLOW,setupCents:48000},base=fixtureHooks(holder,project),hooks={...base,interact:(_s,task)=>{if(task.sequence!==1)return base.interact(_s,task);root=SOC.dispatch(root,{type:'interact',channel:'voice',from:'alex',to:'+61255500201',caseId:'reference-case',needId:root.outcomes.needs[0].id,language:'en',durationMinutes:1});const i=root.interactions.at(-1);return {accepted:true,interactionId:i.id,caseId:i.caseId,startedAt:i.startedAt};}};

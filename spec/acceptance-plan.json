@@ -1076,6 +1076,10 @@
     ],
     "tests/provider-progression-dispatch.test.js": [
       "AC-SOC-789"
+    ],
+    "tests/provider-progression-inspection.test.js": [
+      "AC-SOC-795",
+      "AC-SOC-796"
     ]
   },
   "inputs": [
@@ -1661,6 +1665,7 @@
     "tests/provider-resilience-sequence.test.js",
     "tests/provider-support-work.test.js",
     "tests/provider-configuration-reader-performance.test.js",
-    "tests/provider-support-history.test.js"
+    "tests/provider-support-history.test.js",
+    "tests/provider-progression-inspection.test.js"
   ]
 }

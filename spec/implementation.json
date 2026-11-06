@@ -7467,6 +7467,22 @@
       ],
       "status": "partial",
       "scope": "Earned work receipts retain their exact arrival events in addition to the bounded working event history. Rehashed missing-arrival substitutions refuse; validated legacy regional markers migrate on owned copies. A real opening claim survives 220 dispatched staffing events and restores, while an isolated multi-window appender fixture proves 240 retained arrivals leave a 200-event working window. That fixture does not establish regional award eligibility or final long-play acceptance."
+    },
+    {
+      "id": "BEH-SOC-422",
+      "sources": [
+        "DEC-011",
+        "progress.goal.c5"
+      ],
+      "implementation": [
+        "src/game/23-provider-progression-receipts.js"
+      ],
+      "testIds": [
+        "AC-SOC-795",
+        "AC-SOC-796"
+      ],
+      "status": "partial",
+      "scope": "One read-only progression inspection validates its input before deriving its proposals, instead of repeating the same receipt validation for every unlock row. Standalone proposals and every new inspection still validate authority independently. Actual paid opening proposals match independently validated quotes on frozen state; changed receipt integrity refuses before quote hooks execute. A measured five-market checkpoint produces identical output with lower inspector latency; this does not certify full simulation speed or hosted test deadlines."
     }
   ]
 }

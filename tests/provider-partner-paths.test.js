@@ -54,7 +54,7 @@ test('P5 Lab paths pass native directional tests, fail after retirement, and rec
   let edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.ok(edge);assert.equal(edge.result,null);
   s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});
   edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'scenario-verified',`${path.id}: ${JSON.stringify(edge.result)}`);
-  const sourceGeneration=edge.sourceGeneration,targetGeneration=edge.targetGeneration;
+  const sourceGeneration=edge.sourceGeneration,targetGeneration=edge.targetGeneration;const firstTestAt=edge.result.checkedAt;const firstProof=PATHS.integrationEvidence(s,path.id,firstTestAt);assert.ok(firstProof);
   s=SOC.dispatch(s,{type:'products',command:{action:'retire',id:path.target.deploymentId}});s=tick(s,1);
   assert.equal(s.products.deployments.find(x=>x.id===path.target.deploymentId).retirement.status,'retired',`${path.id} endpoint retirement removes the effective product`);
   s=SOC.dispatch(s,{type:'products',command:{action:'reinstate',id:path.target.deploymentId}});s=tick(s,2);
@@ -64,6 +64,7 @@ test('P5 Lab paths pass native directional tests, fail after retirement, and rec
   s=SOC.dispatch(s,{type:'products',command:{action:'test-integration',id:path.integrationId}});
   edge=s.products.integrations.find(x=>x.id===path.integrationId);assert.equal(edge.result.status,'scenario-verified',`${path.id} explicit rebase/test restores only the new generation`);
   assert.equal(edge.sourceGeneration,sourceGeneration);
+  assert.deepEqual(PATHS.integrationEvidence(s,path.id,firstTestAt,{historical:true}),firstProof,'actual test survives later retirement, blocked retest and rebase');assert.equal(PATHS.integrationEvidence(s,path.id,firstTestAt),null,'an old test cannot authorize the new generation');assert.ok(PATHS.integrationEvidence(s,path.id,edge.result.checkedAt));
   const unowned=PATHS.projectEvidence(SOC.create({experience:'campaign',scenario:'smb'}),'absent-provider-project');assert.deepEqual(unowned,{ready:false,missing:['PAID_PARTNER_PATH_PROJECT_REQUIRED'],evidence:null},'a Lab product test alone earns no Provider partner credit');
  }
 });

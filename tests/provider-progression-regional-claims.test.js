@@ -591,10 +591,28 @@ test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and
   const receipt = state.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
   checkpoint('t2-earned-window', state, { sourceId: T2, customerIds: receipt?.sourceEvidence?.customerIds || [] });
   assert.ok(receipt);
+  assert.ok(receipt.evidenceInterval.from <= receipt.sourceEvidence.interval.from,
+    'receipt interval aggregates nested settlement and support-window intervals');
+  assert.ok(receipt.evidenceInterval.to >= receipt.sourceEvidence.interval.to,
+    'receipt interval covers the complete support window');
   assert.deepEqual(receipt.unlock.allowedCustomerIds, [...customerIds].sort());
   assert.deepEqual(receipt.unlock.allowedMarkets, ready.evidence.markets);
   assert.equal(state.business.balance.cash, cashBeforeClaim, 'claiming the measured tier grants no cash');
   assert.equal(SOC.restore(JSON.stringify(state)).providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2).id, receipt.id);
+
+  const alteredAggregate = clone(state);
+  const aggregateReceipt = alteredAggregate.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
+  aggregateReceipt.evidenceInterval.from++;
+  rehash(aggregateReceipt);
+  assert.throws(() => SOC.restore(JSON.stringify(alteredAggregate)), /INVALID_PROVIDER_PROGRESSION_RECEIPT_EVIDENCE/,
+    'rehashed aggregate interval edits fail the recomputed source summary');
+
+  const alteredWindow = clone(state);
+  const windowReceipt = alteredWindow.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);
+  windowReceipt.sourceEvidence.interval.from++;
+  rehash(windowReceipt);
+  assert.throws(() => SOC.restore(JSON.stringify(alteredWindow)), /INVALID_PROVIDER_PROGRESSION_RECEIPT/,
+    'rehashed support-window interval edits fail against the retained samples');
 
   const forged = clone(state);
   const forgedReceipt = forged.providerCampaign.progressionReceipts.receipts.find(row => row.sourceId === T2);

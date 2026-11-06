@@ -1,5 +1,18 @@
 # Verified SMB and active fixes — 6 November 2026, 05:47 UTC
 
+## Continuation checkpoint — 6 November 2026, 06:30 UTC
+
+Regional arrival authority and retention are repaired in `271dc3b` and documented in `PROVIDER_ARRIVAL_RETENTION.md`. Exact arrivals are retained outside the ordinary working-event budget; unknown/forged provenance refuses, and validated v1 regional pins migrate on owned copies. Frozen five-test checks passed. The obsolete `34182d8` full regional run was deliberately stopped after its inputs were superseded (not passed). Fresh integrated AC-SOC-656 is running with artifacts under `/home/zane-fountylabs/soc-evidence-archive/regional-656-9917113/`; inspect its result before claiming closure.
+
+Training lock loss is fixed in `43f9186` and registered by `874054e`: worker cancellation, stale-write refusal, export and delayed old-lease rejection are tested. Native Chromium lock stealing passes, as do four guided/assessed desktop/mobile curriculum shards traversing all four tracks. Firefox/WebKit equivalents are running on the same frozen inputs. See `TRAINING_LOCK_VERIFICATION.md`, including the distinction between completed retained curriculum checkpoints and the live quick-assessment badge.
+
+Integrated `9917113` passed eleven affected room, arrival-retention and Training tests plus source/coverage/mapping, translations and build, with no changed inputs. Its exact receipt is `/home/zane-fountylabs/soc-evidence-archive/integrated-9917113-verification/`. PR #43 contains the regional fixes; PR #44 now integrates them with rooms and Training. PR #45 has been synchronized with the regional parent; its eleven native admission-security tests pass. All remain draft pending final verification and protected review.
+
+Paid security controls and six desktop/mobile Chromium/Firefox/WebKit journeys are reviewable in PR #46, based on #45. The frozen runtime passed twelve focused tests and checks; all six browser cells passed without input drift. See `PROVIDER_PAID_SECURITY_VERIFICATION.md` on that branch. Authored abuse scheduling, retained SCRUB progression evidence and its useful earned choice remain unfinished. Bounded specialists are preparing that recipe and the separate P5 five-partner-services progression helper in isolated worktrees; neither is a completed claim.
+
+The ledger remains **122 verified / 33 pending / four owner-parked**. No new exact assertion or full-product completion is inferred from these repairs. Protected Pages still serves main `0ef9432`; current PRs have not deployed. Human participation and broader catalogue/research acceptance remain separate. Preserve old failure receipts. New evidence belongs under `/home/zane-fountylabs/soc-evidence-archive/` because `/tmp` is nearly full; the SMB evidence path there now has a compatibility symlink at its original `/tmp` path.
+
+
 Frozen `1139239` passed all twelve Swift/Steady desktop/mobile Chromium/Firefox/WebKit journeys plus two supplemental cost/incident captures. The exact ledger is now 122 verified, 33 pending and four parked. See [the scoped browser receipt](PROVIDER_SMB_BROWSER_20261106.md); no human or final publication completion is claimed.
 
 PR #43 is pushed through `7d9136e`, with scoped historical model and copy reductions. A real external-hook cache mutation regression was fixed with a defensive copy at that callback boundary. Fresh AC-SOC-656 on `557129b` passed the former minute-345 failure, then failed an actual minute-540 renewal with `INVALID_PROVIDER_PROGRESSION_RECEIPT` after184seconds. The captured save and command are under `/home/zane-fountylabs/soc-evidence-archive/regional-656-557129b/`; diagnosis remains active.

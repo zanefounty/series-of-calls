@@ -899,6 +899,28 @@
       "sha256": "aa6e61358b51f06a2acfd0ffabfb743353893b3f4dfc656bc694e729b0606764",
       "independentAudit": "/tmp/soc-1a8a70d-smb-directional-closure-audit.json",
       "independentAuditSha256": "2baf73b82f31479bbcbd58e0115995cb8f12ee616711a66706dbecf4acfa5ac4"
+    },
+    "reporting-fa8a7aa": {
+      "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
+      "status": "passed-exact-document-review",
+      "rawArtifact": "/tmp/soc-play052-play023-independent-audit.json",
+      "sha256": "9b31e0c4fc3f9e7fab895cb7d9f4e5caaea12bfa71c2d89e721af9fd0e9f37e3",
+      "inputs": {
+        "spec/provider-gameplay-v1/requirements.json": "fde4da061e778a94dbaec28abcb42173b97b98b336f863420f31002d4c9e11c4",
+        "docs/GAMEPLAY_PILOT_PROTOCOL.md": "f39c1c5f1d9fc889130684202af07531d52ea77441c72fbd08b6d641012c5d21",
+        "docs/RESTART_HANDOFF.md": "05045146109f7b248ae307695598ab28ab21517a4b44fe530efb3874e3b1d82e",
+        "docs/GAMEPLAY_REBUILD_CHECKPOINT.md": "01c11371f2f1955ee6a9cd787874214273b83c8ea7b059b6f0442579d26e630a",
+        "docs/PROVIDER_VERIFICATION.md": "9fd07bea1bef4d39be2418443dc0dd7d8a1c994f0330bc804a7ba4dec7f26111",
+        "STATUS.md": "af799cafd1c95980ce758af1cd6ca100c55163183d8b28db397bf2c3ba2218a8",
+        "docs/PROVIDER_REBUILD.md": "3029b98fbd2bf8d68898d0b0ba0e3336ddf80e56fa790d0f392db7a7c7dc293a",
+        "scripts/provider-browser.js": "5b9cbba3051d1114f479c7f1abfaa2099634864e23aa418712a8f86a8112841f",
+        "src/game/25-provider-campaign.js": "220d4ee9b97a1d5de1af58a86dda079d2c100fb235099f799a62cd648a39b286",
+        "src/game/55-communications.js": "e900fa2864c9dbf9f87ab06479f5c2c542cf6b49314b919b6abea2c43c074b99",
+        "src/game/97-provider-shell.js": "0ca82db1412559bcc1ba3ef37180f3ebab79a30ed02e2e11dfe3a85f41aa4117",
+        "src/game/98-provider-runtime.js": "7e6ba2ac663490160f9265379819309cfd0c5cda2b539b96b97d1daf79f629a9",
+        "content/provider-campaigns.json": "e508514a2d8a75c89fb26e601cdf692194b148cf4bc9f0526f3d30a8845e2049"
+      },
+      "scope": "Exact reporting and handoff distinctions only. No human participation, full gameplay, browser matrix, fresh deployment or source-catalogue completion is claimed."
     }
   },
   "tests": {
@@ -4032,6 +4054,22 @@
       "run": "smb-directional-1a8a70d",
       "log": "/tmp/soc-support-victory-1a8a70d-smb.log",
       "logLine": 1
+    },
+    "DOCS-PILOT-HONESTY": {
+      "file": "docs/GAMEPLAY_PILOT_PROTOCOL.md",
+      "name": "Do not claim people tested the game unless they actually did; human evidence stays pending until then.",
+      "fileSha256": "f39c1c5f1d9fc889130684202af07531d52ea77441c72fbd08b6d641012c5d21",
+      "kind": "independent-document-review",
+      "run": "reporting-fa8a7aa",
+      "result": "passed"
+    },
+    "DOCS-HANDOFF-SCOPE": {
+      "file": "docs/RESTART_HANDOFF.md",
+      "name": "Handoff distinguishes playable UI revision, remaining full-conversion obligations, browser verification and publication status.",
+      "fileSha256": "05045146109f7b248ae307695598ab28ab21517a4b44fe530efb3874e3b1d82e",
+      "kind": "independent-document-review",
+      "run": "reporting-fa8a7aa",
+      "result": "passed"
     }
   },
   "requirements": {
@@ -5001,13 +5039,12 @@
         "STATUS.md"
       ],
       "sourceIds": [],
-      "remaining": "See individually scoped assertion records; 1 of 3 exact assertions verified. No whole source-family disposition follows.",
+      "remaining": "See individually scoped assertion records; 3 of 3 exact assertions verified. No whole source-family disposition follows.",
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
       ],
       "assertionStatusCounts": {
-        "verified-current-candidate": 1,
-        "pending-current-candidate-verification": 2
+        "verified-current-candidate": 3
       }
     }
   },
@@ -13907,7 +13944,7 @@
       "requirement": "PLAY-052",
       "sourceIndex": 1,
       "assertion": "Do not claim people tested the game unless they actually did; human evidence stays pending until then.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
@@ -13918,27 +13955,29 @@
         "docs/GAMEPLAY_PILOT_PROTOCOL.md"
       ],
       "reviewTestCandidates": [],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
         "implementation": [
-          "STATUS.md",
           "docs/GAMEPLAY_PILOT_PROTOCOL.md",
-          "docs/GAMEPLAY_REBUILD_CHECKPOINT.md",
-          "docs/PROVIDER_CACHE_UPGRADE.md"
+          "docs/RESTART_HANDOFF.md",
+          "docs/GAMEPLAY_REBUILD_CHECKPOINT.md"
         ],
-        "tests": [],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "tests": [
+          "DOCS-PILOT-HONESTY"
+        ],
+        "scope": "Zero recorded participants; slots not results; automation not human evidence; pilot remains pending. Human sessions separate; dated synthetic browser and engineering results qualified. Automated timing explicitly not human pilot measurements; participation external.",
+        "limitations": "Actual human sessions/results remain pending separately. Recheck honesty when reports change; do not make eventual participation a prerequisite for this reporting clause.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "All reviewed reports label automation as synthetic and actual human participation remains pending. Keep this reporting obligation open through the eventual pilot and final handoff."
+      "remaining": "No remaining criterion for this exact reporting clause at the reviewed checkpoint. Actual human sessions/results remain pending separately. Recheck honesty when reports change; do not make eventual participation a prerequisite for this reporting clause."
     },
     {
       "id": "PLAY-052-A03",
       "requirement": "PLAY-052",
       "sourceIndex": 2,
       "assertion": "Handoff distinguishes playable UI revision, remaining full-conversion obligations, browser verification and publication status.",
-      "status": "pending-current-candidate-verification",
+      "status": "verified-current-candidate",
       "supportingTestCandidates": [],
       "candidateDiscoveryRefs": [
         "prepared-human-pilot"
@@ -13949,20 +13988,22 @@
         "docs/GAMEPLAY_PILOT_PROTOCOL.md"
       ],
       "reviewTestCandidates": [],
-      "reviewGapClass": "verification-gap",
+      "reviewGapClass": "exact-assertion-verified",
       "verification": {
-        "candidate": "e49234902abb3f273aad8645baad1ef0766389d1",
+        "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
         "implementation": [
-          "STATUS.md",
-          "docs/GAMEPLAY_PILOT_PROTOCOL.md",
-          "docs/GAMEPLAY_REBUILD_CHECKPOINT.md",
-          "docs/PROVIDER_CACHE_UPGRADE.md"
+          "docs/RESTART_HANDOFF.md",
+          "docs/PROVIDER_REBUILD.md",
+          "docs/PROVIDER_VERIFICATION.md"
         ],
-        "tests": [],
-        "scope": "Only the exact assertion; does not certify its entire source family or broader owner plan.",
-        "result": "supporting-only"
+        "tests": [
+          "DOCS-HANDOFF-SCOPE"
+        ],
+        "scope": "Separate draft revisions; exact focused/acceptance/browser scope; failures and pending full suite; remaining assertions/adapters/catalogue/research; preview0ef9432 and no newer deployment claim. Local run instructions, two reference strategies, actual delivery distinction and pending human pilot. Dated earlier handoff explicitly separates supplied UI revision, release rejection, broader source requirements, human pilot and deployment.",
+        "limitations": "No full UI revision, catalogue, browser matrix or publication completion implied. Update dated handoff as later results arrive; no fresh live deployment verification performed.",
+        "result": "passed-exact-assertion"
       },
-      "remaining": "PR29 is merged and eb0e88 preview publication is verified. Final handoff still must reconcile the remaining progression/catalogue work, all mission/family/Training browser coverage, human pilot and parked long-play."
+      "remaining": "No remaining criterion for this exact reporting clause at the reviewed checkpoint. No full UI revision, catalogue, browser matrix or publication completion implied. Update dated handoff as later results arrive; no fresh live deployment verification performed."
     }
   ],
   "candidateDiscovery": {
@@ -14303,7 +14344,7 @@
     "scope": "Counts describe the original exact assertions only. Verified assertions do not complete broader owner-plan additions or the full ecosystem/source gate.",
     "requirements": 52,
     "assertions": 159,
-    "assertionsClosed": 114,
+    "assertionsClosed": 116,
     "phaseClusters": [
       {
         "phase": 1,
@@ -14361,8 +14402,8 @@
         "assertions": 25,
         "status": "partially-verified",
         "statusCounts": {
-          "verified-current-candidate": 13,
-          "pending-current-candidate-verification": 8,
+          "verified-current-candidate": 15,
+          "pending-current-candidate-verification": 6,
           "parked-owner-request": 4
         }
       }
@@ -14419,8 +14460,8 @@
       "parked-owner-request": "Explicitly parked long-play work; not passed, not excluded."
     },
     "counts": {
-      "verified-current-candidate": 114,
-      "pending-current-candidate-verification": 41,
+      "verified-current-candidate": 116,
+      "pending-current-candidate-verification": 39,
       "parked-owner-request": 4
     },
     "unmatchedDiscoveryTestsAreNotEvidence": true,
@@ -14574,6 +14615,15 @@
           "OWNER-INFLIGHT-DIRECTIONAL-MEDIA"
         ],
         "scope": "One original assertion and one separate owner addition; frozen nine-case receipt and independent review. Full suite and browser matrix remain separate."
+      },
+      {
+        "candidate": "fa8a7aa84ba5d4691742651b24beb0ca1419881f",
+        "run": "reporting-fa8a7aa",
+        "assertions": [
+          "PLAY-052-A02",
+          "PLAY-052-A03"
+        ],
+        "scope": "Honest reporting and distinct handoff scope verified. Human pilot remains external; PLAY-023-A03 awaits current measured timestamps."
       }
     ]
   }

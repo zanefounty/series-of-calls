@@ -1,6 +1,6 @@
 # Gameplay acceptance reconciliation — 6 November 2026
 
-The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **114 exact assertions verified, 41 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
+The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **116 exact assertions verified, 39 pending and four parked**. Each result names its tested candidate. These counts do not certify the whole gameplay rebuild or source catalogue. Original assertion text, source hashes and closure policy remain unchanged.
 
 | Phase | Verified | Pending | Parked |
 | --- | ---: | ---: | ---: |
@@ -9,7 +9,7 @@ The [159-assertion ledger](GAMEPLAY_REBUILD_ACCEPTANCE.json) records **114 exact
 | 3 — map and interaction | 13 | 11 | 0 |
 | 4 — strategy and growth | 16 | 5 | 0 |
 | 5 — missions and ecosystem | 32 | 8 | 0 |
-| 6 — compatibility and delivery | 13 | 8 | 4 |
+| 6 — compatibility and delivery | 15 | 6 | 4 |
 
 The earlier Finance reconciliation and these four historical exact closures retain their original evidence:
 
@@ -60,3 +60,5 @@ The independent inventory review at `10759c7` closes **PLAY-039-A02** and **PLAY
 The independently reviewed terminal AC-SOC-674/686/687 results at frozen `7e6ca47` close **PLAY-009-A02** and **PLAY-030-A03**: relabelled Lab exports cannot restore Provider authority, and a paid human voice-to-digital handoff retains one case, one resolution and exact usage with restore/worker parity. The full suite remains in progress. Full six-total case conservation remains pending. The public overdue-critical victory counterexample was subsequently verified below.
 
 Frozen `1a8a70d` closes **PLAY-008-A04** and the separate **OWNER-INFLIGHT-DIRECTIONAL-MEDIA** addition. Fresh Swift and Steady reference journeys win only after qualifying service and funded expansion. AC-SOC-769 proves actual active or acknowledged overdue incidents prevent victory despite two qualifying profitable periods; paid recovery permits the legitimate win. AC-SOC-673 loses each media direction independently after a connected minute, ends the call without charging failed usage, releases capture once and admits a fresh recovery call with restore/worker parity. Nine focused cases passed with all 1,415 input hashes unchanged. These results do not establish a full-suite or browser-matrix pass.
+
+Independent review at `fa8a7aa` closes **PLAY-052-A02/A03** for their exact reporting obligations: documents keep human participation pending and distinguish the playable draft, outstanding conversion work, browser evidence and deployed preview. No pilot sessions, complete browser matrix or final release are implied. **PLAY-023-A03 remains pending:** older automated timings have 33 changed inputs, and current room journeys do not record the opening timing fields. The audit and file hashes are linked in the ledger.

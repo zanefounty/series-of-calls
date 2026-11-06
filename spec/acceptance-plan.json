@@ -50,7 +50,9 @@
       "AC-SOC-725",
       "AC-SOC-829",
       "AC-SOC-830",
-      "AC-SOC-831"
+      "AC-SOC-831",
+      "AC-SOC-871",
+      "AC-SOC-872"
     ],
     "tests/provider-owned-site-platform-migration.test.js": [
       "AC-SOC-637",

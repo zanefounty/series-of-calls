@@ -226,7 +226,7 @@ test('AC-SOC-831 mission failure panel explains default and missing customers wi
  }finally{dom.window.close();}
 });
 
-test('PLAY-004-A03 Provider decision modal and hidden visibility event pause without catch-up',async()=>{
+test('AC-SOC-871 Provider decision modal and hidden visibility event pause without catch-up',async()=>{
  const {dom,w}=boot();try{
   w.requestAnimationFrame=()=>0;w.Worker=undefined;const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();
   await w.providerNew({providerName:'Pause Boundary MSP',scenario:'smb'});const runtime=w.__SCP;assert.equal(runtime.state.clock,0);
@@ -241,7 +241,7 @@ test('PLAY-004-A03 Provider decision modal and hidden visibility event pause wit
  }finally{w.providerRelease();dom.window.close();}
 });
 
-test('PLAY-004-A03 an earned Provider mission victory leaves no runnable campaign clock',()=>{
+test('AC-SOC-872 an earned Provider mission victory leaves no runnable campaign clock',()=>{
  const customerId='starter-customer';let state=SOC.create({experience:'campaign',scenario:'smb',market:'au-sydney',difficulty:'normal'});
  const send=command=>{state=SOC.dispatch(state,{type:'provider',command});};
  const buy=command=>{const quote=SOC.provider.quote(state,command);assert.deepEqual(quote.blockers,[],JSON.stringify({clock:state.clock,command,blockers:quote.blockers}));send({...command,quoteRevision:quote.atRevision});};

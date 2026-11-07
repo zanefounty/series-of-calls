@@ -1,0 +1,62 @@
+{
+  "id": "provider-partner-paths-1",
+  "version": 1,
+  "sourceIds": [
+    "uc-new:family:microsoft:workplace-phone",
+    "uc-new:family:cisco:suite-calling",
+    "uc-new:family:microsoft:communication-apis",
+    "uc-new:family:cisco:programmable-engagement",
+    "uc-new:family:cisco:local-speech",
+    "uc-new:family:cisco:contact-center"
+  ],
+  "paths": [
+    {
+      "id": "workplace-to-suite-calling",
+      "operationId": "partner-workplace-suite-calling",
+      "retestOperationId": "partner-workplace-suite-calling-retest",
+      "integrationId": "partner-workplace-suite-calling",
+      "source": { "deploymentId": "d-ms-workplace-calling", "family": "microsoft:workplace-phone", "feature": "telephony", "resourceId": "phone" },
+      "target": { "deploymentId": "d-cisco-suite-calling", "family": "cisco:suite-calling", "feature": "multitenant-calling", "resourceId": "phone" },
+      "resourceIds": ["phone", "carrier"],
+      "requiredProducts": ["ms-workplace-calling", "cisco-suite-calling"],
+      "supportedChoices": ["multitenant-carrier-connected"],
+      "deliveryKind": "resolved-voice-call",
+      "failureCodes": ["COMPATIBILITY_SCOPE_STALE", "SOURCE_FEATURE_UNAVAILABLE", "TARGET_FEATURE_UNAVAILABLE", "DIRECTIONAL_PATH_UNAVAILABLE"],
+      "recovery": "restore-supported-product-and-carrier-path-then-paid-retest",
+      "offer": { "setupCents": 98000, "periodCents": 13000, "workMinutes": 10, "engineers": 1, "support": 1 },
+      "retestOffer": { "setupCents": 42000, "periodCents": 13000, "workMinutes": 6, "engineers": 1, "support": 1 }
+    },
+    {
+      "id": "communications-api-to-engagement-workflow",
+      "operationId": "partner-api-engagement-workflow",
+      "retestOperationId": "partner-api-engagement-workflow-retest",
+      "integrationId": "partner-api-engagement-workflow",
+      "source": { "deploymentId": "d-ms-communications-api", "family": "microsoft:communication-apis", "feature": "embedded-communications", "resourceId": "engage" },
+      "target": { "deploymentId": "d-cisco-programmable-engagement", "family": "cisco:programmable-engagement", "feature": "workflow-flows", "resourceId": "engage" },
+      "resourceIds": ["identity", "engage", "messages"],
+      "requiredProducts": ["ms-communications-api", "cisco-programmable-engagement"],
+      "supportedChoices": ["receipt-bound-api-to-human-handoff"],
+      "deliveryKind": "same-case-api-human-handoff",
+      "failureCodes": ["COMPATIBILITY_SCOPE_STALE", "API_RECEIPT_NOT_DELIVERED", "CHANNEL_PERMISSION_REQUIRED", "HUMAN_HANDOFF_UNAVAILABLE"],
+      "recovery": "restore-api-and-channel-authority-then-paid-retest",
+      "offer": { "setupCents": 116000, "periodCents": 18000, "workMinutes": 14, "engineers": 1, "support": 1 },
+      "retestOffer": { "setupCents": 48000, "periodCents": 18000, "workMinutes": 7, "engineers": 1, "support": 1 }
+    },
+    {
+      "id": "local-speech-product-integration",
+      "operationId": "partner-local-speech-assistance",
+      "retestOperationId": "partner-local-speech-assistance-retest",
+      "integrationId": "partner-local-speech-assistance",
+      "source": { "deploymentId": "d-cisco-local-speech", "family": "cisco:local-speech", "feature": "versioned-integration", "resourceId": "speech" },
+      "target": { "deploymentId": "d-cisco-contact-centre", "family": "cisco:contact-center", "feature": "ai-assistance", "resourceId": "speech" },
+      "resourceIds": ["local", "speech", "recorder", "archive"],
+      "requiredProducts": ["cisco-local-speech", "cisco-contact-centre", "recording"],
+      "supportedChoices": ["customer-operated-local", "en", "ja", "transcription", "diarisation"],
+      "deliveryKind": "same-call-local-transcription-assistance",
+      "failureCodes": ["SPEECH_MODEL_NOT_READY", "SPEECH_INTEGRATION_EVIDENCE_REQUIRED", "LOCAL_PROCESSING_BOUNDARY_UNAVAILABLE", "RECORDING_LINEAGE_MISMATCH"],
+      "recovery": "restore-local-model-licence-and-boundary-then-paid-retest",
+      "offer": { "setupCents": 184000, "periodCents": 26000, "workMinutes": 20, "engineers": 2, "support": 1 },
+      "retestOffer": { "setupCents": 72000, "periodCents": 26000, "workMinutes": 10, "engineers": 1, "support": 1 }
+    }
+  ]
+}

@@ -39,6 +39,18 @@ function socProviderRegionalIntegrationsKernel(){
   const relevant=(child.products?.integrations||[]).filter(edge=>edge.source===deploymentId&&edge.features?.some(pair=>pair.sourceFeature===feature)||edge.target===deploymentId&&edge.features?.some(pair=>pair.targetFeature===feature));
   for(const edge of relevant){
    const paidPlans=projects.filter(p=>p.customerId===c.id&&api.OPERATION_IDS.includes(p.operationId)&&paid(s,p)&&integer(p.configSubmittedAt)&&p.operationReceipt?.kind==='provider-uc-cc-integration'&&p.operationReceipt.version===1&&p.operationReceipt.projectId===p.id&&p.operationReceipt.postingId===p.postingId&&p.operationReceipt.submittedAt===p.configSubmittedAt&&api.validatePlanShape(p.operationReceipt.plan)&&p.operationReceipt.plan.customerId===c.id&&p.operationReceipt.plan.tenant===child.tenant&&p.operationReceipt.plan.edge.id===edge.id);
+   // Paid partner connections share the native directional edge timeline,
+   // while retaining their separate commissioning and delivery rules.
+   for(const p of projects){
+    const receipt=p.operationReceipt,partner=receipt?.partnerPath,plan=p.partnerPathPlan;
+    if(p.customerId!==c.id||!paid(s,p)||!integer(p.configSubmittedAt)||receipt?.kind!=='provider-partner-path'||receipt.version!==1||receipt.projectId!==p.id||receipt.postingId!==p.postingId||receipt.submittedAt!==p.configSubmittedAt||!plan||!same(plan,partner?.plan)||plan.integrationId!==edge.id||plan.customerId!==c.id||partner.integrationId!==edge.id)continue;
+    const api=typeof SOC_PROVIDER_PARTNER_PATHS!=='undefined'?SOC_PROVIDER_PARTNER_PATHS:require('./23-provider-partner-paths.js'),path=api.PATHS[plan.pathId];
+    if(!path||![path.operationId,path.retestOperationId].includes(p.operationId)||plan.operationId!==p.operationId)continue;
+    const terms=p.operationId===path.operationId?path.offer:path.retestOffer;
+    if(['setupCents','periodCents','workMinutes','engineers','support'].some(k=>p[k]!==terms[k])||plan.source.deploymentId!==path.source.deploymentId||plan.target.deploymentId!==path.target.deploymentId||plan.source.feature!==path.source.feature||plan.target.feature!==path.target.feature)continue;
+    const test=partner.test;
+    paidPlans.push({...p,operationReceipt:{plan:{...plan,tenant:child.tenant,edge:{id:edge.id,features:[{sourceFeature:path.source.feature,targetFeature:path.target.feature}]}},test:test?{version:1,edgeId:edge.id,at:test.testAt,result:test.test.result}:null}});
+   }
    const starts=paidPlans.filter(p=>['create','rebase'].includes(p.operationReceipt.plan.edgeAction)).sort((a,b)=>a.configSubmittedAt-b.configSubmittedAt);
    if(!starts.length)return false;
    const start=starts.filter(p=>p.configSubmittedAt<=at).at(-1);if(!start)continue;

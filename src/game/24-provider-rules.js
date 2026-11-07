@@ -1789,6 +1789,52 @@ function socProviderRulesKernel(){
         "uc-new:domain:workforce",
         "uc-new:domain:journey-testing"
       ]
+    },
+    {
+      "id": "partner-workplace-suite-calling",
+      "name": "Grove and Disco calling connection",
+      "description": "Connect the two funded calling products. Test their directional compatibility, then deliver a real customer call.",
+      "setupCents": 98000,
+      "periodCents": 13000,
+      "workMinutes": 10,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-suite-calling"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:suite-calling"
+      ]
+    },
+    {
+      "id": "partner-workplace-suite-calling-retest",
+      "name": "Retest Grove and Disco calling",
+      "description": "Fund a fresh compatibility test after a product change or recorded failure, then deliver a real call.",
+      "setupCents": 42000,
+      "periodCents": 13000,
+      "workMinutes": 6,
+      "engineers": 1,
+      "support": 1,
+      "resources": [
+        "phone",
+        "carrier"
+      ],
+      "config": {},
+      "requirements": [
+        "ms-workplace-calling",
+        "cisco-suite-calling"
+      ],
+      "sourceIds": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:suite-calling"
+      ]
     }
   ],
   "families": [

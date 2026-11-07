@@ -24906,7 +24906,15 @@
     "testIds": [
       "AC-SOC-085",
       "AC-SOC-332",
-      "AC-SOC-333"
+      "AC-SOC-333",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -24954,7 +24962,15 @@
     "testIds": [
       "AC-SOC-085",
       "AC-SOC-332",
-      "AC-SOC-333"
+      "AC-SOC-333",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -25008,7 +25024,15 @@
       "AC-SOC-696",
       "AC-SOC-697",
       "AC-SOC-698",
-      "AC-SOC-699"
+      "AC-SOC-699",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -25030,7 +25054,15 @@
     "testIds": [
       "AC-SOC-085",
       "AC-SOC-332",
-      "AC-SOC-333"
+      "AC-SOC-333",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -25086,7 +25118,15 @@
       "AC-SOC-733",
       "AC-SOC-734",
       "AC-SOC-735",
-      "AC-SOC-736"
+      "AC-SOC-736",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -25188,7 +25228,15 @@
       "AC-SOC-392",
       "AC-SOC-406",
       "AC-SOC-410",
-      "AC-SOC-411"
+      "AC-SOC-411",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -30156,7 +30204,16 @@
       "AC-SOC-831",
       "AC-SOC-871",
       "AC-SOC-872",
-      "AC-SOC-874"
+      "AC-SOC-874",
+      "AC-SOC-876",
+      "AC-SOC-877",
+      "AC-SOC-878",
+      "AC-SOC-879",
+      "AC-SOC-880",
+      "AC-SOC-881",
+      "AC-SOC-882",
+      "AC-SOC-883",
+      "AC-SOC-884"
     ]
   },
   {
@@ -30186,7 +30243,8 @@
       "AC-SOC-357",
       "AC-SOC-361",
       "AC-SOC-787",
-      "AC-SOC-788"
+      "AC-SOC-788",
+      "AC-SOC-876"
     ]
   },
   {

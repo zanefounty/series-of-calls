@@ -118,3 +118,17 @@
 }
 
 .soc-training-preferences{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;border-top:1px solid #c4d4d5}.soc-training-preferences label{min-height:44px;display:flex;align-items:center;gap:8px;font-weight:650}.soc-training-preferences input[type=checkbox]{width:20px;height:20px}.soc-training-preferences select{max-width:100%}#soc-console.is-training-map.reduce-motion *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+@media (min-width:781px) and (max-width:900px) and (max-height:500px){
+ #soc-console.is-training-map .soc-training-hud{min-height:58px;padding:5px 10px}
+ #soc-console.is-training-map>.soc-status{padding:3px 10px}
+ #soc-console.is-training-map .soc-training-viewport{padding:40px 12px}
+ #soc-console.is-training-map .soc-training-lesson{left:10px;top:8px;width:250px;max-height:105px;gap:6px}
+ #soc-console.is-training-map .soc-training-lesson h2{font-size:15px}
+ #soc-console.is-training-map .soc-training-result{min-width:95px;max-width:42%;font-size:11px}
+ #soc-console.is-training-map .soc-training-course{left:auto;right:10px;bottom:8px;width:250px;max-height:90px;padding:7px 9px}
+ #soc-console.is-training-map .soc-training-inspector{display:none;position:fixed;z-index:1000;left:0;right:0;top:auto;bottom:0;width:100%;max-height:72dvh}
+ #soc-console.is-training-map .soc-training-inspector.is-open{display:flex}
+ #soc-console.is-training-map .soc-training-inspector-close{display:inline-flex;align-self:flex-end;min-height:44px;padding:8px 12px;border:2px solid #203640;border-radius:9px;background:#fff;color:#203640;font-weight:800}
+ #soc-console.is-training-map .soc-training-inspector-open{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px}
+ #soc-console.is-training-map .soc-training-map-controls{left:auto;right:10px;top:8px;bottom:auto}
+}

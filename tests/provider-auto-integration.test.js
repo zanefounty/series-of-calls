@@ -52,7 +52,7 @@ test('included calling-to-contact check records the scoped supplier and boundary
  for(const id of ['bpo','ms-workplace-calling','cisco-contact-centre']){s=buy(s,{action:'operation',operationId:id,customerId});s=until(s,row=>project(row,id)?.status==='complete');}s=until(s,row=>row.clock>=60);s=buy(s,{action:'operation',operationId:'uc-cc-integration',customerId});s=until(s,row=>project(row,'uc-cc-integration')?.status==='commissioning');const p=project(s,'uc-cc-integration');assert.equal(p.operationReceipt.test?.result.status,'scenario-verified');assert.equal(p.operationReceipt.test?.at,s.clock);assert.equal(s.providerCampaign.events.filter(e=>e.code==='SERVICE_INTEGRATION_TESTED'&&e.projectId===p.id&&e.policyVersion===1).length,1);assert.equal(p.operationReceipt.task,null,'customer work and paid review are still needed for effective service');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
-test('Government and recovered Defence run one included check on paid room endpoints without claiming delivered meetings',()=>{
+test('Government and recovered Defence deliver a real meeting after the included check on paid room endpoints',()=>{
  for(const scenario of ['government','defence']){
   let s=SOC.create({experience:'campaign',scenario,opening:'win',difficulty:'easy',seed:73});
   for(const stage of ['base','carrier','partner']){
@@ -95,5 +95,24 @@ test('Government and recovered Defence run one included check on paid room endpo
   const command={type:'advance',minutes:1},expected=SOC.dispatch(s,command),worker=new Function(`${SOC.workerSource()}\nreturn SOC;`)();
   assert.deepEqual(worker.dispatch(SOC.restore(JSON.stringify(s)),command),expected);
   assert.equal(expected.providerCampaign.events.filter(event=>event.code==='SERVICE_INTEGRATION_TESTED'&&event.projectId===funded.id).length,1);
+  s=until(expected,row=>project(row,'direct-room-integration')?.status==='complete',180);
+  const delivered=project(s,'direct-room-integration'),meetingReceipt=delivered.operationReceipt.evidence?.meeting;
+  assert.ok(meetingReceipt,`${scenario}: funded commissioning must finish only after real customer meeting work`);
+  const child=s.portfolio.customers.find(row=>row.id===customerId).root;
+  const session=child.information.meetingSessions.find(row=>row.id===meetingReceipt.sessionId);
+  const booking=child.information.bookings.find(row=>row.id===session?.bookingId);
+  const job=s.providerCampaign.jobs.find(row=>row.customerId===customerId&&row.channel==='meeting'&&row.sessionId===session?.id);
+  const missionMeeting=s.providerCampaign.meetings.find(row=>row.customerId===customerId&&row.sessionId===session?.id&&row.bookingId===booking?.id);
+  const originEvent=s.providerCampaign.events.find(row=>row.id===meetingReceipt.origin?.eventId);
+  assert.equal(session?.status,'completed');
+  assert.ok(session.endedAt>session.startedAt&&session.startedAt>tested.operationReceipt.test.checkedAt);
+  assert.equal(session.joinMethod,'bridge');
+  assert.ok(booking&&session.bookingId===booking.id);
+  const providerWork=!!job&&job.caseId===booking.caseId&&job.completedAt===session.endedAt;
+  const authoredWork=meetingReceipt.origin?.kind==='mission-meeting'&&missionMeeting?.status==='scheduled'&&originEvent?.code==='MISSION_MEETING_BOOKED'&&originEvent.sessionId===session.id;
+  assert.ok(providerWork||authoredWork,`${scenario}: completed bridge work must trace to a real Provider job or authored mission meeting`);
+  if(job)assert.ok(['completed','late'].includes(job.status));
+  assert.equal(s.business.ledger.filter(entry=>entry.projectId===funded.id).length,1);
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  }
 });

@@ -52801,9 +52801,19 @@
     "representation": "family:microsoft:workplace-phone",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52814,7 +52824,8 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -52890,9 +52901,19 @@
     "representation": "family:microsoft:communication-apis",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52903,7 +52924,8 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -52978,16 +53000,22 @@
     "representation": "family:cisco:suite-calling",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-dedicated-interconnect.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
+      "src/game/23-provider-regional-integrations.js",
       "src/game/24-provider-rules.js",
       "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -52999,7 +53027,8 @@
       "BEH-SOC-085",
       "BEH-SOC-332",
       "BEH-SOC-333",
-      "BEH-SOC-398"
+      "BEH-SOC-398",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -53036,9 +53065,19 @@
     "representation": "family:cisco:contact-center",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -53049,7 +53088,8 @@
     "behaviours": [
       "BEH-SOC-085",
       "BEH-SOC-332",
-      "BEH-SOC-333"
+      "BEH-SOC-333",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -53061,20 +53101,27 @@
     "representation": "family:cisco:programmable-engagement",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
       "src/game/22-provider-demand.js",
       "src/game/23-provider-case-followup.js",
       "src/game/23-provider-case-handoff.js",
+      "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-followup-retry-archive.js",
       "src/game/23-provider-history.js",
       "src/game/23-provider-journeys.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
+      "src/game/23-provider-regional-integrations.js",
       "src/game/24-provider-rules.js",
       "src/game/25-provider-campaign.js",
       "src/game/45-products.js",
       "src/game/55-communications.js",
       "src/game/87-advanced-admin-ui.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/93-ui/79-provider-case-followup.js",
       "src/game/93-ui/79-provider-case-handoff.js",
       "src/game/97-provider-shell.js",
@@ -53092,7 +53139,8 @@
       "BEH-SOC-333",
       "BEH-SOC-397",
       "BEH-SOC-399",
-      "BEH-SOC-400"
+      "BEH-SOC-400",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -53228,13 +53276,23 @@
     "representation": "family:cisco:local-speech",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
       "scripts/calls-mcp.js",
+      "src/game/23-provider-configuration-authority.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
+      "src/game/23-provider-regional-integrations.js",
+      "src/game/24-provider-rules.js",
+      "src/game/25-provider-campaign.js",
       "src/game/27-speech-models.js",
       "src/game/45-products.js",
       "src/game/52-information.js",
       "src/game/55-communications.js",
       "src/game/74-speech-models-ui.js",
       "src/game/87-advanced-admin-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/97-training.js",
       "tests/products.test.js"
     ],
@@ -53246,7 +53304,8 @@
       "BEH-SOC-085",
       "BEH-SOC-332",
       "BEH-SOC-333",
-      "BEH-SOC-365"
+      "BEH-SOC-365",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -62306,6 +62365,8 @@
     "representation": "REP-907fd7ff95a130c5",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "content/provider-partner-paths.v1.json",
       "scripts/calls-mcp.js",
       "scripts/mcp.js",
       "src/game/22-provider-demand.js",
@@ -62319,8 +62380,11 @@
       "src/game/23-provider-incident-diagnosis.js",
       "src/game/23-provider-incident-sequence.js",
       "src/game/23-provider-journeys.js",
+      "src/game/23-provider-partner-paths.js",
+      "src/game/23-provider-partner-support.js",
       "src/game/23-provider-progression-receipts.js",
       "src/game/23-provider-progression.js",
+      "src/game/23-provider-regional-integrations.js",
       "src/game/24-provider-rules.js",
       "src/game/25-provider-campaign.js",
       "src/game/37-portfolio.js",
@@ -62337,6 +62401,7 @@
       "src/game/84-portfolio-ui.js",
       "src/game/93-ui/10-dom.js",
       "src/game/93-ui/75-provider-panels.js",
+      "src/game/93-ui/78-provider-partner-paths.js",
       "src/game/93-ui/79-provider-case-followup.js",
       "src/game/93-ui/79-provider-case-handoff.js",
       "src/game/93-ui/79-provider-finance.js",
@@ -62429,7 +62494,9 @@
       "BEH-SOC-424",
       "BEH-SOC-426",
       "BEH-SOC-433",
-      "BEH-SOC-440"
+      "BEH-SOC-440",
+      "BEH-SOC-441",
+      "BEH-SOC-442"
     ]
   },
   {
@@ -62444,6 +62511,7 @@
       "content/campaign.json",
       "scripts/calls-mcp.js",
       "scripts/lib/mcp-page.js",
+      "src/game/25-provider-campaign.js",
       "src/game/37-portfolio.js",
       "src/game/38-admission-security.js",
       "src/game/42-transport.js",
@@ -62481,7 +62549,8 @@
       "BEH-SOC-198",
       "BEH-SOC-353",
       "BEH-SOC-361",
-      "BEH-SOC-419"
+      "BEH-SOC-419",
+      "BEH-SOC-441"
     ]
   },
   {

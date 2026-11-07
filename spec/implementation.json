@@ -7997,6 +7997,60 @@
       ],
       "status": "partial",
       "scope": "A genuinely funded two-customer Provider career shares engineering, support and cash. One customer paid product job blocks the other customer incident repair for support capacity; public cross-tenant dispatch and blocked repair refuse without mutation. When the shared team frees, the paid repair delivers with distinct customer postings against the same cash balance. Both tenant roots continue on the shared clock and restore exactly. This bounded dispatch case does not itself establish inspector browser behavior, cash-insufficiency refusal, long play or all ecosystem role obligations."
+    },
+    {
+      "id": "BEH-SOC-441",
+      "sources": [
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/25-provider-campaign.js",
+        "src/game/54-business.js",
+        "src/game/55-communications.js"
+      ],
+      "testIds": [
+        "AC-SOC-876"
+      ],
+      "status": "partial",
+      "scope": "Actual paid Provider checkpoints during a live bidirectional metered call, running project, authored incident and accrued pending bill reproduce the exact next outcome after restore and through serialized worker execution. No broader persistence, human or long-play completion claim."
+    },
+    {
+      "id": "BEH-SOC-442",
+      "sources": [
+        "uc-new:family:microsoft:workplace-phone",
+        "uc-new:family:cisco:suite-calling",
+        "uc-new:family:microsoft:communication-apis",
+        "uc-new:family:cisco:programmable-engagement",
+        "uc-new:family:cisco:local-speech",
+        "uc-new:family:cisco:contact-center",
+        "DEC-011"
+      ],
+      "implementation": [
+        "content/provider-partner-paths.v1.json",
+        "content/provider-campaigns.json",
+        "src/game/23-provider-partner-paths.js",
+        "src/game/23-provider-partner-support.js",
+        "src/game/23-provider-regional-integrations.js",
+        "src/game/23-provider-configuration-authority.js",
+        "src/game/24-provider-rules.js",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/78-provider-partner-paths.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-877",
+        "AC-SOC-878",
+        "AC-SOC-879",
+        "AC-SOC-880",
+        "AC-SOC-881",
+        "AC-SOC-882",
+        "AC-SOC-883",
+        "AC-SOC-884"
+      ],
+      "status": "partial",
+      "scope": "Funded workplace-to-suite calling connection, explicit map test, native directional admission and real subsequent delivered call. Historical delivery survives product retirement; full-price recommission and separately paid scope retest recover. Forged plans/delivery and unneeded retests refuse; worker/restore preserve the actual path. Native Lab tests additionally exercise directional API-channel-webhook-human delivery and product-scope failures. API/local-speech paid Provider paths, complete P5 progression and full source-family fidelity remain pending; the local-speech delivery contract alone is not executed proof."
     }
   ]
 }

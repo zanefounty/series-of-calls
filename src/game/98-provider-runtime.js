@@ -153,7 +153,7 @@ function providerPreferences(value){
 
 let providerAudioContext=null;
 function providerPresentationEvents(before,after){
- const story=SOC_PROVIDER_RULES.data.missions[after.providerCampaign.scenario]?.presentation,reactions=[];
+ const story=SOC.provider.rules.missions[after.providerCampaign.scenario]?.presentation,reactions=[];
  if(story)for(const customer of after.providerCampaign.customers){
   if(customer.id!=='starter-customer')continue;
   const previous=before.providerCampaign.customers.find(row=>row.id===customer.id),jobs=after.providerCampaign.jobs.filter(job=>job.customerId===customer.id),event=(code)=>after.providerCampaign.events.findLast(row=>row.customerId===customer.id&&row.code===code);

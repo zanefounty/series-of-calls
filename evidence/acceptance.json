@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-07T13:52:34.686507+00:00",
+  "runAt": "2026-11-07T17:46:38.993251+00:00",
   "command": [
     "node",
     "--test",
@@ -1455,7 +1455,7 @@
     "src/game/96-map/95-provider-canvas.js": "888b492fe3568f8b721c27cd8652f2c03ffc661e7735768ceb816f3d4b90c0e2",
     "src/game/96-map/96-training-map.js": "6a3e8b7b6f144b81549ba777250b0222773700b6cedb15daae7803f7d74a76ff",
     "src/game/96-operations-ui.js": "b23e9eb5651486bada61848756c3b6726a00244f2aff2f72ed4c815288470cf5",
-    "src/game/97-provider-shell.js": "90644138031f87340e4d120133904dfd985ffdcbf7dbe14f41608198119a4e7b",
+    "src/game/97-provider-shell.js": "01f46b26937180469164c61d915792b57270dfa4d953a57372d7a5d9b2f9ec1f",
     "src/game/97-training.js": "7197b2f373cc829e2d00af269cd8f028351e19a67b4ea9073c1981cb2a61b1b2",
     "src/game/98-business-ui.js": "c7d5c28fcb4dbf75ec617ef1d1b4c863c223e76bb7bfb9b80d356913e9292c2e",
     "src/game/98-provider-runtime.js": "1909e2e451cd654d8aba028aaa14dbda7df1d9886f5448f0e0dc4c1305fff334",
@@ -1674,7 +1674,7 @@
     "tests/provider-progression-receipts-level3-managed.test.js": "e270a8a890ff2d57b630c3eda5a6558d1fd04b4b5f4980376edd13296cd93927",
     "tests/provider-progression-receipts.helpers.js": "436cab2f91d22da3ed2be2b87e347b8ba6cc6a8bbf62bb149fb6a8346d449b84",
     "scripts/lib/elapsed-clock.js": "dff78d2179150e88562c77230e43563cce7dadf116614f8c69f1601731808819",
-    "scripts/provider-browser.js": "28f3f7a6b9c6b6428dd64f6788dd732ffa5c3e47bcabadbeefc61e52bb2da6c8",
+    "scripts/provider-browser.js": "8efacb2d3aec84abe7677091aa5da9e208b7e2c05b847cc7c9866a87d7f0812f",
     "tests/provider-progression-dispatch.test.js": "ebcae1354013a66897d8cdc1a4cd9b64b0955de06e3d2e232e417a14a84ffe28",
     "tests/provider-receipt-waits.test.js": "75458e63ad5f835277dc0d6b48868f2c929477208b50061f2ffac9d884bfd254",
     "tests/provider-inspection-read-views.test.js": "b9cf3e1e0d65dd44ceedbdb54ee2e1dcd0472facb323d8730e4568d33c4a81d9",

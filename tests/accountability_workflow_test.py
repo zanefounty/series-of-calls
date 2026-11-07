@@ -127,10 +127,10 @@ class AccountabilityWorkflowContract(unittest.TestCase):
         for block in [self.acceptance, self.gates]:
             self.assertIn('fail-fast: false', block)
         self.assertIn('part: [' + ', '.join(str(part) for part in range(1, 41)) + ']', self.acceptance)
-        self.assertIn('part: [1, 2, 3, 4, 5, 6, 7, 8]', self.gates)
+        self.assertIn('part: [' + ', '.join(str(part) for part in range(1, 41)) + ']', self.gates)
         self.assertIn('scripts/record-evidence.py --shard ${{ matrix.part }}/40', self.acceptance)
-        self.assertIn('name: development gates ${{ matrix.part }}/8', self.gates)
-        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/8', self.gates)
+        self.assertIn('name: development gates ${{ matrix.part }}/40', self.gates)
+        self.assertIn('scripts/verify.py all --acceptance-shard ${{ matrix.part }}/40', self.gates)
         self.assertIn('needs: [acceptance]', self.merge)
         self.assertIn('--merge-shards acceptance-parts --shard-count 40', self.merge)
         self.assertIn('pattern: acceptance-part-*-${{ github.run_id }}-${{ github.run_attempt }}', self.merge)

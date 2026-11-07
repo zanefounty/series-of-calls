@@ -48,6 +48,23 @@ test('new SMB form opts into the versioned staffing commitment for both opening 
  }finally{w.close();}
 });
 
+test('mission launch removes the SMB estate choice while keeping the visible mission selection',()=>{
+ const {w,calls}=boot();try{
+  click(w,'[data-provider-action="show-new-game"]');
+  let form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'the SMB opening comparison is available on the default mission');
+  form.elements.scenario.value='government';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.equal(form.elements.scenario.value,'government');
+  assert.equal(form.querySelector('[name="opening"]'),null,'a Government player cannot choose an ignored estate option');
+  form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(calls.other.at(-1)[1].opening,'win');
+  form.elements.scenario.value='smb';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'returning to SMB restores both prototype choices');
+ }finally{w.close();}
+});
+
 test('renewal policy controls submit scoped limits through Provider dispatch',()=>{
  const {w,calls}=boot();try{
   const state=SOC.create({experience:'campaign',opening:'estate',seed:77}),model=SOC.provider.inspect(state);

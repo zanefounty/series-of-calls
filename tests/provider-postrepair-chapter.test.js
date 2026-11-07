@@ -76,8 +76,10 @@ test('selected customer offers costed BPO cover and a clear current-team choice'
   for(const file of ['game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js'])w.eval(source(file));
   const html=w.SOCProviderPanels.inspector(model,{selection:{customerId}});
   assert.match(html,/The next 15 minutes/);
+  assert.match(html,/Provider staff build and support service; customer agents answer calls\./);
   assert.match(html,/BPO cover: A\$300 setup, A\$180 per period, 6 minutes to deliver/);
   assert.match(html,/data-provider-action="operation" data-operation="bpo"/);
+  assert.match(html,/Continue with current customer agents/);
   assert.match(html,/data-provider-action="speed" data-provider-value="8"/);
   assert.equal(SOC.provider.inspect(state).postRepairChapter.offered,0,'rendering does not create arrivals');
  }finally{w.close();}

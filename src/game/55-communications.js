@@ -167,7 +167,7 @@ const SOC = (function socKernel() {
       root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
-      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1,autoIntegrationChecksVersion:1}:{})},providerHooks());
+      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
     }
     if(opening==='estate'){
       let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};

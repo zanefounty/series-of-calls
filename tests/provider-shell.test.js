@@ -33,7 +33,7 @@ test('achievement controls preserve revision and source identity at the dispatch
 test('provider shell launches through callbacks and does not write simulation state',()=>{
  const {w,calls}=boot();click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');assert.ok(form.classList.contains('is-open'));
  form.elements.providerName.value='Harbour Relay';form.elements.market.value='us-seattle';form.elements.scenario.value='enterprise';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
- assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise'}]));
+ assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win'}]));
  click(w,'[data-provider-action="open"]');assert.deepEqual(calls.other.at(-1),['open','providerCampaign']);
  w.close();
 });
@@ -45,6 +45,23 @@ test('new SMB form opts into the versioned staffing commitment for both opening 
   assert.equal(calls.other.at(-1)[1].opening,'win');
   form.elements.opening.value='estate';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   assert.equal(calls.other.at(-1)[1].opening,'estate');
+ }finally{w.close();}
+});
+
+test('mission launch removes the SMB estate choice while keeping the visible mission selection',()=>{
+ const {w,calls}=boot();try{
+  click(w,'[data-provider-action="show-new-game"]');
+  let form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'the SMB opening comparison is available on the default mission');
+  form.elements.scenario.value='government';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.equal(form.elements.scenario.value,'government');
+  assert.equal(form.querySelector('[name="opening"]'),null,'a Government player cannot choose an ignored estate option');
+  form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(calls.other.at(-1)[1].opening,'win');
+  form.elements.scenario.value='smb';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'returning to SMB restores both prototype choices');
  }finally{w.close();}
 });
 
@@ -157,6 +174,19 @@ test('visible plan and operation quotes disclose engine forecast scope and valid
  const ui=boot({quoteHandler:request=>SOC.provider.quote(active,request)});try{
   ui.w.SOC_PROVIDER_UI.render(active,SOC.provider.inspect(active));click(ui.w,'[data-provider-action="drawer"][data-provider-value="operations"]');click(ui.w,'[data-provider-action="operation"][data-operation="expand"]');const text=ui.w.document.querySelector('.provider-modal').textContent;
   assert.match(text,/Minimum term\s*3 periods/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);assert.ok(text.includes(ui.w.SOCProviderHud.money(operationQuote.forecast.conditionalFullPlan.operatingResult)));
+ }finally{ui.w.close();}
+});
+
+test('starter staged quote keeps optional retail terms behind details while later quotes show them directly',()=>{
+ const state=SOC.create({experience:'campaign',opening:'win'}),ui=boot();try{
+  const first=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+  const firstHtml=ui.w.SOCProviderPanels.quote(first,{quoteRequest:first.request});
+  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary><form data-provider-form="retail-quote"/);
+  const committed=SOC.dispatch(state,{type:'provider',command:{...SOC.provider.quote(state,{action:'plan',offerId:'starter',planId:'swift'}).request,quoteRevision:state.revision}});
+  const later=SOC.provider.quote(committed,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
+  const laterHtml=ui.w.SOCProviderPanels.quote(later,{quoteRequest:later.request});
+  assert.match(laterHtml,/data-provider-form="retail-quote"/);
+  assert.doesNotMatch(laterHtml,/provider-starter-retail/);
  }finally{ui.w.close();}
 });
 

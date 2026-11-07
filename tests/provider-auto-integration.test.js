@@ -25,6 +25,24 @@ test('older campaign saves remain manual and policy changes require the current 
  const current=opening(),before=JSON.stringify(current);assert.throws(()=>send(current,{action:'configure-auto-integration-checks',enabled:true,suspended:true,quoteRevision:current.revision-1}),/STALE_PROVIDER_QUOTE/);assert.equal(JSON.stringify(current),before);
 });
 
+test('new mission careers opt into included checks while historical mission saves keep manual control',()=>{
+ for(const scenario of ['enterprise','government','defence']){
+  const current=SOC.create({experience:'campaign',scenario,opening:'win',seed:383});
+  assert.deepEqual(current.providerCampaign.autoIntegrationChecks,{version:1,enabled:true,suspended:false});
+  assert.equal(current.providerCampaign.staffingCommitmentVersion,undefined);
+  assert.equal(current.providerCampaign.autoReceiptPolicy,undefined);
+  assert.deepEqual(SOC.restore(JSON.stringify(current)),current);
+  const manual=SOC.create({experience:'campaign',scenario,seed:383});
+  assert.equal(manual.providerCampaign.autoIntegrationChecks,undefined);
+  assert.deepEqual(SOC.restore(JSON.stringify(manual)),manual);
+  const suspended=send(current,{action:'configure-auto-integration-checks',enabled:true,suspended:true,quoteRevision:current.revision});
+  assert.equal(suspended.providerCampaign.autoIntegrationChecks.suspended,true);
+  assert.deepEqual(SOC.restore(JSON.stringify(suspended)),suspended);
+  const forged=structuredClone(current);forged.providerCampaign.autoIntegrationChecks.version=2;
+  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_AUTO_INTEGRATION_POLICY/);
+ }
+});
+
 test('automatic compatibility scan matches the generated worker on a funded commissioning minute',()=>{
  let s=opening();for(const id of ['recording','ms-meetings-room','cisco-meetings-interoperability','primary-upstream']){s=buy(s,{action:'operation',operationId:id,customerId});s=until(s,row=>project(row,id)?.status==='complete');}s=buy(s,{action:'operation',operationId:'direct-room-integration',customerId});const before=until(s,row=>project(row,'direct-room-integration')?.status==='running'&&row.clock===project(row,'direct-room-integration').dueAt-1),command={type:'advance',minutes:1},expected=SOC.dispatch(before,command),box={postMessage:reply=>{box.reply=reply;}};vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:'included-check',state:structuredClone(before),command}});assert.equal(box.reply.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(box.reply.state)),expected);assert.equal(project(expected,'direct-room-integration').operationReceipt.test.status,'scenario-verified');
 });
@@ -32,4 +50,69 @@ test('automatic compatibility scan matches the generated worker on a funded comm
 test('included calling-to-contact check records the scoped supplier and boundary evidence without manual bookkeeping',()=>{
  let s=SOC.create({experience:'campaign',scenario:'smb',opening:'win',difficulty:'easy',seed:73});s=send(s,{action:'staff',engineers:4,support:4});for(const stage of ['base','carrier','partner']){s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});s=until(s,row=>row.providerCampaign.customers[0].stages[stage].status==='effective');if(stage==='base'){s=buy(s,{action:'operation',operationId:'recording',customerId});s=until(s,row=>project(row,'recording')?.status==='complete');}}
  for(const id of ['bpo','ms-workplace-calling','cisco-contact-centre']){s=buy(s,{action:'operation',operationId:id,customerId});s=until(s,row=>project(row,id)?.status==='complete');}s=until(s,row=>row.clock>=60);s=buy(s,{action:'operation',operationId:'uc-cc-integration',customerId});s=until(s,row=>project(row,'uc-cc-integration')?.status==='commissioning');const p=project(s,'uc-cc-integration');assert.equal(p.operationReceipt.test?.result.status,'scenario-verified');assert.equal(p.operationReceipt.test?.at,s.clock);assert.equal(s.providerCampaign.events.filter(e=>e.code==='SERVICE_INTEGRATION_TESTED'&&e.projectId===p.id&&e.policyVersion===1).length,1);assert.equal(p.operationReceipt.task,null,'customer work and paid review are still needed for effective service');assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+
+test('Government and recovered Defence deliver a real meeting after the included check on paid room endpoints',()=>{
+ for(const scenario of ['government','defence']){
+  let s=SOC.create({experience:'campaign',scenario,opening:'win',difficulty:'easy',seed:73});
+  for(const stage of ['base','carrier','partner']){
+   s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
+   s=until(s,row=>row.providerCampaign.customers[0].stages[stage].status==='effective');
+  }
+  if(scenario==='defence'){
+   for(const operationId of ['local-deployment','local-spares','recording']){
+    s=buy(s,{action:'operation',operationId,customerId});
+    s=until(s,row=>project(row,operationId)?.status==='complete');
+   }
+   s=until(s,row=>row.providerCampaign.incidents.some(incident=>incident.kind==='disconnection'&&incident.status==='resolved'));
+   const outage=s.providerCampaign.incidents.find(incident=>incident.kind==='disconnection');
+   assert.ok(outage.activatedAt<outage.resolvedAt,'Defence must recover its real isolation before integration commissioning');
+   assert.ok(s.providerCampaign.projects.some(row=>row.operationId==='repair'&&row.status==='complete'));
+  }else{
+   s=buy(s,{action:'operation',operationId:'recording',customerId});
+   s=until(s,row=>project(row,'recording')?.status==='complete');
+  }
+  for(const operationId of ['ms-meetings-room','cisco-meetings-interoperability','primary-upstream']){
+   s=buy(s,{action:'operation',operationId,customerId});
+   s=until(s,row=>project(row,operationId)?.status==='complete');
+  }
+  const request={action:'operation',operationId:'direct-room-integration',customerId},quote=SOC.provider.quote(s,request),cash=s.business.balance.cash;
+  assert.deepEqual(quote.blockers,[]);
+  s=send(s,{...quote.request,quoteRevision:quote.atRevision});
+  const funded=project(s,'direct-room-integration');
+  assert.equal(cash-s.business.balance.cash,quote.setupCents);
+  assert.equal(funded.status,'running');
+  s=until(s,row=>row.providerCampaign.events.some(event=>event.code==='SERVICE_INTEGRATION_TESTED'&&event.projectId===funded.id&&event.policyVersion===1));
+  const tested=project(s,'direct-room-integration'),events=s.providerCampaign.events.filter(event=>event.code==='SERVICE_INTEGRATION_TESTED'&&event.projectId===funded.id);
+  assert.equal(events.length,1,`${scenario}: the included check must issue once`);
+  assert.equal(tested.operationReceipt.test?.status,'scenario-verified');
+  assert.equal(tested.operationReceipt.test.checkedAt,events[0].at);
+  assert.equal(tested.operationReceipt.test.sourceGeneration,tested.operationReceipt.plan.source.generation);
+  assert.equal(tested.operationReceipt.test.targetGeneration,tested.operationReceipt.plan.target.generation);
+  assert.equal(tested.status,'commissioning','a passed compatibility check is not a delivered meeting');
+  assert.equal(s.business.ledger.filter(entry=>entry.projectId===funded.id).length,1,'the included check posts no second project cost');
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+  const command={type:'advance',minutes:1},expected=SOC.dispatch(s,command),worker=new Function(`${SOC.workerSource()}\nreturn SOC;`)();
+  assert.deepEqual(worker.dispatch(SOC.restore(JSON.stringify(s)),command),expected);
+  assert.equal(expected.providerCampaign.events.filter(event=>event.code==='SERVICE_INTEGRATION_TESTED'&&event.projectId===funded.id).length,1);
+  s=until(expected,row=>project(row,'direct-room-integration')?.status==='complete',180);
+  const delivered=project(s,'direct-room-integration'),meetingReceipt=delivered.operationReceipt.evidence?.meeting;
+  assert.ok(meetingReceipt,`${scenario}: funded commissioning must finish only after real customer meeting work`);
+  const child=s.portfolio.customers.find(row=>row.id===customerId).root;
+  const session=child.information.meetingSessions.find(row=>row.id===meetingReceipt.sessionId);
+  const booking=child.information.bookings.find(row=>row.id===session?.bookingId);
+  const job=s.providerCampaign.jobs.find(row=>row.customerId===customerId&&row.channel==='meeting'&&row.sessionId===session?.id);
+  const missionMeeting=s.providerCampaign.meetings.find(row=>row.customerId===customerId&&row.sessionId===session?.id&&row.bookingId===booking?.id);
+  const originEvent=s.providerCampaign.events.find(row=>row.id===meetingReceipt.origin?.eventId);
+  assert.equal(session?.status,'completed');
+  assert.ok(session.endedAt>session.startedAt&&session.startedAt>tested.operationReceipt.test.checkedAt);
+  assert.equal(session.joinMethod,'bridge');
+  assert.ok(booking&&session.bookingId===booking.id);
+  const providerWork=!!job&&job.caseId===booking.caseId&&job.completedAt===session.endedAt;
+  const authoredWork=meetingReceipt.origin?.kind==='mission-meeting'&&missionMeeting?.status==='scheduled'&&originEvent?.code==='MISSION_MEETING_BOOKED'&&originEvent.sessionId===session.id;
+  assert.ok(providerWork||authoredWork,`${scenario}: completed bridge work must trace to a real Provider job or authored mission meeting`);
+  if(job)assert.ok(['completed','late'].includes(job.status));
+  assert.equal(s.business.ledger.filter(entry=>entry.projectId===funded.id).length,1);
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ }
 });

@@ -138,8 +138,9 @@ const SOC = (function socKernel() {
     const desired={...clone(catalogue[kind].defaults),...clone(config)};validateConfig(kind,desired);
     return {id,kind,desired,effective:null,generation:1,provisioning:{status:'pending',due:1,generation:1},fault:null};
   }
-  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName,experience,providerName='Busy Signal MSP',market='au-sydney',difficulty='normal',openingVariant}={}){
+  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName,experience,providerName='Busy Signal MSP',market='au-sydney',difficulty='normal',openingVariant,opening='win'}={}){
     if(!ownKey(scenarios,scenario)||!jurisdictions.includes(jurisdiction)||!['guided','assessed','sandbox'].includes(mode)||!Number.isSafeInteger(seed)||seed<1||seed>2147483646||!Number.isSafeInteger(clock)||clock<0||clock>100000000||tenant!==undefined&&(!isId(tenant)||tenant.length>48)||customerName!==undefined&&(typeof customerName!=='string'||!customerName.trim()||customerName.length>100))fail('INVALID_EXERCISE');
+    if(!['win','estate'].includes(opening)||opening==='estate'&&(experience!=='campaign'||scenario!=='smb'))fail('INVALID_PROVIDER_OPENING');
     const resources={};
     const add=(id,kind,c={})=>resources[id]=resource(id,kind,{region:jurisdiction,...c});
     add('identity','directory');add('access','connectivity');add('phone','uc');add('carrier','trunk');add('desk','endpoint');
@@ -167,6 +168,15 @@ const SOC = (function socKernel() {
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
       root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{})},providerHooks());
+    }
+    if(opening==='estate'){
+      let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};
+      const quote=providerCampaign.quote(funded,request,providerHooks());
+      if(quote.blockers.length)fail('INHERITED_ESTATE_UNAFFORDABLE');
+      funded=dispatchInternal(funded,{type:'provider',command:{...request,quoteRevision:quote.atRevision}},false);
+      while(funded.clock<clock+5)funded=dispatchInternal(funded,{type:'advance',minutes:1},false);
+      funded.providerCampaign.inheritedEstate={version:1,customerId:'starter-customer',fundedAt:funded.providerCampaign.projects[0].acceptedAt,openedAt:funded.clock,projectIds:funded.providerCampaign.projects.map(project=>project.id),postingIds:funded.providerCampaign.projects.map(project=>project.postingId),setupCents:quote.setupCents};
+      return validateState(funded);
     }
     return validateState(root);
   }

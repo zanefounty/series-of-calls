@@ -121,6 +121,28 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  }
  function quote(s,request,hooks={}){
   const p=s?.providerCampaign;if(!p||p.pack!==PACK)fail('PROVIDER_CAMPAIGN_NOT_STARTED');if(!request||typeof request!=='object'||Array.isArray(request))fail('INVALID_PROVIDER_QUOTE');
+  if(request.action==='plan'){
+   exact(request,['action','offerId','planId','market','quoteRevision'],'INVALID_PROVIDER_QUOTE');
+   const base=quote(s,{action:'purchase',offerId:request.offerId,planId:request.planId,stage:'base',...(request.market?{market:request.market}:{})},hooks);
+   const plan=data.plans[request.planId],stages=plan?['base','carrier','partner'].map(key=>({id:key,...copy(plan[key])})):[];
+   const setupCents=stages.reduce((total,row)=>total+row.setupCents,0),periodCents=stages.reduce((total,row)=>total+row.periodCents,0);
+   const engineers=stages.reduce((total,row)=>total+(row.engineers||0),0),support=stages.reduce((total,row)=>total+(row.support||0),0);
+   const staff=workAvailability(s,p,hooks),blockers=[...base.blockers];
+   if(base.cash<setupCents)blockers.push('INSUFFICIENT_CASH');
+   if(staff.engineers<engineers)blockers.push('ENGINEER_CAPACITY');
+   if(staff.support<support)blockers.push('SUPPORT_CAPACITY');
+   if(p.projects.length+stages.length>MAX_PROJECTS)blockers.push('PROJECT_CAPACITY');
+   return {...base,action:'plan',request:copy(request),setupCents,periodCents,workMinutes:Math.max(0,...stages.map(row=>row.workMinutes)),engineers,support,cashAfter:base.cash-setupCents,commercial:{...base.commercial,stages,staffing:{...base.commercial.staffing,requiredEngineers:engineers,requiredSupport:support}},blockers:[...new Set(blockers)]};
+  }
+  if(request.action==='respond-incident'){
+   exact(request,['action','incidentId','operationId','quoteRevision'],'INVALID_PROVIDER_QUOTE');
+   if(!id(request.incidentId)||!['repair','mitigate','service-repair'].includes(request.operationId))fail('INVALID_PROVIDER_RESPONSE');
+   const incident=p.incidents.find(row=>row.id===request.incidentId);
+   if(!incident||!['active','acknowledged'].includes(incident.status))fail('INCIDENT_NOT_ACTIONABLE');
+   const paid=quote(s,{action:'operation',operationId:request.operationId,customerId:incident.customerId},hooks);
+   const active=p.incidents.find(row=>row.customerId===incident.customerId&&row.kind!=='transport-domain'&&['active','acknowledged'].includes(row.status));
+   return {...paid,action:'respond-incident',request:copy(request),commercial:{...paid.commercial,incidentId:incident.id,affectedCustomerId:incident.customerId,affectedResource:incident.resource},blockers:[...paid.blockers.filter(code=>code!=='INCIDENT_ACKNOWLEDGEMENT_REQUIRED'),...(active?.id===incident.id?[]:['INCIDENT_SCOPE_CHANGED'])]};
+  }
   const action=request.action,blockers=[];let setupCents=0,periodCents=0,workMinutes=0,engineers=0,support=0,customer=null,definition=null,offer=null,stage=null;
   if(['followup-case','retry-case-followup'].includes(action)){
    exact(request,['action','customerId','jobId','quoteRevision'],'INVALID_PROVIDER_QUOTE');ensureHooks(hooks,['followupQuote']);const r={action,customerId:request.customerId,jobId:request.jobId},details=hooks.followupQuote(s,r);
@@ -192,6 +214,19 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  function stageRequested(c,stage){return c.stages[stage]!==null;}
  function command(s,c,hooks={}){
   const p=s?.providerCampaign;if(!p||p.pack!==PACK)fail('PROVIDER_CAMPAIGN_NOT_STARTED');if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.action!=='string')fail('INVALID_PROVIDER_COMMAND');
+  if(c.action==='plan'){
+   const q=quote(s,c,hooks);if(c.quoteRevision!==s.revision)fail('STALE_PROVIDER_QUOTE');if(q.blockers.length)fail('PROVIDER_QUOTE_BLOCKED:'+q.blockers.join(','));
+   const customerId=c.offerId==='starter'?'starter-customer':`${c.offerId}-customer`;
+   for(const stage of ['base','carrier','partner'])command(s,{action:'purchase',offerId:c.offerId,planId:c.planId,stage,...(stage==='base'?(c.market?{market:c.market}:{}):{customerId}),quoteRevision:c.quoteRevision},hooks);
+   return validate(s,hooks);
+  }
+  if(c.action==='respond-incident'){
+   const q=quote(s,c,hooks);if(c.quoteRevision!==s.revision)fail('STALE_PROVIDER_QUOTE');if(q.blockers.length)fail('PROVIDER_QUOTE_BLOCKED:'+q.blockers.join(','));
+   const incident=p.incidents.find(row=>row.id===c.incidentId);
+   if(incident.status==='active')command(s,{action:'acknowledge-incident',incidentId:incident.id},hooks);
+   command(s,{action:'operation',operationId:c.operationId,customerId:incident.customerId,quoteRevision:c.quoteRevision},hooks);
+   return validate(s,hooks);
+  }
   if(c.action==='start-scale-window'){exact(c,['action','projectId'],'INVALID_PROVIDER_COMMAND');if(!id(c.projectId))fail('INVALID_PROVIDER_COMMAND');ensureHooks(hooks,['startScaleWindow']);hooks.startScaleWindow(s,c.projectId);return s;}
   if(['followup-case','retry-case-followup'].includes(c.action)){
    exact(c,['action','customerId','jobId','quoteRevision'],'INVALID_PROVIDER_COMMAND');const q=quote(s,c,hooks);if(c.quoteRevision!==s.revision)fail('STALE_PROVIDER_QUOTE');if(q.blockers.length)fail('PROVIDER_QUOTE_BLOCKED:'+q.blockers.join(','));
@@ -475,7 +510,7 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
    if(typeof hooks.retainSupportWork==='function')hooks.retainSupportWork(s,c.id);
    if(ended)continue;
    if(c.status==='active'){scheduleMissionMeeting(s,p,c,periodIndex,hooks);for(const planned of demandAt(s,p,c,hooks))if(!p.jobs.some(j=>j.customerId===c.id&&j.caseId===planned.caseId))startDemand(s,p,c,planned,hooks);}
-   maybeIncident(s,p,c,hooks);if(p.incidents.some(x=>x.customerId===c.id))p.goals.find(x=>x.id==='recover-incident').status='open';
+   maybeIncident(s,p,c,hooks);if(p.incidents.some(x=>x.customerId===c.id&&['active','acknowledged'].includes(x.status))&&p.goals.find(x=>x.id==='recover-incident').status!=='complete')p.goals.find(x=>x.id==='recover-incident').status='open';
   }
   if(s.clock%PERIOD===0&&p.lastSettledAt!==s.clock)settlePeriod(s,p,hooks,periodIndex);
  }
@@ -503,6 +538,7 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  function validate(s,hooks={}){
   const p=s?.providerCampaign;if(p===undefined||p===null)return true;
   if(!p||typeof p!=='object'||Array.isArray(p)||p.pack!==PACK||p.version!==VERSION||!['provider-campaigns-1','provider-campaigns-2','provider-campaigns-3','provider-campaigns-4','provider-campaigns-5','provider-campaigns-6','provider-campaigns-7',data.id].includes(p.contentVersion)||!missionFor(p.scenario)||typeof p.providerName!=='string'||!p.providerName||!['au-sydney','au-melbourne','us-seattle','jp-tokyo','eu-dublin'].includes(p.market)||!['easy','normal','hard'].includes(p.difficulty)||!integer(p.seed,1,2147483646)||!integer(p.startedAt)||!['operating','won','failed'].includes(p.status)||!['active','won','failed'].includes(p.missionStatus))fail('INVALID_PROVIDER_CAMPAIGN');
+  if(p.inheritedEstate!==undefined){const estate=p.inheritedEstate,projects=p.projects.slice(0,3);if(!estate||Object.keys(estate).sort().join(',')!=='customerId,fundedAt,openedAt,postingIds,projectIds,setupCents,version'||estate.version!==1||estate.customerId!=='starter-customer'||p.openingCustomerId!==estate.customerId||p.scenario!=='smb'||!integer(estate.fundedAt,p.startedAt,s.clock)||!integer(estate.openedAt,estate.fundedAt,s.clock)||estate.openedAt<estate.fundedAt+5||projects.length!==3||projects.some((project,index)=>project.customerId!==estate.customerId||project.acceptedAt!==estate.fundedAt||project.stage!==['base','carrier','partner'][index]||project.id!==estate.projectIds?.[index]||project.postingId!==estate.postingIds?.[index])||estate.setupCents!==projects.reduce((total,project)=>total+project.setupCents,0))fail('INVALID_INHERITED_ESTATE');}
   if(p.commercialResponsibilityVersion!==undefined&&(p.commercialResponsibilityVersion!==1||p.contentVersion==='provider-campaigns-1'))fail('INVALID_PROVIDER_RESPONSIBILITY_VERSION');
   if(p.serviceRetirementVersion!==undefined&&(p.serviceRetirementVersion!==1||p.contentVersion==='provider-campaigns-1'))fail('INVALID_PROVIDER_SERVICE_RETIREMENT_VERSION');
   if(p.meetingDependencyVersion!==undefined&&(p.meetingDependencyVersion!==1||p.contentVersion==='provider-campaigns-1'))fail('INVALID_PROVIDER_MEETING_DEPENDENCY_VERSION');
@@ -552,8 +588,8 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
   const periodIndex=c=>c.period.index,currentOutcomes=c=>{const jobs=p.jobs.filter(j=>j.customerId===c.id&&j.periodIndex===periodIndex(c)),due=jobs.length,completed=jobs.filter(j=>j.status==='completed').length,late=jobs.filter(j=>j.status==='late').length,failed=jobs.filter(j=>j.status==='failed').length,open=jobs.filter(j=>j.status==='pending').length,atRisk=jobs.filter(j=>j.status==='pending'&&j.deadlineAt<=s.clock+5).length;return {periodIndex:periodIndex(c),due,completedOnTime:completed,late,failed,open,atRisk};};
   const customers=p.customers.map(c=>({id:c.id,portfolioId:c.portfolioId,name:c.name,scenario:c.scenario,market:c.market,planId:c.planId,status:c.status,stages:copy(c.stages),services:sceneResources(p,c).map(id=>resourceState(s,c,id,hooks)),outcome:{offered:c.metrics.offered,completed:c.metrics.completed,onTime:c.metrics.onTime,late:c.metrics.late,failed:c.metrics.failed,open:p.jobs.filter(j=>j.customerId===c.id&&!j.settled&&j.status==='pending').length},periodOutcome:currentOutcomes(c),history:copy(c.history),historyCheckpoint:copy(c.historyCheckpoint),retailCents:c.retailCents,continuity:typeof hooks.continuity==='function'?hooks.continuity(childRoot(s,c,hooks)):null}));
   const nextId=`next-${nextNumber(p)}`,nextAllowed=p.mission.nextOpportunityAvailable&&p.customers.length<MAX_CUSTOMERS&&s.clock<offerExpiry(p,nextId),offers=[{id:'starter',name:missionFor(p.scenario).customerName,expiresAt:offerExpiry(p,'starter'),available:!p.openingCustomerId&&s.clock<offerExpiry(p,'starter'),blockers:p.openingCustomerId?['STARTER_ALREADY_ACCEPTED']:s.clock>=offerExpiry(p,'starter')?['CUSTOMER_OFFER_EXPIRED']:[]},{id:nextId,name:nextNumber(p)===1?missionFor(p.scenario).nextOpportunity.name:`${missionFor(p.scenario).nextOpportunity.name} ${nextNumber(p)}`,expiresAt:offerExpiry(p,nextId),available:nextAllowed,blockers:nextAllowed?[]:[p.customers.length>=MAX_CUSTOMERS?'CUSTOMER_LIMIT':p.mission.nextOpportunityAvailable?'CUSTOMER_OFFER_EXPIRED':'QUALIFYING_PERIODS_REQUIRED']}];
-  const availableOffer=offers.find(o=>o.available),planComparisons=availableOffer?Object.values(data.plans).map(plan=>{const q=quote(s,{action:'purchase',offerId:availableOffer.id,planId:plan.id,stage:'base'},hooks);return {id:plan.id,name:plan.name,description:plan.description,offerId:availableOffer.id,quote:q,stages:q.commercial.stages,capacity:q.commercial.capacity,resources:[...new Set(q.commercial.stages.flatMap(stage=>stage.resources))],consequences:[plan.description]};}):[];
-  return {scaleObservation:p.scaleObservation?copy(p.scaleObservation):null,serviceRetirementVersion:p.serviceRetirementVersion??null,openingVariant:variants.get(p.openingVariant?.id||'standard'),planComparisons,markets:Object.keys(data.marketTerms),homeMarket:p.market,pack:p.pack,version:p.version,contentVersion:p.contentVersion,providerName:p.providerName,clock:s.clock,period:Math.floor(s.clock/PERIOD),minute:s.clock%PERIOD,cash:b.balance.cash,solvency:copy(b.solvency||{status:'current',payable:0}),forecast:forecast||{recurringRevenue:0,recurringCost:0,operatingResult:0,variableUsage:[]},customers,projects:copy(p.projects),incidents:copy(p.incidents),meetings:copy(p.meetings),offers,marketTerms:priceOffer(p,{retailCents:missionFor(p.scenario).retailCents},s.clock).marketTerms,operations:copy(operationCatalog),goals:copy(p.goals),mission:{id:p.mission.id,status:p.missionStatus,periods:p.mission.periods,consecutiveQualifying:p.mission.consecutiveQualifying,consecutiveFailures:p.mission.consecutiveFailures,nextOpportunityAvailable:p.mission.nextOpportunityAvailable,winnerCustomerId:p.mission.winnerCustomerId,focusCustomerId:p.mission.focusCustomerId,continuations:p.mission.continuations,nextSegment:p.status==='won'?['smb','enterprise','government','defence'][['smb','enterprise','government','defence'].indexOf(p.scenario)+1]||null:null,brief:missionFor(p.scenario).brief},events:copy(p.events),eventCheckpoint:copy(p.eventCheckpoint),unimplemented:copy(p.unimplemented)};
+  const availableOffer=offers.find(o=>o.available),planComparisons=availableOffer?Object.values(data.plans).map(plan=>{const q=quote(s,{action:'plan',offerId:availableOffer.id,planId:plan.id},hooks);return {id:plan.id,name:plan.name,description:plan.description,offerId:availableOffer.id,quote:q,stages:q.commercial.stages,capacity:q.commercial.capacity,resources:[...new Set(q.commercial.stages.flatMap(stage=>stage.resources))],consequences:[plan.description]};}):[];
+  return {scaleObservation:p.scaleObservation?copy(p.scaleObservation):null,inheritedEstate:p.inheritedEstate?copy(p.inheritedEstate):null,serviceRetirementVersion:p.serviceRetirementVersion??null,openingVariant:variants.get(p.openingVariant?.id||'standard'),planComparisons,markets:Object.keys(data.marketTerms),homeMarket:p.market,pack:p.pack,version:p.version,contentVersion:p.contentVersion,providerName:p.providerName,clock:s.clock,period:Math.floor(s.clock/PERIOD),minute:s.clock%PERIOD,cash:b.balance.cash,solvency:copy(b.solvency||{status:'current',payable:0}),forecast:forecast||{recurringRevenue:0,recurringCost:0,operatingResult:0,variableUsage:[]},customers,projects:copy(p.projects),incidents:copy(p.incidents),meetings:copy(p.meetings),offers,marketTerms:priceOffer(p,{retailCents:missionFor(p.scenario).retailCents},s.clock).marketTerms,operations:copy(operationCatalog),goals:copy(p.goals),mission:{id:p.mission.id,status:p.missionStatus,periods:p.mission.periods,consecutiveQualifying:p.mission.consecutiveQualifying,consecutiveFailures:p.mission.consecutiveFailures,nextOpportunityAvailable:p.mission.nextOpportunityAvailable,winnerCustomerId:p.mission.winnerCustomerId,focusCustomerId:p.mission.focusCustomerId,continuations:p.mission.continuations,nextSegment:p.status==='won'?['smb','enterprise','government','defence'][['smb','enterprise','government','defence'].indexOf(p.scenario)+1]||null:null,brief:missionFor(p.scenario).brief},events:copy(p.events),eventCheckpoint:copy(p.eventCheckpoint),unimplemented:copy(p.unimplemented)};
  }
  const source=()=>`const SOC_PROVIDER_CAMPAIGN=((${socProviderCampaignKernel.toString()})(SOC_PROVIDER_RULES,SOC_PROVIDER_PRODUCTS,SOC_PROVIDER_DEMAND,SOC_PROVIDER_VARIANTS,SOC_PROVIDER_REGIONAL_SUPPORT,SOC_PROVIDER_WORKFORCE_HISTORY,SOC_PROVIDER_SECURITY,SOC_PROVIDER_INCIDENT_SEQUENCE));`;
  return {ordinaryVoiceDemand,validateRetainedSettlement,handoffDemandPlan,followupDemandPlan,PACK,VERSION,CONTENT:data.id,operations:copy(operationCatalog),operationServiceStart,operationBillable,operationExposure,retainedMissionVictory,create,quote,command,beforeMinute,afterMinute,validate,inspect,source};

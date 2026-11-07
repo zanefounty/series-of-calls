@@ -5817,6 +5817,7 @@
 "provider.staff.available":"The current team commitment has ended. An increase starts a new 180-minute commitment.",
 "provider.staff.commitment":"Current team committed through minute {minute} ({remaining} minutes). Estimated remaining payroll at this size: {cost}.",
 "provider.staff.refusal":"The current team is committed through minute {minute}. Wait until then to reduce staffing.",
+"provider.starter.retail_advanced":"Advanced retail terms",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

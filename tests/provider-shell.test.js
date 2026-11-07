@@ -160,6 +160,19 @@ test('visible plan and operation quotes disclose engine forecast scope and valid
  }finally{ui.w.close();}
 });
 
+test('starter staged quote keeps optional retail terms behind details while later quotes show them directly',()=>{
+ const state=SOC.create({experience:'campaign',opening:'win'}),ui=boot();try{
+  const first=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+  const firstHtml=ui.w.SOCProviderPanels.quote(first,{quoteRequest:first.request});
+  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary><form data-provider-form="retail-quote"/);
+  const committed=SOC.dispatch(state,{type:'provider',command:{...SOC.provider.quote(state,{action:'plan',offerId:'starter',planId:'swift'}).request,quoteRevision:state.revision}});
+  const later=SOC.provider.quote(committed,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
+  const laterHtml=ui.w.SOCProviderPanels.quote(later,{quoteRequest:later.request});
+  assert.match(laterHtml,/data-provider-form="retail-quote"/);
+  assert.doesNotMatch(laterHtml,/provider-starter-retail/);
+ }finally{ui.w.close();}
+});
+
 test('idle inspector omits stale family-count claims and deals humanize eligibility blockers',()=>{
  const {w}=boot();try{const model={revision:1,clock:0,period:1,minute:0,cash:2000000,forecast:{},customers:[],offers:[{id:'next-1',name:'Next customer',available:false,blockers:['QUALIFYING_PERIODS_REQUIRED'],expiresAt:180}],events:[],unimplemented:{status:'pending',families:['representative-family']}};w.SOC_PROVIDER_UI.render({revision:1,clock:0},model);
   assert.doesNotMatch(w.document.querySelector('.provider-inspector').textContent,/family paths remain pending/);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');const text=w.document.querySelector('.provider-rail-body').textContent;assert.match(text,/qualifying periods required/);assert.doesNotMatch(text,/QUALIFYING_PERIODS_REQUIRED/);

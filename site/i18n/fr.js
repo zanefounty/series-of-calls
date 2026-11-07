@@ -5816,6 +5816,7 @@
 "provider.staff.available":"L’engagement actuel de l’équipe est terminé. Une augmentation lance un nouvel engagement de 180 minutes.",
 "provider.staff.commitment":"Équipe engagée jusqu’à la minute {minute} ({remaining} minutes). Coût salarial restant estimé à cet effectif : {cost}.",
 "provider.staff.refusal":"L’équipe actuelle est engagée jusqu’à la minute {minute}. Attendez jusque-là pour réduire l’effectif.",
+"provider.starter.retail_advanced":"Advanced retail terms",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

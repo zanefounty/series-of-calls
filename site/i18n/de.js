@@ -5818,6 +5818,7 @@
 "provider.staff.available":"Die aktuelle Teambindung ist beendet. Eine Aufstockung beginnt eine neue Bindung von 180 Minuten.",
 "provider.staff.commitment":"Team bis Minute {minute} gebunden ({remaining} Minuten). Geschätzte verbleibende Personalkosten bei dieser Teamgröße: {cost}.",
 "provider.staff.refusal":"Das aktuelle Team ist bis Minute {minute} gebunden. Erst danach kann Personal reduziert werden.",
+"provider.starter.retail_advanced":"Advanced retail terms",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

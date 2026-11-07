@@ -5816,6 +5816,7 @@
 "provider.staff.available":"O compromisso atual da equipa terminou. Um aumento inicia um novo compromisso de 180 minutos.",
 "provider.staff.commitment":"Equipa comprometida até ao minuto {minute} ({remaining} minutos). Custo salarial restante estimado com esta equipa: {cost}.",
 "provider.staff.refusal":"A equipa atual está comprometida até ao minuto {minute}. Aguarde até lá para reduzir o pessoal.",
+"provider.starter.retail_advanced":"Advanced retail terms",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

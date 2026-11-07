@@ -5816,6 +5816,7 @@
 "provider.staff.available":"L’impegno attuale del team è terminato. Un aumento avvia un nuovo impegno di 180 minuti.",
 "provider.staff.commitment":"Team impegnato fino al minuto {minute} ({remaining} minuti). Costo salariale residuo stimato con questo organico: {cost}.",
 "provider.staff.refusal":"Il team attuale è impegnato fino al minuto {minute}. Attendi fino ad allora per ridurre l’organico.",
+"provider.starter.retail_advanced":"Advanced retail terms",
 "provider.storage_usage":"Stored {used} / {limit} records ({held} held). {pending} awaiting admission; {queued} processing jobs. Remaining work may produce {outputs} more records.",
 "provider.supplier_offers":"Compare supplier offers",
 "provider.technical_evidence":"Technical evidence",

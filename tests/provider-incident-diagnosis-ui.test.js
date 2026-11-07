@@ -5,6 +5,12 @@ const customer={id:'customer-a',name:'Scoped customer',status:'active',scenario:
 const incident={id:'incident-1',customerId:'customer-a',resource:'carrier',kind:'outage',status:'acknowledged',activatedAt:8,receipt:{resource:'carrier',at:8},diagnoses:[]};
 function quote(i=incident){return {action:'operation',request:{action:'operation',operationId:'diagnose-incident',customerId:i.customerId,config:{incidentId:i.id}},atRevision:7,setupCents:6000,periodCents:0,workMinutes:6,engineers:1,support:1,cashAfter:44000,commercial:{fullPlanMinimumCommitmentCents:6000,minimumTermPeriods:0,variablePrices:{voiceCentsPerMinute:50,messageCentsPerDelivery:75}},blockers:[]};}
 const operation=q=>({id:'diagnose-incident',quote:q});
+test('known starter fault does not present a paid diagnosis detour',t=>{
+ const w=boot(t),starter={...clone(customer),id:'starter-customer'},known={...clone(incident),customerId:'starter-customer'},h=w.document.createElement('div');
+ h.innerHTML=w.SOCProviderIncidents.render(known,starter,[operation(quote(known))]);
+ assert.equal(h.querySelector('[data-response="diagnose-incident"]'),null);
+ assert.match(h.textContent,/Current service observations and retained symptoms remain free/);
+});
 function model(q=quote(),i=incident){return {revision:7,clock:12,cash:50000,forecast:{},events:[],offers:[],customers:[clone(customer)],incidents:[clone(i)],operations:[{id:'diagnose-incident',setupCents:6000,periodCents:0,workMinutes:6,engineers:1,support:1}],contextualOperations:[operation(q)]};}
 function render(w,i=incident,q=quote(),selected=false){const h=w.document.createElement('div');h.innerHTML=w.SOCProviderIncidents.render(i,customer,[operation(q)],{selected});return h;}
 test('AC-SOC-737 scoped diagnosis comparison is pure, priced, translated and reviewable alongside service repair',t=>{

@@ -116,3 +116,57 @@ test('new opening staffing has a visible three-period commitment and cannot be t
  assert.equal(SOC.provider.inspect(legacy).staffingCommitment,null);
  assert.equal(send(legacy,{action:'staff',engineers:1,support:1}).business.workforce.engineers,1);
 });
+
+function renewalRun(policyChanges=s=>s,target=180){
+ let s=start(),request={action:'plan',offerId:'starter',planId:'swift'},q=SOC.provider.quote(s,request);
+ s=send(s,{...request,quoteRevision:q.atRevision});while(s.clock<12)s=tick(s);
+ const policy={action:'configure-renewal-policy',quoteRevision:s.revision,customerId:'starter-customer',enabled:true,suspended:false,cashFloorCents:0,minMarginCents:0,maxSupplierExposureCents:1000000,maxCreditCents:1000000,maxRenewals:3};
+ s=send(s,policy);s=policyChanges(s,policy);
+ while(s.clock<target){s=SOC.dispatch(s,{type:'advance',minutes:target-s.clock});const incident=s.providerCampaign.incidents.find(row=>row.status==='active');if(incident){const response={action:'respond-incident',incidentId:incident.id,operationId:'repair'},quote=SOC.provider.quote(s,response);s=send(s,{...response,quoteRevision:quote.atRevision});}}
+ return s;
+}
+
+test('bounded unchanged-term renewal follows observed qualified periods and restores once',()=>{
+ const s=renewalRun(),c=s.providerCampaign.customers[0],policy=s.providerCampaign.renewalPolicies[0];
+ assert.equal(s.clock,180);assert.equal(c.status,'active');assert.equal(c.retailAgreementHistory.entries.length,2);
+ assert.equal(policy.actions.length,1);assert.equal(policy.actions[0].retailCents,c.retailCents);
+ assert.equal(s.providerCampaign.events.find(e=>e.id===policy.actions[0].eventId).policyVersion,1);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const forged=structuredClone(s);forged.providerCampaign.renewalPolicies[0].actions[0].retailCents++;
+ assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_RENEWAL_POLICY_ACTION/);
+});
+
+test('unchanged renewal terms can issue a second receipt without duplicate first action',()=>{
+ const s=renewalRun(s=>s,360),policy=s.providerCampaign.renewalPolicies[0],customer=s.providerCampaign.customers[0];
+ assert.equal(customer.status,'active');assert.equal(policy.actions.length,2);
+ assert.deepEqual(policy.actions.map(action=>action.at),[180,360]);
+ assert.equal(new Set(policy.actions.map(action=>action.eventId)).size,2);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+
+test('renewal action cap escalates the next due contract',()=>{
+ const s=renewalRun((s,p)=>send(s,{...p,quoteRevision:s.revision,maxRenewals:1}),360),policy=SOC.provider.inspect(s).renewalPolicies[0];
+ assert.equal(s.providerCampaign.customers[0].status,'renewal');assert.equal(policy.actions.length,1);
+ assert.equal(policy.decision.reason,'POLICY_ACTION_LIMIT');
+});
+
+test('suspended, cash-limited and changed-term policies leave renewal for explicit choice',()=>{
+ for(const change of [
+  (s,p)=>send(s,{...p,quoteRevision:s.revision,suspended:true}),
+  (s,p)=>send(s,{...p,quoteRevision:s.revision,cashFloorCents:100000000}),
+  (s,p)=>{const request={action:'operation',operationId:'carrier-headroom',customerId:p.customerId},q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[]);return send(s,{...request,quoteRevision:q.atRevision});}
+ ]){
+  const s=renewalRun(change),policy=SOC.provider.inspect(s).renewalPolicies[0];
+  assert.equal(s.providerCampaign.customers[0].status,'renewal');assert.equal(policy.actions.length,0);
+  assert.equal(policy.decision.status,'manual');
+  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ }
+});
+
+test('renewal policy refuses a stale displayed revision without changing terms',()=>{
+ let s=start(),request={action:'plan',offerId:'starter',planId:'swift'},q=SOC.provider.quote(s,request);
+ s=send(s,{...request,quoteRevision:q.atRevision});while(s.clock<12)s=tick(s);
+ const command={action:'configure-renewal-policy',customerId:'starter-customer',quoteRevision:s.revision,enabled:true,suspended:false,cashFloorCents:0,minMarginCents:0,maxSupplierExposureCents:150000,maxCreditCents:5000,maxRenewals:3};
+ s=tick(s);const before=JSON.stringify(s);
+ assert.throws(()=>send(s,command),/STALE_PROVIDER_RENEWAL_TERMS/);assert.equal(JSON.stringify(s),before);
+});

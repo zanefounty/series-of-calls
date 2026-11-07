@@ -25,6 +25,24 @@ test('older campaign saves remain manual and policy changes require the current 
  const current=opening(),before=JSON.stringify(current);assert.throws(()=>send(current,{action:'configure-auto-integration-checks',enabled:true,suspended:true,quoteRevision:current.revision-1}),/STALE_PROVIDER_QUOTE/);assert.equal(JSON.stringify(current),before);
 });
 
+test('new mission careers opt into included checks while historical mission saves keep manual control',()=>{
+ for(const scenario of ['enterprise','government','defence']){
+  const current=SOC.create({experience:'campaign',scenario,opening:'win',seed:383});
+  assert.deepEqual(current.providerCampaign.autoIntegrationChecks,{version:1,enabled:true,suspended:false});
+  assert.equal(current.providerCampaign.staffingCommitmentVersion,undefined);
+  assert.equal(current.providerCampaign.autoReceiptPolicy,undefined);
+  assert.deepEqual(SOC.restore(JSON.stringify(current)),current);
+  const manual=SOC.create({experience:'campaign',scenario,seed:383});
+  assert.equal(manual.providerCampaign.autoIntegrationChecks,undefined);
+  assert.deepEqual(SOC.restore(JSON.stringify(manual)),manual);
+  const suspended=send(current,{action:'configure-auto-integration-checks',enabled:true,suspended:true,quoteRevision:current.revision});
+  assert.equal(suspended.providerCampaign.autoIntegrationChecks.suspended,true);
+  assert.deepEqual(SOC.restore(JSON.stringify(suspended)),suspended);
+  const forged=structuredClone(current);forged.providerCampaign.autoIntegrationChecks.version=2;
+  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_AUTO_INTEGRATION_POLICY/);
+ }
+});
+
 test('automatic compatibility scan matches the generated worker on a funded commissioning minute',()=>{
  let s=opening();for(const id of ['recording','ms-meetings-room','cisco-meetings-interoperability','primary-upstream']){s=buy(s,{action:'operation',operationId:id,customerId});s=until(s,row=>project(row,id)?.status==='complete');}s=buy(s,{action:'operation',operationId:'direct-room-integration',customerId});const before=until(s,row=>project(row,'direct-room-integration')?.status==='running'&&row.clock===project(row,'direct-room-integration').dueAt-1),command={type:'advance',minutes:1},expected=SOC.dispatch(before,command),box={postMessage:reply=>{box.reply=reply;}};vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:'included-check',state:structuredClone(before),command}});assert.equal(box.reply.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(box.reply.state)),expected);assert.equal(project(expected,'direct-room-integration').operationReceipt.test.status,'scenario-verified');
 });

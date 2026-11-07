@@ -167,7 +167,7 @@ const SOC = (function socKernel() {
       root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
-      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{})},providerHooks());
+      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
     }
     if(opening==='estate'){
       let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};
@@ -1467,6 +1467,17 @@ const SOC = (function socKernel() {
       Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'claim-progression',sourceId,quoteRevision:s.revision,policyVersion:1}},true,true,true));
     }
   }
+  function providerAutoIntegrationAdvance(s){
+    const policy=s.providerCampaign?.autoIntegrationChecks;if(!policy?.enabled||policy.suspended)return;
+    const ids=s.providerCampaign.projects.filter(project=>project.status==='commissioning'&&project.operationReceipt?.test===null&&(project.operationId===providerRoomIntegration.OPERATION_ID||providerUcCcIntegration.OPERATION_IDS.includes(project.operationId))).map(project=>project.id);
+    for(const projectId of ids){
+      const project=s.providerCampaign.projects.find(row=>row.id===projectId),customer=s.providerCampaign.customers.find(row=>row.id===project?.customerId),child=s.portfolio.customers.find(row=>row.id===project?.customerId)?.root;
+      if(!project||project.status!=='commissioning'||project.operationReceipt?.test!==null||customer?.status!=='active'||!child)continue;
+      const current=project.operationId===providerRoomIntegration.OPERATION_ID?providerRoomIntegration.buildPlan(child,providerRoomIntegrationHooks()):providerUcCcIntegration.plan(s,project.id,providerUcCcHooks(s,project.customerId,child));
+      if(current.status!=='ready'||!current.plan||JSON.stringify(current.plan.source)!==JSON.stringify(project.operationReceipt.plan.source)||JSON.stringify(current.plan.target)!==JSON.stringify(project.operationReceipt.plan.target))continue;
+      Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'test-service-integration',projectId,quoteRevision:s.revision,policyVersion:1}},true,true,true));
+    }
+  }
   function providerProductOrder(parent,customerId,definition,apply){
     const authored=providerProducts.recipes[definition.id];if(!authored)fail('UNKNOWN_PROVIDER_PRODUCT');const recipe=clone(authored);if(definition.recipeVersion===1&&recipe.id==='cisco-dedicated-uc'){recipe.quote.resources=recipe.quote.resources.filter(id=>id!=='dedicated-endpoint');recipe.preparation.commands=recipe.preparation.commands.filter(c=>c.id!=='dedicated-endpoint');}
     const child=()=>parent.portfolio.customers.find(c=>c.id===customerId).root;
@@ -2399,7 +2410,7 @@ const SOC = (function socKernel() {
     providerServiceBoundaryObservations(s);
     if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s,!!s.providerCampaign));
     providerServiceBoundaryObservations(s);
-    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}}
+    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}providerAutoIntegrationAdvance(s);}
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());

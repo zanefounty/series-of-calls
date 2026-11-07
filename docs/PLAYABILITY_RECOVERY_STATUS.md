@@ -2,7 +2,7 @@
 
 This document records the recovery slice against the 7 November 2026 review pack. It is a development record, not a release approval. The reviewed baseline was `a4e7e54b5010b2625c2c982607faa279ab9e5524`; the implementation branch starts from that revision. The complete review ZIP was read and its member hashes checked before implementation.
 
-The frozen implementation and browser driver are in revision `b1401768a84bb293620b75f3699c41d1da4fda7b`. Later evidence-only commits must cite this revision when attributing behavior.
+The implementation and browser driver are in revision `b1401768a84bb293620b75f3699c41d1da4fda7b`, with the opening viewport correction in `1af63d58f1304b25b33990f0aa05fad4cfd186d4`. Later evidence-only commits must cite both revisions when attributing behavior.
 
 ## Implemented in this candidate
 

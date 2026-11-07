@@ -19,7 +19,7 @@ function testFromMap(s,projectId){
   w.SOC_PROVIDER_UI.render(s,SOC.provider.inspect(s));
   const select=w.document.querySelector(`[data-provider-action="select-customer"][data-id="${customerId}"]`);assert.ok(select);select.click();
   assert.equal(JSON.stringify(s),before,'map selection and rendering do not dispatch or bill');
-  const button=w.document.querySelector(`[data-provider-action="test-service-integration"][data-id="${projectId}"]`);assert.ok(button);button.click();
+  const button=w.document.querySelector(`[data-provider-action="test-service-integration"][data-id="${projectId}"]`);assert.ok(button);assert.equal(button.closest('details:not([open])'),null,'pending connection test must be visible outside closed advanced detail');button.click();
   assert.deepEqual(dispatched,{type:'provider',command:{action:'test-service-integration',projectId,quoteRevision:JSON.parse(before).revision}});
   return s;
  }finally{w.close();}

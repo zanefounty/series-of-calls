@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-07T11:55:37.262698+00:00",
+  "runAt": "2026-11-07T13:52:34.686507+00:00",
   "command": [
     "node",
     "--test",
@@ -1674,7 +1674,7 @@
     "tests/provider-progression-receipts-level3-managed.test.js": "e270a8a890ff2d57b630c3eda5a6558d1fd04b4b5f4980376edd13296cd93927",
     "tests/provider-progression-receipts.helpers.js": "436cab2f91d22da3ed2be2b87e347b8ba6cc6a8bbf62bb149fb6a8346d449b84",
     "scripts/lib/elapsed-clock.js": "dff78d2179150e88562c77230e43563cce7dadf116614f8c69f1601731808819",
-    "scripts/provider-browser.js": "7bd553063aecb9980bbd3a3adb392eadf9868f22206ea2783f659f79bc37b408",
+    "scripts/provider-browser.js": "28f3f7a6b9c6b6428dd64f6788dd732ffa5c3e47bcabadbeefc61e52bb2da6c8",
     "tests/provider-progression-dispatch.test.js": "ebcae1354013a66897d8cdc1a4cd9b64b0955de06e3d2e232e417a14a84ffe28",
     "tests/provider-receipt-waits.test.js": "75458e63ad5f835277dc0d6b48868f2c929477208b50061f2ffac9d884bfd254",
     "tests/provider-inspection-read-views.test.js": "b9cf3e1e0d65dd44ceedbdb54ee2e1dcd0472facb323d8730e4568d33c4a81d9",

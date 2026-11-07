@@ -62,7 +62,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 | Contextual customer board and smaller first decision | Implemented for opening and incident | Desktop/mobile browser journeys; further workload-specific filtering remains |
 | Relevant rooms, boundaries, recording, sites and programmes | Existing map paths retained; not newly verified in this slice | Full mission and family visible-control evidence remains in campaign backlog |
 | One priced scoped incident response | Implemented | Recovery test and scripted delayed-repair transcript |
-| Speed restoration, pointer pan/zoom, focus | Implemented | Shell tests and selected browser journeys; pointer-cancel and cross-engine full journeys remain |
+| Speed restoration, pointer pan/zoom, focus | Implemented | Shell tests and selected browser journeys; continuous pointer movement, cancellation and late release now have focused assertions in `tests/provider-shell.test.js`. Cross-engine full journeys remain |
 | Contract renewal policy | Pending | Requires versioned limits, exception path and suspension |
 | Automatic non-choice progression receipts | Pending | Must issue through validated receipt path exactly once |
 | Included compatibility checks | Pending | Must preserve validated evidence and manual diagnosis value |
@@ -87,3 +87,5 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 ## First-time-player comparison protocol
 
 Use the same scenario seed, costs, workload and settlement contract for both openings, counterbalancing order across 6–8 first-time players. Give only the goal of running a reliable service. Observe the first three choices and first delivered case. After each opening ask, without hints: “What did you buy?”, “What might fail?”, and “What would you do next?” Record answers verbatim, time to first consequential choice and first delivered work, compulsory pauses, detours, confusion and abandonment. Do not treat an automated browser run as a participant.
+
+The facilitator script and row-level recording sheet are in `docs/PLAYABILITY_PILOT.md`. It contains no participant result.

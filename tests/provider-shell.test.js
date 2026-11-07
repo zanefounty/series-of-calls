@@ -131,6 +131,20 @@ test('provider preferences validate storage independently and rendering does not
  }finally{w.close();}
 });
 
+test('map pans on each pointer move, cancellation restores the original camera, and release commits the drag',()=>{
+ const {w}=boot({map:true});try{
+  const state={revision:1,clock:0},model={revision:1,clock:0,period:1,cash:2000000,customers:[],offers:[],events:[],goals:[],forecast:{}};
+  w.SOC_PROVIDER_UI.render(state,model);const viewport=w.document.querySelector('.provider-world-viewport');assert.ok(viewport);
+  const pointer=(type,x,y,id=7)=>{const event=new w.MouseEvent(type,{bubbles:true,clientX:x,clientY:y});Object.defineProperty(event,'pointerId',{value:id});viewport.dispatchEvent(event);};
+  pointer('pointerdown',100,120);pointer('pointermove',130,160);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,30);assert.equal(w.SOC_PROVIDER_UI.view().camera.y,40);
+  pointer('pointermove',145,180);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,45);assert.equal(w.SOC_PROVIDER_UI.view().camera.y,60);
+  pointer('pointercancel',145,180);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,0);assert.equal(w.SOC_PROVIDER_UI.view().camera.y,0);
+  pointer('pointerup',145,180);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,0,'a cancelled gesture cannot commit on a late release');
+  const next=w.document.querySelector('.provider-world-viewport');const event=(type,x,y)=>{const e=new w.MouseEvent(type,{bubbles:true,clientX:x,clientY:y});Object.defineProperty(e,'pointerId',{value:9});next.dispatchEvent(e);};
+  event('pointerdown',100,120);event('pointermove',125,145);event('pointerup',125,145);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,25);assert.equal(w.SOC_PROVIDER_UI.view().camera.y,25);
+ }finally{w.close();}
+});
+
 
 test('map product retirement preserves the project quote and submits only its revision-bound dispatch command',()=>{
  const project={id:'provider-project-4',customerId:'starter-customer',kind:'operation',productId:'ms-workplace-calling',operationId:'ms-workplace-calling',status:'complete',setupCents:210000,dueAt:25,resources:['phone']};

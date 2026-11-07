@@ -43,6 +43,12 @@ npm run test:provider:mcp-browser -- --mcp-dir /home/zane-fountylabs/.npm/_npx/3
 npm audit --omit=dev --audit-level=high
 ```
 
+## Renewal policy follow-on candidate
+
+A customer-scoped, opt-in renewal policy now records accepted retail and fixed supplier terms and limits automatic renewals by the latest qualified service period, credit, customer margin before usage and shared payroll, supplier exposure, shared cash, solvency and a maximum action count. A changed material term or failed limit leaves renewal for an explicit player decision. The policy can be suspended in the Automation panel. The panel shows accepted and current terms; a stale displayed revision is refused before resetting policy limits. Provider dispatch records each renewal and retained event identity. Older saves have no policy until configured. The new policy does not change existing acceptance definitions or settlement rules.
+
+Focused tests in `tests/provider-playability-recovery.test.js` cover a real minute-180 renewal, save/restore, tamper refusal, suspension, cash limits and changed supplier exposure, a stale displayed revision and the action cap. `tests/provider-shell.test.js` checks the visible form, scoped command, draft and focus preservation. The first broad Provider run was stopped after source changes invalidated its evidence; the frozen-candidate rerun is pending. Broader gate results for this follow-on revision are pending; the prior staffing revision evidence above must not be attributed to this code.
+
 Browser recordings, saves and large receipts belong under `/tmp`, outside Git. Scripted timings are automated observations and cannot answer whether first-time players understood the tradeoff.
 
 ## Observed candidate run
@@ -69,7 +75,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 | Relevant rooms, boundaries, recording, sites and programmes | Existing map paths retained; not newly verified in this slice | Full mission and family visible-control evidence remains in campaign backlog |
 | One priced scoped incident response | Implemented | Recovery test and scripted delayed-repair transcript |
 | Speed restoration, pointer pan/zoom, focus | Implemented | Shell tests and selected browser journeys; continuous pointer movement, cancellation and late release now have focused assertions in `tests/provider-shell.test.js`. Cross-engine full journeys remain |
-| Contract renewal policy | Pending | Requires versioned limits, exception path and suspension |
+| Contract renewal policy | Implemented in follow-on candidate; broader gates pending | Versioned per-customer policy, explicit limits, exception path, suspension, real renewal and restore tests |
 | Automatic non-choice progression receipts | Pending | Must issue through validated receipt path exactly once |
 | Included compatibility checks | Pending | Must preserve validated evidence and manual diagnosis value |
 | Outcome callback from durable events | Implemented for Orchard examples | Saved presentation IDs and transcript; human comprehension untested |
@@ -85,7 +91,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 - Run the first-time-player comparison with real participants. The owner reported on 7 November 2026 that no participants are available yet. Ask each person, without prompting, what they bought, what can fail and what to do next; record confusion, abandonment, activations and elapsed time. Select the default from those results. No human result is claimed here.
 - Complete a 15-minute post-repair opportunity with two viable investments and an observed customer callback. The current bill countdown and optional operations do not yet meet this chapter requirement.
 - Compare committed staffing and eligible outsourcing against the same authored workload and settlement history; rebalance the term if the first-time-player sessions expose an unhelpful choice.
-- Add bounded renewal and receipt policies, including explicit exception handling and inspectable suspension; automate only included compatibility checks whose results are still validated.
+- Finish bounded non-choice receipt policy and included compatibility checks whose results remain validated. Recheck the renewal follow-on against all required gates.
 - Add compatible connection previews and keyboard equivalent, plus focused mobile and pointer-cancel assertions.
 - Re-run all required gates on a frozen revision; preserve any failures. Deployment and externally controlled acceptance changes require their own authorization.
 - Review the new English placeholder text in non-English dictionaries before a localized release.

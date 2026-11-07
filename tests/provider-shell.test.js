@@ -48,6 +48,20 @@ test('new SMB form opts into the versioned staffing commitment for both opening 
  }finally{w.close();}
 });
 
+test('renewal policy controls submit scoped limits through Provider dispatch',()=>{
+ const {w,calls}=boot();try{
+  const state=SOC.create({experience:'campaign',opening:'estate',seed:77}),model=SOC.provider.inspect(state);
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="automation"]');
+  const form=w.document.querySelector('[data-provider-form="renewal-policy"]');assert.ok(form);
+  form.elements.enabled.checked=true;form.elements.cashFloor.value='750';form.elements.minMargin.value='220';form.elements.cashFloor.focus();
+  w.SOC_PROVIDER_UI.render(state,model);
+  const preserved=w.document.querySelector('[data-provider-form="renewal-policy"]');assert.equal(preserved.elements.cashFloor.value,'750');assert.equal(w.document.activeElement,preserved.elements.cashFloor);
+  preserved.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'configure-renewal-policy',customerId:'starter-customer',quoteRevision:state.revision,enabled:true,suspended:false,cashFloorCents:75000,minMarginCents:22000,maxSupplierExposureCents:150000,maxCreditCents:5000,maxRenewals:3}}));
+  const configured=SOC.dispatch(state,calls.commands.at(-1));assert.equal(configured.providerCampaign.renewalPolicies[0].cashFloorCents,75000);
+ }finally{w.close();}
+});
+
 test('provider plan requires an engine quote and explicit commit; map selection is local view state',()=>{
  const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="quote"][data-plan="swift"]');

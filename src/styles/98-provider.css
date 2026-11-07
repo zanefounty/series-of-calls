@@ -91,6 +91,9 @@
 /* Geometry matches SOCProviderCanvas.serviceLayout; card bounds are hit bounds. */
 .provider-geography .provider-resource-node{box-sizing:border-box;width:var(--node-width,185px);height:var(--node-height,96px);min-height:44px;max-height:var(--node-height,96px);overflow:hidden;font-size:12px}
 .provider-geography .provider-resource-node b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;line-height:18px;overflow-wrap:anywhere;max-width:100%}
+.provider-geography .provider-connection-preview{background:#fff3c4;border-style:dashed;min-height:44px}
+.provider-geography .provider-connection-preview.is-blocked{background:#ffe4e8}
+.provider-connection-path{stroke:#8b6500;stroke-width:1.4;stroke-dasharray:2 1}
 .provider-geography .provider-map-node{box-sizing:border-box;width:200px;max-width:200px;height:88px;min-height:88px;overflow:hidden}
 .provider-geography .provider-map-node b{max-width:calc(100% - 20px);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 

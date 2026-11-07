@@ -99,6 +99,47 @@ test('provider plan requires an engine quote and explicit commit; map selection 
  w.close();
 });
 
+test('selected customer previews a compatible connection with engine terms before commitment',()=>{
+ let state=SOC.create({experience:'campaign',opening:'win',seed:71});
+ const base=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+ state=SOC.dispatch(state,{type:'provider',command:{...base.request,quoteRevision:base.atRevision}});
+ const before=JSON.stringify(state),model=SOC.provider.inspect(state),{w,calls}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});
+ try{
+  w.SOC_PROVIDER_UI.render(state,model,{selection:{customerId:'starter-customer'},layer:'services'});
+  const preview=w.document.querySelector('.provider-connection-preview');
+  assert.ok(preview,'funded base has a visible carrier connection preview');
+  assert.equal(preview.tagName,'BUTTON','native button supplies the click, Enter and Space paths');
+  assert.match(preview.textContent,/Connect external calling/);
+  const terms=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'carrier',customerId:'starter-customer'});
+  assert.ok(preview.textContent.includes(w.SOCProviderHud.money(terms.setupCents)));
+  assert.ok(preview.textContent.includes(w.SOCProviderHud.money(terms.periodCents)));
+  assert.ok(w.document.querySelector('.provider-connection-path'));
+  assert.equal(JSON.stringify(state),before,'preview is read only');
+  preview.focus();preview.click();
+  assert.equal(calls.quotes.at(-1).action,terms.request.action);
+  assert.equal(calls.quotes.at(-1).customerId,terms.request.customerId);
+  assert.equal(calls.quotes.at(-1).stage,terms.request.stage);
+  assert.equal(calls.commands.length,0,'opening the quote does not fund a job');
+  assert.equal(w.document.querySelector('[role="dialog"]')?.contains(w.document.activeElement),true);
+  click(w,'[data-provider-action="cancel-quote"]');
+  assert.equal(w.document.activeElement,preview,'the quote returns focus to the map connection');
+ }finally{w.close();}
+});
+
+test('connection preview advances with funded stages and disappears after the complete plan',()=>{
+ let state=SOC.create({experience:'campaign',opening:'win',seed:72});
+ const purchase=(stage)=>{const quote=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});assert.deepEqual(quote.blockers,[]);state=SOC.dispatch(state,{type:'provider',command:{...quote.request,quoteRevision:quote.atRevision}});};
+ const {w}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});
+ try{
+  purchase('base');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state),{selection:{customerId:'starter-customer'},layer:'services'});
+  assert.equal(w.document.querySelector('.provider-connection-preview')?.dataset.stage,'carrier');
+  purchase('carrier');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));
+  assert.equal(w.document.querySelector('.provider-connection-preview')?.dataset.stage,'partner');
+  purchase('partner');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));
+  assert.equal(w.document.querySelector('.provider-connection-preview'),null);
+ }finally{w.close();}
+});
+
 test('visible plan and operation quotes disclose engine forecast scope and validated minimum term',()=>{
  const state=SOC.create({experience:'campaign'}),{w,calls}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});try{
   w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');

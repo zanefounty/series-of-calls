@@ -62,6 +62,19 @@ test('renewal policy controls submit scoped limits through Provider dispatch',()
  }finally{w.close();}
 });
 
+test('automatic receipt policy is inspectable and suspendable from Automation',()=>{
+ const {w,calls}=boot();try{
+  const state=SOC.create({experience:'campaign',opening:'win',seed:77}),model=SOC.provider.inspect(state);
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="automation"]');
+  assert.match(w.document.querySelector('.provider-auto-receipts').textContent,/Validated achievement receipts/);
+  click(w,'[data-provider-action="auto-receipts-toggle"]');
+  assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'configure-auto-receipts',enabled:true,suspended:true,quoteRevision:state.revision}}));
+  const suspended=SOC.dispatch(state,calls.commands.at(-1));assert.equal(suspended.providerCampaign.autoReceiptPolicy.suspended,true);
+  w.SOC_PROVIDER_UI.render(suspended,SOC.provider.inspect(suspended));click(w,'[data-provider-action="auto-receipts-toggle"]');
+  assert.equal(calls.commands.at(-1).command.suspended,false);
+ }finally{w.close();}
+});
+
 test('provider plan requires an engine quote and explicit commit; map selection is local view state',()=>{
  const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="quote"][data-plan="swift"]');

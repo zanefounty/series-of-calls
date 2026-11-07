@@ -51,6 +51,10 @@ At frozen source revision `c74682c9fcd36535f0113372411d51ef544a91a9`, focused te
 
 Visible Swift desktop and Steady mobile journeys passed on Chromium (`/tmp/soc-provider-gameplay-browser/provider-browser-20261107044159636.json`), Firefox (`/tmp/soc-provider-firefox-renewal/provider-browser-20261107044715287.json`) and WebKit (`/tmp/soc-provider-webkit-renewal-container2/provider-browser-20261107045059010.json`), each with no source drift. Chromium keyboard opening and mobile HUD journeys also passed in its report. The WebKit host launch failed before any journey because browser libraries are unavailable; the passing rerun used pinned Playwright 1.64.1 container digest `sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f` with the worktree Git metadata mounted. The first container attempt lacked that mount and was invalid; both failed attempts remain under `/tmp`. Actual stdio Provider MCP passed five journeys (`/tmp/soc-provider-stdio.json`), and pinned browser MCP passed with no source drift (`/tmp/soc-playability-mcp-browser-renewal.json/2026-11-07T04-46-36-395976Z/report.json`). These are automated observations, not human playability evidence.
 
+## Automatic receipt follow-on candidate
+
+Explicit new SMB openings now opt into a versioned, suspendable campaign policy for progression claims with one deterministic validated receipt. The policy invokes the existing Provider claim dispatch, records the exact source, retained receipt and event ID, and leaves paid unlock purchases to the player. A five-minute scan and relevant service/settlement events pick up current eligibility; source claims remain subject to the existing evidence and customer-scope checks. Legacy saves without the policy remain manual, and inherited starter work still cannot earn the first-live receipt. Focused tests cover a real first-live claim at minute 10, exactly-once issuance, suspension/resumption, restore, worker parity, tamper refusal, and inherited-estate exclusion. Broader gates and visible browser evidence for this follow-on are pending.
+
 Browser recordings, saves and large receipts belong under `/tmp`, outside Git. Scripted timings are automated observations and cannot answer whether first-time players understood the tradeoff.
 
 ## Observed candidate run
@@ -78,7 +82,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 | One priced scoped incident response | Implemented | Recovery test and scripted delayed-repair transcript |
 | Speed restoration, pointer pan/zoom, focus | Implemented | Shell tests and selected browser journeys; continuous pointer movement, cancellation and late release now have focused assertions in `tests/provider-shell.test.js`. Cross-engine full journeys remain |
 | Contract renewal policy | Implemented in follow-on candidate; automated gates passed | Versioned per-customer policy, explicit limits, exception path, suspension, real renewal and restore tests; current-candidate browser and MCP reports above |
-| Automatic non-choice progression receipts | Pending | Must issue through validated receipt path exactly once |
+| Automatic non-choice progression receipts | Implemented in follow-on candidate; broader gates pending | Versioned and suspendable campaign policy, validated first-live issuance, provenance and worker/restore tests |
 | Included compatibility checks | Pending | Must preserve validated evidence and manual diagnosis value |
 | Outcome callback from durable events | Implemented for Orchard examples | Saved presentation IDs and transcript; human comprehension untested |
 | Staffing commitment and hire/fire arbitrage | Implemented for explicit new SMB openings; comparative balance remains pending | Three-period dispatcher refusal, payroll, save/restore and visible team terms in focused tests; Swift/Steady browser journeys |
@@ -93,7 +97,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 - Run the first-time-player comparison with real participants. The owner reported on 7 November 2026 that no participants are available yet. Ask each person, without prompting, what they bought, what can fail and what to do next; record confusion, abandonment, activations and elapsed time. Select the default from those results. No human result is claimed here.
 - Complete a 15-minute post-repair opportunity with two viable investments and an observed customer callback. The current bill countdown and optional operations do not yet meet this chapter requirement.
 - Compare committed staffing and eligible outsourcing against the same authored workload and settlement history; rebalance the term if the first-time-player sessions expose an unhelpful choice.
-- Finish bounded non-choice receipt policy and included compatibility checks whose results remain validated. The renewal follow-on has passed its current-candidate gates; the remaining campaign and human checks remain open.
+- Verify the automatic receipt follow-on against required gates. Automate included compatibility checks whose results remain validated. The remaining campaign and human checks remain open.
 - Add compatible connection previews and keyboard equivalent, plus focused mobile and pointer-cancel assertions.
 - Re-run all required gates on a frozen revision; preserve any failures. Deployment and externally controlled acceptance changes require their own authorization.
 - Review the new English placeholder text in non-English dictionaries before a localized release.

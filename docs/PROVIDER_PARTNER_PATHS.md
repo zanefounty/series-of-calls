@@ -44,6 +44,8 @@ the full source catalogue and owner research acceptance remain separate.
 Relevant tests are `provider-partner-paid-path.test.js`,
 `provider-partner-paths.test.js` and `provider-partner-support.test.js`. The paid
 path test uses the real map action adapter, checks refused and forged requests,
-compares worker/restore continuation, and pays for retirement recovery. Browser
-execution must still be recorded for each frozen candidate; DOM controls alone
-do not establish browser acceptance.
+compares worker/restore continuation, and pays for retirement recovery. The
+bounded Chromium, Firefox and WebKit desktop/mobile browser execution at
+`fbf627a42e9623b9e65a828f06e414de0956eef2` is recorded in
+`docs/PLAYABILITY_RECOVERY_STATUS.md`. It proves this paid path through a real
+completed customer call; the other partner paths remain separately pending.

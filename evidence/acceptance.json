@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-07T18:14:18.839270+00:00",
+  "runAt": "2026-11-07T18:58:58.040904+00:00",
   "command": [
     "node",
     "--test",
@@ -1419,8 +1419,8 @@
     "src/game/93-ui/70-provider-hud.js": "d47fad1e815766d0a3d321de0ce2fc3240cd74e4ce34540eb809b6b3d328d568",
     "src/game/93-ui/74-provider-security.js": "65b892a8245410a23b615108ef75f5459266d2629839db805fc3fd21f6a48234",
     "src/game/93-ui/75-optic-counts.js": "cc8ab9c888f323e81b99e0a724e9854b11de90956cd83a62e05b200f71ff485e",
-    "src/game/93-ui/75-provider-panels.js": "a759fc2fa4ab8a1b27d9057bbdde1d6ce4c5d4ce3f6642608741d12a05cda0e8",
-    "src/game/93-ui/78-provider-partner-paths.js": "5ba6638ba941e37413d3b7eab043e4c046d61a02ae95b1f4b703a88deb5ed67e",
+    "src/game/93-ui/75-provider-panels.js": "184b4805706d3e9776c7aafeb35cf6b953540df431731fd839b24b52093422b3",
+    "src/game/93-ui/78-provider-partner-paths.js": "1ce4cd3e69bd7666f752674aecb976f0c50a8b6c672b24347966978c227baec5",
     "src/game/93-ui/78-provider-policy-controls.js": "b05999bbd9401b314e5e7bf2d16f374ec10897d219761f8331b76576409a2a6a",
     "src/game/93-ui/78-provider-room-integration.js": "469f1d3a519571d0bc4f68469e6f957cb4ad1ad5be8b4b7f588b87fa813f2c4d",
     "src/game/93-ui/79-provider-case-followup.js": "69d2ee3e41db967152d784bd6e5584d32101f611be03deb0305f049b33069e3f",
@@ -1644,7 +1644,7 @@
     "tests/provider-owned-site-platform-migration.test.js": "a06d06e12a063f6d79297fd1d06f495e4dc2c11c33a03e05c13a1ac9ff1dd296",
     "tests/provider-owned-site-quotes-ui.test.js": "2202a541527fdb4b1cd0abaa98477fa59598b34bbe08d23ffc7396d64dde53ac",
     "tests/provider-owned-site-routed-endpoint.test.js": "3ac92331d73ee8fd527c6c76374f99acf1ca8ef2a27afd9506dad030bac54834",
-    "tests/provider-partner-paid-path.test.js": "773e1af0e6bf71939002c48a0d45fb953817a883a199f8bf1df7810467ee619c",
+    "tests/provider-partner-paid-path.test.js": "3512bb1fd5369902b9b4bff903b803c4211e8686996ee93342f1148526a47baf",
     "tests/provider-partner-paid-uc-cc.test.js": "2010d818a14259b95563643c91ca4f766d66ef9487b0d4a060188574789c689d",
     "tests/provider-partner-paths.test.js": "f3fff651989bbb19d9e63fb91ed44e49f88a9325a9c2ab9c547f165eb8d73dba",
     "tests/provider-partner-progression.test.js": "69bf19259fe1a8e32affa81c5a5f88c3daeda5644c91f5049a6fb09e015c08db",

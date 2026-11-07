@@ -123,6 +123,20 @@ At source revision `131f3da`, `SOC_PROVIDER_BROWSER_JOURNEYS=peak-window-swift,p
 
 The first run failed before gameplay because the pinned WebKit container had left the generated `_site` directory owned by root (`/tmp/soc-playability-peak-window`). Ownership of that generated directory was restored, and the unchanged source passed in the rerun. The failed run is not counted as gameplay evidence.
 
+## Paid partner connection visible route
+
+At source revision `fbf627a42e9623b9e65a828f06e414de0956eef2`, the Grove-to-Disco paid calling connection is selectable from the customer map inspector while its native test is pending. The previous browser attempt found that this action was hidden inside closed technical detail; the failed report is `/tmp/soc-partner-paid-browser-r2/provider-browser-20261107184430151.json`. The fix moves only the pending test control into the immediate customer context and keeps its technical evidence in advanced detail. `tests/provider-partner-paid-path.test.js` asserts that the action is outside closed details. The browser recorder also checks a minimum 44×44-pixel target.
+
+`SOC_PROVIDER_BROWSER_OUT=<directory> node scripts/provider-partner-paid-browser.js` passed desktop 1366×768 and mobile 390×844 in Chromium; adding `SOC_PROVIDER_BROWSER_ENGINE=firefox` passed the same two journeys. WebKit passed both in the lockfile-matched `mcr.microsoft.com/playwright:v1.64.1-noble` container, digest `sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f`, with network disabled. All three reports identify the exact source revision, have no source drift, and retain Playwright traces and final saves outside Git:
+
+| Engine | Report | SHA-256 |
+| --- | --- | --- |
+| Chromium | `/tmp/soc-partner-paid-browser-fbf627a/provider-browser-20261107185112072.json` | `afc893c7907a94d710b42ed674a20f944f5e2a719ed6c237a5c8ed8f315f5b92` |
+| Firefox | `/tmp/soc-partner-paid-firefox-fbf627a/provider-browser-20261107190505565.json` | `c574afdc65cccfb36c8b9e958fdbf45388b8019308d534f2bca51ae2f2781085` |
+| WebKit | `/tmp/soc-partner-paid-webkit-fbf627a/provider-browser-20261107190737305.json` | `cc91de3fff24fc9800365402c511bf8e07a27c6bab3ef3a03ad0bd7e5b4e09f5` |
+
+Each journey paid the SMB base, carrier and partner stages, observed first settlement at minute 60, paid both calling products and a separate A$980 connection at minute 88, activated the native connection test from the map at minute 98, and recorded a resolved customer call through that connection at minute 105. The customer had A$13,701 after the connection purchase. `npm run evidence` executed 866 cases with zero failures; independent `npm run check:evidence` passed on the same source. This bounded route does not certify all partner families or first-time-player comprehension.
+
 ## Owned-site visible journey repair
 
 At source revision `885269a36569a43353e1f11ad3a72523daedef43`, the owned-site browser journey opens the selected customer's visible technical details before using site controls and retains the increased provider team under its actual 180-minute staffing commitment. It measures the extra shared person-minutes rather than attempting an invalid hire/fire toggle. The route records the real customer settlement history and failed streak alongside the funded infrastructure proof; no service victory is inferred from paid projects.

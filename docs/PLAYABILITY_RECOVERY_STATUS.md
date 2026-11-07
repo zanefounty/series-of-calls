@@ -17,6 +17,10 @@ The implementation and browser driver are in revision `b1401768a84bb293620b75f36
 
 New text was registered in the translation dictionaries. Non-English entries added for this slice are English placeholders awaiting translation review.
 
+## Staffing follow-on candidate
+
+Explicit new SMB openings now opt into a versioned three-period provider-team commitment. Downsizing before the commitment ends is refused by Provider dispatch; increasing the team starts a new 180-minute hold. The team panel shows the release minute and estimated remaining payroll at the current team size. The starting three-person team costs A$900 over its first 180 simulated minutes, so an immediate hire/fire toggle cannot avoid that payroll. Legacy saves without this policy continue under their validated existing rule, and the commitment persists when a new opening advances into later segments. Focused engine, save/restore, shell and actual Swift/Steady desktop/mobile browser tests pass; full acceptance evidence for this follow-on source revision is pending regeneration.
+
 ## Verification commands
 
 Run from the exact candidate revision after freezing code:
@@ -67,7 +71,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 | Automatic non-choice progression receipts | Pending | Must issue through validated receipt path exactly once |
 | Included compatibility checks | Pending | Must preserve validated evidence and manual diagnosis value |
 | Outcome callback from durable events | Implemented for Orchard examples | Saved presentation IDs and transcript; human comprehension untested |
-| Staffing commitment and hire/fire arbitrage | Pending | Versioned mobilisation or minimum term and settlement tests required |
+| Staffing commitment and hire/fire arbitrage | Implemented for explicit new SMB openings; comparative balance remains pending | Three-period dispatcher refusal, payroll, save/restore and visible team terms in focused tests; Swift/Steady browser journeys |
 | Starter price and paid diagnosis relevance | Pending design/behavioural comparison | Must demonstrate useful consequence or remove from primary choice |
 | Post-repair fifteen-minute chapter | Pending | Needs two viable strategies and observed fulfilled-promise callback |
 | Compatible connection preview and keyboard equivalent | Pending | New preview action and keyboard control tests required |
@@ -78,7 +82,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 
 - Run the first-time-player comparison with real participants. Ask each person, without prompting, what they bought, what can fail and what to do next; record confusion, abandonment, activations and elapsed time. Select the default from those results. No human result is claimed here.
 - Complete a 15-minute post-repair opportunity with two viable investments and an observed customer callback. The current bill countdown and optional operations do not yet meet this chapter requirement.
-- Stop instant staffing resize arbitrage with a versioned commitment or mobilisation rule, preserving existing workforce history and settlement evidence.
+- Compare committed staffing and eligible outsourcing against the same authored workload and settlement history; rebalance the term if the first-time-player sessions expose an unhelpful choice.
 - Add bounded renewal and receipt policies, including explicit exception handling and inspectable suspension; automate only included compatibility checks whose results are still validated.
 - Add compatible connection previews and keyboard equivalent, plus focused mobile and pointer-cancel assertions.
 - Re-run all required gates on a frozen revision; preserve any failures. Deployment and externally controlled acceptance changes require their own authorization.

@@ -96,3 +96,23 @@ test('inherited customer work cannot be claimed as player-earned first-live prog
  assert.equal(first.status,'incomplete');assert.match(first.missing.join(' '),/inherited/i);
  assert.throws(()=>send(s,{action:'claim-progression',sourceId:'progress.goal.bb',quoteRevision:s.revision}),/PROVIDER_PROGRESSION_EVIDENCE_REQUIRED/);
 });
+
+test('new opening staffing has a visible three-period commitment and cannot be toggled around known work',()=>{
+ let s=SOC.create({experience:'campaign',opening:'win',seed:77}),before=JSON.stringify(s);
+ let quote=SOC.provider.quote(s,{action:'staff',engineers:1,support:1});
+ assert.equal(quote.commercial.committedUntil,180);assert.equal(quote.commercial.minimumMinutes,180);
+ assert.ok(quote.blockers.includes('STAFF_COMMITMENT_ACTIVE'));
+ assert.throws(()=>send(s,{action:'staff',engineers:1,support:1}),/STAFF_COMMITMENT_ACTIVE/);assert.equal(JSON.stringify(s),before);
+ assert.equal(SOC.provider.inspect(s).staffingCommitment.committedUntil,180);
+ s=SOC.dispatch(s,{type:'advance',minutes:180});assert.equal(s.clock,180);
+ assert.equal(s.providerCampaign.payroll.personMinutes,540);assert.equal(s.providerCampaign.payroll.costCents,90000,'the initial three-person commitment incurs its full real payroll');
+ s=send(s,{action:'staff',engineers:1,support:1});assert.equal(s.business.workforce.engineers,1);
+ s=send(s,{action:'staff',engineers:2,support:1});assert.equal(SOC.provider.inspect(s).staffingCommitment.committedUntil,360);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ assert.throws(()=>send(s,{action:'staff',engineers:1,support:1}),/STAFF_COMMITMENT_ACTIVE/);
+ const forged=structuredClone(s);forged.providerCampaign.staffingCommitmentVersion=2;
+ assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_STAFFING_COMMITMENT_VERSION/);
+ const legacy=SOC.create({experience:'campaign',seed:77});
+ assert.equal(SOC.provider.inspect(legacy).staffingCommitment,null);
+ assert.equal(send(legacy,{action:'staff',engineers:1,support:1}).business.workforce.engineers,1);
+});

@@ -3,7 +3,7 @@ const SCP={atHome:true,state:null,seq:0,locked:false,release:null,lockJob:0,work
 const SCP_KEY='series-of-calls:provider:v1',SCP_LOCK='series-of-calls:provider-lock:v1';
 function providerCancel(){SCP.job++;SCP.busy=false;SCP.acc=0;if(SCP.worker){SCP.worker.terminate();SCP.worker=null;}}
 function providerPause(){SCP.speed=0;SCP.acc=0;SCP.last=performance.now();}
-function providerError(error){providerPause();SCP.error=String(error?.message||error);providerRender();}
+function providerError(error){providerPause();const message=String(error?.message||error);let display=message;if(message.includes('STAFF_COMMITMENT_ACTIVE')&&SCP.state?.providerCampaign){try{const minute=SOC.provider.inspect(SCP.state).staffingCommitment?.committedUntil;display=typeof tr==='function'?tr('provider.staff.refusal',{minute}):`The current team is committed through minute ${minute}. Wait until then to reduce staffing.`;}catch{}}SCP.error=display;providerRender();}
 function providerRelease(){SCP.lockJob++;providerPause();providerCancel();if(SCP.release){SCP.release();SCP.release=null;}SCP.locked=false;}
 async function providerAcquire(){
  if(SCP.locked)return true;
@@ -72,7 +72,7 @@ async function providerOpen(){
   if(raw){const e=JSON.parse(raw);if(e.app!==SOC.APP||e.experience!=='campaign'||e.version!==1||!Number.isSafeInteger(e.seq)||e.seq<1)throw new Error('INVALID_PROVIDER_SAVE_ENVELOPE');
    const next=SOC.restore(JSON.stringify(e.state));if(!next.providerCampaign)throw new Error('PROVIDER_SAVE_REQUIRED');SCP.state=next;SCP.seq=e.seq;SOC_PROVIDER_UI.render(SCP.state,providerModel(),providerSavedView(e.view));}
  }catch(e){providerRelease();providerError(e);return;}}
- if(!SCP.state){if(!SCP.locked)return providerRender();SCP.state=SOC.create({experience:'campaign'});providerStore();}
+ if(!SCP.state){if(!SCP.locked)return providerRender();SCP.state=SOC.create({experience:'campaign',opening:'win'});providerStore();}
  providerRender();
 }
 async function providerNew(options={}){

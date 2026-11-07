@@ -38,6 +38,16 @@ test('provider shell launches through callbacks and does not write simulation st
  w.close();
 });
 
+test('new SMB form opts into the versioned staffing commitment for both opening prototypes',()=>{
+ const {w,calls}=boot();try{
+  click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');
+  form.elements.scenario.value='smb';form.elements.opening.value='win';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(calls.other.at(-1)[1].opening,'win');
+  form.elements.opening.value='estate';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(calls.other.at(-1)[1].opening,'estate');
+ }finally{w.close();}
+});
+
 test('provider plan requires an engine quote and explicit commit; map selection is local view state',()=>{
  const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="quote"][data-plan="swift"]');
@@ -142,6 +152,17 @@ test('map pans on each pointer move, cancellation restores the original camera, 
   pointer('pointerup',145,180);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,0,'a cancelled gesture cannot commit on a late release');
   const next=w.document.querySelector('.provider-world-viewport');const event=(type,x,y)=>{const e=new w.MouseEvent(type,{bubbles:true,clientX:x,clientY:y});Object.defineProperty(e,'pointerId',{value:9});next.dispatchEvent(e);};
   event('pointerdown',100,120);event('pointermove',125,145);event('pointerup',125,145);assert.equal(w.SOC_PROVIDER_UI.view().camera.x,25);assert.equal(w.SOC_PROVIDER_UI.view().camera.y,25);
+ }finally{w.close();}
+});
+
+test('new SMB opening discloses the real staffing hold and projected payroll before a resize',()=>{
+ const {w}=boot();try{
+  const state=SOC.create({experience:'campaign',opening:'win'}),model={...SOC.provider.inspect(state),team:{...state.business.workforce},revision:state.revision};
+  w.SOC_PROVIDER_UI.render(state,model,{drawer:'team'});
+  const panel=w.document.querySelector('[data-provider-form="staff"]')?.parentElement;assert.ok(panel);
+  assert.match(panel.textContent,/committed through minute 180/);
+  assert.match(panel.textContent,/A\$900/);
+  assert.equal(SOC.provider.quote(state,{action:'staff',engineers:1,support:1}).blockers[0],'STAFF_COMMITMENT_ACTIVE');
  }finally{w.close();}
 });
 

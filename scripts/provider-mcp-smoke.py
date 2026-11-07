@@ -116,6 +116,7 @@ def main():
             client.call("browser_press_key",{"key":"Escape"})
             client.check("quote-cancelled-by-keyboard","!SCP.state.providerCampaign.customers.length && !document.querySelector('#provider-campaign .provider-modal')")
             client.click('#provider-campaign button[data-provider-action="quote"][data-offer="starter"]')
+            client.click('#provider-campaign .provider-starter-retail > summary')
             wait(client,"!!document.querySelector('#provider-campaign form[data-provider-form=retail-quote]')","retail-agreement-visible")
             client.call("browser_snapshot",{"target":"#provider-campaign .provider-modal","depth":3})
             client.click('#provider-campaign form[data-provider-form="retail-quote"] button')

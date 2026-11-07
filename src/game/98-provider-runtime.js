@@ -162,6 +162,13 @@ function providerPresentationEvents(before,after){
   const resolved=after.providerCampaign.incidents.find(row=>row.customerId===customer.id&&row.status==='resolved'&&before.providerCampaign.incidents.find(old=>old.id===row.id)?.status!=='resolved');
   if(resolved&&SOC.provider.inspect(after).customers.find(row=>row.id===customer.id)?.services.find(row=>row.id===resolved.resource)?.observed.ready===true)reactions.push({sourceId:resolved.id,customerId:customer.id,at:after.clock,message:story.recovered});
   if(previous&&previous.history.length===0&&customer.history.length){const bill=customer.history.at(-1),receipt=after.providerCampaign.events.findLast(row=>row.code==='PROVIDER_PERIOD_SETTLED'&&row.at===after.clock),money=cents=>`A$${(cents/100).toFixed(2)}`;if(receipt)reactions.push({sourceId:receipt.id,customerId:customer.id,at:after.clock,message:story.firstBill.replace('{net}',money(bill.netRetail)).replace('{credit}',money(bill.credit))});}
+  if(story.postRepairCurrent&&after.providerCampaign.staffingCommitmentVersion===1){
+   const chapter=SOC.provider.inspect(after).postRepairChapter;
+   if(chapter?.customerId===customer.id&&chapter.done&&before.clock<chapter.to&&after.clock>=chapter.to){
+    const arrival=after.providerCampaign.events.findLast(row=>row.code==='CUSTOMER_WORK_ARRIVED'&&row.customerId===customer.id&&row.at>chapter.from&&row.at<=chapter.to);
+    if(arrival){const values={onTime:chapter.onTime,offered:chapter.offered,failed:chapter.failed,waiting:chapter.waiting,coverStatus:chapter.cover?.status||''},template=chapter.cover?story.postRepairCovered:story.postRepairCurrent,message=template.replace(/\{([a-zA-Z]+)\}/g,(_,key)=>String(values[key]??''));reactions.push({sourceId:arrival.id,customerId:customer.id,at:after.clock,message});}
+   }
+  }
  }
  if(reactions.length)SOC_PROVIDER_UI.noteEvents(reactions);
  const preferences=providerPreferences();if(!preferences?.sound)return;

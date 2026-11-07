@@ -167,7 +167,7 @@ const SOC = (function socKernel() {
       root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
-      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1}:{})},providerHooks());
+      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
     }
     if(opening==='estate'){
       let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};
@@ -1133,6 +1133,7 @@ const SOC = (function socKernel() {
       afterCommissioning:s=>{providerRetainedStorageAdvance(s);providerSupportReplacements(s);},afterCustomerExit:providerRetainedStorageAdvance,retainedStorageOnExit:providerRetainedStorageOnExit,pendingCaptureStorageOnExit:providerPendingCaptureStorageOnExit,
       scaleContinuationsOnExit:(s,id)=>s.providerCampaign.scaleObservation?providerScale.commitments(s.providerCampaign.scaleObservation,id):[],
       testServiceIntegration:(s,projectId)=>s.providerCampaign.projects.find(p=>p.id===projectId)?.operationId===providerRoomIntegration.OPERATION_ID?providerRoomIntegrationTest(s,projectId,apply):providerUcCcTest(s,projectId,apply),
+      autoReceiptClaimable:sourceId=>providerProgressionReceipts.autoSources().includes(sourceId),
       claimProgression:(s,sourceId)=>{const result=providerProgressionReceipts.claim(s,sourceId,providerProgressionHooks(s));if(result.receipt.sourceEvidence?.missions?.support){const id=result.receipt.sourceEvidence.customerId;row(s,id).root.providerCustodyPins=expectedProviderCustodyPins(s,id,result.state.providerCampaign.progressionReceipts.receipts);}if(sourceId==='progress.goal.'+'ca'){const child=row(s,result.receipt.customerIds[0]).root;child.providerProgressionPins={version:1,sourceId,receiptId:result.receipt.id,pins:providerLocalProgression.retentionPins(result.receipt.sourceEvidence)};}if(['progress.progression-level.5','progress.progression-level.6'].includes(sourceId))for(const customerId of result.receipt.customerIds)row(s,customerId).root.providerCentralPins=providerCentralPinsFor(s,customerId,result.state.providerCampaign.progressionReceipts.receipts);if(sourceId===providerExternalReach.SOURCE_ID)for(const customerId of result.receipt.customerIds)row(s,customerId).root.providerExternalReachPins=providerExternalReachPinsFor(s,customerId,result.state.providerCampaign.progressionReceipts.receipts);if(sourceId===providerDedicatedInterconnect.SOURCE_ID)for(const customerId of result.receipt.customerIds)row(s,customerId).root.providerInterconnectPins=providerInterconnectPinsFor(s,customerId,result.state.providerCampaign.progressionReceipts.receipts);if(Object.values(providerRegionalSupport.GOALS).includes(sourceId))for(const customerId of result.receipt.customerIds)row(s,customerId).root.providerRegionalPins=providerRegionalPinsFor(s,customerId,result.state.providerCampaign.progressionReceipts.receipts);return result;},
       operationBlockers:(s,id,definition,request={})=>{const child=row(s,id).root,p=s.providerCampaign,op=definition.id,blockers=[];
         if(providerScale.terms(op)){if(op==='managed-scale-workflow'&&!p.progressionReceipts?.receipts.some(r=>r.sourceId==='progress.goal.'+'tb'&&r.sourceEvidence.market===p.customers.find(c=>c.id===id)?.market))blockers.push('EARNED_SCALE_MARKET_REQUIRED');const side=p.scaleObservation||providerScale.create();blockers.push(...providerScale.orderPlan(side,{customerId:id,operationId:op},providerScaleHooks(s)).blockers);if(p.projects.some(x=>x.customerId===id&&providerScale.terms(x.operationId)&&['running','commissioning'].includes(x.status)))blockers.push('SCALE_PROJECT_IN_PROGRESS');return blockers;}
@@ -1452,6 +1453,29 @@ const SOC = (function socKernel() {
       const intent={action:'operation',operationId:'repair',customerId:policy.customerId},q=providerCampaign.quote(s,intent,providerHooks());if(q.blockers.length)continue;
       Object.assign(s,dispatchInternal(s,{type:'provider',command:{...intent,quoteRevision:q.atRevision}},true,true,true));
       policy.spentCents+=q.setupCents;policy.actions.push({incidentId:incident.id,projectId:s.providerCampaign.projects.at(-1).id,at:s.clock,cents:q.setupCents});
+    }
+  }
+  function providerAutoReceiptsAdvance(s){
+    const policy=s.providerCampaign?.autoReceiptPolicy;if(!policy?.enabled||policy.suspended)return;
+    const relevant=new Set(['CUSTOMER_WORK_COMPLETED','OPERATION_EFFECTIVE','PROJECT_EFFECTIVE','PROVIDER_PERIOD_SETTLED','SERVICE_INTEGRATION_TESTED','MISSION_WON']);
+    if(s.clock%5!==0&&!s.providerCampaign.events.some(event=>event.at===s.clock&&relevant.has(event.code)))return;
+    const hooks=providerProgressionHooks(s),facts=providerProgressionFacts.evaluate(s,hooks);
+    for(const sourceId of providerProgressionReceipts.autoSources()){
+      if(s.providerCampaign.progressionReceipts?.receipts.some(receipt=>receipt.sourceId===sourceId))continue;
+      const status=providerProgressionReceipts.eligibility(s,sourceId,hooks,facts,true);
+      if(status.status!=='ready')continue;
+      Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'claim-progression',sourceId,quoteRevision:s.revision,policyVersion:1}},true,true,true));
+    }
+  }
+  function providerAutoIntegrationAdvance(s){
+    const policy=s.providerCampaign?.autoIntegrationChecks;if(!policy?.enabled||policy.suspended)return;
+    const ids=s.providerCampaign.projects.filter(project=>project.status==='commissioning'&&project.operationReceipt?.test===null&&(project.operationId===providerRoomIntegration.OPERATION_ID||providerUcCcIntegration.OPERATION_IDS.includes(project.operationId))).map(project=>project.id);
+    for(const projectId of ids){
+      const project=s.providerCampaign.projects.find(row=>row.id===projectId),customer=s.providerCampaign.customers.find(row=>row.id===project?.customerId),child=s.portfolio.customers.find(row=>row.id===project?.customerId)?.root;
+      if(!project||project.status!=='commissioning'||project.operationReceipt?.test!==null||customer?.status!=='active'||!child)continue;
+      const current=project.operationId===providerRoomIntegration.OPERATION_ID?providerRoomIntegration.buildPlan(child,providerRoomIntegrationHooks()):providerUcCcIntegration.plan(s,project.id,providerUcCcHooks(s,project.customerId,child));
+      if(current.status!=='ready'||!current.plan||JSON.stringify(current.plan.source)!==JSON.stringify(project.operationReceipt.plan.source)||JSON.stringify(current.plan.target)!==JSON.stringify(project.operationReceipt.plan.target))continue;
+      Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'test-service-integration',projectId,quoteRevision:s.revision,policyVersion:1}},true,true,true));
     }
   }
   function providerProductOrder(parent,customerId,definition,apply){
@@ -2386,7 +2410,7 @@ const SOC = (function socKernel() {
     providerServiceBoundaryObservations(s);
     if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s,!!s.providerCampaign));
     providerServiceBoundaryObservations(s);
-    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}}
+    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}providerAutoIntegrationAdvance(s);}
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());

@@ -33,7 +33,7 @@ test('achievement controls preserve revision and source identity at the dispatch
 test('provider shell launches through callbacks and does not write simulation state',()=>{
  const {w,calls}=boot();click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');assert.ok(form.classList.contains('is-open'));
  form.elements.providerName.value='Harbour Relay';form.elements.market.value='us-seattle';form.elements.scenario.value='enterprise';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
- assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise'}]));
+ assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win'}]));
  click(w,'[data-provider-action="open"]');assert.deepEqual(calls.other.at(-1),['open','providerCampaign']);
  w.close();
 });
@@ -45,6 +45,23 @@ test('new SMB form opts into the versioned staffing commitment for both opening 
   assert.equal(calls.other.at(-1)[1].opening,'win');
   form.elements.opening.value='estate';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   assert.equal(calls.other.at(-1)[1].opening,'estate');
+ }finally{w.close();}
+});
+
+test('mission launch removes the SMB estate choice while keeping the visible mission selection',()=>{
+ const {w,calls}=boot();try{
+  click(w,'[data-provider-action="show-new-game"]');
+  let form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'the SMB opening comparison is available on the default mission');
+  form.elements.scenario.value='government';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.equal(form.elements.scenario.value,'government');
+  assert.equal(form.querySelector('[name="opening"]'),null,'a Government player cannot choose an ignored estate option');
+  form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  assert.equal(calls.other.at(-1)[1].opening,'win');
+  form.elements.scenario.value='smb';form.elements.scenario.dispatchEvent(new w.Event('input',{bubbles:true}));
+  form=w.document.querySelector('[data-provider-form="new-game"]');
+  assert.ok(form.elements.opening,'returning to SMB restores both prototype choices');
  }finally{w.close();}
 });
 
@@ -62,6 +79,32 @@ test('renewal policy controls submit scoped limits through Provider dispatch',()
  }finally{w.close();}
 });
 
+test('automatic receipt policy is inspectable and suspendable from Automation',()=>{
+ const {w,calls}=boot();try{
+  const state=SOC.create({experience:'campaign',opening:'win',seed:77}),model=SOC.provider.inspect(state);
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="automation"]');
+  assert.match(w.document.querySelector('.provider-auto-receipts').textContent,/Validated achievement receipts/);
+  click(w,'[data-provider-action="auto-receipts-toggle"]');
+  assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'configure-auto-receipts',enabled:true,suspended:true,quoteRevision:state.revision}}));
+  const suspended=SOC.dispatch(state,calls.commands.at(-1));assert.equal(suspended.providerCampaign.autoReceiptPolicy.suspended,true);
+  w.SOC_PROVIDER_UI.render(suspended,SOC.provider.inspect(suspended));click(w,'[data-provider-action="auto-receipts-toggle"]');
+  assert.equal(calls.commands.at(-1).command.suspended,false);
+ }finally{w.close();}
+});
+
+test('included compatibility check policy is visible and suspendable from Automation',()=>{
+ const {w,calls}=boot();try{
+  const state=SOC.create({experience:'campaign',opening:'win',seed:77}),model=SOC.provider.inspect(state);
+  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="automation"]');
+  assert.match(w.document.querySelector('.provider-auto-integration').textContent,/Included compatibility checks/);
+  click(w,'[data-provider-action="auto-integration-toggle"]');
+  assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'configure-auto-integration-checks',enabled:true,suspended:true,quoteRevision:state.revision}}));
+  const suspended=SOC.dispatch(state,calls.commands.at(-1));assert.equal(suspended.providerCampaign.autoIntegrationChecks.suspended,true);
+  w.SOC_PROVIDER_UI.render(suspended,SOC.provider.inspect(suspended));click(w,'[data-provider-action="auto-integration-toggle"]');
+  assert.equal(calls.commands.at(-1).command.suspended,false);
+ }finally{w.close();}
+});
+
 test('provider plan requires an engine quote and explicit commit; map selection is local view state',()=>{
  const {w,calls}=boot();let state={revision:44,clock:0};let model={revision:44,providerName:'Harbour Relay',period:1,minute:0,cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,forecast:{operatingResult:0,recurringRevenue:0,recurringCost:0,variableUsage:0},customers:[],offers:[],goals:[],mission:{name:'Orchard Repairs'},events:[]};
  w.SOC_PROVIDER_UI.render(state,model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="quote"][data-plan="swift"]');
@@ -71,6 +114,47 @@ test('provider plan requires an engine quote and explicit commit; map selection 
  click(w,'[data-provider-action="select-customer"]');assert.equal(w.SOC_PROVIDER_UI.view().selection.customerId,'orchard');assert.equal(calls.commands.length,1);
  assert.match(w.document.querySelector('.provider-inspector').textContent,/Provisioning/);assert.doesNotMatch(w.document.querySelector('.provider-inspector').textContent,/Due\s*0/);
  w.close();
+});
+
+test('selected customer previews a compatible connection with engine terms before commitment',()=>{
+ let state=SOC.create({experience:'campaign',opening:'win',seed:71});
+ const base=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+ state=SOC.dispatch(state,{type:'provider',command:{...base.request,quoteRevision:base.atRevision}});
+ const before=JSON.stringify(state),model=SOC.provider.inspect(state),{w,calls}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});
+ try{
+  w.SOC_PROVIDER_UI.render(state,model,{selection:{customerId:'starter-customer'},layer:'services'});
+  const preview=w.document.querySelector('.provider-connection-preview');
+  assert.ok(preview,'funded base has a visible carrier connection preview');
+  assert.equal(preview.tagName,'BUTTON','native button supplies the click, Enter and Space paths');
+  assert.match(preview.textContent,/Connect external calling/);
+  const terms=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'carrier',customerId:'starter-customer'});
+  assert.ok(preview.textContent.includes(w.SOCProviderHud.money(terms.setupCents)));
+  assert.ok(preview.textContent.includes(w.SOCProviderHud.money(terms.periodCents)));
+  assert.ok(w.document.querySelector('.provider-connection-path'));
+  assert.equal(JSON.stringify(state),before,'preview is read only');
+  preview.focus();preview.click();
+  assert.equal(calls.quotes.at(-1).action,terms.request.action);
+  assert.equal(calls.quotes.at(-1).customerId,terms.request.customerId);
+  assert.equal(calls.quotes.at(-1).stage,terms.request.stage);
+  assert.equal(calls.commands.length,0,'opening the quote does not fund a job');
+  assert.equal(w.document.querySelector('[role="dialog"]')?.contains(w.document.activeElement),true);
+  click(w,'[data-provider-action="cancel-quote"]');
+  assert.equal(w.document.activeElement,preview,'the quote returns focus to the map connection');
+ }finally{w.close();}
+});
+
+test('connection preview advances with funded stages and disappears after the complete plan',()=>{
+ let state=SOC.create({experience:'campaign',opening:'win',seed:72});
+ const purchase=(stage)=>{const quote=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});assert.deepEqual(quote.blockers,[]);state=SOC.dispatch(state,{type:'provider',command:{...quote.request,quoteRevision:quote.atRevision}});};
+ const {w}=boot({quoteHandler:request=>SOC.provider.quote(state,request)});
+ try{
+  purchase('base');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state),{selection:{customerId:'starter-customer'},layer:'services'});
+  assert.equal(w.document.querySelector('.provider-connection-preview')?.dataset.stage,'carrier');
+  purchase('carrier');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));
+  assert.equal(w.document.querySelector('.provider-connection-preview')?.dataset.stage,'partner');
+  purchase('partner');w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));
+  assert.equal(w.document.querySelector('.provider-connection-preview'),null);
+ }finally{w.close();}
 });
 
 test('visible plan and operation quotes disclose engine forecast scope and validated minimum term',()=>{
@@ -90,6 +174,19 @@ test('visible plan and operation quotes disclose engine forecast scope and valid
  const ui=boot({quoteHandler:request=>SOC.provider.quote(active,request)});try{
   ui.w.SOC_PROVIDER_UI.render(active,SOC.provider.inspect(active));click(ui.w,'[data-provider-action="drawer"][data-provider-value="operations"]');click(ui.w,'[data-provider-action="operation"][data-operation="expand"]');const text=ui.w.document.querySelector('.provider-modal').textContent;
   assert.match(text,/Minimum term\s*3 periods/);assert.match(text,/Conditional full-plan forecast · not guaranteed/);assert.ok(text.includes(ui.w.SOCProviderHud.money(operationQuote.forecast.conditionalFullPlan.operatingResult)));
+ }finally{ui.w.close();}
+});
+
+test('starter staged quote keeps optional retail terms behind details while later quotes show them directly',()=>{
+ const state=SOC.create({experience:'campaign',opening:'win'}),ui=boot();try{
+  const first=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+  const firstHtml=ui.w.SOCProviderPanels.quote(first,{quoteRequest:first.request});
+  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary><form data-provider-form="retail-quote"/);
+  const committed=SOC.dispatch(state,{type:'provider',command:{...SOC.provider.quote(state,{action:'plan',offerId:'starter',planId:'swift'}).request,quoteRevision:state.revision}});
+  const later=SOC.provider.quote(committed,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
+  const laterHtml=ui.w.SOCProviderPanels.quote(later,{quoteRequest:later.request});
+  assert.match(laterHtml,/data-provider-form="retail-quote"/);
+  assert.doesNotMatch(laterHtml,/provider-starter-retail/);
  }finally{ui.w.close();}
 });
 

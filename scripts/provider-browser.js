@@ -605,7 +605,19 @@ async function runOwnershipAndPersistence(baseUrl){
 async function runKeyboardJourney(baseUrl){
  const row={id:'keyboard-smb-opening',plan:'swift',viewport:{width:1366,height:768},steps:[],status:'running',errors:[]};report.journeys.push(row);fs.rmSync(path.join(OUT,row.id),{recursive:true,force:true});fs.mkdirSync(path.join(OUT,row.id),{recursive:true,force:true});
  const context=await browser.newContext({viewport:row.viewport,reducedMotion:'reduce'}),page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>row.errors.push(`pageerror:${e.message}`));
- const tabUntil=async(selector,max=300)=>{for(let i=0;i<max;i++){if(await page.evaluate(sel=>!!document.activeElement?.matches(sel),selector))return i;await page.keyboard.press('Tab');}throw new Error(`keyboard focus did not reach ${selector} in ${max} Tab presses`);};
+ const tabUntil=async(selector,max=300)=>{
+  const backward=await page.evaluate(sel=>{const target=document.querySelector(sel),active=document.activeElement;return !!target&&!!active&&target!==active&&!!(target.compareDocumentPosition(active)&Node.DOCUMENT_POSITION_FOLLOWING);},selector);
+  let key=backward?'Shift+Tab':'Tab',last='',same=0,switched=false;const seen=[];
+  for(let i=0;i<max;i++){
+   if(await page.evaluate(sel=>!!document.activeElement?.matches(sel),selector))return i;
+   const focus=await page.evaluate(()=>({tag:document.activeElement?.tagName,id:document.activeElement?.id,action:document.activeElement?.dataset?.providerAction,targetId:document.activeElement?.dataset?.id,value:document.activeElement?.dataset?.providerValue,text:document.activeElement?.textContent?.trim().slice(0,45)}));
+   const signature=JSON.stringify(focus);seen.push({key,...focus});same=signature===last?same+1:0;last=signature;
+   if(same>=5&&!switched){key=key==='Tab'?'Shift+Tab':'Tab';switched=true;}
+   await page.keyboard.press(key);
+  }
+  const target=await page.evaluate(sel=>{const el=document.querySelector(sel);if(!el)return null;const r=el.getBoundingClientRect();return {html:el.outerHTML.slice(0,250),hidden:el.hidden,disabled:el.disabled,tabIndex:el.tabIndex,rect:{x:r.x,y:r.y,width:r.width,height:r.height}};},selector);
+  throw new Error(`keyboard focus did not reach ${selector} in ${max} presses; target: ${JSON.stringify(target)}; first focus: ${JSON.stringify(seen.slice(0,15))}; last focus: ${JSON.stringify(seen.slice(-10))}`);
+ };
  const enter=async selector=>{const tabs=await tabUntil(selector);await page.keyboard.press('Enter');return tabs;};
  const activate=async(selector,check)=>{const tabs=await tabUntil(selector);for(const key of ['Enter','Space']){await page.keyboard.press(key);await page.waitForTimeout(75);if(await page.evaluate(check))return {tabs,key};}const detail=await page.evaluate(()=>({active:document.activeElement?.outerHTML?.slice(0,180),drawer:SOC_PROVIDER_UI.view().drawer,quoteModal:SOC_PROVIDER_UI.view().quoteModal,error:SCP.error}));throw new Error(`keyboard activation failed for ${selector}: ${JSON.stringify(detail)}`);};
  const modalCommit=async()=>{await activate('[data-provider-action="confirm-quote"]',()=>!SOC_PROVIDER_UI.view().quoteModal);};

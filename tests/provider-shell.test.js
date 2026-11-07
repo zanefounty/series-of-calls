@@ -11,7 +11,7 @@ function boot({map=false,quoteHandler=null}={}){
  const dom=new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>',{runScripts:'dangerously',pretendToBeVisual:true});const w=dom.window;
  if(map){w.W=2000;w.H=1000;w.COAST=[[[0,0],[100,0],[100,100],[0,100]]];w.CITY={syd:{x:1860,y:790}};}
  w.eval(read('game/93-ui/10-dom.js'));
- for(const file of ['game/23-provider-variants.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/78-provider-policy-controls.js','game/93-ui/79-provider-comparisons.js','game/93-ui/79-provider-context-actions.js','game/93-ui/79-provider-lifecycle.js','game/93-ui/79-provider-integration.js','game/93-ui/79-provider-progression.js','game/93-ui/79-provider-service-retirement.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
+ for(const file of ['game/23-provider-variants.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/78-provider-policy-controls.js','game/93-ui/79-provider-comparisons.js','game/93-ui/79-provider-context-actions.js','game/93-ui/79-provider-incidents.js','game/93-ui/79-provider-lifecycle.js','game/93-ui/79-provider-integration.js','game/93-ui/79-provider-progression.js','game/93-ui/79-provider-service-retirement.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(read(file));
  const calls={commands:[],quotes:[],other:[]};const callbacks={command:x=>{calls.commands.push(x);return {ok:true};},quote:x=>{calls.quotes.push(x);return quoteHandler?quoteHandler(x):{accepted:true,atRevision:44,name:'Swift starter service',setupCents:600000,periodCents:102000,variableUsageCents:3000,cashAfterCents:1400000,leadMinutes:7,workMinutes:7,minimumPeriods:3,forecastImpactCents:45000};},decision:x=>calls.other.push(['decision',x]),speed:x=>calls.other.push(['speed',x]),pause:()=>calls.other.push(['pause']),save:()=>calls.other.push(['save']),export:()=>calls.other.push(['export']),import:x=>calls.other.push(['import',x]),close:()=>calls.other.push(['close']),openExperience:x=>calls.other.push(['open',x]),newGame:x=>calls.other.push(['new',x])};
  w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),callbacks);w.SOC_PROVIDER_UI.render(null,null);return {dom,w,calls};
 }
@@ -223,6 +223,25 @@ test('provider map uses retained geography, customer coordinates and typed obser
 
 test('coach distinguishes funded expansion from settled operations and mission victory',()=>{const {w}=boot();const model={cash:1000,forecast:{},offers:[],events:[],projects:[],incidents:[{customerId:'starter-customer',status:'acknowledged'}],mission:{status:'active'},customers:[{id:'starter-customer',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{offered:12},history:[]},{id:'next-1-customer',stages:{base:{status:'running'}}}]};w.SOC_PROVIDER_UI.render({revision:1},model);let steps=w.document.querySelectorAll('.provider-coach-list li');assert.equal(steps[3].classList.contains('is-done'),false);assert.equal(steps[4].classList.contains('is-done'),false);assert.equal(steps[5].classList.contains('is-done'),false);model.incidents[0].status='resolved';model.customers[0].history=[{due:24}];model.customers[1].stages.base.status='effective';w.SOC_PROVIDER_UI.render({revision:2},model);steps=w.document.querySelectorAll('.provider-coach-list li');assert.ok(steps[3].classList.contains('is-done'));assert.ok(steps[4].classList.contains('is-done'));assert.equal(steps[5].classList.contains('is-done'),false);model.mission.status='won';w.SOC_PROVIDER_UI.render({revision:3},model);assert.ok(w.document.querySelectorAll('.provider-coach-list li')[5].classList.contains('is-done'));w.close();});
 
+
+test('selecting an incident moves keyboard focus into its response inspector',()=>{
+ const {w}=boot();try{
+  let state=SOC.create({experience:'campaign',opening:'win',seed:77});
+  const request={action:'plan',offerId:'starter',planId:'swift'},quote=SOC.provider.quote(state,request);
+  state=SOC.dispatch(state,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});
+  while(state.clock<50&&!state.providerCampaign.incidents.some(row=>row.status==='active'))state=SOC.dispatch(state,{type:'advance',minutes:1});
+  const incident=state.providerCampaign.incidents.find(row=>row.status==='active');assert.ok(incident);
+  w.SOC_PROVIDER_UI.render(state,SOC.provider.inspect(state));
+  const trigger=w.document.querySelector(`[data-provider-action="select-incident"][data-id="${incident.id}"]`);assert.ok(trigger);
+  trigger.focus();trigger.dispatchEvent(new w.MouseEvent('click',{bubbles:true,detail:1}));
+  assert.notEqual(w.document.activeElement,w.document.querySelector('.provider-inspector [data-provider-action="close-inspector"]'),'pointer selection does not move keyboard focus');
+  const keyboardTrigger=w.document.querySelector(`[data-provider-action="select-incident"][data-id="${incident.id}"]`);
+  keyboardTrigger.focus();keyboardTrigger.dispatchEvent(new w.MouseEvent('click',{bubbles:true,detail:0}));
+  const close=w.document.querySelector('.provider-inspector [data-provider-action="close-inspector"]');
+  assert.equal(w.document.activeElement,close,'keyboard selection begins inside the relevant inspector');
+  assert.ok(w.document.querySelector('.provider-inspector .provider-incident'));
+ }finally{w.close();}
+});
 
 test('mobile sheet remains explicitly open through focus changes, ticks and closes on request',()=>{
  const {w}=boot();try{Object.defineProperty(w,'innerWidth',{value:390});const model={cash:1000,customers:[],offers:[],events:[],forecast:{}};

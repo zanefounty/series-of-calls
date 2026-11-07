@@ -2,7 +2,7 @@
 
 This document records the recovery slice against the 7 November 2026 review pack. It is a development record, not a release approval. The reviewed baseline was `a4e7e54b5010b2625c2c982607faa279ab9e5524`; the implementation branch starts from that revision. The complete review ZIP was read and its member hashes checked before implementation.
 
-The implementation and browser driver are in revision `b1401768a84bb293620b75f3699c41d1da4fda7b`, with the opening viewport correction in `1af63d58f1304b25b33990f0aa05fad4cfd186d4` and the presentation event rules fix in `f45175ab3d376f63e4af49d075b0a260b29ebb68`. The last revision is the source revision used for the evidence below. Later evidence-only commits must cite these revisions when attributing behavior.
+The initial implementation and browser driver are in revision `b1401768a84bb293620b75f3699c41d1da4fda7b`, with the opening viewport correction in `1af63d58f1304b25b33990f0aa05fad4cfd186d4` and the presentation event rules fix in `f45175ab3d376f63e4af49d075b0a260b29ebb68`. The staffing follow-on source revision is `af28b38`; its verification is recorded separately below. Later evidence-only commits must cite the applicable source revision when attributing behavior.
 
 ## Implemented in this candidate
 
@@ -19,7 +19,9 @@ New text was registered in the translation dictionaries. Non-English entries add
 
 ## Staffing follow-on candidate
 
-Explicit new SMB openings now opt into a versioned three-period provider-team commitment. Downsizing before the commitment ends is refused by Provider dispatch; increasing the team starts a new 180-minute hold. The team panel shows the release minute and estimated remaining payroll at the current team size. The starting three-person team costs A$900 over its first 180 simulated minutes, so an immediate hire/fire toggle cannot avoid that payroll. Legacy saves without this policy continue under their validated existing rule, and the commitment persists when a new opening advances into later segments. Focused engine, save/restore, shell and actual Swift/Steady desktop/mobile browser tests pass; full acceptance evidence for this follow-on source revision is pending regeneration.
+Explicit new SMB openings now opt into a versioned three-period provider-team commitment. Downsizing before the commitment ends is refused by Provider dispatch; increasing the team starts a new 180-minute hold. The team panel shows the release minute and estimated remaining payroll at the current team size. The starting three-person team costs A$900 over its first 180 simulated minutes, so an immediate hire/fire toggle cannot avoid that payroll. Legacy saves without this policy continue under their validated existing rule, and the commitment persists when a new opening advances into later segments.
+
+At source revision `af28b38`, focused engine/shell tests passed 24/24; the uncontended full JavaScript suite passed 2,422, failed zero and skipped two. `npm run evidence` regenerated 857 acceptance cases with zero failures and no changed inputs, and `npm run check:evidence` passed. Source, coverage, translation, build and gate mutation checks passed. Swift desktop/keyboard and Steady mobile/HUD browser journeys passed without source drift (reports `/tmp/soc-provider-gameplay-browser/provider-browser-20261107031818586.json` and `/tmp/soc-provider-gameplay-browser/provider-browser-20261107031945165.json`). The actual stdio Provider MCP smoke passed five journeys (`/tmp/soc-provider-stdio.json`), and pinned browser MCP passed with no source drift (`/tmp/soc-playability-mcp-browser-staff.json/2026-11-07T03-50-11-092235Z/report.json`). A prior browser attempt at `/tmp/soc-provider-gameplay-browser/provider-browser-20261107031612266.json` is invalid evidence because source changed during the run; it also exposed and led to the segment-validation fix. These results do not cover the full Firefox/WebKit journey matrix or the human pilot.
 
 ## Verification commands
 
@@ -80,7 +82,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 
 ## Remaining work and current limits
 
-- Run the first-time-player comparison with real participants. Ask each person, without prompting, what they bought, what can fail and what to do next; record confusion, abandonment, activations and elapsed time. Select the default from those results. No human result is claimed here.
+- Run the first-time-player comparison with real participants. The owner reported on 7 November 2026 that no participants are available yet. Ask each person, without prompting, what they bought, what can fail and what to do next; record confusion, abandonment, activations and elapsed time. Select the default from those results. No human result is claimed here.
 - Complete a 15-minute post-repair opportunity with two viable investments and an observed customer callback. The current bill countdown and optional operations do not yet meet this chapter requirement.
 - Compare committed staffing and eligible outsourcing against the same authored workload and settlement history; rebalance the term if the first-time-player sessions expose an unhelpful choice.
 - Add bounded renewal and receipt policies, including explicit exception handling and inspectable suspension; automate only included compatibility checks whose results are still validated.

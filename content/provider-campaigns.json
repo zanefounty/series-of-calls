@@ -15,6 +15,15 @@
       "scenario": "smb",
       "name": "The Orchard Repairs desk",
       "brief": "Win a small service desk with external calling and digital enquiries. Keep the activation bill inside the owner’s budget, then protect eight-minute response promises when a carrier outage arrives.",
+      "presentation": {
+        "owner": "Rina",
+        "firstWork": "Rina at Orchard Repairs: An enquiry got through while the workshop was busy. Keep the queue moving.",
+        "firstFailure": "Rina at Orchard Repairs: An enquiry did not get through. The affected service needs a response.",
+        "recovered": "Rina at Orchard Repairs: The connection is available again. Watch the waiting work before promising recovery.",
+        "firstBill": "Rina at Orchard Repairs: The first bill earned {net}; service credit was {credit}. The next promise depends on what actually reached us.",
+        "postRepairCovered": "Rina at Orchard Repairs: {onTime} of {offered} new enquiries were answered on time after the repair; {failed} failed and {waiting} were still waiting. Paid BPO cover was {coverStatus}.",
+        "postRepairCurrent": "Rina at Orchard Repairs: {onTime} of {offered} new enquiries were answered on time after the repair; {failed} failed and {waiting} were still waiting. We kept the current team and cash for the next decision."
+      },
       "customerName": "Orchard Repairs",
       "retailCents": 180000,
       "maxRetailCents": 180000,
@@ -66,6 +75,12 @@
         "delayMinutes": 4,
         "resource": "carrier",
         "kind": "outage"
+      },
+      "postRepairForecast": {
+        "version": 1,
+        "startAfterMinutes": 3,
+        "windowMinutes": 15,
+        "coverOperationId": "bpo"
       },
       "nextOpportunity": {
         "name": "Harbour Health service desk",

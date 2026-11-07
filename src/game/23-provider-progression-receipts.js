@@ -60,6 +60,8 @@ function socProviderProgressionReceiptsKernel(){
  function knownIds(){const A=factsApi();return [...A.LEVELS,...A.GOALS];}
  function rowFor(report,sourceId){return report.levels?.[sourceId]||report.goals?.[sourceId]||null;}
  function supportedPredicate(sourceId){return [SCALE,SECURITY,...OWNED_SOURCES,FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,...REGIONAL_SOURCES,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_LN,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX].includes(sourceId);}
+ // Each current retained claim issues one deterministic receipt. Paid unlocks remain later player choices.
+ const autoSources=()=>[FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_LN,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX,SCALE,SECURITY,...OWNED_SOURCES,...REGIONAL_SOURCES];
  function regionalEvidenceFor(s,evidence,hooks){
   const A=factsApi(),samples=Array.isArray(hooks.supportSamples)?copy(hooks.supportSamples):hooks.supportSamples?A.decodeSupportObservation(hooks.supportSamples):A.decodeSupportObservation(s.providerCampaign.supportObservation),window=A.qualifySupportWindow(samples),facts=A.evaluate(s,factsHooks(hooks,s));
   if(window.status!=='ready'||!A.validateSupportSamples(s,samples,factsHooks(hooks,s)))return {missing:window.missing?.length?window.missing:['VALIDATED_CURRENT_SUPPORT_SAMPLES_REQUIRED']};
@@ -524,7 +526,7 @@ function socProviderProgressionReceiptsKernel(){
   try{return dedicatedInterconnectApi().pins(receipt.sourceEvidence);}catch{return emptyPins;}
  }
  function source(){return `const SOC_PROVIDER_PROGRESSION_RECEIPTS=(${socProviderProgressionReceiptsKernel.toString()})();`;}
- return {PACK,VERSION,CONTENT,FIELD,SECURITY,FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,REGIONAL_C3,REGIONAL_C5,REGIONAL_T2,REGIONAL_L7,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_LN,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX,empty,eligibility,claim,unlockProposal,inspect,validate,regionalRetentionPins,dedicatedInterconnectRetentionPins,caseFollowupRetentionPins,source};
+ return {PACK,VERSION,CONTENT,FIELD,SECURITY,FIRST_LIVE,SUSTAINABLE,NONSTARTER,LEVEL_TWO,REGIONAL_C3,REGIONAL_C5,REGIONAL_T2,REGIONAL_L7,IX,LEVEL_THREE,EXTERNAL_REACH,DEDICATED_INTERCONNECT,CASE_FOLLOWUP,RESILIENCE_LN,RESILIENCE_RD,LOCAL_CONTINUITY,LEVEL_FIVE,LEVEL_SIX,autoSources,empty,eligibility,claim,unlockProposal,inspect,validate,regionalRetentionPins,dedicatedInterconnectRetentionPins,caseFollowupRetentionPins,source};
 }
 const SOC_PROVIDER_PROGRESSION_RECEIPTS=socProviderProgressionReceiptsKernel();
 if(typeof module!=='undefined'&&module.exports)module.exports=SOC_PROVIDER_PROGRESSION_RECEIPTS;

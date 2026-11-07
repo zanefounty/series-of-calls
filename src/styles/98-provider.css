@@ -91,5 +91,15 @@
 /* Geometry matches SOCProviderCanvas.serviceLayout; card bounds are hit bounds. */
 .provider-geography .provider-resource-node{box-sizing:border-box;width:var(--node-width,185px);height:var(--node-height,96px);min-height:44px;max-height:var(--node-height,96px);overflow:hidden;font-size:12px}
 .provider-geography .provider-resource-node b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;line-height:18px;overflow-wrap:anywhere;max-width:100%}
+.provider-geography .provider-connection-preview{background:#fff3c4;border-style:dashed;min-height:44px}
+.provider-geography .provider-connection-preview.is-blocked{background:#ffe4e8}
+.provider-connection-path{stroke:#8b6500;stroke-width:1.4;stroke-dasharray:2 1}
+.provider-postrepair{display:grid;gap:6px;margin:8px 0;padding:10px;border:2px solid var(--ink);border-radius:11px;background:#fff9e7}
+.provider-postrepair h3,.provider-postrepair p{margin:0}
+.provider-postrepair-actions{display:grid;gap:6px}
+.provider-postrepair-actions button{min-height:44px;text-align:left}
+@media(max-width:680px){.provider-geography .provider-connection-preview small{display:block;font-size:10px;line-height:1.15}}
 .provider-geography .provider-map-node{box-sizing:border-box;width:200px;max-width:200px;height:88px;min-height:88px;overflow:hidden}
 .provider-geography .provider-map-node b{max-width:calc(100% - 20px);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+
+.provider-opening{width:min(760px,calc(100% - 32px));max-height:calc(100% - 16px);overflow:auto;top:48%;padding:12px;gap:6px;text-align:left;justify-items:stretch}.provider-opening h2{font-size:1.1rem;line-height:1.35;margin:0 0 8px}.provider-opening-plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.provider-opening-plans article{background:#f6fbf7;border:2px solid var(--ink);border-radius:12px;padding:10px;display:grid;align-content:start;gap:5px}.provider-opening-plans h3,.provider-opening-plans p{margin:0}.provider-opening-plans button{min-height:44px;align-self:end}.provider-opening>button{justify-self:start}@media(max-width:680px){.provider-opening{width:calc(100% - 16px);max-height:calc(100% - 56px);top:47%;padding:10px}.provider-opening-plans{grid-template-columns:1fr}.provider-opening-plans article{gap:4px;padding:8px}}

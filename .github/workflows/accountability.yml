@@ -9,13 +9,13 @@ permissions:
   contents: read
 jobs:
   acceptance:
-    name: acceptance producer ${{ matrix.part }}/8
+    name: acceptance producer ${{ matrix.part }}/20
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        part: [1, 2, 3, 4, 5, 6, 7, 8]
+        part: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -31,7 +31,7 @@ jobs:
       - name: Record acceptance evidence
         run: |
           set -o pipefail
-          python3 scripts/record-evidence.py --shard ${{ matrix.part }}/8 2>&1 | tee evidence/recorder.log
+          python3 scripts/record-evidence.py --shard ${{ matrix.part }}/20 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -65,7 +65,7 @@ jobs:
       - name: Require every actual shard and assemble the complete receipt
         run: |
           set -o pipefail
-          python3 scripts/record-evidence.py --merge-shards acceptance-parts --shard-count 8 2>&1 | tee evidence/recorder.log
+          python3 scripts/record-evidence.py --merge-shards acceptance-parts --shard-count 20 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:

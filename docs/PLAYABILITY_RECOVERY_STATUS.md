@@ -63,6 +63,12 @@ The frozen `npm test` passed 2,440 tests, failed zero and skipped two. `npm run 
 
 Browser recordings, saves and large receipts belong under `/tmp`, outside Git. Scripted timings are automated observations and cannot answer whether first-time players understood the tradeoff.
 
+## Compatible map connection preview candidate
+
+At source revision `30b39a6462a236b8d6cdaf4eba19ba8904852b45`, the selected customer on the Services map receives a dashed, labelled preview of the next eligible carrier or partner connection. The preview reads terms and blockers from the pure `SOC.provider.quote`, opens the existing costed quote by pointer or keyboard, and creates no deployment until explicit commitment. It advances after a paid carrier stage and disappears after the complete paid plan. The mobile inspector keeps setup and recurring terms visible. No dispatch or authority rule was changed.
+
+Focused tests passed 36/36 on final source. The final-source Chromium desktop and 390×844 mobile `assurance-quote-preview` journeys passed with no source drift (`/tmp/soc-connection-browser-final/provider-browser-20261107073655366.json`); a separate mobile keyboard session confirmed a 167×96 px target, visible terms and the exact A$800 charge (`/tmp/soc-mobile-connection-preview.png`). `npm run evidence` produced 857 cases with zero failures; `npm run test:gates` passed 125 with one skip; source, coverage, translation, build and production dependency audit passed. The uncontended local `npm test` passed 2,442 tests with zero failures and two skips on the preceding source `0352a11` before the mobile CSS and browser assertion correction. Hosted complete JavaScript shards on `30b39a6` remain the final-source suite evidence. An initial gate run overlapped evidence regeneration and failed only because the evidence file was temporarily absent; the rerun passed. Independent `npm run check:evidence` replay passed on the final source and regenerated record.
+
 ## Observed candidate run
 
 The scripted Chromium session at source revision `f45175ab3d376f63e4af49d075b0a260b29ebb68` is inspectable in `/tmp/soc-playability-session/transcript.json`, with screenshots in the same directory. It records ten visible activations: Play, Deploy, speed, accept incident exposure, Pause, repair, speed, Pause, Deals, Deploy. The complete Swift plan spent A$6,000 from A$20,000 at minute 0. The first real voice work was delivered at minute 9. A carrier incident paused the clock at minute 19; accepting exposure led to three failed cases by minute 24. The player funded the A$80 repair at minute 24; the incident was observed resolved at minute 27, after four failed cases. The first settlement at minute 60 left A$13,822, and a later plan was purchased at minute 120 with A$8,268 remaining. This records a deliberately delayed response and recovery; it does not show that a novice would make or understand those choices.
@@ -94,7 +100,7 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 | Staffing commitment and hire/fire arbitrage | Implemented for explicit new SMB openings; comparative balance remains pending | Three-period dispatcher refusal, payroll, save/restore and visible team terms in focused tests; Swift/Steady browser journeys |
 | Starter price and paid diagnosis relevance | Pending design/behavioural comparison | Must demonstrate useful consequence or remove from primary choice |
 | Post-repair fifteen-minute chapter | Pending | Needs two viable strategies and observed fulfilled-promise callback |
-| Compatible connection preview and keyboard equivalent | Pending | New preview action and keyboard control tests required |
+| Compatible connection preview and keyboard equivalent | Implemented in PR #62 | Pure map preview quotes the next funded connection, supports pointer and keyboard activation, and disappears after the full plan; focused shell and desktop/mobile browser evidence |
 | Complete browser and deployment matrix | Partial | Chromium selected journeys, Firefox/WebKit purchase smoke; deployment intentionally untouched |
 | Human playability and abandonment | Pending external participants | No automated run is counted as human evidence |
 
@@ -104,7 +110,6 @@ An initial `npm test` run overlapped `npm run check:evidence` and failed only th
 - Complete a 15-minute post-repair opportunity with two viable investments and an observed customer callback. The current bill countdown and optional operations do not yet meet this chapter requirement.
 - Compare committed staffing and eligible outsourcing against the same authored workload and settlement history; rebalance the term if the first-time-player sessions expose an unhelpful choice.
 - Rework the owned-site journey around the real staffing term and customer service history; do not count its failed runs as passing evidence. Extend included compatibility checks to other new mission openings only after their existing manual integration journeys are migrated and verified. The remaining campaign and human checks remain open.
-- Add compatible connection previews and keyboard equivalent, plus focused mobile and pointer-cancel assertions.
 - Re-run all required gates on a frozen revision; preserve any failures. Deployment and externally controlled acceptance changes require their own authorization.
 - Review the new English placeholder text in non-English dictionaries before a localized release.
 

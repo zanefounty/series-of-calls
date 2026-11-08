@@ -94,7 +94,7 @@ test('funded estate opens on a costed carrier choice and leaves other service co
   for(const file of ['game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js'])w.eval(source(file));
   const html=w.SOCProviderPanels.inspector(model,{selection:{customerId}}),document=new JSDOM(html).window.document,card=document.querySelector('[data-provider-estate-decision]');
   assert.ok(card,'first decision belongs to the selected funded customer');
-  assert.match(card.textContent,/3 customer cases are open/);
+  assert.match(card.textContent,/3 cases are open/);
   assert.match(card.textContent,/A\$6,000 setup/);
   assert.match(card.textContent,/A\$180 setup, A\$40 per period, 4 minutes/);
   assert.deepEqual([...card.querySelectorAll('button')].map(button=>button.dataset.operation||button.dataset.providerAction),['carrier-headroom','speed']);

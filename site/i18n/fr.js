@@ -4423,6 +4423,7 @@
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.estate.carrier_terms":"Ajouter quatre sessions opérateur : {setup} de mise en service, {recurring} par période, livraison en {minutes} minutes.",
+"provider.estate.choice_summary":"{count} dossiers ouverts ; {setup} de mise en service déjà payés. Plus de sessions opérateur peuvent éviter des échecs en pointe. Garder l’argent expose les appels.",
 "provider.estate.keep_cash":"Garder la trésorerie et continuer avec la capacité actuelle",
 "provider.exit_pending_capture_storage":"There are {count} recordings in progress. If they create stored records after exit, archive storage continues at {amount} per period after the supplier minimum. No charge is added if capture ends without a stored record.",
 "provider.exit_retained_storage":"Retained archives continue at {amount} per period after their supplier minimums while stored records remain. Exiting does not delete these records or cancel their storage obligation.",

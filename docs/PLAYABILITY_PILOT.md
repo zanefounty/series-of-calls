@@ -1,14 +1,16 @@
 # First-time-player opening comparison
 
-Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at gameplay source revision `9789eb1ca8def0f22eeee66697d7bb7d6a0a5e01`. Re-pin the revision and verify both routes before any session if the candidate changes.
+Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at current candidate revision `89bb03e105bfd98bb0401cc61b7d849fa4e2b4f3` (PR #78). Re-pin the revision and verify both routes before any session if the candidate changes. This revision has not been published as a recovery build.
 
 ## Session setup
 
-Recruit six to eight people who have not played Series of Calls. Give half the order A then B and half B then A. Use seed `1`, normal difficulty, Sydney market and the `peak-window` workload variant for both openings; keep the desktop or mobile size the same for each person's pair. Start each opening with a clean save and note the actual URL, revision, browser, viewport and any assistive technology. Do not demonstrate controls or name the intended tradeoff.
+Recruit six to eight people who have not played Series of Calls. Give half the order A then B and half B then A. In the new-career form choose SMB, the peak-window workload, deterministic seed 1, normal difficulty and Sydney market for both openings. Keep the browser and desktop or mobile size the same for both openings for each person. Start each opening with a clean save and note the actual URL, revision, browser, viewport and any assistive technology. Do not demonstrate controls or name the intended tradeoff.
 
 Read aloud only: “Run a reliable service for this customer. You may stop whenever you want.” Start a wall-clock timer when the opening is visible. Observe silently. If the player is stuck for two minutes, record the point and the exact help offered before continuing; helped actions do not count as unaided success.
 
 Opening A is **Take over a funded estate**. It starts with a paid Swift service, A$6,000 inherited setup, three open cases and a choice between buying four carrier sessions or keeping cash. Opening B is **Win the first customer**. It starts with two complete plan quotes, Swift and Steady, before funded delivery. Do not read these details to participants. End each opening after the first delivered work and the first consequential capacity or incident decision, or after ten minutes without progress. Keep the session under 30 minutes including the short interview.
+
+Automated preflight on `89bb03e` passed the funded-estate mobile opening with three funded completed stages, three pending cases, A$14,000 cash, both choices visible and no page errors (report SHA-256 `5477c019f61f41268b235fc9a458508fdec58aeed1f6e5106953aac7d111ee4b`; trace SHA-256 `e70e51208abddfb4bd47a62e0a1ca1864edd0aaa0b54c8661c15b3ad21fd5612`). The peak-window first-customer Chromium route also passed without source drift (report SHA-256 `1ca9603712f8c57a8560b6a07f450c6996d4eb17d510da0d13ab4ad0f7951ed1`). Its scripted first delivered work took 3.95 seconds; that excludes a person's reading and choice time. That route used the form's default seed, so the facilitator must explicitly enter seed 1 in both openings. These are route checks, not comparison participants or evidence for choosing a default.
 
 ## Observation record (one row per opening)
 

@@ -374,7 +374,7 @@ async function runProductJourney(baseUrl,recipeId,{retirement=false,mobile=false
   if(recipeId==='cisco-provider-operations'){
    const e=row.capabilityEvidence;assert.equal(e.posting.cents,e.action.cents);assert.equal(e.posting.projectId,e.work.id);
    for(const r of e.statement.rows){const h=e.history.find(h=>h.period===r.period);assert.equal(r.totalCents,h.wholesale+h.voiceCost+h.messageCost);assert.equal(r.totalCents,e.ledger.filter(p=>r.postingIds.includes(p.id)).reduce((n,p)=>n+p.cents,0));}
-   await selectMapCustomer(page);await page.locator('.provider-wholesale summary').click();await page.locator('.provider-wholesale[open]').waitFor({state:'visible'});await step('wholesale-statement-and-fulfilled-policy');
+   await selectMapCustomer(page);await page.locator('.provider-advanced-inspection > summary').click();await page.locator('.provider-wholesale summary').click();await page.locator('.provider-wholesale[open]').waitFor({state:'visible'});await step('wholesale-statement-and-fulfilled-policy');
   }
   if(['ms-government-boundary','cisco-government-boundary','cisco-local-speech'].includes(recipeId)){
    const selectProject=async id=>{await selectMapCustomer(page);await page.locator('[data-provider-layer]').selectOption('services');await closeMapInspector(page);const node=page.locator(`.provider-resource-node[data-provider-action="select-service"][data-id="starter-customer:project:${id}"]`);await node.scrollIntoViewIfNeeded();await node.click();};

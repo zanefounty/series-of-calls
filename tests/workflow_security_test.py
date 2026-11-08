@@ -145,6 +145,18 @@ class WorkflowSecurityContracts(unittest.TestCase):
                 self.assertNotIn("pull_request_target:", text)
                 assert_checkouts_do_not_persist(self, text, name)
 
+    def test_performance_base_is_read_through_a_separate_checkout(self) -> None:
+        text = workflow_text("perf.yml")
+        self.assertEqual(workflow_permissions(text), {"contents": "read"})
+        self.assertIn("timeout-minutes: 40", text)
+        self.assertEqual(text.count("uses: actions/checkout@"), 2)
+        assert_checkouts_do_not_persist(self, text, "perf.yml")
+        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", text)
+        self.assertIn("path: .perf-base", text)
+        self.assertNotIn("git fetch", text)
+        self.assertIn("node .perf-base/scripts/lib/page.js", text)
+        self.assertIn("cp .perf-base/site/index.html", text)
+
     def test_observer_jobs_and_privileged_persistence_are_main_only(self) -> None:
         cases = (
             ("upstream-observe.yml", ("success",)),

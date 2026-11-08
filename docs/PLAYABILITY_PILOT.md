@@ -1,14 +1,14 @@
 # First-time-player opening comparison
 
-Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at source revision `f45175ab3d376f63e4af49d075b0a260b29ebb68`. Re-pin the revision and verify both routes before any session if the candidate changes.
+Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at gameplay source revision `087350b3afa1c26645a9e4ee77f31c224333859a`. Re-pin the revision and verify both routes before any session if the candidate changes.
 
 ## Session setup
 
-Recruit six to eight people who have not played Series of Calls. Give half the order A then B and half B then A. Use the same seed, normal difficulty, Sydney market and desktop or mobile size for both openings for each person. Start each opening with a clean save and note the actual URL, revision, browser, viewport and any assistive technology. Do not demonstrate controls or name the intended tradeoff.
+Recruit six to eight people who have not played Series of Calls. Give half the order A then B and half B then A. Use seed `1`, normal difficulty, Sydney market and the `peak-window` workload variant for both openings; keep the desktop or mobile size the same for each person's pair. Start each opening with a clean save and note the actual URL, revision, browser, viewport and any assistive technology. Do not demonstrate controls or name the intended tradeoff.
 
 Read aloud only: “Run a reliable service for this customer. You may stop whenever you want.” Start a wall-clock timer when the opening is visible. Observe silently. If the player is stuck for two minutes, record the point and the exact help offered before continuing; helped actions do not count as unaided success.
 
-Opening A is **Take over a funded estate**. Opening B is **Win the first customer**. End each opening after the first delivered work and the first consequential capacity or incident decision, or after ten minutes without progress. Keep the session under 30 minutes including the short interview.
+Opening A is **Take over a funded estate**. It starts with a paid Swift service, A$6,000 inherited setup, three open cases and a choice between buying four carrier sessions or keeping cash. Opening B is **Win the first customer**. It starts with two complete plan quotes, Swift and Steady, before funded delivery. Do not read these details to participants. End each opening after the first delivered work and the first consequential capacity or incident decision, or after ten minutes without progress. Keep the session under 30 minutes including the short interview.
 
 ## Observation record (one row per opening)
 
@@ -17,6 +17,7 @@ Opening A is **Take over a funded estate**. Opening B is **Win the first custome
 | Participant code and opening order | Anonymous code, A→B or B→A |
 | Revision, browser, viewport, seed | Exact values |
 | First consequential choice | Action and wall-clock time from opening |
+| Tradeoff shown and selected | Exact quoted plan or carrier terms, alternative left available and the participant's stated reason |
 | First delivered work | Observed case/job ID, simulation minute and wall-clock time; write “none” if absent |
 | Every required activation | Control label, simulation minute and wall-clock time in order |
 | Compulsory pauses and navigation detours | Count and exact cause |

@@ -4422,6 +4422,8 @@
 "provider.customer_prerequisite.explanation":"Las operaciones y los presupuestos de proveedores requieren un cliente financiado. Abre Deals para comparar planes iniciales y financiar a tu primer cliente.",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
+"provider.estate.carrier_terms":"Añadir cuatro sesiones del operador: {setup} de instalación, {recurring} por período, {minutes} minutos hasta la entrega.",
+"provider.estate.keep_cash":"Conservar el dinero y seguir con la capacidad actual",
 "provider.exit_pending_capture_storage":"There are {count} recordings in progress. If they create stored records after exit, archive storage continues at {amount} per period after the supplier minimum. No charge is added if capture ends without a stored record.",
 "provider.exit_retained_storage":"Retained archives continue at {amount} per period after their supplier minimums while stored records remain. Exiting does not delete these records or cancel their storage obligation.",
 "provider.exit_scale_continuation":"Paid workload {run}: {active} active tasks and {scheduled} scheduled tasks continue after exit. Its measurement ends at minute {due}; active work may finish later. Actual voice minutes remain chargeable. No new customer demand is added.",

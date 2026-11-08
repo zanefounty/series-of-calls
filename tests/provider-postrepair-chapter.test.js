@@ -84,3 +84,30 @@ test('selected customer offers costed BPO cover and a clear current-team choice'
   assert.equal(SOC.provider.inspect(state).postRepairChapter.offered,0,'rendering does not create arrivals');
  }finally{w.close();}
 });
+
+test('funded estate opens on a costed carrier choice and leaves other service controls in details',()=>{
+ const state=SOC.create({experience:'campaign',opening:'estate',openingVariant:'peak-window',seed:1}),before=JSON.stringify(state),model=SOC.provider.inspect(state);
+ model.contextualOperations=model.operations.map(operation=>['carrier-headroom','bpo'].includes(operation.id)?{...operation,quote:SOC.provider.quote(state,{action:'operation',operationId:operation.id,customerId})}:operation);
+ const dom=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'}),w=dom.window;
+ const source=file=>fs.readFileSync(path.join(__dirname,'..','src',file),'utf8');
+ try{
+  for(const file of ['game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js'])w.eval(source(file));
+  const html=w.SOCProviderPanels.inspector(model,{selection:{customerId}}),document=new JSDOM(html).window.document,card=document.querySelector('[data-provider-estate-decision]');
+  assert.ok(card,'first decision belongs to the selected funded customer');
+  assert.match(card.textContent,/3 customer cases are open/);
+  assert.match(card.textContent,/A\$6,000 setup/);
+  assert.match(card.textContent,/A\$180 setup, A\$40 per period, 4 minutes/);
+  assert.deepEqual([...card.querySelectorAll('button')].map(button=>button.dataset.operation||button.dataset.providerAction),['carrier-headroom','speed']);
+  assert.equal(document.querySelectorAll('.provider-inspector > button[data-provider-action="operation"]').length,0,'generic operations do not compete with the opening choice');
+  assert.ok(document.querySelector('details > summary')?.textContent.includes('More service options'));
+  assert.equal(JSON.stringify(state),before,'inspection and rendering cannot change the estate');
+  const quote=model.contextualOperations.find(row=>row.id==='carrier-headroom').quote,paid=SOC.dispatch(state,{type:'provider',command:{...quote.request,quoteRevision:quote.atRevision}});
+  assert.equal(paid.business.balance.cash,state.business.balance.cash-quote.setupCents);
+  assert.doesNotMatch(w.SOCProviderPanels.inspector(SOC.provider.inspect(paid),{selection:{customerId}}),/data-provider-estate-decision/,'funded action closes the opening choice');
+  const to15=sample=>SOC.dispatch(sample,{type:'advance',minutes:15-sample.clock});
+  const exposed=SOC.provider.inspect(to15(state)).customers[0],protectedCustomer=SOC.provider.inspect(to15(paid)).customers[0];
+  assert.ok(protectedCustomer.outcome.failed<exposed.outcome.failed,'paid sessions prevent real early failures on the same workload');
+  const advanced=SOC.dispatch(state,{type:'advance',minutes:1}),next=SOC.provider.inspect(advanced);
+  assert.doesNotMatch(w.SOCProviderPanels.inspector(next,{selection:{customerId}}),/data-provider-estate-decision/,'choice closes after time advances');
+ }finally{w.close();}
+});

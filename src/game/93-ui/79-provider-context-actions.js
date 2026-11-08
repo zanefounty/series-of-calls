@@ -26,6 +26,21 @@ function socProviderContextActionsKernel(){
  function missingRequirements(operation,projects,customerId){return (Array.isArray(operation?.requirements)?operation.requirements:[]).filter(id=>!paidComplete(projects,customerId,id));}
  function eligible(operation,projects,customerId){return operation.available!==false&&!(Array.isArray(operation.blockers)&&operation.blockers.length>0)&&missingRequirements(operation,projects,customerId).length===0;}
  function grouped(key,operations){return operations.length?{key,operations:operations.map(copy)}:null;}
+ function compactCustomerActions(groupedActions,maxVisible=3){
+  if(!plain(groupedActions)||!Array.isArray(groupedActions.primary)||!Array.isArray(groupedActions.secondary))throw new Error('INVALID_PROVIDER_CONTEXT_ACTIONS_INPUT');
+  const visible=[],overflow=[];
+  const comparisonKeys=new Set(['scenario-alternatives','integration','integration-retest','capacity','local-reconciliation']);
+  let remaining=Math.max(0,Math.floor(maxVisible)),spilled=false;
+  for(const row of groupedActions.primary){
+   const size=comparisonKeys.has(row.key)?2:1;
+   for(let at=0;at<row.operations.length;at+=size){
+    const chunk={key:row.key,operations:row.operations.slice(at,at+size)};
+    if(!spilled&&chunk.operations.length<=remaining){visible.push(chunk);remaining-=chunk.operations.length;}
+    else{spilled=true;overflow.push(chunk);}
+   }
+  }
+  return {...groupedActions,primary:visible,secondary:[...overflow,...groupedActions.secondary]};
+ }
  function project(input){
   if(!plain(input))throw new Error('INVALID_PROVIDER_CONTEXT_ACTIONS_INPUT');
   const customer=input.customer,resource=input.resource||null,operations=Array.isArray(input.operations)?input.operations.filter(x=>plain(x)&&typeof x.id==='string'):[],projects=Array.isArray(input.projects)?input.projects:[],incidents=Array.isArray(input.incidents)?input.incidents:[],customerId=customer?.id,scenario=customer?.scenario;
@@ -109,7 +124,7 @@ function socProviderContextActionsKernel(){
   const rows=(Array.isArray(actions)?actions:[]).filter(row=>plain(row)&&transportOperations.has(row.id||row.operationId)&&(!row.customerId||row.customerId===customer.id)).map(row=>({...copy(row),id:row.id||row.operationId,customerId:customer.id}));
   return {version:1,customerId:customer.id,choices:rows.filter(row=>row.id!=='transport-repair'),recovery:rows.filter(row=>row.id==='transport-repair')};
  }
- return {VERSION,project,transport,source:()=>`const SOC_PROVIDER_CONTEXT_ACTIONS=(${socProviderContextActionsKernel.toString()})();`};
+ return {VERSION,project,compactCustomerActions,transport,source:()=>`const SOC_PROVIDER_CONTEXT_ACTIONS=(${socProviderContextActionsKernel.toString()})();`};
 }
 const SOC_PROVIDER_CONTEXT_ACTIONS=socProviderContextActionsKernel();
 if(typeof globalThis!=='undefined')globalThis.SOC_PROVIDER_CONTEXT_ACTIONS=SOC_PROVIDER_CONTEXT_ACTIONS;

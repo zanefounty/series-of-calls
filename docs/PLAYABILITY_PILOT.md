@@ -1,6 +1,6 @@
 # First-time-player opening comparison
 
-Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at gameplay source revision `087350b3afa1c26645a9e4ee77f31c224333859a`. Re-pin the revision and verify both routes before any session if the candidate changes.
+Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at gameplay source revision `9789eb1ca8def0f22eeee66697d7bb7d6a0a5e01`. Re-pin the revision and verify both routes before any session if the candidate changes.
 
 ## Session setup
 

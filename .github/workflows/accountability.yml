@@ -9,13 +9,13 @@ permissions:
   contents: read
 jobs:
   acceptance:
-    name: acceptance producer ${{ matrix.part }}/8
+    name: acceptance producer ${{ matrix.part }}/40
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        part: [1, 2, 3, 4, 5, 6, 7, 8]
+        part: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -31,7 +31,7 @@ jobs:
       - name: Record acceptance evidence
         run: |
           set -o pipefail
-          python3 scripts/record-evidence.py --shard ${{ matrix.part }}/8 2>&1 | tee evidence/recorder.log
+          python3 scripts/record-evidence.py --shard ${{ matrix.part }}/40 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -65,7 +65,7 @@ jobs:
       - name: Require every actual shard and assemble the complete receipt
         run: |
           set -o pipefail
-          python3 scripts/record-evidence.py --merge-shards acceptance-parts --shard-count 8 2>&1 | tee evidence/recorder.log
+          python3 scripts/record-evidence.py --merge-shards acceptance-parts --shard-count 40 2>&1 | tee evidence/recorder.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -79,14 +79,14 @@ jobs:
           retention-days: 14
 
   gates:
-    name: development gates ${{ matrix.part }}/8
+    name: development gates ${{ matrix.part }}/40
     needs: [acceptance-merge]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        part: [1, 2, 3, 4, 5, 6, 7, 8]
+        part: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -115,7 +115,7 @@ jobs:
       - name: Run development gates against downloaded acceptance
         run: |
           set -o pipefail
-          python3 scripts/verify.py all --acceptance-shard ${{ matrix.part }}/8 2>&1 | tee evidence/gates.log
+          python3 scripts/verify.py all --acceptance-shard ${{ matrix.part }}/40 2>&1 | tee evidence/gates.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:

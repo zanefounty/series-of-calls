@@ -70,6 +70,7 @@
 .provider-world-toolbar{position:relative;inset:auto;margin:8px;flex:0 0 auto}
 .provider-world-viewport{position:relative;inset:auto;flex:1;min-height:0;margin-bottom:120px}
 @media(max-width:680px){.provider-world-toolbar{flex-wrap:wrap}.provider-world-layers{max-width:100%}.provider-world-viewport{margin-bottom:110px}.provider-main>[data-provider-region=inspector]>.provider-inspector{max-height:30vh}}
+@media(max-width:680px){.provider-main>[data-provider-region=inspector]>.provider-inspector:has([data-provider-estate-decision]){max-height:55vh}}
 
 .provider-comparison-details>summary{min-height:44px;display:flex;align-items:center;font-weight:800;cursor:pointer}.provider-comparison-costs>div{border-bottom:1px solid var(--line);padding:4px 0}.provider-comparison-option{min-width:0;overflow-wrap:anywhere}.provider-comparison-option h5{margin:12px 0 4px}.provider-comparison-option ul{padding-left:18px}.provider-comparison-stages{font-size:.9em}
 

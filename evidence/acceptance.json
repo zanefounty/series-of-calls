@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-08T04:03:20.624452+00:00",
+  "runAt": "2026-11-08T04:20:04.791946+00:00",
   "command": [
     "node",
     "--test",
@@ -1508,7 +1508,7 @@
     "src/styles/70-puzzles.css": "902f0db0fcfc1a6dc37525fed95ec5a06adc709353291bcb6cf28e742e32de9f",
     "src/styles/71-architect.css": "b69fedcfb32cd3fff3d119b8445e0372bc9167e962d1f3978d94b1fe27394d88",
     "src/styles/98-artwork.css": "ce4f5547909560d5ffe41b31b1050e379c9df3f06a3441cdec98cb0e05d7eefc",
-    "src/styles/98-provider.css": "f50f54659ae83643df7f511835b88c6d45d479a529ce297e7afdebc4a904c573",
+    "src/styles/98-provider.css": "51a29e171e306f1e0a61b3a548bb4c5969626d0f4aa340c7f401835d04c2e50b",
     "src/styles/99-training-map.css": "80abfd776855c8a021e5ffbaffdbf1a2a3e283a056dc7b587b8803ddd495d854",
     "src/styles/99-training.css": "b9628733f990a1b1109eab16d3e54ca460d26a8d525019dfd9d0a703e81f77ba",
     "tests/admission-security-event-retention.test.js": "9ac6f0af663d0267168e0afcd48ff0bf11b50b190cd1fc02b8c02ab6b6275543",

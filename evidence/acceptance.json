@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-08T09:38:06.978605+00:00",
+  "runAt": "2026-11-08T11:49:45.625010+00:00",
   "command": [
     "node",
     "--test",
@@ -1151,7 +1151,7 @@
     "scripts/lib/transport-lease-soak.js": "b37a374c5c0d6f36769b39e414e4785489baba580f5cad12b916c8c41f13092e",
     "scripts/mcp-smoke.py": "31bc62a043b7a39009fcd99830867ee255ed7231a71deb5baac9593b9f052804",
     "scripts/mcp.js": "eea28d4992ec9a8e3ca0661780c9dcff9c2b20b2b1274d30743fcfe0c4e02275",
-    "scripts/provider-browser.js": "0ce0005dde027da1b193bf598e1b8a6d0d199cdc70b2a877b4b2d33ef2f158f1",
+    "scripts/provider-browser.js": "982ac3278ed53aaa4023ace954c2e75bd37fe3e4bd9c0dd4e55d0423fd388fcf",
     "scripts/provider-owned-map-layout-browser.js": "960d6ad94746db96b03771bc7fc89a3a9aa8f2fe78e2226a44332d703d30fe4d",
     "scripts/provider-runtime-safety-browser.js": "6d68878ab1d0f47cd9a973fa0fb6116da87a2ebf3acc1b1d1a6332cdc1333eaf",
     "scripts/serve.js": "7567ec3510e7110f028d0e56367166d3aa38d1631b265c965e798f0b32e65a6e",

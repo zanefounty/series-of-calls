@@ -30,14 +30,22 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: Check out PR base
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .perf-base
+          persist-credentials: false
       - name: Base version of the game
         if: github.event_name == 'pull_request'
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          git fetch --depth=1 origin "$BASE_SHA"
-          # The base's page, assembled by the base's own scripts (or its site/index.html from before the split).
-          node scripts/lib/page.js --ref FETCH_HEAD -o "$RUNNER_TEMP/base.html"
+          # Assemble the base with its own scripts, including revisions before the source split.
+          if [ -f .perf-base/scripts/lib/page.js ]; then
+            node .perf-base/scripts/lib/page.js -o "$RUNNER_TEMP/base.html"
+          else
+            cp .perf-base/site/index.html "$RUNNER_TEMP/base.html"
+          fi
           echo "BASE_HTML=$RUNNER_TEMP/base.html" >> "$GITHUB_ENV"
       - name: Benchmark
         # The runner image ships Google Chrome; playwright-core (a dev dependency) drives it, no browser download.

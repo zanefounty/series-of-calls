@@ -2928,6 +2928,1606 @@
     "adoptionStatus": "pending"
   },
   {
+    "sourceId": "UPSTREAM-COMMIT:62c242c9a73913675c22b30356684d9041e796d9",
+    "requirement": "REQ-53a8a6d0265017f9",
+    "commit": "62c242c9a73913675c22b30356684d9041e796d9",
+    "subject": "The intern can keep PNI and IX ports ahead of their traffic (closes #234)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:44c587221a8ee5f81c70173334c8d4b10fb1bbe4",
+    "requirement": "REQ-91b1da79f76b02f1",
+    "commit": "44c587221a8ee5f81c70173334c8d4b10fb1bbe4",
+    "subject": "Merge remote-tracking branch 'upstream/main' into intern-port-headroom",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:5b76685e5c838447fbaf723bfa21efd769208a83",
+    "requirement": "REQ-9dd52604ac2b0a44",
+    "commit": "5b76685e5c838447fbaf723bfa21efd769208a83",
+    "subject": "MCP: the agent facade moves into src/agent/, assembled into the development page only",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2526dd458db75bc26b8582f0a8d6944b2134b9fa",
+    "requirement": "REQ-d1fdc14cba1fec10",
+    "commit": "2526dd458db75bc26b8582f0a8d6944b2134b9fa",
+    "subject": "MCP server on the official SDK, over stdio or HTTP",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7438fd106562506f5e6ab774d9d04905c5cd4d58",
+    "requirement": "REQ-6f1d1d5636906954",
+    "commit": "7438fd106562506f5e6ab774d9d04905c5cd4d58",
+    "subject": "Agent mode: an AI agent plays in the player's own tab, with the agent's clock or a running one",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ba835c06042880623f458d7272ef9623921fa0cd",
+    "requirement": "REQ-5eec41296008ae81",
+    "commit": "ba835c06042880623f458d7272ef9623921fa0cd",
+    "subject": "Your own subsea cable round Cape Horn earns The Long Way Round (#272)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2d88a04584692f06854052ec639eb5da0c8390fd",
+    "requirement": "REQ-8283d75399621076",
+    "commit": "2d88a04584692f06854052ec639eb5da0c8390fd",
+    "subject": "feat(ui): show billions of dollars and petabits per second",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:81e4fbd215ede6cac7897a04810ce54589848ea9",
+    "requirement": "REQ-6ce55604de452244",
+    "commit": "81e4fbd215ede6cac7897a04810ce54589848ea9",
+    "subject": "fix(peering): cap the DE-Kicks personal price multiplier",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b57c0228603a77fc90757d2072859f69470d79b9",
+    "requirement": "REQ-11d9e4a9703099d6",
+    "commit": "b57c0228603a77fc90757d2072859f69470d79b9",
+    "subject": "feat(traceroute): choose how the trace is routed",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:35854ee253bf924a2b4810493e0f70887bfc93b3",
+    "requirement": "REQ-6ce84fdf9d07bccc",
+    "commit": "35854ee253bf924a2b4810493e0f70887bfc93b3",
+    "subject": "feat(peering): step exchange ports, transit ports and PNIs down one size",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c04fbe88b8634dffb177e66eed8397e28364b939",
+    "requirement": "REQ-25242c1b97ed1e82",
+    "commit": "c04fbe88b8634dffb177e66eed8397e28364b939",
+    "subject": "Merge pull request #274 from fjaeckel/claude/fix-272",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3250d95d384819cffb3e18b4ec8e29863e5250a8",
+    "requirement": "REQ-e4cd4b2ac3247c6f",
+    "commit": "3250d95d384819cffb3e18b4ec8e29863e5250a8",
+    "subject": "Merge pull request #275 from Lambro-codes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4ce7331c6a89ac743bcd30b873f492445b949571",
+    "requirement": "REQ-bc48467e18d4cd3c",
+    "commit": "4ce7331c6a89ac743bcd30b873f492445b949571",
+    "subject": "Merge pull request #276 from Lambro-codes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2d9d4177be10ddc2360589613dac34d4493efee5",
+    "requirement": "REQ-0d191054e8aa3b95",
+    "commit": "2d9d4177be10ddc2360589613dac34d4493efee5",
+    "subject": "Merge pull request #277 from Lambro-codes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c358b715c7dd3a9fdfbad3b6056a9f986288b20f",
+    "requirement": "REQ-f649f2bd614ce059",
+    "commit": "c358b715c7dd3a9fdfbad3b6056a9f986288b20f",
+    "subject": "Merge pull request #278 from Lambro-codes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:24d865aa57ae8afe32b6f45a1297d34f0f80b316",
+    "requirement": "REQ-6876d2df07977f35",
+    "commit": "24d865aa57ae8afe32b6f45a1297d34f0f80b316",
+    "subject": "Follow-ups to #276, #277 and #278",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b74fe1bda6173ddc93e3d94af48078024498b5e0",
+    "requirement": "REQ-72040fbd5055e6bf",
+    "commit": "b74fe1bda6173ddc93e3d94af48078024498b5e0",
+    "subject": "Merge pull request #266 from wnagele",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c7fd54b067a0ebc28548330a122a5ed98b1b6c95",
+    "requirement": "REQ-3d426798af93458e",
+    "commit": "c7fd54b067a0ebc28548330a122a5ed98b1b6c95",
+    "subject": "Latency offers only ask for a ceiling a build can meet (#273)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8b0e198c03294b5c39998d8ff16d1fc65abba49f",
+    "requirement": "REQ-1abd6aed72dedc29",
+    "commit": "8b0e198c03294b5c39998d8ff16d1fc65abba49f",
+    "subject": "Merge pull request #271 from thesysadmindev/intern-port-headroom",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ad9aabb2657631520356589cf13c8d49074b8e2f",
+    "requirement": "REQ-7ac2cdf5f3325002",
+    "commit": "ad9aabb2657631520356589cf13c8d49074b8e2f",
+    "subject": "Follow-ups to #271",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:95fd50b0bb316918732a74dfe4982aef9297440a",
+    "requirement": "REQ-f8cd3786d5f4d474",
+    "commit": "95fd50b0bb316918732a74dfe4982aef9297440a",
+    "subject": "Relay comment points at where agent mode now holds the clock",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:47799d7e479c5700474dc92b82b10624a5417f8c",
+    "requirement": "REQ-65bf1d023d94638d",
+    "commit": "47799d7e479c5700474dc92b82b10624a5417f8c",
+    "subject": "Merge remote-tracking branch 'origin/main'",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:80f671953abfb612092aa990ada1971d96cfd986",
+    "requirement": "REQ-67d0f2f303a6cbe4",
+    "commit": "80f671953abfb612092aa990ada1971d96cfd986",
+    "subject": "A NOC screen in its own window, for a second display",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f9d24699c105d6da9d8d89505a3a405cfca089d8",
+    "requirement": "REQ-2c2852bd125a963a",
+    "commit": "f9d24699c105d6da9d8d89505a3a405cfca089d8",
+    "subject": "Merge remote-tracking branch 'upstream/main' into noc-window",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b405bf78fca188f16b5e718a323364e7f2fc7fff",
+    "requirement": "REQ-0078ddf54eae9a3c",
+    "commit": "b405bf78fca188f16b5e718a323364e7f2fc7fff",
+    "subject": "Every capital of the world, peering headroom for the intern, smaller ports (2.8.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b6d89847bb5f4691b42712af624197139e9b9a6b",
+    "requirement": "REQ-8dce151bd5060252",
+    "commit": "b6d89847bb5f4691b42712af624197139e9b9a6b",
+    "subject": "Merge branch 'main' into noc-window",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:0ad36c217888888f6b5bf2671796c00a6fe72e82",
+    "requirement": "REQ-9ff4b9dbdf64b711",
+    "commit": "0ad36c217888888f6b5bf2671796c00a6fe72e82",
+    "subject": "Release skill: CI tests and benchmarks a release, so don't run them locally",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ac5ce7fa057be998cd44ee7c8fd4a53ab957a1af",
+    "requirement": "REQ-38067c5536e0ad7b",
+    "commit": "ac5ce7fa057be998cd44ee7c8fd4a53ab957a1af",
+    "subject": "Zoom in twice as far; ships at anchor keep clear of their port",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:6c0342ad1fa609d732df8b05a7e4dce9feb27fe1",
+    "requirement": "REQ-3b42c82d5c334395",
+    "commit": "6c0342ad1fa609d732df8b05a7e4dce9feb27fe1",
+    "subject": "Merge branch 'main' into noc-window",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ae70e8e7501e738f36fe14887559eb9f621f01cb",
+    "requirement": "REQ-cd1fa5ecc73b9e7b",
+    "commit": "ae70e8e7501e738f36fe14887559eb9f621f01cb",
+    "subject": "Call the bank: ask for a loan from the Bank window",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3fd44908afd697f0eca23b17fbc28ef573f17c7f",
+    "requirement": "REQ-ff71ba85c1fedd9a",
+    "commit": "3fd44908afd697f0eca23b17fbc28ef573f17c7f",
+    "subject": "A link starts at one of your POPs, for typed orders too",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4b554f2ecb04e4c21ba1e2e81bf88ac2dbe36fda",
+    "requirement": "REQ-f3056167960ffdb4",
+    "commit": "4b554f2ecb04e4c21ba1e2e81bf88ac2dbe36fda",
+    "subject": "A POP in a retired city says why it can't open",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:08bf22cfeca6c9b05a4cf5c2cee77ec4b5ec28a3",
+    "requirement": "REQ-75566d9756a4132a",
+    "commit": "08bf22cfeca6c9b05a4cf5c2cee77ec4b5ec28a3",
+    "subject": "Fiber over land inside one country; no circuits between the Koreas",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:034a5de66e27b4b66fc17d1788843b1728d907b9",
+    "requirement": "REQ-5dbbeec31187df36",
+    "commit": "034a5de66e27b4b66fc17d1788843b1728d907b9",
+    "subject": "Merge remote-tracking branch 'origin/main' into df-pop-checks",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:82f3833d8f963be03b1ca89ca3f99bc093eacd66",
+    "requirement": "REQ-0f8e8d0a6e913cc5",
+    "commit": "82f3833d8f963be03b1ca89ca3f99bc093eacd66",
+    "subject": "Founding your own IX says why it can't",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:0d8d5df4727cf7e5a3f40952008a8fad8487db30",
+    "requirement": "REQ-b257a0c8ab7e42bf",
+    "commit": "0d8d5df4727cf7e5a3f40952008a8fad8487db30",
+    "subject": "Nothing leaves South Korea over land",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:eae0b3d127c445395851609820b7d6e23c958617",
+    "requirement": "REQ-5d9af1dce332427c",
+    "commit": "eae0b3d127c445395851609820b7d6e23c958617",
+    "subject": "Merge pull request #284 from yeled/df-pop-checks",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:97e7cb17bd8724bc2c5b8a14e518f2366ecf983e",
+    "requirement": "REQ-37c4ed23b7f4ac23",
+    "commit": "97e7cb17bd8724bc2c5b8a14e518f2366ecf983e",
+    "subject": "Merge pull request #279 from thesysadmindev/noc-window",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ea59443748d2278babed9271ba9a6134b28f76f4",
+    "requirement": "REQ-cee5dd2c9ad41191",
+    "commit": "ea59443748d2278babed9271ba9a6134b28f76f4",
+    "subject": "NOC window: wait as long as a window may go quiet before saying the pop-up was blocked",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8d709d7fb9559035e34c4d2ad0cd71567e0b3435",
+    "requirement": "REQ-43f65cd2930c401e",
+    "commit": "8d709d7fb9559035e34c4d2ad0cd71567e0b3435",
+    "subject": "Merge pull request #283 from thesysadmindev/call-the-bank",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:0d7231191108d9a5df8b93585f2ed559103cd31e",
+    "requirement": "REQ-b8358dfc5d990b36",
+    "commit": "0d7231191108d9a5df8b93585f2ed559103cd31e",
+    "subject": "Call the bank from AA up, and weird conditions always apply (#251)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:729506416789d7057a7c1b8320fe79f8d88a92af",
+    "requirement": "REQ-f5f3611fad5512a7",
+    "commit": "729506416789d7057a7c1b8320fe79f8d88a92af",
+    "subject": "Architect: a diverse tube takes the cheapest other route, and the detour message names every site (closes #282)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:39fb61fd311d7ef3796753087b97fa7c21e7272e",
+    "requirement": "REQ-5f574cfc1d9c7f68",
+    "commit": "39fb61fd311d7ef3796753087b97fa7c21e7272e",
+    "subject": "NOC in its own window, calling the bank, overland fiber where there is no road, deeper zoom, and the Euro Run fix (2.9.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:cfbe1afdcd585fdc5029f69a6326213d23fbeef9",
+    "requirement": "REQ-a7e505a42901f57a",
+    "commit": "cfbe1afdcd585fdc5029f69a6326213d23fbeef9",
+    "subject": "Atlas Shrugged Telecom is now Atlas Hold-the-Line Telecom",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:6da0449ae9d044b6e536534cb0737bd54b40917e",
+    "requirement": "REQ-be39a451a8e8890c",
+    "commit": "6da0449ae9d044b6e536534cb0737bd54b40917e",
+    "subject": "Jokes target networks, never people; meetings meet where they really do; North Korea is a trickle",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:5b242822249c102cdf4782ad6bfe4089c0ffe63b",
+    "requirement": "REQ-5d77b658b19df68d",
+    "commit": "5b242822249c102cdf4782ad6bfe4089c0ffe63b",
+    "subject": "Kinder jokes, meetings where they meet, a quiet North Korea (2.9.1)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:e23a0e2c9051900c63f09d68aeaa130fd14090e6",
+    "requirement": "REQ-ed464028926e11a5",
+    "commit": "e23a0e2c9051900c63f09d68aeaa130fd14090e6",
+    "subject": "feat(world): add Bilbao and land the Biscay cables there",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:6906a333b308b5d28c53f7a1b89ada63a29973ba",
+    "requirement": "REQ-836cb2cd1996debc",
+    "commit": "6906a333b308b5d28c53f7a1b89ada63a29973ba",
+    "subject": "feat(world): seven French cities, four French networks, and the Atlantic cables on the Atlantic coast",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:bac645ed5b33b352b03d015f0e5d20ab25cb2f47",
+    "requirement": "REQ-a75b2534c4ebf054",
+    "commit": "bac645ed5b33b352b03d015f0e5d20ab25cb2f47",
+    "subject": "feat(noc): tooltips and clickable legends on the dashboard charts",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:253927f10c04a364c0679d92f73d4cf550a7137a",
+    "requirement": "REQ-4a2f36657db7a58f",
+    "commit": "253927f10c04a364c0679d92f73d4cf550a7137a",
+    "subject": "Merge pull request #286 from Lambro-codes/feat/graph-tooltips",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:96062ed1147e8f566b5086b1247cac29ee67590b",
+    "requirement": "REQ-e50da7a008b2f787",
+    "commit": "96062ed1147e8f566b5086b1247cac29ee67590b",
+    "subject": "Merge pull request #285 from Lambro-codes/feat/bilbao-landing",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b2dddf8f06185a23a76cb3c7c94b90a442a22b12",
+    "requirement": "REQ-a6d0ecbcf21d3336",
+    "commit": "b2dddf8f06185a23a76cb3c7c94b90a442a22b12",
+    "subject": "Follow-up to #285: Columbus III-and-a-half comes ashore near Cádiz",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:29af343739f4a4512b0e13baa0747711a1299803",
+    "requirement": "REQ-e70918f4596eb033",
+    "commit": "29af343739f4a4512b0e13baa0747711a1299803",
+    "subject": "Puzzles on phones: three goals in plain words with Show me, the problem marked on the map, a sheet that starts small, and a quieter map",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7aa6506e7021d9bc8922d47d84d00281132bfe7e",
+    "requirement": "REQ-eb53b720a4317b4c",
+    "commit": "7aa6506e7021d9bc8922d47d84d00281132bfe7e",
+    "subject": "Drop the puzzle label the goal list no longer uses",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:cf9ab5e77414625ece04ebdd8eadd7a2f57bdfb1",
+    "requirement": "REQ-d6a6cd3de0ab3ec6",
+    "commit": "cf9ab5e77414625ece04ebdd8eadd7a2f57bdfb1",
+    "subject": "Draw the map with WebGL2 by default, with the 2D canvas as fallback",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8491b1a8f663a99cc8d8aabad9906c1ecead2fbd",
+    "requirement": "REQ-236f9ba14d9e40cf",
+    "commit": "8491b1a8f663a99cc8d8aabad9906c1ecead2fbd",
+    "subject": "WebGL map: keep every sprite, the attack ring, an empty title map and a 2D fallback",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1e9b1d458b6ac25e9f44e9ffcc1946eaf78f82f1",
+    "requirement": "REQ-a0b3f3fdba302077",
+    "commit": "1e9b1d458b6ac25e9f44e9ffcc1946eaf78f82f1",
+    "subject": "GPU benchmark: isolate trials, time the card, say which map drew",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:39941c257e5704b4a01ef8edb2431dd285636fba",
+    "requirement": "REQ-ec10af88c3f78331",
+    "commit": "39941c257e5704b4a01ef8edb2431dd285636fba",
+    "subject": "WebGL map: keep the 2D map where WebGL is drawn by the processor",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2ff634a0eddaca06e5d1fd682cdfd4dbf5a777d9",
+    "requirement": "REQ-10184bbb84ae1c29",
+    "commit": "2ff634a0eddaca06e5d1fd682cdfd4dbf5a777d9",
+    "subject": "WebGL map: paint the card's pictures on one canvas, so a long zoom keeps the context",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:eeeccc60d42bcdaed7c7895aef0c91d206563f77",
+    "requirement": "REQ-140b6393125d0a3e",
+    "commit": "eeeccc60d42bcdaed7c7895aef0c91d206563f77",
+    "subject": "WebGL map: keep the cities' pictures while the zoom moves, paint them sharp once it rests",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3482142ae59c45d5887eb0da0c3a6786f86c103a",
+    "requirement": "REQ-247ae26a97f9a55f",
+    "commit": "3482142ae59c45d5887eb0da0c3a6786f86c103a",
+    "subject": "WebGL map: simplify the coastlines for the zoom",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:87b153db6f9d507deb7958fdf9aa026c6cd5aa50",
+    "requirement": "REQ-3b8f6e47e4df7cc1",
+    "commit": "87b153db6f9d507deb7958fdf9aa026c6cd5aa50",
+    "subject": "WebGL map: keep the pictures' keys, the waves and the clouds out of the garbage",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:fb76a1e6fd8f826a1ef5c47b64eb1aff8e5a171e",
+    "requirement": "REQ-0ffdf7ecc6b0ef9c",
+    "commit": "fb76a1e6fd8f826a1ef5c47b64eb1aff8e5a171e",
+    "subject": "2D map: draw the pictures with the map's own pen, as main did",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:52c8aaffd6e50c3113af213eb99a98ea295aec8b",
+    "requirement": "REQ-34c5e5fea7ffd215",
+    "commit": "52c8aaffd6e50c3113af213eb99a98ea295aec8b",
+    "subject": "WebGL map: give the card up for 2D when it runs out of memory without saying so",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:cdc7c6d1eb8eafeee6df6948ff5fe00ee44a92c1",
+    "requirement": "REQ-c7ab245d14241a4a",
+    "commit": "cdc7c6d1eb8eafeee6df6948ff5fe00ee44a92c1",
+    "subject": "Settings: one Diagnostic info readout for the screen, the map's drawing and its speed",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b03bec267ccc13a019aa8902759134733869f4d4",
+    "requirement": "REQ-fdb39224ac75ddbf",
+    "commit": "b03bec267ccc13a019aa8902759134733869f4d4",
+    "subject": "2D map: keep the land picture on the graphics card in Firefox on a computer",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:fe109cff844fb26888807a64235b66ed5482573e",
+    "requirement": "REQ-c29e75dba7364028",
+    "commit": "fe109cff844fb26888807a64235b66ed5482573e",
+    "subject": "WebGL map: fill overlapping coastlines as land, as the 2D map does",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:123b3d00eabc66d8b0e1137e83362f3a93b650c2",
+    "requirement": "REQ-12b3cf497ff6833f",
+    "commit": "123b3d00eabc66d8b0e1137e83362f3a93b650c2",
+    "subject": "WebGL map: give the card up for 2D when it refuses a picture without saying so",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:10ef838e8718825304c35e34251710ca7579b7a5",
+    "requirement": "REQ-deaea6f8bd642228",
+    "commit": "10ef838e8718825304c35e34251710ca7579b7a5",
+    "subject": "WebGL map: free what the card holds when it is given up for good",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d57b3ae10f4d379dc64033756a126eab95611c10",
+    "requirement": "REQ-4a88fba38ac0a5d8",
+    "commit": "d57b3ae10f4d379dc64033756a126eab95611c10",
+    "subject": "WebGL map: say how the land's stencil counts, and what the land costs the card",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:57546ea18e417caaf4d7b3fea958bc4a3b51f7fa",
+    "requirement": "REQ-d46ccf25e49b5ef1",
+    "commit": "57546ea18e417caaf4d7b3fea958bc4a3b51f7fa",
+    "subject": "2D map: hold its pictures to 48 MB, letting go of those unused the longest",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:351b3aa5222762f843abd22cb4692169d7c58f2d",
+    "requirement": "REQ-d17d61664093c790",
+    "commit": "351b3aa5222762f843abd22cb4692169d7c58f2d",
+    "subject": "WebGL map: take a lost context back, and let it go for Always 2D",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b7a9ec3e3cd976f49edb2b99b38b982b97b02890",
+    "requirement": "REQ-bf3c6ad2575ec573",
+    "commit": "b7a9ec3e3cd976f49edb2b99b38b982b97b02890",
+    "subject": "Settings: say whether the card can draw the map without setting it up",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c652bce7d299d895d95ba1db5f604cf50e0a29b8",
+    "requirement": "REQ-3fbf6efbf192c7bb",
+    "commit": "c652bce7d299d895d95ba1db5f604cf50e0a29b8",
+    "subject": "Diagnostic info: say how often the map was drawn, and drop a key no release had",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:32f330b1c389a808b078961ddaa48814bd7b1f50",
+    "requirement": "REQ-2bd6095e0cc06bb8",
+    "commit": "32f330b1c389a808b078961ddaa48814bd7b1f50",
+    "subject": "WebGL map: check the pictures sent to the card at most once a second",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8c2000f6b1241b3b856e59d163c9c865532e5ff9",
+    "requirement": "REQ-365ef571fb642e98",
+    "commit": "8c2000f6b1241b3b856e59d163c9c865532e5ff9",
+    "subject": "CHANGELOG: one bullet per change players will see",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c3e1dd93485aa38c93dfbdda2c738c9c98648490",
+    "requirement": "REQ-1f8b95371b0401cb",
+    "commit": "c3e1dd93485aa38c93dfbdda2c738c9c98648490",
+    "subject": "WebGL map: keep each picture in a clear border in the atlas",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:72f4bb54f3c0f4be67d5d8e19fcc42f3d9b7575f",
+    "requirement": "REQ-2334c63c8ae4e6c6",
+    "commit": "72f4bb54f3c0f4be67d5d8e19fcc42f3d9b7575f",
+    "subject": "Scrubbed clean traffic no longer shows as DDoS junk on links (#289)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:28e732448eac0e164a78f11876a2f6e0d9555f30",
+    "requirement": "REQ-226796f96a35f880",
+    "commit": "28e732448eac0e164a78f11876a2f6e0d9555f30",
+    "subject": "Merge pull request #290 from fjaeckel/claude/fix-289",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:45ffdba8ae643f14a0ff0f56b9b8bbf36cb879dc",
+    "requirement": "REQ-233cc57a5f7d38f2",
+    "commit": "45ffdba8ae643f14a0ff0f56b9b8bbf36cb879dc",
+    "subject": "Sweden beyond Stockholm: Gothenburg, Malmö and Haparanda (closes #206)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b8d313b0299e29e8443da4ca573ea0c7bcb8d490",
+    "requirement": "REQ-2409ec43ae9d5dcc",
+    "commit": "b8d313b0299e29e8443da4ca573ea0c7bcb8d490",
+    "subject": "Alien waves priced against their fiber; crews halve a build at most (#203)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8841fdacb98897313c4e3b30121b4a080d302915",
+    "requirement": "REQ-c9540971692dba12",
+    "commit": "8841fdacb98897313c4e3b30121b4a080d302915",
+    "subject": "Customers come and go: contracts, renewals at the market price, growth, haggles and leaving (#178)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:0cdbef97fe08d968130bc9799df85b207b62ddf3",
+    "requirement": "REQ-b48a921aa37aa0a7",
+    "commit": "0cdbef97fe08d968130bc9799df85b207b62ddf3",
+    "subject": "A dashboard tab listing the cities with no POP yet",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:5259e930345d5c7320ff67a5231e29210ec74cb9",
+    "requirement": "REQ-b4d8aee50a451d46",
+    "commit": "5259e930345d5c7320ff67a5231e29210ec74cb9",
+    "subject": "Merge remote-tracking branch 'upstream/main' into unbuilt-pops",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b9860edc7761ea4670acd9670b67db82b5bf1e31",
+    "requirement": "REQ-3ed482d377db44b5",
+    "commit": "b9860edc7761ea4670acd9670b67db82b5bf1e31",
+    "subject": "Dark fiber leases cost half as much again (#203)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:27c4977412f8e085a6251345383b0404083cc73e",
+    "requirement": "REQ-51554d5abc1e24a9",
+    "commit": "27c4977412f8e085a6251345383b0404083cc73e",
+    "subject": "A sales desk: the engineer turned salesdroid, the shark, or the CEO",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:939aaeea59e4eee2b210b7836790bc3016397f09",
+    "requirement": "REQ-25e7cc5a4255128f",
+    "commit": "939aaeea59e4eee2b210b7836790bc3016397f09",
+    "subject": "Sales and contract rolls hash what a deal is, not its clock-made id",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:13768c61cbfcf20474e29b0faa1e684cbd2abf48",
+    "requirement": "REQ-9c0a11632b664d91",
+    "commit": "13768c61cbfcf20474e29b0faa1e684cbd2abf48",
+    "subject": "Merge #281: draw the map with WebGL2 by default, 2D as fallback",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:e62e4c7c9841d584d15769120f8368dcaf38d2c5",
+    "requirement": "REQ-adb8802a5c21eb84",
+    "commit": "e62e4c7c9841d584d15769120f8368dcaf38d2c5",
+    "subject": "Merge branch 'main' into unbuilt-pops",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c1d726c105571267db16206e15ba30f2d172fcdb",
+    "requirement": "REQ-ee86f33e497b4a02",
+    "commit": "c1d726c105571267db16206e15ba30f2d172fcdb",
+    "subject": "Relay test waits for the late page instead of a fixed 2.5 s",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:57c0594a90eb958b77865f42bd5fa300451b0047",
+    "requirement": "REQ-74ef78b9c106acda",
+    "commit": "57c0594a90eb958b77865f42bd5fa300451b0047",
+    "subject": "Merge pull request #291 from thesysadmindev/unbuilt-pops",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f9c85ab0c37306fb3c110f49b4a3f7fbcebda9b1",
+    "requirement": "REQ-9dcae8534baeee19",
+    "commit": "f9c85ab0c37306fb3c110f49b4a3f7fbcebda9b1",
+    "subject": "GPU benchmark: answer only its own page, and print what it sends as plain text",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7f4fdf6043d0de58b6b6074e3df195c59ac14d9e",
+    "requirement": "REQ-64766d2fdc7187f9",
+    "commit": "7f4fdf6043d0de58b6b6074e3df195c59ac14d9e",
+    "subject": "WebGL map: join each line's segments, and draw a link being dragged out under the cities",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:aef744af50d2eb2365f1121684bf87b258a9bb4e",
+    "requirement": "REQ-db625aef72b10ac8",
+    "commit": "aef744af50d2eb2365f1121684bf87b258a9bb4e",
+    "subject": "Show a cable's name and a repair button from a save as text",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:02d3709944b417db644450366ad692630830cafd",
+    "requirement": "REQ-08c266ab5424d377",
+    "commit": "02d3709944b417db644450366ad692630830cafd",
+    "subject": "GPU benchmark server test: listen on 127.0.0.1, where it connects",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:151b7786edb2023c72263d0227a282ed75d1494b",
+    "requirement": "REQ-24054f1619347ce9",
+    "commit": "151b7786edb2023c72263d0227a282ed75d1494b",
+    "subject": "Tests wait for state instead of sleeping, on free ports",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:eb294e9b147bc09e92cbfcccc144a44fccfafe16",
+    "requirement": "REQ-6e88eef3cd880158",
+    "commit": "eb294e9b147bc09e92cbfcccc144a44fccfafe16",
+    "subject": "WebGL map, customer contracts and a sales desk (2.10.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f19b337d7b077c6c0f9bfe833d266e5bce33f6ac",
+    "requirement": "REQ-4e5fbfee269e0d4c",
+    "commit": "f19b337d7b077c6c0f9bfe833d266e5bce33f6ac",
+    "subject": "Build container images for easy MCP use",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8c96fa5bc1ffdbf791815196a6c615f286540e7d",
+    "requirement": "REQ-511a1501ba69b0c2",
+    "commit": "8c96fa5bc1ffdbf791815196a6c615f286540e7d",
+    "subject": "Meet halfway between the bill and the ask; Fujairah back on its coast (#293, #295)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d7fb2a96177ecbb9e6af464b5c613b21262b94df",
+    "requirement": "REQ-0c69537bdebaee9c",
+    "commit": "d7fb2a96177ecbb9e6af464b5c613b21262b94df",
+    "subject": "Fujairah one step west, onto the coast it lands on",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:107b0b825a226562bf9100e39efa5af2319642f8",
+    "requirement": "REQ-538adcc322e86a1a",
+    "commit": "107b0b825a226562bf9100e39efa5af2319642f8",
+    "subject": "Puzzles on phones: fixed overlays that never scroll",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:908f2e0de9b4461d118caa08cf42e221e6810061",
+    "requirement": "REQ-b3e2eca231561f68",
+    "commit": "908f2e0de9b4461d118caa08cf42e221e6810061",
+    "subject": "Puzzles on phones that never scroll, a fairer meet-halfway, Fujairah on its coast (2.10.1)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:9c8cda44c1c7f39489c0e18ab5ea5701f6541d21",
+    "requirement": "REQ-870cc1eaae3b0f80",
+    "commit": "9c8cda44c1c7f39489c0e18ab5ea5701f6541d21",
+    "subject": "Build container images for easy MCP use",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:98735eb76911e205529f8691795cdcc683e7b983",
+    "requirement": "REQ-9f1a09fb2f75a961",
+    "commit": "98735eb76911e205529f8691795cdcc683e7b983",
+    "subject": "Container image: releases only, a token by default, lean layers; every action pinned",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:aa444c2d9472176f54f7c724dfaf28d6f2103303",
+    "requirement": "REQ-38744a62e22dda02",
+    "commit": "aa444c2d9472176f54f7c724dfaf28d6f2103303",
+    "subject": "Merge #297: the MCP server as a container image",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8ebd1fd425ace4a514ddcc87a190e2481929e8a1",
+    "requirement": "REQ-196b55b48fe61c68",
+    "commit": "8ebd1fd425ace4a514ddcc87a190e2481929e8a1",
+    "subject": "Tools: Bump jsdom from 24.1.3 to 30.1.3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8d3db207be73638b3d2eaa2b03bbe201e50ef8d7",
+    "requirement": "REQ-46da692c2259392d",
+    "commit": "8d3db207be73638b3d2eaa2b03bbe201e50ef8d7",
+    "subject": "CI: Bump the actions group with 2 updates",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:131e2f7b9c5cc8078882b255e0472db2aa695a57",
+    "requirement": "REQ-97401c3550de4d1c",
+    "commit": "131e2f7b9c5cc8078882b255e0472db2aa695a57",
+    "subject": "Container smoke test: container names Docker accepts",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7c0f1b3b0554218b6e1d96631686175ef8de6c59",
+    "requirement": "REQ-8405202bbc8c5b47",
+    "commit": "7c0f1b3b0554218b6e1d96631686175ef8de6c59",
+    "subject": "Merge pull request #303 from fjaeckel/dependabot/github_actions/actions-b2576794da",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:478e767c83282a91e885ba0689acdcd3d87eeab1",
+    "requirement": "REQ-9924f34b6ff43ca1",
+    "commit": "478e767c83282a91e885ba0689acdcd3d87eeab1",
+    "subject": "Latency test: no padding is zero however the DOM spells it",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:bf6090f413645caa7349ef430604ff314708b2ca",
+    "requirement": "REQ-3c96475ce69bee42",
+    "commit": "bf6090f413645caa7349ef430604ff314708b2ca",
+    "subject": "Merge branch 'main' into dependabot/npm_and_yarn/jsdom-30.1.3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b5fba00e0b77944ebd6cbbf3e6fa876a565ebafe",
+    "requirement": "REQ-0cc13c5d066a942d",
+    "commit": "b5fba00e0b77944ebd6cbbf3e6fa876a565ebafe",
+    "subject": "Merge pull request #302 from fjaeckel/dependabot/npm_and_yarn/jsdom-30.1.3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1a6c63e920a8c6486c3fb3171ec1736a71ddd25f",
+    "requirement": "REQ-6c3230cd30cf81ee",
+    "commit": "1a6c63e920a8c6486c3fb3171ec1736a71ddd25f",
+    "subject": "Tools: playwright-core 1.64.1, ws 8.22.1 (#301)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:e7729d0a1ef6d95d7d35b4d84e231e18ea4e3678",
+    "requirement": "REQ-13acc1a39feb1a68",
+    "commit": "e7729d0a1ef6d95d7d35b4d84e231e18ea4e3678",
+    "subject": "Harden workflows and dev scripts against code-scanning findings",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:dd6e4f4f8a999e08fb932015e7dbbff19de8f9d0",
+    "requirement": "REQ-2b57af8f2240065c",
+    "commit": "dd6e4f4f8a999e08fb932015e7dbbff19de8f9d0",
+    "subject": "Fix CodeQL code-scanning alerts",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:fca11b39d23edff519f2c5ca6f9648317ace8530",
+    "requirement": "REQ-0d5c2a7740ba24fa",
+    "commit": "fca11b39d23edff519f2c5ca6f9648317ace8530",
+    "subject": "fix(map): drop the last network's floaters when another one starts",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7f3b742451073c667cb8564413bcb8fc4c2076bc",
+    "requirement": "REQ-4e8d75f3dc3c4e6f",
+    "commit": "7f3b742451073c667cb8564413bcb8fc4c2076bc",
+    "subject": "Own subsea cables land on the city's dot, nudged cities too (#305)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:efd7a42edd58e5e384ef697df4d3f3422e8c7ead",
+    "requirement": "REQ-5e7ea4c77c307334",
+    "commit": "efd7a42edd58e5e384ef697df4d3f3422e8c7ead",
+    "subject": "Merge pull request #309 from fjaeckel/claude/fix-305",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4ec3fb4a1aed08648fce337f70073e2b96d74a0b",
+    "requirement": "REQ-a734c5065b0376ae",
+    "commit": "4ec3fb4a1aed08648fce337f70073e2b96d74a0b",
+    "subject": "Merge pull request #304 from antt0n/fix/map-stale-floaters",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:85701dbb821f4b45d123a8b9e02191bed0a49966",
+    "requirement": "REQ-69f15237be9f22d9",
+    "commit": "85701dbb821f4b45d123a8b9e02191bed0a49966",
+    "subject": "Fabric ports at 10G, 100G or 400G, in LAGs; fabric customers only when they fit",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7c65b9e7ed92596a923d34a9836da98126af0578",
+    "requirement": "REQ-bae681181a0d5f60",
+    "commit": "7c65b9e7ed92596a923d34a9836da98126af0578",
+    "subject": "Space plays again at the speed you paused (#299)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f303f29f22312a3ebbc62e483912620b3188bd9d",
+    "requirement": "REQ-079a2eb4b7881901",
+    "commit": "f303f29f22312a3ebbc62e483912620b3188bd9d",
+    "subject": "PNIs and IX ports are both peering: traffic leaves at the nearest one (#298)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:934a83588a8857432670e924d114fd07f3396a4c",
+    "requirement": "REQ-2a792274bb601abc",
+    "commit": "934a83588a8857432670e924d114fd07f3396a4c",
+    "subject": "Charters: a popup at the start, and a third one, the Cable broker (#300)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:50e0119497e08805493a394356d622e7822ce280",
+    "requirement": "REQ-bca792b48bdbb150",
+    "commit": "50e0119497e08805493a394356d622e7822ce280",
+    "subject": "Charters: tests follow the popup, the tutorial waits only for a picker on screen",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d2c7294ed3737e17a57a6c482dde6bb7e280cc95",
+    "requirement": "REQ-c045c97318d01630",
+    "commit": "d2c7294ed3737e17a57a6c482dde6bb7e280cc95",
+    "subject": "Plan: Pie in the Sky constellation spec",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7fb7be305d0a1948921bf862196f00b768805d6e",
+    "requirement": "REQ-701e01868d30e625",
+    "commit": "7fb7be305d0a1948921bf862196f00b768805d6e",
+    "subject": "Pie in the Sky: rocket company foundation",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:27297795015e02151595e43472ead57c5f625912",
+    "requirement": "REQ-82870601caf90b0a",
+    "commit": "27297795015e02151595e43472ead57c5f625912",
+    "subject": "Tests for Pie in the Sky, and rules O1, O5 and O7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c860a128e4c0f1117a0d58626e866818be298161",
+    "requirement": "REQ-801d3c892d85133e",
+    "commit": "c860a128e4c0f1117a0d58626e866818be298161",
+    "subject": "CHANGELOG: Pie in the Sky",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d3174600e758242551bf45e3e155e6e79b11d3dd",
+    "requirement": "REQ-dda4b7c6d0cf0e0a",
+    "commit": "d3174600e758242551bf45e3e155e6e79b11d3dd",
+    "subject": "Pie in the Sky: animated 3D globe for Pie Control, with a night view",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:112450d15827cb31ad48ffecab6fb7826fa35c07",
+    "requirement": "REQ-0d26e1f8c0c9b6f9",
+    "commit": "112450d15827cb31ad48ffecab6fb7826fa35c07",
+    "subject": "Pie globe: launches by pad city, crust sizes from CRUSTS when present",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:727541a9d8e06c6316941835b427fbf610544fac",
+    "requirement": "REQ-37377827ea0f5fa6",
+    "commit": "727541a9d8e06c6316941835b427fbf610544fac",
+    "subject": "Pie in the Sky: incidents in orbit and geopolitical spats",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8035fc03ccf87d2706046715f865af8d2929bcac",
+    "requirement": "REQ-99781ca8789b4f3c",
+    "commit": "8035fc03ccf87d2706046715f865af8d2929bcac",
+    "subject": "Pie in the Sky: routing through orbit",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:80bddc86941b88698f9e889c0f2d395abec4b9d1",
+    "requirement": "REQ-b7806a6bebc0613f",
+    "commit": "80bddc86941b88698f9e889c0f2d395abec4b9d1",
+    "subject": "Pie in the Sky: customers in orbit",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:6812638a5b8243483df04bcdae6797b8ae08f280",
+    "requirement": "REQ-dd0391d31abae062",
+    "commit": "6812638a5b8243483df04bcdae6797b8ae08f280",
+    "subject": "Pie in the Sky: orbit prices, rules O2-O4 and both bounds of O7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:52c31d94b5a3c48feb128e676254011520c21206",
+    "requirement": "REQ-eeba267612bab326",
+    "commit": "52c31d94b5a3c48feb128e676254011520c21206",
+    "subject": "Pie routing test: simpler sky check",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ad8d0369136cc12e389534ffedb0fd735f319814",
+    "requirement": "REQ-898e624dd1f809f2",
+    "commit": "ad8d0369136cc12e389534ffedb0fd735f319814",
+    "subject": "Pie in the Sky: traffic data for orbit (flows, crust and dish load)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:df6e0e09645d0c4fde04128f1c8698d58131ed4f",
+    "requirement": "REQ-106c388860583522",
+    "commit": "df6e0e09645d0c4fde04128f1c8698d58131ed4f",
+    "subject": "Pie in the Sky: traffic on the globe, load rings on dishes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4ad080cb91991a244e85fd1e5ac5271287cda221",
+    "requirement": "REQ-ed85f3204a391381",
+    "commit": "4ad080cb91991a244e85fd1e5ac5271287cda221",
+    "subject": "Pie Control: Traffic tab, empty-sky checklist, orbit traceroute",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:940ce0df10c2da6c588e0f7e4a32ccd4519cc463",
+    "requirement": "REQ-f0376bfe86f75d4b",
+    "commit": "940ce0df10c2da6c588e0f7e4a32ccd4519cc463",
+    "subject": "Pie in the Sky: backhaul for POPs cut off from the backbone",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ff0276f32546982e0a55863f9c32604517e1af2f",
+    "requirement": "REQ-81a41960ccdaa4af",
+    "commit": "ff0276f32546982e0a55863f9c32604517e1af2f",
+    "subject": "Pie Control: backhaul rows, globe arcs and orbit traceroute for cut-off POPs",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:48d2cedbee7b4301d93326084f6e94f0797fd9aa",
+    "requirement": "REQ-a0d651ec137dd2d9",
+    "commit": "48d2cedbee7b4301d93326084f6e94f0797fd9aa",
+    "subject": "Pie Control globe: replay recent launches, with payload release or a fireball",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d7d5d213727171b86bdccfb5178c7faf325d1add",
+    "requirement": "REQ-ceb5e9655db8ed1c",
+    "commit": "d7d5d213727171b86bdccfb5178c7faf325d1add",
+    "subject": "Pie in the Sky: dips in orbit hurt instead of emptying the sky",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:46ba4e04d297b64b936159eb3cc099b195bd2f89",
+    "requirement": "REQ-985d01995549c969",
+    "commit": "46ba4e04d297b64b936159eb3cc099b195bd2f89",
+    "subject": "Pie in the Sky: a terminal lands where all of it fits",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1de0723c35d30a8ac53440e19c44b02aa56178b1",
+    "requirement": "REQ-62152bf8f2cc9d64",
+    "commit": "1de0723c35d30a8ac53440e19c44b02aa56178b1",
+    "subject": "Pie in the Sky: a full constellation pays back in about seven years",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:8b92adcaa87f64026e158db016cb294f4a550dad",
+    "requirement": "REQ-6991348c72ef8b9c",
+    "commit": "8b92adcaa87f64026e158db016cb294f4a550dad",
+    "subject": "Pie in the Sky: government money for rocket companies",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b4a757625170947c68280912e6d6d4fa67c89c15",
+    "requirement": "REQ-cc352e03de6ae0f1",
+    "commit": "b4a757625170947c68280912e6d6d4fa67c89c15",
+    "subject": "Pie in the Sky: closing a panel stops the globe again, after the rebase onto 2.10.0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b3153c020f2e381174c277a506ac3f811e8449f2",
+    "requirement": "REQ-77f357f9f8f8b844",
+    "commit": "b3153c020f2e381174c277a506ac3f811e8449f2",
+    "subject": "Pie in the Sky: no government line in the books without a rocket company, so other games route exactly as on main",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:267f9efc72505bdd91ff2cd6bf8e5ec23a60ae58",
+    "requirement": "REQ-ce41751800e6d5c0",
+    "commit": "267f9efc72505bdd91ff2cd6bf8e5ec23a60ae58",
+    "subject": "Pie in the Sky for agents: every Pie action classified and typed, its state and results documented",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7001174d7928357847327a2de36fb052b451716d",
+    "requirement": "REQ-ac06304a0a7d176f",
+    "commit": "7001174d7928357847327a2de36fb052b451716d",
+    "subject": "Pie in the Sky, the early game: a pace forecast on the Launch tab, patchy-sky customers before 40%, a hint to wait on dishes",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:95f385155748f02c65ab9c2b9df49063d2f1ca97",
+    "requirement": "REQ-1986df832b23e83a",
+    "commit": "95f385155748f02c65ab9c2b9df49063d2f1ca97",
+    "subject": "Pie in the Sky: a grand opening when a crust starts carrying traffic, so regular customers sign as the patchy ones fade",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:176a6995b151c8c8ab0f5b823b78b52205d911c5",
+    "requirement": "REQ-98acef730bcbe713",
+    "commit": "176a6995b151c8c8ab0f5b823b78b52205d911c5",
+    "subject": "Pie globe: continents clip cleanly at the rim instead of fluttering",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:9d74873edb749baef1ababad1777134b186309b1",
+    "requirement": "REQ-a0ee4aec3debbc85",
+    "commit": "9d74873edb749baef1ababad1777134b186309b1",
+    "subject": "NOC tab and Pie Control tidied for phones: Pie Control in the NOC top row, traceroute in Routing & DDoS, government money in the bank",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2243280affb799d16a10a4977be8acb9c116d348",
+    "requirement": "REQ-f89e9d262110a017",
+    "commit": "2243280affb799d16a10a4977be8acb9c116d348",
+    "subject": "Pie in the Sky: the Founder's antics make markets jumpy, then it wears off",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:9a5522bbb18d5fd17155b1571e9c4c30cbc082b4",
+    "requirement": "REQ-b4550f47bf38a081",
+    "commit": "9a5522bbb18d5fd17155b1571e9c4c30cbc082b4",
+    "subject": "Deals belong to Sales: the intern sticks to the network, the sales desk signs deals for you, orbit ones too",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:9d64aa0144a83dea11cdff54eda758b8c51fae88",
+    "requirement": "REQ-425fa17c4faaf605",
+    "commit": "9d64aa0144a83dea11cdff54eda758b8c51fae88",
+    "subject": "Pie in the Sky, three charters and Sales runs the deals (3.0.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3c45d7dca12ebca08e6935c0a8bc2a8e77898966",
+    "requirement": "REQ-79f72ddfec868025",
+    "commit": "3c45d7dca12ebca08e6935c0a8bc2a8e77898966",
+    "subject": "A day that reroutes no longer stops the page at x8: every routing it needs goes to the route worker",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f3df5e5d23fcd03d159bf5b47938335bf57c49dc",
+    "requirement": "REQ-c133b654059e0318",
+    "commit": "f3df5e5d23fcd03d159bf5b47938335bf57c49dc",
+    "subject": "Steps resumed after the worker routes read the game as it is: a sales trial, the intern's PNI round and a failure's incident",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1e7638c4b93af61a446949ee8a01d7d4e4c467a6",
+    "requirement": "REQ-0fa85a34bb8f99ce",
+    "commit": "1e7638c4b93af61a446949ee8a01d7d4e4c467a6",
+    "subject": "The intern standardizes routers on a chosen model; Ops settings are lists",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:647e302f1c6278c88998de2cd03baa176d339e17",
+    "requirement": "REQ-f89f6c03ac8436f8",
+    "commit": "647e302f1c6278c88998de2cd03baa176d339e17",
+    "subject": "The intern upgrades optical transport",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f317b25bc5423f1a8f519e25d4bb96734ccf7690",
+    "requirement": "REQ-d62aea23698942fe",
+    "commit": "f317b25bc5423f1a8f519e25d4bb96734ccf7690",
+    "subject": "Merge pull request #288 from Lambro-codes: seven French cities, four French networks, and the Atlantic cables on the Atlantic coast",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d7aad7d9654e02021b96344f4f377d7804a91521",
+    "requirement": "REQ-ab1fee98ba355615",
+    "commit": "d7aad7d9654e02021b96344f4f377d7804a91521",
+    "subject": "France follow-up: pun names only, real Lille calibration, Lyon appended",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:74e8611f8e1e902c1bf0e908194a92705eb16970",
+    "requirement": "REQ-f0a98bc421dcf5b6",
+    "commit": "74e8611f8e1e902c1bf0e908194a92705eb16970",
+    "subject": "The sales desk answers renewal haggles, each salesperson their way",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:c96f9e7644d59631b8d439f0699b6fc06547f7d9",
+    "requirement": "REQ-9cafa89b3db90813",
+    "commit": "c96f9e7644d59631b8d439f0699b6fc06547f7d9",
+    "subject": "Sales renewal labels go through N_() so the translation check sees them",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ed0cac9974dfd8f9933addf5e4acaad60886bfae",
+    "requirement": "REQ-0605ea67e90a478b",
+    "commit": "ed0cac9974dfd8f9933addf5e4acaad60886bfae",
+    "subject": "Interns: the same orders, each best at one part of the job",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:410eb815445231ac62edd91147436601b056211f",
+    "requirement": "REQ-75cffc7958e651db",
+    "commit": "410eb815445231ac62edd91147436601b056211f",
+    "subject": "Merge pull request #313: every routing a day needs runs in the route worker, and a long day lets frames through",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:52e740cdaed234f5a709d701272feb89121237ec",
+    "requirement": "REQ-291df54a93300e33",
+    "commit": "52e740cdaed234f5a709d701272feb89121237ec",
+    "subject": "A slow phone gives a day longer slices between frames",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:7a6eb29013bd02a13db402dace1549fd8792be6e",
+    "requirement": "REQ-fc01c5fc273e5d03",
+    "commit": "7a6eb29013bd02a13db402dace1549fd8792be6e",
+    "subject": "Interns with specialities, optical upgrades, renewal haggles, seven French cities and smoother big networks (3.1.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:0342d90657ac8c803826f850a3bd049ddd351edb",
+    "requirement": "REQ-36c65e2ccd261af3",
+    "commit": "0342d90657ac8c803826f850a3bd049ddd351edb",
+    "subject": "Faster tests, split everywhere: one sharded CI for pushes and releases",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:03523cb16bebbff7da865787bbc5a397f1bef977",
+    "requirement": "REQ-25ef345ae492a754",
+    "commit": "03523cb16bebbff7da865787bbc5a397f1bef977",
+    "subject": "Auto-release follows CI instead of testing the release again",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4e6f780c8162b2e2415f8c505c91cb0f15d1ad15",
+    "requirement": "REQ-8519d90e9b2ebf31",
+    "commit": "4e6f780c8162b2e2415f8c505c91cb0f15d1ad15",
+    "subject": "No double runs in a release: container test and weekly tests once",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:fcb726457006093fafd4e8b39ee24b824954b47f",
+    "requirement": "REQ-3599761097befe83",
+    "commit": "fcb726457006093fafd4e8b39ee24b824954b47f",
+    "subject": "Traffic badges: a Tbps ladder and an odometer up to a zettabyte",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:e6b5464352a4d2126e7c9b17fe96dde9524a2d8f",
+    "requirement": "REQ-e93870094f25705e",
+    "commit": "e6b5464352a4d2126e7c9b17fe96dde9524a2d8f",
+    "subject": "Traffic badges: legendary only at the top of each ladder",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:2f738dcedad6cece421f9c1366180069f8caaabe",
+    "requirement": "REQ-5b289f1901be4be4",
+    "commit": "2f738dcedad6cece421f9c1366180069f8caaabe",
+    "subject": "Lambda Bazaar: a capacity market for your dark fiber",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:91b2afe70679a19e5914eed3c2a047a2f0cf5c34",
+    "requirement": "REQ-f314f8ff56196414",
+    "commit": "91b2afe70679a19e5914eed3c2a047a2f0cf5c34",
+    "subject": "Lambda Bazaar capacity market and traffic badges (3.2.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d03dde6fcd5089eb7bdeb1e73953ffa36e9b1074",
+    "requirement": "REQ-09ca3963b96dd85d",
+    "commit": "d03dde6fcd5089eb7bdeb1e73953ffa36e9b1074",
+    "subject": "Release deploys again when its tests were skipped on purpose",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b9d63193028c11ff7afd36994893fdec25d0a4eb",
+    "requirement": "REQ-ffd7758f4e93a9fc",
+    "commit": "b9d63193028c11ff7afd36994893fdec25d0a4eb",
+    "subject": "The page stays free while big networks play: ambient map at 30 fps, saves in the worker, less to carry back",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1edf0abb54c719d86215e0e29fb3308d3191c40a",
+    "requirement": "REQ-6a13516f2cb455fb",
+    "commit": "1edf0abb54c719d86215e0e29fb3308d3191c40a",
+    "subject": "Routing core made once, list orders kept, and Auto-TE's detour searches cut: same routing, much less work",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:44116103be4e2d6592c4f3f99a5328dac815d40f",
+    "requirement": "REQ-e2af43b05a35860d",
+    "commit": "44116103be4e2d6592c4f3f99a5328dac815d40f",
+    "subject": "The intern and customers' promises counted once per network: ports, caches and PNIs in one pass, shared searches",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:a1c0afbbbfe7fed5740042beff28afb0b24ccc4d",
+    "requirement": "REQ-11609ebe7b2e41d8",
+    "commit": "a1c0afbbbfe7fed5740042beff28afb0b24ccc4d",
+    "subject": "Merge pull request #318 from antt0n/perf/page-stays-free",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4292cd4c7491ee5dddfef03b5a5e349838a9aef9",
+    "requirement": "REQ-c70b6f8db0679073",
+    "commit": "4292cd4c7491ee5dddfef03b5a5e349838a9aef9",
+    "subject": "Merge pull request #319 from antt0n/perf/intern-and-promises",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d971ded259e2e6a7ee7886d11bcfe5a46998eaab",
+    "requirement": "REQ-5d6371a87b6f98b5",
+    "commit": "d971ded259e2e6a7ee7886d11bcfe5a46998eaab",
+    "subject": "Hold the lay ship through a construction delay instead of restarting the lay (#322)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:71e7dcec59a2e70382411151eddea297117f66c7",
+    "requirement": "REQ-6237fd4e2af4809b",
+    "commit": "71e7dcec59a2e70382411151eddea297117f66c7",
+    "subject": "Say how to reach a coast where no subsea cable lands yet (#321)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:9cdab7235beef70a407525d700aacaeecf143c32",
+    "requirement": "REQ-b62137a4b7a98f22",
+    "commit": "9cdab7235beef70a407525d700aacaeecf143c32",
+    "subject": "Merge pull request #325 from fjaeckel/claude/fix-322",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1e15c61e3d7190f818484a7240f6b65405a1437f",
+    "requirement": "REQ-4c17b1d342f382b9",
+    "commit": "1e15c61e3d7190f818484a7240f6b65405a1437f",
+    "subject": "Merge remote-tracking branch 'origin/main' into claude/fix-321",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:ef6bd750eaa20a03d2068c9b2f968ec7ededda72",
+    "requirement": "REQ-89dff2e4bf639468",
+    "commit": "ef6bd750eaa20a03d2068c9b2f968ec7ededda72",
+    "subject": "Merge pull request #324 from fjaeckel/claude/fix-321",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:afd71a089938428a7f0d74200c7f0906e7dd6e8d",
+    "requirement": "REQ-13132d2f64c2eeb1",
+    "commit": "afd71a089938428a7f0d74200c7f0906e7dd6e8d",
+    "subject": "Tools: Bump playwright-core from 1.64.1 to 1.65.0 in the tools group",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:5d76d3afc80c092e656d3992a603e6261dd98d7c",
+    "requirement": "REQ-e436e9f16f004f4d",
+    "commit": "5d76d3afc80c092e656d3992a603e6261dd98d7c",
+    "subject": "CI: Bump anthropics/claude-code-action",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:93d7c87dc70086940c9a1dc13087dd570d741cf7",
+    "requirement": "REQ-29989d55d0afb618",
+    "commit": "93d7c87dc70086940c9a1dc13087dd570d741cf7",
+    "subject": "Move a customer to another path between the same two POPs",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3554e9f700956908266a988b25f91b7315997051",
+    "requirement": "REQ-9360c93e34676d6b",
+    "commit": "3554e9f700956908266a988b25f91b7315997051",
+    "subject": "Moving waves checks the room the broker would sell: bandwidth for managed waves, and what is kept back",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:3dbeaeeeb7da25deba3a04620e72fbc6ed312ebc",
+    "requirement": "REQ-15ef10d06cea99b8",
+    "commit": "3dbeaeeeb7da25deba3a04620e72fbc6ed312ebc",
+    "subject": "Merge pull request #328 from fjaeckel/dependabot/github_actions/actions-aa5920e445",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:36b9b170c5f3b3b87c35240d412972c94aa7fa6a",
+    "requirement": "REQ-5c78677c2850b8e0",
+    "commit": "36b9b170c5f3b3b87c35240d412972c94aa7fa6a",
+    "subject": "Merge pull request #326 from fjaeckel/dependabot/npm_and_yarn/tools-e5c9720653",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d98b11a1f7b0f5d9b1f1fff94e599e5eaff3fafe",
+    "requirement": "REQ-0fc7fab3e90ac65e",
+    "commit": "d98b11a1f7b0f5d9b1f1fff94e599e5eaff3fafe",
+    "subject": "Merge branch 'fjaeckel:main' into move-customer-path",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:249ad4d4787c524d602d8ccb8a674c3e9828dc0d",
+    "requirement": "REQ-7990d0d2621c8062",
+    "commit": "249ad4d4787c524d602d8ccb8a674c3e9828dc0d",
+    "subject": "Merge pull request #320 from antt0n/perf/routing-core",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:d6b08dded3dd5ff317e012f52f70d1d8dded22b4",
+    "requirement": "REQ-6a327201c66bc3df",
+    "commit": "d6b08dded3dd5ff317e012f52f70d1d8dded22b4",
+    "subject": "Kept exit orders also check each exit's kind",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:f00bc733d000a680b435d213e6531205065fc1b5",
+    "requirement": "REQ-23406601a0360754",
+    "commit": "f00bc733d000a680b435d213e6531205065fc1b5",
+    "subject": "Two CSS checks read jsdom 31 as well as 30",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:6a44da4017e4a3af26d09414819c694027e3cf2d",
+    "requirement": "REQ-a0a90c04052ebd22",
+    "commit": "6a44da4017e4a3af26d09414819c694027e3cf2d",
+    "subject": "Tools: Bump jsdom from 30.1.3 to 31.0.0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:4630ba99af8195faa7da1ebcd68e2efad2c907a5",
+    "requirement": "REQ-bbbeeefb6f7dddda",
+    "commit": "4630ba99af8195faa7da1ebcd68e2efad2c907a5",
+    "subject": "Clear the open code scanning alerts",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:b087d4b4e5a91cdc835a9a6ee1059742a59b38f3",
+    "requirement": "REQ-cf500b52458eb520",
+    "commit": "b087d4b4e5a91cdc835a9a6ee1059742a59b38f3",
+    "subject": "Merge pull request #327 from fjaeckel/dependabot/npm_and_yarn/jsdom-31.0.0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:1579f3743b3ea342e27f6189aa2e4ff0f3bd8e83",
+    "requirement": "REQ-e983f96fe230cc3e",
+    "commit": "1579f3743b3ea342e27f6189aa2e4ff0f3bd8e83",
+    "subject": "Merge pull request #311 from thesysadmindev/move-customer-path",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-COMMIT:e0671c02bebcdf390736f12bd0b803d698df14a2",
+    "requirement": "REQ-8945231f2c7ef8e2",
+    "commit": "e0671c02bebcdf390736f12bd0b803d698df14a2",
+    "subject": "Move customers between paths, and big networks route in half the time (3.3.0)",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
     "sourceId": "UPSTREAM-FILE:.claude/skills/add-strings/SKILL.md@a891e789228a79bfb7154f26d563115aef77eb01",
     "requirement": "REQ-a4b523df47d8b306",
     "path": ".claude/skills/add-strings/SKILL.md",
@@ -6612,6 +8212,2974 @@
     "requirement": "REQ-414b54b71d99fbb5",
     "path": "tests/scenarios-playtest.test.js",
     "blob": "07b5bdbc22dc5beeca26adbff41b8dcf8ec4d0aa",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.claude/skills/edit-the-game/SKILL.md@aca2564ec25e98d9c9243116b4c427daebd79ea9",
+    "requirement": "REQ-7e4e97f5e7805a9e",
+    "path": ".claude/skills/edit-the-game/SKILL.md",
+    "blob": "aca2564ec25e98d9c9243116b4c427daebd79ea9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.claude/skills/gameplay-rules/SKILL.md@d6fba4b684723a1905b69086fc71876b94e6310d",
+    "requirement": "REQ-6110b8a59eb66040",
+    "path": ".claude/skills/gameplay-rules/SKILL.md",
+    "blob": "d6fba4b684723a1905b69086fc71876b94e6310d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.claude/skills/github-pages/SKILL.md@52010f07ee46f8c8b13cd53c77a28f7c83082cb7",
+    "requirement": "REQ-137c17afc62d6163",
+    "path": ".claude/skills/github-pages/SKILL.md",
+    "blob": "52010f07ee46f8c8b13cd53c77a28f7c83082cb7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.claude/skills/release/SKILL.md@157d3c1a2e9c4e38879726597c0fe7e0a125c6c1",
+    "requirement": "REQ-3278935a1bee2f8f",
+    "path": ".claude/skills/release/SKILL.md",
+    "blob": "157d3c1a2e9c4e38879726597c0fe7e0a125c6c1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.claude/skills/write-tests/SKILL.md@33f7aa9b779e8e25c2002c17b3c9fd62f659bd74",
+    "requirement": "REQ-92a96f97e52654a6",
+    "path": ".claude/skills/write-tests/SKILL.md",
+    "blob": "33f7aa9b779e8e25c2002c17b3c9fd62f659bd74",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.dockerignore@fbf54631e853b4e7f797abad7eab9f84a5ab10ee",
+    "requirement": "REQ-df22ceb07959ee78",
+    "path": ".dockerignore",
+    "blob": "fbf54631e853b4e7f797abad7eab9f84a5ab10ee",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/dependabot.yml@48e0a5eb35c6d86e3fca4ba8845e1c49aa9a867d",
+    "requirement": "REQ-dbb3b32e4f7d3850",
+    "path": ".github/dependabot.yml",
+    "blob": "48e0a5eb35c6d86e3fca4ba8845e1c49aa9a867d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/auto-release.yml@765105b503963d7c848d07d0f62115b5e0412fb6",
+    "requirement": "REQ-f36f1ae4a0b336b2",
+    "path": ".github/workflows/auto-release.yml",
+    "blob": "765105b503963d7c848d07d0f62115b5e0412fb6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/ci.yml@a70d674b8828955e7264bebf88b7a6a9e43e0a9d",
+    "requirement": "REQ-5f925d5785b9f737",
+    "path": ".github/workflows/ci.yml",
+    "blob": "a70d674b8828955e7264bebf88b7a6a9e43e0a9d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/claude.yml@10913c4e7d3c15245233d3d4bf339ca2b57b03ac",
+    "requirement": "REQ-f4a6a8f9a9f9cb7e",
+    "path": ".github/workflows/claude.yml",
+    "blob": "10913c4e7d3c15245233d3d4bf339ca2b57b03ac",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/docker.yml@434307e5a342cce5f74675353d44dbff495eff48",
+    "requirement": "REQ-8c3bf06239d1fb21",
+    "path": ".github/workflows/docker.yml",
+    "blob": "434307e5a342cce5f74675353d44dbff495eff48",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/perf-comment.yml@a214fff1d5d14f8755911b86110520fa3aa155fe",
+    "requirement": "REQ-3b29346010553338",
+    "path": ".github/workflows/perf-comment.yml",
+    "blob": "a214fff1d5d14f8755911b86110520fa3aa155fe",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/perf.yml@f2657ab94191bf681c1736a875f5813145de31c8",
+    "requirement": "REQ-2ce641f5ef101ed4",
+    "path": ".github/workflows/perf.yml",
+    "blob": "f2657ab94191bf681c1736a875f5813145de31c8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/release.yml@213596f035bde3d72e07bf73f1fd0575536fe36e",
+    "requirement": "REQ-b39f77a1bdb1d3fd",
+    "path": ".github/workflows/release.yml",
+    "blob": "213596f035bde3d72e07bf73f1fd0575536fe36e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:.github/workflows/weekly-puzzle.yml@6cfa3d5764495ecf0b210f324d49fcabc67171f5",
+    "requirement": "REQ-605cf4c826cb92ce",
+    "path": ".github/workflows/weekly-puzzle.yml",
+    "blob": "6cfa3d5764495ecf0b210f324d49fcabc67171f5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:CHANGELOG.md@db3d46743823e27bc53c2ad287cd7c456572dab1",
+    "requirement": "REQ-4a23105ede3f320b",
+    "path": "CHANGELOG.md",
+    "blob": "db3d46743823e27bc53c2ad287cd7c456572dab1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:CLAUDE.md@439c4a101ded5b3b55c44018a48986054c8ebf6d",
+    "requirement": "REQ-6c7a168e4c800934",
+    "path": "CLAUDE.md",
+    "blob": "439c4a101ded5b3b55c44018a48986054c8ebf6d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:README.md@ec085fafe294c98776cd0e47c632b42401d727df",
+    "requirement": "REQ-b01bb25a7cea4880",
+    "path": "README.md",
+    "blob": "ec085fafe294c98776cd0e47c632b42401d727df",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docker/Dockerfile@1ce513085697b3605cc3ddcfbb151b4d0244b1ed",
+    "requirement": "REQ-1a9b87efda17cea4",
+    "path": "docker/Dockerfile",
+    "blob": "1ce513085697b3605cc3ddcfbb151b4d0244b1ed",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docker/docker-entrypoint.sh@355af5ae1055b6fe63d902837ab62c4408241e9a",
+    "requirement": "REQ-4a1030cf4a842c11",
+    "path": "docker/docker-entrypoint.sh",
+    "blob": "355af5ae1055b6fe63d902837ab62c4408241e9a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docs/ARCHITECTURE.md@dc99967f922b699f41a6fe125744c7f669facf83",
+    "requirement": "REQ-59a47dd8ad975385",
+    "path": "docs/ARCHITECTURE.md",
+    "blob": "dc99967f922b699f41a6fe125744c7f669facf83",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docs/MCP.md@a93ef9389c57b210661265847b51a2f8b143fc4a",
+    "requirement": "REQ-d8fcd1c5bc0e553a",
+    "path": "docs/MCP.md",
+    "blob": "a93ef9389c57b210661265847b51a2f8b143fc4a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docs/adr/0001-github-pages-only.md@d435457541a4dcec50a0add92e3c4c7bd63bbd4c",
+    "requirement": "REQ-8cd48ec1fcdb706a",
+    "path": "docs/adr/0001-github-pages-only.md",
+    "blob": "d435457541a4dcec50a0add92e3c4c7bd63bbd4c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docs/adr/0004-dev-only-code.md@6244334e4178393b2c734da285e9154cbc6c1624",
+    "requirement": "REQ-aa92513aa93f5d32",
+    "path": "docs/adr/0004-dev-only-code.md",
+    "blob": "6244334e4178393b2c734da285e9154cbc6c1624",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:docs/plans/pie-in-the-sky.md@f516eac5a098d381c36ef5099ac291f94561f513",
+    "requirement": "REQ-ece004ef1a4739ca",
+    "path": "docs/plans/pie-in-the-sky.md",
+    "blob": "f516eac5a098d381c36ef5099ac291f94561f513",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:package-lock.json@ecce01c9334f4dc0f69b5e154b2aa56f40ebd1f9",
+    "requirement": "REQ-359cfd7660a7c9f5",
+    "path": "package-lock.json",
+    "blob": "ecce01c9334f4dc0f69b5e154b2aa56f40ebd1f9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:package.json@105a19a984c30a120cd9e88a69131849408e19e8",
+    "requirement": "REQ-87d90171f68fde2e",
+    "path": "package.json",
+    "blob": "105a19a984c30a120cd9e88a69131849408e19e8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/agent/relay.js@a596f9ac7b048cbc6ad7c5bda6145bc60db6377e",
+    "requirement": "REQ-a1a662c5469d2fc8",
+    "path": "scripts/agent/relay.js",
+    "blob": "a596f9ac7b048cbc6ad7c5bda6145bc60db6377e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/dev.js@2f4fab5cb0f7945d5e5d59edcee0c46c0c796e59",
+    "requirement": "REQ-30a9f11cc1d86a3d",
+    "path": "scripts/dev.js",
+    "blob": "2f4fab5cb0f7945d5e5d59edcee0c46c0c796e59",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/gpu-bench.js@59ed48269e78dd0955f79ba22d5058aa461cab2f",
+    "requirement": "REQ-b1b13ca5121a4516",
+    "path": "scripts/gpu-bench.js",
+    "blob": "59ed48269e78dd0955f79ba22d5058aa461cab2f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/i18n-add.js@027b3db4bf7e327501237e283d6f4526fc64e93a",
+    "requirement": "REQ-f8c5db6ad78cc6e4",
+    "path": "scripts/i18n-add.js",
+    "blob": "027b3db4bf7e327501237e283d6f4526fc64e93a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/i18n-check.js@7db2676e079b97cd5a0b2b1f43c98a89fabc7971",
+    "requirement": "REQ-2ac54e58ca1fbbcb",
+    "path": "scripts/i18n-check.js",
+    "blob": "7db2676e079b97cd5a0b2b1f43c98a89fabc7971",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/fuzz-page.js@5b05a14a8a31a9458355bf9518ec8f32f5ffca86",
+    "requirement": "REQ-4b9d2649f77c67af",
+    "path": "scripts/lib/fuzz-page.js",
+    "blob": "5b05a14a8a31a9458355bf9518ec8f32f5ffca86",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/gpu-bench-client.js@0d85b4bf0d4fdf6d08a267d29e150d4481fc91e5",
+    "requirement": "REQ-cde1eb1da2bf3fb9",
+    "path": "scripts/lib/gpu-bench-client.js",
+    "blob": "0d85b4bf0d4fdf6d08a267d29e150d4481fc91e5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/js-literal.js@25f9f18a252a16731c0bc934c0174f41dc6cf083",
+    "requirement": "REQ-d85693371ba1c459",
+    "path": "scripts/lib/js-literal.js",
+    "blob": "25f9f18a252a16731c0bc934c0174f41dc6cf083",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/mcp-browser.js@f70e9aa3dd07d148446213aed054e6eefe954487",
+    "requirement": "REQ-841d165b9add9de1",
+    "path": "scripts/lib/mcp-browser.js",
+    "blob": "f70e9aa3dd07d148446213aed054e6eefe954487",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/mcp-game.js@cf618000c77f548db1d431c740cf6c95a23acc8b",
+    "requirement": "REQ-9ca2ea83d9a19ebb",
+    "path": "scripts/lib/mcp-game.js",
+    "blob": "cf618000c77f548db1d431c740cf6c95a23acc8b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/mcp-headless.js@8a77698ef4d8924fb2791d47a74a2978901b20bf",
+    "requirement": "REQ-602a83bda5d21fe5",
+    "path": "scripts/lib/mcp-headless.js",
+    "blob": "8a77698ef4d8924fb2791d47a74a2978901b20bf",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/page.js@b905f261ebd8b872955f8fedb87340b880c6aefb",
+    "requirement": "REQ-1c3d117530842db8",
+    "path": "scripts/lib/page.js",
+    "blob": "b905f261ebd8b872955f8fedb87340b880c6aefb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/relay-client.js@410857b45c2dc60e526858f00c95297bcb8b0f57",
+    "requirement": "REQ-7e1fc74e799823b4",
+    "path": "scripts/lib/relay-client.js",
+    "blob": "410857b45c2dc60e526858f00c95297bcb8b0f57",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/route-fuzz.js@1c2a0642f27ea9d8f1af010b0157ae973fbee064",
+    "requirement": "REQ-ff8443d2a87f48ed",
+    "path": "scripts/lib/route-fuzz.js",
+    "blob": "1c2a0642f27ea9d8f1af010b0157ae973fbee064",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/scenario-bot.js@8c0bf6899d8d71f10a87c509f95d62d3294614fc",
+    "requirement": "REQ-2321791bc12db3cb",
+    "path": "scripts/lib/scenario-bot.js",
+    "blob": "8c0bf6899d8d71f10a87c509f95d62d3294614fc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/scenario-ref.js@da5da927760fca2d8dd2b00817c6a1cdd7f595dd",
+    "requirement": "REQ-49abc365b84a644d",
+    "path": "scripts/lib/scenario-ref.js",
+    "blob": "da5da927760fca2d8dd2b00817c6a1cdd7f595dd",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/lib/timings-reporter.js@0341ee6011fe9ecbd3e61a1ce389fb101b3d1208",
+    "requirement": "REQ-c32390c9aec2b520",
+    "path": "scripts/lib/timings-reporter.js",
+    "blob": "0341ee6011fe9ecbd3e61a1ce389fb101b3d1208",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/mcp.js@351e07f70e35ad7f51f8dcbd4bf59d8e562904a7",
+    "requirement": "REQ-202f71b88a65625a",
+    "path": "scripts/mcp.js",
+    "blob": "351e07f70e35ad7f51f8dcbd4bf59d8e562904a7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/perf-bench.js@62997f8d5806125c75e0c13c8a67e930878eca6d",
+    "requirement": "REQ-029c6b853baf0d91",
+    "path": "scripts/perf-bench.js",
+    "blob": "62997f8d5806125c75e0c13c8a67e930878eca6d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/perf-browser.js@545cd13f7d75e9d5a783d7b50585e6280314c5d7",
+    "requirement": "REQ-35cac03150846fdc",
+    "path": "scripts/perf-browser.js",
+    "blob": "545cd13f7d75e9d5a783d7b50585e6280314c5d7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/test-timings.js@ed8cf48b143db383152b564e783540cf7377e8a4",
+    "requirement": "REQ-a8d430044f066a7d",
+    "path": "scripts/test-timings.js",
+    "blob": "ed8cf48b143db383152b564e783540cf7377e8a4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/test.js@1232bd17e42540da77318f4ce6a34a896a652994",
+    "requirement": "REQ-22a308592b52f4b1",
+    "path": "scripts/test.js",
+    "blob": "1232bd17e42540da77318f4ce6a34a896a652994",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/weekly-architect.js@5985cd25bea9686f410f81158c2b9267c6f7ea05",
+    "requirement": "REQ-1879fa859223e7ad",
+    "path": "scripts/weekly-architect.js",
+    "blob": "5985cd25bea9686f410f81158c2b9267c6f7ea05",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/weekly-puzzle.js@26f64190bdfd836be4c104947f315a6cd697577c",
+    "requirement": "REQ-0e44c9fd429ddf22",
+    "path": "scripts/weekly-puzzle.js",
+    "blob": "26f64190bdfd836be4c104947f315a6cd697577c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:scripts/weekly-scenario.js@859a0f3c151a4707cecfdda9946d1011ef241943",
+    "requirement": "REQ-56bc6f32fd7548bf",
+    "path": "scripts/weekly-scenario.js",
+    "blob": "859a0f3c151a4707cecfdda9946d1011ef241943",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/i18n/de.js@3d0e0a9bd1ced64d1f79e51f29ffed7e34f3a11f",
+    "requirement": "REQ-1dee8e722c69a38d",
+    "path": "site/i18n/de.js",
+    "blob": "3d0e0a9bd1ced64d1f79e51f29ffed7e34f3a11f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/i18n/es.js@4348512ffb840f71fc57f5e62e5039403364edd8",
+    "requirement": "REQ-c754408a089a251e",
+    "path": "site/i18n/es.js",
+    "blob": "4348512ffb840f71fc57f5e62e5039403364edd8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/i18n/fr.js@a3c781379ed93b56a190c20d5346eef098f153d9",
+    "requirement": "REQ-19fd638d8b95880c",
+    "path": "site/i18n/fr.js",
+    "blob": "a3c781379ed93b56a190c20d5346eef098f153d9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/i18n/it.js@0c57513a9051494b3755d1c4d3d3025888ec8a27",
+    "requirement": "REQ-245ab488364ebeeb",
+    "path": "site/i18n/it.js",
+    "blob": "0c57513a9051494b3755d1c4d3d3025888ec8a27",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/i18n/pt.js@f915c7442366c6e046de49bb08737ab02eef63e1",
+    "requirement": "REQ-4c32f6d813282f04",
+    "path": "site/i18n/pt.js",
+    "blob": "f915c7442366c6e046de49bb08737ab02eef63e1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:site/scenarios/weekly/2026-W46.json@ae2a07ae3efa4e94cf03592a9f78e154afb32d6f",
+    "requirement": "REQ-3cd0cf19c01ccb3b",
+    "path": "site/scenarios/weekly/2026-W46.json",
+    "blob": "ae2a07ae3efa4e94cf03592a9f78e154afb32d6f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/10-domains.js@f1b8a8f0ad568f97ce551bd3b62b848970b3b3e2",
+    "requirement": "REQ-aaecd04bebbbc2c1",
+    "path": "src/agent/10-domains.js",
+    "blob": "f1b8a8f0ad568f97ce551bd3b62b848970b3b3e2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/20-commands.js@de2324b7e788ed45dc1ca65dfacc912ecc501eb6",
+    "requirement": "REQ-28081bcccd89bc32",
+    "path": "src/agent/20-commands.js",
+    "blob": "de2324b7e788ed45dc1ca65dfacc912ecc501eb6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/30-docs.js@83e7449f26dc378222ec58c737a030ed656ddb79",
+    "requirement": "REQ-d643d66c04298db6",
+    "path": "src/agent/30-docs.js",
+    "blob": "83e7449f26dc378222ec58c737a030ed656ddb79",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/40-read.js@e767e2dbad1bb7c790ff141118fa947acbcd4b22",
+    "requirement": "REQ-57f5eb0884d0f82d",
+    "path": "src/agent/40-read.js",
+    "blob": "e767e2dbad1bb7c790ff141118fa947acbcd4b22",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/50-screen.js@42503c6a8dd4b626e88dc1e4097e6d84d4e5c736",
+    "requirement": "REQ-b02555e324adc9be",
+    "path": "src/agent/50-screen.js",
+    "blob": "42503c6a8dd4b626e88dc1e4097e6d84d4e5c736",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/60-dispatch.js@94957fd2d99c2ed1978db05003d6cc6adb10f2af",
+    "requirement": "REQ-a6dbf0914fe27df1",
+    "path": "src/agent/60-dispatch.js",
+    "blob": "94957fd2d99c2ed1978db05003d6cc6adb10f2af",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/70-time.js@fa7aee78807c2bcaa061fa2a3692f9076d2cc880",
+    "requirement": "REQ-2a15f0d5c8eff98e",
+    "path": "src/agent/70-time.js",
+    "blob": "fa7aee78807c2bcaa061fa2a3692f9076d2cc880",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/75-mode.js@0924eb7fae4118f28e181a3b9dd2b2cf8d81fe85",
+    "requirement": "REQ-4d62771d21732c16",
+    "path": "src/agent/75-mode.js",
+    "blob": "0924eb7fae4118f28e181a3b9dd2b2cf8d81fe85",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/80-relay.js@b0cd1ff95bad0ed3a8db1504c87e460c305d487b",
+    "requirement": "REQ-b7f109fad752278d",
+    "path": "src/agent/80-relay.js",
+    "blob": "b0cd1ff95bad0ed3a8db1504c87e460c305d487b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/85-ticker.js@fca70e5713a69da9e1479204e5db1fa095928aed",
+    "requirement": "REQ-ea5cf6f7cdf3602e",
+    "path": "src/agent/85-ticker.js",
+    "blob": "fca70e5713a69da9e1479204e5db1fa095928aed",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/90-facade.js@558d9b7a159d59adcd5b05a1ae494b0a06ba6801",
+    "requirement": "REQ-26c3ca2745812683",
+    "path": "src/agent/90-facade.js",
+    "blob": "558d9b7a159d59adcd5b05a1ae494b0a06ba6801",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/agent/99-start.js@7254460f26553cf9a7d633312549f1b16f590886",
+    "requirement": "REQ-c790d02933e80978",
+    "path": "src/agent/99-start.js",
+    "blob": "7254460f26553cf9a7d633312549f1b16f590886",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/00-core/20-analytics.js@b273f591008185d3e1239e91c61a9865a0ea2958",
+    "requirement": "REQ-7e1ac76b064950a8",
+    "path": "src/game/00-core/20-analytics.js",
+    "blob": "b273f591008185d3e1239e91c61a9865a0ea2958",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/10-catalog/30-supply-chain.js@95b8863d90adce78ff64180b75f1f864ae0571e6",
+    "requirement": "REQ-28bb9ade53260c3b",
+    "path": "src/game/10-catalog/30-supply-chain.js",
+    "blob": "95b8863d90adce78ff64180b75f1f864ae0571e6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/10-catalog/40-ports.js@c7b77892ebcee7896c94b4a8dc25a66eddfc2503",
+    "requirement": "REQ-3c6950522718e71d",
+    "path": "src/game/10-catalog/40-ports.js",
+    "blob": "c7b77892ebcee7896c94b4a8dc25a66eddfc2503",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/10-catalog/50-dark-fiber.js@3bd9c126a3badee3c6aeade7b3d97378587adc3f",
+    "requirement": "REQ-c7950e278118bf52",
+    "path": "src/game/10-catalog/50-dark-fiber.js",
+    "blob": "3bd9c126a3badee3c6aeade7b3d97378587adc3f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/10-catalog/60-reach-and-subsea.js@a00410dff4b13b5c36d1994496bc54fe90d4cf17",
+    "requirement": "REQ-67cedd938aa1deab",
+    "path": "src/game/10-catalog/60-reach-and-subsea.js",
+    "blob": "a00410dff4b13b5c36d1994496bc54fe90d4cf17",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/10-catalog/70-pie.js@adb07dcf42e12f426b475ac32f43dc52a096bf54",
+    "requirement": "REQ-288a0a089735ea6b",
+    "path": "src/game/10-catalog/70-pie.js",
+    "blob": "adb07dcf42e12f426b475ac32f43dc52a096bf54",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/20-world/20-landmasses.js@f9e58bebcdcad048940f1ed7890e47fc72b010e7",
+    "requirement": "REQ-40d65379327f1ca6",
+    "path": "src/game/20-world/20-landmasses.js",
+    "blob": "f9e58bebcdcad048940f1ed7890e47fc72b010e7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/20-world/40-city-coords.js@9d1fc605a7cd7cbf1a45df3796937492918b3818",
+    "requirement": "REQ-d3989ab31d1c401c",
+    "path": "src/game/20-world/40-city-coords.js",
+    "blob": "9d1fc605a7cd7cbf1a45df3796937492918b3818",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/20-world/50-cities.js@4c9d512b47cbb09886ec41b4c024486f973a5898",
+    "requirement": "REQ-c3b1aeee25064f1f",
+    "path": "src/game/20-world/50-cities.js",
+    "blob": "4c9d512b47cbb09886ec41b4c024486f973a5898",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/20-world/55-city-pdb.js@9cd64bb878814aa603fca443b9ddc8f88b3fcad6",
+    "requirement": "REQ-d1eceda83d293aad",
+    "path": "src/game/20-world/55-city-pdb.js",
+    "blob": "9cd64bb878814aa603fca443b9ddc8f88b3fcad6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/20-world/60-cables.js@b0e1c331b3f576e150c67a80ec2dd2dc1c0a37ac",
+    "requirement": "REQ-49c4bdee6d7a828e",
+    "path": "src/game/20-world/60-cables.js",
+    "blob": "b0e1c331b3f576e150c67a80ec2dd2dc1c0a37ac",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/30-networks/10-networks.js@728d2a93a4398ec4d5a08ca0a16698af6ef93d09",
+    "requirement": "REQ-04300b74fb069e81",
+    "path": "src/game/30-networks/10-networks.js",
+    "blob": "728d2a93a4398ec4d5a08ca0a16698af6ef93d09",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/30-networks/30-long-tail.js@2f2e5c4dbb826831353b1d039b3eba1a5e528d48",
+    "requirement": "REQ-70fb5ad9c3f18021",
+    "path": "src/game/30-networks/30-long-tail.js",
+    "blob": "2f2e5c4dbb826831353b1d039b3eba1a5e528d48",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/30-networks/32-homegrown-eyeballs.js@2f079b2d47780fb1b2471cd35d8d1cb86281c844",
+    "requirement": "REQ-303d732bee665ab1",
+    "path": "src/game/30-networks/32-homegrown-eyeballs.js",
+    "blob": "2f079b2d47780fb1b2471cd35d8d1cb86281c844",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/30-networks/38-france.js@8f978b23d362194f7ab6d9c0ebb8cafcc155c7a8",
+    "requirement": "REQ-0369aa9520c76470",
+    "path": "src/game/30-networks/38-france.js",
+    "blob": "8f978b23d362194f7ab6d9c0ebb8cafcc155c7a8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/30-networks/40-traffic-shares.js@3f525c443515721abea07afddfcfb70768d3966c",
+    "requirement": "REQ-4e21eb6f335ca48e",
+    "path": "src/game/30-networks/40-traffic-shares.js",
+    "blob": "3f525c443515721abea07afddfcfb70768d3966c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/40-progress/10-businesses.js@a79314ca2617f33aaa7b0c0c47a516f1f8590aea",
+    "requirement": "REQ-af1cb63e4760ab0c",
+    "path": "src/game/40-progress/10-businesses.js",
+    "blob": "a79314ca2617f33aaa7b0c0c47a516f1f8590aea",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/40-progress/20-goals.js@72624ce3607a7a6d0edfe5f3888245b951878401",
+    "requirement": "REQ-054e76d2421a76dc",
+    "path": "src/game/40-progress/20-goals.js",
+    "blob": "72624ce3607a7a6d0edfe5f3888245b951878401",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/50-state.js@63753028089c931e3c568927e69c2901a6c7ae22",
+    "requirement": "REQ-a39c9d6ad1cda8e0",
+    "path": "src/game/50-state.js",
+    "blob": "63753028089c931e3c568927e69c2901a6c7ae22",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/10-banks.js@7795eb3d43699616c00692cf698c9afe833529a9",
+    "requirement": "REQ-6d5a9dc5b1a9b83a",
+    "path": "src/game/60-features/10-banks.js",
+    "blob": "7795eb3d43699616c00692cf698c9afe833529a9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/20-scenarios.js@9b8e15466d729d7b6eeccdf87080b82608fbcc33",
+    "requirement": "REQ-2a93b8b546337b46",
+    "path": "src/game/60-features/20-scenarios.js",
+    "blob": "9b8e15466d729d7b6eeccdf87080b82608fbcc33",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/30-conferences.js@c3cc0eb96f30c39de9308bad88b52d15ba2b5d82",
+    "requirement": "REQ-d84357f56dd26422",
+    "path": "src/game/60-features/30-conferences.js",
+    "blob": "c3cc0eb96f30c39de9308bad88b52d15ba2b5d82",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/36-specialist.js@c5cb5690c93073b273fc57801a0ab14b852d7e51",
+    "requirement": "REQ-369eef6ca5436918",
+    "path": "src/game/60-features/36-specialist.js",
+    "blob": "c5cb5690c93073b273fc57801a0ab14b852d7e51",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/37-cable-broker.js@acb830f13b32f591e981f1dc8a64a543395e663e",
+    "requirement": "REQ-f5a32278dfe61f57",
+    "path": "src/game/60-features/37-cable-broker.js",
+    "blob": "acb830f13b32f591e981f1dc8a64a543395e663e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/37-customer-paths.js@e6eb4ae7763ac1b5bd12fb2addf1b1d595b57342",
+    "requirement": "REQ-8d0d57d1e36e6451",
+    "path": "src/game/60-features/37-customer-paths.js",
+    "blob": "e6eb4ae7763ac1b5bd12fb2addf1b1d595b57342",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/37-fiber-broker.js@ac03ceac83b2d48d3abd0dd2a9d010aac7277a2a",
+    "requirement": "REQ-f5a622675bc3e944",
+    "path": "src/game/60-features/37-fiber-broker.js",
+    "blob": "ac03ceac83b2d48d3abd0dd2a9d010aac7277a2a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/37-fiber-market.js@6236f09f8f120adabc61ceb594774c62e172ee64",
+    "requirement": "REQ-e0b4d2aa23995bbc",
+    "path": "src/game/60-features/37-fiber-market.js",
+    "blob": "6236f09f8f120adabc61ceb594774c62e172ee64",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/38-sales-desk.js@a76a30f8c28bba48b3552a6a61fb96f87406a694",
+    "requirement": "REQ-c8f6e69cab651357",
+    "path": "src/game/60-features/38-sales-desk.js",
+    "blob": "a76a30f8c28bba48b3552a6a61fb96f87406a694",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/39-sales-auto.js@055f97e7f831e74efa34289341749846a1dbcb7b",
+    "requirement": "REQ-c632140bce1d4a1e",
+    "path": "src/game/60-features/39-sales-auto.js",
+    "blob": "055f97e7f831e74efa34289341749846a1dbcb7b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/39-sales-renewals.js@cb26161fefabcc3b1423b4d0daffcaca24831c65",
+    "requirement": "REQ-c63ba6c2ec7fe70c",
+    "path": "src/game/60-features/39-sales-renewals.js",
+    "blob": "cb26161fefabcc3b1423b4d0daffcaca24831c65",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/50-traceroute.js@dcdcd87d326d14ad571ab2bc251e1fdc279d6df4",
+    "requirement": "REQ-d841600cea33007d",
+    "path": "src/game/60-features/50-traceroute.js",
+    "blob": "dcdcd87d326d14ad571ab2bc251e1fdc279d6df4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/80-new-game.js@d21c56287beea932f0d49765a7979d3a67fd9fb4",
+    "requirement": "REQ-d6a86c94ab36e7b2",
+    "path": "src/game/60-features/80-new-game.js",
+    "blob": "d21c56287beea932f0d49765a7979d3a67fd9fb4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/85-pitcairn.js@c220a47ab1b8c71486821a5fb13029cf9de93b9d",
+    "requirement": "REQ-516bf859a25c9fc8",
+    "path": "src/game/60-features/85-pitcairn.js",
+    "blob": "c220a47ab1b8c71486821a5fb13029cf9de93b9d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/90-automation.js@79ef23922b7c2ca4437c3a1e6f1a688aeb61cd2a",
+    "requirement": "REQ-1636344cae35b3ed",
+    "path": "src/game/60-features/90-automation.js",
+    "blob": "79ef23922b7c2ca4437c3a1e6f1a688aeb61cd2a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/92-puzzles.js@793fce261f1068f10368a3c41f487208de7017a0",
+    "requirement": "REQ-5596a7bb5b2d7975",
+    "path": "src/game/60-features/92-puzzles.js",
+    "blob": "793fce261f1068f10368a3c41f487208de7017a0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/95-standing-orders.js@4071caa8126de2fe5a78083006d08f8bbb2135e3",
+    "requirement": "REQ-1f5c93f0dce629f2",
+    "path": "src/game/60-features/95-standing-orders.js",
+    "blob": "4071caa8126de2fe5a78083006d08f8bbb2135e3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-in-the-sky.js@4dfe8ec3a089e9961e2c8c286bd39c1223771aa1",
+    "requirement": "REQ-bfb36c59ac707d6d",
+    "path": "src/game/60-features/99-pie-in-the-sky.js",
+    "blob": "4dfe8ec3a089e9961e2c8c286bd39c1223771aa1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-jitters.js@79d6a4efa8650551d36da6cca4373fd15d205ab0",
+    "requirement": "REQ-85ef5609948aac80",
+    "path": "src/game/60-features/99-pie-jitters.js",
+    "blob": "79d6a4efa8650551d36da6cca4373fd15d205ab0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-orbit-customers.js@5012f290a4cd118947f73cf8b3b61f21f6ba9ebd",
+    "requirement": "REQ-9292e689f808489b",
+    "path": "src/game/60-features/99-pie-orbit-customers.js",
+    "blob": "5012f290a4cd118947f73cf8b3b61f21f6ba9ebd",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-patchy.js@e76b4b0cf8301d43d662505900c3e0d7ae336064",
+    "requirement": "REQ-7526a358ccac29a9",
+    "path": "src/game/60-features/99-pie-patchy.js",
+    "blob": "e76b4b0cf8301d43d662505900c3e0d7ae336064",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-sales.js@f7b3973d5aff08dc2f44f5ec3a5004889eddd61d",
+    "requirement": "REQ-75d8efd037226dfe",
+    "path": "src/game/60-features/99-pie-sales.js",
+    "blob": "f7b3973d5aff08dc2f44f5ec3a5004889eddd61d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/60-features/99-pie-subsidies.js@6cd366d4c615317f1e1bfebb2511738341231cf7",
+    "requirement": "REQ-32f36711f33fb464",
+    "path": "src/game/60-features/99-pie-subsidies.js",
+    "blob": "6cd366d4c615317f1e1bfebb2511738341231cf7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/10-helpers.js@2b1f47f511697c1a8b9c9fcd6ff70d8624b5ffc2",
+    "requirement": "REQ-e5af30c5b9cdc24b",
+    "path": "src/game/70-rules/10-helpers.js",
+    "blob": "2b1f47f511697c1a8b9c9fcd6ff70d8624b5ffc2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/35-pni-orders.js@30a7918eb7092affac7966e43abe05b7c8bd2da1",
+    "requirement": "REQ-6b7d61588bf9e26d",
+    "path": "src/game/70-rules/35-pni-orders.js",
+    "blob": "30a7918eb7092affac7966e43abe05b7c8bd2da1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/38-pni-value.js@5d5d22c2d5a1864ca70ba1ae90ea9e5db311824d",
+    "requirement": "REQ-19d5d56fda424c34",
+    "path": "src/game/70-rules/38-pni-value.js",
+    "blob": "5d5d22c2d5a1864ca70ba1ae90ea9e5db311824d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/60-de-kicks.js@03438aa06e206b0a2afd4845cefcf0aa72f01e73",
+    "requirement": "REQ-ba68176a4c996ad0",
+    "path": "src/game/70-rules/60-de-kicks.js",
+    "blob": "03438aa06e206b0a2afd4845cefcf0aa72f01e73",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/70-sold-out.js@2c0fb99658cadf9cbca0b9637eef37199a58949b",
+    "requirement": "REQ-353dc16a45e3cba1",
+    "path": "src/game/70-rules/70-sold-out.js",
+    "blob": "2c0fb99658cadf9cbca0b9637eef37199a58949b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/70-rules/95-utilities.js@b0070397d2994f8fffb354fc5eb7e2736b7e4bba",
+    "requirement": "REQ-edd4f1d836afee01",
+    "path": "src/game/70-rules/95-utilities.js",
+    "blob": "b0070397d2994f8fffb354fc5eb7e2736b7e4bba",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/10-dijkstra.js@71cd4c461124cba2ac1ba51f97801dba586926aa",
+    "requirement": "REQ-7bee9bf53e7f9d91",
+    "path": "src/game/80-simulation/10-dijkstra.js",
+    "blob": "71cd4c461124cba2ac1ba51f97801dba586926aa",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/20-routescript.js@7e63919b8365dd1acf25443f1ad89b0825b3e64c",
+    "requirement": "REQ-3e1800c464cf2c46",
+    "path": "src/game/80-simulation/20-routescript.js",
+    "blob": "7e63919b8365dd1acf25443f1ad89b0825b3e64c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/28-route-worker.js@d05ebfaa0666decdc2034afe6c7c8124edae71cd",
+    "requirement": "REQ-c7546f383ed79cbe",
+    "path": "src/game/80-simulation/28-route-worker.js",
+    "blob": "d05ebfaa0666decdc2034afe6c7c8124edae71cd",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/29-route-cache.js@a7340e66834e6f304bfc4bb02201a1ac28e89d49",
+    "requirement": "REQ-ceb970f2d060dadc",
+    "path": "src/game/80-simulation/29-route-cache.js",
+    "blob": "a7340e66834e6f304bfc4bb02201a1ac28e89d49",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/29-route-core.js@1e14cdc09460183a8cd8ea71796fd14ff6dd04ae",
+    "requirement": "REQ-32730d316c04fc17",
+    "path": "src/game/80-simulation/29-route-core.js",
+    "blob": "1e14cdc09460183a8cd8ea71796fd14ff6dd04ae",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/30-compute.js@031b330a5df27e232f45016f454f65e6edd90baa",
+    "requirement": "REQ-806411fd081e6d01",
+    "path": "src/game/80-simulation/30-compute.js",
+    "blob": "031b330a5df27e232f45016f454f65e6edd90baa",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/35-pie-paths.js@9126cf7712708b3287c7cc48da03f83ddb07c31d",
+    "requirement": "REQ-bef2aefcfb3acdc3",
+    "path": "src/game/80-simulation/35-pie-paths.js",
+    "blob": "9126cf7712708b3287c7cc48da03f83ddb07c31d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/40-billing.js@ddf16338a9d1ef9aa91c4c9c2ec04c8c605fd492",
+    "requirement": "REQ-0d0d7ebb00d7f7e7",
+    "path": "src/game/80-simulation/40-billing.js",
+    "blob": "ddf16338a9d1ef9aa91c4c9c2ec04c8c605fd492",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/50-sanitize.js@db35e34373117cc9d37d59280f8e7e36d80218c6",
+    "requirement": "REQ-f328319b9e03a6d8",
+    "path": "src/game/80-simulation/50-sanitize.js",
+    "blob": "db35e34373117cc9d37d59280f8e7e36d80218c6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/60-requirements.js@f38fc77f69c68fc907ad2f21f00b6f0afd01f47d",
+    "requirement": "REQ-25988a26a78106ad",
+    "path": "src/game/80-simulation/60-requirements.js",
+    "blob": "f38fc77f69c68fc907ad2f21f00b6f0afd01f47d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/70-customers-and-events.js@cf037a7f8091eac21597b50bd7656820c721c9b9",
+    "requirement": "REQ-ed72bcdb75899b91",
+    "path": "src/game/80-simulation/70-customers-and-events.js",
+    "blob": "cf037a7f8091eac21597b50bd7656820c721c9b9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/75-customer-lifecycle.js@aa9bc4cb7e6b0a190f5f595bbc5c109783448baf",
+    "requirement": "REQ-b4e1e948ab580489",
+    "path": "src/game/80-simulation/75-customer-lifecycle.js",
+    "blob": "aa9bc4cb7e6b0a190f5f595bbc5c109783448baf",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/80-simulation/80-geography-and-latency.js@1133d8362c1faf20380269d39e40687fde75c489",
+    "requirement": "REQ-4aa78ee0cd18d31e",
+    "path": "src/game/80-simulation/80-geography-and-latency.js",
+    "blob": "1133d8362c1faf20380269d39e40687fde75c489",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/10-incidents-and-ddos.js@f6eb999b6f5a5dc659e9aa6383efe1f66024938b",
+    "requirement": "REQ-72238f21466a5d41",
+    "path": "src/game/85-incidents/10-incidents-and-ddos.js",
+    "blob": "f6eb999b6f5a5dc659e9aa6383efe1f66024938b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/20-failures.js@38bc139abcc5472f671d92e0e1fd08c856432a60",
+    "requirement": "REQ-86f96ada5e326746",
+    "path": "src/game/85-incidents/20-failures.js",
+    "blob": "38bc139abcc5472f671d92e0e1fd08c856432a60",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/30-events.js@6c3ec2730a5e3db2b7412367535f665f19dd54ad",
+    "requirement": "REQ-676ba8837a08636e",
+    "path": "src/game/85-incidents/30-events.js",
+    "blob": "6c3ec2730a5e3db2b7412367535f665f19dd54ad",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/40-chaos-monkey.js@378530a2484bc3c8d1a234da8f68effad003d617",
+    "requirement": "REQ-1165da0b72c6ab5b",
+    "path": "src/game/85-incidents/40-chaos-monkey.js",
+    "blob": "378530a2484bc3c8d1a234da8f68effad003d617",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/50-cable-ships.js@d83ca6288f97ae155681ff036b11ae3e921b0de6",
+    "requirement": "REQ-f6da7079c37827e2",
+    "path": "src/game/85-incidents/50-cable-ships.js",
+    "blob": "d83ca6288f97ae155681ff036b11ae3e921b0de6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/60-pie.js@5407b5e15202548f542688f67ba705fe0a4ed888",
+    "requirement": "REQ-a059201d07d17dc5",
+    "path": "src/game/85-incidents/60-pie.js",
+    "blob": "5407b5e15202548f542688f67ba705fe0a4ed888",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/85-incidents/65-pie-spats.js@a4d0ccea6ef6af59e93e3511bfa3f9949e682633",
+    "requirement": "REQ-46704b674f00631e",
+    "path": "src/game/85-incidents/65-pie-spats.js",
+    "blob": "a4d0ccea6ef6af59e93e3511bfa3f9949e682633",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/88-days/10-day-tick.js@572e7ed940756dfadeb0b5fbf683089becf13a88",
+    "requirement": "REQ-a8e2bf8242ffebdc",
+    "path": "src/game/88-days/10-day-tick.js",
+    "blob": "572e7ed940756dfadeb0b5fbf683089becf13a88",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/88-days/15-day-pace.js@df8c5243d11109cae99a168432757db97d6f8891",
+    "requirement": "REQ-803b5fde108ee204",
+    "path": "src/game/88-days/15-day-pace.js",
+    "blob": "df8c5243d11109cae99a168432757db97d6f8891",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/88-days/15-traffic-volume.js@e0ae306458e6b8580c842b92df9343cdf4cd7acf",
+    "requirement": "REQ-c9c1811e56910b02",
+    "path": "src/game/88-days/15-traffic-volume.js",
+    "blob": "e0ae306458e6b8580c842b92df9343cdf4cd7acf",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/88-days/20-badges.js@95db1c7d112467622705205357c096ba715fe90d",
+    "requirement": "REQ-3f8969b96b9896aa",
+    "path": "src/game/88-days/20-badges.js",
+    "blob": "95db1c7d112467622705205357c096ba715fe90d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/10-interface.js@7a0715ef0d9cfec8338be004d5746eed81eca4da",
+    "requirement": "REQ-9c2474a2504a974c",
+    "path": "src/game/90-actions/10-interface.js",
+    "blob": "7a0715ef0d9cfec8338be004d5746eed81eca4da",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/20-pops-transit-ix.js@5a74050d69730a7998eda41bacbadb9158b99427",
+    "requirement": "REQ-34a6d1c073981b8b",
+    "path": "src/game/90-actions/20-pops-transit-ix.js",
+    "blob": "5a74050d69730a7998eda41bacbadb9158b99427",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/21-ix-downgrade.js@efb9f79724eea2ee10b9face75ca9c8334b4b990",
+    "requirement": "REQ-d984b214ffbb67e2",
+    "path": "src/game/90-actions/21-ix-downgrade.js",
+    "blob": "efb9f79724eea2ee10b9face75ca9c8334b4b990",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/30-route-script-and-tools.js@a3a18b88496833f58cff6c6cfe6db229265243d1",
+    "requirement": "REQ-2da9490af017f54c",
+    "path": "src/game/90-actions/30-route-script-and-tools.js",
+    "blob": "a3a18b88496833f58cff6c6cfe6db229265243d1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/50-customers.js@aa5e4c81094623f265c5aaed19d4e58934fff81a",
+    "requirement": "REQ-21069d090578d09a",
+    "path": "src/game/90-actions/50-customers.js",
+    "blob": "aa5e4c81094623f265c5aaed19d4e58934fff81a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/52-sales.js@027cbd340906f41c7712fc5b74678974f19e5320",
+    "requirement": "REQ-ac359415675215a1",
+    "path": "src/game/90-actions/52-sales.js",
+    "blob": "027cbd340906f41c7712fc5b74678974f19e5320",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/53-customer-paths.js@8f723e73c0518b61229ad574c1b19f66e637727d",
+    "requirement": "REQ-d121251227a7fe3e",
+    "path": "src/game/90-actions/53-customer-paths.js",
+    "blob": "8f723e73c0518b61229ad574c1b19f66e637727d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/53-market.js@c9e593b1352ef0e12c8655da6f3fa038d3e0963b",
+    "requirement": "REQ-b37fbf7dea113a1f",
+    "path": "src/game/90-actions/53-market.js",
+    "blob": "c9e593b1352ef0e12c8655da6f3fa038d3e0963b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/60-links.js@9848304e73fc86dec2c4019c2a5e04cc2ec1e239",
+    "requirement": "REQ-eb62cd31f5b629c3",
+    "path": "src/game/90-actions/60-links.js",
+    "blob": "9848304e73fc86dec2c4019c2a5e04cc2ec1e239",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/70-dashboard-lists.js@da73f96b98dceb00ed4b267ee14d6693b52b0b66",
+    "requirement": "REQ-dd776c04ecbcadad",
+    "path": "src/game/90-actions/70-dashboard-lists.js",
+    "blob": "da73f96b98dceb00ed4b267ee14d6693b52b0b66",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/80-security-and-china.js@e3ba3506e2cbd949eacb3d5f061b2b508fc0ca35",
+    "requirement": "REQ-436afc6f4693b374",
+    "path": "src/game/90-actions/80-security-and-china.js",
+    "blob": "e3ba3506e2cbd949eacb3d5f061b2b508fc0ca35",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/85-routing-and-routers.js@45502f4c6bfde40fa55ef7fdd5b5f70925ab2ace",
+    "requirement": "REQ-ed4b15e493be2dd2",
+    "path": "src/game/90-actions/85-routing-and-routers.js",
+    "blob": "45502f4c6bfde40fa55ef7fdd5b5f70925ab2ace",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/86-specialist.js@cd59ae54712916deb0deb8837ad10b10fb09594e",
+    "requirement": "REQ-ec5a10d95edbd765",
+    "path": "src/game/90-actions/86-specialist.js",
+    "blob": "cd59ae54712916deb0deb8837ad10b10fb09594e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/87-fiber-and-hardware.js@7eb2919c50398c79f6ba921aec30847f78a0613e",
+    "requirement": "REQ-9ef8d0548aa73aea",
+    "path": "src/game/90-actions/87-fiber-and-hardware.js",
+    "blob": "7eb2919c50398c79f6ba921aec30847f78a0613e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/88-ops.js@719dd85d9abb83a917bea9edf9cbe0e75f648127",
+    "requirement": "REQ-4d803924a8234cc0",
+    "path": "src/game/90-actions/88-ops.js",
+    "blob": "719dd85d9abb83a917bea9edf9cbe0e75f648127",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/89-game-and-settings.js@a1671dc66eed295b95f021ffdf41a1e217a877ce",
+    "requirement": "REQ-842908c9de8eb5f8",
+    "path": "src/game/90-actions/89-game-and-settings.js",
+    "blob": "a1671dc66eed295b95f021ffdf41a1e217a877ce",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/90-action-helpers.js@bed742e08b1560de09b2506b6b305e4b5bc3c9d1",
+    "requirement": "REQ-906eaa503a6c68e7",
+    "path": "src/game/90-actions/90-action-helpers.js",
+    "blob": "bed742e08b1560de09b2506b6b305e4b5bc3c9d1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/91-slots.js@86ca1d8f86219e25300658c9014e9edae817791a",
+    "requirement": "REQ-28882bde927f266c",
+    "path": "src/game/90-actions/91-slots.js",
+    "blob": "86ca1d8f86219e25300658c9014e9edae817791a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/95-puzzles.js@881800c3fe40c3831198172e42579a00f5f64cc3",
+    "requirement": "REQ-c977f39e693a9edc",
+    "path": "src/game/90-actions/95-puzzles.js",
+    "blob": "881800c3fe40c3831198172e42579a00f5f64cc3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/97-pie.js@f954039b7a6fcade6b84d56da8384578f3b0d432",
+    "requirement": "REQ-e7d8babb0f582fb3",
+    "path": "src/game/90-actions/97-pie.js",
+    "blob": "f954039b7a6fcade6b84d56da8384578f3b0d432",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/98-pie-globe.js@281bd310546f3ee6f31c1a4a5f436a1b22c419c2",
+    "requirement": "REQ-d20cbd241dacdd8c",
+    "path": "src/game/90-actions/98-pie-globe.js",
+    "blob": "281bd310546f3ee6f31c1a4a5f436a1b22c419c2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/90-actions/98-pie-spats.js@298da7f4b7cec3f1dd9990ea66894c7ec6dfc671",
+    "requirement": "REQ-2dc6a6c41cc5312c",
+    "path": "src/game/90-actions/98-pie-spats.js",
+    "blob": "298da7f4b7cec3f1dd9990ea66894c7ec6dfc671",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/91-save.js@f407d7670fe77ed350b9b1f9fece43758534a41c",
+    "requirement": "REQ-9f9bba31eaf9e874",
+    "path": "src/game/91-save.js",
+    "blob": "f407d7670fe77ed350b9b1f9fece43758534a41c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/91-slots.js@b94d4d475f55c8b41cc4126779ed3a1f4e4321e6",
+    "requirement": "REQ-e7f31e528c095e6d",
+    "path": "src/game/91-slots.js",
+    "blob": "b94d4d475f55c8b41cc4126779ed3a1f4e4321e6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/10-dom.js@d747df759a0773e36346f80068065c9eb60c0b95",
+    "requirement": "REQ-81cc45844df2e1e6",
+    "path": "src/game/93-ui/10-dom.js",
+    "blob": "d747df759a0773e36346f80068065c9eb60c0b95",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/20-phone.js@c97abf3ebdad6e8cf79d70c9b4e88c5eb49a492a",
+    "requirement": "REQ-bca16fbfa4629fdd",
+    "path": "src/game/93-ui/20-phone.js",
+    "blob": "c97abf3ebdad6e8cf79d70c9b4e88c5eb49a492a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/40-hud-and-panels.js@f05d9f80596e3b72ffdfc68b8b557c61806c9753",
+    "requirement": "REQ-894cc67430785cbd",
+    "path": "src/game/93-ui/40-hud-and-panels.js",
+    "blob": "f05d9f80596e3b72ffdfc68b8b557c61806c9753",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/46-routing-modal.js@98367ae3adb9b50774d973ba9e2d277953c8416f",
+    "requirement": "REQ-43f63a79a4fdb5de",
+    "path": "src/game/93-ui/46-routing-modal.js",
+    "blob": "98367ae3adb9b50774d973ba9e2d277953c8416f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/50-city-panel.js@5a89d6af7cb66ba9b57504121105b04f32ca0efd",
+    "requirement": "REQ-2fc76b7ec9d3f3e1",
+    "path": "src/game/93-ui/50-city-panel.js",
+    "blob": "5a89d6af7cb66ba9b57504121105b04f32ca0efd",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/52-pni-list.js@40f85f1816397e177a2a01da3e8f00d95b97fb3b",
+    "requirement": "REQ-b413aaa3f409cee7",
+    "path": "src/game/93-ui/52-pni-list.js",
+    "blob": "40f85f1816397e177a2a01da3e8f00d95b97fb3b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/57-ops-panel.js@261648013d8c2c12783069d618b44bc76d998a42",
+    "requirement": "REQ-a4d4d677d89320c1",
+    "path": "src/game/93-ui/57-ops-panel.js",
+    "blob": "261648013d8c2c12783069d618b44bc76d998a42",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/58-sales-panel.js@71e98eada1a36307ba243489d1d60d749c3e750d",
+    "requirement": "REQ-915d6541921f3500",
+    "path": "src/game/93-ui/58-sales-panel.js",
+    "blob": "71e98eada1a36307ba243489d1d60d749c3e750d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/70-link-panels.js@705313a1b9079468292a76179fa06a74059898b8",
+    "requirement": "REQ-9280cd6034780428",
+    "path": "src/game/93-ui/70-link-panels.js",
+    "blob": "705313a1b9079468292a76179fa06a74059898b8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/82-keys.js@94232afb48fd1050128c20def5f1e447bf82a1de",
+    "requirement": "REQ-20548613cd741a01",
+    "path": "src/game/93-ui/82-keys.js",
+    "blob": "94232afb48fd1050128c20def5f1e447bf82a1de",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/85-pie-control.js@3f65aa834b62ce331e291082bc1f651544f06f57",
+    "requirement": "REQ-d5d118fd6687d587",
+    "path": "src/game/93-ui/85-pie-control.js",
+    "blob": "3f65aa834b62ce331e291082bc1f651544f06f57",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/93-ui/86-pie-traffic.js@a2a141d93e43c90015f84eae4ba151ed2a5c04cc",
+    "requirement": "REQ-1d289d5f65940cf9",
+    "path": "src/game/93-ui/86-pie-traffic.js",
+    "blob": "a2a141d93e43c90015f84eae4ba151ed2a5c04cc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/10-progress.js@41ca684a0270bd434c3356238b5ddf52cdde8d62",
+    "requirement": "REQ-0925ce77bf2b70a3",
+    "path": "src/game/94-dashboard/10-progress.js",
+    "blob": "41ca684a0270bd434c3356238b5ddf52cdde8d62",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/30-customers.js@600820a4ac3f877f23c8cfdcb574728d1e456a68",
+    "requirement": "REQ-ee379ca24fa1c285",
+    "path": "src/game/94-dashboard/30-customers.js",
+    "blob": "600820a4ac3f877f23c8cfdcb574728d1e456a68",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/35-unbuilt-pops.js@7a4b23e6dc8e9f676d1e58c780e49253577e8fc4",
+    "requirement": "REQ-36d8b88e9377642b",
+    "path": "src/game/94-dashboard/35-unbuilt-pops.js",
+    "blob": "7a4b23e6dc8e9f676d1e58c780e49253577e8fc4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/40-connections.js@83145b34a81c3f51c5faeda136413fec1140d40d",
+    "requirement": "REQ-b41231ebcb24951d",
+    "path": "src/game/94-dashboard/40-connections.js",
+    "blob": "83145b34a81c3f51c5faeda136413fec1140d40d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/50-lease-swaps.js@eb7415915d7d6362ad9a870fe722e6c1f4d26120",
+    "requirement": "REQ-59def57edec16f05",
+    "path": "src/game/94-dashboard/50-lease-swaps.js",
+    "blob": "eb7415915d7d6362ad9a870fe722e6c1f4d26120",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/55-market.js@a25f7d385869259b3d84228d7e48c3d971895fe5",
+    "requirement": "REQ-249948ddfefca244",
+    "path": "src/game/94-dashboard/55-market.js",
+    "blob": "a25f7d385869259b3d84228d7e48c3d971895fe5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/60-dashboard.js@5a379e3bf818075690e73749f78f788d726b167d",
+    "requirement": "REQ-73e87b09a0b60874",
+    "path": "src/game/94-dashboard/60-dashboard.js",
+    "blob": "5a379e3bf818075690e73749f78f788d726b167d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/65-chart-legend.js@63cfdfa092af7e4152c33fa8c4c1d2548b51162a",
+    "requirement": "REQ-f9052ad1ce59ce32",
+    "path": "src/game/94-dashboard/65-chart-legend.js",
+    "blob": "63cfdfa092af7e4152c33fa8c4c1d2548b51162a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/70-bank.js@9affb05e21504df33562f9397d064c890c10715d",
+    "requirement": "REQ-cf401d68d29699ed",
+    "path": "src/game/94-dashboard/70-bank.js",
+    "blob": "9affb05e21504df33562f9397d064c890c10715d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/90-noc-window.js@49ff64bcb48922b083bdeccb3921d5ccfc051191",
+    "requirement": "REQ-e1e999dec40111e3",
+    "path": "src/game/94-dashboard/90-noc-window.js",
+    "blob": "49ff64bcb48922b083bdeccb3921d5ccfc051191",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/94-dashboard/91-noc-wall.js@5025513650702874ace9e46825d012d84ad6dbda",
+    "requirement": "REQ-de7b8985c19e27d3",
+    "path": "src/game/94-dashboard/91-noc-wall.js",
+    "blob": "5025513650702874ace9e46825d012d84ad6dbda",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/30-modal-and-names.js@5c9f272eefe0398be2cfdbe860ef7590bbfcaa3f",
+    "requirement": "REQ-32c2cafcef8d6b21",
+    "path": "src/game/95-modals/30-modal-and-names.js",
+    "blob": "5c9f272eefe0398be2cfdbe860ef7590bbfcaa3f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/70-link-modal.js@5041ab6fe0a66970fc5a35ca215fe69fe5ba1c18",
+    "requirement": "REQ-4b6debc2fcef72a2",
+    "path": "src/game/95-modals/70-link-modal.js",
+    "blob": "5041ab6fe0a66970fc5a35ca215fe69fe5ba1c18",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/80-own-cable.js@5e1a434c9e064b3890b7e09ccb11a85478f97dc4",
+    "requirement": "REQ-8ccb8230082c6432",
+    "path": "src/game/95-modals/80-own-cable.js",
+    "blob": "5e1a434c9e064b3890b7e09ccb11a85478f97dc4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/90-fiber-modals.js@bc968bd54faab2991e87e2df63ccd28ae33f82e4",
+    "requirement": "REQ-ca01a05e1ae2f649",
+    "path": "src/game/95-modals/90-fiber-modals.js",
+    "blob": "bc968bd54faab2991e87e2df63ccd28ae33f82e4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/95-puzzles.js@529e81a333ee8eef694f1b4f691665a1c995cece",
+    "requirement": "REQ-92f195fe406f1b18",
+    "path": "src/game/95-modals/95-puzzles.js",
+    "blob": "529e81a333ee8eef694f1b4f691665a1c995cece",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/95-modals/97-puzzles-phone.js@53a59f84277dbadf771129b05ae85e4616993376",
+    "requirement": "REQ-079cddd02687b4a2",
+    "path": "src/game/95-modals/97-puzzles-phone.js",
+    "blob": "53a59f84277dbadf771129b05ae85e4616993376",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/10-canvas.js@ff76dfb914862db0149154e8273610145e5ace0b",
+    "requirement": "REQ-79170367ef3d0d34",
+    "path": "src/game/96-map/10-canvas.js",
+    "blob": "ff76dfb914862db0149154e8273610145e5ace0b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/20-land-and-clouds.js@bfe3b10ae77f4a5cd212d7b3bd6d409225e13f0b",
+    "requirement": "REQ-7eac0261711eff6d",
+    "path": "src/game/96-map/20-land-and-clouds.js",
+    "blob": "bfe3b10ae77f4a5cd212d7b3bd6d409225e13f0b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/30-settings.js@fcc7dac65b9385bf096920ef464f598d185dbf35",
+    "requirement": "REQ-409bff6a9b22d50f",
+    "path": "src/game/96-map/30-settings.js",
+    "blob": "fcc7dac65b9385bf096920ef464f598d185dbf35",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/50-link-geometry.js@288553c4606bef2b0d0c887cdb9fb96f3ca65671",
+    "requirement": "REQ-e1b03488507957a1",
+    "path": "src/game/96-map/50-link-geometry.js",
+    "blob": "288553c4606bef2b0d0c887cdb9fb96f3ca65671",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/55-link-look.js@32c636cfcc9a7ae5906b16a4faec422f36afc121",
+    "requirement": "REQ-1ce0576b27b7bd32",
+    "path": "src/game/96-map/55-link-look.js",
+    "blob": "32c636cfcc9a7ae5906b16a4faec422f36afc121",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/56-webgl.js@0fe11a7fe8670e7b3ef9cfb24bc6152a88417c29",
+    "requirement": "REQ-6854780ccebc4f7b",
+    "path": "src/game/96-map/56-webgl.js",
+    "blob": "0fe11a7fe8670e7b3ef9cfb24bc6152a88417c29",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/57-webgl-background.js@c245aeeea0aecc432ca13cb92ebfc48f90657186",
+    "requirement": "REQ-2fd7a89dc6146a2a",
+    "path": "src/game/96-map/57-webgl-background.js",
+    "blob": "c245aeeea0aecc432ca13cb92ebfc48f90657186",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/58-webgl-links.js@04ec434c02a8d99e19138907990fcec7157993ba",
+    "requirement": "REQ-465d64dcd08dabbc",
+    "path": "src/game/96-map/58-webgl-links.js",
+    "blob": "04ec434c02a8d99e19138907990fcec7157993ba",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/59-gl-sprites.js@997e7a1f7086e6f334f2e72be44210d91f74b356",
+    "requirement": "REQ-34c61d990d611178",
+    "path": "src/game/96-map/59-gl-sprites.js",
+    "blob": "997e7a1f7086e6f334f2e72be44210d91f74b356",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/60-draw.js@4753041f892b43331cfe1650cf935ce028c9a36c",
+    "requirement": "REQ-b881a28105039ef5",
+    "path": "src/game/96-map/60-draw.js",
+    "blob": "4753041f892b43331cfe1650cf935ce028c9a36c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/70-world-layer.js@20a94a87eb47792aa8765e1db7fe9d3ae67d2fbc",
+    "requirement": "REQ-a831821d82d33eb2",
+    "path": "src/game/96-map/70-world-layer.js",
+    "blob": "20a94a87eb47792aa8765e1db7fe9d3ae67d2fbc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/80-cities.js@75ce90af24a05d286c43d5c37b10906c6e15c8d5",
+    "requirement": "REQ-14a46db0beb7d6aa",
+    "path": "src/game/96-map/80-cities.js",
+    "blob": "75ce90af24a05d286c43d5c37b10906c6e15c8d5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/85-puzzle-cities.js@a501622f20aa276deab040af7643823d2f29b628",
+    "requirement": "REQ-5eaa5e44991dccac",
+    "path": "src/game/96-map/85-puzzle-cities.js",
+    "blob": "a501622f20aa276deab040af7643823d2f29b628",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/88-cable-ships.js@881ac698d83e9c9f844470506fd500087605276e",
+    "requirement": "REQ-ec9ded34b2a58364",
+    "path": "src/game/96-map/88-cable-ships.js",
+    "blob": "881ac698d83e9c9f844470506fd500087605276e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/89-pie-globe.js@89fe3ed89c204ed0fa127d7540188cfbcb6a9b5b",
+    "requirement": "REQ-025751ca899b8831",
+    "path": "src/game/96-map/89-pie-globe.js",
+    "blob": "89fe3ed89c204ed0fa127d7540188cfbcb6a9b5b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/90-input.js@36bbc205bfeee5988561cae35064fd8a983034d7",
+    "requirement": "REQ-dd000e0aa0c95a92",
+    "path": "src/game/96-map/90-input.js",
+    "blob": "36bbc205bfeee5988561cae35064fd8a983034d7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/95-clicks.js@c10b7946698d0d950931a86f058a750945a7563f",
+    "requirement": "REQ-e2cc1432c6e22cca",
+    "path": "src/game/96-map/95-clicks.js",
+    "blob": "c10b7946698d0d950931a86f058a750945a7563f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/96-map/97-diagnostics.js@5adf20f769ba08cbb09ffe640f030b44be8ed8ba",
+    "requirement": "REQ-bf1e20529f9dc2e1",
+    "path": "src/game/96-map/97-diagnostics.js",
+    "blob": "5adf20f769ba08cbb09ffe640f030b44be8ed8ba",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/game/99-loop.js@03f7aaade338a3680ff1dfd02d3239aa4fdbe468",
+    "requirement": "REQ-07bfeb7ea5ea1e9a",
+    "path": "src/game/99-loop.js",
+    "blob": "03f7aaade338a3680ff1dfd02d3239aa4fdbe468",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/i18n/en.js@89e662ff6bd2dd042d174b3c430c42da2e031905",
+    "requirement": "REQ-446fa7f0e9114dc4",
+    "path": "src/i18n/en.js",
+    "blob": "89e662ff6bd2dd042d174b3c430c42da2e031905",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/index.html@87083cb67e5cd36bd267a2f0804816ec0e5e3f1e",
+    "requirement": "REQ-51a2c3ad64dd8854",
+    "path": "src/index.html",
+    "blob": "87083cb67e5cd36bd267a2f0804816ec0e5e3f1e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/00-base.css@dc23fc4535eecfe72d6e34a3b21be1bb34176c32",
+    "requirement": "REQ-8838bda1c94bb952",
+    "path": "src/styles/00-base.css",
+    "blob": "dc23fc4535eecfe72d6e34a3b21be1bb34176c32",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/30-toasts.css@0086d631dbbdab69a6bfed3c994309d01be197ff",
+    "requirement": "REQ-7002e9f01de82d97",
+    "path": "src/styles/30-toasts.css",
+    "blob": "0086d631dbbdab69a6bfed3c994309d01be197ff",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/36-ops.css@6ed7501bb97a5740d458c69e4434eb0311a342e5",
+    "requirement": "REQ-776108d465f463e6",
+    "path": "src/styles/36-ops.css",
+    "blob": "6ed7501bb97a5740d458c69e4434eb0311a342e5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/38-pie-globe.css@867140e8d6887c930a1d621ef7fea34a04a030eb",
+    "requirement": "REQ-a4a86d8dfe92408e",
+    "path": "src/styles/38-pie-globe.css",
+    "blob": "867140e8d6887c930a1d621ef7fea34a04a030eb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/39-pie-spats.css@607fb45709c27bfaf2a1dfd7f6d8c3733c7528e7",
+    "requirement": "REQ-c8e55bbf53df0150",
+    "path": "src/styles/39-pie-spats.css",
+    "blob": "607fb45709c27bfaf2a1dfd7f6d8c3733c7528e7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/40-modal.css@4c1884ee14dd33d3c0e9022acb0af2e6e3897672",
+    "requirement": "REQ-6e03fa5f0512cf02",
+    "path": "src/styles/40-modal.css",
+    "blob": "4c1884ee14dd33d3c0e9022acb0af2e6e3897672",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/42-chart-tooltips.css@34334c63f48fbc745414c7c3e1f55664d2d985eb",
+    "requirement": "REQ-441d9b97df22397b",
+    "path": "src/styles/42-chart-tooltips.css",
+    "blob": "34334c63f48fbc745414c7c3e1f55664d2d985eb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/45-noc-window.css@e215a87700107b9a1f495b5f939a407fabf45234",
+    "requirement": "REQ-8d9f77372a5bb9fe",
+    "path": "src/styles/45-noc-window.css",
+    "blob": "e215a87700107b9a1f495b5f939a407fabf45234",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:src/styles/70-puzzles.css@ace2ce86451754c6ef3ab1f48f33d810bf1ac0a1",
+    "requirement": "REQ-abd9e5047c60eae6",
+    "path": "src/styles/70-puzzles.css",
+    "blob": "ace2ce86451754c6ef3ab1f48f33d810bf1ac0a1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/agent-api.test.js@d909338075b594d6c53fd332d20fea5241fc2210",
+    "requirement": "REQ-6c5012fe4071f61c",
+    "path": "tests/agent-api.test.js",
+    "blob": "d909338075b594d6c53fd332d20fea5241fc2210",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/agent-relay.test.js@2b04ba81998923a51216006853243ed3d961fc8e",
+    "requirement": "REQ-18e3a15832116ca2",
+    "path": "tests/agent-relay.test.js",
+    "blob": "2b04ba81998923a51216006853243ed3d961fc8e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/agent-settings.test.js@d3c721b9952f37740adedc878dd19500bc658540",
+    "requirement": "REQ-9a81b49de8125169",
+    "path": "tests/agent-settings.test.js",
+    "blob": "d3c721b9952f37740adedc878dd19500bc658540",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/alien-wave-rent.test.js@92b68e1349393a5ce9be7433c95bfa1101acb7d1",
+    "requirement": "REQ-492c72a874b4bf3a",
+    "path": "tests/alien-wave-rent.test.js",
+    "blob": "92b68e1349393a5ce9be7433c95bfa1101acb7d1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/any-home-city.test.js@3166c02b574817542d43b7d8d952dc97b7b71e79",
+    "requirement": "REQ-2d0a9b86ffe8c239",
+    "path": "tests/any-home-city.test.js",
+    "blob": "3166c02b574817542d43b7d8d952dc97b7b71e79",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/architect.test.js@080758c9610c43a7ac884795b052f2aa8a3216e0",
+    "requirement": "REQ-fdbe3bdf6cec3db2",
+    "path": "tests/architect.test.js",
+    "blob": "080758c9610c43a7ac884795b052f2aa8a3216e0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/automation.test.js@4cca19f9d656d1eda1a7a89337edf763bbf6d53c",
+    "requirement": "REQ-580a165dbca6e6b1",
+    "path": "tests/automation.test.js",
+    "blob": "4cca19f9d656d1eda1a7a89337edf763bbf6d53c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/backbone-core.test.js@f3cea6412b96f4c0f276006454ec9b4780e383af",
+    "requirement": "REQ-cb50e4e75fc80d61",
+    "path": "tests/backbone-core.test.js",
+    "blob": "f3cea6412b96f4c0f276006454ec9b4780e383af",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/badge-cape-horn.test.js@ca899f837407d2c5605be7b14299328150e17878",
+    "requirement": "REQ-f5d01ee68f657df8",
+    "path": "tests/badge-cape-horn.test.js",
+    "blob": "ca899f837407d2c5605be7b14299328150e17878",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/badges-variants.test.js@d30a78dccc33187e4b9cc57ca86003727a5baf74",
+    "requirement": "REQ-149e36734da489b1",
+    "path": "tests/badges-variants.test.js",
+    "blob": "d30a78dccc33187e4b9cc57ca86003727a5baf74",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/big-numbers.test.js@2fbe50914a235b2243882d05799a0ba592a53f85",
+    "requirement": "REQ-9a82495224611a73",
+    "path": "tests/big-numbers.test.js",
+    "blob": "2fbe50914a235b2243882d05799a0ba592a53f85",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/bilbao-landing.test.js@cd046d3423f7ee1848619dba021ee4d4496dbb3e",
+    "requirement": "REQ-f02e4577c8a1215c",
+    "path": "tests/bilbao-landing.test.js",
+    "blob": "cd046d3423f7ee1848619dba021ee4d4496dbb3e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/borders-overland.test.js@d8b740fc4f55e63b10fc61ff9106823c442d7966",
+    "requirement": "REQ-f2b55928a272d1f4",
+    "path": "tests/borders-overland.test.js",
+    "blob": "d8b740fc4f55e63b10fc61ff9106823c442d7966",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/build.test.js@4b3b2c4317549117b768ca12ab2033db3f8afc6f",
+    "requirement": "REQ-8736d0f70ff03aef",
+    "path": "tests/build.test.js",
+    "blob": "4b3b2c4317549117b768ca12ab2033db3f8afc6f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/cable-labels.test.js@219ece8e5d57796c77ebf3143488209fafe34c2a",
+    "requirement": "REQ-5e04d62d06c767d1",
+    "path": "tests/cable-labels.test.js",
+    "blob": "219ece8e5d57796c77ebf3143488209fafe34c2a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/cable-ships.test.js@aea5daa87aba0e4653828a2d221e30e542081a17",
+    "requirement": "REQ-7dbf1d444dc898ef",
+    "path": "tests/cable-ships.test.js",
+    "blob": "aea5daa87aba0e4653828a2d221e30e542081a17",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/cache-ports.test.js@af7567337dd8cbc83198a48fd11745240c6804e1",
+    "requirement": "REQ-6526a72b30e757e4",
+    "path": "tests/cache-ports.test.js",
+    "blob": "af7567337dd8cbc83198a48fd11745240c6804e1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/calendar.test.js@40d8e19d37f80605a33d046cc3a79daeb753f65a",
+    "requirement": "REQ-c920405371b4445f",
+    "path": "tests/calendar.test.js",
+    "blob": "40d8e19d37f80605a33d046cc3a79daeb753f65a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/call-the-bank.test.js@a76f086ffd4ec52ee5cdf9da398855781194d432",
+    "requirement": "REQ-4f617d712fa61966",
+    "path": "tests/call-the-bank.test.js",
+    "blob": "a76f086ffd4ec52ee5cdf9da398855781194d432",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/capacity-market.test.js@b5996f309c8861460d7a08a053ae89ed81a3da02",
+    "requirement": "REQ-11acb6631e85be43",
+    "path": "tests/capacity-market.test.js",
+    "blob": "b5996f309c8861460d7a08a053ae89ed81a3da02",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/chaos-monkey.test.js@62ee02c9f13d4db8f5bded5710763b3350cd46dc",
+    "requirement": "REQ-7f3548fea237a4ee",
+    "path": "tests/chaos-monkey.test.js",
+    "blob": "62ee02c9f13d4db8f5bded5710763b3350cd46dc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/chart-legend.test.js@309c5f812031a8b25db95b62e6bcad5279f899c2",
+    "requirement": "REQ-da16563110e9234c",
+    "path": "tests/chart-legend.test.js",
+    "blob": "309c5f812031a8b25db95b62e6bcad5279f899c2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/charters.test.js@e5394394d61436e481fe5c023e74033960ae43c8",
+    "requirement": "REQ-d3dedc2cdbf45d1f",
+    "path": "tests/charters.test.js",
+    "blob": "e5394394d61436e481fe5c023e74033960ae43c8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/compute-idempotent.test.js@27a2f7203c67ae3dd80c8b269ec46cf212f850a8",
+    "requirement": "REQ-8b5abd17a38b48bb",
+    "path": "tests/compute-idempotent.test.js",
+    "blob": "27a2f7203c67ae3dd80c8b269ec46cf212f850a8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/customer-lifecycle.test.js@055b16097b5edf882d0dc8cb25883f303207aed4",
+    "requirement": "REQ-43a57375330b360a",
+    "path": "tests/customer-lifecycle.test.js",
+    "blob": "055b16097b5edf882d0dc8cb25883f303207aed4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/customer-paths.test.js@01d5aae6eb23e6b637f986b22c750d164907c6d3",
+    "requirement": "REQ-2139c9fb5e8a0897",
+    "path": "tests/customer-paths.test.js",
+    "blob": "01d5aae6eb23e6b637f986b22c750d164907c6d3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/day-pace.test.js@9aff789c8db53dbcb27b8f7db4f1a36bccab1e02",
+    "requirement": "REQ-25478edb7921c0a0",
+    "path": "tests/day-pace.test.js",
+    "blob": "9aff789c8db53dbcb27b8f7db4f1a36bccab1e02",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/day-steps.test.js@027b06519fefeea3aea9c7f45c70f00fa37e0a42",
+    "requirement": "REQ-b7d5106070622f63",
+    "path": "tests/day-steps.test.js",
+    "blob": "027b06519fefeea3aea9c7f45c70f00fa37e0a42",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/ddos-floods.test.js@5b078eb800793c147548a5af948ef343e076a548",
+    "requirement": "REQ-9c60c828aa02133b",
+    "path": "tests/ddos-floods.test.js",
+    "blob": "5b078eb800793c147548a5af948ef343e076a548",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/ddos-model.test.js@712078ba357106b845db726ed81a371dd9e164dc",
+    "requirement": "REQ-67497c54de10da77",
+    "path": "tests/ddos-model.test.js",
+    "blob": "712078ba357106b845db726ed81a371dd9e164dc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/ddos-scrub-clean.test.js@af7c2a788489325a322aff7a7b5cfed689c4d568",
+    "requirement": "REQ-996daf9a1d7f8201",
+    "path": "tests/ddos-scrub-clean.test.js",
+    "blob": "af7c2a788489325a322aff7a7b5cfed689c4d568",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/de-kicks-price-cap.test.js@8810b5a0cd486212542de1b05a1685f078dccb82",
+    "requirement": "REQ-52d77cced465b8a1",
+    "path": "tests/de-kicks-price-cap.test.js",
+    "blob": "8810b5a0cd486212542de1b05a1685f078dccb82",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/diagnostic-info.test.js@3cee6f820805109bca29d8760d87c6230997c7da",
+    "requirement": "REQ-abe2ba63a384b0d5",
+    "path": "tests/diagnostic-info.test.js",
+    "blob": "3cee6f820805109bca29d8760d87c6230997c7da",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/docker.test.js@b5419981e7ca5cf619c3a6fcef5ded0378e3a50f",
+    "requirement": "REQ-55dd517d792301d9",
+    "path": "tests/docker.test.js",
+    "blob": "b5419981e7ca5cf619c3a6fcef5ded0378e3a50f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/eyeballs.test.js@a54ca4a36650b7d902bb94d9214643d0f1aa8df3",
+    "requirement": "REQ-88f7d4c5fa1bb698",
+    "path": "tests/eyeballs.test.js",
+    "blob": "a54ca4a36650b7d902bb94d9214643d0f1aa8df3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/fiber-broker.test.js@72484731facc5d8b325787aa0fac56e7fe1787b7",
+    "requirement": "REQ-d77dcd1b7c7f182b",
+    "path": "tests/fiber-broker.test.js",
+    "blob": "72484731facc5d8b325787aa0fac56e7fe1787b7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/fiber-lit-and-latency.test.js@c924927648327f340c928fb08a3c7fa208876be3",
+    "requirement": "REQ-07eb8f4fe65c6a87",
+    "path": "tests/fiber-lit-and-latency.test.js",
+    "blob": "c924927648327f340c928fb08a3c7fa208876be3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/find-city.test.js@05ed424f2062c272eb8ac98976fec77acb692bdb",
+    "requirement": "REQ-a9a3f91b2bcfa9ae",
+    "path": "tests/find-city.test.js",
+    "blob": "05ed424f2062c272eb8ac98976fec77acb692bdb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/frame-pacing.test.js@4bfd402aaf72da7ab099e5f21bf71778e34dcfc2",
+    "requirement": "REQ-441e1b654e27d2f5",
+    "path": "tests/frame-pacing.test.js",
+    "blob": "4bfd402aaf72da7ab099e5f21bf71778e34dcfc2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/france.test.js@03554704345edb631072d25b1712a9b66c5098d9",
+    "requirement": "REQ-3520274d7df15bd2",
+    "path": "tests/france.test.js",
+    "blob": "03554704345edb631072d25b1712a9b66c5098d9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/game.test.js@abf12470affca0004ae012e657c88a57d249f81f",
+    "requirement": "REQ-2883e4776fa4e5df",
+    "path": "tests/game.test.js",
+    "blob": "abf12470affca0004ae012e657c88a57d249f81f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/gameplay-rules.test.js@44414ca5947cee2d956f034120362f17f4b9f581",
+    "requirement": "REQ-6a69bfc11e5b3a84",
+    "path": "tests/gameplay-rules.test.js",
+    "blob": "44414ca5947cee2d956f034120362f17f4b9f581",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/gangnam.test.js@09329f2ea9f2cb49955a0fa9ca084efe632ed7a3",
+    "requirement": "REQ-4f023300a55dcf0c",
+    "path": "tests/gangnam.test.js",
+    "blob": "09329f2ea9f2cb49955a0fa9ca084efe632ed7a3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/gpu-bench-server.test.js@eaaa6ff11808fda5be0b3a2dbdb7e265e55a32f3",
+    "requirement": "REQ-cf857a02d31cf33c",
+    "path": "tests/gpu-bench-server.test.js",
+    "blob": "eaaa6ff11808fda5be0b3a2dbdb7e265e55a32f3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/gpu-bench.test.js@5c8fb856e6005c02cf60d2aa4d934830f035148e",
+    "requirement": "REQ-88cb62f22cca5fe4",
+    "path": "tests/gpu-bench.test.js",
+    "blob": "5c8fb856e6005c02cf60d2aa4d934830f035148e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/harness.js@f03638ea9af437d6735c1bc9c63e155d5cefe7d8",
+    "requirement": "REQ-c0dd37711e7ee491",
+    "path": "tests/harness.js",
+    "blob": "f03638ea9af437d6735c1bc9c63e155d5cefe7d8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/helpers/reference-allocation.js@d771194a0271fb6a791a244dfd8a1229e27f5a0e",
+    "requirement": "REQ-11da46d6c266e161",
+    "path": "tests/helpers/reference-allocation.js",
+    "blob": "d771194a0271fb6a791a244dfd8a1229e27f5a0e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/i18n.test.js@802041460a85992988e107811ec580629e69f985",
+    "requirement": "REQ-5937f0bc57f297d6",
+    "path": "tests/i18n.test.js",
+    "blob": "802041460a85992988e107811ec580629e69f985",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-dark-fiber-worker.test.js@2c4729f4674694b99193323cd74774dba218bb7d",
+    "requirement": "REQ-31c2cbded2983127",
+    "path": "tests/intern-dark-fiber-worker.test.js",
+    "blob": "2c4729f4674694b99193323cd74774dba218bb7d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-optical-upgrade.test.js@f55544f5b92348d5014c469e3c75069f9ff346f2",
+    "requirement": "REQ-77fdff7825e94f83",
+    "path": "tests/intern-optical-upgrade.test.js",
+    "blob": "f55544f5b92348d5014c469e3c75069f9ff346f2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-optics.test.js@1de4a004287dcc337c69995dc04a64236cb05c80",
+    "requirement": "REQ-28bdc4e2c16145cd",
+    "path": "tests/intern-optics.test.js",
+    "blob": "1de4a004287dcc337c69995dc04a64236cb05c80",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-personas.test.js@e157c967a0df030540aafc894fd7c550bc05861e",
+    "requirement": "REQ-7b1ea57fa8574373",
+    "path": "tests/intern-personas.test.js",
+    "blob": "e157c967a0df030540aafc894fd7c550bc05861e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-ports.test.js@45bc45556cdae5c68ba6fe79e923dc0a3cc749f1",
+    "requirement": "REQ-330c59c974a8345a",
+    "path": "tests/intern-ports.test.js",
+    "blob": "45bc45556cdae5c68ba6fe79e923dc0a3cc749f1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/intern-router-model.test.js@a28ef92a6bb8b715a7e7ba1696747192176165ff",
+    "requirement": "REQ-b658ad72c37152be",
+    "path": "tests/intern-router-model.test.js",
+    "blob": "a28ef92a6bb8b715a7e7ba1696747192176165ff",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/islands-and-arctic.test.js@86193464dcb4baf7fbfeb3b28e36feccd2bd0380",
+    "requirement": "REQ-88344106ff352e57",
+    "path": "tests/islands-and-arctic.test.js",
+    "blob": "86193464dcb4baf7fbfeb3b28e36feccd2bd0380",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/issues.test.js@d09c13bd76da0a5d4e7d19113967e6788b5e70b7",
+    "requirement": "REQ-1902fa8e26547abd",
+    "path": "tests/issues.test.js",
+    "blob": "d09c13bd76da0a5d4e7d19113967e6788b5e70b7",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/ix-downgrade.test.js@ed8c9d4bd95992b69d84d0a872e2ffbaf0d75247",
+    "requirement": "REQ-7f2a51ec319b59d5",
+    "path": "tests/ix-downgrade.test.js",
+    "blob": "ed8c9d4bd95992b69d84d0a872e2ffbaf0d75247",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/land-islands.test.js@a9cdbb89395cbacb1a26cb89abf19d757e3c6e49",
+    "requirement": "REQ-6f2fd46c1aabf663",
+    "path": "tests/land-islands.test.js",
+    "blob": "a9cdbb89395cbacb1a26cb89abf19d757e3c6e49",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/latency-offers.test.js@36e9b67d368e957ec3ae43d9c6d51c128dc8594c",
+    "requirement": "REQ-3bd8398f58278c58",
+    "path": "tests/latency-offers.test.js",
+    "blob": "36e9b67d368e957ec3ae43d9c6d51c128dc8594c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/latency.test.js@9e7bb5835d086cd81acf93ab0ec29a2cc482cc69",
+    "requirement": "REQ-d738fa11ddbb3705",
+    "path": "tests/latency.test.js",
+    "blob": "9e7bb5835d086cd81acf93ab0ec29a2cc482cc69",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/lay-ship-delay.test.js@336da1287347c66325597cc98c83b0f8bcb39b83",
+    "requirement": "REQ-e8c80adda89e7082",
+    "path": "tests/lay-ship-delay.test.js",
+    "blob": "336da1287347c66325597cc98c83b0f8bcb39b83",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/levels.test.js@3c367df9537f83da1b85d8438ded361fbf8e5465",
+    "requirement": "REQ-9e6644c99ae2b844",
+    "path": "tests/levels.test.js",
+    "blob": "3c367df9537f83da1b85d8438ded361fbf8e5465",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/link-modal-no-cable.test.js@74f8febc1a6693b43014de84cc34543761b830c1",
+    "requirement": "REQ-40a35bdf286e04a2",
+    "path": "tests/link-modal-no-cable.test.js",
+    "blob": "74f8febc1a6693b43014de84cc34543761b830c1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/link-preconditions.test.js@83955dbbef76ffb35f5c32af9927c0ba033bc6c9",
+    "requirement": "REQ-3fc3abf253748e5f",
+    "path": "tests/link-preconditions.test.js",
+    "blob": "83955dbbef76ffb35f5c32af9927c0ba033bc6c9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/load-time.test.js@41c6f098d0d84ec74089f65e92b502bfa0e1c9ca",
+    "requirement": "REQ-8a7ae9db1d766219",
+    "path": "tests/load-time.test.js",
+    "blob": "41c6f098d0d84ec74089f65e92b502bfa0e1c9ca",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/map-2d-sprite-budget.test.js@2b2cd76a39d0be764564a9637e8c7243a27a9da1",
+    "requirement": "REQ-e59b354374864294",
+    "path": "tests/map-2d-sprite-budget.test.js",
+    "blob": "2b2cd76a39d0be764564a9637e8c7243a27a9da1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/map-2d.test.js@4130fbcd6d0f4d0c48000af77bf80dc8b948e060",
+    "requirement": "REQ-433d65917c3ed8b6",
+    "path": "tests/map-2d.test.js",
+    "blob": "4130fbcd6d0f4d0c48000af77bf80dc8b948e060",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/mcp-commands.test.js@91015218e861c2d3903141de850903708eb9463d",
+    "requirement": "REQ-9e7d6d57ef39900d",
+    "path": "tests/mcp-commands.test.js",
+    "blob": "91015218e861c2d3903141de850903708eb9463d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/mcp-http.test.js@c0a989b3c4c80d9406ba897b13aa94ad7f0305eb",
+    "requirement": "REQ-7f07b5d8efecf6c5",
+    "path": "tests/mcp-http.test.js",
+    "blob": "c0a989b3c4c80d9406ba897b13aa94ad7f0305eb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/mcp-parity.test.js@eb601411750397f0e2863dbba3c9a15a5a9ad7f1",
+    "requirement": "REQ-28e89055c6142be6",
+    "path": "tests/mcp-parity.test.js",
+    "blob": "eb601411750397f0e2863dbba3c9a15a5a9ad7f1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/mcp.test.js@cad0f2e75b3ba4a11eda0a21921b51a0a893fb33",
+    "requirement": "REQ-c8f0cf0bcc0a52d3",
+    "path": "tests/mcp.test.js",
+    "blob": "cad0f2e75b3ba4a11eda0a21921b51a0a893fb33",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/modes.test.js@77fe3b180e76108e089b882e02ba61291369ba8d",
+    "requirement": "REQ-4b435676b342fcc1",
+    "path": "tests/modes.test.js",
+    "blob": "77fe3b180e76108e089b882e02ba61291369ba8d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/net.js@5aca9a97468fb577b3d9ee91ca3a0d69dd3b48b4",
+    "requirement": "REQ-5272ea35e5a84c11",
+    "path": "tests/net.js",
+    "blob": "5aca9a97468fb577b3d9ee91ca3a0d69dd3b48b4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/nni.test.js@ad84b1be849ad18bebc63b54b7da81581f88e637",
+    "requirement": "REQ-c25fd16dce62de0a",
+    "path": "tests/nni.test.js",
+    "blob": "ad84b1be849ad18bebc63b54b7da81581f88e637",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/noc-panel-layout.test.js@5ce2157a8e67664a512110f1ad92a305e8fb9721",
+    "requirement": "REQ-188226bfc82f829a",
+    "path": "tests/noc-panel-layout.test.js",
+    "blob": "5ce2157a8e67664a512110f1ad92a305e8fb9721",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/noc-window.test.js@90059a54bb875d24a7bb0716c501ffb7f5fe263e",
+    "requirement": "REQ-5a6e8ae1c53e4c49",
+    "path": "tests/noc-window.test.js",
+    "blob": "90059a54bb875d24a7bb0716c501ffb7f5fe263e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/own-asn.test.js@7007cdffccca9e94c9a673e6aef364634b6aaf6c",
+    "requirement": "REQ-c1a92d19c6bb64fd",
+    "path": "tests/own-asn.test.js",
+    "blob": "7007cdffccca9e94c9a673e6aef364634b6aaf6c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/own-cable-landing.test.js@ea083b9b8b0579de9841892beacdbc5778376a7b",
+    "requirement": "REQ-589897898ff08b45",
+    "path": "tests/own-cable-landing.test.js",
+    "blob": "ea083b9b8b0579de9841892beacdbc5778376a7b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pages.test.js@47b83816ff5c0688e79695ca260e9488baa031de",
+    "requirement": "REQ-d4fc0eccbac4f0a0",
+    "path": "tests/pages.test.js",
+    "blob": "47b83816ff5c0688e79695ca260e9488baa031de",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/peering-desk.test.js@38cff7245bbac28869263d4fb6bbdca17366f2d6",
+    "requirement": "REQ-3e1a533ec96b5c16",
+    "path": "tests/peering-desk.test.js",
+    "blob": "38cff7245bbac28869263d4fb6bbdca17366f2d6",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/peering.test.js@0bfe5324c0fe7ec5cde1a93f8bd0436950f8a413",
+    "requirement": "REQ-097103bccf1c0834",
+    "path": "tests/peering.test.js",
+    "blob": "0bfe5324c0fe7ec5cde1a93f8bd0436950f8a413",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/persist.test.js@6034f404f54bdba4cbb4c22457ac2e20e9fab866",
+    "requirement": "REQ-bc224f2520d92f45",
+    "path": "tests/persist.test.js",
+    "blob": "6034f404f54bdba4cbb4c22457ac2e20e9fab866",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-backhaul.test.js@ea8861348866785596aa2cb5001e4180a95ac5a2",
+    "requirement": "REQ-81347ed6e92cfed5",
+    "path": "tests/pie-backhaul.test.js",
+    "blob": "ea8861348866785596aa2cb5001e4180a95ac5a2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-balance.test.js@ecb1c1a8c639a2a88f585c38b10995fa6f272f52",
+    "requirement": "REQ-fef7caacc17a2535",
+    "path": "tests/pie-balance.test.js",
+    "blob": "ecb1c1a8c639a2a88f585c38b10995fa6f272f52",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-founder.test.js@1e2d4227203fe01b2004fbce35f7bb30d3b14605",
+    "requirement": "REQ-5ba7e0bdda2b7c7b",
+    "path": "tests/pie-founder.test.js",
+    "blob": "1e2d4227203fe01b2004fbce35f7bb30d3b14605",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-globe.test.js@8290bd88f1afc804d5253339abf14842f547f64a",
+    "requirement": "REQ-6860518b18e48e29",
+    "path": "tests/pie-globe.test.js",
+    "blob": "8290bd88f1afc804d5253339abf14842f547f64a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-gov.test.js@0a8134e785f5ff4c14619f5fdf34bd798593d752",
+    "requirement": "REQ-69545a48a5b2e0f8",
+    "path": "tests/pie-gov.test.js",
+    "blob": "0a8134e785f5ff4c14619f5fdf34bd798593d752",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-in-the-sky.test.js@74166273fbe35898ed75e3abb8ef821e4ea12cbe",
+    "requirement": "REQ-a894baf47db2bb76",
+    "path": "tests/pie-in-the-sky.test.js",
+    "blob": "74166273fbe35898ed75e3abb8ef821e4ea12cbe",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-incidents.test.js@97b053e75677bd2dbb4f8ac9e3bcd2beaf808c46",
+    "requirement": "REQ-f2da6717e29d3ca7",
+    "path": "tests/pie-incidents.test.js",
+    "blob": "97b053e75677bd2dbb4f8ac9e3bcd2beaf808c46",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-pace.test.js@0fb9d15e1dbfa055db125914776369ec9aa68209",
+    "requirement": "REQ-07862cab80aba15e",
+    "path": "tests/pie-pace.test.js",
+    "blob": "0fb9d15e1dbfa055db125914776369ec9aa68209",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-routing.test.js@1374565f1bd8ea407ea68a9ae3fe75b404b902d8",
+    "requirement": "REQ-743cf781c21a0173",
+    "path": "tests/pie-routing.test.js",
+    "blob": "1374565f1bd8ea407ea68a9ae3fe75b404b902d8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-spats.test.js@ed73a68e57a3c50e38d19bf06dcc8356071c5567",
+    "requirement": "REQ-70340b51bbbc50ee",
+    "path": "tests/pie-spats.test.js",
+    "blob": "ed73a68e57a3c50e38d19bf06dcc8356071c5567",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pie-traffic.test.js@633de79c2a5a3c0150dd6a23ddc7e59ee0651c8e",
+    "requirement": "REQ-ba65be750fffb683",
+    "path": "tests/pie-traffic.test.js",
+    "blob": "633de79c2a5a3c0150dd6a23ddc7e59ee0651c8e",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pni-nearest-peering.test.js@fe3ab181e3ed893bf5ba386c83f525486684b5d9",
+    "requirement": "REQ-edb3a104c79f8ac8",
+    "path": "tests/pni-nearest-peering.test.js",
+    "blob": "fe3ab181e3ed893bf5ba386c83f525486684b5d9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/pop-standard.test.js@5d8a95bca0f09707016589162d00c16e02d21f90",
+    "requirement": "REQ-246602d39b23ba8e",
+    "path": "tests/pop-standard.test.js",
+    "blob": "5d8a95bca0f09707016589162d00c16e02d21f90",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/puzzle-sheet.test.js@2dc7e8d9e4b5fadba405569a0290e907a115448d",
+    "requirement": "REQ-778fc12de459037e",
+    "path": "tests/puzzle-sheet.test.js",
+    "blob": "2dc7e8d9e4b5fadba405569a0290e907a115448d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/puzzles-phone.test.js@45e6736cba668bd8962b1fb40bbb5c7450cde0b4",
+    "requirement": "REQ-d6e5b4e9cae2291b",
+    "path": "tests/puzzles-phone.test.js",
+    "blob": "45e6736cba668bd8962b1fb40bbb5c7450cde0b4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/puzzles.test.js@47c7df7c1f5c1387b8ae25b54fc1a7d52d71b2ee",
+    "requirement": "REQ-dc4f6a2821313d29",
+    "path": "tests/puzzles.test.js",
+    "blob": "47c7df7c1f5c1387b8ae25b54fc1a7d52d71b2ee",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/regions.test.js@b71244482091657a9f3646010c90f2a735710a36",
+    "requirement": "REQ-6a3a162a5beed506",
+    "path": "tests/regions.test.js",
+    "blob": "b71244482091657a9f3646010c90f2a735710a36",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/release-story.test.js@65800609e04f77ea6928333bffd153f383b8d591",
+    "requirement": "REQ-0d36c5abd082865a",
+    "path": "tests/release-story.test.js",
+    "blob": "65800609e04f77ea6928333bffd153f383b8d591",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/route-cache.test.js@b7ad481548a6565ed520852fe60d7c938e64ac3f",
+    "requirement": "REQ-815bbe2d965d66b1",
+    "path": "tests/route-cache.test.js",
+    "blob": "b7ad481548a6565ed520852fe60d7c938e64ac3f",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/route-fuzz.test.js@8207da4dc45490c61a43b809a27f753e64cc282b",
+    "requirement": "REQ-c440ef745678b29e",
+    "path": "tests/route-fuzz.test.js",
+    "blob": "8207da4dc45490c61a43b809a27f753e64cc282b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/route-server-peers.test.js@c9066e8d72dcf76edfb2f530eac8138096fcbf0c",
+    "requirement": "REQ-0b823158fecf2562",
+    "path": "tests/route-server-peers.test.js",
+    "blob": "c9066e8d72dcf76edfb2f530eac8138096fcbf0c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/route-skip.test.js@fd71d133675db6dc8e0e9d0a3cdc2793a1574237",
+    "requirement": "REQ-4e1f17949a177bfb",
+    "path": "tests/route-skip.test.js",
+    "blob": "fd71d133675db6dc8e0e9d0a3cdc2793a1574237",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/route-worker.test.js@28aeda1159c9a5f38bbd0f8b43c3b2aca0bc669a",
+    "requirement": "REQ-4e530a512424aeae",
+    "path": "tests/route-worker.test.js",
+    "blob": "28aeda1159c9a5f38bbd0f8b43c3b2aca0bc669a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/routers-per-pop.test.js@d53be836ce9eeee97ba634ee006094a48b2ea5c8",
+    "requirement": "REQ-693b9f7c10acd5af",
+    "path": "tests/routers-per-pop.test.js",
+    "blob": "d53be836ce9eeee97ba634ee006094a48b2ea5c8",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/routing-reference.test.js@5f609384cf86b082d400ad7564ae6921f538cef9",
+    "requirement": "REQ-b78f40f0f8b2c077",
+    "path": "tests/routing-reference.test.js",
+    "blob": "5f609384cf86b082d400ad7564ae6921f538cef9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/rules-locked.test.js@de6b2ced83c643a285c6e6d78943a217b8d92d89",
+    "requirement": "REQ-44df37b4cc92aeba",
+    "path": "tests/rules-locked.test.js",
+    "blob": "de6b2ced83c643a285c6e6d78943a217b8d92d89",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/rules.test.js@b15889dcab95e16bd06f82e2ff7fbef3f7412aba",
+    "requirement": "REQ-87ee4a5f7ebce336",
+    "path": "tests/rules.test.js",
+    "blob": "b15889dcab95e16bd06f82e2ff7fbef3f7412aba",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sales-auto.test.js@ac5a8607c5e9c94359da23197628dc8a617dcbe5",
+    "requirement": "REQ-5bf6a564e4357feb",
+    "path": "tests/sales-auto.test.js",
+    "blob": "ac5a8607c5e9c94359da23197628dc8a617dcbe5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sales-desk.test.js@1a3190b1b865c26f78850311d8836d43a8795dfc",
+    "requirement": "REQ-6fa7c09c663daa7f",
+    "path": "tests/sales-desk.test.js",
+    "blob": "1a3190b1b865c26f78850311d8836d43a8795dfc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sales-renewals.test.js@606a005128e1b159982c23b4ae444de42747760c",
+    "requirement": "REQ-0bd85f125ab4a766",
+    "path": "tests/sales-renewals.test.js",
+    "blob": "606a005128e1b159982c23b4ae444de42747760c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sales-trial.test.js@c74ef9fbd567dc85b70d71504e24eaf740c09a9b",
+    "requirement": "REQ-e5542e6c0c4c389f",
+    "path": "tests/sales-trial.test.js",
+    "blob": "c74ef9fbd567dc85b70d71504e24eaf740c09a9b",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/save-size.test.js@97af22588098944e3dde5fc6cb4af92f591b44c5",
+    "requirement": "REQ-0ad6583511edbc0a",
+    "path": "tests/save-size.test.js",
+    "blob": "97af22588098944e3dde5fc6cb4af92f591b44c5",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/save-slots.test.js@0a00834f091e4cd4af506fd5c725ff1a1b7b8aaa",
+    "requirement": "REQ-b4ab40fa28c53727",
+    "path": "tests/save-slots.test.js",
+    "blob": "0a00834f091e4cd4af506fd5c725ff1a1b7b8aaa",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/save-text.test.js@bbe036f2cb0e7c7fff349617c82f8e72979b9dce",
+    "requirement": "REQ-e367f92a03eb9ae9",
+    "path": "tests/save-text.test.js",
+    "blob": "bbe036f2cb0e7c7fff349617c82f8e72979b9dce",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/scenarios-playtest.test.js@51287df5cdb594bbfdc96e0cb792ead01de10ba4",
+    "requirement": "REQ-6d40894069383288",
+    "path": "tests/scenarios-playtest.test.js",
+    "blob": "51287df5cdb594bbfdc96e0cb792ead01de10ba4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sea-routing.test.js@286cf099d4c723f826af8bed72b6da7c98527f27",
+    "requirement": "REQ-cbe8c566d930ab9f",
+    "path": "tests/sea-routing.test.js",
+    "blob": "286cf099d4c723f826af8bed72b6da7c98527f27",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/services.test.js@09e2903cefc00c1106b9b88fef31ea5b88395dce",
+    "requirement": "REQ-c2ad96f96cba344a",
+    "path": "tests/services.test.js",
+    "blob": "09e2903cefc00c1106b9b88fef31ea5b88395dce",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/shared-promise-checks.test.js@9ced4d007a22324dfbf5d158e81c9cac3c537fbb",
+    "requirement": "REQ-a2687d17e009c516",
+    "path": "tests/shared-promise-checks.test.js",
+    "blob": "9ced4d007a22324dfbf5d158e81c9cac3c537fbb",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/ship-clearance.test.js@b2565b047953424f63e3bf769a2e91e1fb97ddcc",
+    "requirement": "REQ-896be0d7330edee1",
+    "path": "tests/ship-clearance.test.js",
+    "blob": "b2565b047953424f63e3bf769a2e91e1fb97ddcc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/space-resume.test.js@6bfe617e9df3451856f746410064f494f9887398",
+    "requirement": "REQ-65186ec383b796d0",
+    "path": "tests/space-resume.test.js",
+    "blob": "6bfe617e9df3451856f746410064f494f9887398",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/specialist.test.js@b3a061a5ff7f6f772d81dfc09c0e65777b308f4d",
+    "requirement": "REQ-7381a56d05dfc642",
+    "path": "tests/specialist.test.js",
+    "blob": "b3a061a5ff7f6f772d81dfc09c0e65777b308f4d",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/speed.test.js@f768206c730f542a1cf8a1891c0d3b30cdd97159",
+    "requirement": "REQ-3e0949ba9bf5cba3",
+    "path": "tests/speed.test.js",
+    "blob": "f768206c730f542a1cf8a1891c0d3b30cdd97159",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/standing-orders.test.js@5f0d6d50f5843890b0864b5fc27189ba99511336",
+    "requirement": "REQ-e26f6aa7c54c5635",
+    "path": "tests/standing-orders.test.js",
+    "blob": "5f0d6d50f5843890b0864b5fc27189ba99511336",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/subsea-upgrade-timing.test.js@30e26b227d2f2ead6fb924ace588f7c5cef6bb3a",
+    "requirement": "REQ-030b3d5165386bc4",
+    "path": "tests/subsea-upgrade-timing.test.js",
+    "blob": "30e26b227d2f2ead6fb924ace588f7c5cef6bb3a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/sweden.test.js@e5ef89642c6f2e3902bba96ec5170c186fae83dd",
+    "requirement": "REQ-1e68398af8e71978",
+    "path": "tests/sweden.test.js",
+    "blob": "e5ef89642c6f2e3902bba96ec5170c186fae83dd",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/tier1-cone.test.js@9d86b26932c33b31c41fdfecb69b84518b13bbd1",
+    "requirement": "REQ-31548af61857779f",
+    "path": "tests/tier1-cone.test.js",
+    "blob": "9d86b26932c33b31c41fdfecb69b84518b13bbd1",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/traceroute-modes.test.js@9866fa1a9462cc51de389c3fe49c638cf3b971c3",
+    "requirement": "REQ-3670a69c6a93bfa2",
+    "path": "tests/traceroute-modes.test.js",
+    "blob": "9866fa1a9462cc51de389c3fe49c638cf3b971c3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/traffic-badges.test.js@8ea6cc3419e990b29e30d32938ac3b9ba16dd8ff",
+    "requirement": "REQ-3c4f7559912035f1",
+    "path": "tests/traffic-badges.test.js",
+    "blob": "8ea6cc3419e990b29e30d32938ac3b9ba16dd8ff",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/unbuilt-pops.test.js@246ea7a8faa1be97b653d2f645de1e005177d480",
+    "requirement": "REQ-f014e4a57632cd46",
+    "path": "tests/unbuilt-pops.test.js",
+    "blob": "246ea7a8faa1be97b653d2f645de1e005177d480",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/utilities-caches.test.js@443a0c335a7846afd708654a2ddfdf4047cd6abc",
+    "requirement": "REQ-8fb468ea61c4f3d7",
+    "path": "tests/utilities-caches.test.js",
+    "blob": "443a0c335a7846afd708654a2ddfdf4047cd6abc",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/utilities.test.js@6f1841be736f34a19c764df8f742bfa2ad7cf74c",
+    "requirement": "REQ-04f3cd69238d50c9",
+    "path": "tests/utilities.test.js",
+    "blob": "6f1841be736f34a19c764df8f742bfa2ad7cf74c",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-coast.test.js@abd847768d1f3f51eb4081971c15af2cc255962a",
+    "requirement": "REQ-850f4ad2af982041",
+    "path": "tests/webgl-coast.test.js",
+    "blob": "abd847768d1f3f51eb4081971c15af2cc255962a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-context-restore.test.js@34200e5713b591d5365b2fc657212db2705b7387",
+    "requirement": "REQ-c0cd19e96331412a",
+    "path": "tests/webgl-context-restore.test.js",
+    "blob": "34200e5713b591d5365b2fc657212db2705b7387",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-frame-garbage.test.js@41ca25a2d7fcff5154636ae9581642cc01c539a0",
+    "requirement": "REQ-82d124769057f6cd",
+    "path": "tests/webgl-frame-garbage.test.js",
+    "blob": "41ca25a2d7fcff5154636ae9581642cc01c539a0",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-line-joins.test.js@0316528067df187fbfa7e2526adc8aac055cead3",
+    "requirement": "REQ-a85d70d152f28ab0",
+    "path": "tests/webgl-line-joins.test.js",
+    "blob": "0316528067df187fbfa7e2526adc8aac055cead3",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-map.test.js@2226060b0fba53a33a2d2c3254eb72d60fe92029",
+    "requirement": "REQ-c9b42d5feac7c49c",
+    "path": "tests/webgl-map.test.js",
+    "blob": "2226060b0fba53a33a2d2c3254eb72d60fe92029",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-out-of-memory.test.js@2cc3023773758b1f558d4028bf3894f3b1ea518a",
+    "requirement": "REQ-520f78bda640609a",
+    "path": "tests/webgl-out-of-memory.test.js",
+    "blob": "2cc3023773758b1f558d4028bf3894f3b1ea518a",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-sprites.test.js@d4e89a726fb5b6f6888321666e0049bd6818d2ea",
+    "requirement": "REQ-f0fc06bb0dbcf2b6",
+    "path": "tests/webgl-sprites.test.js",
+    "blob": "d4e89a726fb5b6f6888321666e0049bd6818d2ea",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/webgl-zoom-sprites.test.js@005d3d669f6994548a9ad17e7218bdcf30c11f25",
+    "requirement": "REQ-208c36093303d8d5",
+    "path": "tests/webgl-zoom-sprites.test.js",
+    "blob": "005d3d669f6994548a9ad17e7218bdcf30c11f25",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/weekly-architect.test.js@7081e75404272e23df589e7d42b513f3206b4182",
+    "requirement": "REQ-6b1b43b1e688887f",
+    "path": "tests/weekly-architect.test.js",
+    "blob": "7081e75404272e23df589e7d42b513f3206b4182",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/weekly-puzzle.test.js@570dedf0aa0acc2d25d46d9a6168fd46e99a47a9",
+    "requirement": "REQ-4a577746eb6e31de",
+    "path": "tests/weekly-puzzle.test.js",
+    "blob": "570dedf0aa0acc2d25d46d9a6168fd46e99a47a9",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/weekly-scenario.test.js@c02d5ed292bbd9f0f1c2dc358b2d138589847ac4",
+    "requirement": "REQ-8b0a53bde0bf5f30",
+    "path": "tests/weekly-scenario.test.js",
+    "blob": "c02d5ed292bbd9f0f1c2dc358b2d138589847ac4",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/where-things-happen.test.js@0d0977d5635b0ad1547f0bd752ec9d341d2370e2",
+    "requirement": "REQ-b86aaf0a0e9fdbbe",
+    "path": "tests/where-things-happen.test.js",
+    "blob": "0d0977d5635b0ad1547f0bd752ec9d341d2370e2",
+    "disposition": null,
+    "adoptionStatus": "pending"
+  },
+  {
+    "sourceId": "UPSTREAM-FILE:tests/world-layer-firefox.test.js@846503e84656537ac8b84f73d66d66acc89ac9b9",
+    "requirement": "REQ-5585a50e9a06ad74",
+    "path": "tests/world-layer-firefox.test.js",
+    "blob": "846503e84656537ac8b84f73d66d66acc89ac9b9",
     "disposition": null,
     "adoptionStatus": "pending"
   }

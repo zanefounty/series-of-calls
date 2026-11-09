@@ -11,6 +11,14 @@ test('known starter fault does not present a paid diagnosis detour',t=>{
  assert.equal(h.querySelector('[data-response="diagnose-incident"]'),null);
  assert.match(h.textContent,/Current service observations and retained symptoms remain free/);
 });
+test('service-domain incident presents its funded scoped service repair instead of a carrier repair',t=>{
+ const w=boot(t),serviceIncident={...clone(incident),resource:'service',kind:'capacity',receipt:{resource:'service',at:8}};
+ const scoped={action:'respond-incident',request:{action:'respond-incident',incidentId:serviceIncident.id,operationId:'service-repair',customerId:customer.id},atRevision:7,setupCents:8000,periodCents:0,workMinutes:3,engineers:1,support:1,cashAfter:42000,blockers:[]};
+ const h=w.document.createElement('div');h.innerHTML=w.SOCProviderIncidents.render(serviceIncident,customer,[{id:'repair',quote:{...scoped,request:{...scoped.request,operationId:'repair'}}},{id:'service-repair',quote:scoped}]);
+ const button=h.querySelector('[data-response="service-repair"] [data-provider-action="respond-incident"]');
+ assert.ok(button);assert.equal(button.dataset.incident,serviceIncident.id);assert.equal(button.dataset.operation,'service-repair');
+ assert.match(button.textContent,/A\$80\.00, 3 minutes/);assert.equal(h.querySelector('[data-response="repair"]'),null);
+});
 function model(q=quote(),i=incident){return {revision:7,clock:12,cash:50000,forecast:{},events:[],offers:[],customers:[clone(customer)],incidents:[clone(i)],operations:[{id:'diagnose-incident',setupCents:6000,periodCents:0,workMinutes:6,engineers:1,support:1}],contextualOperations:[operation(q)]};}
 function render(w,i=incident,q=quote(),selected=false){const h=w.document.createElement('div');h.innerHTML=w.SOCProviderIncidents.render(i,customer,[operation(q)],{selected});return h;}
 test('AC-SOC-737 scoped diagnosis comparison is pure, priced, translated and reviewable alongside service repair',t=>{

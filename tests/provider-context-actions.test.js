@@ -9,6 +9,24 @@ const input=(c,operations,extra={})=>({customer:c,resource:null,operations,proje
 const ids=groups=>groups.flatMap(g=>g.operations.map(o=>o.id));
 const group=(groups,key)=>groups.find(x=>x.key===key)?.operations.map(x=>x.id)||[];
 
+test('customer action cap preserves ranked comparison pairs and keeps every overflow choice reachable',()=>{
+ const rows=[
+  {key:'incident-response',operations:[op('repair'),op('mitigate')]},
+  {key:'service-prerequisites',operations:[op('recording')]},
+  {key:'scenario-alternatives',operations:[op('migration'),op('migration-consolidated')]},
+  {key:'capacity',operations:[op('carrier-headroom'),op('managed-carrier-headroom')]}
+ ];
+ const model={primary:rows,secondary:[{key:'other-actions',operations:[op('bpo')]}],locked:[]},before=JSON.stringify(model);
+ const result=A.compactCustomerActions(model,3);
+ assert.deepEqual(ids(result.primary),['repair','mitigate','recording']);
+ assert.deepEqual(ids(result.secondary),['migration','migration-consolidated','carrier-headroom','managed-carrier-headroom','bpo']);
+ assert.deepEqual(group(result.secondary,'scenario-alternatives'),['migration','migration-consolidated']);
+ assert.equal(JSON.stringify(model),before);
+ const progressed=A.compactCustomerActions({...model,primary:rows.slice(2)},3);
+ assert.deepEqual(ids(progressed.primary),['migration','migration-consolidated']);
+ assert.deepEqual(ids(progressed.secondary),['carrier-headroom','managed-carrier-headroom','bpo']);
+});
+
 test('an archive with pending processing exposes the paid processor action without inventing a storage upgrade',()=>{
  const model=input(customer('enterprise'),[op('transcription',['speech'])],{resource:{id:'archive',kind:'archive',storage:{pending:3,queued:200}}});
  const before=JSON.stringify(model),result=A.project(model);

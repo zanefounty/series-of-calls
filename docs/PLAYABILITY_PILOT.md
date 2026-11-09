@@ -1,6 +1,6 @@
 # First-time-player opening comparison
 
-Status: prepared, no participants or results recorded. This protocol compares the two implemented SMB openings at current candidate revision `89bb03e105bfd98bb0401cc61b7d849fa4e2b4f3` (PR #78). Re-pin the revision and verify both routes before any session if the candidate changes. This revision has not been published as a recovery build.
+Status: prepared, no participants or results recorded. The automated preflight below used revision `89bb03e105bfd98bb0401cc61b7d849fa4e2b4f3` (PR #78). Record the deployed revision and verify both routes again before any participant session.
 
 ## Session setup
 

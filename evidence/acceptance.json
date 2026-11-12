@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-08T11:49:45.625010+00:00",
+  "runAt": "2026-11-12T21:28:45.519078+00:00",
   "command": [
     "node",
     "--test",
@@ -1128,7 +1128,7 @@
     "content/specialist-lifecycle.json": "edda31b2d99e4ab02d63bf536e09cfe2675d81936d8d095d66436eab4e69c046",
     "content/speech-models.json": "de90a619f5a645ac5910eae49df4188a9e49d1111f2242fd2931f4ec9d5551d4",
     "content/transport.json": "ee529c2a927d26192489b7d8eb5338857ba9dff5ec73e9f98d6166205a4c315f",
-    "maintenance/upstream/register.json": "fa3d7fc0aa6a9483bd97654134e68f69813b8e104e28362f97cbf271c1ca6ea8",
+    "maintenance/upstream/register.json": "e668824cb66bee63b3be36192e134e1a6f69d384f2eac2f7d4f6ff4eb4c9bb7c",
     "package-lock.json": "8606aeece2b3b0af655f1902f33292862a2fef7694ee6fd88f156dcd2745309a",
     "package.json": "903d9412879438c8fd09c08d6e18d4e8188e65d8817625252ad54caef74c8007",
     "research/community/cisco-voip-findings.json": "6d6dd30ac5b564c00b877661a1ca43d447301da038a66c98d3bcc991dcac28b8",

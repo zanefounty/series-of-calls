@@ -1,6 +1,6 @@
 # First-time-player opening comparison
 
-Status: prepared, no participants or results recorded. The automated preflight below used revision `89bb03e105bfd98bb0401cc61b7d849fa4e2b4f3` (PR #78). Record the deployed revision and verify both routes again before any participant session.
+Status: prepared, no participants or results recorded as of 13 November 2026. The automated preflight below used revision `89bb03e105bfd98bb0401cc61b7d849fa4e2b4f3` (PR #78). The Pages preview at `https://zanefounty.github.io/series-of-calls/` deployed main `d7de3b91d29741640b7aec74acc134f866899f62` successfully (deployment `7644861887`). Record the actual deployed revision and verify both routes again before any participant session.
 
 ## Session setup
 

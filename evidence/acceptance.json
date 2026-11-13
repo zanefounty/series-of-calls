@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-13T10:27:40.546817+00:00",
+  "runAt": "2026-11-13T10:50:57.972783+00:00",
   "command": [
     "node",
     "--test",
@@ -1151,7 +1151,7 @@
     "scripts/lib/transport-lease-soak.js": "b37a374c5c0d6f36769b39e414e4785489baba580f5cad12b916c8c41f13092e",
     "scripts/mcp-smoke.py": "31bc62a043b7a39009fcd99830867ee255ed7231a71deb5baac9593b9f052804",
     "scripts/mcp.js": "eea28d4992ec9a8e3ca0661780c9dcff9c2b20b2b1274d30743fcfe0c4e02275",
-    "scripts/provider-browser.js": "2ca39ae6e63b6116b1ac45757bf06b9004e578d132a8dba0259f37f289237aa1",
+    "scripts/provider-browser.js": "3ef254ff9fbfc302eb136641dda511033d2a14b2fa9a170c842159b2b78230fc",
     "scripts/provider-owned-map-layout-browser.js": "960d6ad94746db96b03771bc7fc89a3a9aa8f2fe78e2226a44332d703d30fe4d",
     "scripts/provider-runtime-safety-browser.js": "6d68878ab1d0f47cd9a973fa0fb6116da87a2ebf3acc1b1d1a6332cdc1333eaf",
     "scripts/serve.js": "7567ec3510e7110f028d0e56367166d3aa38d1631b265c965e798f0b32e65a6e",
@@ -1488,7 +1488,7 @@
     "src/game/96-map/95-provider-canvas.js": "294d4293009fca06ed69d15c7975e36777ef7f2f5a0e08d77ba581241c1539a7",
     "src/game/96-map/96-training-map.js": "6a3e8b7b6f144b81549ba777250b0222773700b6cedb15daae7803f7d74a76ff",
     "src/game/96-operations-ui.js": "b23e9eb5651486bada61848756c3b6726a00244f2aff2f72ed4c815288470cf5",
-    "src/game/97-provider-shell.js": "acfa05c94acc2398894d82415b609c090c147d0b0ad42657d5ac7c3c8324116a",
+    "src/game/97-provider-shell.js": "527f4cfdd324d64987ba90f5ce451ad1711a70b5095c6167cf280f64e23be3e3",
     "src/game/97-training.js": "b0814256e8a95ed5ccb77b41cffe9d1b114e40396a183558408759510853ac49",
     "src/game/98-business-ui.js": "c7d5c28fcb4dbf75ec617ef1d1b4c863c223e76bb7bfb9b80d356913e9292c2e",
     "src/game/98-provider-runtime.js": "8233f919b24ad5715600df1b9c0aabd1a450651c6887bd095738aeb0eeda177c",

@@ -23,6 +23,17 @@ test('non-SMB customer shows three ranked actions, keeps the migration compariso
  assert.equal(JSON.stringify(model),before);
  dom.window.close();
 });
+test('enterprise inspector retains a locked managed external calling alternative with its prerequisite',()=>{
+ const {dom,w}=fixture(),customer={id:'customer-one',name:'Canopy',scenario:'enterprise',market:'au-sydney',status:'active',requirements:{},services:[{id:'carrier',name:'Carrier',observed:{ready:true}}]};
+ const operation=(id,available=true)=>({id,name:id,kind:'operation',resources:['carrier'],setupCents:1000,periodCents:100,available,blockers:available?[]:['EARNED_SCOPE_REQUIRED']});
+ const model={customers:[customer],projects:[],incidents:[],operations:[operation('migration'),operation('migration-consolidated'),operation('direct-external-reach'),operation('managed-external-reach',false)]};
+ const host=w.document.querySelector('main'),before=JSON.stringify(model);host.innerHTML=w.SOCProviderPanels.inspector(model,{selection:{customerId:customer.id}});
+ assert.deepEqual([...host.querySelectorAll('[data-context-group="migration-options"] [data-provider-action="operation"]')].map(x=>x.dataset.operation),['migration','migration-consolidated']);
+ const migrationComparison=host.querySelector('[data-context-group="migration-options"] .provider-comparison-details');assert.ok(migrationComparison?.open);assert.match(migrationComparison.querySelector('summary').textContent,/migration/i);
+ assert.ok(host.querySelector('[data-context-group="external-reach-options"] [data-operation="direct-external-reach"]'));
+ assert.ok(host.querySelector('[data-context-group="scenario-prerequisites"] [data-operation="managed-external-reach"]'));
+ assert.equal(JSON.stringify(model),before);dom.window.close();
+});
 test('active incident keeps one scoped response surface and moves other customer actions behind a deliberate control',()=>{
  const {dom,w}=fixture(),customer={id:'customer-one',name:'Canopy',scenario:'enterprise',market:'au-sydney',status:'active',services:[{id:'carrier',name:'Carrier',observed:{ready:false}}],journeys:[]};
  const operation=id=>({id,name:id,kind:'operation',resources:id==='mitigate'?['service']:['carrier'],setupCents:8000,periodCents:0,available:true,blockers:[]});

@@ -4,4 +4,4 @@ The [Chromium report](enterprise-staged-browser-report.json) records a visible-c
 
 Screenshots: [quoted cohort and cutover](migration-go-quote.png), [authorised migration](migration-go-authorised.png), [incident](mission-incident.png), [post-cutover service](two-period-evidence.png), [delivered-work victory](mission-won-after-delivery.png), and [save/reload](mission-victory-visible-save-reload-import.png).
 
-This proves one selected cohort on the paid coexistence path in a synthetic browser career. Engineer reservation, explicit rehearsal acceptance, rollback control and human comprehension remain open. The raw Playwright trace remains under `/tmp/soc-provider-gameplay-browser/mission-enterprise-staged/trace.zip` and is not a release artifact.
+This proves one selected cohort on the paid coexistence path in a synthetic browser career. A [later journey](../migration-reservation/README.md) covers engineer reservation. Explicit rehearsal acceptance, rollback control and human comprehension remain open. The raw Playwright trace remains under `/tmp/soc-provider-gameplay-browser/mission-enterprise-staged/trace.zip` and is not a release artifact.

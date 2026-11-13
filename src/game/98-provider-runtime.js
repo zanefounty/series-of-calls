@@ -96,13 +96,13 @@ async function providerOpen(){
   if(raw){const e=JSON.parse(raw);providerStoredSequence(raw);
    const next=SOC.restore(JSON.stringify(e.state));if(!next.providerCampaign)throw new Error('PROVIDER_SAVE_REQUIRED');SCP.state=next;SCP.seq=e.seq;SCP.handoffPromptSeen=e.view?.handoffPromptSeen===true||next.providerCampaign.jobs.some(j=>!!j.handoff);SOC_PROVIDER_UI.render(SCP.state,providerModel(),providerSavedView(e.view));}
  }catch(e){providerError(new Error('Stored career is unreadable. Start a new career or import a valid backup; the original bytes will be preserved. '+String(e?.message||e)));return;}}
- if(!SCP.state){if(!SCP.locked)return providerRender();SCP.state=SOC.create({experience:'campaign',opening:'win',migrationDecisionVersion:1});SCP.handoffPromptSeen=false;providerStore();}
+ if(!SCP.state){if(!SCP.locked)return providerRender();SCP.state=SOC.create({experience:'campaign',opening:'win',migrationDecisionVersion:1,migrationReservationVersion:1});SCP.handoffPromptSeen=false;providerStore();}
  providerRender();providerPromptFirstHandoff();
 }
 async function providerNew(options={}){
  SCP.atHome=false;try{providerEnsureMount();providerPause();providerCancel();if(!await providerAcquire())return providerRender();
   const raw=localStorage.getItem(SCP_KEY);if(raw){try{SCP.seq=providerStoredSequence(raw);}catch{providerQuarantine(raw);}}
-  SCP.state=SOC.create({experience:'campaign',migrationDecisionVersion:1,...options});SCP.handoffPromptSeen=false;SCP.error='';SOC_PROVIDER_UI.render(SCP.state,providerModel(),{...providerSavedView(null),selection:SCP.state.providerCampaign.inheritedEstate?{customerId:'starter-customer'}:null,quoteModal:false,quote:null,importOpen:false,newGameOpen:false});providerStore();providerRender();
+  SCP.state=SOC.create({experience:'campaign',migrationDecisionVersion:1,migrationReservationVersion:1,...options});SCP.handoffPromptSeen=false;SCP.error='';SOC_PROVIDER_UI.render(SCP.state,providerModel(),{...providerSavedView(null),selection:SCP.state.providerCampaign.inheritedEstate?{customerId:'starter-customer'}:null,quoteModal:false,quote:null,importOpen:false,newGameOpen:false});providerStore();providerRender();
  }catch(e){providerError(e);}
 }
 function providerCommand(command){

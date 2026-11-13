@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-13T13:51:07.118624+00:00",
+  "runAt": "2026-11-13T14:18:40.584245+00:00",
   "command": [
     "node",
     "--test",
@@ -1268,7 +1268,7 @@
     "src/game/23-provider-workforce-history.js": "2272793afaf3be99ef0fde20e3c859340e655a33ee5baf87b46b590129c0cbe9",
     "src/game/23-training-lessons.js": "e18fbbfe01e008ab4b94373f5bb232fdad06cbe121b051e08bb5fc22086c2f71",
     "src/game/24-provider-rules.js": "aa7d3b32f55fa46a0cac11fee9c4a7ff22baa88aadbb4a1b9e8f50b89f6fe8ff",
-    "src/game/25-provider-campaign.js": "579ede707341f8634e38733450da4703fce86ac1e052d86aa9eaabeae4827880",
+    "src/game/25-provider-campaign.js": "08dcd3f1b09574b9639f562de3d30c1b498f95db7c9e8dfded614f77605f60a6",
     "src/game/26-customer-needs.js": "0e864f845f69de24eec552726ff75f3db846d064dd6b70e0fdacdca45f343f19",
     "src/game/27-speech-models.js": "bff7b5c5b288a067c26fed57c84adb930efb91668d4c97587394afe254627267",
     "src/game/28-product-evidence.js": "bf80b43312036ce062063c5c30b7375808050d19df70a9bf9f78127cf1809695",
@@ -1428,7 +1428,7 @@
     "src/game/93-ui/70-provider-hud.js": "8d971abc508e8133f6830f6f0cf9d391977ee51fbe01354994dcfc233931735f",
     "src/game/93-ui/74-provider-security.js": "65b892a8245410a23b615108ef75f5459266d2629839db805fc3fd21f6a48234",
     "src/game/93-ui/75-optic-counts.js": "cc8ab9c888f323e81b99e0a724e9854b11de90956cd83a62e05b200f71ff485e",
-    "src/game/93-ui/75-provider-panels.js": "51432c43a85212d4f88e9f000f030ac02e1bf72cd7b52024db3a08dbb3337524",
+    "src/game/93-ui/75-provider-panels.js": "034bba446424b508105895a4d21d6584bd25e3150a57fe2185f36b1205ffcf9f",
     "src/game/93-ui/78-provider-partner-paths.js": "1ce4cd3e69bd7666f752674aecb976f0c50a8b6c672b24347966978c227baec5",
     "src/game/93-ui/78-provider-policy-controls.js": "b05999bbd9401b314e5e7bf2d16f374ec10897d219761f8331b76576409a2a6a",
     "src/game/93-ui/78-provider-room-integration.js": "469f1d3a519571d0bc4f68469e6f957cb4ad1ad5be8b4b7f588b87fa813f2c4d",

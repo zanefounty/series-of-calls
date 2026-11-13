@@ -1304,7 +1304,9 @@
       "AC-SOC-892"
     ],
     "tests/provider-segments.test.js": [
-      "AC-SOC-899"
+      "AC-SOC-899",
+      "AC-SOC-900",
+      "AC-SOC-901"
     ]
   },
   "inputs": [

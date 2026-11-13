@@ -192,8 +192,8 @@ test('government mission earns two real qualifying periods with either authored 
  }
 });
 
-test('AC-SOC-899 versioned sector handover quotes retained obligations and commits staffing through validated dispatch',()=>{
- const c=begin('smb','swift','easy',1);
+function wonHandoverCareer(version,difficulty='easy'){
+ const c=begin('smb','swift',difficulty,version);
  c.purchase('starter','base');c.advance(SOC.provider.rules.plans.swift.base.workMinutes);
  c.purchase('starter','carrier','starter-customer');c.advance(SOC.provider.rules.plans.swift.carrier.workMinutes);
  c.purchase('starter','partner','starter-customer');c.advance(SOC.provider.rules.plans.swift.partner.workMinutes+1);
@@ -204,6 +204,11 @@ test('AC-SOC-899 versioned sector handover quotes retained obligations and commi
  const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},purchaseQuote=SOC.provider.quote(c.state,next);
  assert.deepEqual(purchaseQuote.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
  completeExpansion(c,'next-1','next-1-customer');
+ return c;
+}
+
+test('AC-SOC-899 versioned sector handover quotes retained obligations and commits staffing through validated dispatch',()=>{
+ const c=wonHandoverCareer(1);
  const retain=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'retain'}),reinforce=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'reinforce'});
  assert.deepEqual(retain.blockers,[]);assert.deepEqual(reinforce.blockers,[]);
  assert.equal(retain.commercial.sectorHandover.toScenario,'enterprise');
@@ -227,4 +232,43 @@ test('AC-SOC-899 versioned sector handover quotes retained obligations and commi
  assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state);
  const forged=structuredClone(c.state);forged.providerCampaign.segmentHistory[0].handover.cashCents++;
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_SECTOR_HANDOVER/);
+});
+
+test('AC-SOC-900 delegated sector handover funds a scoped BPO contract and preserves MSP liability',()=>{
+ const c=wonHandoverCareer(2),before=JSON.stringify(c.state),cash=c.state.business.balance.cash,customerId='starter-customer';
+ assert.throws(()=>c.send({action:'advance-segment'}),/SECTOR_HANDOVER_REQUIRED/);
+ assert.throws(()=>SOC.provider.quote(c.state,{action:'sector-handover',staffing:'delegate'}),/INVALID_PROVIDER_HANDOVER_STAFFING/);
+ const retain=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'retain'}),delegated=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'delegate',customerId});
+ assert.deepEqual(delegated.blockers,[]);assert.equal(delegated.setupCents,30000);assert.equal(delegated.periodCents,18000);assert.equal(delegated.cashAfter,cash-30000);
+ assert.equal(delegated.commercial.sectorHandover.delegation.customerId,customerId);
+ assert.equal(delegated.commercial.sectorHandover.delegation.additionalAgents,2);
+ assert.equal(delegated.commercial.sectorHandover.delegation.carrierSessionsAdded,0);
+ assert.equal(delegated.commercial.sectorHandover.plans[0].cashAfterSetupCents,retain.commercial.sectorHandover.plans[0].cashAfterSetupCents-30000);
+ assert.deepEqual(delegated.commercial.sectorHandover.workforceAfter,delegated.commercial.sectorHandover.workforceBefore);
+ const dom=new JSDOM('<!doctype html>',{runScripts:'dangerously'}),w=dom.window;w.N_=x=>x;w.eval(fs.readFileSync(path.join(__dirname,'../src/i18n/en.js'),'utf8'));w.tr=(key,vars)=>String(w.I18N.en[key]||key).replace(/\{(\w+)\}/g,(_,name)=>vars?.[name]??_);w.SOCProviderCanvas={resourceStatus:()=> 'Ready'};for(const file of ['70-provider-hud.js','75-provider-panels.js'])w.eval(fs.readFileSync(path.join(__dirname,'../src/game/93-ui',file),'utf8'));const host=w.document.createElement('main');host.innerHTML=w.SOCProviderPanels.quote(delegated,{quoteRequest:{action:'sector-handover',staffing:'delegate',customerId}});assert.match(host.textContent,/People Orchard BPO/);assert.match(host.textContent,/customer contract, renewals, incidents/);assert.equal(host.querySelector('[data-provider-action="sector-staffing"][data-provider-value="delegate"][data-id="starter-customer"]').getAttribute('aria-pressed'),'true');w.close();
+ assert.throws(()=>c.send({action:'sector-handover',staffing:'delegate',customerId,quoteRevision:c.state.revision-1}),/STALE_PROVIDER_QUOTE/);assert.equal(JSON.stringify(c.state),before);
+ const command={type:'provider',command:{action:'sector-handover',staffing:'delegate',customerId,quoteRevision:delegated.atRevision}},expected=SOC.dispatch(c.state,command);let reply;const worker={postMessage:response=>{reply=response;}};vm.createContext(worker);vm.runInContext(SOC.workerSource(),worker);worker.onmessage({data:{id:'sector-delegation',state:JSON.parse(JSON.stringify(c.state)),command}});assert.equal(reply.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(reply.state)),expected);
+ c.send(command.command);
+ assert.equal(c.state.providerCampaign.scenario,'enterprise');assert.equal(c.state.business.balance.cash,cash-30000);
+ const handover=c.state.providerCampaign.segmentHistory[0].handover,project=c.state.providerCampaign.projects.find(x=>x.id===handover.delegation.projectId);
+ assert.equal(handover.version,2);assert.equal(handover.staffing,'delegate');assert.equal(project.operationId,'bpo');assert.equal(project.customerId,customerId);assert.equal(project.postingId,handover.delegation.postingId);assert.equal(project.status,'running');
+ assert.deepEqual(c.state.providerCampaign.customers.map(x=>x.id),['starter-customer','next-1-customer']);assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state);
+ const forged=structuredClone(c.state);forged.providerCampaign.segmentHistory[0].handover.delegation.projectId='provider-project-9999';forged.providerCampaign.events.find(x=>x.code==='SECTOR_HANDOVER_ACCEPTED').handover.delegation.projectId='provider-project-9999';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_SECTOR_DELEGATION/);
+ for(let n=0;n<30&&c.state.providerCampaign.projects.find(x=>x.id===project.id)?.status!=='complete';n++)c.advance(1);
+ assert.equal(c.state.providerCampaign.projects.find(x=>x.id===project.id).status,'complete');
+ const child=c.state.portfolio.customers.find(x=>x.id===customerId).root;
+ assert.equal(child.workforceOps.providerCover.people.length,2);
+ assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state);
+ const duplicate=SOC.provider.quote(c.state,{action:'operation',operationId:'bpo',customerId});assert.ok(duplicate.blockers.includes('BPO_ALREADY_ORDERED'));
+});
+
+test('AC-SOC-901 low-cash handover keeps the next plan purchase blocked',()=>{
+ const c=wonHandoverCareer(2,'hard'),customerId='starter-customer';
+ const q=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'delegate',customerId});
+ assert.deepEqual(q.blockers,[]);
+ assert.ok(q.cashAfter<q.commercial.sectorHandover.plans[0].setupCents);
+ c.send({action:'sector-handover',staffing:'delegate',customerId,quoteRevision:q.atRevision});
+ assert.equal(c.state.providerCampaign.scenario,'enterprise');
+ const offer=SOC.provider.inspect(c.state).offers.find(x=>x.available&&x.id!=='starter'),plan=SOC.provider.quote(c.state,{action:'plan',offerId:offer.id,planId:'swift'});
+ assert.ok(plan.blockers.includes('INSUFFICIENT_CASH'));assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state);
 });

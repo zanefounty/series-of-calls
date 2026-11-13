@@ -146,7 +146,7 @@ function socProviderCentralProgressionKernel(){
  }
  function governmentVictory(s,c){
   const p=s.providerCampaign,proof=p.scenario==='government'&&p.missionStatus==='won'?p.mission?.victoryProof:null;
-  if(!proof||proof.version!==1||proof.scenario!=='government'||proof.focusCustomerId!==c.id||!integer(proof.at)||proof.at>s.clock||!integer(proof.qualifiedPeriods,2)||!Array.isArray(proof.periods)||proof.periods.length!==2)return null;
+  if(!proof||![1,2].includes(proof.version)||proof.scenario!=='government'||proof.focusCustomerId!==c.id||!integer(proof.at)||proof.at>s.clock||!integer(proof.qualifiedPeriods,2)||!Array.isArray(proof.periods)||proof.periods.length!==2)return null;
   const event=p.events?.find(x=>x.id===proof.eventId);
   if(!event||event.code!=='MISSION_WON'||event.customerId!==proof.winnerCustomerId||event.at!==proof.at||event.qualifiedPeriods!==proof.qualifiedPeriods)return null;
   const periods=proof.periods;

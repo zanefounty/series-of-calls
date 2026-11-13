@@ -41,6 +41,12 @@ function governmentWin(){
  while(s.providerCampaign.mission.consecutiveQualifying<2)s=maintainedTick(s);
  assert.ok(s.providerCampaign.customers[0].history.some(h=>h.qualified&&h.evidence.transcripts.length>0));
  s=quoteBuy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
+ assert.equal(s.providerCampaign.missionStatus,'active');
+ for(const stage of ['base','carrier','partner']){
+  if(stage!=='base')s=quoteBuy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});
+  s=until(s,x=>x.providerCampaign.customers.find(c=>c.id==='next-1-customer')?.stages[stage]?.status==='effective',90);
+ }
+ for(let minute=0;minute<120&&s.providerCampaign.status!=='won';minute++)s=maintainedTick(s);
  assert.equal(s.providerCampaign.missionStatus,'won');return s;
 }
 function level(s,id){return SOC.provider.inspect(s).progression.levels[id];}

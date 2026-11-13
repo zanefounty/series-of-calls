@@ -45,7 +45,7 @@ function socBusinessKernel(){
    ownership:Object.fromEntries(Object.keys(s.resources).map(x=>[x,x==='people'?'orchard-msp':'customer'])),
    qualifications:{'orchard-msp':{smb:s.clock+10000,enterprise:s.clock+10000}},contracts:[],allowancePools:[],projects:[],loans:[],ledger:[],nextId:1,
    balance:{opening:100000,cash:100000,revenue:0,cost:0,funding:0,repaid:0},solvency:{status:'current',payable:0,firstArrearsAt:null,deadline:null,defaultedAt:null},workforce:{engineers:2,support:1,operator:'player',hourlyCents:100},
-   metrics:{periods:0,offered:0,handled:0,repeated:0,credits:0},demand:{carry:0,multiplier:100},market:[],events:[],achievements:[],lastPeriod:s.clock,seed:s.seed};
+   metrics:{periods:0,offered:0,handled:0,repeated:0,credits:0},demand:{carry:0,multiplier:100,capacityMinutes:0},market:[],events:[],achievements:[],lastPeriod:s.clock,seed:s.seed};
  }
  function group(b,org){const seen=new Set();while(org){if(seen.has(org))fail('OWNERSHIP_CYCLE');if(org===b.player)return true;seen.add(org);org=b.organisations[org]?.parent;}return false;}
  function authorise(s,resource,action){
@@ -214,10 +214,8 @@ function socBusinessKernel(){
   if(b.externalInvoices.length>=2000)fail('EXTERNAL_INVOICE_CAPACITY');
   const entryId=post(b,s,'cost',invoice.cents,{reason:source+':'+invoice.reason,externalId:invoice.id,unit:'AUD-cent'});b.externalInvoices.push({id:invoice.id,cents:invoice.cents,...(source==='workforce-offers'?{source,entryId}:{})});
  }
- function demand(s,services,workforceSnapshot=null,transportSnapshot=null){
-  const b=s.business,t=tracks[s.scenario];b.seed=(b.seed*16807)%2147483647;
-  const offered=Math.floor(t.arrival*b.demand.multiplier/100)+(b.seed%3)+b.demand.carry;
-  const worker=s.resources.people.effective,queue=s.resources.service.effective,trunk=s.resources.carrier.effective;
+ function staffedCapacity(s,services,workforceSnapshot=null,transportSnapshot=null){
+  const t=tracks[s.scenario],worker=s.resources.people.effective,queue=s.resources.service.effective,trunk=s.resources.carrier.effective;
   let capacity=0;
   const shift=s.clock%1440;
   if(workforceSnapshot){
@@ -231,7 +229,13 @@ function socBusinessKernel(){
   const dependencies=t.channel==='voice'?['phone','carrier']:['engage','messages','cases'];
   if(dependencies.some(id=>!services[id]?.ready))capacity=0;
   if(transportSnapshot){if(!transportSnapshot.ready)capacity=0;else if(t.channel==='voice'&&transportSnapshot.availableKbps!==null)capacity=Math.min(capacity,Math.floor(transportSnapshot.availableKbps/transportSnapshot.voiceKbps)*PERIOD/Math.max(1,worker?.handlingMinutes||1));}
-  const handled=Math.min(offered,Math.floor(capacity)),repeat=Math.ceil((offered-handled)/2);
+  return Math.max(0,Math.floor(capacity));
+ }
+ function demand(s){
+  const b=s.business,t=tracks[s.scenario];b.seed=(b.seed*16807)%2147483647;
+  const offered=Math.floor(t.arrival*b.demand.multiplier/100)+(b.seed%3)+b.demand.carry,worker=s.resources.people.effective;
+  const capacity=Math.floor(b.demand.capacityMinutes/PERIOD);b.demand.capacityMinutes=0;
+  const handled=Math.min(offered,capacity),repeat=Math.ceil((offered-handled)/2);
   b.metrics.offered+=offered;b.metrics.handled+=handled;b.metrics.repeated+=repeat;b.demand.carry=Math.min(100,repeat);
   event(b,s.clock,'AGGREGATE_DEMAND',{offered,handled,repeat,channel:t.channel,staffedCapacity:capacity,unit:'interaction'});
   meterResource(s,t.channel==='voice'?'minute':'message',t.channel==='voice'?handled*(worker?.handlingMinutes||0):handled,t.channel==='voice'?['phone']:['engage','messages','cases'],true);
@@ -239,6 +243,7 @@ function socBusinessKernel(){
  function advance(s,services,assessment,workforceSnapshot=null,transportSnapshot=null){
   if(s.business)migrateLegacy(s);
   const b=s.business;if(!b)return;
+  b.demand.capacityMinutes+=staffedCapacity(s,services,workforceSnapshot,transportSnapshot);
   for(const p of b.allowancePools)if(!p.everActivated&&p.status==='provisioning'&&s.clock>=p.readyAt){p.everActivated=true;p.status='active';p.allowance=p.desiredAllowance;p.effectiveAllowance=p.desiredAllowance;p.pendingEffectiveAt=null;resetAllowancePeriod(b,p,Math.max(0,Math.floor((s.clock-p.periodAnchor)/p.periodMinutes)),p.effectiveAllowance);event(b,s.clock,'ALLOWANCE_POOL_READY',{pool:p.id});}
   for(const c of b.contracts){
    c.reasons=readiness(s,c,services);
@@ -266,7 +271,7 @@ function socBusinessKernel(){
    else{p.status='complete';event(b,s.clock,'PROJECT_COMPLETE',{project:p.id});}
   }
   if(s.clock-b.lastPeriod>=PERIOD){
-   b.lastPeriod+=PERIOD;b.metrics.periods++;demand(s,services,workforceSnapshot,transportSnapshot);
+   b.lastPeriod+=PERIOD;b.metrics.periods++;demand(s);
    const w=b.workforce;
    if(s.providerCampaign){const payroll=s.providerCampaign.payroll,total=Math.floor(payroll.personMinutes*w.hourlyCents/PERIOD),cost=total-payroll.costCents;if(cost)post(b,s,'cost',cost,{reason:'staff',unit:'person-minute',quantity:payroll.personMinutes-payroll.billedMinutes});payroll.billedMinutes=payroll.personMinutes;payroll.costCents=total;}else if(w.operator!=='customer')post(b,s,'cost',(w.engineers+w.support)*w.hourlyCents,{reason:w.operator==='bpo'?'bpo-service':'staff',unit:'person-hour',quantity:w.engineers+w.support});
    for(const loan of b.loans)if(loan.principal>0)post(b,s,'cost',Math.ceil(loan.principal*loan.rateBps/10000),{reason:'interest',loan:loan.id,unit:'period'});
@@ -340,6 +345,7 @@ function socBusinessKernel(){
  }
  function migrateLegacy(s){
   const b=s?.business;if(b===undefined||b===null)return s;
+  if(b.demand&&b.demand.capacityMinutes===undefined)b.demand.capacityMinutes=0;
   if(!b||typeof b!=='object'||Array.isArray(b))fail('INVALID_CAMPAIGN');
   if(!own(b,'allowancePools'))b.allowancePools=[];
   else if(!Array.isArray(b.allowancePools))fail('INVALID_CAMPAIGN_COLLECTION');
@@ -360,6 +366,7 @@ function socBusinessKernel(){
  function validationView(s){
   const b=s?.business;if(b===undefined||b===null||!b||typeof b!=='object'||Array.isArray(b))return s;
   const view={...b};
+  if(b.demand&&b.demand.capacityMinutes===undefined)view.demand={...b.demand,capacityMinutes:0};
   if(!own(b,'allowancePools'))view.allowancePools=[];
   if(!own(b,'solvency'))view.solvency={status:b.balance?.cash<0?'grace':'current',payable:Math.max(0,-(b.balance?.cash||0)),firstArrearsAt:b.balance?.cash<0?s.clock:null,deadline:b.balance?.cash<0?s.clock+PERIOD:null,defaultedAt:null};
   if(Array.isArray(b.contracts))view.contracts=b.contracts.map(c=>c&&typeof c==='object'&&!Array.isArray(c)?{...c,...(!own(c,'allowancePool')?{allowancePool:null}:{}),...(!own(c,'sharedIncluded')?{sharedIncluded:0}:{}),...(!own(c,'periodHistory')?{periodHistory:{from:s.clock,minutes:0,readyMinutes:0,usage:0}}:{}),...(!own(c,'settlements')?{settlements:[]}:{})}:c);
@@ -401,7 +408,7 @@ function socBusinessKernel(){
   for(const c of b.contracts){if(c.customerProfile!==undefined&&!bindings.some(binding=>binding.contract===c.id&&binding.profile===c.customerProfile))fail('INVALID_CUSTOMER_PROFILE_BINDINGS');if(c.customerProfile===undefined){if(c.customerProfileGeneration!==undefined)fail('INVALID_CUSTOMER_PROFILE_CONTRACT');continue;}const profile=s.customerNeeds?.profiles.find(p=>p.id===c.customerProfile);if(!id(c.customerProfile)||!profile?.effective||profile.segment!==s.scenario||c.customer!=='customer'||c.sell!==true||!integer(c.customerProfileGeneration,1)||c.customerProfileGeneration>profile.effective.generation)fail('INVALID_CUSTOMER_PROFILE_CONTRACT');}
   for(let i=0;i<b.contracts.length;i++)for(let j=i+1;j<b.contracts.length;j++){const a=b.contracts[i],c=b.contracts[j];if(a.status!=='cancelled'&&c.status!=='cancelled'&&offers[a.offer].usageUnit&&offers[a.offer].usageUnit===offers[c.offer].usageUnit&&a.resources.some(r=>c.resources.includes(r)))fail('INVALID_SAVED_USAGE_CONTRACT_OVERLAP');}
   for(const l of b.ledger)if(!id(l.id)||!Number.isSafeInteger(l.cents)||l.currency!==b.currency||!['revenue','cost','funding','repayment','internal'].includes(l.category))fail('INVALID_CAMPAIGN_LEDGER');
-  if(!integer(b.seed,1,2147483646)||!integer(b.lastPeriod)||!integer(b.demand.carry)||!integer(b.demand.multiplier,1,100)||!Object.values(b.metrics).every(x=>integer(x,0,Number.MAX_SAFE_INTEGER)))fail('INVALID_CAMPAIGN_DEMAND');
+  if(!integer(b.seed,1,2147483646)||!integer(b.lastPeriod)||!integer(b.demand.carry)||!integer(b.demand.multiplier,1,100)||!integer(b.demand.capacityMinutes,0,PERIOD*1000000)||!Object.values(b.metrics).every(x=>integer(x,0,Number.MAX_SAFE_INTEGER)))fail('INVALID_CAMPAIGN_DEMAND');
  }
  function calculate(s,assessment,services){
   const b=s.business;if(!b)return null;

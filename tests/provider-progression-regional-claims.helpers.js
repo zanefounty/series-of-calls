@@ -427,6 +427,11 @@ function claimSource(state, sourceId) {
 
 function paidPurchaseWhenReady(state, request, label, limit = 180) {
   let quote = SOC.provider.quote(state, request);
+  if (request.action === 'purchase' && request.stage === 'base' && quote.blockers.includes('CUSTOMER_OFFER_EXPIRED')) {
+    state = SOC.dispatch(state, { type: 'provider', command: { action: 'refresh-opportunity' } });
+    request = { ...request, offerId: SOC.provider.inspect(state).offers.find(row => row.id.startsWith('next-')).id };
+    quote = SOC.provider.quote(state, request);
+  }
   for (let minute = 0; quote.blockers.length && minute < limit; minute++) {
     if (!quote.blockers.every(reason => ['ENGINEER_CAPACITY', 'SUPPORT_CAPACITY', 'INSUFFICIENT_CASH'].includes(reason))) {
       throw new Error(`${label} non-retry blocker: ${quote.blockers.join(', ')} at ${state.clock}`);
@@ -499,9 +504,19 @@ function createLevelSevenWindow() {
   let state = createFiveMarketWindow();
   state = claimSource(state, C5);
   checkpoint('l7-earned-c5-window', state, { sourceId: C5, customerIds: state.providerCampaign.progressionReceipts?.receipts?.find(row => row.sourceId === C5)?.sourceEvidence?.customerIds || [] });
-  if (state.business.workforce.support < 6) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 6 } });
+  if (state.business.workforce.support < 6 || state.business.workforce.engineers < 6) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: 6, support: 6 } });
   const customerIds = state.providerCampaign.customers.map(row => row.id).sort();
-  for (const customerId of customerIds) state = addDistributorResponsibility(state, customerId);
+  // Commission each paid phase across the portfolio before starting the next.
+  // A serial three-project build per customer can expire the earliest scoped
+  // qualification before the final customer's distributor route is delivered.
+  for (const operationId of ['room', 'partner-qualification', 'distributor-room']) {
+    for (const customerId of customerIds) state = operation(state, operationId, customerId);
+    for (const customerId of customerIds) state = operationComplete(state, operationId, customerId);
+  }
+  for (const customerId of customerIds) {
+    const record = RESPONSIBILITY.responsibilities(state, customerId, hooks).records.find(row => row.customerId === customerId && row.role === 'distributor' && row.organisationId === 'branch-distribution');
+    assert.ok(record, `${customerId} has a live paid distributor responsibility`);
+  }
   if (state.business.workforce.support > 5) state = SOC.dispatch(state, { type: 'provider', command: { action: 'staff', engineers: state.business.workforce.engineers, support: 5 } });
   state = waitForStableSupportWindow(state, s => stableDistributorSupportWindow(s, customerIds), customerIds, 'stable five-market distributor support sample window', 180, { distributor: true });
   return state;

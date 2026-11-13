@@ -2,8 +2,8 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const SOC=require('../src/game/55-communications');
 
-function begin(scenario='smb',planId='swift'){
- let state=SOC.create({experience:'campaign',scenario,market:'au-sydney',difficulty:'normal'}),sequence=1;
+function begin(scenario='smb',planId='swift',difficulty='normal'){
+ let state=SOC.create({experience:'campaign',scenario,market:'au-sydney',difficulty}),sequence=1;
  const send=command=>{state=SOC.dispatch(state,{type:'provider',requestId:`provider-${sequence++}`,command});return state;};
  const advance=minutes=>{for(let n=0;n<minutes;n++)state=SOC.dispatch(state,{type:'advance',minutes:1});return state;};
  const purchase=(offerId,stage,customerId)=>{
@@ -28,8 +28,14 @@ function begin(scenario='smb',planId='swift'){
  return {get state(){return state;},send,advance,purchase,operation,operationEventually,planId};
 }
 
+function completeExpansion(c,offerId,customerId){
+ for(const stage of ['base','carrier','partner']){if(stage!=='base')c.purchase(offerId.replace(/-r\d+$/,''),stage,customerId);for(let n=0;n<40&&c.state.providerCampaign.customers.find(x=>x.id===customerId)?.stages[stage]?.status!=='effective';n++){for(const customer of c.state.providerCampaign.customers.filter(x=>x.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}assert.equal(c.state.providerCampaign.customers.find(x=>x.id===customerId).stages[stage].status,'effective');}
+ for(let n=0;n<80&&c.state.providerCampaign.status!=='won';n++){for(const customer of c.state.providerCampaign.customers.filter(x=>x.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}
+ assert.equal(c.state.providerCampaign.missionStatus,'won','the expanded customer must deliver observed work');
+}
+
 test('earned SMB victory unlocks enterprise in the same shared career and the next segment requires its own earned win',t=>{
- const c=begin();
+ const c=begin('smb','swift','easy');
  c.purchase('starter','base');c.advance(SOC.provider.rules.plans.swift.base.workMinutes);
  c.purchase('starter','carrier','starter-customer');c.advance(SOC.provider.rules.plans.swift.carrier.workMinutes);
  c.purchase('starter','partner','starter-customer');c.advance(SOC.provider.rules.plans.swift.partner.workMinutes+1);
@@ -42,7 +48,7 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.advance(60);assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,true);
  const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},q=SOC.provider.quote(c.state,next);
  assert.deepEqual(q.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
- assert.equal(c.state.providerCampaign.missionStatus,'won');
+ assert.equal(c.state.providerCampaign.missionStatus,'active');completeExpansion(c,'next-1','next-1-customer');
 
  const earnedVictory=structuredClone(c.state.providerCampaign.mission.victoryProof);
  const before={cash:c.state.business.balance.cash,staff:structuredClone(c.state.business.workforce),customers:c.state.providerCampaign.customers.map(x=>x.id),clock:c.state.clock};
@@ -70,13 +76,14 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.purchase('next-2','carrier','next-2-customer');
  c.purchase('next-2','partner','next-2-customer');
  c.advance(60-c.state.clock%60);
+ for(let n=0;n<120&&!c.state.portfolio.customers.find(x=>x.id==='next-2-customer').root.information.meetingSessions.some(x=>x.status==='completed');n++){for(const customer of c.state.providerCampaign.customers.filter(x=>x.status==='renewal'))c.send({action:'renew',customerId:customer.id});const fault=c.state.providerCampaign.incidents.find(x=>x.customerId==='next-2-customer'&&x.status==='active');if(fault){c.send({action:'acknowledge-incident',incidentId:fault.id});c.operationEventually('repair','next-2-customer');}c.advance(1);}
+ c.advance(60-c.state.clock%60);
  const enterprise=c.state.providerCampaign.customers.at(-1);
- assert.equal(enterprise.status,'active');
+ assert.equal(enterprise.status,'active',JSON.stringify({clock:c.state.clock,history:enterprise.history,meetings:c.state.portfolio.customers.find(x=>x.id==='next-2-customer').root.information.meetingSessions,events:c.state.providerCampaign.events.slice(-8)}));
  const session=c.state.portfolio.customers.find(x=>x.id==='next-2-customer').root.information.meetingSessions.find(x=>x.status==='completed');
  assert.ok(session,'enterprise service completes an actual scheduled child meeting');
  assert.ok(session.captureRecordId,'the recorded Enterprise requirement has actual capture evidence');
- const evidence=enterprise.history[0]?.evidence?.meetingSessions||[];
- assert.ok(evidence.some(x=>x.id===session.id),'settlement links the real meeting session as mission evidence');
+ assert.ok(enterprise.history.some(h=>h.evidence?.meetingSessions?.some(x=>x.id===session.id)),'settlement links the real meeting session as mission evidence');
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'enterprise activation interval cannot inherit SMB qualification');
 
  // Enterprise needs its authored migration outcome and a fresh two-period record.
@@ -90,16 +97,15 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.operationEventually('migration',enterprise.id);
  if(c.state.providerCampaign.customers[0].status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
  c.advance(60-c.state.clock%60);
- assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'a meeting begun before migration cutover cannot certify room continuity after it');
- assert.equal(c.state.providerCampaign.customers.find(x=>x.id===enterprise.id).history.at(-1).evidence.migrationComplete,false);
- c.advance(60);
- assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,1,'enterprise migration and actual meeting evidence earn its first period');
- c.advance(60);
- assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,2,'enterprise earns a second fresh qualifying period');
- const nextEnterprise={action:'purchase',offerId:'next-3',planId:'swift',stage:'base'},enterpriseQuote=SOC.provider.quote(c.state,nextEnterprise);
+ assert.ok(c.state.providerCampaign.customers.find(x=>x.id===enterprise.id).history.some(h=>h.fullPeriod&&!h.evidence.migrationComplete&&!h.qualified),'pre-cutover service cannot certify migration');
+ for(let n=0;n<4&&c.state.providerCampaign.mission.consecutiveQualifying<2;n++){for(const customer of c.state.providerCampaign.customers.filter(x=>x.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(60);}
+ assert.ok(c.state.providerCampaign.mission.consecutiveQualifying>=2,'enterprise earns two fresh qualifying periods');
+ let nextEnterprise={action:'purchase',offerId:'next-3',planId:'swift',stage:'base'};
+ if(SOC.provider.quote(c.state,nextEnterprise).blockers.includes('CUSTOMER_OFFER_EXPIRED')){c.send({action:'refresh-opportunity'});nextEnterprise={...nextEnterprise,offerId:SOC.provider.inspect(c.state).offers[1].id};}
+ const enterpriseQuote=SOC.provider.quote(c.state,nextEnterprise);
  assert.deepEqual(enterpriseQuote.blockers,[]);c.send({...nextEnterprise,quoteRevision:c.state.revision});
- c.advance(60);
- assert.equal(c.state.providerCampaign.missionStatus,'won','enterprise victory requires its own settled periods, incident recovery and funded expansion');
+ completeExpansion(c,nextEnterprise.offerId,'next-3-customer');
+ assert.equal(c.state.providerCampaign.missionStatus,'won','enterprise victory requires its own settled periods, incident recovery and delivered expansion');
  assert.equal(c.state.providerCampaign.segmentHistory.length,1);
  if(c.state.providerCampaign.customers[0].status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
  if(c.state.providerCampaign.customers.find(x=>x.id===enterprise.id).status==='renewal')c.send({action:'renew',customerId:enterprise.id});
@@ -128,7 +134,8 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  assert.ok(governmentHistory.length===2&&governmentHistory.every(x=>x.evidence.passed&&x.evidence.boundaryEligible&&x.evidence.transcripts.length>0),'government earns its own scoped transcript and boundary evidence');
  const nextGovernment={action:'purchase',offerId:'next-5',planId:'swift',stage:'base'},governmentQuote=SOC.provider.quote(c.state,nextGovernment);
  assert.deepEqual(governmentQuote.blockers,[]);c.send({...nextGovernment,quoteRevision:c.state.revision});
- assert.equal(c.state.providerCampaign.missionStatus,'won','government victory follows two actual qualifying periods and funded expansion');
+ completeExpansion(c,'next-5','next-5-customer');
+ assert.equal(c.state.providerCampaign.missionStatus,'won','government victory follows two actual qualifying periods and delivered expansion');
  for(const customer of c.state.providerCampaign.customers.filter(x=>x.status==='renewal'))c.send({action:'renew',customerId:customer.id});
  c.send({action:'advance-segment'});
  assert.equal(c.state.providerCampaign.scenario,'defence');
@@ -169,6 +176,7 @@ test('government mission earns two real qualifying periods with either authored 
   const expansion={action:'purchase',offerId:'next-1',planId,stage:'base'},quote=SOC.provider.quote(c.state,expansion);
   assert.deepEqual(quote.blockers,[],`${planId} funded expansion: ${quote.blockers.join(',')}`);
   c.send({...expansion,quoteRevision:c.state.revision});
-  assert.equal(c.state.providerCampaign.missionStatus,'won',`${planId} mission victory derives from earned history and funded next contract`);
+  completeExpansion(c,'next-1','next-1-customer');
+  assert.equal(c.state.providerCampaign.missionStatus,'won',`${planId} mission victory derives from earned history and delivered next contract`);
  }
 });

@@ -7,8 +7,9 @@ function order(s,offer,pool='voice-bundle',resource='phone'){ const p=B.offers[o
 test('AC-SOC-374 shared contract allowance is consumed once across eligible contracts and wholesale usage remains charged',()=>{
  let s=setup();s=dispatch(s,order(s,'workplace'));s=dispatch(s,order(s,'workplace','voice-bundle','phone-two'));s=advance(s,2);s=E.dispatch(s,{type:'fault',id:'phone',fault:'OUTAGE'});assert.deepEqual(s.business.allowancePools[0].status,'active');
  const [a,b]=s.business.contracts;B.meter(s,'minute',5,a.id);B.meter(s,'minute',5,b.id);const until=a.nextBill-s.clock;s=advance(s,until);
- const retail=s.business.ledger.filter(x=>x.reason!=='wholesale'&&x.period!==undefined&&x.contract);assert.equal(retail.length,2);assert.equal(retail.reduce((n,x)=>n+x.overage,0),2);
- const wholesale=s.business.ledger.filter(x=>x.reason==='wholesale');assert.equal(wholesale.length,2);assert.equal(wholesale.reduce((n,x)=>n+x.usage,0),10);assert.ok(wholesale.every(x=>x.cents>0));
+ const handled=s.business.events.filter(x=>x.code==='AGGREGATE_DEMAND').reduce((n,x)=>n+x.handled,0)*(s.resources.people.effective?.handlingMinutes||0);
+ const retail=s.business.ledger.filter(x=>x.reason!=='wholesale'&&x.period!==undefined&&x.contract);assert.equal(retail.length,2);assert.equal(retail.reduce((n,x)=>n+x.overage,0),2+handled);
+ const wholesale=s.business.ledger.filter(x=>x.reason==='wholesale');assert.equal(wholesale.length,2);assert.equal(wholesale.reduce((n,x)=>n+x.usage,0),10+handled);assert.ok(wholesale.every(x=>x.cents>0));
  const saved=E.restore(JSON.stringify(s));assert.deepEqual(saved,s);
 });
 test('AC-SOC-375 shared pool rejects incompatible dimensions, customers, and unauthorized owners without mutation',()=>{

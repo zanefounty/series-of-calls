@@ -77,8 +77,11 @@ test('opportunity settlement waits preserve first success, native incident inter
 
   let won = until(bounded, state => state.providerCampaign.mission.consecutiveQualifying >= 2, 'two qualified periods');
   won = buy(won, { action: 'purchase', offerId: 'next-1', planId: 'swift', stage: 'base', market: 'us-seattle' });
-  assert.equal(won.providerCampaign.status, 'won', 'the second paid order creates an actual mission win');
-  assert.equal(won.providerCampaign.mission.nextOpportunityAvailable, false);
+  assert.equal(won.providerCampaign.status, 'operating', 'the second paid order is only a commitment');
+  won = stageEffective(won, 'next-1-customer', 'base');
+  for (const stage of ['carrier', 'partner']) { won = buy(won, { action: 'purchase', offerId: 'next-1', planId: 'swift', stage, customerId: 'next-1-customer' }); won = stageEffective(won, 'next-1-customer', stage); }
+  won = until(won, state => state.providerCampaign.status === 'won', 'delivered expansion victory', 120);
+  assert.equal(won.providerCampaign.status, 'won', 'effective expansion and observed work earn the mission win');
   assert.equal(nextOpportunity(won, 'already won opportunity', 180, { allowWon: true }), won,
     'the explicit won alternative returns immediately without continuing the career');
 });

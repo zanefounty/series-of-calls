@@ -22,7 +22,7 @@ function controller(initial,dispatch=SOC.dispatch){
 
 test('a paid two-customer Provider career retains 2,001 minutes of demand, incident recovery and settlement with equal restored and worker continuation',()=>{
  const run=controller(SOC.create({experience:'campaign',scenario:'smb',seed:73}));run.customer('starter','starter-customer');
- run.until(s=>s.providerCampaign.mission.consecutiveQualifying>=2&&s.providerCampaign.mission.nextOpportunityAvailable);run.customer('next-1','next-1-customer');run.send({action:'continue-career'});
+ run.until(s=>s.providerCampaign.mission.consecutiveQualifying>=2&&s.providerCampaign.mission.nextOpportunityAvailable);run.customer('next-1','next-1-customer');run.until(s=>s.providerCampaign.status==='won');run.send({action:'continue-career'});
  run.advanceTo(2001);const state=run.state,p=state.providerCampaign;
  assert.equal(state.clock,2001);assert.equal(p.customers.length,2);assert.ok(p.customers.every(c=>c.status==='active'));
  assert.ok(p.incidents.length>2&&p.incidents.length<=16,'each of two active customers can receive no more than the authored eight-incident sequence');

@@ -141,5 +141,7 @@ test('AC-SOC-769 actual overdue primary-domain incident prevents funded SMB vict
  s=buy(s,expansion);s=repairTransport(s);s=until(s,state=>project(state,'transport-repair').status==='complete',20);
  assert.equal(s.providerCampaign.incidents.find(i=>i.id===incident.id).status,'resolved');assert.equal(s.providerCampaign.mission.consecutiveQualifying,2);
  s=buy(s,{action:'purchase',offerId:'next-1',planId:'steady',stage:'carrier',customerId:'next-1-customer'});
- assert.equal(s.providerCampaign.missionStatus,'won');assert.ok(s.providerCampaign.mission.victoryProof);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ s=buy(s,{action:'purchase',offerId:'next-1',planId:'steady',stage:'partner',customerId:'next-1-customer'});
+ s=until(s,state=>state.providerCampaign.missionStatus==='won',90);
+ assert.ok(s.providerCampaign.customers.find(c=>c.id==='next-1-customer').metrics.completed>0);assert.ok(s.providerCampaign.mission.victoryProof);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });

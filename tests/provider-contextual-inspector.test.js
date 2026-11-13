@@ -6,7 +6,7 @@ function fixture(){
  w.N_=x=>x;w.eval(fs.readFileSync(path.join(ROOT,'src/i18n/en.js'),'utf8'));
  w.tr=(key,vars)=>String(w.I18N.en[key]||key).replace(/\{(\w+)\}/g,(text,name)=>vars?.[name]??text);
  w.SOCProviderCanvas={resourceStatus:()=> 'Ready'};
- for(const file of ['93-ui/70-provider-hud.js','93-ui/79-provider-context-actions.js','93-ui/79-provider-incidents.js','93-ui/75-provider-panels.js'])w.eval(fs.readFileSync(path.join(ROOT,'src/game',file),'utf8'));
+ for(const file of ['93-ui/70-provider-hud.js','93-ui/79-provider-context-actions.js','93-ui/79-provider-incidents.js','93-ui/79-provider-comparisons.js','93-ui/75-provider-panels.js'])w.eval(fs.readFileSync(path.join(ROOT,'src/game',file),'utf8'));
  return {dom,w};
 }
 test('non-SMB customer shows three ranked actions, keeps the migration comparison together, and starts technical detail closed',()=>{
@@ -41,6 +41,6 @@ test('unfinished paid stages reserve an immediate choice without splitting the n
  assert.ok(host.querySelector('[data-provider-action="quote"][data-stage="carrier"]'));
  const immediate=[...host.querySelectorAll('.provider-action-group [data-provider-action="operation"]')].filter(x=>!x.closest('details'));
  assert.deepEqual(immediate.map(x=>x.dataset.operation),['recording']);
- assert.deepEqual([...host.querySelectorAll('.provider-more-actions [data-context-group="scenario-alternatives"] [data-provider-action="operation"]')].map(x=>x.dataset.operation),['migration','migration-consolidated']);
+ assert.deepEqual([...host.querySelectorAll('.provider-more-actions [data-context-group="migration-options"] [data-provider-action="operation"]')].map(x=>x.dataset.operation),['migration','migration-consolidated']);
  dom.window.close();
 });

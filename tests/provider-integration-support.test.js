@@ -17,8 +17,9 @@ function paidNonstarter(endAt=360){
  for(const stage of ['base','carrier','partner']){s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});s=until(s,x=>x.providerCampaign.customers[0].stages[stage].status==='effective');}
  s=quoteAndBuy(s,{action:'operation',operationId:'bpo',customerId:'starter-customer'});s=until(s,x=>x.providerCampaign.projects.some(p=>p.operationId==='bpo'&&p.status==='complete'));
  while(s.clock<180)s=recoverAndTick(s);
- s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});s=SOC.dispatch(s,{type:'provider',command:{action:'continue-career'}});
+ s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
  for(const stage of ['carrier','partner'])s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});
+ s=until(s,x=>x.providerCampaign.status==='won',120);s=SOC.dispatch(s,{type:'provider',command:{action:'continue-career'}});
  while(s.clock<endAt)s=recoverAndTick(s);
  return s;
 }

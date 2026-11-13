@@ -26,6 +26,9 @@ function winSmb(){
  c.advance(60);assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,true);
  const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},quote=SOC.provider.quote(c.state,next);
  assert.deepEqual(quote.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
+ assert.equal(c.state.providerCampaign.missionStatus,'active','purchase is a funded commitment');
+ for(const stage of ['base','carrier','partner']){if(stage!=='base')c.purchase('next-1',stage,'next-1-customer');for(let n=0;n<30&&c.state.providerCampaign.customers[1].stages[stage].status!=='effective';n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}assert.equal(c.state.providerCampaign.customers[1].stages[stage].status,'effective');}
+ for(let n=0;n<40&&c.state.providerCampaign.status!=='won';n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}
  assert.equal(c.state.providerCampaign.missionStatus,'won');
  assert.equal(c.state.providerCampaign.mission.victoryProof?.qualifiedPeriods,2);
  return c;
@@ -39,10 +42,12 @@ test('earned mission victory survives a later poor period and remains sufficient
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MISSION_VICTORY/,'a forged victory snapshot must not restore');
 
  if(c.state.providerCampaign.customers.find(row=>row.id==='starter-customer').status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
+ c.send({action:'continue-career'});
  const expansionBase=SOC.provider.rules.plans.swift.base;
  c.advance(expansionBase.workMinutes);
  c.send({action:'staff',engineers:0,support:0});
  c.advance(60-c.state.clock%60);
+ for(let n=0;n<2&&c.state.providerCampaign.periodHistory.at(-1).qualified;n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(60);}
  assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,false,'actual unstaffed demand makes a later period fail');
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'the current streak resets truthfully');
  assert.equal(c.state.providerCampaign.missionStatus,'won','the earned mission outcome is historical');

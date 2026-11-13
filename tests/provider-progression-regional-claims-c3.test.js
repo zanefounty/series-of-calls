@@ -117,7 +117,11 @@ test('AC-SOC-653 public dispatch earns C3 from three paid markets and rejects re
   assert.deepEqual(policy.config.customerIds, [anchor]);
 
   const newCustomer = 'next-3-customer';
-  const baseRequest = { action: 'purchase', offerId: 'next-3', planId: 'swift', stage: 'base', market: 'au-sydney' };
+  let baseRequest = { action: 'purchase', offerId: 'next-3', planId: 'swift', stage: 'base', market: 'au-sydney' };
+  if (SOC.provider.quote(state, baseRequest).blockers.includes('CUSTOMER_OFFER_EXPIRED')) {
+    state = SOC.dispatch(state, { type: 'provider', command: { action: 'refresh-opportunity' } });
+    baseRequest = { ...baseRequest, offerId: SOC.provider.inspect(state).offers.find(row => row.id.startsWith('next-')).id };
+  }
   const baseQuote = SOC.provider.quote(state, baseRequest);
   assert.deepEqual(baseQuote.blockers, []);
   state = SOC.dispatch(state, { type: 'provider', command: { ...baseRequest, quoteRevision: baseQuote.atRevision } });

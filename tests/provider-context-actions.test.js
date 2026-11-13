@@ -13,14 +13,14 @@ test('customer action cap preserves ranked comparison pairs and keeps every over
  const rows=[
   {key:'incident-response',operations:[op('repair'),op('mitigate')]},
   {key:'service-prerequisites',operations:[op('recording')]},
-  {key:'scenario-alternatives',operations:[op('migration'),op('migration-consolidated')]},
+  {key:'migration-options',operations:[op('migration'),op('migration-consolidated')]},
   {key:'capacity',operations:[op('carrier-headroom'),op('managed-carrier-headroom')]}
  ];
  const model={primary:rows,secondary:[{key:'other-actions',operations:[op('bpo')]}],locked:[]},before=JSON.stringify(model);
  const result=A.compactCustomerActions(model,3);
  assert.deepEqual(ids(result.primary),['repair','mitigate','recording']);
  assert.deepEqual(ids(result.secondary),['migration','migration-consolidated','carrier-headroom','managed-carrier-headroom','bpo']);
- assert.deepEqual(group(result.secondary,'scenario-alternatives'),['migration','migration-consolidated']);
+ assert.deepEqual(group(result.secondary,'migration-options'),['migration','migration-consolidated']);
  assert.equal(JSON.stringify(model),before);
  const progressed=A.compactCustomerActions({...model,primary:rows.slice(2)},3);
  assert.deepEqual(ids(progressed.primary),['migration','migration-consolidated']);
@@ -48,10 +48,19 @@ test('incident repair and typed measured carrier headroom are primary beside the
 test('enterprise migration alternatives stay together until one is funded',()=>{
  const operations=[op('migration',['phone','desk']),op('migration-consolidated',['phone','desk']),op('quality',['recorder'])];
  const result=A.project(input(customer('enterprise'),operations));
- assert.deepEqual(group(result.primary,'scenario-alternatives'),['migration','migration-consolidated']);
+ assert.deepEqual(group(result.primary,'migration-options'),['migration','migration-consolidated']);
  const started=A.project(input(customer('enterprise'),operations,{projects:[{id:'p1',customerId:'customer-one',kind:'operation',operationId:'migration',status:'running'}]}));
- assert.deepEqual(group(started.primary,'scenario-alternatives'),[]);
+ assert.deepEqual(group(started.primary,'migration-options'),[]);
  assert.ok(ids(started.secondary).includes('quality'));
+});
+
+test('enterprise migration and external calling remain separate decision pairs with migration visible first',()=>{
+ const operations=[op('direct-external-reach',['carrier']),op('managed-external-reach',['carrier']),op('migration',['phone']),op('migration-consolidated',['phone'])];
+ const grouped=A.project(input(customer('enterprise'),operations)),compact=A.compactCustomerActions(grouped,3);
+ assert.deepEqual(group(grouped.primary,'migration-options'),['migration','migration-consolidated']);
+ assert.deepEqual(group(grouped.primary,'external-reach-options'),['direct-external-reach','managed-external-reach']);
+ assert.deepEqual(ids(compact.primary),['migration','migration-consolidated']);
+ assert.deepEqual(ids(compact.secondary),['direct-external-reach','managed-external-reach']);
 });
 
 test('government architecture prerequisites and alternative plans use actual project states',()=>{
@@ -161,11 +170,11 @@ test('scenario-owned requirements surface missing paid capture and rooms before 
 test('external reach alternatives are offered on the Enterprise carrier and cease after either is funded',()=>{
  const operations=[op('direct-external-reach',['carrier']),op('managed-external-reach',['carrier'],{available:false,blockers:['EARNED_EXTERNAL_REACH_MARKET_REQUIRED']})];
  const model=input(customer('enterprise'),operations,{resource:{id:'carrier',kind:'trunk'}}),before=JSON.stringify(model),result=A.project(model);
- assert.deepEqual(group(result.primary,'scenario-alternatives'),['direct-external-reach']);
+ assert.deepEqual(group(result.primary,'external-reach-options'),['direct-external-reach']);
  assert.ok(ids(result.locked).includes('managed-external-reach'));
  assert.equal(JSON.stringify(model),before);
  const eligible=A.project({...model,operations:operations.map(o=>({...o,available:true,blockers:[]}))});
- assert.deepEqual(group(eligible.primary,'scenario-alternatives'),['direct-external-reach','managed-external-reach']);
+ assert.deepEqual(group(eligible.primary,'external-reach-options'),['direct-external-reach','managed-external-reach']);
  const funded=A.project({...model,projects:[{id:'funded-reach',customerId:'customer-one',operationId:'direct-external-reach',status:'complete'}]});
  assert.deepEqual([...ids(funded.primary),...ids(funded.secondary),...ids(funded.locked)],[]);
 });

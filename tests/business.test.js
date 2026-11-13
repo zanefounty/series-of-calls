@@ -85,3 +85,20 @@ test('AC-SOC-022 all business tracks require their services and run identically 
   s=E.dispatch(s,{type:'fault',id:'phone',fault:'OUTAGE'});assert.equal(E.calculate(s).business.completion,false);
  }
 });
+
+test('legacy aggregate handling credits only staffed capacity available during the period',()=>{
+ const ready=solve(start()),healthy=advance(ready,60);
+ let interrupted=E.dispatch(ready,{type:'fault',id:'engage',fault:'OUTAGE'});
+ interrupted=advance(interrupted,59);
+ interrupted=E.dispatch(interrupted,{type:'fault',id:'engage',fault:null});
+ interrupted=advance(interrupted,1);
+ assert.ok(healthy.business.metrics.handled>0);
+ assert.ok(interrupted.business.metrics.handled<healthy.business.metrics.handled,'a last-minute recovery cannot claim a full period of delivery');
+ assert.ok(interrupted.business.events.findLast(e=>e.code==='AGGREGATE_DEMAND')?.staffedCapacity<healthy.business.events.findLast(e=>e.code==='AGGREGATE_DEMAND')?.staffedCapacity);
+ assert.deepEqual(E.restore(JSON.stringify(interrupted)),interrupted);
+ const recovered=advance(interrupted,60);assert.ok(recovered.business.metrics.handled>interrupted.business.metrics.handled,'the next healthy period delivers again');
+ const legacy=structuredClone(interrupted);delete legacy.business.demand.capacityMinutes;
+ assert.equal(E.restore(JSON.stringify(legacy)).business.demand.capacityMinutes,0,'older saves acquire a conservative partial-period counter');
+ const forged=structuredClone(interrupted);forged.business.demand.capacityMinutes=-1;
+ assert.throws(()=>E.restore(JSON.stringify(forged)),/INVALID_CAMPAIGN_DEMAND/);
+});

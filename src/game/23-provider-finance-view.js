@@ -18,11 +18,11 @@
    if(end<0||(!first&&start<0)||(first&&(b.ledgerPrunedThrough||0)>0))return {...base,unavailable:'postings-unavailable'};
    const postings=ledger.slice(start+1,end+1);
    const revenue=sum(postings,p=>p.category==='revenue'?p.cents:0),cost=sum(postings,p=>p.category==='cost'?p.cents:0);
-   if(revenue!==h.revenue||cost!==h.cost)return {...base,unavailable:'postings-unreconciled'};
+   if(revenue!==h.revenue||cost!==h.cost||h.setupInvestment!==undefined&&sum(postings,p=>group(p)==='setup'?p.cents:0)!==h.setupInvestment)return {...base,unavailable:'postings-unreconciled'};
    // A contiguous retained suffix lets us reverse current cash to the settlement boundary.
    const closingCash=b.balance.cash-sum(ledger.slice(end+1),delta),cashChange=sum(postings,delta),funding=sum(postings,p=>p.category==='funding'?p.cents:0),repayment=sum(postings,p=>p.category==='repayment'?p.cents:0);
    base.postings=postings.map(p=>({...copy(p),group:group(p),cashDelta:delta(p),customerName:customers.find(c=>c.id===p.customerId)?.name||null,projectName:campaign.projects.find(x=>x.id===p.projectId)?.name||p.operationId||null}));
-   base.bridge={openingCash:closingCash-cashChange,revenue,cost,operatingResult:h.operatingResult,funding,repayment,cashChange,closingCash};
+   base.bridge={openingCash:closingCash-cashChange,revenue,cost,operatingResult:h.operatingResult,setupInvestment:h.setupInvestment||0,funding,repayment,cashChange,closingCash};
    return base;
   });
   return {currency:b.currency,rows,archivedPeriods:campaign.historyCheckpoint?.periods||0,currentCash:b.balance.cash};

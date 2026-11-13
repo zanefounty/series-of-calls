@@ -33,6 +33,10 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   const model=expectedModel(provider,customer,child,catalogue,{memo,scope});models.set(key,model);return model;
  }
  function merge(target,patch){for(const [key,value] of Object.entries(patch||{})){target[key]=clone(value);}}
+ function historicalMigrationChild(child,at){
+  const migrations=child.operations?.migrations;if(!migrations?.some(m=>['rolled-back','rollback-pending'].includes(m.status)))return child;
+  return {...child,operations:{...child.operations,migrations:migrations.map(m=>{if(m.status==='rollback-pending')return {...m,status:m.rollbackFromStatus};if(m.status!=='rolled-back')return m;const history=(child.providerTasks||[]).flatMap(t=>t.rollbackHistory||[]).find(row=>row.migrationId===m.id);return history?.previousStatus==='complete'&&history.at>at?{...m,status:'complete'}:m;})}};
+ }
  function defaultsFor(id,child,catalogue){const kind=resourceKinds[id];const definition=catalogue?.[kind];if(!definition?.defaults)fail(`CATALOGUE:${id}`);return {...clone(definition.defaults),enabled:false,region:child.jurisdiction};}
  function authorizedProjects(provider,customer){const list=(provider.projects||[]).map((project,index)=>({project,index})).filter(x=>x.project.customerId===customer.id&&x.project.configSubmittedAt!==null&&x.project.configSubmittedAt!==undefined&&x.project.status!=='cancelled');if(list.length>2000)fail('PROJECT_LIMIT');return list.sort((a,b)=>a.project.configSubmittedAt-b.project.configSubmittedAt||a.project.acceptedAt-b.project.acceptedAt||a.index-b.index).map(x=>x.project);}
  function initialConfigs(customer,child,catalogue){
@@ -151,13 +155,14 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
    while(retirementIndex<retirements.length&&retirements[retirementIndex].at<=writeAt)applyRetirement(retirements[retirementIndex++]);
   }
   while(retirementIndex<retirements.length&&retirements[retirementIndex].at<=child.clock)applyRetirement(retirements[retirementIndex++]);
-  for(const task of child.providerTasks||[]){
+  const migrationTasks=(child.providerTasks||[]).flatMap(task=>[...(task.rollbackHistory||[]).filter(history=>history.migrationId!==task.migrationId).map(history=>({...task,migrationId:history.migrationId,cohort:history.cohort,rollbackHistory:[history]})),task]);
+  for(const task of migrationTasks){
    if(task.kind!=='migration'||task.status!=='submitted')continue;
    const project=task.decisionVersion===1?projects.find(item=>item.id===task.projectId&&item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration')):task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
    const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled')continue;
    if(!Number.isSafeInteger(task.createdAt)||project.configSubmittedAt!==task.createdAt+1||!Number.isSafeInteger(migration.cutoverAt))fail(`MIGRATION_TASK:${project.id}`);
    if(migration.cutoverAt>child.clock)continue;
-   if(!['verifying','complete','failed','rolled-back'].includes(migration.status)||migration.verifyAt!==migration.cutoverAt+1)fail(`MIGRATION_STATUS:${migration.id}`);
+   if(!['verifying','complete','failed','rolled-back','rollback-pending'].includes(migration.status)||migration.verifyAt!==migration.cutoverAt+1)fail(`MIGRATION_STATUS:${migration.id}`);
    const targetId=migration.target,target=configs[targetId]?.extensionScope;if(typeof target!=='string')continue;
    const identities=task.decisionVersion===1&&task.cohort?task.cohort:task.mode==='consolidated'?['alex','bea']:task.mode==='product-dedicated'?['alex']:['bea'];
    if(!Array.isArray(migration.identities)||stable(migration.identities)!==stable(identities))fail(`MIGRATION_IDENTITIES:${migration.id}`);
@@ -168,12 +173,17 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
     const saved=migration.checkpoint[resource.id],applied=migration.appliedGenerations[resource.id];
     if(!saved||!Number.isSafeInteger(saved.generation)||saved.generation<1||saved.desired?.identity!==resource.desired.identity||applied!==saved.generation+1)fail(`MIGRATION_GENERATION:${migration.id}:${resource.id}`);
     if(!configs[resource.id])fail(`MIGRATION_RESOURCE:${migration.id}:${resource.id}`);
-    const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete';skipTiming.add(resource.id);
+    const previous=clone(configs[resource.id]);configs[resource.id].scope=target;accepted[resource.id]=[previous,clone(configs[resource.id])];transitional[resource.id]=migration.status!=='complete'&&!(migration.status==='rollback-pending'&&migration.rollbackFromStatus==='complete');skipTiming.add(resource.id);
     migrationWrites.push({projectId:project.id,migrationId:migration.id,resourceId:resource.id,at:migration.cutoverAt,generation:applied,status:migration.status});
+    const rollback=task.rollbackHistory?.find(row=>row.migrationId===migration.id);
+    if(migration.status==='rolled-back'&&rollback?.at<=child.clock){
+      configs[resource.id]=previous;transitional[resource.id]=true;
+      migrationWrites.push({projectId:project.id,migrationId:migration.id+':rollback',resourceId:resource.id,at:rollback.at,generation:applied+1,status:'rolled-back'});
+    }
    }
   }
   function configsAt(at){
-   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild={...child,clock:at,providerTasks:(child.providerTasks||[]).filter(task=>task.createdAt<=at)};
+   const projects=(provider.projects||[]).filter(project=>project.customerId!==customer.id||project.configSubmittedAt===null||project.configSubmittedAt===undefined||project.configSubmittedAt<=at),historicalProvider={...provider,projects},historicalChild=historicalMigrationChild({...child,clock:at,providerTasks:(child.providerTasks||[]).filter(task=>task.createdAt<=at)},at);
    if(child.siteOperations)historicalChild.siteOperations={...child.siteOperations,exercises:[]};
    return (temporalContext?expectedModelAt(historicalProvider,customer,historicalChild,catalogue,at,temporalContext.memo,temporalContext.scope,'restore-start'):expectedModel(historicalProvider,customer,historicalChild,catalogue)).configs;
   }
@@ -280,7 +290,7 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   const projects=(provider.projects||[]).filter(p=>p?.customerId===customer.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&p.status!=='cancelled').map(p=>{
    const row=clone(p);if(row.serviceRetirement&&row.serviceRetirement.requestedAt>at)delete row.serviceRetirement;return row;
   });
-  const historicalProvider={...provider,projects},historicalChild={...child,clock:at};
+  const historicalProvider={...provider,projects},historicalChild=historicalMigrationChild({...child,clock:at},at);
   if(Array.isArray(child.siteOperations?.exercises))historicalChild.siteOperations={...child.siteOperations,exercises:child.siteOperations.exercises.map(exercise=>exercise.restoration?.requestedAt>at?{...exercise,restoration:null}:exercise)};
   const expected=expectedModelAt(historicalProvider,customer,historicalChild,catalogue,at,expectedModelMemo,{provider,customer,child}),resourceGenerations=Object.fromEntries(Object.entries(child.resources).map(([id,resource])=>[id,resource.generation]));
   const originalOrder=new Map((provider.projects||[]).map((project,index)=>[project.id,index]));

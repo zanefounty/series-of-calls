@@ -151,6 +151,12 @@ function socOperationsKernel(){
    }else{j.status='accepted';j.reason=null;j.acceptedAt=s.clock;j.receiptAt=s.clock+1;emit(s,i,'delivery','HTTP_202',{job:j.id});if(hooks.accepted)hooks.accepted(s,i,j);if(meter)meter(s,'message',1);}
   }
   for(const m of o.migrations){
+   if(m.status==='rollback-pending'&&s.clock>=m.rollbackAt){
+    const conflict=m.appliedGenerations&&Object.entries(m.appliedGenerations).some(([id,generation])=>s.resources[id]?.generation!==generation);
+    if(conflict){m.status=m.rollbackFromStatus;m.reason='ROLLBACK_CONFLICT';delete m.rollbackAt;delete m.rollbackFromStatus;continue;}
+    if(m.appliedGenerations){for(const [id,saved] of Object.entries(m.checkpoint)){const r=s.resources[id];r.desired=copy(saved.desired);r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}Object.assign(o.placements,m.previousPlacements);}
+    m.status='rolled-back';m.reason=null;delete m.rollbackAt;delete m.rollbackFromStatus;continue;
+   }
    if(m.status==='scheduled'&&s.clock>=m.cutoverAt){
     if(!services[m.target]?.ready){m.status='failed';m.reason='TARGET_UNAVAILABLE';continue;}
     const scope=s.resources[m.target].effective.extensionScope;
@@ -169,7 +175,7 @@ function socOperationsKernel(){
    }
   }
  }
- const fields={start:[],configure:['kind','config'],reserve:['number','type'],assign:['number','holder'],port:['number','target','donorAccepted','cutoverAt'],portOrder:['number','target','leadBusinessDays','cutoverAt'],portResponse:['port','accepted','reason'],recoverPort:['port'],policy:['identity','allowInternational','allowedPrefixes','callerId'],receipt:['job','eventId','signature'],inbound:['caseId'],migration:['identities','target','cutoverAt'],rollback:['migration']};
+ const fields={start:[],configure:['kind','config'],reserve:['number','type'],assign:['number','holder'],port:['number','target','donorAccepted','cutoverAt'],portOrder:['number','target','leadBusinessDays','cutoverAt'],portResponse:['port','accepted','reason'],recoverPort:['port'],policy:['identity','allowInternational','allowedPrefixes','callerId'],receipt:['job','eventId','signature'],inbound:['caseId'],migration:['identities','target','cutoverAt'],rollback:['migration','defer']};
  function command(s,c,services,emit,finish,hooks={}){
   if(!c||!own(fields,c.action)||Object.keys(c).some(k=>!['action',...fields[c.action]].includes(k)))fail('INVALID_OPERATIONS_COMMAND');
   if(c.action==='start'){if(s.operations)fail('OPERATIONS_ALREADY_STARTED');s.operations=create(s);return;}
@@ -206,6 +212,8 @@ function socOperationsKernel(){
    o.migrations.push({id:'migration-'+o.nextId++,identities:[...c.identities],target:c.target,cutoverAt:c.cutoverAt,status:'scheduled',reason:null,checkpoint:Object.fromEntries(cohort.map(r=>[r.id,{generation:r.generation,desired:copy(r.desired)}])),previousPlacements:Object.fromEntries(c.identities.map(i=>[i,platform(s,i)]))});
   }else if(c.action==='rollback'){
    const m=o.migrations.find(m=>m.id===c.migration);if(!m||!['complete','failed'].includes(m.status))fail('MIGRATION_ROLLBACK_UNAVAILABLE');
+   if(c.defer!==undefined&&c.defer!==true)fail('INVALID_MIGRATION_ROLLBACK');
+   if(c.defer===true){m.rollbackFromStatus=m.status;m.rollbackAt=s.clock+1;m.status='rollback-pending';m.reason=null;validate(s);return;}
    if(m.appliedGenerations){
     for(const [id,generation] of Object.entries(m.appliedGenerations)){const r=s.resources[id];if(!r||r.generation!==generation)fail('ROLLBACK_CONFLICT');}
     for(const [id,saved] of Object.entries(m.checkpoint)){const r=s.resources[id];r.desired=copy(saved.desired);r.generation++;r.provisioning={status:'pending',due:s.clock+1,generation:r.generation};}
@@ -245,7 +253,7 @@ function socOperationsKernel(){
   for(const p of latestPort.values())if(p.schemaVersion===2){const n=o.numbers.find(n=>n.number===p.number),expected={submitted:p.previousProvider,scheduled:p.previousProvider,failed:p.previousProvider,complete:p.target,recovering:p.recoveryFromProvider,recovered:p.previousProvider}[p.status];if(expected&&n?.provider!==expected)fail('PORT_NUMBER_PROVIDER_MISMATCH');}
   for(const p of Object.values(o.policies))if(!p||typeof p.allowInternational!=='boolean'||!number(p.callerId)||!Array.isArray(p.allowedPrefixes)||p.allowedPrefixes.some(x=>typeof x!=='string'||!/^\+[1-9]\d{0,5}$/.test(x)))fail('INVALID_SAVED_POLICY');
   for(const r of o.receipts)if(!id(r.id)||!id(r.job))fail('INVALID_WEBHOOK_RECEIPT');
-  for(const m of o.migrations)if(!id(m.id)||!Array.isArray(m.identities)||!m.checkpoint||!own(s.resources,m.target)||!['scheduled','verifying','complete','failed','rolled-back'].includes(m.status))fail('INVALID_MIGRATION_STATE');
+  for(const m of o.migrations)if(!id(m.id)||!Array.isArray(m.identities)||!m.checkpoint||!own(s.resources,m.target)||!['scheduled','verifying','complete','failed','rolled-back','rollback-pending'].includes(m.status)||m.status==='rollback-pending'&&(!['complete','failed'].includes(m.rollbackFromStatus)||m.rollbackAt!==s.clock+1)||m.status!=='rollback-pending'&&(m.rollbackAt!==undefined||m.rollbackFromStatus!==undefined))fail('INVALID_MIGRATION_STATE');
   if(!o.policies||!o.placements||!o.conversationWindows||Object.keys(o.conversationWindows).length>1000)fail('INVALID_OPERATIONS_INDEX');
   for(const [identity,target] of Object.entries(o.placements))if(!id(identity)||!['uc','dedicated'].includes(s.resources[target]?.kind))fail('INVALID_PLATFORM_PLACEMENT');
  }

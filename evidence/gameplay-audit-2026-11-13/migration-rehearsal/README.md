@@ -4,4 +4,4 @@ The [Chromium report](enterprise-staged-browser-report.json) records the player 
 
 The rehearsal checks observed source and target readiness, engineer availability, current cohort calls and protected meeting timing. It does not move live work. A versioned go decision requires the accepted cohort and cutover within five simulation minutes and rechecks all live conditions before dispatch. Behavioural tests prove that changing either choice blocks go and that a forged source placement in a saved rehearsal fails validation. Older saves retain their earlier migration rules.
 
-This covers one synthetic paid Enterprise coexistence path. Rollback control and human comprehension of the complete timeline remain open.
+This covers one synthetic paid Enterprise coexistence path. A [later journey](../migration-rollback/README.md) covers rollback and a second cutover. Human comprehension of the complete timeline remains open.

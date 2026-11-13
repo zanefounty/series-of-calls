@@ -16,8 +16,8 @@ function recover(s){
  const q=SOC.provider.quote(s,request('repair'));if(q.blockers.length){assert.ok(q.blockers.every(b=>['ENGINEER_CAPACITY','SUPPORT_CAPACITY'].includes(b)),JSON.stringify(q.blockers));return s;}
  return buy(s,request('repair'));
 }
-function opening(migrationDecisionVersion,migrationRehearsalVersion){
- let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney',...(migrationDecisionVersion?{migrationDecisionVersion,migrationReservationVersion:1,...(migrationRehearsalVersion?{migrationRehearsalVersion}: {})}:{})});
+function opening(migrationDecisionVersion,migrationRehearsalVersion,migrationRollbackVersion){
+ let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney',...(migrationDecisionVersion?{migrationDecisionVersion,migrationReservationVersion:1,...(migrationRehearsalVersion?{migrationRehearsalVersion}: {}),...(migrationRollbackVersion?{migrationRollbackVersion}:{})}:{})});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
  s=until(s,x=>x.providerCampaign.customers[0].status==='active',30);
  s=buy(s,request('room'));s=buy(s,request('recording'));
@@ -107,6 +107,31 @@ test('fresh paid migration requires a matching accepted readiness rehearsal befo
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
  const falseSource=structuredClone(s);falseSource.portfolio.customers[0].root.providerTasks.find(t=>t.projectId===projectId).rehearsal.sourcePlacements.bea='migration-phone';
  assert.throws(()=>SOC.restore(JSON.stringify(falseSource)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
+});
+
+test('paid Enterprise rollback restores placements, removes current proof and allows a newly rehearsed cutover',()=>{
+ let s=buy(opening(1,1,1),request('migration')),projectId=project(s,'migration').id;
+ const choice=state=>({action:'migration-decision',projectId,decision:'rehearse',cohort:['alex','bea'],cutoverAt:state.clock+3});
+ s=until(s,state=>SOC.provider.quote(state,choice(state)).blockers.length===0,65,true);
+ let rehearsal=choice(s),q=SOC.provider.quote(s,rehearsal);s=send(s,{...rehearsal,quoteRevision:q.atRevision});
+ const go={...rehearsal,decision:'go'};q=SOC.provider.quote(s,go);assert.deepEqual(q.blockers,[]);s=send(s,{...go,quoteRevision:q.atRevision});
+ s=until(s,state=>child(state).operations.migrations.some(m=>m.status==='complete')&&project(state,'migration').status==='complete',20,true);
+ assert.equal(SOC.operations.platform(child(s),'bea'),'migration-phone');
+ const rollback={action:'migration-decision',projectId,decision:'rollback'};
+ s=until(s,state=>SOC.provider.quote(state,rollback).blockers.length===0,30,true);
+ q=SOC.provider.quote(s,rollback);assert.equal(q.setupCents,0);assert.equal(q.commercial.migration.migrationStatus,'complete');
+ const modal=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'});modal.window.N_=key=>key;modal.window.SOCProviderCanvas={resourceStatus:()=>''};for(const file of ['23-provider-variants.js','93-ui/70-provider-hud.js','93-ui/74-provider-security.js','93-ui/75-provider-panels.js'])modal.window.eval(fs.readFileSync(path.join(__dirname,'../src/game',file),'utf8'));
+ const beforeRollback=modal.window.document.createElement('div');beforeRollback.innerHTML=modal.window.SOCProviderPanels.inspector(SOC.provider.inspect(s),{selection:{customerId}});assert.ok(beforeRollback.querySelector('[data-provider-form="migration-rollback"]'));
+ const quoted=modal.window.document.createElement('div');quoted.innerHTML=modal.window.SOCProviderPanels.quote(q,{quoteRequest:rollback});assert.match(quoted.textContent,/funded setup.*remains spent/i);assert.match(quoted.textContent,/existing supplier commitment.*remains payable/i);
+ s=send(s,{...rollback,quoteRevision:q.atRevision});assert.equal(child(s).operations.migrations[0].status,'rollback-pending');assert.ok(SOC.provider.quote(s,request('migration-consolidated')).blockers.includes('ENGINEER_CUTOVER_RESERVED'),'competing two-engineer delivery cannot consume the pending restore slot');assert.ok(SOC.provider.quote(s,{action:'staff',engineers:0,support:1}).blockers.includes('ENGINEER_CUTOVER_RESERVED'));assert.deepEqual(SOC.restore(JSON.stringify(s)),s);s=tick(s);let task=child(s).providerTasks.find(t=>t.projectId===projectId);
+ assert.equal(SOC.operations.platform(child(s),'bea'),'phone');assert.equal(SOC.operations.platform(child(s),'alex'),'phone');assert.equal(project(s,'migration').status,'complete','funded historical delivery remains recorded');assert.equal(task.status,'submitted');assert.equal(task.rollbackHistory.length,1);assert.equal(child(s).operations.migrations[0].status,'rolled-back');assert.ok(task.reservation,'the original reservation remains as historical evidence');
+ const afterRollback=modal.window.document.createElement('div');afterRollback.innerHTML=modal.window.SOCProviderPanels.inspector(SOC.provider.inspect(s),{selection:{customerId}});assert.ok(afterRollback.querySelector('[data-provider-form="migration-decision"]'));assert.match(afterRollback.textContent,/Previous cutover rolled back/);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const forged=structuredClone(s);forged.portfolio.customers[0].root.providerTasks.find(t=>t.projectId===projectId).rollbackHistory[0].migrationId='migration-forged';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MIGRATION_ROLLBACK_LINEAGE/);
+ s=until(s,state=>SOC.provider.quote(state,choice(state)).blockers.length===0,20,true);
+ rehearsal=choice(s);q=SOC.provider.quote(s,rehearsal);s=send(s,{...rehearsal,quoteRevision:q.atRevision});q=SOC.provider.quote(s,{...rehearsal,decision:'go'});assert.deepEqual(q.blockers,[]);s=send(s,{...rehearsal,decision:'go',quoteRevision:q.atRevision});
+ s=until(s,state=>project(state,'migration').status==='complete'&&child(state).operations.migrations.at(-1).status==='complete',20,true);
+ assert.equal(SOC.operations.platform(child(s),'bea'),'migration-phone');assert.equal(child(s).operations.migrations.length,2);assert.deepEqual(SOC.restore(JSON.stringify(s)),s);modal.window.close();
 });
 
 for(const operationId of ['migration','migration-consolidated'])test(`paid Enterprise ${operationId} preserves identities, number assignments and actual contact work around its cutover`,()=>{

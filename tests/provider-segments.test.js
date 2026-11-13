@@ -1,6 +1,14 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path');
 const SOC=require('../src/game/55-communications');
+
+function capturePerfFixture(state,count){
+ const directory=process.env.SOC_PROVIDER_PERF_FIXTURE_DIR;if(!directory)return;
+ assert.equal(state.providerCampaign.customers.length,count);
+ const save=JSON.stringify(state);assert.deepEqual(SOC.restore(save),state);
+ fs.mkdirSync(directory,{recursive:true});fs.writeFileSync(path.join(directory,`${count}.json`),save+'\n');
+}
 
 function begin(scenario='smb',planId='swift',difficulty='normal'){
  let state=SOC.create({experience:'campaign',scenario,market:'au-sydney',difficulty}),sequence=1;
@@ -45,6 +53,7 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.advance(60-c.state.clock);
  assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,false,'commissioning interval cannot qualify');
  c.advance(60);assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,true);
+ capturePerfFixture(c.state,1);
  c.advance(60);assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,true);
  const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},q=SOC.provider.quote(c.state,next);
  assert.deepEqual(q.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
@@ -84,6 +93,7 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  assert.ok(session,'enterprise service completes an actual scheduled child meeting');
  assert.ok(session.captureRecordId,'the recorded Enterprise requirement has actual capture evidence');
  assert.ok(enterprise.history.some(h=>h.evidence?.meetingSessions?.some(x=>x.id===session.id)),'settlement links the real meeting session as mission evidence');
+ capturePerfFixture(c.state,3);
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'enterprise activation interval cannot inherit SMB qualification');
 
  // Enterprise needs its authored migration outcome and a fresh two-period record.
@@ -132,6 +142,7 @@ test('earned SMB victory unlocks enterprise in the same shared career and the ne
  c.advance(governmentFinish-c.state.clock);
  const governmentHistory=c.state.providerCampaign.customers.find(x=>x.id==='next-4-customer').history.slice(-2);
  assert.ok(governmentHistory.length===2&&governmentHistory.every(x=>x.evidence.passed&&x.evidence.boundaryEligible&&x.evidence.transcripts.length>0),'government earns its own scoped transcript and boundary evidence');
+ capturePerfFixture(c.state,5);
  const nextGovernment={action:'purchase',offerId:'next-5',planId:'swift',stage:'base'},governmentQuote=SOC.provider.quote(c.state,nextGovernment);
  assert.deepEqual(governmentQuote.blockers,[]);c.send({...nextGovernment,quoteRevision:c.state.revision});
  completeExpansion(c,'next-5','next-5-customer');

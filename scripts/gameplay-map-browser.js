@@ -42,6 +42,8 @@ async function observation(page) {
       completed:state.providerCampaign.jobs.filter(j=>j.status==='completed').length,
       periodOutcome:model.outcomeAggregate||model.periodOutcome||model.outcome,
       selection:view.selection,camera:view.camera,sheetOpen:view.sheetOpen,quoteModal:view.quoteModal,
+      legend:document.querySelector('.provider-world-legend')?.textContent,
+      legendFontSize:getComputedStyle(document.querySelector('.provider-world-legend')).fontSize,
       pageWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth,
       hud:document.querySelector('.provider-hud')?.textContent,
       resources:[...document.querySelectorAll('.provider-resource-node')].map(n=>({id:n.dataset.id,text:n.textContent}))};
@@ -97,6 +99,9 @@ async function run(engine,browser,viewport) {
     const state = await observation(page);
     assert.ok(state.pageWidth<=state.viewportWidth,`${name}: horizontal page overflow`);
     assert.ok(!state.hud.includes('Capacity clear'),`${name}: unsupported capacity claim`);
+    assert.ok(Number.parseFloat(state.legendFontSize)>=12,`${name}: map legend is too small to read`);
+    if(name==='opening')assert.match(state.legend,/Customer locations.*Select one/);
+    if(['base-map','carrier-map','partner-map'].includes(name))assert.match(state.legend,/green ready resources.*gold ready dependencies/);
     row.steps.push({name,...state});
     await page.screenshot({path:path.join(directory,`${name}.png`),fullPage:true}); writeReport();
   };
@@ -127,6 +132,7 @@ async function run(engine,browser,viewport) {
     await step('comparison-sheet');
     await click(page,'[data-provider-action="quote"][data-offer="starter"][data-plan="swift"]');
     await visible(page,'[data-provider-action="confirm-quote"]').waitFor();
+    await click(page,'.provider-starter-retail summary');
     const original=await observation(page),retail=page.locator('[data-provider-form="retail-quote"] [name="retailPrice"]');
     const acceptedRetail=await retail.inputValue();
     await retail.fill('999999');
@@ -171,7 +177,8 @@ async function run(engine,browser,viewport) {
     const after=await observation(page);assert.ok(after.completed>0);
     assert.ok(after.periodOutcome?.offered>0,'displayed outcome denominator must come from actual period workload');
     await click(page,'.provider-map-node[data-id="starter-customer"]');
-    await click(page,'.provider-inspector [data-provider-action="operation"][data-operation="recording"]');
+    await click(page,'[data-provider-action="drawer"][data-provider-value="operations"]');
+    await click(page,'[data-provider-action="operation"][data-operation="recording"]');
     await click(page,'[data-provider-action="confirm-quote"]');
     const project=await page.evaluate(()=>SCP.state.providerCampaign.projects.findLast(p=>p.operationId==='recording'));
     assert.ok(project,'recording operation must have a funded project');

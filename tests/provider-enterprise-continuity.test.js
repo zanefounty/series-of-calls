@@ -16,8 +16,8 @@ function recover(s){
  const q=SOC.provider.quote(s,request('repair'));if(q.blockers.length){assert.ok(q.blockers.every(b=>['ENGINEER_CAPACITY','SUPPORT_CAPACITY'].includes(b)),JSON.stringify(q.blockers));return s;}
  return buy(s,request('repair'));
 }
-function opening(migrationDecisionVersion){
- let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney',...(migrationDecisionVersion?{migrationDecisionVersion,migrationReservationVersion:1}:{})});
+function opening(migrationDecisionVersion,migrationRehearsalVersion){
+ let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney',...(migrationDecisionVersion?{migrationDecisionVersion,migrationReservationVersion:1,...(migrationRehearsalVersion?{migrationRehearsalVersion}: {})}:{})});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
  s=until(s,x=>x.providerCampaign.customers[0].status==='active',30);
  s=buy(s,request('room'));s=buy(s,request('recording'));
@@ -88,6 +88,25 @@ test('paid cutover refuses an engineer already occupied by another delivery wind
  assert.ok(q.blockers.includes('ENGINEER_CUTOVER_UNAVAILABLE'));
  assert.throws(()=>send(s,{...decision,quoteRevision:q.atRevision}),/PROVIDER_QUOTE_BLOCKED/);
  assert.equal(child(s).operations.migrations.length,0);
+});
+
+test('fresh paid migration requires a matching accepted readiness rehearsal before go',()=>{
+ let s=buy(opening(1,1),request('migration')),projectId=project(s,'migration').id;
+ const cohort=['alex','bea'],decision=state=>({action:'migration-decision',projectId,decision:'rehearse',cohort,cutoverAt:state.clock+3});
+ s=until(s,state=>SOC.provider.quote(state,decision(state)).blockers.length===0,65,true);
+ const planned=decision(s),premature=SOC.provider.quote(s,{...planned,decision:'go'});
+ assert.ok(premature.blockers.includes('MIGRATION_REHEARSAL_REQUIRED'));
+ const q=SOC.provider.quote(s,planned);assert.equal(q.commercial.migration.rehearsal.targetReady,true);
+ s=send(s,{...planned,quoteRevision:q.atRevision});const rehearsal=child(s).providerTasks.find(t=>t.projectId===projectId).rehearsal;
+ assert.deepEqual(rehearsal,{version:1,cohort,cutoverAt:planned.cutoverAt,acceptedAt:s.clock,sourcePlacements:{alex:'phone',bea:'phone'},target:'migration-phone'});
+ assert.ok(SOC.provider.quote(s,{...planned,decision:'go',cohort:['bea']}).blockers.includes('MIGRATION_REHEARSAL_REQUIRED'),'a changed cohort needs a new rehearsal');
+ assert.ok(SOC.provider.quote(s,{...planned,decision:'go',cutoverAt:planned.cutoverAt+1}).blockers.includes('MIGRATION_REHEARSAL_REQUIRED'),'a changed cutover needs a new rehearsal');
+ const go={...planned,decision:'go'},goQuote=SOC.provider.quote(s,go);assert.deepEqual(goQuote.blockers,[]);
+ s=send(s,{...go,quoteRevision:goQuote.atRevision});assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const forged=structuredClone(s);forged.portfolio.customers[0].root.providerTasks.find(t=>t.projectId===projectId).rehearsal.cutoverAt++;
+ assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
+ const falseSource=structuredClone(s);falseSource.portfolio.customers[0].root.providerTasks.find(t=>t.projectId===projectId).rehearsal.sourcePlacements.bea='migration-phone';
+ assert.throws(()=>SOC.restore(JSON.stringify(falseSource)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
 });
 
 for(const operationId of ['migration','migration-consolidated'])test(`paid Enterprise ${operationId} preserves identities, number assignments and actual contact work around its cutover`,()=>{

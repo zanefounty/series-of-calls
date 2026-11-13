@@ -1,0 +1,7 @@
+# Accepted Enterprise cutover readiness rehearsal
+
+The [Chromium report](enterprise-staged-browser-report.json) records the player selecting Alex and Bea, reviewing a [readiness rehearsal quote](migration-rehearsal-quote.png), accepting it, and then authorising the matching cutover at minute 55. The [accepted-state screenshot](migration-rehearsal-accepted.png) and [go quote](migration-go-quote.png) show the visible sequence. The exported [save](mission-victory-export.json) records the acceptance at minute 52, both identities' source placements, the cutover target and time, and the subsequent engineer reservation. Its SHA-256 matches the report. The browser journey passed with `noSourceDrift: true` through service, renewal, second-customer delivery, and save/reload.
+
+The rehearsal checks observed source and target readiness, engineer availability, current cohort calls and protected meeting timing. It does not move live work. A versioned go decision requires the accepted cohort and cutover within five simulation minutes and rechecks all live conditions before dispatch. Behavioural tests prove that changing either choice blocks go and that a forged source placement in a saved rehearsal fails validation. Older saves retain their earlier migration rules.
+
+This covers one synthetic paid Enterprise coexistence path. Rollback control and human comprehension of the complete timeline remain open.

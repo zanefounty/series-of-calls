@@ -216,14 +216,16 @@ async function runMissionJourney(baseUrl,scenario,{variant='standard',mobile=fal
    await click(page,'[data-provider-action="speed"][data-provider-value="8"]');
    await page.waitForFunction(()=>{const child=SCP.state.portfolio.customers[0].root,target=child.providerTasks?.some(t=>t.mode==='consolidated')?'phone':'migration-phone';return !!child.providerTasks?.some(t=>t.decisionVersion===1)&&SOC.observe(child,target).ready;},null,{timeout:90000});
    await pause();
-   let migrationQuote,cutoverAt;
+   let migrationQuote,cutoverAt,rehearsed=false;
    for(let attempt=0;attempt<12;attempt++){
     await selectMapCustomer(page);
     const migrationForm=page.locator('.provider-inspector [data-provider-form="migration-decision"]');await migrationForm.waitFor({timeout:15000});
     if(variant==='staged')await migrationForm.locator('[name="cohort"]').selectOption('alex-bea');
+    if(!rehearsed)await migrationForm.locator('[name="decision"]').selectOption('rehearse');
     cutoverAt=Number(await migrationForm.locator('[name="cutoverAt"]').inputValue());await migrationForm.locator('button').click();
     migrationQuote=await page.evaluate(()=>structuredClone(SOC_PROVIDER_UI.view().quote));assert.equal(migrationQuote.action,'migration-decision');
-    if(!migrationQuote.blockers.length)break;
+    if(!migrationQuote.blockers.length&&rehearsed)break;
+    if(!migrationQuote.blockers.length){assert.equal(migrationQuote.commercial.migration.decision,'rehearse');await step('migration-rehearsal-quote');await click(page,'[data-provider-action="confirm-quote"]');await page.waitForFunction(()=>SCP.state.portfolio.customers[0].root.providerTasks?.some(t=>t.decisionVersion===1&&t.rehearsal),null,{timeout:15000});rehearsed=true;row.migrationRehearsal=await page.evaluate(()=>structuredClone(SCP.state.portfolio.customers[0].root.providerTasks.find(t=>t.rehearsal).rehearsal));await step('migration-rehearsal-accepted');continue;}
     assert.ok(migrationQuote.blockers.every(code=>['COHORT_ACTIVE_CALL','PROTECTED_MEETING_ACTIVE','PROTECTED_MEETING_WINDOW'].includes(code)),JSON.stringify(migrationQuote.blockers));
     (row.refusedMigrationQuotes??=[]).push({atRevision:migrationQuote.atRevision,blockers:migrationQuote.blockers});await click(page,'[data-provider-action="cancel-quote"]');
     await click(page,'[data-provider-action="speed"][data-provider-value="8"]');await waitClock((await page.evaluate(()=>SCP.state.clock))+2);await pause();

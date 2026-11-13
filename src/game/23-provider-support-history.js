@@ -62,7 +62,7 @@ function socProviderSupportHistoryKernel(){
    const task=tasks.find(row=>row.migrationId===migration.id&&row.kind==='migration'&&row.status==='submitted');if(!task||!integer(task.createdAt))return null;
    const operationId=task.mode==='consolidated'?'migration-consolidated':task.mode==='product-dedicated'?'cisco-dedicated-uc':task.mode===undefined?'migration':null;
    const project=s.providerCampaign.projects.find(row=>row.customerId===c.id&&row.operationId===operationId&&row.configSubmittedAt===task.createdAt+1&&row.kind==='operation');if(!project||project.configSubmittedAt===null||project.status==='complete'&&!paidProject(s,project,hooks))return null;
-   const expected=task.mode==='consolidated'?{identities:['alex','bea'],target:'phone'}:task.mode==='product-dedicated'?{identities:['alex'],target:'dedicated-platform'}:{identities:['bea'],target:'migration-phone'};
+   const expected=task.mode==='consolidated'?{identities:task.decisionVersion===1&&task.cohort?task.cohort:['alex','bea'],target:'phone'}:task.mode==='product-dedicated'?{identities:['alex'],target:'dedicated-platform'}:{identities:task.decisionVersion===1&&task.cohort?task.cohort:['bea'],target:'migration-phone'};
    if(migration.target!==expected.target||!same(migration.identities,expected.identities)||task.createdAt<migration.cutoverAt-1440||task.createdAt>migration.cutoverAt)return null;
    const previous=migration.previousPlacements;
    if(!previous||typeof previous!=='object'||Array.isArray(previous)||Object.keys(previous).sort().join(',')!==expected.identities.slice().sort().join(','))return null;

@@ -35,6 +35,7 @@ test('versioned paid migration waits for a quoted cutover decision and a held pl
  const dom=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'});dom.window.N_=key=>key;dom.window.SOCProviderCanvas={resourceStatus:()=>''};for(const file of ['23-provider-variants.js','93-ui/70-provider-hud.js','93-ui/74-provider-security.js','93-ui/75-provider-panels.js'])dom.window.eval(fs.readFileSync(path.join(__dirname,'../src/game',file),'utf8'));
  const inspector=dom.window.SOCProviderPanels.inspector(SOC.provider.inspect(s),{selection:{customerId}}),host=dom.window.document.createElement('div');host.innerHTML=inspector;
  assert.equal(host.querySelector('[data-provider-form="migration-decision"]')?.dataset.project,funded.id);
+ assert.deepEqual([...host.querySelector('[name="cohort"]').options].map(option=>option.value),['bea','alex-bea']);assert.equal(host.querySelector('[name="cohort"]').value,'bea');
  assert.match(host.textContent,/Migration timeline/);assert.match(host.textContent,/Protect the recorded partner meeting/);
  s=until(s,x=>x.clock>=funded.dueAt+3,20,true);
  assert.equal(child(s).operations.migrations.length,0,'readiness alone cannot schedule a cutover');
@@ -53,6 +54,22 @@ test('versioned paid migration waits for a quoted cutover decision and a held pl
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
  const altered=structuredClone(s);altered.portfolio.customers[0].root.providerTasks[0].projectId='other-project';assert.throws(()=>SOC.restore(JSON.stringify(altered)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
  dom.window.close();
+});
+
+test('coexistence cohort choice sends both identities through the paid cutover and survives save validation',()=>{
+ let s=buy(opening(1),request('migration')),projectId=project(s,'migration').id;
+ const choice=state=>({action:'migration-decision',projectId,decision:'go',cohort:['alex','bea'],cutoverAt:state.clock+3});
+ s=until(s,state=>SOC.provider.quote(state,choice(state)).blockers.length===0,65,true);
+ assert.throws(()=>SOC.provider.quote(s,{...choice(s),cohort:['alex']}),/INVALID_PROVIDER_MIGRATION_DECISION/);
+ const q=SOC.provider.quote(s,choice(s));assert.deepEqual(q.commercial.migration.cohort,['alex','bea']);
+ assert.equal(q.setupCents,0,'the funded migration plan receives one setup charge');
+ s=send(s,{...choice(s),quoteRevision:q.atRevision});const task=child(s).providerTasks.find(t=>t.projectId===projectId),migration=child(s).operations.migrations.find(m=>m.id===task.migrationId);
+ assert.deepEqual(task.cohort,['alex','bea']);assert.deepEqual(migration.identities,task.cohort);assert.equal(migration.target,'migration-phone');
+ assert.equal(s.providerCampaign.projects.filter(p=>p.operationId==='migration').length,1);
+ s=until(s,state=>child(state).operations.migrations.some(m=>m.id===migration.id&&m.status==='complete'),20,true);
+ assert.equal(project(s,'migration').status,'complete');for(const identity of ['alex','bea'])assert.equal(SOC.operations.platform(child(s),identity),'migration-phone');
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const altered=structuredClone(s);altered.portfolio.customers[0].root.providerTasks.find(t=>t.projectId===projectId).cohort=['bea'];assert.throws(()=>SOC.restore(JSON.stringify(altered)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
 });
 
 for(const operationId of ['migration','migration-consolidated'])test(`paid Enterprise ${operationId} preserves identities, number assignments and actual contact work around its cutover`,()=>{

@@ -153,13 +153,13 @@ function socProviderConfigurationAuthorityKernel(rules,products,government){
   while(retirementIndex<retirements.length&&retirements[retirementIndex].at<=child.clock)applyRetirement(retirements[retirementIndex++]);
   for(const task of child.providerTasks||[]){
    if(task.kind!=='migration'||task.status!=='submitted')continue;
-   const project=task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
+   const project=task.decisionVersion===1?projects.find(item=>item.id===task.projectId&&item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration')):task.mode==='product-dedicated'?projects.find(item=>item.productId==='cisco-dedicated-uc'):projects.find(item=>item.operationId===(task.mode==='consolidated'?'migration-consolidated':'migration'));
    const migration=child.operations?.migrations?.find(item=>item.id===task.migrationId);if(!project||!migration||migration.status==='cancelled')continue;
    if(!Number.isSafeInteger(task.createdAt)||project.configSubmittedAt!==task.createdAt+1||!Number.isSafeInteger(migration.cutoverAt))fail(`MIGRATION_TASK:${project.id}`);
    if(migration.cutoverAt>child.clock)continue;
    if(!['verifying','complete','failed','rolled-back'].includes(migration.status)||migration.verifyAt!==migration.cutoverAt+1)fail(`MIGRATION_STATUS:${migration.id}`);
    const targetId=migration.target,target=configs[targetId]?.extensionScope;if(typeof target!=='string')continue;
-   const identities=task.mode==='consolidated'?['alex','bea']:task.mode==='product-dedicated'?['alex']:['bea'];
+   const identities=task.decisionVersion===1&&task.cohort?task.cohort:task.mode==='consolidated'?['alex','bea']:task.mode==='product-dedicated'?['alex']:['bea'];
    if(!Array.isArray(migration.identities)||stable(migration.identities)!==stable(identities))fail(`MIGRATION_IDENTITIES:${migration.id}`);
    const endpoints=Object.values(child.resources).filter(resource=>resource.kind==='endpoint'&&identities.includes(resource.desired?.identity));
    if(!endpoints.length||!migration.checkpoint||stable(Object.keys(migration.checkpoint).sort())!==stable(endpoints.map(resource=>resource.id).sort()))fail(`MIGRATION_CHECKPOINT:${migration.id}`);

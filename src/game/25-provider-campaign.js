@@ -143,8 +143,8 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  function quote(s,request,hooks={}){
   const p=s?.providerCampaign;if(!p||p.pack!==PACK)fail('PROVIDER_CAMPAIGN_NOT_STARTED');if(!request||typeof request!=='object'||Array.isArray(request))fail('INVALID_PROVIDER_QUOTE');
   if(request.action==='migration-decision'){
-   exact(request,['action','projectId','decision','cutoverAt','quoteRevision'],'INVALID_PROVIDER_QUOTE');
-   if(!id(request.projectId)||!['go','hold'].includes(request.decision)||request.decision==='go'&&!integer(request.cutoverAt,s.clock+1,s.clock+60)||request.decision==='hold'&&request.cutoverAt!==undefined)fail('INVALID_PROVIDER_MIGRATION_DECISION');
+   exact(request,['action','projectId','decision','cutoverAt','cohort','quoteRevision'],'INVALID_PROVIDER_QUOTE');
+   if(!id(request.projectId)||!['go','hold'].includes(request.decision)||request.decision==='go'&&!integer(request.cutoverAt,s.clock+1,s.clock+60)||request.decision==='hold'&&request.cutoverAt!==undefined||request.cohort!==undefined&&!['["bea"]','["alex","bea"]'].includes(JSON.stringify(request.cohort)))fail('INVALID_PROVIDER_MIGRATION_DECISION');
    ensureHooks(hooks,['migrationDecisionQuote']);
    return hooks.migrationDecisionQuote(s,request);
   }

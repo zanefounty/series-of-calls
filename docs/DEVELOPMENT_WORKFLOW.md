@@ -10,6 +10,8 @@ Write a bounded contract before delegating: source/requirement IDs, fictional pr
 
 For assessed gameplay, specify a successful reference solution, another valid configuration where alternatives are allowed, a meaningful failing configuration and a repair. A scripted reference solution must not become the only answer the assessor accepts.
 
+For changes to decisions, balance, progression or story, use [the game-design skill](../.agents/skills/soc-game-design/SKILL.md). Add the player intent, visible information, feasible alternatives, costs/delays, observed consequence and next opportunity to the bounded contract. Use [the playtest skill](../.agents/skills/soc-playtest/SKILL.md) to compare equivalent starting states and outcome windows, then inspect the complete visible journey. This workflow was added on 13 November 2026; it does not turn proposed design targets into release gates or automated route checks into human evidence. Routine wording and dependency changes stay on their relevant verification step.
+
 ## Implement through the real path
 
 Use [the architecture](ARCHITECTURE.md) to find the owning factory and the shared dispatcher. Add the administration controls and inspector explanation alongside the simulation change. Validate imported state as well as new commands; reject cross-tenant and incompatible references. Preserve historical receipts without allowing fabricated history. Make worker and synchronous results equivalent and reject stale async results.

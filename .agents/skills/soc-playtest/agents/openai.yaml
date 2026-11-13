@@ -1,0 +1,4 @@
+interface:
+  display_name: "Series of Calls playtesting"
+  short_description: "Test strategy tradeoffs, flow and player understanding"
+  default_prompt: "Use $soc-playtest to compare two Series of Calls strategies and inspect the visible journey, separating simulation evidence from human observations."

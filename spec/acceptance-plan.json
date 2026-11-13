@@ -1,6 +1,10 @@
 {
   "version": 1,
   "suites": {
+    "tests/provider-contextual-inspector.test.js": [
+      "AC-SOC-895",
+      "AC-SOC-896"
+    ],
     "tests/provider-progression-regional-claims-t2.test.js": [
       "AC-SOC-655"
     ],

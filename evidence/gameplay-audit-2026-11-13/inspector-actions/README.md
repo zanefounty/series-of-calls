@@ -1,0 +1,5 @@
+# SOC-04 inspector action checkpoint
+
+The [Chromium report](browser-report.json) exercises dispatched SMB saves before any delivered work and at the first authored carrier incident. Desktop and 390px phone runs import under the Provider Web Lock and open the inspector through visible controls. Both incident runs show one carrier repair action, one mitigation, and the accept-risk choice on the immediate surface. The generic service repair and unrelated queue restoration are absent, other actions remain closed, and inspection leaves the save unchanged. Both pre-work runs show no paid scale offer. Screenshots of each selection are retained beside the report.
+
+AC-SOC-895 and AC-SOC-896 check the same composition as pure DOM cases, including retained access to an already funded scale measurement. The contextual action projector now reserves service repair for a service incident. These checks cover the bounded SMB carrier view. Other custom panels and uncoached comprehension remain to be verified before SOC-04 can close.

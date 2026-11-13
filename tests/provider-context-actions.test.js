@@ -40,9 +40,11 @@ test('incident repair and typed measured carrier headroom are primary beside the
  const operations=[op('repair',['carrier']),op('service-repair',['service']),op('carrier-headroom',['carrier']),op('managed-carrier-headroom',['carrier']),op('recording',['recorder'])];
  const model=input(customer('smb'),operations,{resource:{id:'carrier',kind:'trunk',pressure:{used:4,limit:4,unit:'concurrent sessions'}},incidents:[{id:'incident-one',customerId:'customer-one',resource:'carrier',status:'active'}]});
  const result=A.project(model);
- assert.deepEqual(group(result.primary,'incident-response'),['repair','service-repair']);
+ assert.deepEqual(group(result.primary,'incident-response'),['repair']);
  assert.deepEqual(group(result.primary,'capacity'),['carrier-headroom','managed-carrier-headroom']);
  assert.deepEqual(ids(result.secondary),['recording']);
+ const service=A.project(input(customer('smb'),operations,{resource:{id:'service',kind:'service'},incidents:[{id:'incident-two',customerId:'customer-one',resource:'service',status:'active'}]}));
+ assert.deepEqual(group(service.primary,'incident-response'),['service-repair'],'service repair remains available for an actual service incident');
 });
 
 test('enterprise migration alternatives stay together until one is funded',()=>{

@@ -58,7 +58,7 @@ function socProviderContextActionsKernel(){
    const incidentResources=new Set(relevantIncidents.map(x=>x.resource));
    for(const op of operations.filter(x=>incidentIds.has(x.id)&&(!resource||resourceRelevant(x,resource)||x.resources?.includes('service')))){
     if(!canShowPrimary(op))continue;
-    const supported=op.id==='service-repair'||op.id==='mitigate'||[...incidentResources].some(id=>op.resources?.includes(id));
+    const supported=op.id==='service-repair'?relevantIncidents.some(i=>i.resource==='service'):op.id==='mitigate'||[...incidentResources].some(id=>op.resources?.includes(id));
     if(!supported)continue;
     if(eligible(op,projects,customerId))add(primary,'incident-response',op);else if(op.available===false||op.blockers?.length||missingRequirements(op,projects,customerId).length)add(locked,'incident-response',op);
    }

@@ -93,6 +93,7 @@ test('the funded expansion cancellation path stays closed and continuation chang
  state=SOC.dispatch(state,{type:'provider',command:{action:'continue-career'}});
  assert.equal(state.providerCampaign.mission.focusCustomerId,priorProof.winnerCustomerId);
  assert.notEqual(state.providerCampaign.mission.focusCustomerId,priorProof.focusCustomerId);
+ assert.equal(SOC.provider.inspect(state).mission.nextSegment,'enterprise','the earned next chapter remains visible after choosing to continue operating');
  assert.deepEqual(state.providerCampaign.mission.victoryProof,priorProof,'continuation keeps the earlier mission proof separate from its new focus');
  assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
 });

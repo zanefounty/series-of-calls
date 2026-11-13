@@ -1,6 +1,10 @@
 {
   "version": 1,
   "suites": {
+    "tests/provider-shell.test.js": [
+      "AC-SOC-897",
+      "AC-SOC-898"
+    ],
     "tests/provider-contextual-inspector.test.js": [
       "AC-SOC-895",
       "AC-SOC-896"

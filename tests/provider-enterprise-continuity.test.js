@@ -1,5 +1,5 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict');
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const SOC=require('../src/game/55-communications');
 const customerId='starter-customer';
 const child=s=>s.portfolio.customers[0].root;
@@ -16,8 +16,8 @@ function recover(s){
  const q=SOC.provider.quote(s,request('repair'));if(q.blockers.length){assert.ok(q.blockers.every(b=>['ENGINEER_CAPACITY','SUPPORT_CAPACITY'].includes(b)),JSON.stringify(q.blockers));return s;}
  return buy(s,request('repair'));
 }
-function opening(){
- let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney'});
+function opening(migrationDecisionVersion){
+ let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney',...(migrationDecisionVersion?{migrationDecisionVersion}:{})});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
  s=until(s,x=>x.providerCampaign.customers[0].status==='active',30);
  s=buy(s,request('room'));s=buy(s,request('recording'));
@@ -25,6 +25,35 @@ function opening(){
 }
 function migrated(operationId){let s=buy(opening(),request(operationId));return until(s,x=>child(x).operations?.migrations.some(m=>m.status==='complete'),50,true);}
 const interaction=(s,j)=>child(s).interactions.find(i=>i.id===j.interactionId);
+
+test('versioned paid migration waits for a quoted cutover decision and a held plan can resume',()=>{
+ let s=buy(opening(1),request('migration'));
+ s=until(s,x=>SOC.observe(child(x),'migration-phone').ready,20,true);
+ const task=child(s).providerTasks.find(t=>t.decisionVersion===1),funded=project(s,'migration');
+ assert.equal(task.projectId,funded.id);assert.equal(task.status,'waiting');
+ assert.deepEqual(SOC.provider.inspect(s).migrationDecisions.map(row=>({projectId:row.projectId,status:row.status,cohort:row.cohort,target:row.target,targetReady:row.targetReady})),[{projectId:funded.id,status:'waiting',cohort:['bea'],target:'migration-phone',targetReady:true}]);
+ const dom=new JSDOM('<!doctype html><html><body></body></html>',{runScripts:'dangerously'});dom.window.N_=key=>key;dom.window.SOCProviderCanvas={resourceStatus:()=>''};for(const file of ['23-provider-variants.js','93-ui/70-provider-hud.js','93-ui/74-provider-security.js','93-ui/75-provider-panels.js'])dom.window.eval(fs.readFileSync(path.join(__dirname,'../src/game',file),'utf8'));
+ const inspector=dom.window.SOCProviderPanels.inspector(SOC.provider.inspect(s),{selection:{customerId}}),host=dom.window.document.createElement('div');host.innerHTML=inspector;
+ assert.equal(host.querySelector('[data-provider-form="migration-decision"]')?.dataset.project,funded.id);
+ assert.match(host.textContent,/Migration timeline/);assert.match(host.textContent,/Protect the recorded partner meeting/);
+ s=until(s,x=>x.clock>=funded.dueAt+3,20,true);
+ assert.equal(child(s).operations.migrations.length,0,'readiness alone cannot schedule a cutover');
+ const hold={action:'migration-decision',projectId:funded.id,decision:'hold'},holdQuote=SOC.provider.quote(s,hold);
+ assert.deepEqual(holdQuote.blockers,[]);s=send(s,{...hold,quoteRevision:holdQuote.atRevision});
+ assert.equal(child(s).providerTasks[0].status,'held');assert.equal(child(s).operations.migrations.length,0);
+ let protectedAt=Math.floor(s.clock/60)*60+SOC.provider.rules.missions.enterprise.externalCollaboration.minute;if(protectedAt<=s.clock)protectedAt+=60;
+ const protectedQuote=SOC.provider.quote(s,{action:'migration-decision',projectId:funded.id,decision:'go',cutoverAt:protectedAt});
+ assert.ok(protectedQuote.blockers.includes('PROTECTED_MEETING_WINDOW'));
+ const go={action:'migration-decision',projectId:funded.id,decision:'go',cutoverAt:s.clock+4},goQuote=SOC.provider.quote(s,go);
+ assert.deepEqual(goQuote.blockers,[]);const before=JSON.stringify(s);
+ const modal=dom.window.document.createElement('div');modal.innerHTML=dom.window.SOCProviderPanels.quote(goQuote,{quoteRequest:go});assert.match(modal.textContent,/Review migration decision/);assert.match(modal.textContent,/No additional setup charge/);assert.equal(modal.querySelector('[data-provider-action="confirm-quote"]').disabled,false);
+ assert.throws(()=>send(s,{...go,quoteRevision:goQuote.atRevision-1}),/STALE_PROVIDER_QUOTE/);assert.equal(JSON.stringify(s),before);
+ s=send(s,{...go,quoteRevision:goQuote.atRevision});const migration=child(s).operations.migrations.at(-1);
+ assert.equal(migration.cutoverAt,go.cutoverAt);assert.deepEqual(migration.identities,['bea']);assert.equal(child(s).providerTasks[0].migrationId,migration.id);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const altered=structuredClone(s);altered.portfolio.customers[0].root.providerTasks[0].projectId='other-project';assert.throws(()=>SOC.restore(JSON.stringify(altered)),/INVALID_PROVIDER_MIGRATION_DECISION_LINEAGE/);
+ dom.window.close();
+});
 
 for(const operationId of ['migration','migration-consolidated'])test(`paid Enterprise ${operationId} preserves identities, number assignments and actual contact work around its cutover`,()=>{
  let s=opening();const before=JSON.stringify(child(s).resources.identity.effective),acceptedAt=s.clock;

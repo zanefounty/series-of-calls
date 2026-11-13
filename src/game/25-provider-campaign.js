@@ -142,6 +142,12 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  }
  function quote(s,request,hooks={}){
   const p=s?.providerCampaign;if(!p||p.pack!==PACK)fail('PROVIDER_CAMPAIGN_NOT_STARTED');if(!request||typeof request!=='object'||Array.isArray(request))fail('INVALID_PROVIDER_QUOTE');
+  if(request.action==='migration-decision'){
+   exact(request,['action','projectId','decision','cutoverAt','quoteRevision'],'INVALID_PROVIDER_QUOTE');
+   if(!id(request.projectId)||!['go','hold'].includes(request.decision)||request.decision==='go'&&!integer(request.cutoverAt,s.clock+1,s.clock+60)||request.decision==='hold'&&request.cutoverAt!==undefined)fail('INVALID_PROVIDER_MIGRATION_DECISION');
+   ensureHooks(hooks,['migrationDecisionQuote']);
+   return hooks.migrationDecisionQuote(s,request);
+  }
   if(request.action==='plan'){
    exact(request,['action','offerId','planId','market','quoteRevision'],'INVALID_PROVIDER_QUOTE');
    const base=quote(s,{action:'purchase',offerId:request.offerId,planId:request.planId,stage:'base',...(request.market?{market:request.market}:{})},hooks);
@@ -250,6 +256,10 @@ function socProviderCampaignKernel(rules,productRules,demandContent,variants,reg
  function stageRequested(c,stage){return c.stages[stage]!==null;}
  function command(s,c,hooks={}){
   const p=s?.providerCampaign;if(!p||p.pack!==PACK)fail('PROVIDER_CAMPAIGN_NOT_STARTED');if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.action!=='string')fail('INVALID_PROVIDER_COMMAND');
+  if(c.action==='migration-decision'){
+   const q=quote(s,c,hooks);if(c.quoteRevision!==s.revision)fail('STALE_PROVIDER_QUOTE');if(q.blockers.length)fail('PROVIDER_QUOTE_BLOCKED:'+q.blockers.join(','));
+   ensureHooks(hooks,['migrationDecisionCommit']);hooks.migrationDecisionCommit(s,c);return validate(s,hooks);
+  }
   if(c.action==='plan'){
    const q=quote(s,c,hooks);if(c.quoteRevision!==s.revision)fail('STALE_PROVIDER_QUOTE');if(q.blockers.length)fail('PROVIDER_QUOTE_BLOCKED:'+q.blockers.join(','));
    const customerId=c.offerId==='starter'?'starter-customer':`next-${Number(/^next-(\d+)/.exec(c.offerId)[1])}-customer`;

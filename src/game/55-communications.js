@@ -324,7 +324,7 @@ const SOC = (function socKernel() {
   function providerGuestAdmission(state,booking,session){
     const rule=providerRules.data.missions[state.scenario]?.externalCollaboration;
     const guest=booking?.externalGuest,expected=rule&&{version:1,guestId:rule.guestId,guestTenant:rule.guestTenant,hostTenant:state.tenant};
-    if(state.providerCustomer?.externalCollaborationVersion!==1||rule?.version!==1||!guest||Object.keys(guest).length!==4||Object.keys(expected).some(key=>guest[key]!==expected[key])||booking.attendees!==rule.attendees||booking.end-booking.start!==rule.durationMinutes||booking.start%providerRules.data.periodMinutes!==rule.minute||!session||session.bookingId!==booking.id)return {admitted:false,reasons:['PROVIDER_EXTERNAL_GUEST_NOT_AUTHORED']};
+    if(state.providerCustomer?.externalCollaborationVersion!==1||rule?.version!==1||!guest||Object.keys(guest).length!==4||Object.keys(expected).some(key=>guest[key]!==expected[key])||booking.attendees!==rule.attendees||booking.end-booking.start!==rule.durationMinutes||!(state.providerCustomer?.meetingPlanVersion===1?[rule.minute,rule.alternateMinute]:[rule.minute]).includes(booking.start%providerRules.data.periodMinutes)||!session||session.bookingId!==booking.id)return {admitted:false,reasons:['PROVIDER_EXTERNAL_GUEST_NOT_AUTHORED']};
     return {admitted:true,admissionId:'guest-'+booking.id+'-'+session.id,guestId:expected.guestId,guestTenant:expected.guestTenant,hostTenant:expected.hostTenant};
   }
   function informationHooks(s){return {...productServices(s),boundaryCheck:(state,id)=>boundaryCheck(state,id),authorize:(state,id,action)=>business.authorise(state,id,action),speechModelContext:()=>speechModelContext(s),
@@ -1113,7 +1113,7 @@ const SOC = (function socKernel() {
         const hooks=portfolioHooks(s);hooks.createCustomer=(_,config)=>{
           const child=create({scenario:config.scenario,jurisdiction:config.jurisdiction,tenant:config.tenant,customerName:config.name,clock:config.clock,mode:s.mode,seed:s.seed});
           child.experience={version:1,kind:'campaign',custom:false};
-          child.providerCustomer={version:1,id:c.id,recording:providerRules.data.missions[c.scenario].requirements.recording,planId:c.planId,...(s.providerCampaign.externalCollaborationVersion===1?{externalCollaborationVersion:1}:{})};
+          child.providerCustomer={version:1,id:c.id,recording:providerRules.data.missions[c.scenario].requirements.recording,planId:c.planId,...(s.providerCampaign.externalCollaborationVersion===1?{externalCollaborationVersion:1}:{}),...(s.providerCampaign.meetingPlanVersion===1?{meetingPlanVersion:1}:{})};
           if(child.providerCustomer.externalCollaborationVersion===1)child.recordStore=informationRecordStore.create();
           if(c.scenario==='defence'){child.resources.phone=resource('phone','uc',{region:child.jurisdiction,routes:[{prefix:'+61',target:'service'}]});child.resources.phone.provisioning.due=child.clock+1;}
           for(const resource of Object.values(child.resources)){resource.desired.enabled=false;resource.effective=null;}
@@ -2518,7 +2518,7 @@ const SOC = (function socKernel() {
     if(s.experience!==undefined&&(!s.experience||Object.keys(s.experience).sort().join(',')!=='custom,kind,version'||s.experience.version!==1||!['campaign','training','lab'].includes(s.experience.kind)||typeof s.experience.custom!=='boolean'))fail('INVALID_EXPERIENCE');
     if(s.experience?.kind==='campaign'&&!s.providerCampaign&&!s.providerCustomer)fail('CAMPAIGN_STATE_REQUIRED');
     if(s.providerCustomer&&(!isId(s.providerCustomer.id)||s.providerCustomer.version!==1||typeof s.providerCustomer.recording!=='boolean'||s.business||s.providerCampaign||s.experience?.kind!=='campaign'))fail('INVALID_PROVIDER_CUSTOMER');
-    if(s.providerCustomer?.externalCollaborationVersion!==undefined&&s.providerCustomer.externalCollaborationVersion!==1)fail('INVALID_PROVIDER_EXTERNAL_COLLABORATION');
+    if(s.providerCustomer?.externalCollaborationVersion!==undefined&&s.providerCustomer.externalCollaborationVersion!==1)fail('INVALID_PROVIDER_EXTERNAL_COLLABORATION');if(s.providerCustomer?.meetingPlanVersion!==undefined&&s.providerCustomer.meetingPlanVersion!==1)fail('INVALID_PROVIDER_MEETING_PLAN_VERSION');
     if(s.providerCustomer)for(const session of s.information?.meetingSessions||[]){if(!session.externalGuest)continue;const booking=s.information.bookings.find(b=>b.id===session.bookingId),admission=providerGuestAdmission(s,booking,session);if(!admission.admitted||session.externalGuest.admissionId!==null&&session.externalGuest.admissionId!==admission.admissionId)fail('INVALID_PROVIDER_EXTERNAL_GUEST_ADMISSION');}
     if(s.providerGovernment!==undefined){const p=s.providerGovernment;if(!s.providerCustomer||Object.keys(p).sort().join(',')!=='architectureId,installedAt,lastConnectedAt,postingId,projectId,version'||p.version!==1||!governmentArchitectures.ids().includes(p.architectureId)||!Number.isSafeInteger(p.installedAt)||p.installedAt<0||p.installedAt>s.clock||!Number.isSafeInteger(p.lastConnectedAt)||p.lastConnectedAt<p.installedAt||p.lastConnectedAt>s.clock||!isId(p.projectId)||!isId(p.postingId))fail('INVALID_PROVIDER_GOVERNMENT');}
     if(s.providerResilience!==undefined&&!s.providerCustomer)fail('INVALID_PROVIDER_RESILIENCE_SCOPE');

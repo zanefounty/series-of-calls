@@ -1289,6 +1289,9 @@
     ],
     "tests/provider-meeting-brief.test.js": [
       "AC-SOC-891"
+    ],
+    "tests/provider-room-guest-choice.test.js": [
+      "AC-SOC-892"
     ]
   },
   "inputs": [

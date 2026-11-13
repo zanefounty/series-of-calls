@@ -1460,6 +1460,23 @@ const SOC = (function socKernel() {
       policy.spentCents+=q.setupCents;policy.actions.push({incidentId:incident.id,projectId:s.providerCampaign.projects.at(-1).id,at:s.clock,cents:q.setupCents});
     }
   }
+  function providerHandoffPolicyAdvance(s){
+    const campaign=s.providerCampaign;if(!campaign||campaign.status==='won'||s.business?.solvency?.status==='default')return;
+    for(const policy of campaign.handoffPolicies||[]){
+      if(!policy.enabled)continue;
+      const customer=campaign.customers.find(row=>row.id===policy.customerId);
+      if(customer?.status!=='active'||campaign.incidents.some(row=>row.customerId===policy.customerId&&['active','acknowledged'].includes(row.status)))continue;
+      const jobs=campaign.jobs.filter(row=>row.customerId===policy.customerId&&row.periodIndex===customer.period.index);
+      if(jobs.filter(row=>row.handoff).length>=policy.maxPerPeriod||jobs.filter(row=>row.handoff&&row.status==='pending').length>=policy.maxOpenDigital)continue;
+      const candidates=jobs.filter(row=>row.handoffPlan&&row.status==='pending'&&!row.handoff&&row.deadlineAt-s.clock>=policy.minMinutesRemaining).sort((a,b)=>a.arrivalAt-b.arrivalAt||a.id.localeCompare(b.id));
+      for(const job of candidates){
+        const request={action:'handoff-case',customerId:policy.customerId,jobId:job.id,connectorId:policy.connectorId},quote=providerCampaign.quote(s,request,providerHooks());
+        if(quote.blockers.length)continue;
+        Object.assign(s,dispatchInternal(s,{type:'provider',command:{...request,quoteRevision:quote.atRevision}},true,true,true));
+        break;
+      }
+    }
+  }
   function providerAutoReceiptsAdvance(s){
     const policy=s.providerCampaign?.autoReceiptPolicy;if(!policy?.enabled||policy.suspended)return;
     const relevant=new Set(['CUSTOMER_WORK_COMPLETED','OPERATION_EFFECTIVE','PROJECT_EFFECTIVE','PROVIDER_PERIOD_SETTLED','SERVICE_INTEGRATION_TESTED','MISSION_WON']);
@@ -2461,7 +2478,7 @@ const SOC = (function socKernel() {
     providerServiceBoundaryObservations(s);
     if(s.portfolio)portfolio.advance(s.portfolio,portfolioHooks(s,!!s.providerCampaign));
     providerServiceBoundaryObservations(s);
-    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}providerAutoIntegrationAdvance(s);}
+    if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());providerHandoffPolicyAdvance(s);for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}providerAutoIntegrationAdvance(s);}
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());
@@ -2638,7 +2655,7 @@ const SOC = (function socKernel() {
       if(s.resources[c.id]||Object.keys(s.resources).length>=500)fail('DUPLICATE_OR_LIMIT');s.resources[c.id]=resource(c.id,c.kind,c.config);s.resources[c.id].provisioning.due=s.clock+1;if(s.business)s.business.ownership[c.id]=s.business.player;
     }else if(c.type==='advance'){
       if(!Number.isInteger(c.minutes)||c.minutes<1||c.minutes>1440)fail('INVALID_DURATION');for(let n=0;n<c.minutes;n++){const p=s.providerCampaign,status=p?.status,incidents=new Set(p?.incidents.filter(i=>i.status==='active').map(i=>i.id)||[]),renewals=new Set(p?.customers.filter(x=>x.status==='renewal').map(x=>x.id)||[]);advanceMinute(s,providerParent);if(p&&(p.status!==status||p.incidents.some(i=>i.status==='active'&&!incidents.has(i.id))||p.customers.some(x=>x.status==='renewal'&&!renewals.has(x.id))))break;}
-    }else if(c.type==='provider'){if(!s.providerCampaign)fail('PROVIDER_CAMPAIGN_REQUIRED');providerCampaign.command(s,c.command,providerHooks());}
+    }else if(c.type==='provider'){if(!s.providerCampaign)fail('PROVIDER_CAMPAIGN_REQUIRED');providerCampaign.command(s,c.command,providerHooks());if(c.command.action==='configure-handoff-policy')providerHandoffPolicyAdvance(s);}
     else if(c.type==='interact')startInteraction(s,c);
     else if(c.type==='probe'){if(c.channel!=='voice')fail('INVALID_PROBE_CHANNEL');startInteraction(s,c,{probe:true});}
     else if(c.type==='fault'){

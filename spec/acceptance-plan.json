@@ -293,7 +293,9 @@
     ],
     "tests/provider-case-handoff-dispatch.test.js": [
       "AC-SOC-686",
-      "AC-SOC-687"
+      "AC-SOC-687",
+      "AC-SOC-889",
+      "AC-SOC-890"
     ],
     "tests/workforce-offers.test.js": [
       "AC-SOC-498",

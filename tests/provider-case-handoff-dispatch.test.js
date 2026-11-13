@@ -62,3 +62,24 @@ test('AC-SOC-687 actual unpaid and mandatory Provider voice cases refuse handoff
  const wrong=SOC.provider.quote(s,{...request,connectorId:'arbitrary-channel'});assert.ok(wrong.blockers.includes('PROVIDER_CASE_HANDOFF_REQUEST'));
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
+
+test('AC-SOC-889 scoped handoff policy re-quotes and dispatches an eligible queued case',()=>{
+ let s=opening(),first=until(s,s=>!!offer(s),160);s=first;
+ const config={action:'configure-handoff-policy',customerId:CUSTOMER,enabled:true,minMinutesRemaining:1,maxPerPeriod:1,maxOpenDigital:1,quoteRevision:s.revision};
+ s=command(s,config);assert.equal(SOC.provider.inspect(s).customers[0].handoffPolicy.enabled,true);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const step={type:'advance',minutes:1};assert.deepEqual(worker(s,step),SOC.dispatch(SOC.restore(JSON.stringify(s)),step));
+ const handed=s.providerCampaign.jobs.filter(j=>j.customerId===CUSTOMER&&j.handoff);
+ assert.equal(handed.length,1);assert.equal(handed[0].caseId,offer(first).job.caseId);
+ assert.ok(s.providerCampaign.events.some(e=>e.code==='CUSTOMER_CASE_HANDED_OFF'&&e.jobId===handed[0].id));
+ s=SOC.dispatch(s,step);assert.equal(s.providerCampaign.jobs.filter(j=>j.customerId===CUSTOMER&&j.handoff).length,1);
+ const malformed=clone(s);malformed.providerCampaign.handoffPolicies[0].maxOpenDigital=99;assert.throws(()=>SOC.restore(JSON.stringify(malformed)),/INVALID_PROVIDER_HANDOFF_POLICY/);
+});
+
+test('AC-SOC-890 policy respects deadline guard, disabled state and stale configuration',()=>{
+ let s=opening();s=until(s,s=>!!offer(s),160);const request={action:'configure-handoff-policy',customerId:CUSTOMER,enabled:true,minMinutesRemaining:20,maxPerPeriod:1,maxOpenDigital:1,quoteRevision:s.revision};
+ assert.throws(()=>command(SOC.dispatch(s,{type:'advance',minutes:1}),request),/STALE_PROVIDER_QUOTE/);
+ s=command(s,request);s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(s.providerCampaign.jobs.filter(j=>j.handoff).length,0);
+ s=command(s,{...request,enabled:false,minMinutesRemaining:1,quoteRevision:s.revision});s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(s.providerCampaign.jobs.filter(j=>j.handoff).length,0);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});

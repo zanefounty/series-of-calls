@@ -140,9 +140,9 @@ const SOC = (function socKernel() {
     const desired={...clone(catalogue[kind].defaults),...clone(config)};validateConfig(kind,desired);
     return {id,kind,desired,effective:null,generation:1,provisioning:{status:'pending',due:1,generation:1},fault:null};
   }
-  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName,experience,providerName='Busy Signal MSP',market='au-sydney',difficulty='normal',openingVariant,opening,migrationDecisionVersion,migrationReservationVersion,migrationRehearsalVersion,migrationRollbackVersion}={}){
+  function create({scenario='smb',jurisdiction='AU',mode='guided',seed=73,tenant,clock=0,customerName,experience,providerName='Busy Signal MSP',market='au-sydney',difficulty='normal',openingVariant,opening,migrationDecisionVersion,migrationReservationVersion,migrationRehearsalVersion,migrationRollbackVersion,sectorHandoverVersion}={}){
     if(!ownKey(scenarios,scenario)||!jurisdictions.includes(jurisdiction)||!['guided','assessed','sandbox'].includes(mode)||!Number.isSafeInteger(seed)||seed<1||seed>2147483646||!Number.isSafeInteger(clock)||clock<0||clock>100000000||tenant!==undefined&&(!isId(tenant)||tenant.length>48)||customerName!==undefined&&(typeof customerName!=='string'||!customerName.trim()||customerName.length>100))fail('INVALID_EXERCISE');
-    if(opening!==undefined&&!['win','estate'].includes(opening)||opening==='estate'&&(experience!=='campaign'||scenario!=='smb')||migrationDecisionVersion!==undefined&&(migrationDecisionVersion!==1||experience!=='campaign')||migrationReservationVersion!==undefined&&(migrationReservationVersion!==1||migrationDecisionVersion!==1)||migrationRehearsalVersion!==undefined&&(migrationRehearsalVersion!==1||migrationReservationVersion!==1)||migrationRollbackVersion!==undefined&&(migrationRollbackVersion!==1||migrationRehearsalVersion!==1))fail('INVALID_PROVIDER_OPENING');
+    if(opening!==undefined&&!['win','estate'].includes(opening)||opening==='estate'&&(experience!=='campaign'||scenario!=='smb')||migrationDecisionVersion!==undefined&&(migrationDecisionVersion!==1||experience!=='campaign')||migrationReservationVersion!==undefined&&(migrationReservationVersion!==1||migrationDecisionVersion!==1)||migrationRehearsalVersion!==undefined&&(migrationRehearsalVersion!==1||migrationReservationVersion!==1)||migrationRollbackVersion!==undefined&&(migrationRollbackVersion!==1||migrationRehearsalVersion!==1)||sectorHandoverVersion!==undefined&&(sectorHandoverVersion!==1||experience!=='campaign'))fail('INVALID_PROVIDER_OPENING');
     const resources={};
     const add=(id,kind,c={})=>resources[id]=resource(id,kind,{region:jurisdiction,...c});
     add('identity','directory');add('access','connectivity');add('phone','uc');add('carrier','trunk');add('desk','endpoint');
@@ -173,7 +173,7 @@ const SOC = (function socKernel() {
       root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
-      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
+      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...(sectorHandoverVersion===1?{sectorHandoverVersion:1}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
     }
     if(opening==='estate'){
       let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};

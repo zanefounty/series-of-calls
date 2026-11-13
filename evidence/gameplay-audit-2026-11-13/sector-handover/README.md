@@ -1,0 +1,5 @@
+# Provider sector handover browser evidence
+
+The [Chromium report](browser-report.json) records the Swift desktop career through visible Provider controls. The journey reached a delivered SMB expansion, opened the [sector handover quote](swift-desktop/sector-handover-review.png), selected one added engineer and support person, accepted through the same revision-bound quote control, and entered Enterprise in the [resulting career](swift-desktop/visible-next-segment.png). The report passed with `noSourceDrift: true` and retains the earlier career screenshots, including paid setup, incident response, two-period settlement, expansion funding and mission victory.
+
+The assertion compares treasury, customer IDs and full customer history before and after the accepted transition and checks the retained handover's staffing choice and cash snapshot. This proves the visible decision path for one synthetic career. Delegated management, a low-cash purchase case and uncoached comprehension remain pending in the [worklist](../../../docs/GAMEPLAY_AUDIT_2026-11-13_WORKLIST.md).

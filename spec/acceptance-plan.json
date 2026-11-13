@@ -1302,6 +1302,9 @@
     ],
     "tests/provider-room-guest-choice.test.js": [
       "AC-SOC-892"
+    ],
+    "tests/provider-segments.test.js": [
+      "AC-SOC-899"
     ]
   },
   "inputs": [
@@ -1908,6 +1911,7 @@
     "tests/provider-security-helper.test.js",
     "tests/provider-security-ui.test.js",
     "tests/provider-security.test.js",
+    "tests/provider-segments.test.js",
     "tests/provider-service-truth.test.js",
     "tests/provider-standing-policy.test.js",
     "tests/provider-support-history.test.js",

@@ -1,6 +1,6 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const fs=require('node:fs'),path=require('node:path');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),{JSDOM}=require('jsdom');
 const SOC=require('../src/game/55-communications');
 
 function capturePerfFixture(state,count){
@@ -10,8 +10,8 @@ function capturePerfFixture(state,count){
  fs.mkdirSync(directory,{recursive:true});fs.writeFileSync(path.join(directory,`${count}.json`),save+'\n');
 }
 
-function begin(scenario='smb',planId='swift',difficulty='normal'){
- let state=SOC.create({experience:'campaign',scenario,market:'au-sydney',difficulty}),sequence=1;
+function begin(scenario='smb',planId='swift',difficulty='normal',sectorHandoverVersion){
+ let state=SOC.create({experience:'campaign',scenario,market:'au-sydney',difficulty,...(sectorHandoverVersion?{sectorHandoverVersion}:{})}),sequence=1;
  const send=command=>{state=SOC.dispatch(state,{type:'provider',requestId:`provider-${sequence++}`,command});return state;};
  const advance=minutes=>{for(let n=0;n<minutes;n++)state=SOC.dispatch(state,{type:'advance',minutes:1});return state;};
  const purchase=(offerId,stage,customerId)=>{
@@ -190,4 +190,41 @@ test('government mission earns two real qualifying periods with either authored 
   completeExpansion(c,'next-1','next-1-customer');
   assert.equal(c.state.providerCampaign.missionStatus,'won',`${planId} mission victory derives from earned history and delivered next contract`);
  }
+});
+
+test('AC-SOC-899 versioned sector handover quotes retained obligations and commits staffing through validated dispatch',()=>{
+ const c=begin('smb','swift','easy',1);
+ c.purchase('starter','base');c.advance(SOC.provider.rules.plans.swift.base.workMinutes);
+ c.purchase('starter','carrier','starter-customer');c.advance(SOC.provider.rules.plans.swift.carrier.workMinutes);
+ c.purchase('starter','partner','starter-customer');c.advance(SOC.provider.rules.plans.swift.partner.workMinutes+1);
+ while(!c.state.providerCampaign.incidents.some(x=>x.status==='active'))c.advance(1);
+ const incident=c.state.providerCampaign.incidents.find(x=>x.status==='active');
+ c.send({action:'acknowledge-incident',incidentId:incident.id});c.operation('repair');
+ c.advance(180-c.state.clock);
+ const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},purchaseQuote=SOC.provider.quote(c.state,next);
+ assert.deepEqual(purchaseQuote.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
+ completeExpansion(c,'next-1','next-1-customer');
+ const retain=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'retain'}),reinforce=SOC.provider.quote(c.state,{action:'sector-handover',staffing:'reinforce'});
+ assert.deepEqual(retain.blockers,[]);assert.deepEqual(reinforce.blockers,[]);
+ assert.equal(retain.commercial.sectorHandover.toScenario,'enterprise');
+ assert.deepEqual(retain.commercial.sectorHandover.customers.map(x=>x.id),['starter-customer','next-1-customer']);
+ assert.equal(reinforce.commercial.sectorHandover.workforceAfter.engineers,retain.commercial.sectorHandover.workforceAfter.engineers+1);
+ assert.equal(reinforce.commercial.sectorHandover.workforceAfter.support,retain.commercial.sectorHandover.workforceAfter.support+1);
+ assert.ok(reinforce.periodCents>0);
+ const dom=new JSDOM('<!doctype html>',{runScripts:'dangerously'}),w=dom.window;w.N_=x=>x;w.eval(fs.readFileSync(path.join(__dirname,'../src/i18n/en.js'),'utf8'));w.tr=(key,vars)=>String(w.I18N.en[key]||key).replace(/\{(\w+)\}/g,(_,name)=>vars?.[name]??_);w.SOCProviderCanvas={resourceStatus:()=> 'Ready'};for(const file of ['70-provider-hud.js','75-provider-panels.js'])w.eval(fs.readFileSync(path.join(__dirname,'../src/game/93-ui',file),'utf8'));const host=w.document.createElement('main');host.innerHTML=w.SOCProviderPanels.quote(reinforce,{quoteRequest:{action:'sector-handover',staffing:'reinforce'}});assert.match(host.textContent,/Current customers:/);assert.ok(host.textContent.includes(reinforce.commercial.sectorHandover.customers[0].name));assert.match(host.textContent,/Supplier commitments:/);assert.match(host.textContent,/Next customer setup options/);assert.equal(host.querySelector('[data-provider-action="sector-staffing"][data-provider-value="reinforce"]').getAttribute('aria-pressed'),'true');assert.equal(host.querySelector('[data-provider-action="confirm-quote"]').disabled,false);dom.window.close();
+ const snapshot=JSON.stringify(c.state),cash=c.state.business.balance.cash;
+ assert.throws(()=>c.send({action:'advance-segment'}),/SECTOR_HANDOVER_REQUIRED/);
+ assert.throws(()=>c.send({action:'sector-handover',staffing:'reinforce',quoteRevision:c.state.revision-1}),/STALE_PROVIDER_QUOTE/);
+ assert.equal(JSON.stringify(c.state),snapshot);
+ const workerCommand={type:'provider',command:{action:'sector-handover',staffing:'reinforce',quoteRevision:reinforce.atRevision}},expected=SOC.dispatch(c.state,workerCommand);let workerReply;const worker={postMessage:reply=>{workerReply=reply;}};vm.createContext(worker);vm.runInContext(SOC.workerSource(),worker);worker.onmessage({data:{id:'handover',state:JSON.parse(JSON.stringify(c.state)),command:workerCommand}});assert.equal(workerReply.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(workerReply.state)),expected);
+ c.send({action:'sector-handover',staffing:'reinforce',quoteRevision:reinforce.atRevision});
+ assert.equal(c.state.providerCampaign.scenario,'enterprise');
+ assert.equal(c.state.business.balance.cash,cash);
+ assert.equal(c.state.providerCampaign.segmentHistory[0].handover.staffing,'reinforce');
+ assert.deepEqual(c.state.providerCampaign.segmentHistory[0].handover,reinforce.commercial.sectorHandover);
+ assert.ok(c.state.providerCampaign.events.some(e=>e.code==='SECTOR_HANDOVER_ACCEPTED'));
+ assert.equal(SOC.provider.inspect(c.state).sectorHandoverHistory.length,1);
+ assert.deepEqual(SOC.restore(JSON.stringify(c.state)),c.state);
+ const forged=structuredClone(c.state);forged.providerCampaign.segmentHistory[0].handover.cashCents++;
+ assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_SECTOR_HANDOVER/);
 });

@@ -196,16 +196,23 @@ function providerPreferences(value){
 }
 
 let providerAudioContext=null;
+function providerCustomerStory(after,customer){
+ const authored=customer.id==='starter-customer'?SOC.provider.rules.missions[after.providerCampaign.scenario]?.presentation:null;
+ if(authored)return authored;
+ const name=customer.name;
+ const label=(key,fallback)=>typeof tr==='function'?tr(key,{name}):fallback;
+ return {firstWork:label(N_('provider.relationship.first_work'),`${name}: The first customer request was delivered. The next period will show whether service holds.`),firstFailure:label(N_('provider.relationship.first_failure'),`${name}: A request failed. The next response needs to account for the missed work.`),recovered:label(N_('provider.relationship.recovered'),`${name}: The affected service is available again. Confirm delivery before promising continuity.`),firstBill:label(N_('provider.relationship.first_bill'),`${name}: The first period earned {net} after a {credit} service credit. The next period will show what is delivered.`)};
+}
 function providerPresentationEvents(before,after){
- const story=SOC.provider.rules.missions[after.providerCampaign.scenario]?.presentation,reactions=[];
- if(story)for(const customer of after.providerCampaign.customers){
-  if(customer.id!=='starter-customer')continue;
+ const reactions=[];
+ for(const customer of after.providerCampaign.customers){
+  const story=providerCustomerStory(after,customer);
   const previous=before.providerCampaign.customers.find(row=>row.id===customer.id),jobs=after.providerCampaign.jobs.filter(job=>job.customerId===customer.id),event=(code)=>after.providerCampaign.events.findLast(row=>row.customerId===customer.id&&row.code===code);
   if(previous&&(previous.metrics.completed||0)===0&&customer.metrics.completed>0){const job=jobs.find(row=>row.status==='completed');if(job)reactions.push({sourceId:job.id,customerId:customer.id,at:after.clock,message:story.firstWork});}
   if(previous&&(previous.metrics.failed||0)===0&&customer.metrics.failed>0){const job=jobs.find(row=>row.status==='failed');if(job)reactions.push({sourceId:job.id,customerId:customer.id,at:after.clock,message:story.firstFailure});}
   const resolved=after.providerCampaign.incidents.find(row=>row.customerId===customer.id&&row.status==='resolved'&&before.providerCampaign.incidents.find(old=>old.id===row.id)?.status!=='resolved');
   if(resolved&&SOC.provider.inspect(after).customers.find(row=>row.id===customer.id)?.services.find(row=>row.id===resolved.resource)?.observed.ready===true)reactions.push({sourceId:resolved.id,customerId:customer.id,at:after.clock,message:story.recovered});
-  if(previous&&previous.history.length===0&&customer.history.length){const bill=customer.history.at(-1),receipt=after.providerCampaign.events.findLast(row=>row.code==='PROVIDER_PERIOD_SETTLED'&&row.at===after.clock),money=cents=>`A$${(cents/100).toFixed(2)}`;if(receipt)reactions.push({sourceId:receipt.id,customerId:customer.id,at:after.clock,message:story.firstBill.replace('{net}',money(bill.netRetail)).replace('{credit}',money(bill.credit))});}
+  if(previous&&previous.history.length===0&&customer.history.length){const bill=customer.history.at(-1),receipt=after.providerCampaign.events.findLast(row=>row.code==='PROVIDER_PERIOD_SETTLED'&&row.at===after.clock),money=cents=>`A$${(cents/100).toFixed(2)}`;if(receipt)reactions.push({sourceId:customer.id==='starter-customer'?receipt.id:`${receipt.id}:${customer.id}`,customerId:customer.id,at:after.clock,message:story.firstBill.replace('{net}',money(bill.netRetail)).replace('{credit}',money(bill.credit))});}
   if(story.postRepairCurrent&&after.providerCampaign.staffingCommitmentVersion===1){
    const chapter=SOC.provider.inspect(after).postRepairChapter;
    if(chapter?.customerId===customer.id&&chapter.done&&before.clock<chapter.to&&after.clock>=chapter.to){

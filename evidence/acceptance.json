@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-13T12:24:40.047642+00:00",
+  "runAt": "2026-11-13T13:08:10.112548+00:00",
   "command": [
     "node",
     "--test",
@@ -214,7 +214,8 @@
     "tests/provider-partner-paid-path.test.js",
     "tests/provider-partner-support.test.js",
     "tests/provider-partner-paths.test.js",
-    "tests/provider-prospect-choice.test.js"
+    "tests/provider-prospect-choice.test.js",
+    "tests/provider-meeting-brief.test.js"
   ],
   "runtime": "v24.22.2",
   "tests": {
@@ -740,6 +741,7 @@
     "AC-SOC-648": "passed",
     "AC-SOC-644": "passed",
     "AC-SOC-645": "passed",
+    "AC-SOC-891": "passed",
     "AC-SOC-818": "passed",
     "AC-SOC-640": "passed",
     "AC-SOC-641": "passed",
@@ -1165,11 +1167,11 @@
     "scripts/verify.py": "89685987897b7abb85700bf8509a9e1b802f13d632594b0345c384d020ff5956",
     "site/apple-touch-icon.png": "0697abc0fd2a995514e087f5d533a3016484ff96224c12c4d14dabbea415d765",
     "site/favicon.ico": "7168ed7a42a7ef20006955edb5a5816b00de55415b32991e3ae5a77bbd09afa1",
-    "site/i18n/de.js": "435bf5703a08d7ceefbe3f730b57be54f3518f74db62e9139a07e157f6fb4451",
-    "site/i18n/es.js": "43696a41e6c9db50c4cd93450c7c46a92c367d91f8dc916e28a34a03e6cfe0be",
-    "site/i18n/fr.js": "a05aebd6034762861b9aa09d4f18f49706576e59442d4c23f6298c252f287692",
-    "site/i18n/it.js": "582dc1e489a58dc57c188f86f1b192a2db4c9d803a8a236bf08bcdb49b3e256f",
-    "site/i18n/pt.js": "fe289d1d2e8cd3cf650e6be0fb5cf4071b9fe89c350cfd52a1bda18812a3f043",
+    "site/i18n/de.js": "de85f48238d880da2f5c23b64316f187fc0bec2e1ae001cff33c36218b5362da",
+    "site/i18n/es.js": "82ced322c14c23cc9a4a504ba4e182ca0f9995faa92aee149e25b2bdd42dc1ef",
+    "site/i18n/fr.js": "54ac253d2f684ce1a9d191fa63f1e634d7491cd60aa8beb856eae6265536d80e",
+    "site/i18n/it.js": "0868e55e7794d0b1acbe0f0d479992219b3ad47e52f852d61ed0955eaa2775f9",
+    "site/i18n/pt.js": "1e4edfcd24c657b8bf2783f1a3f394cbcf4071747f69903019c68f785cdc19bb",
     "site/icon-192.png": "5e91fc5edfa37296d1cc5b5156103d7e1feb26ab49e56db85b32f32d49a1df6b",
     "site/icon-512.png": "1df1803f9268b0af3a6ecf1a59d68cba87ef8986db4600d22f0ba95d4a5497ff",
     "site/icon-maskable-512.png": "31d24de352f62bd638095b58d1500954ad00060f0677895f6e27b8f6dbed368b",
@@ -1266,7 +1268,7 @@
     "src/game/23-provider-workforce-history.js": "2272793afaf3be99ef0fde20e3c859340e655a33ee5baf87b46b590129c0cbe9",
     "src/game/23-training-lessons.js": "e18fbbfe01e008ab4b94373f5bb232fdad06cbe121b051e08bb5fc22086c2f71",
     "src/game/24-provider-rules.js": "aa7d3b32f55fa46a0cac11fee9c4a7ff22baa88aadbb4a1b9e8f50b89f6fe8ff",
-    "src/game/25-provider-campaign.js": "0581dee413cd3249052cbc061407f61d9fc53c0b591403486d7bdce992fc482c",
+    "src/game/25-provider-campaign.js": "579ede707341f8634e38733450da4703fce86ac1e052d86aa9eaabeae4827880",
     "src/game/26-customer-needs.js": "0e864f845f69de24eec552726ff75f3db846d064dd6b70e0fdacdca45f343f19",
     "src/game/27-speech-models.js": "bff7b5c5b288a067c26fed57c84adb930efb91668d4c97587394afe254627267",
     "src/game/28-product-evidence.js": "bf80b43312036ce062063c5c30b7375808050d19df70a9bf9f78127cf1809695",
@@ -1426,7 +1428,7 @@
     "src/game/93-ui/70-provider-hud.js": "8d971abc508e8133f6830f6f0cf9d391977ee51fbe01354994dcfc233931735f",
     "src/game/93-ui/74-provider-security.js": "65b892a8245410a23b615108ef75f5459266d2629839db805fc3fd21f6a48234",
     "src/game/93-ui/75-optic-counts.js": "cc8ab9c888f323e81b99e0a724e9854b11de90956cd83a62e05b200f71ff485e",
-    "src/game/93-ui/75-provider-panels.js": "7ea6ba435652e2eb5dd4012eba29deac08f58ebfe00c9e79350152349146123f",
+    "src/game/93-ui/75-provider-panels.js": "15a401cd72151dc63118df1a260508e51eb74da081cdc4a3409bc25a29d0b2d3",
     "src/game/93-ui/78-provider-partner-paths.js": "1ce4cd3e69bd7666f752674aecb976f0c50a8b6c672b24347966978c227baec5",
     "src/game/93-ui/78-provider-policy-controls.js": "b05999bbd9401b314e5e7bf2d16f374ec10897d219761f8331b76576409a2a6a",
     "src/game/93-ui/78-provider-room-integration.js": "469f1d3a519571d0bc4f68469e6f957cb4ad1ad5be8b4b7f588b87fa813f2c4d",
@@ -1500,7 +1502,7 @@
     "src/game/98-business-ui.js": "c7d5c28fcb4dbf75ec617ef1d1b4c863c223e76bb7bfb9b80d356913e9292c2e",
     "src/game/98-provider-runtime.js": "8233f919b24ad5715600df1b9c0aabd1a450651c6887bd095738aeb0eeda177c",
     "src/game/99-loop.js": "991f71186b9f025b66e1ca48c9bb24218a9aac690048e4f5ebef54f6a33a46f9",
-    "src/i18n/en.js": "a3f9bc9f740cf433b2377548a3d53d362df29d557a88c6ec61f346e4bab0570d",
+    "src/i18n/en.js": "ab982b8718a0b4254b031a6bca7c31deca4c2abe6e82f5f4644b17ce7aa174d1",
     "src/index.html": "895fc979715b168f082e814f1d8e2073e978c330514f2975308119764dc6e1a8",
     "src/styles/00-base.css": "9c86ab7fa632bac68608add96da8cb49f4e25c3da7a61ad2739bea6b27b660ab",
     "src/styles/10-hud.css": "5b6fe7514d18ee73cf88a1e84951f45d6f04694f415874d25be2e91a39f5fafb",
@@ -1515,7 +1517,7 @@
     "src/styles/70-puzzles.css": "902f0db0fcfc1a6dc37525fed95ec5a06adc709353291bcb6cf28e742e32de9f",
     "src/styles/71-architect.css": "b69fedcfb32cd3fff3d119b8445e0372bc9167e962d1f3978d94b1fe27394d88",
     "src/styles/98-artwork.css": "ce4f5547909560d5ffe41b31b1050e379c9df3f06a3441cdec98cb0e05d7eefc",
-    "src/styles/98-provider.css": "d8d3ea0a1fcc224cade15d6ed4cdf634d121235f9f63b14ff8c44c807a320f8b",
+    "src/styles/98-provider.css": "cdd01e476c951873e6c8bf8e15aa83d6f54bc7d49720043b8380704ecad7d943",
     "src/styles/99-training-map.css": "80abfd776855c8a021e5ffbaffdbf1a2a3e283a056dc7b587b8803ddd495d854",
     "src/styles/99-training.css": "b9628733f990a1b1109eab16d3e54ca460d26a8d525019dfd9d0a703e81f77ba",
     "tests/admission-security-event-retention.test.js": "9ac6f0af663d0267168e0afcd48ff0bf11b50b190cd1fc02b8c02ab6b6275543",
@@ -1747,7 +1749,7 @@
     "tests/workforce-quality-integration.test.js": "878bb64313afb163abbe2cc8df39e628202cfa680e3b8f4a26c805794369171a",
     "tests/workforce-quality-ui.test.js": "70ff0ff53f56dfc800d8219ed58286748f409d7d0851038f2e16c6b4ce339bbb",
     "tests/workforce-quality.test.js": "7c2d6a16d3fdb9f30b67d5488726f881b462706a8b7548fa299d6698b5c4b0a4",
-    "spec/acceptance-plan.json": "96e6d7d14ddd27e68113f63376ac742e92d015c6935df958467e6ba2b675f83c"
+    "spec/acceptance-plan.json": "f20bbec9b6a5f8981e018e03ac73a04dcd4a1361cb91412ad805b65ce8bcaa74"
   },
   "changedInputs": []
 }

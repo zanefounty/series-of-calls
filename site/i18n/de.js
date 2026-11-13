@@ -5734,6 +5734,7 @@
 "provider.responsibility.term":"Quoted term",
 "provider.responsibility.term_total":"Total over quoted term",
 "provider.responsibility.title":"Commercial responsibility",
+"provider.retail.retention_terms":"A price of {threshold} or less (5% below this offer) reduces renewal evidence from two qualified full periods to one of the last three. Current price: {price}; revenue given up: {reduction} each period. Service failures still earn credits and three consecutive failures still end the contract.",
 "provider.review_quote":"Review current terms",
 "provider.room_compatibility.active":"Scheduled or active meetings affected by the profile change: {count}.",
 "provider.room_compatibility.bridge_off":"This native room profile disables bridge use. The existing bridge deployment and its supplier commitment remain. Cross-platform joins need a funded bridge profile before they can resume.",

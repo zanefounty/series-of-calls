@@ -181,7 +181,10 @@ test('starter staged quote keeps optional retail terms behind details while late
  const state=SOC.create({experience:'campaign',opening:'win'}),ui=boot();try{
   const first=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
   const firstHtml=ui.w.SOCProviderPanels.quote(first,{quoteRequest:first.request});
-  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary><form data-provider-form="retail-quote"/);
+  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary>/);
+  assert.match(firstHtml, /provider-retail-retention/);
+  assert.match(firstHtml, /reduces renewal evidence from two qualified full periods to one/);
+  assert.match(firstHtml, /data-provider-form="retail-quote"/);
   const committed=SOC.dispatch(state,{type:'provider',command:{...SOC.provider.quote(state,{action:'plan',offerId:'starter',planId:'swift'}).request,quoteRevision:state.revision}});
   const later=SOC.provider.quote(committed,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
   const laterHtml=ui.w.SOCProviderPanels.quote(later,{quoteRequest:later.request});

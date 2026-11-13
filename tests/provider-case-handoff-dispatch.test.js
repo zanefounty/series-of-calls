@@ -47,6 +47,16 @@ test('AC-SOC-893 a fast Provider batch stops at the first real queued handoff ch
  assert.throws(()=>SOC.dispatch(SOC.create({scenario:'smb'}),command),/INVALID_PROVIDER_HANDOFF_STOP/);
 });
 
+test('AC-SOC-894 Worker inspection is the same pure Provider projection as the accepted state',()=>{
+ const s=opening(false),command={type:'advance',minutes:2,stopOnProviderHandoff:true,expectedRevision:s.revision},before=JSON.stringify(s),reply={};
+ const context={postMessage:value=>Object.assign(reply,value),setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);
+ context.onmessage({data:{id:17,state:clone(s),command}});
+ assert.equal(reply.error,undefined);assert.equal(reply.id,17);assert.equal(reply.revision,s.revision);
+ assert.deepEqual(clone(reply.state),SOC.dispatch(s,command));
+ assert.equal(JSON.stringify(reply.inspection),JSON.stringify(SOC.provider.inspect(clone(reply.state))));
+ assert.equal(JSON.stringify(s),before,'Worker projection does not mutate the submitted save');
+});
+
 test('AC-SOC-686 paid Provider hands one authored queued voice case to a real human digital leg without duplicate obligation or billing',()=>{
  let s=opening();s=until(s,s=>!!offer(s),160);const {job,request,q}=offer(s),before=clone(s),cash=s.business.balance.cash,offered=s.providerCampaign.customers[0].metrics.offered;
  assert.equal(q.setupCents,0);assert.deepEqual(q.commercial.variablePrices,{voiceCentsPerMinute:50,messageCentsPerDelivery:75});

@@ -14,6 +14,8 @@ const output=path.resolve(process.argv[2]||'/tmp/soc-provider-speed-report.json'
 if(!output.startsWith('/tmp/'))throw Error('output must be under /tmp');
 const profile=process.env.SOC_PROVIDER_SPEED_PROFILE||'desktop';
 if(!['desktop','phone'].includes(profile))throw Error('SOC_PROVIDER_SPEED_PROFILE must be desktop or phone');
+const selection=process.env.SOC_PROVIDER_SPEED_SELECTION||'none';
+if(!['none','last'].includes(selection))throw Error('SOC_PROVIDER_SPEED_SELECTION must be none or last');
 const viewport=profile==='phone'?{width:390,height:844}:{width:1366,height:768};
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 const pageFile=path.join(root,'_site/index.html');
@@ -25,13 +27,14 @@ async function run(browser,fixture,speed){
  await page.addInitScript(()=>{window.__TUBES_TEST__=true;});
  try{
   await page.goto(pathToFileURL(pageFile).href);
-  const initial=await page.evaluate(async text=>{
+  const initial=await page.evaluate(async({text,selection})=>{
    SCP.atHome=false;providerEnsureMount();if(!await providerAcquire())throw Error('Provider Web Lock not acquired');providerImport(text);
    if(SCP.error||!SCP.locked)throw Error(SCP.error||'Provider import lost lock');
+   if(selection==='last')SOC_PROVIDER_UI.render(SCP.state,providerCachedModel(),{selection:{customerId:SCP.state.providerCampaign.customers.at(-1).id},layer:'services'});
    window.__speedBatches=[];const tick=providerTick;providerTick=function(minutes){window.__speedBatches.push({at:SCP.state.clock,requested:minutes});return tick(minutes);};
    requestAnimationFrame(providerFrame);
    return {clock:SCP.state.clock,revision:SCP.state.revision,customers:SCP.state.providerCampaign.customers.length,seq:SCP.seq};
-  },fixture.text);
+  },{text:fixture.text,selection});
   assert.equal(initial.customers,fixture.count);
   const target=initial.clock+(speed===8?16:2);
   await page.evaluate(speed=>{window.__speedStarted=performance.now();providerSpeed(speed);},speed);
@@ -43,13 +46,14 @@ async function run(browser,fixture,speed){
    providerSpeed(0);
    const state=SOC.restore(JSON.stringify(SCP.state)),stored=JSON.parse(localStorage.getItem(SCP_KEY));
    if(JSON.stringify(SOC.restore(JSON.stringify(stored.state)))!==JSON.stringify(state))throw Error('persisted state differs from displayed state');
-   return {target,clock,elapsedMs,requestedBatches:batches,pauseReason,error,busy,speed,timedOut,storedSequence:stored.seq,revision:state.revision,restored:true};
+   const projectionFromWorker=SCP.modelCache?.fromWorker===true,projectionMatches=JSON.stringify(SCP.modelCache?.model)===JSON.stringify(providerModel());
+   return {target,clock,elapsedMs,requestedBatches:batches,pauseReason,error,busy,speed,timedOut,storedSequence:stored.seq,revision:state.revision,restored:true,projectionFromWorker,projectionMatches};
   },{target,timedOut});
   result.advanced=result.clock-initial.clock;
   result.expectedWallMs=result.advanced*2000/speed;
   result.speedRatio=+(result.expectedWallMs/result.elapsedMs).toFixed(3);
   result.initial=initial;result.errors=errors;
-  assert.deepEqual(errors,[],'page errors');assert.equal(result.error,'','Provider runtime error');assert.ok(result.advanced>0,'no simulated time advanced');
+  assert.deepEqual(errors,[],'page errors');assert.equal(result.error,'','Provider runtime error');assert.ok(result.advanced>0,'no simulated time advanced');assert.equal(result.projectionFromWorker,true,'Provider projection must come from the validated Worker reply');assert.equal(result.projectionMatches,true,'Worker projection must match direct inspection');
   return result;
  }finally{await context.close();}
 }
@@ -79,7 +83,7 @@ async function commandInFlight(browser,fixture){
   return result;
  }finally{await context.close();}
 }
-async function main(){const browser=await chromium.launch({headless:true,...(process.env.SOC_PROVIDER_PERF_CHROME?{executablePath:process.env.SOC_PROVIDER_PERF_CHROME}:{})});const report={scope:'Actual Provider frame pacing at 1x and 8x on retained dispatched saves, with real Chromium Workers, Web Lock, import, render and persistence.',runAt:new Date().toISOString(),chromium:browser.version(),profile,viewport,cpuThrottling:profile==='phone'?4:1,inputs:{page:hash(fs.readFileSync(pageFile)),script:hash(fs.readFileSync(__filename))},results:{}};
+async function main(){const browser=await chromium.launch({headless:true,...(process.env.SOC_PROVIDER_PERF_CHROME?{executablePath:process.env.SOC_PROVIDER_PERF_CHROME}:{})});const report={scope:'Actual Provider frame pacing at 1x and 8x on retained dispatched saves, with real Chromium Workers, Web Lock, import, render and persistence.',runAt:new Date().toISOString(),chromium:browser.version(),profile,selection,viewport,cpuThrottling:profile==='phone'?4:1,inputs:{page:hash(fs.readFileSync(pageFile)),script:hash(fs.readFileSync(__filename))},results:{}};
  try{for(const fixture of fixtures){report.results[fixture.count]={fixtureSha256:fixture.sha256};for(const speed of [1,8]){const row=await run(browser,fixture,speed);report.results[fixture.count][`${speed}x`]=row;console.log(`${fixture.count} customers ${speed}x: ${row.advanced} minutes in ${row.elapsedMs.toFixed(0)} ms (${row.speedRatio} target speed), batches ${row.requestedBatches.map(x=>x.requested).join(',')}${row.pauseReason?' · '+row.pauseReason:''}`);}if(fixture.count===5){report.results[fixture.count].cancelInFlight=await cancelInFlight(browser,fixture);report.results[fixture.count].commandInFlight=await commandInFlight(browser,fixture);}}}
  finally{await browser.close();}
  fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');console.log(`Report: ${output}`);

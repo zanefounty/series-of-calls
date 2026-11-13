@@ -53,9 +53,9 @@ function providerStore(){
  const envelope={app:SOC.APP,experience:'campaign',version:1,seq:SCP.seq+1,state:SCP.state,view:providerSavedView()};
  localStorage.setItem(SCP_KEY,JSON.stringify(envelope));SCP.seq++;
 }
-function providerModel(){
+function providerModel(inspection){
  if(!SCP.state)return null;
- const m=SOC.provider.inspect(SCP.state),planComparisons=m.planComparisons;
+ const m=inspection||SOC.provider.inspect(SCP.state),planComparisons=m.planComparisons;
  const supplierMap=new Map();for(const customer of m.customers){for(const [stage,commitment] of Object.entries(customer.stages)){if(!commitment)continue;const id=SOC.provider.rules.plans[customer.planId]?.[stage]?.supplier,actor=SCP.state.business.organisations[id];if(!actor)continue;if(!supplierMap.has(id))supplierMap.set(id,{id,name:actor.name,roles:actor.roles,commitments:[],scope:'provider'});supplierMap.get(id).commitments.push({customerId:customer.id,stage,status:commitment.status,periodCents:commitment.periodCents});}}
  const suppliers=[...supplierMap.values()],atRisk=m.customers.reduce((n,c)=>n+(c.periodOutcome?.atRisk||0),0),constrained=m.customers.flatMap(c=>c.services.filter(r=>r.pressure?.constrained).map(r=>c.name+' · '+r.name));
  return {...m,planComparisons,suppliers,capacityWarning:constrained.length?constrained.join('; '):atRisk?(typeof tr==='function'?tr('provider.due_soon',{count:atRisk}):`${atRisk} cases due within five minutes`):'',automation:(SCP.state.providerAutomation||[]).map(p=>({...p,name:'Assurance for '+p.customerId})),revision:SCP.state.revision,period:Math.floor(SCP.state.clock/60)+1,periodMinutes:60,
@@ -64,7 +64,7 @@ function providerModel(){
 }
 function providerCachedModel(){
  if(!SCP.state)return null;
- if(SCP.modelCache?.state!==SCP.state)SCP.modelCache={state:SCP.state,model:providerModel()};
+ if(SCP.modelCache?.state!==SCP.state)SCP.modelCache={state:SCP.state,model:providerModel(),fromWorker:false};
  return {...SCP.modelCache.model,warning:SCP.error||(!SCP.locked?'Read-only: another tab owns this career':''),locked:SCP.locked,busy:SCP.busy};
 }
 function providerRender(){
@@ -73,7 +73,7 @@ function providerRender(){
  let alert=SCP.host.querySelector('[data-provider-error]');if(!alert){alert=document.createElement('div');alert.dataset.providerError='';alert.setAttribute('role','alert');SCP.host.append(alert);}alert.textContent=SCP.error;alert.hidden=!SCP.error;
 }
 function providerContextualOperations(selection){
- if(!selection?.customerId||!SCP.state)return [];const m=SOC.provider.inspect(SCP.state),normal=id=>({processor:'speech',connectivity:'access'})[id]||id;
+ if(!selection?.customerId||!SCP.state)return [];const m=SCP.modelCache?.state===SCP.state?SCP.modelCache.model:SOC.provider.inspect(SCP.state),normal=id=>({processor:'speech',connectivity:'access'})[id]||id;
  const quote=(o,config)=>{const incident=m.incidents.find(i=>i.customerId===selection.customerId&&['active','acknowledged'].includes(i.status)&&(selection.incidentId?i.id===selection.incidentId:!selection.serviceId||normal(i.resource)===normal(selection.serviceId))),response=incident&&['repair','mitigate','service-repair'].includes(o.id),q=SOC.provider.quote(SCP.state,response?{action:'respond-incident',incidentId:incident.id,operationId:o.id}:{action:'operation',operationId:o.id,customerId:selection.customerId,...(config?{config}:{})});return {...o,quote:q,selection:config||null,customerId:selection.customerId,operationId:o.id,available:q.blockers.every(code=>['INSUFFICIENT_CASH','ENGINEER_CAPACITY','SUPPORT_CAPACITY','INSOLVENT'].includes(code)),blockers:q.blockers};};
  const rows=m.operations.filter(o=>!['diagnose-incident','retry-case-followup','provider-support-coverage','site-diverse-ingress','owned-site-operations','site-recovery','managed-site-recovery','site-resource-migration','custody-review'].includes(o.id)).flatMap(o=>o.control&&o.offers?Object.entries(o.offers).map(([planId,offer])=>quote({...o,...offer,securityControl:o.control,planId},{planId})):[quote(o)]);
  const diagnosis=m.operations.find(o=>o.id==='diagnose-incident');if(diagnosis)for(const i of m.incidents||[]){if(i.customerId!==selection.customerId)continue;const selected=selection.incidentId?i.id===selection.incidentId:['active','acknowledged'].includes(i.status)&&(!selection.serviceId||normal(selection.serviceId)===normal(i.resource));if(selected)rows.push(quote(diagnosis,{incidentId:i.id}));}return rows;
@@ -149,7 +149,9 @@ function providerTick(minutes=1){
  if(SCP.busy||!SCP.locked||!providerCanRun())return;
  const snapshot=SCP.state,revision=snapshot.revision,id=++SCP.job,command={type:'advance',minutes,expectedRevision:revision,...(minutes>1?{stopOnProviderHandoff:true}:{})};SCP.busy=true;
  const current=()=>id===SCP.job&&SCP.locked&&SCP.state.revision===revision;
- const accept=next=>{if(!current())return;SCP.busy=false;SCP.state=SOC.validateState(next);providerPresentationEvents(snapshot,SCP.state);SCP.error='';providerStore();const p=SCP.state.providerCampaign,previous=snapshot.providerCampaign;
+ const accept=(next,inspection)=>{if(!current())return;SCP.busy=false;SCP.state=SOC.validateState(next);SCP.error='';const p=SCP.state.providerCampaign,previous=snapshot.providerCampaign;
+ if(inspection?.clock===SCP.state.clock&&Array.isArray(inspection.customers)&&inspection.customers.length===p.customers.length&&inspection.customers.every((row,index)=>row.id===p.customers[index].id))SCP.modelCache={state:SCP.state,model:providerModel(inspection),fromWorker:true};
+ providerPresentationEvents(snapshot,SCP.state);providerStore();
  const newIncident=p.incidents.some(i=>i.status==='active'&&!previous.incidents.some(old=>old.id===i.id&&old.status==='active')),newRenewal=p.customers.some(c=>c.status==='renewal'&&!previous.customers.some(old=>old.id===c.id&&old.status==='renewal'));if(!providerCanRun()||p.status==='failed'&&previous.status!=='failed'||newIncident||newRenewal){SCP.autoPauseSpeed=newIncident?SCP.speed:0;SCP.pauseReason=newIncident?'incident':newRenewal?'renewal':'stopped';providerPause();}providerRender();providerPromptFirstHandoff();};
  const fallback=()=>{if(!current())return;try{accept(SOC.dispatch(snapshot,command));}catch(e){SCP.busy=false;providerError(e);}};
  if(typeof Worker!=='function')return fallback();
@@ -158,7 +160,7 @@ function providerTick(minutes=1){
  const discard=()=>{worker.terminate();if(SCP.worker===worker)SCP.worker=null;};
  const timer=setTimeout(()=>{discard();fallback();},Math.max(5000,minutes*2500));
  worker.onerror=()=>{clearTimeout(timer);discard();fallback();};
- worker.onmessage=e=>{clearTimeout(timer);if(!current())return;if(e.data.id!==id||e.data.revision!==revision){discard();return fallback();}if(e.data.error){discard();SCP.busy=false;return providerError(new Error(e.data.error));}try{accept(e.data.state);}catch(error){providerError(error);}};
+ worker.onmessage=e=>{clearTimeout(timer);if(!current())return;if(e.data.id!==id||e.data.revision!==revision){discard();return fallback();}if(e.data.error){discard();SCP.busy=false;return providerError(new Error(e.data.error));}try{accept(e.data.state,e.data.inspection);}catch(error){providerError(error);}};
  try{worker.postMessage({id,state:snapshot,command});}catch(error){clearTimeout(timer);discard();fallback();}
 }
 function providerFrame(now){

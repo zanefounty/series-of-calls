@@ -296,7 +296,8 @@
       "AC-SOC-687",
       "AC-SOC-889",
       "AC-SOC-890",
-      "AC-SOC-893"
+      "AC-SOC-893",
+      "AC-SOC-894"
     ],
     "tests/workforce-offers.test.js": [
       "AC-SOC-498",

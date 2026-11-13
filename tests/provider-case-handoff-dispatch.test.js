@@ -30,6 +30,23 @@ function opening(withProduct=true){
 function offer(s){for(const j of s.providerCampaign.jobs.filter(j=>j.handoffPlan&&!j.handoff&&j.status==='pending')){const request={action:'handoff-case',customerId:CUSTOMER,jobId:j.id,connectorId:'social-messaging'},q=SOC.provider.quote(s,request);if(!q.blockers.length)return {job:j,request,q};}return null;}
 function worker(s,c){let result;const context={postMessage:r=>{result=r;},setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:1,state:clone(s),command:c}});assert.equal(result.error,undefined);return clone(result.state);}
 
+test('AC-SOC-893 a fast Provider batch stops at the first real queued handoff choice and replays in the Worker',()=>{
+ let s=opening(),before=null,single=null;
+ for(let n=0;n<160;n++){
+  before=s;single=SOC.dispatch(before,{type:'advance',minutes:1});
+  if(single.providerCampaign.jobs.some(j=>j.status==='pending'&&j.handoffPlan&&!j.handoff))break;
+  s=tick(before);
+ }
+ assert.ok(single.providerCampaign.jobs.some(j=>j.status==='pending'&&j.handoffPlan&&!j.handoff),'the authored choice actually arrived');
+ const command={type:'advance',minutes:8,stopOnProviderHandoff:true},batch=SOC.dispatch(before,command);
+ assert.equal(batch.clock,single.clock,'batch stops after the first choice minute');
+ for(const key of ['providerCampaign','portfolio','business'])assert.deepEqual(batch[key],single[key],`${key} must match a one-minute dispatch`);
+ assert.deepEqual(worker(before,command),batch,'the serialized Worker follows the same stop');
+ assert.deepEqual(SOC.restore(JSON.stringify(batch)),batch);
+ for(const invalid of [false,0,'true'])assert.throws(()=>SOC.dispatch(before,{...command,stopOnProviderHandoff:invalid}),/INVALID_PROVIDER_HANDOFF_STOP/);
+ assert.throws(()=>SOC.dispatch(SOC.create({scenario:'smb'}),command),/INVALID_PROVIDER_HANDOFF_STOP/);
+});
+
 test('AC-SOC-686 paid Provider hands one authored queued voice case to a real human digital leg without duplicate obligation or billing',()=>{
  let s=opening();s=until(s,s=>!!offer(s),160);const {job,request,q}=offer(s),before=clone(s),cash=s.business.balance.cash,offered=s.providerCampaign.customers[0].metrics.offered;
  assert.equal(q.setupCents,0);assert.deepEqual(q.commercial.variablePrices,{voiceCentsPerMinute:50,messageCentsPerDelivery:75});

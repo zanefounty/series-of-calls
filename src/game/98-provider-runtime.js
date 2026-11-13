@@ -1,5 +1,5 @@
 /* Single authoritative campaign clock and persistence controller. UI remains a projection. */
-const SCP={atHome:true,state:null,seq:0,locked:false,release:null,lockJob:0,worker:null,busy:false,job:0,speed:0,lastSpeed:1,acc:0,last:0,error:'',host:null,decision:false,decisionSpeed:0,frameStarted:false,autoPauseSpeed:0,pauseReason:'',handoffPromptSeen:false};
+const SCP={atHome:true,state:null,seq:0,locked:false,release:null,lockJob:0,worker:null,busy:false,job:0,speed:0,lastSpeed:1,acc:0,last:0,error:'',host:null,decision:false,decisionSpeed:0,frameStarted:false,autoPauseSpeed:0,pauseReason:'',handoffPromptSeen:false,modelCache:null};
 const SCP_KEY='series-of-calls:provider:v1',SCP_LOCK='series-of-calls:provider-lock:v1';
 const SCP_LEGACY_ROOTS=['map','hud','left','leftToggle','tabbar','panel','pzBox','hint','coach','toasts','mega','update','bankBox','dash','modal'];
 const SCP_LEGACY_VISIBILITY=new WeakMap();
@@ -62,9 +62,14 @@ function providerModel(){
   periodOutcome:m.customers.reduce((n,c)=>({offered:n.offered+(c.periodOutcome?.due||0),completed:n.completed+((c.periodOutcome?.completedOnTime||0)+(c.periodOutcome?.late||0))}),{offered:0,completed:0}),
   team:{...SCP.state.business.workforce},warning:SCP.error||(!SCP.locked?'Read-only: another tab owns this career':''),locked:SCP.locked,busy:SCP.busy};
 }
+function providerCachedModel(){
+ if(!SCP.state)return null;
+ if(SCP.modelCache?.state!==SCP.state)SCP.modelCache={state:SCP.state,model:providerModel()};
+ return {...SCP.modelCache.model,warning:SCP.error||(!SCP.locked?'Read-only: another tab owns this career':''),locked:SCP.locked,busy:SCP.busy};
+}
 function providerRender(){
  if(!SCP.host||SCP.host.hidden)return;
- SOC_PROVIDER_UI.render(SCP.atHome?null:SCP.state,SCP.atHome?null:providerModel(),{paused:!SCP.speed,speed:SCP.speed||SCP.lastSpeed,pauseReason:SCP.pauseReason,preferences:providerPreferences()});
+ SOC_PROVIDER_UI.render(SCP.atHome?null:SCP.state,SCP.atHome?null:providerCachedModel(),{paused:!SCP.speed,speed:SCP.speed||SCP.lastSpeed,pauseReason:SCP.pauseReason,preferences:providerPreferences()});
  let alert=SCP.host.querySelector('[data-provider-error]');if(!alert){alert=document.createElement('div');alert.dataset.providerError='';alert.setAttribute('role','alert');SCP.host.append(alert);}alert.textContent=SCP.error;alert.hidden=!SCP.error;
 }
 function providerContextualOperations(selection){
@@ -139,26 +144,30 @@ function providerSpeed(value){
  if(!SCP.locked||!providerCanRun()||document.hidden)value=0;
  if(!value){providerCancel();SCP.autoPauseSpeed=0;SCP.pauseReason='manual';}else SCP.pauseReason='';SCP.speed=value;if(value)SCP.lastSpeed=value;SCP.acc=0;SCP.last=performance.now();providerRender();
 }
-function providerTick(){
+function providerBatchMinutes(speed,count){const desired=count>=5?8:count>=3?4:count>=2?2:1;return Math.min(Math.max(1,Math.floor(speed)),desired);}
+function providerTick(minutes=1){
  if(SCP.busy||!SCP.locked||!providerCanRun())return;
- const snapshot=SCP.state,revision=snapshot.revision,id=++SCP.job,command={type:'advance',minutes:1,expectedRevision:revision};SCP.busy=true;
+ const snapshot=SCP.state,revision=snapshot.revision,id=++SCP.job,command={type:'advance',minutes,expectedRevision:revision,...(minutes>1?{stopOnProviderHandoff:true}:{})};SCP.busy=true;
  const current=()=>id===SCP.job&&SCP.locked&&SCP.state.revision===revision;
- const accept=next=>{if(!current())return;SCP.busy=false;SCP.worker=null;SCP.state=SOC.validateState(next);providerPresentationEvents(snapshot,SCP.state);SCP.error='';providerStore();const p=SCP.state.providerCampaign,previous=snapshot.providerCampaign;
+ const accept=next=>{if(!current())return;SCP.busy=false;SCP.state=SOC.validateState(next);providerPresentationEvents(snapshot,SCP.state);SCP.error='';providerStore();const p=SCP.state.providerCampaign,previous=snapshot.providerCampaign;
  const newIncident=p.incidents.some(i=>i.status==='active'&&!previous.incidents.some(old=>old.id===i.id&&old.status==='active')),newRenewal=p.customers.some(c=>c.status==='renewal'&&!previous.customers.some(old=>old.id===c.id&&old.status==='renewal'));if(!providerCanRun()||p.status==='failed'&&previous.status!=='failed'||newIncident||newRenewal){SCP.autoPauseSpeed=newIncident?SCP.speed:0;SCP.pauseReason=newIncident?'incident':newRenewal?'renewal':'stopped';providerPause();}providerRender();providerPromptFirstHandoff();};
  const fallback=()=>{if(!current())return;try{accept(SOC.dispatch(snapshot,command));}catch(e){SCP.busy=false;providerError(e);}};
  if(typeof Worker!=='function')return fallback();
- let worker;
- try{const url=URL.createObjectURL(new Blob([SOC.workerSource()],{type:'text/javascript'}));worker=new Worker(url);URL.revokeObjectURL(url);}catch(e){return fallback();}
- SCP.worker=worker;const timer=setTimeout(()=>{worker.terminate();fallback();},5000);
- worker.onerror=()=>{clearTimeout(timer);worker.terminate();fallback();};
- worker.onmessage=e=>{clearTimeout(timer);worker.terminate();if(!current())return;if(e.data.id!==id||e.data.revision!==revision)return fallback();if(e.data.error){SCP.busy=false;return providerError(new Error(e.data.error));}try{accept(e.data.state);}catch(error){providerError(error);}};
- worker.postMessage({id,state:snapshot,command});
+ let worker=SCP.worker;
+ if(!worker)try{const url=URL.createObjectURL(new Blob([SOC.workerSource()],{type:'text/javascript'}));worker=new Worker(url);URL.revokeObjectURL(url);SCP.worker=worker;}catch(e){return fallback();}
+ const discard=()=>{worker.terminate();if(SCP.worker===worker)SCP.worker=null;};
+ const timer=setTimeout(()=>{discard();fallback();},Math.max(5000,minutes*2500));
+ worker.onerror=()=>{clearTimeout(timer);discard();fallback();};
+ worker.onmessage=e=>{clearTimeout(timer);if(!current())return;if(e.data.id!==id||e.data.revision!==revision){discard();return fallback();}if(e.data.error){discard();SCP.busy=false;return providerError(new Error(e.data.error));}try{accept(e.data.state);}catch(error){providerError(error);}};
+ try{worker.postMessage({id,state:snapshot,command});}catch(error){clearTimeout(timer);discard();fallback();}
 }
 function providerFrame(now){
- requestAnimationFrame(providerFrame);const delta=SCP.last?Math.min(250,Math.max(0,now-SCP.last)):0;SCP.last=now;
+ requestAnimationFrame(providerFrame);const delta=SCP.last?Math.min(1000,Math.max(0,now-SCP.last)):0;SCP.last=now;
  if(!SCP.host||SCP.host.hidden||!SCP.speed||!SCP.locked||document.hidden||SCP.decision){SCP.acc=0;return;}
- if(SCP.busy){SCP.acc=0;return;}
- SCP.acc+=delta*SCP.speed;if(SCP.acc>=2000){SCP.acc-=2000;providerTick();}
+ const minutes=providerBatchMinutes(SCP.speed,SCP.state.providerCampaign.customers.length),threshold=2000*minutes;
+ SCP.acc=Math.min(threshold,SCP.acc+delta*SCP.speed);
+ if(SCP.busy)return;
+ if(SCP.acc>=threshold){SCP.acc-=threshold;providerTick(minutes);}
 }
 function providerExport(){if(!SCP.state)return;const url=URL.createObjectURL(new Blob([JSON.stringify(SCP.state)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='series-of-calls-provider.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function providerImport(text){try{const next=SOC.restore(text);if(!next.providerCampaign)throw new Error('PROVIDER_SAVE_REQUIRED');if(!SCP.locked)throw new Error('PROVIDER_READ_ONLY');providerPause();providerCancel();const raw=localStorage.getItem(SCP_KEY);if(raw){try{SCP.seq=providerStoredSequence(raw);}catch{providerQuarantine(raw);}}SCP.state=next;SCP.error='';SCP.handoffPromptSeen=next.providerCampaign.jobs.some(j=>!!j.handoff);providerStore();providerRender();providerPromptFirstHandoff();}catch(e){providerError(e);}}

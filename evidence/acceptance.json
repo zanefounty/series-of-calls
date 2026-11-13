@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-13T15:53:14.175497+00:00",
+  "runAt": "2026-11-13T16:36:55.718778+00:00",
   "command": [
     "node",
     "--test",
@@ -654,6 +654,7 @@
     "AC-SOC-705": "passed",
     "AC-SOC-708": "passed",
     "AC-SOC-709": "passed",
+    "AC-SOC-893": "passed",
     "AC-SOC-686": "passed",
     "AC-SOC-687": "passed",
     "AC-SOC-889": "passed",
@@ -1313,7 +1314,7 @@
     "src/game/52-information.js": "af058e674ceefc5518367f1e248bdeb314844a10228c901316bd835327e82322",
     "src/game/53-service-operations.js": "8fa8c9da440ebafd3bda9d9f6c3a4255e3316f093e6a9c3f88b654b66a63636c",
     "src/game/54-business.js": "d86bfd4aa76e92b348295938341cc44bd62fc1d3f54d0af2e4e729b31ce038f9",
-    "src/game/55-communications.js": "53cfc7809135f0d53da4412575d05f8b044e99cb4d4f00a0d062dd911c3d5861",
+    "src/game/55-communications.js": "4f124f099bcfe618aa804507a5c740ca82f5df6b6041974193c31442af9226a1",
     "src/game/60-features/10-banks.js": "36201fe16ddc87fc449d017dd5a52a37791a43b5c7bf9b4a485ff56c859f7a7a",
     "src/game/60-features/20-scenarios.js": "dae61f307d5ff2610275c2e17cee46444772d49c2a665fbfc8979cd37f8138cd",
     "src/game/60-features/30-conferences.js": "20cbb99f5ca67b4c658bf9b77cd4a88df6c23753283712ad09f75a6001632a42",
@@ -1502,7 +1503,7 @@
     "src/game/97-provider-shell.js": "75b9d7f0b09cba0e6ac087dfd2bc23a18dd82ea323fa5d4d92798b17bb33f3f9",
     "src/game/97-training.js": "b0814256e8a95ed5ccb77b41cffe9d1b114e40396a183558408759510853ac49",
     "src/game/98-business-ui.js": "c7d5c28fcb4dbf75ec617ef1d1b4c863c223e76bb7bfb9b80d356913e9292c2e",
-    "src/game/98-provider-runtime.js": "8233f919b24ad5715600df1b9c0aabd1a450651c6887bd095738aeb0eeda177c",
+    "src/game/98-provider-runtime.js": "26562168c100f002cafdaf23c909ee293a5b2869baa4ca5f9393cecb96745a36",
     "src/game/99-loop.js": "991f71186b9f025b66e1ca48c9bb24218a9aac690048e4f5ebef54f6a33a46f9",
     "src/i18n/en.js": "c936e55f57c0a2a904e3f7f82492c25fa8a4c9874b9b3bc78700ee71597486fe",
     "src/index.html": "895fc979715b168f082e814f1d8e2073e978c330514f2975308119764dc6e1a8",
@@ -1621,7 +1622,7 @@
     "tests/provider-case-followup-dispatch.test.js": "9a8df568697d10de5fb97fa3f8313e9ffc6564d19a3f237e1588879e62a53808",
     "tests/provider-case-followup-ui.test.js": "e22bff50914857bf5808619961b3ff79c7d575770760846ba6d507d9641cdafd",
     "tests/provider-case-followup.test.js": "0068b802c1ae4f06840ce71ad851ebc528f9e21d3a731c93f38ebccf93d9bc31",
-    "tests/provider-case-handoff-dispatch.test.js": "f35371567d09c8fef399d82220099f0e5d0ce932794f189a951d8b4d92730ae2",
+    "tests/provider-case-handoff-dispatch.test.js": "8c64384852144b9aad15d92e3f2c57f752bd7ae68dd4aa677a4acd254073aac5",
     "tests/provider-case-handoff-ui.test.js": "0a4054f034b564a26921c55377ce884d8c04d6b94524dda7709ea7cc614e280e",
     "tests/provider-case-handoff.test.js": "1c504e1815afd30c0a0f2f2400fb2a3f4013e3e084ae17fc456d38f8f4c68554",
     "tests/provider-configuration-reader-performance.test.js": "43f02072a64b601079d34b891c58862ba624a5b7aa037819ca22f1183c5dec59",
@@ -1751,7 +1752,7 @@
     "tests/workforce-quality-integration.test.js": "878bb64313afb163abbe2cc8df39e628202cfa680e3b8f4a26c805794369171a",
     "tests/workforce-quality-ui.test.js": "70ff0ff53f56dfc800d8219ed58286748f409d7d0851038f2e16c6b4ce339bbb",
     "tests/workforce-quality.test.js": "7c2d6a16d3fdb9f30b67d5488726f881b462706a8b7548fa299d6698b5c4b0a4",
-    "spec/acceptance-plan.json": "66fdd07c00afb781c433da075c7e4d35f4648b2756ebf737fce067165c8e6d34"
+    "spec/acceptance-plan.json": "46fbeb35449bd78db92b944e3dda7d5461a4c9528879134996c3ca39c8c1e7ff"
   },
   "changedInputs": []
 }

@@ -1,0 +1,315 @@
+{
+  "scope": "Actual Provider frame pacing at 1x and 8x on retained dispatched saves, with real Chromium Workers, Web Lock, import, render and persistence.",
+  "runAt": "2026-11-13T16:27:32.186Z",
+  "chromium": "156.0.8078.4",
+  "profile": "phone",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "cpuThrottling": 4,
+  "inputs": {
+    "page": "e87f21d67989c9907003ba33984e364b3a2b25e6f3967c61d829b0640245ffb1",
+    "script": "6f969eb38ebf85ee214892f1974a72721dfad1e25936251f52a9507331bb76ac"
+  },
+  "results": {
+    "1": {
+      "fixtureSha256": "3dbb98e6cf5bc6a8f62ec932c985962b8a15b1004840f210d46084a292cc08ff",
+      "1x": {
+        "target": 122,
+        "clock": 122,
+        "elapsedMs": 4489.399999976158,
+        "requestedBatches": [
+          {
+            "at": 120,
+            "requested": 1
+          },
+          {
+            "at": 121,
+            "requested": 1
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": false,
+        "speed": 1,
+        "timedOut": false,
+        "storedSequence": 3,
+        "revision": 127,
+        "restored": true,
+        "advanced": 2,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.891,
+        "initial": {
+          "clock": 120,
+          "revision": 125,
+          "customers": 1,
+          "seq": 1
+        },
+        "errors": []
+      },
+      "8x": {
+        "target": 136,
+        "clock": 136,
+        "elapsedMs": 6990.5,
+        "requestedBatches": [
+          {
+            "at": 120,
+            "requested": 1
+          },
+          {
+            "at": 121,
+            "requested": 1
+          },
+          {
+            "at": 122,
+            "requested": 1
+          },
+          {
+            "at": 123,
+            "requested": 1
+          },
+          {
+            "at": 124,
+            "requested": 1
+          },
+          {
+            "at": 125,
+            "requested": 1
+          },
+          {
+            "at": 126,
+            "requested": 1
+          },
+          {
+            "at": 127,
+            "requested": 1
+          },
+          {
+            "at": 128,
+            "requested": 1
+          },
+          {
+            "at": 129,
+            "requested": 1
+          },
+          {
+            "at": 130,
+            "requested": 1
+          },
+          {
+            "at": 131,
+            "requested": 1
+          },
+          {
+            "at": 132,
+            "requested": 1
+          },
+          {
+            "at": 133,
+            "requested": 1
+          },
+          {
+            "at": 134,
+            "requested": 1
+          },
+          {
+            "at": 135,
+            "requested": 1
+          },
+          {
+            "at": 136,
+            "requested": 1
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": true,
+        "speed": 8,
+        "timedOut": false,
+        "storedSequence": 17,
+        "revision": 141,
+        "restored": true,
+        "advanced": 16,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.572,
+        "initial": {
+          "clock": 120,
+          "revision": 125,
+          "customers": 1,
+          "seq": 1
+        },
+        "errors": []
+      }
+    },
+    "3": {
+      "fixtureSha256": "d6ba77be777ae3e05d19228ce6af59c00f5f94565e1469a1431265ec3bec3b51",
+      "1x": {
+        "target": 302,
+        "clock": 302,
+        "elapsedMs": 5308.5,
+        "requestedBatches": [
+          {
+            "at": 300,
+            "requested": 1
+          },
+          {
+            "at": 301,
+            "requested": 1
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": false,
+        "speed": 1,
+        "timedOut": false,
+        "storedSequence": 3,
+        "revision": 319,
+        "restored": true,
+        "advanced": 2,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.754,
+        "initial": {
+          "clock": 300,
+          "revision": 317,
+          "customers": 3,
+          "seq": 1
+        },
+        "errors": []
+      },
+      "8x": {
+        "target": 316,
+        "clock": 316,
+        "elapsedMs": 5796.799999982119,
+        "requestedBatches": [
+          {
+            "at": 300,
+            "requested": 4
+          },
+          {
+            "at": 304,
+            "requested": 4
+          },
+          {
+            "at": 308,
+            "requested": 4
+          },
+          {
+            "at": 312,
+            "requested": 4
+          },
+          {
+            "at": 316,
+            "requested": 4
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": true,
+        "speed": 8,
+        "timedOut": false,
+        "storedSequence": 5,
+        "revision": 321,
+        "restored": true,
+        "advanced": 16,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.69,
+        "initial": {
+          "clock": 300,
+          "revision": 317,
+          "customers": 3,
+          "seq": 1
+        },
+        "errors": []
+      }
+    },
+    "5": {
+      "fixtureSha256": "c6b7037a5f9129ee562f2d31fd57f2464e56ae96ac4da23463567da766d196f1",
+      "1x": {
+        "target": 662,
+        "clock": 662,
+        "elapsedMs": 7142.700000017881,
+        "requestedBatches": [
+          {
+            "at": 660,
+            "requested": 1
+          },
+          {
+            "at": 661,
+            "requested": 1
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": false,
+        "speed": 1,
+        "timedOut": false,
+        "storedSequence": 3,
+        "revision": 694,
+        "restored": true,
+        "advanced": 2,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.56,
+        "initial": {
+          "clock": 660,
+          "revision": 692,
+          "customers": 5,
+          "seq": 1
+        },
+        "errors": []
+      },
+      "8x": {
+        "target": 676,
+        "clock": 676,
+        "elapsedMs": 6965,
+        "requestedBatches": [
+          {
+            "at": 660,
+            "requested": 8
+          },
+          {
+            "at": 668,
+            "requested": 8
+          }
+        ],
+        "pauseReason": "",
+        "error": "",
+        "busy": false,
+        "speed": 8,
+        "timedOut": false,
+        "storedSequence": 3,
+        "revision": 694,
+        "restored": true,
+        "advanced": 16,
+        "expectedWallMs": 4000,
+        "speedRatio": 0.574,
+        "initial": {
+          "clock": 660,
+          "revision": 692,
+          "customers": 5,
+          "seq": 1
+        },
+        "errors": []
+      },
+      "cancelInFlight": {
+        "unchanged": true,
+        "storedUnchanged": true,
+        "sequenceUnchanged": true,
+        "busy": false,
+        "worker": true,
+        "speed": 0,
+        "error": ""
+      },
+      "commandInFlight": {
+        "ok": true,
+        "revisionAdvanced": true,
+        "incidentAcknowledged": true,
+        "storedMatches": true,
+        "clockUnchanged": true,
+        "busy": false,
+        "worker": true,
+        "error": ""
+      }
+    }
+  }
+}

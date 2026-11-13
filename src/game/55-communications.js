@@ -1625,7 +1625,7 @@ const SOC = (function socKernel() {
     if(JSON.stringify(Object.keys(child.resources).sort())!==JSON.stringify(Object.keys(expected).sort())||Object.entries(expected).some(([id,kind])=>child.resources[id]?.kind!==kind))fail('INVALID_PROVIDER_RESOURCE_AUTHORITY');
     const faults=Object.fromEntries(Object.keys(expected).map(id=>[id,null])),events=[];let connected=true;
     for(const incident of s.providerCampaign.incidents.filter(i=>i.customerId===customer.id&&i.kind!=='transport-domain')){
-      const mission=providerRules.data.missions[customer.scenario],base=s.providerCampaign.contentVersion!=='provider-campaigns-1'&&mission.incidentVariants?mission.incidentVariants[s.providerCampaign.seed%mission.incidentVariants.length]:mission.incident,authored=customer.scenario==='smb'&&s.providerCampaign.openingVariant?providerVariants.incident(s.providerCampaign.openingVariant.id,base):base;
+      const mission=providerRules.data.missions[customer.scenario],base=s.providerCampaign.contentVersion!=='provider-campaigns-1'&&mission.incidentVariants?mission.incidentVariants[s.providerCampaign.seed%mission.incidentVariants.length]:mission.incident,authored=customer.scenario==='smb'&&(customer.prospectDemandId||s.providerCampaign.openingVariant)?providerVariants.incident(customer.prospectDemandId||s.providerCampaign.openingVariant.id,base):base;
       if(!authored||incident.kind!==authored.kind||incident.resource!==authored.resource||incident.fault!==({boundary:'BOUNDARY_SUPPORT',outage:'OUTAGE',disconnection:'DISCONNECTED',capacity:'CAPACITY'})[authored.kind])fail('INVALID_PROVIDER_INCIDENT_AUTHORITY');
       if(incident.activatedAt!==null)events.push({at:incident.activatedAt,order:1,incident});
     }

@@ -4423,6 +4423,7 @@
 "provider.context.service_prerequisites":"Build the required services",
 "provider.customer_prerequisite.compare":"Comparer les forfaits de départ dans Deals",
 "provider.customer_prerequisite.explanation":"Les opérations et les devis fournisseurs nécessitent un client financé. Ouvrez Deals pour comparer les forfaits de départ et financer votre premier client.",
+"provider.deals.prospect_terms":"{retail} per period · {voice} voice calls · {digital} digital cases · {peak} scheduled voice overlap · {deadline} min response · expires at minute {expiry}",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.estate.carrier_terms":"Ajouter quatre sessions opérateur : {setup} de mise en service, {recurring} par période, livraison en {minutes} minutes.",

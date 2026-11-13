@@ -4425,6 +4425,7 @@
 "provider.context.service_prerequisites":"Build the required services",
 "provider.customer_prerequisite.compare":"Einstiegspläne unter Deals vergleichen",
 "provider.customer_prerequisite.explanation":"Betriebsmaßnahmen und Lieferantenangebote benötigen einen finanzierten Kunden. Öffne Deals, um Einstiegspläne zu vergleichen und deinen ersten Kunden zu finanzieren.",
+"provider.deals.prospect_terms":"{retail} per period · {voice} voice calls · {digital} digital cases · {peak} scheduled voice overlap · {deadline} min response · expires at minute {expiry}",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.estate.carrier_terms":"Vier Carrier-Sitzungen hinzufügen: {setup} Einrichtung, {recurring} je Zeitraum, {minutes} Minuten bis zur Bereitstellung.",

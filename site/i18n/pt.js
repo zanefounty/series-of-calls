@@ -4423,6 +4423,7 @@
 "provider.context.service_prerequisites":"Build the required services",
 "provider.customer_prerequisite.compare":"Comparar planos iniciais em Deals",
 "provider.customer_prerequisite.explanation":"As operações e os orçamentos de fornecedores precisam de um cliente financiado. Abra Deals para comparar planos iniciais e financiar seu primeiro cliente.",
+"provider.deals.prospect_terms":"{retail} per period · {voice} voice calls · {digital} digital cases · {peak} scheduled voice overlap · {deadline} min response · expires at minute {expiry}",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.estate.carrier_terms":"Adicionar quatro sessões da operadora: {setup} de instalação, {recurring} por período, entrega em {minutes} minutos.",

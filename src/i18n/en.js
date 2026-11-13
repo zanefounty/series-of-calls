@@ -4424,6 +4424,7 @@
 "provider.context.service_prerequisites":"Build the required services",
 "provider.customer_prerequisite.compare":"Compare starter plans in Deals",
 "provider.customer_prerequisite.explanation":"Operations and supplier quotes need a funded customer. Open Deals to compare starter plans and fund your first customer.",
+"provider.deals.prospect_terms":"{retail} per period · {voice} voice calls · {digital} digital cases · {peak} scheduled voice overlap · {deadline} min response · expires at minute {expiry}",
 "provider.dependency_explanation":"This path depends on the destination resource being available. Its own typed capacity is separate from other services.",
 "provider.due_soon":"{count} cases due within five minutes",
 "provider.estate.carrier_terms":"Add four carrier sessions: {setup} setup, {recurring} per period, {minutes} minutes to deliver.",

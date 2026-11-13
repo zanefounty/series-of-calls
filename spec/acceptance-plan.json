@@ -1278,6 +1278,12 @@
       "AC-SOC-882",
       "AC-SOC-883",
       "AC-SOC-884"
+    ],
+    "tests/provider-prospect-choice.test.js": [
+      "AC-SOC-885",
+      "AC-SOC-886",
+      "AC-SOC-887",
+      "AC-SOC-888"
     ]
   },
   "inputs": [
@@ -1859,6 +1865,7 @@
     "tests/provider-progression-regional-claims-t2.test.js",
     "tests/provider-progression-regional-claims.helpers.js",
     "tests/provider-progression-ui.test.js",
+    "tests/provider-prospect-choice.test.js",
     "tests/provider-qualification-boundary.test.js",
     "tests/provider-receipt-waits.test.js",
     "tests/provider-recovery-configuration-history.test.js",

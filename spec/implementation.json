@@ -8160,6 +8160,14 @@
       ],
       "status": "partial",
       "scope": "Fresh version 4 Customer IT careers fund the Provider's ordinary migration project and retain its cash posting, supplier period cost and child task. Both customer openings can fund South planning within the separate internal budget, approve a scoped grant, rehearse the exact live cutover window and accept a migration of Bea through the validated Provider decision. South becomes managed only after the native child placement completes. Quotes check readiness, meetings, engineer capacity, live calls and grant expiry; command lineage, save validation and Worker replay protect both parties' decisions. Orchard's acceptance is a standing synthetic service policy rather than a separately playable MSP decision, so the two-career and victory requirements remain pending."
+    },
+    {
+      "id": "BEH-SOC-448",
+      "sources": ["uc-new:domain:pricing", "uc-new:domain:journey-testing", "DEC-011"],
+      "implementation": ["src/game/25-provider-campaign.js", "src/game/55-communications.js", "src/game/93-ui/75-provider-panels.js"],
+      "testIds": ["AC-SOC-910"],
+      "status": "partial",
+      "scope": "Fresh version 2 SMB prospect-choice careers offer a second, shorter-promise premium lead after continuation. From equivalent minute-300 states, a lean regular plan and a funded short-response plan both meet the period-6 promise; an unfunded premium plan fails it. The premium route commits more cash and paid operations for a higher period result. Version 1 saves preserve their former single later lead. Human comprehension, later portfolio balance and retention/churn remain pending."
     }
   ]
 }

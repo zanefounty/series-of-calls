@@ -1316,7 +1316,9 @@
     ],
     "tests/provider-customer-it-career.test.js": [
       "AC-SOC-904",
-      "AC-SOC-905"
+      "AC-SOC-905",
+      "AC-SOC-906",
+      "AC-SOC-907"
     ]
   },
   "inputs": [

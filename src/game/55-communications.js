@@ -174,8 +174,13 @@ const SOC = (function socKernel() {
       root.business=business.create(root);root.business.balance.opening=root.business.balance.cash=providerRules.data.difficultyCapitalCents[difficulty||'normal'];
       Object.assign(root.business.workforce,{engineers:providerRules.data.staff.engineers,support:providerRules.data.staff.support,hourlyCents:providerRules.data.staff.payrollCentsPerPerson});
       root.portfolio=portfolio.create({clock});
-      root.providerCampaign=providerCampaign.create(root,{providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...([1,2].includes(sectorHandoverVersion)?{sectorHandoverVersion}:{}),...(meetingContinuityVersion===1?{meetingContinuityVersion}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
-      if(careerRole==='customer-it'){root.careerRole='customer-it';root.customerIt=customerItCareer.create(root);}
+      root.providerCampaign=providerCampaign.create(root,{providerName:careerRole==='customer-it'?'Orchard Communications':providerName,market,difficulty,scenario,seed,...(openingVariant!==undefined?{openingVariant}:{}),...([1,2].includes(sectorHandoverVersion)?{sectorHandoverVersion}:{}),...(meetingContinuityVersion===1?{meetingContinuityVersion}:{}),...(opening!==undefined&&scenario==='smb'?{staffingCommitmentVersion:1,autoReceiptPolicyVersion:1}:{}),...(opening==='win'?{autoIntegrationChecksVersion:1}:{})},providerHooks());
+      if(careerRole==='customer-it'){
+        const request={action:'plan',offerId:'starter',planId:'steady'},quote=providerCampaign.quote(root,request,providerHooks());if(quote.blockers.length)fail('CUSTOMER_IT_INHERITED_CONTRACT_UNAVAILABLE');
+        const funded=dispatchInternal(root,{type:'provider',command:{...request,quoteRevision:quote.atRevision}},false);
+        funded.careerRole='customer-it';funded.customerIt=customerItCareer.create(funded,{linkedProvider:true});
+        return validateState(funded);
+      }
     }
     if(opening==='estate'){
       let funded=validateState(root),request={action:'plan',offerId:'starter',planId:'swift'};

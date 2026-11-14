@@ -53487,7 +53487,8 @@
       "BEH-SOC-408",
       "BEH-SOC-431",
       "BEH-SOC-440",
-      "BEH-SOC-444"
+      "BEH-SOC-444",
+      "BEH-SOC-445"
     ]
   },
   {
@@ -54463,7 +54464,8 @@
       "BEH-SOC-062",
       "BEH-SOC-063",
       "BEH-SOC-352",
-      "BEH-SOC-444"
+      "BEH-SOC-444",
+      "BEH-SOC-445"
     ]
   },
   {
@@ -54526,6 +54528,7 @@
       "scripts/lib/campaign-journey.js",
       "scripts/lib/campaign-ui.js",
       "scripts/mcp-smoke.py",
+      "src/game/23-customer-it-career.js",
       "src/game/23-provider-finance-view.js",
       "src/game/23-provider-journeys.js",
       "src/game/25-provider-campaign.js",
@@ -54569,7 +54572,8 @@
       "BEH-SOC-390",
       "BEH-SOC-393",
       "BEH-SOC-395",
-      "BEH-SOC-440"
+      "BEH-SOC-440",
+      "BEH-SOC-445"
     ]
   },
   {
@@ -62526,7 +62530,8 @@
       "BEH-SOC-440",
       "BEH-SOC-441",
       "BEH-SOC-442",
-      "BEH-SOC-444"
+      "BEH-SOC-444",
+      "BEH-SOC-445"
     ]
   },
   {
@@ -62586,7 +62591,8 @@
       "BEH-SOC-361",
       "BEH-SOC-419",
       "BEH-SOC-441",
-      "BEH-SOC-444"
+      "BEH-SOC-444",
+      "BEH-SOC-445"
     ]
   },
   {

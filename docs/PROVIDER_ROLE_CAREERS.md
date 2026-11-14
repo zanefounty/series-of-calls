@@ -24,6 +24,10 @@ This is an opening slice only. It does not yet supply the shared MSP contract, c
 
 The [desktop and 390px Chromium opening journeys](../evidence/gameplay-audit-2026-11-13/customer-it-opening/README.md) cover both choices, the outage, paid repair, keyboard approval, save and reload with zero source drift. They do not establish the later shared migration or victory requirements.
 
+Fresh Customer IT careers now use version 2 of that opening and inherit a real paid Enterprise Provider customer: Canopy Group is the buyer in the child SOC root, Orchard Communications is the MSP, and all three Steady service stages are funded through the ordinary quoted Provider `plan` command before Customer IT control begins. The linked record retains the actual stage project and setup posting IDs, retail price, supplier period costs, operator and support owner. The A$9,000 customer budget remains separate from the MSP treasury and Provider settlement. Customer IT can accept a revision-bound 180-minute North/South change grant to Orchard for configuration and migration, with Customer IT escalation, or revoke it before expiry. Legacy version 1 Cedar Services saves retain their earlier bounded opening and validation.
+
+The linked contract does not yet make the two site opening observations part of the Provider child root’s actual service trace. The common outage, cross-role migration execution, accepted window and role-specific victory still need one shared lineage.
+
 ## Shared contract and convergence
 
 The two careers encounter the same named multi-site migration brief and technical outage. A shared contract identifies customer buyer, MSP seller, service operator and support owner independently. It records the customer requirement and internal spend cap, the MSP retail and supplier terms, customer-owned assets, delegated change scope, escalation and expiry, plus separate customer and MSP acceptance of the migration window. Commissioning and any rollback carry those parties and obligations forward; segment transition must not replace them.

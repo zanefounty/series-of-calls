@@ -16,6 +16,14 @@ This document defines the first bounded career pair. It applies the organisation
 
 The first decision must affect a real paid/effective resource, work schedule or exposure before the outage. A displayed role name or different prose does not satisfy this contract. The role is immutable for a career save. A new role marker is versioned; old saves retain their recorded MSP behavior.
 
+## Implemented opening slice
+
+The visible Enterprise new-game form can start a Customer IT career for Cedar Services. It creates a separate A$9,000 internal budget and two customer-owned sites while retaining Orchard Communications as a distinct MSP treasury. The first revision-bound quote lets Customer IT spend A$3,500 to protect North access in three minutes or A$5,000 to migrate South to a managed platform in four minutes. At minute eight, the same scheduled North access outage is protected or interrupts service based on the effective protection state. An interrupted North site can be repaired for A$2,000 and two minutes of work. Internal postings, effective sites and observed lost minutes persist through save and Worker replay; cross-role commands are rejected. Legacy MSP careers are unaffected.
+
+This is an opening slice only. It does not yet supply the shared MSP contract, customer and MSP acceptance of a multi-site migration, common work and outage settlement, role-specific victory or full browser careers. The Customer IT budget and site observations must be carried into those later stages rather than replaced by a fresh generic estate.
+
+The [desktop and 390px Chromium opening journeys](../evidence/gameplay-audit-2026-11-13/customer-it-opening/README.md) cover both choices, the outage, paid repair, keyboard approval, save and reload with zero source drift. They do not establish the later shared migration or victory requirements.
+
 ## Shared contract and convergence
 
 The two careers encounter the same named multi-site migration brief and technical outage. A shared contract identifies customer buyer, MSP seller, service operator and support owner independently. It records the customer requirement and internal spend cap, the MSP retail and supplier terms, customer-owned assets, delegated change scope, escalation and expiry, plus separate customer and MSP acceptance of the migration window. Commissioning and any rollback carry those parties and obligations forward; segment transition must not replace them.

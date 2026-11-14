@@ -53421,6 +53421,7 @@
     "representation": "domain:commercial-roles",
     "status": "partial",
     "implementation": [
+      "src/game/23-customer-it-career.js",
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-finance-view.js",
       "src/game/23-provider-integration-assurance.js",
@@ -53445,6 +53446,8 @@
       "src/game/93-ui/79-provider-progression.js",
       "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
+      "src/styles/98-provider.css",
       "tests/campaign.test.js",
       "tests/domain-integration.test.js",
       "tests/transport.test.js"
@@ -53483,7 +53486,8 @@
       "BEH-SOC-406",
       "BEH-SOC-408",
       "BEH-SOC-431",
-      "BEH-SOC-440"
+      "BEH-SOC-440",
+      "BEH-SOC-444"
     ]
   },
   {
@@ -54439,10 +54443,15 @@
     "representation": "domain:migration",
     "status": "partial",
     "implementation": [
+      "src/game/23-customer-it-career.js",
       "src/game/45-products.js",
       "src/game/48-estate.js",
       "src/game/53-service-operations.js",
-      "src/game/55-communications.js"
+      "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-provider-shell.js",
+      "src/game/98-provider-runtime.js",
+      "src/styles/98-provider.css"
     ],
     "acceptance": [
       "AC-65e4df84bdf18392"
@@ -54453,7 +54462,8 @@
       "BEH-SOC-029",
       "BEH-SOC-062",
       "BEH-SOC-063",
-      "BEH-SOC-352"
+      "BEH-SOC-352",
+      "BEH-SOC-444"
     ]
   },
   {
@@ -54591,6 +54601,7 @@
     "representation": "domain:continuity",
     "status": "partial",
     "implementation": [
+      "src/game/23-customer-it-career.js",
       "src/game/23-provider-configuration-authority.js",
       "src/game/23-provider-external-reach.js",
       "src/game/23-provider-history.js",
@@ -54611,7 +54622,11 @@
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/81-shared-services-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
+      "src/styles/98-provider.css",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js",
@@ -54655,7 +54670,8 @@
       "BEH-SOC-402",
       "BEH-SOC-404",
       "BEH-SOC-405",
-      "BEH-SOC-435"
+      "BEH-SOC-435",
+      "BEH-SOC-444"
     ]
   },
   {
@@ -62382,6 +62398,7 @@
       "scripts/calls-mcp.js",
       "scripts/mcp.js",
       "src/game/22-provider-demand.js",
+      "src/game/23-customer-it-career.js",
       "src/game/23-provider-case-followup.js",
       "src/game/23-provider-case-handoff.js",
       "src/game/23-provider-configuration-authority.js",
@@ -62508,7 +62525,8 @@
       "BEH-SOC-433",
       "BEH-SOC-440",
       "BEH-SOC-441",
-      "BEH-SOC-442"
+      "BEH-SOC-442",
+      "BEH-SOC-444"
     ]
   },
   {
@@ -62523,6 +62541,7 @@
       "content/campaign.json",
       "scripts/calls-mcp.js",
       "scripts/lib/mcp-page.js",
+      "src/game/23-customer-it-career.js",
       "src/game/25-provider-campaign.js",
       "src/game/37-portfolio.js",
       "src/game/38-admission-security.js",
@@ -62532,7 +62551,11 @@
       "src/game/48-estate.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
+      "src/styles/98-provider.css",
       "tests/boundaries.test.js",
       "tests/campaign-integration.test.js",
       "tests/campaign.test.js",
@@ -62562,7 +62585,8 @@
       "BEH-SOC-353",
       "BEH-SOC-361",
       "BEH-SOC-419",
-      "BEH-SOC-441"
+      "BEH-SOC-441",
+      "BEH-SOC-444"
     ]
   },
   {

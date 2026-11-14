@@ -7365,7 +7365,7 @@
         "AC-SOC-835"
       ],
       "status": "partial",
-      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer\u2019s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
+      "scope": "Named regional support uses the actual post-settlement customer-exit boundary when reconstructing shared staffing occupancy. Prior active-customer observations remain historical evidence while the exit minute releases the departed customer’s slot. The bounded regression includes altered occupancy refusal; this does not establish the complete multi-market regional paths. Historical implementation occupancy also includes same-minute work submitted by an anchored paid automation action before the support sample. Manual same-minute orders retain their later-command cutoff; mismatched action, funding and project anchors cannot supply that exception."
     },
     {
       "id": "BEH-SOC-408",
@@ -8072,6 +8072,30 @@
       ],
       "status": "partial",
       "scope": "Later named customers receive first-work, failure, recovery and bill reactions from their own actual outcomes. In new Provider Enterprise careers, a later partner meeting requires a retained earlier meeting recording and an explicit persisted carry-forward promise; missing evidence blocks the later meeting, while a funded repair and actual recorded attendance restore credit. Save, Worker, stale quote, forged promise and pure UI checks cover this bounded path. Transcript-specific tasks, later-sector authored relationship consequences, browser acceptance and full source fidelity remain pending."
+    },
+    {
+      "id": "BEH-SOC-444",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:migration",
+        "uc-new:domain:continuity",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/23-customer-it-career.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js",
+        "src/styles/98-provider.css"
+      ],
+      "testIds": [
+        "AC-SOC-904",
+        "AC-SOC-905"
+      ],
+      "status": "partial",
+      "scope": "Visible Customer IT Enterprise opening with separate internal budget and customer-owned sites, quoted protected access or managed migration, effective work and observed synthetic outage, paid repair, cross-role dispatch rejection, save/Worker and forged-state checks. Shared MSP/customer contract, common work and outage settlement, migration acceptance, distinct victory, browser careers and four further roles remain pending."
     }
   ]
 }

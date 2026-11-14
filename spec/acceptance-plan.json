@@ -1313,6 +1313,10 @@
     ],
     "tests/provider-meeting-continuity.test.js": [
       "AC-SOC-903"
+    ],
+    "tests/provider-customer-it-career.test.js": [
+      "AC-SOC-904",
+      "AC-SOC-905"
     ]
   },
   "inputs": [
@@ -1487,6 +1491,7 @@
     "src/game/23-provider-variants.js",
     "src/game/23-provider-workforce-history.js",
     "src/game/23-training-lessons.js",
+    "src/game/23-customer-it-career.js",
     "src/game/24-provider-rules.js",
     "src/game/25-provider-campaign.js",
     "src/game/26-customer-needs.js",
@@ -1864,6 +1869,7 @@
     "tests/provider-integration-support.test.js",
     "tests/provider-journey-explanation.test.js",
     "tests/provider-meeting-join.test.js",
+    "tests/provider-customer-it-career.test.js",
     "tests/provider-meeting-continuity.test.js",
     "tests/provider-meeting-brief.test.js",
     "tests/provider-operation-usage-quotes.test.js",

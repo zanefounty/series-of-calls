@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-14T10:55:03.190645+00:00",
+  "runAt": "2026-11-14T12:16:33.059427+00:00",
   "command": [
     "python3",
     "scripts/record-evidence.py",
@@ -901,7 +901,8 @@
     "AC-SOC-906": "passed",
     "AC-SOC-907": "passed",
     "AC-SOC-908": "passed",
-    "AC-SOC-909": "passed"
+    "AC-SOC-909": "passed",
+    "AC-SOC-911": "passed"
   },
   "failures": 0,
   "parseError": null,
@@ -1077,7 +1078,7 @@
     "src/game/23-provider-variants.js": "06c8d609522f9a2eb0b708887463875bf20aa17f031008cdae16c079b0101538",
     "src/game/23-provider-workforce-history.js": "2272793afaf3be99ef0fde20e3c859340e655a33ee5baf87b46b590129c0cbe9",
     "src/game/23-training-lessons.js": "e18fbbfe01e008ab4b94373f5bb232fdad06cbe121b051e08bb5fc22086c2f71",
-    "src/game/23-customer-it-career.js": "7dc97181b0fe07aea8c72fc1c8b7df6ec685503b7c1fa3f26ed8c776b22ff4f1",
+    "src/game/23-customer-it-career.js": "c0a0df540e6fc52f2f5c2ad2569c090f8145bfd525654856d9b73374eda9d7d1",
     "src/game/24-provider-rules.js": "b960d0ce84af69260ae2fe2c2f8102e865356c652c3289d9443a12cd1ef9369d",
     "src/game/25-provider-campaign.js": "69af2439a169f3fa4f4681eb8ea839459acdaf64b88ad99c1d70c0c084d582b1",
     "src/game/26-customer-needs.js": "0e864f845f69de24eec552726ff75f3db846d064dd6b70e0fdacdca45f343f19",
@@ -1455,7 +1456,7 @@
     "tests/provider-integration-support.test.js": "c8793ef665171b0b83c74dc29a833dba4a6e0aa264c684ebe82d32010c7b3a38",
     "tests/provider-journey-explanation.test.js": "dcd9f62ce47e1c11716c21975cd7ec204f58bd2b97301052db930a6073b9c846",
     "tests/provider-meeting-join.test.js": "b8bc6b0dfc39e020231f16a01810bda46583b04f8ecc67832a37a1037e1c58b5",
-    "tests/provider-customer-it-career.test.js": "298652a09426ef9c43b789fd71d31068b37c9decf0c5c7b9f609e627fb33a170",
+    "tests/provider-customer-it-career.test.js": "c9547c307100767f1e600970a06985e52fed60974feca524f76cdd8353aa8426",
     "tests/provider-meeting-continuity.test.js": "0d759f95496edd3d5a652fcbedbb3852601edac36bcdfb9430802367436b12ff",
     "tests/provider-meeting-brief.test.js": "989f1eaed8075537869288f3d77382770f9af9f6164c995b51b38ba9b66717f4",
     "tests/provider-operation-usage-quotes.test.js": "ee21dc5dc01121948bd593534ec80ab54369c5315f6b3701d7e8c00f312782f4",
@@ -1568,13 +1569,13 @@
     "tests/workforce-quality-integration.test.js": "878bb64313afb163abbe2cc8df39e628202cfa680e3b8f4a26c805794369171a",
     "tests/workforce-quality-ui.test.js": "70ff0ff53f56dfc800d8219ed58286748f409d7d0851038f2e16c6b4ce339bbb",
     "tests/workforce-quality.test.js": "7c2d6a16d3fdb9f30b67d5488726f881b462706a8b7548fa299d6698b5c4b0a4",
-    "spec/acceptance-plan.json": "0278b48754d02981d703189534f84936fc483fad0d2bfeb71bd00e898a089847"
+    "spec/acceptance-plan.json": "4fa2173e91641dc62b0d782ad94748d69bc8a7b709861336072555758fce6439"
   },
   "changedInputs": [],
   "nodeSummary": {
-    "tests": 1066,
+    "tests": 1067,
     "suites": 0,
-    "pass": 1066,
+    "pass": 1067,
     "fail": 0,
     "cancelled": 0,
     "skipped": 0,
@@ -1630,12 +1631,12 @@
           "tests/admission-security-integration.test.js",
           "tests/provider-workload-flows.test.js"
         ],
-        "sourceReport": "acceptance-part-1-43586483872-1/acceptance.json",
-        "sourceReportSha256": "7a4ed337a7ad89cd548def742a836c65f39dfd6d3e2a364238654ad1406b689b",
-        "sourceTap": "acceptance-part-1-43586483872-1/communications.tap",
-        "sourceTapSha256": "dd1f559da704c72aa48b8f7bd5495935101937e26e04d4e9ced049d6b8dd835c",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-01-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-01-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-1-43592933574-1/acceptance.json",
+        "sourceReportSha256": "2d6b5ccd13e097cd8114795c0226b932772c1122cc76ff9177a124900e0ec350",
+        "sourceTap": "acceptance-part-1-43592933574-1/communications.tap",
+        "sourceTapSha256": "ea1edd5fc26956e9d0cf9546461636744d08af54f3e5d5ee7da4d85234db0462",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-01-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-01-of-40/shard-communications.tap"
       },
       {
         "index": 2,
@@ -1685,12 +1686,12 @@
           "tests/completion-packs-integration.test.js",
           "tests/provider-room-family-limitation.test.js"
         ],
-        "sourceReport": "acceptance-part-2-43586483872-1/acceptance.json",
-        "sourceReportSha256": "1e00eb53ff98ce08b5032c99522969fe778c41ce6c1090188408598ad1679f71",
-        "sourceTap": "acceptance-part-2-43586483872-1/communications.tap",
-        "sourceTapSha256": "6b1ecbfe8e5a6c59b0f504b700cb47b31ea3bdadfed701c34209233fa17af82c",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-02-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-02-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-2-43592933574-1/acceptance.json",
+        "sourceReportSha256": "bdce9d0876f1505a4d141414466898c7e03ea494c0fb5708b764ae6b5203c738",
+        "sourceTap": "acceptance-part-2-43592933574-1/communications.tap",
+        "sourceTapSha256": "9f993806a69a8006fa526bf496dfe760477ef1aaed4432646159f0edaecc85f1",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-02-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-02-of-40/shard-communications.tap"
       },
       {
         "index": 3,
@@ -1742,12 +1743,12 @@
           "tests/transport-lease-recovery.test.js",
           "tests/provider-scale-mcp.test.js"
         ],
-        "sourceReport": "acceptance-part-3-43586483872-1/acceptance.json",
-        "sourceReportSha256": "7ec18b5db45ea2b47f644eecf43ba6cacacc166f0ad99b9742f99385e3ec8fd0",
-        "sourceTap": "acceptance-part-3-43586483872-1/communications.tap",
-        "sourceTapSha256": "b2cb74aa10483db4f488886cdf6a36d30d9c4d8165f4879d917e8fabd4855355",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-03-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-03-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-3-43592933574-1/acceptance.json",
+        "sourceReportSha256": "26943c5b14cc07fa93ca3e7bb557d434f79f69367671cebd846f53b316d5cdb8",
+        "sourceTap": "acceptance-part-3-43592933574-1/communications.tap",
+        "sourceTapSha256": "92ab51440062b0d0d78b1028a113c78486b5001256cd23b2883d7789705f0ebb",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-03-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-03-of-40/shard-communications.tap"
       },
       {
         "index": 4,
@@ -1785,12 +1786,12 @@
           "tests/training-lock-revocation.test.js",
           "tests/transport-boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-4-43586483872-1/acceptance.json",
-        "sourceReportSha256": "063f7d48e69ef2c4267f2701677daa3a465ce4874b595cda20253928ebd2d10a",
-        "sourceTap": "acceptance-part-4-43586483872-1/communications.tap",
-        "sourceTapSha256": "5890e3c63b809a35fa8005e312b8378338c1158ff3f8385ac4883091d52e03e1",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-04-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-04-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-4-43592933574-1/acceptance.json",
+        "sourceReportSha256": "5674ea4e5282ab9b0d206e4b3c69488df27bb8f4a6df4447b1feca0ddf70681d",
+        "sourceTap": "acceptance-part-4-43592933574-1/communications.tap",
+        "sourceTapSha256": "b27935722deffe48f32be94b0810d2a4b318c5ebeaea332ea008178a173dbb66",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-04-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-04-of-40/shard-communications.tap"
       },
       {
         "index": 5,
@@ -1832,12 +1833,12 @@
           "tests/business-pool-integration.test.js",
           "tests/provider-scale-default.test.js"
         ],
-        "sourceReport": "acceptance-part-5-43586483872-1/acceptance.json",
-        "sourceReportSha256": "de240837cc55fbe8dfa23eb5bc4f068929655ed650684a515b8bbaa25a2f6758",
-        "sourceTap": "acceptance-part-5-43586483872-1/communications.tap",
-        "sourceTapSha256": "0a029dd0bf36b575fdc3ec0fe6e82a01a6c22c532fc144577c230af080d55a46",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-05-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-05-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-5-43592933574-1/acceptance.json",
+        "sourceReportSha256": "04b869d0a8b62e841f3d4cbe7f0d13917525ee52b4e1bd6859f9226603ae4154",
+        "sourceTap": "acceptance-part-5-43592933574-1/communications.tap",
+        "sourceTapSha256": "26166f82df5ae4d491b9a5aa04aa82b1ce03003956b9dec3f6a9eea770d907f2",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-05-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-05-of-40/shard-communications.tap"
       },
       {
         "index": 6,
@@ -1882,12 +1883,12 @@
           "tests/issue-exercises.test.js",
           "tests/provider-portfolio-runtime.test.js"
         ],
-        "sourceReport": "acceptance-part-6-43586483872-1/acceptance.json",
-        "sourceReportSha256": "899e66353686b402bd9ff2acf6c868195e4c3ae556ef37f46624ca7b878eb262",
-        "sourceTap": "acceptance-part-6-43586483872-1/communications.tap",
-        "sourceTapSha256": "13010c2bf6975597ecdec38c4d08e40c5d8b163f60b3e5b3229edb196cd251b2",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-06-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-06-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-6-43592933574-1/acceptance.json",
+        "sourceReportSha256": "fc077c00afdd58db477925ace062f79c3aff2cf62dfd0dc550bff0147af44b4b",
+        "sourceTap": "acceptance-part-6-43592933574-1/communications.tap",
+        "sourceTapSha256": "e73101053d7a1882191d530c4afb0e2552a28fe4aecbc6aa785d2732827ef1fd",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-06-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-06-of-40/shard-communications.tap"
       },
       {
         "index": 7,
@@ -1938,12 +1939,12 @@
           "tests/product-integration.test.js",
           "tests/provider-persistence-next-outcome.test.js"
         ],
-        "sourceReport": "acceptance-part-7-43586483872-1/acceptance.json",
-        "sourceReportSha256": "93e0621d661ab2240c74589eec210a368a991807e99c900700f57cfb21ebec91",
-        "sourceTap": "acceptance-part-7-43586483872-1/communications.tap",
-        "sourceTapSha256": "b9d565faf4b02c3968d459dfbf358db5a65d1a7e2c00eb10b3a2f81c1622c70e",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-07-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-07-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-7-43592933574-1/acceptance.json",
+        "sourceReportSha256": "e81dee7bf2387a5c73348e9ba8e22c16ee2172106b01523dfaea14f71f3916be",
+        "sourceTap": "acceptance-part-7-43592933574-1/communications.tap",
+        "sourceTapSha256": "1f9fb8f1ae160a79f15d9098b79c95932cdbd7a24d1a74785d3993d5ee6601ce",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-07-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-07-of-40/shard-communications.tap"
       },
       {
         "index": 8,
@@ -1989,12 +1990,12 @@
           "tests/admission-security.test.js",
           "tests/provider-partner-paid-path.test.js"
         ],
-        "sourceReport": "acceptance-part-8-43586483872-1/acceptance.json",
-        "sourceReportSha256": "840ac03e2d466b25aa69d39fcffe5f751e2887c9b5fb5584965476db92a02b36",
-        "sourceTap": "acceptance-part-8-43586483872-1/communications.tap",
-        "sourceTapSha256": "a697727fe1ae8821abfc67872ce37c3c3f84081c636db4226d0f5a3ad47c2afa",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-08-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-08-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-8-43592933574-1/acceptance.json",
+        "sourceReportSha256": "10033becfe900101f10d617b9a4cddc19c41cd4e63baaaf9c0c0e0cfdaa7ec10",
+        "sourceTap": "acceptance-part-8-43592933574-1/communications.tap",
+        "sourceTapSha256": "80b777f96f41d3e28b013cd10a61552f18f30e330e74de624a5a653401a12975",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-08-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-08-of-40/shard-communications.tap"
       },
       {
         "index": 9,
@@ -2048,12 +2049,12 @@
           "tests/communications.test.js",
           "tests/provider-partner-support.test.js"
         ],
-        "sourceReport": "acceptance-part-9-43586483872-1/acceptance.json",
-        "sourceReportSha256": "23aab963d5b1fc53305177a4eb698b9f1a2eb5c79e9a9e78deed73ecc0a144f8",
-        "sourceTap": "acceptance-part-9-43586483872-1/communications.tap",
-        "sourceTapSha256": "35e6b53868be55d8ba8ce91d9efb87d7f05dfea2839a328cd20ada94255fc521",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-09-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-09-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-9-43592933574-1/acceptance.json",
+        "sourceReportSha256": "fde09d6c818c4e157a9abdeb750d47d12b45ca99a0c2894b91603fb3efb9e336",
+        "sourceTap": "acceptance-part-9-43592933574-1/communications.tap",
+        "sourceTapSha256": "f082021d7f5f71e4ea0e5c5d4c99f2e01242334b496e1f5dde31da981b7498a7",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-09-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-09-of-40/shard-communications.tap"
       },
       {
         "index": 10,
@@ -2108,12 +2109,12 @@
           "tests/inbound-calling.test.js",
           "tests/provider-partner-paths.test.js"
         ],
-        "sourceReport": "acceptance-part-10-43586483872-1/acceptance.json",
-        "sourceReportSha256": "2e4d7627bd0146477a39ec2d3071c0ee83b829dd641134ef76e6db3785c15cea",
-        "sourceTap": "acceptance-part-10-43586483872-1/communications.tap",
-        "sourceTapSha256": "6ba7a5a527e9687300a0e20d7413434bf7a2981b0923b2001512c7981cd4e845",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-10-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-10-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-10-43592933574-1/acceptance.json",
+        "sourceReportSha256": "4a97c63f5cd9ea881e13283df53e25ae9bc33dafd1c6658db6be6f4b6e02af61",
+        "sourceTap": "acceptance-part-10-43592933574-1/communications.tap",
+        "sourceTapSha256": "950d3ae6c5d04fa93b49b4ef062fbff47e613daeb180c81d5df3a4f6e27bcb93",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-10-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-10-of-40/shard-communications.tap"
       },
       {
         "index": 11,
@@ -2166,12 +2167,12 @@
           "tests/provider-room-integration-dispatch.test.js",
           "tests/provider-prospect-choice.test.js"
         ],
-        "sourceReport": "acceptance-part-11-43586483872-1/acceptance.json",
-        "sourceReportSha256": "7c7748d2fc52fb7781f74b81a94428af17448828340bd1bc7de9215aa5f6fdb5",
-        "sourceTap": "acceptance-part-11-43586483872-1/communications.tap",
-        "sourceTapSha256": "f2cb7cff3b8360ed55cf5f635a9b07ba5af8caaddcb0fb16373870c1756d608d",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-11-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-11-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-11-43592933574-1/acceptance.json",
+        "sourceReportSha256": "17cd32b52c0081a7f8870dbedcd3672b2f18a66111d07dddad6275e5dffe31dd",
+        "sourceTap": "acceptance-part-11-43592933574-1/communications.tap",
+        "sourceTapSha256": "4250d46964694710dad52d0f506448a70fd6b000194fd0534792e9e45438c52d",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-11-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-11-of-40/shard-communications.tap"
       },
       {
         "index": 12,
@@ -2222,12 +2223,12 @@
           "tests/workforce-quality-ui.test.js",
           "tests/provider-meeting-brief.test.js"
         ],
-        "sourceReport": "acceptance-part-12-43586483872-1/acceptance.json",
-        "sourceReportSha256": "3a7657ae3200d429bfd52f9cf0258bd588184c2e0d7c7bdca76926ec4df2d211",
-        "sourceTap": "acceptance-part-12-43586483872-1/communications.tap",
-        "sourceTapSha256": "d5c50bdeb70153e4a1ef9e4227fd48484066fb7a2c99ed40cd06a9e60911c794",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-12-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-12-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-12-43592933574-1/acceptance.json",
+        "sourceReportSha256": "fd49699eda4b6f67ec9041fad11ab1fc768beed52cfc51acb79ec043b0b4f24f",
+        "sourceTap": "acceptance-part-12-43592933574-1/communications.tap",
+        "sourceTapSha256": "ec4abd9f41a440f3ac6fc104fee983e01642f24a038a8fdc8a1b0e662dddbc82",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-12-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-12-of-40/shard-communications.tap"
       },
       {
         "index": 13,
@@ -2277,12 +2278,12 @@
           "tests/managed-operations.test.js",
           "tests/provider-room-guest-choice.test.js"
         ],
-        "sourceReport": "acceptance-part-13-43586483872-1/acceptance.json",
-        "sourceReportSha256": "d9d843d3ea7f27fab25550c9d0be8aea08a726c0ee4545bf812e42bb77c8dd8d",
-        "sourceTap": "acceptance-part-13-43586483872-1/communications.tap",
-        "sourceTapSha256": "970b5428af08cae607062ccb751640bc0b8007fad4cab7c5a759b604786ce4bf",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-13-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-13-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-13-43592933574-1/acceptance.json",
+        "sourceReportSha256": "7221ffb67f267a5140c78c7f2e544bc1e7da89fe65a1287e51b1848ab0359818",
+        "sourceTap": "acceptance-part-13-43592933574-1/communications.tap",
+        "sourceTapSha256": "dec8d109125a6c4511aa81b333a6411e7f18aaa1bc53af5a30f38c6c75f2aec2",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-13-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-13-of-40/shard-communications.tap"
       },
       {
         "index": 14,
@@ -2338,12 +2339,12 @@
           "tests/calls-mcp.test.js",
           "tests/provider-segments.test.js"
         ],
-        "sourceReport": "acceptance-part-14-43586483872-1/acceptance.json",
-        "sourceReportSha256": "da18f6640ae6357d062e353eda79c9b61634773bab3121f6815c2ef370e59d1c",
-        "sourceTap": "acceptance-part-14-43586483872-1/communications.tap",
-        "sourceTapSha256": "bf6f2eb12d59fd8a43483fe2a5da514eee9c27d28ca06026ce104559c010dd82",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-14-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-14-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-14-43592933574-1/acceptance.json",
+        "sourceReportSha256": "491e9f9109f4953c0786aa03b05dc26995fc41a40a12af4ebc9624e42d94683f",
+        "sourceTap": "acceptance-part-14-43592933574-1/communications.tap",
+        "sourceTapSha256": "e221823c41f812926b900509cb8251ddf137114a4b1850e80f5f105504dcd176",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-14-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-14-of-40/shard-communications.tap"
       },
       {
         "index": 15,
@@ -2402,12 +2403,12 @@
           "tests/products.test.js",
           "tests/provider-presentation-relationships.test.js"
         ],
-        "sourceReport": "acceptance-part-15-43586483872-1/acceptance.json",
-        "sourceReportSha256": "d34d28c40fc21aa1333b0d6c76fed380ec16a49b2e0c3ce6f8e6ca3fd1d5c196",
-        "sourceTap": "acceptance-part-15-43586483872-1/communications.tap",
-        "sourceTapSha256": "490f1f366c33e3418402bfb248f4e46ea5eadec1e3984750c58d1626ed413293",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-15-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-15-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-15-43592933574-1/acceptance.json",
+        "sourceReportSha256": "6559028322f6df5d47da781651f7d367fb00b7372336999f763bb25279c6652f",
+        "sourceTap": "acceptance-part-15-43592933574-1/communications.tap",
+        "sourceTapSha256": "c96a6802163f7a141565efd09b6cf3ecf02d7c410def46094908a750d00313e1",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-15-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-15-of-40/shard-communications.tap"
       },
       {
         "index": 16,
@@ -2452,12 +2453,12 @@
           "tests/business-shared-allowances.test.js",
           "tests/provider-meeting-continuity.test.js"
         ],
-        "sourceReport": "acceptance-part-16-43586483872-1/acceptance.json",
-        "sourceReportSha256": "4c889e953ffbc3ea089a37aabf30681f65b865b67625b2335d516adf1f8a7b5a",
-        "sourceTap": "acceptance-part-16-43586483872-1/communications.tap",
-        "sourceTapSha256": "fe8b8a0d75ddaa7d5cfcec19fb764e7a6d040d008e1ea3c4e880a29e6c08e973",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-16-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-16-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-16-43592933574-1/acceptance.json",
+        "sourceReportSha256": "9eea950e9f2da2a1806d2fc10fd903923d8fd64bf6a819514413401484e3aa5f",
+        "sourceTap": "acceptance-part-16-43592933574-1/communications.tap",
+        "sourceTapSha256": "09907b890faea92d078d76db66fbb86d0ab725fdf345ecdd88cf65ec1e4aa36b",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-16-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-16-of-40/shard-communications.tap"
       },
       {
         "index": 17,
@@ -2495,7 +2496,8 @@
           "AC-SOC-906",
           "AC-SOC-907",
           "AC-SOC-908",
-          "AC-SOC-909"
+          "AC-SOC-909",
+          "AC-SOC-911"
         ],
         "command": [
           "node",
@@ -2510,12 +2512,12 @@
           "tests/provider-dedicated-interconnect-retention.test.js",
           "tests/provider-customer-it-career.test.js"
         ],
-        "sourceReport": "acceptance-part-17-43586483872-1/acceptance.json",
-        "sourceReportSha256": "1ff55b4934f226cfec0024f489cc74362c643a489a1df293eb97d848f6f22a32",
-        "sourceTap": "acceptance-part-17-43586483872-1/communications.tap",
-        "sourceTapSha256": "8f3d35b65531b96a36a998128db5792039494394ac2f9b8b5f1292497abc1c6a",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-17-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-17-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-17-43592933574-1/acceptance.json",
+        "sourceReportSha256": "518d065e40ac3d9f4232821f75ea6519396db9749e2792d5ac7c016a4307ed33",
+        "sourceTap": "acceptance-part-17-43592933574-1/communications.tap",
+        "sourceTapSha256": "b318cf4b17a6a644d64910c87364347f89675622722bb76384bd6dbf04c83ecc",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-17-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-17-of-40/shard-communications.tap"
       },
       {
         "index": 18,
@@ -2568,12 +2570,12 @@
           "tests/provider-integration-assurance.test.js",
           "tests/media-negotiation.test.js"
         ],
-        "sourceReport": "acceptance-part-18-43586483872-1/acceptance.json",
-        "sourceReportSha256": "6fea188676ac12e7cc3404557d4661945c8b055c0bc5b892c0702049624108f1",
-        "sourceTap": "acceptance-part-18-43586483872-1/communications.tap",
-        "sourceTapSha256": "a3569094d786152d53c170d3655ec9db9f8a9292cec92717b494bdb5980bc606",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-18-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-18-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-18-43592933574-1/acceptance.json",
+        "sourceReportSha256": "bdd0b0070e1666baa015da4939e7f65a5ada4355965ee1af9636590b390a1b54",
+        "sourceTap": "acceptance-part-18-43592933574-1/communications.tap",
+        "sourceTapSha256": "fe83de010d5869fc9e4673df589bcfd981c15da7b56e5f347cb0ff17e6c1c9fa",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-18-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-18-of-40/shard-communications.tap"
       },
       {
         "index": 19,
@@ -2620,12 +2622,12 @@
           "tests/workforce-coaching-journey.test.js",
           "tests/specialist-lifecycle-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-19-43586483872-1/acceptance.json",
-        "sourceReportSha256": "ab73c8ba6aacd993212e3a1b0a408f438553a2dbe7ca72c15ed9ac12fb778934",
-        "sourceTap": "acceptance-part-19-43586483872-1/communications.tap",
-        "sourceTapSha256": "0aded17f12e72e6a63a04ba8de9789613b7ad0cd02e42f3c46f507ab5ed3ed94",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-19-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-19-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-19-43592933574-1/acceptance.json",
+        "sourceReportSha256": "e66abd89d480c2b898f4bceb82709f44f950fae51a30302ccd576f9bcde552dd",
+        "sourceTap": "acceptance-part-19-43592933574-1/communications.tap",
+        "sourceTapSha256": "c1e63057d7fcc9ac50ec007a9d15aedcd3cca8f9694548b804bd00c138ba17f8",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-19-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-19-of-40/shard-communications.tap"
       },
       {
         "index": 20,
@@ -2676,12 +2678,12 @@
           "tests/workforce-coaching-admin-ui.test.js",
           "tests/workforce-quality-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-20-43586483872-1/acceptance.json",
-        "sourceReportSha256": "6b7c0cf3ef8956091c131b7498ed474aa0a3ccc6c391715fa0aec0bece138c05",
-        "sourceTap": "acceptance-part-20-43586483872-1/communications.tap",
-        "sourceTapSha256": "eb8b79b7e71288df6f349ac6896751616b00fd138fc374dd7638d806f63f33b4",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-20-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-20-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-20-43592933574-1/acceptance.json",
+        "sourceReportSha256": "6dde8169aaace503e490ad4c1cb4b0f2807a74b84a9fd5704fd3834e0fdb0eb3",
+        "sourceTap": "acceptance-part-20-43592933574-1/communications.tap",
+        "sourceTapSha256": "66b7b18b985a9a17218e98278429bc0e84b0cc53f09e2a6d07da79fd0dd7fbc2",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-20-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-20-of-40/shard-communications.tap"
       },
       {
         "index": 21,
@@ -2729,12 +2731,12 @@
           "tests/estate-lifecycle-integration.test.js",
           "tests/advanced-boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-21-43586483872-1/acceptance.json",
-        "sourceReportSha256": "7571afd65b56f849315c0e61d8aca9fa041d81876f328ddc687432fdca9d0ce9",
-        "sourceTap": "acceptance-part-21-43586483872-1/communications.tap",
-        "sourceTapSha256": "69c4d8eee64dcd306de96e59beecfd2640d3d8092a46511c9a1c9e89423598fe",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-21-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-21-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-21-43592933574-1/acceptance.json",
+        "sourceReportSha256": "dd84443d07b5677ab7ff9349f37b6aa41a7292afc9ab18303664f06d9034fec6",
+        "sourceTap": "acceptance-part-21-43592933574-1/communications.tap",
+        "sourceTapSha256": "9fdcea66ee7f30662c26bf1af9899d3f789fa7382cc25fe29b0e2d62bf750982",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-21-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-21-of-40/shard-communications.tap"
       },
       {
         "index": 22,
@@ -2781,12 +2783,12 @@
           "tests/provider-followup-retry-archive.test.js",
           "tests/calling-policy.test.js"
         ],
-        "sourceReport": "acceptance-part-22-43586483872-1/acceptance.json",
-        "sourceReportSha256": "b2d0c5bbdfb4267a2d46c80b4aae7bf7e1cc12b36d52d0274ca8b71adccad02a",
-        "sourceTap": "acceptance-part-22-43586483872-1/communications.tap",
-        "sourceTapSha256": "c43e976d4bb5675194ac3e576b95fe5167159b8befaf2fc6cb318ec66db26eee",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-22-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-22-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-22-43592933574-1/acceptance.json",
+        "sourceReportSha256": "4c2eb2850bd83a76afddadf141ad38634e8487924a23257d7dfb385d5ff868ab",
+        "sourceTap": "acceptance-part-22-43592933574-1/communications.tap",
+        "sourceTapSha256": "e6f37c589119498e256cc4ec1827cfac49fe53eae60d09cc93d07e25b21e2e54",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-22-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-22-of-40/shard-communications.tap"
       },
       {
         "index": 23,
@@ -2844,12 +2846,12 @@
           "tests/domain-integration.test.js",
           "tests/estate-operations.test.js"
         ],
-        "sourceReport": "acceptance-part-23-43586483872-1/acceptance.json",
-        "sourceReportSha256": "1cd1638257fd11722447c69e578604512a966397d0c3a10ac73b3b0538e0bcf4",
-        "sourceTap": "acceptance-part-23-43586483872-1/communications.tap",
-        "sourceTapSha256": "4c22d37993935b13dff0ba49f2016b07c827cac03206a4cd88ec44786b83d137",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-23-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-23-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-23-43592933574-1/acceptance.json",
+        "sourceReportSha256": "a7323f33a9aa83b3463544df85454275731d449f7363295aa2499d61862dd681",
+        "sourceTap": "acceptance-part-23-43592933574-1/communications.tap",
+        "sourceTapSha256": "4266f785a8fe330ea4dacc03dbb9ff2c163abe20e11a48073a95197a55254297",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-23-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-23-of-40/shard-communications.tap"
       },
       {
         "index": 24,
@@ -2897,12 +2899,12 @@
           "tests/managed-operations-leaver.test.js",
           "tests/provider-case-handoff.test.js"
         ],
-        "sourceReport": "acceptance-part-24-43586483872-1/acceptance.json",
-        "sourceReportSha256": "23ce76926e0f73c171d137b0e675f7c4c759939196f5b50d525b0b4af08cd294",
-        "sourceTap": "acceptance-part-24-43586483872-1/communications.tap",
-        "sourceTapSha256": "1d43cdaaaa384e6e65f1f681542c5d120b6462c32da8f69cbd09bc513dae67f1",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-24-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-24-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-24-43592933574-1/acceptance.json",
+        "sourceReportSha256": "a25f9ddca3a22db9de3db8717c734c8384262c6edc26d4282976f3b264c226ca",
+        "sourceTap": "acceptance-part-24-43592933574-1/communications.tap",
+        "sourceTapSha256": "7f49598a491480ca576e2d9dc2220eea19401368930394f333d131e3a5dee5a9",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-24-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-24-of-40/shard-communications.tap"
       },
       {
         "index": 25,
@@ -2942,12 +2944,12 @@
           "tests/number-porting-integration.test.js",
           "tests/outcomes.test.js"
         ],
-        "sourceReport": "acceptance-part-25-43586483872-1/acceptance.json",
-        "sourceReportSha256": "ca287bbe494f1dbf429ce094acacd4e1da09deee77c51190624defed6a55b3d4",
-        "sourceTap": "acceptance-part-25-43586483872-1/communications.tap",
-        "sourceTapSha256": "dbe5948e79f2b981b37dd2636bec12e72a283e00fc497713d42a81f0fcb39b07",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-25-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-25-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-25-43592933574-1/acceptance.json",
+        "sourceReportSha256": "e54024dc1015954305809b8b989d284e212fdeebec73eaaa23905821c3916efb",
+        "sourceTap": "acceptance-part-25-43592933574-1/communications.tap",
+        "sourceTapSha256": "c9e47d45f4b1bdd59ec3d8747c875b9bcf6dc91b3bd18c65e76cc4ff500de999",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-25-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-25-of-40/shard-communications.tap"
       },
       {
         "index": 26,
@@ -2992,12 +2994,12 @@
           "tests/journey-integration.test.js",
           "tests/provider-handoff-demand.test.js"
         ],
-        "sourceReport": "acceptance-part-26-43586483872-1/acceptance.json",
-        "sourceReportSha256": "f8e2dc0a616392e2c39b179eddec75f893d297e0cfb13475953273f39fb2b164",
-        "sourceTap": "acceptance-part-26-43586483872-1/communications.tap",
-        "sourceTapSha256": "66b3cb5396fa83381afe1e89377c1664db4c4614d6d7478c8a3c77dc2ea3dc31",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-26-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-26-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-26-43592933574-1/acceptance.json",
+        "sourceReportSha256": "c5af387bc2dbc86a1b6ab3b1988ec9c34376465911a420dd64f26ca6f7fd049f",
+        "sourceTap": "acceptance-part-26-43592933574-1/communications.tap",
+        "sourceTapSha256": "56466f84ee41759d10ae4d57be1db88f3cea37cff7133d31e513007966d12627",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-26-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-26-of-40/shard-communications.tap"
       },
       {
         "index": 27,
@@ -3048,12 +3050,12 @@
           "tests/service-operations.test.js",
           "tests/speech-models-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-27-43586483872-1/acceptance.json",
-        "sourceReportSha256": "da3b37bf21019b91f77335b52b180341b0b4762470e193f215f6f7b42c8e2ff9",
-        "sourceTap": "acceptance-part-27-43586483872-1/communications.tap",
-        "sourceTapSha256": "b597cee9c7831b379b6d28e718e3c06e650bddf0b611b7c0349a5aa0040bd8cb",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-27-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-27-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-27-43592933574-1/acceptance.json",
+        "sourceReportSha256": "c1d0a721022869da5bd2d798da747c462400de20370790550ed50a31d6a35afd",
+        "sourceTap": "acceptance-part-27-43592933574-1/communications.tap",
+        "sourceTapSha256": "189350dcb161471de409c9f5f6179aa68302002b1af0503b42dcddfd855a513c",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-27-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-27-of-40/shard-communications.tap"
       },
       {
         "index": 28,
@@ -3108,12 +3110,12 @@
           "tests/site-operations.test.js",
           "tests/workforce-coaching-commercial.test.js"
         ],
-        "sourceReport": "acceptance-part-28-43586483872-1/acceptance.json",
-        "sourceReportSha256": "b4055b6843c340c9c7399df22bdc847219e6f6360eaf929be9fa160ecdf5b5db",
-        "sourceTap": "acceptance-part-28-43586483872-1/communications.tap",
-        "sourceTapSha256": "340ca053345f6dd9fd416ad90cb570ab19e19128cfbfa7712ca2431e2a577c71",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-28-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-28-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-28-43592933574-1/acceptance.json",
+        "sourceReportSha256": "3f2b4594f93e311ec5f2989996a86131f61581bc038bf9fe3b87c933a52d9767",
+        "sourceTap": "acceptance-part-28-43592933574-1/communications.tap",
+        "sourceTapSha256": "5a60a7337ed7495a01290a4be87ded5eed69b82d20ca54f5861e023071a90be1",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-28-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-28-of-40/shard-communications.tap"
       },
       {
         "index": 29,
@@ -3157,12 +3159,12 @@
           "tests/portfolio-integration.test.js",
           "tests/product-evidence.test.js"
         ],
-        "sourceReport": "acceptance-part-29-43586483872-1/acceptance.json",
-        "sourceReportSha256": "29f8d5e1820c170face2c6202ffe9514b926915923c91d870c449eefbeb98ed5",
-        "sourceTap": "acceptance-part-29-43586483872-1/communications.tap",
-        "sourceTapSha256": "511901ed02c010ad05a3ab02660536a769df1eaf7d224926756af6dbaf8fbe23",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-29-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-29-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-29-43592933574-1/acceptance.json",
+        "sourceReportSha256": "e6835a7f3e4e2f959c2bfcad50ebeb4ba706efcd5ee67765ea8a7de264e057da",
+        "sourceTap": "acceptance-part-29-43592933574-1/communications.tap",
+        "sourceTapSha256": "d9503e8d6368d6549a89872631efb845885977e0ac4c3936a04aaec74c30ec36",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-29-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-29-of-40/shard-communications.tap"
       },
       {
         "index": 30,
@@ -3205,12 +3207,12 @@
           "tests/information-interfaces.test.js",
           "tests/provider-incident-sequence.test.js"
         ],
-        "sourceReport": "acceptance-part-30-43586483872-1/acceptance.json",
-        "sourceReportSha256": "76adab570cd3a7e450085995c0a87ce32aaf3dce3fb23ca438ccc4fbc2f5bcd4",
-        "sourceTap": "acceptance-part-30-43586483872-1/communications.tap",
-        "sourceTapSha256": "cb12462f134bd00b567f38274665ae86de8a101733d02bed9692a0003788bef9",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-30-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-30-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-30-43592933574-1/acceptance.json",
+        "sourceReportSha256": "39550670f9382f9ce8deafdff13337493563603f985c7838718de22cf630d5f1",
+        "sourceTap": "acceptance-part-30-43592933574-1/communications.tap",
+        "sourceTapSha256": "a2059f9963d1de4850a7d7ad2ef1a3304a46d4ec8d5806e4ef4939154b3dad74",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-30-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-30-of-40/shard-communications.tap"
       },
       {
         "index": 31,
@@ -3268,12 +3270,12 @@
           "tests/customer-commercial.test.js",
           "tests/channels.test.js"
         ],
-        "sourceReport": "acceptance-part-31-43586483872-1/acceptance.json",
-        "sourceReportSha256": "dc283929ab892db402f2cb143df24b4bfbc6c81d5174e48972c0889f0b1d7d1a",
-        "sourceTap": "acceptance-part-31-43586483872-1/communications.tap",
-        "sourceTapSha256": "1f08eb9471164ddf662f54d0ed5a3df2ef71d93f23ee944ff0d41b28c44a6851",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-31-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-31-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-31-43592933574-1/acceptance.json",
+        "sourceReportSha256": "436bd4551972372b17d4b420e416ba78ede45dac50ec2f30d87caff93a77a27f",
+        "sourceTap": "acceptance-part-31-43592933574-1/communications.tap",
+        "sourceTapSha256": "8d3033b71e9e15240751795035c4c6dffba42784652a48807c478741aea06a03",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-31-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-31-of-40/shard-communications.tap"
       },
       {
         "index": 32,
@@ -3330,12 +3332,12 @@
           "tests/customer-fit.test.js",
           "tests/channels-webhooks.test.js"
         ],
-        "sourceReport": "acceptance-part-32-43586483872-1/acceptance.json",
-        "sourceReportSha256": "1367d66d4b4cccddaf3497947ee384690e0d60618fe794d8783281931d0a2297",
-        "sourceTap": "acceptance-part-32-43586483872-1/communications.tap",
-        "sourceTapSha256": "896480588db5bbc9a1af0cf00e7edafcc23c8b19e59ad3c72bf5849393c20715",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-32-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-32-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-32-43592933574-1/acceptance.json",
+        "sourceReportSha256": "16cc06e7d4c0203059005341410fe88b6013adb0b817bbfcf17d887c96484b97",
+        "sourceTap": "acceptance-part-32-43592933574-1/communications.tap",
+        "sourceTapSha256": "6976954224b1f2c6802a1669bada393715784fc4c6f2c46a187474d1e3af5213",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-32-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-32-of-40/shard-communications.tap"
       },
       {
         "index": 33,
@@ -3379,12 +3381,12 @@
           "tests/business-metering-integration.test.js",
           "tests/boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-33-43586483872-1/acceptance.json",
-        "sourceReportSha256": "d8ed383e797829e258cdc6ed09b74b9a8efdc497ad7a6efa014c2337958dd7cd",
-        "sourceTap": "acceptance-part-33-43586483872-1/communications.tap",
-        "sourceTapSha256": "dff818144c301c8f42e4d4106997f732811088b3c571a17d04f27429f2341088",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-33-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-33-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-33-43592933574-1/acceptance.json",
+        "sourceReportSha256": "6085d84b0c6c3f3b076fb0097cbd676a4e151c58e1fa80f6f4b20d8e16d99542",
+        "sourceTap": "acceptance-part-33-43592933574-1/communications.tap",
+        "sourceTapSha256": "882c72ed47d18688db9cf37b3fd1d6fabceedd9020aea8315eceb40eff21a285",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-33-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-33-of-40/shard-communications.tap"
       },
       {
         "index": 34,
@@ -3433,12 +3435,12 @@
           "tests/media-integration.test.js",
           "tests/provider-incident-diagnosis.test.js"
         ],
-        "sourceReport": "acceptance-part-34-43586483872-1/acceptance.json",
-        "sourceReportSha256": "c48f2f3b39addcdd13147a72ae52bbd46123d382436d6342188e20b70dae9d1b",
-        "sourceTap": "acceptance-part-34-43586483872-1/communications.tap",
-        "sourceTapSha256": "099c92e3308be2f8da6ed6bb4de3fb2296b4488025fe891f5f03627b0b343911",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-34-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-34-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-34-43592933574-1/acceptance.json",
+        "sourceReportSha256": "a11139f5d2c77451d78f0efbd9db7c888d725aa86c801e21fac99cf13b5fddec",
+        "sourceTap": "acceptance-part-34-43592933574-1/communications.tap",
+        "sourceTapSha256": "046dd0bedfbae6c057b6ba07291e3248130d6c3ae601762783dca1e50d8e5498",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-34-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-34-of-40/shard-communications.tap"
       },
       {
         "index": 35,
@@ -3490,12 +3492,12 @@
           "tests/transport-headroom-integration.test.js",
           "tests/provider-progression-ui.test.js"
         ],
-        "sourceReport": "acceptance-part-35-43586483872-1/acceptance.json",
-        "sourceReportSha256": "a3120e59acb34971ec0850ea4b834a703925a736397f24c735483d012afe4598",
-        "sourceTap": "acceptance-part-35-43586483872-1/communications.tap",
-        "sourceTapSha256": "6ab540cd41e693e5bc2c9a6d23345dfac976da3982611b6f0b628af750be131a",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-35-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-35-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-35-43592933574-1/acceptance.json",
+        "sourceReportSha256": "e91b003da0aefc464ea5bfd1d201efe91d9414f69da691479c8b3b4cf3d7dca5",
+        "sourceTap": "acceptance-part-35-43592933574-1/communications.tap",
+        "sourceTapSha256": "c6c7793bbd6a799ce02462a1cd56a48345ff4d73b01a70961b32f775cf72f8c5",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-35-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-35-of-40/shard-communications.tap"
       },
       {
         "index": 36,
@@ -3536,12 +3538,12 @@
           "tests/service-admin-ui.test.js",
           "tests/provider-scale-paid.test.js"
         ],
-        "sourceReport": "acceptance-part-36-43586483872-1/acceptance.json",
-        "sourceReportSha256": "8f8e3cd6b863049db965af647d9cc0a2867073b40c736d969ab159985882d833",
-        "sourceTap": "acceptance-part-36-43586483872-1/communications.tap",
-        "sourceTapSha256": "10bccf83674f2f9724bdb5a0b72b86deaf9561735c4d4378d80230e46c7d8532",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-36-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-36-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-36-43592933574-1/acceptance.json",
+        "sourceReportSha256": "47c5f051109b158f6ae99d1db85cf9b874238fac3b542f387dfb6429b3c24d55",
+        "sourceTap": "acceptance-part-36-43592933574-1/communications.tap",
+        "sourceTapSha256": "f8672b513deead235b023adb6db77bf2cfc5c43f264ef3ff105589c8f0794375",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-36-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-36-of-40/shard-communications.tap"
       },
       {
         "index": 37,
@@ -3590,12 +3592,12 @@
           "tests/provider-dedicated-interconnect.test.js",
           "tests/provider-scale-ui.test.js"
         ],
-        "sourceReport": "acceptance-part-37-43586483872-1/acceptance.json",
-        "sourceReportSha256": "d5fe5c93bce496977e5cf728e7d863da229a4d591cb391f7ef6726158a76afc5",
-        "sourceTap": "acceptance-part-37-43586483872-1/communications.tap",
-        "sourceTapSha256": "ddca3fdd5a8d443c79993d8d21d31ce81dc54bd8b9706a68b85c1653fcd7b3ec",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-37-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-37-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-37-43592933574-1/acceptance.json",
+        "sourceReportSha256": "c131b03b70b35351e0c51a8d1d37a96d32e65ef3b95991c11b49ca7802904e83",
+        "sourceTap": "acceptance-part-37-43592933574-1/communications.tap",
+        "sourceTapSha256": "f25c62c0d322335a429e8878473167aa3d8429ef1beb1d747f1285cbcd7f9288",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-37-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-37-of-40/shard-communications.tap"
       },
       {
         "index": 38,
@@ -3646,12 +3648,12 @@
           "tests/portfolio.test.js",
           "tests/provider-scale-observation.test.js"
         ],
-        "sourceReport": "acceptance-part-38-43586483872-1/acceptance.json",
-        "sourceReportSha256": "64c13905872f878c377ceaa92df1d8e2dd013c6acfa3660f7d2921dea33b235c",
-        "sourceTap": "acceptance-part-38-43586483872-1/communications.tap",
-        "sourceTapSha256": "23c9cecc5c9a246e8918964e80346658815f50d6b9c88575b16e570089927d32",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-38-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-38-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-38-43592933574-1/acceptance.json",
+        "sourceReportSha256": "2134bbd5021420e3adebdaa71af200acd02d842884858cde1963f5c42c51f425",
+        "sourceTap": "acceptance-part-38-43592933574-1/communications.tap",
+        "sourceTapSha256": "ff4c6c242375b7e685c9ce054b9bfd10d81dcdede7a0b5464e804f550fae6614",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-38-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-38-of-40/shard-communications.tap"
       },
       {
         "index": 39,
@@ -3699,12 +3701,12 @@
           "tests/contact.test.js",
           "tests/provider-uc-cc-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-39-43586483872-1/acceptance.json",
-        "sourceReportSha256": "2dd880ec46924ca4d45479682b9b946b6b2fff7d41098e4cc726d42086f2e244",
-        "sourceTap": "acceptance-part-39-43586483872-1/communications.tap",
-        "sourceTapSha256": "d3e97996ddff218bf9aab2ba6e4fc3cf83e96aa4a4da887733ec05dcaff74cda",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-39-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-39-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-39-43592933574-1/acceptance.json",
+        "sourceReportSha256": "8046b2e7790e1919a1bd960a2f9b3d162a94c6ee11814c2c5ca128b8ff588ec4",
+        "sourceTap": "acceptance-part-39-43592933574-1/communications.tap",
+        "sourceTapSha256": "83d38518238b44a72677376823182ef8881a3874fddba3e8e60018b66d31335c",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-39-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-39-of-40/shard-communications.tap"
       },
       {
         "index": 40,
@@ -3743,14 +3745,14 @@
           "tests/packs-integration.test.js",
           "tests/provider-workload-inspector.test.js"
         ],
-        "sourceReport": "acceptance-part-40-43586483872-1/acceptance.json",
-        "sourceReportSha256": "f1791c0c92223f6b392dd2a1c2f40dcae6f06ddd4b964af447762f4acd84187d",
-        "sourceTap": "acceptance-part-40-43586483872-1/communications.tap",
-        "sourceTapSha256": "8ac6a39f3d497ce46ddfb1b2323e6ffb1e0b83fc5ac74f2a2937996d191b03df",
-        "archivedReport": "evidence/acceptance-shards/20261114T105503148385Z/shard-40-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T105503148385Z/shard-40-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-40-43592933574-1/acceptance.json",
+        "sourceReportSha256": "91381ac84b553866427c8cb2eed3350bb34d892855207f12651d38e2a27049a7",
+        "sourceTap": "acceptance-part-40-43592933574-1/communications.tap",
+        "sourceTapSha256": "7f122f74d1feb94dc7ca4279ed00054196635dc7f2c509ed125f0b9ac70a59f9",
+        "archivedReport": "evidence/acceptance-shards/20261114T121633025867Z/shard-40-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T121633025867Z/shard-40-of-40/shard-communications.tap"
       }
     ],
-    "tapSha256": "faa32c2d1ba8cb9203efd244c2e305ea0f67a90f08264cdad6885c7c3f74ce4a"
+    "tapSha256": "c5dcfd70100e109ce1496345d3ac653702da0c18559566aba542dcb7d665c48d"
   }
 }

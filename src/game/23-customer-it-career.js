@@ -132,8 +132,11 @@ function socCustomerItCareerKernel(){
   if(c.version>=SHARED_OUTAGE_VERSION){
    const child=s.portfolio.customers.find(row=>row.id===c.providerLink.customerId)?.root,commands=child?.commands||[],faults=commands.filter(row=>row.command?.type==='fault'&&row.command.id==='access');
    if(!child||child.resources.access.fault!==(status==='interrupted'?'OUTAGE':null))fail('INVALID_CUSTOMER_IT_SERVICE_LINK');
-   if(s.clock>=c.outage.at&&s.clock-c.outage.at<1000&&!protectedSite&&!faults.some(row=>row.at===c.outage.at-1&&row.command.fault==='OUTAGE'))fail('INVALID_CUSTOMER_IT_SERVICE_LINK');
-   if(repaired&&s.clock-c.repair.effectiveAt<1000&&!faults.some(row=>row.at===c.repair.effectiveAt-1&&row.command.fault===null))fail('INVALID_CUSTOMER_IT_SERVICE_LINK');
+   // The child keeps only its newest 128 commands. Once the fault command is
+   // archived, the matching site and current child fault remain authoritative.
+   const archivedFault=at=>child.providerArchive?.commands>0&&commands.length>0&&commands[0].at>at;
+   if(s.clock>=c.outage.at&&s.clock-c.outage.at<1000&&!protectedSite&&!faults.some(row=>row.at===c.outage.at-1&&row.command.fault==='OUTAGE')&&!archivedFault(c.outage.at-1))fail('INVALID_CUSTOMER_IT_SERVICE_LINK');
+   if(repaired&&s.clock-c.repair.effectiveAt<1000&&!faults.some(row=>row.at===c.repair.effectiveAt-1&&row.command.fault===null)&&!archivedFault(c.repair.effectiveAt-1))fail('INVALID_CUSTOMER_IT_SERVICE_LINK');
   }
   return true;
  }

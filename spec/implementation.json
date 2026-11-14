@@ -8168,6 +8168,14 @@
       "testIds": ["AC-SOC-910"],
       "status": "partial",
       "scope": "Fresh version 2 SMB prospect-choice careers offer a second, shorter-promise premium lead after continuation. From equivalent minute-300 states, a lean regular plan and a funded short-response plan both meet the period-6 promise; an unfunded premium plan fails it. The premium route commits more cash and paid operations for a higher period result. Version 1 saves preserve their former single later lead. Human comprehension, later portfolio balance and retention/churn remain pending."
+    },
+    {
+      "id": "BEH-SOC-449",
+      "sources": ["uc-new:domain:continuity", "uc-new:domain:migration", "DEC-011", "DEC-012"],
+      "implementation": ["src/game/23-customer-it-career.js", "src/game/55-communications.js"],
+      "testIds": ["AC-SOC-911"],
+      "status": "partial",
+      "scope": "A linked Customer IT career remains restorable after the child Provider root archives its bounded access-fault command history. Recent fault commands are still required, while aged-out records can be reconciled with the child archive and current customer-owned site and fault state. The South-first repair and native migration run through two settled periods and Worker replay without a false victory claim; separate MSP acceptance and role-specific objectives remain pending."
     }
   ]
 }

@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 
-test('later customers receive distinct reactions from delivered work and their own settlement',()=>{
+test('AC-SOC-902 later customers receive distinct reactions from delivered work and their own settlement',()=>{
  const noted=[],context={ACT:{},N_:x=>x,document:{addEventListener(){}},addEventListener(){},SOC:{provider:{rules:{missions:{smb:{presentation:{firstWork:'Rina saw the work.',firstFailure:'Rina saw a failure.',recovered:'Recovered.',firstBill:'Rina earned {net}; credit {credit}.'}}}}}},SOC_PROVIDER_UI:{noteEvents:rows=>noted.push(...rows)}};
  vm.createContext(context);vm.runInContext(fs.readFileSync(require.resolve('../src/game/98-provider-runtime.js'),'utf8'),context);
  const customer=(id,name,completed,history)=>({id,name,metrics:{completed,failed:0},history});

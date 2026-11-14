@@ -53560,6 +53560,8 @@
     "representation": "domain:journeys",
     "status": "partial",
     "implementation": [
+      "content/provider-campaigns.json",
+      "src/game/25-provider-campaign.js",
       "src/game/38-admission-security.js",
       "src/game/44-campaign.js",
       "src/game/46-outcomes.js",
@@ -53572,7 +53574,10 @@
       "src/game/54-business.js",
       "src/game/55-communications.js",
       "src/game/79-interaction-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-provider-shell.js",
       "src/game/97-training.js",
+      "src/game/98-provider-runtime.js",
       "tests/advanced-boundaries.test.js",
       "tests/campaign.test.js",
       "tests/channels.test.js",
@@ -53613,7 +53618,8 @@
       "BEH-SOC-253",
       "BEH-SOC-254",
       "BEH-SOC-255",
-      "BEH-SOC-256"
+      "BEH-SOC-256",
+      "BEH-SOC-443"
     ]
   },
   {
@@ -54052,12 +54058,17 @@
     "status": "partial",
     "implementation": [
       "content/business.json",
+      "content/provider-campaigns.json",
+      "src/game/25-provider-campaign.js",
       "src/game/38-workforce-quality.js",
       "src/game/50-calling.js",
       "src/game/52-information.js",
       "src/game/54-business.js",
       "src/game/55-communications.js",
-      "src/game/89-workforce-quality-ui.js"
+      "src/game/89-workforce-quality-ui.js",
+      "src/game/93-ui/75-provider-panels.js",
+      "src/game/97-provider-shell.js",
+      "src/game/98-provider-runtime.js"
     ],
     "acceptance": [
       "AC-5a5e46aedc11c26c"
@@ -54069,7 +54080,8 @@
       "BEH-SOC-034",
       "BEH-SOC-049",
       "BEH-SOC-349",
-      "BEH-SOC-380"
+      "BEH-SOC-380",
+      "BEH-SOC-443"
     ]
   },
   {

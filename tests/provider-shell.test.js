@@ -37,7 +37,7 @@ test('funded estate shortcut starts with the versioned sector handover',()=>{
 test('provider shell launches through callbacks and does not write simulation state',()=>{
  const {w,calls}=boot();click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');assert.ok(form.classList.contains('is-open'));
  form.elements.providerName.value='Harbour Relay';form.elements.market.value='us-seattle';form.elements.scenario.value='enterprise';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
- assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win',sectorHandoverVersion:2}]));
+ assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win',sectorHandoverVersion:2,meetingContinuityVersion:1}]));
  click(w,'[data-provider-action="open"]');assert.deepEqual(calls.other.at(-1),['open','providerCampaign']);
  w.close();
 });

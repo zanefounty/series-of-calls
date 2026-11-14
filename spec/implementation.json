@@ -8051,6 +8051,27 @@
       ],
       "status": "partial",
       "scope": "Funded workplace-to-suite calling connection, explicit map test, native directional admission and real subsequent delivered call. Historical delivery survives product retirement; full-price recommission and separately paid scope retest recover. Forged plans/delivery and unneeded retests refuse; worker/restore preserve the actual path. Native Lab tests additionally exercise directional API-channel-webhook-human delivery and product-scope failures. API/local-speech paid Provider paths, complete P5 progression and full source-family fidelity remain pending; the local-speech delivery contract alone is not executed proof."
+    },
+    {
+      "id": "BEH-SOC-443",
+      "sources": [
+        "uc-new:domain:journeys",
+        "uc-new:domain:recording"
+      ],
+      "implementation": [
+        "content/provider-campaigns.json",
+        "src/game/25-provider-campaign.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js",
+        "src/game/98-provider-runtime.js"
+      ],
+      "testIds": [
+        "AC-SOC-902",
+        "AC-SOC-903"
+      ],
+      "status": "partial",
+      "scope": "Later named customers receive first-work, failure, recovery and bill reactions from their own actual outcomes. In new Provider Enterprise careers, a later partner meeting requires a retained earlier meeting recording and an explicit persisted carry-forward promise; missing evidence blocks the later meeting, while a funded repair and actual recorded attendance restore credit. Save, Worker, stale quote, forged promise and pure UI checks cover this bounded path. Transcript-specific tasks, later-sector authored relationship consequences, browser acceptance and full source fidelity remain pending."
     }
   ]
 }

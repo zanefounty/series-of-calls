@@ -59,6 +59,8 @@ class Gates(unittest.TestCase):
   with self.assertRaisesRegex(V.GateError,'original source changed'):V.catalogue(self.root)
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.root=pathlib.Path(self.tmp.name)
+  register=json.loads((ROOT/'maintenance/upstream/register.json').read_text())
+  self.upstream_review_day=dt.date.fromisoformat(register['lastSuccessfulCheck'][:10])
   for name in ['research','spec','content','maintenance','scripts','src','tests','artwork','site']:shutil.copytree(ROOT/name,self.root/name)
   self.copy_evidence_inputs()
   mapping=json.loads((ROOT/'research/source/series-of-calls-full-mapping.json').read_text())
@@ -156,7 +158,7 @@ class Gates(unittest.TestCase):
   with self.assertRaisesRegex(V.GateError,'lost provenance'):V.evidence(self.root)
  def test_upstream_item_disappeared(self):
   self.change('maintenance/upstream/register.json',lambda d:d['commits'].pop())
-  with self.assertRaisesRegex(V.GateError,'disappeared'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'disappeared'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_coverage_detects_omitted_generated_commit_source(self):
   obligations=json.loads((self.root/'spec/generated/upstream-obligations.json').read_text());register=json.loads((self.root/'maintenance/upstream/register.json').read_text());sha=register['commits'][0]['sha']
   self.assertIn('UPSTREAM-COMMIT:'+sha,{row['sourceId'] for row in obligations})
@@ -173,48 +175,48 @@ class Gates(unittest.TestCase):
  def test_upstream_verified_row_rejects_truthy_unstructured_evidence(self):
   def forge(d):d['commits'][0].update(status='verified',evidence=['looks like proof'])
   self.change('maintenance/upstream/register.json',forge)
-  with self.assertRaisesRegex(V.GateError,'subject-scoped receipt'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'subject-scoped receipt'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_row_requires_hash_bound_test_receipt(self):
   def forge(d):
    item=d['commits'][0];proof=self.upstream_evidence(d);proof['inputs'][0]['sha256']='0'*64;(self.root/V.upstream_receipt_path('commits',item)).write_text(json.dumps(proof))
   self.change('maintenance/upstream/register.json',forge)
-  with self.assertRaisesRegex(V.GateError,'input missing or hash mismatch'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'input missing or hash mismatch'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_row_rejects_deleted_scoped_receipt(self):
   def forge(d):
    item=d['commits'][0];self.upstream_evidence(d);(self.root/V.upstream_receipt_path('commits',item)).unlink()
   self.change('maintenance/upstream/register.json',forge)
-  with self.assertRaisesRegex(V.GateError,'Missing upstream adoption receipt'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'Missing upstream adoption receipt'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_row_rejects_forged_tap_result(self):
   def forge(d):
    item=d['commits'][0];self.upstream_evidence(d);receipt_path=self.root/V.upstream_receipt_path('commits',item);receipt=json.loads(receipt_path.read_text());log_path=self.root/receipt['suites'][0]['log']['path'];log=log_path.read_text().replace('ok 1 - AC-SOC-177','not ok 1 - AC-SOC-177',1);log_path.write_text(log);receipt['suites'][0]['log']['sha256']=V.sha(log_path);receipt_path.write_text(json.dumps(receipt))
   self.change('maintenance/upstream/register.json',forge)
-  with self.assertRaisesRegex(V.GateError,'Acceptance tests failed'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'Acceptance tests failed'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_receipt_supports_documentation_implementation(self):
   def forge(d):self.upstream_evidence(d,'README.md')
   self.change('maintenance/upstream/register.json',forge)
-  V.upstream(self.root,dt.date(2026,11,3))
+  V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_receipt_rejects_malformed_utf8_tap_log(self):
   def forge(d):
    item=d['commits'][0];self.upstream_evidence(d);receipt_path=self.root/V.upstream_receipt_path('commits',item);receipt=json.loads(receipt_path.read_text());log=self.root/receipt['suites'][0]['log']['path'];log.write_bytes(bytes([255]));receipt['suites'][0]['log']['sha256']=V.sha(log);receipt_path.write_text(json.dumps(receipt))
   self.change('maintenance/upstream/register.json',forge)
-  with self.assertRaisesRegex(V.GateError,'TAP log is not UTF-8'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'TAP log is not UTF-8'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_row_requires_current_tested_file_hashes(self):
   def forge(d):self.upstream_evidence(d)
   self.change('maintenance/upstream/register.json',forge)
   path=self.root/'src/game/54-business.js';path.write_text(path.read_text()+'\\n')
-  with self.assertRaisesRegex(V.GateError,'input missing or hash mismatch'):V.upstream(self.root,dt.date(2026,11,3))
+  with self.assertRaisesRegex(V.GateError,'input missing or hash mismatch'):V.upstream(self.root,self.upstream_review_day)
  def test_upstream_verified_row_reexecutes_named_acceptance_suite(self):
   def forge(d):
    self.upstream_evidence(d)
    report=self.root/'evidence/acceptance.json';report.write_text(json.dumps({'regenerated':True}))
   self.change('maintenance/upstream/register.json',forge)
-  V.upstream(self.root,dt.date(2026,11,3))
+  V.upstream(self.root,self.upstream_review_day)
  def test_upstream_without_verified_rows_does_not_require_global_acceptance_report(self):
   (self.root/'evidence/acceptance.json').unlink()
-  V.upstream(self.root,dt.date(2026,11,3))
+  V.upstream(self.root,self.upstream_review_day)
  def test_stale_successful_check(self):
   self.change('maintenance/upstream/register.json',lambda d:d.update(lastSuccessfulCheck='2026-01-01'))
-  with self.assertRaisesRegex(V.GateError,'older than 14'):V.upstream(self.root,dt.date(2026,11,3),True)
+  with self.assertRaisesRegex(V.GateError,'older than 14'):V.upstream(self.root,self.upstream_review_day,True)
  def test_expired_jurisdiction_review(self):
   ref=json.loads((self.root/'research/generated/references.json').read_text())[0]['id']
   self.change('research/generated/references.json',lambda d:d[0].update(activeJurisdictionClaim=True))

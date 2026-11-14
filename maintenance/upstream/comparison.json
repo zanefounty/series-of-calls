@@ -1,5 +1,5 @@
 {
-  "total_commits": 366,
+  "total_commits": 566,
   "files": [
     {
       "filename": ".claude/skills/edit-the-game/SKILL.md",
@@ -22,7 +22,47 @@
       "previous_filename": null
     },
     {
+      "filename": ".claude/skills/write-tests/SKILL.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".dockerignore",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/dependabot.yml",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/auto-release.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": ".github/workflows/ci.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/claude.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/docker.yml",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/perf-comment.yml",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": ".github/workflows/perf.yml",
       "status": "modified",
       "previous_filename": null
     },
@@ -57,6 +97,16 @@
       "previous_filename": null
     },
     {
+      "filename": "docker/Dockerfile",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "docker/docker-entrypoint.sh",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "docs/ARCHITECTURE.md",
       "status": "modified",
       "previous_filename": null
@@ -67,8 +117,23 @@
       "previous_filename": null
     },
     {
+      "filename": "docs/adr/0001-github-pages-only.md",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "docs/adr/0003-translations-by-label.md",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/adr/0004-dev-only-code.md",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/plans/pie-in-the-sky.md",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -82,7 +147,32 @@
       "previous_filename": null
     },
     {
+      "filename": "scripts/agent/relay.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "scripts/build.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/dev.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/gpu-bench.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/i18n-add.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/i18n-check.js",
       "status": "modified",
       "previous_filename": null
     },
@@ -97,7 +187,17 @@
       "previous_filename": null
     },
     {
-      "filename": "scripts/lib/mcp-commands.js",
+      "filename": "scripts/lib/gpu-bench-client.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/js-literal.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/mcp-browser.js",
       "status": "added",
       "previous_filename": null
     },
@@ -107,12 +207,22 @@
       "previous_filename": null
     },
     {
-      "filename": "scripts/lib/mcp-page.js",
+      "filename": "scripts/lib/mcp-headless.js",
       "status": "added",
       "previous_filename": null
     },
     {
+      "filename": "scripts/lib/page.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "scripts/lib/puzzle-solver.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/lib/relay-client.js",
       "status": "added",
       "previous_filename": null
     },
@@ -132,8 +242,23 @@
       "previous_filename": null
     },
     {
+      "filename": "scripts/lib/timings-reporter.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "scripts/mcp.js",
       "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/perf-bench.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "scripts/perf-browser.js",
+      "status": "modified",
       "previous_filename": null
     },
     {
@@ -262,6 +387,66 @@
       "previous_filename": null
     },
     {
+      "filename": "src/agent/10-domains.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/20-commands.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/30-docs.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/40-read.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/50-screen.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/60-dispatch.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/70-time.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/75-mode.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/80-relay.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/85-ticker.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/90-facade.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/agent/99-start.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/00-core/20-analytics.js",
       "status": "modified",
       "previous_filename": null
@@ -299,6 +484,11 @@
     {
       "filename": "src/game/10-catalog/60-reach-and-subsea.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/10-catalog/70-pie.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -362,6 +552,11 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/30-networks/38-france.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/30-networks/40-traffic-shares.js",
       "status": "modified",
       "previous_filename": null
@@ -412,7 +607,37 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/60-features/37-cable-broker.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/37-customer-paths.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/60-features/37-fiber-broker.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/37-fiber-market.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/38-sales-desk.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/39-sales-auto.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/39-sales-renewals.js",
       "status": "added",
       "previous_filename": null
     },
@@ -433,6 +658,11 @@
     },
     {
       "filename": "src/game/60-features/80-new-game.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/85-pitcairn.js",
       "status": "modified",
       "previous_filename": null
     },
@@ -487,6 +717,36 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/60-features/99-pie-in-the-sky.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/99-pie-jitters.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/99-pie-orbit-customers.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/99-pie-patchy.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/99-pie-sales.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/60-features/99-pie-subsidies.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/70-rules/10-helpers.js",
       "status": "modified",
       "previous_filename": null
@@ -523,6 +783,11 @@
     },
     {
       "filename": "src/game/70-rules/50-peering-policy.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/70-rules/60-de-kicks.js",
       "status": "modified",
       "previous_filename": null
     },
@@ -577,8 +842,18 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/80-simulation/29-route-core.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/80-simulation/30-compute.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/35-pie-paths.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -599,6 +874,11 @@
     {
       "filename": "src/game/80-simulation/70-customers-and-events.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/80-simulation/75-customer-lifecycle.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -637,8 +917,28 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/85-incidents/60-pie.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/85-incidents/65-pie-spats.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/88-days/10-day-tick.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/88-days/15-day-pace.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/88-days/15-traffic-volume.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -654,6 +954,11 @@
     {
       "filename": "src/game/90-actions/20-pops-transit-ix.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/21-ix-downgrade.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -674,6 +979,21 @@
     {
       "filename": "src/game/90-actions/50-customers.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/52-sales.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/53-customer-paths.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/53-market.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -747,6 +1067,21 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/90-actions/97-pie.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/98-pie-globe.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/90-actions/98-pie-spats.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/91-save.js",
       "status": "modified",
       "previous_filename": null
@@ -807,6 +1142,11 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/93-ui/58-sales-panel.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/93-ui/60-decommission.js",
       "status": "modified",
       "previous_filename": null
@@ -832,6 +1172,16 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/93-ui/85-pie-control.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/93-ui/86-pie-traffic.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/94-dashboard/10-progress.js",
       "status": "modified",
       "previous_filename": null
@@ -847,6 +1197,11 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/94-dashboard/35-unbuilt-pops.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/94-dashboard/40-connections.js",
       "status": "modified",
       "previous_filename": null
@@ -857,13 +1212,38 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/94-dashboard/55-market.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/94-dashboard/60-dashboard.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/65-chart-legend.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/70-bank.js",
       "status": "modified",
       "previous_filename": null
     },
     {
       "filename": "src/game/94-dashboard/80-hint.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/90-noc-window.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/94-dashboard/91-noc-wall.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -932,6 +1312,16 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/95-modals/97-puzzles-phone.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/10-canvas.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/96-map/20-land-and-clouds.js",
       "status": "modified",
       "previous_filename": null
@@ -944,6 +1334,31 @@
     {
       "filename": "src/game/96-map/50-link-geometry.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/55-link-look.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/56-webgl.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/57-webgl-background.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/58-webgl-links.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/59-gl-sprites.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -982,6 +1397,11 @@
       "previous_filename": null
     },
     {
+      "filename": "src/game/96-map/89-pie-globe.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/game/96-map/90-input.js",
       "status": "modified",
       "previous_filename": null
@@ -989,6 +1409,11 @@
     {
       "filename": "src/game/96-map/95-clicks.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/game/96-map/97-diagnostics.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -1007,12 +1432,22 @@
       "previous_filename": null
     },
     {
+      "filename": "src/styles/00-base.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "src/styles/10-hud.css",
       "status": "modified",
       "previous_filename": null
     },
     {
       "filename": "src/styles/20-drawers.css",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/30-toasts.css",
       "status": "modified",
       "previous_filename": null
     },
@@ -1032,8 +1467,28 @@
       "previous_filename": null
     },
     {
+      "filename": "src/styles/38-pie-globe.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/39-pie-spats.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "src/styles/40-modal.css",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/42-chart-tooltips.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "src/styles/45-noc-window.css",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -1053,6 +1508,26 @@
     },
     {
       "filename": "src/styles/71-architect.css",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/agent-api.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/agent-relay.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/agent-settings.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/alien-wave-rent.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1082,6 +1557,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/badge-cape-horn.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/badges-variants.test.js",
       "status": "added",
       "previous_filename": null
@@ -1089,6 +1569,26 @@
     {
       "filename": "tests/best-effort.test.js",
       "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/big-numbers.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/bilbao-landing.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/borders-overland.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/build.test.js",
+      "status": "modified",
       "previous_filename": null
     },
     {
@@ -1112,12 +1612,32 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/call-the-bank.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/capacity-market.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/capitals.test.js",
       "status": "added",
       "previous_filename": null
     },
     {
       "filename": "tests/chaos-monkey.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/chart-legend.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/charters.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1132,6 +1652,26 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/customer-lifecycle.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/customer-paths.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/day-pace.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/day-steps.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/ddos-floods.test.js",
       "status": "added",
       "previous_filename": null
@@ -1142,7 +1682,27 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/ddos-scrub-clean.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/de-kicks-price-cap.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/diagnostic-info.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/direct-egress.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/docker.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1162,12 +1722,27 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/fiber-lit-and-latency.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/find-city.test.js",
       "status": "added",
       "previous_filename": null
     },
     {
       "filename": "tests/focus-link.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/frame-pacing.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/france.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1192,6 +1767,16 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/gpu-bench-server.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/gpu-bench.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/harness.js",
       "status": "modified",
       "previous_filename": null
@@ -1212,8 +1797,38 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/intern-dark-fiber-worker.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/intern-optical-upgrade.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/intern-optics.test.js",
       "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/intern-personas.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/intern-ports.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/intern-router-model.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/islands-and-arctic.test.js",
+      "status": "modified",
       "previous_filename": null
     },
     {
@@ -1222,13 +1837,53 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/ix-downgrade.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/keyboard-shortcuts.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/land-islands.test.js",
       "status": "added",
       "previous_filename": null
     },
     {
       "filename": "tests/language-picker.test.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/latency-offers.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/latency.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/lay-ship-delay.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/levels.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/link-modal-no-cable.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/link-preconditions.test.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -1242,7 +1897,27 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/map-2d-sprite-budget.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/map-2d.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/mcp-commands.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/mcp-http.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/mcp-parity.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1262,6 +1937,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/net.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/networks-list.test.js",
       "status": "added",
       "previous_filename": null
@@ -1269,6 +1949,21 @@
     {
       "filename": "tests/new-game-speed.test.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/nni.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/noc-panel-layout.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/noc-window.test.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -1288,6 +1983,11 @@
     },
     {
       "filename": "tests/own-asn.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/own-cable-landing.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1317,6 +2017,61 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/pie-backhaul.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-balance.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-founder.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-globe.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-gov.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-in-the-sky.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-incidents.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-pace.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-routing.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-spats.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/pie-traffic.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/pni-all.test.js",
       "status": "added",
       "previous_filename": null
@@ -1332,6 +2087,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/pni-nearest-peering.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/pnis-and-sold-out.test.js",
       "status": "added",
       "previous_filename": null
@@ -1343,6 +2103,16 @@
     },
     {
       "filename": "tests/puzzle-monkey.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/puzzle-sheet.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/puzzles-phone.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1397,6 +2167,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/routers-per-pop.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/routing-modal.test.js",
       "status": "added",
       "previous_filename": null
@@ -1417,6 +2192,21 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/sales-auto.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/sales-desk.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/sales-renewals.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/sales-trial.test.js",
       "status": "added",
       "previous_filename": null
@@ -1432,6 +2222,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/save-text.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/scenarios-playtest.test.js",
       "status": "added",
       "previous_filename": null
@@ -1442,6 +2237,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/sea-routing.test.js",
+      "status": "modified",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/sea-rush.test.js",
       "status": "added",
       "previous_filename": null
@@ -1449,6 +2249,21 @@
     {
       "filename": "tests/services.test.js",
       "status": "modified",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/shared-promise-checks.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/ship-clearance.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/space-resume.test.js",
+      "status": "added",
       "previous_filename": null
     },
     {
@@ -1472,6 +2287,11 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/sweden.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/tier1-cone.test.js",
       "status": "added",
       "previous_filename": null
@@ -1482,7 +2302,22 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/traceroute-modes.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/traceroute.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/traffic-badges.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/unbuilt-pops.test.js",
       "status": "added",
       "previous_filename": null
     },
@@ -1502,6 +2337,46 @@
       "previous_filename": null
     },
     {
+      "filename": "tests/webgl-coast.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-context-restore.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-frame-garbage.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-line-joins.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-map.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-out-of-memory.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-sprites.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/webgl-zoom-sprites.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
       "filename": "tests/weekly-architect.test.js",
       "status": "added",
       "previous_filename": null
@@ -1513,6 +2388,16 @@
     },
     {
       "filename": "tests/weekly-scenario.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/where-things-happen.test.js",
+      "status": "added",
+      "previous_filename": null
+    },
+    {
+      "filename": "tests/world-layer-firefox.test.js",
       "status": "added",
       "previous_filename": null
     }

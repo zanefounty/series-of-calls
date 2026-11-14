@@ -2796,7 +2796,7 @@
     "requirement": "REQ-dc1f0131427ee0ce",
     "commit": "23eeddf44f19946c2b92853cbed48244d7214c1d",
     "subject": "Keyboard shortcuts: [ ] step through your POPs, - = zoom, ? lists every key",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2804,7 +2804,7 @@
     "requirement": "REQ-345e77c80a0ab92f",
     "commit": "d88684d86ea0bc7a478fceab88555eeea38c2ff3",
     "subject": "n opens the NOC dashboard, and a letter right after it opens a tab",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2812,7 +2812,7 @@
     "requirement": "REQ-aeff5869ae461247",
     "commit": "2680f3d82b2569c06bda4872690a9744c5cee4fa",
     "subject": "The arrow keys and W A S D move the map while held",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2820,7 +2820,7 @@
     "requirement": "REQ-c31a32cea8ff7c16",
     "commit": "a0acb27c7af71ffc661b1e4da472e7b3f32b8115",
     "subject": "Merge remote-tracking branch 'origin/main' into keyboard-shortcuts",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2828,7 +2828,7 @@
     "requirement": "REQ-697879994edef636",
     "commit": "daec638bfc84c1ba973d8a2fc2a4598f6222602b",
     "subject": "MCP: classify popStep, zoomStep and keys, the keyboard shortcuts' actions, as views",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2836,7 +2836,7 @@
     "requirement": "REQ-d2c5fb2e388eb554",
     "commit": "3192f42b5a9daedde3015bc908d38875d3d1b7ac",
     "subject": "$ steps through the open offers, soonest to expire first",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2844,7 +2844,7 @@
     "requirement": "REQ-ad099af0cf691649",
     "commit": "c5c5aac9704546d06c3de4538a05b1d485036b50",
     "subject": "Merge remote-tracking branch 'origin/main' into keyboard-shortcuts",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2852,7 +2852,7 @@
     "requirement": "REQ-1ded34d454d833d3",
     "commit": "9cf90d0ad0bfeb3991d492f295b6221ef4dd47e0",
     "subject": "Merge branch 'pr270'",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2860,7 +2860,7 @@
     "requirement": "REQ-6eaa968940f44b95",
     "commit": "48ba0048dab7c1e11ded28daf3526a32109ab69f",
     "subject": "Keyboard shortcuts: the Help button works on the title screen; MCP knows the new actions",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2868,7 +2868,7 @@
     "requirement": "REQ-b31f453c72373af0",
     "commit": "d1a25041046680dfb468d57d351bfde287b6a80c",
     "subject": "Merge branch 'pr270b'",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2876,7 +2876,7 @@
     "requirement": "REQ-c0bf5bb89cca067f",
     "commit": "41d5bc8b2118d3de49df59dc35a522eb12b17227",
     "subject": "Northern Australia, keyboard shortcuts, faster subsea cables (2.7.0)",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2884,7 +2884,7 @@
     "requirement": "REQ-f7faa2f84d05c6b5",
     "commit": "017eba4ca22a23f9cf5e69c37fec9e209f325473",
     "subject": "Every US state capital, Washington DC, Canada's capitals and Greenland",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2892,7 +2892,7 @@
     "requirement": "REQ-f098cc522ecc0903",
     "commit": "c5c0d853ae650c9b604970de343fae01e229e9eb",
     "subject": "Every capital in the Americas: the eastern Caribbean, Central America, the Guianas, Haiti, Sucre",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2900,7 +2900,7 @@
     "requirement": "REQ-84d073b31d563769",
     "commit": "296392fb961c3643b87768c2ca59d869571e3bab",
     "subject": "Every capital in Europe: Tirana to Ljubljana, Malta and Cyprus on their cables, and Bern",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2908,7 +2908,7 @@
     "requirement": "REQ-9e08ad13ed8341ff",
     "commit": "894307a35c6582868956fba88a4332ad3e968068",
     "subject": "Every capital in the Middle East, the Caucasus and Central Asia, with Bahrain on the Gulf's cables",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2916,7 +2916,7 @@
     "requirement": "REQ-44c5507fa1aafe19",
     "commit": "b4cfa2b32097acaebcbf63a80d55c04ee85c28c0",
     "subject": "Every capital in South, East and Southeast Asia and the Pacific",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -2924,7 +2924,7 @@
     "requirement": "REQ-1ed872e0cbc3787b",
     "commit": "b2366ed26018f957309292d04adf5d6e76a89c65",
     "subject": "Every capital in Africa, which completes every capital of the world",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6340,7 +6340,7 @@
     "requirement": "REQ-ca4afbed680bd1d4",
     "path": "CHANGELOG.md",
     "blob": "fbebed3fa107c5bcf198c736eb7db87395d52d57",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6348,7 +6348,7 @@
     "requirement": "REQ-8100cc1bb9df5b3e",
     "path": "package-lock.json",
     "blob": "1696905660d10512fe44b5a77e0e4c34cffa9907",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6356,7 +6356,7 @@
     "requirement": "REQ-a8fe7bb13c845251",
     "path": "package.json",
     "blob": "d59e08ecdecfc962bb63185cacd04d077fb2dea9",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6364,7 +6364,7 @@
     "requirement": "REQ-17ef3c6c27fce5ae",
     "path": "scripts/lib/mcp-commands.js",
     "blob": "eac4c1d9785c561a2c5c66f2fcaf8f3bc87aa711",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6372,7 +6372,7 @@
     "requirement": "REQ-0d9bf84e3f34c808",
     "path": "scripts/lib/mcp-page.js",
     "blob": "2eb6717ed2e76ba95ee0343adc9f2b1daa9a7264",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6380,7 +6380,7 @@
     "requirement": "REQ-604df9e8c1c74c45",
     "path": "site/i18n/de.js",
     "blob": "d0b673959c15937a0907b5e72ba052055cd7216f",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6388,7 +6388,7 @@
     "requirement": "REQ-387b9ed0eee1359a",
     "path": "site/i18n/es.js",
     "blob": "4fb76075ce8c384c5fce4d56ae6577f9057e7774",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6396,7 +6396,7 @@
     "requirement": "REQ-8555f90fc41e6125",
     "path": "site/i18n/fr.js",
     "blob": "1c1d4b26ccf36c523610aba2b46ffbe79bd5d0bc",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6404,7 +6404,7 @@
     "requirement": "REQ-d92275f067c00575",
     "path": "site/i18n/it.js",
     "blob": "9b802e3f2d1e9aaed15234c9ce2061c3e8d84ad5",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6412,7 +6412,7 @@
     "requirement": "REQ-2d5ef5ba46a22dd5",
     "path": "site/i18n/pt.js",
     "blob": "42ca139a892f18b6a25bfca5bf63b5a25761b351",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6420,7 +6420,7 @@
     "requirement": "REQ-08803c053fcf83aa",
     "path": "site/scenarios/weekly/2026-W46.json",
     "blob": "1c03f83da238965a0ea89d275b37da21de74084a",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6428,7 +6428,7 @@
     "requirement": "REQ-c398f7a5810801fc",
     "path": "src/game/20-world/20-landmasses.js",
     "blob": "d13fce0c00261274e7e244682d1d847072de499e",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6436,7 +6436,7 @@
     "requirement": "REQ-14318699d245a58a",
     "path": "src/game/20-world/30-coastline.js",
     "blob": "f6c85165af122bc201f40112575ca5a9a7c6634b",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6444,7 +6444,7 @@
     "requirement": "REQ-12a3bf2b00e00a51",
     "path": "src/game/20-world/40-city-coords.js",
     "blob": "f1490c9f26642462511115343c20a44abbb9d246",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6452,7 +6452,7 @@
     "requirement": "REQ-97c259a731c2b506",
     "path": "src/game/20-world/50-cities.js",
     "blob": "70403af4118648762e31c64acbc3bbb669ffc3a2",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6460,7 +6460,7 @@
     "requirement": "REQ-45907f959ba84599",
     "path": "src/game/20-world/55-city-pdb.js",
     "blob": "b1895f0d4ef73971c006a9192416c48f7cae6bae",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6468,7 +6468,7 @@
     "requirement": "REQ-8c23fba8d9976930",
     "path": "src/game/20-world/60-cables.js",
     "blob": "c27c18c8364bca5a8f289051c71014744c58d80e",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6476,7 +6476,7 @@
     "requirement": "REQ-4f3254c7719ea351",
     "path": "src/game/30-networks/10-networks.js",
     "blob": "295feb17238d8d48ec1749a8a0d2cbabc6e054ba",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6484,7 +6484,7 @@
     "requirement": "REQ-6f0323b07afb95c2",
     "path": "src/game/30-networks/30-long-tail.js",
     "blob": "5cd0c7ce248e77c2c6e58c225f25f7293de00c1f",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6492,7 +6492,7 @@
     "requirement": "REQ-7bd7fc1d56a7adb1",
     "path": "src/game/30-networks/32-homegrown-eyeballs.js",
     "blob": "6d3ccbb00650607256221f8c8563721805898027",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6500,7 +6500,7 @@
     "requirement": "REQ-bdf8e9bfb6649170",
     "path": "src/game/90-actions/10-interface.js",
     "blob": "17e2953646886b540d13b02d9487dd1ac74b23af",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6508,7 +6508,7 @@
     "requirement": "REQ-086e3f47557af997",
     "path": "src/game/90-actions/90-action-helpers.js",
     "blob": "806665cb9b8fdbd1609ae3fcfda15b6cae3cdfeb",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6516,7 +6516,7 @@
     "requirement": "REQ-47d25fdccb066a2b",
     "path": "src/game/93-ui/70-link-panels.js",
     "blob": "fae644b3f0485080cf7c2e45169e10602796091b",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6524,7 +6524,7 @@
     "requirement": "REQ-55ba5f177becfc86",
     "path": "src/game/93-ui/82-keys.js",
     "blob": "c10975662971d1e2237262ee039fc15d82f80ea3",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6532,7 +6532,7 @@
     "requirement": "REQ-2cfca2d86db8007d",
     "path": "src/game/95-modals/60-help.js",
     "blob": "e3fd9c27a52308acd392691c5a35d8ec05a8b4df",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6540,7 +6540,7 @@
     "requirement": "REQ-9c4751b5f7ef285e",
     "path": "src/game/96-map/95-clicks.js",
     "blob": "85479d9867858d2db08a9f370857d963175984e6",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6548,7 +6548,7 @@
     "requirement": "REQ-4646add8f5d32c87",
     "path": "src/i18n/en.js",
     "blob": "695bb872b5cc4318b345a3da4006e3a047b3a28c",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6556,7 +6556,7 @@
     "requirement": "REQ-c500cf5f0ed80371",
     "path": "src/styles/40-modal.css",
     "blob": "144c408b6f8c029dea02e9104cf82b2ee2f0ac21",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6564,7 +6564,7 @@
     "requirement": "REQ-b6365a60371f9ad4",
     "path": "tests/capitals.test.js",
     "blob": "49bf4faa79be058883910210c9dc8ee2d0983bf2",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6572,7 +6572,7 @@
     "requirement": "REQ-1d85417ad4bfb523",
     "path": "tests/gameplay-rules.test.js",
     "blob": "49960069426223b7424b70f5d5262cbc79450491",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6580,7 +6580,7 @@
     "requirement": "REQ-a75540327381e7a9",
     "path": "tests/keyboard-shortcuts.test.js",
     "blob": "e3c31da2507153cc0aae020cf2a88d522be1058c",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6588,7 +6588,7 @@
     "requirement": "REQ-192a55e80d801b9d",
     "path": "tests/north-america.test.js",
     "blob": "3eeb8229678b246a358314f91be8f80c74871969",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6596,7 +6596,7 @@
     "requirement": "REQ-7294595cd0a1b8cc",
     "path": "tests/regions.test.js",
     "blob": "2f4a99bbbec66fc96d62d67e5f5a555e19d97539",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6604,7 +6604,7 @@
     "requirement": "REQ-f237a08611c95014",
     "path": "tests/route-fuzz.test.js",
     "blob": "4ac9d80f681f349274c2778387e49f883a70943e",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   },
   {
@@ -6612,7 +6612,7 @@
     "requirement": "REQ-414b54b71d99fbb5",
     "path": "tests/scenarios-playtest.test.js",
     "blob": "07b5bdbc22dc5beeca26adbff41b8dcf8ec4d0aa",
-    "disposition": null,
+    "disposition": "adapt",
     "adoptionStatus": "pending"
   }
 ]

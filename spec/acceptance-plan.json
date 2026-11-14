@@ -1,6 +1,14 @@
 {
   "version": 1,
   "suites": {
+    "tests/provider-shell.test.js": [
+      "AC-SOC-897",
+      "AC-SOC-898"
+    ],
+    "tests/provider-contextual-inspector.test.js": [
+      "AC-SOC-895",
+      "AC-SOC-896"
+    ],
     "tests/provider-progression-regional-claims-t2.test.js": [
       "AC-SOC-655"
     ],
@@ -293,7 +301,11 @@
     ],
     "tests/provider-case-handoff-dispatch.test.js": [
       "AC-SOC-686",
-      "AC-SOC-687"
+      "AC-SOC-687",
+      "AC-SOC-889",
+      "AC-SOC-890",
+      "AC-SOC-893",
+      "AC-SOC-894"
     ],
     "tests/workforce-offers.test.js": [
       "AC-SOC-498",
@@ -1278,6 +1290,37 @@
       "AC-SOC-882",
       "AC-SOC-883",
       "AC-SOC-884"
+    ],
+    "tests/provider-prospect-choice.test.js": [
+      "AC-SOC-885",
+      "AC-SOC-886",
+      "AC-SOC-887",
+      "AC-SOC-888"
+    ],
+    "tests/provider-meeting-brief.test.js": [
+      "AC-SOC-891"
+    ],
+    "tests/provider-room-guest-choice.test.js": [
+      "AC-SOC-892"
+    ],
+    "tests/provider-segments.test.js": [
+      "AC-SOC-899",
+      "AC-SOC-900",
+      "AC-SOC-901"
+    ],
+    "tests/provider-presentation-relationships.test.js": [
+      "AC-SOC-902"
+    ],
+    "tests/provider-meeting-continuity.test.js": [
+      "AC-SOC-903"
+    ],
+    "tests/provider-customer-it-career.test.js": [
+      "AC-SOC-904",
+      "AC-SOC-905",
+      "AC-SOC-906",
+      "AC-SOC-907",
+      "AC-SOC-908",
+      "AC-SOC-909"
     ]
   },
   "inputs": [
@@ -1452,6 +1495,7 @@
     "src/game/23-provider-variants.js",
     "src/game/23-provider-workforce-history.js",
     "src/game/23-training-lessons.js",
+    "src/game/23-customer-it-career.js",
     "src/game/24-provider-rules.js",
     "src/game/25-provider-campaign.js",
     "src/game/26-customer-needs.js",
@@ -1829,6 +1873,9 @@
     "tests/provider-integration-support.test.js",
     "tests/provider-journey-explanation.test.js",
     "tests/provider-meeting-join.test.js",
+    "tests/provider-customer-it-career.test.js",
+    "tests/provider-meeting-continuity.test.js",
+    "tests/provider-meeting-brief.test.js",
     "tests/provider-operation-usage-quotes.test.js",
     "tests/provider-owned-map-layout.test.js",
     "tests/provider-owned-site-authority-counterexamples.test.js",
@@ -1845,6 +1892,8 @@
     "tests/provider-partner-support.test.js",
     "tests/provider-persistence-next-outcome.test.js",
     "tests/provider-portfolio-runtime.test.js",
+    "tests/provider-presentation-relationships.test.js",
+    "tests/provider-contextual-inspector.test.js",
     "tests/provider-progression-dispatch.test.js",
     "tests/provider-progression-inspection.test.js",
     "tests/provider-progression-receipts-level3-managed.test.js",
@@ -1859,6 +1908,7 @@
     "tests/provider-progression-regional-claims-t2.test.js",
     "tests/provider-progression-regional-claims.helpers.js",
     "tests/provider-progression-ui.test.js",
+    "tests/provider-prospect-choice.test.js",
     "tests/provider-qualification-boundary.test.js",
     "tests/provider-receipt-waits.test.js",
     "tests/provider-recovery-configuration-history.test.js",
@@ -1873,6 +1923,7 @@
     "tests/provider-room-integration-paid.test.js",
     "tests/provider-room-integration-ui.test.js",
     "tests/provider-room-integration.test.js",
+    "tests/provider-room-guest-choice.test.js",
     "tests/provider-runtime.test.js",
     "tests/provider-scale-default.test.js",
     "tests/provider-scale-mcp.test.js",
@@ -1883,6 +1934,8 @@
     "tests/provider-security-helper.test.js",
     "tests/provider-security-ui.test.js",
     "tests/provider-security.test.js",
+    "tests/provider-segments.test.js",
+    "tests/provider-shell.test.js",
     "tests/provider-service-truth.test.js",
     "tests/provider-standing-policy.test.js",
     "tests/provider-support-history.test.js",

@@ -146,6 +146,7 @@ function socProviderRulesKernel(){
       "externalCollaboration": {
         "version": 1,
         "minute": 20,
+        "alternateMinute": 40,
         "durationMinutes": 4,
         "attendees": 2,
         "guestId": "partner-jules",

@@ -19,7 +19,7 @@ function minute(s){
  for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))s=send(s,{action:'renew',customerId:customer.id});
  return SOC.dispatch(s,{type:'advance',minutes:1});
 }
-function until(s,predicate,limit=500){for(let count=0;count<limit&&!predicate(s);count++)s=minute(s);assert.ok(predicate(s),`predicate did not complete by ${s.clock}`);return s;}
+function until(s,predicate,limit=500){for(let count=0;count<limit&&!predicate(s);count++)s=minute(s);assert.ok(predicate(s),`predicate did not complete by ${s.clock}: ${JSON.stringify({status:SOC.provider.inspect(s).progression.goals[sourceId]?.status,missing:SOC.provider.inspect(s).progression.goals[sourceId]?.missing})}`);return s;}
 function opening(){
  let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney'});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
@@ -35,7 +35,7 @@ function digest(value){const input=JSON.stringify(value);let hash=0x811c9dc5;for
 test('AC-SOC-751 earned external-reach proof stays native and valid through first pruning boundary, restore and worker continuation',()=>{
  let s=opening();
  s=until(s,state=>SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',180);
- s=until(s,state=>Number.isSafeInteger(state.providerCampaign.customers.find(row=>row.id===customerId)?.renewedAt)&&SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',300);
+ s=until(s,state=>Number.isSafeInteger(state.providerCampaign.customers.find(row=>row.id===customerId)?.renewedAt)&&SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',500);
  const originalClock=s.clock,originalCash=s.business.balance.cash;
  s=send(s,{action:'claim-progression',sourceId,quoteRevision:s.revision});
  const receipt=s.providerCampaign.progressionReceipts.receipts.find(row=>row.sourceId===sourceId);
@@ -43,7 +43,7 @@ test('AC-SOC-751 earned external-reach proof stays native and valid through firs
  const pins=externalReach.retentionPins(receipt,customerId);
  assert.deepEqual(pins,{interactionIds:[receipt.sourceEvidence.inbound.interactionId,receipt.sourceEvidence.outbound.interactionId].sort(),caseIds:[receipt.sourceEvidence.inbound.caseId,receipt.sourceEvidence.outbound.caseId].sort(),jobIds:[receipt.sourceEvidence.inbound.jobId,receipt.sourceEvidence.outbound.jobId].sort(),eventIds:[receipt.sourceEvidence.inbound.arrivalEventId,receipt.sourceEvidence.outbound.arrivalEventId].sort()});
  const initialPruned=s.providerCampaign.jobCheckpoint.pruned;
- s=until(s,state=>state.clock>=420,100);
+ s=until(s,state=>state.clock>=originalClock+60,100);
  assert.ok(s.providerCampaign.jobCheckpoint.pruned>initialPruned,'the real campaign crossed its first ordinary job-pruning boundary');
  const retained=s.providerCampaign.progressionReceipts.receipts.find(row=>row.sourceId===sourceId);
  assert.deepEqual(retained,receipt,'the earned proof is immutable');

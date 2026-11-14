@@ -24,6 +24,14 @@
  confirm:[N_('provider.case_handoff.confirm'),'Confirm same-case handoff'],
  cancel:[N_('provider.case_handoff.cancel'),'Keep current case'],
  technical:[N_('provider.case_handoff.technical'),'Technical handoff evidence']
+ ,policy_title:[N_('provider.case_handoff.policy_title'),'Waiting-case handoff policy'],
+ policy_scope:[N_('provider.case_handoff.policy_scope'),'Only this customer’s consenting, queued voice cases may move to the paid social messaging channel. Mandatory voice, assigned and protected work stay on voice. Active incidents suspend the policy.'],
+ policy_limit:[N_('provider.case_handoff.policy_limit'),'Automatic handoffs still need a licensed handler, current channel capacity and the original case deadline. Voice minutes and accepted messages use the existing plan rates.'],
+ policy_enable:[N_('provider.case_handoff.policy_enable'),'Enable automatic handoff'],
+ policy_deadline:[N_('provider.case_handoff.policy_deadline'),'Minimum minutes left before deadline'],
+ policy_period:[N_('provider.case_handoff.policy_period'),'Maximum handoffs per period'],
+ policy_open:[N_('provider.case_handoff.policy_open'),'Maximum open digital handoffs'],
+ policy_save:[N_('provider.case_handoff.policy_save'),'Save handoff policy']
  };
  const text=(key,params={})=>{const [id,fallback]=labels[key];return typeof g.tr==='function'?g.tr(id,params):fallback.replace(/\{(\w+)\}/g,(_,k)=>params[k]??'');};
  const money=x=>g.SOCProviderHud?.money?g.SOCProviderHud.money(x):'A$'+(x/100).toFixed(2);
@@ -39,6 +47,7 @@
   return `<div class="provider-case-handoff"><h4>${esc(text('title'))}</h4>${wait!==null?`<p>${esc(text('waiting',{minutes:wait}))}</p>`:''}${summary(q)}<button class="primary" data-provider-action="quote-case-handoff" data-customer="${esc(customerId)}" data-job="${esc(journey.id)}">${esc(text('review'))}</button></div>`;
  }
  function quote(q){const invalid=!q.commercial?.caseHandoff,blocked=invalid||q.accepted===false||q.blockers?.length;return `<div class="provider-modal" role="dialog" aria-modal="true" aria-labelledby="quote-title"><section><h2 id="quote-title">${esc(text('title'))}</h2>${summary(q)}<button class="primary" data-provider-action="confirm-quote" ${blocked?'disabled':''}>${esc(text('confirm'))}</button><button data-provider-action="cancel-quote">${esc(text('cancel'))}</button></section></div>`;}
- g.SOCProviderCaseHandoffUI={render,summary,quote,labelFallbacks:Object.freeze(Object.fromEntries(Object.values(labels)))};
+ function policy(customer,model){if(!customer||customer.scenario!=='smb'||!customer.handoffPolicyAvailable||!['active','renewal'].includes(customer.status))return '';const p=customer.handoffPolicy||{enabled:false,minMinutesRemaining:3,maxPerPeriod:1,maxOpenDigital:1};return `<section class="provider-case-handoff-policy"><h3>${esc(text('policy_title'))}</h3><p>${esc(text('policy_scope'))}</p><p>${esc(text('policy_limit'))}</p><form data-provider-form="handoff-policy" data-customer="${esc(customer.id)}"><label><input type="checkbox" name="enabled" ${p.enabled?'checked':''}>${esc(text('policy_enable'))}</label><label>${esc(text('policy_deadline'))}<input type="number" name="minMinutesRemaining" min="1" max="20" value="${esc(p.minMinutesRemaining)}" required></label><label>${esc(text('policy_period'))}<input type="number" name="maxPerPeriod" min="1" max="4" value="${esc(p.maxPerPeriod)}" required></label><label>${esc(text('policy_open'))}<input type="number" name="maxOpenDigital" min="1" max="4" value="${esc(p.maxOpenDigital)}" required></label><button class="primary">${esc(text('policy_save'))}</button></form></section>`;}
+ g.SOCProviderCaseHandoffUI={render,summary,quote,policy,labelFallbacks:Object.freeze(Object.fromEntries(Object.values(labels)))};
  if(typeof module!=='undefined'&&module.exports)module.exports=g.SOCProviderCaseHandoffUI;
 })(typeof globalThis!=='undefined'?globalThis:window);

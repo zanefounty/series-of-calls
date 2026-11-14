@@ -15,7 +15,7 @@ function governmentWin(){
  const incident=s.providerCampaign.incidents.find(i=>i.customerId===cid&&i.status==='active');assert.equal(incident.kind,'boundary');
  s=SOC.dispatch(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});s=operation(s,'repair');
  s=until(s,x=>x.providerCampaign.mission.consecutiveQualifying>=2);
- s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});assert.equal(s.providerCampaign.missionStatus,'won');return s;
+ s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});assert.equal(s.providerCampaign.missionStatus,'active');for(const stage of ['carrier','partner'])s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});s=until(s,x=>x.providerCampaign.missionStatus==='won');return s;
 }
 function worker(s,command){let reply;const context={postMessage:value=>{reply=value;}};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:'central-capacity',state:JSON.parse(JSON.stringify(s)),command}});assert.equal(reply.error,undefined);return JSON.parse(JSON.stringify(reply.state));}
 

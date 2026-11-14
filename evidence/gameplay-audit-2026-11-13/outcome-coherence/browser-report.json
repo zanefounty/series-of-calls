@@ -1,0 +1,31 @@
+{
+  "scope": "SOC-05 actual dispatched SMB victory and visible continuation in desktop and phone Chromium; no human comprehension inference.",
+  "runAt": "2026-11-13T18:08:48.024Z",
+  "chromium": "156.0.8078.4",
+  "inputs": {
+    "page": "95b993cd0828c5688b8fe9daf91a63283434873144bbf744025451097472ed17",
+    "script": "091f3bfdc3cc3318af6c0c99c98000686c5883841de5f59318a1353e46011c1d",
+    "state": "1206f40ed97436da4d80c7c97788f82f87625d5971efaa55e024b5493fd213aa"
+  },
+  "runs": [
+    {
+      "profile": "desktop",
+      "wonClock": 192,
+      "wonRevision": 200,
+      "continuedRevision": 201,
+      "wonScreenshot": "/tmp/soc-provider-outcome-desktop-won.png",
+      "continuedScreenshot": "/tmp/soc-provider-outcome-desktop-continued.png",
+      "errors": []
+    },
+    {
+      "profile": "phone",
+      "wonClock": 192,
+      "wonRevision": 200,
+      "continuedRevision": 201,
+      "wonScreenshot": "/tmp/soc-provider-outcome-phone-won.png",
+      "continuedScreenshot": "/tmp/soc-provider-outcome-phone-continued.png",
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}

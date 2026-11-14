@@ -19,11 +19,12 @@ test('AC-SOC-873 a prepaid scale window stops future tasks at real Provider defa
  // This real ongoing commitment raises the recurring exposure. The customer renewal
  // is accepted before the high payroll is committed, preserving its active contract.
  s=buy(s,{action:'operation',operationId:'ms-workplace-calling',customerId});s=advance(s,30);s=advance(s,88);
- assert.equal(s.clock,180);assert.equal(s.providerCampaign.customers[0].status,'renewal');
- s=send(s,{action:'renew',customerId});s=send(s,{action:'staff',engineers:20,support:20});
+ assert.equal(s.clock,180);assert.equal(s.providerCampaign.customers[0].status,'active');
+ s=send(s,{action:'staff',engineers:20,support:20});
  s=advance(s,175);assert.equal(s.clock,355);assert.equal(s.business.solvency.status,'grace');assert.equal(s.business.solvency.deadline,360);assert.equal(s.providerCampaign.customers[0].status,'active');
 
  const project=s.providerCampaign.projects.find(p=>p.operationId==='paid-scale-workflow');assert.equal(project.status,'complete');
+ const child=s.portfolio.customers.find(c=>c.id===customerId).root;assert.ok(['phone','carrier','service','people','cases'].every(resource=>SOC.observe(child,resource).ready),JSON.stringify(Object.fromEntries(['phone','carrier','service','people','cases'].map(resource=>[resource,SOC.observe(child,resource)]))));
  s=send(s,{action:'start-scale-window',projectId:project.id});let run=s.providerCampaign.scaleObservation.runs.at(-1);assert.equal(run.status,'open');assert.equal(run.paidJobs.length,2);
  s=advance(s,5);run=s.providerCampaign.scaleObservation.runs.at(-1);
  assert.equal(s.clock,360);assert.deepEqual(s.business.solvency,{status:'default',payable:533616,firstArrearsAt:300,deadline:360,defaultedAt:360});

@@ -29,7 +29,7 @@ function socProviderContextActionsKernel(){
  function compactCustomerActions(groupedActions,maxVisible=3){
   if(!plain(groupedActions)||!Array.isArray(groupedActions.primary)||!Array.isArray(groupedActions.secondary))throw new Error('INVALID_PROVIDER_CONTEXT_ACTIONS_INPUT');
   const visible=[],overflow=[];
-  const comparisonKeys=new Set(['scenario-alternatives','integration','integration-retest','capacity','local-reconciliation']);
+  const comparisonKeys=new Set(['scenario-alternatives','migration-options','external-reach-options','integration','integration-retest','capacity','local-reconciliation']);
   let remaining=Math.max(0,Math.floor(maxVisible)),spilled=false;
   for(const row of groupedActions.primary){
    const size=comparisonKeys.has(row.key)?2:1;
@@ -58,7 +58,7 @@ function socProviderContextActionsKernel(){
    const incidentResources=new Set(relevantIncidents.map(x=>x.resource));
    for(const op of operations.filter(x=>incidentIds.has(x.id)&&(!resource||resourceRelevant(x,resource)||x.resources?.includes('service')))){
     if(!canShowPrimary(op))continue;
-    const supported=op.id==='service-repair'||op.id==='mitigate'||[...incidentResources].some(id=>op.resources?.includes(id));
+    const supported=op.id==='service-repair'?relevantIncidents.some(i=>i.resource==='service'):op.id==='mitigate'||[...incidentResources].some(id=>op.resources?.includes(id));
     if(!supported)continue;
     if(eligible(op,projects,customerId))add(primary,'incident-response',op);else if(op.available===false||op.blockers?.length||missingRequirements(op,projects,customerId).length)add(locked,'incident-response',op);
    }
@@ -69,10 +69,10 @@ function socProviderContextActionsKernel(){
   if(resource?.kind==='archive'&&(resource.storage?.pending>0||resource.storage?.queued>0))pushPrimary('service-growth','transcription');
 
   if(scenario==='enterprise'){
-   if(!projects.some(p=>activeProject(p)&&p.customerId===customerId&&['direct-external-reach','managed-external-reach'].includes(p.operationId))&&(!resource||['carrier','phone','migration-phone'].includes(resource.id))){pushPrimary('scenario-alternatives','direct-external-reach');pushPrimary('scenario-alternatives','managed-external-reach');}
    if(!projectMatches(projects,customerId,'migration')&&!projectMatches(projects,customerId,'migration-consolidated')){
-    pushPrimary('scenario-alternatives','migration');pushPrimary('scenario-alternatives','migration-consolidated');
+    pushPrimary('migration-options','migration');pushPrimary('migration-options','migration-consolidated');
    }
+   if(!projects.some(p=>activeProject(p)&&p.customerId===customerId&&['direct-external-reach','managed-external-reach'].includes(p.operationId))&&(!resource||['carrier','phone','migration-phone'].includes(resource.id))){pushPrimary('external-reach-options','direct-external-reach');pushPrimary('external-reach-options','managed-external-reach');}
   }
   if(scenario==='government'){
    const architectureStarted=projectMatches(projects,customerId,'compliance')||projectMatches(projects,customerId,'compliance-local');

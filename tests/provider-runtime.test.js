@@ -12,7 +12,7 @@ function boot(locks){
  w.__TUBES_TEST__=true;w.SOC=SOC;w.SOCProviderPolicy=require('../src/game/23-provider-policy');w.ACT={};w.UI={speed:0};w.SCT={};w.socClose=()=>{};
  let acquired=0;Object.defineProperty(w.navigator,'locks',{value:locks||{request:async(_name,_options,callback)=>{acquired++;await callback({name:'provider'});}}});
  w.eval(read('src/game/93-ui/10-dom.js'));
- for(const file of ['src/game/23-provider-variants.js','src/game/93-ui/65-service-preferences.js','src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/93-ui/78-provider-policy-controls.js','src/game/93-ui/79-provider-comparisons.js','src/game/96-map/90-service-scene.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js'])w.eval(read(file));
+ for(const file of ['src/game/23-provider-variants.js','src/game/93-ui/65-service-preferences.js','src/game/93-ui/70-provider-hud.js','src/game/93-ui/75-provider-panels.js','src/game/93-ui/78-provider-policy-controls.js','src/game/93-ui/79-provider-comparisons.js','src/game/93-ui/79-provider-case-handoff.js','src/game/96-map/90-service-scene.js','src/game/96-map/95-provider-canvas.js','src/game/97-provider-shell.js'])w.eval(read(file));
  w.eval(read('src/game/98-provider-runtime.js')+';globalThis.__SCP=SCP;');
  return {dom,w,acquired:()=>acquired};
 }
@@ -60,6 +60,53 @@ test('provider runtime creates campaigns through visible new-game controls and s
  }finally{dom.window.close();}
 });
 
+test('inactive physical-game controls leave Provider tab order and restore on mode change',async()=>{
+ const {dom,w}=boot();try{
+  for(const id of ['map','hud','left','leftToggle','tabbar','modal']){const root=w.document.getElementById(id)||w.document.createElement('div');root.id=id;root.innerHTML='<button>Legacy action</button>';root.hidden=id==='modal';root.inert=false;if(!root.isConnected)w.document.body.append(root);}
+  w.providerHome();for(const id of ['map','hud','left','leftToggle','tabbar','modal']){const root=w.document.getElementById(id);assert.equal(root.hidden,true,id);assert.equal(root.inert,true,id);}
+  w.showTitle=()=>{};await w.providerExperience('sp');for(const id of ['map','hud','left','leftToggle','tabbar','modal']){const root=w.document.getElementById(id);assert.equal(root.hidden,id==='modal',id);assert.equal(root.inert,false,id);}
+ }finally{dom.window.close();}
+});
+
+test('corrupt owned career can be replaced without losing its original bytes',async()=>{
+ const {dom,w}=boot();try{
+  const key='series-of-calls:provider:v1',broken='{malformed';w.localStorage.setItem(key,broken);
+  w.providerHome();await w.providerOpen();assert.equal(w.__SCP.locked,true);assert.equal(w.__SCP.state,null);assert.equal(w.localStorage.getItem(key),broken);
+  await w.providerNew({providerName:'Recovered career'});
+  assert.equal(w.localStorage.getItem(key+':corrupt'),broken);assert.equal(w.__SCP.state.providerCampaign.providerName,'Recovered career');
+  w.providerHome();await new Promise(r=>setTimeout(r,5));await w.providerOpen();assert.equal(w.__SCP.state.providerCampaign.providerName,'Recovered career');
+ }finally{dom.window.close();}
+});
+
+test('a second tab keeps the lock warning when the shared career bytes are corrupt',async()=>{
+ const locks={request:async(_name,_options,callback)=>callback(null)};
+ const {dom,w}=boot(locks);try{
+  const key='series-of-calls:provider:v1',broken='{malformed';w.localStorage.setItem(key,broken);
+  w.providerHome();await w.providerOpen();
+  assert.equal(w.__SCP.locked,false);assert.equal(w.__SCP.state,null);
+  assert.match(w.__SCP.error,/another tab.*read-only/i);
+  assert.equal(w.localStorage.getItem(key),broken);assert.equal(w.localStorage.getItem(key+':corrupt'),null);
+ }finally{dom.window.close();}
+});
+
+test('validated import replaces corrupt storage and preserves rejected import bytes',async()=>{
+ const {dom,w}=boot();try{
+  const key='series-of-calls:provider:v1',broken='{"app":"wrong"}';w.localStorage.setItem(key,broken);
+  w.providerHome();await w.providerOpen();w.providerImport('{bad');assert.equal(w.localStorage.getItem(key),broken);assert.equal(w.localStorage.getItem(key+':corrupt'),null);
+  w.providerImport(JSON.stringify(SOC.create({experience:'campaign',providerName:'Imported backup'})));
+  assert.equal(w.localStorage.getItem(key+':corrupt'),broken);assert.equal(JSON.parse(w.localStorage.getItem(key)).state.providerCampaign.providerName,'Imported backup');
+ }finally{dom.window.close();}
+});
+
+test('well-formed envelope with invalid campaign state is quarantined on recovery',async()=>{
+ const {dom,w}=boot();try{
+  const key='series-of-calls:provider:v1',broken=JSON.stringify({app:SOC.APP,experience:'campaign',version:1,seq:7,state:{invalid:true}});w.localStorage.setItem(key,broken);
+  w.providerHome();await w.providerOpen();assert.equal(w.__SCP.state,null);assert.equal(w.localStorage.getItem(key),broken);
+  await w.providerNew({providerName:'Clean replacement'});assert.equal(w.localStorage.getItem(key+':corrupt'),broken);
+  assert.equal(JSON.parse(w.localStorage.getItem(key)).seq,1);
+ }finally{dom.window.close();}
+});
+
 test('provider worker failure uses the deterministic synchronous advance fallback and save restore',async()=>{
  const {dom,w}=boot();try{
   const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();await w.providerNew({providerName:'Fallback MSP',scenario:'smb',market:'au-sydney',difficulty:'normal'});const state=()=>w.__SCP;
@@ -68,6 +115,38 @@ test('provider worker failure uses the deterministic synchronous advance fallbac
   const before=JSON.stringify(state().state);w.providerHome();assert.equal(state().locked,false);await new Promise(r=>setTimeout(r,5));await w.providerOpen();assert.equal(state().locked,true);assert.equal(JSON.stringify(state().state),before);
   assert.equal(state().state.providerCampaign.providerName,'Fallback MSP');
  }finally{dom.window.close();}
+});
+
+test('first eligible paid handoff pauses automatically and its introduction survives reload',async()=>{
+ const customerId='starter-customer';
+ const command=(s,c)=>SOC.dispatch(s,{type:'provider',command:c});
+ const buy=(s,c)=>{const q=SOC.provider.quote(s,c);assert.deepEqual(q.blockers,[]);return command(s,{...c,quoteRevision:q.atRevision});};
+ let s=SOC.create({experience:'campaign',scenario:'smb',seed:17});s=command(s,{action:'staff',engineers:4,support:4});
+ for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
+ for(let n=0;n<45&&s.providerCampaign.customers[0].status!=='active';n++)s=SOC.dispatch(s,{type:'advance',minutes:1});
+ assert.equal(s.providerCampaign.customers[0].status,'active');
+ s=buy(s,{action:'operation',operationId:'cisco-programmable-engagement',customerId});
+ const eligible=state=>SOC.provider.inspect(state).customers.flatMap(c=>c.journeys||[]).find(j=>j.handoffOffer?.action==='handoff-case'&&!j.handoffOffer.blockers.length);
+ let before=null;
+ for(let n=0;n<160&&!eligible(s);n++){
+  before=s;s=SOC.dispatch(s,{type:'advance',minutes:1});
+  const incident=s.providerCampaign.incidents.find(i=>i.customerId===customerId&&['active','acknowledged'].includes(i.status));
+  if(incident&&!s.providerCampaign.projects.some(p=>p.operationId==='repair'&&['running','commissioning'].includes(p.status))){
+   if(incident.status==='active')s=command(s,{action:'acknowledge-incident',incidentId:incident.id});
+   const repair={action:'operation',operationId:'repair',customerId};if(!SOC.provider.quote(s,repair).blockers.length)s=buy(s,repair);
+  }
+ }
+ assert.ok(before&&eligible(s),'a real dispatched case exposes the authored handoff');
+ const {dom,w}=boot();try{
+  const host=w.document.createElement('section');host.id='provider-campaign';w.document.body.append(host);w.providerHome();await w.providerNew({scenario:'smb'});
+  w.__SCP.state=before;w.__SCP.handoffPromptSeen=false;w.providerSpeed(8);w.Worker=undefined;
+  w.providerTick();
+  assert.equal(w.__SCP.state.clock,s.clock);assert.equal(w.__SCP.handoffPromptSeen,true);assert.equal(w.__SCP.speed,0);assert.equal(w.__SCP.decision,true);
+  assert.match(w.document.querySelector('[role="dialog"]').textContent,/Original deadline/);
+  const saved=JSON.parse(w.localStorage.getItem('series-of-calls:provider:v1'));assert.equal(saved.view.handoffPromptSeen,true);
+  w.document.querySelector('[data-provider-action="cancel-quote"]').click();assert.equal(w.__SCP.speed,8);
+  w.providerHome();await w.providerOpen();assert.equal(w.__SCP.handoffPromptSeen,true);assert.equal(w.providerPromptFirstHandoff(),false);assert.equal(w.document.querySelector('[role="dialog"]'),null);
+ }finally{w.providerRelease();dom.window.close();}
 });
 
 test('opening a costed quote invalidates a delayed worker tick and still permits a current quote commit',async()=>{
@@ -188,7 +267,7 @@ test('AC-SOC-829 paid mission failure pauses once and visible Resume operations 
  assert.equal(state.providerCampaign.status,'operating');assert.equal(state.providerCampaign.mission.consecutiveFailures,2);
  const {dom,w}=boot();try{
   w.Worker=undefined;w.providerHome();const runtime=w.__SCP;runtime.state=SOC.restore(JSON.stringify(state));runtime.atHome=false;runtime.locked=true;w.providerRender();w.providerSpeed(8);assert.equal(runtime.speed,8);
-  w.providerTick();assert.equal(runtime.state.clock,240);assert.equal(runtime.state.providerCampaign.status,'failed');assert.equal(runtime.state.providerCampaign.missionStatus,'failed');assert.equal(runtime.state.providerCampaign.customers[0].status,'active');assert.equal(runtime.state.business.solvency.status,'current');assert.equal(runtime.speed,0,'new mission failure pauses once');
+  w.providerTick();assert.equal(runtime.state.clock,240);assert.equal(runtime.state.providerCampaign.status,'failed');assert.equal(runtime.state.providerCampaign.missionStatus,'failed');assert.equal(runtime.state.providerCampaign.customers[0].status,'renewal','a due contract remains available for explicit renewal after mission loss');assert.equal(runtime.state.business.solvency.status,'current');assert.equal(runtime.speed,0,'new mission failure pauses once');
   assert.ok(runtime.state.providerCampaign.customers[0].history.slice(-3).every(h=>h.qualified));assert.ok(runtime.state.providerCampaign.periodHistory.slice(-3).every(h=>h.operatingResult<0),'mission failure is actual operating loss, not fabricated customer failure');
   const before=JSON.stringify(runtime.state),failure=runtime.state.providerCampaign.mission.consecutiveFailures;
   w.requestAnimationFrame=()=>0;for(let n=0;n<20;n++)w.providerFrame(w.performance.now()+250*n);assert.equal(JSON.stringify(runtime.state),before,'the paused failure screen cannot advance simulation time');
@@ -251,6 +330,9 @@ test('AC-SOC-872 an earned Provider mission victory leaves no runnable campaign 
  const incident=state.providerCampaign.incidents.find(i=>i.status==='active');send({action:'acknowledge-incident',incidentId:incident.id});buy({action:'operation',operationId:'repair',customerId});
  while(state.clock<180){if(state.providerCampaign.customers.some(c=>c.status==='renewal'))for(const c of state.providerCampaign.customers.filter(c=>c.status==='renewal'))send({action:'renew',customerId:c.id});minute();}
  assert.ok(state.providerCampaign.periodHistory.slice(-2).every(p=>p.qualified),'the mission win follows two measured qualifying periods');
- buy({action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});assert.equal(state.providerCampaign.missionStatus,'won');assert.equal(state.providerCampaign.status,'won');assert.ok(state.providerCampaign.events.some(e=>e.code==='MISSION_WON'));assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ buy({action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});assert.equal(state.providerCampaign.missionStatus,'active','funding alone is not a win');
+ for(const stage of ['base','carrier','partner']){if(stage!=='base')buy({action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});for(let n=0;n<30&&state.providerCampaign.customers[1].stages[stage].status!=='effective';n++){for(const c of state.providerCampaign.customers.filter(c=>c.status==='renewal'))send({action:'renew',customerId:c.id});minute();}assert.equal(state.providerCampaign.customers[1].stages[stage].status,'effective');}
+ for(let n=0;n<40&&state.providerCampaign.status!=='won';n++){for(const c of state.providerCampaign.customers.filter(c=>c.status==='renewal'))send({action:'renew',customerId:c.id});minute();}
+ assert.equal(state.providerCampaign.missionStatus,'won');assert.equal(state.providerCampaign.status,'won');assert.ok(state.providerCampaign.events.some(e=>e.code==='MISSION_WON'&&e.deliveredJobId));assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
  const {dom,w}=boot();try{w.providerHome();const runtime=w.__SCP;runtime.state=SOC.restore(JSON.stringify(state));runtime.atHome=false;runtime.locked=true;runtime.speed=0;w.providerRender();w.providerSpeed(8);assert.equal(runtime.speed,0,'a terminal victory cannot start the clock');const before=JSON.stringify(runtime.state);w.providerTick();assert.equal(runtime.busy,false);assert.equal(JSON.stringify(runtime.state),before,'terminal victory cannot advance or be rewritten by the runtime');}finally{dom.window.close();}
 });

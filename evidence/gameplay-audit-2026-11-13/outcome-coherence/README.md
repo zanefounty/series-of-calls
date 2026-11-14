@@ -1,0 +1,5 @@
+# SOC-05 outcome view checkpoint
+
+The [browser report](browser-report.json) builds a won SMB career through actual purchases, an authored incident, paid repair, two qualifying settlements, funded expansion, effective second-customer stages and delivered second-customer work. Desktop and 390px phone Chromium import the validated save under the Provider Web Lock. Each Goals view shows one milestone heading, six ordered completed coach steps, no instruction to qualify the completed mission, and a visible continuation and next-segment action. The visible Continue operating action dispatches the same validated command as direct SOC replay; its post-victory Goals view retains the completed chapter and offers the next segment without repeating the continuation action. Screenshots for both states and viewports are retained beside the report.
+
+AC-SOC-897 checks funded versus delivered coach phases and the completed/continued view; AC-SOC-898 checks that a due renewal takes priority over other commissioning work and links to the customer inspector. This is UI coherence evidence, not an uncoached comprehension result or proof of all later role careers.

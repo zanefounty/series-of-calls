@@ -30,10 +30,14 @@ test('achievement controls preserve revision and source identity at the dispatch
  }finally{w.close();}
 });
 
+test('funded estate shortcut starts with the versioned sector handover',()=>{
+ const {w,calls}=boot();click(w,'[data-provider-action="try-estate"]');assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{opening:'estate',openingVariant:'peak-window',sectorHandoverVersion:2}]));w.close();
+});
+
 test('provider shell launches through callbacks and does not write simulation state',()=>{
  const {w,calls}=boot();click(w,'[data-provider-action="show-new-game"]');const form=w.document.querySelector('[data-provider-form="new-game"]');assert.ok(form.classList.contains('is-open'));
  form.elements.providerName.value='Harbour Relay';form.elements.market.value='us-seattle';form.elements.scenario.value='enterprise';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
- assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win'}]));
+ assert.equal(JSON.stringify(calls.other.at(-1)),JSON.stringify(['new',{providerName:'Harbour Relay',market:'us-seattle',difficulty:'normal',scenario:'enterprise',opening:'win',sectorHandoverVersion:2,meetingContinuityVersion:1}]));
  click(w,'[data-provider-action="open"]');assert.deepEqual(calls.other.at(-1),['open','providerCampaign']);
  w.close();
 });
@@ -181,7 +185,10 @@ test('starter staged quote keeps optional retail terms behind details while late
  const state=SOC.create({experience:'campaign',opening:'win'}),ui=boot();try{
   const first=SOC.provider.quote(state,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
   const firstHtml=ui.w.SOCProviderPanels.quote(first,{quoteRequest:first.request});
-  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary><form data-provider-form="retail-quote"/);
+  assert.match(firstHtml,/<details class="provider-starter-retail"><summary>Advanced retail terms<\/summary>/);
+  assert.match(firstHtml, /provider-retail-retention/);
+  assert.match(firstHtml, /reduces renewal evidence from two qualified full periods to one/);
+  assert.match(firstHtml, /data-provider-form="retail-quote"/);
   const committed=SOC.dispatch(state,{type:'provider',command:{...SOC.provider.quote(state,{action:'plan',offerId:'starter',planId:'swift'}).request,quoteRevision:state.revision}});
   const later=SOC.provider.quote(committed,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
   const laterHtml=ui.w.SOCProviderPanels.quote(later,{quoteRequest:later.request});
@@ -221,7 +228,26 @@ test('provider map uses retained geography, customer coordinates and typed obser
 
  test('quote keyboard focus is trapped and Escape resumes the previous decision state',()=>{const {w,calls}=boot();w.SOC_PROVIDER_UI.render({revision:44},{cash:2000000,planComparisons:SOC.provider.inspect(SOC.create({experience:'campaign'})).planComparisons,customers:[],offers:[],events:[],forecast:{}});click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');const trigger=w.document.querySelector('[data-provider-action="quote"][data-plan="swift"]');trigger.focus();trigger.click();const dialog=w.document.querySelector('[role="dialog"]');assert.ok(dialog.contains(w.document.activeElement));const buttons=dialog.querySelectorAll('button:not([disabled])');buttons[buttons.length-1].focus();buttons[buttons.length-1].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(w.document.activeElement,buttons[0]);buttons[0].dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.equal(w.document.querySelector('[role="dialog"]'),null);assert.equal(w.document.activeElement,trigger);assert.deepEqual(calls.other.at(-1),['decision',false]);assert.equal(calls.commands.length,0);w.close();});
 
-test('coach distinguishes funded expansion from settled operations and mission victory',()=>{const {w}=boot();const model={cash:1000,forecast:{},offers:[],events:[],projects:[],incidents:[{customerId:'starter-customer',status:'acknowledged'}],mission:{status:'active'},customers:[{id:'starter-customer',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{offered:12},history:[]},{id:'next-1-customer',stages:{base:{status:'running'}}}]};w.SOC_PROVIDER_UI.render({revision:1},model);let steps=w.document.querySelectorAll('.provider-coach-list li');assert.equal(steps[3].classList.contains('is-done'),false);assert.equal(steps[4].classList.contains('is-done'),false);assert.equal(steps[5].classList.contains('is-done'),false);model.incidents[0].status='resolved';model.customers[0].history=[{due:24}];model.customers[1].stages.base.status='effective';w.SOC_PROVIDER_UI.render({revision:2},model);steps=w.document.querySelectorAll('.provider-coach-list li');assert.ok(steps[3].classList.contains('is-done'));assert.ok(steps[4].classList.contains('is-done'));assert.equal(steps[5].classList.contains('is-done'),false);model.mission.status='won';w.SOC_PROVIDER_UI.render({revision:3},model);assert.ok(w.document.querySelectorAll('.provider-coach-list li')[5].classList.contains('is-done'));w.close();});
+test('AC-SOC-897 coach distinguishes funded expansion from delivered work and keeps a won chapter coherent',()=>{
+ const {w}=boot(),model={cash:1000,forecast:{},offers:[],events:[],projects:[],incidents:[{customerId:'starter-customer',status:'acknowledged'}],mission:{status:'active'},customers:[{id:'starter-customer',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{offered:12},history:[]},{id:'next-1-customer',stages:{base:{status:'running'}}}]};
+ w.SOC_PROVIDER_UI.render({revision:1},model);let steps=w.document.querySelectorAll('.provider-coach-list li');
+ assert.equal(steps[3].classList.contains('is-done'),false);assert.equal(steps[4].classList.contains('is-done'),true,'funded next-customer base marks the funding step');assert.equal(steps[5].classList.contains('is-done'),false);
+ model.incidents[0].status='resolved';model.customers[0].history=[{due:24}];model.customers[1].stages={base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}};
+ w.SOC_PROVIDER_UI.render({revision:2},model);steps=w.document.querySelectorAll('.provider-coach-list li');assert.ok(steps[3].classList.contains('is-done'));assert.ok(steps[4].classList.contains('is-done'));assert.equal(steps[5].classList.contains('is-done'),false);
+ model.mission.status='won';model.mission.nextSegment='enterprise';w.SOC_PROVIDER_UI.render({revision:3},model);
+ steps=w.document.querySelectorAll('.provider-coach-list li');assert.equal([...steps].every(x=>x.classList.contains('is-done')),true);
+ const goals=w.document.querySelector('.provider-rail-body');assert.equal(goals.querySelectorAll('h2').length,1);assert.equal(goals.querySelectorAll('[data-provider-action="resume"]').length,0);assert.equal(goals.querySelectorAll('[data-provider-action="continue-career"]').length,1);assert.equal(goals.querySelectorAll('[data-provider-action="advance-segment"]').length,1);assert.doesNotMatch(goals.textContent,/another full billing period qualifies/i);
+ model.mission={status:'active',continuations:1,nextSegment:'enterprise'};w.SOC_PROVIDER_UI.render({revision:4},model);
+ assert.equal([...w.document.querySelectorAll('.provider-coach-list li')].every(x=>x.classList.contains('is-done')),true);assert.equal(goals.querySelectorAll('[data-provider-action="continue-career"]').length,0);assert.equal(goals.querySelectorAll('[data-provider-action="advance-segment"]').length,1);
+ model.customers[0].status='renewal';w.SOC_PROVIDER_UI.render({revision:5},model);assert.ok(goals.querySelector('[data-provider-action="select-customer"][data-id="starter-customer"]'),'the completed milestone links directly to a due renewal');
+ w.close();
+});
+
+test('AC-SOC-898 renewal due takes the current objective and links directly to its customer even while other work commissions',()=>{
+ const {w}=boot(),model={cash:1000,forecast:{},offers:[],events:[],projects:[{id:'work-one',customerId:'starter-customer',status:'running'}],incidents:[],mission:{status:'active'},customers:[{id:'starter-customer',status:'renewal',stages:{base:{status:'effective'},carrier:{status:'effective'},partner:{status:'effective'}},outcome:{completed:12},history:[{due:12}]}]};
+ w.SOC_PROVIDER_UI.render({revision:1},model);const goals=w.document.querySelector('.provider-rail-body');assert.match(goals.textContent,/Renew or exit this customer/);assert.equal(goals.querySelectorAll('[data-provider-action="resume"]').length,1,'funded work may still resume separately');
+ const renewal=goals.querySelector('[data-provider-action="select-customer"][data-id="starter-customer"]');assert.ok(renewal);renewal.click();assert.equal(w.SOC_PROVIDER_UI.view().selection.customerId,'starter-customer');w.close();
+});
 
 
 test('selecting an incident moves keyboard focus into its response inspector',()=>{
@@ -320,3 +346,5 @@ test('map integration test control sends only its funded project and current rev
   assert.equal(JSON.stringify(state),before);assert.throws(()=>SOC.dispatch(state,command),/PAID_UC_CC_COMMISSIONING_PROJECT_REQUIRED/);
  }finally{w.close();}
 });
+
+test('expired prospect offers an explicit validated replacement action',()=>{const {w,calls}=boot();const model={cash:1000,forecast:{},offers:[{id:'next-1',name:'Expired prospect',expiresAt:300,available:false,blockers:['CUSTOMER_OFFER_EXPIRED']}],events:[],projects:[],incidents:[],goals:[],mission:{status:'active'},customers:[]};w.SOC_PROVIDER_UI.render({revision:1},model);click(w,'[data-provider-action="drawer"][data-provider-value="deals"]');click(w,'[data-provider-action="refresh-opportunity"]');assert.equal(JSON.stringify(calls.commands.at(-1)),JSON.stringify({type:'provider',command:{action:'refresh-opportunity'}}));w.close();});

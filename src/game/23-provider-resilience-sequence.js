@@ -6,7 +6,7 @@ function socProviderResilienceSequenceKernel(){
  function rulesApi(){return typeof SOC_PROVIDER_RULES!=='undefined'?SOC_PROVIDER_RULES:(typeof require==='function'?require('./24-provider-rules.js'):null);}
  function missionDemand(parent,customer){
   const rules=rulesApi(),base=rules?.data?.missions?.[customer?.scenario]?.demand;if(!base)fail('PROVIDER_RESILIENCE_MISSION_DURATION_UNAVAILABLE');
-  if(customer.scenario==='smb'&&parent.providerCampaign.openingVariant){const api=typeof SOC_PROVIDER_VARIANTS!=='undefined'?SOC_PROVIDER_VARIANTS:(typeof require==='function'?require('./23-provider-variants.js'):null);if(!api)fail('PROVIDER_RESILIENCE_VARIANT_UNAVAILABLE');return api.demand(parent.providerCampaign.openingVariant.id,base);}
+  if(customer.scenario==='smb'&&(customer.prospectDemandId||parent.providerCampaign.openingVariant)){const api=typeof SOC_PROVIDER_VARIANTS!=='undefined'?SOC_PROVIDER_VARIANTS:(typeof require==='function'?require('./23-provider-variants.js'):null);if(!api)fail('PROVIDER_RESILIENCE_VARIANT_UNAVAILABLE');return api.demand(customer.prospectDemandId||parent.providerCampaign.openingVariant.id,base);}
   return base;
  }
  function missionMinutes(parent,customer){const value=missionDemand(parent,customer).voiceDuration;if(!Number.isSafeInteger(value)||value<1)fail('PROVIDER_RESILIENCE_MISSION_DURATION_UNAVAILABLE');return value;}

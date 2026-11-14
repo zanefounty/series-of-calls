@@ -22,7 +22,7 @@ test('PLAY-010/016 authored campaign content changes demand timing and usage exp
  }
  assert.notDeepEqual(profiles.smb.voiceMinutes,profiles.enterprise.voiceMinutes,'enterprise arrival timing is distinct from the SMB service desk');
  assert.notDeepEqual(profiles.government.digitalMinutes,profiles.defence.digitalMinutes,'records and disconnected-site workload do not reuse the same digital schedule');
- const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';delete legacy.providerCampaign.incidentSequenceVersion;delete legacy.providerCampaign.caseHandoffVersion;delete legacy.providerCampaign.caseFollowupVersion;delete legacy.providerCampaign.dedicatedInterconnectVersion;delete legacy.providerCampaign.enterpriseContinuityVersion;delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.meetingDependencyVersion;delete legacy.providerCampaign.supportObservation;delete legacy.providerCampaign.supportWork;delete legacy.providerCampaign.workforceHistory;delete legacy.providerCampaign.serviceRetirementVersion;delete legacy.providerCampaign.externalCollaborationVersion;
+ const legacy=SOC.create({experience:'campaign',scenario:'enterprise'});legacy.providerCampaign.contentVersion='provider-campaigns-1';delete legacy.providerCampaign.incidentSequenceVersion;delete legacy.providerCampaign.caseHandoffVersion;delete legacy.providerCampaign.caseFollowupVersion;delete legacy.providerCampaign.dedicatedInterconnectVersion;delete legacy.providerCampaign.enterpriseContinuityVersion;delete legacy.providerCampaign.commercialResponsibilityVersion;delete legacy.providerCampaign.meetingDependencyVersion;delete legacy.providerCampaign.retailRetentionVersion;delete legacy.providerCampaign.supportObservation;delete legacy.providerCampaign.supportWork;delete legacy.providerCampaign.workforceHistory;delete legacy.providerCampaign.serviceRetirementVersion;delete legacy.providerCampaign.externalCollaborationVersion;delete legacy.providerCampaign.meetingPlanVersion;delete legacy.providerCampaign.meetingPlans;
  const restored=SOC.restore(JSON.stringify(legacy)),quote=SOC.provider.quote(restored,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
  assert.equal(quote.forecast.conditionalFullPlan.usageForecast,3000,'a validated version-one save keeps its historical 16 three-minute calls and eight messages');
 });
@@ -193,7 +193,12 @@ test('enterprise, government and defence win only after their actual mission evi
   assert.deepEqual(quote.blockers,[],scenario+' shared cash can fund expansion');
   assert.ok(quote.cashAfter>=0,scenario+' parent treasury remains solvent');
   send({...next,quoteRevision:s.revision});
-  assert.equal(s.providerCampaign.missionStatus,'won',scenario);
+  assert.equal(s.providerCampaign.missionStatus,'active',scenario+' funded expansion is not delivery');
+  for(const stage of ['carrier','partner']){const request={...next,stage,customerId:'next-1-customer'},q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[],scenario+'/'+stage);send({...request,quoteRevision:s.revision});}
+  for(let minute=0;minute<90&&s.providerCampaign.missionStatus==='active';minute++){if(s.providerCampaign.customers[0].status==='renewal')send({action:'renew',customerId:'starter-customer'});s=advance(s,1);}
+  assert.equal(s.providerCampaign.missionStatus,'won',scenario+' delivered expansion wins');
+  assert.ok(s.providerCampaign.customers[1].metrics.completed>0);
+  assert.equal(s.providerCampaign.mission.victoryProof.version,2);
   assert.equal(s.providerCampaign.mission.winnerCustomerId,'next-1-customer',scenario);
  }
 });
@@ -225,25 +230,26 @@ test('SMB mission victory needs two profitable full periods and an actually fund
   const next={action:'purchase',offerId:'next-1',planId,stage:'base'};
   const q=SOC.provider.quote(s,next);assert.deepEqual(q.blockers,[]);assert.equal(q.cashAfter,s.business.balance.cash-q.setupCents);
   s=provider(s,{...next,quoteRevision:s.revision},sequence++);
-  assert.equal(s.providerCampaign.missionStatus,'won',planId);
-  assert.equal(s.providerCampaign.status,'won',planId);
+  assert.equal(s.providerCampaign.missionStatus,'active',planId+' funded expansion is not delivery');
   assert.equal(s.providerCampaign.mission.winnerCustomerId,'next-1-customer',planId);
   assert.equal(s.providerCampaign.customers[1].status,'provisioning',planId);
-  assert.equal(s.providerCampaign.customers[1].stages.base.status,'provisioning','victory records a funded order, not imagined delivery');
+  for(const stage of ['carrier','partner']){const request={...next,stage,customerId:'next-1-customer'},q=SOC.provider.quote(s,request);assert.deepEqual(q.blockers,[],planId+'/'+stage);s=provider(s,{...request,quoteRevision:s.revision},sequence++);}
+  for(let minute=0;minute<90&&s.providerCampaign.missionStatus==='active';minute++){
+   if(s.providerCampaign.customers[0].status==='renewal')s=provider(s,{action:'renew',customerId:'starter-customer'},sequence++);
+   s=advance(s,1);
+  }
+  assert.equal(s.providerCampaign.missionStatus,'won',planId+' observed delivery wins');
+  assert.ok(s.providerCampaign.customers[1].metrics.completed>0);
+  assert.equal(s.providerCampaign.mission.victoryProof.version,2);
   const retainedHistory=s.providerCampaign.periodHistory.length,openingCash=s.business.balance.cash;
   s=provider(s,{action:'continue-career'},sequence++);
   assert.equal(s.providerCampaign.status,'operating',planId);
-  assert.equal(s.providerCampaign.missionStatus,'won',planId+' milestone remains earned');
+  assert.equal(s.providerCampaign.missionStatus,'won',planId+' earned mission status stays in retained history');
+  assert.equal(SOC.provider.inspect(s).mission.status,'active',planId+' next operating chapter is active');
   assert.equal(s.providerCampaign.mission.focusCustomerId,'next-1-customer',planId);
   assert.equal(s.providerCampaign.periodHistory.length,retainedHistory,planId+' earned history retained');
   assert.equal(s.business.balance.cash,openingCash,planId+' shared treasury retained');
   assert.equal(SOC.provider.inspect(s).offers[1].id,'next-2',planId+' next authored offer');
-  for(const stage of ['carrier','partner']){
-   const request={action:'purchase',offerId:'next-1',planId,stage,customerId:'next-1-customer'},q=SOC.provider.quote(s,request);
-   assert.deepEqual(q.blockers,[],planId+'/'+stage+' after milestone');
-   s=provider(s,{...request,quoteRevision:s.revision},sequence++);
-  }
-  while((s.providerCampaign.customers[1].status!=='active'||s.providerCampaign.customers[1].metrics.completed===0)&&s.clock<220)s=advance(s,1);
   assert.equal(s.providerCampaign.customers[1].status,'active',planId+' actual second service');
   assert.ok(s.providerCampaign.customers[1].metrics.completed>0,planId+' actual second-customer delivery');
  }

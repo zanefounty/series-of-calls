@@ -101,3 +101,18 @@ test('AC-SOC-909 both Customer IT openings require funded South scope, active gr
  migrated=send(migrated,{action:'approve-window',cutoverAt:27});migrated=SOC.dispatch(migrated,{type:'advance',minutes:6});assert.equal(migrated.customerIt.migration.status,'complete');assert.equal(migrated.customerIt.sites.south.platform,'managed');assert.equal(migrated.portfolio.customers[0].root.operations.placements.bea,'migration-phone');assert.equal(migrated.customerIt.budgetCents,200000);
  assert.deepEqual(SOC.restore(JSON.stringify(migrated)),migrated);
 });
+
+test('AC-SOC-911 archived child fault commands do not strand a repaired Customer IT career',()=>{
+ const send=(s,request)=>{const q=SOC.customerIt.quote(s,request);assert.deepEqual(q.blockers,[]);return SOC.dispatch(s,{type:'customer-it',command:{...request,quoteRevision:q.atRevision}});};
+ let state=send(create(),{action:'opening',choice:'migrate'});state=send(state,{action:'accept-grant'});state=SOC.dispatch(state,{type:'advance',minutes:16});
+ state=send(state,{action:'repair'});state=SOC.dispatch(state,{type:'advance',minutes:8});
+ const cutoverAt=state.clock+9;state=send(state,{action:'rehearse-window',cutoverAt});state=send(state,{action:'approve-window',cutoverAt});
+ const early=structuredClone(state);early.portfolio.customers[0].root.commands=early.portfolio.customers[0].root.commands.filter(row=>row.command?.type!=='fault');assert.throws(()=>SOC.restore(JSON.stringify(early)),/INVALID_CUSTOMER_IT_SERVICE_LINK/);
+ while(state.clock<120)state=SOC.dispatch(state,{type:'advance',minutes:1});
+ const child=state.portfolio.customers[0].root,customer=state.providerCampaign.customers.find(row=>row.id==='starter-customer');
+ assert.ok(child.providerArchive.commands>0);assert.ok(child.commands[0].at>state.customerIt.repair.effectiveAt-1);assert.equal(child.commands.some(row=>row.command?.type==='fault'&&row.command.id==='access'),false);
+ assert.equal(state.customerIt.outage.status,'recovered');assert.equal(state.customerIt.outage.lostMinutes,7);assert.equal(state.customerIt.migration.status,'complete');assert.equal(state.customerIt.sites.south.platform,'managed');
+ assert.equal(customer.history.length,2);assert.equal(customer.history[1].qualified,false,'do not declare customer service success from migration alone');
+ assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
+ const command={type:'advance',minutes:1},expected=SOC.dispatch(state,command),box={postMessage:message=>box.result=message};vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:911,state:JSON.parse(JSON.stringify(state)),command}});assert.equal(box.result.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(box.result.state)),expected);
+});

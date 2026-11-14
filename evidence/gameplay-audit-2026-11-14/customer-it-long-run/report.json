@@ -1,0 +1,40 @@
+{
+  "runAt": "2026-11-14T12:00:04.605Z",
+  "scope": "Diagnostic import at minute 98, then visible clock control through child history compaction; not a complete start-to-finish journey",
+  "browser": "157.0.8103.15",
+  "runs": [
+    {
+      "profile": "desktop",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "clock": 120,
+      "site": "managed",
+      "outage": "recovered",
+      "archive": 52,
+      "customerQualified": false,
+      "horizontalOverflow": false,
+      "visible": true,
+      "saveReload": true,
+      "errors": []
+    },
+    {
+      "profile": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clock": 120,
+      "site": "managed",
+      "outage": "recovered",
+      "archive": 52,
+      "customerQualified": false,
+      "horizontalOverflow": false,
+      "visible": true,
+      "saveReload": true,
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}

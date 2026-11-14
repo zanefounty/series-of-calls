@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'../src');
-function boot(t,callbacks={}){const dom=new JSDOM('<!doctype html><div id="app"></div>',{runScripts:'dangerously',pretendToBeVisual:true});t.after(()=>dom.window.close());const w=dom.window;w.N_=x=>x;for(const p of ['game/93-ui/10-dom.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/79-provider-case-handoff.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));const calls={quotes:[],commands:[]};w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),{quote:r=>{calls.quotes.push(r);return callbacks.quote?callbacks.quote(r):quote();},command:c=>{calls.commands.push(c);return callbacks.command?callbacks.command(c):{ok:true};},decision:()=>{}});return {w,calls};}
+function boot(t,callbacks={}){const dom=new JSDOM('<!doctype html><div id="app"></div>',{runScripts:'dangerously',pretendToBeVisual:true});t.after(()=>dom.window.close());const w=dom.window;w.N_=x=>x;for(const p of ['game/93-ui/10-dom.js','game/93-ui/65-service-preferences.js','game/93-ui/70-provider-hud.js','game/93-ui/75-provider-panels.js','game/93-ui/79-provider-case-handoff.js','game/96-map/90-service-scene.js','game/96-map/95-provider-canvas.js','game/97-provider-shell.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));const calls={quotes:[],commands:[],decisions:[]};w.SOC_PROVIDER_UI.mount(w.document.querySelector('#app'),{quote:r=>{calls.quotes.push(r);return callbacks.quote?callbacks.quote(r):quote();},command:c=>{calls.commands.push(c);return callbacks.command?callbacks.command(c):{ok:true};},decision:open=>calls.decisions.push(open)});return {w,calls};}
 const request={action:'handoff-case',customerId:'customer-a',jobId:'job-1',connectorId:'social-messaging'};
 function quote(blockers=[]){return {action:'handoff-case',request:{...request},atRevision:7,setupCents:0,periodCents:0,accepted:!blockers.length,blockers,commercial:{caseHandoff:{caseId:'case-1',deadlineAt:18,sourceUsageMinutes:2,sourceInteractionId:'interaction-1'},variablePrices:{voiceCentsPerMinute:50,messageCentsPerDelivery:75}}};}
 const journey=q=>({id:'job-1',channel:'voice',status:'pending',arrivalAt:10,deadlineAt:18,trace:[],handoffOffer:q});
@@ -28,4 +28,18 @@ test('AC-SOC-671 real shell click requests exact scoped quote then commits the h
 test('AC-SOC-672 stale handoff refusal preserves the exact draft across ticks and requires explicit quote refresh and recommit',t=>{
  let accepted=false,revision=7;const {w,calls}=boot(t,{quote:()=>({...quote(),atRevision:revision}),command:()=>accepted?{ok:true}:{ok:false,error:'STALE_PROVIDER_QUOTE'}});select(w,quote());click(w,'[data-provider-action="quote-case-handoff"]');click(w,'[data-provider-action="confirm-quote"]');assert.equal(w.SOC_PROVIDER_UI.view().quoteModal,true);assert.deepEqual(JSON.parse(JSON.stringify(w.SOC_PROVIDER_UI.view().quoteRequest)),request);assert.equal(w.document.querySelector('[data-provider-action="confirm-quote"]').disabled,true);assert.match(w.document.querySelector('[role="alert"]').textContent,/world changed/);
  w.SOC_PROVIDER_UI.render({revision:8,clock:13},{...model(quote()),revision:8,clock:13});assert.deepEqual(JSON.parse(JSON.stringify(w.SOC_PROVIDER_UI.view().quoteRequest)),request);assert.equal(calls.commands.length,1);accepted=true;revision=8;click(w,'[data-provider-action="refresh-quote"]');assert.equal(calls.commands.length,1);click(w,'[data-provider-action="confirm-quote"]');assert.equal(calls.commands[1].command.quoteRevision,8);assert.equal(calls.commands[1].command.action,'handoff-case');assert.equal(w.SOC_PROVIDER_UI.view().quoteModal,false);
+});
+
+test('first eligible handoff opens a scoped decision before the clock can move again',t=>{
+ const {w,calls}=boot(t);w.SOC_PROVIDER_UI.render({revision:7,clock:12},model(quote()));
+ assert.equal(w.SOC_PROVIDER_UI.promptHandoff('customer-a','job-1'),true);
+ assert.deepEqual(JSON.parse(JSON.stringify(calls.quotes)),[request]);
+ assert.deepEqual(calls.decisions,[true]);
+ assert.equal(w.SOC_PROVIDER_UI.view().selection.customerId,'customer-a');
+ assert.match(w.document.querySelector('[role="dialog"]').textContent,/Original deadline: minute 18/);
+ w.document.querySelector('[data-provider-action="cancel-quote"]').click();
+ assert.deepEqual(calls.decisions,[true,false]);
+ assert.equal(w.SOC_PROVIDER_UI.promptHandoff('foreign','job-1'),false);
+ w.SOC_PROVIDER_UI.render({revision:8,clock:13},model(quote(['PROVIDER_CASE_HANDOFF_QUEUED_VOICE_REQUIRED'])));
+ assert.equal(w.SOC_PROVIDER_UI.promptHandoff('customer-a','job-1'),false);
 });

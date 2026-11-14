@@ -1,0 +1,7 @@
+# Player-selected Enterprise coexistence cohort
+
+The [Chromium report](enterprise-staged-browser-report.json) records a visible-control Enterprise career in which the player funded the coexistence migration, chose **Alex and Bea** instead of the default Bea-only cohort, received an active-call refusal, then authorised cutover at minute 55. The actual migration and the post-cutover service proof use the recorded two-person cohort. The journey completed the room incident response, two profitable service periods, renewal, second-customer delivery and a visible save, reload, export and import. The report says `passed` and `noSourceDrift: true`; its exported-save SHA-256 matches the [retained save](mission-victory-export.json).
+
+Screenshots: [quoted cohort and cutover](migration-go-quote.png), [authorised migration](migration-go-authorised.png), [incident](mission-incident.png), [post-cutover service](two-period-evidence.png), [delivered-work victory](mission-won-after-delivery.png), and [save/reload](mission-victory-visible-save-reload-import.png).
+
+This proves one selected cohort on the paid coexistence path in a synthetic browser career. A [later journey](../migration-reservation/README.md) covers engineer reservation. Explicit rehearsal acceptance, rollback control and human comprehension remain open. The raw Playwright trace remains under `/tmp/soc-provider-gameplay-browser/mission-enterprise-staged/trace.zip` and is not a release artifact.

@@ -1,0 +1,7 @@
+# Enterprise migration decision browser evidence
+
+The [report](enterprise-browser-report.json) records one real Chromium Enterprise career on the 13 November gameplay audit branch. It used visible controls and the actual 8× browser clock. The player funded the consolidated migration, received five `COHORT_ACTIVE_CALL` go-quote refusals, then authorised cutover for minute 55. A room incident paused the clock before cutover; the incident response was completed through the inspector. The career then met two profitable service periods, renewed, funded a second customer, won only after delivered work, and passed a visible save, reload, export and import. The report records source hashes and `noSourceDrift: true`.
+
+Screenshots: [go quote](migration-go-quote.png), [authorised cutover](migration-go-authorised.png), [incident](mission-incident.png), [service periods](two-period-evidence.png), [delivered-work victory](mission-won-after-delivery.png), and [save/reload](mission-victory-visible-save-reload-import.png). The [exported save](mission-victory-export.json) retains the synthetic campaign state used by the final browser check.
+
+This verifies the current fixed consolidated cohort and explicit go decision in one browser journey. Player cohort selection, engineer reservation, rehearsal acceptance, rollback control, the coexistence variant and human comprehension remain open. The raw Playwright trace stays in `/tmp/soc-provider-gameplay-browser/mission-enterprise/trace.zip`; it is not a release artifact.

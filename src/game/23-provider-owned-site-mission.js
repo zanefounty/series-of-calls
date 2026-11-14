@@ -26,8 +26,8 @@ function socProviderOwnedSiteMissionKernel(){
   const references=[];
   for(const row of rows){
    if(!exact(row,['customerId','tenant','victory','projectId','postingId'])||!id(row.customerId)||!id(row.tenant)||!id(row.projectId)||!id(row.postingId))return null;
-   const proof=row.victory,proofKeys=['version','eventId','scenario','at','focusCustomerId','winnerCustomerId','qualifiedPeriods','nextStage','periods'];
-   if(!exact(proof,proofKeys)||proof.version!==1||proof.scenario!==row.victory.scenario||proof.winnerCustomerId!==row.customerId||!id(proof.eventId)||!integer(proof.at,0,summary.at)||!id(proof.focusCustomerId)||!integer(proof.qualifiedPeriods,1)||typeof proof.nextStage!=='string'||!Array.isArray(proof.periods)||!proof.periods.length)return null;
+   const proof=row.victory,proofKeys=['version','eventId','scenario','at','focusCustomerId','winnerCustomerId','qualifiedPeriods','nextStage','periods',...(proof?.version===2?['deliveredJobId']:[])];
+   if(!exact(proof,proofKeys)||![1,2].includes(proof.version)||proof.version===2&&!id(proof.deliveredJobId)||proof.scenario!==row.victory.scenario||proof.winnerCustomerId!==row.customerId||!id(proof.eventId)||!integer(proof.at,0,summary.at)||!id(proof.focusCustomerId)||!integer(proof.qualifiedPeriods,1)||typeof proof.nextStage!=='string'||!Array.isArray(proof.periods)||!proof.periods.length)return null;
    references.push({scenario:proof.scenario,customerId:row.customerId,tenant:row.tenant,eventId:proof.eventId,at:proof.at,projectId:row.projectId,postingId:row.postingId});
   }
   if(new Set(references.map(x=>x.customerId)).size!==4)return null;

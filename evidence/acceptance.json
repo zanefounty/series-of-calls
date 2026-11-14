@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-11-14T07:21:37.759571+00:00",
+  "runAt": "2026-11-14T09:19:18.110898+00:00",
   "command": [
     "python3",
     "scripts/record-evidence.py",
@@ -10,6 +10,10 @@
   ],
   "runtime": "v24.22.2",
   "tests": {
+    "AC-SOC-897": "passed",
+    "AC-SOC-898": "passed",
+    "AC-SOC-895": "passed",
+    "AC-SOC-896": "passed",
     "AC-SOC-655": "passed",
     "AC-SOC-656": "passed",
     "AC-SOC-838": "passed",
@@ -192,6 +196,10 @@
     "AC-SOC-643": "passed",
     "AC-SOC-686": "passed",
     "AC-SOC-687": "passed",
+    "AC-SOC-889": "passed",
+    "AC-SOC-890": "passed",
+    "AC-SOC-893": "passed",
+    "AC-SOC-894": "passed",
     "AC-SOC-498": "passed",
     "AC-SOC-499": "passed",
     "AC-SOC-500": "passed",
@@ -875,7 +883,24 @@
     "AC-SOC-881": "passed",
     "AC-SOC-882": "passed",
     "AC-SOC-883": "passed",
-    "AC-SOC-884": "passed"
+    "AC-SOC-884": "passed",
+    "AC-SOC-885": "passed",
+    "AC-SOC-886": "passed",
+    "AC-SOC-887": "passed",
+    "AC-SOC-888": "passed",
+    "AC-SOC-891": "passed",
+    "AC-SOC-892": "passed",
+    "AC-SOC-899": "passed",
+    "AC-SOC-900": "passed",
+    "AC-SOC-901": "passed",
+    "AC-SOC-902": "passed",
+    "AC-SOC-903": "passed",
+    "AC-SOC-904": "passed",
+    "AC-SOC-905": "passed",
+    "AC-SOC-906": "passed",
+    "AC-SOC-907": "passed",
+    "AC-SOC-908": "passed",
+    "AC-SOC-909": "passed"
   },
   "failures": 0,
   "parseError": null,
@@ -909,7 +934,7 @@
     "content/product-evidence.json": "423727faf9e9105f6542766af001919ef02ad85ccc7c4d339a4b9bbb657630cb",
     "content/products.json": "5181097e1066cad9112a9e4ffabe2e8e38402a09adcfc20b17c697814ec32dfa",
     "content/progression.json": "295dfa85ac3a9e7ada77cd287e1911f40c8924dcd143c71c6c2f0dff571974cf",
-    "content/provider-campaigns.json": "536532d8b7f9cec9ce862f150df5c9b0e092f22893a5656fca1dbc1552246c52",
+    "content/provider-campaigns.json": "d5728653aa2d388d4edf92ca8649158b00fd2b7f8809abb8371ed6efd6c8f133",
     "content/provider-partner-paths.v1.json": "1370fdf61d83b20533b4e7e4e7b339afc2f1e27d76004f47b892dd13fa283eb3",
     "content/provider-scale-observation.v1.json": "00b8657e9d24af6b7780b95401a46f9dc553af6dfab0383d8ea2b0e349a1c3d6",
     "content/provider-security-abuse.v2.json": "a5e469b419a669663b5375d4ddcb6681c8e35448e4b4572f595d15c49f18547d",
@@ -922,8 +947,8 @@
     "content/speech-models.json": "de90a619f5a645ac5910eae49df4188a9e49d1111f2242fd2931f4ec9d5551d4",
     "content/transport.json": "ee529c2a927d26192489b7d8eb5338857ba9dff5ec73e9f98d6166205a4c315f",
     "maintenance/upstream/register.json": "f70161d7b583f4a15325b0ce30075a8161702845d0b848b11182620c34f23eb2",
-    "package-lock.json": "8606aeece2b3b0af655f1902f33292862a2fef7694ee6fd88f156dcd2745309a",
-    "package.json": "903d9412879438c8fd09c08d6e18d4e8188e65d8817625252ad54caef74c8007",
+    "package-lock.json": "0187c5f10d7c531d4eee706922566421344f681f1e97b48a069217bf05d8f138",
+    "package.json": "647de280d8f0733010f65515e92a726941828252c6ad87632dc0691c91f3bf35",
     "research/community/cisco-voip-findings.json": "6d6dd30ac5b564c00b877661a1ca43d447301da038a66c98d3bcc991dcac28b8",
     "research/community/voiceops-findings.json": "b06235d9753fa079bc59cb1531ec5ea96d68bde6078a1a3185eb4ba989a042b8",
     "scripts/aggregate-browser-campaigns.js": "e21185d4e5f9c9c4ad0a29fba4247d98af7729536a3cb964d8e91f672016de23",
@@ -944,18 +969,18 @@
     "scripts/lib/transport-lease-soak.js": "b37a374c5c0d6f36769b39e414e4785489baba580f5cad12b916c8c41f13092e",
     "scripts/mcp-smoke.py": "31bc62a043b7a39009fcd99830867ee255ed7231a71deb5baac9593b9f052804",
     "scripts/mcp.js": "eea28d4992ec9a8e3ca0661780c9dcff9c2b20b2b1274d30743fcfe0c4e02275",
-    "scripts/provider-browser.js": "982ac3278ed53aaa4023ace954c2e75bd37fe3e4bd9c0dd4e55d0423fd388fcf",
+    "scripts/provider-browser.js": "14dbd573493b2152a6c376bb8407c4d13f73e4add66f380a050069f6ee3c5d37",
     "scripts/provider-owned-map-layout-browser.js": "960d6ad94746db96b03771bc7fc89a3a9aa8f2fe78e2226a44332d703d30fe4d",
-    "scripts/provider-runtime-safety-browser.js": "6d68878ab1d0f47cd9a973fa0fb6116da87a2ebf3acc1b1d1a6332cdc1333eaf",
+    "scripts/provider-runtime-safety-browser.js": "12babdf9bc30c4bf5e25180952feaad254c289ed71abed751b19d85bb965000c",
     "scripts/serve.js": "7567ec3510e7110f028d0e56367166d3aa38d1631b265c965e798f0b32e65a6e",
     "scripts/verify.py": "89685987897b7abb85700bf8509a9e1b802f13d632594b0345c384d020ff5956",
     "site/apple-touch-icon.png": "0697abc0fd2a995514e087f5d533a3016484ff96224c12c4d14dabbea415d765",
     "site/favicon.ico": "7168ed7a42a7ef20006955edb5a5816b00de55415b32991e3ae5a77bbd09afa1",
-    "site/i18n/de.js": "0289cfc6756d9c59eea4f6d66735cf8b1f4f02d863ecad810a841599d559576f",
-    "site/i18n/es.js": "f37c575df5b27cd97227fe56aa6e3110069f0295c9792f5fa808b969dd30a9d1",
-    "site/i18n/fr.js": "2f2157a7520790ad58c1e8ccbea5a2cb4f48ee1cbe2343a6b4773752c9a3bc4c",
-    "site/i18n/it.js": "cf9a0bc154d5e73d00e5125f1763dd79c1457bd19af2ee8b2f52c9242c5dae08",
-    "site/i18n/pt.js": "a2a9b65b77ac5fe56558b491218d8c4092b8323529b38a3b4c99a51a6a042f13",
+    "site/i18n/de.js": "60a4a9f193fd55c2dab5f018604e7c53cbbdb5fe93c242e81949fcbc5eb453e5",
+    "site/i18n/es.js": "097f456b4d25da1126a28b4aba4a81b0e58e6587b23759b028b3d765bebeb4e3",
+    "site/i18n/fr.js": "757fa812150351c9917b36e023d96858bb4728a5756d1b0b2cfdb98ac05a4471",
+    "site/i18n/it.js": "8af8e580a49dfab96c44456fbae733b550d114161185363b2f4bea09cad14271",
+    "site/i18n/pt.js": "8cccf4dc3ccfc96d9877bc5e537f5e6673bb1c70951b8399975c81a888b21022",
     "site/icon-192.png": "5e91fc5edfa37296d1cc5b5156103d7e1feb26ab49e56db85b32f32d49a1df6b",
     "site/icon-512.png": "1df1803f9268b0af3a6ecf1a59d68cba87ef8986db4600d22f0ba95d4a5497ff",
     "site/icon-maskable-512.png": "31d24de352f62bd638095b58d1500954ad00060f0677895f6e27b8f6dbed368b",
@@ -1008,13 +1033,13 @@
     "src/game/23-provider-capacity-authority.js": "8ff7d6a754f0184be3c7e3a52eb6b3702efa1a8340a2fc99623b8c01fe7689b5",
     "src/game/23-provider-case-followup.js": "2903512b404df4a2266f678e2d5253ad88f89fbeace7758d1040fcb7dc6de722",
     "src/game/23-provider-case-handoff.js": "c3d2d6b2dd0485fce757eb1e2e8ad003fabff1ac05547185073e0c413dc59c8d",
-    "src/game/23-provider-central-progression.js": "f85e0541b8671daffd26eba1e4cd3cffed5beac8c02640afc8c1a15f7758c6de",
+    "src/game/23-provider-central-progression.js": "d1966441163de5830e8ef5a9c70ed0f8d7993a92c2510ee4138ed734a8f6027b",
     "src/game/23-provider-change-preview.js": "1d9f8134feb8396722c433ba56c240afcc97ff483fa99a75b576f9b98eacd95b",
-    "src/game/23-provider-configuration-authority.js": "c2da831952569146ff09899e6c000a33d39cb6a5a5d7d941913b65f9bf1deedf",
+    "src/game/23-provider-configuration-authority.js": "a30d3778545f82251ee5484be2dbeccb40854b97dbb33dc9be778e73ce6e0d47",
     "src/game/23-provider-continuity.js": "0bcf5fd411375c0f98e5ed8558345d6be6ce0f0a0dd0e59e12a9ddecdd06a992",
     "src/game/23-provider-dedicated-interconnect.js": "539b8ce67855bf53ab867f371638ea5f830025d90adc4f056b4b0ca879e7a383",
     "src/game/23-provider-external-reach.js": "c92b2b45a0ca427f426e5536420ea20d4a98601227b326c21498fbb5f7b8968d",
-    "src/game/23-provider-finance-view.js": "1687f479b03cb73c144d7b60106bd24f29ff5cc1a1a2c57e093f273c2d0c5f43",
+    "src/game/23-provider-finance-view.js": "ab10173f7b7f02513a9484c85bfa43cc418bdcfc793eeaabc1ea96531cd1161a",
     "src/game/23-provider-followup-retry-archive.js": "45f6db9e5010454d2e83b6606d28826660ad41d42eaabaeba3b4be2f475f8683",
     "src/game/23-provider-government.js": "cdc26af9805e431b9c5d371b2530563f75be0a0189f1f076817420fcdefb9a6b",
     "src/game/23-provider-history.js": "5d8e5e32cd981d0e8720464f40f7cc5d8f83fd4949327d0dfe10a056a7f76cdd",
@@ -1025,7 +1050,7 @@
     "src/game/23-provider-journeys.js": "3f4f0763f8c8f61a15ec2484c31538ad560a22be4139da0a4ad2c5e2d6b1d37c",
     "src/game/23-provider-local-progression.js": "97fd2949a11776e6a107e604111a90b31f9a0bb3cc76c5a6df34cf256df335d8",
     "src/game/23-provider-owned-site-custody.js": "e445387622a9bc49bb45c9598c0810153833154e031bc9bea2dd41645aeecec9",
-    "src/game/23-provider-owned-site-mission.js": "5d84cd58cc234f7080f5b6af1a40c346708948a2329f8a461b4748aa5abcb273",
+    "src/game/23-provider-owned-site-mission.js": "6c82d0497a9e574ed6ccf676bc9b5daff10a001e488dbf01a537c5e08c05a679",
     "src/game/23-provider-owned-sites.js": "9c4abc95713c52ae87c5c5d49176fbe0d741968ff2d93b76dc6f640f7abe63b5",
     "src/game/23-provider-partner-paths.js": "dec7c173f9a1fd42b02fea3e69c1adce7b60014e00f8eefbae1b60cd38c6e229",
     "src/game/23-provider-partner-progression.js": "ec4f01a1f6990951fa4484ee2b6eb392834c3602d5590a8804a6f06b8ea05e14",
@@ -1036,8 +1061,8 @@
     "src/game/23-provider-progression.js": "40581764e025b26ef354d279b66bb9a2bb23887656789c192261de40f89c9792",
     "src/game/23-provider-regional-integrations.js": "65c055eebed1d4f136cd73572bdd38f9088f2010d0f907335531bd563e5e2008",
     "src/game/23-provider-regional-support.js": "e9efe1009d9ed99699deb4d29bc54ea593002552bed5bbd979772b82aca9630a",
-    "src/game/23-provider-resilience-progression.js": "5452987c021f56f41beef5f4830469e4386882a91a2560a3fc9c9c3a453a9526",
-    "src/game/23-provider-resilience-sequence.js": "ff2096a3a4e6af968a23e7db723ac9a10200481593f64f0308f77f0fb4c2592b",
+    "src/game/23-provider-resilience-progression.js": "366c5fa2ebca6509f58cf18791fa6595e4dd0c3e88bee0f5d8e7864251dd8e3c",
+    "src/game/23-provider-resilience-sequence.js": "0b733e94dda20d591a51657e0555532c90a14c6dd151c31de350f0a85f5e0c99",
     "src/game/23-provider-resilience.js": "0854144b3d7836cf1a743b148702761c585fc1b4665d972b01fd8092750cb8f0",
     "src/game/23-provider-responsibility.js": "3eaf281deb2f8fc4536ef40199464fa0a6db9c6235f450de113ff2a4d28e1f1e",
     "src/game/23-provider-room-integration.js": "6a2976f24715c539d655698bfd0f8b1b8c4e879d86b962abe163d5d189c0cf81",
@@ -1045,14 +1070,15 @@
     "src/game/23-provider-security.js": "7541aa07c84eb69e04254012ebf04f32f82d547298e4bcb72425dd220d371a99",
     "src/game/23-provider-service-boundary.js": "f79923877ce2dcd55e35fd1488752aeef94c2b247a5ad1d9d48f09b47fac303f",
     "src/game/23-provider-service-retirement.js": "dab2d6048109315e8ddd9f5a39c8bad4f14b4ee7e3e840cb271f84de764c08b7",
-    "src/game/23-provider-support-history.js": "da3139c8055a60c6e6e51899fc2558f3b319a37825559396f2ecb4ad4ebb4d4f",
+    "src/game/23-provider-support-history.js": "be769589106171e08428aa04f02df2827bd70af650c2c1aa3c48b2cbd240808f",
     "src/game/23-provider-support-work.js": "d6aa210de457b41e836481c0a930ef5a9b69521021758baca59e9e35745725e3",
     "src/game/23-provider-uc-cc-integration.js": "8b35d676426a9cff691468eeb7879f98b0a39f6d635e263f3fd42d0c40457183",
     "src/game/23-provider-variants.js": "06c8d609522f9a2eb0b708887463875bf20aa17f031008cdae16c079b0101538",
     "src/game/23-provider-workforce-history.js": "2272793afaf3be99ef0fde20e3c859340e655a33ee5baf87b46b590129c0cbe9",
     "src/game/23-training-lessons.js": "e18fbbfe01e008ab4b94373f5bb232fdad06cbe121b051e08bb5fc22086c2f71",
-    "src/game/24-provider-rules.js": "aa7d3b32f55fa46a0cac11fee9c4a7ff22baa88aadbb4a1b9e8f50b89f6fe8ff",
-    "src/game/25-provider-campaign.js": "65ce0b053f3c72ba1b39ac3dc3c42a47302436e2b4f5b2c59e7e6019cab680ce",
+    "src/game/23-customer-it-career.js": "7dc97181b0fe07aea8c72fc1c8b7df6ec685503b7c1fa3f26ed8c776b22ff4f1",
+    "src/game/24-provider-rules.js": "b960d0ce84af69260ae2fe2c2f8102e865356c652c3289d9443a12cd1ef9369d",
+    "src/game/25-provider-campaign.js": "7daaaf071340b76d0529422d5aa46a244a59eecb803c661f9204867a8db4d377",
     "src/game/26-customer-needs.js": "0e864f845f69de24eec552726ff75f3db846d064dd6b70e0fdacdca45f343f19",
     "src/game/27-speech-models.js": "bff7b5c5b288a067c26fed57c84adb930efb91668d4c97587394afe254627267",
     "src/game/28-product-evidence.js": "bf80b43312036ce062063c5c30b7375808050d19df70a9bf9f78127cf1809695",
@@ -1093,9 +1119,9 @@
     "src/game/50-state.js": "45b50624a86bf8de598dfd7363cdd61889e48e96ddfe3ba4a40b9d47a0233178",
     "src/game/51-contact.js": "29b4e334166ef98481f1a45c8ce3384daaa9d37ccbee4af7fdd36d7acdfd4353",
     "src/game/52-information.js": "af058e674ceefc5518367f1e248bdeb314844a10228c901316bd835327e82322",
-    "src/game/53-service-operations.js": "8fa8c9da440ebafd3bda9d9f6c3a4255e3316f093e6a9c3f88b654b66a63636c",
-    "src/game/54-business.js": "2f7ede1482bce2918fd55b8f1f358c4da6c99978b6a77d098c74ac5d93349bf9",
-    "src/game/55-communications.js": "6ded57020ebf0226a53ee82b59f54cb3f5221ae941fb0660ff90af23d34afc4c",
+    "src/game/53-service-operations.js": "b4256d7847a21fdfc28739e18d58a62893bcba6f562a4d6423eef67582b2cd40",
+    "src/game/54-business.js": "d86bfd4aa76e92b348295938341cc44bd62fc1d3f54d0af2e4e729b31ce038f9",
+    "src/game/55-communications.js": "864ddea24c8f432f54d75795e97be2e627c748607a3123fbe549961a271b5b8f",
     "src/game/60-features/10-banks.js": "36201fe16ddc87fc449d017dd5a52a37791a43b5c7bf9b4a485ff56c859f7a7a",
     "src/game/60-features/20-scenarios.js": "dae61f307d5ff2610275c2e17cee46444772d49c2a665fbfc8979cd37f8138cd",
     "src/game/60-features/30-conferences.js": "20cbb99f5ca67b4c658bf9b77cd4a88df6c23753283712ad09f75a6001632a42",
@@ -1209,20 +1235,20 @@
     "src/game/93-ui/60-decommission.js": "beeb4555723c94b2655c8950bf2377d475e081a3b4e3eaef7d940c8d7ae8f201",
     "src/game/93-ui/65-service-preferences.js": "e6dff700c1fda461940cb20703d3c737e74dea10a2ee79a502952a0df2ca0518",
     "src/game/93-ui/70-link-panels.js": "2b823b8a4004c7904cee41a297dbdf2c07718183bc67b830b113a308e5178b1e",
-    "src/game/93-ui/70-provider-hud.js": "d47fad1e815766d0a3d321de0ce2fc3240cd74e4ce34540eb809b6b3d328d568",
+    "src/game/93-ui/70-provider-hud.js": "8d971abc508e8133f6830f6f0cf9d391977ee51fbe01354994dcfc233931735f",
     "src/game/93-ui/74-provider-security.js": "65b892a8245410a23b615108ef75f5459266d2629839db805fc3fd21f6a48234",
     "src/game/93-ui/75-optic-counts.js": "cc8ab9c888f323e81b99e0a724e9854b11de90956cd83a62e05b200f71ff485e",
-    "src/game/93-ui/75-provider-panels.js": "3727b986c18beebc80d310cb3c83406770a632e253573996e1fa672505402334",
+    "src/game/93-ui/75-provider-panels.js": "0d89f45ded5bd2490d7d8c9279ab32e1d029ad98a192b793cefbbbb324d90331",
     "src/game/93-ui/78-provider-partner-paths.js": "1ce4cd3e69bd7666f752674aecb976f0c50a8b6c672b24347966978c227baec5",
     "src/game/93-ui/78-provider-policy-controls.js": "b05999bbd9401b314e5e7bf2d16f374ec10897d219761f8331b76576409a2a6a",
     "src/game/93-ui/78-provider-room-integration.js": "469f1d3a519571d0bc4f68469e6f957cb4ad1ad5be8b4b7f588b87fa813f2c4d",
     "src/game/93-ui/79-provider-case-followup.js": "69d2ee3e41db967152d784bd6e5584d32101f611be03deb0305f049b33069e3f",
-    "src/game/93-ui/79-provider-case-handoff.js": "f2b3293a114575c48db7af5528c98071902b46a903f8e7ec352f61714f446318",
+    "src/game/93-ui/79-provider-case-handoff.js": "33088bc5d59921b1c6c97ba588e42d43590dd898698858b068f76b86d0c67061",
     "src/game/93-ui/79-provider-change-preview.js": "81f07b6120c6e879fe85e9883e4bb0758cd90fd8426c3289e937f10f8f8986d2",
-    "src/game/93-ui/79-provider-comparisons.js": "4eed460b29b21bbc6e9223384fbe8344bb3a7bbc08073baef9d30d5f9f53b070",
-    "src/game/93-ui/79-provider-context-actions.js": "4928f7f87bd6e592f85c9990339603cf7267a4d1725d9bb023798ec39149cbdf",
+    "src/game/93-ui/79-provider-comparisons.js": "0f7a7a3acf4d8aa64525e49804f1144bfe15e245a337b89d8c2d9a11aa2c5e0c",
+    "src/game/93-ui/79-provider-context-actions.js": "9cc2bc5492f9a5aba7cad27851ad90fc902512e24a5626b4ac3a6dcde0e4737e",
     "src/game/93-ui/79-provider-external-reach.js": "55cc9a600d3cc270b72d94793d0506b5d447fb2c899f831e41f4b88a89efdb69",
-    "src/game/93-ui/79-provider-finance.js": "a7eb97f7d7275b277601e760766193a0ba367207566efbb9c68fb2e0ff0f6c33",
+    "src/game/93-ui/79-provider-finance.js": "1adb2202fe73a8844410efe5eda82867c2e5ce3ef92fea9f02f6e96a4f44ec19",
     "src/game/93-ui/79-provider-incidents.js": "69f0ca1f78fab01bb8db5950d4c6e89d6a4c2f7d38f7869c60d250866699bad5",
     "src/game/93-ui/79-provider-integration.js": "8f01551ae2df36c373b3f82947f67a4ec0221d378263f8d250f8c0dd3b503bc6",
     "src/game/93-ui/79-provider-journeys.js": "b8b617397fbf147679a0c9404adf036d3d48e008046a664f4f251b32b63f5b22",
@@ -1232,7 +1258,7 @@
     "src/game/93-ui/79-provider-progression.js": "d995ad5665adc43aa75817ef56c17fd8cee3c0cd1498d48a0c87d1c310f3e034",
     "src/game/93-ui/79-provider-resilience.js": "d03ca877868f39e55015171bfeedb8f0caf4968aca2cfaff0525187b522270b5",
     "src/game/93-ui/79-provider-responsibility.js": "756e337006a8241b358eff8ae392df287acb2a19be10d87f783611172ebda299",
-    "src/game/93-ui/79-provider-scale.js": "5ffa807ea2cf585648d550e0393926f929c5a93fdcfb28f9e3d584ab72fd1629",
+    "src/game/93-ui/79-provider-scale.js": "463389c7fc5ba00129e4631f8febb4fa24edd87de26397c5983d3663d67fb105",
     "src/game/93-ui/79-provider-service-retirement.js": "587b97bebfcd007088f8c932e0c9ae1f5ff2e0dfd64cea0027da2006471efe43",
     "src/game/93-ui/79-provider-storage.js": "e54faf898af88c18712f9dc9bfc0c17b504882fe9576c10b55eeba0ae07ee462",
     "src/game/93-ui/79-provider-workload-flow.js": "c542a3f5962b606183f32726c5be53262311f37c90df70b111194e1f4e3c660d",
@@ -1278,15 +1304,15 @@
     "src/game/96-map/90-input.js": "614bde33df35d661cd99339c0de4460106ba372656e190016c26574ce9fc5375",
     "src/game/96-map/90-service-scene.js": "b2ee17ff90bfb53b411cacf152733027cc7a6545f2c3ca8c1204b24295ab204a",
     "src/game/96-map/95-clicks.js": "1d5c3d4d61f3d4ea06642e0ae21a4f98f305a57b9ed11697a73d3a0b3e236e73",
-    "src/game/96-map/95-provider-canvas.js": "888b492fe3568f8b721c27cd8652f2c03ffc661e7735768ceb816f3d4b90c0e2",
+    "src/game/96-map/95-provider-canvas.js": "2779eb84f5ed789eb3177cde59f0d4986c96ac441bed02d398906d0ff4174bb9",
     "src/game/96-map/96-training-map.js": "6a3e8b7b6f144b81549ba777250b0222773700b6cedb15daae7803f7d74a76ff",
     "src/game/96-operations-ui.js": "b23e9eb5651486bada61848756c3b6726a00244f2aff2f72ed4c815288470cf5",
-    "src/game/97-provider-shell.js": "01f46b26937180469164c61d915792b57270dfa4d953a57372d7a5d9b2f9ec1f",
+    "src/game/97-provider-shell.js": "b1c1f476f0d6da086fedb4561d77c1f9f7a3b9ad1d584618ede7647eb2af3362",
     "src/game/97-training.js": "b0814256e8a95ed5ccb77b41cffe9d1b114e40396a183558408759510853ac49",
     "src/game/98-business-ui.js": "c7d5c28fcb4dbf75ec617ef1d1b4c863c223e76bb7bfb9b80d356913e9292c2e",
-    "src/game/98-provider-runtime.js": "1909e2e451cd654d8aba028aaa14dbda7df1d9886f5448f0e0dc4c1305fff334",
+    "src/game/98-provider-runtime.js": "29d97aa15a6e82bb2692e232dc3307824a40b3ae4ff06287f48a9eee6f43b020",
     "src/game/99-loop.js": "991f71186b9f025b66e1ca48c9bb24218a9aac690048e4f5ebef54f6a33a46f9",
-    "src/i18n/en.js": "cf56d2dbfc42dac53dd4c977027ba0af0b2698743be45c9a29a75cf4b1f186b9",
+    "src/i18n/en.js": "b1240968c9fbb8ff989f47781eba3f94deb9b194a4f61310b8de87fffd32c50f",
     "src/index.html": "895fc979715b168f082e814f1d8e2073e978c330514f2975308119764dc6e1a8",
     "src/styles/00-base.css": "9c86ab7fa632bac68608add96da8cb49f4e25c3da7a61ad2739bea6b27b660ab",
     "src/styles/10-hud.css": "5b6fe7514d18ee73cf88a1e84951f45d6f04694f415874d25be2e91a39f5fafb",
@@ -1301,7 +1327,7 @@
     "src/styles/70-puzzles.css": "902f0db0fcfc1a6dc37525fed95ec5a06adc709353291bcb6cf28e742e32de9f",
     "src/styles/71-architect.css": "b69fedcfb32cd3fff3d119b8445e0372bc9167e962d1f3978d94b1fe27394d88",
     "src/styles/98-artwork.css": "ce4f5547909560d5ffe41b31b1050e379c9df3f06a3441cdec98cb0e05d7eefc",
-    "src/styles/98-provider.css": "51a29e171e306f1e0a61b3a548bb4c5969626d0f4aa340c7f401835d04c2e50b",
+    "src/styles/98-provider.css": "38be8f4dacbf346f0dd7dd11607fb0ab2322945c066f46d232082fa74c56fc87",
     "src/styles/99-training-map.css": "80abfd776855c8a021e5ffbaffdbf1a2a3e283a056dc7b587b8803ddd495d854",
     "src/styles/99-training.css": "b9628733f990a1b1109eab16d3e54ca460d26a8d525019dfd9d0a703e81f77ba",
     "tests/admission-security-event-retention.test.js": "9ac6f0af663d0267168e0afcd48ff0bf11b50b190cd1fc02b8c02ab6b6275543",
@@ -1316,10 +1342,10 @@
     "tests/build.test.js": "fd137a6a1af28cc51f6d2e24ef11ec17a5c54b39f3e4ceaedb7058dffe3c24d7",
     "tests/business-managed-scope-ui.test.js": "bb32bfcb28a17806592d3d64126a659583d46a3d9886d1140c9e894c81e9a7bd",
     "tests/business-metering-integration.test.js": "1468e1fef9a6c964168c057d93816d7a1420ed6f0ba66f4c6cca995450ed3f66",
-    "tests/business-pool-integration.test.js": "5a25c72fac9b0250d57c464d3d8bd4b02396efb68973a60e85c999b1ad7c70a2",
+    "tests/business-pool-integration.test.js": "24c350ee1690cb72cf15341c1efe5db883a4a7894a3644fec81d180b81c54ec9",
     "tests/business-pool-ui.test.js": "603642ac1a7330cede75330e8617b39012419ad2ad634068388f731b4098c2a3",
-    "tests/business-shared-allowances.test.js": "05270addd642fb4f931cbdf7e16ded4330f08d37d082e0f5fb34e6edd4a7aeec",
-    "tests/business.test.js": "1566196253dcda76e2d75e965ba171dbaa6db52aa4728e084a10b9caefc067c5",
+    "tests/business-shared-allowances.test.js": "6acc36aaa84589ba927be037b09463bc8ed61412120f3f5ef561c39877e15562",
+    "tests/business.test.js": "9f2b2551b67a5ab7d6219076d8ec230a64490c51cb1cf684dba781f636179c07",
     "tests/calling-achievements.test.js": "5ac69ea45e67e1a52282bfc9a7f6a15159606c8fad90666d8af6b09e801c2b34",
     "tests/calling-policy.test.js": "fbb19f61d4545bf07a44274f3a4bc4c62029376156695b53a76f56a2fb414bfc",
     "tests/calls-mcp.test.js": "1f7567d08d26c01986978eda850db94dd51e59eb9087a4f76f91fe5eacc5741c",
@@ -1403,8 +1429,8 @@
     "tests/provider-case-followup-dispatch.test.js": "9a8df568697d10de5fb97fa3f8313e9ffc6564d19a3f237e1588879e62a53808",
     "tests/provider-case-followup-ui.test.js": "e22bff50914857bf5808619961b3ff79c7d575770760846ba6d507d9641cdafd",
     "tests/provider-case-followup.test.js": "0068b802c1ae4f06840ce71ad851ebc528f9e21d3a731c93f38ebccf93d9bc31",
-    "tests/provider-case-handoff-dispatch.test.js": "d0f1c7b38a00de54b9f75b265ad211a814f57c4083c438f6302bca68b7288632",
-    "tests/provider-case-handoff-ui.test.js": "85ae84d71aff4ac110af6edf8792e52f4fad7b1cea04993090b97266c168b81e",
+    "tests/provider-case-handoff-dispatch.test.js": "e6e7d4feacb3f92e702ab6af884ac385f8bc1b991322e5bad285133d3e801179",
+    "tests/provider-case-handoff-ui.test.js": "0a4054f034b564a26921c55377ce884d8c04d6b94524dda7709ea7cc614e280e",
     "tests/provider-case-handoff.test.js": "1c504e1815afd30c0a0f2f2400fb2a3f4013e3e084ae17fc456d38f8f4c68554",
     "tests/provider-configuration-reader-performance.test.js": "43f02072a64b601079d34b891c58862ba624a5b7aa037819ca22f1183c5dec59",
     "tests/provider-dedicated-interconnect-dispatch.test.js": "9842a40c28237b231fe39a8bacb4ea29457db072a5cad48aea493c8c1cf60f7e",
@@ -1412,9 +1438,9 @@
     "tests/provider-dedicated-interconnect-ui.test.js": "5a5ec224053895e3a77cb9291d3cf191b4b75b52f5ca59b61a20c6f7d95267b2",
     "tests/provider-dedicated-interconnect.test.js": "2822b682dcbb804dc00cf53e0c1a0cd32751d28f7afbedac104bfdd8ee54ef7d",
     "tests/provider-empty-customer-actions-ui.test.js": "f309024463a8c1758e14f070dc2eaf633e25bc627db881d1fd38b62b3a9d96c9",
-    "tests/provider-external-reach-retention-boundary.test.js": "9bd75a67fc68387c7543c8b05b1ed2cdf8fac1ab7fe00953ae991b71fa0731b1",
+    "tests/provider-external-reach-retention-boundary.test.js": "b93f6b823aa893c5583e1102caec3c65711c83f6773b1a783dda5ea8869f1637",
     "tests/provider-finance-ui.test.js": "5cf443b7af99c24404a0c11a58cd53ea3eab45461d8b0f63484d106f043e3a63",
-    "tests/provider-finance-view.test.js": "95a54ef81495e598c986e8d09ef37a20a4a87cbae72a36644f528e2ca8a62c49",
+    "tests/provider-finance-view.test.js": "c0d53b17f30bf9b9ce86fc49e67323b37465bcc4345b4d7468e3f5b576c54900",
     "tests/provider-followup-retry-archive.test.js": "f0ade21aa792b174fe59beffc321ef6e5f5713bafac5490e43fc4a7fedb977c8",
     "tests/provider-handoff-demand.test.js": "d4476ff9545a7007d3a1f4961df550b077ea6a97422f438f8a5ba2cd8abd1b52",
     "tests/provider-incident-diagnosis-dispatch.test.js": "91db0178db265a9799e3f938996bb4893de348d87c629fb8f64ba572033cc539",
@@ -1425,11 +1451,14 @@
     "tests/provider-incident-sequence.test.js": "6a95d549d7e41c8f2fae1539794e9162ca82dabbf820bc552dc35988aaff4d39",
     "tests/provider-inspection-read-views.test.js": "b9cf3e1e0d65dd44ceedbdb54ee2e1dcd0472facb323d8730e4568d33c4a81d9",
     "tests/provider-integration-assurance.test.js": "98e15a5fb1f801b11adb476e2214c37f4b4add43fecfa47f7db198fca258e6ad",
-    "tests/provider-integration-support.test.js": "9a376dac234e8e49cdaf37d79d9b2a5bca4850a00cefe27b2777127dfa87405d",
+    "tests/provider-integration-support.test.js": "c8793ef665171b0b83c74dc29a833dba4a6e0aa264c684ebe82d32010c7b3a38",
     "tests/provider-journey-explanation.test.js": "dcd9f62ce47e1c11716c21975cd7ec204f58bd2b97301052db930a6073b9c846",
     "tests/provider-meeting-join.test.js": "b8bc6b0dfc39e020231f16a01810bda46583b04f8ecc67832a37a1037e1c58b5",
+    "tests/provider-customer-it-career.test.js": "298652a09426ef9c43b789fd71d31068b37c9decf0c5c7b9f609e627fb33a170",
+    "tests/provider-meeting-continuity.test.js": "0d759f95496edd3d5a652fcbedbb3852601edac36bcdfb9430802367436b12ff",
+    "tests/provider-meeting-brief.test.js": "989f1eaed8075537869288f3d77382770f9af9f6164c995b51b38ba9b66717f4",
     "tests/provider-operation-usage-quotes.test.js": "ee21dc5dc01121948bd593534ec80ab54369c5315f6b3701d7e8c00f312782f4",
-    "tests/provider-owned-map-layout.test.js": "292f3594ed157b420b40e8810fc861fd0e5d6b41796e201d0b5b1895e0caf573",
+    "tests/provider-owned-map-layout.test.js": "37d57717ff2fef6021b1bdf297c4c9cdf0092c81ea869bb976d9691d00a97491",
     "tests/provider-owned-site-authority-counterexamples.test.js": "d82a3a233799d75a3fcd51a1d544f8bb1ac888aef8884b9e0eddb3216c4b239c",
     "tests/provider-owned-site-custody-dispatch.test.js": "172835e0b64cf52138c8a8a1975ecdb629794cad825580a26e179d3f01ce2949",
     "tests/provider-owned-site-dispatch.test.js": "1c33a6418a0fef8750ae95e9d22ccb09f10d9cb068989037a5816e17df6358ad",
@@ -1440,24 +1469,27 @@
     "tests/provider-partner-paid-path.test.js": "3512bb1fd5369902b9b4bff903b803c4211e8686996ee93342f1148526a47baf",
     "tests/provider-partner-paid-uc-cc.test.js": "2010d818a14259b95563643c91ca4f766d66ef9487b0d4a060188574789c689d",
     "tests/provider-partner-paths.test.js": "f3fff651989bbb19d9e63fb91ed44e49f88a9325a9c2ab9c547f165eb8d73dba",
-    "tests/provider-partner-progression.test.js": "69bf19259fe1a8e32affa81c5a5f88c3daeda5644c91f5049a6fb09e015c08db",
+    "tests/provider-partner-progression.test.js": "decfce1602418b417cf72741a410e61e005e00ae83b86d419137d67263d15e0b",
     "tests/provider-partner-support.test.js": "12a6df3d66ef029b2e825895f8a0d9c9effb7a7e9d77b3f352f0ae45b7d285e3",
     "tests/provider-persistence-next-outcome.test.js": "7f4477d6a99be620fb0234f10908ef4d442ddb4a421ac62c48ad8cdeb2800083",
     "tests/provider-portfolio-runtime.test.js": "d3cade1b720ea1b159cbb4685230cd07e226aef53155db5e961d06c76d06201a",
+    "tests/provider-presentation-relationships.test.js": "1f287bee5de680e919f3e38ba4899b20525fbea53bf301b5f9140626c794aa59",
+    "tests/provider-contextual-inspector.test.js": "40bae46ac15af2f358ab9838166bf0b58a3b5fe501549b11603d2e3f2828426d",
     "tests/provider-progression-dispatch.test.js": "ebcae1354013a66897d8cdc1a4cd9b64b0955de06e3d2e232e417a14a84ffe28",
     "tests/provider-progression-inspection.test.js": "e012ce06a1fb20a0ed634a9a64ab916d462ffa1ed9f87160103f934d99687f8d",
     "tests/provider-progression-receipts-level3-managed.test.js": "e270a8a890ff2d57b630c3eda5a6558d1fd04b4b5f4980376edd13296cd93927",
     "tests/provider-progression-receipts-level3-markets.test.js": "9192997358fc8d027320b67a2e2b336785c8a618c8a7c7c96e7c838ce01c4a49",
     "tests/provider-progression-receipts-level3-room.test.js": "33cdc19fb66e3fc7d0f46ad71968baae076340a0b3c31312c9c5e9801370847e",
-    "tests/provider-progression-receipts.helpers.js": "436cab2f91d22da3ed2be2b87e347b8ba6cc6a8bbf62bb149fb6a8346d449b84",
+    "tests/provider-progression-receipts.helpers.js": "7f31b4a366b5ffa51235a642a955cbd9d08b7908edff19a16a25b6604f5ba6b0",
     "tests/provider-progression-receipts.test.js": "17f0f7a98b0c7371ed000ea0b2f8318dd0868dc02b599bfbe28013152fc4d9be",
-    "tests/provider-progression-regional-claims-c3.test.js": "e84e39414e3b3330416b5ee3101d7007938547dc3daa8c6ccbf2efa0462d31d5",
+    "tests/provider-progression-regional-claims-c3.test.js": "324ff5e28347c2509f6b271a2171d2df683e91914e29b4c594a972f93cfe728d",
     "tests/provider-progression-regional-claims-c5.test.js": "6edf64d38c5a9900b4b8adfcc7bf6d7df1fcac5a2ad26156b52a50a4eb2a4b73",
     "tests/provider-progression-regional-claims-l7.test.js": "9274e97a93310b142146f1a84eaefb4fec2d942bd3066446cf4ddf0eb3287208",
-    "tests/provider-progression-regional-claims-support.test.js": "6fba65e103e0a79b769464348aa4c31322a7d429cb28114fe86f997126127ef8",
-    "tests/provider-progression-regional-claims-t2.test.js": "fc6a7140852f3b18036d4d660c41c3accf9f29e4cf00d826c3337b47c6494740",
-    "tests/provider-progression-regional-claims.helpers.js": "143dd91bfb5dfed4480b5d1a8829d26513020cdae9d87b390360186f0ea01f13",
+    "tests/provider-progression-regional-claims-support.test.js": "7dc02bde20db4ccfe9ff0a55cee71f63917dfcd658b15962d7b8db00b5960eab",
+    "tests/provider-progression-regional-claims-t2.test.js": "2ce8e50e5f3e734bd1bea2be4eddaf4cd7b5adc515f827db0c1200f27c0fd520",
+    "tests/provider-progression-regional-claims.helpers.js": "44d263ad702c8b429a03cc5ca008479eb2a5e7d07e84516a66022e5d1d8b7a5d",
     "tests/provider-progression-ui.test.js": "bcfc1dec5444246bbcbf877127267f7fedd450efa931db022e81c6a38a29d127",
+    "tests/provider-prospect-choice.test.js": "98c50c955926bd747d9d36065a65eb3f605c0f394057b31ad92784206e21fca5",
     "tests/provider-qualification-boundary.test.js": "6204e61a7468cb41b2afed0d5521940e302e3b8b3d57630ecce6b2e09ddfad5b",
     "tests/provider-receipt-waits.test.js": "75458e63ad5f835277dc0d6b48868f2c929477208b50061f2ffac9d884bfd254",
     "tests/provider-recovery-configuration-history.test.js": "62aff7f80330bdac4a3f9b229ed46886bb3bafb1f8d46747356b53023d6544d6",
@@ -1465,15 +1497,16 @@
     "tests/provider-regional-integrations.test.js": "22afe5a5ede4215b1f22e7ff8c8e30bc6529a24077a6d1f7904cf70a5b2bf773",
     "tests/provider-regional-support-exit-history.test.js": "a447202ae2f63c5a3280b5f1d54cc4f6da305d3e9be1ae86ea18c4b05bad5a1c",
     "tests/provider-regional-support-history.test.js": "31994c551a7d2bc88aae3f5c60ebedf88e726f1217776b9e960d3962c9125078",
-    "tests/provider-resilience-sequence.test.js": "90b6b648b298d7a8175afe145abe1deab9dd4288136c790fa7dcc6b771546c4c",
+    "tests/provider-resilience-sequence.test.js": "4ea5d978d2e9023419cd0be586ccb19833b1a9a17ba0086b491f6d783bdde248",
     "tests/provider-retail-history.test.js": "55a66de10726ef7d1226dd5637bf3a36a5abf64a2b0f0c983742033beb64e1cd",
     "tests/provider-room-family-limitation.test.js": "4be12c8c9caebde0236794597701e072caa101b55639aeb02e6b1e69af5a6682",
     "tests/provider-room-integration-dispatch.test.js": "49b22da9a6cd7020e98bd9c47cdcb7442f23dfd633e025cf1f36a3e730e964f3",
     "tests/provider-room-integration-paid.test.js": "523e49b4161a0e5b4749a5e919194a7f1bce63db4f821e727acc6cabc57e469e",
     "tests/provider-room-integration-ui.test.js": "e811c6dd17908d22238a5485e2e2381a327dcee05e3f7324e12fe9743ffe9f2c",
     "tests/provider-room-integration.test.js": "418c621a3b864ae6f1f96d5ad3c99298c7327f116a06df563cf95abdc5ecf30d",
-    "tests/provider-runtime.test.js": "a7d154870f369132dcd9d0e9d04356ec0415edc48d76cbe643288d11c3ebdca8",
-    "tests/provider-scale-default.test.js": "e3493a5b30b159d05c8704bd8306d86551b3fd3335006ebcc6c33b210508dbe4",
+    "tests/provider-room-guest-choice.test.js": "1779bf1b9fdadfbeaa74293f7e73bfd8218f26c55796580318d4d8129621d6d7",
+    "tests/provider-runtime.test.js": "88356816a367c204cb93e02f1327c154eac5447bc7969a9be205bbdece6a40b7",
+    "tests/provider-scale-default.test.js": "5600e00d4006cdfd543205aab362df5a6d64db3b4e2e01e2605c0a88938081f5",
     "tests/provider-scale-mcp.test.js": "32bcba4d8bc08832f1eaafd951d4d8b20a801dc959631e301587a3d30b6d4499",
     "tests/provider-scale-observation.test.js": "3156ffe77bc9254dfabdc71f5306e92d41916acd972c34a3ece7a1589836c23a",
     "tests/provider-scale-paid.test.js": "580b5673ec59ebb106cfe1a2a4b4295bff35a4a0491a53fbcf17dcc610c88d9b",
@@ -1482,9 +1515,11 @@
     "tests/provider-security-helper.test.js": "09ddc1f6b60bb4135a6ecfb43c0da4e0d8469e7ea657e0328fa092ff118b070d",
     "tests/provider-security-ui.test.js": "69a49e955984cbe43bd8f3b894e1790ceb77e552fa7f390cac33d918c26c07b3",
     "tests/provider-security.test.js": "6eb69ce2427f7458394ed7a850de370d07efbcf062c91a4be0866ba4a3cf98ee",
+    "tests/provider-segments.test.js": "847037d72f9910500b0fd06fb0bee1e53a1e641874a05afae685596ec19f0811",
+    "tests/provider-shell.test.js": "5f24b07c229268f82ae19a913505a9341324c6a3f15cae31ea3062c3f865aa98",
     "tests/provider-service-truth.test.js": "8142a7bed3902fac6ac48053c603baf345fe51debf5489c426ae1545b01471d3",
-    "tests/provider-standing-policy.test.js": "6a95014879db18e01ba8f6dc0ef4111a582c954a9a2c974066832f8bf631976c",
-    "tests/provider-support-history.test.js": "c0b65426e9ccebedf4c56d9e24ec8172746cfa2d658edac1dd37555f86eeeaaf",
+    "tests/provider-standing-policy.test.js": "6fa343313ca09324419e065b991fc38c59032765f84a517eb9306080f62ea83d",
+    "tests/provider-support-history.test.js": "8e39bf22a9e0485cc4d69bd1f37b18c7dd46e158e0440348fe9c13b061dc24da",
     "tests/provider-support-work.test.js": "6be84eba01d116efc079d77d2972b7f9dd8146c6abb14212ea8ba7c629a79214",
     "tests/provider-uc-cc-integration.test.js": "69b89fc445c11fd010a2ea05af4a1085c44296e30c4e24181aecb76f486bb5a7",
     "tests/provider-view-stability.test.js": "223193b7be05afd8076b00dfa6981b9be2e4d6d1f8e358dcfc482e8890d83f56",
@@ -1532,13 +1567,13 @@
     "tests/workforce-quality-integration.test.js": "878bb64313afb163abbe2cc8df39e628202cfa680e3b8f4a26c805794369171a",
     "tests/workforce-quality-ui.test.js": "70ff0ff53f56dfc800d8219ed58286748f409d7d0851038f2e16c6b4ce339bbb",
     "tests/workforce-quality.test.js": "7c2d6a16d3fdb9f30b67d5488726f881b462706a8b7548fa299d6698b5c4b0a4",
-    "spec/acceptance-plan.json": "12a0f518f37184b67c429d40fc17c9338dfb75d8af43727a3e184719aa421d7c"
+    "spec/acceptance-plan.json": "584403a5f5dea2c5d8b5c7994ff05ade1d243c81be8b815fae8bf7d8838b0fd6"
   },
   "changedInputs": [],
   "nodeSummary": {
-    "tests": 995,
+    "tests": 1065,
     "suites": 0,
-    "pass": 995,
+    "pass": 1065,
     "fail": 0,
     "cancelled": 0,
     "skipped": 0,
@@ -1550,6 +1585,114 @@
     "shards": [
       {
         "index": 1,
+        "total": 40,
+        "suites": [
+          "tests/provider-shell.test.js",
+          "tests/full-campaign-ui.test.js",
+          "tests/market-integration.test.js",
+          "tests/provider-configuration-reader-performance.test.js",
+          "tests/admission-security-integration.test.js",
+          "tests/provider-workload-flows.test.js"
+        ],
+        "tests": [
+          "AC-SOC-897",
+          "AC-SOC-898",
+          "AC-SOC-437",
+          "AC-SOC-225",
+          "AC-SOC-771",
+          "AC-SOC-772",
+          "AC-SOC-775",
+          "AC-SOC-776",
+          "AC-SOC-197",
+          "AC-SOC-198",
+          "AC-SOC-773",
+          "AC-SOC-803",
+          "AC-SOC-860",
+          "AC-SOC-861",
+          "AC-SOC-862",
+          "AC-SOC-863",
+          "AC-SOC-864",
+          "AC-SOC-867",
+          "AC-SOC-868",
+          "AC-SOC-869"
+        ],
+        "command": [
+          "node",
+          "--test",
+          "--test-isolation=process",
+          "--test-concurrency=4",
+          "--test-reporter=tap",
+          "tests/provider-shell.test.js",
+          "tests/full-campaign-ui.test.js",
+          "tests/market-integration.test.js",
+          "tests/provider-configuration-reader-performance.test.js",
+          "tests/admission-security-integration.test.js",
+          "tests/provider-workload-flows.test.js"
+        ],
+        "sourceReport": "acceptance-part-1-43578181690-1/acceptance.json",
+        "sourceReportSha256": "61b5782773b2b2bb63386d0684247a4b120245e408e3646fae24900e3c43f741",
+        "sourceTap": "acceptance-part-1-43578181690-1/communications.tap",
+        "sourceTapSha256": "6b457cd398ed30c7175f14940e84a963fc50d2ef46f33473dd04a80531aadcec",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-01-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-01-of-40/shard-communications.tap"
+      },
+      {
+        "index": 2,
+        "total": 40,
+        "suites": [
+          "tests/provider-contextual-inspector.test.js",
+          "tests/provider-support-history.test.js",
+          "tests/managed-operations-ui.test.js",
+          "tests/campaign.test.js",
+          "tests/completion-packs-integration.test.js",
+          "tests/provider-room-family-limitation.test.js"
+        ],
+        "tests": [
+          "AC-SOC-895",
+          "AC-SOC-896",
+          "AC-SOC-780",
+          "AC-SOC-781",
+          "AC-SOC-311",
+          "AC-SOC-312",
+          "AC-SOC-313",
+          "AC-SOC-107",
+          "AC-SOC-108",
+          "AC-SOC-109",
+          "AC-SOC-110",
+          "AC-SOC-111",
+          "AC-SOC-112",
+          "AC-SOC-113",
+          "AC-SOC-114",
+          "AC-SOC-446",
+          "AC-SOC-447",
+          "AC-SOC-448",
+          "AC-SOC-449",
+          "AC-SOC-454",
+          "AC-SOC-455",
+          "AC-SOC-865"
+        ],
+        "command": [
+          "node",
+          "--test",
+          "--test-isolation=process",
+          "--test-concurrency=4",
+          "--test-reporter=tap",
+          "tests/provider-contextual-inspector.test.js",
+          "tests/provider-support-history.test.js",
+          "tests/managed-operations-ui.test.js",
+          "tests/campaign.test.js",
+          "tests/completion-packs-integration.test.js",
+          "tests/provider-room-family-limitation.test.js"
+        ],
+        "sourceReport": "acceptance-part-2-43578181690-1/acceptance.json",
+        "sourceReportSha256": "96ec495d2fa9d5ccfcab32a5d0cc447ddfbf4d098035606f5972b30abc7d0b61",
+        "sourceTap": "acceptance-part-2-43578181690-1/communications.tap",
+        "sourceTapSha256": "5a9e78ae348f27d6ceadfa967829461ccff3fdcded46733f99be22714538f181",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-02-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-02-of-40/shard-communications.tap"
+      },
+      {
+        "index": 3,
         "total": 40,
         "suites": [
           "tests/provider-progression-regional-claims-t2.test.js",
@@ -1598,15 +1741,15 @@
           "tests/transport-lease-recovery.test.js",
           "tests/provider-scale-mcp.test.js"
         ],
-        "sourceReport": "acceptance-part-1-43569691156-1/acceptance.json",
-        "sourceReportSha256": "e8c7eca94408ccc5bda51e786274227fdbfa95d6aebe32fbf44055b1c524f89e",
-        "sourceTap": "acceptance-part-1-43569691156-1/communications.tap",
-        "sourceTapSha256": "7ab0c499dffbbce253c16fb5f2e33d12a5f104b3b1defbc39529812afc9ecf9c",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-01-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-01-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-3-43578181690-1/acceptance.json",
+        "sourceReportSha256": "2d31d6321e791c6346b458e0d3949fc2b9b52dbbf262ef5118169e21006b2342",
+        "sourceTap": "acceptance-part-3-43578181690-1/communications.tap",
+        "sourceTapSha256": "b245165cf1faffcaacbfc6f5119197494c2b6aa914b85028bdd65b8fe343d42f",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-03-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-03-of-40/shard-communications.tap"
       },
       {
-        "index": 2,
+        "index": 4,
         "total": 40,
         "suites": [
           "tests/provider-progression-regional-claims-l7.test.js",
@@ -1641,15 +1784,15 @@
           "tests/training-lock-revocation.test.js",
           "tests/transport-boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-2-43569691156-1/acceptance.json",
-        "sourceReportSha256": "6cfc6e3b108cdf3b8a8a0dcfddad4b87496f3b1d08a434f3ec6ca9852b680828",
-        "sourceTap": "acceptance-part-2-43569691156-1/communications.tap",
-        "sourceTapSha256": "cfb3e51c85e1ef4c3fbcaf8bc83acb4d0dd9a554b0fa303f098a5d944ac9712f",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-02-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-02-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-4-43578181690-1/acceptance.json",
+        "sourceReportSha256": "02a9509930dde9fa46e928ca4df83bb9841310e1c7b45531bbde9f7f5577072b",
+        "sourceTap": "acceptance-part-4-43578181690-1/communications.tap",
+        "sourceTapSha256": "f4ed1a7e7cff795862b40ddbfe8d180bb619dece9837a3574f3032ea81aad282",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-04-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-04-of-40/shard-communications.tap"
       },
       {
-        "index": 3,
+        "index": 5,
         "total": 40,
         "suites": [
           "tests/provider-progression-receipts-level3-managed.test.js",
@@ -1688,15 +1831,15 @@
           "tests/business-pool-integration.test.js",
           "tests/provider-scale-default.test.js"
         ],
-        "sourceReport": "acceptance-part-3-43569691156-1/acceptance.json",
-        "sourceReportSha256": "7ee48c4f3a23e2b84d451592b483c4ed8aaaa7d672de2e616486d72471877331",
-        "sourceTap": "acceptance-part-3-43569691156-1/communications.tap",
-        "sourceTapSha256": "d6da1bff203241290e394122503d645fb26e06110e54de563de119e618f70d93",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-03-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-03-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-5-43578181690-1/acceptance.json",
+        "sourceReportSha256": "ec75e069f6333a9f068a85950a7cdf9ec887a76c236e9b00e0116a62150f9251",
+        "sourceTap": "acceptance-part-5-43578181690-1/communications.tap",
+        "sourceTapSha256": "71a7a1889718c0dd5816da029dbdd97d7e5367ba014601aba7b019dac1ae7d73",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-05-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-05-of-40/shard-communications.tap"
       },
       {
-        "index": 4,
+        "index": 6,
         "total": 40,
         "suites": [
           "tests/provider-progression-receipts.test.js",
@@ -1738,15 +1881,15 @@
           "tests/issue-exercises.test.js",
           "tests/provider-portfolio-runtime.test.js"
         ],
-        "sourceReport": "acceptance-part-4-43569691156-1/acceptance.json",
-        "sourceReportSha256": "55a7dbe3d1e4d402db21c9278e19487241c085943dd588ba7212f452f4d26a65",
-        "sourceTap": "acceptance-part-4-43569691156-1/communications.tap",
-        "sourceTapSha256": "16c82ec93d561a7b09bb63017b0bd1484672f54d786877ef68218f87e32d602c",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-04-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-04-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-6-43578181690-1/acceptance.json",
+        "sourceReportSha256": "7c0b853f33a4a3ede836dca70d49a4ca9a9a2cfc699469f63fb3299cda296207",
+        "sourceTap": "acceptance-part-6-43578181690-1/communications.tap",
+        "sourceTapSha256": "0a5f3df0931eff99150454aff7a104a1ed1b47ebfd9d556bc82c3cf281174d48",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-06-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-06-of-40/shard-communications.tap"
       },
       {
-        "index": 5,
+        "index": 7,
         "total": 40,
         "suites": [
           "tests/provider-progression-receipts-level3-markets.test.js",
@@ -1794,15 +1937,15 @@
           "tests/product-integration.test.js",
           "tests/provider-persistence-next-outcome.test.js"
         ],
-        "sourceReport": "acceptance-part-5-43569691156-1/acceptance.json",
-        "sourceReportSha256": "cc1375b29f4d7e4f6881f3d61ec136dcf096b19035467243eab10a3f157377bb",
-        "sourceTap": "acceptance-part-5-43569691156-1/communications.tap",
-        "sourceTapSha256": "ed2b6b779eddad37d395d4d44a4bda26624271465abc1bac6394295b637b3189",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-05-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-05-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-7-43578181690-1/acceptance.json",
+        "sourceReportSha256": "f7b4ab96b6ef3b353bc50ea3fd9da3e12f1121f4776b9eae82618f848ceee096",
+        "sourceTap": "acceptance-part-7-43578181690-1/communications.tap",
+        "sourceTapSha256": "07ead9086d7031a0bb3d716394e51e044c3a76beadaee174e8dd3860e2039a12",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-07-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-07-of-40/shard-communications.tap"
       },
       {
-        "index": 6,
+        "index": 8,
         "total": 40,
         "suites": [
           "tests/provider-retail-history.test.js",
@@ -1845,15 +1988,15 @@
           "tests/admission-security.test.js",
           "tests/provider-partner-paid-path.test.js"
         ],
-        "sourceReport": "acceptance-part-6-43569691156-1/acceptance.json",
-        "sourceReportSha256": "1d6f56b10b74a253b827363f22f3ad503cd50a234683bf7cd3397250c06c76ef",
-        "sourceTap": "acceptance-part-6-43569691156-1/communications.tap",
-        "sourceTapSha256": "447226516cc21588d3dd0a602efc8de286d509cdda12e79a9f730b94176d68cb",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-06-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-06-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-8-43578181690-1/acceptance.json",
+        "sourceReportSha256": "764136cd47a560a5a3818fd05a89b9f276cc80e3e6d09490ba4c9b1dfbfa08af",
+        "sourceTap": "acceptance-part-8-43578181690-1/communications.tap",
+        "sourceTapSha256": "9d009b15a65b6755882a8e88f0e85c1f343c5b3e9b7b19d87996221b92f4f5ea",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-08-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-08-of-40/shard-communications.tap"
       },
       {
-        "index": 7,
+        "index": 9,
         "total": 40,
         "suites": [
           "tests/provider-resilience-sequence.test.js",
@@ -1904,15 +2047,15 @@
           "tests/communications.test.js",
           "tests/provider-partner-support.test.js"
         ],
-        "sourceReport": "acceptance-part-7-43569691156-1/acceptance.json",
-        "sourceReportSha256": "36eda69c11dfa5e8035865b28df6ae91bcfc2d29344733c030c2109ba282025b",
-        "sourceTap": "acceptance-part-7-43569691156-1/communications.tap",
-        "sourceTapSha256": "78520c8dbecee04f6e271b3d7b1e2b46546bb22429d1a70657202387ce2778f6",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-07-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-07-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-9-43578181690-1/acceptance.json",
+        "sourceReportSha256": "d752684889b3b0769b73c130d152c4e8d42c46020ef4f74ad890af56eae70215",
+        "sourceTap": "acceptance-part-9-43578181690-1/communications.tap",
+        "sourceTapSha256": "b4d3c59aef01ccfb73bb9bd3d9139d7309c071397559578a992640fc61b50840",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-09-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-09-of-40/shard-communications.tap"
       },
       {
-        "index": 8,
+        "index": 10,
         "total": 40,
         "suites": [
           "tests/provider-progression-regional-claims-c5.test.js",
@@ -1964,22 +2107,23 @@
           "tests/inbound-calling.test.js",
           "tests/provider-partner-paths.test.js"
         ],
-        "sourceReport": "acceptance-part-8-43569691156-1/acceptance.json",
-        "sourceReportSha256": "8edde090d53e604c69b906ec74238a55fbfc8bbbd2edcd894e1475a014202843",
-        "sourceTap": "acceptance-part-8-43569691156-1/communications.tap",
-        "sourceTapSha256": "53bed94d72ba7ce4847dc7f0a103efbc76cb2141bad37fe6c779dba53bf435a5",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-08-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-08-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-10-43578181690-1/acceptance.json",
+        "sourceReportSha256": "2f6e4a71cc02b5d1b3bba174af92442255d30c141bd19f985a4996f0518077ed",
+        "sourceTap": "acceptance-part-10-43578181690-1/communications.tap",
+        "sourceTapSha256": "905c7936ab1c86db3c80624269c743adb90b3a710cd704f9135b96cd62e0f5a1",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-10-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-10-of-40/shard-communications.tap"
       },
       {
-        "index": 9,
+        "index": 11,
         "total": 40,
         "suites": [
           "tests/speech-models.test.js",
           "tests/workforce-quality.test.js",
           "tests/workforce-operations.test.js",
           "tests/workforce-coaching-campaign.test.js",
-          "tests/provider-room-integration-dispatch.test.js"
+          "tests/provider-room-integration-dispatch.test.js",
+          "tests/provider-prospect-choice.test.js"
         ],
         "tests": [
           "AC-SOC-382",
@@ -2001,7 +2145,11 @@
           "AC-SOC-592",
           "AC-SOC-766",
           "AC-SOC-767",
-          "AC-SOC-768"
+          "AC-SOC-768",
+          "AC-SOC-885",
+          "AC-SOC-886",
+          "AC-SOC-887",
+          "AC-SOC-888"
         ],
         "command": [
           "node",
@@ -2013,24 +2161,26 @@
           "tests/workforce-quality.test.js",
           "tests/workforce-operations.test.js",
           "tests/workforce-coaching-campaign.test.js",
-          "tests/provider-room-integration-dispatch.test.js"
+          "tests/provider-room-integration-dispatch.test.js",
+          "tests/provider-prospect-choice.test.js"
         ],
-        "sourceReport": "acceptance-part-9-43569691156-1/acceptance.json",
-        "sourceReportSha256": "a845d357d7c45daae44bd9e34879873346064043e394043450e613517376e793",
-        "sourceTap": "acceptance-part-9-43569691156-1/communications.tap",
-        "sourceTapSha256": "10e398e460af9c13dc35396878b49082af985d12be7504cbb793a12861b67ba1",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-09-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-09-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-11-43578181690-1/acceptance.json",
+        "sourceReportSha256": "f284ce3e3500e438b62b0742953dcabe36136ae37b9880cc1ab367670076d11f",
+        "sourceTap": "acceptance-part-11-43578181690-1/communications.tap",
+        "sourceTapSha256": "c0c6f3a58022af46a576c840d5c0d74edd447282f9ddf37a602818be9a41ee6d",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-11-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-11-of-40/shard-communications.tap"
       },
       {
-        "index": 10,
+        "index": 12,
         "total": 40,
         "suites": [
           "tests/provider-service-truth.test.js",
           "tests/service-observation.test.js",
           "tests/shared-services-ui.test.js",
           "tests/site-integration.test.js",
-          "tests/workforce-quality-ui.test.js"
+          "tests/workforce-quality-ui.test.js",
+          "tests/provider-meeting-brief.test.js"
         ],
         "tests": [
           "AC-SOC-673",
@@ -2054,7 +2204,8 @@
           "AC-SOC-576",
           "AC-SOC-577",
           "AC-SOC-578",
-          "AC-SOC-579"
+          "AC-SOC-579",
+          "AC-SOC-891"
         ],
         "command": [
           "node",
@@ -2066,24 +2217,26 @@
           "tests/service-observation.test.js",
           "tests/shared-services-ui.test.js",
           "tests/site-integration.test.js",
-          "tests/workforce-quality-ui.test.js"
+          "tests/workforce-quality-ui.test.js",
+          "tests/provider-meeting-brief.test.js"
         ],
-        "sourceReport": "acceptance-part-10-43569691156-1/acceptance.json",
-        "sourceReportSha256": "0b67af5433df9edc04774746e2b0e7e502760925da5061a69ed38d64bce897a3",
-        "sourceTap": "acceptance-part-10-43569691156-1/communications.tap",
-        "sourceTapSha256": "276797296f4efbe87f6261d94e048fd77753f1b1234befd19810fc3dcd4ba5dc",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-10-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-10-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-12-43578181690-1/acceptance.json",
+        "sourceReportSha256": "29ffac11d81752772be6a7baed7555620f3629bde4a21a6190acc13e4f70c28b",
+        "sourceTap": "acceptance-part-12-43578181690-1/communications.tap",
+        "sourceTapSha256": "a946305fafc7c916a412add4e30002162f7f20e38c4d8aadfdd251380025f742",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-12-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-12-of-40/shard-communications.tap"
       },
       {
-        "index": 11,
+        "index": 13,
         "total": 40,
         "suites": [
           "tests/provider-progression-receipts-level3-room.test.js",
           "tests/sp-mcp-protocol.test.js",
           "tests/provider-case-followup-ui.test.js",
           "tests/information-interface-import-policy.test.js",
-          "tests/managed-operations.test.js"
+          "tests/managed-operations.test.js",
+          "tests/provider-room-guest-choice.test.js"
         ],
         "tests": [
           "AC-SOC-836",
@@ -2106,7 +2259,8 @@
           "AC-SOC-302",
           "AC-SOC-303",
           "AC-SOC-304",
-          "AC-SOC-305"
+          "AC-SOC-305",
+          "AC-SOC-892"
         ],
         "command": [
           "node",
@@ -2118,24 +2272,26 @@
           "tests/sp-mcp-protocol.test.js",
           "tests/provider-case-followup-ui.test.js",
           "tests/information-interface-import-policy.test.js",
-          "tests/managed-operations.test.js"
+          "tests/managed-operations.test.js",
+          "tests/provider-room-guest-choice.test.js"
         ],
-        "sourceReport": "acceptance-part-11-43569691156-1/acceptance.json",
-        "sourceReportSha256": "80ffc6f0a4b29e1216dca7acc4bb0a48072cf1522b978f1482be3d83195dbc1c",
-        "sourceTap": "acceptance-part-11-43569691156-1/communications.tap",
-        "sourceTapSha256": "3398e926cbe0c04311b21b916d5d4edaf598d09740317076268e9ed2fbf8d074",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-11-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-11-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-13-43578181690-1/acceptance.json",
+        "sourceReportSha256": "702bb7a5b1b6ac50f7835a69579116a587fb3dcdc6e57507a8930b5605b6652b",
+        "sourceTap": "acceptance-part-13-43578181690-1/communications.tap",
+        "sourceTapSha256": "3c76bc741325e1b09d44b101ef4294ff3825b3341f2e3b037866e8201b9bc479",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-13-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-13-of-40/shard-communications.tap"
       },
       {
-        "index": 12,
+        "index": 14,
         "total": 40,
         "suites": [
           "tests/provider-dedicated-interconnect-dispatch.test.js",
           "tests/browser-campaigns-contract.test.js",
           "tests/narrative.test.js",
           "tests/provider-case-followup.test.js",
-          "tests/calls-mcp.test.js"
+          "tests/calls-mcp.test.js",
+          "tests/provider-segments.test.js"
         ],
         "tests": [
           "AC-SOC-696",
@@ -2162,7 +2318,10 @@
           "AC-SOC-355",
           "AC-SOC-356",
           "AC-SOC-357",
-          "AC-SOC-406"
+          "AC-SOC-406",
+          "AC-SOC-899",
+          "AC-SOC-900",
+          "AC-SOC-901"
         ],
         "command": [
           "node",
@@ -2174,24 +2333,26 @@
           "tests/browser-campaigns-contract.test.js",
           "tests/narrative.test.js",
           "tests/provider-case-followup.test.js",
-          "tests/calls-mcp.test.js"
+          "tests/calls-mcp.test.js",
+          "tests/provider-segments.test.js"
         ],
-        "sourceReport": "acceptance-part-12-43569691156-1/acceptance.json",
-        "sourceReportSha256": "c65f0808a7578dbc69eec28e1225ac063eb77968a67d76e7a1b737f57dda2eee",
-        "sourceTap": "acceptance-part-12-43569691156-1/communications.tap",
-        "sourceTapSha256": "1568a9fb027c896c5eda1f851061dd7a3a84ea36d95d6f041c4791ff99b99b7f",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-12-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-12-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-14-43578181690-1/acceptance.json",
+        "sourceReportSha256": "188a46faea138cbd3e8972a1fd3741dcf849721d81e683265877150ef412a729",
+        "sourceTap": "acceptance-part-14-43578181690-1/communications.tap",
+        "sourceTapSha256": "7191dcd5f7872c5aa81ac2e44a7af0c31e17a7cbbd2349edd002927af90e19a2",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-14-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-14-of-40/shard-communications.tap"
       },
       {
-        "index": 13,
+        "index": 15,
         "total": 40,
         "suites": [
           "tests/provider-runtime.test.js",
           "tests/progression.test.js",
           "tests/product-evidence-ui.test.js",
           "tests/managed-integration.test.js",
-          "tests/products.test.js"
+          "tests/products.test.js",
+          "tests/provider-presentation-relationships.test.js"
         ],
         "tests": [
           "AC-SOC-677",
@@ -2223,7 +2384,8 @@
           "AC-SOC-087",
           "AC-SOC-088",
           "AC-SOC-089",
-          "AC-SOC-090"
+          "AC-SOC-090",
+          "AC-SOC-902"
         ],
         "command": [
           "node",
@@ -2235,24 +2397,26 @@
           "tests/progression.test.js",
           "tests/product-evidence-ui.test.js",
           "tests/managed-integration.test.js",
-          "tests/products.test.js"
+          "tests/products.test.js",
+          "tests/provider-presentation-relationships.test.js"
         ],
-        "sourceReport": "acceptance-part-13-43569691156-1/acceptance.json",
-        "sourceReportSha256": "f2425ae67b2d1b84a3a176bf7b1f64680e5efdf3a179dd2d1b0feb071095c722",
-        "sourceTap": "acceptance-part-13-43569691156-1/communications.tap",
-        "sourceTapSha256": "b6d4e943fc0f80462a3032333ec8704f4025fe23c099b481590eabfdde6d9f78",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-13-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-13-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-15-43578181690-1/acceptance.json",
+        "sourceReportSha256": "26204e6b983f3f83f114f3a914df22ab20ffca72f47e04ea9d38fc2442adbad3",
+        "sourceTap": "acceptance-part-15-43578181690-1/communications.tap",
+        "sourceTapSha256": "f0a6866c8c9ec40fdd91f0654f31ab4a3eaccb30d9751c4a073c1ff808b289e9",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-15-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-15-of-40/shard-communications.tap"
       },
       {
-        "index": 14,
+        "index": 16,
         "total": 40,
         "suites": [
           "tests/provider-owned-site-platform-migration.test.js",
           "tests/mcp-state-roundtrip.test.js",
           "tests/managed-operations-leaver-ui.test.js",
           "tests/product-integration-retest-history.test.js",
-          "tests/business-shared-allowances.test.js"
+          "tests/business-shared-allowances.test.js",
+          "tests/provider-meeting-continuity.test.js"
         ],
         "tests": [
           "AC-SOC-637",
@@ -2270,7 +2434,8 @@
           "AC-SOC-378",
           "AC-SOC-379",
           "AC-SOC-380",
-          "AC-SOC-381"
+          "AC-SOC-381",
+          "AC-SOC-903"
         ],
         "command": [
           "node",
@@ -2282,24 +2447,26 @@
           "tests/mcp-state-roundtrip.test.js",
           "tests/managed-operations-leaver-ui.test.js",
           "tests/product-integration-retest-history.test.js",
-          "tests/business-shared-allowances.test.js"
+          "tests/business-shared-allowances.test.js",
+          "tests/provider-meeting-continuity.test.js"
         ],
-        "sourceReport": "acceptance-part-14-43569691156-1/acceptance.json",
-        "sourceReportSha256": "a4c1d74b4f7f2e655b8347bb3ced0f36074d72f6e51654e8f4cdc34ebdae0f50",
-        "sourceTap": "acceptance-part-14-43569691156-1/communications.tap",
-        "sourceTapSha256": "c586fc66d6bc2b27c365fa851dafdd37129fbb84bdb7f9c0ad5ac3e91e4092da",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-14-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-14-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-16-43578181690-1/acceptance.json",
+        "sourceReportSha256": "888861f7ce0e84ba01b189218bb2ae846c7ff38c6fb9085220ecd6efa8503b58",
+        "sourceTap": "acceptance-part-16-43578181690-1/communications.tap",
+        "sourceTapSha256": "a8bbd5f367574fd7f73712c13a1075be92fc90c34e67b93a41e5fda7fab1fbf4",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-16-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-16-of-40/shard-communications.tap"
       },
       {
-        "index": 15,
+        "index": 17,
         "total": 40,
         "suites": [
           "tests/provider-room-integration-paid.test.js",
           "tests/provider-operation-usage-quotes.test.js",
           "tests/market-ui.test.js",
           "tests/number-porting.test.js",
-          "tests/provider-dedicated-interconnect-retention.test.js"
+          "tests/provider-dedicated-interconnect-retention.test.js",
+          "tests/provider-customer-it-career.test.js"
         ],
         "tests": [
           "AC-SOC-756",
@@ -2320,7 +2487,13 @@
           "AC-SOC-245",
           "AC-SOC-246",
           "AC-SOC-699",
-          "AC-SOC-790"
+          "AC-SOC-790",
+          "AC-SOC-904",
+          "AC-SOC-905",
+          "AC-SOC-906",
+          "AC-SOC-907",
+          "AC-SOC-908",
+          "AC-SOC-909"
         ],
         "command": [
           "node",
@@ -2332,17 +2505,18 @@
           "tests/provider-operation-usage-quotes.test.js",
           "tests/market-ui.test.js",
           "tests/number-porting.test.js",
-          "tests/provider-dedicated-interconnect-retention.test.js"
+          "tests/provider-dedicated-interconnect-retention.test.js",
+          "tests/provider-customer-it-career.test.js"
         ],
-        "sourceReport": "acceptance-part-15-43569691156-1/acceptance.json",
-        "sourceReportSha256": "9e97adbcb3ad4a30f2ab7bee95918e05c59eac6d36bbad4b93d2d89f5e90b32b",
-        "sourceTap": "acceptance-part-15-43569691156-1/communications.tap",
-        "sourceTapSha256": "02e6496f97e3b3c9608a1acfb32c7e76a54445656953f060604167215de71e1c",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-15-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-15-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-17-43578181690-1/acceptance.json",
+        "sourceReportSha256": "cb7bc696f42a1e316202407541426bfb57630494e66ccc3af00dd0a4a36cae9d",
+        "sourceTap": "acceptance-part-17-43578181690-1/communications.tap",
+        "sourceTapSha256": "45d723a6b79c030fc432c2d12af497c377354ce7917d2333109fa59f4f9ac6be",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-17-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-17-of-40/shard-communications.tap"
       },
       {
-        "index": 16,
+        "index": 18,
         "total": 40,
         "suites": [
           "tests/provider-partner-progression.test.js",
@@ -2356,6 +2530,10 @@
           "AC-SOC-817",
           "AC-SOC-686",
           "AC-SOC-687",
+          "AC-SOC-889",
+          "AC-SOC-890",
+          "AC-SOC-893",
+          "AC-SOC-894",
           "AC-SOC-649",
           "AC-SOC-650",
           "AC-SOC-651",
@@ -2388,15 +2566,15 @@
           "tests/provider-integration-assurance.test.js",
           "tests/media-negotiation.test.js"
         ],
-        "sourceReport": "acceptance-part-16-43569691156-1/acceptance.json",
-        "sourceReportSha256": "4a5b8b28362bbf45ea8a77827c19c7cd5c03dd0388c58a57f6035e3c09e01c2c",
-        "sourceTap": "acceptance-part-16-43569691156-1/communications.tap",
-        "sourceTapSha256": "e2b5105820b95988301f521535dc27747ec0c3725c611959249dbf87536c08d3",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-16-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-16-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-18-43578181690-1/acceptance.json",
+        "sourceReportSha256": "5831896090171400505b77aaf526e37fa9f7e1241ccb8c52e6ce480fe47a0a04",
+        "sourceTap": "acceptance-part-18-43578181690-1/communications.tap",
+        "sourceTapSha256": "5ed640c84fe37e60f785c5c93b4136c2a66d190018072a26e3cfba9ae01abf56",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-18-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-18-of-40/shard-communications.tap"
       },
       {
-        "index": 17,
+        "index": 19,
         "total": 40,
         "suites": [
           "tests/provider-partner-paid-uc-cc.test.js",
@@ -2440,15 +2618,15 @@
           "tests/workforce-coaching-journey.test.js",
           "tests/specialist-lifecycle-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-17-43569691156-1/acceptance.json",
-        "sourceReportSha256": "5a20659bce2901618b8b34cbf501d6d16431d70a3469c57460edeeae8734191b",
-        "sourceTap": "acceptance-part-17-43569691156-1/communications.tap",
-        "sourceTapSha256": "c5ec5b38a08d04c3dea9905fbbeeb8363e540eac967967702350edc39270ac4f",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-17-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-17-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-19-43578181690-1/acceptance.json",
+        "sourceReportSha256": "691b4c10224b8fc58725d31484ab3bf8bff897f3b0cbb0da999055ae27721066",
+        "sourceTap": "acceptance-part-19-43578181690-1/communications.tap",
+        "sourceTapSha256": "c0abed95b2239185a2864ee08ea878a75c94473f720c69096f28101d69d34cfe",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-19-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-19-of-40/shard-communications.tap"
       },
       {
-        "index": 18,
+        "index": 20,
         "total": 40,
         "suites": [
           "tests/shared-services-integration.test.js",
@@ -2496,15 +2674,15 @@
           "tests/workforce-coaching-admin-ui.test.js",
           "tests/workforce-quality-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-18-43569691156-1/acceptance.json",
-        "sourceReportSha256": "d17424d4026731edf12ecbc585834ef4ceec33e3383e48392581e050482fc5cc",
-        "sourceTap": "acceptance-part-18-43569691156-1/communications.tap",
-        "sourceTapSha256": "f8baf482fffc04b3a55ff8557154200afe2cf19e57568f221bd2806ec2f6499d",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-18-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-18-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-20-43578181690-1/acceptance.json",
+        "sourceReportSha256": "ec47dae2d3d9184a0ec02581530a72d1f09e5b28c827bc8e9859b2454a94a560",
+        "sourceTap": "acceptance-part-20-43578181690-1/communications.tap",
+        "sourceTapSha256": "ca16870d7a4f3abf98715dda7a6cf9c04a0f42180f639553842ed9fd1c88cd6f",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-20-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-20-of-40/shard-communications.tap"
       },
       {
-        "index": 19,
+        "index": 21,
         "total": 40,
         "suites": [
           "tests/provider-external-reach-retention-boundary.test.js",
@@ -2549,15 +2727,15 @@
           "tests/estate-lifecycle-integration.test.js",
           "tests/advanced-boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-19-43569691156-1/acceptance.json",
-        "sourceReportSha256": "6c4cc0a15b54d76477ed153860d5718aa03dbfdea6923c405d1f15b96dab11ca",
-        "sourceTap": "acceptance-part-19-43569691156-1/communications.tap",
-        "sourceTapSha256": "32c8bc377bedc9d1479654ef057ca1dd26e25fbbc7c4e83dda54a9cf9be9267b",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-19-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-19-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-21-43578181690-1/acceptance.json",
+        "sourceReportSha256": "c2842aa3e9ee6c1c8e1f56172a60655bafe26d14d718834228e79b56ce75bb26",
+        "sourceTap": "acceptance-part-21-43578181690-1/communications.tap",
+        "sourceTapSha256": "34c58853f77bde6cd3815dd93a46a516e4791cfc174aab12527b2ec9dfef633d",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-21-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-21-of-40/shard-communications.tap"
       },
       {
-        "index": 20,
+        "index": 22,
         "total": 40,
         "suites": [
           "tests/provider-progression-dispatch.test.js",
@@ -2601,15 +2779,15 @@
           "tests/provider-followup-retry-archive.test.js",
           "tests/calling-policy.test.js"
         ],
-        "sourceReport": "acceptance-part-20-43569691156-1/acceptance.json",
-        "sourceReportSha256": "1059656e88f56990050f1916b37157772022e4f296f4e4365b082c699562caa6",
-        "sourceTap": "acceptance-part-20-43569691156-1/communications.tap",
-        "sourceTapSha256": "9a43eaebe46e7ac159b11a73aa32feb0f41462af4f4cf0afcd959dc83de78512",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-20-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-20-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-22-43578181690-1/acceptance.json",
+        "sourceReportSha256": "14df8b8a6e747cc392304ac46da25e0b817b6573ca5c0572f66a76e4a6fce15b",
+        "sourceTap": "acceptance-part-22-43578181690-1/communications.tap",
+        "sourceTapSha256": "d8cf05fddd83af5aa23442803f00d4803ce0dc2b4d0069dd20e92be979cacef3",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-22-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-22-of-40/shard-communications.tap"
       },
       {
-        "index": 21,
+        "index": 23,
         "total": 40,
         "suites": [
           "tests/capability-progression.test.js",
@@ -2664,15 +2842,15 @@
           "tests/domain-integration.test.js",
           "tests/estate-operations.test.js"
         ],
-        "sourceReport": "acceptance-part-21-43569691156-1/acceptance.json",
-        "sourceReportSha256": "8c73e6590f732dd217cf75070142d3349192e10d172b7113a4dd769699e42646",
-        "sourceTap": "acceptance-part-21-43569691156-1/communications.tap",
-        "sourceTapSha256": "988f2c2584d5539ddcb6a3744b0d4f165b77a3be536c5e25fb3230df281981ff",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-21-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-21-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-23-43578181690-1/acceptance.json",
+        "sourceReportSha256": "8bbf60126c0759044b0a2d0b935fae1f343d2f3c2530d636d882972974f83b18",
+        "sourceTap": "acceptance-part-23-43578181690-1/communications.tap",
+        "sourceTapSha256": "125247b5dc998c5c95460579e555e8bdfaf62fa4370122b4f04717b866b91098",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-23-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-23-of-40/shard-communications.tap"
       },
       {
-        "index": 22,
+        "index": 24,
         "total": 40,
         "suites": [
           "tests/provider-regional-integrations.test.js",
@@ -2717,15 +2895,15 @@
           "tests/managed-operations-leaver.test.js",
           "tests/provider-case-handoff.test.js"
         ],
-        "sourceReport": "acceptance-part-22-43569691156-1/acceptance.json",
-        "sourceReportSha256": "aa208748b0facf659ca73999116c1299577a3a4f0b67acc4468e028fca017c5f",
-        "sourceTap": "acceptance-part-22-43569691156-1/communications.tap",
-        "sourceTapSha256": "e45941a45b31b425651b2ac27d34509e3265abe48f23b6179e44a9b7b7fb7d30",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-22-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-22-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-24-43578181690-1/acceptance.json",
+        "sourceReportSha256": "e39acbfc34a7505399cfc506e7370ee0231f12445442bdd7ae4bacb2e222cd8d",
+        "sourceTap": "acceptance-part-24-43578181690-1/communications.tap",
+        "sourceTapSha256": "40bb54453a5d53dfdd4938f9b0ee1afda66bfaec7ad18c19a761cddd3d211d33",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-24-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-24-of-40/shard-communications.tap"
       },
       {
-        "index": 23,
+        "index": 25,
         "total": 40,
         "suites": [
           "tests/provider-case-followup-dispatch.test.js",
@@ -2762,15 +2940,15 @@
           "tests/number-porting-integration.test.js",
           "tests/outcomes.test.js"
         ],
-        "sourceReport": "acceptance-part-23-43569691156-1/acceptance.json",
-        "sourceReportSha256": "96c67c08d24c691934723413b89238ea444f46128f4063e9de83da4302a5964d",
-        "sourceTap": "acceptance-part-23-43569691156-1/communications.tap",
-        "sourceTapSha256": "84bce6924ab11dac1161bab4e9160e8204733d31268a65d9b9899d9ba2cd55b6",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-23-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-23-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-25-43578181690-1/acceptance.json",
+        "sourceReportSha256": "33c80a4968c1a25b027fe35fc991c8916fa2cb6211e3a79c6ff35ee79a30fcb6",
+        "sourceTap": "acceptance-part-25-43578181690-1/communications.tap",
+        "sourceTapSha256": "0bfc36279be7f361f8d2088a4b71d52b12897ca8265c109de60f8e2993b8091f",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-25-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-25-of-40/shard-communications.tap"
       },
       {
-        "index": 24,
+        "index": 26,
         "total": 40,
         "suites": [
           "tests/provider-owned-site-dispatch.test.js",
@@ -2812,15 +2990,15 @@
           "tests/journey-integration.test.js",
           "tests/provider-handoff-demand.test.js"
         ],
-        "sourceReport": "acceptance-part-24-43569691156-1/acceptance.json",
-        "sourceReportSha256": "7440127719121ce5debcb961b8202d51d1c75ba0daa34bd82cc89571f08d6edb",
-        "sourceTap": "acceptance-part-24-43569691156-1/communications.tap",
-        "sourceTapSha256": "f5465537c29a9a048fdf9e337d851c8ce7ce0da237b0e10bae37a3dbbdbdb04b",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-24-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-24-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-26-43578181690-1/acceptance.json",
+        "sourceReportSha256": "1c6092572c9675664b4843969b78d0805bc6a5d20f947cc00053cf2e8906ed0d",
+        "sourceTap": "acceptance-part-26-43578181690-1/communications.tap",
+        "sourceTapSha256": "6e7f79ff41aaf158103dca7407143f90e5aaecf61df665c2e1880293b8fbee89",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-26-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-26-of-40/shard-communications.tap"
       },
       {
-        "index": 25,
+        "index": 27,
         "total": 40,
         "suites": [
           "tests/provider-room-integration.test.js",
@@ -2868,15 +3046,15 @@
           "tests/service-operations.test.js",
           "tests/speech-models-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-25-43569691156-1/acceptance.json",
-        "sourceReportSha256": "d70e13e063d82c1ad79712d61840aad59eb23c6cc58303d52affacb3b8fdc1e5",
-        "sourceTap": "acceptance-part-25-43569691156-1/communications.tap",
-        "sourceTapSha256": "523d6515f2ec2ec7a517b1f2eb831825d6f1c20693354d42582302f54afaca95",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-25-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-25-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-27-43578181690-1/acceptance.json",
+        "sourceReportSha256": "f90c8a285fbb7b5790247b99032353a9ed8042f2600176802bd4d658d571fd14",
+        "sourceTap": "acceptance-part-27-43578181690-1/communications.tap",
+        "sourceTapSha256": "438c8d54037eb023300ba11ef7ea641f9e18d2ecf603001b29d21533f3adb569",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-27-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-27-of-40/shard-communications.tap"
       },
       {
-        "index": 26,
+        "index": 28,
         "total": 40,
         "suites": [
           "tests/provider-refused-quotes-ui.test.js",
@@ -2928,15 +3106,15 @@
           "tests/site-operations.test.js",
           "tests/workforce-coaching-commercial.test.js"
         ],
-        "sourceReport": "acceptance-part-26-43569691156-1/acceptance.json",
-        "sourceReportSha256": "3c17a73f657b523674ed90f72b32178c12fd0584ff0560796b89f451d0dc71a9",
-        "sourceTap": "acceptance-part-26-43569691156-1/communications.tap",
-        "sourceTapSha256": "4e61ce7e1223551f0a42753ca24da6c8221aedfa9cbf9253a0b777143087b68b",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-26-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-26-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-28-43578181690-1/acceptance.json",
+        "sourceReportSha256": "39d4a035f7866b70bb3d262296b81dda2d5b133e2f3b6ef9197ee1824d213ee1",
+        "sourceTap": "acceptance-part-28-43578181690-1/communications.tap",
+        "sourceTapSha256": "cef79407db6954063c0ea9c5d1a23161b9e7aafa5c1df20e305f716a2ae9a1a2",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-28-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-28-of-40/shard-communications.tap"
       },
       {
-        "index": 27,
+        "index": 29,
         "total": 40,
         "suites": [
           "tests/provider-security-dispatch.test.js",
@@ -2977,15 +3155,15 @@
           "tests/portfolio-integration.test.js",
           "tests/product-evidence.test.js"
         ],
-        "sourceReport": "acceptance-part-27-43569691156-1/acceptance.json",
-        "sourceReportSha256": "de2c79920d5b7a9d0ee066cfd6e5a1039f928b9faa2af6a035e26bd5b84377a3",
-        "sourceTap": "acceptance-part-27-43569691156-1/communications.tap",
-        "sourceTapSha256": "6216bedeb9fa806584eb3cd4951a0ae2b9b5d6445ee5c889481a47c77f197497",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-27-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-27-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-29-43578181690-1/acceptance.json",
+        "sourceReportSha256": "65378415f92108961905f45eb53854a20880d1ef0d148efe0d108a4799150bfc",
+        "sourceTap": "acceptance-part-29-43578181690-1/communications.tap",
+        "sourceTapSha256": "d09e407e5380c2aaade127ff4aa7ab9dff48b3c45a7ee6c2980896dd558ae289",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-29-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-29-of-40/shard-communications.tap"
       },
       {
-        "index": 28,
+        "index": 30,
         "total": 40,
         "suites": [
           "tests/full-campaign-journey.test.js",
@@ -3025,15 +3203,15 @@
           "tests/information-interfaces.test.js",
           "tests/provider-incident-sequence.test.js"
         ],
-        "sourceReport": "acceptance-part-28-43569691156-1/acceptance.json",
-        "sourceReportSha256": "117769161a73320be6075096e79cdf9241989f14aa9f3d8357074a5f9077c45f",
-        "sourceTap": "acceptance-part-28-43569691156-1/communications.tap",
-        "sourceTapSha256": "c6ac8c38e726d5258066677de9ea24528d7aa713133c35cc3aed596a65cd91fd",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-28-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-28-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-30-43578181690-1/acceptance.json",
+        "sourceReportSha256": "e8bc8abc1e55226adcc8ec1cbba0d9bf0b93a5a9cec7f75b1db659cbf43c1ea5",
+        "sourceTap": "acceptance-part-30-43578181690-1/communications.tap",
+        "sourceTapSha256": "41eb9861443291444a41ea538893c4734ac515b53af96ce7856d9fb2f9170cf0",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-30-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-30-of-40/shard-communications.tap"
       },
       {
-        "index": 29,
+        "index": 31,
         "total": 40,
         "suites": [
           "tests/provider-owned-site-routed-endpoint.test.js",
@@ -3088,15 +3266,15 @@
           "tests/customer-commercial.test.js",
           "tests/channels.test.js"
         ],
-        "sourceReport": "acceptance-part-29-43569691156-1/acceptance.json",
-        "sourceReportSha256": "b4e37a1b45c6ffd55f1b4473a58d926b0e6d5bdf18b2909ebbf4d60d9ba4490f",
-        "sourceTap": "acceptance-part-29-43569691156-1/communications.tap",
-        "sourceTapSha256": "5971483d6acba50d04138eb5be06841aa7b3500a406056e71715ce3c8e511669",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-29-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-29-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-31-43578181690-1/acceptance.json",
+        "sourceReportSha256": "19319aba92890ab28d7116ada8b1055674cc97432e2b173bccf737ae3b2a4ee8",
+        "sourceTap": "acceptance-part-31-43578181690-1/communications.tap",
+        "sourceTapSha256": "bf6e7ed460e7e687608c2836a39132d406cbd96d4c37db2914f62f1296fea04d",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-31-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-31-of-40/shard-communications.tap"
       },
       {
-        "index": 30,
+        "index": 32,
         "total": 40,
         "suites": [
           "tests/provider-standing-policy.test.js",
@@ -3150,15 +3328,15 @@
           "tests/customer-fit.test.js",
           "tests/channels-webhooks.test.js"
         ],
-        "sourceReport": "acceptance-part-30-43569691156-1/acceptance.json",
-        "sourceReportSha256": "f7e31bf2dde85a277244488c44126a98da90386eb0a649991d7d45d828a39aea",
-        "sourceTap": "acceptance-part-30-43569691156-1/communications.tap",
-        "sourceTapSha256": "2357dd23864cf9544374c87641c12f9eb65a1f64dd98557ce9ef0052e2c12a4e",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-30-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-30-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-32-43578181690-1/acceptance.json",
+        "sourceReportSha256": "cb7b878c5719dd8bf9ec20cc0be44ae39e99913e171f64c84a31fed20be54c33",
+        "sourceTap": "acceptance-part-32-43578181690-1/communications.tap",
+        "sourceTapSha256": "5a0956fa388a0e1e3801c0a4d1fb47239d405dd4f099919eb4432148b1d418e1",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-32-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-32-of-40/shard-communications.tap"
       },
       {
-        "index": 31,
+        "index": 33,
         "total": 40,
         "suites": [
           "tests/provider-progression-regional-claims-c3.test.js",
@@ -3199,15 +3377,15 @@
           "tests/business-metering-integration.test.js",
           "tests/boundaries.test.js"
         ],
-        "sourceReport": "acceptance-part-31-43569691156-1/acceptance.json",
-        "sourceReportSha256": "a07517b8054243073abdd02bae529ba767ebf0b4fb2599500d6e3186f8f7bf2a",
-        "sourceTap": "acceptance-part-31-43569691156-1/communications.tap",
-        "sourceTapSha256": "679abc9b7cc13f6464832e34470181de363478c1369f2d28d7cc6b434c855ee0",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-31-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-31-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-33-43578181690-1/acceptance.json",
+        "sourceReportSha256": "67a4deddfc169e589f42693ac6e71f4b0930342a80d8bfc2da7fa0bac52d41e3",
+        "sourceTap": "acceptance-part-33-43578181690-1/communications.tap",
+        "sourceTapSha256": "4994f28931d2d44bd5ec0031bab854696fd1123236f13d52a7a59635789798af",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-33-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-33-of-40/shard-communications.tap"
       },
       {
-        "index": 32,
+        "index": 34,
         "total": 40,
         "suites": [
           "tests/progression-market.test.js",
@@ -3253,15 +3431,15 @@
           "tests/media-integration.test.js",
           "tests/provider-incident-diagnosis.test.js"
         ],
-        "sourceReport": "acceptance-part-32-43569691156-1/acceptance.json",
-        "sourceReportSha256": "ececd2b1c18a64a9482f9006d736c01a8103e392b8a8e9aba6e1634135554189",
-        "sourceTap": "acceptance-part-32-43569691156-1/communications.tap",
-        "sourceTapSha256": "aba06104d02d860fefe96bc0847176ffa13742887c2a5dc72a79f7061f183ae8",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-32-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-32-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-34-43578181690-1/acceptance.json",
+        "sourceReportSha256": "47c842b4dacfd94b66bd8e2c9afefa4f4f8567131195339a95abff4650f2357b",
+        "sourceTap": "acceptance-part-34-43578181690-1/communications.tap",
+        "sourceTapSha256": "1de64cbd317c991f178b811cfe719e4e3d4806459ac0f4d3b0dcdbff19677a50",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-34-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-34-of-40/shard-communications.tap"
       },
       {
-        "index": 33,
+        "index": 35,
         "total": 40,
         "suites": [
           "tests/provider-security.test.js",
@@ -3310,15 +3488,15 @@
           "tests/transport-headroom-integration.test.js",
           "tests/provider-progression-ui.test.js"
         ],
-        "sourceReport": "acceptance-part-33-43569691156-1/acceptance.json",
-        "sourceReportSha256": "f10c48db9eadca991169cfde2702f8b6068a2f356b00c1ae219737780b2d9e44",
-        "sourceTap": "acceptance-part-33-43569691156-1/communications.tap",
-        "sourceTapSha256": "1e84df9c15cba74949833c6267bd58ccbcefcd874b45e0c04bb52f513537af87",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-33-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-33-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-35-43578181690-1/acceptance.json",
+        "sourceReportSha256": "29b518af445c813d2c48142f6c0979c0a4d489fe3d06eba0bb87711c16d152ff",
+        "sourceTap": "acceptance-part-35-43578181690-1/communications.tap",
+        "sourceTapSha256": "cb49ec0ee9c4ccc521bfd87a7ad400852c22237bc7838278a3584e0b198bfd77",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-35-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-35-of-40/shard-communications.tap"
       },
       {
-        "index": 34,
+        "index": 36,
         "total": 40,
         "suites": [
           "tests/provider-security-ui.test.js",
@@ -3356,15 +3534,15 @@
           "tests/service-admin-ui.test.js",
           "tests/provider-scale-paid.test.js"
         ],
-        "sourceReport": "acceptance-part-34-43569691156-1/acceptance.json",
-        "sourceReportSha256": "266c24ad355751688fc768a7d0291c6c52ec97da2bf06e48f5d602c64ba87e86",
-        "sourceTap": "acceptance-part-34-43569691156-1/communications.tap",
-        "sourceTapSha256": "537b20b3629bd316dc4a8e3863b2f3a33294d786848e4669b266896c560ce6cf",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-34-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-34-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-36-43578181690-1/acceptance.json",
+        "sourceReportSha256": "772292de4e23f7c6eb917b45127fe68bdd4eef3ee610220179c073231e03bcce",
+        "sourceTap": "acceptance-part-36-43578181690-1/communications.tap",
+        "sourceTapSha256": "9f788d214bf1e8e1c4936cc53ea5326d3d6b25ac9cba143308a29f9520d5a80d",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-36-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-36-of-40/shard-communications.tap"
       },
       {
-        "index": 35,
+        "index": 37,
         "total": 40,
         "suites": [
           "tests/provider-support-work.test.js",
@@ -3410,15 +3588,15 @@
           "tests/provider-dedicated-interconnect.test.js",
           "tests/provider-scale-ui.test.js"
         ],
-        "sourceReport": "acceptance-part-35-43569691156-1/acceptance.json",
-        "sourceReportSha256": "c8da20b0de17d1fa7b5b2fbb6d8afdbb50aa58eafc974bb5ab41cd2effc61275",
-        "sourceTap": "acceptance-part-35-43569691156-1/communications.tap",
-        "sourceTapSha256": "534dd8b5141fb575a4645f1b03903f39f84ddb4418e21d69894f95df7d34fe25",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-35-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-35-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-37-43578181690-1/acceptance.json",
+        "sourceReportSha256": "86b693c04fedd7afa7fe1c4bcb44152d4bf19893ab5925e82fc6968846259e72",
+        "sourceTap": "acceptance-part-37-43578181690-1/communications.tap",
+        "sourceTapSha256": "46bd5c8af091885f1624d96935e2670473610185f7ae975e154159989a8698c5",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-37-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-37-of-40/shard-communications.tap"
       },
       {
-        "index": 36,
+        "index": 38,
         "total": 40,
         "suites": [
           "tests/transport-lease-soak.test.js",
@@ -3466,15 +3644,15 @@
           "tests/portfolio.test.js",
           "tests/provider-scale-observation.test.js"
         ],
-        "sourceReport": "acceptance-part-36-43569691156-1/acceptance.json",
-        "sourceReportSha256": "f0b536fb8c160e0698f8b50fc041247bdad70222cf76ec7a5aff4e19f47e00d2",
-        "sourceTap": "acceptance-part-36-43569691156-1/communications.tap",
-        "sourceTapSha256": "c5c5645e61e127082caedd1394214906033e4f4949ec550b97971f9e66beaf1a",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-36-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-36-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-38-43578181690-1/acceptance.json",
+        "sourceReportSha256": "aa5985dafb5c5930a676cf03931b5034d6265da78f49b2a6de45479be13b65fe",
+        "sourceTap": "acceptance-part-38-43578181690-1/communications.tap",
+        "sourceTapSha256": "2d71a89be161cc7274c6d2165d0ba64e54800d11b05f1092f9f797207f12b755",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-38-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-38-of-40/shard-communications.tap"
       },
       {
-        "index": 37,
+        "index": 39,
         "total": 40,
         "suites": [
           "tests/provider-owned-site-authority-counterexamples.test.js",
@@ -3519,15 +3697,15 @@
           "tests/contact.test.js",
           "tests/provider-uc-cc-integration.test.js"
         ],
-        "sourceReport": "acceptance-part-37-43569691156-1/acceptance.json",
-        "sourceReportSha256": "c4e01611de7139ab377f17c1c7a97de9caad41903b5fc4b2f4a3a798a46253b4",
-        "sourceTap": "acceptance-part-37-43569691156-1/communications.tap",
-        "sourceTapSha256": "c706a7b7224660630c34336d42608e345a0b4225e27a4de8a30ff0f413876e1d",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-37-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-37-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-39-43578181690-1/acceptance.json",
+        "sourceReportSha256": "b2aeceb72704f6ce44e864337dd47c1ab8813b707fe68e8efb73d62d355779f7",
+        "sourceTap": "acceptance-part-39-43578181690-1/communications.tap",
+        "sourceTapSha256": "65512f1bf8fa460060a0b5e67ac68413456ab0f2c80bb8f1ee6efc9936d0f371",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-39-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-39-of-40/shard-communications.tap"
       },
       {
-        "index": 38,
+        "index": 40,
         "total": 40,
         "suites": [
           "tests/provider-regional-support-exit-history.test.js",
@@ -3563,114 +3741,14 @@
           "tests/packs-integration.test.js",
           "tests/provider-workload-inspector.test.js"
         ],
-        "sourceReport": "acceptance-part-38-43569691156-1/acceptance.json",
-        "sourceReportSha256": "9e02b80a7a3d1fa0c781579e8f6a20aa0355f6bf340e89e20d50a210167fea50",
-        "sourceTap": "acceptance-part-38-43569691156-1/communications.tap",
-        "sourceTapSha256": "74581982ac1c0056706289060e4475500d865e827d587a40c1050905b7736f1a",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-38-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-38-of-40/shard-communications.tap"
-      },
-      {
-        "index": 39,
-        "total": 40,
-        "suites": [
-          "tests/full-campaign-ui.test.js",
-          "tests/market-integration.test.js",
-          "tests/provider-configuration-reader-performance.test.js",
-          "tests/admission-security-integration.test.js",
-          "tests/provider-workload-flows.test.js"
-        ],
-        "tests": [
-          "AC-SOC-437",
-          "AC-SOC-225",
-          "AC-SOC-771",
-          "AC-SOC-772",
-          "AC-SOC-775",
-          "AC-SOC-776",
-          "AC-SOC-197",
-          "AC-SOC-198",
-          "AC-SOC-773",
-          "AC-SOC-803",
-          "AC-SOC-860",
-          "AC-SOC-861",
-          "AC-SOC-862",
-          "AC-SOC-863",
-          "AC-SOC-864",
-          "AC-SOC-867",
-          "AC-SOC-868",
-          "AC-SOC-869"
-        ],
-        "command": [
-          "node",
-          "--test",
-          "--test-isolation=process",
-          "--test-concurrency=4",
-          "--test-reporter=tap",
-          "tests/full-campaign-ui.test.js",
-          "tests/market-integration.test.js",
-          "tests/provider-configuration-reader-performance.test.js",
-          "tests/admission-security-integration.test.js",
-          "tests/provider-workload-flows.test.js"
-        ],
-        "sourceReport": "acceptance-part-39-43569691156-1/acceptance.json",
-        "sourceReportSha256": "52d07b669261727158801e852ab1e3e066b14c34f5f65aff070cd42403e0992f",
-        "sourceTap": "acceptance-part-39-43569691156-1/communications.tap",
-        "sourceTapSha256": "c6bdd55c3b72d4cc88e2d1d6f44f226417f86c9f9c2271ded97e8a57b0f5d3c0",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-39-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-39-of-40/shard-communications.tap"
-      },
-      {
-        "index": 40,
-        "total": 40,
-        "suites": [
-          "tests/provider-support-history.test.js",
-          "tests/managed-operations-ui.test.js",
-          "tests/campaign.test.js",
-          "tests/completion-packs-integration.test.js",
-          "tests/provider-room-family-limitation.test.js"
-        ],
-        "tests": [
-          "AC-SOC-780",
-          "AC-SOC-781",
-          "AC-SOC-311",
-          "AC-SOC-312",
-          "AC-SOC-313",
-          "AC-SOC-107",
-          "AC-SOC-108",
-          "AC-SOC-109",
-          "AC-SOC-110",
-          "AC-SOC-111",
-          "AC-SOC-112",
-          "AC-SOC-113",
-          "AC-SOC-114",
-          "AC-SOC-446",
-          "AC-SOC-447",
-          "AC-SOC-448",
-          "AC-SOC-449",
-          "AC-SOC-454",
-          "AC-SOC-455",
-          "AC-SOC-865"
-        ],
-        "command": [
-          "node",
-          "--test",
-          "--test-isolation=process",
-          "--test-concurrency=4",
-          "--test-reporter=tap",
-          "tests/provider-support-history.test.js",
-          "tests/managed-operations-ui.test.js",
-          "tests/campaign.test.js",
-          "tests/completion-packs-integration.test.js",
-          "tests/provider-room-family-limitation.test.js"
-        ],
-        "sourceReport": "acceptance-part-40-43569691156-1/acceptance.json",
-        "sourceReportSha256": "971ad7a3e6fea3ff8550fa98c5e7f6517d33e5d09d83f9e52573b49ce246a018",
-        "sourceTap": "acceptance-part-40-43569691156-1/communications.tap",
-        "sourceTapSha256": "2f39109fc6437524ec420f6bc7bd44c165ed064cff646be958d443846a255255",
-        "archivedReport": "evidence/acceptance-shards/20261114T072137727987Z/shard-40-of-40/shard-report.json",
-        "archivedTap": "evidence/acceptance-shards/20261114T072137727987Z/shard-40-of-40/shard-communications.tap"
+        "sourceReport": "acceptance-part-40-43578181690-1/acceptance.json",
+        "sourceReportSha256": "8738856814e7d47a1d4461cd65d32fadd752a8a9a9ef32334d5cbf247a0780da",
+        "sourceTap": "acceptance-part-40-43578181690-1/communications.tap",
+        "sourceTapSha256": "13af06eadbce9015f1b84c90506b364461a236d8151d2696de39fcbbcd8d39b4",
+        "archivedReport": "evidence/acceptance-shards/20261114T091918063874Z/shard-40-of-40/shard-report.json",
+        "archivedTap": "evidence/acceptance-shards/20261114T091918063874Z/shard-40-of-40/shard-communications.tap"
       }
     ],
-    "tapSha256": "06413ac786622ad9b758189aef1ec5c042c64bbe9f37f972badad5317f91fa71"
+    "tapSha256": "d95dde992179bb5939e1d26962bdba715528b6caca255cbb86268aa00a537796"
   }
 }

@@ -1,0 +1,60 @@
+{
+  "scope": "SOC-04 actual Chromium customer and carrier incident inspector on dispatched saves; no uncoached comprehension claim.",
+  "runAt": "2026-11-13T17:33:39.157Z",
+  "browser": "156.0.8078.4",
+  "inputs": {
+    "page": "57b5194714a5a719bf4fb9f657feda9283fd6c56ae206893e8cd73c754b7c7fb",
+    "script": "031340c989e05ef5f4fe4e5fef2d42ae1fedf44fa6950ebbaaf421ebbf530b2d"
+  },
+  "runs": [
+    {
+      "profile": "desktop",
+      "name": "beforeWork",
+      "clock": 0,
+      "revision": 3,
+      "selection": {
+        "customerId": "starter-customer"
+      },
+      "screenshot": "/tmp/soc-provider-inspector-desktop-beforeWork.png",
+      "errors": []
+    },
+    {
+      "profile": "desktop",
+      "name": "carrierIncident",
+      "clock": 19,
+      "revision": 22,
+      "selection": {
+        "customerId": "starter-customer",
+        "serviceId": "carrier",
+        "incidentId": "provider-incident-1"
+      },
+      "screenshot": "/tmp/soc-provider-inspector-desktop-carrierIncident.png",
+      "errors": []
+    },
+    {
+      "profile": "phone",
+      "name": "beforeWork",
+      "clock": 0,
+      "revision": 3,
+      "selection": {
+        "customerId": "starter-customer"
+      },
+      "screenshot": "/tmp/soc-provider-inspector-phone-beforeWork.png",
+      "errors": []
+    },
+    {
+      "profile": "phone",
+      "name": "carrierIncident",
+      "clock": 19,
+      "revision": 22,
+      "selection": {
+        "customerId": "starter-customer",
+        "serviceId": "carrier",
+        "incidentId": "provider-incident-1"
+      },
+      "screenshot": "/tmp/soc-provider-inspector-phone-carrierIncident.png",
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}

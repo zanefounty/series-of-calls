@@ -26,6 +26,9 @@ function winSmb(){
  c.advance(60);assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,true);
  const next={action:'purchase',offerId:'next-1',planId:'swift',stage:'base'},quote=SOC.provider.quote(c.state,next);
  assert.deepEqual(quote.blockers,[]);c.send({...next,quoteRevision:c.state.revision});
+ assert.equal(c.state.providerCampaign.missionStatus,'active','purchase is a funded commitment');
+ for(const stage of ['base','carrier','partner']){if(stage!=='base')c.purchase('next-1',stage,'next-1-customer');for(let n=0;n<30&&c.state.providerCampaign.customers[1].stages[stage].status!=='effective';n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}assert.equal(c.state.providerCampaign.customers[1].stages[stage].status,'effective');}
+ for(let n=0;n<40&&c.state.providerCampaign.status!=='won';n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(1);}
  assert.equal(c.state.providerCampaign.missionStatus,'won');
  assert.equal(c.state.providerCampaign.mission.victoryProof?.qualifiedPeriods,2);
  return c;
@@ -39,10 +42,12 @@ test('earned mission victory survives a later poor period and remains sufficient
  assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_MISSION_VICTORY/,'a forged victory snapshot must not restore');
 
  if(c.state.providerCampaign.customers.find(row=>row.id==='starter-customer').status==='renewal')c.send({action:'renew',customerId:'starter-customer'});
+ c.send({action:'continue-career'});
  const expansionBase=SOC.provider.rules.plans.swift.base;
  c.advance(expansionBase.workMinutes);
  c.send({action:'staff',engineers:0,support:0});
  c.advance(60-c.state.clock%60);
+ for(let n=0;n<2&&c.state.providerCampaign.periodHistory.at(-1).qualified;n++){for(const customer of c.state.providerCampaign.customers.filter(row=>row.status==='renewal'))c.send({action:'renew',customerId:customer.id});c.advance(60);}
  assert.equal(c.state.providerCampaign.periodHistory.at(-1).qualified,false,'actual unstaffed demand makes a later period fail');
  assert.equal(c.state.providerCampaign.mission.consecutiveQualifying,0,'the current streak resets truthfully');
  assert.equal(c.state.providerCampaign.missionStatus,'won','the earned mission outcome is historical');
@@ -61,7 +66,7 @@ test('earned mission victory survives a later poor period and remains sufficient
 
 test('legacy win state reconstructs a missing optional proof from the retained event and qualifying settlements',()=>{
  const c=winSmb(),legacy=structuredClone(c.state);
- legacy.providerCampaign.contentVersion='provider-campaigns-6';delete legacy.providerCampaign.incidentSequenceVersion;delete legacy.providerCampaign.caseHandoffVersion;delete legacy.providerCampaign.caseFollowupVersion;delete legacy.providerCampaign.dedicatedInterconnectVersion;for(const c of legacy.providerCampaign.customers)if(c.period.demandPlan){delete c.period.demandPlan.request.handoffVersion;delete c.period.demandPlan.result.handoffVersion;delete c.period.demandPlan.result.handoffReservations;}
+ legacy.providerCampaign.contentVersion='provider-campaigns-6';delete legacy.providerCampaign.meetingPlanVersion;delete legacy.providerCampaign.meetingPlans;delete legacy.providerCampaign.retailRetentionVersion;for(const row of legacy.portfolio.customers)delete row.root.providerCustomer.meetingPlanVersion;delete legacy.providerCampaign.incidentSequenceVersion;delete legacy.providerCampaign.caseHandoffVersion;delete legacy.providerCampaign.caseFollowupVersion;delete legacy.providerCampaign.dedicatedInterconnectVersion;for(const c of legacy.providerCampaign.customers)if(c.period.demandPlan){delete c.period.demandPlan.request.handoffVersion;delete c.period.demandPlan.result.handoffVersion;delete c.period.demandPlan.result.handoffReservations;}
  delete legacy.providerCampaign.supportWork;delete legacy.providerCampaign.workforceHistory;for(const row of legacy.portfolio.customers)delete row.root.providerSupportPins;
  const facts=require('../src/game/23-provider-progression');legacy.providerCampaign.supportObservation=facts.encodeSupportObservation(facts.decodeSupportObservation(legacy.providerCampaign.supportObservation).map(sample=>{sample.version=1;for(const row of sample.participants)for(const key of ['namedSupport','distributor','integrations'])delete row[key];return sample;}));
  delete legacy.providerCampaign.mission.victoryProof;
@@ -88,6 +93,7 @@ test('the funded expansion cancellation path stays closed and continuation chang
  state=SOC.dispatch(state,{type:'provider',command:{action:'continue-career'}});
  assert.equal(state.providerCampaign.mission.focusCustomerId,priorProof.winnerCustomerId);
  assert.notEqual(state.providerCampaign.mission.focusCustomerId,priorProof.focusCustomerId);
+ assert.equal(SOC.provider.inspect(state).mission.nextSegment,'enterprise','the earned next chapter remains visible after choosing to continue operating');
  assert.deepEqual(state.providerCampaign.mission.victoryProof,priorProof,'continuation keeps the earlier mission proof separate from its new focus');
  assert.deepEqual(SOC.restore(JSON.stringify(state)),state);
 });

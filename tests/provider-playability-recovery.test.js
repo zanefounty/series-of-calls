@@ -117,7 +117,7 @@ test('new opening staffing has a visible three-period commitment and cannot be t
  assert.equal(send(legacy,{action:'staff',engineers:1,support:1}).business.workforce.engineers,1);
 });
 
-function renewalRun(policyChanges=s=>s,target=180){
+function renewalRun(policyChanges=s=>s,target=240){
  let s=start(),request={action:'plan',offerId:'starter',planId:'swift'},q=SOC.provider.quote(s,request);
  s=send(s,{...request,quoteRevision:q.atRevision});while(s.clock<12)s=tick(s);
  const policy={action:'configure-renewal-policy',quoteRevision:s.revision,customerId:'starter-customer',enabled:true,suspended:false,cashFloorCents:0,minMarginCents:0,maxSupplierExposureCents:1000000,maxCreditCents:1000000,maxRenewals:3};
@@ -128,7 +128,7 @@ function renewalRun(policyChanges=s=>s,target=180){
 
 test('bounded unchanged-term renewal follows observed qualified periods and restores once',()=>{
  const s=renewalRun(),c=s.providerCampaign.customers[0],policy=s.providerCampaign.renewalPolicies[0];
- assert.equal(s.clock,180);assert.equal(c.status,'active');assert.equal(c.retailAgreementHistory.entries.length,2);
+ assert.equal(s.clock,240);assert.equal(c.status,'active');assert.equal(c.retailAgreementHistory.entries.length,2);
  assert.equal(policy.actions.length,1);assert.equal(policy.actions[0].retailCents,c.retailCents);
  assert.equal(s.providerCampaign.events.find(e=>e.id===policy.actions[0].eventId).policyVersion,1);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
@@ -137,15 +137,15 @@ test('bounded unchanged-term renewal follows observed qualified periods and rest
 });
 
 test('unchanged renewal terms can issue a second receipt without duplicate first action',()=>{
- const s=renewalRun(s=>s,360),policy=s.providerCampaign.renewalPolicies[0],customer=s.providerCampaign.customers[0];
+ const s=renewalRun(s=>s,420),policy=s.providerCampaign.renewalPolicies[0],customer=s.providerCampaign.customers[0];
  assert.equal(customer.status,'active');assert.equal(policy.actions.length,2);
- assert.deepEqual(policy.actions.map(action=>action.at),[180,360]);
+ assert.deepEqual(policy.actions.map(action=>action.at),[240,420]);
  assert.equal(new Set(policy.actions.map(action=>action.eventId)).size,2);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });
 
 test('renewal action cap escalates the next due contract',()=>{
- const s=renewalRun((s,p)=>send(s,{...p,quoteRevision:s.revision,maxRenewals:1}),360),policy=SOC.provider.inspect(s).renewalPolicies[0];
+ const s=renewalRun((s,p)=>send(s,{...p,quoteRevision:s.revision,maxRenewals:1}),420),policy=SOC.provider.inspect(s).renewalPolicies[0];
  assert.equal(s.providerCampaign.customers[0].status,'renewal');assert.equal(policy.actions.length,1);
  assert.equal(policy.decision.reason,'POLICY_ACTION_LIMIT');
 });

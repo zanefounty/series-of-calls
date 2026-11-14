@@ -39,11 +39,11 @@ async function inspectFinanceBills({page,click,snap,row,requireCredit=true,requi
   await page.locator('[data-provider-finance-period]').selectOption(String(bill.period));
   await page.waitForFunction(period=>document.querySelector('[data-finance-period]')?.dataset.financePeriod===String(period),bill.period);
   const shown=await page.locator('.provider-finance-history').innerText();assert.match(shown,/Borrowing is not revenue/);
-  const amounts=await page.evaluate(()=>{const article=document.querySelector('[data-finance-period]');return {postings:[...article.querySelectorAll('[data-finance-posting]')].map(x=>x.dataset.financePosting),bridge:[...article.querySelectorAll('.provider-finance-bridge [data-finance-value]')].map(x=>({key:x.dataset.financeValue,text:x.textContent})),expected:Object.fromEntries(Object.entries(SOC_PROVIDER_FINANCE_VIEW.inspect(SCP.state).rows.find(r=>String(r.period)===article.dataset.financePeriod).bridge).map(([k,v])=>[k,SOCProviderHud.money(v)]))};});
+  const amounts=await page.evaluate(()=>{const article=document.querySelector('[data-finance-period]');return {postings:[...article.querySelectorAll('[data-finance-posting]')].map(x=>x.dataset.financePosting),bridge:[...article.querySelectorAll('.provider-finance-bridge [data-finance-value]')].map(x=>({key:x.dataset.financeValue,text:x.textContent})),expected:Object.fromEntries(Object.entries(SOC_PROVIDER_FINANCE_VIEW.inspect(SCP.state).rows.find(r=>String(r.period)===article.dataset.financePeriod).bridge).map(([k,v])=>[k,SOCProviderHud.money(k==='setupInvestment'?-v:v)]))};});
   assert.deepEqual(amounts.postings,bill.postings.map(p=>p.id));
-  const keys={opening:'openingCash',profit:'operatingResult',funding:'funding',repayment:'repayment',change:'cashChange',closing:'closingCash'};
+  const keys={opening:'openingCash',profit:'operatingResult',investment:'setupInvestment',funding:'funding',repayment:'repayment',change:'cashChange',closing:'closingCash'};
   for(const item of amounts.bridge)assert.equal(item.text,amounts.expected[keys[item.key]]);
-  assert.equal(bill.bridge.closingCash,bill.bridge.openingCash+bill.bridge.operatingResult+bill.bridge.funding-bill.bridge.repayment);
+  assert.equal(bill.bridge.closingCash,bill.bridge.openingCash+bill.bridge.operatingResult-bill.bridge.setupInvestment+bill.bridge.funding-bill.bridge.repayment);
   const panel=page.locator('.provider-rail-body');await scrollPanelToOverview(page,panel);
   await page.locator('[data-provider-finance-period]').scrollIntoViewIfNeeded();await snap(page,row,'finance-period-'+bill.period+'-overview');
   const bridge=page.locator('.provider-finance-bridge');await bridge.scrollIntoViewIfNeeded();

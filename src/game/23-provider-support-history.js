@@ -57,29 +57,31 @@ function socProviderSupportHistoryKernel(){
    // Scheduled and verifying migrations are present/future operations. They
    // do not alter the placement represented by an earlier sample; Provider
    // root validation separately checks their live task lineage.
-   if(migration?.status!=='complete')continue;
-   if(!integer(migration.cutoverAt)||!integer(migration.verifyAt)||!Array.isArray(migration.identities)||!migration.identities.length||new Set(migration.identities).size!==migration.identities.length)return null;
-   const task=tasks.find(row=>row.migrationId===migration.id&&row.kind==='migration'&&row.status==='submitted');if(!task||!integer(task.createdAt))return null;
+   if(!['complete','rolled-back','rollback-pending'].includes(migration?.status))continue;
+   const task=tasks.find(row=>row.kind==='migration'&&row.status==='submitted'&&(row.migrationId===migration.id||row.rollbackHistory?.some(history=>history.migrationId===migration.id))),history=task?.rollbackHistory?.find(row=>row.migrationId===migration.id);
+   if(migration.status==='rolled-back'&&history?.previousStatus!=='complete'||migration.status==='rollback-pending'&&migration.rollbackFromStatus!=='complete')continue;
+   if(!integer(migration.cutoverAt)||!integer(migration.verifyAt)||!Array.isArray(migration.identities)||!migration.identities.length||new Set(migration.identities).size!==migration.identities.length||!task||!integer(task.createdAt))return null;
    const operationId=task.mode==='consolidated'?'migration-consolidated':task.mode==='product-dedicated'?'cisco-dedicated-uc':task.mode===undefined?'migration':null;
    const project=s.providerCampaign.projects.find(row=>row.customerId===c.id&&row.operationId===operationId&&row.configSubmittedAt===task.createdAt+1&&row.kind==='operation');if(!project||project.configSubmittedAt===null||project.status==='complete'&&!paidProject(s,project,hooks))return null;
-   const expected=task.mode==='consolidated'?{identities:['alex','bea'],target:'phone'}:task.mode==='product-dedicated'?{identities:['alex'],target:'dedicated-platform'}:{identities:['bea'],target:'migration-phone'};
+   const expected=task.mode==='consolidated'?{identities:history?.cohort||(task.decisionVersion===1&&task.cohort?task.cohort:['alex','bea']),target:'phone'}:task.mode==='product-dedicated'?{identities:['alex'],target:'dedicated-platform'}:{identities:history?.cohort||(task.decisionVersion===1&&task.cohort?task.cohort:['bea']),target:'migration-phone'};
    if(migration.target!==expected.target||!same(migration.identities,expected.identities)||task.createdAt<migration.cutoverAt-1440||task.createdAt>migration.cutoverAt)return null;
    const previous=migration.previousPlacements;
    if(!previous||typeof previous!=='object'||Array.isArray(previous)||Object.keys(previous).sort().join(',')!==expected.identities.slice().sort().join(','))return null;
    const endpointRows=Object.values(root.resources||{}).filter(resource=>resource.kind==='endpoint'&&expected.identities.includes(resource.desired?.identity));
    if(!endpointRows.length||!migration.checkpoint||typeof migration.checkpoint!=='object'||Array.isArray(migration.checkpoint)||Object.keys(migration.checkpoint).sort().join(',')!==endpointRows.map(row=>row.id).sort().join(',')||endpointRows.some(resource=>{const saved=migration.checkpoint[resource.id];return !saved||!integer(saved.generation)||saved.generation<1||saved.generation>resource.generation||saved.desired?.identity!==resource.desired.identity;}))return null;
-   if(migration.status==='rolled-back')return null;
-   if(migration.status==='complete'){
-    if(project.status!=='complete'||!integer(project.completedAt)||project.completedAt<migration.verifyAt||migration.verifyAt!==migration.cutoverAt+1)return null;
+   if(migration.status==='rolled-back'&&(!history||!integer(history.at)||history.at<migration.verifyAt||history.at>root.clock||!integer(history.previousCompletedAt)||history.previousCompletedAt<migration.verifyAt))return null;
+   if(['complete','rollback-pending'].includes(migration.status)){
+    if(project.status!=='complete'||!integer(project.completedAt)||project.completedAt<migration.verifyAt&&!(task.rollbackHistory?.length&&project.completedAt<=migration.verifyAt)||migration.verifyAt!==migration.cutoverAt+1)return null;
    }else if(migration.status==='verifying'&&migration.verifyAt<=root.clock)return null;
-   entries.push({migration,task,project,expected});
+   entries.push({migration,task,project,expected,history});
   }
   entries.sort((a,b)=>a.task.createdAt-b.task.createdAt||a.migration.cutoverAt-b.migration.cutoverAt||a.migration.id.localeCompare(b.migration.id));
   for(const row of entries){
-   const {migration,task,expected}=row;
+   const {migration,expected,history}=row;
    if(expected.identities.some(identity=>migration.previousPlacements[identity]!==replayed[identity]))return null;
-   if(migration.status==='complete'&&migration.verifyAt<=root.clock)for(const identity of expected.identities)replayed[identity]=expected.target;
-   if(migration.status==='complete'&&migration.verifyAt<=at)for(const identity of expected.identities)sampled[identity]=expected.target;
+   if(['complete','rollback-pending'].includes(migration.status)&&migration.verifyAt<=root.clock)for(const identity of expected.identities)replayed[identity]=expected.target;
+   if(migration.verifyAt<=at)for(const identity of expected.identities)sampled[identity]=expected.target;
+   if(history?.at<=at)for(const identity of expected.identities)sampled[identity]=migration.previousPlacements[identity];
   }
   const placements=operations.placements||{};
   if(Object.keys(placements).some(identity=>!identities.has(identity))||[...identities].some(identity=>(placements[identity]||'phone')!==replayed[identity]))return null;
@@ -94,16 +96,19 @@ function socProviderSupportHistoryKernel(){
    return !!value&&value.version===1&&value.resourceId===id&&value.at===at&&value.generation===generation&&Array.isArray(value.writes)&&value.writes.every(write=>write&&typeof write.projectId==='string'&&integer(write.at)&&integer(write.generation)&&write.at<=at);
   };
   if(!provenanceFor(resourceId,plan.generation))return null;
+  const migrationTask=migration=>(root.providerTasks||[]).find(task=>task.kind==='migration'&&task.status==='submitted'&&(task.migrationId===migration.id||task.rollbackHistory?.some(history=>history.migrationId===migration.id)));
+  const rollbackOf=migration=>migrationTask(migration)?.rollbackHistory?.find(history=>history.migrationId===migration.id);
+  const migrationHistoricallyComplete=migration=>migration.status==='complete'||migration.status==='rollback-pending'&&migration.rollbackFromStatus==='complete'||migration.status==='rolled-back'&&migrationTask(migration)?.rollbackHistory?.some(history=>history.migrationId===migration.id&&history.previousStatus==='complete'&&history.at>at);
   const migrationOwnsGeneration=(p,id,generation)=>{
    if(p.customerId!==c.id||p.status!=='complete'||p.completedAt>at)return false;
-   if(id==='migration-phone'&&p.operationId==='migration'&&generation===1)return (root.operations?.migrations||[]).some(m=>m.status==='complete'&&m.verifyAt<=at&&m.target==='migration-phone'&&(root.providerTasks||[]).some(task=>task.kind==='migration'&&task.status==='submitted'&&task.migrationId===m.id&&task.mode===undefined&&task.createdAt+1===p.configSubmittedAt));
-   return (root.operations?.migrations||[]).some(m=>m.status==='complete'&&m.verifyAt<=at&&m.appliedGenerations?.[id]===generation&&(root.providerTasks||[]).some(task=>task.kind==='migration'&&task.status==='submitted'&&task.migrationId===m.id&&task.createdAt+1===p.configSubmittedAt));
+   if(id==='migration-phone'&&p.operationId==='migration'&&generation===1)return (root.operations?.migrations||[]).some(m=>migrationHistoricallyComplete(m)&&m.verifyAt<=at&&m.target==='migration-phone'&&migrationTask(m)?.mode===undefined&&migrationTask(m).createdAt+1===p.configSubmittedAt);
+   return (root.operations?.migrations||[]).some(m=>migrationTask(m)?.createdAt+1===p.configSubmittedAt&&(migrationHistoricallyComplete(m)&&m.verifyAt<=at&&m.appliedGenerations?.[id]===generation||m.status==='rolled-back'&&rollbackOf(m)?.at<=at&&m.appliedGenerations?.[id]+1===generation));
   };
   const provenanceOwnsGeneration=(p,id,generation)=>{let value;try{value=hooks.configurationProvenanceAt(s,c,root,id,at);}catch{return false;}return value?.writes?.some(write=>write.projectId===p.id&&write.generation===generation&&write.at<=at)===true;};
-  const migrationPending=(id,generation)=>(root.operations?.migrations||[]).some(migration=>['verifying','complete'].includes(migration.status)&&integer(migration.cutoverAt)&&integer(migration.verifyAt)&&migration.cutoverAt<=at&&migration.verifyAt>at&&migration.appliedGenerations?.[id]===generation&&(root.providerTasks||[]).some(task=>{
+  const migrationPending=(id,generation)=>(root.operations?.migrations||[]).some(migration=>(migration.status==='verifying'||migrationHistoricallyComplete(migration))&&integer(migration.cutoverAt)&&integer(migration.verifyAt)&&migration.cutoverAt<=at&&migration.verifyAt>at&&migration.appliedGenerations?.[id]===generation&&(root.providerTasks||[]).some(task=>{
    const operation=task?.mode==='consolidated'?'migration-consolidated':task?.mode==='product-dedicated'?'cisco-dedicated-uc':'migration',project=s.providerCampaign.projects.find(row=>row.customerId===c.id&&row.operationId===operation&&row.configSubmittedAt===task.createdAt+1);
-   return task?.kind==='migration'&&task.status==='submitted'&&task.migrationId===migration.id&&!!project;
-  }));
+   return task?.kind==='migration'&&task.status==='submitted'&&(task.migrationId===migration.id||task.rollbackHistory?.some(history=>history.migrationId===migration.id))&&!!project;
+  }))||(root.operations?.migrations||[]).some(migration=>migration.status==='rolled-back'&&rollbackOf(migration)?.at===at&&migration.appliedGenerations?.[id]+1===generation);
   const ownsGeneration=(p,id,generation)=>p.customerId===c.id&&p.configSubmittedAt!==null&&p.configSubmittedAt!==undefined&&p.configSubmittedAt<=at&&!['cancelled','blocked'].includes(p.status)&&(p.expectedGenerations?.[id]===generation||p.serviceRetirement?.effectiveAt<=at&&p.serviceRetirement.expectedGenerations?.[id]===generation||migrationOwnsGeneration(p,id,generation)||provenanceOwnsGeneration(p,id,generation));
   const projectOwnsGeneration=p=>ownsGeneration(p,resourceId,plan.generation);
   const projects=s.providerCampaign.projects.filter(projectOwnsGeneration),effective=plan.config.enabled===true&&projects.length>0;
@@ -512,6 +517,8 @@ function socProviderSupportHistoryKernel(){
     for(const incident of incidents){const id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection'){connected=true;outageStartedAt=null;}else if(incident.kind==='boundary')boundaryActive=false;else if(!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}
    }
   }
+  const customerIt=s.customerIt;
+  if(customerIt?.version>=3&&customerIt.providerLink?.customerId===c.id&&customerIt.opening?.choice!=='protect'&&at>=customerIt.outage.at&&(!customerIt.repair||at<customerIt.repair.effectiveAt))faults.access='OUTAGE';
   return {valid:true,connected,faults,boundaryActive,outageStartedAt};
  }
  function ownedSiteTimelineAt(s,c,root,at,hooks){
@@ -578,7 +585,7 @@ function socProviderSupportHistoryKernel(){
   const org=s.business?.organisations?.['orchard-msp'];if(!org?.roles?.includes('msp')||!org?.roles?.includes('reseller'))return null;
   if(stageResources.some(id=>{
    if(readyByResource[id]?.ready===true)return false;
-   const migration=(root.operations?.migrations||[]).find(row=>['verifying','complete'].includes(row.status)&&row.cutoverAt<=at&&row.verifyAt>at&&row.appliedGenerations?.[id]);
+   const migration=(root.operations?.migrations||[]).find(row=>['verifying','complete'].includes(row.status)&&row.cutoverAt<=at&&row.verifyAt>at&&row.appliedGenerations?.[id]||row.status==='rolled-back'&&(root.providerTasks||[]).some(task=>task.rollbackHistory?.some(history=>history.migrationId===row.id&&history.at===at))&&row.appliedGenerations?.[id]+1===readyByResource[id]?.generation);
    if(!migration)return true;
    // A cutover leaves the previous effective endpoint available until its
    // queued configuration becomes effective. Current service qualification

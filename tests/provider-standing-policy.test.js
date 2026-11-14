@@ -43,6 +43,7 @@ test('AC-SOC-828 paid assurance keeps repairing after financial mission loss whi
  const renewLiveCustomers=()=>{for(const c of s.providerCampaign.customers.filter(row=>row.status==='renewal'))s=SOC.dispatch(s,{type:'provider',command:{action:'renew',customerId:c.id}});};
  while(s.providerCampaign.missionStatus!=='failed'&&s.clock<360){renewLiveCustomers();s=tick(s);}
  assert.equal(s.providerCampaign.missionStatus,'failed');assert.equal(s.providerCampaign.status,'failed');
+ if(s.providerCampaign.customers.find(row=>row.id===customerId)?.status==='renewal')s=SOC.dispatch(s,{type:'provider',command:{action:'renew',customerId}});
  const failedAt=s.clock,c=s.providerCampaign.customers.find(row=>row.id===customerId),lossRows=s.providerCampaign.periodHistory.filter(row=>row.from>=60&&row.to<=failedAt);
  assert.ok(c&&c.status==='active','the customer and its paid service remain active after the financial mission loss');
  assert.equal(s.business.solvency.status,'current');assert.ok(s.business.balance.cash>0);

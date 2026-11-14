@@ -5,8 +5,9 @@ function setup(){let s=SOC.dispatch(SOC.create({scenario:'enterprise',jurisdicti
 test('AC-SOC-369 SOC commands provision shared allowances and the boundary bill retains wholesale charges once',()=>{
  let s=setup();assert.equal(s.business.allowancePools[0].status,'provisioning');s=SOC.dispatch(s,{type:'advance',minutes:2});s=SOC.dispatch(s,{type:'fault',id:'phone',fault:'OUTAGE'});assert.equal(s.business.allowancePools[0].status,'active');
  const [first,second]=s.business.contracts;B.meterResource(s,'minute',5,['phone']);B.meterResource(s,'minute',5,['phone-two']);s=SOC.dispatch(s,{type:'advance',minutes:60});
- const retail=s.business.ledger.filter(x=>x.category==='revenue'&&x.contract&&x.period!==undefined);assert.equal(retail.length,2);assert.equal(retail.reduce((n,x)=>n+x.overage,0),2);
- const wholesale=s.business.ledger.filter(x=>x.reason==='wholesale');assert.equal(wholesale.length,2);assert.equal(wholesale.reduce((n,x)=>n+x.usage,0),10);assert.equal(new Set(wholesale.map(x=>x.id)).size,2);
+ const handled=s.business.events.filter(x=>x.code==='AGGREGATE_DEMAND').reduce((n,x)=>n+x.handled,0)*(s.resources.people.effective?.handlingMinutes||0);
+ const retail=s.business.ledger.filter(x=>x.category==='revenue'&&x.contract&&x.period!==undefined);assert.equal(retail.length,2);assert.equal(retail.reduce((n,x)=>n+x.overage,0),2+handled);
+ const wholesale=s.business.ledger.filter(x=>x.reason==='wholesale');assert.equal(wholesale.length,2);assert.equal(wholesale.reduce((n,x)=>n+x.usage,0),10+handled);assert.equal(new Set(wholesale.map(x=>x.id)).size,2);
  const count=s.business.ledger.filter(x=>x.reason==='wholesale').length;s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(s.business.ledger.filter(x=>x.reason==='wholesale').length,count);
 });
 test('AC-SOC-370 worker advance, save restore and rejected scope commands preserve pool state',()=>{

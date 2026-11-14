@@ -9,7 +9,15 @@ const UC_CC=require('../src/game/23-provider-uc-cc-integration.js');
 const SUPPORT_WORK=require('../src/game/23-provider-support-work.js');
 
 const hooks={customerRoot:(s,portfolioId)=>s.portfolio.customers.find(x=>x.id===portfolioId)?.root||null,observeResource:(root,id)=>SOC.observe(root,id),supportWorkOrigin:SUPPORT_WORK.origin};
-const buy=(s,request)=>{const quote=SOC.provider.quote(s,request);assert.deepEqual(quote.blockers,[],JSON.stringify({request,blockers:quote.blockers}));return SOC.dispatch(s,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});};
+const buy=(s,request)=>{
+ let quote=SOC.provider.quote(s,request);
+ if(request.action==='purchase'&&request.stage==='base'&&request.offerId.startsWith('next-')&&quote.blockers.includes('CUSTOMER_OFFER_EXPIRED')){
+  s=SOC.dispatch(s,{type:'provider',command:{action:'refresh-opportunity'}});
+  request={...request,offerId:SOC.provider.inspect(s).offers.find(row=>row.id.startsWith('next-')).id};
+  quote=SOC.provider.quote(s,request);
+ }
+ assert.deepEqual(quote.blockers,[],JSON.stringify({request,blockers:quote.blockers}));return SOC.dispatch(s,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});
+};
 const claimDispatched=(s,sourceId)=>SOC.dispatch(s,{type:'provider',command:{action:'claim-progression',sourceId,quoteRevision:s.revision}});
 const minute=s=>SOC.dispatch(s,{type:'advance',minutes:1});
 const UC_CC_CUSTOMER='starter-customer',UC_CC_SOURCE='d-ms-workplace-calling',UC_CC_TARGET='d-cisco-contact-centre',UC_CC_SOURCE_OPERATION='ms-workplace-calling',UC_CC_TARGET_OPERATION='cisco-contact-centre',UC_CC_EDGE='workplace-to-contact-quality';
@@ -78,8 +86,13 @@ function paidOpening(advanceUntil=35){
 function paidNonstarter(advanceUntil=360){
  let s=paidOpening(180);
  s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage:'base'});
+ s=ccStageComplete(s,'base','next-1-customer');
+ for(const stage of ['carrier','partner']){
+  s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});
+  s=ccStageComplete(s,stage,'next-1-customer');
+ }
+ s=ccUntil(s,x=>x.providerCampaign.status==='won',180,'next-1-customer');
  s=SOC.dispatch(s,{type:'provider',command:{action:'continue-career'}});
- for(const stage of ['carrier','partner'])s=buy(s,{action:'purchase',offerId:'next-1',planId:'swift',stage,customerId:'next-1-customer'});
  while(s.clock<advanceUntil){
   const incident=s.providerCampaign.incidents.find(x=>x.status==='active');
   if(incident){s=SOC.dispatch(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});s=buy(s,{action:'operation',operationId:incident.resource==='service'?'service-repair':'repair',customerId:incident.customerId});}
@@ -112,7 +125,9 @@ function regionalSupportReady(){
  s=operation(s,'bpo','starter-customer');s=until(s,x=>FACTS.evaluate(x,hooks).facts.supportResponsibility.status==='ready',120);s=operation(s,'service-boundary-review','starter-customer');
  s=until(s,x=>x.providerCampaign.mission.nextOpportunityAvailable,180);
  s=start(s,'next-1-customer','next-1','au-melbourne');s=operation(s,'bpo','next-1-customer');s=operation(s,'service-boundary-review','next-1-customer');
- return until(s,x=>FACTS.qualifySupportWindow(FACTS.decodeSupportObservation(x.providerCampaign.supportObservation)).status==='ready'||x.clock>=380,300);
+ s=until(s,x=>FACTS.qualifySupportWindow(FACTS.decodeSupportObservation(x.providerCampaign.supportObservation)).status==='ready'||x.clock>=380,300);
+ if(s.providerCampaign.status==='won')s=SOC.dispatch(s,{type:'provider',command:{action:'continue-career'}});
+ return s;
 }
 
 module.exports={ccQuietChunk,ccAdvanceBounded,ccUntilClock,ccWaitProject,ccOperationComplete,ccStageComplete,assert,vm,SOC,FACTS,RECEIPTS,RESPONSIBILITY,UC_CC,SUPPORT_WORK,hooks,buy,claimDispatched,minute,UC_CC_CUSTOMER,UC_CC_SOURCE,UC_CC_TARGET,UC_CC_SOURCE_OPERATION,UC_CC_TARGET_OPERATION,UC_CC_EDGE,ccProject,ccChild,ccAdvance,ccUntil,ccOperation,ccOperationWhenReady,ccFundedProducts,ccFullWork,ccTest,ccCompleteWithPaidReview,ccInstallUcCc,ccInstallUcCcWithTargetSupport,ccInstallUcCcWithSupport,ccDeliverRoom,rehash,paidOpening,paidNonstarter,regionalSupportReady};

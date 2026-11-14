@@ -12,7 +12,8 @@
   summary:[N_("provider.finance.summary"), "Recorded period result"],
   revenue:[N_("provider.finance.revenue"), "Revenue"],
   cost:[N_("provider.finance.cost"), "Costs including setup, payroll and interest"],
-  profit:[N_("provider.finance.profit"), "Operating result"],
+  profit:[N_("provider.finance.profit"), "Operating result before setup investment"],
+  investment:[N_("provider.finance.investment"), "Setup investment paid"],
   opening:[N_("provider.finance.opening"), "Opening cash"],
   funding:[N_("provider.finance.funding"), "Borrowed principal"],
   repayment:[N_("provider.finance.repayment"), "Principal repaid"],
@@ -52,11 +53,11 @@
   if(finance.archivedPeriods)html+=`<p>${finance.archivedPeriods} · ${t('archived')}</p>`;
   if(!row)return html+`<p role="status">${t('missing')}</p></section>`;
   const amount=(key,n)=>`<dt>${t(key)}</dt><dd data-finance-value="${key}">${money(n)}</dd>`;
-  html+=`<article data-finance-period="${row.period}"><h4>${t('summary')}</h4><p>${t('from')} ${row.from} ${t('to')} ${row.to}</p><dl>${amount('revenue',row.revenue)}${amount('cost',row.cost)}${amount('profit',row.operatingResult)}</dl><p>${t('distinction')}</p>`;
+  html+=`<article data-finance-period="${row.period}"><h4>${t('summary')}</h4><p>${t('from')} ${row.from} ${t('to')} ${row.to}</p><dl>${amount('revenue',row.revenue)}${amount('cost',row.cost)}${row.setupInvestment!==undefined?amount('investment',-row.setupInvestment):''}${amount('profit',row.operatingResult)}</dl><p>${t('distinction')}</p>`;
   html+=row.customers.map(c=>`<section class="provider-finance-customer" data-customer="${esc(c.customerId)}"><h4>${esc(c.name)} · ${t('customer')}</h4><p>${c.completedOnTime} / ${c.due} · ${t('delivery')}</p><dl>${amount('retail',c.grossRetail)}${amount('credits',c.credit)}${amount('net',c.netRetail)}${amount('supplier',c.wholesale)}${amount('usage',c.voiceCost+c.messageCost)}</dl><p>${c.voiceMinutes} · ${t('voice')}; ${c.messages} · ${t('messages')}</p></section>`).join('');
   if(!row.bridge)return html+`<p role="status" data-finance-unavailable>${t('unavailable')}</p></article></section>`;
   const b=row.bridge;
-  html+=`<h4>${t('bridge')}</h4><dl class="provider-finance-bridge">${amount('opening',b.openingCash)}${amount('profit',b.operatingResult)}${amount('funding',b.funding)}${amount('repayment',b.repayment)}${amount('change',b.cashChange)}${amount('closing',b.closingCash)}</dl><p>${t('boundary')}</p><h4>${t('postings')}</h4><ul class="provider-list">`;
+  html+=`<h4>${t('bridge')}</h4><dl class="provider-finance-bridge">${amount('opening',b.openingCash)}${amount('profit',b.operatingResult)}${row.setupInvestment!==undefined?amount('investment',-b.setupInvestment):''}${amount('funding',b.funding)}${amount('repayment',b.repayment)}${amount('change',b.cashChange)}${amount('closing',b.closingCash)}</dl><p>${t('boundary')}</p><h4>${t('postings')}</h4><ul class="provider-list">`;
   for(const p of row.postings)html+=`<li data-finance-posting="${esc(p.id)}"><b>${t(p.group)}</b><span>${esc(p.customerName||'')} ${p.customerName?'':t('shared')} · ${money(p.cashDelta)}</span>${p.projectName?`<span>${esc(p.projectName)}</span>`:''}<details><summary>${t('technical')}</summary><p>${esc(p.id)} · ${p.at} · ${esc(p.reason||p.category)}${p.projectId?' · '+esc(p.projectId):''}${p.loan?' · '+esc(p.loan):''}${p.quantity!==undefined?' · '+esc(p.quantity)+' '+esc(p.usageUnit||p.unit||''):''}</p></details></li>`;
   return html+'</ul></article></section>';
  }

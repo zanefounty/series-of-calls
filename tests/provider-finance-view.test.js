@@ -11,19 +11,19 @@ function fixture(){
  return {get state(){return s;},buy,tick,send:command=>{s=SOC.dispatch(s,{type:'provider',command});}};
 }
 let paid;const original=()=>paid??(paid=fixture().state);
-test('AC-SOC-623 Finance reconciles real paid setup, service credits, usage, shared payroll and borrowing without changing operating profit',()=>{
+test('AC-SOC-623 Finance reconciles real paid setup, service credits, usage, shared payroll and borrowing while separating setup investment from operating profit',()=>{
  const s=original(),before=JSON.stringify(s),model=finance.inspect(s),r=model.rows[0],h=s.providerCampaign.periodHistory[0];
  assert.equal(JSON.stringify(s),before);assert.equal(r.unavailable,null);assert.ok(r.customers[0].credit>0,'unrepaired real incident produces a credit');
  assert.ok(r.postings.some(p=>p.group==='setup'));assert.ok(r.postings.some(p=>p.group==='voice'));assert.ok(r.postings.some(p=>p.group==='messages'));assert.ok(r.postings.some(p=>p.group==='payroll'));assert.ok(r.postings.some(p=>p.group==='interest'));assert.ok(r.postings.some(p=>p.group==='supplier'));
- assert.equal(r.bridge.funding,100000);assert.equal(r.bridge.operatingResult,h.revenue-h.cost);assert.ok(r.bridge.operatingResult<0,'setup period loses money even after borrowing');
- assert.equal(r.bridge.openingCash,s.business.balance.opening);assert.equal(r.bridge.closingCash,s.business.balance.cash);assert.equal(r.bridge.cashChange,r.bridge.operatingResult+100000);
+ assert.equal(r.bridge.funding,100000);assert.equal(r.bridge.operatingResult,h.operatingResult);assert.equal(r.bridge.setupInvestment,h.setupInvestment);assert.ok(r.bridge.operatingResult<0,'the unrepaired first period still loses money before setup investment');
+ assert.equal(r.bridge.openingCash,s.business.balance.opening);assert.equal(r.bridge.closingCash,s.business.balance.cash);assert.equal(r.bridge.cashChange,r.bridge.operatingResult-r.bridge.setupInvestment+100000);
  assert.deepEqual(r.postings.map(p=>p.id),s.business.ledger.map(p=>p.id));assert.deepEqual(finance.inspect(SOC.restore(before)),model);
 });
 test('AC-SOC-624 same-minute debt repayment and paid repair belong to the next bill while the earlier cash bridge remains fixed',()=>{
  const c=fixture(),before=finance.inspect(c.state).rows[0];c.buy({action:'repay-credit'});c.send({action:'acknowledge-incident',incidentId:c.state.providerCampaign.incidents.find(i=>i.status==='active').id});c.buy({action:'operation',operationId:'repair',customerId:'starter-customer'});
  assert.deepEqual(finance.inspect(c.state).rows[0],before,'minute60 post-settlement orders must not leak into prior bill');
  while(c.state.clock<120)c.tick();
- const r=finance.inspect(c.state).rows[1];assert.equal(r.unavailable,null);assert.equal(r.bridge.openingCash,before.bridge.closingCash);assert.equal(r.bridge.repayment,100000);assert.equal(r.bridge.funding,0);assert.equal(r.bridge.cashChange,r.bridge.operatingResult-100000);assert.equal(r.bridge.closingCash,c.state.business.balance.cash);
+ const r=finance.inspect(c.state).rows[1];assert.equal(r.unavailable,null);assert.equal(r.bridge.openingCash,before.bridge.closingCash);assert.equal(r.bridge.repayment,100000);assert.equal(r.bridge.funding,0);assert.equal(r.bridge.cashChange,r.bridge.operatingResult-r.bridge.setupInvestment-100000);assert.equal(r.bridge.closingCash,c.state.business.balance.cash);
  assert.equal(r.postings.filter(p=>p.group==='repayment').length,1);assert.ok(r.postings.some(p=>p.group==='setup'&&p.operationId==='repair'));assert.ok(r.customers[0].credit<before.customers[0].credit,'actual paid repair reduces settlement credit');
 });
 test('AC-SOC-625 Finance retains authoritative summary but refuses invented cash history when required postings are missing',()=>{

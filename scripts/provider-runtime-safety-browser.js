@@ -54,4 +54,51 @@ async function runRuntimeSafety({browser,baseUrl,report,OUT,click,snap,startNew}
  }catch(error){row.status='failed';row.failure=String(error.stack||error);try{await step('failure');}catch{}throw error;}
  finally{await context.tracing.stop({path:path.join(OUT,row.id,'trace.zip')});await context.close();}
 }
-module.exports={runRuntimeSafety};
+async function runCorruptSaveRecovery({browser,baseUrl,report,OUT,click,snap,startNew}){
+ const row={id:'corrupt-save-two-tab-recovery',status:'running',steps:[],errors:[]};report.journeys.push(row);
+ fs.mkdirSync(path.join(OUT,row.id),{recursive:true});
+ const context=await browser.newContext({viewport:{width:1366,height:768}});
+ let owner=await context.newPage(),competitor=null;
+ const key='series-of-calls:provider:v1',broken='{"app":"series-of-calls","state":';
+ const step=async(page,name)=>{row.steps.push({name,...await page.evaluate(()=>({locked:SCP.locked,career:SCP.state?.providerCampaign?.providerName||null,error:SCP.error,activeSave:localStorage.getItem('series-of-calls:provider:v1'),quarantine:localStorage.getItem('series-of-calls:provider:v1:corrupt')}))});await snap(page,row,name);};
+ try{
+  owner.on('pageerror',error=>row.errors.push(error.message));
+  await owner.goto(baseUrl);await startNew(owner,{plan:'swift',id:row.id});
+  const original=await owner.evaluate(key=>localStorage.getItem(key),key);assert.ok(original);
+  await owner.close();
+  owner=await context.newPage();owner.on('pageerror',error=>row.errors.push(error.message));await owner.goto(baseUrl);
+  // Corruption is a storage fault, injected before either tab owns a career.
+  await owner.evaluate(({key,broken})=>localStorage.setItem(key,broken),{key,broken});
+  await click(owner,'[data-provider-action="open"]');
+  await owner.waitForFunction(()=>SCP.locked&&SCP.state===null&&SCP.error.includes('unreadable'));
+  assert.equal(await owner.evaluate(key=>localStorage.getItem(key),key),broken);
+  assert.equal(await owner.evaluate(key=>localStorage.getItem(key+':corrupt'),key),null);
+  assert.match(await owner.locator('[data-provider-error]').innerText(),/unreadable/i);
+  await step(owner,'corrupt-bytes-retained-until-owner-chooses-recovery');
+  competitor=await context.newPage();competitor.on('pageerror',error=>row.errors.push(error.message));await competitor.goto(baseUrl);
+  await click(competitor,'[data-provider-action="open"]');
+  await competitor.waitForFunction(()=>!SCP.locked);
+  const secondTab=await competitor.evaluate(()=>({locked:SCP.locked,error:SCP.error,atHome:SCP.atHome,career:SCP.state?.providerCampaign?.providerName||null}));
+  assert.match(secondTab.error,/read-only|another tab/i,JSON.stringify(secondTab));
+  assert.equal(await competitor.evaluate(key=>localStorage.getItem(key),key),broken);
+  await step(competitor,'second-tab-cannot-own-corrupt-slot');
+  await startNew(owner,{plan:'swift',id:'recovered'});
+  const recovered=await owner.evaluate(key=>({save:JSON.parse(localStorage.getItem(key)),quarantine:localStorage.getItem(key+':corrupt')}),key);
+  assert.equal(recovered.quarantine,broken,'quarantine keeps exact input bytes');
+  assert.equal(recovered.save.state.providerCampaign.providerName,'Orchard swift recovered');
+  assert.equal(recovered.save.seq,1,'replacement starts a fresh sequence');
+  await step(owner,'visible-new-career-quarantines-and-replaces');
+  assert.equal(await competitor.evaluate(()=>SCP.locked),false);
+  await owner.reload();await click(owner,'[data-provider-action="open"]');await owner.waitForFunction(()=>SCP.state?.providerCampaign?.providerName==='Orchard swift recovered'&&SCP.locked);
+  assert.equal(await owner.evaluate(key=>localStorage.getItem(key+':corrupt'),key),broken);
+  await step(owner,'owner-reload-restores-replacement');
+  await owner.close();owner=null;
+  await competitor.reload();await click(competitor,'[data-provider-action="open"]');
+  await competitor.waitForFunction(()=>SCP.locked&&SCP.state?.providerCampaign?.providerName==='Orchard swift recovered');
+  assert.equal(await competitor.evaluate(key=>localStorage.getItem(key+':corrupt'),key),broken);
+  await step(competitor,'second-tab-reopens-only-after-owner-closes');
+  assert.deepEqual(row.errors,[]);row.status='passed';
+ }catch(error){row.status='failed';row.failure=String(error.stack||error);throw error;}
+ finally{if(owner&&!owner.isClosed())await owner.close();if(competitor&&!competitor.isClosed())await competitor.close();await context.close();}
+}
+module.exports={runRuntimeSafety,runCorruptSaveRecovery};

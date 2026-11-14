@@ -6,12 +6,12 @@ const { SOC, FACTS, RECEIPTS, RESPONSIBILITY, REGIONAL, POLICY, UC_CC, C3, C5, T
 
 test('AC-SOC-655 public dispatch earns T2 from three paid UC/CC integrations and funds bounded automatic repair', () => {
   let state = createThreeMarketWindow();
-  // The three quoted recipes total 1,902,000 setup cents and 357,000 cents per period.
-  // Include three settlement cycles during 165 serial work minutes, actual payroll,
-  // the measured pre-integration operating surplus, and the bounded repair budget.
-  checkpoint('t2-before-funding-wait', state, { targetCashCents: 2_500_000 });
-  state = untilCash(state, 2_500_000, 'fund the costed T2 and response reserve from actual settlements', 600);
-  checkpoint('t2-funded-reserve', state, { targetCashCents: 2_500_000 });
+  // The three quoted recipes cost 1,902,000 setup cents in total. Fund the
+  // portfolio from settled cash before the oldest renewal boundary, then
+  // commission all three while the named support cohort remains active.
+  checkpoint('t2-before-funding-wait', state, { targetCashCents: 2_000_000 });
+  state = untilCash(state, 2_000_000, 'fund the costed T2 portfolio from actual settlements', 600);
+  checkpoint('t2-funded-reserve', state, { targetCashCents: 2_000_000 });
   const customerIds = ['starter-customer', 'next-1-customer', 'next-2-customer'];
   for (const customerId of customerIds) {
     state = installTestedUcCcPair(state, customerId);

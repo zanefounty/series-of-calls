@@ -5,8 +5,20 @@ const customerId='starter-customer',recipe='cisco-meetings-interoperability',chi
 function buy(s,command){const q=SOC.provider.quote(s,command);assert.deepEqual(q.blockers,[],JSON.stringify({clock:s.clock,command,blockers:q.blockers}));return SOC.dispatch(s,{type:'provider',command:{...command,quoteRevision:q.atRevision}});}
 const op=(s,id)=>buy(s,{action:'operation',operationId:id,customerId});
 function minute(s){for(const customer of s.providerCampaign.customers.filter(c=>c.status==='renewal'))s=SOC.dispatch(s,{type:'provider',command:{action:'renew',customerId:customer.id}});const incident=s.providerCampaign.incidents.find(i=>i.status==='active');if(incident){s=SOC.dispatch(s,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});s=op(s,'repair');}return SOC.dispatch(s,{type:'advance',minutes:1});}
-function until(s,predicate,limit=180){for(let n=0;n<limit&&!predicate(s);n++)s=minute(s);assert.ok(predicate(s),'condition not reached at '+s.clock+' projects '+JSON.stringify(s.providerCampaign.projects.map(p=>[p.operationId,p.status,p.error])));return s;}
-function opening(){let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73});for(const stage of ['base','carrier','partner']){s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});s=until(s,x=>x.providerCampaign.customers[0].stages[stage].status==='effective');if(stage==='base'){s=op(s,'recording');s=until(s,x=>project(x,'recording').status==='complete');}}s=SOC.dispatch(s,{type:'provider',command:{action:'staff',engineers:4,support:4}});s=op(s,'bpo');s=until(s,x=>project(x,'bpo').status==='complete');s=op(s,'transcription');s=until(s,x=>project(x,'transcription').status==='complete');s=op(s,recipe);s=until(s,x=>project(x,recipe).status==='complete');s=op(s,'migration');return until(s,x=>project(x,'migration').status==='complete');}
+function opEventually(s,id){for(let n=0;n<80;n++){const request={action:'operation',operationId:id,customerId},quote=SOC.provider.quote(s,request);if(!quote.blockers.length)return buy(s,request);assert.ok(quote.blockers.every(x=>x==='ENGINEER_CAPACITY'||x==='SUPPORT_CAPACITY'||x.startsWith('OPERATION_REQUIREMENT_')),JSON.stringify({clock:s.clock,id,blockers:quote.blockers}));s=minute(s);}assert.fail('Paid operation did not become fundable: '+id);}
+function until(s,predicate,limit=180){for(let n=0;n<limit&&!predicate(s);n++)s=minute(s);assert.ok(predicate(s),'condition not reached at '+s.clock+' projects '+JSON.stringify(s.providerCampaign.projects.map(p=>[p.operationId,p.status,p.completedAt,p.error]))+' customer '+JSON.stringify(s.providerCampaign.customers.map(c=>[c.id,c.status,c.history.map(h=>[h.period,h.failed,h.due,h.credit])]))+' meetings '+JSON.stringify(child(s).information?.meetingSessions.slice(-8).map(m=>[m.scheduledAt,m.status,m.reasons,m.captureRecordId])));return s;}
+function opening(){
+ let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73});
+ s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage:'base'});
+ s=op(s,'room');
+ for(const stage of ['carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,customerId});
+ for(let n=0;n<3;n++)s=minute(s);
+ for(const operationId of ['recording','bpo','migration'])s=opEventually(s,operationId);
+ s=until(s,x=>x.clock>=180);
+ assert.ok(s.providerCampaign.customers[0].history.filter(h=>h.qualified).length>=2,'a working paid service survives before the compatibility experiment');
+ s=op(s,'transcription');s=until(s,x=>project(x,'transcription').status==='complete');
+ s=op(s,recipe);return until(s,x=>project(x,recipe).status==='complete');
+}
 
 test('a paid native-room profile cannot replace a cross-platform bridge licence; paid bridge recommission restores real joins',()=>{
  let s=opening();s=until(s,x=>child(x).information?.meetingSessions.some(m=>m.status==='completed'&&m.startedAt>=project(x,recipe).completedAt));const before=child(s).information.meetingSessions.find(m=>m.status==='completed'),old=project(s,recipe);assert.ok(before.captureRecordId);assert.notEqual(child(s).information.meeting.effective.platform,child(s).information.meeting.effective.nativePlatform);assert.equal(child(s).information.meeting.effective.bridgeLicensed,true);

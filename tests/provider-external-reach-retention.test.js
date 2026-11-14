@@ -19,7 +19,7 @@ function minute(s){
  try{return SOC.dispatch(s,{type:'advance',minutes:1});}
  catch(error){throw new Error(`${error.message}; clock=${s.clock}; processing=${child(s).information?.jobs?.length||0}; activeProcessing=${child(s).information?.jobs?.filter(row=>!['complete','failed'].includes(row.status)).length||0}; providerJobs=${s.providerCampaign.jobs.length}; meetings=${child(s).information?.meetingSessions?.length||0}`);}
 }
-function until(s,predicate,limit=180){for(let count=0;count<limit&&!predicate(s);count++){try{s=minute(s);}catch(error){throw new Error(`${error.message}; until clock=${s.clock}; customers=${JSON.stringify(s.providerCampaign.customers.map(row=>({id:row.id,status:row.status})))}`);}}assert.ok(predicate(s),JSON.stringify({at:s.clock,customers:s.providerCampaign.customers.map(row=>({id:row.id,status:row.status})),projects:s.providerCampaign.projects.map(row=>({id:row.operationId,status:row.status})),meetings:s.providerCampaign.meetingCheckpoint}));return s;}
+function until(s,predicate,limit=180){for(let count=0;count<limit&&!predicate(s);count++){try{s=minute(s);}catch(error){throw new Error(`${error.message}; until clock=${s.clock}; customers=${JSON.stringify(s.providerCampaign.customers.map(row=>({id:row.id,status:row.status})))}`);}}assert.ok(predicate(s),JSON.stringify({at:s.clock,customers:s.providerCampaign.customers.map(row=>({id:row.id,status:row.status})),projects:s.providerCampaign.projects.map(row=>({id:row.operationId,status:row.status})),meetings:s.providerCampaign.meetingCheckpoint,goalStatus:SOC.provider.inspect(s).progression.goals[sourceId]?.status,goalMissing:SOC.provider.inspect(s).progression.goals[sourceId]?.missing}));return s;}
 function opening(){
  let s=SOC.create({experience:'campaign',scenario:'enterprise',seed:73,market:'au-sydney'});
  for(const stage of ['base','carrier','partner'])s=buy(s,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId})});
@@ -37,7 +37,7 @@ function opening(){
 test('earned external reach receipt survives bounded history pruning, restore, and worker continuation',()=>{
  let s=opening();
  s=until(s,state=>SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',180);
- s=until(s,state=>Number.isSafeInteger(state.providerCampaign.customers.find(row=>row.id===customerId)?.renewedAt)&&SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',300);
+ s=until(s,state=>Number.isSafeInteger(state.providerCampaign.customers.find(row=>row.id===customerId)?.renewedAt)&&SOC.provider.inspect(state).progression.goals[sourceId]?.status==='ready',500);
  const customer=s.providerCampaign.customers.find(row=>row.id===customerId),readyEvidence=SOC.provider.inspect(s).progression.goals[sourceId].evidence;
  assert.ok(Number.isSafeInteger(customer.customerAcceptedAt)&&customer.retailAgreement.at>customer.customerAcceptedAt,`the claim is earned after a real retail renewal: ${JSON.stringify({clock:s.clock,acceptedAt:customer.customerAcceptedAt,agreementAt:customer.retailAgreement.at})}`);
  assert.equal(readyEvidence.agreementAt,customer.customerAcceptedAt,'the historical proof stays anchored to original accepted terms');

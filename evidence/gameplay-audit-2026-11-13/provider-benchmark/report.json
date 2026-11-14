@@ -1,0 +1,464 @@
+{
+  "scope": "SOC-10 Provider benchmark; dispatched one, three and five customer saves; built Chromium page; 1x is one tick per 2000ms and 8x is one tick per 250ms. No synthetic state edits.",
+  "runAt": "2026-11-13T15:45:42.553Z",
+  "node": "v24.22.2",
+  "chromium": "156.0.8078.4",
+  "host": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+    "logicalCpus": 24,
+    "totalMemoryBytes": 42055921664
+  },
+  "inputs": {
+    "_site/index.html": "30a571065737914336865a02c8143f7b4c065a14314e5431edfd54cfb8ccf08c",
+    "src/game/55-communications.js": "53cfc7809135f0d53da4412575d05f8b044e99cb4d4f00a0d062dd911c3d5861",
+    "src/game/98-provider-runtime.js": "8233f919b24ad5715600df1b9c0aabd1a450651c6887bd095738aeb0eeda177c",
+    "scripts/provider-perf-bench.js": "a1cc0c28c1948372b4e0f37a0aba4caf323cabd8b03bf037fb871c63da9b088a",
+    "tests/provider-segments.test.js": "1c9e09b5e58052f06d34f1ca6195dbc22491108444698da54b831f8495dc0fde"
+  },
+  "runs": 5,
+  "results": {
+    "1": {
+      "fixture": {
+        "sha256": "3dbb98e6cf5bc6a8f62ec932c985962b8a15b1004840f210d46084a292cc08ff",
+        "clock": 120,
+        "revision": 125,
+        "bytes": 288885,
+        "statuses": [
+          {
+            "id": "starter-customer",
+            "status": "active",
+            "scenario": "smb"
+          }
+        ]
+      },
+      "metrics": {
+        "inspect": {
+          "medianMs": 30.7,
+          "p95Ms": 42.7,
+          "samplesMs": [
+            37.4,
+            42.7,
+            30.7,
+            30.4,
+            29
+          ]
+        },
+        "model": {
+          "medianMs": 30.1,
+          "p95Ms": 38.8,
+          "samplesMs": [
+            38.8,
+            32.7,
+            30.1,
+            28.8,
+            28
+          ]
+        },
+        "render": {
+          "medianMs": 58.3,
+          "p95Ms": 68.8,
+          "samplesMs": [
+            68.8,
+            66.5,
+            58,
+            58.3,
+            56
+          ]
+        },
+        "save": {
+          "medianMs": 0.7,
+          "p95Ms": 1.1,
+          "samplesMs": [
+            1.1,
+            0.8,
+            0.7,
+            0.7,
+            0.7
+          ]
+        },
+        "restore": {
+          "medianMs": 20.2,
+          "p95Ms": 24,
+          "samplesMs": [
+            24,
+            21.5,
+            19.3,
+            18.1,
+            20.2
+          ]
+        },
+        "validate": {
+          "medianMs": 9.5,
+          "p95Ms": 9.9,
+          "samplesMs": [
+            8.6,
+            9.8,
+            8.2,
+            9.9,
+            9.5
+          ]
+        },
+        "dispatch1": {
+          "medianMs": 23.8,
+          "p95Ms": 28.8,
+          "samplesMs": [
+            28.8,
+            23.8,
+            20.1,
+            19,
+            24.2
+          ]
+        },
+        "dispatch8": {
+          "medianMs": 167.5,
+          "p95Ms": 204.1,
+          "samplesMs": [
+            204.1,
+            174.2,
+            160.2,
+            160.1,
+            167.5
+          ]
+        },
+        "worker1": {
+          "medianMs": 122.1,
+          "p95Ms": 127.6,
+          "samplesMs": [
+            122.1,
+            121.4,
+            120.1,
+            124.2,
+            127.6
+          ]
+        },
+        "worker8": {
+          "medianMs": 945.6,
+          "p95Ms": 965.2,
+          "samplesMs": [
+            965.2,
+            945.6,
+            939.5,
+            946.1,
+            943.7
+          ]
+        }
+      },
+      "tickBudget": {
+        "normalMs": 2000,
+        "fastMs": 250
+      },
+      "pipelineEstimateMedianMs": 220.7,
+      "budgetShare": {
+        "normal": 0.11,
+        "fast": 0.883
+      },
+      "note": "Pipeline estimate sums separate medians for a one-minute tick. worker8 is eight fresh sequential workers, matching the runtime worker lifecycle. Actual frame pacing and rendering may differ."
+    },
+    "3": {
+      "fixture": {
+        "sha256": "d6ba77be777ae3e05d19228ce6af59c00f5f94565e1469a1431265ec3bec3b51",
+        "clock": 300,
+        "revision": 317,
+        "bytes": 825479,
+        "statuses": [
+          {
+            "id": "starter-customer",
+            "status": "active",
+            "scenario": "smb"
+          },
+          {
+            "id": "next-1-customer",
+            "status": "active",
+            "scenario": "smb"
+          },
+          {
+            "id": "next-2-customer",
+            "status": "active",
+            "scenario": "enterprise"
+          }
+        ]
+      },
+      "metrics": {
+        "inspect": {
+          "medianMs": 85.9,
+          "p95Ms": 93.7,
+          "samplesMs": [
+            85.9,
+            86.3,
+            77.8,
+            93.7,
+            75.9
+          ]
+        },
+        "model": {
+          "medianMs": 76.7,
+          "p95Ms": 96.4,
+          "samplesMs": [
+            96.4,
+            78.9,
+            74.9,
+            76.7,
+            73.5
+          ]
+        },
+        "render": {
+          "medianMs": 121,
+          "p95Ms": 130.8,
+          "samplesMs": [
+            130.8,
+            129.7,
+            117.2,
+            121,
+            116.3
+          ]
+        },
+        "save": {
+          "medianMs": 2.5,
+          "p95Ms": 2.7,
+          "samplesMs": [
+            2.7,
+            2.5,
+            2.7,
+            2.4,
+            2.4
+          ]
+        },
+        "restore": {
+          "medianMs": 58.6,
+          "p95Ms": 66.1,
+          "samplesMs": [
+            66.1,
+            58.5,
+            55.7,
+            60.6,
+            58.6
+          ]
+        },
+        "validate": {
+          "medianMs": 28.2,
+          "p95Ms": 30.9,
+          "samplesMs": [
+            30.9,
+            27.1,
+            29.1,
+            28.2,
+            26.9
+          ]
+        },
+        "dispatch1": {
+          "medianMs": 63.3,
+          "p95Ms": 78.6,
+          "samplesMs": [
+            78.6,
+            58.6,
+            61.5,
+            64.3,
+            63.3
+          ]
+        },
+        "dispatch8": {
+          "medianMs": 486.2,
+          "p95Ms": 540.6,
+          "samplesMs": [
+            540.6,
+            483.1,
+            489.9,
+            486.2,
+            485.6
+          ]
+        },
+        "worker1": {
+          "medianMs": 190.8,
+          "p95Ms": 197.9,
+          "samplesMs": [
+            197.9,
+            195.2,
+            190.8,
+            187.3,
+            190.5
+          ]
+        },
+        "worker8": {
+          "medianMs": 1504.4,
+          "p95Ms": 1513.4,
+          "samplesMs": [
+            1503.8,
+            1503.1,
+            1504.4,
+            1513.4,
+            1508.5
+          ]
+        }
+      },
+      "tickBudget": {
+        "normalMs": 2000,
+        "fastMs": 250
+      },
+      "pipelineEstimateMedianMs": 419.2,
+      "budgetShare": {
+        "normal": 0.21,
+        "fast": 1.677
+      },
+      "note": "Pipeline estimate sums separate medians for a one-minute tick. worker8 is eight fresh sequential workers, matching the runtime worker lifecycle. Actual frame pacing and rendering may differ."
+    },
+    "5": {
+      "fixture": {
+        "sha256": "c6b7037a5f9129ee562f2d31fd57f2464e56ae96ac4da23463567da766d196f1",
+        "clock": 660,
+        "revision": 692,
+        "bytes": 1823744,
+        "statuses": [
+          {
+            "id": "starter-customer",
+            "status": "exited",
+            "scenario": "smb"
+          },
+          {
+            "id": "next-1-customer",
+            "status": "exited",
+            "scenario": "smb"
+          },
+          {
+            "id": "next-2-customer",
+            "status": "exited",
+            "scenario": "enterprise"
+          },
+          {
+            "id": "next-3-customer",
+            "status": "exited",
+            "scenario": "enterprise"
+          },
+          {
+            "id": "next-4-customer",
+            "status": "active",
+            "scenario": "government"
+          }
+        ]
+      },
+      "metrics": {
+        "inspect": {
+          "medianMs": 142.2,
+          "p95Ms": 156.2,
+          "samplesMs": [
+            156.2,
+            142.2,
+            144.5,
+            131.6,
+            136.6
+          ]
+        },
+        "model": {
+          "medianMs": 131,
+          "p95Ms": 135.4,
+          "samplesMs": [
+            135,
+            135.4,
+            131,
+            124,
+            129.3
+          ]
+        },
+        "render": {
+          "medianMs": 214.1,
+          "p95Ms": 217,
+          "samplesMs": [
+            216.1,
+            217,
+            214.1,
+            206.7,
+            209.5
+          ]
+        },
+        "save": {
+          "medianMs": 6.6,
+          "p95Ms": 7.2,
+          "samplesMs": [
+            7.2,
+            6.6,
+            6.8,
+            6.6,
+            6.4
+          ]
+        },
+        "restore": {
+          "medianMs": 186,
+          "p95Ms": 198.7,
+          "samplesMs": [
+            198.7,
+            185.6,
+            186.2,
+            181.4,
+            186
+          ]
+        },
+        "validate": {
+          "medianMs": 87.3,
+          "p95Ms": 94.5,
+          "samplesMs": [
+            90.6,
+            84.7,
+            94.5,
+            87.3,
+            87.3
+          ]
+        },
+        "dispatch1": {
+          "medianMs": 192.7,
+          "p95Ms": 201.4,
+          "samplesMs": [
+            201.4,
+            190.8,
+            188.6,
+            196.6,
+            192.7
+          ]
+        },
+        "dispatch8": {
+          "medianMs": 1495.8,
+          "p95Ms": 1582.7,
+          "samplesMs": [
+            1582.7,
+            1488.7,
+            1509.3,
+            1495.6,
+            1495.8
+          ]
+        },
+        "worker1": {
+          "medianMs": 355.1,
+          "p95Ms": 362.6,
+          "samplesMs": [
+            355.7,
+            350.2,
+            362.6,
+            355.1,
+            348.2
+          ]
+        },
+        "worker8": {
+          "medianMs": 2754.3,
+          "p95Ms": 2765.4,
+          "samplesMs": [
+            2765.4,
+            2762.8,
+            2754.3,
+            2752.8,
+            2727.7
+          ]
+        }
+      },
+      "tickBudget": {
+        "normalMs": 2000,
+        "fastMs": 250
+      },
+      "pipelineEstimateMedianMs": 794.1,
+      "budgetShare": {
+        "normal": 0.397,
+        "fast": 3.176
+      },
+      "note": "Pipeline estimate sums separate medians for a one-minute tick. worker8 is eight fresh sequential workers, matching the runtime worker lifecycle. Actual frame pacing and rendering may differ."
+    }
+  }
+}

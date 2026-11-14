@@ -20,3 +20,11 @@ test('AC-SOC-636 rendered transport buttons and SVG paths share positions; camer
  w.document.body.innerHTML=w.SOCProviderCanvas.render(model,view);assert.equal(w.document.querySelectorAll('.provider-resource-node').length,39);assert.equal(w.document.querySelectorAll('.provider-transport-link-node').length,3);const labels=[...w.document.querySelectorAll('.provider-transport-link-node')].map(n=>n.getAttribute('aria-label'));assert.equal(new Set(labels).size,3);
  const primary=w.document.querySelector('path[data-id="customer:transport-path:primary"]'),head=w.document.querySelector('button[data-id="customer:transport-site:head"]'),branch=w.document.querySelector('button[data-id="customer:transport-site:branch"]');const pos=n=>[parseFloat(n.style.getPropertyValue('--x')),parseFloat(n.style.getPropertyValue('--y'))];assert.equal(primary.getAttribute('d'),`M${pos(head).join(' ')} L${pos(branch).join(' ')}`);assert.match(w.document.querySelector('.provider-geography').getAttribute('style'),/--camera-x:12px;--camera-y:-14px;--zoom:1/);assert.equal(JSON.stringify({model,view}),before);dom.window.close();
 });
+test('map legend explains the actual line states for location, service and workload views',()=>{
+ const dom=boot(),w=dom.window,model={customers:[{id:'customer',name:'Orchard',market:'au-sydney',services:[{id:'room',name:'Room',observed:{ready:true}}]}],projects:[]},view={layer:'services',selection:{customerId:'customer'},viewport:{width:390,height:600},camera:{x:0,y:0,zoom:1}},before=JSON.stringify(model);
+ const legend=()=>{w.document.body.innerHTML=w.SOCProviderCanvas.render(model,view);return w.document.querySelector('.provider-world-legend').textContent;};
+ assert.match(legend(),/green ready resources.*gold ready dependencies.*dashed paths pending/);
+ view.layer='workloads';assert.match(legend(),/green delivered work.*red failed work.*dark work in progress/);
+ view.layer='geography';assert.match(legend(),/Customer locations.*Select one/);
+ assert.equal(JSON.stringify(model),before,'map labels do not change simulation state');dom.window.close();
+});

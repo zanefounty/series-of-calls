@@ -62,9 +62,10 @@ function fixture(){
  state=until(state,s=>s.providerCampaign.mission.nextOpportunityAvailable,180);
  state=startCustomer(state,CUSTOMER,'next-1','au-sydney');
  state=completeOperation(state,'service-boundary-review',CUSTOMER);
- state=until(state,s=>s.providerCampaign.incidents.some(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),80);
+ state=until(state,s=>s.providerCampaign.status==='won',120);
+ state=SOC.dispatch(state,{type:'provider',command:{action:'continue-career'}});
+ state=until(state,s=>s.providerCampaign.incidents.some(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.activatedAt!==null),180);
  state=until(state,s=>s.providerCampaign.incidents.some(i=>i.customerId===CUSTOMER&&i.resource==='carrier'&&i.resolvedAt!==null),30);
- state=until(state,s=>s.clock>=252,80);
  cachedFixture=clone(state);
  return state;
 }

@@ -30,6 +30,33 @@ function opening(withProduct=true){
 function offer(s){for(const j of s.providerCampaign.jobs.filter(j=>j.handoffPlan&&!j.handoff&&j.status==='pending')){const request={action:'handoff-case',customerId:CUSTOMER,jobId:j.id,connectorId:'social-messaging'},q=SOC.provider.quote(s,request);if(!q.blockers.length)return {job:j,request,q};}return null;}
 function worker(s,c){let result;const context={postMessage:r=>{result=r;},setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);context.onmessage({data:{id:1,state:clone(s),command:c}});assert.equal(result.error,undefined);return clone(result.state);}
 
+test('AC-SOC-893 a fast Provider batch stops at the first real queued handoff choice and replays in the Worker',()=>{
+ let s=opening(),before=null,single=null;
+ for(let n=0;n<160;n++){
+  before=s;single=SOC.dispatch(before,{type:'advance',minutes:1});
+  if(single.providerCampaign.jobs.some(j=>j.status==='pending'&&j.handoffPlan&&!j.handoff))break;
+  s=tick(before);
+ }
+ assert.ok(single.providerCampaign.jobs.some(j=>j.status==='pending'&&j.handoffPlan&&!j.handoff),'the authored choice actually arrived');
+ const command={type:'advance',minutes:8,stopOnProviderHandoff:true},batch=SOC.dispatch(before,command);
+ assert.equal(batch.clock,single.clock,'batch stops after the first choice minute');
+ for(const key of ['providerCampaign','portfolio','business'])assert.deepEqual(batch[key],single[key],`${key} must match a one-minute dispatch`);
+ assert.deepEqual(worker(before,command),batch,'the serialized Worker follows the same stop');
+ assert.deepEqual(SOC.restore(JSON.stringify(batch)),batch);
+ for(const invalid of [false,0,'true'])assert.throws(()=>SOC.dispatch(before,{...command,stopOnProviderHandoff:invalid}),/INVALID_PROVIDER_HANDOFF_STOP/);
+ assert.throws(()=>SOC.dispatch(SOC.create({scenario:'smb'}),command),/INVALID_PROVIDER_HANDOFF_STOP/);
+});
+
+test('AC-SOC-894 Worker inspection is the same pure Provider projection as the accepted state',()=>{
+ const s=opening(false),command={type:'advance',minutes:2,stopOnProviderHandoff:true,expectedRevision:s.revision},before=JSON.stringify(s),reply={};
+ const context={postMessage:value=>Object.assign(reply,value),setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(SOC.workerSource(),context);
+ context.onmessage({data:{id:17,state:clone(s),command}});
+ assert.equal(reply.error,undefined);assert.equal(reply.id,17);assert.equal(reply.revision,s.revision);
+ assert.deepEqual(clone(reply.state),SOC.dispatch(s,command));
+ assert.equal(JSON.stringify(reply.inspection),JSON.stringify(SOC.provider.inspect(clone(reply.state))));
+ assert.equal(JSON.stringify(s),before,'Worker projection does not mutate the submitted save');
+});
+
 test('AC-SOC-686 paid Provider hands one authored queued voice case to a real human digital leg without duplicate obligation or billing',()=>{
  let s=opening();s=until(s,s=>!!offer(s),160);const {job,request,q}=offer(s),before=clone(s),cash=s.business.balance.cash,offered=s.providerCampaign.customers[0].metrics.offered;
  assert.equal(q.setupCents,0);assert.deepEqual(q.commercial.variablePrices,{voiceCentsPerMinute:50,messageCentsPerDelivery:75});
@@ -60,5 +87,26 @@ test('AC-SOC-687 actual unpaid and mandatory Provider voice cases refuse handoff
  assert.throws(()=>command(s,{...request,quoteRevision:s.revision}),/PROVIDER_QUOTE_BLOCKED/);assert.equal(JSON.stringify(s),before);
  const unknown=SOC.provider.quote(s,{...request,customerId:'another-customer'});assert.ok(unknown.blockers.includes('PROVIDER_CASE_HANDOFF_JOB_REQUIRED'));
  const wrong=SOC.provider.quote(s,{...request,connectorId:'arbitrary-channel'});assert.ok(wrong.blockers.includes('PROVIDER_CASE_HANDOFF_REQUEST'));
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+});
+
+test('AC-SOC-889 scoped handoff policy re-quotes and dispatches an eligible queued case',()=>{
+ let s=opening(),first=until(s,s=>!!offer(s),160);s=first;
+ const config={action:'configure-handoff-policy',customerId:CUSTOMER,enabled:true,minMinutesRemaining:1,maxPerPeriod:1,maxOpenDigital:1,quoteRevision:s.revision};
+ s=command(s,config);assert.equal(SOC.provider.inspect(s).customers[0].handoffPolicy.enabled,true);
+ assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
+ const step={type:'advance',minutes:1};assert.deepEqual(worker(s,step),SOC.dispatch(SOC.restore(JSON.stringify(s)),step));
+ const handed=s.providerCampaign.jobs.filter(j=>j.customerId===CUSTOMER&&j.handoff);
+ assert.equal(handed.length,1);assert.equal(handed[0].caseId,offer(first).job.caseId);
+ assert.ok(s.providerCampaign.events.some(e=>e.code==='CUSTOMER_CASE_HANDED_OFF'&&e.jobId===handed[0].id));
+ s=SOC.dispatch(s,step);assert.equal(s.providerCampaign.jobs.filter(j=>j.customerId===CUSTOMER&&j.handoff).length,1);
+ const malformed=clone(s);malformed.providerCampaign.handoffPolicies[0].maxOpenDigital=99;assert.throws(()=>SOC.restore(JSON.stringify(malformed)),/INVALID_PROVIDER_HANDOFF_POLICY/);
+});
+
+test('AC-SOC-890 policy respects deadline guard, disabled state and stale configuration',()=>{
+ let s=opening();s=until(s,s=>!!offer(s),160);const request={action:'configure-handoff-policy',customerId:CUSTOMER,enabled:true,minMinutesRemaining:20,maxPerPeriod:1,maxOpenDigital:1,quoteRevision:s.revision};
+ assert.throws(()=>command(SOC.dispatch(s,{type:'advance',minutes:1}),request),/STALE_PROVIDER_QUOTE/);
+ s=command(s,request);s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(s.providerCampaign.jobs.filter(j=>j.handoff).length,0);
+ s=command(s,{...request,enabled:false,minMinutesRemaining:1,quoteRevision:s.revision});s=SOC.dispatch(s,{type:'advance',minutes:1});assert.equal(s.providerCampaign.jobs.filter(j=>j.handoff).length,0);
  assert.deepEqual(SOC.restore(JSON.stringify(s)),s);
 });

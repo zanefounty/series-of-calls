@@ -8,6 +8,7 @@ Updated 4 November 2026. This is an incomplete, synthetic training preview. The 
 | [Local MCP](MCP.md) | Separate communications and SP interfaces, actual tools and safe synthetic examples |
 | [Development workflow](DEVELOPMENT_WORKFLOW.md) | Behaviour slices, tests, evidence, browser checks and handoff |
 | [Agent workflow](AGENT_WORKFLOW.md) | Repository skill, Codex/Claude roles and invocation examples |
+| [Game-design research](GAME_DESIGN_RESEARCH.md) | Dated primary methods, reviewed online skills and the Codex gameplay extension |
 | [Codex setup](CODEX_SETUP.md) | Project configuration, current client requirements, diagnostics and relaunch steps |
 | [Restart handoff](RESTART_HANDOFF.md) | Verified changes, preserved failures and first work after relaunch |
 | [Research gameplay intake](RESEARCH_GAMEPLAY_INTAKE.md) | Triage of 75 archive proposals and their path into future gameplay |

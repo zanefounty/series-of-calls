@@ -1,0 +1,4 @@
+interface:
+  display_name: "Series of Calls game design"
+  short_description: "Design decisions, economies and playable UC stories"
+  default_prompt: "Use $soc-game-design to turn one Series of Calls gameplay problem into a testable player decision and implementation brief."

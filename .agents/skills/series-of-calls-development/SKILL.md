@@ -13,6 +13,8 @@ Examples in the workflow guide are invocation examples, not additional assignmen
 
 ## Select the workflow
 
+- **Design gameplay:** use [soc-game-design](../soc-game-design/SKILL.md) for decisions, balance, progression, UC/CC careers, story and repetitive setup. Define the player consequence and a meaningful alternative before expanding mechanics; ordinary copy or dependency edits do not need this workflow.
+- **Review playability:** use [soc-playtest](../soc-playtest/SKILL.md) for paired outcomes, complete visible journeys and human-pilot interpretation. Separate command execution, UI activations and actual participant evidence.
 - **Build or repair:** establish source IDs, existing behaviour and a failing outcome; implement through the shared SOC command boundary; exercise a valid solution, a meaningful failure and recovery. Use `docs/agents/builder.md`.
 - **Test or audit:** verify observable state transitions, evidence inputs and real test results independently. Use `docs/agents/verifier.md`. Never edit a receipt to manufacture a pass.
 - **Research or mapping:** use `docs/RESEARCH_GAMEPLAY_INTAKE.md` and `docs/agents/research.md`. Historical mailing-list claims remain historical; a catalogue proposal is not an accepted requirement.

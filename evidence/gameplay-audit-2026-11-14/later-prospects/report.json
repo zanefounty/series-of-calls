@@ -1,0 +1,46 @@
+{
+  "clock": 300,
+  "saveOrigin": "validated SOC dispatch, imported into browser for diagnostic UI review",
+  "runs": [
+    {
+      "profile": "desktop",
+      "offers": [
+        {
+          "id": "next-2",
+          "visible": true,
+          "cardText": "Harbour Health service desk 2 · narrow launch workload\nAvailable · expires at minute 480\nA$2,600 per period · 16 voice calls · 8 digital cases · 2 scheduled voice overlap · 8 min response · expires at minute 480Compare"
+        },
+        {
+          "id": "next-2-a",
+          "visible": true,
+          "cardText": "Harbour Health service desk 2 · short response workload\nAvailable · expires at minute 450\nA$3,000 per period · 16 voice calls · 8 digital cases · 2 scheduled voice overlap · 5 min response · expires at minute 450Compare"
+        }
+      ],
+      "errors": [],
+      "quote": "×\n\nCOSTED QUOTE\n\nHarbour Health service desk 2 · short response workload\n\nA price of A$2,850 or less (5% below this offer) reduces renewal evidence from two qualified full periods to one of the last three. Current price: A$3,000; revenue given up: A$0 each period. Service failures still earn credits and three consecutive failures still end the contract.\n\nRetail quote / period (A$)\nCheck customer acceptance\nComplete plan setup (all three stages)\nA$10,000\nComplete supplier commitment / period\nA$720\nMinimum full supplier commitment\nA$12,160\nSetup commitment\nA$7,000\nRecurring / period\nA$350\nVariable usage rates\nA$0.50/voice min · A$0.75/message\nCash after commitment\nA$5,314.84\nDelivery estimate\n8 sim min\nStaff effort\n1 engineers + 0 support × 8 min\nCustomer offer expires\nMinute 450\nMinimum term\n3 periods\nWith this commitment · before usage\nA$1,710\nConditional full-plan forecast · not guaranteed\nA$4,250\n\nCustomer promise: 22 of 24 cases within 5 minutes.\n\nIncluded in this stage: identity, access, phone, desk, people, local. Carrier and partner stages must also be purchased before service can start.\n\nExiting a customer stops new demand. Purchased supplier stages remain payable for their quoted minimum term.\n\nCommit purchaseCancel",
+      "quoteFocus": true,
+      "horizontalOverflow": false
+    },
+    {
+      "profile": "phone",
+      "offers": [
+        {
+          "id": "next-2",
+          "visible": true,
+          "cardText": "Harbour Health service desk 2 · narrow launch workload\nAvailable · expires at minute 480\nA$2,600 per period · 16 voice calls · 8 digital cases · 2 scheduled voice overlap · 8 min response · expires at minute 480Compare"
+        },
+        {
+          "id": "next-2-a",
+          "visible": true,
+          "cardText": "Harbour Health service desk 2 · short response workload\nAvailable · expires at minute 450\nA$3,000 per period · 16 voice calls · 8 digital cases · 2 scheduled voice overlap · 5 min response · expires at minute 450Compare"
+        }
+      ],
+      "errors": [],
+      "quote": "×\n\nCOSTED QUOTE\n\nHarbour Health service desk 2 · short response workload\n\nA price of A$2,850 or less (5% below this offer) reduces renewal evidence from two qualified full periods to one of the last three. Current price: A$3,000; revenue given up: A$0 each period. Service failures still earn credits and three consecutive failures still end the contract.\n\nRetail quote / period (A$)\nCheck customer acceptance\nComplete plan setup (all three stages)\nA$10,000\nComplete supplier commitment / period\nA$720\nMinimum full supplier commitment\nA$12,160\nSetup commitment\nA$7,000\nRecurring / period\nA$350\nVariable usage rates\nA$0.50/voice min · A$0.75/message\nCash after commitment\nA$5,314.84\nDelivery estimate\n8 sim min\nStaff effort\n1 engineers + 0 support × 8 min\nCustomer offer expires\nMinute 450\nMinimum term\n3 periods\nWith this commitment · before usage\nA$1,710\nConditional full-plan forecast · not guaranteed\nA$4,250\n\nCustomer promise: 22 of 24 cases within 5 minutes.\n\nIncluded in this stage: identity, access, phone, desk, people, local. Carrier and partner stages must also be purchased before service can start.\n\nExiting a customer stops new demand. Purchased supplier stages remain payable for their quoted minimum term.\n\nCommit purchaseCancel",
+      "quoteFocus": true,
+      "horizontalOverflow": false
+    }
+  ],
+  "browser": "157.0.8103.15",
+  "status": "passed"
+}

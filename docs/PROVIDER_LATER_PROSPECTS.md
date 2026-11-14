@@ -27,7 +27,7 @@ The funded premium earns A$464 more in this settled period than the lean route, 
 
 ## Remaining playability questions
 
-- A real visible-control browser journey still needs to show whether a player can find and compare the two leads within the expiry window, on desktop and phone. The generated offer names may need a clearer distinction after that review.
+- A Chromium diagnostic imported the validated minute-300 checkpoint and used visible Deals, Compare and quote controls at 1366px and 390px. Both leads were present, the premium quote took keyboard focus, and neither viewport overflowed. [Screenshots and raw report](../evidence/gameplay-audit-2026-11-14/later-prospects/README.md) preserve the observation. This establishes the controls at the checkpoint; a complete visible start-to-continuation journey and uncoached comprehension remain to be tested. The generated offer names may need a clearer distinction after that review.
 - Run a longer paired portfolio horizon, including renewal and churn, to see whether the premium's period benefit repays its cash commitment and whether service failure changes the next opportunity.
 - Run the uncoached human pilot in `docs/GAMEPLAY_PILOT_PROTOCOL.md`. No human participants contributed to this audit, and the comparison does not establish comprehension or enjoyment.
 

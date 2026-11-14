@@ -1,5 +1,5 @@
 {
-  "sha": "b2366ed26018f957309292d04adf5d6e76a89c65",
+  "sha": "e0671c02bebcdf390736f12bd0b803d698df14a2",
   "tree": [
     {
       "path": ".claude/skills/add-strings/SKILL.md",
@@ -12,22 +12,22 @@
       "path": ".claude/skills/edit-the-game/SKILL.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "7dc75ddb383add6b2865f70e48d1393fceb8549d",
-      "size": 4376
+      "sha": "aca2564ec25e98d9c9243116b4c427daebd79ea9",
+      "size": 5295
     },
     {
       "path": ".claude/skills/gameplay-rules/SKILL.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "b25899180d191f2714a252622482f9e5e4810f6e",
-      "size": 9163
+      "sha": "d6fba4b684723a1905b69086fc71876b94e6310d",
+      "size": 14284
     },
     {
       "path": ".claude/skills/github-pages/SKILL.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "205db5b43b08a075c13e93239f0ccf45be513228",
-      "size": 4252
+      "sha": "52010f07ee46f8c8b13cd53c77a28f7c83082cb7",
+      "size": 4889
     },
     {
       "path": ".claude/skills/performance/SKILL.md",
@@ -40,15 +40,22 @@
       "path": ".claude/skills/release/SKILL.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "509d3fb177615bbf2bf652916015b37854fc4520",
-      "size": 5686
+      "sha": "157d3c1a2e9c4e38879726597c0fe7e0a125c6c1",
+      "size": 5940
     },
     {
       "path": ".claude/skills/write-tests/SKILL.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "efe406c8e20804268151c041aa330f711ad0bde7",
-      "size": 2728
+      "sha": "33f7aa9b779e8e25c2002c17b3c9fd62f659bd74",
+      "size": 3904
+    },
+    {
+      "path": ".dockerignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbf54631e853b4e7f797abad7eab9f84a5ab10ee",
+      "size": 270
     },
     {
       "path": ".gitattributes",
@@ -93,6 +100,13 @@
       "size": 514
     },
     {
+      "path": ".github/dependabot.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48e0a5eb35c6d86e3fca4ba8845e1c49aa9a867d",
+      "size": 1110
+    },
+    {
       "path": ".github/pull_request_template.md",
       "mode": "100644",
       "type": "blob",
@@ -103,50 +117,57 @@
       "path": ".github/workflows/auto-release.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "29bfba0eec4f58be8573a7bcf442d02039dcda73",
-      "size": 3062
+      "sha": "765105b503963d7c848d07d0f62115b5e0412fb6",
+      "size": 5251
     },
     {
       "path": ".github/workflows/ci.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "8bb0ed762174ab3283d02529c87b3ccae33b2c1d",
-      "size": 1970
+      "sha": "a70d674b8828955e7264bebf88b7a6a9e43e0a9d",
+      "size": 5589
     },
     {
       "path": ".github/workflows/claude.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "8ff912ca66c3f77ea6f95b519fe33f9707c317b6",
-      "size": 1151
+      "sha": "10913c4e7d3c15245233d3d4bf339ca2b57b03ac",
+      "size": 1247
+    },
+    {
+      "path": ".github/workflows/docker.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "434307e5a342cce5f74675353d44dbff495eff48",
+      "size": 7820
     },
     {
       "path": ".github/workflows/perf-comment.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "2f6c28689324363aa1458317db889d388c2974e9",
-      "size": 1824
+      "sha": "a214fff1d5d14f8755911b86110520fa3aa155fe",
+      "size": 2042
     },
     {
       "path": ".github/workflows/perf.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "48c05e4dc13838fc2d0880cfbb6787fe894627d4",
-      "size": 2073
+      "sha": "f2657ab94191bf681c1736a875f5813145de31c8",
+      "size": 2214
     },
     {
       "path": ".github/workflows/release.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "c9e813feed98baaaf646051d381e16d6f9eee08f",
-      "size": 6359
+      "sha": "213596f035bde3d72e07bf73f1fd0575536fe36e",
+      "size": 8241
     },
     {
       "path": ".github/workflows/weekly-puzzle.yml",
       "mode": "100644",
       "type": "blob",
-      "sha": "fdff9347ab34ff7794e7998ceaca8a24f2c589b1",
-      "size": 4603
+      "sha": "6cfa3d5764495ecf0b210f324d49fcabc67171f5",
+      "size": 4697
     },
     {
       "path": ".gitignore",
@@ -159,15 +180,15 @@
       "path": "CHANGELOG.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "fbebed3fa107c5bcf198c736eb7db87395d52d57",
-      "size": 103360
+      "sha": "db3d46743823e27bc53c2ad287cd7c456572dab1",
+      "size": 125460
     },
     {
       "path": "CLAUDE.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "e383fa177560f88adce0e93a1c06ef319fd7cf46",
-      "size": 6817
+      "sha": "439c4a101ded5b3b55c44018a48986054c8ebf6d",
+      "size": 7051
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -194,29 +215,43 @@
       "path": "README.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "cc6e3fba967502f3fa07de6b3360d136d5a99219",
-      "size": 4088
+      "sha": "ec085fafe294c98776cd0e47c632b42401d727df",
+      "size": 4144
+    },
+    {
+      "path": "docker/Dockerfile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ce513085697b3605cc3ddcfbb151b4d0244b1ed",
+      "size": 1431
+    },
+    {
+      "path": "docker/docker-entrypoint.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "355af5ae1055b6fe63d902837ab62c4408241e9a",
+      "size": 2403
     },
     {
       "path": "docs/ARCHITECTURE.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "97294491157195a035cce6cbacb72f7bce79678b",
-      "size": 22769
+      "sha": "dc99967f922b699f41a6fe125744c7f669facf83",
+      "size": 31141
     },
     {
       "path": "docs/MCP.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "ffacde0da3f6b3a02fda7db29cf97e5b1cd3836e",
-      "size": 6073
+      "sha": "a93ef9389c57b210661265847b51a2f8b143fc4a",
+      "size": 17528
     },
     {
       "path": "docs/adr/0001-github-pages-only.md",
       "mode": "100644",
       "type": "blob",
-      "sha": "039db578d2ba6e982687a8093aa350d61c5d2705",
-      "size": 3294
+      "sha": "d435457541a4dcec50a0add92e3c4c7bd63bbd4c",
+      "size": 3580
     },
     {
       "path": "docs/adr/0002-one-page-assembled-at-build.md",
@@ -233,18 +268,39 @@
       "size": 4227
     },
     {
+      "path": "docs/adr/0004-dev-only-code.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6244334e4178393b2c734da285e9154cbc6c1624",
+      "size": 3020
+    },
+    {
+      "path": "docs/plans/pie-in-the-sky.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f516eac5a098d381c36ef5099ac291f94561f513",
+      "size": 7687
+    },
+    {
       "path": "package-lock.json",
       "mode": "100644",
       "type": "blob",
-      "sha": "1696905660d10512fe44b5a77e0e4c34cffa9907",
-      "size": 29783
+      "sha": "ecce01c9334f4dc0f69b5e154b2aa56f40ebd1f9",
+      "size": 16928
     },
     {
       "path": "package.json",
       "mode": "100644",
       "type": "blob",
-      "sha": "d59e08ecdecfc962bb63185cacd04d077fb2dea9",
-      "size": 888
+      "sha": "105a19a984c30a120cd9e88a69131849408e19e8",
+      "size": 1094
+    },
+    {
+      "path": "scripts/agent/relay.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a596f9ac7b048cbc6ad7c5bda6145bc60db6377e",
+      "size": 6766
     },
     {
       "path": "scripts/build.js",
@@ -257,22 +313,29 @@
       "path": "scripts/dev.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "aaa403ba64270a511c38c133587fb7c29693e223",
-      "size": 3104
+      "sha": "2f4fab5cb0f7945d5e5d59edcee0c46c0c796e59",
+      "size": 5127
+    },
+    {
+      "path": "scripts/gpu-bench.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59ed48269e78dd0955f79ba22d5058aa461cab2f",
+      "size": 5997
     },
     {
       "path": "scripts/i18n-add.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "27468e5ab417b241387f01bfb9ad074ae1ae7068",
-      "size": 3890
+      "sha": "027b3db4bf7e327501237e283d6f4526fc64e93a",
+      "size": 3907
     },
     {
       "path": "scripts/i18n-check.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8d8e6571f6042e2f365037ef88ea0bcab9933d0a",
-      "size": 8831
+      "sha": "7db2676e079b97cd5a0b2b1f43c98a89fabc7971",
+      "size": 9282
     },
     {
       "path": "scripts/legacy/labels.js",
@@ -320,36 +383,50 @@
       "path": "scripts/lib/fuzz-page.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4586d55e749666ea71ca97886e84b5d54a92b245",
-      "size": 13901
+      "sha": "5b05a14a8a31a9458355bf9518ec8f32f5ffca86",
+      "size": 15849
     },
     {
-      "path": "scripts/lib/mcp-commands.js",
+      "path": "scripts/lib/gpu-bench-client.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "eac4c1d9785c561a2c5c66f2fcaf8f3bc87aa711",
-      "size": 66038
+      "sha": "0d85b4bf0d4fdf6d08a267d29e150d4481fc91e5",
+      "size": 14397
+    },
+    {
+      "path": "scripts/lib/js-literal.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25f9f18a252a16731c0bc934c0174f41dc6cf083",
+      "size": 458
+    },
+    {
+      "path": "scripts/lib/mcp-browser.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f70e9aa3dd07d148446213aed054e6eefe954487",
+      "size": 3409
     },
     {
       "path": "scripts/lib/mcp-game.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "fbf098343d922bae3f7177a27e04d61a2b7b0661",
-      "size": 15656
+      "sha": "cf618000c77f548db1d431c740cf6c95a23acc8b",
+      "size": 21446
     },
     {
-      "path": "scripts/lib/mcp-page.js",
+      "path": "scripts/lib/mcp-headless.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2eb6717ed2e76ba95ee0343adc9f2b1daa9a7264",
-      "size": 33858
+      "sha": "8a77698ef4d8924fb2791d47a74a2978901b20bf",
+      "size": 2702
     },
     {
       "path": "scripts/lib/page.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "880af5c62a793f55fa8bc31079e08b17663fb025",
-      "size": 5528
+      "sha": "b905f261ebd8b872955f8fedb87340b880c6aefb",
+      "size": 6228
     },
     {
       "path": "scripts/lib/puzzle-solver.js",
@@ -359,46 +436,60 @@
       "size": 6760
     },
     {
+      "path": "scripts/lib/relay-client.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "410857b45c2dc60e526858f00c95297bcb8b0f57",
+      "size": 3891
+    },
+    {
       "path": "scripts/lib/route-fuzz.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b5b5eb23e42dee7c9c24f4faaeb24617e60707f8",
-      "size": 11208
+      "sha": "1c2a0642f27ea9d8f1af010b0157ae973fbee064",
+      "size": 13456
     },
     {
       "path": "scripts/lib/scenario-bot.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "bf811ea6a1fe4eaef0f7f0d413dc6ffd2d523ea6",
-      "size": 5340
+      "sha": "8c0bf6899d8d71f10a87c509f95d62d3294614fc",
+      "size": 5359
     },
     {
       "path": "scripts/lib/scenario-ref.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6164e8f4900edb20c7f41e830a215bf75746645a",
-      "size": 7880
+      "sha": "da5da927760fca2d8dd2b00817c6a1cdd7f595dd",
+      "size": 8175
+    },
+    {
+      "path": "scripts/lib/timings-reporter.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0341ee6011fe9ecbd3e61a1ce389fb101b3d1208",
+      "size": 936
     },
     {
       "path": "scripts/mcp.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "75f9d4b1358dde63a31d48b9b5cd8cf4ed382f70",
-      "size": 3931
+      "sha": "351e07f70e35ad7f51f8dcbd4bf59d8e562904a7",
+      "size": 16141
     },
     {
       "path": "scripts/perf-bench.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "272e9ac0256a365edd645c9aab7c9682c4caa53b",
-      "size": 8951
+      "sha": "62997f8d5806125c75e0c13c8a67e930878eca6d",
+      "size": 10334
     },
     {
       "path": "scripts/perf-browser.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "a8a7123bb2601abfcd7cf322f63cb45bd5e0ac3d",
-      "size": 5121
+      "sha": "545cd13f7d75e9d5a783d7b50585e6280314c5d7",
+      "size": 7495
     },
     {
       "path": "scripts/perf-fixture.js",
@@ -432,36 +523,36 @@
       "path": "scripts/test-timings.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1bf7d5e27da44ce2286d0fba89dac920967b434b",
-      "size": 1852
+      "sha": "ed8cf48b143db383152b564e783540cf7377e8a4",
+      "size": 3046
     },
     {
       "path": "scripts/test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2eb92f493f665df8c9266b1e2dad1f455940ea3f",
-      "size": 3191
+      "sha": "1232bd17e42540da77318f4ce6a34a896a652994",
+      "size": 5968
     },
     {
       "path": "scripts/weekly-architect.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1e916be0d610cc001b8a29c39bc19869a376cdff",
-      "size": 19690
+      "sha": "5985cd25bea9686f410f81158c2b9267c6f7ea05",
+      "size": 19647
     },
     {
       "path": "scripts/weekly-puzzle.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5a9a0a1a4c22935e8252b605b525eb89f6420f72",
-      "size": 29728
+      "sha": "26f64190bdfd836be4c104947f315a6cd697577c",
+      "size": 29685
     },
     {
       "path": "scripts/weekly-scenario.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "0f6785e91e9ab90501df82661b0f059a4f97f282",
-      "size": 22632
+      "sha": "859a0f3c151a4707cecfdda9946d1011ef241943",
+      "size": 22622
     },
     {
       "path": "site/404.html",
@@ -537,36 +628,36 @@
       "path": "site/i18n/de.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d0b673959c15937a0907b5e72ba052055cd7216f",
-      "size": 439085
+      "sha": "3d0e0a9bd1ced64d1f79e51f29ffed7e34f3a11f",
+      "size": 504569
     },
     {
       "path": "site/i18n/es.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4fb76075ce8c384c5fce4d56ae6577f9057e7774",
-      "size": 436355
+      "sha": "4348512ffb840f71fc57f5e62e5039403364edd8",
+      "size": 501439
     },
     {
       "path": "site/i18n/fr.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1c1d4b26ccf36c523610aba2b46ffbe79bd5d0bc",
-      "size": 456616
+      "sha": "a3c781379ed93b56a190c20d5346eef098f153d9",
+      "size": 524402
     },
     {
       "path": "site/i18n/it.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9b802e3f2d1e9aaed15234c9ce2061c3e8d84ad5",
-      "size": 436760
+      "sha": "0c57513a9051494b3755d1c4d3d3025888ec8a27",
+      "size": 501602
     },
     {
       "path": "site/i18n/pt.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "42ca139a892f18b6a25bfca5bf63b5a25761b351",
-      "size": 427864
+      "sha": "f915c7442366c6e046de49bb08737ab02eef63e1",
+      "size": 491948
     },
     {
       "path": "site/icon-192.png",
@@ -656,7 +747,7 @@
       "path": "site/scenarios/weekly/2026-W46.json",
       "mode": "100644",
       "type": "blob",
-      "sha": "1c03f83da238965a0ea89d275b37da21de74084a",
+      "sha": "ae2a07ae3efa4e94cf03592a9f78e154afb32d6f",
       "size": 474
     },
     {
@@ -688,6 +779,90 @@
       "size": 2398
     },
     {
+      "path": "src/agent/10-domains.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1b8a8f0ad568f97ce551bd3b62b848970b3b3e2",
+      "size": 6793
+    },
+    {
+      "path": "src/agent/20-commands.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de2324b7e788ed45dc1ca65dfacc912ecc501eb6",
+      "size": 57647
+    },
+    {
+      "path": "src/agent/30-docs.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83e7449f26dc378222ec58c737a030ed656ddb79",
+      "size": 15778
+    },
+    {
+      "path": "src/agent/40-read.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e767e2dbad1bb7c790ff141118fa947acbcd4b22",
+      "size": 16618
+    },
+    {
+      "path": "src/agent/50-screen.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42503c6a8dd4b626e88dc1e4097e6d84d4e5c736",
+      "size": 5600
+    },
+    {
+      "path": "src/agent/60-dispatch.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94957fd2d99c2ed1978db05003d6cc6adb10f2af",
+      "size": 8255
+    },
+    {
+      "path": "src/agent/70-time.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa7aee78807c2bcaa061fa2a3692f9076d2cc880",
+      "size": 5121
+    },
+    {
+      "path": "src/agent/75-mode.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0924eb7fae4118f28e181a3b9dd2b2cf8d81fe85",
+      "size": 6737
+    },
+    {
+      "path": "src/agent/80-relay.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0cd1ff95bad0ed3a8db1504c87e460c305d487b",
+      "size": 4997
+    },
+    {
+      "path": "src/agent/85-ticker.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fca70e5713a69da9e1479204e5db1fa095928aed",
+      "size": 2018
+    },
+    {
+      "path": "src/agent/90-facade.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "558d9b7a159d59adcd5b05a1ae494b0a06ba6801",
+      "size": 2803
+    },
+    {
+      "path": "src/agent/99-start.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7254460f26553cf9a7d633312549f1b16f590886",
+      "size": 229
+    },
+    {
       "path": "src/game/00-core/10-language.js",
       "mode": "100644",
       "type": "blob",
@@ -698,8 +873,8 @@
       "path": "src/game/00-core/20-analytics.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "3154d230b36dd2ed370bdf14b70421030a485a51",
-      "size": 1723
+      "sha": "b273f591008185d3e1239e91c61a9865a0ea2958",
+      "size": 1758
     },
     {
       "path": "src/game/10-catalog/10-economy.js",
@@ -726,29 +901,36 @@
       "path": "src/game/10-catalog/30-supply-chain.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8fc363be7f1f0b552b7b6262f06e814937adc784",
-      "size": 3822
+      "sha": "95b8863d90adce78ff64180b75f1f864ae0571e6",
+      "size": 3915
     },
     {
       "path": "src/game/10-catalog/40-ports.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1f6f6d16c06aa51271b5c57458954825642322d5",
-      "size": 3671
+      "sha": "c7b77892ebcee7896c94b4a8dc25a66eddfc2503",
+      "size": 4566
     },
     {
       "path": "src/game/10-catalog/50-dark-fiber.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f6286a95d76c798655acec250a4603c7a90e77e1",
-      "size": 4745
+      "sha": "3bd9c126a3badee3c6aeade7b3d97378587adc3f",
+      "size": 5325
     },
     {
       "path": "src/game/10-catalog/60-reach-and-subsea.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "e4bb4b1e00ae78b882a82b15ecb0f0f90346eaeb",
-      "size": 7332
+      "sha": "a00410dff4b13b5c36d1994496bc54fe90d4cf17",
+      "size": 8330
+    },
+    {
+      "path": "src/game/10-catalog/70-pie.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adb07dcf42e12f426b475ac32f43dc52a096bf54",
+      "size": 5822
     },
     {
       "path": "src/game/20-world/10-projection.js",
@@ -761,8 +943,8 @@
       "path": "src/game/20-world/20-landmasses.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d13fce0c00261274e7e244682d1d847072de499e",
-      "size": 16145
+      "sha": "f9e58bebcdcad048940f1ed7890e47fc72b010e7",
+      "size": 16480
     },
     {
       "path": "src/game/20-world/30-coastline.js",
@@ -775,29 +957,29 @@
       "path": "src/game/20-world/40-city-coords.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f1490c9f26642462511115343c20a44abbb9d246",
-      "size": 9086
+      "sha": "9d1fc605a7cd7cbf1a45df3796937492918b3818",
+      "size": 9321
     },
     {
       "path": "src/game/20-world/50-cities.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "70403af4118648762e31c64acbc3bbb669ffc3a2",
-      "size": 64578
+      "sha": "4c9d512b47cbb09886ec41b4c024486f973a5898",
+      "size": 66124
     },
     {
       "path": "src/game/20-world/55-city-pdb.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b1895f0d4ef73971c006a9192416c48f7cae6bae",
-      "size": 9057
+      "sha": "9cd64bb878814aa603fca443b9ddc8f88b3fcad6",
+      "size": 9436
     },
     {
       "path": "src/game/20-world/60-cables.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c27c18c8364bca5a8f289051c71014744c58d80e",
-      "size": 96903
+      "sha": "b0e1c331b3f576e150c67a80ec2dd2dc1c0a37ac",
+      "size": 97065
     },
     {
       "path": "src/game/20-world/70-cable-ships.js",
@@ -810,8 +992,8 @@
       "path": "src/game/30-networks/10-networks.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "295feb17238d8d48ec1749a8a0d2cbabc6e054ba",
-      "size": 33715
+      "sha": "728d2a93a4398ec4d5a08ca0a16698af6ef93d09",
+      "size": 33897
     },
     {
       "path": "src/game/30-networks/20-rival-exchanges.js",
@@ -824,15 +1006,15 @@
       "path": "src/game/30-networks/30-long-tail.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5cd0c7ce248e77c2c6e58c225f25f7293de00c1f",
-      "size": 17723
+      "sha": "2f2e5c4dbb826831353b1d039b3eba1a5e528d48",
+      "size": 17738
     },
     {
       "path": "src/game/30-networks/32-homegrown-eyeballs.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6d3ccbb00650607256221f8c8563721805898027",
-      "size": 36306
+      "sha": "2f079b2d47780fb1b2471cd35d8d1cb86281c844",
+      "size": 36671
     },
     {
       "path": "src/game/30-networks/35-glowball-sakura-lager.js",
@@ -842,25 +1024,32 @@
       "size": 1871
     },
     {
+      "path": "src/game/30-networks/38-france.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f978b23d362194f7ab6d9c0ebb8cafcc155c7a8",
+      "size": 1431
+    },
+    {
       "path": "src/game/30-networks/40-traffic-shares.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "88838875f4b54e604a42cde21f7bd237dd342b64",
-      "size": 3542
+      "sha": "3f525c443515721abea07afddfcfb70768d3966c",
+      "size": 3793
     },
     {
       "path": "src/game/40-progress/10-businesses.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "48a35e5b9c2e28eae25b4b11d642db70670617fc",
-      "size": 11306
+      "sha": "a79314ca2617f33aaa7b0c0c47a516f1f8590aea",
+      "size": 14155
     },
     {
       "path": "src/game/40-progress/20-goals.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9e4eaf3bb10ca5f127bd98ad20a5cea6e56e9a7d",
-      "size": 2521
+      "sha": "72624ce3607a7a6d0edfe5f3888245b951878401",
+      "size": 4121
     },
     {
       "path": "src/game/40-progress/30-rules.js",
@@ -873,29 +1062,29 @@
       "path": "src/game/50-state.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "53850bf65cbd97444221212be5d5a1ff7cc41805",
-      "size": 746
+      "sha": "63753028089c931e3c568927e69c2901a6c7ae22",
+      "size": 1134
     },
     {
       "path": "src/game/60-features/10-banks.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ae9e1727430c2489ad20b482e26210a5371ff8c0",
-      "size": 12468
+      "sha": "7795eb3d43699616c00692cf698c9afe833529a9",
+      "size": 14638
     },
     {
       "path": "src/game/60-features/20-scenarios.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "eedd60f8cd2b2edf9e671443dcb59367d7e44c0f",
-      "size": 10363
+      "sha": "9b8e15466d729d7b6eeccdf87080b82608fbcc33",
+      "size": 10556
     },
     {
       "path": "src/game/60-features/30-conferences.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "78e9a6d321f4bf52f1979ee19ea9738cfea78c71",
-      "size": 4765
+      "sha": "c3cc0eb96f30c39de9308bad88b52d15ba2b5d82",
+      "size": 4770
     },
     {
       "path": "src/game/60-features/35-capacity-deals.js",
@@ -908,15 +1097,57 @@
       "path": "src/game/60-features/36-specialist.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "37e7039add785e499b071456333b8ecdc97369de",
-      "size": 12111
+      "sha": "c5cb5690c93073b273fc57801a0ab14b852d7e51",
+      "size": 13950
+    },
+    {
+      "path": "src/game/60-features/37-cable-broker.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acb830f13b32f591e981f1dc8a64a543395e663e",
+      "size": 3930
+    },
+    {
+      "path": "src/game/60-features/37-customer-paths.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6eb4ae7763ac1b5bd12fb2addf1b1d595b57342",
+      "size": 8545
     },
     {
       "path": "src/game/60-features/37-fiber-broker.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "a0f0275b555d460e676623b0b1f12830d2dab38f",
-      "size": 3000
+      "sha": "ac03ceac83b2d48d3abd0dd2a9d010aac7277a2a",
+      "size": 2364
+    },
+    {
+      "path": "src/game/60-features/37-fiber-market.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6236f09f8f120adabc61ceb594774c62e172ee64",
+      "size": 18813
+    },
+    {
+      "path": "src/game/60-features/38-sales-desk.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a76a30f8c28bba48b3552a6a61fb96f87406a694",
+      "size": 8104
+    },
+    {
+      "path": "src/game/60-features/39-sales-auto.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "055f97e7f831e74efa34289341749846a1dbcb7b",
+      "size": 5186
+    },
+    {
+      "path": "src/game/60-features/39-sales-renewals.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb26161fefabcc3b1423b4d0daffcaca24831c65",
+      "size": 3549
     },
     {
       "path": "src/game/60-features/40-tutorial.js",
@@ -929,8 +1160,8 @@
       "path": "src/game/60-features/50-traceroute.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "cb354376d6e2467cb0dbe38c68c7534945e88647",
-      "size": 9993
+      "sha": "dcdcd87d326d14ad571ab2bc251e1fdc279d6df4",
+      "size": 14510
     },
     {
       "path": "src/game/60-features/60-share-card.js",
@@ -950,22 +1181,22 @@
       "path": "src/game/60-features/80-new-game.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "acaeda182848f536f6c09f85dcd7704b689aae8b",
-      "size": 855
+      "sha": "d21c56287beea932f0d49765a7979d3a67fd9fb4",
+      "size": 907
     },
     {
       "path": "src/game/60-features/85-pitcairn.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1497980fcb29ece5a52f8101b48650c73ac9d0e8",
-      "size": 558
+      "sha": "c220a47ab1b8c71486821a5fb13029cf9de93b9d",
+      "size": 1291
     },
     {
       "path": "src/game/60-features/90-automation.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "528c15ab89115cd04084d287b3240f379bb1db3b",
-      "size": 2768
+      "sha": "79ef23922b7c2ca4437c3a1e6f1a688aeb61cd2a",
+      "size": 3904
     },
     {
       "path": "src/game/60-features/90-puzzles-data.js",
@@ -978,8 +1209,8 @@
       "path": "src/game/60-features/92-puzzles.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9500c5770156ab28cf1d60fb42efe0e974cfa97b",
-      "size": 16600
+      "sha": "793fce261f1068f10368a3c41f487208de7017a0",
+      "size": 17940
     },
     {
       "path": "src/game/60-features/93-puzzles-weekly.js",
@@ -999,8 +1230,8 @@
       "path": "src/game/60-features/95-standing-orders.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "15f0e70ed76f3f91f848905eb1c43825e26874d0",
-      "size": 26411
+      "sha": "4071caa8126de2fe5a78083006d08f8bbb2135e3",
+      "size": 41048
     },
     {
       "path": "src/game/60-features/96-architect.js",
@@ -1031,11 +1262,53 @@
       "size": 7052
     },
     {
+      "path": "src/game/60-features/99-pie-in-the-sky.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dfe8ec3a089e9961e2c8c286bd39c1223771aa1",
+      "size": 17238
+    },
+    {
+      "path": "src/game/60-features/99-pie-jitters.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79d6a4efa8650551d36da6cca4373fd15d205ab0",
+      "size": 7279
+    },
+    {
+      "path": "src/game/60-features/99-pie-orbit-customers.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5012f290a4cd118947f73cf8b3b61f21f6ba9ebd",
+      "size": 4322
+    },
+    {
+      "path": "src/game/60-features/99-pie-patchy.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e76b4b0cf8301d43d662505900c3e0d7ae336064",
+      "size": 2186
+    },
+    {
+      "path": "src/game/60-features/99-pie-sales.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7b3973d5aff08dc2f44f5ec3a5004889eddd61d",
+      "size": 4007
+    },
+    {
+      "path": "src/game/60-features/99-pie-subsidies.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cd366d4c615317f1e1bfebb2511738341231cf7",
+      "size": 14114
+    },
+    {
       "path": "src/game/70-rules/10-helpers.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "891a223683f1fd870e55fa9dfc8956c58cd15783",
-      "size": 3553
+      "sha": "2b1f47f511697c1a8b9c9fcd6ff70d8624b5ffc2",
+      "size": 4257
     },
     {
       "path": "src/game/70-rules/20-exchanges.js",
@@ -1055,15 +1328,15 @@
       "path": "src/game/70-rules/35-pni-orders.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "e0c428c5d9be652dbeb9871f94cac9a510a79b59",
-      "size": 2619
+      "sha": "30a7918eb7092affac7966e43abe05b7c8bd2da1",
+      "size": 4093
     },
     {
       "path": "src/game/70-rules/38-pni-value.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "193e8bc1953caeab5eeaa3763d08298fb6eb462b",
-      "size": 3901
+      "sha": "5d5d22c2d5a1864ca70ba1ae90ea9e5db311824d",
+      "size": 5580
     },
     {
       "path": "src/game/70-rules/40-peering-desk.js",
@@ -1090,15 +1363,15 @@
       "path": "src/game/70-rules/60-de-kicks.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d194641f625ff4127dfe7b369298286d089f9b46",
-      "size": 3681
+      "sha": "03438aa06e206b0a2afd4845cefcf0aa72f01e73",
+      "size": 4156
     },
     {
       "path": "src/game/70-rules/70-sold-out.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6ab07bc73baf0279c719e22a7ca2a40372849eaf",
-      "size": 3131
+      "sha": "2c0fb99658cadf9cbca0b9637eef37199a58949b",
+      "size": 3146
     },
     {
       "path": "src/game/70-rules/80-hot-ports-and-rank.js",
@@ -1118,22 +1391,22 @@
       "path": "src/game/70-rules/95-utilities.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5e3718c8a736468fa9cf3dae2393f238698a70cc",
-      "size": 3655
+      "sha": "b0070397d2994f8fffb354fc5eb7e2736b7e4bba",
+      "size": 4528
     },
     {
       "path": "src/game/80-simulation/10-dijkstra.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5b53685b5cccdb8460b0f82af294b6b74d9fbb40",
-      "size": 1971
+      "sha": "71cd4c461124cba2ac1ba51f97801dba586926aa",
+      "size": 3558
     },
     {
       "path": "src/game/80-simulation/20-routescript.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "574ea673e9be4132b039a757c79a80608c69ca79",
-      "size": 15372
+      "sha": "7e63919b8365dd1acf25443f1ad89b0825b3e64c",
+      "size": 15378
     },
     {
       "path": "src/game/80-simulation/25-ddos-flood.js",
@@ -1153,57 +1426,78 @@
       "path": "src/game/80-simulation/28-route-worker.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "57d9fdbdda1c99d0f5fb0caa986aee1725fed553",
-      "size": 5530
+      "sha": "d05ebfaa0666decdc2034afe6c7c8124edae71cd",
+      "size": 15711
     },
     {
       "path": "src/game/80-simulation/29-route-cache.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "7f134dce96d1343d78c3f58fb4abb9d84198f078",
-      "size": 5521
+      "sha": "a7340e66834e6f304bfc4bb02201a1ac28e89d49",
+      "size": 7028
+    },
+    {
+      "path": "src/game/80-simulation/29-route-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e14cdc09460183a8cd8ea71796fd14ff6dd04ae",
+      "size": 22399
     },
     {
       "path": "src/game/80-simulation/30-compute.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5353c91b82a8d8c74fdba7fbf55231cff5304beb",
-      "size": 39795
+      "sha": "031b330a5df27e232f45016f454f65e6edd90baa",
+      "size": 30298
+    },
+    {
+      "path": "src/game/80-simulation/35-pie-paths.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9126cf7712708b3287c7cc48da03f83ddb07c31d",
+      "size": 17164
     },
     {
       "path": "src/game/80-simulation/40-billing.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f2280050b6a2e354525cdb50caf418126a0cc4dd",
-      "size": 2210
+      "sha": "ddf16338a9d1ef9aa91c4c9c2ec04c8c605fd492",
+      "size": 2439
     },
     {
       "path": "src/game/80-simulation/50-sanitize.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "a8c6d75297b5bd7a6b7af5db76445f6b6a6ed6c2",
-      "size": 21489
+      "sha": "db35e34373117cc9d37d59280f8e7e36d80218c6",
+      "size": 23220
     },
     {
       "path": "src/game/80-simulation/60-requirements.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "53306c0cee4ec0692d3b75954e963337da1b320f",
-      "size": 9284
+      "sha": "f38fc77f69c68fc907ad2f21f00b6f0afd01f47d",
+      "size": 12073
     },
     {
       "path": "src/game/80-simulation/70-customers-and-events.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "3e512e14481d80f2ce6a7d798d17ad8c0fd24b77",
-      "size": 7237
+      "sha": "cf037a7f8091eac21597b50bd7656820c721c9b9",
+      "size": 7368
+    },
+    {
+      "path": "src/game/80-simulation/75-customer-lifecycle.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa9bc4cb7e6b0a190f5f595bbc5c109783448baf",
+      "size": 16491
     },
     {
       "path": "src/game/80-simulation/80-geography-and-latency.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "32173ba7cec6ef6129901382e7b2e09534c454c6",
-      "size": 7115
+      "sha": "1133d8362c1faf20380269d39e40687fde75c489",
+      "size": 11712
     },
     {
       "path": "src/game/80-simulation/90-sites-and-service.js",
@@ -1216,71 +1510,106 @@
       "path": "src/game/85-incidents/10-incidents-and-ddos.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "db254dcda54ff976b0e7bb53ceaf272cb429fad4",
-      "size": 16907
+      "sha": "f6eb999b6f5a5dc659e9aa6383efe1f66024938b",
+      "size": 17041
     },
     {
       "path": "src/game/85-incidents/20-failures.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "df141aa9b900533f6d00cd09bd8990721d3561ef",
-      "size": 25243
+      "sha": "38bc139abcc5472f671d92e0e1fd08c856432a60",
+      "size": 25932
     },
     {
       "path": "src/game/85-incidents/30-events.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b5bcfd38f04148ad5762f2a0c6a07292ab7460f6",
-      "size": 7571
+      "sha": "6c3ec2730a5e3db2b7412367535f665f19dd54ad",
+      "size": 7990
     },
     {
       "path": "src/game/85-incidents/40-chaos-monkey.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6798c3768da117c31422cb8b99fbd9441962a01b",
-      "size": 5320
+      "sha": "378530a2484bc3c8d1a234da8f68effad003d617",
+      "size": 5633
     },
     {
       "path": "src/game/85-incidents/50-cable-ships.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "02febde88109f9e1b2c242ffa0dd2d38caaf6c49",
-      "size": 9113
+      "sha": "d83ca6288f97ae155681ff036b11ae3e921b0de6",
+      "size": 9607
+    },
+    {
+      "path": "src/game/85-incidents/60-pie.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5407b5e15202548f542688f67ba705fe0a4ed888",
+      "size": 7903
+    },
+    {
+      "path": "src/game/85-incidents/65-pie-spats.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4d0ccea6ef6af59e93e3511bfa3f9949e682633",
+      "size": 14503
     },
     {
       "path": "src/game/88-days/10-day-tick.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d6cbaf74aa2f9cad397d400d92e3d75f5277c69c",
-      "size": 14078
+      "sha": "572e7ed940756dfadeb0b5fbf683089becf13a88",
+      "size": 17325
+    },
+    {
+      "path": "src/game/88-days/15-day-pace.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df8c5243d11109cae99a168432757db97d6f8891",
+      "size": 1525
+    },
+    {
+      "path": "src/game/88-days/15-traffic-volume.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0ae306458e6b8580c842b92df9343cdf4cd7acf",
+      "size": 1156
     },
     {
       "path": "src/game/88-days/20-badges.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "63f665053dc9a7339e8443bfda7ee1b2eb1b9bb1",
-      "size": 16392
+      "sha": "95db1c7d112467622705205357c096ba715fe90d",
+      "size": 18024
     },
     {
       "path": "src/game/90-actions/10-interface.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "17e2953646886b540d13b02d9487dd1ac74b23af",
-      "size": 7159
+      "sha": "7a0715ef0d9cfec8338be004d5746eed81eca4da",
+      "size": 7290
     },
     {
       "path": "src/game/90-actions/20-pops-transit-ix.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "32ff2f1c61aab53512d4c45008cc44892fd92fba",
-      "size": 7862
+      "sha": "5a74050d69730a7998eda41bacbadb9158b99427",
+      "size": 7926
+    },
+    {
+      "path": "src/game/90-actions/21-ix-downgrade.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efb9f79724eea2ee10b9face75ca9c8334b4b990",
+      "size": 986
     },
     {
       "path": "src/game/90-actions/30-route-script-and-tools.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c0824989d2615ac4b972ba0f6b2d38f360ba0d7a",
-      "size": 4940
+      "sha": "a3a18b88496833f58cff6c6cfe6db229265243d1",
+      "size": 5080
     },
     {
       "path": "src/game/90-actions/40-sites-peering-caches.js",
@@ -1300,57 +1629,78 @@
       "path": "src/game/90-actions/50-customers.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "53d9aee4de15b8792aa7ec05d2149066fe6f7c62",
-      "size": 2426
+      "sha": "aa5e4c81094623f265c5aaed19d4e58934fff81a",
+      "size": 3669
+    },
+    {
+      "path": "src/game/90-actions/52-sales.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "027cbd340906f41c7712fc5b74678974f19e5320",
+      "size": 1655
+    },
+    {
+      "path": "src/game/90-actions/53-customer-paths.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f723e73c0518b61229ad574c1b19f66e637727d",
+      "size": 1702
+    },
+    {
+      "path": "src/game/90-actions/53-market.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9e593b1352ef0e12c8655da6f3fa038d3e0963b",
+      "size": 1085
     },
     {
       "path": "src/game/90-actions/60-links.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "46817ed8e951ac1d8675f43c16e9add8bb3a7177",
-      "size": 9229
+      "sha": "9848304e73fc86dec2c4019c2a5e04cc2ec1e239",
+      "size": 10206
     },
     {
       "path": "src/game/90-actions/70-dashboard-lists.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "96ae70d190ab476cfbb655d1de148656e5ad557a",
-      "size": 2182
+      "sha": "da73f96b98dceb00ed4b267ee14d6693b52b0b66",
+      "size": 2589
     },
     {
       "path": "src/game/90-actions/80-security-and-china.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "815b29dc2c6eb7c49b898b6ff71f36fbd7709020",
-      "size": 4438
+      "sha": "e3ba3506e2cbd949eacb3d5f061b2b508fc0ca35",
+      "size": 4439
     },
     {
       "path": "src/game/90-actions/85-routing-and-routers.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6a6822f1c986e545b2d721ff930c151dce10ef6f",
-      "size": 4183
+      "sha": "45502f4c6bfde40fa55ef7fdd5b5f70925ab2ace",
+      "size": 4196
     },
     {
       "path": "src/game/90-actions/86-specialist.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "0db742c3aa876f3d117b5744bcc9f88f58799853",
-      "size": 1403
+      "sha": "cd59ae54712916deb0deb8837ad10b10fb09594e",
+      "size": 1507
     },
     {
       "path": "src/game/90-actions/87-fiber-and-hardware.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c7fd8e2fb905f68ca422372ac9bab9f8241ba3e7",
-      "size": 8037
+      "sha": "7eb2919c50398c79f6ba921aec30847f78a0613e",
+      "size": 8143
     },
     {
       "path": "src/game/90-actions/88-ops.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1f1c77d42297841d81be1f1061681b5ac34c3165",
-      "size": 2971
+      "sha": "719dd85d9abb83a917bea9edf9cbe0e75f648127",
+      "size": 3536
     },
     {
       "path": "src/game/90-actions/88-optic-counts.js",
@@ -1370,29 +1720,29 @@
       "path": "src/game/90-actions/89-game-and-settings.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "201f4f1d9e10622141869d2af4a4ffcbaa29a17f",
-      "size": 7363
+      "sha": "a1671dc66eed295b95f021ffdf41a1e217a877ce",
+      "size": 7366
     },
     {
       "path": "src/game/90-actions/90-action-helpers.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "806665cb9b8fdbd1609ae3fcfda15b6cae3cdfeb",
-      "size": 7099
+      "sha": "bed742e08b1560de09b2506b6b305e4b5bc3c9d1",
+      "size": 8512
     },
     {
       "path": "src/game/90-actions/91-slots.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f97105b782f06384d34c0ea9a41389c5267a3a78",
-      "size": 3935
+      "sha": "86ca1d8f86219e25300658c9014e9edae817791a",
+      "size": 3936
     },
     {
       "path": "src/game/90-actions/95-puzzles.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "e1342f7f294c66a3f5fcffd6048fef595b423640",
-      "size": 7747
+      "sha": "881800c3fe40c3831198172e42579a00f5f64cc3",
+      "size": 8855
     },
     {
       "path": "src/game/90-actions/96-architect.js",
@@ -1402,18 +1752,39 @@
       "size": 453
     },
     {
+      "path": "src/game/90-actions/97-pie.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f954039b7a6fcade6b84d56da8384578f3b0d432",
+      "size": 5445
+    },
+    {
+      "path": "src/game/90-actions/98-pie-globe.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "281bd310546f3ee6f31c1a4a5f436a1b22c419c2",
+      "size": 185
+    },
+    {
+      "path": "src/game/90-actions/98-pie-spats.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "298da7f4b7cec3f1dd9990ea66894c7ec6dfc671",
+      "size": 518
+    },
+    {
       "path": "src/game/91-save.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "49edca6dbe7f30d2459ef549dc00407a09b6a384",
-      "size": 9276
+      "sha": "f407d7670fe77ed350b9b1f9fece43758534a41c",
+      "size": 10693
     },
     {
       "path": "src/game/91-slots.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c647112000f685076945f36e6cf3da7b57fd9719",
-      "size": 15592
+      "sha": "b94d4d475f55c8b41cc4126779ed3a1f4e4321e6",
+      "size": 15985
     },
     {
       "path": "src/game/92-audio.js",
@@ -1426,15 +1797,15 @@
       "path": "src/game/93-ui/10-dom.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ffb1f612a8ee08e46ad445754708d5d4fe2399a9",
-      "size": 2224
+      "sha": "d747df759a0773e36346f80068065c9eb60c0b95",
+      "size": 2242
     },
     {
       "path": "src/game/93-ui/20-phone.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9e4cebe00e93150d9f5bc4786b2c254ea6bb1bd6",
-      "size": 3250
+      "sha": "c97abf3ebdad6e8cf79d70c9b4e88c5eb49a492a",
+      "size": 3372
     },
     {
       "path": "src/game/93-ui/30-install.js",
@@ -1447,8 +1818,8 @@
       "path": "src/game/93-ui/40-hud-and-panels.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "953dfa2bc6bcd43eaa9b546a5b8b428729fe10c9",
-      "size": 13661
+      "sha": "f05d9f80596e3b72ffdfc68b8b557c61806c9753",
+      "size": 13851
     },
     {
       "path": "src/game/93-ui/45-core-panel.js",
@@ -1461,22 +1832,22 @@
       "path": "src/game/93-ui/46-routing-modal.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5d2aae1805de7b285b64fc82f2444ba6abc568f2",
-      "size": 2821
+      "sha": "98367ae3adb9b50774d973ba9e2d277953c8416f",
+      "size": 3143
     },
     {
       "path": "src/game/93-ui/50-city-panel.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "045d7ba31531a20b3182f8c509671b39e1c98189",
-      "size": 23297
+      "sha": "5a89d6af7cb66ba9b57504121105b04f32ca0efd",
+      "size": 24096
     },
     {
       "path": "src/game/93-ui/52-pni-list.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "cad97f466885428205ed0b738fce82f47fe053d9",
-      "size": 5788
+      "sha": "40f85f1816397e177a2a01da3e8f00d95b97fb3b",
+      "size": 5991
     },
     {
       "path": "src/game/93-ui/55-utilities.js",
@@ -1489,8 +1860,15 @@
       "path": "src/game/93-ui/57-ops-panel.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "89f4a3f11330c7db6828548c1b3a92b5e266d62f",
-      "size": 6495
+      "sha": "261648013d8c2c12783069d618b44bc76d998a42",
+      "size": 6972
+    },
+    {
+      "path": "src/game/93-ui/58-sales-panel.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71e98eada1a36307ba243489d1d60d749c3e750d",
+      "size": 4194
     },
     {
       "path": "src/game/93-ui/60-decommission.js",
@@ -1503,8 +1881,8 @@
       "path": "src/game/93-ui/70-link-panels.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "fae644b3f0485080cf7c2e45169e10602796091b",
-      "size": 39454
+      "sha": "705313a1b9079468292a76179fa06a74059898b8",
+      "size": 40414
     },
     {
       "path": "src/game/93-ui/75-optic-counts.js",
@@ -1524,15 +1902,29 @@
       "path": "src/game/93-ui/82-keys.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c10975662971d1e2237262ee039fc15d82f80ea3",
-      "size": 4705
+      "sha": "94232afb48fd1050128c20def5f1e447bf82a1de",
+      "size": 4740
+    },
+    {
+      "path": "src/game/93-ui/85-pie-control.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f65aa834b62ce331e291082bc1f651544f06f57",
+      "size": 9683
+    },
+    {
+      "path": "src/game/93-ui/86-pie-traffic.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2a141d93e43c90015f84eae4ba151ed2a5c04cc",
+      "size": 8994
     },
     {
       "path": "src/game/94-dashboard/10-progress.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b6212c7b8ab773955a469b2407c21a9173d915f9",
-      "size": 5983
+      "sha": "41ca684a0270bd434c3356238b5ddf52cdde8d62",
+      "size": 6077
     },
     {
       "path": "src/game/94-dashboard/20-meet-a-network.js",
@@ -1545,36 +1937,57 @@
       "path": "src/game/94-dashboard/30-customers.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8ff718e67a073e9ff4e0c2cf47c224bbd6e2ec3a",
-      "size": 5667
+      "sha": "600820a4ac3f877f23c8cfdcb574728d1e456a68",
+      "size": 5705
+    },
+    {
+      "path": "src/game/94-dashboard/35-unbuilt-pops.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a4b23e6dc8e9f676d1e58c780e49253577e8fc4",
+      "size": 2234
     },
     {
       "path": "src/game/94-dashboard/40-connections.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9f4e4401b8cffe9d7bc1a0c8b9ebebc8a4abaa70",
-      "size": 12662
+      "sha": "83145b34a81c3f51c5faeda136413fec1140d40d",
+      "size": 12966
     },
     {
       "path": "src/game/94-dashboard/50-lease-swaps.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d56dceeaac91802f9e8ca56dfb71656cba0d1985",
-      "size": 6373
+      "sha": "eb7415915d7d6362ad9a870fe722e6c1f4d26120",
+      "size": 6398
+    },
+    {
+      "path": "src/game/94-dashboard/55-market.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a25f7d385869259b3d84228d7e48c3d971895fe5",
+      "size": 6584
     },
     {
       "path": "src/game/94-dashboard/60-dashboard.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "269f6893ef8b953e02ad996ab0013e43bfd9cc75",
-      "size": 9062
+      "sha": "5a379e3bf818075690e73749f78f788d726b167d",
+      "size": 9295
+    },
+    {
+      "path": "src/game/94-dashboard/65-chart-legend.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63cfdfa092af7e4152c33fa8c4c1d2548b51162a",
+      "size": 4789
     },
     {
       "path": "src/game/94-dashboard/70-bank.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "7ec5c812621b8368d93abdabe5436cb89c3583bd",
-      "size": 6440
+      "sha": "9affb05e21504df33562f9397d064c890c10715d",
+      "size": 6931
     },
     {
       "path": "src/game/94-dashboard/80-hint.js",
@@ -1582,6 +1995,20 @@
       "type": "blob",
       "sha": "387fb46dd135f1ea505af79c12cf103a4bf0e2fa",
       "size": 841
+    },
+    {
+      "path": "src/game/94-dashboard/90-noc-window.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49ff64bcb48922b083bdeccb3921d5ccfc051191",
+      "size": 8640
+    },
+    {
+      "path": "src/game/94-dashboard/91-noc-wall.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5025513650702874ace9e46825d012d84ad6dbda",
+      "size": 13669
     },
     {
       "path": "src/game/95-modals/10-toasts.js",
@@ -1601,8 +2028,8 @@
       "path": "src/game/95-modals/30-modal-and-names.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "95ac2d77d14ce2b3b4ad060214e5d59b80e99d91",
-      "size": 3130
+      "sha": "5c9f272eefe0398be2cfdbe860ef7590bbfcaa3f",
+      "size": 3187
     },
     {
       "path": "src/game/95-modals/35-pni-all.js",
@@ -1643,29 +2070,29 @@
       "path": "src/game/95-modals/70-link-modal.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b21f39efb4b0e98c878ae33b4ded04c53736312d",
-      "size": 5426
+      "sha": "5041ab6fe0a66970fc5a35ca215fe69fe5ba1c18",
+      "size": 5768
     },
     {
       "path": "src/game/95-modals/80-own-cable.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2e28bbf25f972e0c1547b17f2a8aa3bd27e049f0",
-      "size": 25303
+      "sha": "5e1a434c9e064b3890b7e09ccb11a85478f97dc4",
+      "size": 25744
     },
     {
       "path": "src/game/95-modals/90-fiber-modals.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9e66fc7e802adfcad15476fa1e3dceade4bc8b35",
-      "size": 5802
+      "sha": "bc968bd54faab2991e87e2df63ccd28ae33f82e4",
+      "size": 5810
     },
     {
       "path": "src/game/95-modals/95-puzzles.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "933a6f1043436528761792a747e83b3c2e299ecd",
-      "size": 22925
+      "sha": "529e81a333ee8eef694f1b4f691665a1c995cece",
+      "size": 25778
     },
     {
       "path": "src/game/95-modals/96-architect.js",
@@ -1675,25 +2102,32 @@
       "size": 14161
     },
     {
+      "path": "src/game/95-modals/97-puzzles-phone.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53a59f84277dbadf771129b05ae85e4616993376",
+      "size": 14067
+    },
+    {
       "path": "src/game/96-map/10-canvas.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "3210b616e7adbc1fd9aac2ba421fdc4deb5ff124",
-      "size": 3806
+      "sha": "ff76dfb914862db0149154e8273610145e5ace0b",
+      "size": 1741
     },
     {
       "path": "src/game/96-map/20-land-and-clouds.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6c810ce88c50561c4c80203e811357ae089f9b36",
-      "size": 2489
+      "sha": "bfe3b10ae77f4a5cd212d7b3bd6d409225e13f0b",
+      "size": 2650
     },
     {
       "path": "src/game/96-map/30-settings.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "bc2605bb90dfc84328cd1edbd39bbee5a623bed3",
-      "size": 4810
+      "sha": "fcc7dac65b9385bf096920ef464f598d185dbf35",
+      "size": 5625
     },
     {
       "path": "src/game/96-map/40-level-of-detail.js",
@@ -1706,22 +2140,57 @@
       "path": "src/game/96-map/50-link-geometry.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5c03a54db4927dff40feaa499a8bd6215270e0ba",
-      "size": 9270
+      "sha": "288553c4606bef2b0d0c887cdb9fb96f3ca65671",
+      "size": 9351
+    },
+    {
+      "path": "src/game/96-map/55-link-look.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32c636cfcc9a7ae5906b16a4faec422f36afc121",
+      "size": 1894
+    },
+    {
+      "path": "src/game/96-map/56-webgl.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fe11a7fe8670e7b3ef9cfb24bc6152a88417c29",
+      "size": 11638
+    },
+    {
+      "path": "src/game/96-map/57-webgl-background.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c245aeeea0aecc432ca13cb92ebfc48f90657186",
+      "size": 12955
+    },
+    {
+      "path": "src/game/96-map/58-webgl-links.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04ec434c02a8d99e19138907990fcec7157993ba",
+      "size": 11645
+    },
+    {
+      "path": "src/game/96-map/59-gl-sprites.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "997e7a1f7086e6f334f2e72be44210d91f74b356",
+      "size": 14785
     },
     {
       "path": "src/game/96-map/60-draw.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ff300dfd9b1a43a6666645458a45ff3d71d6cc85",
-      "size": 14963
+      "sha": "4753041f892b43331cfe1650cf935ce028c9a36c",
+      "size": 16253
     },
     {
       "path": "src/game/96-map/70-world-layer.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ab367260d292cfb7707c9d5327728af6beb21ada",
-      "size": 2772
+      "sha": "20a94a87eb47792aa8765e1db7fe9d3ae67d2fbc",
+      "size": 3101
     },
     {
       "path": "src/game/96-map/75-city-size.js",
@@ -1734,15 +2203,15 @@
       "path": "src/game/96-map/80-cities.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "31b55ecdb93fac18b429ee2970c154ab5df9f7ce",
-      "size": 9720
+      "sha": "75ce90af24a05d286c43d5c37b10906c6e15c8d5",
+      "size": 16398
     },
     {
       "path": "src/game/96-map/85-puzzle-cities.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "be64a9f0d5d160e25983b61adaa3ea9f19e3ce93",
-      "size": 2102
+      "sha": "a501622f20aa276deab040af7643823d2f29b628",
+      "size": 3287
     },
     {
       "path": "src/game/96-map/87-chaos-monkey.js",
@@ -1755,50 +2224,64 @@
       "path": "src/game/96-map/88-cable-ships.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f5a81dcc44ac56e6f555b1fd6464df845ac3cd41",
-      "size": 5889
+      "sha": "881ac698d83e9c9f844470506fd500087605276e",
+      "size": 6401
+    },
+    {
+      "path": "src/game/96-map/89-pie-globe.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89fe3ed89c204ed0fa127d7540188cfbcb6a9b5b",
+      "size": 26527
     },
     {
       "path": "src/game/96-map/90-input.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1a0d13cde50db98abe256642fe51dc8ab6d6d0de",
-      "size": 5301
+      "sha": "36bbc205bfeee5988561cae35064fd8a983034d7",
+      "size": 5551
     },
     {
       "path": "src/game/96-map/95-clicks.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "85479d9867858d2db08a9f370857d963175984e6",
-      "size": 2191
+      "sha": "c10b7946698d0d950931a86f058a750945a7563f",
+      "size": 2316
+    },
+    {
+      "path": "src/game/96-map/97-diagnostics.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5adf20f769ba08cbb09ffe640f030b44be8ed8ba",
+      "size": 4643
     },
     {
       "path": "src/game/99-loop.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8b21d751a673adb663aa3e8bc9bc46fe4b1ebfd6",
-      "size": 5100
+      "sha": "03f7aaade338a3680ff1dfd02d3239aa4fdbe468",
+      "size": 7232
     },
     {
       "path": "src/i18n/en.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "695bb872b5cc4318b345a3da4006e3a047b3a28c",
-      "size": 404116
+      "sha": "89e662ff6bd2dd042d174b3c430c42da2e031905",
+      "size": 463364
     },
     {
       "path": "src/index.html",
       "mode": "100644",
       "type": "blob",
-      "sha": "490d3db88868457a7bed34cca85b14d59035dd75",
-      "size": 13214
+      "sha": "87083cb67e5cd36bd267a2f0804816ec0e5e3f1e",
+      "size": 13850
     },
     {
       "path": "src/styles/00-base.css",
       "mode": "100644",
       "type": "blob",
-      "sha": "eba8a90ccfc555ffca3b7b258ee6324c51e10d91",
-      "size": 1544
+      "sha": "dc23fc4535eecfe72d6e34a3b21be1bb34176c32",
+      "size": 1751
     },
     {
       "path": "src/styles/10-hud.css",
@@ -1818,8 +2301,8 @@
       "path": "src/styles/30-toasts.css",
       "mode": "100644",
       "type": "blob",
-      "sha": "47db06fe1281f435d5f5147b256d58e2d879db28",
-      "size": 1200
+      "sha": "0086d631dbbdab69a6bfed3c994309d01be197ff",
+      "size": 1955
     },
     {
       "path": "src/styles/35-optic-counts.css",
@@ -1832,8 +2315,8 @@
       "path": "src/styles/36-ops.css",
       "mode": "100644",
       "type": "blob",
-      "sha": "6a2cbf527932761cbc92bdcdd60e5d35cf0108ca",
-      "size": 1058
+      "sha": "6ed7501bb97a5740d458c69e4434eb0311a342e5",
+      "size": 2482
     },
     {
       "path": "src/styles/37-router-art.css",
@@ -1843,11 +2326,39 @@
       "size": 597
     },
     {
+      "path": "src/styles/38-pie-globe.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "867140e8d6887c930a1d621ef7fea34a04a030eb",
+      "size": 1800
+    },
+    {
+      "path": "src/styles/39-pie-spats.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "607fb45709c27bfaf2a1dfd7f6d8c3733c7528e7",
+      "size": 348
+    },
+    {
       "path": "src/styles/40-modal.css",
       "mode": "100644",
       "type": "blob",
-      "sha": "144c408b6f8c029dea02e9104cf82b2ee2f0ac21",
-      "size": 21544
+      "sha": "4c1884ee14dd33d3c0e9022acb0af2e6e3897672",
+      "size": 23726
+    },
+    {
+      "path": "src/styles/42-chart-tooltips.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34334c63f48fbc745414c7c3e1f55664d2d985eb",
+      "size": 1124
+    },
+    {
+      "path": "src/styles/45-noc-window.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e215a87700107b9a1f495b5f939a407fabf45234",
+      "size": 6066
     },
     {
       "path": "src/styles/50-tablet.css",
@@ -1867,8 +2378,8 @@
       "path": "src/styles/70-puzzles.css",
       "mode": "100644",
       "type": "blob",
-      "sha": "a126f60e7221eb6131d96fdb73a69ba62d924eaa",
-      "size": 6176
+      "sha": "ace2ce86451754c6ef3ab1f48f33d810bf1ac0a1",
+      "size": 12880
     },
     {
       "path": "src/styles/71-architect.css",
@@ -1878,18 +2389,46 @@
       "size": 2237
     },
     {
+      "path": "tests/agent-api.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d909338075b594d6c53fd332d20fea5241fc2210",
+      "size": 5951
+    },
+    {
+      "path": "tests/agent-relay.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b04ba81998923a51216006853243ed3d961fc8e",
+      "size": 30758
+    },
+    {
+      "path": "tests/agent-settings.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3c721b9952f37740adedc878dd19500bc658540",
+      "size": 10048
+    },
+    {
+      "path": "tests/alien-wave-rent.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92b68e1349393a5ce9be7433c95bfa1101acb7d1",
+      "size": 5471
+    },
+    {
       "path": "tests/any-home-city.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "0330cb72f526b5a8e45b70d05f1ff37d32c24d39",
-      "size": 3750
+      "sha": "3166c02b574817542d43b7d8d952dc97b7b71e79",
+      "size": 3793
     },
     {
       "path": "tests/architect.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "a487aba7ecd6a1e66797752e5a212361e0735c66",
-      "size": 11480
+      "sha": "080758c9610c43a7ac884795b052f2aa8a3216e0",
+      "size": 13229
     },
     {
       "path": "tests/au-north.test.js",
@@ -1902,22 +2441,29 @@
       "path": "tests/automation.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6b772f83ce4b64b29fc520d36933787bb456bdea",
-      "size": 11205
+      "sha": "4cca19f9d656d1eda1a7a89337edf763bbf6d53c",
+      "size": 11515
     },
     {
       "path": "tests/backbone-core.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5e7bba9f7598963b4d63e8cf43bb96ba9cebe7fa",
-      "size": 14766
+      "sha": "f3cea6412b96f4c0f276006454ec9b4780e383af",
+      "size": 14920
+    },
+    {
+      "path": "tests/badge-cape-horn.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca899f837407d2c5605be7b14299328150e17878",
+      "size": 1984
     },
     {
       "path": "tests/badges-variants.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9f1b6a202a8e7635519b6690755cb6a29782de1d",
-      "size": 8514
+      "sha": "d30a78dccc33187e4b9cc57ca86003727a5baf74",
+      "size": 8535
     },
     {
       "path": "tests/best-effort.test.js",
@@ -1927,39 +2473,67 @@
       "size": 8881
     },
     {
+      "path": "tests/big-numbers.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fbe50914a235b2243882d05799a0ba592a53f85",
+      "size": 1017
+    },
+    {
+      "path": "tests/bilbao-landing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd046d3423f7ee1848619dba021ee4d4496dbb3e",
+      "size": 4581
+    },
+    {
+      "path": "tests/borders-overland.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8b740fc4f55e63b10fc61ff9106823c442d7966",
+      "size": 4007
+    },
+    {
       "path": "tests/build.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "a6c99664a51951ded3e20c94a8e0d286295f337f",
-      "size": 3424
+      "sha": "4b3b2c4317549117b768ca12ab2033db3f8afc6f",
+      "size": 4754
     },
     {
       "path": "tests/cable-labels.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "dc9f6661d9634dc50cbc12556b2558ba371c13f2",
-      "size": 1665
+      "sha": "219ece8e5d57796c77ebf3143488209fafe34c2a",
+      "size": 1676
     },
     {
       "path": "tests/cable-ships.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5d0069728972c21bc5303e1f01b9301e442e695f",
-      "size": 14385
+      "sha": "aea5daa87aba0e4653828a2d221e30e542081a17",
+      "size": 14383
     },
     {
       "path": "tests/cache-ports.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ce03ceb82b672fd954dfd9b559a6497461c87b68",
-      "size": 3345
+      "sha": "af7567337dd8cbc83198a48fd11745240c6804e1",
+      "size": 3388
     },
     {
       "path": "tests/calendar.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "18bea1e35b8fa38a831ee27ba3f605131d587a15",
-      "size": 2942
+      "sha": "40d8e19d37f80605a33d046cc3a79daeb753f65a",
+      "size": 2531
+    },
+    {
+      "path": "tests/call-the-bank.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a76f086ffd4ec52ee5cdf9da398855781194d432",
+      "size": 8463
     },
     {
       "path": "tests/capacity-deals.test.js",
@@ -1967,6 +2541,13 @@
       "type": "blob",
       "sha": "db535f0258d57aa528fbad7e2a99c51e373eaf95",
       "size": 6664
+    },
+    {
+      "path": "tests/capacity-market.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5996f309c8861460d7a08a053ae89ed81a3da02",
+      "size": 9609
     },
     {
       "path": "tests/capitals.test.js",
@@ -1979,8 +2560,22 @@
       "path": "tests/chaos-monkey.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "fedcfdd5dab2660eb4101f9951b64bd08371ae71",
-      "size": 6274
+      "sha": "62ee02c9f13d4db8f5bded5710763b3350cd46dc",
+      "size": 6317
+    },
+    {
+      "path": "tests/chart-legend.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "309c5f812031a8b25db95b62e6bcad5279f899c2",
+      "size": 5794
+    },
+    {
+      "path": "tests/charters.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5394394d61436e481fe5c023e74033960ae43c8",
+      "size": 11451
     },
     {
       "path": "tests/city-size.test.js",
@@ -1993,22 +2588,71 @@
       "path": "tests/compute-idempotent.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4a2470fd117724fde4cff31e456da81f69da5ee6",
-      "size": 2269
+      "sha": "27a2f7203c67ae3dd80c8b269ec46cf212f850a8",
+      "size": 2312
+    },
+    {
+      "path": "tests/customer-lifecycle.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "055b16097b5edf882d0dc8cb25883f303207aed4",
+      "size": 13896
+    },
+    {
+      "path": "tests/customer-paths.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01d5aae6eb23e6b637f986b22c750d164907c6d3",
+      "size": 16610
+    },
+    {
+      "path": "tests/day-pace.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9aff789c8db53dbcb27b8f7db4f1a36bccab1e02",
+      "size": 2110
+    },
+    {
+      "path": "tests/day-steps.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "027b06519fefeea3aea9c7f45c70f00fa37e0a42",
+      "size": 21382
     },
     {
       "path": "tests/ddos-floods.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "216171604174cc7e2130c8de8978fc21777856ea",
-      "size": 9619
+      "sha": "5b078eb800793c147548a5af948ef343e076a548",
+      "size": 9662
     },
     {
       "path": "tests/ddos-model.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "774692bea62b8fce0a3500445d7cc7035e1701be",
-      "size": 16108
+      "sha": "712078ba357106b845db726ed81a371dd9e164dc",
+      "size": 16107
+    },
+    {
+      "path": "tests/ddos-scrub-clean.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af7c2a788489325a322aff7a7b5cfed689c4d568",
+      "size": 2936
+    },
+    {
+      "path": "tests/de-kicks-price-cap.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8810b5a0cd486212542de1b05a1685f078dccb82",
+      "size": 2728
+    },
+    {
+      "path": "tests/diagnostic-info.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cee6f820805109bca29d8760d87c6230997c7da",
+      "size": 5283
     },
     {
       "path": "tests/direct-egress.test.js",
@@ -2016,6 +2660,13 @@
       "type": "blob",
       "sha": "cb448c5c749e91ed7b96393e6cb86a20975602d2",
       "size": 12202
+    },
+    {
+      "path": "tests/docker.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5419981e7ca5cf619c3a6fcef5ded0378e3a50f",
+      "size": 5280
     },
     {
       "path": "tests/durations.json",
@@ -2028,22 +2679,29 @@
       "path": "tests/eyeballs.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "d2922d515cf07e8efd3361345285bb2e5c27d070",
-      "size": 4811
+      "sha": "a54ca4a36650b7d902bb94d9214643d0f1aa8df3",
+      "size": 4813
     },
     {
       "path": "tests/fiber-broker.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f893c3d811b4558e5b9c7fe33654a7bbb40a6cf5",
-      "size": 4544
+      "sha": "72484731facc5d8b325787aa0fac56e7fe1787b7",
+      "size": 4816
+    },
+    {
+      "path": "tests/fiber-lit-and-latency.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c924927648327f340c928fb08a3c7fa208876be3",
+      "size": 5642
     },
     {
       "path": "tests/find-city.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4c59753487aa7e0dc013b7645770881beeac8704",
-      "size": 3759
+      "sha": "05ed424f2062c272eb8ac98976fec77acb692bdb",
+      "size": 3802
     },
     {
       "path": "tests/fixtures/big-network.json",
@@ -2060,25 +2718,39 @@
       "size": 3002
     },
     {
+      "path": "tests/frame-pacing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bfd402aaf72da7ab099e5f21bf71778e34dcfc2",
+      "size": 5965
+    },
+    {
+      "path": "tests/france.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03554704345edb631072d25b1712a9b66c5098d9",
+      "size": 3420
+    },
+    {
       "path": "tests/game.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c182655893ee1932c0ea47430f5cd7c85b8fd4f6",
-      "size": 29517
+      "sha": "abf12470affca0004ae012e657c88a57d249f81f",
+      "size": 29301
     },
     {
       "path": "tests/gameplay-rules.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "49960069426223b7424b70f5d5262cbc79450491",
-      "size": 35946
+      "sha": "44414ca5947cee2d956f034120362f17f4b9f581",
+      "size": 52883
     },
     {
       "path": "tests/gangnam.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c989bdee60b9273c159eac5447eab02efcc7221f",
-      "size": 2963
+      "sha": "09329f2ea9f2cb49955a0fa9ca084efe632ed7a3",
+      "size": 3006
     },
     {
       "path": "tests/glowball-sakura-lager.test.js",
@@ -2088,46 +2760,102 @@
       "size": 8318
     },
     {
+      "path": "tests/gpu-bench-server.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaaa6ff11808fda5be0b3a2dbdb7e265e55a32f3",
+      "size": 2921
+    },
+    {
+      "path": "tests/gpu-bench.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c8fb856e6005c02cf60d2aa4d934830f035148e",
+      "size": 4627
+    },
+    {
       "path": "tests/harness.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "df7b5d8ab12af3f55638aad509933836983a05d0",
-      "size": 7410
+      "sha": "f03638ea9af437d6735c1bc9c63e155d5cefe7d8",
+      "size": 9813
     },
     {
       "path": "tests/helpers/reference-allocation.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "096f6d26a166082b73cf324395eb96042f6c8217",
-      "size": 1686
+      "sha": "d771194a0271fb6a791a244dfd8a1229e27f5a0e",
+      "size": 2035
     },
     {
       "path": "tests/i18n.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c111d8afe158c977f74683838eabbecf5efdae2a",
-      "size": 12417
+      "sha": "802041460a85992988e107811ec580629e69f985",
+      "size": 12459
+    },
+    {
+      "path": "tests/intern-dark-fiber-worker.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c4729f4674694b99193323cd74774dba218bb7d",
+      "size": 4785
+    },
+    {
+      "path": "tests/intern-optical-upgrade.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f55544f5b92348d5014c469e3c75069f9ff346f2",
+      "size": 7989
     },
     {
       "path": "tests/intern-optics.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "0cc9d1999f782edcc11ce478b23d292821042194",
-      "size": 3530
+      "sha": "1de4a004287dcc337c69995dc04a64236cb05c80",
+      "size": 3784
+    },
+    {
+      "path": "tests/intern-personas.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e157c967a0df030540aafc894fd7c550bc05861e",
+      "size": 4884
+    },
+    {
+      "path": "tests/intern-ports.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45bc45556cdae5c68ba6fe79e923dc0a3cc749f1",
+      "size": 11790
+    },
+    {
+      "path": "tests/intern-router-model.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a28ef92a6bb8b715a7e7ba1696747192176165ff",
+      "size": 7225
     },
     {
       "path": "tests/islands-and-arctic.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "78ddfc68a18e969d94f5ea925c9124014f74b0f0",
-      "size": 9300
+      "sha": "86193464dcb4baf7fbfeb3b28e36feccd2bd0380",
+      "size": 9659
     },
     {
       "path": "tests/issues.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "39057ba2f5acf3ac4ad4c75ee8df3ea4dbb44d3f",
-      "size": 95433
+      "sha": "d09c13bd76da0a5d4e7d19113967e6788b5e70b7",
+      "size": 95930
+    },
+    {
+      "path": "tests/ix-downgrade.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed8c9d4bd95992b69d84d0a872e2ffbaf0d75247",
+      "size": 3630
     },
     {
       "path": "tests/keyboard-shortcuts.test.js",
@@ -2137,6 +2865,13 @@
       "size": 11680
     },
     {
+      "path": "tests/land-islands.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9cdbb89395cbacb1a26cb89abf19d757e3c6e49",
+      "size": 2573
+    },
+    {
       "path": "tests/language-picker.test.js",
       "mode": "100644",
       "type": "blob",
@@ -2144,18 +2879,32 @@
       "size": 2124
     },
     {
+      "path": "tests/latency-offers.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36e9b67d368e957ec3ae43d9c6d51c128dc8594c",
+      "size": 3228
+    },
+    {
       "path": "tests/latency.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5a4714e912f2fe4aa8e0ef22674d5171de41632c",
-      "size": 3830
+      "sha": "9e7bb5835d086cd81acf93ab0ec29a2cc482cc69",
+      "size": 3945
+    },
+    {
+      "path": "tests/lay-ship-delay.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "336da1287347c66325597cc98c83b0f8bcb39b83",
+      "size": 4166
     },
     {
       "path": "tests/levels.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "150efe3d7ff8a5c9fe25d4707754a5a443e273d3",
-      "size": 8448
+      "sha": "3c367df9537f83da1b85d8438ded361fbf8e5465",
+      "size": 8491
     },
     {
       "path": "tests/link-metrics.test.js",
@@ -2163,6 +2912,20 @@
       "type": "blob",
       "sha": "e5ed30ba5b5201aebf47e33d396da565a9fd35d5",
       "size": 7575
+    },
+    {
+      "path": "tests/link-modal-no-cable.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74f8febc1a6693b43014de84cc34543761b830c1",
+      "size": 2170
+    },
+    {
+      "path": "tests/link-preconditions.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83955dbbef76ffb35f5c32af9927c0ba033bc6c9",
+      "size": 6832
     },
     {
       "path": "tests/link-trial.test.js",
@@ -2175,22 +2938,50 @@
       "path": "tests/load-time.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9106cab3ae9d2a6e1174a14016c00d0d25dcad7d",
-      "size": 4909
+      "sha": "41c6f098d0d84ec74089f65e92b502bfa0e1c9ca",
+      "size": 5164
+    },
+    {
+      "path": "tests/map-2d-sprite-budget.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b2cd76a39d0be764564a9637e8c7243a27a9da1",
+      "size": 4591
+    },
+    {
+      "path": "tests/map-2d.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4130fbcd6d0f4d0c48000af77bf80dc8b948e060",
+      "size": 22009
     },
     {
       "path": "tests/mcp-commands.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "5c336ce445271a767b83b5c57e5afec4cd2a4a2e",
-      "size": 23788
+      "sha": "91015218e861c2d3903141de850903708eb9463d",
+      "size": 23792
+    },
+    {
+      "path": "tests/mcp-http.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0a989b3c4c80d9406ba897b13aa94ad7f0305eb",
+      "size": 10787
+    },
+    {
+      "path": "tests/mcp-parity.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb601411750397f0e2863dbba3c9a15a5a9ad7f1",
+      "size": 4406
     },
     {
       "path": "tests/mcp.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2880e95348514a072d054d4368992152e95750a4",
-      "size": 9360
+      "sha": "cad0f2e75b3ba4a11eda0a21921b51a0a893fb33",
+      "size": 11884
     },
     {
       "path": "tests/metric-panel.test.js",
@@ -2203,8 +2994,8 @@
       "path": "tests/modes.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "91a379f0fe6a0dc1b246c5b1cd95fdcae12bc459",
-      "size": 28456
+      "sha": "77fe3b180e76108e089b882e02ba61291369ba8d",
+      "size": 28466
     },
     {
       "path": "tests/more-cables.test.js",
@@ -2221,6 +3012,13 @@
       "size": 4883
     },
     {
+      "path": "tests/net.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aca9a97468fb577b3d9ee91ca3a0d69dd3b48b4",
+      "size": 1563
+    },
+    {
       "path": "tests/networks-list.test.js",
       "mode": "100644",
       "type": "blob",
@@ -2233,6 +3031,27 @@
       "type": "blob",
       "sha": "61f9517967eae5b9d0fbcd3ba64eeeeb9666cc41",
       "size": 1782
+    },
+    {
+      "path": "tests/nni.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad84b1be849ad18bebc63b54b7da81581f88e637",
+      "size": 8335
+    },
+    {
+      "path": "tests/noc-panel-layout.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ce2157a8e67664a512110f1ad92a305e8fb9721",
+      "size": 5937
+    },
+    {
+      "path": "tests/noc-window.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90059a54bb875d24a7bb0716c501ffb7f5fe263e",
+      "size": 21644
     },
     {
       "path": "tests/north-america.test.js",
@@ -2259,29 +3078,36 @@
       "path": "tests/own-asn.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c39ec0b2f5a7cad1eec103da1b6d036e9fa56c1f",
-      "size": 1869
+      "sha": "7007cdffccca9e94c9a673e6aef364634b6aaf6c",
+      "size": 1912
+    },
+    {
+      "path": "tests/own-cable-landing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea083b9b8b0579de9841892beacdbc5778376a7b",
+      "size": 2063
     },
     {
       "path": "tests/pages.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2db014dd756a6c2954e801ffef958665969bbe7f",
-      "size": 5933
+      "sha": "47b83816ff5c0688e79695ca260e9488baa031de",
+      "size": 6805
     },
     {
       "path": "tests/peering-desk.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c5de75edc8be4bd180a29b253121a954ed08587d",
-      "size": 7319
+      "sha": "38cff7245bbac28869263d4fb6bbdca17366f2d6",
+      "size": 6639
     },
     {
       "path": "tests/peering.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ab2d0a7cffa49b6a2ef71305c0584bd5806ce0bc",
-      "size": 16788
+      "sha": "0bfe5324c0fe7ec5cde1a93f8bd0436950f8a413",
+      "size": 16797
     },
     {
       "path": "tests/perf.test.js",
@@ -2294,8 +3120,8 @@
       "path": "tests/persist.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "c02ccc838638b93c9844d88ce5b5bd8f045737b0",
-      "size": 7827
+      "sha": "6034f404f54bdba4cbb4c22457ac2e20e9fab866",
+      "size": 8000
     },
     {
       "path": "tests/philippines.test.js",
@@ -2303,6 +3129,83 @@
       "type": "blob",
       "sha": "812737d8aeb624796a45e8dc9213c236dce77e32",
       "size": 10493
+    },
+    {
+      "path": "tests/pie-backhaul.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea8861348866785596aa2cb5001e4180a95ac5a2",
+      "size": 16566
+    },
+    {
+      "path": "tests/pie-balance.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecb1c1a8c639a2a88f585c38b10995fa6f272f52",
+      "size": 11063
+    },
+    {
+      "path": "tests/pie-founder.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e2d4227203fe01b2004fbce35f7bb30d3b14605",
+      "size": 14163
+    },
+    {
+      "path": "tests/pie-globe.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8290bd88f1afc804d5253339abf14842f547f64a",
+      "size": 10913
+    },
+    {
+      "path": "tests/pie-gov.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a8134e785f5ff4c14619f5fdf34bd798593d752",
+      "size": 15243
+    },
+    {
+      "path": "tests/pie-in-the-sky.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74166273fbe35898ed75e3abb8ef821e4ea12cbe",
+      "size": 15574
+    },
+    {
+      "path": "tests/pie-incidents.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97b053e75677bd2dbb4f8ac9e3bcd2beaf808c46",
+      "size": 10550
+    },
+    {
+      "path": "tests/pie-pace.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fb9d15e1dbfa055db125914776369ec9aa68209",
+      "size": 10719
+    },
+    {
+      "path": "tests/pie-routing.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1374565f1bd8ea407ea68a9ae3fe75b404b902d8",
+      "size": 13480
+    },
+    {
+      "path": "tests/pie-spats.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed73a68e57a3c50e38d19bf06dcc8356071c5567",
+      "size": 13034
+    },
+    {
+      "path": "tests/pie-traffic.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "633de79c2a5a3c0150dd6a23ddc7e59ee0651c8e",
+      "size": 11717
     },
     {
       "path": "tests/pni-all.test.js",
@@ -2326,6 +3229,13 @@
       "size": 7948
     },
     {
+      "path": "tests/pni-nearest-peering.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe3ab181e3ed893bf5ba386c83f525486684b5d9",
+      "size": 3401
+    },
+    {
       "path": "tests/pnis-and-sold-out.test.js",
       "mode": "100644",
       "type": "blob",
@@ -2336,8 +3246,8 @@
       "path": "tests/pop-standard.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f6e53cd7d108b3efdce713a63f5e9ecdd2b3f5a4",
-      "size": 4824
+      "sha": "5d8a95bca0f09707016589162d00c16e02d21f90",
+      "size": 4867
     },
     {
       "path": "tests/puzzle-monkey.test.js",
@@ -2347,25 +3257,39 @@
       "size": 2289
     },
     {
+      "path": "tests/puzzle-sheet.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dc7e8d9e4b5fadba405569a0290e907a115448d",
+      "size": 5700
+    },
+    {
+      "path": "tests/puzzles-phone.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45e6736cba668bd8962b1fb40bbb5c7450cde0b4",
+      "size": 6810
+    },
+    {
       "path": "tests/puzzles.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "7ed0c68fb2a62bdac057bd14e26f5948d7a45682",
-      "size": 39623
+      "sha": "47c7df7c1f5c1387b8ae25b54fc1a7d52d71b2ee",
+      "size": 39725
     },
     {
       "path": "tests/regions.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "2f4a99bbbec66fc96d62d67e5f5a555e19d97539",
-      "size": 76689
+      "sha": "b71244482091657a9f3646010c90f2a735710a36",
+      "size": 77053
     },
     {
       "path": "tests/release-story.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f15081162265339e0fe118f8ebbf94b64ffa3b98",
-      "size": 2197
+      "sha": "65800609e04f77ea6928333bffd153f383b8d591",
+      "size": 2229
     },
     {
       "path": "tests/report-link.test.js",
@@ -2378,36 +3302,36 @@
       "path": "tests/route-cache.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "051667206b4667953b3ffd8143c801230a3342c7",
-      "size": 4833
+      "sha": "b7ad481548a6565ed520852fe60d7c938e64ac3f",
+      "size": 8978
     },
     {
       "path": "tests/route-fuzz.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4ac9d80f681f349274c2778387e49f883a70943e",
-      "size": 2390
+      "sha": "8207da4dc45490c61a43b809a27f753e64cc282b",
+      "size": 2542
     },
     {
       "path": "tests/route-server-peers.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9604897c1e5dd94559d52aee5b03089b99b21bdd",
-      "size": 1612
+      "sha": "c9066e8d72dcf76edfb2f530eac8138096fcbf0c",
+      "size": 1655
     },
     {
       "path": "tests/route-skip.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1a3a649ea53fb434a28af49e5d21eb957651c87a",
-      "size": 2923
+      "sha": "fd71d133675db6dc8e0e9d0a3cdc2793a1574237",
+      "size": 2922
     },
     {
       "path": "tests/route-worker.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4f673fea8b034010f5cb457810c066afd93cce69",
-      "size": 3090
+      "sha": "28aeda1159c9a5f38bbd0f8b43c3b2aca0bc669a",
+      "size": 4074
     },
     {
       "path": "tests/router-art.test.js",
@@ -2420,8 +3344,8 @@
       "path": "tests/routers-per-pop.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b0fe9d33e0645d3e8e66fedc4a02d2114d5380f2",
-      "size": 2049
+      "sha": "d53be836ce9eeee97ba634ee006094a48b2ea5c8",
+      "size": 2250
     },
     {
       "path": "tests/routing-modal.test.js",
@@ -2434,50 +3358,78 @@
       "path": "tests/routing-reference.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "1c2622d2508a42ac221ebd14325e4d5d5b0062d9",
-      "size": 6102
+      "sha": "5f609384cf86b082d400ad7564ae6921f538cef9",
+      "size": 6506
     },
     {
       "path": "tests/rules-locked.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "61d394130feba7e3b37550d2ee080cb09000ecdc",
-      "size": 3434
+      "sha": "de6b2ced83c643a285c6e6d78943a217b8d92d89",
+      "size": 3444
     },
     {
       "path": "tests/rules.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "104fb3bfe34a06bf0e4775ee4913ee2276ea8391",
-      "size": 9127
+      "sha": "b15889dcab95e16bd06f82e2ff7fbef3f7412aba",
+      "size": 9148
+    },
+    {
+      "path": "tests/sales-auto.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac5a8607c5e9c94359da23197628dc8a617dcbe5",
+      "size": 18389
+    },
+    {
+      "path": "tests/sales-desk.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a3190b1b865c26f78850311d8836d43a8795dfc",
+      "size": 7700
+    },
+    {
+      "path": "tests/sales-renewals.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "606a005128e1b159982c23b4ae444de42747760c",
+      "size": 6781
     },
     {
       "path": "tests/sales-trial.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "814b62b9856ae172133e0a698dea3ee300049864",
-      "size": 5423
+      "sha": "c74ef9fbd567dc85b70d71504e24eaf740c09a9b",
+      "size": 5412
     },
     {
       "path": "tests/save-size.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4f4c544cd62e597f595e5b4090a80017d97f801e",
-      "size": 7830
+      "sha": "97af22588098944e3dde5fc6cb4af92f591b44c5",
+      "size": 15161
     },
     {
       "path": "tests/save-slots.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "74fbdcfae190e4fd31ff88deb0ef5238442feede",
-      "size": 23124
+      "sha": "0a00834f091e4cd4af506fd5c725ff1a1b7b8aaa",
+      "size": 23167
+    },
+    {
+      "path": "tests/save-text.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbe036f2cb0e7c7fff349617c82f8e72979b9dce",
+      "size": 2135
     },
     {
       "path": "tests/scenarios-playtest.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "07b5bdbc22dc5beeca26adbff41b8dcf8ec4d0aa",
-      "size": 9646
+      "sha": "51287df5cdb594bbfdc96e0cb792ead01de10ba4",
+      "size": 9759
     },
     {
       "path": "tests/sea-optic-hint.test.js",
@@ -2490,8 +3442,8 @@
       "path": "tests/sea-routing.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8ff58dba33a97394bfef6e0b4a8511a50d269f2b",
-      "size": 10563
+      "sha": "286cf099d4c723f826af8bed72b6da7c98527f27",
+      "size": 10596
     },
     {
       "path": "tests/sea-rush.test.js",
@@ -2504,36 +3456,57 @@
       "path": "tests/services.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "9ba8bc546b1793f286073594efc85bacc939b7a5",
-      "size": 8459
+      "sha": "09e2903cefc00c1106b9b88fef31ea5b88395dce",
+      "size": 8502
+    },
+    {
+      "path": "tests/shared-promise-checks.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ced4d007a22324dfbf5d158e81c9cac3c537fbb",
+      "size": 7883
+    },
+    {
+      "path": "tests/ship-clearance.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2565b047953424f63e3bf769a2e91e1fb97ddcc",
+      "size": 2169
+    },
+    {
+      "path": "tests/space-resume.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bfe617e9df3451856f746410064f494f9887398",
+      "size": 1879
     },
     {
       "path": "tests/specialist.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "f877d43ae7cdcb10eaa04bfd0f211eeb7acc87c0",
-      "size": 10505
+      "sha": "b3a061a5ff7f6f772d81dfc09c0e65777b308f4d",
+      "size": 10515
     },
     {
       "path": "tests/speed.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "ce976547e2181b393e8ad9cd4bd257330be357a4",
-      "size": 26014
+      "sha": "f768206c730f542a1cf8a1891c0d3b30cdd97159",
+      "size": 32533
     },
     {
       "path": "tests/standing-orders.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "4d2defa62cecd2ecb9db80650519eb6af53a86fc",
-      "size": 39151
+      "sha": "5f0d6d50f5843890b0864b5fc27189ba99511336",
+      "size": 37877
     },
     {
       "path": "tests/subsea-upgrade-timing.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "963639cf25a830bcb5247485e585df7787928a2f",
-      "size": 10905
+      "sha": "30e26b227d2f2ead6fb924ace588f7c5cef6bb3a",
+      "size": 11333
     },
     {
       "path": "tests/supply.test.js",
@@ -2543,11 +3516,18 @@
       "size": 3837
     },
     {
+      "path": "tests/sweden.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5ef89642c6f2e3902bba96ec5170c186fae83dd",
+      "size": 2386
+    },
+    {
       "path": "tests/tier1-cone.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "b0622e1c2be1d7d96de165c2043539da4c554280",
-      "size": 13458
+      "sha": "9d86b26932c33b31c41fdfecb69b84518b13bbd1",
+      "size": 13501
     },
     {
       "path": "tests/tier1-incumbents.test.js",
@@ -2557,11 +3537,32 @@
       "size": 3517
     },
     {
+      "path": "tests/traceroute-modes.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9866fa1a9462cc51de389c3fe49c638cf3b971c3",
+      "size": 3832
+    },
+    {
       "path": "tests/traceroute.test.js",
       "mode": "100644",
       "type": "blob",
       "sha": "a0caf057b4f2684c04bf2ec96ef046efb0df93b0",
       "size": 1225
+    },
+    {
+      "path": "tests/traffic-badges.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ea6cc3419e990b29e30d32938ac3b9ba16dd8ff",
+      "size": 3292
+    },
+    {
+      "path": "tests/unbuilt-pops.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "246ea7a8faa1be97b653d2f645de1e005177d480",
+      "size": 6862
     },
     {
       "path": "tests/useless-subsea-upgrades.test.js",
@@ -2574,36 +3575,106 @@
       "path": "tests/utilities-caches.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "6fb46aabbc8f9ec85a9d66d39b3e9172841a99ad",
-      "size": 10164
+      "sha": "443a0c335a7846afd708654a2ddfdf4047cd6abc",
+      "size": 10207
     },
     {
       "path": "tests/utilities.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "415925fc7cdf79a645a3ed02e3ce31a5bf0bf59c",
-      "size": 9232
+      "sha": "6f1841be736f34a19c764df8f742bfa2ad7cf74c",
+      "size": 9264
+    },
+    {
+      "path": "tests/webgl-coast.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abd847768d1f3f51eb4081971c15af2cc255962a",
+      "size": 8226
+    },
+    {
+      "path": "tests/webgl-context-restore.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34200e5713b591d5365b2fc657212db2705b7387",
+      "size": 9682
+    },
+    {
+      "path": "tests/webgl-frame-garbage.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41ca25a2d7fcff5154636ae9581642cc01c539a0",
+      "size": 5766
+    },
+    {
+      "path": "tests/webgl-line-joins.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0316528067df187fbfa7e2526adc8aac055cead3",
+      "size": 8841
+    },
+    {
+      "path": "tests/webgl-map.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2226060b0fba53a33a2d2c3254eb72d60fe92029",
+      "size": 22019
+    },
+    {
+      "path": "tests/webgl-out-of-memory.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cc3023773758b1f558d4028bf3894f3b1ea518a",
+      "size": 10321
+    },
+    {
+      "path": "tests/webgl-sprites.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4e89a726fb5b6f6888321666e0049bd6818d2ea",
+      "size": 10195
+    },
+    {
+      "path": "tests/webgl-zoom-sprites.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "005d3d669f6994548a9ad17e7218bdcf30c11f25",
+      "size": 6213
     },
     {
       "path": "tests/weekly-architect.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "916ba4138a0972aba8663dc7178847aa36e76a3f",
-      "size": 5262
+      "sha": "7081e75404272e23df589e7d42b513f3206b4182",
+      "size": 5272
     },
     {
       "path": "tests/weekly-puzzle.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "8c3c118fbcc04411fe8eb279db42aad55a6c3696",
-      "size": 19137
+      "sha": "570dedf0aa0acc2d25d46d9a6168fd46e99a47a9",
+      "size": 19070
     },
     {
       "path": "tests/weekly-scenario.test.js",
       "mode": "100644",
       "type": "blob",
-      "sha": "61fedb7de3078d0ed6176a933bcbf93944d45460",
-      "size": 15688
+      "sha": "c02d5ed292bbd9f0f1c2dc358b2d138589847ac4",
+      "size": 15654
+    },
+    {
+      "path": "tests/where-things-happen.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d0977d5635b0ad1547f0bd752ec9d341d2370e2",
+      "size": 3493
+    },
+    {
+      "path": "tests/world-layer-firefox.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "846503e84656537ac8b84f73d66d66acc89ac9b9",
+      "size": 2615
     }
   ],
   "truncated": false

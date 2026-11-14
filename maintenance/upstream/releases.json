@@ -1,5 +1,95 @@
 [
   {
+    "id": 439179455,
+    "tag": "v3.3.0",
+    "publishedAt": "2026-11-09T13:40:25Z",
+    "prerelease": false,
+    "target": "e0671c02bebcdf390736f12bd0b803d698df14a2",
+    "tagObject": "e0671c02bebcdf390736f12bd0b803d698df14a2",
+    "sha": "e0671c02bebcdf390736f12bd0b803d698df14a2",
+    "type": "commit"
+  },
+  {
+    "id": 437586740,
+    "tag": "v3.2.0",
+    "publishedAt": "2026-11-07T13:14:29Z",
+    "prerelease": false,
+    "target": "91b2afe70679a19e5914eed3c2a047a2f0cf5c34",
+    "tagObject": "91b2afe70679a19e5914eed3c2a047a2f0cf5c34",
+    "sha": "91b2afe70679a19e5914eed3c2a047a2f0cf5c34",
+    "type": "commit"
+  },
+  {
+    "id": 437370328,
+    "tag": "v3.1.0",
+    "publishedAt": "2026-11-07T05:52:02Z",
+    "prerelease": false,
+    "target": "7a6eb29013bd02a13db402dace1549fd8792be6e",
+    "tagObject": "7a6eb29013bd02a13db402dace1549fd8792be6e",
+    "sha": "7a6eb29013bd02a13db402dace1549fd8792be6e",
+    "type": "commit"
+  },
+  {
+    "id": 436299308,
+    "tag": "v3.0.0",
+    "publishedAt": "2026-11-06T09:14:16Z",
+    "prerelease": false,
+    "target": "9d64aa0144a83dea11cdff54eda758b8c51fae88",
+    "tagObject": "9d64aa0144a83dea11cdff54eda758b8c51fae88",
+    "sha": "9d64aa0144a83dea11cdff54eda758b8c51fae88",
+    "type": "commit"
+  },
+  {
+    "id": 435463714,
+    "tag": "v2.10.1",
+    "publishedAt": "2026-11-05T16:46:13Z",
+    "prerelease": false,
+    "target": "908f2e0de9b4461d118caa08cf42e221e6810061",
+    "tagObject": "908f2e0de9b4461d118caa08cf42e221e6810061",
+    "sha": "908f2e0de9b4461d118caa08cf42e221e6810061",
+    "type": "commit"
+  },
+  {
+    "id": 435079423,
+    "tag": "v2.10.0",
+    "publishedAt": "2026-11-05T10:52:10Z",
+    "prerelease": false,
+    "target": "eb294e9b147bc09e92cbfcccc144a44fccfafe16",
+    "tagObject": "eb294e9b147bc09e92cbfcccc144a44fccfafe16",
+    "sha": "eb294e9b147bc09e92cbfcccc144a44fccfafe16",
+    "type": "commit"
+  },
+  {
+    "id": 434135784,
+    "tag": "v2.9.1",
+    "publishedAt": "2026-11-04T15:53:27Z",
+    "prerelease": false,
+    "target": "5b242822249c102cdf4782ad6bfe4089c0ffe63b",
+    "tagObject": "5b242822249c102cdf4782ad6bfe4089c0ffe63b",
+    "sha": "5b242822249c102cdf4782ad6bfe4089c0ffe63b",
+    "type": "commit"
+  },
+  {
+    "id": 434060547,
+    "tag": "v2.9.0",
+    "publishedAt": "2026-11-04T14:50:47Z",
+    "prerelease": false,
+    "target": "39fb61fd311d7ef3796753087b97fa7c21e7272e",
+    "tagObject": "39fb61fd311d7ef3796753087b97fa7c21e7272e",
+    "sha": "39fb61fd311d7ef3796753087b97fa7c21e7272e",
+    "type": "commit"
+  },
+  {
+    "id": 433759255,
+    "tag": "v2.8.0",
+    "publishedAt": "2026-11-04T09:56:33Z",
+    "prerelease": false,
+    "target": "b405bf78fca188f16b5e718a323364e7f2fc7fff",
+    "tagObject": "b405bf78fca188f16b5e718a323364e7f2fc7fff",
+    "sha": "b405bf78fca188f16b5e718a323364e7f2fc7fff",
+    "type": "commit"
+  },
+  {
     "id": 432632408,
     "tag": "v2.7.0",
     "publishedAt": "2026-11-03T11:54:34Z",

@@ -90,12 +90,12 @@ function providerHome(){
  providerEnsureMount();SOC_PROVIDER_UI.render(null,null,{paused:true,speed:SCP.lastSpeed,preferences:providerPreferences()});
 }
 async function providerOpen(){
- SCP.atHome=false;UI.speed=0;providerEnsureMount();providerPause();SCP.error='';const alreadyOwned=SCP.locked;await providerAcquire();
+ SCP.atHome=false;UI.speed=0;providerEnsureMount();providerPause();SCP.error='';const alreadyOwned=SCP.locked,owned=await providerAcquire();
  if(!alreadyOwned){try{
   const raw=localStorage.getItem(SCP_KEY);SCP.state=null;SCP.seq=0;
   if(raw){const e=JSON.parse(raw);providerStoredSequence(raw);
    const next=SOC.restore(JSON.stringify(e.state));if(!next.providerCampaign)throw new Error('PROVIDER_SAVE_REQUIRED');SCP.state=next;SCP.seq=e.seq;SCP.handoffPromptSeen=e.view?.handoffPromptSeen===true||next.providerCampaign.jobs.some(j=>!!j.handoff);SOC_PROVIDER_UI.render(SCP.state,providerModel(),providerSavedView(e.view));}
- }catch(e){providerError(new Error('Stored career is unreadable. Start a new career or import a valid backup; the original bytes will be preserved. '+String(e?.message||e)));return;}}
+ }catch(e){if(!owned)return providerRender();providerError(new Error('Stored career is unreadable. Start a new career or import a valid backup; the original bytes will be preserved. '+String(e?.message||e)));return;}}
  if(!SCP.state){if(!SCP.locked)return providerRender();SCP.state=SOC.create({experience:'campaign',opening:'win',migrationDecisionVersion:1,migrationReservationVersion:1,migrationRehearsalVersion:1,migrationRollbackVersion:1,meetingContinuityVersion:1});SCP.handoffPromptSeen=false;providerStore();}
  providerRender();providerPromptFirstHandoff();
 }

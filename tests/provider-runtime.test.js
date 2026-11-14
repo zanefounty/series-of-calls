@@ -78,6 +78,17 @@ test('corrupt owned career can be replaced without losing its original bytes',as
  }finally{dom.window.close();}
 });
 
+test('a second tab keeps the lock warning when the shared career bytes are corrupt',async()=>{
+ const locks={request:async(_name,_options,callback)=>callback(null)};
+ const {dom,w}=boot(locks);try{
+  const key='series-of-calls:provider:v1',broken='{malformed';w.localStorage.setItem(key,broken);
+  w.providerHome();await w.providerOpen();
+  assert.equal(w.__SCP.locked,false);assert.equal(w.__SCP.state,null);
+  assert.match(w.__SCP.error,/another tab.*read-only/i);
+  assert.equal(w.localStorage.getItem(key),broken);assert.equal(w.localStorage.getItem(key+':corrupt'),null);
+ }finally{dom.window.close();}
+});
+
 test('validated import replaces corrupt storage and preserves rejected import bytes',async()=>{
  const {dom,w}=boot();try{
   const key='series-of-calls:provider:v1',broken='{"app":"wrong"}';w.localStorage.setItem(key,broken);

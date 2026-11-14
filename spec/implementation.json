@@ -8117,7 +8117,28 @@
         "AC-SOC-907"
       ],
       "status": "partial",
-      "scope": "Fresh Customer IT careers inherit a real paid Enterprise Provider customer and child SOC root. The linked Canopy Group/Orchard contract retains buyer, seller, operator, support, retail and supplier terms with exact stage project and posting lineage. Customer IT can explicitly accept or revoke a scoped site change grant; expiry, forged parties/scope, stale quotes, save, Worker and actual first-period Provider settlement are checked. The customer estate opening outage remains separate from Provider observed service; shared migration, common outage settlement and role-specific victory remain pending."
+      "scope": "Fresh Customer IT careers inherit a real paid Enterprise Provider customer and child SOC root. The linked Canopy Group/Orchard contract retains buyer, seller, operator, support, retail and supplier terms with exact stage project and posting lineage. Customer IT can explicitly accept or revoke a scoped site change grant; expiry, forged parties/scope, stale quotes, save, Worker and actual first-period Provider settlement are checked. The version 3 shared service outage is registered separately; cross-role migration and role-specific victory remain pending."
+    },
+    {
+      "id": "BEH-SOC-446",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:continuity",
+        "uc-new:domain:pricing",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/23-customer-it-career.js",
+        "src/game/23-provider-support-history.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js"
+      ],
+      "testIds": [
+        "AC-SOC-908"
+      ],
+      "status": "partial",
+      "scope": "Fresh version 3 Customer IT careers schedule the synthetic North outage after the paid Provider child becomes active. The customer choice sets or avoids the child access fault through validated dispatch. Paid repair clears that fault; Provider ready minutes, failed work, service credits and net retail settlement use the same child observations. Historical support reconstruction, save validation, Worker replay and desktop/phone journeys check the linked lineage. Version 1 and 2 saves preserve their prior opening behavior. Accepted migration windows, cross-role execution and role-specific victory remain pending."
     }
   ]
 }

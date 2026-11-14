@@ -1708,6 +1708,7 @@ const SOC = (function socKernel() {
       if(event.incident){const incident=event.incident,id=({processor:'speech',connectivity:'access'})[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=false;else if(incident.kind!=='boundary'&&!(id==='room'&&incident.fault==='CAPACITY'))faults[id]='OUTAGE';}
       else{const project=event.project,incidents=s.providerCampaign.incidents.filter(i=>i.customerId===customer.id&&i.kind!=='transport-domain'&&i.activatedAt!==null&&i.activatedAt<event.at&&i.acknowledgedAt!==null&&i.acknowledgedAt<event.at&&(i.resolvedAt===null||i.resolvedAt>=event.at)),resources=incidents.map(i=>({processor:'speech',connectivity:'access'})[i.resource]||i.resource);if(project.operationReceipt?.at!==event.at-1||JSON.stringify(project.operationReceipt.resources)!==JSON.stringify(resources))fail('INVALID_PROVIDER_INCIDENT_AUTHORITY');for(const incident of incidents){const id=({processor:'speech',connectivity:'access'})[incident.resource]||incident.resource;if(incident.kind==='disconnection')connected=true;else if(incident.kind!=='boundary'&&!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}}
     }
+    if(s.customerIt?.version===3&&s.customerIt.providerLink.customerId===customer.id&&s.customerIt.outage.status==='interrupted')faults.access='OUTAGE';
     if(child.connected!==connected||Object.entries(faults).some(([id,fault])=>child.resources[id].fault!==fault))fail('INVALID_PROVIDER_INCIDENT_AUTHORITY');
   }
   function validateProviderMeetingCapacity(s,customer,child){
@@ -2432,6 +2433,7 @@ const SOC = (function socKernel() {
   }
   function advanceMinute(s,providerParent=null){
     s.clock++;
+    if(s.customerIt)customerItCareer.afterMinute(s,fault=>providerHooks().setIncident(s,s.customerIt.providerLink.customerId,{resource:'access',fault}));
     if(s.providerCampaign){providerCampaign.beforeMinute(s,providerHooks());providerScaleBefore(s);}
     if(s.admissionSecurity)admissionSecurity.advance(s);
     for(const r of Object.values(s.resources))if(r.provisioning.status==='pending'&&r.provisioning.due<=s.clock){
@@ -2548,7 +2550,6 @@ const SOC = (function socKernel() {
     if(s.providerCampaign)providerRollbackAfter(s);
     providerServiceBoundaryObservations(s);
     if(s.providerCampaign){providerOwnedSiteAdvance(s);providerScaleAfter(s);providerCampaign.afterMinute(s,providerHooks());providerHandoffPolicyAdvance(s);for(const customer of s.providerCampaign.customers.filter(row=>row.status==='renewal'))if(providerCampaign.renewalPolicyDecision(s,customer.id,providerHooks()).status==='ready')Object.assign(s,dispatchInternal(s,{type:'provider',command:{action:'renew',customerId:customer.id,policyVersion:1}},true,true,true));providerScaleStopSync(s);providerSecurityAbuseAdvance(s);syncProviderHandoffPins(s);syncProviderFollowupPins(s);providerOwnedSitePlatformAdvance(s);providerRetainedStorageAdvance(s);providerAutoReceiptsAdvance(s);providerAutomationAdvance(s);const observation=s.providerCampaign.supportObservation;if(observation){s.providerCampaign.supportObservation=providerProgressionFacts.appendSupportObservation(observation,providerProgressionFacts.sampleSupport(s,providerProgressionHooks(s,false)));}providerAutoIntegrationAdvance(s);}
-    if(s.customerIt)customerItCareer.afterMinute(s);
     if(s.managedOperations)managedOperations.advance(s,managedHooks());
     if(s.marketQualification)marketQualification.advance(s,marketHooks());
     if(s.campaign)campaign.advance(s,campaignHooks());

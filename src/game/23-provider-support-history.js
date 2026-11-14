@@ -517,6 +517,8 @@ function socProviderSupportHistoryKernel(){
     for(const incident of incidents){const id=aliases[incident.resource]||incident.resource;if(incident.kind==='disconnection'){connected=true;outageStartedAt=null;}else if(incident.kind==='boundary')boundaryActive=false;else if(!(id==='room'&&incident.fault==='CAPACITY'))faults[id]=null;}
    }
   }
+  const customerIt=s.customerIt;
+  if(customerIt?.version===3&&customerIt.providerLink?.customerId===c.id&&customerIt.opening?.choice==='migrate'&&at>=customerIt.outage.at&&(!customerIt.repair||at<customerIt.repair.effectiveAt))faults.access='OUTAGE';
   return {valid:true,connected,faults,boundaryActive,outageStartedAt};
  }
  function ownedSiteTimelineAt(s,c,root,at,hooks){

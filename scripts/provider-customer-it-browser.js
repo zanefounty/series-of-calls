@@ -9,7 +9,7 @@ if(!EXECUTABLE)throw new Error('Set SOC_CUSTOMER_IT_BROWSER_EXECUTABLE to a loca
 if(!OUT.startsWith('/tmp/'))throw new Error('Browser output must be under /tmp.');
 function files(dir){return fs.readdirSync(path.join(ROOT,dir),{withFileTypes:true}).flatMap(entry=>{const rel=path.posix.join(dir,entry.name);return entry.isDirectory()?files(rel):entry.isFile()?[rel]:[];}).sort();}
 function inputs(){return Object.fromEntries([...files('src'),...files('site'),'scripts/provider-customer-it-browser.js','scripts/lib/page.js','package.json','package-lock.json'].map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,file))).digest('hex')]));}
-async function snapshot(page){return page.evaluate(()=>({clock:SCP.state.clock,revision:SCP.state.revision,role:SCP.state.careerRole,customerIt:structuredClone(SCP.state.customerIt),mspCash:SCP.state.business.balance.cash,provider:{customerId:SCP.state.providerCampaign.customers[0]?.id,projectIds:SCP.state.providerCampaign.projects.map(p=>p.id),postingIds:SCP.state.providerCampaign.projects.map(p=>p.postingId),customerRootName:SCP.state.portfolio.customers[0]?.root.customerName}}));}
+async function snapshot(page){return page.evaluate(()=>({clock:SCP.state.clock,revision:SCP.state.revision,role:SCP.state.careerRole,customerIt:structuredClone(SCP.state.customerIt),mspCash:SCP.state.business.balance.cash,provider:{customerId:SCP.state.providerCampaign.customers[0]?.id,projectIds:SCP.state.providerCampaign.projects.map(p=>p.id),postingIds:SCP.state.providerCampaign.projects.map(p=>p.postingId),customerRootName:SCP.state.portfolio.customers[0]?.root.customerName,accessFault:SCP.state.portfolio.customers[0]?.root.resources.access.fault,readyMinutes:SCP.state.providerCampaign.customers[0]?.period.serviceReadyMinutes,failed:SCP.state.providerCampaign.customers[0]?.metrics.failed}}));}
 async function journey(browser,plan,report){
  const context=await browser.newContext({viewport:plan.viewport}),page=await context.newPage(),errors=[];
  page.on('pageerror',error=>errors.push(String(error)));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
@@ -18,15 +18,15 @@ async function journey(browser,plan,report){
  await page.locator('[name="careerRole"]').selectOption('customer-it');
  await page.locator('[data-provider-form="new-game"] button[type="submit"]').click();
  await page.locator('.provider-customer-it').waitFor({state:'visible'});
- const before=await snapshot(page);assert.equal(before.role,'customer-it');assert.equal(before.customerIt.version,2);assert.equal(before.customerIt.budgetCents,900000);assert.equal(before.customerIt.providerLink.customerId,before.provider.customerId);assert.equal(before.provider.customerRootName,'Canopy Group');assert.deepEqual(before.customerIt.providerLink.stages.map(row=>row.projectId),before.provider.projectIds);assert.deepEqual(before.customerIt.providerLink.stages.map(row=>row.postingId),before.provider.postingIds);
+ const before=await snapshot(page);assert.equal(before.role,'customer-it');assert.equal(before.customerIt.version,3);assert.equal(before.customerIt.budgetCents,900000);assert.equal(before.customerIt.providerLink.customerId,before.provider.customerId);assert.equal(before.provider.customerRootName,'Canopy Group');assert.deepEqual(before.customerIt.providerLink.stages.map(row=>row.projectId),before.provider.projectIds);assert.deepEqual(before.customerIt.providerLink.stages.map(row=>row.postingId),before.provider.postingIds);
  const quote=page.locator(`[data-provider-action="customer-it-commit"][data-provider-value="${plan.choice}"]`);assert.match(await quote.innerText(),/Approve this customer spend/);
  if(plan.choice==='protect'){await quote.focus();assert.equal(await quote.evaluate(node=>document.activeElement===node),true);await page.keyboard.press('Enter');}else await quote.click();
  await page.waitForFunction(choice=>SCP.state?.customerIt?.opening?.choice===choice,plan.choice);
  const funded=await snapshot(page);assert.equal(funded.mspCash,before.mspCash);assert.equal(funded.customerIt.budgetCents,plan.choice==='protect'?550000:400000);
  await page.locator('[data-provider-action="customer-it-grant"]').click();await page.waitForFunction(()=>SCP.state?.customerIt?.grant?.grantee==='orchard-msp');const granted=await snapshot(page);assert.equal(granted.customerIt.grant.expiresAt,180);assert.equal(granted.mspCash,before.mspCash);
  await page.locator('[data-provider-action="speed"][data-provider-value="1"]').click();
- await page.waitForFunction(()=>SCP.state?.clock>=8,null,{timeout:45000});await page.locator('[data-provider-action="pause"]').click();
- const outage=await snapshot(page);assert.equal(outage.customerIt.outage.status,plan.choice==='protect'?'protected':'interrupted');
+ await page.waitForFunction(()=>SCP.state?.clock>=12,null,{timeout:45000});await page.locator('[data-provider-action="pause"]').click();
+ const outage=await snapshot(page);assert.equal(outage.customerIt.outage.status,plan.choice==='protect'?'protected':'interrupted');assert.equal(outage.provider.accessFault,plan.choice==='protect'?null:'OUTAGE');assert.match(await page.locator('.provider-customer-it-contract').innerText(),/Paid service: access/);
  assert.equal(outage.customerIt.sites.south.platform,plan.choice==='migrate'?'managed':'legacy');
  if(plan.choice==='migrate'){
   await page.locator('[data-provider-action="customer-it-repair"]').click();
@@ -36,7 +36,7 @@ async function journey(browser,plan,report){
   await page.locator('[data-provider-action="pause"]').click();
   await page.locator('[data-provider-action="customer-it-revoke"]').click();await page.waitForFunction(()=>SCP.state?.customerIt?.grant?.revokedAt!==null);assert.equal(await page.locator('.provider-customer-it-contract').innerText().then(text=>/Grant revoked/.test(text)),true);
  }
- const completed=await snapshot(page);await page.locator('[data-provider-action="save"]').click();
+ const completed=await snapshot(page);if(plan.choice==='migrate')assert.equal(completed.provider.accessFault,null);await page.locator('[data-provider-action="save"]').click();
  await page.locator('.provider-customer-it').screenshot({path:path.join(OUT,`${plan.id}.png`)});
  await page.locator('.provider-customer-it-contract').screenshot({path:path.join(OUT,`${plan.id}-contract.png`)});
  const layout=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth,customerPanel:Math.round(document.querySelector('.provider-customer-it').getBoundingClientRect().width)}));

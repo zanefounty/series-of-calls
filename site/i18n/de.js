@@ -4473,6 +4473,7 @@
 "provider.customer_it.run":"Run one minute per step",
 "provider.customer_it.save":"Save",
 "provider.customer_it.selector":"Career",
+"provider.customer_it.service_observation":"Paid service: access {access}; {ready} ready minutes; {offered} work items offered; {failed} failed.",
 "provider.customer_it.site_summary":"North site: {north}{protection}. South site: {south} · {platform} platform.",
 "provider.customer_it.start":"Start Customer IT career",
 "provider.customer_it.status_effective":"effective",

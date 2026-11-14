@@ -73,6 +73,9 @@
   if(a==='customer-it-repair'){action('command',{type:'customer-it',command:{action:'repair',quoteRevision:Number(b.dataset.revision)}});return;}
   if(a==='customer-it-grant'){action('command',{type:'customer-it',command:{action:'accept-grant',quoteRevision:Number(b.dataset.revision)}});return;}
   if(a==='customer-it-revoke'){action('command',{type:'customer-it',command:{action:'revoke-grant',quoteRevision:Number(b.dataset.revision)}});return;}
+  if(a==='customer-it-fund-south'){action('command',{type:'customer-it',command:{action:'fund-south',quoteRevision:Number(b.dataset.revision)}});return;}
+  if(a==='customer-it-window'){action('command',{type:'customer-it',command:{action:'approve-window',cutoverAt:Number(b.dataset.cutover),quoteRevision:Number(b.dataset.revision)}});return;}
+  if(a==='customer-it-rehearse'){action('command',{type:'customer-it',command:{action:'rehearse-window',cutoverAt:Number(b.dataset.cutover),quoteRevision:Number(b.dataset.revision)}});return;}
   if(a==='open'){action('openExperience','providerCampaign');return;}if(a==='training'||a==='lab'||a==='sp'){action('openExperience',a);return;}if(a==='try-estate'){action('newGame',{opening:'estate',openingVariant:'peak-window',sectorHandoverVersion:2});return;}if(a==='show-new-game'){v.newGameOpen=true;render(state,model);return;}if(a==='new-game'){v.newGameOpen=true;render(state,model);return;}
   if(a==='toggle-coach'){v.coachDismissed=!v.coachDismissed;render(state,model);return;}if(a==='drawer'){v.drawer=val;v.sheetOpen=true;if(window.innerWidth<=680)v.inspectorOpen=false;render(state,model);return;}if(a==='drawer-close'){v.sheetOpen=false;v.drawer='goals';render(state,model);return;}if(a==='close'){action('close');return;}
   if(a==='pause'){action('pause');return;}if(a==='speed'){action('speed',Number(val));return;}if(a==='resume'){action('speed',1);return;}

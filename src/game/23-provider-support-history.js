@@ -518,7 +518,7 @@ function socProviderSupportHistoryKernel(){
    }
   }
   const customerIt=s.customerIt;
-  if(customerIt?.version===3&&customerIt.providerLink?.customerId===c.id&&customerIt.opening?.choice==='migrate'&&at>=customerIt.outage.at&&(!customerIt.repair||at<customerIt.repair.effectiveAt))faults.access='OUTAGE';
+  if(customerIt?.version>=3&&customerIt.providerLink?.customerId===c.id&&customerIt.opening?.choice!=='protect'&&at>=customerIt.outage.at&&(!customerIt.repair||at<customerIt.repair.effectiveAt))faults.access='OUTAGE';
   return {valid:true,connected,faults,boundaryActive,outageStartedAt};
  }
  function ownedSiteTimelineAt(s,c,root,at,hooks){

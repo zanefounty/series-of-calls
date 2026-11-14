@@ -8138,7 +8138,28 @@
         "AC-SOC-908"
       ],
       "status": "partial",
-      "scope": "Fresh version 3 Customer IT careers schedule the synthetic North outage after the paid Provider child becomes active. The customer choice sets or avoids the child access fault through validated dispatch. Paid repair clears that fault; Provider ready minutes, failed work, service credits and net retail settlement use the same child observations. Historical support reconstruction, save validation, Worker replay and desktop/phone journeys check the linked lineage. Version 1 and 2 saves preserve their prior opening behavior. Accepted migration windows, cross-role execution and role-specific victory remain pending."
+      "scope": "Fresh version 3 and 4 Customer IT careers schedule the synthetic North outage after the paid Provider child becomes active. The customer choice sets or avoids the child access fault through validated dispatch. Paid repair clears that fault; Provider ready minutes, failed work, service credits and net retail settlement use the same child observations. Historical support reconstruction, save validation and Worker replay check the linked lineage. Version 1 and 2 saves preserve their prior opening behavior. Distinct role victory remains pending."
+    },
+    {
+      "id": "BEH-SOC-447",
+      "sources": [
+        "uc-new:domain:commercial-roles",
+        "uc-new:domain:migration",
+        "uc-new:domain:pricing",
+        "DEC-011",
+        "DEC-012"
+      ],
+      "implementation": [
+        "src/game/23-customer-it-career.js",
+        "src/game/55-communications.js",
+        "src/game/93-ui/75-provider-panels.js",
+        "src/game/97-provider-shell.js"
+      ],
+      "testIds": [
+        "AC-SOC-909"
+      ],
+      "status": "partial",
+      "scope": "Fresh version 4 Customer IT careers fund the Provider's ordinary migration project and retain its cash posting, supplier period cost and child task. Both customer openings can fund South planning within the separate internal budget, approve a scoped grant, rehearse the exact live cutover window and accept a migration of Bea through the validated Provider decision. South becomes managed only after the native child placement completes. Quotes check readiness, meetings, engineer capacity, live calls and grant expiry; command lineage, save validation and Worker replay protect both parties' decisions. Orchard's acceptance is a standing synthetic service policy rather than a separately playable MSP decision, so the two-career and victory requirements remain pending."
     }
   ]
 }

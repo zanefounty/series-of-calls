@@ -3,12 +3,12 @@ const SOC=require('../src/game/55-communications');
 
 function buy(state,request){const quote=SOC.provider.quote(state,request);assert.deepEqual(quote.blockers,[],JSON.stringify({request,clock:state.clock,blockers:quote.blockers}));return SOC.dispatch(state,{type:'provider',command:{...request,quoteRevision:quote.atRevision}});}
 function minute(state){return SOC.dispatch(state,{type:'advance',minutes:1});}
-function operate(state,to){while(state.clock<to){const incident=state.providerCampaign.incidents.find(row=>row.status==='active');if(incident){state=SOC.dispatch(state,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});state=buy(state,{action:'operation',operationId:incident.resource==='service'?'service-repair':'repair',customerId:incident.customerId});}for(const customer of state.providerCampaign.customers.filter(row=>row.status==='renewal'))state=SOC.dispatch(state,{type:'provider',command:{action:'renew',customerId:customer.id}});state=minute(state);}return state;}
+function operate(state,to){while(state.clock<to){const incident=state.providerCampaign.incidents.find(row=>['active','acknowledged'].includes(row.status));if(incident){if(incident.status==='active')state=SOC.dispatch(state,{type:'provider',command:{action:'acknowledge-incident',incidentId:incident.id}});const request={action:'operation',operationId:incident.resource==='service'?'service-repair':'repair',customerId:incident.customerId},quote=SOC.provider.quote(state,request);if(!quote.blockers.length)state=buy(state,request);}for(const customer of state.providerCampaign.customers.filter(row=>row.status==='renewal'))state=SOC.dispatch(state,{type:'provider',command:{action:'renew',customerId:customer.id}});state=minute(state);}return state;}
 function qualifiedOpening(variant='standard'){let state=SOC.create({experience:'campaign',openingVariant:variant});for(const stage of ['base','carrier','partner']){state=buy(state,{action:'purchase',offerId:'starter',planId:'swift',stage,...(stage==='base'?{}:{customerId:'starter-customer'})});while(state.providerCampaign.customers[0].stages[stage].status!=='effective')state=minute(state);}return operate(state,180);}
 
 test('AC-SOC-885 two first-expansion prospects have different real workloads, prices and immutable deadlines',()=>{
  const state=qualifiedOpening(),view=SOC.provider.inspect(state),regular=view.offers.find(row=>row.id==='next-1'),peak=view.offers.find(row=>row.id==='next-1-a');
- assert.equal(state.providerCampaign.prospectChoiceVersion,1);assert.equal(regular.available,true);assert.equal(peak.available,true);
+ assert.equal(state.providerCampaign.prospectChoiceVersion,2);assert.equal(regular.available,true);assert.equal(peak.available,true);
  assert.deepEqual([regular.retailCents,regular.workload.scheduledVoicePeak,regular.expiresAt],[260000,2,300]);
  assert.deepEqual([peak.retailCents,peak.workload.scheduledVoicePeak,peak.expiresAt],[290000,5,270]);
  const regularQuote=SOC.provider.quote(state,{action:'plan',offerId:regular.id,planId:'swift'}),peakQuote=SOC.provider.quote(state,{action:'plan',offerId:peak.id,planId:'swift'});
@@ -48,4 +48,24 @@ test('AC-SOC-888 older campaigns retain their one-lead offer shape while the aut
  const legacy=SOC.create({experience:'campaign'});assert.equal(legacy.providerCampaign.prospectChoiceVersion,undefined);assert.deepEqual(SOC.provider.inspect(legacy).offers.map(row=>row.id),['starter','next-1']);assert.deepEqual(SOC.restore(JSON.stringify(legacy)),legacy);
  const peak=SOC.create({experience:'campaign',openingVariant:'peak-window'}),other=SOC.provider.inspect(peak).offers.find(row=>row.id==='next-1-a');assert.equal(other.workload.scheduledVoicePeak,2);assert.equal(other.retailCents,240000);
  const forged=JSON.parse(JSON.stringify(legacy));forged.providerCampaign.prospectChoiceVersion=1;assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_PROSPECT_CHOICE_VERSION/);
+});
+
+test('AC-SOC-910 a continued SMB career chooses cash headroom or a funded short-response premium from equivalent states',()=>{
+ let checkpoint=qualifiedOpening();checkpoint=buy(checkpoint,{action:'plan',offerId:'next-1',planId:'swift'});checkpoint=operate(checkpoint,190);
+ assert.equal(checkpoint.providerCampaign.status,'won');checkpoint=SOC.dispatch(checkpoint,{type:'provider',command:{action:'continue-career'}});checkpoint=operate(checkpoint,300);
+ const view=SOC.provider.inspect(checkpoint),regular=view.offers.find(row=>row.id==='next-2'),short=view.offers.find(row=>row.id==='next-2-a');
+ assert.deepEqual([regular.available,regular.retailCents,regular.workload.deadlineMinutes],[true,260000,8]);
+ assert.deepEqual([short.available,short.retailCents,short.workload.deadlineMinutes,short.expiresAt],[true,300000,5,view.clock+150]);
+ const quote=SOC.provider.quote(checkpoint,{action:'plan',offerId:short.id,planId:'steady'});assert.deepEqual(quote.blockers,[]);assert.equal(quote.commercial.sla.deadlineMinutes,5);assert.equal(quote.commercial.retailCents,300000);
+ const previous=structuredClone(checkpoint);previous.providerCampaign.prospectChoiceVersion=1;assert.deepEqual(SOC.provider.inspect(SOC.restore(JSON.stringify(previous))).offers.map(row=>row.id),['starter','next-2']);
+ let lean=buy(SOC.restore(JSON.stringify(checkpoint)),{action:'plan',offerId:regular.id,planId:'swift'}),unfunded=buy(SOC.restore(JSON.stringify(checkpoint)),{action:'plan',offerId:short.id,planId:'swift'}),funded=buy(SOC.restore(JSON.stringify(checkpoint)),{action:'plan',offerId:short.id,planId:'steady'});
+ funded=operate(funded,315);funded=buy(funded,{action:'operation',operationId:'bpo',customerId:'next-2-customer'});funded=operate(funded,321);funded=buy(funded,{action:'operation',operationId:'after-call-assistance',customerId:'next-2-customer'});
+ lean=operate(lean,420);unfunded=operate(unfunded,420);funded=operate(funded,420);
+ const outcome=state=>state.providerCampaign.customers.find(row=>row.id==='next-2-customer').history.find(row=>row.period===6),result=state=>state.providerCampaign.periodHistory.find(row=>row.period===6);
+ assert.equal(outcome(lean).qualified,true);assert.equal(outcome(unfunded).qualified,false);assert.equal(outcome(funded).qualified,true);
+ assert.ok(outcome(funded).completedOnTime>outcome(unfunded).completedOnTime);assert.ok(result(funded).operatingResult>result(lean).operatingResult);
+ assert.ok(lean.business.balance.cash>funded.business.balance.cash,'the higher-period return requires an up-front commitment');
+ assert.equal(funded.providerCampaign.customers.find(row=>row.id==='next-2-customer').prospectDemandId,'short-promise');assert.deepEqual(SOC.restore(JSON.stringify(funded)),funded);
+ const forged=structuredClone(funded);forged.providerCampaign.customers.find(row=>row.id==='next-2-customer').prospectDemandId='standard';assert.throws(()=>SOC.restore(JSON.stringify(forged)),/INVALID_PROVIDER_PROSPECT_DEMAND/);
+ const command={type:'advance',minutes:1},expected=SOC.dispatch(funded,command),box={postMessage:message=>box.result=message};vm.createContext(box);vm.runInContext(SOC.workerSource(),box);box.onmessage({data:{id:910,state:JSON.parse(JSON.stringify(funded)),command}});assert.equal(box.result.error,undefined);assert.deepEqual(JSON.parse(JSON.stringify(box.result.state)),expected);
 });

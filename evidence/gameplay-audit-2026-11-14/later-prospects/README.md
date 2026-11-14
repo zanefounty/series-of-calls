@@ -1,0 +1,7 @@
+# Later prospect browser diagnostic
+
+Run 14 November 2026 in local headless Chromium, using the built `_site` from gameplay commit `4b01937`. The test created a standard SMB campaign through validated SOC commands, commissioned Swift starter stages, accepted the first regular lead, continued the won career, and advanced to minute 300. It then imported that exact save into a local browser for diagnostic review. Browser import was programmatic, so this is **not** a complete visible-control journey from the title screen.
+
+At 1366×768 and 390×844 with reduced motion, the browser opened the visible Deals panel, found both later leads, opened the short-response Steady quote, checked quote focus and pressed Escape. The original save was unchanged. The two lead cards carried different text, both showed expiry, and the document had no horizontal overflow. No page errors were recorded. See [raw report](report.json), [desktop comparison](desktop-comparison.png), [desktop premium quote](desktop-premium-quote.png), [phone comparison](phone-comparison.png) and [phone premium quote](phone-premium-quote.png).
+
+The comparison screenshots show the internal Deals scroll at the premium card; the full text of both cards is preserved in the JSON report. The screenshot and report establish rendering and control reachability for this checkpoint. They do not establish how quickly a new player finds the panel, reads the tradeoff, or executes a full career. No human participants were involved.
